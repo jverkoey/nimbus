@@ -43,12 +43,12 @@ import sys
 pbxproj_cache = {}
 
 class PbxprojTarget(object):
-	def __init__(self, name, project):
+	def __init__(self, name, project, guid = None):
 		self._name = name
 		self._project = project
 		
 		# This target's GUID.
-		self._guid = None
+		self._guid = guid
 		
 		# The configuration list GUID points to the list of configurations for a given target.
 		self._configuration_list_guid = None
@@ -73,6 +73,10 @@ class PbxprojTarget(object):
 		
 		# This target's product name.
 		self._product_name = None
+
+
+	def name(self):
+		return self._name
 
 
 	def configuration_list_guid(self):
@@ -265,7 +269,11 @@ class pbxproj(object):
 		self._is_loaded = self._load_from_disk()
 
 	def __str__(self):
-		return "         path: \""+str(self._path)+"\"\n product name: \""+str(self._product_name)+"\"\n      targets:\n"+str(self._targets_by_name)
+		details = "         path: \""+str(self._path)+"\"\n      targets:"
+		for target_name in self._targets_by_name:
+			target = self._targets_by_name[target_name]
+			details += "\n            -> "+target.name() + " ("+target.guid()+")"
+		return details
 
 	def is_loaded(self):
 		return self._is_loaded
@@ -330,7 +338,35 @@ class pbxproj(object):
 			logging.error("Can't recover: unable to load the project data from disk, check the path:\n    path: \""+self.path()+"\"")
 			return False
 
+		self._gather_all_targets()
+
 		return True
+
+	def _gather_all_targets(self):
+		project_data = self.get_project_data()
+		
+		result = re.search('targets = \(\n((?:.|\n)+?)\);',
+		                   project_data)
+		
+		if not result:
+			logging.error("Couldn't find any targets.")
+			return None
+		
+		(target_list, ) = result.groups()
+
+		targets = re.findall('([A-Z0-9]+) \/\* (.+?) \*\/', target_list)
+		if not targets:
+			logging.error("Unable to read the targets.")
+			return None
+		
+		for target in targets:
+			name = target[1]
+			target = PbxprojTarget(name, project = self, guid = target[0])
+			self._targets_by_name[name] = target
+			self._targets_by_guid[target.guid()] = target
+
+		return True
+
 
 	def dependency_names_for_target_name(self, target_name):
 		target = self.target_by_name(target_name)

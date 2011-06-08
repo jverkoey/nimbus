@@ -47,7 +47,7 @@ def path_and_target_from_name(name):
 			# Not a path, create a path to a Nimbus library
 			path = os.path.join(src_dir, path, path+'.xcodeproj', 'project.pbxproj')
 
-		elif not re.match('project.pbxproj$', path):
+		elif not re.match('project\.pbxproj$', path):
 			# Is a path, but doesn't include project.pbxproj
 			path = os.path.join(path, 'project.pbxproj')
 
@@ -80,7 +80,7 @@ def print_dependencies(name):
 	print "Printing dependencies for the following project:"
 	print str(proj)
 	print
-	print "Dependencies:"
+	print "Dependencies for target \""+target+"\":"
 	dependency_names = proj.dependency_names_for_target_name(target)
 	if dependency_names:
 		[sys.stdout.write("\t"+x+"\n") for x in dependency_names]
