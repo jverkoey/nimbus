@@ -30,15 +30,60 @@ import sys
 from optparse import OptionParser
 import ios
 
+script_dir = os.path.dirname(os.path.realpath(__file__))
+src_dir = os.path.dirname(script_dir)
+
+def path_and_target_from_name(name):
+	parts = name.split(':')
+	name = parts[0]
+	
+	path = None
+	suggested_target = None
+	
+	if name:
+		path = name.strip('"')
+
+		if re.match('^[^/]+$', path):
+			# Not a path, create a path to a Nimbus library
+			path = os.path.join(src_dir, path, path+'.xcodeproj', 'project.pbxproj')
+
+		elif not re.match('project.pbxproj$', path):
+			# Is a path, but doesn't include project.pbxproj
+			path = os.path.join(path, 'project.pbxproj')
+
+	# Make an educated guess at the target. We can't be certain until after we load the project
+	# as to whether this target exists.
+	if len(parts) > 1:
+		suggested_target = parts[1]
+
+	elif re.match('^[^/]+$', name):
+		# No path information in the name, so let's just assume that the target is the name.
+		suggested_target = name
+
+	else:
+		# The name is a path, so split out the xcodeproj's name and use that as the target.
+		result = re.search('([^/]+)\.xcodeproj', name)
+		if not result:
+			suggested_target = name
+
+		else:
+			(suggested_target, ) = result.groups()
+
+	return (path, suggested_target)
+
 # Print the given project's dependencies to stdout.
 def print_dependencies(name):
-	proj = ios.pbxproj.get_pbxproj_by_name(name)
+	(path, target) = path_and_target_from_name(name)
+	proj = ios.pbxproj.get_pbxproj_by_path(path)
+	if not proj.is_loaded():
+		return
 	print "Printing dependencies for the following project:"
 	print str(proj)
 	print
 	print "Dependencies:"
-	if proj.dependencies():
-		[sys.stdout.write("\t"+x+"\n") for x in proj.dependencies()]
+	dependency_names = proj.dependency_names_for_target_name(target)
+	if dependency_names:
+		[sys.stdout.write("\t"+x+"\n") for x in dependency_names]
 
 def get_dependency_modules(dependency_names):
 	dependency_modules = {}
@@ -163,7 +208,12 @@ OPTIONS
 	else:
 		log_level = logging.WARNING
 
-	logging.basicConfig(level=log_level)
+	logger = logging.getLogger()
+	logger.setLevel(log_level)
+	ch = logging.StreamHandler()
+	formatter = logging.Formatter("%(message)s")
+	ch.setFormatter(formatter)
+	logger.addHandler(ch)
 
 	available_actions = ['add', 'list']
 	
@@ -186,6 +236,8 @@ OPTIONS
 			add_modules_to_project(args, project, options.configs)
 	else:
 		parser.print_help()
+
+	logger.removeHandler(ch)
 
 
 if __name__ == "__main__":

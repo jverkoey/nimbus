@@ -17,6 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+# The exposed interfaces for the ios module.
 
-# Only expose the pbxproj object from this module.
 from pbxproj import pbxproj
+from relpath import relpath
+
