@@ -39,6 +39,7 @@ import logging
 import os
 import re
 import sys
+from relpath import relpath
 
 pbxproj_cache = {}
 
@@ -67,6 +68,9 @@ class PbxprojTarget(object):
 		
 		# An array of dependency names in the same order as the dependency guids array.
 		self._dependency_names = None
+		
+		# An array of path:target strings.
+		self._dependency_paths = None
 		
 		# This target's product GUID.
 		self._product_guid = None
@@ -178,7 +182,7 @@ class PbxprojTarget(object):
 			                   project_data)
 	
 			if not result:
-				logging.error("Unable to get dependencies from: "+self.path())
+				logging.error("Unable to get dependencies from: "+self._project.path())
 				return False
 	
 			(dependency_set, ) = result.groups()
@@ -203,6 +207,63 @@ class PbxprojTarget(object):
 			self._dependency_names = dependency_names
 		
 		return self._dependency_names
+
+	def dependency_paths(self):
+		if self._dependency_paths:
+			return self._dependency_paths
+
+		dependency_guids = self.dependency_guids()
+		if dependency_guids:
+			project_data = self._project.get_project_data()
+			
+			target_proxy_guids = []
+			
+			for guid in dependency_guids:
+				result = re.search(guid+' \/\* PBXTargetDependency \*\/ = \{\n(?:.|\n)+?targetProxy = ([A-Z0-9]+) \/\* PBXContainerItemProxy \*\/;',
+				                   project_data)
+				
+				if result:
+					(target_proxy_guid, ) = result.groups()
+					target_proxy_guids.append(target_proxy_guid)
+
+			container_portal_guids = []
+			remote_guids = []
+			
+			for guid in target_proxy_guids:
+				result = re.search(guid+' \/\* PBXContainerItemProxy \*\/ = \{\n(?:.|\n)+?containerPortal = ([A-Z0-9]+) \/\* .+? \*\/;(?:.|\n)+?remoteGlobalIDString = ([A-Z0-9]+)',
+				                   project_data)
+				
+				if result:
+					(container_portal_guid, remote_guid, ) = result.groups()
+					container_portal_guids.append(container_portal_guid)
+					remote_guids.append(remote_guid)
+
+			dependency_paths = []
+
+			index = 0
+			for guid in container_portal_guids:
+				result = re.search(guid+' \/\* .+? \*\/ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = .+?; path = (.+?); sourceTree = .+?; };',
+				                   project_data)
+				
+				if result:
+					(dependency_path, ) = result.groups()
+					dependency_path = dependency_path + ":" + remote_guids[index]
+					dependency_paths.append(dependency_path)
+				else:
+					logging.error("Unable to find the path for GUID: "+guid)
+				
+				index += 1
+
+			if len(dependency_paths) != len(container_portal_guids):
+				logging.error("Unable to load all dependency information from the project.")
+				return False
+
+			self._dependency_paths = dependency_paths
+			
+		elif dependency_guids is not None and dependency_guids is not False and len(dependency_guids) == 0:
+			self._dependency_paths = []
+
+		return self._dependency_paths
 
 
 	def _gather_product_details(self):
@@ -246,6 +307,10 @@ class pbxproj(object):
 	def __init__(self, path, xcode_version = None):
 		# The contents of the pbxproj file loaded into memory.
 		self._project_data = None
+		
+		self._active_target = None
+		
+		self._project_name = os.path.basename(os.path.dirname(path)).replace('.xcodeproj', '')
 
 		# The path to the pbxproj file.
 		self._path = path
@@ -261,28 +326,35 @@ class pbxproj(object):
 		
 		# The file format version for this project.
 		self._file_format_version = None
-		
-		# The product name for this project/target?
-		# TODO: Consider replacing this with a mapping of target names to product names.
-		self._product_name = None
 
 		self._is_loaded = self._load_from_disk()
 
 	def __str__(self):
-		details = "         path: \""+str(self._path)+"\"\n      targets:"
+		details = "\t   path: \""+str(self._path)+"\"\n\ttargets:"
 		for target_name in self._targets_by_name:
 			target = self._targets_by_name[target_name]
 			details += "\n            -> "+target.name() + " ("+target.guid()+")"
+		if self._active_target:
+			details += "\n  active target: "+self._active_target
 		return details
 
 	def is_loaded(self):
 		return self._is_loaded
 
-	def uniqueid(self):
-		return self._path + ':' + self._target
+	def uniqueid_for_target(self, target):
+		return self._path + ':' + target
 
 	def path(self):
 		return self._path
+
+	def active_target(self):
+		if self._active_target is None:
+			return None
+		
+		return self.target_by_name(self._active_target)
+
+	def set_active_target(self, target_name):
+		self._active_target = target_name
 
 	# A pbxproj file is contained within an xcodeproj file.
 	# This method simply strips off the project.pbxproj part of the path.
@@ -304,6 +376,11 @@ class pbxproj(object):
 
 	# Fetch a specific target by its name.
 	def target_by_name(self, name):
+		if name in self._targets_by_guid:
+			target = self._targets_by_guid[name]
+			target._guid = name
+			return target
+
 		if name not in self._targets_by_name:
 			target = PbxprojTarget(name, self)
 			self._targets_by_name[name] = target
@@ -325,11 +402,12 @@ class pbxproj(object):
 		return self._project_data
 
 	# Write the project data to disk.
-	def set_project_data(self, project_data):
-		if self._project_data != project_data:
+	def set_project_data(self, project_data, flush=False):
+		if self._project_data != project_data or flush:
 			self._project_data = project_data
-			project_file = open(self.path(), 'w')
-			project_file.write(self._project_data)
+			if flush:
+				project_file = open(self.path(), 'w')
+				project_file.write(self._project_data)
 
 	def _load_from_disk(self):
 		project_data = self.get_project_data()
@@ -371,6 +449,12 @@ class pbxproj(object):
 	def dependency_names_for_target_name(self, target_name):
 		target = self.target_by_name(target_name)
 		return target.dependency_names()
+
+
+	def dependency_paths_for_target_name(self, target_name):
+		target = self.target_by_name(target_name)
+		return target.dependency_paths()
+
 
 	# Add a line to the PBXBuildFile section.
 	#
@@ -526,7 +610,8 @@ class pbxproj(object):
 		return relpath(project_path, build_path)
 
 	def add_file_to_frameworks_phase(self, name, guid):
-		return self.add_file_to_phase(name, guid, self._frameworks_guid, 'Frameworks')
+		target = self.active_target()
+		return self.add_file_to_phase(name, guid, target.frameworks_build_phase_guid(), 'Frameworks')
 
 	def add_file_to_resources_phase(self, name, guid):
 		if self._resources_guid is None:
@@ -568,7 +653,7 @@ class pbxproj(object):
 
 		match = re.search('\/\* '+configuration+' \*\/ = {\n[ \t]+isa = XCBuildConfiguration;\n[ \t]+buildSettings = \{\n((?:.|\n)+?)\};', project_data)
 		if not match:
-			print "Couldn't find this configuration."
+			logging.error("Couldn't find this configuration.")
 			return False
 
 		settings_start = match.start(1)
@@ -732,11 +817,13 @@ class pbxproj(object):
 	def add_dependency(self, dep):
 		project_data = self.get_project_data()
 		dep_data = dep.get_project_data()
+		project_target = self.active_target()
+		dep_target = dep.active_target()
 		
 		if project_data is None or dep_data is None:
 			return False
 
-		logging.info("\nAdding "+str(dep)+" to "+str(self))
+		logging.info("\nAdding "+str(dep)+"\nto\n"+str(self))
 		
 		project_path = os.path.dirname(os.path.abspath(self.xcodeprojpath()))
 		dep_path = os.path.abspath(dep.xcodeprojpath())
@@ -747,28 +834,28 @@ class pbxproj(object):
 		logging.info("Dependency path: "+dep_path)
 		logging.info("Relative path:   "+rel_path)
 		
-		tthash_base = self.get_hash_base(dep.uniqueid())
+		tthash_base = self.get_hash_base(dep.uniqueid_for_target(dep._active_target))
 	
 		###############################################
 		logging.info("")
 		logging.info("Step 1: Add file reference to the dependency...")
 		
-		self.set_project_data(project_data)
 		pbxfileref_hash = self.add_filereference(dep._project_name+'.xcodeproj', 'pb-project', tthash_base+'0', rel_path, 'SOURCE_ROOT')
 		project_data = self.get_project_data()
 
 		logging.info("Done: Added file reference: "+pbxfileref_hash)
+		self.set_project_data(project_data)
 		
 		###############################################
 		logging.info("")
 		logging.info("Step 2: Add file to Frameworks group...")
 		
-		self.set_project_data(project_data)
 		if not self.add_file_to_frameworks(dep._project_name+".xcodeproj", pbxfileref_hash):
 			return False
 		project_data = self.get_project_data()
 
 		logging.info("Done: Added file to Frameworks group.")
+		self.set_project_data(project_data)
 		
 		###############################################
 		logging.info("")
@@ -794,6 +881,8 @@ class pbxproj(object):
 				(pbxtargetdependency_hash, pbxcontaineritemproxy_hash,) = match.groups()
 				logging.info("This dependency already exists.")
 
+		self.set_project_data(project_data)
+
 		if pbxtargetdependency_hash is None or pbxcontaineritemproxy_hash is None:
 			match = re.search('\/\* Begin PBXTargetDependency section \*\/\n', project_data)
 		
@@ -804,6 +893,7 @@ class pbxproj(object):
 			project_data = project_data[:match.end()] + pbxtargetdependency + project_data[match.end():]
 
 		logging.info("Done: Added dependency.")
+		self.set_project_data(project_data)
 
 
 		###############################################
@@ -829,20 +919,23 @@ class pbxproj(object):
 				logging.info("This container proxy already exists.")
 				containerExists = True
 
+		self.set_project_data(project_data)
+
 		if not containerExists:
 			match = re.search('\/\* Begin PBXContainerItemProxy section \*\/\n', project_data)
 
-			pbxcontaineritemproxy = "\t\t"+pbxcontaineritemproxy_hash+" /* PBXContainerItemProxy */ = {\n\t\t\tisa = PBXContainerItemProxy;\n\t\t\tcontainerPortal = "+pbxfileref_hash+" /* "+dep._project_name+".xcodeproj */;\n\t\t\tproxyType = 1;\n\t\t\tremoteGlobalIDString = "+dep.guid()+";\n\t\t\tremoteInfo = "+dep._project_name+";\n\t\t};\n"
+			pbxcontaineritemproxy = "\t\t"+pbxcontaineritemproxy_hash+" /* PBXContainerItemProxy */ = {\n\t\t\tisa = PBXContainerItemProxy;\n\t\t\tcontainerPortal = "+pbxfileref_hash+" /* "+dep._project_name+".xcodeproj */;\n\t\t\tproxyType = 1;\n\t\t\tremoteGlobalIDString = "+dep_target.guid()+";\n\t\t\tremoteInfo = "+dep._project_name+";\n\t\t};\n"
 			project_data = project_data[:match.end()] + pbxcontaineritemproxy + project_data[match.end():]
 
 		logging.info("Done: Added container proxy.")
+		self.set_project_data(project_data)
 
 
 		###############################################
 		logging.info("")
 		logging.info("Step 3.2: Add module to the dependency list...")
 
-		match = re.search(self.guid()+' \/\* .+? \*\/ = {\n[ \t]+(?:.|\n)+?[ \t]+dependencies = \(\n((?:.|\n)+?)\);', project_data)
+		match = re.search(project_target.guid()+' \/\* .+? \*\/ = {\n[ \t]+(?:.|\n)+?[ \t]+dependencies = \(\n((?:.|\n)+?)\);', project_data)
 		
 		dependency_exists = False
 		
@@ -857,7 +950,7 @@ class pbxproj(object):
 				dependency_exists = True
 		
 		if not dependency_exists:
-			match = re.search(self.guid()+' \/\* .+? \*\/ = {\n[ \t]+(?:.|\n)+?[ \t]+dependencies = \(\n', project_data)
+			match = re.search(project_target.guid()+' \/\* .+? \*\/ = {\n[ \t]+(?:.|\n)+?[ \t]+dependencies = \(\n', project_data)
 
 			if not match:
 				logging.error("Couldn't find the dependency list.")
@@ -867,6 +960,7 @@ class pbxproj(object):
 			project_data = project_data[:match.end()] + dependency_item + project_data[match.end():]
 
 		logging.info("Done: Added module to the dependency list.")
+		self.set_project_data(project_data)
 
 
 		###############################################
@@ -926,6 +1020,7 @@ class pbxproj(object):
 			project_data = project_data[:project_start] + project_section + project_data[project_end:]
 
 		logging.info("Done: Created project reference.")
+		self.set_project_data(project_data)
 
 		###############################################
 		logging.info("")
@@ -944,7 +1039,7 @@ class pbxproj(object):
 		if match:
 			logging.info("This product group already exists.")
 			(children, ) = match.groups()
-			match = re.search('([A-Z0-9]+) \/\* '+re.escape(dep._product_name)+' \*\/', children)
+			match = re.search('([A-Z0-9]+) \/\* '+re.escape(dep_target.product_name())+' \*\/', children)
 			if not match:
 				logging.error("No product found")
 				return False
@@ -955,13 +1050,12 @@ class pbxproj(object):
 		else:
 			lib_hash = tthash_base+'4'
 
-			productgrouptext = "\t\t"+productgroup_hash+" /* Products */ = {\n\t\t\tisa = PBXGroup;\n\t\t\tchildren = (\n\t\t\t\t"+lib_hash+" /* "+dep._product_name+" */,\n\t\t\t);\n\t\t\tname = Products;\n\t\t\tsourceTree = \"<group>\";\n\t\t};\n"
+			productgrouptext = "\t\t"+productgroup_hash+" /* Products */ = {\n\t\t\tisa = PBXGroup;\n\t\t\tchildren = (\n\t\t\t\t"+lib_hash+" /* "+dep_target.product_name()+" */,\n\t\t\t);\n\t\t\tname = Products;\n\t\t\tsourceTree = \"<group>\";\n\t\t};\n"
 			project_data = project_data[:group_start] + productgrouptext + project_data[group_start:]
 
 		logging.info("Done: Created product group: "+lib_hash)
-
-
-
+		self.set_project_data(project_data)
+		
 		###############################################
 		logging.info("")
 		logging.info("Step 4.2: Add container proxy for target product...")
@@ -987,53 +1081,61 @@ class pbxproj(object):
 				logging.info("This container proxy already exists.")
 				containerExists = True
 
+		self.set_project_data(project_data)
+		
 		if not containerExists:
 			match = re.search('\/\* Begin PBXContainerItemProxy section \*\/\n', project_data)
 
-			pbxcontaineritemproxy = "\t\t"+targetproduct_hash+" /* PBXContainerItemProxy */ = {\n\t\t\tisa = PBXContainerItemProxy;\n\t\t\tcontainerPortal = "+pbxfileref_hash+" /* "+dep._project_name+".xcodeproj */;\n\t\t\tproxyType = 2;\n\t\t\tremoteGlobalIDString = "+dep._product_guid+";\n\t\t\tremoteInfo = "+dep._project_name+";\n\t\t};\n"
+			pbxcontaineritemproxy = "\t\t"+targetproduct_hash+" /* PBXContainerItemProxy */ = {\n\t\t\tisa = PBXContainerItemProxy;\n\t\t\tcontainerPortal = "+pbxfileref_hash+" /* "+dep._project_name+".xcodeproj */;\n\t\t\tproxyType = 2;\n\t\t\tremoteGlobalIDString = "+dep_target.guid()+";\n\t\t\tremoteInfo = "+dep._project_name+";\n\t\t};\n"
 			project_data = project_data[:match.end()] + pbxcontaineritemproxy + project_data[match.end():]
 
 		logging.info("Done: Added target container proxy.")
+		self.set_project_data(project_data)
 
 
 		###############################################
-		logging.info("")
-		logging.info("Step 4.3: Create reference proxy...")
+		# This code seems to break the xcode project but doesn't seem completely crucial.
+		# Gr.
 
-		referenceExists = False
-
-		match = re.search('\/\* Begin PBXReferenceProxy section \*\/\n((?:.|\n)+?)\/\* End PBXReferenceProxy section \*\/', project_data)
-		if not match:
-			logging.info("\tAdding a PBXReferenceProxy section...")
-			match = re.search('\/\* End PBXProject section \*\/\n', project_data)
-			
-			if not match:
-				logging.error("Couldn't find the PBXProject section.")
-				return False
-			
-			project_data = project_data[:match.end()] + "\n/* Begin PBXReferenceProxy section */\n\n/* End PBXReferenceProxy section */\n" + project_data[match.end():]
-		else:
-			(subtext, ) = match.groups()
-			match = re.search(re.escape(lib_hash), subtext)
-			if match:
-				logging.info("This reference proxy already exists.")
-				referenceExists = True
-
-		if not referenceExists:
-			match = re.search('\/\* Begin PBXReferenceProxy section \*\/\n', project_data)
-
-			referenceproxytext = "\t\t"+lib_hash+" /* "+dep._product_name+" */ = {\n\t\t\tisa = PBXReferenceProxy;\n\t\t\tfileType = archive.ar;\n\t\t\tpath = \""+dep._product_name+"\";\n\t\t\tremoteRef = "+targetproduct_hash+" /* PBXContainerItemProxy */;\n\t\t\tsourceTree = BUILT_PRODUCTS_DIR;\n\t\t};\n"
-			project_data = project_data[:match.end()] + referenceproxytext + project_data[match.end():]
-
-		logging.info("Done: Created reference proxy.")
+		# logging.info("")
+		# logging.info("Step 4.3: Create reference proxy...")
+		# 
+		# referenceExists = False
+		# 
+		# match = re.search('\/\* Begin PBXReferenceProxy section \*\/\n((?:.|\n)+?)\/\* End PBXReferenceProxy section \*\/', project_data)
+		# if not match:
+		# 	logging.info("\tAdding a PBXReferenceProxy section...")
+		# 	match = re.search('\/\* End PBXProject section \*\/\n', project_data)
+		# 	
+		# 	if not match:
+		# 		logging.error("Couldn't find the PBXProject section.")
+		# 		return False
+		# 	
+		# 	project_data = project_data[:match.end()] + "\n/* Begin PBXReferenceProxy section */\n\n/* End PBXReferenceProxy section */\n" + project_data[match.end():]
+		# else:
+		# 	(subtext, ) = match.groups()
+		# 	match = re.search(re.escape(lib_hash), subtext)
+		# 	if match:
+		# 		logging.info("This reference proxy already exists.")
+		# 		referenceExists = True
+		# 
+		# self.set_project_data(project_data)
+		# 
+		# if not referenceExists:
+		# 	match = re.search('\/\* Begin PBXReferenceProxy section \*\/\n', project_data)
+		# 
+		# 	referenceproxytext = "\t\t"+lib_hash+" /* "+dep_target.product_name()+" */ = {\n\t\t\tisa = PBXReferenceProxy;\n\t\t\tfileType = archive.ar;\n\t\t\tpath = \""+dep_target.product_name()+"\";\n\t\t\tremoteRef = "+targetproduct_hash+" /* PBXContainerItemProxy */;\n\t\t\tsourceTree = BUILT_PRODUCTS_DIR;\n\t\t};\n"
+		# 	project_data = project_data[:match.end()] + referenceproxytext + project_data[match.end():]
+		# 
+		# logging.info("Done: Created reference proxy.")
+		# self.set_project_data(project_data)
 
 
 		###############################################
 		logging.info("")
 		logging.info("Step 5: Add target file...")
 
-		self.set_project_data(project_data)
-		libfile_hash = self.add_buildfile(dep._product_name, lib_hash, tthash_base+'5')
+		libfile_hash = self.add_buildfile(dep_target.product_name(), lib_hash, tthash_base+'5')
 		project_data = self.get_project_data()
 
 		logging.info("Done: Added target file.")
@@ -1043,12 +1145,11 @@ class pbxproj(object):
 		logging.info("")
 		logging.info("Step 6: Add frameworks...")
 
-		self.set_project_data(project_data)
-		self.add_file_to_frameworks_phase(dep._product_name, libfile_hash)
+		self.add_file_to_frameworks_phase(dep_target.product_name(), libfile_hash)
 		project_data = self.get_project_data()
 
 		logging.info("Done: Adding module.")
 
-		self.set_project_data(project_data)
+		self.set_project_data(project_data, flush = True)
 
 		return True

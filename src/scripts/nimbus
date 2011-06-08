@@ -85,54 +85,76 @@ def print_dependencies(name):
 	if dependency_names:
 		[sys.stdout.write("\t"+x+"\n") for x in dependency_names]
 
-def get_dependency_modules(dependency_names):
-	dependency_modules = {}
+def get_dependency_projects(dependency_names):
+	dependency_projects = {}
 	if not dependency_names:
-		return dependency_modules
+		return dependency_projects
 
 	for name in dependency_names:
-		project = pbxproj.get_pbxproj_by_name(name)
-		dependency_modules[project.uniqueid()] = project
+		(path, target) = path_and_target_from_name(name)
+		
+		project = ios.pbxproj.get_pbxproj_by_path(path)
+		dependency_projects[project.uniqueid_for_target(target)] = project
+		project.set_active_target(target)
 
-		dependencies = project.dependencies()
-		if dependencies is None:
+		dependency_paths = project.dependency_paths_for_target_name(target)
+		if dependency_paths is None:
 			print "Failed to get dependencies; it's possible that the given target doesn't exist."
 			sys.exit(0)
 
-		submodules = get_dependency_modules(dependencies)
-		for guid, submodule in submodules.items():
-			dependency_modules[guid] = submodule
+		absolute_paths = absolute_paths_from_dependency_paths(dependency_paths, project)
+		
+		submodules = get_dependency_projects(absolute_paths)
+		for guid, subprojects in submodules.items():
+			dependency_projects[guid] = subprojects
 
-	return dependency_modules
+	return dependency_projects
 
-def add_modules_to_project(module_names, project, configs):
+def absolute_path_to_lib_from_project(lib_path, project):
+	abs_path = lib_path
+	if not abs_path[0] == '/':
+		base_project_path = os.path.dirname(os.path.dirname(os.path.realpath(project.path())))
+		abs_path = os.path.join(base_project_path, lib_path)
+	return os.path.realpath(os.path.dirname(abs_path))
+
+def absolute_paths_from_dependency_paths(dependency_paths, project):
+	if dependency_paths is None:
+		logging.error("Failed to get dependencies.")
+		sys.exit(0)
+
+	absolute_paths = []
+	for name in dependency_paths:
+		(path, target) = path_and_target_from_name(name)
+		path = absolute_path_to_lib_from_project(path, project)
+		absolute_paths.append(path + ':' + target)
+	
+	return absolute_paths
+
+def add_modules_to_project(module_names, project, target, configs):
 	logging.info(project)
 	logging.info("Checking dependencies...")
-	if project.dependencies() is None:
-		logging.error("Failed to get dependencies. Check the error logs for more details.")
-		sys.exit(0)
-	if len(project.dependencies()) == 0:
+	dependency_paths = project.dependency_paths_for_target_name(target)
+	absolute_paths = absolute_paths_from_dependency_paths(dependency_paths, project)
+
+	if len(absolute_paths) == 0:
 		logging.info("\tNo dependencies.")
 	else:
 		logging.info("Existing dependencies:")
-		[logging.info("\t"+x) for x in project.dependencies()]
+		[logging.info("\t"+x) for x in absolute_paths]
 
-	modules = get_dependency_modules(module_names)
+	modules = get_dependency_projects(module_names)
 
 	logging.info("Requested dependency list:")
-	[logging.info("\t"+str(x)) for k,x in modules.items()]
+	[logging.info(str(x)+"\n") for k,x in modules.items()]
 	
 	logging.info("Adding dependencies...")
 	failed = []
 	for k,v in modules.items():
-		if v.name == 'Three20UI':
-			project.add_framework('QuartzCore.framework')
-		if v.name == 'Three20Core':
-			project.add_bundle()
-
 		if not project.add_dependency(v):
 			failed.append(k)
 
+	return
+	
 	if configs:
 		for config in configs:
 			project.add_header_search_path(config)
@@ -232,8 +254,10 @@ OPTIONS
 				(options.xcode_version, ) = match.groups()
 
 		for name in options.projects:
-			project = pbxproj.get_pbxproj_by_name(name, xcode_version = options.xcode_version)
-			add_modules_to_project(args, project, options.configs)
+			(path, target) = path_and_target_from_name(name)
+			project = ios.pbxproj.get_pbxproj_by_path(path, xcode_version = options.xcode_version)
+			project.set_active_target(target)
+			add_modules_to_project(args, project, target, options.configs)
 	else:
 		parser.print_help()
 

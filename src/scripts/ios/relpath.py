@@ -24,11 +24,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+import os
+
 def pathsplit(p, rest=[]):
-    """ This version, in contrast to the original version, permits trailing
-    slashes in the pathname (in the event that it is a directory).
-    It also uses no recursion """
-    return path.split(os.path.sep)
+    (h,t) = os.path.split(p)
+    if len(h) < 1: return [t]+rest
+    if len(t) < 1: return [h]+rest
+    return pathsplit(h,[t]+rest)
 
 def commonpath(l1, l2, common=[]):
     if len(l1) < 1: return (common, l1, l2)
