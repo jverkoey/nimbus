@@ -1,0 +1,19 @@
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.fixedwidth {
+  width: 800px;
+  margin: 0 auto;
+}
+
+#header {
+  padding: 10px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+#header h1 {
+  font-size: 2em;
+}
