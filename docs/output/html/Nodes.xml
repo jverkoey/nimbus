@@ -41,6 +41,12 @@
             <Subnodes>
             </Subnodes>
            </Node>
+           <Node>
+            <Name>CGRect Methods</Name>
+            <Path>group___c_g_rect-_methods.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
           </Subnodes>
          </Node>
          <Node>
@@ -55,6 +61,16 @@
         <Name>File List</Name>
         <Path>files.html</Path>
         <Subnodes>
+        </Subnodes>
+       </Node>
+       <Node>
+        <Name>Examples</Name>
+        <Path>examples.html</Path>
+        <Subnodes>
+         <Node>
+          <Name>ExampleRuntimeDebugging.m</Name>
+          <Path>_example_runtime_debugging_8m-example.html</Path>
+         </Node>
         </Subnodes>
        </Node>
       </Subnodes>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: Modules</title>
+<title>Nimbus: /examples/ExampleRuntimeDebugging.m</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -24,7 +24,7 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="examples.html"><span>Examples</span></a></li>
     </ul>
@@ -32,22 +32,14 @@
 </div>
 <div class="header">
   <div class="headertitle">
-<div class="title">Modules</div>  </div>
+<div class="title">/examples/ExampleRuntimeDebugging.m</div>  </div>
 </div>
 <div class="contents">
-<div class="textblock">Here is a list of all modules:</div><ul>
-<li><a class="el" href="group___nimbus_core.html">Nimbus Core</a><ul>
-<li><a class="el" href="group___debugging-_tools.html">Debugging Tools</a></li>
-<li><a class="el" href="group___non-_retaining-_collections.html">Non-Retaining Collections</a></li>
-<li><a class="el" href="group___non-_empty-_collection-_testing.html">Non-Empty Collection Testing</a></li>
-<li><a class="el" href="group___runtime-_class-_modifications.html">Runtime Class Modifications</a></li>
-<li><a class="el" href="group___c_g_rect-_methods.html">CGRect Methods</a></li>
-</ul>
-</li>
-<li><a class="el" href="group___setup.html">Adding Nimbus to Your Project</a></li>
-</ul>
+<p>Modifying class methods at runtime can be a very powerful debugging tool. Consider the following example:</p>
+<p>You are finding that you have a memory leak with one of your view controllers, but you're not sure where the extra retain is being made. If you swap the retain implementation on UIViewController with your own method then you can set a breakpoint in the method and look at the stack each time retain is called. This method is similar to setting a breakpoint in GDB on the UIViewController's retain method but allows programmatic control over when you want to hit the breakpoint.</p>
+<div class="fragment"><pre class="fragment"></pre></div> </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 11:21:12 for Nimbus by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 11:07:42 for Nimbus by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

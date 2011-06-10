@@ -26,6 +26,7 @@
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
     </ul>
   </div>
   <div id="navrow2" class="tabs2">
@@ -54,103 +55,119 @@
 <a name="l00014"></a>00014 <span class="comment">// limitations under the License.</span>
 <a name="l00015"></a>00015 <span class="comment">//</span>
 <a name="l00016"></a>00016 
-<a name="l00031"></a>00031 <span class="preprocessor">#pragma mark -</span>
-<a name="l00032"></a>00032 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Debugging Tools</span>
-<a name="l00033"></a>00033 <span class="preprocessor"></span>
-<a name="l00080"></a>00080 <span class="preprocessor">#define NILOGLEVEL_INFO     5</span>
-<a name="l00081"></a>00081 <span class="preprocessor"></span><span class="preprocessor">#define NILOGLEVEL_WARNING  3</span>
-<a name="l00082"></a>00082 <span class="preprocessor"></span><span class="preprocessor">#define NILOGLEVEL_ERROR    1</span>
-<a name="l00083"></a>00083 <span class="preprocessor"></span>
-<a name="l00091"></a>00091 <span class="keyword">extern</span> NSInteger <a class="code" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505" title="The maximum log level to output for Nimbus debug logs.">NIMaxLogLevel</a>;
-<a name="l00092"></a>00092 
-<a name="l00099"></a>00099 <span class="preprocessor">#ifdef DEBUG</span>
-<a name="l00100"></a><a class="code" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26">00100</a> <span class="preprocessor"></span><span class="preprocessor">#define NIDPRINT(xx, ...)  NSLog(@&quot;%s(%d): &quot; xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)</span>
-<a name="l00101"></a>00101 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00102"></a>00102 <span class="preprocessor"></span><span class="preprocessor">#define NIDPRINT(xx, ...)  ((void)0)</span>
-<a name="l00103"></a>00103 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
-<a name="l00104"></a>00104 <span class="preprocessor"></span>
-<a name="l00108"></a><a class="code" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8">00108</a> <span class="preprocessor">#define NIDPRINTMETHODNAME() NIDPRINT(@&quot;%s&quot;, __PRETTY_FUNCTION__)</span>
-<a name="l00109"></a>00109 <span class="preprocessor"></span>
-<a name="l00116"></a>00116 <span class="preprocessor">#ifdef DEBUG</span>
-<a name="l00117"></a>00117 <span class="preprocessor"></span>
-<a name="l00118"></a>00118 <span class="preprocessor">#import &lt;TargetConditionals.h&gt;</span>
-<a name="l00119"></a>00119 
-<a name="l00120"></a>00120 <span class="preprocessor">#if TARGET_IPHONE_SIMULATOR</span>
-<a name="l00121"></a>00121 <span class="preprocessor"></span><span class="keywordtype">int</span> NIIsInDebugger();
-<a name="l00122"></a>00122 <span class="comment">// We leave the __asm__ in this macro so that when a break occurs, we don&#39;t have to step out of</span>
-<a name="l00123"></a>00123 <span class="comment">// a &quot;breakInDebugger&quot; function.</span>
-<a name="l00124"></a>00124 <span class="preprocessor">#define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@&quot;NIDASSERT failed: %s&quot;, #xx); \</span>
-<a name="l00125"></a>00125 <span class="preprocessor">if (NIIsInDebugger()) { __asm__(&quot;int $3\n&quot; : : ); }; } \</span>
-<a name="l00126"></a>00126 <span class="preprocessor">} ((void)0)</span>
-<a name="l00127"></a>00127 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00128"></a><a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f">00128</a> <span class="preprocessor"></span><span class="preprocessor">#define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@&quot;NIDASSERT failed: %s&quot;, #xx); } } ((void)0)</span>
-<a name="l00129"></a>00129 <span class="preprocessor"></span><span class="preprocessor">#endif // #if TARGET_IPHONE_SIMULATOR</span>
-<a name="l00130"></a>00130 <span class="preprocessor"></span>
-<a name="l00131"></a>00131 <span class="preprocessor">#else</span>
-<a name="l00132"></a>00132 <span class="preprocessor"></span><span class="preprocessor">#define NIDASSERT(xx) ((void)0)</span>
-<a name="l00133"></a>00133 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
-<a name="l00134"></a>00134 <span class="preprocessor"></span>
-<a name="l00135"></a>00135 <span class="preprocessor">#ifdef DEBUG</span>
-<a name="l00136"></a>00136 <span class="preprocessor"></span><span class="preprocessor">#define NIDCONDITIONLOG(condition, xx, ...) { if ((condition)) { NIDPRINT(xx, ##__VA_ARGS__); } \</span>
-<a name="l00137"></a>00137 <span class="preprocessor">} ((void)0)</span>
-<a name="l00138"></a>00138 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00139"></a>00139 <span class="preprocessor"></span><span class="preprocessor">#define NIDCONDITIONLOG(condition, xx, ...) ((void)0)</span>
-<a name="l00140"></a>00140 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
-<a name="l00141"></a>00141 <span class="preprocessor"></span>
-<a name="l00142"></a>00142 
-<a name="l00143"></a>00143 <span class="preprocessor">#pragma mark Level-Based Loggers</span>
+<a name="l00031"></a>00031 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span>
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034 <span class="preprocessor">#pragma mark -</span>
+<a name="l00035"></a>00035 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Debugging Tools</span>
+<a name="l00036"></a>00036 <span class="preprocessor"></span>
+<a name="l00083"></a>00083 <span class="preprocessor">#define NILOGLEVEL_INFO     5</span>
+<a name="l00084"></a>00084 <span class="preprocessor"></span><span class="preprocessor">#define NILOGLEVEL_WARNING  3</span>
+<a name="l00085"></a>00085 <span class="preprocessor"></span><span class="preprocessor">#define NILOGLEVEL_ERROR    1</span>
+<a name="l00086"></a>00086 <span class="preprocessor"></span>
+<a name="l00094"></a>00094 <span class="keyword">extern</span> NSInteger <a class="code" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505" title="The maximum log level to output for Nimbus debug logs.">NIMaxLogLevel</a>;
+<a name="l00095"></a>00095 
+<a name="l00102"></a>00102 <span class="preprocessor">#ifdef DEBUG</span>
+<a name="l00103"></a><a class="code" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26">00103</a> <span class="preprocessor"></span><span class="preprocessor">#define NIDPRINT(xx, ...)  NSLog(@&quot;%s(%d): &quot; xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)</span>
+<a name="l00104"></a>00104 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00105"></a>00105 <span class="preprocessor"></span><span class="preprocessor">#define NIDPRINT(xx, ...)  ((void)0)</span>
+<a name="l00106"></a>00106 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
+<a name="l00107"></a>00107 <span class="preprocessor"></span>
+<a name="l00111"></a><a class="code" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8">00111</a> <span class="preprocessor">#define NIDPRINTMETHODNAME() NIDPRINT(@&quot;%s&quot;, __PRETTY_FUNCTION__)</span>
+<a name="l00112"></a>00112 <span class="preprocessor"></span>
+<a name="l00119"></a>00119 <span class="preprocessor">#ifdef DEBUG</span>
+<a name="l00120"></a>00120 <span class="preprocessor"></span>
+<a name="l00121"></a>00121 <span class="preprocessor">#import &lt;TargetConditionals.h&gt;</span>
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123 <span class="preprocessor">#if TARGET_IPHONE_SIMULATOR</span>
+<a name="l00124"></a>00124 <span class="preprocessor"></span><span class="keywordtype">int</span> NIIsInDebugger();
+<a name="l00125"></a>00125 <span class="comment">// We leave the __asm__ in this macro so that when a break occurs, we don&#39;t have to step out of</span>
+<a name="l00126"></a>00126 <span class="comment">// a &quot;breakInDebugger&quot; function.</span>
+<a name="l00127"></a>00127 <span class="preprocessor">#define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@&quot;NIDASSERT failed: %s&quot;, #xx); \</span>
+<a name="l00128"></a>00128 <span class="preprocessor">if (NIIsInDebugger()) { __asm__(&quot;int $3\n&quot; : : ); }; } \</span>
+<a name="l00129"></a>00129 <span class="preprocessor">} ((void)0)</span>
+<a name="l00130"></a>00130 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00131"></a><a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f">00131</a> <span class="preprocessor"></span><span class="preprocessor">#define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@&quot;NIDASSERT failed: %s&quot;, #xx); } } ((void)0)</span>
+<a name="l00132"></a>00132 <span class="preprocessor"></span><span class="preprocessor">#endif // #if TARGET_IPHONE_SIMULATOR</span>
+<a name="l00133"></a>00133 <span class="preprocessor"></span>
+<a name="l00134"></a>00134 <span class="preprocessor">#else</span>
+<a name="l00135"></a>00135 <span class="preprocessor"></span><span class="preprocessor">#define NIDASSERT(xx) ((void)0)</span>
+<a name="l00136"></a>00136 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
+<a name="l00137"></a>00137 <span class="preprocessor"></span>
+<a name="l00138"></a>00138 <span class="preprocessor">#ifdef DEBUG</span>
+<a name="l00139"></a>00139 <span class="preprocessor"></span><span class="preprocessor">#define NIDCONDITIONLOG(condition, xx, ...) { if ((condition)) { NIDPRINT(xx, ##__VA_ARGS__); } \</span>
+<a name="l00140"></a>00140 <span class="preprocessor">} ((void)0)</span>
+<a name="l00141"></a>00141 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00142"></a>00142 <span class="preprocessor"></span><span class="preprocessor">#define NIDCONDITIONLOG(condition, xx, ...) ((void)0)</span>
+<a name="l00143"></a>00143 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
 <a name="l00144"></a>00144 <span class="preprocessor"></span>
-<a name="l00153"></a><a class="code" href="group___debugging-_tools.html#gab5d8a773517976d97335706474ae1317">00153</a> <span class="preprocessor">#define NIDERROR(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_ERROR &lt;= NIMaxLogLevel), xx, ##__VA_ARGS__)</span>
-<a name="l00154"></a>00154 <span class="preprocessor"></span>
-<a name="l00158"></a><a class="code" href="group___debugging-_tools.html#gacc8f90bb05765e613bb0dbb16d372dfc">00158</a> <span class="preprocessor">#define NIDWARNING(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_WARNING &lt;= NIMaxLogLevel), \</span>
-<a name="l00159"></a>00159 <span class="preprocessor">                                             xx, ##__VA_ARGS__)</span>
-<a name="l00160"></a>00160 <span class="preprocessor"></span>
-<a name="l00164"></a><a class="code" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84">00164</a> <span class="preprocessor">#define NIDINFO(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_INFO &lt;= NIMaxLogLevel), xx, ##__VA_ARGS__)</span>
-<a name="l00165"></a>00165 <span class="preprocessor"></span><span class="comment">// End of Level-Based Loggers</span>
-<a name="l00167"></a>00167 
-<a name="l00168"></a>00168 
-<a name="l00170"></a>00170 <span class="comment">// End of Debugging-Tools //////////////////////////////////////////////////////////////////</span>
-<a name="l00172"></a>00172 <span class="comment"></span>
-<a name="l00173"></a>00173 
-<a name="l00174"></a>00174 <span class="preprocessor">#pragma mark -</span>
-<a name="l00175"></a>00175 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Non-Retaining Collections</span>
-<a name="l00176"></a>00176 <span class="preprocessor"></span>
-<a name="l00195"></a>00195 NSMutableArray* <a class="code" href="group___non-_retaining-_collections.html#ga76cae73a719e8fab80796f508f64b577">NICreateNonRetainingArray</a>();
-<a name="l00196"></a>00196 
-<a name="l00197"></a>00197 
-<a name="l00203"></a>00203 NSMutableDictionary* <a class="code" href="group___non-_retaining-_collections.html#ga5cbe145e8fd4088401513334718152f2">NICreateNonRetainingDictionary</a>();
-<a name="l00204"></a>00204 
-<a name="l00210"></a>00210 NSMutableSet* <a class="code" href="group___non-_retaining-_collections.html#gaed15be419aba75dd6499a2a3a99c32c0">NICreateNonRetainingSet</a>();
-<a name="l00211"></a>00211 
-<a name="l00212"></a>00212 
-<a name="l00214"></a>00214 <span class="comment">// End of Non-Retaining Collections ////////////////////////////////////////////////////////</span>
-<a name="l00216"></a>00216 <span class="comment"></span>
-<a name="l00217"></a>00217 
-<a name="l00218"></a>00218 <span class="preprocessor">#pragma mark -</span>
-<a name="l00219"></a>00219 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Non-Empty Collection Testing</span>
-<a name="l00220"></a>00220 <span class="preprocessor"></span>
-<a name="l00236"></a>00236 BOOL <a class="code" href="group___non-_empty-_collection-_testing.html#gae25d81aa1d68eb35569f65200f21a93f" title="Tests if an object is a non-nil array which is not empty.">NIIsArrayWithObjects</a>(<span class="keywordtype">id</span> <span class="keywordtype">object</span>);
-<a name="l00237"></a>00237 
-<a name="l00241"></a>00241 BOOL <a class="code" href="group___non-_empty-_collection-_testing.html#ga78e594e9575335f97fd00f5252c73ae5" title="Tests if an object is a non-nil set which is not empty.">NIIsSetWithObjects</a>(<span class="keywordtype">id</span> <span class="keywordtype">object</span>);
-<a name="l00242"></a>00242 
-<a name="l00246"></a>00246 BOOL <a class="code" href="group___non-_empty-_collection-_testing.html#ga8a7eaa0c885803d11397e454631cc175" title="Tests if an object is a non-nil string which is not empty.">NIIsStringWithAnyText</a>(<span class="keywordtype">id</span> <span class="keywordtype">object</span>);
-<a name="l00247"></a>00247 
-<a name="l00248"></a>00248 
-<a name="l00250"></a>00250 <span class="comment">// End of Non-Empty Collection Testing /////////////////////////////////////////////////////</span>
-<a name="l00252"></a>00252 <span class="comment"></span>
-<a name="l00253"></a>00253 
-<a name="l00254"></a>00254 <span class="preprocessor">#pragma mark -</span>
-<a name="l00255"></a>00255 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Runtime Class Modifications</span>
-<a name="l00256"></a>00256 <span class="preprocessor"></span>
-<a name="l00268"></a>00268 <span class="keywordtype">void</span> <a class="code" href="group___runtime-_class-_modifications.html#gafa9da20fcf364cf90b11cc5e317a07e7" title="Swap the two method implementations on the given class.">NISwapMethods</a>(Class cls, <span class="keywordtype">SEL</span> originalSel, <span class="keywordtype">SEL</span> newSel);
-<a name="l00269"></a>00269 
-<a name="l00270"></a>00270 
-<a name="l00272"></a>00272 <span class="comment">// End of Runtime Class Modifications //////////////////////////////////////////////////////</span>
-<a name="l00274"></a>00274 <span class="comment"></span>
-<a name="l00275"></a>00275 
+<a name="l00145"></a>00145 
+<a name="l00146"></a>00146 <span class="preprocessor">#pragma mark Level-Based Loggers</span>
+<a name="l00147"></a>00147 <span class="preprocessor"></span>
+<a name="l00156"></a><a class="code" href="group___debugging-_tools.html#gab5d8a773517976d97335706474ae1317">00156</a> <span class="preprocessor">#define NIDERROR(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_ERROR &lt;= NIMaxLogLevel), xx, ##__VA_ARGS__)</span>
+<a name="l00157"></a>00157 <span class="preprocessor"></span>
+<a name="l00161"></a><a class="code" href="group___debugging-_tools.html#gacc8f90bb05765e613bb0dbb16d372dfc">00161</a> <span class="preprocessor">#define NIDWARNING(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_WARNING &lt;= NIMaxLogLevel), \</span>
+<a name="l00162"></a>00162 <span class="preprocessor">                                             xx, ##__VA_ARGS__)</span>
+<a name="l00163"></a>00163 <span class="preprocessor"></span>
+<a name="l00167"></a><a class="code" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84">00167</a> <span class="preprocessor">#define NIDINFO(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_INFO &lt;= NIMaxLogLevel), xx, ##__VA_ARGS__)</span>
+<a name="l00168"></a>00168 <span class="preprocessor"></span><span class="comment">// End of Level-Based Loggers</span>
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171 
+<a name="l00173"></a>00173 <span class="comment">// End of Debugging-Tools //////////////////////////////////////////////////////////////////</span>
+<a name="l00175"></a>00175 <span class="comment"></span>
+<a name="l00176"></a>00176 
+<a name="l00177"></a>00177 <span class="preprocessor">#pragma mark -</span>
+<a name="l00178"></a>00178 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Non-Retaining Collections</span>
+<a name="l00179"></a>00179 <span class="preprocessor"></span>
+<a name="l00198"></a>00198 NSMutableArray* <a class="code" href="group___non-_retaining-_collections.html#ga76cae73a719e8fab80796f508f64b577">NICreateNonRetainingArray</a>();
+<a name="l00199"></a>00199 
+<a name="l00200"></a>00200 
+<a name="l00206"></a>00206 NSMutableDictionary* <a class="code" href="group___non-_retaining-_collections.html#ga5cbe145e8fd4088401513334718152f2">NICreateNonRetainingDictionary</a>();
+<a name="l00207"></a>00207 
+<a name="l00213"></a>00213 NSMutableSet* <a class="code" href="group___non-_retaining-_collections.html#gaed15be419aba75dd6499a2a3a99c32c0">NICreateNonRetainingSet</a>();
+<a name="l00214"></a>00214 
+<a name="l00215"></a>00215 
+<a name="l00217"></a>00217 <span class="comment">// End of Non-Retaining Collections ////////////////////////////////////////////////////////</span>
+<a name="l00219"></a>00219 <span class="comment"></span>
+<a name="l00220"></a>00220 
+<a name="l00221"></a>00221 <span class="preprocessor">#pragma mark -</span>
+<a name="l00222"></a>00222 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Non-Empty Collection Testing</span>
+<a name="l00223"></a>00223 <span class="preprocessor"></span>
+<a name="l00239"></a>00239 BOOL <a class="code" href="group___non-_empty-_collection-_testing.html#gae25d81aa1d68eb35569f65200f21a93f" title="Tests if an object is a non-nil array which is not empty.">NIIsArrayWithObjects</a>(<span class="keywordtype">id</span> <span class="keywordtype">object</span>);
+<a name="l00240"></a>00240 
+<a name="l00244"></a>00244 BOOL <a class="code" href="group___non-_empty-_collection-_testing.html#ga78e594e9575335f97fd00f5252c73ae5" title="Tests if an object is a non-nil set which is not empty.">NIIsSetWithObjects</a>(<span class="keywordtype">id</span> <span class="keywordtype">object</span>);
+<a name="l00245"></a>00245 
+<a name="l00249"></a>00249 BOOL <a class="code" href="group___non-_empty-_collection-_testing.html#ga8a7eaa0c885803d11397e454631cc175" title="Tests if an object is a non-nil string which is not empty.">NIIsStringWithAnyText</a>(<span class="keywordtype">id</span> <span class="keywordtype">object</span>);
+<a name="l00250"></a>00250 
+<a name="l00251"></a>00251 
+<a name="l00253"></a>00253 <span class="comment">// End of Non-Empty Collection Testing /////////////////////////////////////////////////////</span>
+<a name="l00255"></a>00255 <span class="comment"></span>
+<a name="l00256"></a>00256 
+<a name="l00257"></a>00257 <span class="preprocessor">#pragma mark -</span>
+<a name="l00258"></a>00258 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Runtime Class Modifications</span>
+<a name="l00259"></a>00259 <span class="preprocessor"></span>
+<a name="l00283"></a>00283 <span class="keywordtype">void</span> <a class="code" href="group___runtime-_class-_modifications.html#gafa9da20fcf364cf90b11cc5e317a07e7" title="Swap two method implementations for the given class.">NISwapMethods</a>(Class cls, <span class="keywordtype">SEL</span> originalSel, <span class="keywordtype">SEL</span> newSel);
+<a name="l00284"></a>00284 
+<a name="l00285"></a>00285 
+<a name="l00287"></a>00287 <span class="comment">// End of Runtime Class Modifications //////////////////////////////////////////////////////</span>
+<a name="l00289"></a>00289 <span class="comment"></span>
+<a name="l00290"></a>00290 
+<a name="l00291"></a>00291 <span class="preprocessor">#pragma mark -</span>
+<a name="l00292"></a>00292 <span class="preprocessor"></span><span class="preprocessor">#pragma mark CGRect Methods</span>
+<a name="l00293"></a>00293 <span class="preprocessor"></span>
+<a name="l00309"></a>00309 CGRect <a class="code" href="group___c_g_rect-_methods.html#ga931be414630989f17e57381643459857" title="Modifies only the right and bottom edges of a CGRect.">NIRectContract</a>(CGRect rect, CGFloat dx, CGFloat dy);
+<a name="l00310"></a>00310 
+<a name="l00318"></a>00318 CGRect <a class="code" href="group___c_g_rect-_methods.html#gabcfc5613fd39ec197b2b2f6377d7d1b2" title="Modifies only the top and left edges of a CGRect.">NIRectShift</a>(CGRect rect, CGFloat dx, CGFloat dy);
+<a name="l00319"></a>00319 
+<a name="l00326"></a>00326 CGRect <a class="code" href="group___c_g_rect-_methods.html#ga6be0b565e24d85481bbecbdb3635993f" title="Add the insets to a CGRect - equivalent to padding in CSS.">NIRectInset</a>(CGRect rect, UIEdgeInsets insets);
+<a name="l00327"></a>00327 
+<a name="l00328"></a>00328 
+<a name="l00330"></a>00330 <span class="comment">// End of CGRect Methods ///////////////////////////////////////////////////////////////////</span>
+<a name="l00332"></a>00332 <span class="comment"></span>
+<a name="l00333"></a>00333 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 10:36:03 for Nimbus by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 11:21:12 for Nimbus by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

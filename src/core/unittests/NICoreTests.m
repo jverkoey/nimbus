@@ -107,7 +107,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark Empty Objects
+#pragma mark Non-Empty Collection Testing
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -164,6 +164,30 @@
 
   [string release];
   [dictionary release];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark CGRect Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testCGRectMethods {
+  CGRect rect = CGRectMake(0, 0, 100, 100);
+
+  STAssertTrue(CGRectEqualToRect(CGRectMake(0, 0, 90, 90),
+                                 NIRectContract(rect, 10, 10)),
+               @"Contracting a rect should only modify the right and bottom edges.");
+
+  STAssertTrue(CGRectEqualToRect(CGRectMake(10, 10, 90, 90),
+                                 NIRectShift(rect, 10, 10)),
+               @"Shifting a rect should only modify the left and top edges.");
+
+  STAssertTrue(CGRectEqualToRect(CGRectMake(10, 10, 80, 80),
+                                 NIRectInset(rect, UIEdgeInsetsMake(10, 10, 10, 10))),
+               @"Insetting a rect should modify all edges.");
 }
 
 

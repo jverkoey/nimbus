@@ -12,7 +12,10 @@
 		668750EE13A17EBD00FF1C56 /* NimbusCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 668750ED13A17EBD00FF1C56 /* NimbusCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6687510913A1AD1C00FF1C56 /* NICoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6687510613A1ACD500FF1C56 /* NICoreTests.m */; };
 		6687511613A1ADC600FF1C56 /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libNimbusCore.a */; };
-		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+		6687519013A2650800FF1C56 /* NIRects.m in Sources */ = {isa = PBXBuildFile; fileRef = 6687518F13A2650800FF1C56 /* NIRects.m */; };
+		6687524813A2661100FF1C56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+		6687524913A2661100FF1C56 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6687519713A2660000FF1C56 /* UIKit.framework */; };
+		6687525113A2665600FF1C56 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6687525013A2665600FF1C56 /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,10 @@
 		668750F413A1AC6000FF1C56 /* NimbusCoreUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCoreUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		668750F513A1AC6000FF1C56 /* NimbusCoreUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NimbusCoreUnitTests-Info.plist"; sourceTree = "<group>"; };
 		6687510613A1ACD500FF1C56 /* NICoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICoreTests.m; path = unittests/NICoreTests.m; sourceTree = "<group>"; };
+		6687518F13A2650800FF1C56 /* NIRects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIRects.m; path = src/NIRects.m; sourceTree = "<group>"; };
+		6687519713A2660000FF1C56 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6687525013A2665600FF1C56 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6687528E13A269A200FF1C56 /* ExampleRuntimeDebugging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExampleRuntimeDebugging.m; path = examples/ExampleRuntimeDebugging.m; sourceTree = "<group>"; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libNimbusCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -44,7 +51,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6687524813A2661100FF1C56 /* Foundation.framework in Frameworks */,
+				6687524913A2661100FF1C56 /* UIKit.framework in Frameworks */,
 				6687511613A1ADC600FF1C56 /* libNimbusCore.a in Frameworks */,
+				6687525113A2665600FF1C56 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +62,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +83,7 @@
 				668750ED13A17EBD00FF1C56 /* NimbusCore.h */,
 				6687502813A117EF00FF1C56 /* NimbusCore_Prefix.pch */,
 				08FB77AEFE84172EC02AAC07 /* Source */,
+				6687528D13A2698900FF1C56 /* Examples */,
 				6687510813A1ACDF00FF1C56 /* Unit Tests */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				66874FD013A028A800FF1C56 /* Configurations */,
@@ -87,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
+				6687525013A2665600FF1C56 /* CoreGraphics.framework */,
+				6687519713A2660000FF1C56 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -96,6 +108,7 @@
 			children = (
 				6687507F13A14B5600FF1C56 /* NICore.m */,
 				66874FF713A02B1800FF1C56 /* NIDebug.m */,
+				6687518F13A2650800FF1C56 /* NIRects.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -123,6 +136,14 @@
 				6687510613A1ACD500FF1C56 /* NICoreTests.m */,
 			);
 			name = "Unit Tests";
+			sourceTree = "<group>";
+		};
+		6687528D13A2698900FF1C56 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				6687528E13A269A200FF1C56 /* ExampleRuntimeDebugging.m */,
+			);
+			name = Examples;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +263,7 @@
 			files = (
 				66874FF913A02B1800FF1C56 /* NIDebug.m in Sources */,
 				6687508113A14B5600FF1C56 /* NICore.m in Sources */,
+				6687519013A2650800FF1C56 /* NIRects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

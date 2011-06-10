@@ -26,6 +26,7 @@
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
     </ul>
   </div>
   <div id="navrow2" class="tabs2">
@@ -136,7 +137,7 @@
 <a name="l00105"></a>00105 
 <a name="l00106"></a>00106 
 <a name="l00109"></a>00109 <span class="preprocessor">#pragma mark -</span>
-<a name="l00110"></a>00110 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Empty Objects</span>
+<a name="l00110"></a>00110 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Non-Empty Collection Testing</span>
 <a name="l00111"></a>00111 <span class="preprocessor"></span>
 <a name="l00112"></a>00112 
 <a name="l00114"></a>00114 - (void)testIsArrayWithObjects {
@@ -193,10 +194,31 @@
 <a name="l00167"></a>00167 }
 <a name="l00168"></a>00168 
 <a name="l00169"></a>00169 
-<a name="l00170"></a>00170 <span class="keyword">@end</span>
+<a name="l00172"></a>00172 <span class="preprocessor">#pragma mark -</span>
+<a name="l00173"></a>00173 <span class="preprocessor"></span><span class="preprocessor">#pragma mark CGRect Methods</span>
+<a name="l00174"></a>00174 <span class="preprocessor"></span>
+<a name="l00175"></a>00175 
+<a name="l00177"></a>00177 - (void)testCGRectMethods {
+<a name="l00178"></a>00178   CGRect rect = CGRectMake(0, 0, 100, 100);
+<a name="l00179"></a>00179 
+<a name="l00180"></a>00180   STAssertTrue(CGRectEqualToRect(CGRectMake(0, 0, 90, 90),
+<a name="l00181"></a>00181                                  <a class="code" href="group___c_g_rect-_methods.html#ga931be414630989f17e57381643459857" title="Modifies only the right and bottom edges of a CGRect.">NIRectContract</a>(rect, 10, 10)),
+<a name="l00182"></a>00182                <span class="stringliteral">@&quot;Contracting a rect should only modify the right and bottom edges.&quot;</span>);
+<a name="l00183"></a>00183 
+<a name="l00184"></a>00184   STAssertTrue(CGRectEqualToRect(CGRectMake(10, 10, 90, 90),
+<a name="l00185"></a>00185                                  <a class="code" href="group___c_g_rect-_methods.html#gabcfc5613fd39ec197b2b2f6377d7d1b2" title="Modifies only the top and left edges of a CGRect.">NIRectShift</a>(rect, 10, 10)),
+<a name="l00186"></a>00186                <span class="stringliteral">@&quot;Shifting a rect should only modify the left and top edges.&quot;</span>);
+<a name="l00187"></a>00187 
+<a name="l00188"></a>00188   STAssertTrue(CGRectEqualToRect(CGRectMake(10, 10, 80, 80),
+<a name="l00189"></a>00189                                  <a class="code" href="group___c_g_rect-_methods.html#ga6be0b565e24d85481bbecbdb3635993f" title="Add the insets to a CGRect - equivalent to padding in CSS.">NIRectInset</a>(rect, UIEdgeInsetsMake(10, 10, 10, 10))),
+<a name="l00190"></a>00190                <span class="stringliteral">@&quot;Insetting a rect should modify all edges.&quot;</span>);
+<a name="l00191"></a>00191 }
+<a name="l00192"></a>00192 
+<a name="l00193"></a>00193 
+<a name="l00194"></a>00194 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 10:36:03 for Nimbus by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 11:21:12 for Nimbus by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

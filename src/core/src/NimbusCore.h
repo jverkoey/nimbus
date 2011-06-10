@@ -28,6 +28,9 @@
  * because it allows you to gradually introduce concepts found within Nimbus.
  */
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 #pragma mark -
 #pragma mark Debugging Tools
 
@@ -258,10 +261,22 @@ BOOL NIIsStringWithAnyText(id object);
  * @brief Modifying class implementations at runtime.
  * @defgroup Runtime-Class-Modifications Runtime Class Modifications
  * @{
+ *
+ * @attention Please use caution when using modifying class implementations at runtime.
+ * Apple is prone to rejecting apps for gratuitous use of method swapping. In particular,
+ * avoid swapping any NSObject methods such as dealloc, init, and retain/release on UIKit classes.
+ *
+ * See example: @link ExampleRuntimeDebugging.m Runtime Debugging with Method Swizzling@endlink
  */
 
 /**
- * @brief Swap the two method implementations on the given class.
+ * @brief Swap two method implementations for the given class.
+ *
+ * Use this method when you would like to replace an existing method implementation in a class
+ * with your own implementation at runtime. In practice this is often used to replace the
+ * implementations of UIKit classes where subclassing isn't an adequate solution.
+ *
+ * After calling this method, any calls to originalSel will actually call newSel and vice versa.
  *
  * Uses method_exchangeImplementations to accomplish this.
  */
@@ -270,6 +285,49 @@ void NISwapMethods(Class cls, SEL originalSel, SEL newSel);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Runtime Class Modifications //////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#pragma mark -
+#pragma mark CGRect Methods
+
+/**
+ * @brief Additional methods for manipulating CGRects.
+ * @defgroup CGRect-Methods CGRect Methods
+ * @{
+ *
+ * These methods provide additional means of modifying the edges of CGRects beyond the basics
+ * included in CoreGraphics.
+ */
+
+/**
+ * @brief Modifies only the right and bottom edges of a CGRect.
+ * @return a CGRect with dx and dy subtracted from the width and height.
+ *
+ * Example result: CGRectMake(x, y, w - dx, h - dy)
+ */
+CGRect NIRectContract(CGRect rect, CGFloat dx, CGFloat dy);
+
+/**
+ * @brief Modifies only the top and left edges of a CGRect.
+ * @return a CGRect whose origin has been offset by dx, dy, and whose size has been
+ * contracted by dx, dy.
+ *
+ * Example result: CGRectMake(x + dx, y + dy, w - dx, h - dy)
+ */
+CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy);
+
+/**
+ * @brief Add the insets to a CGRect - equivalent to padding in CSS.
+ * @return a CGRect whose edges have been inset.
+ *
+ * Example result: CGRectMake(x + left, y + top, w - (left + right), h - (top + bottom))
+ */
+CGRect NIRectInset(CGRect rect, UIEdgeInsets insets);
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**@}*/// End of CGRect Methods ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 

@@ -26,6 +26,7 @@
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
     </ul>
   </div>
 </div>
@@ -43,10 +44,12 @@
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___runtime-_class-_modifications.html#gafa9da20fcf364cf90b11cc5e317a07e7">NISwapMethods</a> (Class cls, SEL originalSel, SEL newSel)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap the two method implementations on the given class.  <a href="#gafa9da20fcf364cf90b11cc5e317a07e7"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap two method implementations for the given class.  <a href="#gafa9da20fcf364cf90b11cc5e317a07e7"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <p>Modifying class implementations at runtime. </p>
+<dl class="attention"><dt><b>Attention:</b></dt><dd>Please use caution when using modifying class implementations at runtime. Apple is prone to rejecting apps for gratuitous use of method swapping. In particular, avoid swapping any NSObject methods such as dealloc, init, and retain/release on UIKit classes.</dd></dl>
+<p>See example: <a class="el" href="_example_runtime_debugging_8m-example.html">Runtime Debugging with Method Swizzling</a> </p>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="gafa9da20fcf364cf90b11cc5e317a07e7"></a><!-- doxytag: member="NimbusCore.h::NISwapMethods" ref="gafa9da20fcf364cf90b11cc5e317a07e7" args="(Class cls, SEL originalSel, SEL newSel)" -->
 <div class="memitem">
@@ -79,7 +82,9 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Swap the two method implementations on the given class. </p>
+<p>Swap two method implementations for the given class. </p>
+<p>Use this method when you would like to replace an existing method implementation in a class with your own implementation at runtime. In practice this is often used to replace the implementations of UIKit classes where subclassing isn't an adequate solution.</p>
+<p>After calling this method, any calls to originalSel will actually call newSel and vice versa.</p>
 <p>Uses method_exchangeImplementations to accomplish this. </p>
 
 <p>Definition at line <a class="el" href="_n_i_core_8m_source.html#l00079">79</a> of file <a class="el" href="_n_i_core_8m_source.html">NICore.m</a>.</p>
@@ -87,7 +92,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 10:36:03 for Nimbus by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 11:21:12 for Nimbus by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

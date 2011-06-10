@@ -26,6 +26,7 @@
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
     </ul>
   </div>
   <div id="navrow2" class="tabs2">
@@ -109,14 +110,14 @@
 <a name="l00075"></a>00075 }
 <a name="l00076"></a>00076 
 <a name="l00077"></a>00077 
-<a name="l00079"></a><a class="code" href="group___runtime-_class-_modifications.html#gafa9da20fcf364cf90b11cc5e317a07e7">00079</a> <span class="keywordtype">void</span> <a class="code" href="group___runtime-_class-_modifications.html#gafa9da20fcf364cf90b11cc5e317a07e7" title="Swap the two method implementations on the given class.">NISwapMethods</a>(Class cls, <span class="keywordtype">SEL</span> originalSel, <span class="keywordtype">SEL</span> newSel) {
+<a name="l00079"></a><a class="code" href="group___runtime-_class-_modifications.html#gafa9da20fcf364cf90b11cc5e317a07e7">00079</a> <span class="keywordtype">void</span> <a class="code" href="group___runtime-_class-_modifications.html#gafa9da20fcf364cf90b11cc5e317a07e7" title="Swap two method implementations for the given class.">NISwapMethods</a>(Class cls, <span class="keywordtype">SEL</span> originalSel, <span class="keywordtype">SEL</span> newSel) {
 <a name="l00080"></a>00080   Method originalMethod = class_getInstanceMethod(cls, originalSel);
 <a name="l00081"></a>00081   Method newMethod = class_getInstanceMethod(cls, newSel);
 <a name="l00082"></a>00082   method_exchangeImplementations(originalMethod, newMethod);
 <a name="l00083"></a>00083 }
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 10:36:03 for Nimbus by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 11:21:12 for Nimbus by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

@@ -175,7 +175,45 @@
     </TokenIdentifier>
     <Path>group___runtime-_class-_modifications.html</Path>
     <Anchor>gafa9da20fcf364cf90b11cc5e317a07e7</Anchor>
-    <Abstract>Swap the two method implementations on the given class.</Abstract>
+    <Abstract>Swap two method implementations for the given class.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>CGRect-Methods</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___c_g_rect-_methods.html</Path>
+    <Abstract>Additional methods for manipulating CGRects.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIRectContract</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___c_g_rect-_methods.html</Path>
+    <Anchor>ga931be414630989f17e57381643459857</Anchor>
+    <Abstract>Modifies only the right and bottom edges of a CGRect.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIRectShift</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___c_g_rect-_methods.html</Path>
+    <Anchor>gabcfc5613fd39ec197b2b2f6377d7d1b2</Anchor>
+    <Abstract>Modifies only the top and left edges of a CGRect.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIRectInset</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___c_g_rect-_methods.html</Path>
+    <Anchor>ga6be0b565e24d85481bbecbdb3635993f</Anchor>
+    <Abstract>Add the insets to a CGRect - equivalent to padding in CSS.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
