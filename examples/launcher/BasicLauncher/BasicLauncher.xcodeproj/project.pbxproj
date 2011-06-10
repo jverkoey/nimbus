@@ -1,0 +1,310 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2860E32E111B888700E27156 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2860E32C111B888700E27156 /* AppDelegate.m */; };
+		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		669E47CD13A2C9BE001EE2AC /* NICore.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E47C413A2C9BE001EE2AC /* NICore.m */; };
+		669E47CE13A2C9BE001EE2AC /* NIDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E47C513A2C9BE001EE2AC /* NIDebug.m */; };
+		669E47CF13A2C9BE001EE2AC /* NIPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E47C813A2C9BE001EE2AC /* NIPaths.m */; };
+		669E47D013A2C9BE001EE2AC /* NIRects.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E47C913A2C9BE001EE2AC /* NIRects.m */; };
+		669E47D113A2C9BE001EE2AC /* NISDKAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E47CA13A2C9BE001EE2AC /* NISDKAvailability.m */; };
+		669E47D213A2C9BE001EE2AC /* NSData+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E47CB13A2C9BE001EE2AC /* NSData+NimbusCore.m */; };
+		669E47D313A2C9BE001EE2AC /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E47CC13A2C9BE001EE2AC /* NSString+NimbusCore.m */; };
+		669E47DB13A2C9CA001EE2AC /* NILauncherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E47D713A2C9CA001EE2AC /* NILauncherView.m */; };
+		669E47DC13A2C9CA001EE2AC /* NILauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E47D913A2C9CA001EE2AC /* NILauncherViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D6058910D05DD3D006BFB54 /* BasicLauncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicLauncher.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2860E32B111B888700E27156 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = iPad/AppDelegate.h; sourceTree = "<group>"; };
+		2860E32C111B888700E27156 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = iPad/AppDelegate.m; sourceTree = "<group>"; };
+		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Shared/main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* BasicLauncher_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicLauncher_Prefix.pch; sourceTree = "<group>"; };
+		669E47C413A2C9BE001EE2AC /* NICore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICore.m; path = ../../../src/core/src/NICore.m; sourceTree = SOURCE_ROOT; };
+		669E47C513A2C9BE001EE2AC /* NIDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDebug.m; path = ../../../src/core/src/NIDebug.m; sourceTree = SOURCE_ROOT; };
+		669E47C613A2C9BE001EE2AC /* NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusCore.h; path = ../../../src/core/src/NimbusCore.h; sourceTree = SOURCE_ROOT; };
+		669E47C713A2C9BE001EE2AC /* NimbusCore+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusCore+Additions.h"; path = "../../../src/core/src/NimbusCore+Additions.h"; sourceTree = SOURCE_ROOT; };
+		669E47C813A2C9BE001EE2AC /* NIPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPaths.m; path = ../../../src/core/src/NIPaths.m; sourceTree = SOURCE_ROOT; };
+		669E47C913A2C9BE001EE2AC /* NIRects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIRects.m; path = ../../../src/core/src/NIRects.m; sourceTree = SOURCE_ROOT; };
+		669E47CA13A2C9BE001EE2AC /* NISDKAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISDKAvailability.m; path = ../../../src/core/src/NISDKAvailability.m; sourceTree = SOURCE_ROOT; };
+		669E47CB13A2C9BE001EE2AC /* NSData+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+NimbusCore.m"; path = "../../../src/core/src/NSData+NimbusCore.m"; sourceTree = SOURCE_ROOT; };
+		669E47CC13A2C9BE001EE2AC /* NSString+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NimbusCore.m"; path = "../../../src/core/src/NSString+NimbusCore.m"; sourceTree = SOURCE_ROOT; };
+		669E47D613A2C9CA001EE2AC /* NILauncherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NILauncherView.h; path = ../../../src/launcher/src/NILauncherView.h; sourceTree = SOURCE_ROOT; };
+		669E47D713A2C9CA001EE2AC /* NILauncherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherView.m; path = ../../../src/launcher/src/NILauncherView.m; sourceTree = SOURCE_ROOT; };
+		669E47D813A2C9CA001EE2AC /* NILauncherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NILauncherViewController.h; path = ../../../src/launcher/src/NILauncherViewController.h; sourceTree = SOURCE_ROOT; };
+		669E47D913A2C9CA001EE2AC /* NILauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherViewController.m; path = ../../../src/launcher/src/NILauncherViewController.m; sourceTree = SOURCE_ROOT; };
+		669E47DA13A2C9CA001EE2AC /* NimbusLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusLauncher.h; path = ../../../src/launcher/src/NimbusLauncher.h; sourceTree = SOURCE_ROOT; };
+		8D1107310486CEB800E47090 /* BasicLauncher-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BasicLauncher-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* BasicLauncher.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		28EEBF621118D79A00187D67 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107310486CEB800E47090 /* BasicLauncher-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* BasicLauncher_Prefix.pch */,
+				669E47B113A2C95D001EE2AC /* Source */,
+				669E47B413A2C9A7001EE2AC /* Nimbus */,
+				28EEBF621118D79A00187D67 /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		669E47B113A2C95D001EE2AC /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				2860E32B111B888700E27156 /* AppDelegate.h */,
+				2860E32C111B888700E27156 /* AppDelegate.m */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		669E47B413A2C9A7001EE2AC /* Nimbus */ = {
+			isa = PBXGroup;
+			children = (
+				669E47C213A2C9B7001EE2AC /* Core */,
+				669E47D413A2C9C1001EE2AC /* Launcher */,
+			);
+			name = Nimbus;
+			sourceTree = "<group>";
+		};
+		669E47C213A2C9B7001EE2AC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				669E47C413A2C9BE001EE2AC /* NICore.m */,
+				669E47C513A2C9BE001EE2AC /* NIDebug.m */,
+				669E47C613A2C9BE001EE2AC /* NimbusCore.h */,
+				669E47C713A2C9BE001EE2AC /* NimbusCore+Additions.h */,
+				669E47C813A2C9BE001EE2AC /* NIPaths.m */,
+				669E47C913A2C9BE001EE2AC /* NIRects.m */,
+				669E47CA13A2C9BE001EE2AC /* NISDKAvailability.m */,
+				669E47CB13A2C9BE001EE2AC /* NSData+NimbusCore.m */,
+				669E47CC13A2C9BE001EE2AC /* NSString+NimbusCore.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		669E47D413A2C9C1001EE2AC /* Launcher */ = {
+			isa = PBXGroup;
+			children = (
+				669E47D613A2C9CA001EE2AC /* NILauncherView.h */,
+				669E47D713A2C9CA001EE2AC /* NILauncherView.m */,
+				669E47D813A2C9CA001EE2AC /* NILauncherViewController.h */,
+				669E47D913A2C9CA001EE2AC /* NILauncherViewController.m */,
+				669E47DA13A2C9CA001EE2AC /* NimbusLauncher.h */,
+			);
+			name = Launcher;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* BasicLauncher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "BasicLauncher" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BasicLauncher;
+			productName = BasicLauncher;
+			productReference = 1D6058910D05DD3D006BFB54 /* BasicLauncher.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BasicLauncher" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* BasicLauncher */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				2860E32E111B888700E27156 /* AppDelegate.m in Sources */,
+				669E47CD13A2C9BE001EE2AC /* NICore.m in Sources */,
+				669E47CE13A2C9BE001EE2AC /* NIDebug.m in Sources */,
+				669E47CF13A2C9BE001EE2AC /* NIPaths.m in Sources */,
+				669E47D013A2C9BE001EE2AC /* NIRects.m in Sources */,
+				669E47D113A2C9BE001EE2AC /* NISDKAvailability.m in Sources */,
+				669E47D213A2C9BE001EE2AC /* NSData+NimbusCore.m in Sources */,
+				669E47D313A2C9BE001EE2AC /* NSString+NimbusCore.m in Sources */,
+				669E47DB13A2C9CA001EE2AC /* NILauncherView.m in Sources */,
+				669E47DC13A2C9CA001EE2AC /* NILauncherViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BasicLauncher_Prefix.pch;
+				INFOPLIST_FILE = "BasicLauncher-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PRODUCT_NAME = BasicLauncher;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BasicLauncher_Prefix.pch;
+				INFOPLIST_FILE = "BasicLauncher-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PRODUCT_NAME = BasicLauncher;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "BasicLauncher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BasicLauncher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

@@ -428,6 +428,104 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NimbusLauncher</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___nimbus_launcher.html</Path>
+    <Abstract>Nimbus&amp;#39; Launcher control and related components.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Launcher-User-Interface</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___launcher-_user-_interface.html</Path>
+    <Abstract>Launcher user interface.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Launcher-Feedback-Protocols</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___launcher-_feedback-_protocols.html</Path>
+    <Abstract>Launcher feedback protocols.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Launcher-Presentation-Information</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___launcher-_presentation-_information.html</Path>
+    <Abstract>Launcher presentation information.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NILauncherButton</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NILauncherButton</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_button.html</Path>
+    <Abstract>The individual button view that the user taps.</Abstract>
+    <DeclaredIn>NILauncherView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NILauncherButtonPresInfo</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NILauncherButtonPresInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_button_pres_info.html</Path>
+    <Abstract>The presentation information for an individual item.</Abstract>
+    <DeclaredIn>NILauncherView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NILauncherView</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NILauncherView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view.html</Path>
+    <Abstract>A launcher view that simulates iOS&amp;#39; home screen launcher functionality.</Abstract>
+    <DeclaredIn>NILauncherView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>delegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NILauncherView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view.html</Path>
+    <Anchor>ab186aeb50041c08a4991e1f0fb0249ed</Anchor>
+    <Abstract>The launcher view notifies the delegate of any user interaction or state changes.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NILauncherViewController</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NILauncherViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view_controller.html</Path>
+    <Abstract>A view controller that displays a launcher view.</Abstract>
+    <DeclaredIn>NILauncherViewController.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NILauncherViewDelegate</Name>
+      <APILanguage>c</APILanguage>
+      <Type>intf</Type>
+      <Scope>NILauncherViewDelegate</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_view_delegate-p.html</Path>
+    <Abstract>The launcher delegate used to inform of state changes and user interactions.</Abstract>
+    <DeclaredIn>NILauncherView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NSData</Name>
       <APILanguage>c</APILanguage>
       <Type>cl</Type>

@@ -16,11 +16,7 @@
 // limitations under the License.
 //
 
-#ifdef BASE_PRODUCT_NAME
-#import "NimbusCore/NimbusCore+Additions.h"
-#else
 #import "NimbusCore+Additions.h"
-#endif
 
 #import <CommonCrypto/CommonDigest.h>
 
