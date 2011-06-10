@@ -126,7 +126,7 @@
  * - Global core methods (+1)
  * - Debugging tools (+1)
  * - Availability (+1)
- * - Additions
+ * - Additions (+1)
  */
 
 /**
