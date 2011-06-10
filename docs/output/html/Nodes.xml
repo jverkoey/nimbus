@@ -18,6 +18,12 @@
           <Path>group___nimbus_core.html</Path>
           <Subnodes>
            <Node>
+            <Name>Preprocessor Macros</Name>
+            <Path>group___preprocessor-_macros.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
             <Name>Debugging Tools</Name>
             <Path>group___debugging-_tools.html</Path>
             <Subnodes>
@@ -68,6 +74,28 @@
           </Subnodes>
          </Node>
         </Subnodes>
+       </Node>
+       <Node>
+        <Name>Class List</Name>
+        <Path>annotated.html</Path>
+        <Subnodes>
+         <Node>
+          <Name>NSData</Name>
+          <Path>class_n_s_data.html</Path>
+         </Node>
+         <Node>
+          <Name>NSString</Name>
+          <Path>class_n_s_string.html</Path>
+         </Node>
+        </Subnodes>
+       </Node>
+       <Node>
+        <Name>Class Index</Name>
+        <Path>classes.html</Path>
+       </Node>
+       <Node>
+        <Name>Class Members</Name>
+        <Path>functions.html</Path>
        </Node>
        <Node>
         <Name>File List</Name>

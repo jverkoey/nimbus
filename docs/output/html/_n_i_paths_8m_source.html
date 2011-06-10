@@ -25,6 +25,7 @@
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li><a href="examples.html"><span>Examples</span></a></li>
     </ul>
@@ -64,14 +65,14 @@
 <a name="l00023"></a>00023 <span class="preprocessor">#endif</span>
 <a name="l00024"></a>00024 <span class="preprocessor"></span>
 <a name="l00025"></a>00025 
-<a name="l00027"></a><a class="code" href="group___paths.html#gae830aca759474dfce53aee898ebaf0df">00027</a> NSString* <a class="code" href="group___paths.html#gae830aca759474dfce53aee898ebaf0df" title="Create a path with the given bundle and the relative path appended.">NIPathForBundleResource</a>(NSBundle* bundle, NSString* relativePath) {
-<a name="l00028"></a>00028   NSString* resourcePath = [(nil == bundle ? [NSBundle mainBundle] : bundle) resourcePath];
+<a name="l00027"></a><a class="code" href="group___paths.html#gae830aca759474dfce53aee898ebaf0df">00027</a> <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* <a class="code" href="group___paths.html#gae830aca759474dfce53aee898ebaf0df" title="Create a path with the given bundle and the relative path appended.">NIPathForBundleResource</a>(NSBundle* bundle, <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* relativePath) {
+<a name="l00028"></a>00028   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* resourcePath = [(nil == bundle ? [NSBundle mainBundle] : bundle) resourcePath];
 <a name="l00029"></a>00029   <span class="keywordflow">return</span> [resourcePath stringByAppendingPathComponent:relativePath];
 <a name="l00030"></a>00030 }
 <a name="l00031"></a>00031 
 <a name="l00032"></a>00032 
-<a name="l00034"></a><a class="code" href="group___paths.html#ga375fcba480fc66d69cd3e6a6aa71ba4d">00034</a> NSString* <a class="code" href="group___paths.html#ga375fcba480fc66d69cd3e6a6aa71ba4d" title="Create a path with the documents directory and the relative path appended.">NIPathForDocumentsResource</a>(NSString* relativePath) {
-<a name="l00035"></a>00035   <span class="keyword">static</span> NSString* documentsPath = nil;
+<a name="l00034"></a><a class="code" href="group___paths.html#ga375fcba480fc66d69cd3e6a6aa71ba4d">00034</a> <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* <a class="code" href="group___paths.html#ga375fcba480fc66d69cd3e6a6aa71ba4d" title="Create a path with the documents directory and the relative path appended.">NIPathForDocumentsResource</a>(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* relativePath) {
+<a name="l00035"></a>00035   <span class="keyword">static</span> <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* documentsPath = nil;
 <a name="l00036"></a>00036   <span class="keywordflow">if</span> (nil == documentsPath) {
 <a name="l00037"></a>00037     NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
 <a name="l00038"></a>00038                                                         NSUserDomainMask,
@@ -82,7 +83,7 @@
 <a name="l00043"></a>00043 }
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 12:08:34 for Nimbus by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 13:16:14 for Nimbus by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

@@ -39,3 +39,47 @@ LIBRARY_SEARCH_PATHS    = $(STDLIB_LIBRARY)
 //  - Xcode 4 only
 
 HEADER_SEARCH_PATHS     = $(STDLIB_HEADERS) "$(BUILT_PRODUCTS_DIR)/../nimbus" "$(BUILT_PRODUCTS_DIR)/../../nimbus" "$(CONFIGURATION_BUILD_DIR)/../../nimbus"
+
+OBJC_LIBRARY      = -ObjC
+
+// stdlib / libSystem
+
+STDLIB_HEADERS    = /usr/include
+STDLIB_LIBRARY    = /usr/lib
+
+// ObjC Runtime
+
+OBJC_LIB          = -lobjc
+
+// Common build settings
+
+ALWAYS_SEARCH_USER_PATHS = NO
+
+//
+// Frameworks
+//
+
+AVFOUNDATION_FX         = -framework AVFoundation
+ADDRESSBOOK_FX          = -framework AddressBook
+ADDRESSBOOKUI_FX        = -framework AddressBookUI
+CFNETWORK_FX            = -framework CFNetwork
+COREDATA_FX             = -framework CoreData
+COREFOUNDATION_FX       = -framework CoreFoundation
+COREGRAPHICS_FX         = -framework CoreGraphics
+CORELOCATION_FX         = -framework CoreLocation
+FOUNDATION_FX           = -framework Foundation
+GAMEKIT_FX              = -framework GameKit
+MAPKIT_FX               = -framework MapKit
+MEDIAPLAYER_FX          = -framework MediaPlayer
+MESSAGEUI_FX            = -framework MessageUI
+MOBILECORESERVICES_FX   = -framework MobileCoreServices
+OPENGLES_FX             = -framework OpenGLES
+QUARTZCORE_FX           = -framework QuartzCore
+SECURITY_FX             = -framework Security
+STOREKIT_FX             = -framework StoreKit
+SYSTEMCONFIGURATION_FX  = -framework SystemConfiguration
+UIKIT_FX                = -framework UIKit
+
+// Unit Tests
+
+SENTESTINGKIT_FX        = -framework SenTestingKit

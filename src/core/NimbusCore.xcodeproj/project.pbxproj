@@ -13,11 +13,12 @@
 		6687510913A1AD1C00FF1C56 /* NICoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6687510613A1ACD500FF1C56 /* NICoreTests.m */; };
 		6687511613A1ADC600FF1C56 /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libNimbusCore.a */; };
 		6687519013A2650800FF1C56 /* NIRects.m in Sources */ = {isa = PBXBuildFile; fileRef = 6687518F13A2650800FF1C56 /* NIRects.m */; };
-		6687524813A2661100FF1C56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
-		6687524913A2661100FF1C56 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6687519713A2660000FF1C56 /* UIKit.framework */; };
-		6687525113A2665600FF1C56 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6687525013A2665600FF1C56 /* CoreGraphics.framework */; };
 		668754AE13A2709600FF1C56 /* NIPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 668754AD13A2709600FF1C56 /* NIPaths.m */; };
 		668754DB13A276F300FF1C56 /* NISDKAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 668754DA13A276F300FF1C56 /* NISDKAvailability.m */; };
+		668754DF13A2793800FF1C56 /* NimbusCore+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 668754DE13A2793800FF1C56 /* NimbusCore+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		668754F913A27B9400FF1C56 /* NSData+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 668754F813A27B9400FF1C56 /* NSData+NimbusCore.m */; };
+		6687552D13A2825700FF1C56 /* NICoreAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6687552C13A2825700FF1C56 /* NICoreAdditionTests.m */; };
+		6687555713A2857C00FF1C56 /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6687555613A2857C00FF1C56 /* NSString+NimbusCore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,11 @@
 		6687528E13A269A200FF1C56 /* ExampleRuntimeDebugging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExampleRuntimeDebugging.m; path = examples/ExampleRuntimeDebugging.m; sourceTree = "<group>"; };
 		668754AD13A2709600FF1C56 /* NIPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPaths.m; path = src/NIPaths.m; sourceTree = "<group>"; };
 		668754DA13A276F300FF1C56 /* NISDKAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISDKAvailability.m; path = src/NISDKAvailability.m; sourceTree = "<group>"; };
+		668754DE13A2793800FF1C56 /* NimbusCore+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusCore+Additions.h"; path = "src/NimbusCore+Additions.h"; sourceTree = "<group>"; };
+		668754F813A27B9400FF1C56 /* NSData+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+NimbusCore.m"; path = "src/NSData+NimbusCore.m"; sourceTree = "<group>"; };
+		6687552C13A2825700FF1C56 /* NICoreAdditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICoreAdditionTests.m; path = unittests/NICoreAdditionTests.m; sourceTree = "<group>"; };
+		6687554113A2840700FF1C56 /* unittests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = unittests.xcconfig; path = ../common/confs/unittests.xcconfig; sourceTree = SOURCE_ROOT; };
+		6687555613A2857C00FF1C56 /* NSString+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NimbusCore.m"; path = "src/NSString+NimbusCore.m"; sourceTree = "<group>"; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libNimbusCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -55,10 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6687524813A2661100FF1C56 /* Foundation.framework in Frameworks */,
-				6687524913A2661100FF1C56 /* UIKit.framework in Frameworks */,
 				6687511613A1ADC600FF1C56 /* libNimbusCore.a in Frameworks */,
-				6687525113A2665600FF1C56 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				668750ED13A17EBD00FF1C56 /* NimbusCore.h */,
+				668754DE13A2793800FF1C56 /* NimbusCore+Additions.h */,
 				6687502813A117EF00FF1C56 /* NimbusCore_Prefix.pch */,
 				08FB77AEFE84172EC02AAC07 /* Source */,
 				6687528D13A2698900FF1C56 /* Examples */,
@@ -115,6 +119,8 @@
 				6687518F13A2650800FF1C56 /* NIRects.m */,
 				668754AD13A2709600FF1C56 /* NIPaths.m */,
 				668754DA13A276F300FF1C56 /* NISDKAvailability.m */,
+				668754F813A27B9400FF1C56 /* NSData+NimbusCore.m */,
+				6687555613A2857C00FF1C56 /* NSString+NimbusCore.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -122,6 +128,7 @@
 		66874FD013A028A800FF1C56 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
+				6687554113A2840700FF1C56 /* unittests.xcconfig */,
 				66874FD113A028B800FF1C56 /* library.xcconfig */,
 				66874FD413A0296900FF1C56 /* project.xcconfig */,
 			);
@@ -140,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				6687510613A1ACD500FF1C56 /* NICoreTests.m */,
+				6687552C13A2825700FF1C56 /* NICoreAdditionTests.m */,
 			);
 			name = "Unit Tests";
 			sourceTree = "<group>";
@@ -160,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				668750EE13A17EBD00FF1C56 /* NimbusCore.h in Headers */,
+				668754DF13A2793800FF1C56 /* NimbusCore+Additions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6687510913A1AD1C00FF1C56 /* NICoreTests.m in Sources */,
+				6687552D13A2825700FF1C56 /* NICoreAdditionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +282,8 @@
 				6687519013A2650800FF1C56 /* NIRects.m in Sources */,
 				668754AE13A2709600FF1C56 /* NIPaths.m in Sources */,
 				668754DB13A276F300FF1C56 /* NISDKAvailability.m in Sources */,
+				668754F913A27B9400FF1C56 /* NSData+NimbusCore.m in Sources */,
+				6687555713A2857C00FF1C56 /* NSString+NimbusCore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +361,7 @@
 		};
 		668750F613A1AC6000FF1C56 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6687554113A2840700FF1C56 /* unittests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -362,14 +375,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "NimbusCoreUnitTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
 				PREBINDING = NO;
 				PRODUCT_NAME = NimbusCoreUnitTests;
 				SDKROOT = iphoneos;
@@ -379,6 +384,7 @@
 		};
 		668750F713A1AC6000FF1C56 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6687554113A2840700FF1C56 /* unittests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -391,14 +397,6 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				INFOPLIST_FILE = "NimbusCoreUnitTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
 				PREBINDING = NO;
 				PRODUCT_NAME = NimbusCoreUnitTests;
 				SDKROOT = iphoneos;

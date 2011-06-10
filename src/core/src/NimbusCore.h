@@ -31,6 +31,56 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+
+#pragma mark -
+#pragma mark Preprocessor Macros
+
+/**
+ * @brief For writing safer code.
+ * @defgroup Preprocessor-Macros Preprocessor Macros
+ * @{
+ */
+
+/**
+ * @brief Mark a method or property as deprecated to the compiler.
+ *
+ * Any use of a deprecated method or property will flag a warning when compiling.
+ *
+ * Borrowed from Apple's AvailabiltyInternal.h header.
+ *
+ * @htmlonly
+ * <pre>
+ *   __AVAILABILITY_INTERNAL_DEPRECATED         __attribute__((deprecated))
+ * </pre>
+ * @endhtmlonly
+ */
+#define __NI_DEPRECATED_METHOD __attribute__((deprecated))
+
+/**
+ * @brief Force a category to be loaded when an app starts up.
+ *
+ * Add this macro before each category implementation, so we don't have to use
+ * -all_load or -force_load to load object files from static libraries that only contain
+ * categories and no classes.
+ * See http://developer.apple.com/library/mac/#qa/qa2006/qa1490.html for more info.
+ */
+#define NI_FIX_CATEGORY_BUG(name) @interface NI_FIX_CATEGORY_BUG_##name @end \
+                                  @implementation NI_FIX_CATEGORY_BUG_##name @end
+
+/**
+ * @brief Release and assign nil to an object.
+ *
+ * This macro is preferred to simply releasing an object to avoid accidentally using the
+ * object later on in a method.
+ */
+#define NI_RELEASE_SAFELY(__POINTER) { [__POINTER release]; __POINTER = nil; }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**@}*/// End of Preprocessor Macros //////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 #pragma mark -
 #pragma mark Debugging Tools
 
@@ -170,7 +220,7 @@ if (NIIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/**@}*/// End of Debugging-Tools //////////////////////////////////////////////////////////////////
+/**@}*/// End of Debugging Tools //////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 

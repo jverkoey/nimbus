@@ -10,6 +10,44 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>Preprocessor-Macros</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___preprocessor-_macros.html</Path>
+    <Abstract>For writing safer code.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>__NI_DEPRECATED_METHOD</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___preprocessor-_macros.html</Path>
+    <Anchor>ga8705189f505d9a1934dc181ccc7326f4</Anchor>
+    <Abstract>Mark a method or property as deprecated to the compiler.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NI_FIX_CATEGORY_BUG</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___preprocessor-_macros.html</Path>
+    <Anchor>ga55ff03b06ecaecaf3c88463ebd81b9a6</Anchor>
+    <Abstract>Force a category to be loaded when an app starts up.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NI_RELEASE_SAFELY</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___preprocessor-_macros.html</Path>
+    <Anchor>ga5d2e99251aeb3ddb687e27f72336e5db</Anchor>
+    <Abstract>Release and assign nil to an object.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Debugging-Tools</Name>
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
@@ -387,5 +425,124 @@
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
     <Path>group___setup.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NSData</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NSData</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_data.html</Path>
+    <Abstract>For hashing raw data.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>md5Hash</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSData</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_data.html</Path>
+    <Anchor>aa579e3e3c247cd6daa6c0981ff07d718</Anchor>
+    <Abstract>Calculate an md5 hash using CC_MD5.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>sha1Hash</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSData</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_data.html</Path>
+    <Anchor>a3531895202d4316334ac39a39a255059</Anchor>
+    <Abstract>Calculate the SHA1 hash using CC_SHA1.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NSString</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Abstract>For manipulating NSStrings.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>isWhitespaceAndNewlines</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Anchor>a121c44a9dac429d5d5b943b823cd578a</Anchor>
+    <Abstract>Determines if the string contains only whitespace and newlines.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>heightWithFont:constrainedToWidth:lineBreakMode:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Anchor>afb69ae33493b2a463f6fcae7333cec66</Anchor>
+    <Abstract>Calculates the height of this text given the font, max width, and line break mode.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>queryContentsUsingEncoding:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Anchor>a0a019898f6bbdee69b2b826bb44d8098</Anchor>
+    <Abstract>Parses a URL query string into a dictionary where the values are arrays.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>stringByAddingQueryDictionary:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Anchor>a4aa72a6d70054e4e1224d622c340e6bc</Anchor>
+    <Abstract>Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>versionStringCompare:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Anchor>a9d95a21b73c2d0dd6b3e21fa759517ca</Anchor>
+    <Abstract>Compares two strings expressing software versions.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>md5Hash</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Anchor>a5b8e06192865b0f1f7bbe9bf000a17a3</Anchor>
+    <Abstract>Calculate the md5 hash using CC_MD5.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>sha1Hash</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Anchor>a6579c27a90e18b5e9d531773e2c91cb8</Anchor>
+    <Abstract>Calculate the SHA1 hash using CommonCrypto CC_SHA1.</Abstract>
   </Token>
 </Tokens>
