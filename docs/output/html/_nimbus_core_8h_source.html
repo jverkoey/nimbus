@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Nimbus&#160;<span id="projectnumber">0.1.1</span></div>
+   <div id="projectname">Nimbus&#160;<span id="projectnumber">0.1.2</span></div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
  </tr>
@@ -168,17 +168,78 @@
 <a name="l00334"></a>00334 <span class="preprocessor">#pragma mark -</span>
 <a name="l00335"></a>00335 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Paths</span>
 <a name="l00336"></a>00336 <span class="preprocessor"></span>
-<a name="l00350"></a>00350 NSString* <a class="code" href="group___paths.html#gae830aca759474dfce53aee898ebaf0df" title="Create a path with the given bundle and the relative path appended.">NIPathForBundleResource</a>(NSBundle* bundle, NSString* relativePath);
-<a name="l00351"></a>00351 
-<a name="l00356"></a>00356 NSString* <a class="code" href="group___paths.html#ga375fcba480fc66d69cd3e6a6aa71ba4d" title="Create a path with the documents directory and the relative path appended.">NIPathForDocumentsResource</a>(NSString* relativePath);
-<a name="l00357"></a>00357 
-<a name="l00358"></a>00358 
-<a name="l00360"></a>00360 <span class="comment">// End of Paths ////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00362"></a>00362 <span class="comment"></span>
-<a name="l00363"></a>00363 
+<a name="l00352"></a>00352 NSString* <a class="code" href="group___paths.html#gae830aca759474dfce53aee898ebaf0df" title="Create a path with the given bundle and the relative path appended.">NIPathForBundleResource</a>(NSBundle* bundle, NSString* relativePath);
+<a name="l00353"></a>00353 
+<a name="l00358"></a>00358 NSString* <a class="code" href="group___paths.html#ga375fcba480fc66d69cd3e6a6aa71ba4d" title="Create a path with the documents directory and the relative path appended.">NIPathForDocumentsResource</a>(NSString* relativePath);
+<a name="l00359"></a>00359 
+<a name="l00360"></a>00360 
+<a name="l00362"></a>00362 <span class="comment">// End of Paths ////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00364"></a>00364 <span class="comment"></span>
+<a name="l00365"></a>00365 
+<a name="l00366"></a>00366 <span class="preprocessor">#pragma mark -</span>
+<a name="l00367"></a>00367 <span class="preprocessor"></span><span class="preprocessor">#pragma mark SDK Availability</span>
+<a name="l00368"></a>00368 <span class="preprocessor"></span>
+<a name="l00391"></a><a class="code" href="group___s_d_k-_availability.html#gacc9cff6951a25df1bf4cd3bd90183e3c">00391</a> <span class="preprocessor">#define NIIOS_2_0     20000</span>
+<a name="l00392"></a>00392 <span class="preprocessor"></span>
+<a name="l00396"></a><a class="code" href="group___s_d_k-_availability.html#gae1525331a18184988b12889e1f2d5a19">00396</a> <span class="preprocessor">#define NIIOS_2_1     20100</span>
+<a name="l00397"></a>00397 <span class="preprocessor"></span>
+<a name="l00401"></a><a class="code" href="group___s_d_k-_availability.html#ga5705e2f1066b0394a41694de13680550">00401</a> <span class="preprocessor">#define NIIOS_2_2     20200</span>
+<a name="l00402"></a>00402 <span class="preprocessor"></span>
+<a name="l00406"></a><a class="code" href="group___s_d_k-_availability.html#gadc03746bbf3381d282a351e68fb77ee5">00406</a> <span class="preprocessor">#define NIIOS_3_0     30000</span>
+<a name="l00407"></a>00407 <span class="preprocessor"></span>
+<a name="l00411"></a><a class="code" href="group___s_d_k-_availability.html#ga45071706dd9d5fbd674d5a5c41736df1">00411</a> <span class="preprocessor">#define NIIOS_3_1     30100</span>
+<a name="l00412"></a>00412 <span class="preprocessor"></span>
+<a name="l00416"></a><a class="code" href="group___s_d_k-_availability.html#gaa1c10d7973e40b02bd17c785469c6c54">00416</a> <span class="preprocessor">#define NIIOS_3_2     30200</span>
+<a name="l00417"></a>00417 <span class="preprocessor"></span>
+<a name="l00421"></a><a class="code" href="group___s_d_k-_availability.html#gaefa9afe559100406762edfff8909d083">00421</a> <span class="preprocessor">#define NIIOS_4_0     40000</span>
+<a name="l00422"></a>00422 <span class="preprocessor"></span>
+<a name="l00426"></a><a class="code" href="group___s_d_k-_availability.html#ga004a7684048dd6a87e6e170fa56b5d9a">00426</a> <span class="preprocessor">#define NIIOS_4_1     40100</span>
+<a name="l00427"></a>00427 <span class="preprocessor"></span>
+<a name="l00431"></a><a class="code" href="group___s_d_k-_availability.html#gae75f0a7cca0fbe0de7e1b68c55ef9ddf">00431</a> <span class="preprocessor">#define NIIOS_4_2     40200</span>
+<a name="l00432"></a>00432 <span class="preprocessor"></span>
+<a name="l00436"></a><a class="code" href="group___s_d_k-_availability.html#gaaa53475c5fefe5a0b7e9db448ec0df79">00436</a> <span class="preprocessor">#define NIIOS_4_3     40300</span>
+<a name="l00437"></a>00437 <span class="preprocessor"></span>
+<a name="l00441"></a><a class="code" href="group___s_d_k-_availability.html#gab590d6daaa8e1c7b8fac784bd7093ab8">00441</a> <span class="preprocessor">#define NIIOS_5_0     50000</span>
+<a name="l00442"></a>00442 <span class="preprocessor"></span>
+<a name="l00443"></a>00443 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_0</span>
+<a name="l00444"></a>00444 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_2_0 478.23</span>
+<a name="l00445"></a>00445 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00446"></a>00446 <span class="preprocessor"></span>
+<a name="l00447"></a>00447 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_1</span>
+<a name="l00448"></a>00448 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_2_1 478.26</span>
+<a name="l00449"></a>00449 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00450"></a>00450 <span class="preprocessor"></span>
+<a name="l00451"></a>00451 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_2</span>
+<a name="l00452"></a>00452 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_2_2 478.29</span>
+<a name="l00453"></a>00453 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00454"></a>00454 <span class="preprocessor"></span>
+<a name="l00455"></a>00455 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_0</span>
+<a name="l00456"></a>00456 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_3_0 478.47</span>
+<a name="l00457"></a>00457 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00458"></a>00458 <span class="preprocessor"></span>
+<a name="l00459"></a>00459 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_1</span>
+<a name="l00460"></a>00460 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_3_1 478.52</span>
+<a name="l00461"></a>00461 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00462"></a>00462 <span class="preprocessor"></span>
+<a name="l00463"></a>00463 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_2</span>
+<a name="l00464"></a>00464 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_3_2 478.61</span>
+<a name="l00465"></a>00465 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00466"></a>00466 <span class="preprocessor"></span>
+<a name="l00467"></a>00467 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iOS_4_0</span>
+<a name="l00468"></a>00468 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iOS_4_0 550.32</span>
+<a name="l00469"></a>00469 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00470"></a>00470 <span class="preprocessor"></span>
+<a name="l00481"></a>00481 BOOL <a class="code" href="group___s_d_k-_availability.html#ga93ac73a742aea0dd9c07562056bf29c4" title="Checks whether the device&#39;s OS version is at least the given version number.">NIDeviceOSVersionIsAtLeast</a>(<span class="keywordtype">double</span> versionNumber);
+<a name="l00482"></a>00482 
+<a name="l00494"></a>00494 Class <a class="code" href="group___s_d_k-_availability.html#gab7b9a8279ba3c54d6654f11f69dbd6f0" title="Safely fetch the UIPopoverController class if it is available.">NIUIPopoverControllerClass</a>();
+<a name="l00495"></a>00495 
+<a name="l00496"></a>00496 
+<a name="l00498"></a>00498 <span class="comment">// End of SDK Availability /////////////////////////////////////////////////////////////////</span>
+<a name="l00500"></a>00500 <span class="comment"></span>
+<a name="l00501"></a>00501 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 11:34:42 for Nimbus by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 12:02:36 for Nimbus by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

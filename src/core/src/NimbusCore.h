@@ -343,7 +343,9 @@ CGRect NIRectInset(CGRect rect, UIEdgeInsets insets);
 /**
  * @brief Create a path with the given bundle and the relative path appended.
  *
- * @param bundle  The bundle to append relativePath to. If nil, [NSBundle mainBundle] will be used.
+ * @param bundle        The bundle to append relativePath to. If nil, [NSBundle mainBundle] will
+ *                      be used.
+ * @param relativePath  The relative path to append to the bundle's path.
  *
  * @returns The bundle path concatenated with the given relative path.
  */
@@ -358,6 +360,142 @@ NSString* NIPathForDocumentsResource(NSString* relativePath);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Paths ////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#pragma mark -
+#pragma mark SDK Availability
+
+/**
+ * @brief For checking SDK feature availibility.
+ * @defgroup SDK-Availability SDK Availability
+ * @{
+ *
+ * NIIOS macros are defined in parallel to their __IPHONE_ counterparts as a consistently-defined
+ * means of checking __IPHONE_OS_VERSION_MAX_ALLOWED.
+ *
+ * For example:
+ *
+ * @htmlonly
+ * <pre>
+ *     #if __IPHONE_OS_VERSION_MAX_ALLOWED >= NIIOS_3_2
+ *       // This code will only compile on versions >= iOS 3.2
+ *     #endif
+ * </pre>
+ * @endhtmlonly
+ */
+
+/**
+ * @brief Released on July 11, 2008
+ */
+#define NIIOS_2_0     20000
+
+/**
+ * @brief Released on September 9, 2008
+ */
+#define NIIOS_2_1     20100
+
+/**
+ * @brief Released on November 21, 2008
+ */
+#define NIIOS_2_2     20200
+
+/**
+ * @brief Released on June 17, 2009
+ */
+#define NIIOS_3_0     30000
+
+/**
+ * @brief Released on September 9, 2009
+ */
+#define NIIOS_3_1     30100
+
+/**
+ * @brief Released on April 3, 2010
+ */
+#define NIIOS_3_2     30200
+
+/**
+ * @brief Released on June 21, 2010
+ */
+#define NIIOS_4_0     40000
+
+/**
+ * @brief Released on September 8, 2010
+ */
+#define NIIOS_4_1     40100
+
+/**
+ * @brief Released on November 22, 2010
+ */
+#define NIIOS_4_2     40200
+
+/**
+ * @brief Released on March 9, 2011
+ */
+#define NIIOS_4_3     40300
+
+/**
+ * @brief Release TBD.
+ */
+#define NIIOS_5_0     50000
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_0
+#define kCFCoreFoundationVersionNumber_iPhoneOS_2_0 478.23
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_1
+#define kCFCoreFoundationVersionNumber_iPhoneOS_2_1 478.26
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_2
+#define kCFCoreFoundationVersionNumber_iPhoneOS_2_2 478.29
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_0
+#define kCFCoreFoundationVersionNumber_iPhoneOS_3_0 478.47
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_1
+#define kCFCoreFoundationVersionNumber_iPhoneOS_3_1 478.52
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_2
+#define kCFCoreFoundationVersionNumber_iPhoneOS_3_2 478.61
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iOS_4_0
+#define kCFCoreFoundationVersionNumber_iOS_4_0 550.32
+#endif
+
+/**
+ * @brief Checks whether the device's OS version is at least the given version number.
+ *
+ * @param versionNumber Any value of kCFCoreFoundationVersionNumber.
+ *
+ * Useful for runtime checks of the device's version number.
+ *
+ * @attention Apple recommends using respondsToSelector where possible to check for
+ * feature support. Use this method as a last resort.
+ */
+BOOL NIDeviceOSVersionIsAtLeast(double versionNumber);
+
+/**
+ * @brief Safely fetch the UIPopoverController class if it is available.
+ *
+ * The class is cached to avoid repeated lookups.
+ *
+ * Uses NSClassFromString to fetch the popover controller class.
+ *
+ * @attention If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method
+ * instead of directly referring to UIPopoverController anywhere within your code. Failure to
+ * do so will cause your app to crash on startup on pre-iOS 3.2 devices.
+ */
+Class NIUIPopoverControllerClass();
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**@}*/// End of SDK Availability /////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 

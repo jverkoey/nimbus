@@ -245,6 +245,144 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>SDK-Availability</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Abstract>For checking SDK feature availibility.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_2_0</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gacc9cff6951a25df1bf4cd3bd90183e3c</Anchor>
+    <Abstract>Released on July 11, 2008.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_2_1</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gae1525331a18184988b12889e1f2d5a19</Anchor>
+    <Abstract>Released on September 9, 2008.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_2_2</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>ga5705e2f1066b0394a41694de13680550</Anchor>
+    <Abstract>Released on November 21, 2008.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_3_0</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gadc03746bbf3381d282a351e68fb77ee5</Anchor>
+    <Abstract>Released on June 17, 2009.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_3_1</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>ga45071706dd9d5fbd674d5a5c41736df1</Anchor>
+    <Abstract>Released on September 9, 2009.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_3_2</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gaa1c10d7973e40b02bd17c785469c6c54</Anchor>
+    <Abstract>Released on April 3, 2010.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_4_0</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gaefa9afe559100406762edfff8909d083</Anchor>
+    <Abstract>Released on June 21, 2010.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_4_1</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>ga004a7684048dd6a87e6e170fa56b5d9a</Anchor>
+    <Abstract>Released on September 8, 2010.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_4_2</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gae75f0a7cca0fbe0de7e1b68c55ef9ddf</Anchor>
+    <Abstract>Released on November 22, 2010.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_4_3</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gaaa53475c5fefe5a0b7e9db448ec0df79</Anchor>
+    <Abstract>Released on March 9, 2011.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_5_0</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gab590d6daaa8e1c7b8fac784bd7093ab8</Anchor>
+    <Abstract>Release TBD.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDeviceOSVersionIsAtLeast</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>ga93ac73a742aea0dd9c07562056bf29c4</Anchor>
+    <Abstract>Checks whether the device&amp;#39;s OS version is at least the given version number.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIUIPopoverControllerClass</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gab7b9a8279ba3c54d6654f11f69dbd6f0</Anchor>
+    <Abstract>Safely fetch the UIPopoverController class if it is available.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Setup</Name>
       <APILanguage>c</APILanguage>
     </TokenIdentifier>

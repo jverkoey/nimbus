@@ -124,8 +124,8 @@
  * Migrate the following from Three20:
  *
  * - Global core methods
- * - Debugging tools
- * - Availability
+ * - Debugging tools (+1)
+ * - Availability (+1)
  * - Additions
  */
 
