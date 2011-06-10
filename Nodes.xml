@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DocSetNodes version="1.0">
+  <TOC>
+    <Node>
+      <Name>Root</Name>
+      <Path>index.html</Path>
+      <Subnodes>
+       <Node>
+        <Name>Main Page</Name>
+        <Path>index.html</Path>
+       </Node>
+       <Node>
+        <Name>Modules</Name>
+        <Path>modules.html</Path>
+        <Subnodes>
+         <Node>
+          <Name>Nimbus Core</Name>
+          <Path>group___nimbus_core.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>Preprocessor Macros</Name>
+            <Path>group___preprocessor-_macros.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Debugging Tools</Name>
+            <Path>group___debugging-_tools.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Non-Retaining Collections</Name>
+            <Path>group___non-_retaining-_collections.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Non-Empty Collection Testing</Name>
+            <Path>group___non-_empty-_collection-_testing.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Runtime Class Modifications</Name>
+            <Path>group___runtime-_class-_modifications.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>CGRect Methods</Name>
+            <Path>group___c_g_rect-_methods.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Paths</Name>
+            <Path>group___paths.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>SDK Availability</Name>
+            <Path>group___s_d_k-_availability.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>Adding Nimbus to Your Project</Name>
+          <Path>group___setup.html</Path>
+          <Subnodes>
+          </Subnodes>
+         </Node>
+        </Subnodes>
+       </Node>
+       <Node>
+        <Name>Class List</Name>
+        <Path>annotated.html</Path>
+        <Subnodes>
+         <Node>
+          <Name>NSData</Name>
+          <Path>class_n_s_data.html</Path>
+         </Node>
+         <Node>
+          <Name>NSString</Name>
+          <Path>class_n_s_string.html</Path>
+         </Node>
+        </Subnodes>
+       </Node>
+       <Node>
+        <Name>Class Index</Name>
+        <Path>classes.html</Path>
+       </Node>
+       <Node>
+        <Name>Class Members</Name>
+        <Path>functions.html</Path>
+       </Node>
+       <Node>
+        <Name>File List</Name>
+        <Path>files.html</Path>
+        <Subnodes>
+        </Subnodes>
+       </Node>
+       <Node>
+        <Name>Examples</Name>
+        <Path>examples.html</Path>
+        <Subnodes>
+         <Node>
+          <Name>ExampleRuntimeDebugging.m</Name>
+          <Path>_example_runtime_debugging_8m-example.html</Path>
+         </Node>
+        </Subnodes>
+       </Node>
+      </Subnodes>
+    </Node>
+  </TOC>
+</DocSetNodes>

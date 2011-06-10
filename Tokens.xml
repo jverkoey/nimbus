@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+  <Token>
+    <TokenIdentifier>
+      <Name>NimbusCore</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___nimbus_core.html</Path>
+    <Abstract>Nimbus&amp;#39; Core library contains many often used utilities.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Preprocessor-Macros</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___preprocessor-_macros.html</Path>
+    <Abstract>For writing safer code.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>__NI_DEPRECATED_METHOD</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___preprocessor-_macros.html</Path>
+    <Anchor>ga8705189f505d9a1934dc181ccc7326f4</Anchor>
+    <Abstract>Mark a method or property as deprecated to the compiler.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NI_FIX_CATEGORY_BUG</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___preprocessor-_macros.html</Path>
+    <Anchor>ga55ff03b06ecaecaf3c88463ebd81b9a6</Anchor>
+    <Abstract>Force a category to be loaded when an app starts up.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NI_RELEASE_SAFELY</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___preprocessor-_macros.html</Path>
+    <Anchor>ga5d2e99251aeb3ddb687e27f72336e5db</Anchor>
+    <Abstract>Release and assign nil to an object.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Debugging-Tools</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Abstract>For inspecting code and writing to logs in debug builds.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDPRINT</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>ga74e1fbd5193e3020f3abf072dcd59f26</Anchor>
+    <Abstract>Only writes to the log when DEBUG is defined.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDPRINTMETHODNAME</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>gaa606f4ba1dd48de5e2fd679b7d8b22d8</Anchor>
+    <Abstract>Write the containing method&amp;#39;s name to the log using NIDPRINT.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDASSERT</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>ga13cc3ae82820ea8141bc319bcb76ab7f</Anchor>
+    <Abstract>Assertions that only fire when DEBUG is defined.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIMaxLogLevel</Name>
+      <APILanguage>c</APILanguage>
+      <Type>data</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>ga4772ce14310fecf30ed2bc36dfe7c505</Anchor>
+    <Abstract>The maximum log level to output for Nimbus debug logs.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDERROR</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>gab5d8a773517976d97335706474ae1317</Anchor>
+    <Abstract>Only writes to the log if NIMaxLogLevel &amp;gt;= NILOGLEVEL_ERROR.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDWARNING</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>gacc8f90bb05765e613bb0dbb16d372dfc</Anchor>
+    <Abstract>Only writes to the log if NIMaxLogLevel &amp;gt;= NILOGLEVEL_WARNING.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDINFO</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>gaf0d5ca9cb5bd5c57cfaee0b9a565bb84</Anchor>
+    <Abstract>Only writes to the log if NIMaxLogLevel &amp;gt;= NILOGLEVEL_INFO.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Non-Retaining-Collections</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___non-_retaining-_collections.html</Path>
+    <Abstract>For collections that don&amp;#39;t retain their objects.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NICreateNonRetainingArray</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___non-_retaining-_collections.html</Path>
+    <Anchor>ga76cae73a719e8fab80796f508f64b577</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NICreateNonRetainingDictionary</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___non-_retaining-_collections.html</Path>
+    <Anchor>ga5cbe145e8fd4088401513334718152f2</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NICreateNonRetainingSet</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___non-_retaining-_collections.html</Path>
+    <Anchor>gaed15be419aba75dd6499a2a3a99c32c0</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Non-Empty-Collection-Testing</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___non-_empty-_collection-_testing.html</Path>
+    <Abstract>For testing whether a collection is of a certain type and is non-empty.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIsArrayWithObjects</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___non-_empty-_collection-_testing.html</Path>
+    <Anchor>gae25d81aa1d68eb35569f65200f21a93f</Anchor>
+    <Abstract>Tests if an object is a non-nil array which is not empty.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIsSetWithObjects</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___non-_empty-_collection-_testing.html</Path>
+    <Anchor>ga78e594e9575335f97fd00f5252c73ae5</Anchor>
+    <Abstract>Tests if an object is a non-nil set which is not empty.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIsStringWithAnyText</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___non-_empty-_collection-_testing.html</Path>
+    <Anchor>ga8a7eaa0c885803d11397e454631cc175</Anchor>
+    <Abstract>Tests if an object is a non-nil string which is not empty.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Runtime-Class-Modifications</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___runtime-_class-_modifications.html</Path>
+    <Abstract>For modifying class implementations at runtime.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NISwapMethods</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___runtime-_class-_modifications.html</Path>
+    <Anchor>gafa9da20fcf364cf90b11cc5e317a07e7</Anchor>
+    <Abstract>Swap two method implementations for the given class.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>CGRect-Methods</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___c_g_rect-_methods.html</Path>
+    <Abstract>For manipulating CGRects.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIRectContract</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___c_g_rect-_methods.html</Path>
+    <Anchor>ga931be414630989f17e57381643459857</Anchor>
+    <Abstract>Modifies only the right and bottom edges of a CGRect.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIRectShift</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___c_g_rect-_methods.html</Path>
+    <Anchor>gabcfc5613fd39ec197b2b2f6377d7d1b2</Anchor>
+    <Abstract>Modifies only the top and left edges of a CGRect.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIRectInset</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___c_g_rect-_methods.html</Path>
+    <Anchor>ga6be0b565e24d85481bbecbdb3635993f</Anchor>
+    <Abstract>Add the insets to a CGRect - equivalent to padding in CSS.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Paths</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___paths.html</Path>
+    <Abstract>For creating standard system paths.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIPathForBundleResource</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___paths.html</Path>
+    <Anchor>gae830aca759474dfce53aee898ebaf0df</Anchor>
+    <Abstract>Create a path with the given bundle and the relative path appended.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIPathForDocumentsResource</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___paths.html</Path>
+    <Anchor>ga375fcba480fc66d69cd3e6a6aa71ba4d</Anchor>
+    <Abstract>Create a path with the documents directory and the relative path appended.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>SDK-Availability</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Abstract>For checking SDK feature availibility.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_2_0</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gacc9cff6951a25df1bf4cd3bd90183e3c</Anchor>
+    <Abstract>Released on July 11, 2008.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_2_1</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gae1525331a18184988b12889e1f2d5a19</Anchor>
+    <Abstract>Released on September 9, 2008.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_2_2</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>ga5705e2f1066b0394a41694de13680550</Anchor>
+    <Abstract>Released on November 21, 2008.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_3_0</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gadc03746bbf3381d282a351e68fb77ee5</Anchor>
+    <Abstract>Released on June 17, 2009.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_3_1</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>ga45071706dd9d5fbd674d5a5c41736df1</Anchor>
+    <Abstract>Released on September 9, 2009.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_3_2</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gaa1c10d7973e40b02bd17c785469c6c54</Anchor>
+    <Abstract>Released on April 3, 2010.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_4_0</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gaefa9afe559100406762edfff8909d083</Anchor>
+    <Abstract>Released on June 21, 2010.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_4_1</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>ga004a7684048dd6a87e6e170fa56b5d9a</Anchor>
+    <Abstract>Released on September 8, 2010.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_4_2</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gae75f0a7cca0fbe0de7e1b68c55ef9ddf</Anchor>
+    <Abstract>Released on November 22, 2010.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_4_3</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gaaa53475c5fefe5a0b7e9db448ec0df79</Anchor>
+    <Abstract>Released on March 9, 2011.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIOS_5_0</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gab590d6daaa8e1c7b8fac784bd7093ab8</Anchor>
+    <Abstract>Release TBD.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDeviceOSVersionIsAtLeast</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>ga93ac73a742aea0dd9c07562056bf29c4</Anchor>
+    <Abstract>Checks whether the device&amp;#39;s OS version is at least the given version number.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIUIPopoverControllerClass</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gab7b9a8279ba3c54d6654f11f69dbd6f0</Anchor>
+    <Abstract>Safely fetch the UIPopoverController class if it is available.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Setup</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___setup.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NSData</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NSData</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_data.html</Path>
+    <Abstract>For hashing raw data.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>md5Hash</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSData</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_data.html</Path>
+    <Anchor>aa579e3e3c247cd6daa6c0981ff07d718</Anchor>
+    <Abstract>Calculate an md5 hash using CC_MD5.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>sha1Hash</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSData</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_data.html</Path>
+    <Anchor>a3531895202d4316334ac39a39a255059</Anchor>
+    <Abstract>Calculate the SHA1 hash using CC_SHA1.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NSString</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Abstract>For manipulating NSStrings.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>isWhitespaceAndNewlines</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Anchor>a121c44a9dac429d5d5b943b823cd578a</Anchor>
+    <Abstract>Determines if the string contains only whitespace and newlines.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>heightWithFont:constrainedToWidth:lineBreakMode:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Anchor>afb69ae33493b2a463f6fcae7333cec66</Anchor>
+    <Abstract>Calculates the height of this text given the font, max width, and line break mode.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>queryContentsUsingEncoding:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Anchor>a0a019898f6bbdee69b2b826bb44d8098</Anchor>
+    <Abstract>Parses a URL query string into a dictionary where the values are arrays.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>stringByAddingQueryDictionary:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Anchor>a4aa72a6d70054e4e1224d622c340e6bc</Anchor>
+    <Abstract>Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>versionStringCompare:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Anchor>a9d95a21b73c2d0dd6b3e21fa759517ca</Anchor>
+    <Abstract>Compares two strings expressing software versions.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>md5Hash</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Anchor>a5b8e06192865b0f1f7bbe9bf000a17a3</Anchor>
+    <Abstract>Calculate the md5 hash using CC_MD5.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>sha1Hash</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NSString</Scope>
+    </TokenIdentifier>
+    <Path>class_n_s_string.html</Path>
+    <Anchor>a6579c27a90e18b5e9d531773e2c91cb8</Anchor>
+    <Abstract>Calculate the SHA1 hash using CommonCrypto CC_SHA1.</Abstract>
+  </Token>
+</Tokens>
