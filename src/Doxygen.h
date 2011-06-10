@@ -115,7 +115,15 @@
  *
  * <h1>Version History</h1>
  *
- * <h2>0.1</h2>
+ * <h2>0.2</h2>
+ *
+ * The first feature release of Nimbus.
+ *
+ * Goal tasks:
+ *
+ * - Migrate Three20's Navigator to Nimbus.
+ *
+ * <h2>0.1 - Friday June 10, 2011</h2>
  *
  * The first public release of Nimbus.
  *
