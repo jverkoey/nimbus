@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+     <key>CFBundleName</key>
+     <string>Nimbus</string>
+     <key>CFBundleIdentifier</key>
+     <string>org.doxygen.Project.docset</string>
+     <key>DocSetFeedName</key>
+     <string>Doxygen generated docs</string>
+     <key>DocSetPublisherIdentifier</key>
+     <string>org.doxygen.Publisher</string>
+     <key>DocSetPublisherName</key>
+     <string>Publisher</string>
+</dict>
+</plist>

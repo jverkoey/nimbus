@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DocSetNodes version="1.0">
+  <TOC>
+    <Node>
+      <Name>Root</Name>
+      <Path>index.html</Path>
+      <Subnodes>
+       <Node>
+        <Name>Main Page</Name>
+        <Path>index.html</Path>
+       </Node>
+       <Node>
+        <Name>Modules</Name>
+        <Path>modules.html</Path>
+        <Subnodes>
+         <Node>
+          <Name>Nimbus Core</Name>
+          <Path>group___nimbus_core.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>Debugging Tools</Name>
+            <Path>group___debugging-_tools.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Non-Retaining Collections</Name>
+            <Path>group___non-_retaining-_collections.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Non-Empty Collection Testing</Name>
+            <Path>group___non-_empty-_collection-_testing.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Runtime Class Modifications</Name>
+            <Path>group___runtime-_class-_modifications.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+          </Subnodes>
+         </Node>
+        </Subnodes>
+       </Node>
+       <Node>
+        <Name>File List</Name>
+        <Path>files.html</Path>
+        <Subnodes>
+        </Subnodes>
+       </Node>
+      </Subnodes>
+    </Node>
+  </TOC>
+</DocSetNodes>

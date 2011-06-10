@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+  <Token>
+    <TokenIdentifier>
+      <Name>NimbusCore</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___nimbus_core.html</Path>
+    <Abstract>Nimbus&amp;#39; Core library contains many often used utilities.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Debugging-Tools</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Abstract>Tools for inspecting code and writing to logs in debug builds.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDPRINT</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>ga74e1fbd5193e3020f3abf072dcd59f26</Anchor>
+    <Abstract>Only writes to the log when DEBUG is defined.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDPRINTMETHODNAME</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>gaa606f4ba1dd48de5e2fd679b7d8b22d8</Anchor>
+    <Abstract>Write the containing method&amp;#39;s name to the log using NIDPRINT.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDASSERT</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>ga13cc3ae82820ea8141bc319bcb76ab7f</Anchor>
+    <Abstract>Assertions that only fire when DEBUG is defined.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIMaxLogLevel</Name>
+      <APILanguage>c</APILanguage>
+      <Type>data</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>ga4772ce14310fecf30ed2bc36dfe7c505</Anchor>
+    <Abstract>The maximum log level to output for Nimbus debug logs.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDERROR</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>gab5d8a773517976d97335706474ae1317</Anchor>
+    <Abstract>Only writes to the log if NIMaxLogLevel &amp;gt;= NILOGLEVEL_ERROR.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDWARNING</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>gacc8f90bb05765e613bb0dbb16d372dfc</Anchor>
+    <Abstract>Only writes to the log if NIMaxLogLevel &amp;gt;= NILOGLEVEL_WARNING.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDINFO</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>gaf0d5ca9cb5bd5c57cfaee0b9a565bb84</Anchor>
+    <Abstract>Only writes to the log if NIMaxLogLevel &amp;gt;= NILOGLEVEL_INFO.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Non-Retaining-Collections</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___non-_retaining-_collections.html</Path>
+    <Abstract>Collections that don&amp;#39;t retain their objects.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NICreateNonRetainingArray</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___non-_retaining-_collections.html</Path>
+    <Anchor>ga76cae73a719e8fab80796f508f64b577</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NICreateNonRetainingDictionary</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___non-_retaining-_collections.html</Path>
+    <Anchor>ga5cbe145e8fd4088401513334718152f2</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NICreateNonRetainingSet</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___non-_retaining-_collections.html</Path>
+    <Anchor>gaed15be419aba75dd6499a2a3a99c32c0</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Non-Empty-Collection-Testing</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___non-_empty-_collection-_testing.html</Path>
+    <Abstract>Test whether a collection is of a certain type and is non-empty.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIsArrayWithObjects</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___non-_empty-_collection-_testing.html</Path>
+    <Anchor>gae25d81aa1d68eb35569f65200f21a93f</Anchor>
+    <Abstract>Tests if an object is a non-nil array which is not empty.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIsSetWithObjects</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___non-_empty-_collection-_testing.html</Path>
+    <Anchor>ga78e594e9575335f97fd00f5252c73ae5</Anchor>
+    <Abstract>Tests if an object is a non-nil set which is not empty.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIsStringWithAnyText</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___non-_empty-_collection-_testing.html</Path>
+    <Anchor>ga8a7eaa0c885803d11397e454631cc175</Anchor>
+    <Abstract>Tests if an object is a non-nil string which is not empty.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Runtime-Class-Modifications</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___runtime-_class-_modifications.html</Path>
+    <Abstract>Modifying class implementations at runtime.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NISwapMethods</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___runtime-_class-_modifications.html</Path>
+    <Anchor>gafa9da20fcf364cf90b11cc5e317a07e7</Anchor>
+    <Abstract>Swap the two method implementations on the given class.</Abstract>
+  </Token>
+</Tokens>

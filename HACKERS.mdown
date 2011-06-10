@@ -1,0 +1,47 @@
+
+So you wanna hack on Nimbus?
+============================
+
+Nimbus follows one principle above all others:
+
+            Nimbus may only grow if its documentation grows at the same rate, or faster.
+
+By this principle, any new feature added to Nimbus must be documented. Where possible, examples
+should be provided. When necessary, architectural explanations must be referred to.
+
+The next most important principle is a subset of the above:
+
+              Nimbus may only grow if its unit tests grow at the same rate, or faster.
+
+Any new method should include unit tests that run automatically when Nimbus is built for
+deployment. All unit tests must pass before a new feature may be included in Nimbus. Classes
+and objects must be designed in such a way that they may be independently tested.
+
+
+Documentation
+=============
+
+Nimbus documentation is generated using a tool called Doxygen. It's a powerful piece of software
+that allows Nimbus to generate Xcode docsets and documentation that is accessible from the web.
+
+Find it here:
+
+http://www.stack.nl/~dimitri/doxygen/
+
+Generating the  Web Documentation
+---------------------------------
+
+Open Doxywizard and set the working directory to `./nimbus/docs`. Open the Doxyfile located in
+that directory and run Doxygen. The documentation will be output in `./nimbus/docs/output/html`.
+
+Generating the Xcode Docset
+---------------------------
+
+After you've generated the web documentation, you may now build the docset by opening a terminal
+and running `make` in `./nimbus/docs/output/html`.
+
+
+Unit Tests
+==========
+
+

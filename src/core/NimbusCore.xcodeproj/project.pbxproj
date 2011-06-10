@@ -7,25 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		66874FF813A02B1800FF1C56 /* NIDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 66874FF613A02B1800FF1C56 /* NIDebug.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66874FF913A02B1800FF1C56 /* NIDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 66874FF713A02B1800FF1C56 /* NIDebug.m */; };
-		6687502A13A117EF00FF1C56 /* NimbusCore_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6687502813A117EF00FF1C56 /* NimbusCore_Prefix.pch */; };
-		6687502B13A117EF00FF1C56 /* NimbusCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6687502913A117EF00FF1C56 /* NimbusCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6687508113A14B5600FF1C56 /* NICore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6687507F13A14B5600FF1C56 /* NICore.m */; };
+		668750EE13A17EBD00FF1C56 /* NimbusCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 668750ED13A17EBD00FF1C56 /* NimbusCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6687510913A1AD1C00FF1C56 /* NICoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6687510613A1ACD500FF1C56 /* NICoreTests.m */; };
+		6687511613A1ADC600FF1C56 /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libNimbusCore.a */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		668750FB13A1AC8C00FF1C56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D /* NimbusCore */;
+			remoteInfo = NimbusCore;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		66874FD113A028B800FF1C56 /* library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = library.xcconfig; path = ../common/confs/library.xcconfig; sourceTree = SOURCE_ROOT; };
 		66874FD413A0296900FF1C56 /* project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = project.xcconfig; path = ../common/confs/project.xcconfig; sourceTree = SOURCE_ROOT; };
-		66874FF613A02B1800FF1C56 /* NIDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDebug.h; path = src/NIDebug.h; sourceTree = "<group>"; };
 		66874FF713A02B1800FF1C56 /* NIDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDebug.m; path = src/NIDebug.m; sourceTree = "<group>"; };
 		6687502813A117EF00FF1C56 /* NimbusCore_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusCore_Prefix.pch; path = lib/NimbusCore_Prefix.pch; sourceTree = "<group>"; };
-		6687502913A117EF00FF1C56 /* NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusCore.h; path = lib/NimbusCore.h; sourceTree = "<group>"; };
+		6687507F13A14B5600FF1C56 /* NICore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICore.m; path = src/NICore.m; sourceTree = "<group>"; };
+		668750ED13A17EBD00FF1C56 /* NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusCore.h; path = src/NimbusCore.h; sourceTree = "<group>"; };
+		668750F413A1AC6000FF1C56 /* NimbusCoreUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCoreUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		668750F513A1AC6000FF1C56 /* NimbusCoreUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NimbusCoreUnitTests-Info.plist"; sourceTree = "<group>"; };
+		6687510613A1ACD500FF1C56 /* NICoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICoreTests.m; path = unittests/NICoreTests.m; sourceTree = "<group>"; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libNimbusCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		668750F113A1AC6000FF1C56 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6687511613A1ADC600FF1C56 /* libNimbusCore.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2AAC07C0554694100DB518D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -41,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				D2AAC07E0554694100DB518D /* libNimbusCore.a */,
+				668750F413A1AC6000FF1C56 /* NimbusCoreUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,12 +71,14 @@
 		0867D691FE84028FC02AAC07 /* NimbusCore */ = {
 			isa = PBXGroup;
 			children = (
-				6687502913A117EF00FF1C56 /* NimbusCore.h */,
+				668750ED13A17EBD00FF1C56 /* NimbusCore.h */,
 				6687502813A117EF00FF1C56 /* NimbusCore_Prefix.pch */,
 				08FB77AEFE84172EC02AAC07 /* Source */,
+				6687510813A1ACDF00FF1C56 /* Unit Tests */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				66874FD013A028A800FF1C56 /* Configurations */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				668750FA13A1AC7500FF1C56 /* Resources */,
 			);
 			name = NimbusCore;
 			sourceTree = "<group>";
@@ -69,7 +94,8 @@
 		08FB77AEFE84172EC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				66874FF213A02AC600FF1C56 /* Debug */,
+				6687507F13A14B5600FF1C56 /* NICore.m */,
+				66874FF713A02B1800FF1C56 /* NIDebug.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -83,13 +109,20 @@
 			name = Configurations;
 			sourceTree = "<group>";
 		};
-		66874FF213A02AC600FF1C56 /* Debug */ = {
+		668750FA13A1AC7500FF1C56 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				66874FF613A02B1800FF1C56 /* NIDebug.h */,
-				66874FF713A02B1800FF1C56 /* NIDebug.m */,
+				668750F513A1AC6000FF1C56 /* NimbusCoreUnitTests-Info.plist */,
 			);
-			name = Debug;
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		6687510813A1ACDF00FF1C56 /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6687510613A1ACD500FF1C56 /* NICoreTests.m */,
+			);
+			name = "Unit Tests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,15 +132,32 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66874FF813A02B1800FF1C56 /* NIDebug.h in Headers */,
-				6687502A13A117EF00FF1C56 /* NimbusCore_Prefix.pch in Headers */,
-				6687502B13A117EF00FF1C56 /* NimbusCore.h in Headers */,
+				668750EE13A17EBD00FF1C56 /* NimbusCore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		668750F313A1AC6000FF1C56 /* NimbusCoreUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 668750F813A1AC6000FF1C56 /* Build configuration list for PBXNativeTarget "NimbusCoreUnitTests" */;
+			buildPhases = (
+				668750EF13A1AC6000FF1C56 /* Resources */,
+				668750F013A1AC6000FF1C56 /* Sources */,
+				668750F113A1AC6000FF1C56 /* Frameworks */,
+				668750F213A1AC6000FF1C56 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				668750FC13A1AC8C00FF1C56 /* PBXTargetDependency */,
+			);
+			name = NimbusCoreUnitTests;
+			productName = NimbusCoreUnitTests;
+			productReference = 668750F413A1AC6000FF1C56 /* NimbusCoreUnitTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		D2AAC07D0554694100DB518D /* NimbusCore */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "NimbusCore" */;
@@ -146,20 +196,64 @@
 			projectRoot = "";
 			targets = (
 				D2AAC07D0554694100DB518D /* NimbusCore */,
+				668750F313A1AC6000FF1C56 /* NimbusCoreUnitTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		668750EF13A1AC6000FF1C56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		668750F213A1AC6000FF1C56 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		668750F013A1AC6000FF1C56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6687510913A1AD1C00FF1C56 /* NICoreTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2AAC07B0554694100DB518D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				66874FF913A02B1800FF1C56 /* NIDebug.m in Sources */,
+				6687508113A14B5600FF1C56 /* NICore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		668750FC13A1AC8C00FF1C56 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2AAC07D0554694100DB518D /* NimbusCore */;
+			targetProxy = 668750FB13A1AC8C00FF1C56 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB921F08733DC00010E9CD /* Debug */ = {
@@ -223,6 +317,66 @@
 			};
 			name = Release;
 		};
+		668750F613A1AC6000FF1C56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "NimbusCoreUnitTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = NimbusCoreUnitTests;
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		668750F713A1AC6000FF1C56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "NimbusCoreUnitTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = NimbusCoreUnitTests;
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -240,6 +394,15 @@
 			buildConfigurations = (
 				1DEB922308733DC00010E9CD /* Debug */,
 				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		668750F813A1AC6000FF1C56 /* Build configuration list for PBXNativeTarget "NimbusCoreUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				668750F613A1AC6000FF1C56 /* Debug */,
+				668750F713A1AC6000FF1C56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -16,12 +16,13 @@
 //
 
 #ifdef BASE_PRODUCT_NAME
-#import "NimbusCore/NIDebug.h"
+#import "NimbusCore/NimbusCore.h"
 #else
-#import "NIDebug.h"
+#import "NimbusCore.h"
 #endif
 
 NSInteger NIMaxLogLevel = NILOGLEVEL_WARNING;
+
 
 #ifdef DEBUG
 
