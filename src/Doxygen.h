@@ -123,7 +123,7 @@
  * 
  * Migrate the following from Three20:
  *
- * - Global core methods
+ * - Global core methods (+1)
  * - Debugging tools (+1)
  * - Availability (+1)
  * - Additions
