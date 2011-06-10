@@ -10,11 +10,13 @@ This script provides a couple basic features for parsing pbxproj files:
 * Getting a dependency list
 * Adding one pbxproj to another pbxproj as a dependency
 
-Version 1.1.
+Version 1.2.
 
 History:
 1.0 - October 20, 2010: Initial hacked-together version finished. It is alive!
 1.1 - January 11, 2011: Add configuration settings to all configurations by default.
+1.2 - June 7, 2011: Rewrote the pbxproj family of code as an ios module and made the class
+                    more generic (no assumptions made about the project layout).
 
 Branched from Three20's ttmodule script 2011-06-07.
 Created by Jeff Verkoeyen on 2010-10-18.

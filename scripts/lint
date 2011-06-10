@@ -49,8 +49,8 @@ gdivider = '////////////////////////////////////////////////////////////////////
 def main():
 	usage = '''%prog filename
 
-The Three20 Linter.
-Verify Three20 style guidelines for source code.'''
+The Nimbus Linter.
+Verify Nimbus style guidelines for source code.'''
 
 	parser = OptionParser(usage = usage)
 	parser.add_option("-d", "--delint", dest="delint",
@@ -159,7 +159,7 @@ def lint_project(project_path, options):
 			# Only update the last known modification time if there weren't any errors.
 			mtimes[filename] = mtime
 		else:
-			print "If you would like to disable the lint tool, please read the instructions in config.template in the root of the Three20 project"
+			print "If you would like to disable the lint tool, please read the instructions in config.template in the root of the Nimbus project"
 			if filename in mtimes:
 				del mtimes[filename]
 	

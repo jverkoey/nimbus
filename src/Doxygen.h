@@ -28,6 +28,9 @@
  * interest to simply browse the documentation by checking out Nimbus'
  * <a href="modules.html">Modules</a>.
  *
+ * If you'd like to get started right away, learn how to <a href="group___setup.html">add
+ * Nimbus to your project</a>.
+ *
  *
  * <h1>Three20 was garbage though, why would I use Nimbus?</h1>
  *
@@ -124,4 +127,61 @@
  * - Debugging tools
  * - Availability
  * - Additions
+ */
+
+/**
+ * @defgroup Setup Adding Nimbus to Your Project
+ *
+ * There are two recommended models for adding Nimbus to your project: as dependent libraries, or
+ * by adding the code directly to your project. Each has its advantages and disadvantages, outlined
+ * below.
+ *
+ * <h1>Add as a Dependent Library</h1>
+ *
+ * Advantages:
+ *
+ * - Changes to Nimbus' project layout won't require any maintenance on your part because
+ *   the library will handle all of Nimbus' building. If a new file is added to a Nimbus library
+ *   then your projects will automatically include these by nature of linking to the library.
+ * - Build results can be reused between multiple projects. This can lower the overall build time
+ *   if you maintain multiple projects.
+ *
+ * Disadvantages:
+ *
+ * - Adding libraries to a project can be a pain in the ass and the learning curve is steep if
+ *   the automated nimbus script doesn't work for your project.
+ * - Finding documentation and setting breakpoints in Nimbus can be frustrating at best.
+ * - If you want to browse the Nimbus source you will need to keep multiple Xcode projects open.
+ *   This can be very problematic in Xcode 4.
+ * - Headers must be protected because they get copied to a separate directory. This can be
+ *   frustrating if you want to hack on Nimbus.
+ *
+ * <h1>Add the Source Directly to your Project</h1>
+ *
+ * Advantages:
+ *
+ * - Debugging and stepping into Nimbus code is much easier when it exists directly in your
+ *   project.
+ * - You can modify any Nimbus source file without worrying about whether the header is a copied
+ *   header or the original.
+ * - Fewer context switches when building the library can lower build times in certain situations.
+ *
+ * Disadvantages:
+ *
+ * - If there are any major modifications to Nimbus' project layout then you will have to manually
+ *   update your projects.
+ * - If you have multiple projects then the build products won't be reused, causing some duplicate
+ *   build time.
+ *
+ * <h1>Which model should I use?</h1>
+ *
+ * It's entirely up to you to weigh the above pros and cons with your own pros and cons. Based
+ * on the pros and cons listed above, it's recommended that you <b>add the source directly to your
+ * project</b>. While this will create a bit more work for you if Nimbus changes drastically
+ * down the line, the day-to-day advantages far outweigh the downside of what is
+ * realistically a rare event.
+ *
+ * If you choose to use dependent libraries, please consider using the nimbus script found
+ * in nimbus/scripts/. It may be advantageous to you to add nimbus/scripts to your PATH so that
+ * you can run nimbus directly.
  */

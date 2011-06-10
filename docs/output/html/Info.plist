@@ -10,8 +10,8 @@
      <key>DocSetFeedName</key>
      <string>Doxygen generated docs</string>
      <key>DocSetPublisherIdentifier</key>
-     <string>org.doxygen.Publisher</string>
+     <string>org.doxygen.Nimbus</string>
      <key>DocSetPublisherName</key>
-     <string>Publisher</string>
+     <string>Nimbus</string>
 </dict>
 </plist>

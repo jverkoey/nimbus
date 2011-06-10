@@ -177,4 +177,11 @@
     <Anchor>gafa9da20fcf364cf90b11cc5e317a07e7</Anchor>
     <Abstract>Swap the two method implementations on the given class.</Abstract>
   </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Setup</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___setup.html</Path>
+  </Token>
 </Tokens>
