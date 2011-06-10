@@ -35,7 +35,7 @@
 #pragma mark Debugging Tools
 
 /**
- * @brief Tools for inspecting code and writing to logs in debug builds.
+ * @brief For inspecting code and writing to logs in debug builds.
  * @defgroup Debugging-Tools Debugging Tools
  * @{
  *
@@ -100,7 +100,7 @@ extern NSInteger NIMaxLogLevel;
  * of the other logging methods in Nimbus' debugging library.
  */
 #ifdef DEBUG
-#define NIDPRINT(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define NIDPRINT(xx, ...)  NSLog(@"%s(%d): " xx, __PRENIY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
 #define NIDPRINT(xx, ...)  ((void)0)
 #endif // #ifdef DEBUG
@@ -108,7 +108,7 @@ extern NSInteger NIMaxLogLevel;
 /**
  * @brief Write the containing method's name to the log using NIDPRINT.
  */
-#define NIDPRINTMETHODNAME() NIDPRINT(@"%s", __PRETTY_FUNCTION__)
+#define NIDPRINTMETHODNAME() NIDPRINT(@"%s", __PRENIY_FUNCTION__)
 
 /**
  * @brief Assertions that only fire when DEBUG is defined.
@@ -178,7 +178,7 @@ if (NIIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
 #pragma mark Non-Retaining Collections
 
 /**
- * @brief Collections that don't retain their objects.
+ * @brief For collections that don't retain their objects.
  * @defgroup Non-Retaining-Collections Non-Retaining Collections
  * @{
  *
@@ -222,7 +222,7 @@ NSMutableSet* NICreateNonRetainingSet();
 #pragma mark Non-Empty Collection Testing
 
 /**
- * @brief Test whether a collection is of a certain type and is non-empty.
+ * @brief For testing whether a collection is of a certain type and is non-empty.
  * @defgroup Non-Empty-Collection-Testing Non-Empty Collection Testing
  * @{
  *
@@ -258,7 +258,7 @@ BOOL NIIsStringWithAnyText(id object);
 #pragma mark Runtime Class Modifications
 
 /**
- * @brief Modifying class implementations at runtime.
+ * @brief For modifying class implementations at runtime.
  * @defgroup Runtime-Class-Modifications Runtime Class Modifications
  * @{
  *
@@ -292,7 +292,7 @@ void NISwapMethods(Class cls, SEL originalSel, SEL newSel);
 #pragma mark CGRect Methods
 
 /**
- * @brief Additional methods for manipulating CGRects.
+ * @brief For manipulating CGRects.
  * @defgroup CGRect-Methods CGRect Methods
  * @{
  *
@@ -328,6 +328,36 @@ CGRect NIRectInset(CGRect rect, UIEdgeInsets insets);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of CGRect Methods ///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#pragma mark -
+#pragma mark Paths
+
+/**
+ * @brief For creating standard system paths.
+ * @defgroup Paths Paths
+ * @{
+ */
+
+/**
+ * @brief Create a path with the given bundle and the relative path appended.
+ *
+ * @param bundle  The bundle to append relativePath to. If nil, [NSBundle mainBundle] will be used.
+ *
+ * @returns The bundle path concatenated with the given relative path.
+ */
+NSString* NIPathForBundleResource(NSBundle* bundle, NSString* relativePath);
+
+/**
+ * @brief Create a path with the documents directory and the relative path appended.
+ * @returns The documents path concatenated with the given relative path.
+ */
+NSString* NIPathForDocumentsResource(NSString* relativePath);
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**@}*/// End of Paths ////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 

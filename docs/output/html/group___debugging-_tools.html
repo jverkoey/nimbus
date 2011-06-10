@@ -39,15 +39,15 @@
 <div class="ingroups"><a class="el" href="group___nimbus_core.html">Nimbus Core</a></div></div>
 <div class="contents">
 
-<p>Tools for inspecting code and writing to logs in debug builds.  
+<p>For inspecting code and writing to logs in debug builds.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26">NIDPRINT</a>(xx,...)&#160;&#160;&#160;NSLog(@&quot;%s(%d): &quot; xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26">NIDPRINT</a>(xx,...)&#160;&#160;&#160;NSLog(@&quot;%s(%d): &quot; xx, __PRENIY_FUNCTION__, __LINE__, ##__VA_ARGS__)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Only writes to the log when DEBUG is defined.  <a href="#ga74e1fbd5193e3020f3abf072dcd59f26"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaa606f4ba1dd48de5e2fd679b7d8b22d8"></a><!-- doxytag: member="Debugging&#45;Tools::NIDPRINTMETHODNAME" ref="gaa606f4ba1dd48de5e2fd679b7d8b22d8" args="()" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8">NIDPRINTMETHODNAME</a>()&#160;&#160;&#160;NIDPRINT(@&quot;%s&quot;, __PRETTY_FUNCTION__)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8">NIDPRINTMETHODNAME</a>()&#160;&#160;&#160;NIDPRINT(@&quot;%s&quot;, __PRENIY_FUNCTION__)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the containing method's name to the log using NIDPRINT. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f">NIDASSERT</a>(xx)&#160;&#160;&#160;{ if (!(xx)) { NIDPRINT(@&quot;NIDASSERT failed: %s&quot;, #xx); } } ((void)0)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Assertions that only fire when DEBUG is defined.  <a href="#ga13cc3ae82820ea8141bc319bcb76ab7f"></a><br/></td></tr>
@@ -68,7 +68,7 @@ Level-Based Loggers</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_INFO. <br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<p>Tools for inspecting code and writing to logs in debug builds. </p>
+<p>For inspecting code and writing to logs in debug builds. </p>
 <p>Provided in this header are a set of debugging methods and macros. Nearly all of the methods found within this header will only do anything interesting if the DEBUG macro is defined. The recommended way to enable the debug tools is to specify DEBUG in the "Preprocessor Macros" field in your application's Debug target settings. Be careful not to set this for your release or app store builds.</p>
 <div class="fragment"><pre class="fragment"> <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(statement);
 </pre></div><p>If statement is false, the statement will be written to the log and if you are running in the simulator with a debugger attached, the app will break on the assertion line.</p>
@@ -123,7 +123,7 @@ Level-Based Loggers</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;NSLog(@&quot;%s(%d): &quot; xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)</td>
+          <td></td><td>&#160;&#160;&#160;NSLog(@&quot;%s(%d): &quot; xx, __PRENIY_FUNCTION__, __LINE__, ##__VA_ARGS__)</td>
         </tr>
       </table>
 </div>
@@ -157,7 +157,7 @@ Level-Based Loggers</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 11:21:12 for Nimbus by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 11:34:42 for Nimbus by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

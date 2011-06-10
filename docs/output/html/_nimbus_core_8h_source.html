@@ -68,12 +68,12 @@
 <a name="l00094"></a>00094 <span class="keyword">extern</span> NSInteger <a class="code" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505" title="The maximum log level to output for Nimbus debug logs.">NIMaxLogLevel</a>;
 <a name="l00095"></a>00095 
 <a name="l00102"></a>00102 <span class="preprocessor">#ifdef DEBUG</span>
-<a name="l00103"></a><a class="code" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26">00103</a> <span class="preprocessor"></span><span class="preprocessor">#define NIDPRINT(xx, ...)  NSLog(@&quot;%s(%d): &quot; xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)</span>
+<a name="l00103"></a><a class="code" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26">00103</a> <span class="preprocessor"></span><span class="preprocessor">#define NIDPRINT(xx, ...)  NSLog(@&quot;%s(%d): &quot; xx, __PRENIY_FUNCTION__, __LINE__, ##__VA_ARGS__)</span>
 <a name="l00104"></a>00104 <span class="preprocessor"></span><span class="preprocessor">#else</span>
 <a name="l00105"></a>00105 <span class="preprocessor"></span><span class="preprocessor">#define NIDPRINT(xx, ...)  ((void)0)</span>
 <a name="l00106"></a>00106 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
 <a name="l00107"></a>00107 <span class="preprocessor"></span>
-<a name="l00111"></a><a class="code" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8">00111</a> <span class="preprocessor">#define NIDPRINTMETHODNAME() NIDPRINT(@&quot;%s&quot;, __PRETTY_FUNCTION__)</span>
+<a name="l00111"></a><a class="code" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8">00111</a> <span class="preprocessor">#define NIDPRINTMETHODNAME() NIDPRINT(@&quot;%s&quot;, __PRENIY_FUNCTION__)</span>
 <a name="l00112"></a>00112 <span class="preprocessor"></span>
 <a name="l00119"></a>00119 <span class="preprocessor">#ifdef DEBUG</span>
 <a name="l00120"></a>00120 <span class="preprocessor"></span>
@@ -165,9 +165,20 @@
 <a name="l00330"></a>00330 <span class="comment">// End of CGRect Methods ///////////////////////////////////////////////////////////////////</span>
 <a name="l00332"></a>00332 <span class="comment"></span>
 <a name="l00333"></a>00333 
+<a name="l00334"></a>00334 <span class="preprocessor">#pragma mark -</span>
+<a name="l00335"></a>00335 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Paths</span>
+<a name="l00336"></a>00336 <span class="preprocessor"></span>
+<a name="l00350"></a>00350 NSString* <a class="code" href="group___paths.html#gae830aca759474dfce53aee898ebaf0df" title="Create a path with the given bundle and the relative path appended.">NIPathForBundleResource</a>(NSBundle* bundle, NSString* relativePath);
+<a name="l00351"></a>00351 
+<a name="l00356"></a>00356 NSString* <a class="code" href="group___paths.html#ga375fcba480fc66d69cd3e6a6aa71ba4d" title="Create a path with the documents directory and the relative path appended.">NIPathForDocumentsResource</a>(NSString* relativePath);
+<a name="l00357"></a>00357 
+<a name="l00358"></a>00358 
+<a name="l00360"></a>00360 <span class="comment">// End of Paths ////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00362"></a>00362 <span class="comment"></span>
+<a name="l00363"></a>00363 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 11:21:12 for Nimbus by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 11:34:42 for Nimbus by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

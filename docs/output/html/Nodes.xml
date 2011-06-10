@@ -47,6 +47,12 @@
             <Subnodes>
             </Subnodes>
            </Node>
+           <Node>
+            <Name>Paths</Name>
+            <Path>group___paths.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
           </Subnodes>
          </Node>
          <Node>

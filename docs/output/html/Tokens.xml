@@ -14,7 +14,7 @@
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
     <Path>group___debugging-_tools.html</Path>
-    <Abstract>Tools for inspecting code and writing to logs in debug builds.</Abstract>
+    <Abstract>For inspecting code and writing to logs in debug builds.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -92,7 +92,7 @@
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
     <Path>group___non-_retaining-_collections.html</Path>
-    <Abstract>Collections that don&amp;#39;t retain their objects.</Abstract>
+    <Abstract>For collections that don&amp;#39;t retain their objects.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -127,7 +127,7 @@
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
     <Path>group___non-_empty-_collection-_testing.html</Path>
-    <Abstract>Test whether a collection is of a certain type and is non-empty.</Abstract>
+    <Abstract>For testing whether a collection is of a certain type and is non-empty.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -165,7 +165,7 @@
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
     <Path>group___runtime-_class-_modifications.html</Path>
-    <Abstract>Modifying class implementations at runtime.</Abstract>
+    <Abstract>For modifying class implementations at runtime.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -183,7 +183,7 @@
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
     <Path>group___c_g_rect-_methods.html</Path>
-    <Abstract>Additional methods for manipulating CGRects.</Abstract>
+    <Abstract>For manipulating CGRects.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -214,6 +214,34 @@
     <Path>group___c_g_rect-_methods.html</Path>
     <Anchor>ga6be0b565e24d85481bbecbdb3635993f</Anchor>
     <Abstract>Add the insets to a CGRect - equivalent to padding in CSS.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Paths</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___paths.html</Path>
+    <Abstract>For creating standard system paths.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIPathForBundleResource</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___paths.html</Path>
+    <Anchor>gae830aca759474dfce53aee898ebaf0df</Anchor>
+    <Abstract>Create a path with the given bundle and the relative path appended.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIPathForDocumentsResource</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___paths.html</Path>
+    <Anchor>ga375fcba480fc66d69cd3e6a6aa71ba4d</Anchor>
+    <Abstract>Create a path with the documents directory and the relative path appended.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>

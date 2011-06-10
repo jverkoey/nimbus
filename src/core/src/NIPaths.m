@@ -24,20 +24,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CGRect NIRectContract(CGRect rect, CGFloat dx, CGFloat dy) {
-  return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - dx, rect.size.height - dy);
+NSString* NIPathForBundleResource(NSBundle* bundle, NSString* relativePath) {
+  NSString* resourcePath = [(nil == bundle ? [NSBundle mainBundle] : bundle) resourcePath];
+  return [resourcePath stringByAppendingPathComponent:relativePath];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy) {
-  return CGRectOffset(NIRectContract(rect, dx, dy), dx, dy);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-CGRect NIRectInset(CGRect rect, UIEdgeInsets insets) {
-  return CGRectMake(rect.origin.x + insets.left, rect.origin.y + insets.top,
-                    rect.size.width - (insets.left + insets.right),
-                    rect.size.height - (insets.top + insets.bottom));
+NSString* NIPathForDocumentsResource(NSString* relativePath) {
+  static NSString* documentsPath = nil;
+  if (nil == documentsPath) {
+    NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                        NSUserDomainMask,
+                                                        YES);
+    documentsPath = [[dirs objectAtIndex:0] retain];
+  }
+  return [documentsPath stringByAppendingPathComponent:relativePath];
 }

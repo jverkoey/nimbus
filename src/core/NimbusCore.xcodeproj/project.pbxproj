@@ -16,6 +16,7 @@
 		6687524813A2661100FF1C56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		6687524913A2661100FF1C56 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6687519713A2660000FF1C56 /* UIKit.framework */; };
 		6687525113A2665600FF1C56 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6687525013A2665600FF1C56 /* CoreGraphics.framework */; };
+		668754AE13A2709600FF1C56 /* NIPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 668754AD13A2709600FF1C56 /* NIPaths.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		6687519713A2660000FF1C56 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6687525013A2665600FF1C56 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6687528E13A269A200FF1C56 /* ExampleRuntimeDebugging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExampleRuntimeDebugging.m; path = examples/ExampleRuntimeDebugging.m; sourceTree = "<group>"; };
+		668754AD13A2709600FF1C56 /* NIPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPaths.m; path = src/NIPaths.m; sourceTree = "<group>"; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libNimbusCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -109,6 +111,7 @@
 				6687507F13A14B5600FF1C56 /* NICore.m */,
 				66874FF713A02B1800FF1C56 /* NIDebug.m */,
 				6687518F13A2650800FF1C56 /* NIRects.m */,
+				668754AD13A2709600FF1C56 /* NIPaths.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				66874FF913A02B1800FF1C56 /* NIDebug.m in Sources */,
 				6687508113A14B5600FF1C56 /* NICore.m in Sources */,
 				6687519013A2650800FF1C56 /* NIRects.m in Sources */,
+				668754AE13A2709600FF1C56 /* NIPaths.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
