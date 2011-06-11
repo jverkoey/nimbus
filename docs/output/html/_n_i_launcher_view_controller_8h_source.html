@@ -59,14 +59,19 @@
 <a name="l00017"></a>00017 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 <a name="l00018"></a>00018 <span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span>
 <a name="l00019"></a>00019 
-<a name="l00024"></a><a class="code" href="interface_n_i_launcher_view_controller.html">00024</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_launcher_view_controller.html" title="A view controller that displays a launcher view.">NILauncherViewController</a> : UIViewController {
-<a name="l00025"></a>00025 
-<a name="l00026"></a>00026 }
-<a name="l00027"></a>00027 
-<a name="l00028"></a>00028 <span class="keyword">@end</span>
+<a name="l00020"></a>00020 <span class="keyword">@class</span> <a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a>;
+<a name="l00021"></a>00021 
+<a name="l00026"></a><a class="code" href="interface_n_i_launcher_view_controller.html">00026</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_launcher_view_controller.html" title="A view controller that displays a launcher view.">NILauncherViewController</a> : UIViewController {
+<a name="l00027"></a>00027 <span class="keyword">@private</span>
+<a name="l00028"></a>00028   <a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a>* _launcherView;
+<a name="l00029"></a>00029 
+<a name="l00033"></a>00033   NSMutableArray* _pages;
+<a name="l00034"></a>00034 }
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 17:15:59 for Nimbus by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Jun 11 2011 00:09:06 for Nimbus by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

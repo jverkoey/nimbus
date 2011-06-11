@@ -19,11 +19,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class NILauncherButtonPresInfo;
+@class NILauncherItemDetails;
 @class NILauncherButton;
 
 @protocol NILauncherDelegate;
 @protocol NILauncherDataSource;
+
+/**
+ * @brief Calculate the given field dynamically given the view and button dimensions.
+ */
+extern const NSInteger NILauncherViewDynamicCalculations;
 
 /**
  * @brief A launcher view that simulates iOS' home screen launcher functionality.
@@ -35,6 +40,9 @@
   UIScrollView*   _scrollView;
   UIPageControl*  _pager;
 
+  // Presentation Information
+  NSInteger       _maxNumberOfButtonsPerPage;
+
   // Display Information
   NSInteger       _columnCount;
   NSInteger       _rowCount;
@@ -45,9 +53,29 @@
 }
 
 /**
+ * @brief The maximum number of buttons allowed on a given page.
+ *
+ * By default this value is NILauncherViewDynamicCalculations.
+ */
+@property (nonatomic, readwrite, assign) NSInteger maxNumberOfButtonsPerPage;
+
+/**
  * @brief The launcher view notifies the delegate of any user interaction or state changes.
  */
-@property (nonatomic, assign) id<NILauncherDelegate> delegate;
+@property (nonatomic, readwrite, assign) id<NILauncherDelegate> delegate;
+
+/**
+ * @brief The launcher view populates its pages with information from the data source.
+ */
+@property (nonatomic, readwrite, assign) id<NILauncherDataSource> dataSource;
+
+/**
+ * @brief Reload the launcher data.
+ *
+ * This will release all of the launcher's buttons and call all necessary data source methods
+ * again.
+ */
+- (void)reloadData;
 
 @end
 
@@ -58,7 +86,15 @@
  */
 @protocol NILauncherDelegate
 
-- (void)launcherView:(NILauncherView *)launcher didSelectItem:(NILauncherButtonPresInfo *)item;
+@optional
+
+/**
+ * @brief Called when the user taps and releases a launcher button.
+ */
+- (void)launcherView: (NILauncherView *)launcher
+       didSelectItem: (NILauncherItemDetails *)item
+              onPage: (NSInteger)page
+             atIndex: (NSInteger)index;
 
 @end
 
@@ -69,16 +105,50 @@
  */
 @protocol NILauncherDataSource
 
-- (void)launcherView:(NILauncherView *)launcher didSelectItem:(NILauncherButtonPresInfo *)item;
+@optional
+
+/**
+ * @brief Override the default button dimensions 100x100.
+ */
+- (CGSize)buttonDimensionsInLauncherView:(NILauncherView *)launcherView;
+
+/**
+ * @brief Override the default number of rows which is dynamically calculated.
+ */
+- (NSInteger)numberOfRowsPerPageInLauncherView:(NILauncherView *)launcherView;
+
+/**
+ * @brief Override the default number of columns which is dynamically calculated.
+ */
+- (NSInteger)numberOfColumnsPerPageInLauncherView:(NILauncherView *)launcherView;
+
+@required
+
+/**
+ * @brief The total number of pages to be shown in the launcher view.
+ */
+- (NSInteger)numberOfPagesInLauncherView:(NILauncherView *)launcherView;
+
+/**
+ * @brief The total number of buttons in a given page.
+ */
+- (NSInteger)launcherView:(NILauncherView *)launcherView numberOfButtonsInPage:(NSInteger)page;
+
+/**
+ * @brief Retrieve the button to be displayed at a given page and index.
+ */
+- (NILauncherButton *)launcherView: (NILauncherView *)launcherView
+                     buttonForPage: (NSInteger)page
+                           atIndex: (NSInteger)index;
 
 @end
 
 /**
- * @brief The presentation information for an individual item.
+ * @brief A convenience class for managing the data used to create an NILauncherButton.
  * @ingroup Launcher-Presentation-Information
  */
-@interface NILauncherButtonPresInfo : NSObject {
-
+@interface NILauncherItemDetails : NSObject {
+@private
 }
 
 @end
@@ -88,7 +158,7 @@
  * @ingroup Launcher-User-Interface
  */
 @interface NILauncherButton : UIButton {
-
+@private
 }
 
 @end

@@ -26,10 +26,29 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_pages);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+    _pages = [[NSMutableArray alloc] init];
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
   [super viewDidLoad];
 
   _launcherView = [[[NILauncherView alloc] initWithFrame:self.view.bounds] autorelease];
+  _launcherView.dataSource = self;
+  _launcherView.delegate = self;
   [self.view addSubview:_launcherView];
 }
 
@@ -39,6 +58,37 @@
   _launcherView = nil;
 
   [super viewDidUnload];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NILauncherDataSource
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)numberOfPagesInLauncherView:(NILauncherView *)launcherView {
+  return [_pages count];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)launcherView:(NILauncherView *)launcherView numberOfButtonsInPage:(NSInteger)page {
+  return [[_pages objectAtIndex:page] count];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NILauncherButton *)launcherView: (NILauncherView *)launcherView
+                     buttonForPage: (NSInteger)page
+                           atIndex: (NSInteger)index {
+  NILauncherButton* button = [[[NILauncherButton alloc] init] autorelease];
+
+  NILauncherItemDetails* item = [[_pages objectAtIndex:page] objectAtIndex:index];
+  item = item;
+
+  return button;
 }
 
 

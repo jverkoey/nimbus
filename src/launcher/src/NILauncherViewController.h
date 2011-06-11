@@ -17,15 +17,24 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class NILauncherView;
+#ifdef BASE_PRODUCT_NAME
+#import "NimbusLauncher/NILauncherView.h"
+#else
+#import "NILauncherView.h"
+#endif
 
 /**
- * @brief A view controller that displays a launcher view.
+ * @brief A view controller that displays a launcher view and manages its state.
  * @ingroup Launcher-User-Interface
  */
-@interface NILauncherViewController : UIViewController {
+@interface NILauncherViewController : UIViewController <
+  NILauncherDelegate,
+  NILauncherDataSource
+> {
 @private
   NILauncherView* _launcherView;
+
+  NSMutableArray* _pages; // Array< Array<NILauncherItemDetails *> >
 }
 
 @end

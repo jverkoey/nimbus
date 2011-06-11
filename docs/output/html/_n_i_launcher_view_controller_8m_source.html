@@ -58,13 +58,31 @@
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 <span class="preprocessor">#import &quot;NILauncherViewController.h&quot;</span>
 <a name="l00018"></a>00018 
-<a name="l00019"></a>00019 
-<a name="l00023"></a>00023 <span class="keyword">@implementation </span><a class="code" href="interface_n_i_launcher_view_controller.html" title="A view controller that displays a launcher view.">NILauncherViewController</a>
-<a name="l00024"></a>00024 
-<a name="l00025"></a>00025 <span class="keyword">@end</span>
+<a name="l00019"></a>00019 <span class="preprocessor">#import &quot;NILauncherView.h&quot;</span>
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00025"></a>00025 <span class="keyword">@implementation </span><a class="code" href="interface_n_i_launcher_view_controller.html" title="A view controller that displays a launcher view.">NILauncherViewController</a>
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027 
+<a name="l00029"></a>00029 - (void)viewDidLoad {
+<a name="l00030"></a>00030   [<span class="keyword">super</span> viewDidLoad];
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032   _launcherView = [[[<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> alloc] initWithFrame:self.view.bounds] autorelease];
+<a name="l00033"></a>00033   [<span class="keyword">self</span>.view addSubview:_launcherView];
+<a name="l00034"></a>00034 }
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036 
+<a name="l00038"></a>00038 - (void)viewDidUnload {
+<a name="l00039"></a>00039   _launcherView = nil;
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041   [<span class="keyword">super</span> viewDidUnload];
+<a name="l00042"></a>00042 }
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 17:15:59 for Nimbus by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Jun 11 2011 00:09:06 for Nimbus by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

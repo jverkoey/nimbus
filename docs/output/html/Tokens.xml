@@ -444,11 +444,11 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>Launcher-Feedback-Protocols</Name>
+      <Name>Launcher-Protocols</Name>
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
-    <Path>group___launcher-_feedback-_protocols.html</Path>
-    <Abstract>Launcher feedback protocols.</Abstract>
+    <Path>group___launcher-_protocols.html</Path>
+    <Abstract>Launcher protocols.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -471,13 +471,68 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>NILauncherButtonPresInfo</Name>
+      <Name>NILauncherDataSource</Name>
+      <APILanguage>c</APILanguage>
+      <Type>intf</Type>
+      <Scope>NILauncherDataSource</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_data_source-p.html</Path>
+    <Abstract>The launcher data source used to populate the view.</Abstract>
+    <DeclaredIn>NILauncherView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>numberOfPagesInLauncherView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NILauncherDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_data_source-p.html</Path>
+    <Anchor>acf47da967621c84310f5f2813d433301</Anchor>
+    <Abstract>The total number of pages to be shown in the launcher view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>launcherView:numberOfButtonsInPage:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NILauncherDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_data_source-p.html</Path>
+    <Anchor>aa57d3446f63f24acfb051ba1ada8b9b7</Anchor>
+    <Abstract>The total number of buttons in a given page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>launcherView:buttonForPage:atIndex:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NILauncherDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_data_source-p.html</Path>
+    <Anchor>aa982cf10694d0bc85f711411871b202e</Anchor>
+    <Abstract>Retrieve the button to be displayed at a given page and index.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NILauncherDelegate</Name>
+      <APILanguage>c</APILanguage>
+      <Type>intf</Type>
+      <Scope>NILauncherDelegate</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_delegate-p.html</Path>
+    <Abstract>The launcher delegate used to inform of state changes and user interactions.</Abstract>
+    <DeclaredIn>NILauncherView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NILauncherItemDetails</Name>
       <APILanguage>c</APILanguage>
       <Type>cl</Type>
-      <Scope>NILauncherButtonPresInfo</Scope>
+      <Scope>NILauncherItemDetails</Scope>
     </TokenIdentifier>
-    <Path>interface_n_i_launcher_button_pres_info.html</Path>
-    <Abstract>The presentation information for an individual item.</Abstract>
+    <Path>interface_n_i_launcher_item_details.html</Path>
+    <Abstract>A convenience class for managing the data used to create an NILauncherButton.</Abstract>
     <DeclaredIn>NILauncherView.h</DeclaredIn>
   </Token>
   <Token>
@@ -499,8 +554,19 @@
       <Scope>NILauncherView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_launcher_view.html</Path>
-    <Anchor>ab186aeb50041c08a4991e1f0fb0249ed</Anchor>
+    <Anchor>a5680da202a46fb3ce6437d6987a7d41d</Anchor>
     <Abstract>The launcher view notifies the delegate of any user interaction or state changes.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>dataSource</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NILauncherView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view.html</Path>
+    <Anchor>af849642b45b213adbd85e85054925428</Anchor>
+    <Abstract>The launcher view populates its pages with information from the data source.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -512,17 +578,6 @@
     <Path>interface_n_i_launcher_view_controller.html</Path>
     <Abstract>A view controller that displays a launcher view.</Abstract>
     <DeclaredIn>NILauncherViewController.h</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>NILauncherViewDelegate</Name>
-      <APILanguage>c</APILanguage>
-      <Type>intf</Type>
-      <Scope>NILauncherViewDelegate</Scope>
-    </TokenIdentifier>
-    <Path>protocol_n_i_launcher_view_delegate-p.html</Path>
-    <Abstract>The launcher delegate used to inform of state changes and user interactions.</Abstract>
-    <DeclaredIn>NILauncherView.h</DeclaredIn>
   </Token>
   <Token>
     <TokenIdentifier>

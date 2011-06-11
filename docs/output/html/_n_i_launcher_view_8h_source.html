@@ -61,52 +61,67 @@
 <a name="l00019"></a>00019 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 <a name="l00020"></a>00020 <span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span>
 <a name="l00021"></a>00021 
-<a name="l00022"></a>00022 <span class="keyword">@class</span> <a class="code" href="interface_n_i_launcher_button_pres_info.html" title="The presentation information for an individual item.">NILauncherButtonPresInfo</a>;
+<a name="l00022"></a>00022 <span class="keyword">@class</span> <a class="code" href="interface_n_i_launcher_item_details.html" title="A convenience class for managing the data used to create an NILauncherButton.">NILauncherItemDetails</a>;
 <a name="l00023"></a>00023 <span class="keyword">@class</span> <a class="code" href="interface_n_i_launcher_button.html" title="The individual button view that the user taps.">NILauncherButton</a>;
 <a name="l00024"></a>00024 
-<a name="l00025"></a>00025 <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_launcher_view_delegate-p.html" title="The launcher delegate used to inform of state changes and user interactions.">NILauncherViewDelegate</a>;
-<a name="l00026"></a>00026 
-<a name="l00031"></a><a class="code" href="interface_n_i_launcher_view.html">00031</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> : UIView {
-<a name="l00032"></a>00032 <span class="keyword">@private</span>
-<a name="l00033"></a>00033   <span class="comment">// Views</span>
-<a name="l00034"></a>00034   UIScrollView*   _scrollView;
-<a name="l00035"></a>00035   UIPageControl*  _pager;
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037   <span class="comment">// Display Information</span>
-<a name="l00038"></a>00038   NSInteger       _columnCount;
-<a name="l00039"></a>00039   NSInteger       _rowCount;
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041   NSMutableArray* _pages;
-<a name="l00042"></a>00042   NSMutableArray* _buttons;
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044   id&lt;NILauncherViewDelegate&gt; _delegate;
+<a name="l00025"></a>00025 <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_launcher_delegate-p.html" title="The launcher delegate used to inform of state changes and user interactions.">NILauncherDelegate</a>;
+<a name="l00026"></a>00026 <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_launcher_data_source-p.html" title="The launcher data source used to populate the view.">NILauncherDataSource</a>;
+<a name="l00027"></a>00027 
+<a name="l00032"></a><a class="code" href="interface_n_i_launcher_view.html">00032</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> : UIView {
+<a name="l00033"></a>00033 <span class="keyword">@private</span>
+<a name="l00034"></a>00034   <span class="comment">// Views</span>
+<a name="l00035"></a>00035   UIScrollView*   _scrollView;
+<a name="l00036"></a>00036   UIPageControl*  _pager;
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038   <span class="comment">// Display Information</span>
+<a name="l00039"></a>00039   NSInteger       _columnCount;
+<a name="l00040"></a>00040   NSInteger       _rowCount;
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042   <span class="comment">// Protocols</span>
+<a name="l00043"></a>00043   id&lt;NILauncherDelegate&gt;    _delegate;
+<a name="l00044"></a>00044   id&lt;NILauncherDataSource&gt;  _dataSource;
 <a name="l00045"></a>00045 }
 <a name="l00046"></a>00046 
-<a name="l00050"></a><a class="code" href="interface_n_i_launcher_view.html#ab186aeb50041c08a4991e1f0fb0249ed">00050</a> <span class="keyword">@property</span> (nonatomic, assign) id&lt;NILauncherViewDelegate&gt; delegate;
+<a name="l00050"></a><a class="code" href="interface_n_i_launcher_view.html#a5680da202a46fb3ce6437d6987a7d41d">00050</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NILauncherDelegate&gt; delegate;
 <a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="keyword">@end</span>
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 
-<a name="l00059"></a><a class="code" href="protocol_n_i_launcher_view_delegate-p.html">00059</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_launcher_view_delegate-p.html" title="The launcher delegate used to inform of state changes and user interactions.">NILauncherViewDelegate</a>
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061 - (void)launcherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcher didSelectItem:(<a class="code" href="interface_n_i_launcher_button_pres_info.html" title="The presentation information for an individual item.">NILauncherButtonPresInfo</a> *)item;
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063 <span class="keyword">@end</span>
-<a name="l00064"></a>00064 
-<a name="l00069"></a><a class="code" href="interface_n_i_launcher_button_pres_info.html">00069</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_launcher_button_pres_info.html" title="The presentation information for an individual item.">NILauncherButtonPresInfo</a> : NSObject {
+<a name="l00055"></a><a class="code" href="interface_n_i_launcher_view.html#af849642b45b213adbd85e85054925428">00055</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NILauncherDataSource&gt; dataSource;
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <span class="keyword">@end</span>
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 
+<a name="l00064"></a><a class="code" href="protocol_n_i_launcher_delegate-p.html">00064</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_launcher_delegate-p.html" title="The launcher delegate used to inform of state changes and user interactions.">NILauncherDelegate</a>
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066 - (void)launcherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcher didSelectItem:(NILauncherButtonPresInfo *)item;
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068 <span class="keyword">@end</span>
+<a name="l00069"></a>00069 
 <a name="l00070"></a>00070 
-<a name="l00071"></a>00071 }
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 <span class="keyword">@end</span>
-<a name="l00074"></a>00074 
-<a name="l00079"></a><a class="code" href="interface_n_i_launcher_button.html">00079</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_launcher_button.html" title="The individual button view that the user taps.">NILauncherButton</a> : UIButton {
-<a name="l00080"></a>00080 
-<a name="l00081"></a>00081 }
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083 <span class="keyword">@end</span>
+<a name="l00075"></a><a class="code" href="protocol_n_i_launcher_data_source-p.html">00075</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_launcher_data_source-p.html" title="The launcher data source used to populate the view.">NILauncherDataSource</a>
+<a name="l00076"></a>00076 
+<a name="l00080"></a>00080 - (NSInteger)numberOfPagesInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcher;
+<a name="l00081"></a>00081 
+<a name="l00085"></a>00085 - (NSInteger)launcherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcher numberOfButtonsInPage:(NSInteger)page;
+<a name="l00086"></a>00086 
+<a name="l00090"></a>00090 - (<a class="code" href="interface_n_i_launcher_button.html" title="The individual button view that the user taps.">NILauncherButton</a> *)launcherView: (<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcher
+<a name="l00091"></a>00091                      buttonForPage: (NSInteger)page
+<a name="l00092"></a>00092                            atIndex: (NSInteger)index;
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 <span class="keyword">@end</span>
+<a name="l00095"></a>00095 
+<a name="l00100"></a><a class="code" href="interface_n_i_launcher_item_details.html">00100</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_launcher_item_details.html" title="A convenience class for managing the data used to create an NILauncherButton.">NILauncherItemDetails</a> : NSObject {
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 }
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 <span class="keyword">@end</span>
+<a name="l00105"></a>00105 
+<a name="l00110"></a><a class="code" href="interface_n_i_launcher_button.html">00110</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_launcher_button.html" title="The individual button view that the user taps.">NILauncherButton</a> : UIButton {
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112 }
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jun 10 2011 17:15:59 for Nimbus by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Jun 11 2011 00:09:06 for Nimbus by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

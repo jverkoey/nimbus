@@ -21,6 +21,8 @@
 		669E47D313A2C9BE001EE2AC /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E47CC13A2C9BE001EE2AC /* NSString+NimbusCore.m */; };
 		669E47DB13A2C9CA001EE2AC /* NILauncherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E47D713A2C9CA001EE2AC /* NILauncherView.m */; };
 		669E47DC13A2C9CA001EE2AC /* NILauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E47D913A2C9CA001EE2AC /* NILauncherViewController.m */; };
+		669E487A13A327DF001EE2AC /* NILauncherButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E487813A327DF001EE2AC /* NILauncherButton.m */; };
+		669E487B13A327DF001EE2AC /* NILauncherItemDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E487913A327DF001EE2AC /* NILauncherItemDetails.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		669E47D813A2C9CA001EE2AC /* NILauncherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NILauncherViewController.h; path = ../../../src/launcher/src/NILauncherViewController.h; sourceTree = SOURCE_ROOT; };
 		669E47D913A2C9CA001EE2AC /* NILauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherViewController.m; path = ../../../src/launcher/src/NILauncherViewController.m; sourceTree = SOURCE_ROOT; };
 		669E47DA13A2C9CA001EE2AC /* NimbusLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusLauncher.h; path = ../../../src/launcher/src/NimbusLauncher.h; sourceTree = SOURCE_ROOT; };
+		669E487813A327DF001EE2AC /* NILauncherButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherButton.m; path = ../../../src/launcher/src/NILauncherButton.m; sourceTree = SOURCE_ROOT; };
+		669E487913A327DF001EE2AC /* NILauncherItemDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherItemDetails.m; path = ../../../src/launcher/src/NILauncherItemDetails.m; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* BasicLauncher-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BasicLauncher-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +146,8 @@
 			children = (
 				669E47D613A2C9CA001EE2AC /* NILauncherView.h */,
 				669E47D713A2C9CA001EE2AC /* NILauncherView.m */,
+				669E487813A327DF001EE2AC /* NILauncherButton.m */,
+				669E487913A327DF001EE2AC /* NILauncherItemDetails.m */,
 				669E47D813A2C9CA001EE2AC /* NILauncherViewController.h */,
 				669E47D913A2C9CA001EE2AC /* NILauncherViewController.m */,
 				669E47DA13A2C9CA001EE2AC /* NimbusLauncher.h */,
@@ -219,6 +225,8 @@
 				669E47D313A2C9BE001EE2AC /* NSString+NimbusCore.m in Sources */,
 				669E47DB13A2C9CA001EE2AC /* NILauncherView.m in Sources */,
 				669E47DC13A2C9CA001EE2AC /* NILauncherViewController.m in Sources */,
+				669E487A13A327DF001EE2AC /* NILauncherButton.m in Sources */,
+				669E487B13A327DF001EE2AC /* NILauncherItemDetails.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
