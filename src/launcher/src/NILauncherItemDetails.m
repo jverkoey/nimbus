@@ -24,4 +24,52 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NILauncherItemDetails
 
+@synthesize title     = _title;
+@synthesize imagePath = _imagePath;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_title);
+  NI_RELEASE_SAFELY(_imagePath);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithTitle:(NSString *)title imagePath:(NSString *)imagePath {
+  if ((self = [super init])) {
+    _title = [title copy];
+    _imagePath = [imagePath copy];
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)itemDetailsWithTitle:(NSString *)title imagePath:(NSString *)imagePath {
+  return [[[NILauncherItemDetails alloc] initWithTitle: title
+                                             imagePath: imagePath]
+          autorelease];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)decoder {
+  if ((self = [self initWithTitle:nil imagePath:nil])) {
+    self.title = [decoder decodeObjectForKey:@"title"];
+    self.imagePath = [decoder decodeObjectForKey:@"imagePath"];
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)encodeWithCoder:(NSCoder *)encoder {
+  [encoder encodeObject:self.title forKey:@"title"];
+  [encoder encodeObject:self.imagePath forKey:@"imagePath"];
+}
+
+
 @end

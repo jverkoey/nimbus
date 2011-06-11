@@ -28,13 +28,15 @@
 /**
  * @brief Calculate the given field dynamically given the view and button dimensions.
  */
-extern const NSInteger NILauncherViewDynamicCalculations;
+extern const NSInteger NILauncherViewDynamic;
 
 /**
  * @brief A launcher view that simulates iOS' home screen launcher functionality.
  * @ingroup Launcher-User-Interface
  */
-@interface NILauncherView : UIView {
+@interface NILauncherView : UIView <
+  UIScrollViewDelegate
+> {
 @private
   // Views
   UIScrollView*   _scrollView;
@@ -47,6 +49,9 @@ extern const NSInteger NILauncherViewDynamicCalculations;
   NSInteger       _columnCount;
   NSInteger       _rowCount;
 
+  // Cached Data Source Information
+  NSInteger       _numberOfPages;
+
   // Protocols
   id<NILauncherDelegate>    _delegate;
   id<NILauncherDataSource>  _dataSource;
@@ -55,7 +60,7 @@ extern const NSInteger NILauncherViewDynamicCalculations;
 /**
  * @brief The maximum number of buttons allowed on a given page.
  *
- * By default this value is NILauncherViewDynamicCalculations.
+ * By default this value is NILauncherViewDynamic.
  */
 @property (nonatomic, readwrite, assign) NSInteger maxNumberOfButtonsPerPage;
 
@@ -76,6 +81,17 @@ extern const NSInteger NILauncherViewDynamicCalculations;
  * again.
  */
 - (void)reloadData;
+
+@end
+
+
+/**
+ * @brief The individual button view that the user taps.
+ * @ingroup Launcher-User-Interface
+ */
+@interface NILauncherButton : UIButton {
+@private
+}
 
 @end
 
@@ -143,22 +159,41 @@ extern const NSInteger NILauncherViewDynamicCalculations;
 
 @end
 
+
 /**
  * @brief A convenience class for managing the data used to create an NILauncherButton.
  * @ingroup Launcher-Presentation-Information
  */
-@interface NILauncherItemDetails : NSObject {
+@interface NILauncherItemDetails : NSObject <NSCoding> {
 @private
+  NSString* _title;
+  NSString* _imagePath;
 }
-
-@end
 
 /**
- * @brief The individual button view that the user taps.
- * @ingroup Launcher-User-Interface
+ * @brief The title for the launcher button.
  */
-@interface NILauncherButton : UIButton {
-@private
-}
+@property (nonatomic, readwrite, copy) NSString* title;
+
+/**
+ * @brief The path to the launcher image.
+ */
+@property (nonatomic, readwrite, copy) NSString* imagePath;
+
+/**
+ * @brief Convenience method for creating a launcher item details object.
+ *
+ * @param title       The title for the launcher button.
+ * @param imagePath   The path to the launcher image.
+ */
++ (id)itemDetailsWithTitle:(NSString *)title imagePath:(NSString *)imagePath;
+
+/**
+ * @brief The designated initializer.
+ *
+ * @param title       The title for the launcher button.
+ * @param imagePath   The path to the launcher image.
+ */
+- (id)initWithTitle:(NSString *)title imagePath:(NSString *)imagePath;
 
 @end

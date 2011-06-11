@@ -49,6 +49,38 @@
   [[[NILauncherViewController alloc] initWithNibName:nil bundle:nil] autorelease];
   launcherController.title = @"Basic Launcher Demo";
 
+  NSArray* pages = [NSArray arrayWithObjects:
+                    [NSArray arrayWithObjects:
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 1"
+                                                       imagePath: nil],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 2"
+                                                       imagePath: nil],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 3"
+                                                       imagePath: nil],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 4"
+                                                       imagePath: nil],
+                     nil],
+                    [NSArray arrayWithObjects:
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 5"
+                                                       imagePath: nil],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 6"
+                                                       imagePath: nil],
+                     nil],
+                    [NSArray arrayWithObjects:
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 5"
+                                                       imagePath: nil],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 6"
+                                                       imagePath: nil],
+                     nil],
+                    [NSArray arrayWithObjects:
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 5"
+                                                       imagePath: nil],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 6"
+                                                       imagePath: nil],
+                     nil],
+                    nil];
+  [launcherController setPages:pages];
+
   _rootController = [[UINavigationController alloc] initWithRootViewController:launcherController];
   _rootController.view.frame = self.window.bounds;
 

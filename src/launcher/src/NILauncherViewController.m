@@ -35,8 +35,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-    _pages = [[NSMutableArray alloc] init];
+  if ((self = [super initWithNibName:nil bundle:nil])) {
   }
   return self;
 }
@@ -47,8 +46,11 @@
   [super viewDidLoad];
 
   _launcherView = [[[NILauncherView alloc] initWithFrame:self.view.bounds] autorelease];
+  _launcherView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                    | UIViewAutoresizingFlexibleHeight);
   _launcherView.dataSource = self;
   _launcherView.delegate = self;
+  [_launcherView reloadData];
   [self.view addSubview:_launcherView];
 }
 
@@ -58,6 +60,12 @@
   _launcherView = nil;
 
   [super viewDidUnload];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+  return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 
@@ -89,6 +97,25 @@
   item = item;
 
   return button;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Accessors
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setPages:(NSArray *)pages {
+  if (_pages != pages) {
+    [_pages release];
+    _pages = [pages mutableCopy];
+
+    // If the view hasn't been loaded yet (entirely possible) then this will no-op and the
+    // launcher view will load its data in viewDidLoad.
+    [_launcherView reloadData];
+  }
 }
 
 

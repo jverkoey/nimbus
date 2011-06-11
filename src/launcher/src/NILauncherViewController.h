@@ -37,4 +37,11 @@
   NSMutableArray* _pages; // Array< Array<NILauncherItemDetails *> >
 }
 
+/**
+ * @brief Set the launcher items.
+ *
+ * @param pages An array of arrays of NILauncherItemDetails.
+ */
+- (void)setPages:(NSArray *)pages;
+
 @end
