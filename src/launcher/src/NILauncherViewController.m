@@ -107,7 +107,13 @@
 - (UIButton *)launcherView: (NILauncherView *)launcherView
              buttonForPage: (NSInteger)page
                    atIndex: (NSInteger)index {
-  NILauncherButton* button = [[[NILauncherButton alloc] init] autorelease];
+  UIButton* button = [[[[self launcherButtonClass] alloc] init] autorelease];
+
+  // launcherButtonClass must return a class that is a subclass of UIButton.
+  NIDASSERT([button isKindOfClass:[UIButton class]]);
+  if (![button isKindOfClass:[UIButton class]]) {
+    return nil;
+  }
 
   NILauncherItemDetails* item = [[_pages objectAtIndex:page] objectAtIndex:index];
   [button setTitle:item.title forState:UIControlStateNormal];
@@ -137,6 +143,18 @@
                     otherButtonTitles: @"OK", nil]
    autorelease];
   [alert show];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Override Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)launcherButtonClass {
+  return [NILauncherButton class];
 }
 
 

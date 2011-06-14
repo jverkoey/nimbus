@@ -19,7 +19,7 @@
 #import "NILauncherView.h"
 
 // The padding around the entire button on the top, left, bottom, and right sides.
-static const CGFloat kPadding = 5;
+static const CGFloat kDefaultPadding = 5;
 
 // The amount of space between the bottom of the image and the top of the text.
 static const CGFloat kSpacing = 5;
@@ -30,10 +30,14 @@ static const CGFloat kSpacing = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NILauncherButton
 
+@synthesize padding = _padding;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
+    _padding = UIEdgeInsetsMake(kDefaultPadding, kDefaultPadding,
+                                kDefaultPadding, kDefaultPadding);
     self.titleLabel.font = [UIFont boldSystemFontOfSize:12];
     [self setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     self.titleLabel.numberOfLines = 1;
@@ -48,16 +52,18 @@ static const CGFloat kSpacing = 5;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  CGFloat titleLabelWidth = (self.frame.size.width - kPadding * 2);
+  CGFloat titleLabelWidth = (self.frame.size.width - _padding.left - _padding.right);
 
   CGSize titleLabelSize = [self.titleLabel.text sizeWithFont: self.titleLabel.font
                                                     forWidth: titleLabelWidth
                                                lineBreakMode: self.titleLabel.lineBreakMode];
 
-  self.titleLabel.frame = CGRectMake(kPadding, self.frame.size.height - titleLabelSize.height,
+  self.titleLabel.frame = CGRectMake(_padding.left,
+                                     self.frame.size.height
+                                     - titleLabelSize.height - _padding.bottom,
                                      titleLabelWidth, titleLabelSize.height);
 
-  self.imageView.frame = CGRectMake(kPadding, kPadding,
+  self.imageView.frame = CGRectMake(_padding.left, _padding.top,
                                     titleLabelWidth,
                                     self.titleLabel.frame.origin.y - kSpacing);
 }

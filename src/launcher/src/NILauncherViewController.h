@@ -56,4 +56,84 @@
 @property (nonatomic, readwrite, copy) NSArray* pages;
 
 
+/**
+ * The following methods are provided to aid in subclassing this class and are not meant to be
+ * used externally.
+ */
+#pragma mark Subclassing
+
+/**
+ * @brief The launcher button view class.
+ *
+ * Must be a subclass of UIButton.
+ *
+ * Provided here for subclasses to use as a convenience for changing the launcher button class.
+ *
+ * Defaults to NILauncherButton.
+ */
+- (Class)launcherButtonClass;
+
+@end
+
+
+/**
+ * @brief The individual button view that the user taps.
+ * @ingroup Launcher-User-Interface
+ *
+ * Shows the icon centered in the top portion of the button with the text taking up one
+ * line at the bottom.
+ */
+@interface NILauncherButton : UIButton {
+@private
+  UIEdgeInsets _padding;
+}
+
+/**
+ * @brief The padding for the button.
+ *
+ * This padding is applied on all edges of the button.
+ *
+ * Defaults to 5px of padding on all sides.
+ */
+@property (nonatomic, readwrite, assign) UIEdgeInsets padding;
+
+@end
+
+
+/**
+ * @brief A convenience class for managing the data used to create an NILauncherButton.
+ * @ingroup Launcher-Presentation-Information
+ */
+@interface NILauncherItemDetails : NSObject <NSCoding> {
+@private
+  NSString* _title;
+  NSString* _imagePath;
+}
+
+/**
+ * @brief The title for the launcher button.
+ */
+@property (nonatomic, readwrite, copy) NSString* title;
+
+/**
+ * @brief The path to the launcher image.
+ */
+@property (nonatomic, readwrite, copy) NSString* imagePath;
+
+/**
+ * @brief Convenience method for creating a launcher item details object.
+ *
+ * @param title       The title for the launcher button.
+ * @param imagePath   The path to the launcher image.
+ */
++ (id)itemDetailsWithTitle:(NSString *)title imagePath:(NSString *)imagePath;
+
+/**
+ * @brief The designated initializer.
+ *
+ * @param title       The title for the launcher button.
+ * @param imagePath   The path to the launcher image.
+ */
+- (id)initWithTitle:(NSString *)title imagePath:(NSString *)imagePath;
+
 @end

@@ -283,7 +283,7 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
       NSInteger col = ixItem % numberOfColumns;
       NSInteger row = ixItem / numberOfColumns;
 
-      NILauncherButton* button = [page objectAtIndex:ixItem];
+      UIButton* button = [page objectAtIndex:ixItem];
       button.frame = CGRectMake(_padding.left + col * buttonDimensions.width
                                 + (col * buttonHorizontalSpacing),
                                 _padding.top + row * buttonDimensions.height

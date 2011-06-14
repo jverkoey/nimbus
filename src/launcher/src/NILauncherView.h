@@ -19,9 +19,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class NILauncherItemDetails;
-@class NILauncherButton;
-
 @protocol NILauncherDelegate;
 @protocol NILauncherDataSource;
 
@@ -99,17 +96,6 @@ extern const NSInteger NILauncherViewDynamic;
 
 
 /**
- * @brief The individual button view that the user taps.
- * @ingroup Launcher-User-Interface
- */
-@interface NILauncherButton : UIButton {
-@private
-}
-
-@end
-
-
-/**
  * @brief The launcher delegate used to inform of state changes and user interactions.
  * @ingroup Launcher-Protocols
  */
@@ -141,7 +127,7 @@ extern const NSInteger NILauncherViewDynamic;
  *
  * The default dimensions will fit the following grids:
  *
- * iPhone
+ * iPhone within a navigation controller
  *  Portrait: 3x4
  *  Landscape: 5x2
  *
@@ -177,44 +163,5 @@ extern const NSInteger NILauncherViewDynamic;
 - (UIButton *)launcherView: (NILauncherView *)launcherView
              buttonForPage: (NSInteger)page
                    atIndex: (NSInteger)index;
-
-@end
-
-
-/**
- * @brief A convenience class for managing the data used to create an NILauncherButton.
- * @ingroup Launcher-Presentation-Information
- */
-@interface NILauncherItemDetails : NSObject <NSCoding> {
-@private
-  NSString* _title;
-  NSString* _imagePath;
-}
-
-/**
- * @brief The title for the launcher button.
- */
-@property (nonatomic, readwrite, copy) NSString* title;
-
-/**
- * @brief The path to the launcher image.
- */
-@property (nonatomic, readwrite, copy) NSString* imagePath;
-
-/**
- * @brief Convenience method for creating a launcher item details object.
- *
- * @param title       The title for the launcher button.
- * @param imagePath   The path to the launcher image.
- */
-+ (id)itemDetailsWithTitle:(NSString *)title imagePath:(NSString *)imagePath;
-
-/**
- * @brief The designated initializer.
- *
- * @param title       The title for the launcher button.
- * @param imagePath   The path to the launcher image.
- */
-- (id)initWithTitle:(NSString *)title imagePath:(NSString *)imagePath;
 
 @end
