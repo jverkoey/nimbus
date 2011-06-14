@@ -20,30 +20,18 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-BOOL NIIsPad() {
-#ifdef UI_USER_INTERFACE_IDIOM
-  static NSInteger isPad = -1;
-  if (isPad < 0) {
-    isPad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
+BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation) {
+  if (NIIsPad()) {
+    return YES;
+
+  } else {
+    switch (orientation) {
+      case UIInterfaceOrientationPortrait:
+      case UIInterfaceOrientationLandscapeLeft:
+      case UIInterfaceOrientationLandscapeRight:
+        return YES;
+      default:
+        return NO;
+    }
   }
-  return isPad > 0;
-#else
-  return NO;
-#endif
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-BOOL NIDeviceOSVersionIsAtLeast(double versionNumber) {
-  return kCFCoreFoundationVersionNumber >= versionNumber;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-Class NIUIPopoverControllerClass() {
-  static Class sClass = nil;
-  if (nil == sClass) {
-    sClass = NSClassFromString(@"UIPopoverController");
-  }
-  return sClass;
 }

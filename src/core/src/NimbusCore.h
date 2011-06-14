@@ -382,6 +382,33 @@ CGRect NIRectInset(CGRect rect, UIEdgeInsets insets);
 
 
 #pragma mark -
+#pragma mark Device Orientation
+
+/**
+ * @brief For dealing with device orientations.
+ * @defgroup Device-Orientation Device Orientation
+ * @{
+ */
+
+/**
+ * @brief For use in shouldAutorotateToInterfaceOrientation:
+ *
+ * On iPhone/iPod touch:
+ * Returns YES if the orientation is portrait, landscape left, or landscape right.
+ * This helps to ignore upside down and flat orientations.
+ *
+ * On iPad:
+ * Always returns YES.
+ */
+BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation);
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**@}*/// End of Device Orientation ///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#pragma mark -
 #pragma mark Paths
 
 /**
@@ -517,6 +544,13 @@ NSString* NIPathForDocumentsResource(NSString* relativePath);
 #ifndef kCFCoreFoundationVersionNumber_iOS_4_0
 #define kCFCoreFoundationVersionNumber_iOS_4_0 550.32
 #endif
+
+/**
+ * @brief Checks whether the device the app is currently running on is an iPad or not.
+ *
+ * @returns YES if the device is an iPad.
+ */
+BOOL NIIsPad();
 
 /**
  * @brief Checks whether the device's OS version is at least the given version number.
