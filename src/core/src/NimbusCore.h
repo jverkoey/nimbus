@@ -402,6 +402,13 @@ CGRect NIRectInset(CGRect rect, UIEdgeInsets insets);
  */
 BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation);
 
+/**
+ * @brief Returns the application's current interface orientation.
+ *
+ * @returns The current interface orientation.
+ */
+UIInterfaceOrientation NIInterfaceOrientation();
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Device Orientation ///////////////////////////////////////////////////////////////
