@@ -22,6 +22,7 @@ const NSInteger NILauncherViewDynamic = -1;
 
 static const CGFloat kDefaultButtonDimensions = 80;
 static const CGFloat kDefaultPadding          = 10;
+static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,17 +60,19 @@ static const CGFloat kDefaultPadding          = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
-    _maxNumberOfButtonsPerPage = NILauncherViewDynamic;
+    _maxNumberOfButtonsPerPage = NSIntegerMax;
     _padding = UIEdgeInsetsMake(kDefaultPadding, kDefaultPadding,
                                 kDefaultPadding, kDefaultPadding);
 
     _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
     _scrollView.delegate = self;
+
     _scrollView.pagingEnabled = YES;
+
+    // We don't need scroll indicators because we have a pager. Vertical scrolling is handled
+    // by each page's scroll view.
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.showsHorizontalScrollIndicator = NO;
-    _scrollView.backgroundColor = [UIColor blackColor];
-    _scrollView.bounces = YES;
 
     [self addSubview:_scrollView];
 
@@ -80,6 +83,8 @@ static const CGFloat kDefaultPadding          = 10;
     // color, however, then taps outside of the dot area DO change the selected page.
     //                                  \(o.o)/
     _pager.backgroundColor = [UIColor blackColor];
+    // Similarly for the scroll view anywhere there isn't a subview.
+    _scrollView.backgroundColor = [UIColor blackColor];
 
     // Hide the pager when there is only one page.
     _pager.hidesForSinglePage = YES;
@@ -119,9 +124,7 @@ static const CGFloat kDefaultPadding          = 10;
 - (void)setFrame:(CGRect)frame {
   [super setFrame:frame];
 
-  // TODO: Recalculate the rows and columns here using the data source if the methods are
-  // implemented or dynamic calculations otherwise.
-
+  // Lay out the pager first. The remaining space is used for the launcher scroll view.
   [_pager sizeToFit];
   _pager.frame = CGRectMake(0, self.frame.size.height - _pager.frame.size.height,
                             self.frame.size.width,
@@ -129,30 +132,47 @@ static const CGFloat kDefaultPadding          = 10;
 
   CGFloat pageWidth = [self pageWidthForLauncherFrame:self.frame];
 
+  // The scroll view frame takes up the entire launcher view, minus the pager.
   _scrollView.frame = CGRectMake(0, 0,
                                  pageWidth,
                                  self.frame.size.height - _pager.frame.size.height);
 
+  // We never want the scroll view to scroll vertically, so make sure the content size is always
+  // exactly the scroll view height.
   _scrollView.contentSize = CGSizeMake(pageWidth * _numberOfPages,
                                        _scrollView.frame.size.height);
 
+  // We update the content offset so that the scroll view sits on an integral page boundary.
+  // This is most useful when switching device orientations.
   _scrollView.contentOffset = CGPointMake([self pageWidthForLauncherFrame:frame]
                                           * _pager.currentPage,
                                           0);
 
+  // The dimensions of the scroll view may have changed, so lay out all of the pages.
   [self layoutPages];
 
+  // Example: When switching from a 3x4 grid of 12 items to a 5x2 grid of 10, there will be
+  // leftover items and the page will be too tall to fit everything as a result. We flash
+  // the scroll indicators when this happens to indicate to the user that some buttons have been
+  // hidden.
   [[_pagesOfScrollViews objectAtIndex:_pager.currentPage] flashScrollIndicators];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @brief Update the pager's current page based on the scroll view's content offset.
+ *
+ * Flashes the scroll indicators if the page index changes.
+ */
 - (void)updatePageIndex {
   CGFloat pageWidth = _scrollView.frame.size.width;
   NSInteger pageIndex = roundf(_scrollView.contentOffset.x / pageWidth);
-  _pager.currentPage = pageIndex;
+  if (_pager.currentPage != pageIndex) {
+    _pager.currentPage = pageIndex;
 
-  [[_pagesOfScrollViews objectAtIndex:pageIndex] flashScrollIndicators];
+    [[_pagesOfScrollViews objectAtIndex:pageIndex] flashScrollIndicators];
+  }
 }
 
 
@@ -307,13 +327,19 @@ static const CGFloat kDefaultPadding          = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)flashCurrentPageScrollIndicators {
+  [[_pagesOfScrollViews objectAtIndex:_pager.currentPage] flashScrollIndicators];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)pageChanged:(UIPageControl*)pager {
   [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:0.2];
+  [UIView setAnimationDuration:kAnimateToPageDuration];
   [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
   [UIView setAnimationBeginsFromCurrentState:YES];
   [UIView setAnimationDelegate:self];
-  [UIView setAnimationDidStopSelector:@selector(updatePageIndex)];
+  [UIView setAnimationDidStopSelector:@selector(flashCurrentPageScrollIndicators)];
 
   _scrollView.contentOffset = CGPointMake([self pageWidthForLauncherFrame:self.frame]
                                           * _pager.currentPage,
@@ -334,6 +360,14 @@ static const CGFloat kDefaultPadding          = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @brief Find a button in the pages and retrieve its page and index.
+ *
+ * @param searchButton[in]  The button you are looking for.
+ * @param pPage[out]        The resulting page, if found.
+ * @param pIndex[out]       The resulting index, if found.
+ * @returns YES if the button was found. NO otherwise.
+ */
 - (BOOL)pageAndIndexOfButton: (UIButton *)searchButton
                         page: (NSInteger *)pPage
                        index: (NSInteger *)pIndex {
@@ -367,6 +401,7 @@ static const CGFloat kDefaultPadding          = 10;
   if ([self pageAndIndexOfButton:tappedButton
                             page:&page
                            index:&index]) {
+
     if ([self.delegate respondsToSelector:
          @selector(launcherView:didSelectButton:onPage:atIndex:)]) {
       [self.delegate launcherView: self
@@ -374,6 +409,10 @@ static const CGFloat kDefaultPadding          = 10;
                            onPage: page
                           atIndex: index];
     }
+
+  } else {
+    // How exactly did we tap a button that wasn't a part of the launcher view?
+    NIDASSERT(NO);
   }
 }
 
@@ -390,19 +429,34 @@ static const CGFloat kDefaultPadding          = 10;
 
   _pager.numberOfPages = _numberOfPages;
 
-  // TODO: Remember the current page?
+  // FEATURE: Remember the current page?
 
   _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width * _numberOfPages,
                                        _scrollView.frame.size.height);
 
+  // Remove the views from the view hierarchy before we clobber the collections.
+  for (NSArray* page in _pagesOfButtons) {
+    for (UIButton* button in page) {
+      [button removeFromSuperview];
+    }
+  }
+  for (UIScrollView* scrollView in _pagesOfScrollViews) {
+    [scrollView removeFromSuperview];
+  }
+
   NI_RELEASE_SAFELY(_pagesOfButtons);
   NI_RELEASE_SAFELY(_pagesOfScrollViews);
+
+  // We query the data source for all of the button views. Each page of buttons lives within
+  // a scroll view that will scroll vertically if there are too many buttons for the page.
 
   _pagesOfButtons = [[NSMutableArray alloc] initWithCapacity:_numberOfPages];
   _pagesOfScrollViews = [[NSMutableArray alloc] initWithCapacity:_numberOfPages];
   for (NSInteger ixPage = 0; ixPage < _numberOfPages; ++ixPage) {
-    NSInteger numberOfItems = [self.dataSource launcherView: self
-                                      numberOfButtonsInPage: ixPage];
+    NSInteger numberOfItems = MIN(_maxNumberOfButtonsPerPage,
+                                  [self.dataSource launcherView: self
+                                          numberOfButtonsInPage: ixPage]);
+
     NSMutableArray* page = [[[NSMutableArray alloc] initWithCapacity:numberOfItems]
                             autorelease];
 

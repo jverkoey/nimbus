@@ -46,9 +46,6 @@ extern const NSInteger NILauncherViewDynamic;
   NSInteger       _maxNumberOfButtonsPerPage;
 
   // Display Information
-  NSInteger       _columnCount;
-  NSInteger       _rowCount;
-
   UIEdgeInsets    _padding;
 
   // Cached Data Source Information
@@ -65,7 +62,7 @@ extern const NSInteger NILauncherViewDynamic;
 /**
  * @brief The maximum number of buttons allowed on a given page.
  *
- * By default this value is NILauncherViewDynamic.
+ * By default this value is NSIntegerMax.
  */
 @property (nonatomic, readwrite, assign) NSInteger maxNumberOfButtonsPerPage;
 
@@ -93,6 +90,8 @@ extern const NSInteger NILauncherViewDynamic;
  *
  * This will release all of the launcher's buttons and call all necessary data source methods
  * again.
+ *
+ * Unlike the UITableView's reloadData, this is not a cheap method to call.
  */
 - (void)reloadData;
 
