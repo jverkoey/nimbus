@@ -150,7 +150,7 @@ extern NSInteger NIMaxLogLevel;
  * of the other logging methods in Nimbus' debugging library.
  */
 #ifdef DEBUG
-#define NIDPRINT(xx, ...)  NSLog(@"%s(%d): " xx, __PRENIY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define NIDPRINT(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
 #define NIDPRINT(xx, ...)  ((void)0)
 #endif // #ifdef DEBUG
@@ -158,7 +158,7 @@ extern NSInteger NIMaxLogLevel;
 /**
  * @brief Write the containing method's name to the log using NIDPRINT.
  */
-#define NIDPRINTMETHODNAME() NIDPRINT(@"%s", __PRENIY_FUNCTION__)
+#define NIDPRINTMETHODNAME() NIDPRINT(@"%s", __PRETTY_FUNCTION__)
 
 /**
  * @brief Assertions that only fire when DEBUG is defined.

@@ -49,34 +49,68 @@
   [[[NILauncherViewController alloc] initWithNibName:nil bundle:nil] autorelease];
   launcherController.title = @"Basic Launcher Demo";
 
+  NSString* imagePath = NIPathForBundleResource([NSBundle mainBundle], @"nimbus64x64.png");
+
   NSArray* pages = [NSArray arrayWithObjects:
                     [NSArray arrayWithObjects:
                      [NILauncherItemDetails itemDetailsWithTitle: @"Item 1"
-                                                       imagePath: nil],
+                                                       imagePath: imagePath],
                      [NILauncherItemDetails itemDetailsWithTitle: @"Item 2"
-                                                       imagePath: nil],
+                                                       imagePath: imagePath],
                      [NILauncherItemDetails itemDetailsWithTitle: @"Item 3"
-                                                       imagePath: nil],
+                                                       imagePath: imagePath],
                      [NILauncherItemDetails itemDetailsWithTitle: @"Item 4"
-                                                       imagePath: nil],
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 1"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 2"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 3"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 4"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 1"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 2"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 3"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 4"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 1"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 2"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 3"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 4"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 1"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 2"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 3"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 4"
+                                                       imagePath: imagePath],
                      nil],
                     [NSArray arrayWithObjects:
                      [NILauncherItemDetails itemDetailsWithTitle: @"Item 5"
-                                                       imagePath: nil],
+                                                       imagePath: imagePath],
                      [NILauncherItemDetails itemDetailsWithTitle: @"Item 6"
-                                                       imagePath: nil],
+                                                       imagePath: imagePath],
                      nil],
                     [NSArray arrayWithObjects:
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 5"
-                                                       imagePath: nil],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 6"
-                                                       imagePath: nil],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 7"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 8"
+                                                       imagePath: imagePath],
                      nil],
                     [NSArray arrayWithObjects:
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 5"
-                                                       imagePath: nil],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 6"
-                                                       imagePath: nil],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 9"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 10"
+                                                       imagePath: imagePath],
                      nil],
                     nil];
   [launcherController setPages:pages];

@@ -18,10 +18,49 @@
 
 #import "NILauncherView.h"
 
+// The padding around the entire button on the top, left, bottom, and right sides.
+static const CGFloat kPadding = 5;
+
+// The amount of space between the bottom of the image and the top of the text.
+static const CGFloat kSpacing = 5;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NILauncherButton
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithFrame:(CGRect)frame {
+  if ((self = [super initWithFrame:frame])) {
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+    [self setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    self.titleLabel.numberOfLines = 1;
+    self.titleLabel.textAlignment = UITextAlignmentCenter;
+    self.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)layoutSubviews {
+  [super layoutSubviews];
+
+  CGFloat titleLabelWidth = (self.frame.size.width - kPadding * 2);
+
+  CGSize titleLabelSize = [self.titleLabel.text sizeWithFont: self.titleLabel.font
+                                                    forWidth: titleLabelWidth
+                                               lineBreakMode: self.titleLabel.lineBreakMode];
+
+  self.titleLabel.frame = CGRectMake(kPadding, self.frame.size.height - titleLabelSize.height,
+                                     titleLabelWidth, titleLabelSize.height);
+
+  self.imageView.frame = CGRectMake(kPadding, kPadding,
+                                    titleLabelWidth,
+                                    self.titleLabel.frame.origin.y - kSpacing);
+}
+
 
 @end

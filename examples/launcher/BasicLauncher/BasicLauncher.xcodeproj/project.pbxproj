@@ -23,6 +23,7 @@
 		669E47DC13A2C9CA001EE2AC /* NILauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E47D913A2C9CA001EE2AC /* NILauncherViewController.m */; };
 		669E487A13A327DF001EE2AC /* NILauncherButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E487813A327DF001EE2AC /* NILauncherButton.m */; };
 		669E487B13A327DF001EE2AC /* NILauncherItemDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E487913A327DF001EE2AC /* NILauncherItemDetails.m */; };
+		66D2674213A7C64C006D6CA1 /* nimbus64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 66D2674113A7C64C006D6CA1 /* nimbus64x64.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		669E47DA13A2C9CA001EE2AC /* NimbusLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusLauncher.h; path = ../../../src/launcher/src/NimbusLauncher.h; sourceTree = SOURCE_ROOT; };
 		669E487813A327DF001EE2AC /* NILauncherButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherButton.m; path = ../../../src/launcher/src/NILauncherButton.m; sourceTree = SOURCE_ROOT; };
 		669E487913A327DF001EE2AC /* NILauncherItemDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherItemDetails.m; path = ../../../src/launcher/src/NILauncherItemDetails.m; sourceTree = SOURCE_ROOT; };
+		66D2674113A7C64C006D6CA1 /* nimbus64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nimbus64x64.png; path = ../../../src/resources/nimbus64x64.png; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* BasicLauncher-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BasicLauncher-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +80,7 @@
 		28EEBF621118D79A00187D67 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				66D2674113A7C64C006D6CA1 /* nimbus64x64.png */,
 				8D1107310486CEB800E47090 /* BasicLauncher-Info.plist */,
 			);
 			name = Resources;
@@ -204,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66D2674213A7C64C006D6CA1 /* nimbus64x64.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +246,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = BasicLauncher_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				INFOPLIST_FILE = "BasicLauncher-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = BasicLauncher;

@@ -88,15 +88,32 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NILauncherButton *)launcherView: (NILauncherView *)launcherView
-                     buttonForPage: (NSInteger)page
-                           atIndex: (NSInteger)index {
+- (UIButton *)launcherView: (NILauncherView *)launcherView
+             buttonForPage: (NSInteger)page
+                   atIndex: (NSInteger)index {
   NILauncherButton* button = [[[NILauncherButton alloc] init] autorelease];
 
   NILauncherItemDetails* item = [[_pages objectAtIndex:page] objectAtIndex:index];
-  item = item;
+  [button setTitle:item.title forState:UIControlStateNormal];
+  [button setImage: [UIImage imageWithContentsOfFile:item.imagePath]
+          forState: UIControlStateNormal];
 
   return button;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NILauncherDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)launcherView: (NILauncherView *)launcher
+     didSelectButton: (UIButton *)button
+              onPage: (NSInteger)page
+             atIndex: (NSInteger)index {
+
 }
 
 

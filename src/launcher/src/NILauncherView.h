@@ -49,8 +49,13 @@ extern const NSInteger NILauncherViewDynamic;
   NSInteger       _columnCount;
   NSInteger       _rowCount;
 
+  UIEdgeInsets    _padding;
+
   // Cached Data Source Information
   NSInteger       _numberOfPages;
+
+  NSMutableArray* _pagesOfButtons;      // NSArray< NSArray< UIButton *> >
+  NSMutableArray* _pagesOfScrollViews;  // NSArray< UIScrollView *>
 
   // Protocols
   id<NILauncherDelegate>    _delegate;
@@ -63,6 +68,15 @@ extern const NSInteger NILauncherViewDynamic;
  * By default this value is NILauncherViewDynamic.
  */
 @property (nonatomic, readwrite, assign) NSInteger maxNumberOfButtonsPerPage;
+
+/**
+ * @brief The amount of padding on each side of the launcher view pages.
+ *
+ * The bottom padding is considered above the page control.
+ *
+ * Default values are 10 pixels of padding on all sides.
+ */
+@property (nonatomic, readwrite, assign) UIEdgeInsets padding;
 
 /**
  * @brief The launcher view notifies the delegate of any user interaction or state changes.
@@ -100,7 +114,7 @@ extern const NSInteger NILauncherViewDynamic;
  * @brief The launcher delegate used to inform of state changes and user interactions.
  * @ingroup Launcher-Protocols
  */
-@protocol NILauncherDelegate
+@protocol NILauncherDelegate <NSObject>
 
 @optional
 
@@ -108,7 +122,7 @@ extern const NSInteger NILauncherViewDynamic;
  * @brief Called when the user taps and releases a launcher button.
  */
 - (void)launcherView: (NILauncherView *)launcher
-       didSelectItem: (NILauncherItemDetails *)item
+     didSelectButton: (UIButton *)button
               onPage: (NSInteger)page
              atIndex: (NSInteger)index;
 
@@ -119,12 +133,20 @@ extern const NSInteger NILauncherViewDynamic;
  * @brief The launcher data source used to populate the view.
  * @ingroup Launcher-Protocols
  */
-@protocol NILauncherDataSource
+@protocol NILauncherDataSource <NSObject>
 
 @optional
 
 /**
- * @brief Override the default button dimensions 100x100.
+ * @brief Override the default button dimensions 80x80.
+ *
+ * The default dimensions will fit the following grids:
+ *
+ * iPhone
+ *  Portrait: 3x4
+ *  Landscape: 5x2
+ *
+ * The returned dimensions must be positive non-zero values.
  */
 - (CGSize)buttonDimensionsInLauncherView:(NILauncherView *)launcherView;
 
@@ -153,9 +175,9 @@ extern const NSInteger NILauncherViewDynamic;
 /**
  * @brief Retrieve the button to be displayed at a given page and index.
  */
-- (NILauncherButton *)launcherView: (NILauncherView *)launcherView
-                     buttonForPage: (NSInteger)page
-                           atIndex: (NSInteger)index;
+- (UIButton *)launcherView: (NILauncherView *)launcherView
+             buttonForPage: (NSInteger)page
+                   atIndex: (NSInteger)index;
 
 @end
 
