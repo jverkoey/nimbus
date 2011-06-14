@@ -61,55 +61,33 @@
                                                        imagePath: imagePath],
                      [NILauncherItemDetails itemDetailsWithTitle: @"Item 4"
                                                        imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 1"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 2"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 3"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 4"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 1"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 2"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 3"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 4"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 1"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 2"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 3"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 4"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 1"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 2"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 3"
-                                                       imagePath: imagePath],
-                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 4"
-                                                       imagePath: imagePath],
-                     nil],
-                    [NSArray arrayWithObjects:
                      [NILauncherItemDetails itemDetailsWithTitle: @"Item 5"
                                                        imagePath: imagePath],
                      [NILauncherItemDetails itemDetailsWithTitle: @"Item 6"
                                                        imagePath: imagePath],
-                     nil],
-                    [NSArray arrayWithObjects:
                      [NILauncherItemDetails itemDetailsWithTitle: @"Item 7"
                                                        imagePath: imagePath],
                      [NILauncherItemDetails itemDetailsWithTitle: @"Item 8"
                                                        imagePath: imagePath],
-                     nil],
-                    [NSArray arrayWithObjects:
                      [NILauncherItemDetails itemDetailsWithTitle: @"Item 9"
                                                        imagePath: imagePath],
+                     nil],
+                    [NSArray arrayWithObjects:
                      [NILauncherItemDetails itemDetailsWithTitle: @"Item 10"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 11"
+                                                       imagePath: imagePath],
+                     nil],
+                    [NSArray arrayWithObjects:
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 12"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 13"
+                                                       imagePath: imagePath],
+                     nil],
+                    [NSArray arrayWithObjects:
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 14"
+                                                       imagePath: imagePath],
+                     [NILauncherItemDetails itemDetailsWithTitle: @"Item 15"
                                                        imagePath: imagePath],
                      nil],
                     nil];

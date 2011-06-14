@@ -38,10 +38,22 @@
 }
 
 /**
- * @brief Set the launcher items.
+ * @brief Access to the internal launcher view.
  *
- * @param pages An array of arrays of NILauncherItemDetails.
+ * This is exposed primarily for subclasses of this view controller to be able to access the
+ * launcher view.
+ *
+ * You may also use this property from outside of the controller to configure certain aspects of
+ * the launcher view.
  */
-- (void)setPages:(NSArray *)pages;
+@property (nonatomic, readonly, retain) NILauncherView* launcherView;
+
+/**
+ * @brief An array of arrays of NILauncherItemDetails.
+ *
+ * These pages are used to populate the launcher view via the NILauncherDataSource protocol.
+ */
+@property (nonatomic, readwrite, copy) NSArray* pages;
+
 
 @end

@@ -363,9 +363,9 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 /**
  * @brief Find a button in the pages and retrieve its page and index.
  *
- * @param searchButton[in]  The button you are looking for.
- * @param pPage[out]        The resulting page, if found.
- * @param pIndex[out]       The resulting index, if found.
+ * @param[in] searchButton  The button you are looking for.
+ * @param[out] pPage        The resulting page, if found.
+ * @param[out] pIndex       The resulting index, if found.
  * @returns YES if the button was found. NO otherwise.
  */
 - (BOOL)pageAndIndexOfButton: (UIButton *)searchButton

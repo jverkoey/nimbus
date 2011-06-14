@@ -24,20 +24,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NILauncherViewController
 
+@synthesize launcherView  = _launcherView;
+@synthesize pages         = _pages;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_pages);
+  // _launcherView is retained by self.view and is released in viewDidUnload
 
   [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if ((self = [super initWithNibName:nil bundle:nil])) {
-  }
-  return self;
 }
 
 
@@ -65,7 +61,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-  return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+  return NIIsSupportedOrientation(toInterfaceOrientation);
 }
 
 
@@ -73,6 +69,26 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark NILauncherDataSource
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)numberOfRowsPerPageInLauncherView:(NILauncherView *)launcherView {
+  // Replace this with NILauncherViewDynamic to allow the launcher view to calculate the number
+  // of rows and columns automatically.
+  return (NIIsPad()
+          ? 4
+          : (UIInterfaceOrientationIsPortrait(NIInterfaceOrientation())
+             ? 3 : 2));
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)numberOfColumnsPerPageInLauncherView:(NILauncherView *)launcherView {
+  return (NIIsPad()
+          ? 5
+          : (UIInterfaceOrientationIsPortrait(NIInterfaceOrientation())
+             ? 3 : 5));
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -113,14 +129,21 @@
      didSelectButton: (UIButton *)button
               onPage: (NSInteger)page
              atIndex: (NSInteger)index {
-
+  UIAlertView* alert =
+  [[[UIAlertView alloc] initWithTitle: @"Launcher button tapped"
+                              message: [button titleForState:UIControlStateNormal]
+                             delegate: nil
+                    cancelButtonTitle: nil
+                    otherButtonTitles: @"OK", nil]
+   autorelease];
+  [alert show];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark Accessors
+#pragma mark Properties
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -133,6 +156,12 @@
     // launcher view will load its data in viewDidLoad.
     [_launcherView reloadData];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSArray *)pages {
+  return [NSArray arrayWithArray:_pages];
 }
 
 
