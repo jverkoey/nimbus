@@ -112,7 +112,7 @@
  *
  * <h1>Version History</h1>
  *
- * <h2>0.3</h3>
+ * <h2>0.3</h2>
  *
  * Add network images to Nimbus.
  *

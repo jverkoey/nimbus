@@ -93,7 +93,7 @@ so I have every bit of confidence in the community to tackle any bugs as necessa
 
 <h1>Version History</h1>
 
-<h2>0.3</h3>
+<h2>0.3</h2>
 
 Add network images to Nimbus.
 
