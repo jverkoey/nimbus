@@ -30,6 +30,11 @@ extern const NSInteger NILauncherViewDynamic;
 /**
  * @brief A launcher view that simulates iOS' home screen launcher functionality.
  * @ingroup Launcher-User-Interface
+ *
+ * @todo Implement tap-and-hold editing for the launcher button ordering. The Three20
+ * implementation can likely be learned from to implement this, though it's possible that
+ * I could improve on it by writing it from scratch. Care needs to be taken with the fact
+ * that launcher pages can scroll vertically now as well.
  */
 @interface NILauncherView : UIView <
   UIScrollViewDelegate
@@ -91,6 +96,25 @@ extern const NSInteger NILauncherViewDynamic;
  * Unlike the UITableView's reloadData, this is not a cheap method to call.
  */
 - (void)reloadData;
+
+/**
+ * @brief Lays out the subviews for this launcher view.
+ *
+ * If you subclass this view and implement setFrame, you should either replicate the
+ * functionality found within or call [super setFrame:].
+ *
+ * @note Subviews are laid out in this method instead of layoutSubviews due to the fact that the
+ * scroll view offset and content size are modified within this method. If we modify these values
+ * in layoutSubviews then we will end up breaking the scroll view because whenever the user drags
+ * their finger to scroll the scroll view, layoutSubviews is called on the launcher view.
+ */
+- (void)setFrame:(CGRect)frame;
+
+/**
+ * The following methods are provided to aid in subclassing this class and are not meant to be
+ * used externally.
+ */
+#pragma mark Subclassing
 
 @end
 

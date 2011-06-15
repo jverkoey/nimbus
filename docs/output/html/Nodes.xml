@@ -10,6 +10,18 @@
         <Path>index.html</Path>
        </Node>
        <Node>
+        <Name>Related Pages</Name>
+        <Path>pages.html</Path>
+        <Subnodes>
+         <Node>
+          <Name>Todo List</Name>
+          <Path>todo.html</Path>
+          <Subnodes>
+          </Subnodes>
+         </Node>
+        </Subnodes>
+       </Node>
+       <Node>
         <Name>Modules</Name>
         <Path>modules.html</Path>
         <Subnodes>
@@ -54,6 +66,12 @@
             </Subnodes>
            </Node>
            <Node>
+            <Name>Device Orientation</Name>
+            <Path>group___device-_orientation.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
             <Name>Paths</Name>
             <Path>group___paths.html</Path>
             <Subnodes>
@@ -89,12 +107,6 @@
             <Subnodes>
             </Subnodes>
            </Node>
-           <Node>
-            <Name>Launcher Presentation Information</Name>
-            <Path>group___launcher-_presentation-_information.html</Path>
-            <Subnodes>
-            </Subnodes>
-           </Node>
           </Subnodes>
          </Node>
         </Subnodes>
@@ -105,7 +117,7 @@
         <Subnodes>
          <Node>
           <Name>NILauncherButton</Name>
-          <Path>interface_n_i_launcher_button.html</Path>
+          <Path>class_n_i_launcher_button.html</Path>
          </Node>
          <Node>
           <Name>&lt;NILauncherDataSource&gt;</Name>
@@ -117,7 +129,7 @@
          </Node>
          <Node>
           <Name>NILauncherItemDetails</Name>
-          <Path>interface_n_i_launcher_item_details.html</Path>
+          <Path>class_n_i_launcher_item_details.html</Path>
          </Node>
          <Node>
           <Name>NILauncherView</Name>
@@ -140,6 +152,52 @@
        <Node>
         <Name>Class Index</Name>
         <Path>classes.html</Path>
+       </Node>
+       <Node>
+        <Name>Class Hierarchy</Name>
+        <Path>hierarchy.html</Path>
+        <Subnodes>
+         <Node>
+          <Name>NILauncherButton</Name>
+          <Path>class_n_i_launcher_button.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NILauncherDataSource&gt;</Name>
+          <Path>protocol_n_i_launcher_data_source-p.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>NILauncherViewController</Name>
+            <Path>interface_n_i_launcher_view_controller.html</Path>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>&lt;NILauncherDelegate&gt;</Name>
+          <Path>protocol_n_i_launcher_delegate-p.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>NILauncherViewController</Name>
+            <Path>interface_n_i_launcher_view_controller.html</Path>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>NILauncherItemDetails</Name>
+          <Path>class_n_i_launcher_item_details.html</Path>
+         </Node>
+         <Node>
+          <Name>NILauncherView</Name>
+          <Path>interface_n_i_launcher_view.html</Path>
+         </Node>
+         <Node>
+          <Name>NSData</Name>
+          <Path>class_n_s_data.html</Path>
+         </Node>
+         <Node>
+          <Name>NSString</Name>
+          <Path>class_n_s_string.html</Path>
+         </Node>
+        </Subnodes>
        </Node>
        <Node>
         <Name>Class Members</Name>

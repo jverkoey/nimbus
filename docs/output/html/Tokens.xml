@@ -2,6 +2,13 @@
 <Tokens version="1.0">
   <Token>
     <TokenIdentifier>
+      <Name>todo</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>todo.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NimbusCore</Name>
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
@@ -255,6 +262,34 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>Device-Orientation</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___device-_orientation.html</Path>
+    <Abstract>For dealing with device orientations.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIIsSupportedOrientation</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___device-_orientation.html</Path>
+    <Anchor>gad11b7958206db7c5d5a85d78f6d5ce4b</Anchor>
+    <Abstract>For use in shouldAutorotateToInterfaceOrientation:</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIInterfaceOrientation</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___device-_orientation.html</Path>
+    <Anchor>ga7c59ce546cc2e2835532fa9dea2a4869</Anchor>
+    <Abstract>Returns the application&amp;#39;s current interface orientation.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Paths</Name>
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
@@ -401,6 +436,16 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NIIsPad</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>gaf7d2c830b4c39cfeeb37d59258abb722</Anchor>
+    <Abstract>Checks whether the device the app is currently running on is an iPad or not.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NIDeviceOSVersionIsAtLeast</Name>
       <APILanguage>c</APILanguage>
       <Type>func</Type>
@@ -432,7 +477,7 @@
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
     <Path>group___nimbus_launcher.html</Path>
-    <Abstract>Nimbus&amp;#39; Launcher control and related components.</Abstract>
+    <Abstract>Nimbus&amp;#39; Launcher view and related components.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -440,7 +485,7 @@
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
     <Path>group___launcher-_user-_interface.html</Path>
-    <Abstract>Launcher user interface.</Abstract>
+    <Abstract>The views and data containers used to display a launcher user interface.The Nimbus launcher is compos...</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -448,15 +493,7 @@
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
     <Path>group___launcher-_protocols.html</Path>
-    <Abstract>Launcher protocols.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>Launcher-Presentation-Information</Name>
-      <APILanguage>c</APILanguage>
-    </TokenIdentifier>
-    <Path>group___launcher-_presentation-_information.html</Path>
-    <Abstract>Launcher presentation information.</Abstract>
+    <Abstract>The delegate and data source protocols that allow the user interface to be simple.The launcher is related in spirit to UITableView in its use of protocols to remove much of the heavy data and user interaction logic from the view itself. The NILauncherDelegate protocol defines a small set of methods used for notifications of user interactions and state changes. The NILauncherDataSource protocol defines the set of optional and required methods for populating the launcher with data.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -465,9 +502,20 @@
       <Type>cl</Type>
       <Scope>NILauncherButton</Scope>
     </TokenIdentifier>
-    <Path>interface_n_i_launcher_button.html</Path>
-    <Abstract>The individual button view that the user taps.</Abstract>
-    <DeclaredIn>NILauncherView.h</DeclaredIn>
+    <Path>class_n_i_launcher_button.html</Path>
+    <Abstract>A simple launcher button that shows an image and text.</Abstract>
+    <DeclaredIn>NILauncherViewController.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>padding</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NILauncherButton</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_launcher_button.html</Path>
+    <Anchor>a19f85e61da3480d9209058b450afaa82</Anchor>
+    <Abstract>The padding for the button.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -482,13 +530,46 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>buttonDimensionsInLauncherView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NILauncherDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_data_source-p.html</Path>
+    <Anchor>aef59561eb420c3699d5c5b3dbe0cb16d</Anchor>
+    <Abstract>Override the default button dimensions 80x80.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>numberOfRowsPerPageInLauncherView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NILauncherDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_data_source-p.html</Path>
+    <Anchor>ace9be595b80fb6d52e4d94a550748f54</Anchor>
+    <Abstract>Override the default number of rows which is dynamically calculated.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>numberOfColumnsPerPageInLauncherView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NILauncherDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_data_source-p.html</Path>
+    <Anchor>acfc94919beaa588ef131d9d7beecf7f9</Anchor>
+    <Abstract>Override the default number of columns which is dynamically calculated.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>numberOfPagesInLauncherView:</Name>
       <APILanguage>occ</APILanguage>
       <Type>intfm</Type>
       <Scope>NILauncherDataSource-p</Scope>
     </TokenIdentifier>
     <Path>protocol_n_i_launcher_data_source-p.html</Path>
-    <Anchor>acf47da967621c84310f5f2813d433301</Anchor>
+    <Anchor>a7386f18ee064778a4808a26a3cf06f41</Anchor>
     <Abstract>The total number of pages to be shown in the launcher view.</Abstract>
   </Token>
   <Token>
@@ -499,7 +580,7 @@
       <Scope>NILauncherDataSource-p</Scope>
     </TokenIdentifier>
     <Path>protocol_n_i_launcher_data_source-p.html</Path>
-    <Anchor>aa57d3446f63f24acfb051ba1ada8b9b7</Anchor>
+    <Anchor>ad330b76b58eebe5dde7b7f7495575e2a</Anchor>
     <Abstract>The total number of buttons in a given page.</Abstract>
   </Token>
   <Token>
@@ -510,7 +591,7 @@
       <Scope>NILauncherDataSource-p</Scope>
     </TokenIdentifier>
     <Path>protocol_n_i_launcher_data_source-p.html</Path>
-    <Anchor>aa982cf10694d0bc85f711411871b202e</Anchor>
+    <Anchor>a2da5ac9e819e16c7ca4410a0497bf2ee</Anchor>
     <Abstract>Retrieve the button to be displayed at a given page and index.</Abstract>
   </Token>
   <Token>
@@ -526,14 +607,69 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>launcherView:didSelectButton:onPage:atIndex:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NILauncherDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_delegate-p.html</Path>
+    <Anchor>a5354d4b3a37c6d1909b785cc4be2ac7c</Anchor>
+    <Abstract>Called when the user taps and releases a launcher button.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NILauncherItemDetails</Name>
       <APILanguage>c</APILanguage>
       <Type>cl</Type>
       <Scope>NILauncherItemDetails</Scope>
     </TokenIdentifier>
-    <Path>interface_n_i_launcher_item_details.html</Path>
+    <Path>class_n_i_launcher_item_details.html</Path>
     <Abstract>A convenience class for managing the data used to create an NILauncherButton.</Abstract>
-    <DeclaredIn>NILauncherView.h</DeclaredIn>
+    <DeclaredIn>NILauncherViewController.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithTitle:imagePath:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherItemDetails</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_launcher_item_details.html</Path>
+    <Anchor>afe62c8eb25254b87f227547cd0c7457b</Anchor>
+    <Abstract>The designated initializer.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>itemDetailsWithTitle:imagePath:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NILauncherItemDetails</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_launcher_item_details.html</Path>
+    <Anchor>a0fa897dde241f7de94d531ccc242befa</Anchor>
+    <Abstract>Convenience method for creating a launcher item details object.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>title</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NILauncherItemDetails</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_launcher_item_details.html</Path>
+    <Anchor>abe184a56d23b572e49ddc3451f9e06ba</Anchor>
+    <Abstract>The title for the launcher button.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>imagePath</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NILauncherItemDetails</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_launcher_item_details.html</Path>
+    <Anchor>a5d62475d047295f77e825833721ed6c9</Anchor>
+    <Abstract>The path to the launcher image.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -545,6 +681,61 @@
     <Path>interface_n_i_launcher_view.html</Path>
     <Abstract>A launcher view that simulates iOS&amp;#39; home screen launcher functionality.</Abstract>
     <DeclaredIn>NILauncherView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>reloadData</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view.html</Path>
+    <Anchor>a00cd8720501ea27c466fa6e2201d41d4</Anchor>
+    <Abstract>Reload the launcher data.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setFrame:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view.html</Path>
+    <Anchor>a37761e0617ece5ef925ea575647a8620</Anchor>
+    <Abstract>Lays out the subviews for this launcher view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>updatePageIndex</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view.html</Path>
+    <Anchor>a778566f3be925a44f7863c2df529c021</Anchor>
+    <Abstract>Update the pager&amp;#39;s current page based on the scroll view&amp;#39;s content offset.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pageAndIndexOfButton:page:index:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view.html</Path>
+    <Anchor>a75f1fdd3afb7238daf7b92de550e79c5</Anchor>
+    <Abstract>Find a button in the pages and retrieve its page and index.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>padding</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NILauncherView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view.html</Path>
+    <Anchor>af8767bdd838ce4b0b8959331ccecfb8f</Anchor>
+    <Abstract>The amount of padding on each side of the launcher view pages.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -576,8 +767,96 @@
       <Scope>NILauncherViewController</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_launcher_view_controller.html</Path>
-    <Abstract>A view controller that displays a launcher view.</Abstract>
+    <Abstract>A view controller that displays a launcher view and implements its protocols.</Abstract>
     <DeclaredIn>NILauncherViewController.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>launcherButtonClass</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view_controller.html</Path>
+    <Anchor>a21629435d3eea13bb429361dae2ac0b5</Anchor>
+    <Abstract>The launcher button view class.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>numberOfRowsPerPageInLauncherView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view_controller.html</Path>
+    <Anchor>ac269f2109a8170c2db5ae96c4b5b16c3</Anchor>
+    <Abstract>Override the default number of rows which is dynamically calculated.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>numberOfColumnsPerPageInLauncherView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view_controller.html</Path>
+    <Anchor>a7670d2b814ecd9bc5c997b87260db835</Anchor>
+    <Abstract>Override the default number of columns which is dynamically calculated.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>numberOfPagesInLauncherView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view_controller.html</Path>
+    <Anchor>aeff929d8f8b796ff61956d24dc393cc9</Anchor>
+    <Abstract>The total number of pages to be shown in the launcher view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>launcherView:numberOfButtonsInPage:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view_controller.html</Path>
+    <Anchor>aade7d0e41b8822171bd8efcd9aa06a5c</Anchor>
+    <Abstract>The total number of buttons in a given page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>launcherView:buttonForPage:atIndex:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view_controller.html</Path>
+    <Anchor>a4b446599258ec63732ba8da1ca435451</Anchor>
+    <Abstract>Retrieve the button to be displayed at a given page and index.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>launcherView:didSelectButton:onPage:atIndex:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view_controller.html</Path>
+    <Anchor>aa34567e04d59adda70eadf99c4e2dc13</Anchor>
+    <Abstract>Called when the user taps and releases a launcher button.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pages</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NILauncherViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view_controller.html</Path>
+    <Anchor>ae6d4791037f7aec351b814ebc0dfad00</Anchor>
+    <Abstract>An array of arrays of NILauncherItemDetails.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>

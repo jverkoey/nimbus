@@ -61,7 +61,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-  return NIIsSupportedOrientation(toInterfaceOrientation);
+  // Only allow portrait for the iPhone and iPod touch.
+  return NIIsPad() || UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
 }
 
 
@@ -135,6 +136,14 @@
      didSelectButton: (UIButton *)button
               onPage: (NSInteger)page
              atIndex: (NSInteger)index {
+  // This is purely an example implementation. It is incredibly likely that you will not want to
+  // use this in your production code.
+
+  // If you require access to the launcher item details, you may find the following
+  // to be helpful:
+  //
+  //     NILauncherItemDetails* item = [[_pages objectAtIndex:page] objectAtIndex:index];
+
   UIAlertView* alert =
   [[[UIAlertView alloc] initWithTitle: @"Launcher button tapped"
                               message: [button titleForState:UIControlStateNormal]

@@ -24,6 +24,7 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -80,6 +81,8 @@ Defines</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Release TBD. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_d_k-_availability.html#gaf7d2c830b4c39cfeeb37d59258abb722">NIIsPad</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the device the app is currently running on is an iPad or not.  <a href="#gaf7d2c830b4c39cfeeb37d59258abb722"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_d_k-_availability.html#ga93ac73a742aea0dd9c07562056bf29c4">NIDeviceOSVersionIsAtLeast</a> (double versionNumber)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the device's OS version is at least the given version number.  <a href="#ga93ac73a742aea0dd9c07562056bf29c4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_d_k-_availability.html#gab7b9a8279ba3c54d6654f11f69dbd6f0">NIUIPopoverControllerClass</a> ()</td></tr>
@@ -121,6 +124,27 @@ Functions</h2></td></tr>
 <p>Useful for runtime checks of the device's version number.</p>
 <dl class="attention"><dt><b>Attention:</b></dt><dd>Apple recommends using respondsToSelector where possible to check for feature support. Use this method as a last resort. </dd></dl>
 
+<p>Definition at line <a class="el" href="_n_i_s_d_k_availability_8m_source.html#l00037">37</a> of file <a class="el" href="_n_i_s_d_k_availability_8m_source.html">NISDKAvailability.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaf7d2c830b4c39cfeeb37d59258abb722"></a><!-- doxytag: member="NimbusCore.h::NIIsPad" ref="gaf7d2c830b4c39cfeeb37d59258abb722" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL NIIsPad </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Checks whether the device the app is currently running on is an iPad or not. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>YES if the device is an iPad. </dd></dl>
+
 <p>Definition at line <a class="el" href="_n_i_s_d_k_availability_8m_source.html#l00023">23</a> of file <a class="el" href="_n_i_s_d_k_availability_8m_source.html">NISDKAvailability.m</a>.</p>
 
 </div>
@@ -144,12 +168,12 @@ Functions</h2></td></tr>
 <p>Uses NSClassFromString to fetch the popover controller class.</p>
 <dl class="attention"><dt><b>Attention:</b></dt><dd>If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method instead of directly referring to UIPopoverController anywhere within your code. Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices. </dd></dl>
 
-<p>Definition at line <a class="el" href="_n_i_s_d_k_availability_8m_source.html#l00029">29</a> of file <a class="el" href="_n_i_s_d_k_availability_8m_source.html">NISDKAvailability.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_s_d_k_availability_8m_source.html#l00043">43</a> of file <a class="el" href="_n_i_s_d_k_availability_8m_source.html">NISDKAvailability.m</a>.</p>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Jun 11 2011 00:09:06 for Nimbus by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Jun 14 2011 22:01:31 for Nimbus by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

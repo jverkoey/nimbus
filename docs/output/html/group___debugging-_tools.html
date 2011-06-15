@@ -24,6 +24,7 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -45,10 +46,10 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26">NIDPRINT</a>(xx,...)&#160;&#160;&#160;NSLog(@&quot;%s(%d): &quot; xx, __PRENIY_FUNCTION__, __LINE__, ##__VA_ARGS__)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26">NIDPRINT</a>(xx,...)&#160;&#160;&#160;NSLog(@&quot;%s(%d): &quot; xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Only writes to the log when DEBUG is defined.  <a href="#ga74e1fbd5193e3020f3abf072dcd59f26"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaa606f4ba1dd48de5e2fd679b7d8b22d8"></a><!-- doxytag: member="Debugging&#45;Tools::NIDPRINTMETHODNAME" ref="gaa606f4ba1dd48de5e2fd679b7d8b22d8" args="()" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8">NIDPRINTMETHODNAME</a>()&#160;&#160;&#160;NIDPRINT(@&quot;%s&quot;, __PRENIY_FUNCTION__)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8">NIDPRINTMETHODNAME</a>()&#160;&#160;&#160;NIDPRINT(@&quot;%s&quot;, __PRETTY_FUNCTION__)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the containing method's name to the log using NIDPRINT. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f">NIDASSERT</a>(xx)&#160;&#160;&#160;{ if (!(xx)) { NIDPRINT(@&quot;NIDASSERT failed: %s&quot;, #xx); } } ((void)0)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Assertions that only fire when DEBUG is defined.  <a href="#ga13cc3ae82820ea8141bc319bcb76ab7f"></a><br/></td></tr>
@@ -124,7 +125,7 @@ Level-Based Loggers</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;NSLog(@&quot;%s(%d): &quot; xx, __PRENIY_FUNCTION__, __LINE__, ##__VA_ARGS__)</td>
+          <td></td><td>&#160;&#160;&#160;NSLog(@&quot;%s(%d): &quot; xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)</td>
         </tr>
       </table>
 </div>
@@ -158,7 +159,7 @@ Level-Based Loggers</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Jun 11 2011 00:09:06 for Nimbus by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Jun 14 2011 22:01:31 for Nimbus by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

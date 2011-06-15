@@ -152,10 +152,10 @@
 			children = (
 				669E47D613A2C9CA001EE2AC /* NILauncherView.h */,
 				669E47D713A2C9CA001EE2AC /* NILauncherView.m */,
-				669E487813A327DF001EE2AC /* NILauncherButton.m */,
-				669E487913A327DF001EE2AC /* NILauncherItemDetails.m */,
 				669E47D813A2C9CA001EE2AC /* NILauncherViewController.h */,
 				669E47D913A2C9CA001EE2AC /* NILauncherViewController.m */,
+				669E487813A327DF001EE2AC /* NILauncherButton.m */,
+				669E487913A327DF001EE2AC /* NILauncherItemDetails.m */,
 				669E47DA13A2C9CA001EE2AC /* NimbusLauncher.h */,
 			);
 			name = Launcher;
