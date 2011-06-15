@@ -833,3 +833,9 @@ dl.bug
 	font-weight: bold;
 }
 
+/* Customizations for Nimbus */
+
+.fixedwidth {
+  width: 800px;
+  margin: 0 auto;
+}
