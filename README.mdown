@@ -7,10 +7,10 @@ care and thought.
 In short, you'll find a number of features within Nimbus to accelerate your development of
 iOS applications. Nimbus will be evolving quickly over time so it is likely in your best
 interest to simply browse the documentation by checking out Nimbus'
-<a href="http://jverkoey.github.com/nimbus/modules.html">Modules</a>.
+<a href="modules.html">Modules</a>.
 
-If you'd like to get started right away, learn how to
-<a href="http://jverkoey.github.com/nimbus/group___setup.html">add Nimbus to your project</a>.
+If you'd like to get started right away, learn how to <a href="group___setup.html">add
+Nimbus to your project</a>.
 
 
 <h1>Three20 was garbage though, why would I use Nimbus?</h1>
@@ -42,13 +42,13 @@ I plan to tackle Nimbus by first building a strong foundation in the Nimbus Core
 I will branch out and tackle migrating a variety of features over from Three20. Some features
 on my immediate horizon in increasing order of difficulty:
 
-- The Launcher.
+- The Launcher (done!)
 - Network images.
 - TTNavigator.
 
 For each day that I work on Nimbus I hope to have a pseudo-stable build that I can push out
 and summarize the changes since the previous day's build. For this reason I will likely use
-a <b>MAJOR.MINOR.SCORE.INCREMENTAL</b> version model.
+a <b>MAJOR.MINOR.SCORE</b> version model.
 
 <b>Major</b> version numbers will be reserved for major milestones in the project (completing a
 large set of features, for example).
@@ -65,9 +65,6 @@ indicates "the first major release of Nimbus, 130 tasks tackled, and 2 increment
 for bugfixes and daily progress since the 130th task was finished". Perhaps there may be some
 merit in allowing people who complete tasks to earn these points in some sense as well to
 encourage some friendly competition.
-
-<b>Incremental</b> version numbers should be fairly self explanatory, but for the sake
-of completeness this number will be incremented by one each time a new stable release is cut.
 
 <h1>Who's working on Nimbus?</h1>
 
@@ -96,13 +93,26 @@ so I have every bit of confidence in the community to tackle any bugs as necessa
 
 <h1>Version History</h1>
 
-<h2>0.2</h2>
+<h2>0.3</h3>
+
+Add network images to Nimbus.
+
+Goal tasks:
+
+- Migrate the new TTNetworkImageView object and the network image stack using ASIHTTPRequest
+  to Nimbus.
+
+Bonus:
+- Implement tap-and-hold editing on the launcher view.
+- Implement launcher item state persistence.
+
+<h2>0.2 - Tuesday June 14, 2011</h2>
 
 The first feature release of Nimbus.
 
 Goal tasks:
 
-- Migrate Three20's Navigator to Nimbus.
+- Migrate Three20's Navigator to Nimbus (+1)
 
 <h2>0.1 - Friday June 10, 2011</h2>
 
