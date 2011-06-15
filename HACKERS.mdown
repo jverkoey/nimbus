@@ -40,8 +40,3 @@ Generating the Xcode Docset
 After you've generated the web documentation, you may now build the docset by opening a terminal
 and running `make` in `./nimbus/docs/output/html`.
 
-
-Unit Tests
-==========
-
-

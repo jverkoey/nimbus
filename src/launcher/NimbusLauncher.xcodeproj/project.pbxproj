@@ -1,0 +1,351 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6687565813A2B8CA00FF1C56 /* NILauncherViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6687565613A2B8CA00FF1C56 /* NILauncherViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6687565913A2B8CA00FF1C56 /* NILauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6687565713A2B8CA00FF1C56 /* NILauncherViewController.m */; };
+		6687567B13A2B9FC00FF1C56 /* NILauncherView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6687567913A2B9FC00FF1C56 /* NILauncherView.h */; };
+		6687567C13A2B9FC00FF1C56 /* NILauncherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6687567A13A2B9FC00FF1C56 /* NILauncherView.m */; };
+		6687568D13A2BAC800FF1C56 /* NimbusLauncher.h in Headers */ = {isa = PBXBuildFile; fileRef = 6687568C13A2BAC800FF1C56 /* NimbusLauncher.h */; };
+		669E487513A327AC001EE2AC /* NILauncherButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E487313A327AC001EE2AC /* NILauncherButton.m */; };
+		669E487713A327CD001EE2AC /* NILauncherItemDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E487613A327CD001EE2AC /* NILauncherItemDetails.m */; };
+		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		668755AC13A2B5A100FF1C56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 668755A713A2B5A100FF1C56 /* NimbusCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = NimbusCore;
+		};
+		668755AE13A2B5A100FF1C56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 668755A713A2B5A100FF1C56 /* NimbusCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 668750F413A1AC6000FF1C56;
+			remoteInfo = NimbusCoreUnitTests;
+		};
+		668755B013A2B5A900FF1C56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 668755A713A2B5A100FF1C56 /* NimbusCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = NimbusCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6687559B13A2B55600FF1C56 /* unittests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = unittests.xcconfig; path = ../common/confs/unittests.xcconfig; sourceTree = SOURCE_ROOT; };
+		6687559C13A2B55600FF1C56 /* library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = library.xcconfig; path = ../common/confs/library.xcconfig; sourceTree = SOURCE_ROOT; };
+		6687559D13A2B55600FF1C56 /* project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = project.xcconfig; path = ../common/confs/project.xcconfig; sourceTree = SOURCE_ROOT; };
+		668755A713A2B5A100FF1C56 /* NimbusCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NimbusCore.xcodeproj; path = ../core/NimbusCore.xcodeproj; sourceTree = SOURCE_ROOT; };
+		668755B613A2B5E200FF1C56 /* NimbusLauncher_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusLauncher_Prefix.pch; path = lib/NimbusLauncher_Prefix.pch; sourceTree = "<group>"; };
+		6687565613A2B8CA00FF1C56 /* NILauncherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NILauncherViewController.h; path = src/NILauncherViewController.h; sourceTree = "<group>"; };
+		6687565713A2B8CA00FF1C56 /* NILauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherViewController.m; path = src/NILauncherViewController.m; sourceTree = "<group>"; };
+		6687567913A2B9FC00FF1C56 /* NILauncherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NILauncherView.h; path = src/NILauncherView.h; sourceTree = "<group>"; };
+		6687567A13A2B9FC00FF1C56 /* NILauncherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherView.m; path = src/NILauncherView.m; sourceTree = "<group>"; };
+		6687568C13A2BAC800FF1C56 /* NimbusLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusLauncher.h; path = src/NimbusLauncher.h; sourceTree = "<group>"; };
+		669E487313A327AC001EE2AC /* NILauncherButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherButton.m; path = src/NILauncherButton.m; sourceTree = "<group>"; };
+		669E487613A327CD001EE2AC /* NILauncherItemDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherItemDetails.m; path = src/NILauncherItemDetails.m; sourceTree = "<group>"; };
+		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2AAC07E0554694100DB518D /* libNimbusLauncher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusLauncher.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2AAC07C0554694100DB518D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC07E0554694100DB518D /* libNimbusLauncher.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* NimbusLauncher */ = {
+			isa = PBXGroup;
+			children = (
+				6687568C13A2BAC800FF1C56 /* NimbusLauncher.h */,
+				668755B613A2B5E200FF1C56 /* NimbusLauncher_Prefix.pch */,
+				6687559813A2B53000FF1C56 /* Source */,
+				6687559913A2B53B00FF1C56 /* Unit Tests */,
+				0867D69AFE84028FC02AAC07 /* Frameworks */,
+				6687559A13A2B54C00FF1C56 /* Configurations */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = NimbusLauncher;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				668755A713A2B5A100FF1C56 /* NimbusCore.xcodeproj */,
+				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6687559813A2B53000FF1C56 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				6687565513A2B8B800FF1C56 /* View Controller */,
+				6687567813A2B9EE00FF1C56 /* View */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		6687559913A2B53B00FF1C56 /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Unit Tests";
+			sourceTree = "<group>";
+		};
+		6687559A13A2B54C00FF1C56 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				6687559B13A2B55600FF1C56 /* unittests.xcconfig */,
+				6687559C13A2B55600FF1C56 /* library.xcconfig */,
+				6687559D13A2B55600FF1C56 /* project.xcconfig */,
+			);
+			name = Configurations;
+			sourceTree = "<group>";
+		};
+		668755A813A2B5A100FF1C56 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				668755AD13A2B5A100FF1C56 /* libNimbusCore.a */,
+				668755AF13A2B5A100FF1C56 /* NimbusCoreUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6687565513A2B8B800FF1C56 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6687565613A2B8CA00FF1C56 /* NILauncherViewController.h */,
+				6687565713A2B8CA00FF1C56 /* NILauncherViewController.m */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		6687567813A2B9EE00FF1C56 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6687567913A2B9FC00FF1C56 /* NILauncherView.h */,
+				6687567A13A2B9FC00FF1C56 /* NILauncherView.m */,
+				669E487313A327AC001EE2AC /* NILauncherButton.m */,
+				669E487613A327CD001EE2AC /* NILauncherItemDetails.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D2AAC07A0554694100DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6687565813A2B8CA00FF1C56 /* NILauncherViewController.h in Headers */,
+				6687567B13A2B9FC00FF1C56 /* NILauncherView.h in Headers */,
+				6687568D13A2BAC800FF1C56 /* NimbusLauncher.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D2AAC07D0554694100DB518D /* NimbusLauncher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "NimbusLauncher" */;
+			buildPhases = (
+				D2AAC07A0554694100DB518D /* Headers */,
+				D2AAC07B0554694100DB518D /* Sources */,
+				D2AAC07C0554694100DB518D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				668755B113A2B5A900FF1C56 /* PBXTargetDependency */,
+			);
+			name = NimbusLauncher;
+			productName = NimbusLauncher;
+			productReference = D2AAC07E0554694100DB518D /* libNimbusLauncher.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "NimbusLauncher" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 0867D691FE84028FC02AAC07 /* NimbusLauncher */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 668755A813A2B5A100FF1C56 /* Products */;
+					ProjectRef = 668755A713A2B5A100FF1C56 /* NimbusCore.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				D2AAC07D0554694100DB518D /* NimbusLauncher */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		668755AD13A2B5A100FF1C56 /* libNimbusCore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusCore.a;
+			remoteRef = 668755AC13A2B5A100FF1C56 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		668755AF13A2B5A100FF1C56 /* NimbusCoreUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusCoreUnitTests.octest;
+			remoteRef = 668755AE13A2B5A100FF1C56 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2AAC07B0554694100DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6687565913A2B8CA00FF1C56 /* NILauncherViewController.m in Sources */,
+				6687567C13A2B9FC00FF1C56 /* NILauncherView.m in Sources */,
+				669E487513A327AC001EE2AC /* NILauncherButton.m in Sources */,
+				669E487713A327CD001EE2AC /* NILauncherItemDetails.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		668755B113A2B5A900FF1C56 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NimbusCore;
+			targetProxy = 668755B013A2B5A900FF1C56 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB921F08733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6687559C13A2B55600FF1C56 /* library.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BASE_PRODUCT_NAME = NimbusLauncher;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/NimbusLauncher.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = NimbusLauncher;
+			};
+			name = Debug;
+		};
+		1DEB922008733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6687559C13A2B55600FF1C56 /* library.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BASE_PRODUCT_NAME = NimbusLauncher;
+				DSTROOT = /tmp/NimbusLauncher.dst;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = NimbusLauncher;
+			};
+			name = Release;
+		};
+		1DEB922308733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6687559D13A2B55600FF1C56 /* project.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1DEB922408733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6687559D13A2B55600FF1C56 /* project.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "NimbusLauncher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB921F08733DC00010E9CD /* Debug */,
+				1DEB922008733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "NimbusLauncher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB922308733DC00010E9CD /* Debug */,
+				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}

@@ -16,11 +16,21 @@
 // limitations under the License.
 //
 
-#ifdef BASE_PRODUCT_NAME
-#import "NimbusCore/NimbusCore.h"
-#else
 #import "NimbusCore.h"
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL NIIsPad() {
+#ifdef UI_USER_INTERFACE_IDIOM
+  static NSInteger isPad = -1;
+  if (isPad < 0) {
+    isPad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
+  }
+  return isPad > 0;
+#else
+  return NO;
 #endif
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -15,11 +15,7 @@
 // limitations under the License.
 //
 
-#ifdef BASE_PRODUCT_NAME
-#import "NimbusCore/NimbusCore.h"
-#else
 #import "NimbusCore.h"
-#endif
 
 NSInteger NIMaxLogLevel = NILOGLEVEL_WARNING;
 

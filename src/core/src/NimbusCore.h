@@ -150,7 +150,7 @@ extern NSInteger NIMaxLogLevel;
  * of the other logging methods in Nimbus' debugging library.
  */
 #ifdef DEBUG
-#define NIDPRINT(xx, ...)  NSLog(@"%s(%d): " xx, __PRENIY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define NIDPRINT(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
 #define NIDPRINT(xx, ...)  ((void)0)
 #endif // #ifdef DEBUG
@@ -158,7 +158,7 @@ extern NSInteger NIMaxLogLevel;
 /**
  * @brief Write the containing method's name to the log using NIDPRINT.
  */
-#define NIDPRINTMETHODNAME() NIDPRINT(@"%s", __PRENIY_FUNCTION__)
+#define NIDPRINTMETHODNAME() NIDPRINT(@"%s", __PRETTY_FUNCTION__)
 
 /**
  * @brief Assertions that only fire when DEBUG is defined.
@@ -382,6 +382,40 @@ CGRect NIRectInset(CGRect rect, UIEdgeInsets insets);
 
 
 #pragma mark -
+#pragma mark Device Orientation
+
+/**
+ * @brief For dealing with device orientations.
+ * @defgroup Device-Orientation Device Orientation
+ * @{
+ */
+
+/**
+ * @brief For use in shouldAutorotateToInterfaceOrientation:
+ *
+ * On iPhone/iPod touch:
+ * Returns YES if the orientation is portrait, landscape left, or landscape right.
+ * This helps to ignore upside down and flat orientations.
+ *
+ * On iPad:
+ * Always returns YES.
+ */
+BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation);
+
+/**
+ * @brief Returns the application's current interface orientation.
+ *
+ * @returns The current interface orientation.
+ */
+UIInterfaceOrientation NIInterfaceOrientation();
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**@}*/// End of Device Orientation ///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#pragma mark -
 #pragma mark Paths
 
 /**
@@ -517,6 +551,13 @@ NSString* NIPathForDocumentsResource(NSString* relativePath);
 #ifndef kCFCoreFoundationVersionNumber_iOS_4_0
 #define kCFCoreFoundationVersionNumber_iOS_4_0 550.32
 #endif
+
+/**
+ * @brief Checks whether the device the app is currently running on is an iPad or not.
+ *
+ * @returns YES if the device is an iPad.
+ */
+BOOL NIIsPad();
 
 /**
  * @brief Checks whether the device's OS version is at least the given version number.
