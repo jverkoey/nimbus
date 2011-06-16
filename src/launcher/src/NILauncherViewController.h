@@ -103,8 +103,10 @@
 
 
 /**
- * The following methods are provided to aid in subclassing this class and are not meant to be
+ * @name Subclassing
+ * The following methods are provided to aid in subclassing and are not meant to be
  * used externally.
+ * @{
  */
 #pragma mark Subclassing
 
@@ -118,6 +120,8 @@
  * Defaults to NILauncherButton.
  */
 - (Class)launcherButtonClass;
+
+/**@}*/
 
 @end
 

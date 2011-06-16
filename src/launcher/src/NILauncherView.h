@@ -110,12 +110,6 @@ extern const NSInteger NILauncherViewDynamic;
  */
 - (void)setFrame:(CGRect)frame;
 
-/**
- * The following methods are provided to aid in subclassing this class and are not meant to be
- * used externally.
- */
-#pragma mark Subclassing
-
 @end
 
 
