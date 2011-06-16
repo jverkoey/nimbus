@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		6687565813A2B8CA00FF1C56 /* NILauncherViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6687565613A2B8CA00FF1C56 /* NILauncherViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6687565913A2B8CA00FF1C56 /* NILauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6687565713A2B8CA00FF1C56 /* NILauncherViewController.m */; };
-		6687567B13A2B9FC00FF1C56 /* NILauncherView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6687567913A2B9FC00FF1C56 /* NILauncherView.h */; };
+		6687567B13A2B9FC00FF1C56 /* NILauncherView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6687567913A2B9FC00FF1C56 /* NILauncherView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6687567C13A2B9FC00FF1C56 /* NILauncherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6687567A13A2B9FC00FF1C56 /* NILauncherView.m */; };
-		6687568D13A2BAC800FF1C56 /* NimbusLauncher.h in Headers */ = {isa = PBXBuildFile; fileRef = 6687568C13A2BAC800FF1C56 /* NimbusLauncher.h */; };
+		6687568D13A2BAC800FF1C56 /* NimbusLauncher.h in Headers */ = {isa = PBXBuildFile; fileRef = 6687568C13A2BAC800FF1C56 /* NimbusLauncher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		669E487513A327AC001EE2AC /* NILauncherButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E487313A327AC001EE2AC /* NILauncherButton.m */; };
 		669E487713A327CD001EE2AC /* NILauncherItemDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 669E487613A327CD001EE2AC /* NILauncherItemDetails.m */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
@@ -104,8 +104,9 @@
 		6687559813A2B53000FF1C56 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				6687565513A2B8B800FF1C56 /* View Controller */,
-				6687567813A2B9EE00FF1C56 /* View */,
+				6687567913A2B9FC00FF1C56 /* NILauncherView.h */,
+				6687567A13A2B9FC00FF1C56 /* NILauncherView.m */,
+				6687565513A2B8B800FF1C56 /* Basic Implementation */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -136,24 +137,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6687565513A2B8B800FF1C56 /* View Controller */ = {
+		6687565513A2B8B800FF1C56 /* Basic Implementation */ = {
 			isa = PBXGroup;
 			children = (
 				6687565613A2B8CA00FF1C56 /* NILauncherViewController.h */,
 				6687565713A2B8CA00FF1C56 /* NILauncherViewController.m */,
-			);
-			name = "View Controller";
-			sourceTree = "<group>";
-		};
-		6687567813A2B9EE00FF1C56 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				6687567913A2B9FC00FF1C56 /* NILauncherView.h */,
-				6687567A13A2B9FC00FF1C56 /* NILauncherView.m */,
 				669E487313A327AC001EE2AC /* NILauncherButton.m */,
 				669E487613A327CD001EE2AC /* NILauncherItemDetails.m */,
 			);
-			name = View;
+			name = "Basic Implementation";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

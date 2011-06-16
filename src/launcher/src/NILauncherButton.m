@@ -16,7 +16,7 @@
 // limitations under the License.
 //
 
-#import "NILauncherView.h"
+#import "NILauncherViewController.h"
 
 // The padding around the entire button on the top, left, bottom, and right sides.
 static const CGFloat kDefaultPadding = 5;
