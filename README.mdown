@@ -7,10 +7,10 @@ care and thought.
 In short, you'll find a number of features within Nimbus to accelerate your development of
 iOS applications. Nimbus will be evolving quickly over time so it is likely in your best
 interest to simply browse the documentation by checking out Nimbus'
-<a href="modules.html">Modules</a>.
+<a href="http://jverkoey.github.com/nimbus/modules.html">Modules</a>.
 
-If you'd like to get started right away, learn how to <a href="group___setup.html">add
-Nimbus to your project</a>.
+If you'd like to get started right away, learn how to
+<a href="http://jverkoey.github.com/nimbus/group___setup.html">add Nimbus to your project</a>.
 
 
 <h1>Three20 was garbage though, why would I use Nimbus?</h1>
