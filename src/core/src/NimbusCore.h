@@ -614,6 +614,12 @@ Class NIUIPopoverControllerClass();
  * @brief For storing and accessing objects in memory.
  * @defgroup In-Memory-Cache In-Memory Cache
  * @{
+ *
+ * The Nimbus in-memory object cache allows you to store objects in memory with an expiration
+ * date attached. Objects with expiration dates drop out of the cache when they have expired.
+ *
+ * This base class, NIMemoryCache, is a generic object store that may be used for anything that
+ * requires support for expiration.
  */
 
 /**
