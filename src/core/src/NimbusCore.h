@@ -320,17 +320,34 @@ BOOL NIIsStringWithAnyText(id object);
  */
 
 /**
- * @brief Swap two method implementations for the given class.
+ * @brief Swap two class instance method implementations.
  *
  * Use this method when you would like to replace an existing method implementation in a class
  * with your own implementation at runtime. In practice this is often used to replace the
  * implementations of UIKit classes where subclassing isn't an adequate solution.
  *
+ * This will only work for methods declared with a -.
+ *
  * After calling this method, any calls to originalSel will actually call newSel and vice versa.
  *
  * Uses method_exchangeImplementations to accomplish this.
  */
-void NISwapMethods(Class cls, SEL originalSel, SEL newSel);
+void NISwapInstanceMethods(Class cls, SEL originalSel, SEL newSel);
+
+/**
+ * @brief Swap two class method implementations.
+ *
+ * Use this method when you would like to replace an existing method implementation in a class
+ * with your own implementation at runtime. In practice this is often used to replace the
+ * implementations of UIKit classes where subclassing isn't an adequate solution.
+ *
+ * This will only work for methods declared with a +.
+ *
+ * After calling this method, any calls to originalSel will actually call newSel and vice versa.
+ *
+ * Uses method_exchangeImplementations to accomplish this.
+ */
+void NISwapClassMethods(Class cls, SEL originalSel, SEL newSel);
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -587,6 +604,105 @@ Class NIUIPopoverControllerClass();
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of SDK Availability /////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#pragma mark -
+#pragma mark In-Memory Cache
+
+/**
+ * @brief For storing and accessing objects in memory.
+ * @defgroup In-Memory-Cache In-Memory Cache
+ * @{
+ */
+
+/**
+ * @brief An in-memory cache for storing objects with expiration support.
+ */
+@interface NIMemoryCache : NSObject {
+@private
+  // Mapping from a name (usually a URL) to an internal object.
+  NSMutableDictionary*  _cacheMap;
+}
+
+/**
+ * @brief Initialize the cache with no initial capacity.
+ */
+- (id)init;
+
+/**
+ * @brief Designated initializer. Initialize the cache with an initial capacity.
+ *
+ * Use a best guess to avoid having the internal data structure reallocate its memory repeatedly
+ * - at least up up to a certain point - as the cache grows.
+ */
+- (id)initWithCapacity:(NSUInteger)capacity;
+
+/**
+ * @brief Store an object in the cache.
+ *
+ * @param object  The object being stored in the cache.
+ * @param name    The name used as a key to store this object.
+ *
+ * The object will be stored without an expiration date. The object will stay in the cache until
+ * it's bumped out due to the cache's memory limit.
+ */
+- (void)storeObject:(id)object withName:(NSString *)name;
+
+/**
+ * @brief Store an object in the cache with an expiration date.
+ *
+ * @param object          The object being stored in the cache.
+ * @param name            The name used as a key to store this object.
+ * @param expirationDate  A date after which this object is no longer valid in the cache.
+ *
+ * If an object is stored with an expiration date that has already passed then the object will
+ * not be stored in the cache and any existing object will be removed. The rationale behind this
+ * is that the object would be removed from the cache the next time it was accessed anyway.
+ */
+- (void)storeObject:(id)object withName:(NSString *)name expiresAfter:(NSDate *)expirationDate;
+
+/**
+ * @brief Retrive an object from the cache.
+ *
+ * If the object has expired then the object will be removed from the cache and nil will be
+ * returned.
+ */
+- (id)objectWithName:(NSString *)name;
+
+/**
+ * @brief Remove an object in the cache.
+ *
+ * @param name The name used as a key to store this object.
+ */
+- (void)removeObjectWithName:(NSString *)name;
+
+/**
+ * @brief Remove all objects from the cache, regardless of expiration dates.
+ *
+ * This will completely clear out the cache and all objects in the cache will be released.
+ */
+- (void)removeAllObjects;
+
+/**
+ * @brief Remove all expired objects from the cache.
+ *
+ * This is meant to be used when a memory warning is received. Subclasses may add additional
+ * functionality to this implementation.
+ */
+- (void)reduceMemoryUsage;
+
+/**
+ * @brief The number of objects stored in this cache.
+ */
+@property (nonatomic, readonly) NSUInteger count;
+
+@end
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**@}*/// End of In-Memory Cache //////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
