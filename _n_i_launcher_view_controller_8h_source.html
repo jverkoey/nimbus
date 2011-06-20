@@ -22,7 +22,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.2.1</span>
+   &#160;<span id="projectnumber">0.3.1</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -95,38 +95,38 @@
 <a name="l00102"></a>00102 <span class="keyword">@property</span> (nonatomic, readwrite, copy) NSArray* pages;
 <a name="l00103"></a>00103 
 <a name="l00104"></a>00104 
-<a name="l00109"></a>00109 <span class="preprocessor">#pragma mark Subclassing</span>
-<a name="l00110"></a>00110 <span class="preprocessor"></span>
-<a name="l00120"></a>00120 - (Class)launcherButtonClass;
-<a name="l00121"></a>00121 
-<a name="l00122"></a>00122 <span class="keyword">@end</span>
+<a name="l00111"></a>00111 <span class="preprocessor">#pragma mark Subclassing</span>
+<a name="l00112"></a>00112 <span class="preprocessor"></span>
+<a name="l00122"></a>00122 - (Class)launcherButtonClass;
 <a name="l00123"></a>00123 
-<a name="l00124"></a>00124 
-<a name="l00135"></a>00135 <span class="keyword">@interface </span><a class="code" href="class_n_i_launcher_button.html" title="A simple launcher button that shows an image and text.">NILauncherButton</a> : UIButton {
-<a name="l00136"></a>00136 <span class="keyword">@private</span>
-<a name="l00137"></a>00137   UIEdgeInsets _padding;
-<a name="l00138"></a>00138 }
-<a name="l00139"></a>00139 
-<a name="l00147"></a><a class="code" href="class_n_i_launcher_button.html#a19f85e61da3480d9209058b450afaa82">00147</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) UIEdgeInsets padding;
-<a name="l00148"></a>00148 
-<a name="l00149"></a>00149 <span class="keyword">@end</span>
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151 
-<a name="l00162"></a>00162 <span class="keyword">@interface </span><a class="code" href="class_n_i_launcher_item_details.html" title="A convenience class for managing the data used to create an NILauncherButton.">NILauncherItemDetails</a> : NSObject &lt;NSCoding&gt; {
-<a name="l00163"></a>00163 <span class="keyword">@private</span>
-<a name="l00164"></a>00164   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* _title;
-<a name="l00165"></a>00165   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* _imagePath;
-<a name="l00166"></a>00166 }
-<a name="l00167"></a>00167 
-<a name="l00171"></a><a class="code" href="class_n_i_launcher_item_details.html#abe184a56d23b572e49ddc3451f9e06ba">00171</a> <span class="keyword">@property</span> (nonatomic, readwrite, copy) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* title;
-<a name="l00172"></a>00172 
-<a name="l00176"></a><a class="code" href="class_n_i_launcher_item_details.html#a5d62475d047295f77e825833721ed6c9">00176</a> <span class="keyword">@property</span> (nonatomic, readwrite, copy) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* imagePath;
-<a name="l00177"></a>00177 
-<a name="l00184"></a>00184 + (id)itemDetailsWithTitle:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)title imagePath:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)imagePath;
-<a name="l00185"></a>00185 
-<a name="l00192"></a>00192 - (id)initWithTitle:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)title imagePath:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)imagePath;
-<a name="l00193"></a>00193 
-<a name="l00194"></a>00194 <span class="keyword">@end</span>
+<a name="l00126"></a>00126 <span class="keyword">@end</span>
+<a name="l00127"></a>00127 
+<a name="l00128"></a>00128 
+<a name="l00139"></a>00139 <span class="keyword">@interface </span><a class="code" href="class_n_i_launcher_button.html" title="A simple launcher button that shows an image and text.">NILauncherButton</a> : UIButton {
+<a name="l00140"></a>00140 <span class="keyword">@private</span>
+<a name="l00141"></a>00141   UIEdgeInsets _padding;
+<a name="l00142"></a>00142 }
+<a name="l00143"></a>00143 
+<a name="l00151"></a><a class="code" href="class_n_i_launcher_button.html#a19f85e61da3480d9209058b450afaa82">00151</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) UIEdgeInsets padding;
+<a name="l00152"></a>00152 
+<a name="l00153"></a>00153 <span class="keyword">@end</span>
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155 
+<a name="l00166"></a>00166 <span class="keyword">@interface </span><a class="code" href="class_n_i_launcher_item_details.html" title="A convenience class for managing the data used to create an NILauncherButton.">NILauncherItemDetails</a> : NSObject &lt;NSCoding&gt; {
+<a name="l00167"></a>00167 <span class="keyword">@private</span>
+<a name="l00168"></a>00168   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* _title;
+<a name="l00169"></a>00169   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* _imagePath;
+<a name="l00170"></a>00170 }
+<a name="l00171"></a>00171 
+<a name="l00175"></a><a class="code" href="class_n_i_launcher_item_details.html#abe184a56d23b572e49ddc3451f9e06ba">00175</a> <span class="keyword">@property</span> (nonatomic, readwrite, copy) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* title;
+<a name="l00176"></a>00176 
+<a name="l00180"></a><a class="code" href="class_n_i_launcher_item_details.html#a5d62475d047295f77e825833721ed6c9">00180</a> <span class="keyword">@property</span> (nonatomic, readwrite, copy) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* imagePath;
+<a name="l00181"></a>00181 
+<a name="l00188"></a>00188 + (id)itemDetailsWithTitle:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)title imagePath:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)imagePath;
+<a name="l00189"></a>00189 
+<a name="l00196"></a>00196 - (id)initWithTitle:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)title imagePath:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)imagePath;
+<a name="l00197"></a>00197 
+<a name="l00198"></a>00198 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
 </div><!-- .fixedwidth -->
@@ -134,7 +134,7 @@
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 14 2011 22:21:18 for Nimbus by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4</small></address>
+Generated on Mon Jun 20 2011 13:29:56 for Nimbus by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4</small></address>
 
 </div> <!-- page -->
 </body>

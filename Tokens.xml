@@ -214,13 +214,23 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>NISwapMethods</Name>
+      <Name>NISwapInstanceMethods</Name>
       <APILanguage>c</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___runtime-_class-_modifications.html</Path>
-    <Anchor>gafa9da20fcf364cf90b11cc5e317a07e7</Anchor>
-    <Abstract>Swap two method implementations for the given class.</Abstract>
+    <Anchor>ga16c4e2d7b363f0ce5d7604044297bde7</Anchor>
+    <Abstract>Swap two class instance method implementations.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NISwapClassMethods</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___runtime-_class-_modifications.html</Path>
+    <Anchor>gac1d5964fb4dec4dc764472410fdffd87</Anchor>
+    <Abstract>Swap two class method implementations.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -463,6 +473,14 @@
     <Path>group___s_d_k-_availability.html</Path>
     <Anchor>gab7b9a8279ba3c54d6654f11f69dbd6f0</Anchor>
     <Abstract>Safely fetch the UIPopoverController class if it is available.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>In-Memory-Cache</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___in-_memory-_cache.html</Path>
+    <Abstract>For storing and accessing objects in memory.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -772,17 +790,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>launcherButtonClass</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILauncherViewController</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_launcher_view_controller.html</Path>
-    <Anchor>a21629435d3eea13bb429361dae2ac0b5</Anchor>
-    <Abstract>The launcher button view class.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>numberOfRowsPerPageInLauncherView:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -849,6 +856,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>launcherButtonClass</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view_controller.html</Path>
+    <Anchor>a21629435d3eea13bb429361dae2ac0b5</Anchor>
+    <Abstract>The launcher button view class.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>pages</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
@@ -857,6 +875,170 @@
     <Path>interface_n_i_launcher_view_controller.html</Path>
     <Anchor>ae6d4791037f7aec351b814ebc0dfad00</Anchor>
     <Abstract>An array of arrays of NILauncherItemDetails.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIMemoryCache</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Abstract>An in-memory cache for storing objects with expiration support.</Abstract>
+    <DeclaredIn>NimbusCore.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>init</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a39f4b8e789e9034c528deb14f1555d80</Anchor>
+    <Abstract>Initialize the cache with no initial capacity.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithCapacity:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a879b58be06ace929185997a92f7bb35b</Anchor>
+    <Abstract>Designated initializer. Initialize the cache with an initial capacity.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>storeObject:withName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a7bc119332422cd4d36863a5f1d7751bd</Anchor>
+    <Abstract>Store an object in the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>storeObject:withName:expiresAfter:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>acaa6af8abea20907cf230ce1191e7ad4</Anchor>
+    <Abstract>Store an object in the cache with an expiration date.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectWithName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>afdd7b533b55c5d8753078e207ec0a9d7</Anchor>
+    <Abstract>Retrive an object from the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>removeObjectWithName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a5dab1798d4e3bcd2b686837f63f31d1c</Anchor>
+    <Abstract>Remove an object in the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>removeAllObjects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a26fda388dffc22aa78dd17905a6fce73</Anchor>
+    <Abstract>Remove all objects from the cache, regardless of expiration dates.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>reduceMemoryUsage</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a8164a276bcc012398b4025d45fe597d2</Anchor>
+    <Abstract>Remove all expired objects from the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>count</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a7d62c34e4297861c986948bd75156d63</Anchor>
+    <Abstract>The number of objects stored in this cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIMemoryCacheInfo</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIMemoryCacheInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache_info.html</Path>
+    <Abstract>A single cache item&amp;#39;s information.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasExpired</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCacheInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache_info.html</Path>
+    <Anchor>ae854ab244f76213c32704ead39bd3e2a</Anchor>
+    <Abstract>Determine whether this cache entry has past its expiration date.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>object</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIMemoryCacheInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache_info.html</Path>
+    <Anchor>aed8c006ce8d5d959170b0c0b8c2c830d</Anchor>
+    <Abstract>The object stored in the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>expirationDate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIMemoryCacheInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache_info.html</Path>
+    <Anchor>aae1dd44b6572518d4386b24911407865</Anchor>
+    <Abstract>The date after which the image is no longer valid and should be removed from the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastAccessTime</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIMemoryCacheInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache_info.html</Path>
+    <Anchor>a5df65400aecde4270f65396746022494</Anchor>
+    <Abstract>The last time this image was accessed.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>

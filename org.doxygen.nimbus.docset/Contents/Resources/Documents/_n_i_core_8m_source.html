@@ -22,7 +22,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.2.1</span>
+   &#160;<span id="projectnumber">0.3.1</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -122,11 +122,18 @@
 <a name="l00071"></a>00071 }
 <a name="l00072"></a>00072 
 <a name="l00073"></a>00073 
-<a name="l00075"></a><a class="code" href="group___runtime-_class-_modifications.html#gafa9da20fcf364cf90b11cc5e317a07e7">00075</a> <span class="keywordtype">void</span> <a class="code" href="group___runtime-_class-_modifications.html#gafa9da20fcf364cf90b11cc5e317a07e7" title="Swap two method implementations for the given class.">NISwapMethods</a>(Class cls, <span class="keywordtype">SEL</span> originalSel, <span class="keywordtype">SEL</span> newSel) {
+<a name="l00075"></a><a class="code" href="group___runtime-_class-_modifications.html#ga16c4e2d7b363f0ce5d7604044297bde7">00075</a> <span class="keywordtype">void</span> <a class="code" href="group___runtime-_class-_modifications.html#ga16c4e2d7b363f0ce5d7604044297bde7" title="Swap two class instance method implementations.">NISwapInstanceMethods</a>(Class cls, <span class="keywordtype">SEL</span> originalSel, <span class="keywordtype">SEL</span> newSel) {
 <a name="l00076"></a>00076   Method originalMethod = class_getInstanceMethod(cls, originalSel);
 <a name="l00077"></a>00077   Method newMethod = class_getInstanceMethod(cls, newSel);
 <a name="l00078"></a>00078   method_exchangeImplementations(originalMethod, newMethod);
 <a name="l00079"></a>00079 }
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 
+<a name="l00083"></a><a class="code" href="group___runtime-_class-_modifications.html#gac1d5964fb4dec4dc764472410fdffd87">00083</a> <span class="keywordtype">void</span> <a class="code" href="group___runtime-_class-_modifications.html#gac1d5964fb4dec4dc764472410fdffd87" title="Swap two class method implementations.">NISwapClassMethods</a>(Class cls, <span class="keywordtype">SEL</span> originalSel, <span class="keywordtype">SEL</span> newSel) {
+<a name="l00084"></a>00084   Method originalMethod = class_getClassMethod(cls, originalSel);
+<a name="l00085"></a>00085   Method newMethod = class_getClassMethod(cls, newSel);
+<a name="l00086"></a>00086   method_exchangeImplementations(originalMethod, newMethod);
+<a name="l00087"></a>00087 }
 </pre></div></div>
 </div>
 </div><!-- .fixedwidth -->
@@ -134,7 +141,7 @@
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 14 2011 22:21:17 for Nimbus by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4</small></address>
+Generated on Mon Jun 20 2011 13:29:55 for Nimbus by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4</small></address>
 
 </div> <!-- page -->
 </body>

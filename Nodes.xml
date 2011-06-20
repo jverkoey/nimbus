@@ -83,6 +83,12 @@
             <Subnodes>
             </Subnodes>
            </Node>
+           <Node>
+            <Name>In-Memory Cache</Name>
+            <Path>group___in-_memory-_cache.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
           </Subnodes>
          </Node>
          <Node>
@@ -96,13 +102,13 @@
           <Path>group___nimbus_launcher.html</Path>
           <Subnodes>
            <Node>
-            <Name>Launcher User Interface</Name>
+            <Name>User Interface</Name>
             <Path>group___launcher-_user-_interface.html</Path>
             <Subnodes>
             </Subnodes>
            </Node>
            <Node>
-            <Name>Launcher Protocols</Name>
+            <Name>Protocols</Name>
             <Path>group___launcher-_protocols.html</Path>
             <Subnodes>
             </Subnodes>
@@ -138,6 +144,14 @@
          <Node>
           <Name>NILauncherViewController</Name>
           <Path>interface_n_i_launcher_view_controller.html</Path>
+         </Node>
+         <Node>
+          <Name>NIMemoryCache</Name>
+          <Path>interface_n_i_memory_cache.html</Path>
+         </Node>
+         <Node>
+          <Name>NIMemoryCacheInfo</Name>
+          <Path>interface_n_i_memory_cache_info.html</Path>
          </Node>
          <Node>
           <Name>NSData</Name>
@@ -188,6 +202,14 @@
          <Node>
           <Name>NILauncherView</Name>
           <Path>interface_n_i_launcher_view.html</Path>
+         </Node>
+         <Node>
+          <Name>NIMemoryCache</Name>
+          <Path>interface_n_i_memory_cache.html</Path>
+         </Node>
+         <Node>
+          <Name>NIMemoryCacheInfo</Name>
+          <Path>interface_n_i_memory_cache_info.html</Path>
          </Node>
          <Node>
           <Name>NSData</Name>

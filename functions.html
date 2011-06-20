@@ -22,7 +22,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.2.1</span>
+   &#160;<span id="projectnumber">0.3.1</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -63,12 +63,15 @@
   <div id="navrow4" class="tabs3">
     <ul class="tablist">
       <li><a href="#index_b"><span>b</span></a></li>
+      <li><a href="#index_c"><span>c</span></a></li>
       <li><a href="#index_d"><span>d</span></a></li>
+      <li><a href="#index_e"><span>e</span></a></li>
       <li><a href="#index_h"><span>h</span></a></li>
       <li><a href="#index_i"><span>i</span></a></li>
       <li><a href="#index_l"><span>l</span></a></li>
       <li><a href="#index_m"><span>m</span></a></li>
       <li><a href="#index_n"><span>n</span></a></li>
+      <li><a href="#index_o"><span>o</span></a></li>
       <li><a href="#index_p"><span>p</span></a></li>
       <li><a href="#index_q"><span>q</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
@@ -89,6 +92,13 @@
 </ul>
 
 
+<h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>count
+: <a class="el" href="interface_n_i_memory_cache.html#a7d62c34e4297861c986948bd75156d63">NIMemoryCache</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
 <li>dataSource
 : <a class="el" href="interface_n_i_launcher_view.html#af849642b45b213adbd85e85054925428">NILauncherView</a>
@@ -99,7 +109,17 @@
 </ul>
 
 
+<h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>expirationDate
+: <a class="el" href="interface_n_i_memory_cache_info.html#aae1dd44b6572518d4386b24911407865">NIMemoryCacheInfo</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_h"></a>- h -</h3><ul>
+<li>hasExpired
+: <a class="el" href="interface_n_i_memory_cache_info.html#ae854ab244f76213c32704ead39bd3e2a">NIMemoryCacheInfo</a>
+</li>
 <li>heightWithFont:constrainedToWidth:lineBreakMode:
 : <a class="el" href="class_n_s_string.html#afb69ae33493b2a463f6fcae7333cec66">NSString</a>
 </li>
@@ -109,6 +129,12 @@
 <h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
 <li>imagePath
 : <a class="el" href="class_n_i_launcher_item_details.html#a5d62475d047295f77e825833721ed6c9">NILauncherItemDetails</a>
+</li>
+<li>init
+: <a class="el" href="interface_n_i_memory_cache.html#a39f4b8e789e9034c528deb14f1555d80">NIMemoryCache</a>
+</li>
+<li>initWithCapacity:
+: <a class="el" href="interface_n_i_memory_cache.html#a879b58be06ace929185997a92f7bb35b">NIMemoryCache</a>
 </li>
 <li>initWithTitle:imagePath:
 : <a class="el" href="class_n_i_launcher_item_details.html#afe62c8eb25254b87f227547cd0c7457b">NILauncherItemDetails</a>
@@ -123,20 +149,23 @@
 
 
 <h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
+<li>lastAccessTime
+: <a class="el" href="interface_n_i_memory_cache_info.html#a5df65400aecde4270f65396746022494">NIMemoryCacheInfo</a>
+</li>
 <li>launcherButtonClass
 : <a class="el" href="interface_n_i_launcher_view_controller.html#a21629435d3eea13bb429361dae2ac0b5">NILauncherViewController</a>
 </li>
 <li>launcherView:buttonForPage:atIndex:
-: <a class="el" href="protocol_n_i_launcher_data_source-p.html#a2da5ac9e819e16c7ca4410a0497bf2ee">&lt;NILauncherDataSource&gt;</a>
-, <a class="el" href="interface_n_i_launcher_view_controller.html#a4b446599258ec63732ba8da1ca435451">NILauncherViewController</a>
+: <a class="el" href="interface_n_i_launcher_view_controller.html#a4b446599258ec63732ba8da1ca435451">NILauncherViewController</a>
+, <a class="el" href="protocol_n_i_launcher_data_source-p.html#a2da5ac9e819e16c7ca4410a0497bf2ee">&lt;NILauncherDataSource&gt;</a>
 </li>
 <li>launcherView:didSelectButton:onPage:atIndex:
-: <a class="el" href="interface_n_i_launcher_view_controller.html#aa34567e04d59adda70eadf99c4e2dc13">NILauncherViewController</a>
-, <a class="el" href="protocol_n_i_launcher_delegate-p.html#a5354d4b3a37c6d1909b785cc4be2ac7c">&lt;NILauncherDelegate&gt;</a>
+: <a class="el" href="protocol_n_i_launcher_delegate-p.html#a5354d4b3a37c6d1909b785cc4be2ac7c">&lt;NILauncherDelegate&gt;</a>
+, <a class="el" href="interface_n_i_launcher_view_controller.html#aa34567e04d59adda70eadf99c4e2dc13">NILauncherViewController</a>
 </li>
 <li>launcherView:numberOfButtonsInPage:
-: <a class="el" href="protocol_n_i_launcher_data_source-p.html#ad330b76b58eebe5dde7b7f7495575e2a">&lt;NILauncherDataSource&gt;</a>
-, <a class="el" href="interface_n_i_launcher_view_controller.html#aade7d0e41b8822171bd8efcd9aa06a5c">NILauncherViewController</a>
+: <a class="el" href="interface_n_i_launcher_view_controller.html#aade7d0e41b8822171bd8efcd9aa06a5c">NILauncherViewController</a>
+, <a class="el" href="protocol_n_i_launcher_data_source-p.html#ad330b76b58eebe5dde7b7f7495575e2a">&lt;NILauncherDataSource&gt;</a>
 </li>
 </ul>
 
@@ -165,6 +194,16 @@
 </ul>
 
 
+<h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
+<li>object
+: <a class="el" href="interface_n_i_memory_cache_info.html#aed8c006ce8d5d959170b0c0b8c2c830d">NIMemoryCacheInfo</a>
+</li>
+<li>objectWithName:
+: <a class="el" href="interface_n_i_memory_cache.html#afdd7b533b55c5d8753078e207ec0a9d7">NIMemoryCache</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
 <li>padding
 : <a class="el" href="interface_n_i_launcher_view.html#af8767bdd838ce4b0b8959331ccecfb8f">NILauncherView</a>
@@ -187,8 +226,17 @@
 
 
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>reduceMemoryUsage
+: <a class="el" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2">NIMemoryCache</a>
+</li>
 <li>reloadData
 : <a class="el" href="interface_n_i_launcher_view.html#a00cd8720501ea27c466fa6e2201d41d4">NILauncherView</a>
+</li>
+<li>removeAllObjects
+: <a class="el" href="interface_n_i_memory_cache.html#a26fda388dffc22aa78dd17905a6fce73">NIMemoryCache</a>
+</li>
+<li>removeObjectWithName:
+: <a class="el" href="interface_n_i_memory_cache.html#a5dab1798d4e3bcd2b686837f63f31d1c">NIMemoryCache</a>
 </li>
 </ul>
 
@@ -200,6 +248,12 @@
 <li>sha1Hash
 : <a class="el" href="class_n_s_data.html#a3531895202d4316334ac39a39a255059">NSData</a>
 , <a class="el" href="class_n_s_string.html#a6579c27a90e18b5e9d531773e2c91cb8">NSString</a>
+</li>
+<li>storeObject:withName:
+: <a class="el" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd">NIMemoryCache</a>
+</li>
+<li>storeObject:withName:expiresAfter:
+: <a class="el" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4">NIMemoryCache</a>
 </li>
 <li>stringByAddingQueryDictionary:
 : <a class="el" href="class_n_s_string.html#a4aa72a6d70054e4e1224d622c340e6bc">NSString</a>
@@ -232,7 +286,7 @@
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 14 2011 22:21:18 for Nimbus by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4</small></address>
+Generated on Mon Jun 20 2011 13:29:56 for Nimbus by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4</small></address>
 
 </div> <!-- page -->
 </body>

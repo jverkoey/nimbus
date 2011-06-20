@@ -22,7 +22,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.2.1</span>
+   &#160;<span id="projectnumber">0.3.1</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -59,20 +59,22 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___runtime-_class-_modifications.html#gafa9da20fcf364cf90b11cc5e317a07e7">NISwapMethods</a> (Class cls, SEL originalSel, SEL newSel)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap two method implementations for the given class.  <a href="#gafa9da20fcf364cf90b11cc5e317a07e7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___runtime-_class-_modifications.html#ga16c4e2d7b363f0ce5d7604044297bde7">NISwapInstanceMethods</a> (Class cls, SEL originalSel, SEL newSel)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap two class instance method implementations.  <a href="#ga16c4e2d7b363f0ce5d7604044297bde7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___runtime-_class-_modifications.html#gac1d5964fb4dec4dc764472410fdffd87">NISwapClassMethods</a> (Class cls, SEL originalSel, SEL newSel)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap two class method implementations.  <a href="#gac1d5964fb4dec4dc764472410fdffd87"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <p>For modifying class implementations at runtime. </p>
 <dl class="attention"><dt><b>Attention:</b></dt><dd>Please use caution when using modifying class implementations at runtime. Apple is prone to rejecting apps for gratuitous use of method swapping. In particular, avoid swapping any NSObject methods such as dealloc, init, and retain/release on UIKit classes.</dd></dl>
 <p>See example: <a class="el" href="_example_runtime_debugging_8m-example.html">Runtime Debugging with Method Swizzling</a> </p>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="gafa9da20fcf364cf90b11cc5e317a07e7"></a><!-- doxytag: member="NimbusCore.h::NISwapMethods" ref="gafa9da20fcf364cf90b11cc5e317a07e7" args="(Class cls, SEL originalSel, SEL newSel)" -->
+<a class="anchor" id="gac1d5964fb4dec4dc764472410fdffd87"></a><!-- doxytag: member="NimbusCore.h::NISwapClassMethods" ref="gac1d5964fb4dec4dc764472410fdffd87" args="(Class cls, SEL originalSel, SEL newSel)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void NISwapMethods </td>
+          <td class="memname">void NISwapClassMethods </td>
           <td>(</td>
           <td class="paramtype">Class&#160;</td>
           <td class="paramname"><em>cls</em>, </td>
@@ -98,8 +100,50 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Swap two method implementations for the given class. </p>
+<p>Swap two class method implementations. </p>
 <p>Use this method when you would like to replace an existing method implementation in a class with your own implementation at runtime. In practice this is often used to replace the implementations of UIKit classes where subclassing isn't an adequate solution.</p>
+<p>This will only work for methods declared with a +.</p>
+<p>After calling this method, any calls to originalSel will actually call newSel and vice versa.</p>
+<p>Uses method_exchangeImplementations to accomplish this. </p>
+
+<p>Definition at line <a class="el" href="_n_i_core_8m_source.html#l00083">83</a> of file <a class="el" href="_n_i_core_8m_source.html">NICore.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga16c4e2d7b363f0ce5d7604044297bde7"></a><!-- doxytag: member="NimbusCore.h::NISwapInstanceMethods" ref="ga16c4e2d7b363f0ce5d7604044297bde7" args="(Class cls, SEL originalSel, SEL newSel)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NISwapInstanceMethods </td>
+          <td>(</td>
+          <td class="paramtype">Class&#160;</td>
+          <td class="paramname"><em>cls</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SEL&#160;</td>
+          <td class="paramname"><em>originalSel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SEL&#160;</td>
+          <td class="paramname"><em>newSel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Swap two class instance method implementations. </p>
+<p>Use this method when you would like to replace an existing method implementation in a class with your own implementation at runtime. In practice this is often used to replace the implementations of UIKit classes where subclassing isn't an adequate solution.</p>
+<p>This will only work for methods declared with a -.</p>
 <p>After calling this method, any calls to originalSel will actually call newSel and vice versa.</p>
 <p>Uses method_exchangeImplementations to accomplish this. </p>
 
@@ -113,7 +157,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 14 2011 22:21:18 for Nimbus by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4</small></address>
+Generated on Mon Jun 20 2011 13:29:56 for Nimbus by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4</small></address>
 
 </div> <!-- page -->
 </body>
