@@ -476,10 +476,10 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>In-Memory-Cache</Name>
+      <Name>In-Memory-Caches</Name>
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
-    <Path>group___in-_memory-_cache.html</Path>
+    <Path>group___in-_memory-_caches.html</Path>
     <Abstract>For storing and accessing objects in memory.</Abstract>
   </Token>
   <Token>
