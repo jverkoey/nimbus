@@ -101,6 +101,8 @@ Goal tasks:
 
 - Migrate the new TTNetworkImageView object and the network image stack using ASIHTTPRequest
   to Nimbus.
+- Build an in-memory object cache (+1)
+- Build an in-memory image cache from the in-memory object cache.
 
 Bonus:
 - Implement tap-and-hold editing on the launcher view.
