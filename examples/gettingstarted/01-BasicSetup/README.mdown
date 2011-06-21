@@ -1,0 +1,98 @@
+
+Hello there!
+============
+
+Welcome to the Nimbus iOS framework. I sincerely hope that your experience here is a
+pleasurable one.
+
+Within Nimbus you will find that no feature exists without painstaking care devoted to
+documentation and testing. This focus results in slower development of the framework
+than might otherwise be seen, but at the clear benefit of being a framework that
+can sustain its own growth.
+
+
+What do you mean by framework?
+==============================
+
+Nimbus is a from-the-ground-up set of libraries that augment the way you build iOS
+applications. At the lowest level, you'll find a set of tools for debugging, testing
+SDK support, and working with Foundation data types. One level above that you'll find
+standard user interfaces, network-enabled views, and various other powerful features
+to accelerate your app development.
+
+Visually it's best to think of Nimbus as a set of features all built upon a common
+core, like so:
+
+    |  Nimbus Launcher  |   Network-Enabled Images  |  Navigator  |  etc...  |
+    --------------------------------------------------------------------------
+                                 The Nimbus Core
+    ==========================================================================
+
+You can choose to include any one of the above features in your project without
+depending on the others. The only part of Nimbus you will consistently need to
+add to your project is the core.
+
+
+So how do I get started?
+========================
+
+The beauty of Nimbus is that you can dip your toes in before committing to the
+full framework. If you have an existing application you can add Nimbus' core
+to your project and begin using some of the core features in your own project
+to familiarize yourself with the useful set of provided tools. If you're starting
+from scratch you can choose to add Nimbus to your project at any point down the
+development life-cycle.
+
+Nothing about Nimbus requires that you commit to it from the start of your
+project. In fact, it's been consciously designed to seamlessly integrate into
+any development environment. If you prefer developing apps with interface builder
+then you can do so. If you prefer doing things by hand then Nimbus will allow
+that as well.
+
+
+Adding Nimbus to your project
+-----------------------------
+
+This project demos the simplest means of adding Nimbus to your project. Expand
+the Nimbus folder in the project and you will see a folder for "Core". Within
+this folder are a number of source files. These source files are the files found
+within `src/core/src`. If we were to add the launcher to this project, we'd drag
+all of the source files found within `src/launcher/src`. Notice a trend?
+
+All of Nimbus' features are split into subfolders within the root src directory.
+Each library follows an identical folder structure, outlined below:
+
+    feature/src
+    feature/examples
+    feature/lib
+    feature/unittests
+
+The meat of the feature - the parts you want to add to your application project -
+is in the feature's src directory. Drag every file in this directory into your
+project, add the feature's header to your project, and you're ready to use the
+feature in your project.
+
+For example, as an exercise let's try adding the launcher to this project.
+Open the Nimbus src directory and find the launcher directory. Within that
+directory open the src directory and drag all of the files within into this
+project. You may want to organize these source files within a "launcher"
+sub-folder in the project under the Nimbus folder.
+
+Now simply `#import "NimbusLauncher.h"` and you can now use the NILauncherView
+and friends.
+
+
+What are the other folders for?
+-------------------------------
+
+The `examples` directory contains short snippets of code that show example
+uses of certain features. These examples are designed to include code that
+you can copy and paste into your project if you'd like to try them out.
+
+The `lib` directory contains files used only when building the feature as
+a static library.
+
+The `unittests` directory contains source for running unit tests. The core
+offers a solid set of examples of unit tests.
+
+
