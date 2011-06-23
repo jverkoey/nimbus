@@ -19,6 +19,7 @@
 @interface NIMemoryCache()
 
 @property (nonatomic, readwrite, retain) NSMutableDictionary* cacheMap;
+@property (nonatomic, readwrite, retain) NILinkedList*        lruCacheObjects;
 
 @end
 
@@ -34,6 +35,9 @@
   id        _object;
   NSDate*   _expirationDate;
   NSDate*   _lastAccessTime;
+
+  // Keep tabs on the location of the lru object so that we can move it quickly.
+  NILinkedListLocation* _lruLocation;
 }
 
 /**
@@ -62,6 +66,11 @@
 @property (nonatomic, readwrite, retain) NSDate* lastAccessTime;
 
 /**
+ * @brief The location of this object in the least-recently used linked list.
+ */
+@property (nonatomic, readwrite, assign) NILinkedListLocation* lruLocation;
+
+/**
  * @brief Determine whether this cache entry has past its expiration date.
  *
  * @returns YES if an expiration date has been specified and the expiration date has been passed.
@@ -78,12 +87,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIMemoryCache
 
-@synthesize cacheMap = _cacheMap;
+@synthesize cacheMap        = _cacheMap;
+@synthesize lruCacheObjects = _lruCacheObjects;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_cacheMap);
+  NI_RELEASE_SAFELY(_lruCacheObjects);
 
   [super dealloc];
 }
@@ -99,6 +110,7 @@
 - (id)initWithCapacity:(NSUInteger)capacity {
   if ((self = [super init])) {
     _cacheMap = [[NSMutableDictionary alloc] initWithCapacity:capacity];
+    _lruCacheObjects = [[NILinkedList alloc] init];
   }
   return self;
 }
@@ -111,6 +123,15 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)updateAccessTimeForInfo:(NIMemoryCacheInfo *)info {
+  info.lastAccessTime = [NSDate date];
+
+  [_lruCacheObjects removeObjectAtLocation:info.lruLocation];
+  info.lruLocation = [_lruCacheObjects addObject:info];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NIMemoryCacheInfo *)cacheInfoForName:(NSString *)name {
   return [_cacheMap objectForKey:name];
 }
@@ -118,6 +139,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setCacheInfo:(NIMemoryCacheInfo *)info forName:(NSString *)name {
+  // Storing in the cache counts as an access of the object, so we update the access time.
+  [self updateAccessTimeForInfo:info];
+
   [self willSetObject: info.object
              withName: name
        previousObject: [self cacheInfoForName:name].object];
@@ -182,9 +206,6 @@
   // Store the object in the cache item.
   info.object = object;
 
-  // Storing in the cache counts as an access of the object, so we update the access time.
-  info.lastAccessTime = [NSDate date];
-
   // Override any existing expiration date.
   info.expirationDate = expirationDate;
 
@@ -205,7 +226,7 @@
   }
 
   // Update the access time whenever we fetch an object from the cache.
-  info.lastAccessTime = [NSDate date];
+  [self updateAccessTimeForInfo:info];
 
   return info.object;
 }
@@ -259,6 +280,7 @@
 @synthesize object          = _object;
 @synthesize expirationDate  = _expirationDate;
 @synthesize lastAccessTime  = _lastAccessTime;
+@synthesize lruLocation     = _lruLocation;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -267,6 +289,7 @@
   NI_RELEASE_SAFELY(_object);
   NI_RELEASE_SAFELY(_expirationDate);
   NI_RELEASE_SAFELY(_lastAccessTime);
+  _lruLocation = nil;
 
   [super dealloc];
 }
@@ -287,6 +310,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIImageMemoryCache
 
+@synthesize totalMemoryUsage        = _totalMemoryUsage;
 @synthesize maxTotalMemoryUsage     = _maxTotalMemoryUsage;
 @synthesize maxTotalLowMemoryUsage  = _maxTotalLowMemoryUsage;
 
@@ -307,33 +331,45 @@
   // Remove all expired images first.
   [super reduceMemoryUsage];
 
-  // We can use time as an implicit sort method. Whenever an object is touched, move it to the
-  // end of the last touched array. This will likely be best accomplished using a linked list.
-  // When we want to delete images, just iterate through the linked list until we've deleted
-  // enough. BAM. O(1) removal, insertion, and O(c) deletion.
-
-  NSSortDescriptor* descriptor = [[[NSSortDescriptor alloc] initWithKey: @"lastAccessTime"
-                                                              ascending: YES] autorelease];
-  NSArray* sortedImages = [[self.cacheMap allValues] sortedArrayUsingDescriptors:
-                           [NSArray arrayWithObject:descriptor]];
-
-  for (NSInteger ix = 0; ix < [sortedImages count] && _totalMemoryUsage >= _maxTotalLowMemoryUsage;
-       ++ix) {
-    NIMemoryCacheInfo* info = [sortedImages objectAtIndex:ix];
-    [self removeCacheInfoForName:info.name];
+  if (_maxTotalLowMemoryUsage > 0) {
+    // Remove the least recently used images by iterating over the linked list.
+    while (_totalMemoryUsage > _maxTotalLowMemoryUsage) {
+      NIMemoryCacheInfo* info = [self.lruCacheObjects head];
+      [self removeCacheInfoForName:info.name];
+    }
   }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {
+  NIDASSERT([object isKindOfClass:[UIImage class]]);
+  if (![object isKindOfClass:[UIImage class]]) {
+    return;
+  }
   _totalMemoryUsage -= [self numberOfBytesUsedByImage:previousObject];
   _totalMemoryUsage += [self numberOfBytesUsedByImage:object];
+
+  if (_maxTotalMemoryUsage > 0) {
+    // Remove least recently used images until we satisfy our memory constraints.
+    while (_totalMemoryUsage > _maxTotalMemoryUsage) {
+      NIMemoryCacheInfo* info = [self.lruCacheObjects head];
+      [self removeCacheInfoForName:info.name];
+    }
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willRemoveObject:(id)object withName:(NSString *)name {
+  NIDASSERT([object isKindOfClass:[UIImage class]]);
+  if (![object isKindOfClass:[UIImage class]]) {
+    return;
+  }
+
+  NIMemoryCacheInfo* info = [self cacheInfoForName:name];
+  [self.lruCacheObjects removeObjectAtLocation:info.lruLocation];
+
   _totalMemoryUsage -= [self numberOfBytesUsedByImage:object];
 }
 

@@ -227,4 +227,169 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testReduceMemoryUsage {
+  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+
+  id cacheObject1 = [NSArray array];
+  [cache storeObject: cacheObject1
+            withName: @"obj1"
+        expiresAfter: [NSDate dateWithTimeIntervalSinceNow:1]];
+
+  id cacheObject2 = [NSDictionary dictionary];
+  [cache storeObject: cacheObject2
+            withName: @"obj2"
+        expiresAfter: [NSDate dateWithTimeIntervalSinceNow:10]];
+
+  [NSDate setFakeDate:[NSDate dateWithTimeIntervalSinceNow:2]];
+
+  // This makes [NSDate date] call our fakeDate implementation, which allows us to fake the
+  // current time so that we don't have to pause the tests while we wait for the object to
+  // expire.
+  [NSDate swizzleMethodsForUnitTesting];
+
+  STAssertEquals([cache count], (NSUInteger)2, @"Cache should have two objects.");
+
+  [cache reduceMemoryUsage];
+
+  STAssertNil([cache objectWithName:@"obj1"], @"Object 1 should have expired.");
+
+  STAssertEquals([cache count], (NSUInteger)1, @"Cache should have one object left.");
+
+  STAssertNotNil([cache objectWithName:@"obj2"], @"Object 2 should still be around.");
+
+  // Reset the class implementations when we're done with them.
+  [NSDate swizzleMethodsForUnitTesting];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @brief Create an image of a given size. The contents are undefined.
+ */
+- (UIImage *)emptyImageWithSize:(CGSize)size {
+  UIGraphicsBeginImageContext(size);
+  UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+
+  return image;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testImageCacheStoreTooMuch {
+  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+
+  static const NSUInteger numberOfBytesInOneImage = 100 * 100 * 4;
+  cache.maxTotalMemoryUsage = numberOfBytesInOneImage;
+
+  UIImage* img1 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+  UIImage* img2 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+
+  [cache storeObject: img1
+            withName: @"obj1"];
+
+  // This second image will push out the first image.
+  [cache storeObject: img2
+            withName: @"obj2"];
+
+  STAssertEquals([cache count], (NSUInteger)1, @"Cache should have one object.");
+  STAssertNil([cache objectWithName:@"obj1"], @"Image 1 should not still be around.");
+  STAssertNotNil([cache objectWithName:@"obj2"], @"Image 2 should still be around.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testImageCacheReduceMemoryUsage {
+  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+
+  static const NSUInteger numberOfBytesInOneImage = 100 * 100 * 4;
+  cache.maxTotalMemoryUsage = numberOfBytesInOneImage * 2;
+  cache.maxTotalLowMemoryUsage = numberOfBytesInOneImage;
+
+  UIImage* img1 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+  UIImage* img2 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+
+  [cache storeObject: img1
+            withName: @"obj1"];
+
+  [cache storeObject: img2
+            withName: @"obj2"];
+
+  STAssertEquals([cache count], (NSUInteger)2, @"Cache should have two objects.");
+
+  // Our "low memory" cache size will only fit one image. The first image should be the one
+  // removed.
+  [cache reduceMemoryUsage];
+
+  STAssertEquals([cache count], (NSUInteger)1, @"Cache should have one object.");
+  STAssertNil([cache objectWithName:@"obj1"], @"Image 1 should not still be around.");
+  STAssertNotNil([cache objectWithName:@"obj2"], @"Image 2 should still be around.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testImageCacheReduceMemoryUsageWithAccess {
+  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+
+  static const NSUInteger numberOfBytesInOneImage = 100 * 100 * 4;
+  cache.maxTotalMemoryUsage = numberOfBytesInOneImage * 2;
+  cache.maxTotalLowMemoryUsage = numberOfBytesInOneImage;
+
+  UIImage* img1 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+  UIImage* img2 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+
+  [cache storeObject: img1
+            withName: @"obj1"];
+
+  [cache storeObject: img2
+            withName: @"obj2"];
+
+  // Update the access time for img1.
+  [cache objectWithName:@"obj1"];
+
+  STAssertEquals([cache count], (NSUInteger)2, @"Cache should have two objects.");
+
+  // Our "low memory" cache size will only fit one image.
+  [cache reduceMemoryUsage];
+
+  STAssertEquals([cache count], (NSUInteger)1, @"Cache should have one object.");
+  STAssertNotNil([cache objectWithName:@"obj1"], @"Image 1 should still be around.");
+  STAssertNil([cache objectWithName:@"obj2"], @"Image 2 should not still be around.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testImageCacheReduceMemoryUsageWithThrashingAccess {
+  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+
+  static const NSUInteger numberOfBytesInOneImage = 100 * 100 * 4;
+  cache.maxTotalMemoryUsage = numberOfBytesInOneImage * 2;
+  cache.maxTotalLowMemoryUsage = numberOfBytesInOneImage;
+
+  UIImage* img1 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+  UIImage* img2 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+
+  [cache storeObject: img1
+            withName: @"obj1"];
+
+  [cache storeObject: img2
+            withName: @"obj2"];
+
+  for (NSInteger ix = 0; ix < 10; ++ix) {
+    [cache objectWithName:@"obj1"];
+    [cache objectWithName:@"obj2"];
+  }
+
+  STAssertEquals([cache count], (NSUInteger)2, @"Cache should have two objects.");
+
+  // Our "low memory" cache size will only fit one image.
+  [cache reduceMemoryUsage];
+
+  STAssertEquals([cache count], (NSUInteger)1, @"Cache should have one object.");
+  STAssertNil([cache objectWithName:@"obj1"], @"Image 1 should not still be around.");
+  STAssertNotNil([cache objectWithName:@"obj2"], @"Image 2 should still be around.");
+}
+
+
 @end

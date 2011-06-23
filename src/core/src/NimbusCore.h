@@ -774,6 +774,9 @@ Class NIUIPopoverControllerClass();
 @private
   // Mapping from a name (usually a URL) to an internal object.
   NSMutableDictionary*  _cacheMap;
+
+  // A linked list of least recently used cache objects. Most recently used is the tail.
+  NILinkedList*         _lruCacheObjects;
 }
 
 /**
@@ -889,6 +892,11 @@ Class NIUIPopoverControllerClass();
   NSUInteger _maxTotalMemoryUsage;
   NSUInteger _maxTotalLowMemoryUsage;
 }
+
+/**
+ * @brief The total amount of memory being used.
+ */
+@property (nonatomic, readonly, assign) NSUInteger totalMemoryUsage;
 
 /**
  * @brief The maximum amount of memory this cache may ever use.
