@@ -23,6 +23,8 @@
 		66D36C8B13ABB63D00455D5B /* NIMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D36C8A13ABB63D00455D5B /* NIMemoryCache.m */; };
 		66D36CD313AFAE0200455D5B /* NIMemoryCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D36CD213AFAE0200455D5B /* NIMemoryCacheTests.m */; };
 		66D36D0113AFB30500455D5B /* NSDate+UnitTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D36D0013AFB30500455D5B /* NSDate+UnitTesting.m */; };
+		66D36E1F13B14AE400455D5B /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D36E1E13B14AE400455D5B /* NIDataStructures.m */; };
+		66D36EA613B1AAF500455D5B /* NIDataStructureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D36EA213B1AA8300455D5B /* NIDataStructureTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		66D36CD213AFAE0200455D5B /* NIMemoryCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIMemoryCacheTests.m; path = unittests/NIMemoryCacheTests.m; sourceTree = "<group>"; };
 		66D36CFF13AFB30500455D5B /* NSDate+UnitTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+UnitTesting.h"; path = "unittests/NSDate+UnitTesting.h"; sourceTree = "<group>"; };
 		66D36D0013AFB30500455D5B /* NSDate+UnitTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+UnitTesting.m"; path = "unittests/NSDate+UnitTesting.m"; sourceTree = "<group>"; };
+		66D36E1E13B14AE400455D5B /* NIDataStructures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDataStructures.m; path = src/NIDataStructures.m; sourceTree = "<group>"; };
+		66D36EA213B1AA8300455D5B /* NIDataStructureTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDataStructureTests.m; path = unittests/NIDataStructureTests.m; sourceTree = "<group>"; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libNimbusCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -124,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				6687507F13A14B5600FF1C56 /* NICore.m */,
+				66D36E1E13B14AE400455D5B /* NIDataStructures.m */,
 				66874FF713A02B1800FF1C56 /* NIDebug.m */,
 				6687518F13A2650800FF1C56 /* NIRects.m */,
 				668754AD13A2709600FF1C56 /* NIPaths.m */,
@@ -159,6 +164,7 @@
 			children = (
 				6687510613A1ACD500FF1C56 /* NICoreTests.m */,
 				6687552C13A2825700FF1C56 /* NICoreAdditionTests.m */,
+				66D36EA213B1AA8300455D5B /* NIDataStructureTests.m */,
 				66D36CD213AFAE0200455D5B /* NIMemoryCacheTests.m */,
 				66D36CFF13AFB30500455D5B /* NSDate+UnitTesting.h */,
 				66D36D0013AFB30500455D5B /* NSDate+UnitTesting.m */,
@@ -284,6 +290,7 @@
 			files = (
 				6687510913A1AD1C00FF1C56 /* NICoreTests.m in Sources */,
 				6687552D13A2825700FF1C56 /* NICoreAdditionTests.m in Sources */,
+				66D36EA613B1AAF500455D5B /* NIDataStructureTests.m in Sources */,
 				66D36CD313AFAE0200455D5B /* NIMemoryCacheTests.m in Sources */,
 				66D36D0113AFB30500455D5B /* NSDate+UnitTesting.m in Sources */,
 			);
@@ -302,6 +309,7 @@
 				6687555713A2857C00FF1C56 /* NSString+NimbusCore.m in Sources */,
 				66D267F513A7FAD3006D6CA1 /* NIDeviceOrientation.m in Sources */,
 				66D36C8B13ABB63D00455D5B /* NIMemoryCache.m in Sources */,
+				66D36E1F13B14AE400455D5B /* NIDataStructures.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -225,6 +225,151 @@ if (NIIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
 
 
 #pragma mark -
+#pragma mark Data Structures
+
+/**
+ * @brief For data structures.
+ * @defgroup Data-Structures Data Structures
+ * @{
+ */
+
+struct NILinkedListNode {
+  id    object;
+  struct NILinkedListNode* prev;
+  struct NILinkedListNode* next;
+};
+
+typedef void NILinkedListLocation;
+
+/**
+ * @brief A linked list implementation.
+ *
+ * This data structure is provided for constant time insertion and deletion of objects
+ * in a collection.
+ */
+@interface NILinkedList : NSObject <NSCopying, NSCoding, NSFastEnumeration> {
+@private
+  struct NILinkedListNode* _head;
+  struct NILinkedListNode* _tail;
+  unsigned long _count;
+
+  // Used internally to track modifications to the linked list.
+  unsigned long _modificationNumber;
+}
+
+/**
+ * @brief The first object in the linked list.
+ */
+@property (nonatomic, readonly) id head;
+
+/**
+ * @brief The last object in the linked list.
+ */
+@property (nonatomic, readonly) id tail;
+
+/**
+ * @brief The number of objects in the linked list.
+ */
+@property (nonatomic, readonly) unsigned long count;
+
+/**
+ * @brief Designated initializer.
+ */
+- (id)init;
+
+/**
+ * @brief Convenience method for creating an autoreleased linked list.
+ *
+ * Identical to [[[NILinkedList alloc] init] autorelease];
+ */
++ (NILinkedList *)linkedList;
+
+/**
+ * @brief Append an object to the linked list.
+ *
+ * Run-time: O(1)
+ *
+ * @returns A location within the linked list.
+ */
+- (NILinkedListLocation *)addObject:(id)object;
+
+/**
+ * @brief Retrieve the object at a specific location.
+ *
+ * Run-time: O(1)
+ */
+- (id)objectAtLocation:(NILinkedListLocation *)location;
+
+/**
+ * @brief Remove all objects from the linked list.
+ *
+ * Run-time: Theta(count)
+ */
+- (void)removeAllObjects;
+
+/**
+ * @brief Remove an object from the linked list.
+ *
+ * Run-time: O(count)
+ */
+- (void)removeObject:(id)object;
+
+/**
+ * @brief Remove the first object from the linked list.
+ *
+ * Run-time: O(1)
+ */
+- (void)removeFirstObject;
+
+/**
+ * @brief Remove the last object from the linked list.
+ *
+ * Run-time: O(1)
+ */
+- (void)removeLastObject;
+
+
+/**
+ * @name Pseudo-index support
+ * The following methods are provided to aid in accessing objects in the linked list in constant
+ * time.
+ * @{
+ */
+#pragma mark Pseudo-index support
+
+/**
+ * @brief Search for an object in the linked list.
+ *
+ * Run-time: O(count)
+ *
+ * @returns A location within the linked list.
+ */
+- (NILinkedListLocation *)locationOfObject:(id)object;
+
+/**
+ * @brief Remove an object at a predetermined location.
+ *
+ * Run-time: O(1)
+ *
+ * It is assumed that this location still exists in the linked list. If the object this
+ * location refers to has since been removed then this method will have undefined results.
+ *
+ * This is provided as an optimization over the O(n) removal method but should be used with care.
+ */
+- (void)removeObjectAtLocation:(NILinkedListLocation *)location;
+
+/**@}*/// End of Pseudo-index support
+
+@end
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**@}*/// End of Data Structures //////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#pragma mark -
 #pragma mark Non-Retaining Collections
 
 /**
@@ -241,7 +386,7 @@ if (NIIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
  */
 
 /**
- * Creates a mutable array which does not retain references to the objects it contains.
+ * @brief Creates a mutable array which does not retain references to the objects it contains.
  *
  * Typically used with arrays of delegates.
  */
@@ -249,14 +394,14 @@ NSMutableArray* NICreateNonRetainingArray();
 
 
 /**
- * Creates a mutable dictionary which does not retain references to the values it contains.
+ * @brief Creates a mutable dictionary which does not retain references to the values it contains.
  *
  * Typically used with dictionaries of delegates.
  */
 NSMutableDictionary* NICreateNonRetainingDictionary();
 
 /**
- * Creates a mutable set which does not retain references to the values it contains.
+ * @brief Creates a mutable set which does not retain references to the values it contains.
  *
  * Typically used with sets of delegates.
  */
@@ -608,22 +753,22 @@ Class NIUIPopoverControllerClass();
 
 
 #pragma mark -
-#pragma mark In-Memory Cache
+#pragma mark In-Memory Caches
 
 /**
  * @brief For storing and accessing objects in memory.
- * @defgroup In-Memory-Cache In-Memory Cache
+ * @defgroup In-Memory-Caches In-Memory Caches
  * @{
  *
- * The Nimbus in-memory object cache allows you to store objects in memory with an expiration
- * date attached. Objects with expiration dates drop out of the cache when they have expired.
- *
- * This base class, NIMemoryCache, is a generic object store that may be used for anything that
+ * The base class, NIMemoryCache, is a generic object store that may be used for anything that
  * requires support for expiration.
  */
 
 /**
  * @brief An in-memory cache for storing objects with expiration support.
+ *
+ * The Nimbus in-memory object cache allows you to store objects in memory with an expiration
+ * date attached. Objects with expiration dates drop out of the cache when they have expired.
  */
 @interface NIMemoryCache : NSObject {
 @private
@@ -703,7 +848,64 @@ Class NIUIPopoverControllerClass();
  */
 @property (nonatomic, readonly) NSUInteger count;
 
+
+/**
+ * @name Subclassing
+ * The following methods are provided to aid in subclassing and are not meant to be
+ * used externally.
+ * @{
+ */
+#pragma mark Subclassing
+
+/**
+ * @brief An object is about to be stored in the cache.
+ *
+ * @param object          The object to be stored in the cache.
+ * @param name            The cache name for the object.
+ * @param previousObject  The object previously stored in the cache. This may be the same as object.
+ */
+- (void)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject;
+
+/**
+ * @brief An object is about to be removed from the cache.
+ *
+ * @param object  The object about to removed from the cache.
+ * @param name    The cache name for the object about to be removed.
+ */
+- (void)willRemoveObject:(id)object withName:(NSString *)name;
+
+/**@}*/
+
 @end
+
+
+/**
+ * @brief An in-memory cache for storing images with a least-recently-used memory cap.
+ */
+@interface NIImageMemoryCache : NIMemoryCache {
+@private
+  NSUInteger _totalMemoryUsage;
+
+  NSUInteger _maxTotalMemoryUsage;
+  NSUInteger _maxTotalLowMemoryUsage;
+}
+
+/**
+ * @brief The maximum amount of memory this cache may ever use.
+ *
+ * Defaults to 0, which is special cased to represent an unbounded cache size.
+ */
+@property (nonatomic, readwrite, assign) NSUInteger maxTotalMemoryUsage;
+
+/**
+ * @brief The maximum amount of memory this cache may use after a call to reduceMemoryUsage.
+ *
+ * Defaults to 0, which is special cased to represent an unbounded cache size.
+ */
+@property (nonatomic, readwrite, assign) NSUInteger maxTotalLowMemoryUsage;
+
+@end
+
 
 
 
