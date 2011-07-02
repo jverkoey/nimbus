@@ -160,7 +160,7 @@ SHORT_NAMES            = NO
 # comments will behave just like regular Qt-style comments 
 # (thus requiring an explicit @brief command for a brief description.)
 
-JAVADOC_AUTOBRIEF      = NO
+JAVADOC_AUTOBRIEF      = YES
 
 # If the QT_AUTOBRIEF tag is set to YES then Doxygen will 
 # interpret the first line (until the first dot) of a Qt-style 
@@ -456,7 +456,7 @@ SORT_MEMBERS_CTORS_1ST = NO
 # hierarchy of group names into alphabetical order. If set to NO (the default) 
 # the group names will appear in their defined order.
 
-SORT_GROUP_NAMES       = NO
+SORT_GROUP_NAMES       = YES
 
 # If the SORT_BY_SCOPE_NAME tag is set to YES, the class list will be 
 # sorted by fully-qualified names, including namespaces. If set to 
@@ -481,25 +481,25 @@ STRICT_PROTO_MATCHING  = NO
 # disable (NO) the todo list. This list is created by putting \todo 
 # commands in the documentation.
 
-GENERATE_TODOLIST      = YES
+GENERATE_TODOLIST      = NO
 
 # The GENERATE_TESTLIST tag can be used to enable (YES) or 
 # disable (NO) the test list. This list is created by putting \test 
 # commands in the documentation.
 
-GENERATE_TESTLIST      = YES
+GENERATE_TESTLIST      = NO
 
 # The GENERATE_BUGLIST tag can be used to enable (YES) or 
 # disable (NO) the bug list. This list is created by putting \bug 
 # commands in the documentation.
 
-GENERATE_BUGLIST       = YES
+GENERATE_BUGLIST       = NO
 
 # The GENERATE_DEPRECATEDLIST tag can be used to enable (YES) or 
 # disable (NO) the deprecated list. This list is created by putting 
 # \deprecated commands in the documentation.
 
-GENERATE_DEPRECATEDLIST= YES
+GENERATE_DEPRECATEDLIST= NO
 
 # The ENABLED_SECTIONS tag can be used to enable conditional 
 # documentation sections, marked by \if sectionname ... \endif.
@@ -520,7 +520,7 @@ MAX_INITIALIZER_LINES  = 30
 # at the bottom of the documentation of classes and structs. If set to YES the 
 # list will mention the files that were used to generate the documentation.
 
-SHOW_USED_FILES        = YES
+SHOW_USED_FILES        = NO
 
 # If the sources in your project are distributed over multiple directories 
 # then setting the SHOW_DIRECTORIES tag to YES will show the directory hierarchy 
@@ -921,13 +921,13 @@ HTML_COLORSTYLE_SAT    = 100
 # so 80 represents a gamma of 0.8, The value 220 represents a gamma of 2.2, 
 # and 100 does not change the gamma.
 
-HTML_COLORSTYLE_GAMMA  = 80
+HTML_COLORSTYLE_GAMMA  = 130
 
 # If the HTML_TIMESTAMP tag is set to YES then the footer of each generated HTML 
 # page will contain the date and time when the page was generated. Setting 
 # this to NO can help when comparing the output of multiple runs.
 
-HTML_TIMESTAMP         = YES
+HTML_TIMESTAMP         = NO
 
 # If the HTML_ALIGN_MEMBERS tag is set to YES, the members of classes, 
 # files or namespaces will be aligned in HTML using tables. If set to 
@@ -961,20 +961,20 @@ GENERATE_DOCSET        = YES
 # documentation sets from a single provider (such as a company or product suite) 
 # can be grouped.
 
-DOCSET_FEEDNAME        = "Doxygen generated docs"
+DOCSET_FEEDNAME        = "Nimbus Documentation"
 
 # When GENERATE_DOCSET tag is set to YES, this tag specifies a string that 
 # should uniquely identify the documentation set bundle. This should be a 
 # reverse domain-name style string, e.g. com.mycompany.MyDocSet. Doxygen 
 # will append .docset to the name.
 
-DOCSET_BUNDLE_ID       = org.doxygen.nimbus
+DOCSET_BUNDLE_ID       = org.jeffverkoeyen.nimbus
 
 # When GENERATE_PUBLISHER_ID tag specifies a string that should uniquely identify 
 # the documentation publisher. This should be a reverse domain-name style 
 # string, e.g. com.mycompany.MyDocSet.documentation.
 
-DOCSET_PUBLISHER_ID    = org.doxygen.Nimbus
+DOCSET_PUBLISHER_ID    = org.jeffverkoeyen.nimbus
 
 # The GENERATE_PUBLISHER_NAME tag identifies the documentation publisher.
 
@@ -1098,7 +1098,7 @@ ECLIPSE_DOC_ID         = org.doxygen.Project
 # top of each HTML page. The value NO (the default) enables the index and 
 # the value YES disables it.
 
-DISABLE_INDEX          = NO
+DISABLE_INDEX          = YES
 
 # The ENUM_VALUES_PER_LINE tag can be used to set the number of enum values 
 # (range [0,1..20]) that doxygen will group on one line in the generated HTML 
@@ -1115,7 +1115,7 @@ ENUM_VALUES_PER_LINE   = 4
 # JavaScript, DHTML, CSS and frames is required (i.e. any modern browser). 
 # Windows users are probably better off using the HTML help feature.
 
-GENERATE_TREEVIEW      = NO
+GENERATE_TREEVIEW      = YES
 
 # By enabling USE_INLINE_TREES, doxygen will generate the Groups, Directories, 
 # and Class Hierarchy pages using a tree view instead of an ordered list.
