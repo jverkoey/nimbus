@@ -151,6 +151,25 @@
 
 /**
  * An in-memory cache for storing images with a least-recently-used memory cap.
+ *
+ * When reduceMemoryUsage is called, the least recently used images are removed from the cache
+ * until the totalMemoryUsage is below maxTotalLowMemoryUsage.
+ *
+ * When an image is added to the cache that causes the memory usage to pass the max, the
+ * least recently used images are removed from the cache until totalMemoryUsage is below
+ * maxTotalMemoryUsage.
+ *
+ * By default the image memory cache has no upper bound on its memory. You must explicitly
+ * set this value in your application.
+ *
+ *      @attention If the cache is too small to fit the newly added image, then all images
+ *                 will end up being removed including the one being added.
+ *
+ *      @remark The way memory is calculated isn't completely accurate, so do not use it
+ *              as a means of measuring the exact number of bytes used in the cache.
+ *
+ *      @see Nimbus::globalImageMemoryCache
+ *      @see Nimbus::setGlobalImageMemoryCache:
  */
 @interface NIImageMemoryCache : NIMemoryCache {
 @private

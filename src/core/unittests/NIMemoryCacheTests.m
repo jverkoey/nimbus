@@ -266,15 +266,37 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * @brief Create an image of a given size. The contents are undefined.
- */
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Image In-Memory Cache
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Create an image of a given size. The contents are undefined.
 - (UIImage *)emptyImageWithSize:(CGSize)size {
   UIGraphicsBeginImageContext(size);
   UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
 
   return image;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testImageCacheNoLimit {
+  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+
+  UIImage* img1 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+  UIImage* img2 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+
+  [cache storeObject: img1
+            withName: @"obj1"];
+  [cache storeObject: img2
+            withName: @"obj2"];
+
+  STAssertEquals([cache count], (NSUInteger)2, @"Cache should have two objects.");
+  STAssertNotNil([cache objectWithName:@"obj1"], @"Image 1 should still be around.");
+  STAssertNotNil([cache objectWithName:@"obj2"], @"Image 2 should still be around.");
 }
 
 
