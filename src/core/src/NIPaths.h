@@ -18,9 +18,6 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma mark -
-#pragma mark Paths
-
 /**
  * For creating standard system paths.
  *

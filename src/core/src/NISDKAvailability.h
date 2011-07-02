@@ -19,9 +19,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#pragma mark -
-#pragma mark SDK Availability
-
 /**
  * For checking SDK feature availibility.
  *

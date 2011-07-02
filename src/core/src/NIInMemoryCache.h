@@ -16,9 +16,6 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma mark -
-#pragma mark In-Memory Caches
-
 /**
  * For storing and accessing objects in memory.
  *

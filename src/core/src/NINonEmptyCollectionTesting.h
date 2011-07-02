@@ -18,9 +18,6 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma mark -
-#pragma mark Non-Empty Collection Testing
-
 /**
  * For testing whether a collection is of a certain type and is non-empty.
  *

@@ -16,9 +16,6 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma mark -
-#pragma mark Data Structures
-
 /**
  * For classic computer science data structures.
  *

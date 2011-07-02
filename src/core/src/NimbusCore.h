@@ -32,7 +32,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#ifdef BASE_PRODUCT_NAME
+#ifdef NIMBUS_STATIC_LIBRARY
 // For when you're setting this library as a dependency in your project.
 #import "NimbusCore/NIDataStructures.h"
 #import "NimbusCore/NIDebuggingTools.h"

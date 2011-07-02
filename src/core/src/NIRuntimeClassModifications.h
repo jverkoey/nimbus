@@ -18,9 +18,6 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma mark -
-#pragma mark Runtime Class Modifications
-
 /**
  * For modifying class implementations at runtime.
  *

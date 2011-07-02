@@ -18,9 +18,6 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma mark -
-#pragma mark Debugging Tools
-
 /**
  * For inspecting code and writing to logs in debug builds.
  *
