@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		662F038213AA4979008AE522 /* ASIHTTPRequest_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 662F038113AA4979008AE522 /* ASIHTTPRequest_Prefix.pch */; };
 		662F03AB13AA4AB2008AE522 /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 662F039713AA4AB2008AE522 /* ASIAuthenticationDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		662F03AC13AA4AB2008AE522 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 662F039813AA4AB2008AE522 /* ASIAuthenticationDialog.m */; };
 		662F03AD13AA4AB2008AE522 /* ASICacheDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 662F039913AA4AB2008AE522 /* ASICacheDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -162,7 +161,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				662F038213AA4979008AE522 /* ASIHTTPRequest_Prefix.pch in Headers */,
 				662F03AB13AA4AB2008AE522 /* ASIAuthenticationDialog.h in Headers */,
 				662F03AD13AA4AB2008AE522 /* ASICacheDelegate.h in Headers */,
 				662F03AE13AA4AB2008AE522 /* ASIDataCompressor.h in Headers */,
