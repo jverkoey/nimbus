@@ -28,7 +28,7 @@
  * @defgroup Runtime-Class-Modifications Runtime Class Modifications
  * @{
  *
- * @attention Please use caution when using modifying class implementations at runtime.
+ * @attention Please use caution when modifying class implementations at runtime.
  * Apple is prone to rejecting apps for gratuitous use of method swapping. In particular,
  * avoid swapping any NSObject methods such as dealloc, init, and retain/release on UIKit classes.
  *
