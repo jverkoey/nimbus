@@ -14,6 +14,19 @@
 <link href="stylesheet.css" rel="stylesheet" type="text/css" />
 
 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24278774-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </head>
 <body>
 <div id="page">
@@ -121,25 +134,26 @@
 <a name="l00125"></a>00125 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
 <a name="l00126"></a>00126 <span class="preprocessor"></span>
 <a name="l00127"></a>00127 <span class="preprocessor">#ifdef DEBUG</span>
-<a name="l00128"></a>00128 <span class="preprocessor"></span><span class="preprocessor">#define NIDCONDITIONLOG(condition, xx, ...) { if ((condition)) { NIDPRINT(xx, ##__VA_ARGS__); } \</span>
-<a name="l00129"></a>00129 <span class="preprocessor">} ((void)0)</span>
-<a name="l00130"></a>00130 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00131"></a>00131 <span class="preprocessor"></span><span class="preprocessor">#define NIDCONDITIONLOG(condition, xx, ...) ((void)0)</span>
-<a name="l00132"></a>00132 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
-<a name="l00133"></a>00133 <span class="preprocessor"></span>
-<a name="l00134"></a>00134 
-<a name="l00135"></a>00135 <span class="preprocessor">#pragma mark Level-Based Loggers</span>
-<a name="l00136"></a>00136 <span class="preprocessor"></span>
-<a name="l00145"></a><a class="code" href="group___debugging-_tools.html#gab5d8a773517976d97335706474ae1317">00145</a> <span class="preprocessor">#define NIDERROR(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_ERROR &lt;= NIMaxLogLevel), xx, ##__VA_ARGS__)</span>
-<a name="l00146"></a>00146 <span class="preprocessor"></span>
-<a name="l00150"></a><a class="code" href="group___debugging-_tools.html#gacc8f90bb05765e613bb0dbb16d372dfc">00150</a> <span class="preprocessor">#define NIDWARNING(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_WARNING &lt;= NIMaxLogLevel), \</span>
-<a name="l00151"></a>00151 <span class="preprocessor">xx, ##__VA_ARGS__)</span>
+<a name="l00128"></a>00128 <span class="preprocessor"></span>
+<a name="l00134"></a><a class="code" href="group___debugging-_tools.html#ga2d769dcaac3915eea5b9860a40bd179a">00134</a> <span class="preprocessor">#define NIDCONDITIONLOG(condition, xx, ...) { if ((condition)) { NIDPRINT(xx, ##__VA_ARGS__); } \</span>
+<a name="l00135"></a>00135 <span class="preprocessor">} ((void)0)</span>
+<a name="l00136"></a>00136 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00137"></a>00137 <span class="preprocessor"></span><span class="preprocessor">#define NIDCONDITIONLOG(condition, xx, ...) ((void)0)</span>
+<a name="l00138"></a>00138 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
+<a name="l00139"></a>00139 <span class="preprocessor"></span>
+<a name="l00140"></a>00140 
+<a name="l00141"></a>00141 <span class="preprocessor">#pragma mark Level-Based Loggers</span>
+<a name="l00142"></a>00142 <span class="preprocessor"></span>
+<a name="l00151"></a><a class="code" href="group___debugging-_tools.html#gab5d8a773517976d97335706474ae1317">00151</a> <span class="preprocessor">#define NIDERROR(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_ERROR &lt;= NIMaxLogLevel), xx, ##__VA_ARGS__)</span>
 <a name="l00152"></a>00152 <span class="preprocessor"></span>
-<a name="l00156"></a><a class="code" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84">00156</a> <span class="preprocessor">#define NIDINFO(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_INFO &lt;= NIMaxLogLevel), xx, ##__VA_ARGS__)</span>
-<a name="l00157"></a>00157 <span class="preprocessor"></span><span class="comment">// End of Level-Based Loggers</span>
-<a name="l00159"></a>00159 
-<a name="l00160"></a>00160 
-<a name="l00162"></a>00162 <span class="comment">// End of Debugging Tools //////////////////////////////////////////////////////////////////</span>
+<a name="l00156"></a><a class="code" href="group___debugging-_tools.html#gacc8f90bb05765e613bb0dbb16d372dfc">00156</a> <span class="preprocessor">#define NIDWARNING(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_WARNING &lt;= NIMaxLogLevel), \</span>
+<a name="l00157"></a>00157 <span class="preprocessor">xx, ##__VA_ARGS__)</span>
+<a name="l00158"></a>00158 <span class="preprocessor"></span>
+<a name="l00162"></a><a class="code" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84">00162</a> <span class="preprocessor">#define NIDINFO(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_INFO &lt;= NIMaxLogLevel), xx, ##__VA_ARGS__)</span>
+<a name="l00163"></a>00163 <span class="preprocessor"></span><span class="comment">// End of Level-Based Loggers</span>
+<a name="l00165"></a>00165 
+<a name="l00166"></a>00166 
+<a name="l00168"></a>00168 <span class="comment">// End of Debugging Tools //////////////////////////////////////////////////////////////////</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

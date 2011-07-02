@@ -14,6 +14,19 @@
 <link href="stylesheet.css" rel="stylesheet" type="text/css" />
 
 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24278774-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </head>
 <body>
 <div id="page">
@@ -80,6 +93,8 @@ Defines</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the containing method's name to the log using NIDPRINT. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f">NIDASSERT</a>(xx)&#160;&#160;&#160;{ if (!(xx)) { NIDPRINT(@&quot;NIDASSERT failed: %s&quot;, #xx); } } ((void)0)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Assertions that only fire when DEBUG is defined.  <a href="#ga13cc3ae82820ea8141bc319bcb76ab7f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga2d769dcaac3915eea5b9860a40bd179a">NIDCONDITIONLOG</a>(condition, xx,...)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Only writes to the log if condition is satisified.  <a href="#ga2d769dcaac3915eea5b9860a40bd179a"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505">NIMaxLogLevel</a></td></tr>
@@ -105,7 +120,7 @@ Level-Based Loggers</h2></td></tr>
 </pre></div><p>Print the given formatted text to the log.</p>
 <div class="fragment"><pre class="fragment"> <a class="code" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8" title="Write the containing method&#39;s name to the log using NIDPRINT.">NIDPRINTMETHODNAME</a>();
 </pre></div><p>Print the current method name to the log.</p>
-<div class="fragment"><pre class="fragment"> NIDCONDITIONLOG(statement, <span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
+<div class="fragment"><pre class="fragment"> <a class="code" href="group___debugging-_tools.html#ga2d769dcaac3915eea5b9860a40bd179a" title="Only writes to the log if condition is satisified.">NIDCONDITIONLOG</a>(statement, <span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
 </pre></div><p>If statement is true, then the formatted text will be written to the log.</p>
 <div class="fragment"><pre class="fragment"> <a class="code" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_INFO.">NIDINFO</a>/<a class="code" href="group___debugging-_tools.html#gacc8f90bb05765e613bb0dbb16d372dfc" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_WARNING.">NIDWARNING</a>/<a class="code" href="group___debugging-_tools.html#gab5d8a773517976d97335706474ae1317" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_ERROR.">NIDERROR</a>(<span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
 </pre></div><p>Will only write the formatted text to the log if NIMaxLogLevel is greater than the respective NID* method's log level. See below for log levels.</p>
@@ -130,6 +145,46 @@ Level-Based Loggers</h2></td></tr>
 <p>An assertion is like a programmatic breakpoint. Use it for sanity checks to save headache while writing your code. </p>
 
 <p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00120">120</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga2d769dcaac3915eea5b9860a40bd179a"></a><!-- doxytag: member="NIDebuggingTools.h::NIDCONDITIONLOG" ref="ga2d769dcaac3915eea5b9860a40bd179a" args="(condition, xx,...)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NIDCONDITIONLOG</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">condition, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">xx, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Value:</b><div class="fragment"><pre class="fragment">{ <span class="keywordflow">if</span> ((condition)) { <a class="code" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26" title="Only writes to the log when DEBUG is defined.">NIDPRINT</a>(xx, ##__VA_ARGS__); } \
+} ((void)0)
+</pre></div>
+<p>Only writes to the log if condition is satisified. </p>
+<p>This macro powers the level-based loggers. It can also be used for conditionally enabling families of logs. </p>
+
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00134">134</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
 
 </div>
 </div>

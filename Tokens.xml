@@ -48,6 +48,16 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NIDCONDITIONLOG</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>ga2d769dcaac3915eea5b9860a40bd179a</Anchor>
+    <Abstract>Only writes to the log if condition is satisified.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NIMaxLogLevel</Name>
       <APILanguage>c</APILanguage>
       <Type>data</Type>
