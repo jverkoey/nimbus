@@ -125,6 +125,12 @@ if (NIIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
 #endif // #ifdef DEBUG
 
 #ifdef DEBUG
+/**
+ * Only writes to the log if condition is satisified.
+ *
+ * This macro powers the level-based loggers. It can also be used for conditionally enabling
+ * families of logs.
+ */
 #define NIDCONDITIONLOG(condition, xx, ...) { if ((condition)) { NIDPRINT(xx, ##__VA_ARGS__); } \
 } ((void)0)
 #else
