@@ -6,11 +6,11 @@
      <key>CFBundleName</key>
      <string>Nimbus</string>
      <key>CFBundleIdentifier</key>
-     <string>org.doxygen.nimbus.docset</string>
+     <string>org.jeffverkoeyen.nimbus.docset</string>
      <key>DocSetFeedName</key>
-     <string>Doxygen generated docs</string>
+     <string>Nimbus Documentation</string>
      <key>DocSetPublisherIdentifier</key>
-     <string>org.doxygen.Nimbus</string>
+     <string>org.jeffverkoeyen.nimbus</string>
      <key>DocSetPublisherName</key>
      <string>Nimbus</string>
 </dict>
