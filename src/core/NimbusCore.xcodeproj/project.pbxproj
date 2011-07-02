@@ -209,12 +209,12 @@
 		6687510813A1ACDF00FF1C56 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
+				66D36EA213B1AA8300455D5B /* NIDataStructureTests.m */,
 				6687510613A1ACD500FF1C56 /* NIFoundationMethodsTests.m */,
 				66EAFE4D13BE9163004FFE1A /* NINonEmptyCollectionTestingTests.m */,
 				66EAFDB013BE86BF004FFE1A /* NINonRetainingCollectionsTests.m */,
 				66EAFE9013BE94B2004FFE1A /* NIRuntimeClassModificationsTests.m */,
 				6687552C13A2825700FF1C56 /* NICoreAdditionTests.m */,
-				66D36EA213B1AA8300455D5B /* NIDataStructureTests.m */,
 				66D36CD213AFAE0200455D5B /* NIMemoryCacheTests.m */,
 				66D36CFF13AFB30500455D5B /* NSDate+UnitTesting.h */,
 				66D36D0013AFB30500455D5B /* NSDate+UnitTesting.m */,

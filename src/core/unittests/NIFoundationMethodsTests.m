@@ -57,4 +57,23 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NSRange Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testNSRangeMethods {
+  CFRange cfRange = CFRangeMake(0, 10);
+  NSRange nsRange = NIMakeNSRangeFromCFRange(cfRange);
+
+  STAssertEquals(nsRange.location, (NSUInteger)cfRange.location,
+                 @"The two locations should be equal.");
+
+  STAssertEquals(nsRange.length, (NSUInteger)cfRange.length,
+                 @"The two lengths should be equal.");
+}
+
+
 @end

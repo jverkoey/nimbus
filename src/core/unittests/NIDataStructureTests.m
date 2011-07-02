@@ -227,6 +227,38 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testLinkedListRemoveObject {
+  NILinkedList* ll = [[[NILinkedList alloc] init] autorelease];
+
+  id object1 = [NSArray array];
+  id object2 = [NSDictionary dictionary];
+  id object3 = [NSSet set];
+  [ll addObject:object1];
+  [ll addObject:object2];
+  [ll addObject:object3];
+  [ll removeObject:object2];
+
+  STAssertEquals(ll.count, (unsigned long)2, @"There should be exactly two objects.");
+  STAssertEquals(ll.firstObject, object1, @"Head should be the first object.");
+  STAssertEquals(ll.lastObject, object3, @"Tail should be the third object.");
+
+  // Test removing an object that has already been removed.
+  [ll removeObject:object2];
+
+  STAssertEquals(ll.count, (unsigned long)2, @"There should be exactly two objects.");
+  STAssertEquals(ll.firstObject, object1, @"Head should be the first object.");
+  STAssertEquals(ll.lastObject, object3, @"Tail should be the third object.");
+
+  // Test removing the tail.
+  [ll removeObject:object3];
+
+  STAssertEquals(ll.count, (unsigned long)1, @"There should be exactly one object.");
+  STAssertEquals(ll.firstObject, object1, @"Head should be the first object.");
+  STAssertEquals(ll.lastObject, object1, @"Tail should be the first object.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListRemoveObjectAtLocation {
   NILinkedList* ll = [[[NILinkedList alloc] init] autorelease];
 

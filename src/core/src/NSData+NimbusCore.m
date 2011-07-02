@@ -25,7 +25,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NI_FIX_CATEGORY_BUG(NSDataNimbusCore)
 /**
- * @brief For hashing raw data.
+ * For hashing raw data.
  *
  * Turning NSData objects into hashes is a common operation when verifying downloaded
  * data and sending data over the wire.
@@ -35,7 +35,7 @@ NI_FIX_CATEGORY_BUG(NSDataNimbusCore)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @brief Calculate an md5 hash using CC_MD5.
+ * Calculate an md5 hash using CC_MD5.
  *
  * @returns The md5 hash of this data.
  */
@@ -54,7 +54,7 @@ NI_FIX_CATEGORY_BUG(NSDataNimbusCore)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @brief Calculate the SHA1 hash using CC_SHA1.
+ * Calculate the SHA1 hash using CC_SHA1.
  *
  * @returns The SHA1 hash of this data.
  */

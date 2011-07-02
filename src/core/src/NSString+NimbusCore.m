@@ -24,14 +24,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 /**
- * @brief For manipulating NSStrings.
+ * For manipulating NSStrings.
  */
 @implementation NSString (NimbusCore)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @brief Determines if the string contains only whitespace and newlines.
+ * Determines if the string contains only whitespace and newlines.
  */
 - (BOOL)isWhitespaceAndNewlines {
   NSCharacterSet* whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
@@ -47,7 +47,7 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @brief Calculates the height of this text given the font, max width, and line break mode.
+ * Calculates the height of this text given the font, max width, and line break mode.
  *
  * A convenience wrapper for sizeWithFont:constrainedToSize:lineBreakMode:
  */
@@ -62,7 +62,7 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @brief Parses a URL query string into a dictionary where the values are arrays.
+ * Parses a URL query string into a dictionary where the values are arrays.
  *
  * A query string is one that looks like &param1=value1&param2=value2...
  *
@@ -104,7 +104,7 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @brief Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.
+ * Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.
  */
 - (NSString*)stringByAddingQueryDictionary:(NSDictionary*)query {
   NSMutableArray* pairs = [NSMutableArray array];
@@ -128,7 +128,7 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @brief Compares two strings expressing software versions.
+ * Compares two strings expressing software versions.
  *
  * The comparison is (except for the development version provisions noted below) lexicographic
  * string comparison. So as long as the strings being compared use consistent version formats,
@@ -200,7 +200,7 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @brief Calculate the md5 hash using CC_MD5.
+ * Calculate the md5 hash using CC_MD5.
  *
  * @returns md5 hash of this string.
  */
@@ -211,7 +211,7 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @brief Calculate the SHA1 hash using CommonCrypto CC_SHA1.
+ * Calculate the SHA1 hash using CommonCrypto CC_SHA1.
  *
  * @returns SHA1 hash of this string.
  */

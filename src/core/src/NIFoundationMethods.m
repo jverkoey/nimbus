@@ -16,6 +16,14 @@
 
 #import "NIFoundationMethods.h"
 
+#import "NIDebuggingTools.h"
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark CGRect Methods
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGRect NIRectContract(CGRect rect, CGFloat dx, CGFloat dy) {
@@ -34,4 +42,20 @@ CGRect NIRectInset(CGRect rect, UIEdgeInsets insets) {
   return CGRectMake(rect.origin.x + insets.left, rect.origin.y + insets.top,
                     rect.size.width - (insets.left + insets.right),
                     rect.size.height - (insets.top + insets.bottom));
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NSRange Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NSRange NIMakeNSRangeFromCFRange(CFRange range) {
+  // CFRange stores its values in signed longs, but we're about to copy the values into
+  // unsigned integers, let's check whether we're about to lose any information.
+  NIDASSERT(range.location >= 0 && range.location <= NSIntegerMax);
+  NIDASSERT(range.length >= 0 && range.length <= NSIntegerMax);
+  return NSMakeRange(range.location, range.length);
 }

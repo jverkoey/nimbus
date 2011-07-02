@@ -129,19 +129,19 @@
 /**
  * Checks whether the device the app is currently running on is an iPad or not.
  *
- * @returns YES if the device is an iPad.
+ *      @returns YES if the device is an iPad.
  */
 BOOL NIIsPad();
 
 /**
  * Checks whether the device's OS version is at least the given version number.
  *
- * @param versionNumber Any value of kCFCoreFoundationVersionNumber.
- *
  * Useful for runtime checks of the device's version number.
  *
- * @attention Apple recommends using respondsToSelector where possible to check for
- * feature support. Use this method as a last resort.
+ *      @param versionNumber  Any value of kCFCoreFoundationVersionNumber.
+ *
+ *      @attention Apple recommends using respondsToSelector where possible to check for
+ *                 feature support. Use this method as a last resort.
  */
 BOOL NIDeviceOSVersionIsAtLeast(double versionNumber);
 
@@ -152,9 +152,9 @@ BOOL NIDeviceOSVersionIsAtLeast(double versionNumber);
  *
  * Uses NSClassFromString to fetch the popover controller class.
  *
- * @attention If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method
- * instead of directly referring to UIPopoverController anywhere within your code. Failure to
- * do so will cause your app to crash on startup on pre-iOS 3.2 devices.
+ *      @attention If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method
+ *                 instead of directly referring to UIPopoverController anywhere within your code.
+ *                 Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices.
  */
 Class NIUIPopoverControllerClass();
 

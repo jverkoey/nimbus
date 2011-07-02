@@ -35,32 +35,32 @@
  * or app store builds.
  *
  * @code
- * NIDASSERT(statement);
+ *  NIDASSERT(statement);
  * @endcode
  *
  * If statement is false, the statement will be written to the log and if you are running in
  * the simulator with a debugger attached, the app will break on the assertion line.
  *
  * @code
- * NIDPRINT(@"formatted log text %d", param1);
+ *  NIDPRINT(@"formatted log text %d", param1);
  * @endcode
  *
  * Print the given formatted text to the log.
  *
  * @code
- * NIDPRINTMETHODNAME();
+ *  NIDPRINTMETHODNAME();
  * @endcode
  *
  * Print the current method name to the log.
  *
  * @code
- * NIDCONDITIONLOG(statement, @"formatted log text %d", param1);
+ *  NIDCONDITIONLOG(statement, @"formatted log text %d", param1);
  * @endcode
  *
  * If statement is true, then the formatted text will be written to the log.
  *
  * @code
- * NIDINFO/NIDWARNING/NIDERROR(@"formatted log text %d", param1);
+ *  NIDINFO/NIDWARNING/NIDERROR(@"formatted log text %d", param1);
  * @endcode
  *
  * Will only write the formatted text to the log if NIMaxLogLevel is greater than the respective

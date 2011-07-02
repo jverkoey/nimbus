@@ -34,18 +34,20 @@
  * For use in shouldAutorotateToInterfaceOrientation:
  *
  * On iPhone/iPod touch:
- * Returns YES if the orientation is portrait, landscape left, or landscape right.
- * This helps to ignore upside down and flat orientations.
+ *
+ *      Returns YES if the orientation is portrait, landscape left, or landscape right.
+ *      This helps to ignore upside down and flat orientations.
  *
  * On iPad:
- * Always returns YES.
+ *
+ *      Always returns YES.
  */
 BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation);
 
 /**
  * Returns the application's current interface orientation.
  *
- * @returns The current interface orientation.
+ *      @returns The current interface orientation.
  */
 UIInterfaceOrientation NIInterfaceOrientation();
 

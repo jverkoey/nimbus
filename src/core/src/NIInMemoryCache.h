@@ -63,8 +63,8 @@
 /**
  * Store an object in the cache.
  *
- * @param object  The object being stored in the cache.
- * @param name    The name used as a key to store this object.
+ *      @param object  The object being stored in the cache.
+ *      @param name    The name used as a key to store this object.
  *
  * The object will be stored without an expiration date. The object will stay in the cache until
  * it's bumped out due to the cache's memory limit.
@@ -74,9 +74,9 @@
 /**
  * Store an object in the cache with an expiration date.
  *
- * @param object          The object being stored in the cache.
- * @param name            The name used as a key to store this object.
- * @param expirationDate  A date after which this object is no longer valid in the cache.
+ *      @param object          The object being stored in the cache.
+ *      @param name            The name used as a key to store this object.
+ *      @param expirationDate  A date after which this object is no longer valid in the cache.
  *
  * If an object is stored with an expiration date that has already passed then the object will
  * not be stored in the cache and any existing object will be removed. The rationale behind this
@@ -95,7 +95,7 @@
 /**
  * Remove an object in the cache.
  *
- * @param name The name used as a key to store this object.
+ *      @param name The name used as a key to store this object.
  */
 - (void)removeObjectWithName:(NSString *)name;
 
@@ -122,26 +122,28 @@
 
 /**
  * @name Subclassing
+ * @{
+ *
  * The following methods are provided to aid in subclassing and are not meant to be
  * used externally.
- * @{
  */
 #pragma mark Subclassing
 
 /**
  * An object is about to be stored in the cache.
  *
- * @param object          The object to be stored in the cache.
- * @param name            The cache name for the object.
- * @param previousObject  The object previously stored in the cache. This may be the same as object.
+ *      @param object          The object to be stored in the cache.
+ *      @param name            The cache name for the object.
+ *      @param previousObject  The object previously stored in the cache. This may be the
+ *                             same as object.
  */
 - (void)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject;
 
 /**
  * An object is about to be removed from the cache.
  *
- * @param object  The object about to removed from the cache.
- * @param name    The cache name for the object about to be removed.
+ *      @param object  The object about to removed from the cache.
+ *      @param name    The cache name for the object about to be removed.
  */
 - (void)willRemoveObject:(id)object withName:(NSString *)name;
 

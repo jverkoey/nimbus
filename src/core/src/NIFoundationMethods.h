@@ -45,34 +45,63 @@
 /**
  * Modifies only the right and bottom edges of a CGRect.
  *
- * @return a CGRect with dx and dy subtracted from the width and height.
+ *      @return a CGRect with dx and dy subtracted from the width and height.
  *
- * Example result: CGRectMake(x, y, w - dx, h - dy)
+ *      Example result: CGRectMake(x, y, w - dx, h - dy)
  */
 CGRect NIRectContract(CGRect rect, CGFloat dx, CGFloat dy);
 
 /**
  * Modifies only the top and left edges of a CGRect.
  *
- * @return a CGRect whose origin has been offset by dx, dy, and whose size has been
- * contracted by dx, dy.
+ *      @return a CGRect whose origin has been offset by dx, dy, and whose size has been
+ *              contracted by dx, dy.
  *
- * Example result: CGRectMake(x + dx, y + dy, w - dx, h - dy)
+ *      Example result: CGRectMake(x + dx, y + dy, w - dx, h - dy)
  */
 CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy);
 
 /**
  * Add the insets to a CGRect - equivalent to padding in CSS.
  *
- * @return a CGRect whose edges have been inset.
+ *      @return a CGRect whose edges have been inset.
  *
- * Example result: CGRectMake(x + left, y + top, w - (left + right), h - (top + bottom))
+ *      Example result: CGRectMake(x + left, y + top, w - (left + right), h - (top + bottom))
  */
 CGRect NIRectInset(CGRect rect, UIEdgeInsets insets);
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of CGRect Methods ///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#pragma mark -
+#pragma mark NSRange Methods
+
+/**
+ * For manipulating NSRange.
+ *
+ * @defgroup NSRange-Methods NSRange Methods
+ * @{
+ */
+
+/**
+ * Create an NSRange object from a CFRange object.
+ *
+ *      @return an NSRange object with the same values as the CFRange object.
+ *
+ *      @attention This has the potential to behave unexpectedly because it converts the
+ *                 CFRange's long values to unsigned integers. Nimbus will fire off a debug
+ *                 assertion at runtime if the value will be chopped or the sign will change.
+ *                 Even though the assertion will fire, the method will still chop or change
+ *                 the sign of the values so you should take care to fix this.
+ */
+NSRange NIMakeNSRangeFromCFRange(CFRange range);
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**@}*/// End of NSRange Methods ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
