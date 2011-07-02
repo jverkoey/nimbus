@@ -112,7 +112,7 @@
  *
  * <h1>Version History</h1>
  *
- * <h2>0.3</h2>
+ * <h2>0.3.3</h2>
  *
  * Add network images to Nimbus.
  *
@@ -121,13 +121,14 @@
  * - Migrate the new TTNetworkImageView object and the network image stack using ASIHTTPRequest
  *   to Nimbus.
  * - Build an in-memory object cache (+1)
- * - Build an in-memory image cache from the in-memory object cache.
+ * - Build an in-memory image cache from the in-memory object cache (+1)
+ * - Refactor the core library so that it's easier to jump to headers from source files (+1)
  *
  * Bonus:
  * - Implement tap-and-hold editing on the launcher view.
  * - Implement launcher item state persistence.
  *
- * <h2>0.2 - Tuesday June 14, 2011</h2>
+ * <h2>0.2.1 - Tuesday June 14, 2011</h2>
  *
  * The first feature release of Nimbus.
  *
@@ -135,7 +136,7 @@
  *
  * - Migrate Three20's Navigator to Nimbus (+1)
  *
- * <h2>0.1 - Friday June 10, 2011</h2>
+ * <h2>0.1.4 - Friday June 10, 2011</h2>
  *
  * The first public release of Nimbus.
  *
