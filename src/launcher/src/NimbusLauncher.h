@@ -69,7 +69,7 @@
  * required methods for populating the launcher with data.
  */
 
-#ifdef BASE_PRODUCT_NAME
+#ifdef NIMBUS_STATIC_LIBRARY
 #import "NimbusLauncher/NILauncherViewController.h"
 #import "NimbusLauncher/NILauncherView.h"
 #else
