@@ -23,18 +23,19 @@
 @protocol NILauncherDataSource;
 
 /**
- * @brief Calculate the given field dynamically given the view and button dimensions.
+ * Calculate the given field dynamically given the view and button dimensions.
  */
 extern const NSInteger NILauncherViewDynamic;
 
 /**
- * @brief A launcher view that simulates iOS' home screen launcher functionality.
+ * A launcher view that simulates iOS' home screen launcher functionality.
+ *
  * @ingroup Launcher-User-Interface
  *
- * @todo Implement tap-and-hold editing for the launcher button ordering. The Three20
- * implementation can likely be learned from to implement this, though it's possible that
- * I could improve on it by writing it from scratch. Care needs to be taken with the fact
- * that launcher pages can scroll vertically now as well.
+ *      @todo Implement tap-and-hold editing for the launcher button ordering. The Three20
+ *            implementation can likely be learned from to implement this, though it's possible that
+ *            I could improve on it by writing it from scratch. Care needs to be taken with the fact
+ *            that launcher pages can scroll vertically now as well.
  */
 @interface NILauncherView : UIView <
   UIScrollViewDelegate
@@ -62,14 +63,14 @@ extern const NSInteger NILauncherViewDynamic;
 }
 
 /**
- * @brief The maximum number of buttons allowed on a given page.
+ * The maximum number of buttons allowed on a given page.
  *
  * By default this value is NSIntegerMax.
  */
 @property (nonatomic, readwrite, assign) NSInteger maxNumberOfButtonsPerPage;
 
 /**
- * @brief The amount of padding on each side of the launcher view pages.
+ * The amount of padding on each side of the launcher view pages.
  *
  * The bottom padding is considered above the page control.
  *
@@ -78,17 +79,17 @@ extern const NSInteger NILauncherViewDynamic;
 @property (nonatomic, readwrite, assign) UIEdgeInsets padding;
 
 /**
- * @brief The launcher view notifies the delegate of any user interaction or state changes.
+ * The launcher view notifies the delegate of any user interaction or state changes.
  */
 @property (nonatomic, readwrite, assign) id<NILauncherDelegate> delegate;
 
 /**
- * @brief The launcher view populates its pages with information from the data source.
+ * The launcher view populates its pages with information from the data source.
  */
 @property (nonatomic, readwrite, assign) id<NILauncherDataSource> dataSource;
 
 /**
- * @brief Reload the launcher data.
+ * Reload the launcher data.
  *
  * This will release all of the launcher's buttons and call all necessary data source methods
  * again.
@@ -98,15 +99,16 @@ extern const NSInteger NILauncherViewDynamic;
 - (void)reloadData;
 
 /**
- * @brief Lays out the subviews for this launcher view.
+ * Lays out the subviews for this launcher view.
  *
  * If you subclass this view and implement setFrame, you should either replicate the
  * functionality found within or call [super setFrame:].
  *
- * @note Subviews are laid out in this method instead of layoutSubviews due to the fact that the
- * scroll view offset and content size are modified within this method. If we modify these values
- * in layoutSubviews then we will end up breaking the scroll view because whenever the user drags
- * their finger to scroll the scroll view, layoutSubviews is called on the launcher view.
+ *      @note Subviews are laid out in this method instead of layoutSubviews due to the fact
+ *            that the scroll view offset and content size are modified within this method.
+ *            If we modify these values in layoutSubviews then we will end up breaking the
+ *            scroll view because whenever the user drags their finger to scroll the scroll
+ *            view, layoutSubviews is called on the launcher view.
  */
 - (void)setFrame:(CGRect)frame;
 
@@ -114,7 +116,8 @@ extern const NSInteger NILauncherViewDynamic;
 
 
 /**
- * @brief The launcher delegate used to inform of state changes and user interactions.
+ * The launcher delegate used to inform of state changes and user interactions.
+ *
  * @ingroup Launcher-Protocols
  */
 @protocol NILauncherDelegate <NSObject>
@@ -122,7 +125,7 @@ extern const NSInteger NILauncherViewDynamic;
 @optional
 
 /**
- * @brief Called when the user taps and releases a launcher button.
+ * Called when the user taps and releases a launcher button.
  */
 - (void)launcherView: (NILauncherView *)launcher
      didSelectButton: (UIButton *)button
@@ -133,7 +136,8 @@ extern const NSInteger NILauncherViewDynamic;
 
 
 /**
- * @brief The launcher data source used to populate the view.
+ * The launcher data source used to populate the view.
+ *
  * @ingroup Launcher-Protocols
  */
 @protocol NILauncherDataSource <NSObject>
@@ -141,7 +145,7 @@ extern const NSInteger NILauncherViewDynamic;
 @optional
 
 /**
- * @brief Override the default button dimensions 80x80.
+ * Override the default button dimensions 80x80.
  *
  * The default dimensions will fit the following grids:
  *
@@ -154,29 +158,29 @@ extern const NSInteger NILauncherViewDynamic;
 - (CGSize)buttonDimensionsInLauncherView:(NILauncherView *)launcherView;
 
 /**
- * @brief Override the default number of rows which is dynamically calculated.
+ * Override the default number of rows which is dynamically calculated.
  */
 - (NSInteger)numberOfRowsPerPageInLauncherView:(NILauncherView *)launcherView;
 
 /**
- * @brief Override the default number of columns which is dynamically calculated.
+ * Override the default number of columns which is dynamically calculated.
  */
 - (NSInteger)numberOfColumnsPerPageInLauncherView:(NILauncherView *)launcherView;
 
 @required
 
 /**
- * @brief The total number of pages to be shown in the launcher view.
+ * The total number of pages to be shown in the launcher view.
  */
 - (NSInteger)numberOfPagesInLauncherView:(NILauncherView *)launcherView;
 
 /**
- * @brief The total number of buttons in a given page.
+ * The total number of buttons in a given page.
  */
 - (NSInteger)launcherView:(NILauncherView *)launcherView numberOfButtonsInPage:(NSInteger)page;
 
 /**
- * @brief Retrieve the button to be displayed at a given page and index.
+ * Retrieve the button to be displayed at a given page and index.
  */
 - (UIButton *)launcherView: (NILauncherView *)launcherView
              buttonForPage: (NSInteger)page

@@ -15,7 +15,7 @@
 //
 
 /**
- * @brief Nimbus' Launcher view and related components.
+ * Nimbus' Launcher view and related components.
  * @defgroup NimbusLauncher Nimbus Launcher
  * @{
  *
@@ -36,7 +36,8 @@
 
 
 /**
- * @brief The views and data containers used to display a launcher user interface.
+ * The views and data containers used to display a launcher user interface.
+ *
  * @defgroup Launcher-User-Interface User Interface
  *
  * The Nimbus launcher is composed primarily of the NILauncherView and its
@@ -57,7 +58,8 @@
  */
 
 /**
- * @brief The delegate and data source protocols that allow the user interface to be simple.
+ * The delegate and data source protocols that allow the user interface to be simple.
+ *
  * @defgroup Launcher-Protocols Protocols
  *
  * The launcher is related in spirit to UITableView in its use of protocols to remove much

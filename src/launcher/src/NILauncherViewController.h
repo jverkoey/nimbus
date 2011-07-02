@@ -24,7 +24,7 @@
 #endif
 
 /**
- * @brief A view controller that displays a launcher view and implements its protocols.
+ * A view controller that displays a launcher view and implements its protocols.
  *
  * @ingroup Launcher-User-Interface
  *
@@ -64,9 +64,9 @@
  * @image html NILauncherViewControllerExample1.png "Example of an NILauncherViewController as seen in the BasicLauncher demo application."
  *
  *
- * @todo Implement a reusable means of storing and loading launcher state information. This can
- * probably be easily accomplished using simple keyed archiving because NILauncherItemDetails
- * implements the NSCoding protocol.
+ *      @todo Implement a reusable means of storing and loading launcher state information.
+ *            This can probably be easily accomplished using simple keyed archiving because
+ *            NILauncherItemDetails implements the NSCoding protocol.
  */
 @interface NILauncherViewController : UIViewController <
   NILauncherDelegate,
@@ -79,7 +79,7 @@
 }
 
 /**
- * @brief Access to the internal launcher view.
+ * Access to the internal launcher view.
  *
  * This is exposed primarily for subclasses of this view controller to be able to access the
  * launcher view.
@@ -90,7 +90,7 @@
 @property (nonatomic, readonly, retain) NILauncherView* launcherView;
 
 /**
- * @brief An array of arrays of NILauncherItemDetails.
+ * An array of arrays of NILauncherItemDetails.
  *
  * These pages are used to populate the launcher view via the NILauncherDataSource protocol.
  *
@@ -104,14 +104,15 @@
 
 /**
  * @name Subclassing
+ * @{
+ *
  * The following methods are provided to aid in subclassing and are not meant to be
  * used externally.
- * @{
  */
 #pragma mark Subclassing
 
 /**
- * @brief The launcher button view class.
+ * The launcher button view class.
  *
  * Must be a subclass of UIButton.
  *
@@ -127,7 +128,7 @@
 
 
 /**
- * @brief A simple launcher button that shows an image and text.
+ * A simple launcher button that shows an image and text.
  *
  * @ingroup Launcher-User-Interface
  *
@@ -142,7 +143,7 @@
 }
 
 /**
- * @brief The padding for the button.
+ * The padding for the button.
  *
  * This padding is applied on all edges of the button.
  *
@@ -154,7 +155,7 @@
 
 
 /**
- * @brief A convenience class for managing the data used to create an NILauncherButton.
+ * A convenience class for managing the data used to create an NILauncherButton.
  *
  * @ingroup Launcher-User-Interface
  *
@@ -170,28 +171,28 @@
 }
 
 /**
- * @brief The title for the launcher button.
+ * The title for the launcher button.
  */
 @property (nonatomic, readwrite, copy) NSString* title;
 
 /**
- * @brief The path to the launcher image.
+ * The path to the launcher image.
  */
 @property (nonatomic, readwrite, copy) NSString* imagePath;
 
 /**
- * @brief Convenience method for creating a launcher item details object.
+ * Convenience method for creating a launcher item details object.
  *
- * @param title       The title for the launcher button.
- * @param imagePath   The path to the launcher image.
+ *      @param title       The title for the launcher button.
+ *      @param imagePath   The path to the launcher image.
  */
 + (id)itemDetailsWithTitle:(NSString *)title imagePath:(NSString *)imagePath;
 
 /**
- * @brief The designated initializer.
+ * The designated initializer.
  *
- * @param title       The title for the launcher button.
- * @param imagePath   The path to the launcher image.
+ *      @param title       The title for the launcher button.
+ *      @param imagePath   The path to the launcher image.
  */
 - (id)initWithTitle:(NSString *)title imagePath:(NSString *)imagePath;
 

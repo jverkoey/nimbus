@@ -161,7 +161,7 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @brief Update the pager's current page based on the scroll view's content offset.
+ * Update the pager's current page based on the scroll view's content offset.
  *
  * Flashes the scroll indicators if the page index changes.
  */
@@ -361,7 +361,7 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @brief Find a button in the pages and retrieve its page and index.
+ * Find a button in the pages and retrieve its page and index.
  *
  * @param[in] searchButton  The button you are looking for.
  * @param[out] pPage        The resulting page, if found.
