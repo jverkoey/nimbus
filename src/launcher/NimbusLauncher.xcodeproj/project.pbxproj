@@ -54,6 +54,7 @@
 		6687568C13A2BAC800FF1C56 /* NimbusLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusLauncher.h; path = src/NimbusLauncher.h; sourceTree = "<group>"; };
 		669E487313A327AC001EE2AC /* NILauncherButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherButton.m; path = src/NILauncherButton.m; sourceTree = "<group>"; };
 		669E487613A327CD001EE2AC /* NILauncherItemDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherItemDetails.m; path = src/NILauncherItemDetails.m; sourceTree = "<group>"; };
+		66EAFF3313BEA301004FFE1A /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deps; sourceTree = "<group>"; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libNimbusLauncher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusLauncher.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -81,7 +82,7 @@
 		0867D691FE84028FC02AAC07 /* NimbusLauncher */ = {
 			isa = PBXGroup;
 			children = (
-				6687568C13A2BAC800FF1C56 /* NimbusLauncher.h */,
+				66EAFF3313BEA301004FFE1A /* deps */,
 				668755B613A2B5E200FF1C56 /* NimbusLauncher_Prefix.pch */,
 				6687559813A2B53000FF1C56 /* Source */,
 				6687559913A2B53B00FF1C56 /* Unit Tests */,
@@ -104,6 +105,7 @@
 		6687559813A2B53000FF1C56 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6687568C13A2BAC800FF1C56 /* NimbusLauncher.h */,
 				6687567913A2B9FC00FF1C56 /* NILauncherView.h */,
 				6687567A13A2B9FC00FF1C56 /* NILauncherView.m */,
 				6687565513A2B8B800FF1C56 /* Basic Implementation */,

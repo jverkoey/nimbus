@@ -1,8 +1,6 @@
 //
 // Copyright 2011 Jeff Verkoeyen
 //
-// Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
-//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -16,24 +14,24 @@
 // limitations under the License.
 //
 
-#import "NIPaths.h"
+#import "NIFoundationMethods.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSString* NIPathForBundleResource(NSBundle* bundle, NSString* relativePath) {
-  NSString* resourcePath = [(nil == bundle ? [NSBundle mainBundle] : bundle) resourcePath];
-  return [resourcePath stringByAppendingPathComponent:relativePath];
+CGRect NIRectContract(CGRect rect, CGFloat dx, CGFloat dy) {
+  return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - dx, rect.size.height - dy);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSString* NIPathForDocumentsResource(NSString* relativePath) {
-  static NSString* documentsPath = nil;
-  if (nil == documentsPath) {
-    NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                        NSUserDomainMask,
-                                                        YES);
-    documentsPath = [[dirs objectAtIndex:0] retain];
-  }
-  return [documentsPath stringByAppendingPathComponent:relativePath];
+CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy) {
+  return CGRectOffset(NIRectContract(rect, dx, dy), dx, dy);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+CGRect NIRectInset(CGRect rect, UIEdgeInsets insets) {
+  return CGRectMake(rect.origin.x + insets.left, rect.origin.y + insets.top,
+                    rect.size.width - (insets.left + insets.right),
+                    rect.size.height - (insets.top + insets.bottom));
 }

@@ -15,10 +15,9 @@
 // limitations under the License.
 //
 
-#import "NimbusCore.h"
+#import "NIDebuggingTools.h"
 
 NSInteger NIMaxLogLevel = NILOGLEVEL_WARNING;
-
 
 #ifdef DEBUG
 

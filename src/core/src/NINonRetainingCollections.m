@@ -16,9 +16,7 @@
 // limitations under the License.
 //
 
-#import "NimbusCore.h"
-
-#import <objc/runtime.h>
+#import "NINonRetainingCollections.h"
 
 // No-ops for non-retaining objects.
 static const void* NIRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
@@ -26,7 +24,7 @@ static void NIReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSMutableArray* NICreateNonRetainingArray() {
+NSMutableArray* NICreateNonRetainingMutableArray() {
   CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
   callbacks.retain = NIRetainNoOp;
   callbacks.release = NIReleaseNoOp;
@@ -35,7 +33,7 @@ NSMutableArray* NICreateNonRetainingArray() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSMutableDictionary* NICreateNonRetainingDictionary() {
+NSMutableDictionary* NICreateNonRetainingMutableDictionary() {
   CFDictionaryKeyCallBacks keyCallbacks = kCFTypeDictionaryKeyCallBacks;
   CFDictionaryValueCallBacks callbacks = kCFTypeDictionaryValueCallBacks;
   callbacks.retain = NIRetainNoOp;
@@ -45,43 +43,9 @@ NSMutableDictionary* NICreateNonRetainingDictionary() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSMutableSet* NICreateNonRetainingSet() {
+NSMutableSet* NICreateNonRetainingMutableSet() {
   CFSetCallBacks callbacks = kCFTypeSetCallBacks;
   callbacks.retain = NIRetainNoOp;
   callbacks.release = NIReleaseNoOp;
   return (NSMutableSet *)CFSetCreateMutable(nil, 0, &callbacks);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-BOOL NIIsArrayWithObjects(id object) {
-  return [object isKindOfClass:[NSArray class]] && [(NSArray*)object count] > 0;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-BOOL NIIsSetWithObjects(id object) {
-  return [object isKindOfClass:[NSSet class]] && [(NSSet*)object count] > 0;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-BOOL NIIsStringWithAnyText(id object) {
-  return [object isKindOfClass:[NSString class]] && [(NSString*)object length] > 0;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-void NISwapInstanceMethods(Class cls, SEL originalSel, SEL newSel) {
-  Method originalMethod = class_getInstanceMethod(cls, originalSel);
-  Method newMethod = class_getInstanceMethod(cls, newSel);
-  method_exchangeImplementations(originalMethod, newMethod);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-void NISwapClassMethods(Class cls, SEL originalSel, SEL newSel) {
-  Method originalMethod = class_getClassMethod(cls, originalSel);
-  Method newMethod = class_getClassMethod(cls, newSel);
-  method_exchangeImplementations(originalMethod, newMethod);
 }

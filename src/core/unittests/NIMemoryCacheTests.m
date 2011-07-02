@@ -18,7 +18,9 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "NimbusCore/NimbusCore.h"
+#import <UIKit/UIKit.h>
+
+#import "NimbusCore/NIInMemoryCache.h"
 #import "NSDate+UnitTesting.h"
 
 

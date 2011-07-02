@@ -1,0 +1,60 @@
+//
+// Copyright 2011 Jeff Verkoeyen
+//
+// Forked from Three20 June 9, 2011 - Copyright 2009-2011 Facebook
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+// See: http://bit.ly/hS5nNh for unit test macros.
+
+#import <SenTestingKit/SenTestingKit.h>
+
+#import "NimbusCore/NIFoundationMethods.h"
+
+@interface NIFoundationMethodsTests : SenTestCase {
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NIFoundationMethodsTests
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark CGRect Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testCGRectMethods {
+  CGRect rect = CGRectMake(0, 0, 100, 100);
+
+  STAssertTrue(CGRectEqualToRect(CGRectMake(0, 0, 90, 90),
+                                 NIRectContract(rect, 10, 10)),
+               @"Contracting a rect should only modify the right and bottom edges.");
+
+  STAssertTrue(CGRectEqualToRect(CGRectMake(10, 10, 90, 90),
+                                 NIRectShift(rect, 10, 10)),
+               @"Shifting a rect should only modify the left and top edges.");
+
+  STAssertTrue(CGRectEqualToRect(CGRectMake(10, 10, 80, 80),
+                                 NIRectInset(rect, UIEdgeInsetsMake(10, 10, 10, 10))),
+               @"Insetting a rect should modify all edges.");
+}
+
+
+@end

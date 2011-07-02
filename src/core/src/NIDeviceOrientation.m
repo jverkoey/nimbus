@@ -16,7 +16,10 @@
 // limitations under the License.
 //
 
-#import "NimbusCore.h"
+#import "NIDeviceOrientation.h"
+
+#import "NIDebuggingTools.h"
+#import "NISDKAvailability.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

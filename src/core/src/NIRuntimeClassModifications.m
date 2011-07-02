@@ -16,24 +16,22 @@
 // limitations under the License.
 //
 
-#import "NimbusCore.h"
+#import "NIRuntimeClassModifications.h"
+
+#import <objc/runtime.h>
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CGRect NIRectContract(CGRect rect, CGFloat dx, CGFloat dy) {
-  return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - dx, rect.size.height - dy);
+void NISwapInstanceMethods(Class cls, SEL originalSel, SEL newSel) {
+  Method originalMethod = class_getInstanceMethod(cls, originalSel);
+  Method newMethod = class_getInstanceMethod(cls, newSel);
+  method_exchangeImplementations(originalMethod, newMethod);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy) {
-  return CGRectOffset(NIRectContract(rect, dx, dy), dx, dy);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-CGRect NIRectInset(CGRect rect, UIEdgeInsets insets) {
-  return CGRectMake(rect.origin.x + insets.left, rect.origin.y + insets.top,
-                    rect.size.width - (insets.left + insets.right),
-                    rect.size.height - (insets.top + insets.bottom));
+void NISwapClassMethods(Class cls, SEL originalSel, SEL newSel) {
+  Method originalMethod = class_getClassMethod(cls, originalSel);
+  Method newMethod = class_getClassMethod(cls, newSel);
+  method_exchangeImplementations(originalMethod, newMethod);
 }

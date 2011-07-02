@@ -16,24 +16,22 @@
 // limitations under the License.
 //
 
-#import "NIPaths.h"
+#import "NINonEmptyCollectionTesting.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSString* NIPathForBundleResource(NSBundle* bundle, NSString* relativePath) {
-  NSString* resourcePath = [(nil == bundle ? [NSBundle mainBundle] : bundle) resourcePath];
-  return [resourcePath stringByAppendingPathComponent:relativePath];
+BOOL NIIsArrayWithObjects(id object) {
+  return [object isKindOfClass:[NSArray class]] && [(NSArray*)object count] > 0;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSString* NIPathForDocumentsResource(NSString* relativePath) {
-  static NSString* documentsPath = nil;
-  if (nil == documentsPath) {
-    NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                        NSUserDomainMask,
-                                                        YES);
-    documentsPath = [[dirs objectAtIndex:0] retain];
-  }
-  return [documentsPath stringByAppendingPathComponent:relativePath];
+BOOL NIIsSetWithObjects(id object) {
+  return [object isKindOfClass:[NSSet class]] && [(NSSet*)object count] > 0;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL NIIsStringWithAnyText(id object) {
+  return [object isKindOfClass:[NSString class]] && [(NSString*)object length] > 0;
 }

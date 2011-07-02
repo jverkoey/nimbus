@@ -150,13 +150,29 @@
  */
 
 /**
- * @defgroup Setup Adding Nimbus to Your Project
+ * @defgroup Setup Adding Nimbus Libraries to Your Project
  *
- * There are two recommended models for adding Nimbus to your project: as dependent libraries, or
- * by adding the code directly to your project. Each has its advantages and disadvantages, outlined
- * below.
+ * .. There are two recommended models for adding Nimbus libraries to your project: as
+ * dependent libraries, or by adding the code directly to your project. Each has its
+ * advantages and disadvantages, outlined below.
  *
- * <h1>Add as a Dependent Library</h1>
+ * <h1>Recommended: add the Nimbus component source directly to your project</h1>
+ *
+ * Advantages:
+ *
+ * - Debugging and stepping into Nimbus code is much easier when the source is built in your
+ *   project.
+ * - You can easily modify the Nimbus source code within your project.
+ * - Only one precompiled header needs to be built.
+ *
+ * Disadvantages:
+ *
+ * - You will have to actively keep your projects up-to-date with Nimbus by adding and removing
+ *   files whenever a Nimbus library changes.
+ * - If you have multiple projects then the build products won't be reused, causing some duplicate
+ *   build time between different projects.
+ *
+ * <h1>Add Nimbus components as dependent libraries</h1>
  *
  * Advantages:
  *
@@ -176,35 +192,55 @@
  * - Headers must be protected because they get copied to a separate directory. This can be
  *   frustrating if you want to hack on Nimbus.
  *
- * <h1>Add the Source Directly to your Project</h1>
- *
- * Advantages:
- *
- * - Debugging and stepping into Nimbus code is much easier when it exists directly in your
- *   project.
- * - You can modify any Nimbus source file without worrying about whether the header is a copied
- *   header or the original.
- * - Fewer context switches when building the library can lower build times in certain situations.
- *
- * Disadvantages:
- *
- * - If there are any major modifications to Nimbus' project layout then you will have to manually
- *   update your projects.
- * - If you have multiple projects then the build products won't be reused, causing some duplicate
- *   build time.
- *
  * See examples/launcher/BasicLauncher for an example project that adds the source directly to
  * the project.
  *
  * <h1>Which model should I use?</h1>
  *
- * It's entirely up to you to weigh the above pros and cons with your own pros and cons. Based
- * on the pros and cons listed above, it's recommended that you <b>add the source directly to your
- * project</b>. While this will create a bit more work for you if Nimbus changes drastically
- * down the line, the day-to-day advantages far outweigh the downside of what is
- * realistically a rare event.
+ * It's entirely up to you to weigh the above pros and cons with your own requirements. It is
+ * recommended that you <b>add the source directly to your project</b>. While this will
+ * create a bit more work for you if Nimbus changes drastically down the line, the day-to-day
+ * advantages far outweigh the downside of what is realistically a rare event.
  *
  * If you choose to use dependent libraries, please consider using the nimbus script found
  * in nimbus/scripts/. It may be advantageous to you to add nimbus/scripts to your PATH so that
  * you can run nimbus directly.
+ *
+ * <h1>Adding a Nimbus library to your project</h1>
+ *
+ * Let's quickly go over the basic structure of a Nimbus library.
+ *
+ * Within the root <code>src</code> directory resides each of the Nimbus libraries. Also
+ * included in this directory are this Doxygen.h header, which includes many of Nimbus'
+ * articles, and the <code>common</code> and <code>resources</code> directories, used
+ * for sharing things between each of the libraries.
+ *
+ * Each library is placed in its own folder with the following directory structure:
+ *
+ * <pre>
+ * deps           Declares this library's dependencies, one on each line, by name.
+ * examples/      Contrived examples that demo particular features.
+ * lib/           Used only in building the library as a static library.
+ * src/           The source for the library.
+ * unittests/     Used only in unit testing the library.
+ * </pre>
+ *
+ * When you want to add a Nimbus library to your project there are only two things you need
+ * to care about: the <code>src</code> directory and the <code>deps</code> file.
+ *
+ * The <code>deps</code> file contains the list of libraries that you will need to include in
+ * your project in order for the library to build. Nearly every Nimbus library depends on core.
+ *
+ * To add a library to your project, simply drag all of the source files within the library's
+ * <code>src</code> directory to your project. Do this for each of the dependencies as well and
+ * then include the library's header file in your project somewhere. The library's header file
+ * will usually be some form of <code>NimbusLibraryName.h</code> and will include all of the
+ * library's important features.
+ *
+ * For example, if you were to add the Nimbus Core library to your project, you'd add all of
+ * the files within <code>src/core/src</code> to your project and then include the following:
+ *
+ * <pre>
+ * #import "NimbusCore.h"
+ * </pre>
  */

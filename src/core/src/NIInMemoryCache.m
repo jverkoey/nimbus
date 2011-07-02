@@ -14,7 +14,11 @@
 // limitations under the License.
 //
 
-#import "NimbusCore.h"
+#import "NIInMemoryCache.h"
+
+#import "NIDataStructures.h"
+#import "NIDebuggingTools.h"
+#import "NIPreprocessorMacros.h"
 
 @interface NIMemoryCache()
 
@@ -334,7 +338,7 @@
   if (_maxTotalLowMemoryUsage > 0) {
     // Remove the least recently used images by iterating over the linked list.
     while (_totalMemoryUsage > _maxTotalLowMemoryUsage) {
-      NIMemoryCacheInfo* info = [self.lruCacheObjects head];
+      NIMemoryCacheInfo* info = [self.lruCacheObjects firstObject];
       [self removeCacheInfoForName:info.name];
     }
   }
@@ -353,7 +357,7 @@
   if (_maxTotalMemoryUsage > 0) {
     // Remove least recently used images until we satisfy our memory constraints.
     while (_totalMemoryUsage > _maxTotalMemoryUsage) {
-      NIMemoryCacheInfo* info = [self.lruCacheObjects head];
+      NIMemoryCacheInfo* info = [self.lruCacheObjects firstObject];
       [self removeCacheInfoForName:info.name];
     }
   }
