@@ -61,8 +61,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURL:(NSURL *)newURL {
   if ((self = [super initWithURL:newURL])) {
-    [[self class] setShouldUpdateNetworkActivityIndicator:NO];
-
     self.imageCropRect = CGRectZero;
     self.imageDisplaySize = CGSizeZero;
     self.cropImageForDisplay = YES;
@@ -118,6 +116,7 @@
     // Not implemented
     NIDERROR(@"This content mode has not been implemented in the threaded network image view: %d",
              contentMode);
+    NIDASSERT(NO);
     return CGRectMake(0, 0, imageSize.width, imageSize.height);
   }
 }
