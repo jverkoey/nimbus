@@ -17,6 +17,7 @@
 #import "RootViewController.h"
 
 static const CGFloat kFramePadding = 10;
+static const CGFloat kTextBottomMargin = 10;
 static const CGFloat kImageDimensions = 93;
 static const CGFloat kImageSpacing = 10;
 
@@ -34,7 +35,10 @@ static const CGFloat kImageSpacing = 10;
 
   NINetworkImageView* networkImageView = [[[NINetworkImageView alloc] initWithImage:initialImage]
                                           autorelease];
-  networkImageView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0.3 alpha:1];
+  networkImageView.backgroundColor = [UIColor colorWithWhite:0 alpha:1];
+  networkImageView.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.3] CGColor];
+  networkImageView.layer.borderWidth = 1;
+  networkImageView.delegate = self;
 
   return networkImageView;
 }
@@ -42,11 +46,11 @@ static const CGFloat kImageSpacing = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutImageViewsForOrientation:(UIInterfaceOrientation)orientation {
-  CGRect frame = self.view.bounds;
+  CGRect frame = _scrollView.bounds;
 
   CGFloat maxRightEdge = 0;
   CGFloat currentX = kFramePadding;
-  CGFloat currentY = kFramePadding;
+  CGFloat currentY = 0;
   for (NINetworkImageView* imageView in _networkImageViews) {
     imageView.frame = CGRectMake(currentX, currentY, kImageDimensions, kImageDimensions);
 
@@ -58,6 +62,10 @@ static const CGFloat kImageSpacing = 10;
       currentX = kFramePadding;
       currentY += kImageDimensions + kImageSpacing;
     }
+  }
+
+  if (currentX == kFramePadding) {
+    currentY -= kImageDimensions + kImageSpacing;
   }
 
   CGFloat contentWidth = (maxRightEdge + kFramePadding);
@@ -78,16 +86,56 @@ static const CGFloat kImageSpacing = 10;
 - (void)loadView {
   [super loadView];
 
+  self.view.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
+
+  // Try experimenting with the maximum number of concurrent operations. By making it one,
+  // we force the network operations to happen serially. This can be useful for avoiding
+  // thrashing of the disk and network.
+  // Watch how the app works with a max of 1 versus not defining a max at all and allowing the
+  // device to spin off as many threads as it wants to.
+  //
+  // Spoiler alert! When the max is 1, the first image loads and then all of the others load
+  //                instantly.
+  //                When the max is unset, all of the images take a bit longer to load.
+
+  [[Nimbus globalNetworkOperationQueue] setMaxConcurrentOperationCount:1];
+
+
+  // Try experimenting with this value to see how the total number of pixels is affected.
+
+  //[[Nimbus globalImageMemoryCache] setMaxNumberOfPixels:94*94];
+
+
+  _memoryUsageLabel = [[UILabel alloc] init];
+  _memoryUsageLabel.backgroundColor = self.view.backgroundColor;
+  _memoryUsageLabel.textColor = [UIColor colorWithWhite:0.1 alpha:1];
+  _memoryUsageLabel.shadowColor = [UIColor colorWithWhite:1 alpha:1];
+  _memoryUsageLabel.shadowOffset = CGSizeMake(0, 1);
+  _memoryUsageLabel.font = [UIFont boldSystemFontOfSize:14];
+  _memoryUsageLabel.text = @"Fetching the images...";
+  [_memoryUsageLabel sizeToFit];
+  _memoryUsageLabel.frame = CGRectMake(kFramePadding, kFramePadding,
+                                       _memoryUsageLabel.frame.size.width,
+                                       _memoryUsageLabel.frame.size.height);
+
+  [self.view addSubview:_memoryUsageLabel];
+
   _networkImageViews = [[NSMutableArray alloc] init];
 
-  _scrollView = [[[UIScrollView alloc] initWithFrame:self.view.bounds] autorelease];
+  _scrollView = [[[UIScrollView alloc] initWithFrame:
+                  NIRectShift(self.view.bounds,
+                              0, CGRectGetMaxY(_memoryUsageLabel.frame) + kTextBottomMargin)]
+                 autorelease];
   _scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
   _scrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                   | UIViewAutoresizingFlexibleHeight);
 
   for (NSInteger ix = UIViewContentModeScaleToFill; ix <= UIViewContentModeBottomRight; ++ix) {
+    if (UIViewContentModeRedraw == ix) {
+      // Unsupported mode.
+      continue;
+    }
     NINetworkImageView* networkImageView = [self networkImageView];
-    networkImageView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:1];
 
     networkImageView.contentMode = ix;
 
@@ -127,6 +175,23 @@ static const CGFloat kImageSpacing = 10;
   [super willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
                                           duration: duration];
   [self layoutImageViewsForOrientation:toInterfaceOrientation];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NINetworkImageViewDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)networkImageView:(NINetworkImageView *)imageView didLoadImage:(UIImage *)image {
+  _memoryUsageLabel.text = [NSString stringWithFormat:@"In-memory cache size: %d pixels",
+                            [[Nimbus globalImageMemoryCache] numberOfPixels]];
+  [_memoryUsageLabel sizeToFit];
+  _memoryUsageLabel.frame = CGRectMake(kFramePadding, kFramePadding,
+                                       _memoryUsageLabel.frame.size.width,
+                                       _memoryUsageLabel.frame.size.height);
 }
 
 

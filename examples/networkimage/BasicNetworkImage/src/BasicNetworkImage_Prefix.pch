@@ -5,6 +5,7 @@
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
+    #import <QuartzCore/QuartzCore.h>
     #import "NimbusCore.h"
     #import "NimbusNetworkImage.h"
 #endif
