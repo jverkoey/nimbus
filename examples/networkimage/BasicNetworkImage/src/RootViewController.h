@@ -19,7 +19,8 @@
 
 @interface RootViewController : UIViewController {
 @private
-  NINetworkImageView* _networkImageView;
+  UIScrollView* _scrollView;
+  NSMutableArray* _networkImageViews;
 }
 
 @end
