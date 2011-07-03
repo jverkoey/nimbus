@@ -18,6 +18,12 @@
 			<key>Title</key>
 			<string>UIView</string>
 		</dict>
+		<dict>
+			<key>Key</key>
+			<string>UIViewController</string>
+			<key>Title</key>
+			<string>UIViewController</string>
+		</dict>
 	</array>
 	<key>TemplateSelection</key>
 	<dict>
@@ -27,6 +33,8 @@
 		<string>NSObject subclass</string>
 		<key>UIView</key>
 		<string>UIView subclass</string>
+		<key>UIViewController</key>
+		<string>UIViewController subclass</string>
 	</dict>
 </dict>
 </plist>
