@@ -1,0 +1,10 @@
+//
+// Prefix header for all source files of the 'BasicNetworkImage' target in the 'BasicNetworkImage' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+    #import "NimbusCore.h"
+    #import "NimbusNetworkImage.h"
+#endif
