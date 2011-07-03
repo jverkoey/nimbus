@@ -112,6 +112,11 @@
                       scaledDisplaySize.width,
                       scaledDisplaySize.height);
 
+  } else if (UIViewContentModeScaleAspectFit == contentMode) {
+    // Aspect fit grabs the entire original image and squashes it down to a frame that fits
+    // the destination and leaves the unfilled space transparent.
+    return CGRectMake(0, 0, imageSize.width, imageSize.height);
+
   } else {
     // Not implemented
     NIDERROR(@"This content mode has not been implemented in the threaded network image view: %d",
@@ -138,6 +143,16 @@
   } else if (UIViewContentModeScaleAspectFill == contentMode) {
     // We're filling the entire destination, so the destination rect is the display rect.
     return CGRectMake(0, 0, displaySize.width, displaySize.height);
+
+  } else if (UIViewContentModeScaleAspectFit == contentMode) {
+    // Fit the image right in the center of the source frame and maintain the aspect ratio.
+    CGFloat scale = MIN(displaySize.width / imageSize.width,
+                        displaySize.height / imageSize.height);
+    CGSize scaledImageSize = CGSizeMake(imageSize.width * scale, imageSize.height * scale);
+    return CGRectMake(floorf((displaySize.width - scaledImageSize.width) / 2),
+                      floorf((displaySize.height - scaledImageSize.height) / 2),
+                      scaledImageSize.width,
+                      scaledImageSize.height);
 
   } else {
     // Not implemented
@@ -208,6 +223,7 @@
     CGRect srcCropRect = [self sourceRectWithImageSize: srcRect.size
                                            displaySize: displaySize
                                            contentMode: contentMode];
+    srcCropRect = CGRectIntegral(srcCropRect);
 
     // Do we need to crop the source?
     if (!CGRectEqualToRect(srcCropRect, srcRect)) {
@@ -229,6 +245,18 @@
     CGRect dstBlitRect = [self destinationRectWithImageSize: srcRect.size
                                                 displaySize: displaySize
                                                 contentMode: contentMode];
+    dstBlitRect = CGRectIntegral(dstBlitRect);
+
+    CGBitmapInfo bmi = CGImageGetBitmapInfo(srcImageRef);
+
+    // Clear the alpha bits.
+    bmi &= ~(kCGBitmapAlphaInfoMask);
+
+    // Set the RGBA alpha flag. We have no idea what sort of alpha the source image has.
+    // We need to explicitly ensure that we have alpha in the composited image so that it
+    // will have transparency when the content mode will result in not completely filling the
+    // image.
+    bmi |= kCGImageAlphaLast;
 
     // Create our final composite image.
     CGContextRef dstBmp = CGBitmapContextCreate(NULL,
@@ -237,7 +265,7 @@
                                                 CGImageGetBitsPerComponent(srcImageRef),
                                                 0,
                                                 CGImageGetColorSpace(srcImageRef),
-                                                CGImageGetBitmapInfo(srcImageRef));
+                                                bmi);
 
     CGRect dstRect = CGRectMake(0, 0, displaySize.width, displaySize.height);
 
