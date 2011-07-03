@@ -1,0 +1,362 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		662F033913A92C1C008AE522 /* NimbusNetworkImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 662F033813A92C1C008AE522 /* NimbusNetworkImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		662F035313A933AF008AE522 /* NINetworkImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 662F035213A933AF008AE522 /* NINetworkImageView.m */; };
+		66EA024D13BECF4D004FFE1A /* NINetworkImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EA024C13BECF4D004FFE1A /* NINetworkImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66EA028F13BED229004FFE1A /* NIHTTPImageRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EA028D13BED229004FFE1A /* NIHTTPImageRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66EA029013BED229004FFE1A /* NIHTTPImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA028E13BED229004FFE1A /* NIHTTPImageRequest.m */; };
+		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		662F03DA13AA4C30008AE522 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 662F03D613AA4C30008AE522 /* ASIHTTPRequest.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = ASIHTTPRequest;
+		};
+		662F03DC13AA4C3B008AE522 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 662F03D613AA4C30008AE522 /* ASIHTTPRequest.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = ASIHTTPRequest;
+		};
+		66EA035013BEE650004FFE1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66EA034B13BEE650004FFE1A /* NimbusCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D /* libNimbusCore.a */;
+			remoteInfo = NimbusCore;
+		};
+		66EA035213BEE650004FFE1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66EA034B13BEE650004FFE1A /* NimbusCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 668750F413A1AC6000FF1C56 /* NimbusCoreUnitTests.octest */;
+			remoteInfo = NimbusCoreUnitTests;
+		};
+		66EA035413BEE658004FFE1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66EA034B13BEE650004FFE1A /* NimbusCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D /* NimbusCore */;
+			remoteInfo = NimbusCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		662F030813A92BB7008AE522 /* unittests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = unittests.xcconfig; path = ../common/confs/unittests.xcconfig; sourceTree = SOURCE_ROOT; };
+		662F030913A92BB7008AE522 /* library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = library.xcconfig; path = ../common/confs/library.xcconfig; sourceTree = SOURCE_ROOT; };
+		662F030A13A92BB7008AE522 /* project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = project.xcconfig; path = ../common/confs/project.xcconfig; sourceTree = SOURCE_ROOT; };
+		662F033813A92C1C008AE522 /* NimbusNetworkImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusNetworkImage.h; path = src/NimbusNetworkImage.h; sourceTree = "<group>"; };
+		662F035213A933AF008AE522 /* NINetworkImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkImageView.m; path = src/NINetworkImageView.m; sourceTree = "<group>"; };
+		662F03D613AA4C30008AE522 /* ASIHTTPRequest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ASIHTTPRequest.xcodeproj; path = ../ASIHTTPRequest/ASIHTTPRequest.xcodeproj; sourceTree = SOURCE_ROOT; };
+		66EA024813BECF30004FFE1A /* NimbusNetworkImage_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusNetworkImage_Prefix.pch; path = lib/NimbusNetworkImage_Prefix.pch; sourceTree = "<group>"; };
+		66EA024C13BECF4D004FFE1A /* NINetworkImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkImageView.h; path = src/NINetworkImageView.h; sourceTree = "<group>"; };
+		66EA026313BED1F0004FFE1A /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deps; sourceTree = "<group>"; };
+		66EA028D13BED229004FFE1A /* NIHTTPImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIHTTPImageRequest.h; path = src/NIHTTPImageRequest.h; sourceTree = "<group>"; };
+		66EA028E13BED229004FFE1A /* NIHTTPImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIHTTPImageRequest.m; path = src/NIHTTPImageRequest.m; sourceTree = "<group>"; };
+		66EA034B13BEE650004FFE1A /* NimbusCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NimbusCore.xcodeproj; path = ../core/NimbusCore.xcodeproj; sourceTree = SOURCE_ROOT; };
+		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2AAC07E0554694100DB518D /* libNimbusNetworkImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusNetworkImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2AAC07C0554694100DB518D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC07E0554694100DB518D /* libNimbusNetworkImage.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* NimbusNetworkImage */ = {
+			isa = PBXGroup;
+			children = (
+				66EA026313BED1F0004FFE1A /* deps */,
+				66EA024813BECF30004FFE1A /* NimbusNetworkImage_Prefix.pch */,
+				08FB77AEFE84172EC02AAC07 /* Source */,
+				0867D69AFE84028FC02AAC07 /* Frameworks */,
+				662F030713A92BAE008AE522 /* Configurations */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = NimbusNetworkImage;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				662F03D613AA4C30008AE522 /* ASIHTTPRequest.xcodeproj */,
+				66EA034B13BEE650004FFE1A /* NimbusCore.xcodeproj */,
+				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				662F033813A92C1C008AE522 /* NimbusNetworkImage.h */,
+				66EA024C13BECF4D004FFE1A /* NINetworkImageView.h */,
+				662F035213A933AF008AE522 /* NINetworkImageView.m */,
+				66EA028D13BED229004FFE1A /* NIHTTPImageRequest.h */,
+				66EA028E13BED229004FFE1A /* NIHTTPImageRequest.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		662F030713A92BAE008AE522 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				662F030813A92BB7008AE522 /* unittests.xcconfig */,
+				662F030913A92BB7008AE522 /* library.xcconfig */,
+				662F030A13A92BB7008AE522 /* project.xcconfig */,
+			);
+			name = Configurations;
+			sourceTree = "<group>";
+		};
+		662F03D713AA4C30008AE522 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				662F03DB13AA4C30008AE522 /* libASIHTTPRequest.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		66EA034C13BEE650004FFE1A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66EA035113BEE650004FFE1A /* libNimbusCore.a */,
+				66EA035313BEE650004FFE1A /* NimbusCoreUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D2AAC07A0554694100DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				662F033913A92C1C008AE522 /* NimbusNetworkImage.h in Headers */,
+				66EA024D13BECF4D004FFE1A /* NINetworkImageView.h in Headers */,
+				66EA028F13BED229004FFE1A /* NIHTTPImageRequest.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D2AAC07D0554694100DB518D /* NimbusNetworkImage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "NimbusNetworkImage" */;
+			buildPhases = (
+				D2AAC07A0554694100DB518D /* Headers */,
+				D2AAC07B0554694100DB518D /* Sources */,
+				D2AAC07C0554694100DB518D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				662F03DD13AA4C3B008AE522 /* PBXTargetDependency */,
+				66EA035513BEE658004FFE1A /* PBXTargetDependency */,
+			);
+			name = NimbusNetworkImage;
+			productName = NimbusNetworkImage;
+			productReference = D2AAC07E0554694100DB518D /* libNimbusNetworkImage.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "NimbusNetworkImage" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 0867D691FE84028FC02AAC07 /* NimbusNetworkImage */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 662F03D713AA4C30008AE522 /* Products */;
+					ProjectRef = 662F03D613AA4C30008AE522 /* ASIHTTPRequest.xcodeproj */;
+				},
+				{
+					ProductGroup = 66EA034C13BEE650004FFE1A /* Products */;
+					ProjectRef = 66EA034B13BEE650004FFE1A /* NimbusCore.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				D2AAC07D0554694100DB518D /* NimbusNetworkImage */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		662F03DB13AA4C30008AE522 /* libASIHTTPRequest.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libASIHTTPRequest.a;
+			remoteRef = 662F03DA13AA4C30008AE522 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		66EA035113BEE650004FFE1A /* libNimbusCore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusCore.a;
+			remoteRef = 66EA035013BEE650004FFE1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		66EA035313BEE650004FFE1A /* NimbusCoreUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusCoreUnitTests.octest;
+			remoteRef = 66EA035213BEE650004FFE1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2AAC07B0554694100DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				662F035313A933AF008AE522 /* NINetworkImageView.m in Sources */,
+				66EA029013BED229004FFE1A /* NIHTTPImageRequest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		662F03DD13AA4C3B008AE522 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ASIHTTPRequest;
+			targetProxy = 662F03DC13AA4C3B008AE522 /* PBXContainerItemProxy */;
+		};
+		66EA035513BEE658004FFE1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NimbusCore;
+			targetProxy = 66EA035413BEE658004FFE1A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB921F08733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 662F030913A92BB7008AE522 /* library.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BASE_PRODUCT_NAME = NimbusNetworkImage;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/NimbusNetworkImage.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = NIMBUS_STATIC_LIBRARY;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = NimbusNetworkImage;
+			};
+			name = Debug;
+		};
+		1DEB922008733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 662F030913A92BB7008AE522 /* library.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BASE_PRODUCT_NAME = NimbusNetworkImage;
+				DSTROOT = /tmp/NimbusNetworkImage.dst;
+				GCC_MODEL_TUNING = G5;
+				GCC_PREPROCESSOR_DEFINITIONS = NIMBUS_STATIC_LIBRARY;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = NimbusNetworkImage;
+			};
+			name = Release;
+		};
+		1DEB922308733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 662F030A13A92BB7008AE522 /* project.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1DEB922408733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 662F030A13A92BB7008AE522 /* project.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "NimbusNetworkImage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB921F08733DC00010E9CD /* Debug */,
+				1DEB922008733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "NimbusNetworkImage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB922308733DC00010E9CD /* Debug */,
+				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
