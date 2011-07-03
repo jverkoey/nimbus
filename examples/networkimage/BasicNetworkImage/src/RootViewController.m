@@ -36,7 +36,7 @@ static const CGFloat kImageSpacing = 10;
   NINetworkImageView* networkImageView = [[[NINetworkImageView alloc] initWithImage:initialImage]
                                           autorelease];
   networkImageView.backgroundColor = [UIColor colorWithWhite:0 alpha:1];
-  networkImageView.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.3] CGColor];
+  networkImageView.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.2] CGColor];
   networkImageView.layer.borderWidth = 1;
   networkImageView.delegate = self;
 
@@ -50,7 +50,7 @@ static const CGFloat kImageSpacing = 10;
 
   CGFloat maxRightEdge = 0;
   CGFloat currentX = kFramePadding;
-  CGFloat currentY = 0;
+  CGFloat currentY = kFramePadding;
   for (NINetworkImageView* imageView in _networkImageViews) {
     imageView.frame = CGRectMake(currentX, currentY, kImageDimensions, kImageDimensions);
 
@@ -126,6 +126,7 @@ static const CGFloat kImageSpacing = 10;
                   NIRectShift(self.view.bounds,
                               0, CGRectGetMaxY(_memoryUsageLabel.frame) + kTextBottomMargin)]
                  autorelease];
+  _scrollView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1];
   _scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
   _scrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                   | UIViewAutoresizingFlexibleHeight);
@@ -164,6 +165,14 @@ static const CGFloat kImageSpacing = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+
+  [_scrollView flashScrollIndicators];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
   return NIIsSupportedOrientation(toInterfaceOrientation);
 }
@@ -175,6 +184,14 @@ static const CGFloat kImageSpacing = 10;
   [super willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
                                           duration: duration];
   [self layoutImageViewsForOrientation:toInterfaceOrientation];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+  [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+
+  [_scrollView flashScrollIndicators];
 }
 
 
