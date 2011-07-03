@@ -301,11 +301,59 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testImageCacheNils {
+  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+
+  [cache storeObject: nil
+            withName: @"obj1"];
+  STAssertEquals([cache count], (NSUInteger)0, @"No objects should have been stored in the cache.");
+
+  [cache storeObject: nil
+            withName: nil];
+  STAssertEquals([cache count], (NSUInteger)0, @"No objects should have been stored in the cache.");
+
+  [cache storeObject: [NSDictionary dictionary]
+            withName: nil];
+  STAssertEquals([cache count], (NSUInteger)0, @"No objects should have been stored in the cache.");
+
+  [cache storeObject: [NSDictionary dictionary]
+            withName: nil
+        expiresAfter: nil];
+  STAssertEquals([cache count], (NSUInteger)0, @"No objects should have been stored in the cache.");
+
+  [cache storeObject: [NSDictionary dictionary]
+            withName: nil
+        expiresAfter: [NSDate dateWithTimeIntervalSinceNow:1]];
+  STAssertEquals([cache count], (NSUInteger)0, @"No objects should have been stored in the cache.");
+
+  [cache storeObject: nil
+            withName: @"obj1"
+        expiresAfter: nil];
+  STAssertEquals([cache count], (NSUInteger)0, @"No objects should have been stored in the cache.");
+
+  [cache storeObject: nil
+            withName: nil
+        expiresAfter: [NSDate dateWithTimeIntervalSinceNow:1]];
+  STAssertEquals([cache count], (NSUInteger)0, @"No objects should have been stored in the cache.");
+
+  [cache storeObject: nil
+            withName: nil
+        expiresAfter: nil];
+  STAssertEquals([cache count], (NSUInteger)0, @"No objects should have been stored in the cache.");
+
+  STAssertNil([cache objectWithName:nil], @"The result should be nil");
+  [cache removeObjectWithName:nil];
+
+  STAssertEquals([cache count], (NSUInteger)0, @"No objects should have been stored in the cache.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testImageCacheStoreTooMuch {
   NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
 
-  static const NSUInteger numberOfBytesInOneImage = 100 * 100 * 4;
-  cache.maxTotalMemoryUsage = numberOfBytesInOneImage;
+  static const NSUInteger numberOfPixelsInOneImage = 100 * 100;
+  cache.maxNumberOfPixels = numberOfPixelsInOneImage;
 
   UIImage* img1 = [self emptyImageWithSize:CGSizeMake(100, 100)];
   UIImage* img2 = [self emptyImageWithSize:CGSizeMake(100, 100)];
@@ -327,9 +375,9 @@
 - (void)testImageCacheReduceMemoryUsage {
   NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
 
-  static const NSUInteger numberOfBytesInOneImage = 100 * 100 * 4;
-  cache.maxTotalMemoryUsage = numberOfBytesInOneImage * 2;
-  cache.maxTotalLowMemoryUsage = numberOfBytesInOneImage;
+  static const NSUInteger numberOfPixelsInOneImage = 100 * 100;
+  cache.maxNumberOfPixels = numberOfPixelsInOneImage * 2;
+  cache.maxNumberOfPixelsUnderStress = numberOfPixelsInOneImage;
 
   UIImage* img1 = [self emptyImageWithSize:CGSizeMake(100, 100)];
   UIImage* img2 = [self emptyImageWithSize:CGSizeMake(100, 100)];
@@ -356,9 +404,9 @@
 - (void)testImageCacheReduceMemoryUsageWithAccess {
   NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
 
-  static const NSUInteger numberOfBytesInOneImage = 100 * 100 * 4;
-  cache.maxTotalMemoryUsage = numberOfBytesInOneImage * 2;
-  cache.maxTotalLowMemoryUsage = numberOfBytesInOneImage;
+  static const NSUInteger numberOfPixelsInOneImage = 100 * 100;
+  cache.maxNumberOfPixels = numberOfPixelsInOneImage * 2;
+  cache.maxNumberOfPixelsUnderStress = numberOfPixelsInOneImage;
 
   UIImage* img1 = [self emptyImageWithSize:CGSizeMake(100, 100)];
   UIImage* img2 = [self emptyImageWithSize:CGSizeMake(100, 100)];
@@ -387,9 +435,9 @@
 - (void)testImageCacheReduceMemoryUsageWithThrashingAccess {
   NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
 
-  static const NSUInteger numberOfBytesInOneImage = 100 * 100 * 4;
-  cache.maxTotalMemoryUsage = numberOfBytesInOneImage * 2;
-  cache.maxTotalLowMemoryUsage = numberOfBytesInOneImage;
+  static const NSUInteger numberOfPixelsInOneImage = 100 * 100;
+  cache.maxNumberOfPixels = numberOfPixelsInOneImage * 2;
+  cache.maxNumberOfPixelsUnderStress = numberOfPixelsInOneImage;
 
   UIImage* img1 = [self emptyImageWithSize:CGSizeMake(100, 100)];
   UIImage* img2 = [self emptyImageWithSize:CGSizeMake(100, 100)];

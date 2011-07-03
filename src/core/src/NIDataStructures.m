@@ -16,6 +16,8 @@
 
 #import "NIDataStructures.h"
 
+#import "NIDebuggingTools.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -226,6 +228,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NILinkedListLocation *)addObject:(id)object {
+  // nil objects can not be added to a linked list.
+  NIDASSERT(nil != object);
+  if (nil == object) {
+    return nil;
+  }
+
   struct NILinkedListNode* node = malloc(sizeof(struct NILinkedListNode));
   memset(node, 0, sizeof(struct NILinkedListNode));
   node->object = [object retain];

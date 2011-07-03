@@ -128,6 +128,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateAccessTimeForInfo:(NIMemoryCacheInfo *)info {
+  NIDASSERT(nil != info);
+  if (nil == info) {
+    return;
+  }
   info.lastAccessTime = [NSDate date];
 
   [_lruCacheObjects removeObjectAtLocation:info.lruLocation];
@@ -143,6 +147,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setCacheInfo:(NIMemoryCacheInfo *)info forName:(NSString *)name {
+  NIDASSERT(nil != name);
+  if (nil == name) {
+    return;
+  }
+
   // Storing in the cache counts as an access of the object, so we update the access time.
   [self updateAccessTimeForInfo:info];
 
@@ -155,6 +164,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeCacheInfoForName:(NSString *)name {
+  NIDASSERT(nil != name);
+  if (nil == name) {
+    return;
+  }
+
   [self willRemoveObject:[self cacheInfoForName:name].object withName:name];
   [_cacheMap removeObjectForKey:name];
 }
@@ -192,6 +206,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)storeObject:(id)object withName:(NSString *)name expiresAfter:(NSDate *)expirationDate {
+  // Don't store nil objects in the cache.
+  if (nil == object) {
+    return;
+  }
+
   if (nil != expirationDate && [[NSDate date] timeIntervalSinceDate:expirationDate] >= 0) {
     // The object being stored is already expired so remove the object from the cache altogether.
     [self removeObjectWithName:name];
@@ -229,8 +248,10 @@
     return nil;
   }
 
-  // Update the access time whenever we fetch an object from the cache.
-  [self updateAccessTimeForInfo:info];
+  if (nil != info) {
+    // Update the access time whenever we fetch an object from the cache.
+    [self updateAccessTimeForInfo:info];
+  }
 
   return info.object;
 }
@@ -312,21 +333,31 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIImageMemoryCache
+@interface NIImageMemoryCache()
 
-@synthesize totalMemoryUsage        = _totalMemoryUsage;
-@synthesize maxTotalMemoryUsage     = _maxTotalMemoryUsage;
-@synthesize maxTotalLowMemoryUsage  = _maxTotalLowMemoryUsage;
+// Internally only.
+@property (nonatomic, readwrite, assign) NSUInteger numberOfPixels;
+
+@end
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSUInteger)numberOfBytesUsedByImage:(UIImage *)image {
-  // This is a rough estimate.
-  NSUInteger numberOfBytesUsed = (NSUInteger)(image.size.width * image.size.height * 4);
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NIImageMemoryCache
+
+@synthesize numberOfPixels                = _numberOfPixels;
+@synthesize maxNumberOfPixels             = _maxNumberOfPixels;
+@synthesize maxNumberOfPixelsUnderStress  = _maxNumberOfPixelsUnderStress;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSUInteger)numberOfPixelsUsedByImage:(UIImage *)image {
+  NSUInteger numberOfPixels = (NSUInteger)(image.size.width * image.size.height);
   if ([image respondsToSelector:@selector(scale)]) {
-    numberOfBytesUsed *= image.scale;
+    numberOfPixels *= image.scale;
   }
-  return numberOfBytesUsed;
+  return numberOfPixels;
 }
 
 
@@ -335,9 +366,9 @@
   // Remove all expired images first.
   [super reduceMemoryUsage];
 
-  if (_maxTotalLowMemoryUsage > 0) {
+  if (self.maxNumberOfPixelsUnderStress > 0) {
     // Remove the least recently used images by iterating over the linked list.
-    while (_totalMemoryUsage > _maxTotalLowMemoryUsage) {
+    while (self.numberOfPixels > self.maxNumberOfPixelsUnderStress) {
       NIMemoryCacheInfo* info = [self.lruCacheObjects firstObject];
       [self removeCacheInfoForName:info.name];
     }
@@ -351,12 +382,13 @@
   if (![object isKindOfClass:[UIImage class]]) {
     return;
   }
-  _totalMemoryUsage -= [self numberOfBytesUsedByImage:previousObject];
-  _totalMemoryUsage += [self numberOfBytesUsedByImage:object];
+  self.numberOfPixels -= [self numberOfPixelsUsedByImage:previousObject];
+  self.numberOfPixels += [self numberOfPixelsUsedByImage:object];
 
-  if (_maxTotalMemoryUsage > 0) {
+  if (self.maxNumberOfPixels > 0) {
     // Remove least recently used images until we satisfy our memory constraints.
-    while (_totalMemoryUsage > _maxTotalMemoryUsage) {
+    while (self.numberOfPixels > self.maxNumberOfPixels
+           && [self.lruCacheObjects count] > 0) {
       NIMemoryCacheInfo* info = [self.lruCacheObjects firstObject];
       [self removeCacheInfoForName:info.name];
     }
@@ -374,7 +406,7 @@
   NIMemoryCacheInfo* info = [self cacheInfoForName:name];
   [self.lruCacheObjects removeObjectAtLocation:info.lruLocation];
 
-  _totalMemoryUsage -= [self numberOfBytesUsedByImage:object];
+  self.numberOfPixels -= [self numberOfPixelsUsedByImage:object];
 }
 
 

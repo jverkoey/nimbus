@@ -150,53 +150,52 @@
 
 
 /**
- * An in-memory cache for storing images with a least-recently-used memory cap.
+ * An in-memory cache for storing images with caps on the total number of pixels.
  *
  * When reduceMemoryUsage is called, the least recently used images are removed from the cache
- * until the totalMemoryUsage is below maxTotalLowMemoryUsage.
+ * until the numberOfPixels is below maxNumberOfPixelsUnderStress.
  *
  * When an image is added to the cache that causes the memory usage to pass the max, the
- * least recently used images are removed from the cache until totalMemoryUsage is below
- * maxTotalMemoryUsage.
+ * least recently used images are removed from the cache until the numberOfPixels is below
+ * maxNumberOfPixels.
  *
- * By default the image memory cache has no upper bound on its memory. You must explicitly
+ * By default the image memory cache has no limit to its pixel count. You must explicitly
  * set this value in your application.
  *
  *      @attention If the cache is too small to fit the newly added image, then all images
  *                 will end up being removed including the one being added.
  *
- *      @remark The way memory is calculated isn't completely accurate, so do not use it
- *              as a means of measuring the exact number of bytes used in the cache.
+ *      @remark Memory is calculated in total number of pixels.
  *
  *      @see Nimbus::globalImageMemoryCache
  *      @see Nimbus::setGlobalImageMemoryCache:
  */
 @interface NIImageMemoryCache : NIMemoryCache {
 @private
-  NSUInteger _totalMemoryUsage;
+  NSUInteger _numberOfPixels;
 
-  NSUInteger _maxTotalMemoryUsage;
-  NSUInteger _maxTotalLowMemoryUsage;
+  NSUInteger _maxNumberOfPixels;
+  NSUInteger _maxNumberOfPixelsUnderStress;
 }
 
 /**
- * The total amount of memory being used.
+ * The total number of pixels being stored in the cache.
  */
-@property (nonatomic, readonly, assign) NSUInteger totalMemoryUsage;
+@property (nonatomic, readonly, assign) NSUInteger numberOfPixels;
 
 /**
- * The maximum amount of memory this cache may ever use.
+ * The maximum number of pixels this cache may ever store.
  *
- * Defaults to 0, which is special cased to represent an unbounded cache size.
+ * Defaults to 0, which is special cased to represent an unlimited number of pixels.
  */
-@property (nonatomic, readwrite, assign) NSUInteger maxTotalMemoryUsage;
+@property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixels;
 
 /**
- * The maximum amount of memory this cache may use after a call to reduceMemoryUsage.
+ * The maximum number of pixels this cache may store after a call to reduceMemoryUsage.
  *
- * Defaults to 0, which is special cased to represent an unbounded cache size.
+ * Defaults to 0, which is special cased to represent an unlimited number of pixels.
  */
-@property (nonatomic, readwrite, assign) NSUInteger maxTotalLowMemoryUsage;
+@property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixelsUnderStress;
 
 @end
 
