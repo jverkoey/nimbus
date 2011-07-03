@@ -29,8 +29,34 @@
 		662F03BE13AA4AB2008AE522 /* ASIProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 662F03AA13AA4AB2008AE522 /* ASIProgressDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		662F03C113AA4ABF008AE522 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 662F03BF13AA4ABF008AE522 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		662F03C213AA4ABF008AE522 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 662F03C013AA4ABF008AE522 /* Reachability.m */; };
+		66EA0B9B13C05BCB004FFE1A /* NIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EA0B9913C05BCB004FFE1A /* NIHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66EA0B9C13C05BCB004FFE1A /* NIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA0B9A13C05BCB004FFE1A /* NIHTTPRequest.m */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		66EA0C5913C05D29004FFE1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66EA0C5413C05D29004FFE1A /* NimbusCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D /* libNimbusCore.a */;
+			remoteInfo = NimbusCore;
+		};
+		66EA0C5B13C05D29004FFE1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66EA0C5413C05D29004FFE1A /* NimbusCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 668750F413A1AC6000FF1C56 /* NimbusCoreUnitTests.octest */;
+			remoteInfo = NimbusCoreUnitTests;
+		};
+		66EA0C5D13C05D2E004FFE1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66EA0C5413C05D29004FFE1A /* NimbusCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D /* NimbusCore */;
+			remoteInfo = NimbusCore;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		662F038113AA4979008AE522 /* ASIHTTPRequest_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIHTTPRequest_Prefix.pch; path = lib/ASIHTTPRequest_Prefix.pch; sourceTree = "<group>"; };
@@ -61,6 +87,9 @@
 		662F03C013AA4ABF008AE522 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = src/Reachability/Reachability.m; sourceTree = "<group>"; };
 		662F03C913AA4AD2008AE522 /* DONORS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DONORS; sourceTree = "<group>"; };
 		662F03CA13AA4AD2008AE522 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		66EA0B9913C05BCB004FFE1A /* NIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIHTTPRequest.h; path = src/NIHTTPRequest.h; sourceTree = "<group>"; };
+		66EA0B9A13C05BCB004FFE1A /* NIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIHTTPRequest.m; path = src/NIHTTPRequest.m; sourceTree = "<group>"; };
+		66EA0C5413C05D29004FFE1A /* NimbusCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NimbusCore.xcodeproj; path = ../core/NimbusCore.xcodeproj; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libASIHTTPRequest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libASIHTTPRequest.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -102,6 +131,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66EA0C5413C05D29004FFE1A /* NimbusCore.xcodeproj */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -123,6 +153,8 @@
 				662F03A113AA4AB2008AE522 /* ASIFormDataRequest.m */,
 				662F03A213AA4AB2008AE522 /* ASIHTTPRequest.h */,
 				662F03A313AA4AB2008AE522 /* ASIHTTPRequest.m */,
+				66EA0B9913C05BCB004FFE1A /* NIHTTPRequest.h */,
+				66EA0B9A13C05BCB004FFE1A /* NIHTTPRequest.m */,
 				662F03A413AA4AB2008AE522 /* ASIHTTPRequestConfig.h */,
 				662F03A513AA4AB2008AE522 /* ASIHTTPRequestDelegate.h */,
 				662F03A613AA4AB2008AE522 /* ASIInputStream.h */,
@@ -131,6 +163,7 @@
 				662F03A913AA4AB2008AE522 /* ASINetworkQueue.m */,
 				662F03AA13AA4AB2008AE522 /* ASIProgressDelegate.h */,
 				662F03C313AA4AC1008AE522 /* Reachability */,
+				66EA0B9D13C05BD0004FFE1A /* Nimbus Modifications */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -154,6 +187,22 @@
 			name = Reachability;
 			sourceTree = "<group>";
 		};
+		66EA0B9D13C05BD0004FFE1A /* Nimbus Modifications */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Nimbus Modifications";
+			sourceTree = "<group>";
+		};
+		66EA0C5513C05D29004FFE1A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66EA0C5A13C05D29004FFE1A /* libNimbusCore.a */,
+				66EA0C5C13C05D29004FFE1A /* NimbusCoreUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -174,6 +223,7 @@
 				662F03BC13AA4AB2008AE522 /* ASINetworkQueue.h in Headers */,
 				662F03BE13AA4AB2008AE522 /* ASIProgressDelegate.h in Headers */,
 				662F03C113AA4ABF008AE522 /* Reachability.h in Headers */,
+				66EA0B9B13C05BCB004FFE1A /* NIHTTPRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +241,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				66EA0C5E13C05D2E004FFE1A /* PBXTargetDependency */,
 			);
 			name = ASIHTTPRequest;
 			productName = ASIHTTPRequest;
@@ -215,12 +266,35 @@
 			mainGroup = 0867D691FE84028FC02AAC07 /* ASIHTTPRequest */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 66EA0C5513C05D29004FFE1A /* Products */;
+					ProjectRef = 66EA0C5413C05D29004FFE1A /* NimbusCore.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D2AAC07D0554694100DB518D /* ASIHTTPRequest */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		66EA0C5A13C05D29004FFE1A /* libNimbusCore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusCore.a;
+			remoteRef = 66EA0C5913C05D29004FFE1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		66EA0C5C13C05D29004FFE1A /* NimbusCoreUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusCoreUnitTests.octest;
+			remoteRef = 66EA0C5B13C05D29004FFE1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D2AAC07B0554694100DB518D /* Sources */ = {
@@ -236,10 +310,19 @@
 				662F03BB13AA4AB2008AE522 /* ASIInputStream.m in Sources */,
 				662F03BD13AA4AB2008AE522 /* ASINetworkQueue.m in Sources */,
 				662F03C213AA4ABF008AE522 /* Reachability.m in Sources */,
+				66EA0B9C13C05BCB004FFE1A /* NIHTTPRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		66EA0C5E13C05D2E004FFE1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NimbusCore;
+			targetProxy = 66EA0C5D13C05D2E004FFE1A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB921F08733DC00010E9CD /* Debug */ = {
@@ -255,6 +338,10 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					NIMBUS_STATIC_LIBRARY,
+				);
 				INSTALL_PATH = /usr/local/lib;
 				PRODUCT_NAME = ASIHTTPRequest;
 			};
@@ -269,6 +356,7 @@
 				BASE_PRODUCT_NAME = ASIHTTPRequest;
 				DSTROOT = /tmp/ASIHTTPRequest.dst;
 				GCC_MODEL_TUNING = G5;
+				GCC_PREPROCESSOR_DEFINITIONS = NIMBUS_STATIC_LIBRARY;
 				INSTALL_PATH = /usr/local/lib;
 				PRODUCT_NAME = ASIHTTPRequest;
 			};

@@ -18,9 +18,9 @@
 #import <UIKit/UIKit.h>
 
 #ifdef NIMBUS_STATIC_LIBRARY
-#import "ASIHTTPRequest/ASIHTTPRequest.h"
+#import "ASIHTTPRequest/NIHTTPRequest.h"
 #else
-#import "ASIHTTPRequest.h"
+#import "NIHTTPRequest.h"
 #endif
 
 /**
@@ -29,7 +29,7 @@
  *
  *      @ingroup Network-Image-Requests
  */
-@interface NIHTTPImageRequest : ASIHTTPRequest {
+@interface NIHTTPImageRequest : NIHTTPRequest {
 @private
   CGRect _imageCropRect;
   CGSize _imageDisplaySize;
