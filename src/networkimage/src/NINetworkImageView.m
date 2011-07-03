@@ -115,7 +115,10 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)cacheKeyForURL:(NSURL *)URL imageSize:(CGSize)imageSize {
+- (NSString *)cacheKeyForURL: (NSURL *)URL
+                   imageSize: (CGSize)imageSize
+                 contentMode: (UIViewContentMode)contentMode
+         cropImageForDisplay: (BOOL)cropImageForDisplay {
   NSString* cacheKey = [URL absoluteString];
 
   // Prefix cache key to create a namespace.
@@ -130,8 +133,10 @@
     cacheKey = [cacheKey stringByAppendingString:NSStringFromCGSize(imageSize)];
   }
 
+  cacheKey = [cacheKey stringByAppendingFormat:@"{%d,%d}", contentMode, cropImageForDisplay];
+
   // The resulting cache key will look like:
-  // (memoryCachePrefix)/path/to/image({width,height})
+  // (memoryCachePrefix)/path/to/image({width,height}){contentMode,cropImageForDisplay}
 
   return cacheKey;
 }
@@ -154,7 +159,9 @@
   // Store the resulting image in the memory cache.
   if (nil != self.imageMemoryCache) {
     NSString* cacheKey = [self cacheKeyForURL: request.url
-                                    imageSize: request.imageDisplaySize];
+                                    imageSize: request.imageDisplaySize
+                                  contentMode: request.imageContentMode
+                          cropImageForDisplay: request.cropImageForDisplay];
 
     // Get the expiration date from the response headers for the request.
     NSDate* expirationDate = [ASIHTTPRequest expiryDateForRequest:request maxAge:self.maxAge];
@@ -281,7 +288,9 @@
     // Attempt to load the image from memory first.
     if (nil != self.imageMemoryCache) {
       NSString* cacheKey = [self cacheKeyForURL: url
-                                      imageSize: displaySize];
+                                      imageSize: displaySize
+                                    contentMode: self.contentMode
+                            cropImageForDisplay: self.cropImageForDisplay];
       image = [self.imageMemoryCache objectWithName:cacheKey];
     }
 

@@ -100,6 +100,11 @@
     // aspect ratio, so the source and destination rects aren't modified.
     return CGRectMake(0, 0, imageSize.width, imageSize.height);
 
+  } else if (UIViewContentModeScaleAspectFit == contentMode) {
+    // Aspect fit grabs the entire original image and squashes it down to a frame that fits
+    // the destination and leaves the unfilled space transparent.
+    return CGRectMake(0, 0, imageSize.width, imageSize.height);
+
   } else if (UIViewContentModeScaleAspectFill == contentMode) {
     // Aspect fill requires that we take the destination rectangle and "fit" it within the
     // source rectangle; this gives us the area of the source image we'll crop out to draw into
@@ -112,16 +117,64 @@
                       scaledDisplaySize.width,
                       scaledDisplaySize.height);
 
-  } else if (UIViewContentModeScaleAspectFit == contentMode) {
-    // Aspect fit grabs the entire original image and squashes it down to a frame that fits
-    // the destination and leaves the unfilled space transparent.
-    return CGRectMake(0, 0, imageSize.width, imageSize.height);
+  } else if (UIViewContentModeCenter == contentMode) {
+    // We need to cut out a hole the size of the display in the center of the source image.
+    return CGRectMake(floorf((imageSize.width - displaySize.width) / 2),
+                      floorf((imageSize.width - displaySize.width) / 2),
+                      displaySize.width, displaySize.height);
+
+  } else if (UIViewContentModeTop == contentMode) {
+    // We need to cut out a hole the size of the display in the top center of the source image.
+    return CGRectMake(floorf((imageSize.width - displaySize.width) / 2),
+                      0,
+                      displaySize.width, displaySize.height);
+
+  } else if (UIViewContentModeBottom == contentMode) {
+    // We need to cut out a hole the size of the display in the bottom center of the source image.
+    return CGRectMake(floorf((imageSize.width - displaySize.width) / 2),
+                      imageSize.height - displaySize.height,
+                      displaySize.width, displaySize.height);
+
+  } else if (UIViewContentModeLeft == contentMode) {
+    // We need to cut out a hole the size of the display in the left center of the source image.
+    return CGRectMake(0,
+                      floorf((imageSize.width - displaySize.width) / 2),
+                      displaySize.width, displaySize.height);
+
+  } else if (UIViewContentModeRight == contentMode) {
+    // We need to cut out a hole the size of the display in the right center of the source image.
+    return CGRectMake(imageSize.width - displaySize.width,
+                      floorf((imageSize.width - displaySize.width) / 2),
+                      displaySize.width, displaySize.height);
+
+  } else if (UIViewContentModeTopLeft == contentMode) {
+    // We need to cut out a hole the size of the display in the top left of the source image.
+    return CGRectMake(0,
+                      0,
+                      displaySize.width, displaySize.height);
+
+  } else if (UIViewContentModeTopRight == contentMode) {
+    // We need to cut out a hole the size of the display in the top right of the source image.
+    return CGRectMake(imageSize.width - displaySize.width,
+                      0,
+                      displaySize.width, displaySize.height);
+
+  } else if (UIViewContentModeBottomLeft == contentMode) {
+    // We need to cut out a hole the size of the display in the bottom left of the source image.
+    return CGRectMake(0,
+                      imageSize.height - displaySize.height,
+                      displaySize.width, displaySize.height);
+
+  } else if (UIViewContentModeBottomRight == contentMode) {
+    // We need to cut out a hole the size of the display in the bottom right of the source image.
+    return CGRectMake(imageSize.width - displaySize.width,
+                      imageSize.height - displaySize.height,
+                      displaySize.width, displaySize.height);
 
   } else {
     // Not implemented
     NIDERROR(@"This content mode has not been implemented in the threaded network image view: %d",
              contentMode);
-    NIDASSERT(NO);
     return CGRectMake(0, 0, imageSize.width, imageSize.height);
   }
 }
@@ -135,16 +188,7 @@
 + (CGRect)destinationRectWithImageSize:(CGSize)imageSize
                            displaySize:(CGSize)displaySize
                            contentMode:(UIViewContentMode)contentMode {
-  if (UIViewContentModeScaleToFill == contentMode) {
-    // Scale to fill draws the original image by squashing it to fit the destination's
-    // aspect ratio, so the source and destination rects aren't modified.
-    return CGRectMake(0, 0, displaySize.width, displaySize.height);
-
-  } else if (UIViewContentModeScaleAspectFill == contentMode) {
-    // We're filling the entire destination, so the destination rect is the display rect.
-    return CGRectMake(0, 0, displaySize.width, displaySize.height);
-
-  } else if (UIViewContentModeScaleAspectFit == contentMode) {
+  if (UIViewContentModeScaleAspectFit == contentMode) {
     // Fit the image right in the center of the source frame and maintain the aspect ratio.
     CGFloat scale = MIN(displaySize.width / imageSize.width,
                         displaySize.height / imageSize.height);
@@ -153,6 +197,20 @@
                       floorf((displaySize.height - scaledImageSize.height) / 2),
                       scaledImageSize.width,
                       scaledImageSize.height);
+
+  } else if (UIViewContentModeScaleToFill == contentMode
+             || UIViewContentModeScaleAspectFill == contentMode
+             || UIViewContentModeCenter == contentMode
+             || UIViewContentModeTop == contentMode
+             || UIViewContentModeBottom == contentMode
+             || UIViewContentModeLeft == contentMode
+             || UIViewContentModeRight == contentMode
+             || UIViewContentModeTopLeft == contentMode
+             || UIViewContentModeTopRight == contentMode
+             || UIViewContentModeBottomLeft == contentMode
+             || UIViewContentModeBottomRight == contentMode) {
+    // We're filling the entire destination, so the destination rect is the display rect.
+    return CGRectMake(0, 0, displaySize.width, displaySize.height);
 
   } else {
     // Not implemented
@@ -247,29 +305,28 @@
                                                 contentMode: contentMode];
     dstBlitRect = CGRectIntegral(dstBlitRect);
 
-    CGBitmapInfo bmi = CGImageGetBitmapInfo(srcImageRef);
-
-    // Clear the alpha bits.
-    bmi &= ~(kCGBitmapAlphaInfoMask);
-
-    // Set the RGBA alpha flag. We have no idea what sort of alpha the source image has.
-    // We need to explicitly ensure that we have alpha in the composited image so that it
-    // will have transparency when the content mode will result in not completely filling the
-    // image.
-    bmi |= kCGImageAlphaLast;
+    // See table "Supported Pixel Formats" in the following guide for support iOS bitmap formats:
+    // http://developer.apple.com/library/mac/#documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_context/dq_context.html
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGBitmapInfo bmi = kCGImageAlphaPremultipliedLast;
 
     // Create our final composite image.
     CGContextRef dstBmp = CGBitmapContextCreate(NULL,
                                                 displaySize.width,
                                                 displaySize.height,
-                                                CGImageGetBitsPerComponent(srcImageRef),
+                                                8,
                                                 0,
-                                                CGImageGetColorSpace(srcImageRef),
+                                                colorSpace,
                                                 bmi);
 
-    CGRect dstRect = CGRectMake(0, 0, displaySize.width, displaySize.height);
+    // If this fails then we're likely creating an invalid bitmap and shit's about to go down.
+    // In production this will fail somewhat gracefully, in that we'll end up just using the
+    // source image instead of the cropped and resized image.
+    NIDASSERT(nil != dstBmp);
 
     if (nil != dstBmp) {
+      CGRect dstRect = CGRectMake(0, 0, displaySize.width, displaySize.height);
+
       // Render the source image into the destination image.
       CGContextClearRect(dstBmp, dstRect);
       CGContextSetInterpolationQuality(dstBmp, interpolationQuality);
@@ -283,6 +340,7 @@
       }
 
       CGContextRelease(dstBmp);
+      CGColorSpaceRelease(colorSpace);
     }
 
   } else if (nil != croppedImageRef) {
