@@ -1,0 +1,6 @@
+{
+	MainTemplateFile = "class.m";
+	CounterpartTemplateFile = "class.h";
+	Description = "An Objective-C class that inherits from NSObject. Licensed with Apache 2.0.";
+}
+
