@@ -26,11 +26,11 @@
  * In short, you'll find a number of features within Nimbus to accelerate your development of
  * iOS applications. Nimbus will be evolving quickly over time so it is likely in your best
  * interest to simply browse the documentation by checking out Nimbus'
- * <a href="modules.html">Modules</a>.
+ * <a href="http://jverkoey.github.com/nimbus/modules.html">Modules</a>.
  *
  * <h2>Getting Started</h2>
  *
- * - Learn how to <a href="group___setup.html">add Nimbus to your project</a>.
+ * - Learn how to <a href="http://jverkoey.github.com/nimbus/group___setup.html">add Nimbus to your project</a>.
  * - Check out the README for <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted/01-BasicSetup"> the introduction sample project</a>.
  * - Follow Nimbus through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">Version History</a>.
  *
