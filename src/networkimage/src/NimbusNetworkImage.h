@@ -43,6 +43,16 @@
  * -# The resized and cropped image is then stored in the in-memory image cache for quick access
  *    in the future.
  * -# The image view then sets the new image and displays it.
+ *
+ * <h3>Demo Applications</h3>
+ *
+ * <b>BasicNetworkImage</b> - Demos each of the image content modes.
+ *
+ * This demo sets up a scroll view of network images that each show a different UIViewContentMode
+ * of the same image. The in-memory cache size is also displayed as the images are loaded.
+ *
+ * @image html NINetworkImageViewExample1.png "Screenshots of the BasicNetworkImage demo application."
+ *
  */
 
 #import <Foundation/Foundation.h>
