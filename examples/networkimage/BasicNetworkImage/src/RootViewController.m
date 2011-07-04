@@ -105,24 +105,6 @@ static const CGFloat kImageSpacing = 10;
   // Off-white background to show the text shadow highlight.
   self.view.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
 
-  // Try experimenting with the maximum number of concurrent operations here.
-  // By making it one, we force the network operations to happen serially. This can be
-  // useful for avoiding thrashing of the disk and network.
-  // Watch how the app works with a max of 1 versus not defining a max at all and allowing the
-  // device to spin off as many threads as it wants to.
-  //
-  // Spoiler alert! When the max is 1, the first image loads and then all of the others load
-  //                relatively instantly from the disk.
-  //                When the max is unset, all of the images take a bit longer to load.
-
-  [[Nimbus globalNetworkOperationQueue] setMaxConcurrentOperationCount:1];
-
-
-  // Try experimenting with this value to see how the total number of pixels is affected.
-
-  //[[Nimbus globalImageMemoryCache] setMaxNumberOfPixels:94*94];
-
-
   _memoryUsageLabel = [[UILabel alloc] init];
   _memoryUsageLabel.backgroundColor = self.view.backgroundColor;
   _memoryUsageLabel.textColor = [UIColor colorWithWhite:0.1 alpha:1];
@@ -137,6 +119,7 @@ static const CGFloat kImageSpacing = 10;
 
   [self.view addSubview:_memoryUsageLabel];
 
+
   UIView* bottomBorder = [[[UIView alloc] initWithFrame:
                            CGRectMake(0,
                                       CGRectGetMaxY(_memoryUsageLabel.frame)
@@ -149,6 +132,7 @@ static const CGFloat kImageSpacing = 10;
   bottomBorder.backgroundColor = [UIColor whiteColor];
 
   [self.view addSubview:bottomBorder];
+
 
   _networkImageViews = [[NSMutableArray alloc] init];
 
@@ -169,6 +153,8 @@ static const CGFloat kImageSpacing = 10;
     NINetworkImageView* networkImageView = [self networkImageView];
 
     // From: http://www.flickr.com/photos/thonk25/3929945380/
+    // We fetch the network image by explicitly setting the display size and content mode.
+    // This overrides the use of the frame to determine the display size.
     [networkImageView setPathToNetworkImage:
      @"http://farm3.static.flickr.com/2484/3929945380_deef6f4962_z.jpg"
                              forDisplaySize: CGSizeMake(kImageDimensions, kImageDimensions)

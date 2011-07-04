@@ -50,10 +50,28 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
 
+  // Try experimenting with the maximum number of concurrent operations here.
+  // By making it one, we force the network operations to happen serially. This can be
+  // useful for avoiding thrashing of the disk and network.
+  // Watch how the app works with a max of 1 versus not defining a max at all and allowing the
+  // device to spin off as many threads as it wants to.
+  //
+  // Spoiler alert! When the max is 1, the first image loads and then all of the others load
+  //                relatively instantly from the disk.
+  //                When the max is unset, all of the images take a bit longer to load.
+
+  [[Nimbus globalNetworkOperationQueue] setMaxConcurrentOperationCount:1];
+
+
+  // Try experimenting with this value to see how the total number of pixels is affected.
+
+  //[[Nimbus globalImageMemoryCache] setMaxNumberOfPixels:94*94];
+
+
   // Forcefully clear the permanent cache. This can be useful when you are logging the user
   // out, for example.
-  [[ASIDownloadCache sharedCache] clearCachedResponsesForStoragePolicy:
-   ASICachePermanentlyCacheStoragePolicy];
+  //[[ASIDownloadCache sharedCache] clearCachedResponsesForStoragePolicy:
+  // ASICachePermanentlyCacheStoragePolicy];
 
   _rootController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
   [self.window addSubview:_rootController.view];
