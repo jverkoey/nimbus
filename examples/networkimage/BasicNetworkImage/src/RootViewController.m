@@ -29,28 +29,39 @@ static const CGFloat kImageSpacing = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @returns an autoreleased network image view.
+ */
 - (NINetworkImageView *)networkImageView {
   UIImage* initialImage = [UIImage imageWithContentsOfFile:
                            NIPathForBundleResource(nil, @"nimbus64x64.png")];
 
   NINetworkImageView* networkImageView = [[[NINetworkImageView alloc] initWithImage:initialImage]
                                           autorelease];
-  networkImageView.backgroundColor = [UIColor colorWithWhite:0 alpha:1];
+  networkImageView.delegate = self;
+
+  networkImageView.backgroundColor = [UIColor blackColor];
+
   networkImageView.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.2] CGColor];
   networkImageView.layer.borderWidth = 1;
-  networkImageView.delegate = self;
 
   return networkImageView;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)layoutImageViewsForOrientation:(UIInterfaceOrientation)orientation {
+/**
+ * Fit as many columns as we can with a fixed width and then center the columns in the remaining
+ * space.
+ */
+- (void)layoutImageViews {
   CGRect frame = _scrollView.bounds;
 
   CGFloat maxRightEdge = 0;
+
   CGFloat currentX = kFramePadding;
   CGFloat currentY = kFramePadding;
+
   for (NINetworkImageView* imageView in _networkImageViews) {
     imageView.frame = CGRectMake(currentX, currentY, kImageDimensions, kImageDimensions);
 
@@ -59,15 +70,19 @@ static const CGFloat kImageSpacing = 10;
     currentX += kImageDimensions + kImageSpacing;
 
     if (currentX + kImageDimensions >= frame.size.width - kFramePadding) {
+      // Wrap to the next row.
       currentX = kFramePadding;
       currentY += kImageDimensions + kImageSpacing;
     }
   }
 
   if (currentX == kFramePadding) {
+    // If layout ends on a new row then we remove the row from the height, otherwise the
+    // scroll view will be too tall by one row.
     currentY -= kImageDimensions + kImageSpacing;
   }
 
+  // Center the columns.
   CGFloat contentWidth = (maxRightEdge + kFramePadding);
   CGFloat contentPadding = floorf((frame.size.width - contentWidth) / 2);
 
@@ -78,7 +93,7 @@ static const CGFloat kImageSpacing = 10;
   }
 
   _scrollView.contentSize = CGSizeMake(self.view.frame.size.width,
-                                       currentY + kImageDimensions+ kFramePadding);
+                                       currentY + kImageDimensions + kFramePadding);
 }
 
 
@@ -86,16 +101,17 @@ static const CGFloat kImageSpacing = 10;
 - (void)loadView {
   [super loadView];
 
+  // Off-white background to show the text shadow highlight.
   self.view.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
 
-  // Try experimenting with the maximum number of concurrent operations. By making it one,
-  // we force the network operations to happen serially. This can be useful for avoiding
-  // thrashing of the disk and network.
+  // Try experimenting with the maximum number of concurrent operations here.
+  // By making it one, we force the network operations to happen serially. This can be
+  // useful for avoiding thrashing of the disk and network.
   // Watch how the app works with a max of 1 versus not defining a max at all and allowing the
   // device to spin off as many threads as it wants to.
   //
   // Spoiler alert! When the max is 1, the first image loads and then all of the others load
-  //                instantly.
+  //                relatively instantly from the disk.
   //                When the max is unset, all of the images take a bit longer to load.
 
   [[Nimbus globalNetworkOperationQueue] setMaxConcurrentOperationCount:1];
@@ -151,7 +167,7 @@ static const CGFloat kImageSpacing = 10;
 
   [self.view addSubview:_scrollView];
 
-  [self layoutImageViewsForOrientation:NIInterfaceOrientation()];
+  [self layoutImageViews];
 }
 
 
@@ -183,7 +199,7 @@ static const CGFloat kImageSpacing = 10;
                                          duration: (NSTimeInterval)duration {
   [super willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
                                           duration: duration];
-  [self layoutImageViewsForOrientation:toInterfaceOrientation];
+  [self layoutImageViews];
 }
 
 
