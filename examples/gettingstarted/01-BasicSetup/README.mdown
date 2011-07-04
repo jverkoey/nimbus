@@ -10,8 +10,8 @@ than might otherwise be seen, but at the clear benefit of being a framework that
 can sustain its own growth.
 
 
-What do you mean by framework?
-==============================
+What is the Nimbus framework?
+=============================
 
 Nimbus is a from-the-ground-up set of libraries that augment the way you build iOS
 applications. At the lowest level, you'll find a set of tools for debugging, testing
