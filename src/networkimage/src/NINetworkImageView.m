@@ -337,7 +337,7 @@
     if (nil != self.imageMemoryCache) {
       NSString* cacheKey = [self cacheKeyForURL: url
                                       imageSize: displaySize
-                                    contentMode: self.contentMode
+                                    contentMode: contentMode
                             cropImageForDisplay: self.cropImageForDisplay];
       image = [self.imageMemoryCache objectWithName:cacheKey];
     }
