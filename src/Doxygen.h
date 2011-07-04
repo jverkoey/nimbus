@@ -32,7 +32,7 @@
  *
  * - Learn how to <a href="group___setup.html">add Nimbus to your project</a>.
  * - Check out the README for <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted/01-BasicSetup"> the introduction sample project</a>.
- *
+ * - Follow Nimbus through its @link Version-History Version History@endlink.
  *
  * <h1>Three20 was garbage though, why would I use Nimbus?</h1>
  *
@@ -64,7 +64,7 @@
  * on my immediate horizon in increasing order of difficulty:
  *
  * - The Launcher (done!)
- * - Network images.
+ * - Network images (done!)
  * - TTNavigator.
  *
  * For each day that I work on Nimbus I hope to have a pseudo-stable build that I can push out
@@ -111,24 +111,24 @@
  * sincerely hope to make it easy for anyone using Three20 to transition to Nimbus. In the
  * meantime, Three20 will likely stay in a bug-fixing state. The library is stable as it stands
  * so I have every bit of confidence in the community to tackle any bugs as necessary.
+ */
+
+/**
+ * @defgroup Version-History Version History
  *
  * <h1>Version History</h1>
  *
- * <h2>0.3.3</h2>
+ * <h2>0.3.4 - Monday, July 4, 2011</h2>
  *
  * Add network images to Nimbus.
  *
  * Goal tasks:
  *
  * - Migrate the new TTNetworkImageView object and the network image stack using ASIHTTPRequest
- *   to Nimbus.
+ *   to Nimbus. (+1)
  * - Build an in-memory object cache (+1)
  * - Build an in-memory image cache from the in-memory object cache (+1)
  * - Refactor the core library so that it's easier to jump to headers from source files (+1)
- *
- * Bonus:
- * - Implement tap-and-hold editing on the launcher view.
- * - Implement launcher item state persistence.
  *
  * <h2>0.2.1 - Tuesday June 14, 2011</h2>
  *

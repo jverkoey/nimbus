@@ -1,3 +1,4 @@
+
 <h1>What is Nimbus?</h1>
 
 Nimbus is an iOS framework that grows only as fast as its documentation. Its roots stem
@@ -13,7 +14,7 @@ interest to simply browse the documentation by checking out Nimbus'
 
 - Learn how to <a href="group___setup.html">add Nimbus to your project</a>.
 - Check out the README for <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted/01-BasicSetup"> the introduction sample project</a>.
-
+- Follow Nimbus through its @link Version-History Version History@endlink.
 
 <h1>Three20 was garbage though, why would I use Nimbus?</h1>
 
@@ -45,7 +46,7 @@ I will branch out and tackle migrating a variety of features over from Three20. 
 on my immediate horizon in increasing order of difficulty:
 
 - The Launcher (done!)
-- Network images.
+- Network images (done!)
 - TTNavigator.
 
 For each day that I work on Nimbus I hope to have a pseudo-stable build that I can push out
@@ -92,42 +93,3 @@ My goal with Nimbus is to eventually provide a feature set that contains Three20
 sincerely hope to make it easy for anyone using Three20 to transition to Nimbus. In the
 meantime, Three20 will likely stay in a bug-fixing state. The library is stable as it stands
 so I have every bit of confidence in the community to tackle any bugs as necessary.
-
-<h1>Version History</h1>
-
-<h2>0.3.3</h2>
-
-Add network images to Nimbus.
-
-Goal tasks:
-
-- Migrate the new TTNetworkImageView object and the network image stack using ASIHTTPRequest
-  to Nimbus.
-- Build an in-memory object cache (+1)
-- Build an in-memory image cache from the in-memory object cache (+1)
-- Refactor the core library so that it's easier to jump to headers from source files (+1)
-
-Bonus:
-- Implement tap-and-hold editing on the launcher view.
-- Implement launcher item state persistence.
-
-<h2>0.2.1 - Tuesday June 14, 2011</h2>
-
-The first feature release of Nimbus.
-
-Goal tasks:
-
-- Migrate Three20's Navigator to Nimbus (+1)
-
-<h2>0.1.4 - Friday June 10, 2011</h2>
-
-The first public release of Nimbus.
-
-Goal tasks for this release:
-
-Migrate the following from Three20:
-
-- Global core methods (+1)
-- Debugging tools (+1)
-- Availability (+1)
-- Additions (+1)

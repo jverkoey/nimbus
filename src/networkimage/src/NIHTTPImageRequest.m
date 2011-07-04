@@ -368,7 +368,7 @@
   UIImage* image = [[UIImage alloc] initWithData:responseData];
 
   // Clear out the data as quickly as we can. We never use the response data in the
-  // TTNetworkImageView object, so this avoids doubling our memory on every thread.
+  // NINetworkImageView object, so this avoids doubling our memory on every thread.
   [self setRawResponseData:nil];
 
   // Slice it, dice it!
