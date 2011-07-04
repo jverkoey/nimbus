@@ -16,7 +16,10 @@
 
 #import "AppDelegate.h"
 
+// View Controllers
 #import "RootViewController.h"
+
+#import "ASIDownloadCache.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,6 +49,11 @@
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+
+  // Forcefully clear the permanent cache. This can be useful when you are logging the user
+  // out, for example.
+  [[ASIDownloadCache sharedCache] clearCachedResponsesForStoragePolicy:
+   ASICachePermanentlyCacheStoragePolicy];
 
   _rootController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
   [self.window addSubview:_rootController.view];

@@ -39,6 +39,7 @@ static const CGFloat kImageSpacing = 10;
   NINetworkImageView* networkImageView = [[[NINetworkImageView alloc] initWithImage:initialImage]
                                           autorelease];
   networkImageView.delegate = self;
+  networkImageView.contentMode = UIViewContentModeCenter;
 
   networkImageView.backgroundColor = [UIColor blackColor];
 
@@ -136,6 +137,19 @@ static const CGFloat kImageSpacing = 10;
 
   [self.view addSubview:_memoryUsageLabel];
 
+  UIView* bottomBorder = [[[UIView alloc] initWithFrame:
+                           CGRectMake(0,
+                                      CGRectGetMaxY(_memoryUsageLabel.frame)
+                                      + kTextBottomMargin - 1,
+                                      self.view.frame.size.width,
+                                      1)]
+                          autorelease];
+  bottomBorder.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                   | UIViewAutoresizingFlexibleBottomMargin);
+  bottomBorder.backgroundColor = [UIColor whiteColor];
+
+  [self.view addSubview:bottomBorder];
+
   _networkImageViews = [[NSMutableArray alloc] init];
 
   _scrollView = [[[UIScrollView alloc] initWithFrame:
@@ -154,12 +168,11 @@ static const CGFloat kImageSpacing = 10;
     }
     NINetworkImageView* networkImageView = [self networkImageView];
 
-    networkImageView.contentMode = ix;
-
     // From: http://www.flickr.com/photos/thonk25/3929945380/
     [networkImageView setPathToNetworkImage:
      @"http://farm3.static.flickr.com/2484/3929945380_deef6f4962_z.jpg"
-                             forDisplaySize: CGSizeMake(kImageDimensions, kImageDimensions)];
+                             forDisplaySize: CGSizeMake(kImageDimensions, kImageDimensions)
+                                contentMode: ix];
 
     [_scrollView addSubview:networkImageView];
     [_networkImageViews addObject:networkImageView];
