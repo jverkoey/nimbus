@@ -32,7 +32,7 @@
  *
  * - Learn how to <a href="group___setup.html">add Nimbus to your project</a>.
  * - Check out the README for <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted/01-BasicSetup"> the introduction sample project</a>.
- * - Follow Nimbus through its @link Version-History Version History@endlink.
+ * - Follow Nimbus through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">Version History</a>.
  *
  * <h1>Three20 was garbage though, why would I use Nimbus?</h1>
  *
