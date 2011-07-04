@@ -2,8 +2,7 @@
 Hello there!
 ============
 
-Welcome to the Nimbus iOS framework. I sincerely hope that your experience here is a
-pleasurable one.
+Welcome to the Nimbus iOS framework.
 
 Within Nimbus you will find that no feature exists without painstaking care devoted to
 documentation and testing. This focus results in slower development of the framework
@@ -53,33 +52,37 @@ that as well.
 Adding Nimbus to your project
 -----------------------------
 
-This project demos the simplest means of adding Nimbus to your project. Expand
-the Nimbus folder in the project and you will see a folder for "Core". Within
-this folder are a number of source files. These source files are the files found
-within `src/core/src`. If we were to add the launcher to this project, we'd drag
-all of the source files found within `src/launcher/src`. Notice a trend?
+Let's quickly go over the basic structure of a Nimbus library.
 
-All of Nimbus' features are split into subfolders within the root src directory.
-Each library follows an identical folder structure, outlined below:
+Within the root `src` directory resides each of the Nimbus libraries. Also
+included in this directory are this Doxygen.h header, which includes many of Nimbus'
+articles, and the `common` and `resources` directories, used
+for sharing things between each of the libraries.
 
-    feature/src
-    feature/examples
-    feature/lib
-    feature/unittests
+Each library is placed in its own folder with the following directory structure:
 
-The meat of the feature - the parts you want to add to your application project -
-is in the feature's src directory. Drag every file in this directory into your
-project, add the feature's header to your project, and you're ready to use the
-feature in your project.
+    deps           Declares this library's dependencies, one on each line, by name.
+    examples/      Contrived examples that demo particular features.
+    lib/           Used only in building the library as a static library.
+    src/           The source for the library.
+    unittests/     Used only in unit testing the library.
 
-For example, as an exercise let's try adding the launcher to this project.
-Open the Nimbus src directory and find the launcher directory. Within that
-directory open the src directory and drag all of the files within into this
-project. You may want to organize these source files within a "launcher"
-sub-folder in the project under the Nimbus folder.
+When you want to add a Nimbus library to your project there are only two things you need
+to care about: the `src` directory and the `deps` file.
 
-Now simply `#import "NimbusLauncher.h"` and you can now use the NILauncherView
-and friends.
+The `deps` file contains the list of libraries that you will need to include in
+your project in order for the library to build. Nearly every Nimbus library depends on core.
+
+To add a library to your project, simply drag all of the source files within the library's
+`src` directory to your project. Do this for each of the dependencies as well and
+then include the library's header file in your project somewhere. The library's header file
+will usually be some form of `NimbusLibraryName.h` and will include all of the
+library's important features.
+
+For example, if you were to add the Nimbus Core library to your project, you'd add all of
+the files within `src/core/src` to your project and then include the following:
+
+    #import "NimbusCore.h"
 
 
 What are the other folders for?
