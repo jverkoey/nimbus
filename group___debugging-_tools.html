@@ -43,7 +43,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.3</span>
+   &#160;<span id="projectnumber">0.3.4</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -98,7 +98,7 @@ Defines</h2></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505">NIMaxLogLevel</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum log level to output for Nimbus debug logs.  <a href="#ga4772ce14310fecf30ed2bc36dfe7c505"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum log level to output for <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> debug logs.  <a href="#ga4772ce14310fecf30ed2bc36dfe7c505"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="member-group"></a>
 Level-Based Loggers</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gab5d8a773517976d97335706474ae1317"></a><!-- doxytag: member="Debugging&#45;Tools::NIDERROR" ref="gab5d8a773517976d97335706474ae1317" args="(xx,...)" -->
@@ -114,15 +114,15 @@ Level-Based Loggers</h2></td></tr>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <p>For inspecting code and writing to logs in debug builds. </p>
 <p>Provided in this header are a set of debugging methods and macros. Nearly all of the methods found within this header will only do anything interesting if the DEBUG macro is defined. The recommended way to enable the debug tools is to specify DEBUG in the "Preprocessor Macros" field in your application's Debug target settings. Be careful not to set this for your release or app store builds.</p>
-<div class="fragment"><pre class="fragment"> <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(statement);
+<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(statement);
 </pre></div><p>If statement is false, the statement will be written to the log and if you are running in the simulator with a debugger attached, the app will break on the assertion line.</p>
-<div class="fragment"><pre class="fragment"> <a class="code" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26" title="Only writes to the log when DEBUG is defined.">NIDPRINT</a>(<span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
+<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26" title="Only writes to the log when DEBUG is defined.">NIDPRINT</a>(<span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
 </pre></div><p>Print the given formatted text to the log.</p>
-<div class="fragment"><pre class="fragment"> <a class="code" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8" title="Write the containing method&#39;s name to the log using NIDPRINT.">NIDPRINTMETHODNAME</a>();
+<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8" title="Write the containing method&#39;s name to the log using NIDPRINT.">NIDPRINTMETHODNAME</a>();
 </pre></div><p>Print the current method name to the log.</p>
-<div class="fragment"><pre class="fragment"> <a class="code" href="group___debugging-_tools.html#ga2d769dcaac3915eea5b9860a40bd179a" title="Only writes to the log if condition is satisified.">NIDCONDITIONLOG</a>(statement, <span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
+<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#ga2d769dcaac3915eea5b9860a40bd179a" title="Only writes to the log if condition is satisified.">NIDCONDITIONLOG</a>(statement, <span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
 </pre></div><p>If statement is true, then the formatted text will be written to the log.</p>
-<div class="fragment"><pre class="fragment"> <a class="code" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_INFO.">NIDINFO</a>/<a class="code" href="group___debugging-_tools.html#gacc8f90bb05765e613bb0dbb16d372dfc" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_WARNING.">NIDWARNING</a>/<a class="code" href="group___debugging-_tools.html#gab5d8a773517976d97335706474ae1317" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_ERROR.">NIDERROR</a>(<span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
+<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_INFO.">NIDINFO</a>/<a class="code" href="group___debugging-_tools.html#gacc8f90bb05765e613bb0dbb16d372dfc" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_WARNING.">NIDWARNING</a>/<a class="code" href="group___debugging-_tools.html#gab5d8a773517976d97335706474ae1317" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_ERROR.">NIDERROR</a>(<span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
 </pre></div><p>Will only write the formatted text to the log if NIMaxLogLevel is greater than the respective NID* method's log level. See below for log levels.</p>
 <p>The default maximum log level is NILOGLEVEL_WARNING. </p>
 <hr/><h2>Define Documentation</h2>
@@ -144,7 +144,7 @@ Level-Based Loggers</h2></td></tr>
 <p>Assertions that only fire when DEBUG is defined. </p>
 <p>An assertion is like a programmatic breakpoint. Use it for sanity checks to save headache while writing your code. </p>
 
-<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00120">120</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00117">117</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
 
 </div>
 </div>
@@ -184,7 +184,7 @@ Level-Based Loggers</h2></td></tr>
 <p>Only writes to the log if condition is satisified. </p>
 <p>This macro powers the level-based loggers. It can also be used for conditionally enabling families of logs. </p>
 
-<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00134">134</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00131">131</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
 
 </div>
 </div>
@@ -216,7 +216,7 @@ Level-Based Loggers</h2></td></tr>
 <p>Only writes to the log when DEBUG is defined. </p>
 <p>This log method will always write to the log, regardless of log levels. It is used by all of the other logging methods in Nimbus' debugging library. </p>
 
-<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00092">92</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00089">89</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
 
 </div>
 </div>
@@ -232,7 +232,7 @@ Level-Based Loggers</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>The maximum log level to output for Nimbus debug logs. </p>
+<p>The maximum log level to output for <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> debug logs. </p>
 <p>This value may be changed at run-time if you so desire.</p>
 <p>The default value is NILOGLEVEL_WARNING. </p>
 

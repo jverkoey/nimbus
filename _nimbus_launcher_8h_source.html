@@ -43,7 +43,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.3</span>
+   &#160;<span id="projectnumber">0.3.4</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -97,15 +97,15 @@
 <a name="l00035"></a>00035 <span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span>
 <a name="l00036"></a>00036 
 <a name="l00037"></a>00037 
-<a name="l00070"></a>00070 <span class="preprocessor">#ifdef BASE_PRODUCT_NAME</span>
-<a name="l00071"></a>00071 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NimbusLauncher/NILauncherViewController.h&quot;</span>
-<a name="l00072"></a>00072 <span class="preprocessor">#import &quot;NimbusLauncher/NILauncherView.h&quot;</span>
-<a name="l00073"></a>00073 <span class="preprocessor">#else</span>
-<a name="l00074"></a>00074 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NILauncherViewController.h&quot;</span>
-<a name="l00075"></a>00075 <span class="preprocessor">#import &quot;NILauncherView.h&quot;</span>
-<a name="l00076"></a>00076 <span class="preprocessor">#endif</span>
-<a name="l00077"></a>00077 <span class="preprocessor"></span>
-<a name="l00078"></a>00078 
+<a name="l00072"></a>00072 <span class="preprocessor">#ifdef NIMBUS_STATIC_LIBRARY</span>
+<a name="l00073"></a>00073 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NimbusLauncher/NILauncherViewController.h&quot;</span>
+<a name="l00074"></a>00074 <span class="preprocessor">#import &quot;NimbusLauncher/NILauncherView.h&quot;</span>
+<a name="l00075"></a>00075 <span class="preprocessor">#else</span>
+<a name="l00076"></a>00076 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NILauncherViewController.h&quot;</span>
+<a name="l00077"></a>00077 <span class="preprocessor">#import &quot;NILauncherView.h&quot;</span>
+<a name="l00078"></a>00078 <span class="preprocessor">#endif</span>
+<a name="l00079"></a>00079 <span class="preprocessor"></span>
+<a name="l00080"></a>00080 
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

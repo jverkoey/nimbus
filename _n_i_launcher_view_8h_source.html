@@ -43,7 +43,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.3</span>
+   &#160;<span id="projectnumber">0.3.4</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -103,79 +103,79 @@
 <a name="l00024"></a>00024 
 <a name="l00028"></a>00028 <span class="keyword">extern</span> <span class="keyword">const</span> NSInteger NILauncherViewDynamic;
 <a name="l00029"></a>00029 
-<a name="l00039"></a><a class="code" href="interface_n_i_launcher_view.html">00039</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> : UIView &lt;
-<a name="l00040"></a>00040   UIScrollViewDelegate
-<a name="l00041"></a>00041 &gt; {
-<a name="l00042"></a>00042 <span class="keyword">@private</span>
-<a name="l00043"></a>00043   <span class="comment">// Views</span>
-<a name="l00044"></a>00044   UIScrollView*   _scrollView;
-<a name="l00045"></a>00045   UIPageControl*  _pager;
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047   <span class="comment">// Presentation Information</span>
-<a name="l00048"></a>00048   NSInteger       _maxNumberOfButtonsPerPage;
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050   <span class="comment">// Display Information</span>
-<a name="l00051"></a>00051   UIEdgeInsets    _padding;
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053   <span class="comment">// Cached Data Source Information</span>
-<a name="l00054"></a>00054   NSInteger       _numberOfPages;
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056   NSMutableArray* _pagesOfButtons;      <span class="comment">// NSArray&lt; NSArray&lt; UIButton *&gt; &gt;</span>
-<a name="l00057"></a>00057   NSMutableArray* _pagesOfScrollViews;  <span class="comment">// NSArray&lt; UIScrollView *&gt;</span>
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059   <span class="comment">// Protocols</span>
-<a name="l00060"></a>00060   id&lt;NILauncherDelegate&gt;    _delegate;
-<a name="l00061"></a>00061   id&lt;NILauncherDataSource&gt;  _dataSource;
-<a name="l00062"></a>00062 }
-<a name="l00063"></a>00063 
-<a name="l00069"></a><a class="code" href="interface_n_i_launcher_view.html#af8767bdd838ce4b0b8959331ccecfb8f">00069</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) NSInteger maxNumberOfButtonsPerPage;
-<a name="l00070"></a>00070 
-<a name="l00078"></a>00078 <span class="keyword">@property</span> (nonatomic, readwrite, assign) UIEdgeInsets padding;
-<a name="l00079"></a>00079 
-<a name="l00083"></a><a class="code" href="interface_n_i_launcher_view.html#a5680da202a46fb3ce6437d6987a7d41d">00083</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NILauncherDelegate&gt; delegate;
-<a name="l00084"></a>00084 
-<a name="l00088"></a><a class="code" href="interface_n_i_launcher_view.html#af849642b45b213adbd85e85054925428">00088</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NILauncherDataSource&gt; dataSource;
-<a name="l00089"></a>00089 
-<a name="l00098"></a>00098 - (void)reloadData;
-<a name="l00099"></a>00099 
-<a name="l00111"></a>00111 - (void)setFrame:(CGRect)frame;
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113 <span class="keyword">@end</span>
+<a name="l00040"></a><a class="code" href="interface_n_i_launcher_view.html">00040</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> : UIView &lt;
+<a name="l00041"></a>00041   UIScrollViewDelegate
+<a name="l00042"></a>00042 &gt; {
+<a name="l00043"></a>00043 <span class="keyword">@private</span>
+<a name="l00044"></a>00044   <span class="comment">// Views</span>
+<a name="l00045"></a>00045   UIScrollView*   _scrollView;
+<a name="l00046"></a>00046   UIPageControl*  _pager;
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048   <span class="comment">// Presentation Information</span>
+<a name="l00049"></a>00049   NSInteger       _maxNumberOfButtonsPerPage;
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051   <span class="comment">// Display Information</span>
+<a name="l00052"></a>00052   UIEdgeInsets    _padding;
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054   <span class="comment">// Cached Data Source Information</span>
+<a name="l00055"></a>00055   NSInteger       _numberOfPages;
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057   NSMutableArray* _pagesOfButtons;      <span class="comment">// NSArray&lt; NSArray&lt; UIButton *&gt; &gt;</span>
+<a name="l00058"></a>00058   NSMutableArray* _pagesOfScrollViews;  <span class="comment">// NSArray&lt; UIScrollView *&gt;</span>
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060   <span class="comment">// Protocols</span>
+<a name="l00061"></a>00061   id&lt;NILauncherDelegate&gt;    _delegate;
+<a name="l00062"></a>00062   id&lt;NILauncherDataSource&gt;  _dataSource;
+<a name="l00063"></a>00063 }
+<a name="l00064"></a>00064 
+<a name="l00070"></a><a class="code" href="interface_n_i_launcher_view.html#af8767bdd838ce4b0b8959331ccecfb8f">00070</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) NSInteger maxNumberOfButtonsPerPage;
+<a name="l00071"></a>00071 
+<a name="l00079"></a>00079 <span class="keyword">@property</span> (nonatomic, readwrite, assign) UIEdgeInsets padding;
+<a name="l00080"></a>00080 
+<a name="l00084"></a><a class="code" href="interface_n_i_launcher_view.html#a5680da202a46fb3ce6437d6987a7d41d">00084</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NILauncherDelegate&gt; delegate;
+<a name="l00085"></a>00085 
+<a name="l00089"></a><a class="code" href="interface_n_i_launcher_view.html#af849642b45b213adbd85e85054925428">00089</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NILauncherDataSource&gt; dataSource;
+<a name="l00090"></a>00090 
+<a name="l00099"></a>00099 - (void)reloadData;
+<a name="l00100"></a>00100 
+<a name="l00113"></a>00113 - (void)setFrame:(CGRect)frame;
 <a name="l00114"></a>00114 
-<a name="l00115"></a>00115 
-<a name="l00120"></a><a class="code" href="protocol_n_i_launcher_delegate-p.html">00120</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_launcher_delegate-p.html" title="The launcher delegate used to inform of state changes and user interactions.">NILauncherDelegate</a> &lt;NSObject&gt;
-<a name="l00121"></a>00121 
-<a name="l00122"></a>00122 <span class="keyword">@optional</span>
-<a name="l00123"></a>00123 
-<a name="l00127"></a>00127 - (void)launcherView: (<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcher
-<a name="l00128"></a>00128      didSelectButton: (UIButton *)button
-<a name="l00129"></a>00129               onPage: (NSInteger)page
-<a name="l00130"></a>00130              atIndex: (NSInteger)index;
-<a name="l00131"></a>00131 
-<a name="l00132"></a>00132 <span class="keyword">@end</span>
-<a name="l00133"></a>00133 
+<a name="l00115"></a>00115 <span class="keyword">@end</span>
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117 
+<a name="l00123"></a><a class="code" href="protocol_n_i_launcher_delegate-p.html">00123</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_launcher_delegate-p.html" title="The launcher delegate used to inform of state changes and user interactions.">NILauncherDelegate</a> &lt;NSObject&gt;
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125 <span class="keyword">@optional</span>
+<a name="l00126"></a>00126 
+<a name="l00130"></a>00130 - (void)launcherView: (<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcher
+<a name="l00131"></a>00131      didSelectButton: (UIButton *)button
+<a name="l00132"></a>00132               onPage: (NSInteger)page
+<a name="l00133"></a>00133              atIndex: (NSInteger)index;
 <a name="l00134"></a>00134 
-<a name="l00139"></a><a class="code" href="protocol_n_i_launcher_data_source-p.html">00139</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_launcher_data_source-p.html" title="The launcher data source used to populate the view.">NILauncherDataSource</a> &lt;NSObject&gt;
-<a name="l00140"></a>00140 
-<a name="l00141"></a>00141 <span class="keyword">@optional</span>
-<a name="l00142"></a>00142 
-<a name="l00154"></a>00154 - (CGSize)buttonDimensionsInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView;
-<a name="l00155"></a>00155 
-<a name="l00159"></a>00159 - (NSInteger)numberOfRowsPerPageInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView;
-<a name="l00160"></a>00160 
-<a name="l00164"></a>00164 - (NSInteger)numberOfColumnsPerPageInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView;
-<a name="l00165"></a>00165 
-<a name="l00166"></a>00166 <span class="keyword">@required</span>
-<a name="l00167"></a>00167 
-<a name="l00171"></a>00171 - (NSInteger)numberOfPagesInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView;
-<a name="l00172"></a>00172 
-<a name="l00176"></a>00176 - (NSInteger)launcherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView numberOfButtonsInPage:(NSInteger)page;
-<a name="l00177"></a>00177 
-<a name="l00181"></a>00181 - (UIButton *)launcherView: (<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView
-<a name="l00182"></a>00182              buttonForPage: (NSInteger)page
-<a name="l00183"></a>00183                    atIndex: (NSInteger)index;
-<a name="l00184"></a>00184 
-<a name="l00185"></a>00185 <span class="keyword">@end</span>
+<a name="l00135"></a>00135 <span class="keyword">@end</span>
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137 
+<a name="l00143"></a><a class="code" href="protocol_n_i_launcher_data_source-p.html">00143</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_launcher_data_source-p.html" title="The launcher data source used to populate the view.">NILauncherDataSource</a> &lt;NSObject&gt;
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145 <span class="keyword">@optional</span>
+<a name="l00146"></a>00146 
+<a name="l00158"></a>00158 - (CGSize)buttonDimensionsInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView;
+<a name="l00159"></a>00159 
+<a name="l00163"></a>00163 - (NSInteger)numberOfRowsPerPageInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView;
+<a name="l00164"></a>00164 
+<a name="l00168"></a>00168 - (NSInteger)numberOfColumnsPerPageInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView;
+<a name="l00169"></a>00169 
+<a name="l00170"></a>00170 <span class="keyword">@required</span>
+<a name="l00171"></a>00171 
+<a name="l00175"></a>00175 - (NSInteger)numberOfPagesInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView;
+<a name="l00176"></a>00176 
+<a name="l00180"></a>00180 - (NSInteger)launcherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView numberOfButtonsInPage:(NSInteger)page;
+<a name="l00181"></a>00181 
+<a name="l00185"></a>00185 - (UIButton *)launcherView: (<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView
+<a name="l00186"></a>00186              buttonForPage: (NSInteger)page
+<a name="l00187"></a>00187                    atIndex: (NSInteger)index;
+<a name="l00188"></a>00188 
+<a name="l00189"></a>00189 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

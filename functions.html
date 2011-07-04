@@ -43,7 +43,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.3</span>
+   &#160;<span id="projectnumber">0.3.4</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,6 +73,7 @@
       <li><a href="#index_d"><span>d</span></a></li>
       <li><a href="#index_e"><span>e</span></a></li>
       <li><a href="#index_f"><span>f</span></a></li>
+      <li><a href="#index_g"><span>g</span></a></li>
       <li><a href="#index_h"><span>h</span></a></li>
       <li><a href="#index_i"><span>i</span></a></li>
       <li><a href="#index_l"><span>l</span></a></li>
@@ -125,6 +126,10 @@
 : <a class="el" href="interface_n_i_linked_list.html#a91782fdbe13bf28a662784568ffdca43">NILinkedList</a>
 , <a class="el" href="interface_n_i_memory_cache.html#a7d62c34e4297861c986948bd75156d63">NIMemoryCache</a>
 </li>
+<li>cropImageForDisplay
+: <a class="el" href="interface_n_i_h_t_t_p_image_request.html#ad8e6db74933f106cbc00b42d6f0eb9e4">NIHTTPImageRequest</a>
+, <a class="el" href="interface_n_i_network_image_view.html#a39d645379ba10de8a0c6850aa52b8029">NINetworkImageView</a>
+</li>
 </ul>
 
 
@@ -134,6 +139,13 @@
 </li>
 <li>delegate
 : <a class="el" href="interface_n_i_launcher_view.html#a5680da202a46fb3ce6437d6987a7d41d">NILauncherView</a>
+, <a class="el" href="interface_n_i_network_image_view.html#a7e60fd5a2b8c3fc57c92f24fc7dca8d3">NINetworkImageView</a>
+</li>
+<li>destinationRectWithImageSize:displaySize:contentMode:
+: <a class="el" href="interface_n_i_h_t_t_p_image_request.html#ab2beef0fa37be65210feff5a14696cea">NIHTTPImageRequest</a>
+</li>
+<li>diskCacheLifetime
+: <a class="el" href="interface_n_i_network_image_view.html#a0432bac81c750d0e9fa0d23329eed93f">NINetworkImageView</a>
 </li>
 </ul>
 
@@ -152,6 +164,16 @@
 </ul>
 
 
+<h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
+<li>globalImageMemoryCache
+: <a class="el" href="interface_nimbus.html#adbf106f287bc083a7c50f2e537d39d92">Nimbus</a>
+</li>
+<li>globalNetworkOperationQueue
+: <a class="el" href="interface_nimbus.html#a7753d4cb8a77b2b4885c36697f34f2e9">Nimbus</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_h"></a>- h -</h3><ul>
 <li>hasExpired
 : <a class="el" href="interface_n_i_memory_cache_info.html#ae854ab244f76213c32704ead39bd3e2a">NIMemoryCacheInfo</a>
@@ -163,6 +185,24 @@
 
 
 <h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
+<li>imageContentMode
+: <a class="el" href="interface_n_i_h_t_t_p_image_request.html#aca396dd63f83234695e9e88a44abf49e">NIHTTPImageRequest</a>
+</li>
+<li>imageCroppedAndSizedForDisplay
+: <a class="el" href="interface_n_i_h_t_t_p_image_request.html#af07c5510fc69a3e88e624ff3c59e0eb3">NIHTTPImageRequest</a>
+</li>
+<li>imageCropRect
+: <a class="el" href="interface_n_i_h_t_t_p_image_request.html#a269bb9693de5df1b6852314ecd62eefa">NIHTTPImageRequest</a>
+</li>
+<li>imageDiskCache
+: <a class="el" href="interface_n_i_network_image_view.html#af331d0f41ba2509b2edfcc437aadc3a6">NINetworkImageView</a>
+</li>
+<li>imageDisplaySize
+: <a class="el" href="interface_n_i_h_t_t_p_image_request.html#ad6389e520bbac3c02e299fc4392f6922">NIHTTPImageRequest</a>
+</li>
+<li>imageMemoryCache
+: <a class="el" href="interface_n_i_network_image_view.html#a8f43300cafa80378ee333a5cb8551b22">NINetworkImageView</a>
+</li>
 <li>imagePath
 : <a class="el" href="class_n_i_launcher_item_details.html#a5d62475d047295f77e825833721ed6c9">NILauncherItemDetails</a>
 </li>
@@ -170,11 +210,20 @@
 : <a class="el" href="interface_n_i_linked_list.html#a8bdb25b42516d25a0910d2b3f5dafd1c">NILinkedList</a>
 , <a class="el" href="interface_n_i_memory_cache.html#a39f4b8e789e9034c528deb14f1555d80">NIMemoryCache</a>
 </li>
+<li>initialImage
+: <a class="el" href="interface_n_i_network_image_view.html#ad7c89b7d5586d247d9a01c953000ad6f">NINetworkImageView</a>
+</li>
 <li>initWithCapacity:
 : <a class="el" href="interface_n_i_memory_cache.html#a879b58be06ace929185997a92f7bb35b">NIMemoryCache</a>
 </li>
+<li>initWithImage:
+: <a class="el" href="interface_n_i_network_image_view.html#ade5eba04aa860207d1fbd07a3f3a31ef">NINetworkImageView</a>
+</li>
 <li>initWithTitle:imagePath:
 : <a class="el" href="class_n_i_launcher_item_details.html#afe62c8eb25254b87f227547cd0c7457b">NILauncherItemDetails</a>
+</li>
+<li>isLoading
+: <a class="el" href="interface_n_i_network_image_view.html#aa3207a010aa79b94a894e60105f4b7a6">NINetworkImageView</a>
 </li>
 <li>isWhitespaceAndNewlines
 : <a class="el" href="class_n_s_string.html#a121c44a9dac429d5d5b943b823cd578a">NSString</a>
@@ -192,6 +241,9 @@
 <li>lastObject
 : <a class="el" href="interface_n_i_linked_list.html#a7c0066b07b3753ba3abab3ef7b49673c">NILinkedList</a>
 </li>
+<li>lastPathToNetworkImage
+: <a class="el" href="interface_n_i_network_image_view.html#a576b2950355e43205c35700091d74dc3">NINetworkImageView</a>
+</li>
 <li>launcherButtonClass
 : <a class="el" href="interface_n_i_launcher_view_controller.html#a21629435d3eea13bb429361dae2ac0b5">NILauncherViewController</a>
 </li>
@@ -200,12 +252,12 @@
 , <a class="el" href="interface_n_i_launcher_view_controller.html#a4b446599258ec63732ba8da1ca435451">NILauncherViewController</a>
 </li>
 <li>launcherView:didSelectButton:onPage:atIndex:
-: <a class="el" href="protocol_n_i_launcher_delegate-p.html#a5354d4b3a37c6d1909b785cc4be2ac7c">&lt;NILauncherDelegate&gt;</a>
-, <a class="el" href="interface_n_i_launcher_view_controller.html#aa34567e04d59adda70eadf99c4e2dc13">NILauncherViewController</a>
+: <a class="el" href="interface_n_i_launcher_view_controller.html#aa34567e04d59adda70eadf99c4e2dc13">NILauncherViewController</a>
+, <a class="el" href="protocol_n_i_launcher_delegate-p.html#a5354d4b3a37c6d1909b785cc4be2ac7c">&lt;NILauncherDelegate&gt;</a>
 </li>
 <li>launcherView:numberOfButtonsInPage:
-: <a class="el" href="interface_n_i_launcher_view_controller.html#aade7d0e41b8822171bd8efcd9aa06a5c">NILauncherViewController</a>
-, <a class="el" href="protocol_n_i_launcher_data_source-p.html#ad330b76b58eebe5dde7b7f7495575e2a">&lt;NILauncherDataSource&gt;</a>
+: <a class="el" href="protocol_n_i_launcher_data_source-p.html#ad330b76b58eebe5dde7b7f7495575e2a">&lt;NILauncherDataSource&gt;</a>
+, <a class="el" href="interface_n_i_launcher_view_controller.html#aade7d0e41b8822171bd8efcd9aa06a5c">NILauncherViewController</a>
 </li>
 <li>linkedList
 : <a class="el" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea">NILinkedList</a>
@@ -220,15 +272,21 @@
 
 
 <h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
-<li>maxTotalLowMemoryUsage
-: <a class="el" href="interface_n_i_image_memory_cache.html#a0a8f94e91dac5f2e4d6438215a592e0d">NIImageMemoryCache</a>
+<li>maxAge
+: <a class="el" href="interface_n_i_network_image_view.html#a7b9356e33ed3ad110b0a08290b4f1a27">NINetworkImageView</a>
 </li>
-<li>maxTotalMemoryUsage
-: <a class="el" href="interface_n_i_image_memory_cache.html#a9679cdb8565644866195e364487ad644">NIImageMemoryCache</a>
+<li>maxNumberOfPixels
+: <a class="el" href="interface_n_i_image_memory_cache.html#a44eec58a5fda0ad0390d5e43591c1fec">NIImageMemoryCache</a>
+</li>
+<li>maxNumberOfPixelsUnderStress
+: <a class="el" href="interface_n_i_image_memory_cache.html#a8e3384e158b74b2f582ee5c26608a7b1">NIImageMemoryCache</a>
 </li>
 <li>md5Hash
 : <a class="el" href="class_n_s_data.html#aa579e3e3c247cd6daa6c0981ff07d718">NSData</a>
 , <a class="el" href="class_n_s_string.html#a5b8e06192865b0f1f7bbe9bf000a17a3">NSString</a>
+</li>
+<li>memoryCachePrefix
+: <a class="el" href="interface_n_i_network_image_view.html#a352ecee4de738eff827447d637fd2c5a">NINetworkImageView</a>
 </li>
 </ul>
 
@@ -237,17 +295,41 @@
 <li>name
 : <a class="el" href="interface_n_i_memory_cache_info.html#aacf9857f5788e5a989d0ce9b446a32ee">NIMemoryCacheInfo</a>
 </li>
+<li>networkImageView:didLoadImage:
+: <a class="el" href="protocol_n_i_network_image_view_delegate-p.html#a96383c1312874a264d5065594c7bce43">&lt;NINetworkImageViewDelegate&gt;</a>
+</li>
+<li>networkImageViewDidFailLoad:
+: <a class="el" href="protocol_n_i_network_image_view_delegate-p.html#a9f091692ef4ed418c2c9e1e1b642b304">&lt;NINetworkImageViewDelegate&gt;</a>
+</li>
+<li>networkImageViewDidFailToLoad:
+: <a class="el" href="interface_n_i_network_image_view.html#ac6b87d3157c16038705df537e9624a89">NINetworkImageView</a>
+</li>
+<li>networkImageViewDidLoadImage:
+: <a class="el" href="interface_n_i_network_image_view.html#a5fa24c4b0e7aeda332861b681c902c78">NINetworkImageView</a>
+</li>
+<li>networkImageViewDidStartLoad:
+: <a class="el" href="protocol_n_i_network_image_view_delegate-p.html#a7bd8d13ada058216b947c25741631b43">&lt;NINetworkImageViewDelegate&gt;</a>
+</li>
+<li>networkImageViewDidStartLoading
+: <a class="el" href="interface_n_i_network_image_view.html#aece340a22833f7a7ceeac8ffc8aa5cb4">NINetworkImageView</a>
+</li>
+<li>networkOperationQueue
+: <a class="el" href="interface_n_i_network_image_view.html#a690fae40ceeaa8304dea5177b9d48e2a">NINetworkImageView</a>
+</li>
 <li>numberOfColumnsPerPageInLauncherView:
 : <a class="el" href="protocol_n_i_launcher_data_source-p.html#acfc94919beaa588ef131d9d7beecf7f9">&lt;NILauncherDataSource&gt;</a>
 , <a class="el" href="interface_n_i_launcher_view_controller.html#a7670d2b814ecd9bc5c997b87260db835">NILauncherViewController</a>
 </li>
 <li>numberOfPagesInLauncherView:
-: <a class="el" href="interface_n_i_launcher_view_controller.html#aeff929d8f8b796ff61956d24dc393cc9">NILauncherViewController</a>
-, <a class="el" href="protocol_n_i_launcher_data_source-p.html#a7386f18ee064778a4808a26a3cf06f41">&lt;NILauncherDataSource&gt;</a>
+: <a class="el" href="protocol_n_i_launcher_data_source-p.html#a7386f18ee064778a4808a26a3cf06f41">&lt;NILauncherDataSource&gt;</a>
+, <a class="el" href="interface_n_i_launcher_view_controller.html#aeff929d8f8b796ff61956d24dc393cc9">NILauncherViewController</a>
+</li>
+<li>numberOfPixels
+: <a class="el" href="interface_n_i_image_memory_cache.html#a40447c10f9dfc71c04bacb51895ba5e8">NIImageMemoryCache</a>
 </li>
 <li>numberOfRowsPerPageInLauncherView:
-: <a class="el" href="protocol_n_i_launcher_data_source-p.html#ace9be595b80fb6d52e4d94a550748f54">&lt;NILauncherDataSource&gt;</a>
-, <a class="el" href="interface_n_i_launcher_view_controller.html#ac269f2109a8170c2db5ae96c4b5b16c3">NILauncherViewController</a>
+: <a class="el" href="interface_n_i_launcher_view_controller.html#ac269f2109a8170c2db5ae96c4b5b16c3">NILauncherViewController</a>
+, <a class="el" href="protocol_n_i_launcher_data_source-p.html#ace9be595b80fb6d52e4d94a550748f54">&lt;NILauncherDataSource&gt;</a>
 </li>
 </ul>
 
@@ -275,6 +357,9 @@
 </li>
 <li>pages
 : <a class="el" href="interface_n_i_launcher_view_controller.html#ae6d4791037f7aec351b814ebc0dfad00">NILauncherViewController</a>
+</li>
+<li>prepareForReuse
+: <a class="el" href="interface_n_i_network_image_view.html#a7cce26c40c058f1c8b7265b971b2abc5">NINetworkImageView</a>
 </li>
 </ul>
 
@@ -320,9 +405,39 @@
 <li>setFrame:
 : <a class="el" href="interface_n_i_launcher_view.html#a37761e0617ece5ef925ea575647a8620">NILauncherView</a>
 </li>
+<li>setGlobalImageMemoryCache:
+: <a class="el" href="interface_nimbus.html#aad83668affb6b59c0ac19da3bf16edf8">Nimbus</a>
+</li>
+<li>setGlobalNetworkOperationQueue:
+: <a class="el" href="interface_nimbus.html#a02c14512b76d2fbcdb3912de5dde87c7">Nimbus</a>
+</li>
+<li>setPathToNetworkImage:
+: <a class="el" href="interface_n_i_network_image_view.html#af0531138d9eb4de6275b3704b7e293c2">NINetworkImageView</a>
+</li>
+<li>setPathToNetworkImage:contentMode:
+: <a class="el" href="interface_n_i_network_image_view.html#ab78dcad711ea2fe46ace504e33f15944">NINetworkImageView</a>
+</li>
+<li>setPathToNetworkImage:cropRect:
+: <a class="el" href="interface_n_i_network_image_view.html#a41b5c535e5b5f4a08b227e58485deda5">NINetworkImageView</a>
+</li>
+<li>setPathToNetworkImage:cropRect:forDisplaySize:contentMode:
+: <a class="el" href="interface_n_i_network_image_view.html#ab0909160c9d85e5f7f5eb6f9918213a2">NINetworkImageView</a>
+</li>
+<li>setPathToNetworkImage:forDisplaySize:
+: <a class="el" href="interface_n_i_network_image_view.html#aafcf782b4bbcbd2d40b1693bca72b67a">NINetworkImageView</a>
+</li>
+<li>setPathToNetworkImage:forDisplaySize:contentMode:
+: <a class="el" href="interface_n_i_network_image_view.html#a0fe80155480019a31d7be5d3d8ae07ca">NINetworkImageView</a>
+</li>
 <li>sha1Hash
 : <a class="el" href="class_n_s_data.html#a3531895202d4316334ac39a39a255059">NSData</a>
 , <a class="el" href="class_n_s_string.html#a6579c27a90e18b5e9d531773e2c91cb8">NSString</a>
+</li>
+<li>sizeForDisplay
+: <a class="el" href="interface_n_i_network_image_view.html#acafe40b5cfb6e75848a8f91f3f8b9e51">NINetworkImageView</a>
+</li>
+<li>sourceRectWithImageSize:displaySize:contentMode:
+: <a class="el" href="interface_n_i_h_t_t_p_image_request.html#af2d7c4617f1557520e254f79a9f1b9a5">NIHTTPImageRequest</a>
 </li>
 <li>storeObject:withName:
 : <a class="el" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd">NIMemoryCache</a>
@@ -339,9 +454,6 @@
 <h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
 <li>title
 : <a class="el" href="class_n_i_launcher_item_details.html#abe184a56d23b572e49ddc3451f9e06ba">NILauncherItemDetails</a>
-</li>
-<li>totalMemoryUsage
-: <a class="el" href="interface_n_i_image_memory_cache.html#a60a57395cd2245074345fe427021bb5c">NIImageMemoryCache</a>
 </li>
 </ul>
 

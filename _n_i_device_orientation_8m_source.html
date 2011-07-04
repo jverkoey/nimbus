@@ -43,7 +43,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.3</span>
+   &#160;<span id="projectnumber">0.3.4</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -101,34 +101,34 @@
 <a name="l00022"></a>00022 <span class="preprocessor">#import &quot;NISDKAvailability.h&quot;</span>
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024 
-<a name="l00026"></a><a class="code" href="group___device-_orientation.html#ga7c59ce546cc2e2835532fa9dea2a4869">00026</a> UIInterfaceOrientation <a class="code" href="group___device-_orientation.html#ga7c59ce546cc2e2835532fa9dea2a4869" title="Returns the application&#39;s current interface orientation.">NIInterfaceOrientation</a>() {
-<a name="l00027"></a>00027   UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
-<a name="l00028"></a>00028 
-<a name="l00029"></a>00029   <span class="comment">// This code used to use the navigator to find the currently visible view controller and</span>
-<a name="l00030"></a>00030   <span class="comment">// fall back to checking its orientation if we didn&#39;t know the status bar&#39;s orientation.</span>
-<a name="l00031"></a>00031   <span class="comment">// It&#39;s unclear when this was actually necessary, though, so this assertion is here to try</span>
-<a name="l00032"></a>00032   <span class="comment">// to find that case. If this assertion fails then the repro case needs to be analyzed and</span>
-<a name="l00033"></a>00033   <span class="comment">// this method made more robust to handle that case.</span>
-<a name="l00034"></a>00034   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(UIDeviceOrientationUnknown != orient);
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036   <span class="keywordflow">return</span> orient;
-<a name="l00037"></a>00037 }
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 
-<a name="l00041"></a><a class="code" href="group___device-_orientation.html#gad11b7958206db7c5d5a85d78f6d5ce4b">00041</a> BOOL <a class="code" href="group___device-_orientation.html#gad11b7958206db7c5d5a85d78f6d5ce4b" title="For use in shouldAutorotateToInterfaceOrientation:">NIIsSupportedOrientation</a>(UIInterfaceOrientation orientation) {
-<a name="l00042"></a>00042   <span class="keywordflow">if</span> (<a class="code" href="group___s_d_k-_availability.html#gaf7d2c830b4c39cfeeb37d59258abb722" title="Checks whether the device the app is currently running on is an iPad or not.">NIIsPad</a>()) {
-<a name="l00043"></a>00043     <span class="keywordflow">return</span> YES;
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045   } <span class="keywordflow">else</span> {
-<a name="l00046"></a>00046     <span class="keywordflow">switch</span> (orientation) {
-<a name="l00047"></a>00047       <span class="keywordflow">case</span> UIInterfaceOrientationPortrait:
-<a name="l00048"></a>00048       <span class="keywordflow">case</span> UIInterfaceOrientationLandscapeLeft:
-<a name="l00049"></a>00049       <span class="keywordflow">case</span> UIInterfaceOrientationLandscapeRight:
-<a name="l00050"></a>00050         <span class="keywordflow">return</span> YES;
-<a name="l00051"></a>00051       <span class="keywordflow">default</span>:
-<a name="l00052"></a>00052         <span class="keywordflow">return</span> NO;
-<a name="l00053"></a>00053     }
-<a name="l00054"></a>00054   }
+<a name="l00026"></a><a class="code" href="group___device-_orientation.html#gad11b7958206db7c5d5a85d78f6d5ce4b">00026</a> BOOL <a class="code" href="group___device-_orientation.html#gad11b7958206db7c5d5a85d78f6d5ce4b" title="For use in shouldAutorotateToInterfaceOrientation:">NIIsSupportedOrientation</a>(UIInterfaceOrientation orientation) {
+<a name="l00027"></a>00027   <span class="keywordflow">if</span> (<a class="code" href="group___s_d_k-_availability.html#gaf7d2c830b4c39cfeeb37d59258abb722" title="Checks whether the device the app is currently running on is an iPad or not.">NIIsPad</a>()) {
+<a name="l00028"></a>00028     <span class="keywordflow">return</span> YES;
+<a name="l00029"></a>00029 
+<a name="l00030"></a>00030   } <span class="keywordflow">else</span> {
+<a name="l00031"></a>00031     <span class="keywordflow">switch</span> (orientation) {
+<a name="l00032"></a>00032       <span class="keywordflow">case</span> UIInterfaceOrientationPortrait:
+<a name="l00033"></a>00033       <span class="keywordflow">case</span> UIInterfaceOrientationLandscapeLeft:
+<a name="l00034"></a>00034       <span class="keywordflow">case</span> UIInterfaceOrientationLandscapeRight:
+<a name="l00035"></a>00035         <span class="keywordflow">return</span> YES;
+<a name="l00036"></a>00036       <span class="keywordflow">default</span>:
+<a name="l00037"></a>00037         <span class="keywordflow">return</span> NO;
+<a name="l00038"></a>00038     }
+<a name="l00039"></a>00039   }
+<a name="l00040"></a>00040 }
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 
+<a name="l00044"></a><a class="code" href="group___device-_orientation.html#ga7c59ce546cc2e2835532fa9dea2a4869">00044</a> UIInterfaceOrientation <a class="code" href="group___device-_orientation.html#ga7c59ce546cc2e2835532fa9dea2a4869" title="Returns the application&#39;s current interface orientation.">NIInterfaceOrientation</a>() {
+<a name="l00045"></a>00045   UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047   <span class="comment">// This code used to use the navigator to find the currently visible view controller and</span>
+<a name="l00048"></a>00048   <span class="comment">// fall back to checking its orientation if we didn&#39;t know the status bar&#39;s orientation.</span>
+<a name="l00049"></a>00049   <span class="comment">// It&#39;s unclear when this was actually necessary, though, so this assertion is here to try</span>
+<a name="l00050"></a>00050   <span class="comment">// to find that case. If this assertion fails then the repro case needs to be analyzed and</span>
+<a name="l00051"></a>00051   <span class="comment">// this method made more robust to handle that case.</span>
+<a name="l00052"></a>00052   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(UIDeviceOrientationUnknown != orient);
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054   <span class="keywordflow">return</span> orient;
 <a name="l00055"></a>00055 }
 </pre></div></div>
 </div>

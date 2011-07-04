@@ -43,7 +43,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.3</span>
+   &#160;<span id="projectnumber">0.3.4</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -98,67 +98,64 @@
 <a name="l00019"></a>00019 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 <a name="l00020"></a>00020 <span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span>
 <a name="l00021"></a>00021 
-<a name="l00022"></a>00022 <span class="preprocessor">#pragma mark -</span>
-<a name="l00023"></a>00023 <span class="preprocessor"></span><span class="preprocessor">#pragma mark SDK Availability</span>
-<a name="l00024"></a>00024 <span class="preprocessor"></span>
-<a name="l00049"></a><a class="code" href="group___s_d_k-_availability.html#gacc9cff6951a25df1bf4cd3bd90183e3c">00049</a> <span class="preprocessor">#define NIIOS_2_0     20000</span>
-<a name="l00050"></a>00050 <span class="preprocessor"></span>
-<a name="l00054"></a><a class="code" href="group___s_d_k-_availability.html#gae1525331a18184988b12889e1f2d5a19">00054</a> <span class="preprocessor">#define NIIOS_2_1     20100</span>
-<a name="l00055"></a>00055 <span class="preprocessor"></span>
-<a name="l00059"></a><a class="code" href="group___s_d_k-_availability.html#ga5705e2f1066b0394a41694de13680550">00059</a> <span class="preprocessor">#define NIIOS_2_2     20200</span>
-<a name="l00060"></a>00060 <span class="preprocessor"></span>
-<a name="l00064"></a><a class="code" href="group___s_d_k-_availability.html#gadc03746bbf3381d282a351e68fb77ee5">00064</a> <span class="preprocessor">#define NIIOS_3_0     30000</span>
-<a name="l00065"></a>00065 <span class="preprocessor"></span>
-<a name="l00069"></a><a class="code" href="group___s_d_k-_availability.html#ga45071706dd9d5fbd674d5a5c41736df1">00069</a> <span class="preprocessor">#define NIIOS_3_1     30100</span>
-<a name="l00070"></a>00070 <span class="preprocessor"></span>
-<a name="l00074"></a><a class="code" href="group___s_d_k-_availability.html#gaa1c10d7973e40b02bd17c785469c6c54">00074</a> <span class="preprocessor">#define NIIOS_3_2     30200</span>
-<a name="l00075"></a>00075 <span class="preprocessor"></span>
-<a name="l00079"></a><a class="code" href="group___s_d_k-_availability.html#gaefa9afe559100406762edfff8909d083">00079</a> <span class="preprocessor">#define NIIOS_4_0     40000</span>
-<a name="l00080"></a>00080 <span class="preprocessor"></span>
-<a name="l00084"></a><a class="code" href="group___s_d_k-_availability.html#ga004a7684048dd6a87e6e170fa56b5d9a">00084</a> <span class="preprocessor">#define NIIOS_4_1     40100</span>
-<a name="l00085"></a>00085 <span class="preprocessor"></span>
-<a name="l00089"></a><a class="code" href="group___s_d_k-_availability.html#gae75f0a7cca0fbe0de7e1b68c55ef9ddf">00089</a> <span class="preprocessor">#define NIIOS_4_2     40200</span>
-<a name="l00090"></a>00090 <span class="preprocessor"></span>
-<a name="l00094"></a><a class="code" href="group___s_d_k-_availability.html#gaaa53475c5fefe5a0b7e9db448ec0df79">00094</a> <span class="preprocessor">#define NIIOS_4_3     40300</span>
-<a name="l00095"></a>00095 <span class="preprocessor"></span>
-<a name="l00099"></a><a class="code" href="group___s_d_k-_availability.html#gab590d6daaa8e1c7b8fac784bd7093ab8">00099</a> <span class="preprocessor">#define NIIOS_5_0     50000</span>
-<a name="l00100"></a>00100 <span class="preprocessor"></span>
-<a name="l00101"></a>00101 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_0</span>
-<a name="l00102"></a>00102 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_2_0 478.23</span>
-<a name="l00103"></a>00103 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00104"></a>00104 <span class="preprocessor"></span>
-<a name="l00105"></a>00105 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_1</span>
-<a name="l00106"></a>00106 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_2_1 478.26</span>
-<a name="l00107"></a>00107 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00108"></a>00108 <span class="preprocessor"></span>
-<a name="l00109"></a>00109 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_2</span>
-<a name="l00110"></a>00110 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_2_2 478.29</span>
-<a name="l00111"></a>00111 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00112"></a>00112 <span class="preprocessor"></span>
-<a name="l00113"></a>00113 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_0</span>
-<a name="l00114"></a>00114 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_3_0 478.47</span>
-<a name="l00115"></a>00115 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00116"></a>00116 <span class="preprocessor"></span>
-<a name="l00117"></a>00117 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_1</span>
-<a name="l00118"></a>00118 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_3_1 478.52</span>
-<a name="l00119"></a>00119 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00120"></a>00120 <span class="preprocessor"></span>
-<a name="l00121"></a>00121 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_2</span>
-<a name="l00122"></a>00122 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_3_2 478.61</span>
-<a name="l00123"></a>00123 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00124"></a>00124 <span class="preprocessor"></span>
-<a name="l00125"></a>00125 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iOS_4_0</span>
-<a name="l00126"></a>00126 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iOS_4_0 550.32</span>
-<a name="l00127"></a>00127 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00128"></a>00128 <span class="preprocessor"></span>
-<a name="l00134"></a>00134 BOOL <a class="code" href="group___s_d_k-_availability.html#gaf7d2c830b4c39cfeeb37d59258abb722" title="Checks whether the device the app is currently running on is an iPad or not.">NIIsPad</a>();
-<a name="l00135"></a>00135 
-<a name="l00146"></a>00146 BOOL <a class="code" href="group___s_d_k-_availability.html#ga93ac73a742aea0dd9c07562056bf29c4" title="Checks whether the device&#39;s OS version is at least the given version number.">NIDeviceOSVersionIsAtLeast</a>(<span class="keywordtype">double</span> versionNumber);
-<a name="l00147"></a>00147 
-<a name="l00159"></a>00159 Class <a class="code" href="group___s_d_k-_availability.html#gab7b9a8279ba3c54d6654f11f69dbd6f0" title="Safely fetch the UIPopoverController class if it is available.">NIUIPopoverControllerClass</a>();
-<a name="l00160"></a>00160 
-<a name="l00161"></a>00161 
-<a name="l00163"></a>00163 <span class="comment">// End of SDK Availability /////////////////////////////////////////////////////////////////</span>
+<a name="l00046"></a><a class="code" href="group___s_d_k-_availability.html#gacc9cff6951a25df1bf4cd3bd90183e3c">00046</a> <span class="preprocessor">#define NIIOS_2_0     20000</span>
+<a name="l00047"></a>00047 <span class="preprocessor"></span>
+<a name="l00051"></a><a class="code" href="group___s_d_k-_availability.html#gae1525331a18184988b12889e1f2d5a19">00051</a> <span class="preprocessor">#define NIIOS_2_1     20100</span>
+<a name="l00052"></a>00052 <span class="preprocessor"></span>
+<a name="l00056"></a><a class="code" href="group___s_d_k-_availability.html#ga5705e2f1066b0394a41694de13680550">00056</a> <span class="preprocessor">#define NIIOS_2_2     20200</span>
+<a name="l00057"></a>00057 <span class="preprocessor"></span>
+<a name="l00061"></a><a class="code" href="group___s_d_k-_availability.html#gadc03746bbf3381d282a351e68fb77ee5">00061</a> <span class="preprocessor">#define NIIOS_3_0     30000</span>
+<a name="l00062"></a>00062 <span class="preprocessor"></span>
+<a name="l00066"></a><a class="code" href="group___s_d_k-_availability.html#ga45071706dd9d5fbd674d5a5c41736df1">00066</a> <span class="preprocessor">#define NIIOS_3_1     30100</span>
+<a name="l00067"></a>00067 <span class="preprocessor"></span>
+<a name="l00071"></a><a class="code" href="group___s_d_k-_availability.html#gaa1c10d7973e40b02bd17c785469c6c54">00071</a> <span class="preprocessor">#define NIIOS_3_2     30200</span>
+<a name="l00072"></a>00072 <span class="preprocessor"></span>
+<a name="l00076"></a><a class="code" href="group___s_d_k-_availability.html#gaefa9afe559100406762edfff8909d083">00076</a> <span class="preprocessor">#define NIIOS_4_0     40000</span>
+<a name="l00077"></a>00077 <span class="preprocessor"></span>
+<a name="l00081"></a><a class="code" href="group___s_d_k-_availability.html#ga004a7684048dd6a87e6e170fa56b5d9a">00081</a> <span class="preprocessor">#define NIIOS_4_1     40100</span>
+<a name="l00082"></a>00082 <span class="preprocessor"></span>
+<a name="l00086"></a><a class="code" href="group___s_d_k-_availability.html#gae75f0a7cca0fbe0de7e1b68c55ef9ddf">00086</a> <span class="preprocessor">#define NIIOS_4_2     40200</span>
+<a name="l00087"></a>00087 <span class="preprocessor"></span>
+<a name="l00091"></a><a class="code" href="group___s_d_k-_availability.html#gaaa53475c5fefe5a0b7e9db448ec0df79">00091</a> <span class="preprocessor">#define NIIOS_4_3     40300</span>
+<a name="l00092"></a>00092 <span class="preprocessor"></span>
+<a name="l00096"></a><a class="code" href="group___s_d_k-_availability.html#gab590d6daaa8e1c7b8fac784bd7093ab8">00096</a> <span class="preprocessor">#define NIIOS_5_0     50000</span>
+<a name="l00097"></a>00097 <span class="preprocessor"></span>
+<a name="l00098"></a>00098 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_0</span>
+<a name="l00099"></a>00099 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_2_0 478.23</span>
+<a name="l00100"></a>00100 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00101"></a>00101 <span class="preprocessor"></span>
+<a name="l00102"></a>00102 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_1</span>
+<a name="l00103"></a>00103 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_2_1 478.26</span>
+<a name="l00104"></a>00104 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00105"></a>00105 <span class="preprocessor"></span>
+<a name="l00106"></a>00106 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_2</span>
+<a name="l00107"></a>00107 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_2_2 478.29</span>
+<a name="l00108"></a>00108 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00109"></a>00109 <span class="preprocessor"></span>
+<a name="l00110"></a>00110 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_0</span>
+<a name="l00111"></a>00111 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_3_0 478.47</span>
+<a name="l00112"></a>00112 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00113"></a>00113 <span class="preprocessor"></span>
+<a name="l00114"></a>00114 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_1</span>
+<a name="l00115"></a>00115 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_3_1 478.52</span>
+<a name="l00116"></a>00116 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00117"></a>00117 <span class="preprocessor"></span>
+<a name="l00118"></a>00118 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_3_2</span>
+<a name="l00119"></a>00119 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iPhoneOS_3_2 478.61</span>
+<a name="l00120"></a>00120 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00121"></a>00121 <span class="preprocessor"></span>
+<a name="l00122"></a>00122 <span class="preprocessor">#ifndef kCFCoreFoundationVersionNumber_iOS_4_0</span>
+<a name="l00123"></a>00123 <span class="preprocessor"></span><span class="preprocessor">#define kCFCoreFoundationVersionNumber_iOS_4_0 550.32</span>
+<a name="l00124"></a>00124 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00125"></a>00125 <span class="preprocessor"></span>
+<a name="l00131"></a>00131 BOOL <a class="code" href="group___s_d_k-_availability.html#gaf7d2c830b4c39cfeeb37d59258abb722" title="Checks whether the device the app is currently running on is an iPad or not.">NIIsPad</a>();
+<a name="l00132"></a>00132 
+<a name="l00143"></a>00143 BOOL <a class="code" href="group___s_d_k-_availability.html#ga93ac73a742aea0dd9c07562056bf29c4" title="Checks whether the device&#39;s OS version is at least the given version number.">NIDeviceOSVersionIsAtLeast</a>(<span class="keywordtype">double</span> versionNumber);
+<a name="l00144"></a>00144 
+<a name="l00156"></a>00156 Class <a class="code" href="group___s_d_k-_availability.html#gab7b9a8279ba3c54d6654f11f69dbd6f0" title="Safely fetch the UIPopoverController class if it is available.">NIUIPopoverControllerClass</a>();
+<a name="l00157"></a>00157 
+<a name="l00158"></a>00158 
+<a name="l00160"></a>00160 <span class="comment">// End of SDK Availability /////////////////////////////////////////////////////////////////</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

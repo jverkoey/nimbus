@@ -43,7 +43,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.3</span>
+   &#160;<span id="projectnumber">0.3.4</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -96,35 +96,39 @@
 <a name="l00032"></a>00032 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 <a name="l00033"></a>00033 <span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span>
 <a name="l00034"></a>00034 
-<a name="l00035"></a>00035 <span class="preprocessor">#ifdef BASE_PRODUCT_NAME</span>
+<a name="l00035"></a>00035 <span class="preprocessor">#ifdef NIMBUS_STATIC_LIBRARY</span>
 <a name="l00036"></a>00036 <span class="preprocessor"></span><span class="comment">// For when you&#39;re setting this library as a dependency in your project.</span>
 <a name="l00037"></a>00037 <span class="preprocessor">#import &quot;NimbusCore/NIDataStructures.h&quot;</span>
 <a name="l00038"></a>00038 <span class="preprocessor">#import &quot;NimbusCore/NIDebuggingTools.h&quot;</span>
 <a name="l00039"></a>00039 <span class="preprocessor">#import &quot;NimbusCore/NIDeviceOrientation.h&quot;</span>
 <a name="l00040"></a>00040 <span class="preprocessor">#import &quot;NimbusCore/NIFoundationMethods.h&quot;</span>
 <a name="l00041"></a>00041 <span class="preprocessor">#import &quot;NimbusCore/NIInMemoryCache.h&quot;</span>
-<a name="l00042"></a>00042 <span class="preprocessor">#import &quot;NimbusCore/NINonEmptyCollectionTesting.h&quot;</span>
-<a name="l00043"></a>00043 <span class="preprocessor">#import &quot;NimbusCore/NINonRetainingCollections.h&quot;</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#import &quot;NimbusCore/NIPaths.h&quot;</span>
-<a name="l00045"></a>00045 <span class="preprocessor">#import &quot;NimbusCore/NIPreprocessorMacros.h&quot;</span>
-<a name="l00046"></a>00046 <span class="preprocessor">#import &quot;NimbusCore/NIRuntimeClassModifications.h&quot;</span>
-<a name="l00047"></a>00047 <span class="preprocessor">#import &quot;NimbusCore/NISDKAvailability.h&quot;</span>
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049 <span class="preprocessor">#else</span>
-<a name="l00050"></a>00050 <span class="preprocessor"></span><span class="comment">// For when you&#39;re directly including this library in your project.</span>
-<a name="l00051"></a>00051 <span class="preprocessor">#import &quot;NIDataStructures.h&quot;</span>
-<a name="l00052"></a>00052 <span class="preprocessor">#import &quot;NIDebuggingTools.h&quot;</span>
-<a name="l00053"></a>00053 <span class="preprocessor">#import &quot;NIDeviceOrientation.h&quot;</span>
-<a name="l00054"></a>00054 <span class="preprocessor">#import &quot;NIFoundationMethods.h&quot;</span>
-<a name="l00055"></a>00055 <span class="preprocessor">#import &quot;NIInMemoryCache.h&quot;</span>
-<a name="l00056"></a>00056 <span class="preprocessor">#import &quot;NINonEmptyCollectionTesting.h&quot;</span>
-<a name="l00057"></a>00057 <span class="preprocessor">#import &quot;NINonRetainingCollections.h&quot;</span>
-<a name="l00058"></a>00058 <span class="preprocessor">#import &quot;NIPaths.h&quot;</span>
-<a name="l00059"></a>00059 <span class="preprocessor">#import &quot;NIPreprocessorMacros.h&quot;</span>
-<a name="l00060"></a>00060 <span class="preprocessor">#import &quot;NIRuntimeClassModifications.h&quot;</span>
-<a name="l00061"></a>00061 <span class="preprocessor">#import &quot;NISDKAvailability.h&quot;</span>
-<a name="l00062"></a>00062 <span class="preprocessor">#endif</span>
-<a name="l00063"></a>00063 <span class="preprocessor"></span>
+<a name="l00042"></a>00042 <span class="preprocessor">#import &quot;NimbusCore/NINetworkActivity.h&quot;</span>
+<a name="l00043"></a>00043 <span class="preprocessor">#import &quot;NimbusCore/NINonEmptyCollectionTesting.h&quot;</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#import &quot;NimbusCore/NINonRetainingCollections.h&quot;</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#import &quot;NimbusCore/NIPaths.h&quot;</span>
+<a name="l00046"></a>00046 <span class="preprocessor">#import &quot;NimbusCore/NIPreprocessorMacros.h&quot;</span>
+<a name="l00047"></a>00047 <span class="preprocessor">#import &quot;NimbusCore/NIRuntimeClassModifications.h&quot;</span>
+<a name="l00048"></a>00048 <span class="preprocessor">#import &quot;NimbusCore/NISDKAvailability.h&quot;</span>
+<a name="l00049"></a>00049 <span class="preprocessor">#import &quot;NimbusCore/NIState.h&quot;</span>
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 <span class="preprocessor">#else</span>
+<a name="l00052"></a>00052 <span class="preprocessor"></span><span class="comment">// For when you&#39;re directly including this library in your project.</span>
+<a name="l00053"></a>00053 <span class="preprocessor">#import &quot;NIDataStructures.h&quot;</span>
+<a name="l00054"></a>00054 <span class="preprocessor">#import &quot;NIDebuggingTools.h&quot;</span>
+<a name="l00055"></a>00055 <span class="preprocessor">#import &quot;NIDeviceOrientation.h&quot;</span>
+<a name="l00056"></a>00056 <span class="preprocessor">#import &quot;NIFoundationMethods.h&quot;</span>
+<a name="l00057"></a>00057 <span class="preprocessor">#import &quot;NIInMemoryCache.h&quot;</span>
+<a name="l00058"></a>00058 <span class="preprocessor">#import &quot;NINetworkActivity.h&quot;</span>
+<a name="l00059"></a>00059 <span class="preprocessor">#import &quot;NINonEmptyCollectionTesting.h&quot;</span>
+<a name="l00060"></a>00060 <span class="preprocessor">#import &quot;NINonRetainingCollections.h&quot;</span>
+<a name="l00061"></a>00061 <span class="preprocessor">#import &quot;NIPaths.h&quot;</span>
+<a name="l00062"></a>00062 <span class="preprocessor">#import &quot;NIPreprocessorMacros.h&quot;</span>
+<a name="l00063"></a>00063 <span class="preprocessor">#import &quot;NIRuntimeClassModifications.h&quot;</span>
+<a name="l00064"></a>00064 <span class="preprocessor">#import &quot;NISDKAvailability.h&quot;</span>
+<a name="l00065"></a>00065 <span class="preprocessor">#import &quot;NIState.h&quot;</span>
+<a name="l00066"></a>00066 <span class="preprocessor">#endif</span>
+<a name="l00067"></a>00067 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

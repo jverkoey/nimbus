@@ -43,7 +43,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.3</span>
+   &#160;<span id="projectnumber">0.3.4</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -116,6 +116,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa34567e04d59adda70eadf99c4e2dc13"></a><!-- doxytag: member="NILauncherViewController::launcherView:didSelectButton:onPage:atIndex:" ref="aa34567e04d59adda70eadf99c4e2dc13" args="(NILauncherView *launcher,[didSelectButton] UIButton *button,[onPage] NSInteger page,[atIndex] NSInteger index)" -->
 (void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_launcher_view_controller.html#aa34567e04d59adda70eadf99c4e2dc13">launcherView:didSelectButton:onPage:atIndex:</a><code> [implementation]</code></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the user taps and releases a launcher button. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(CGSize)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_launcher_data_source-p.html#aef59561eb420c3699d5c5b3dbe0cb16d">buttonDimensionsInLauncherView:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Override the default button dimensions 80x80.  <a href="#aef59561eb420c3699d5c5b3dbe0cb16d"></a><br/></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Subclassing</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>The following methods are provided to aid in subclassing and are not meant to be used externally. </p>
 </div></td></tr>
@@ -147,6 +149,28 @@ Example of an NILauncherViewController as seen in the BasicLauncher demo applica
   
 <p>Definition at line <a class="el" href="_n_i_launcher_view_controller_8h_source.html#l00071">71</a> of file <a class="el" href="_n_i_launcher_view_controller_8h_source.html">NILauncherViewController.h</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="aef59561eb420c3699d5c5b3dbe0cb16d"></a><!-- doxytag: member="NILauncherViewController::buttonDimensionsInLauncherView:" ref="aef59561eb420c3699d5c5b3dbe0cb16d" args="(NILauncherView *launcherView)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (CGSize) buttonDimensionsInLauncherView: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="interface_n_i_launcher_view.html">NILauncherView</a> *)&#160;</td>
+          <td class="paramname"><em>launcherView</em></td>
+          <td><code> [optional, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Override the default button dimensions 80x80. </p>
+<p>The default dimensions will fit the following grids:</p>
+<p>iPhone within a navigation controller Portrait: 3x4 Landscape: 5x2</p>
+<p>The returned dimensions must be positive non-zero values. </p>
+
+</div>
+</div>
 <a class="anchor" id="a21629435d3eea13bb429361dae2ac0b5"></a><!-- doxytag: member="NILauncherViewController::launcherButtonClass" ref="a21629435d3eea13bb429361dae2ac0b5" args="()" -->
 <div class="memitem">
 <div class="memproto">

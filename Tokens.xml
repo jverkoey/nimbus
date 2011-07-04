@@ -172,6 +172,24 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NSRange-Methods</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___n_s_range-_methods.html</Path>
+    <Abstract>For manipulating NSRange.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIMakeNSRangeFromCFRange</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___n_s_range-_methods.html</Path>
+    <Anchor>ga77e0126e3a06cedd946d9307d286c55b</Anchor>
+    <Abstract>Create an NSRange object from a CFRange object.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>In-Memory-Caches</Name>
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
@@ -185,6 +203,54 @@
     </TokenIdentifier>
     <Path>group___nimbus_core.html</Path>
     <Abstract>Nimbus&amp;#39; Core library contains many often used utilities.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Network-Activity</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___network-_activity.html</Path>
+    <Abstract>For showing network activity in the device&amp;#39;s status bar.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NINetworkActivityTaskDidStart</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___network-_activity.html</Path>
+    <Anchor>ga891e92e9a0937f27411fa6413f30cdfa</Anchor>
+    <Abstract>Increment the number of active network tasks.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NINetworkActivityTaskDidFinish</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___network-_activity.html</Path>
+    <Anchor>gac403d3b1b127ca02ac65ab38b3cc7f5d</Anchor>
+    <Abstract>Decrement the number of active network tasks.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIEnableNetworkActivityDebugging</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___network-_activity.html</Path>
+    <Anchor>ga407c75bc669bcbb55604bdb64f4e9030</Anchor>
+    <Abstract>Enable network activity debugging.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDisableNetworkActivityDebugging</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___network-_activity.html</Path>
+    <Anchor>gae76fb8b8a0a7ec02854b656962fde118</Anchor>
+    <Abstract>Disable network activity debugging.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -506,11 +572,25 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>Core-State</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___core-_state.html</Path>
+    <Abstract>For modifying Nimbus state information.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Version-History</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___version-_history.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Setup</Name>
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
     <Path>group___setup.html</Path>
-    <Abstract>.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -538,13 +618,136 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NimbusNetworkImage</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___nimbus_network_image.html</Path>
+    <Abstract>Network image support with threaded image manipulation and NINetworkImageView.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Network-Image-User-Interface</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___network-_image-_user-_interface.html</Path>
+    <Abstract>The view and protocols used to display a network image.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Network-Image-Requests</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___network-_image-_requests.html</Path>
+    <Abstract>The network requests that power the network image view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIHTTPImageRequest</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIHTTPImageRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_h_t_t_p_image_request.html</Path>
+    <Abstract>A threaded network request for an image that chops up and resizes the image before returning to the U...</Abstract>
+    <DeclaredIn>NIHTTPImageRequest.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>sourceRectWithImageSize:displaySize:contentMode:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIHTTPImageRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_h_t_t_p_image_request.html</Path>
+    <Anchor>af2d7c4617f1557520e254f79a9f1b9a5</Anchor>
+    <Abstract>Calculate the source rect in the source image from which we&amp;#39;ll extract the image before drawing it in...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>destinationRectWithImageSize:displaySize:contentMode:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIHTTPImageRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_h_t_t_p_image_request.html</Path>
+    <Anchor>ab2beef0fa37be65210feff5a14696cea</Anchor>
+    <Abstract>Calculate the destination rect in the destination image where we will draw the cropped source image...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>imageCropRect</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIHTTPImageRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_h_t_t_p_image_request.html</Path>
+    <Anchor>a269bb9693de5df1b6852314ecd62eefa</Anchor>
+    <Abstract>x/y, width/height are in percent coordinates.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>imageDisplaySize</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIHTTPImageRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_h_t_t_p_image_request.html</Path>
+    <Anchor>ad6389e520bbac3c02e299fc4392f6922</Anchor>
+    <Abstract>The size of the image to be displayed on the screen.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>cropImageForDisplay</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIHTTPImageRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_h_t_t_p_image_request.html</Path>
+    <Anchor>ad8e6db74933f106cbc00b42d6f0eb9e4</Anchor>
+    <Abstract>When this is enabled, the final image is cropped to fit the display size perfectly.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>imageContentMode</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIHTTPImageRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_h_t_t_p_image_request.html</Path>
+    <Anchor>aca396dd63f83234695e9e88a44abf49e</Anchor>
+    <Abstract>Determines how to resize and crop the image.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>imageCroppedAndSizedForDisplay</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIHTTPImageRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_h_t_t_p_image_request.html</Path>
+    <Anchor>af07c5510fc69a3e88e624ff3c59e0eb3</Anchor>
+    <Abstract>Upon completion of the request, this is the chopped and sized result image that should be used for di...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIHTTPRequest</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIHTTPRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_h_t_t_p_request.html</Path>
+    <Abstract>An implementation of ASIHTTPRequest that uses the core network activity features in Nimbus...</Abstract>
+    <DeclaredIn>NIHTTPRequest.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NIImageMemoryCache</Name>
       <APILanguage>c</APILanguage>
       <Type>cl</Type>
       <Scope>NIImageMemoryCache</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_image_memory_cache.html</Path>
-    <Abstract>An in-memory cache for storing images with a least-recently-used memory cap.</Abstract>
+    <Abstract>An in-memory cache for storing images with caps on the total number of pixels.</Abstract>
     <DeclaredIn>NIInMemoryCache.h</DeclaredIn>
   </Token>
   <Token>
@@ -582,36 +785,124 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>totalMemoryUsage</Name>
+      <Name>init</Name>
       <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIImageMemoryCache</Scope>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
     </TokenIdentifier>
-    <Path>interface_n_i_image_memory_cache.html</Path>
-    <Anchor>a60a57395cd2245074345fe427021bb5c</Anchor>
-    <Abstract>The total amount of memory being used.</Abstract>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a39f4b8e789e9034c528deb14f1555d80</Anchor>
+    <Abstract>Initialize the cache with no initial capacity.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>maxTotalMemoryUsage</Name>
+      <Name>initWithCapacity:</Name>
       <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIImageMemoryCache</Scope>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
     </TokenIdentifier>
-    <Path>interface_n_i_image_memory_cache.html</Path>
-    <Anchor>a9679cdb8565644866195e364487ad644</Anchor>
-    <Abstract>The maximum amount of memory this cache may ever use.</Abstract>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a879b58be06ace929185997a92f7bb35b</Anchor>
+    <Abstract>Designated initializer.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>maxTotalLowMemoryUsage</Name>
+      <Name>storeObject:withName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a7bc119332422cd4d36863a5f1d7751bd</Anchor>
+    <Abstract>Store an object in the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>storeObject:withName:expiresAfter:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>acaa6af8abea20907cf230ce1191e7ad4</Anchor>
+    <Abstract>Store an object in the cache with an expiration date.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectWithName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>afdd7b533b55c5d8753078e207ec0a9d7</Anchor>
+    <Abstract>Retrive an object from the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>removeObjectWithName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a5dab1798d4e3bcd2b686837f63f31d1c</Anchor>
+    <Abstract>Remove an object in the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>removeAllObjects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a26fda388dffc22aa78dd17905a6fce73</Anchor>
+    <Abstract>Remove all objects from the cache, regardless of expiration dates.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>numberOfPixels</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
       <Scope>NIImageMemoryCache</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_image_memory_cache.html</Path>
-    <Anchor>a0a8f94e91dac5f2e4d6438215a592e0d</Anchor>
-    <Abstract>The maximum amount of memory this cache may use after a call to reduceMemoryUsage.</Abstract>
+    <Anchor>a40447c10f9dfc71c04bacb51895ba5e8</Anchor>
+    <Abstract>The total number of pixels being stored in the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>maxNumberOfPixels</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIImageMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_image_memory_cache.html</Path>
+    <Anchor>a44eec58a5fda0ad0390d5e43591c1fec</Anchor>
+    <Abstract>The maximum number of pixels this cache may ever store.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>maxNumberOfPixelsUnderStress</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIImageMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_image_memory_cache.html</Path>
+    <Anchor>a8e3384e158b74b2f582ee5c26608a7b1</Anchor>
+    <Abstract>The maximum number of pixels this cache may store after a call to reduceMemoryUsage.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>count</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a7d62c34e4297861c986948bd75156d63</Anchor>
+    <Abstract>The number of objects stored in this cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -956,6 +1247,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>buttonDimensionsInLauncherView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NILauncherDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_data_source-p.html</Path>
+    <Anchor>aef59561eb420c3699d5c5b3dbe0cb16d</Anchor>
+    <Abstract>Override the default button dimensions 80x80.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>launcherButtonClass</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -1008,17 +1310,6 @@
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>a424313c1e697b5ba6a136be7a7d8dd3e</Anchor>
     <Abstract>Append an object to the linked list.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>objectAtLocation:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILinkedList</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_linked_list.html</Path>
-    <Anchor>a459824a248ba4917d0434643f29fd5f4</Anchor>
-    <Abstract>Retrieve the object at a specific location.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1077,6 +1368,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>objectAtLocation:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>a459824a248ba4917d0434643f29fd5f4</Anchor>
+    <Abstract>Retrieve the object at a specific location.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>removeObjectAtLocation:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -1129,6 +1431,61 @@
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>a91782fdbe13bf28a662784568ffdca43</Anchor>
     <Abstract>The number of objects in the linked list.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Nimbus</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>Nimbus</Scope>
+    </TokenIdentifier>
+    <Path>interface_nimbus.html</Path>
+    <Abstract>The Nimbus state interface.</Abstract>
+    <DeclaredIn>NIState.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>globalImageMemoryCache</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>Nimbus</Scope>
+    </TokenIdentifier>
+    <Path>interface_nimbus.html</Path>
+    <Anchor>adbf106f287bc083a7c50f2e537d39d92</Anchor>
+    <Abstract>Access the global image memory cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>globalNetworkOperationQueue</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>Nimbus</Scope>
+    </TokenIdentifier>
+    <Path>interface_nimbus.html</Path>
+    <Anchor>a7753d4cb8a77b2b4885c36697f34f2e9</Anchor>
+    <Abstract>Access the global network operation queue.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setGlobalImageMemoryCache:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>Nimbus</Scope>
+    </TokenIdentifier>
+    <Path>interface_nimbus.html</Path>
+    <Anchor>aad83668affb6b59c0ac19da3bf16edf8</Anchor>
+    <Abstract>Set the global image memory cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setGlobalNetworkOperationQueue:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>Nimbus</Scope>
+    </TokenIdentifier>
+    <Path>interface_nimbus.html</Path>
+    <Anchor>a02c14512b76d2fbcdb3912de5dde87c7</Anchor>
+    <Abstract>Set the global network operation queue.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1337,6 +1694,314 @@
     <Path>interface_n_i_memory_cache_info.html</Path>
     <Anchor>a9ba696a78128653d7d2f5208416d6bb0</Anchor>
     <Abstract>The location of this object in the least-recently used linked list.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NINetworkImageView</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Abstract>A network-enabled image view that consumes minimal amounts of memory.</Abstract>
+    <DeclaredIn>NINetworkImageView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithImage:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>ade5eba04aa860207d1fbd07a3f3a31ef</Anchor>
+    <Abstract>Designated initializer.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>prepareForReuse</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a7cce26c40c058f1c8b7265b971b2abc5</Anchor>
+    <Abstract>Kill any network requests and replace the displayed image with the initial image.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setPathToNetworkImage:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>af0531138d9eb4de6275b3704b7e293c2</Anchor>
+    <Abstract>Load an image from the network using the current frame as the display size.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setPathToNetworkImage:forDisplaySize:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>aafcf782b4bbcbd2d40b1693bca72b67a</Anchor>
+    <Abstract>Load an image from the network with a specific display size.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setPathToNetworkImage:forDisplaySize:contentMode:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a0fe80155480019a31d7be5d3d8ae07ca</Anchor>
+    <Abstract>Load an image from the network with a specific display size.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setPathToNetworkImage:cropRect:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a41b5c535e5b5f4a08b227e58485deda5</Anchor>
+    <Abstract>Load an image from the network with a crop rect and the current frame as the display size...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setPathToNetworkImage:contentMode:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>ab78dcad711ea2fe46ace504e33f15944</Anchor>
+    <Abstract>Load an image from the network with a specific display size.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setPathToNetworkImage:cropRect:forDisplaySize:contentMode:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>ab0909160c9d85e5f7f5eb6f9918213a2</Anchor>
+    <Abstract>Load an image from the network with a specific display size and crop rect.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>networkImageViewDidStartLoading</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>aece340a22833f7a7ceeac8ffc8aa5cb4</Anchor>
+    <Abstract>A network request has begun.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>networkImageViewDidLoadImage:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a5fa24c4b0e7aeda332861b681c902c78</Anchor>
+    <Abstract>The image has been loaded, either from the network or in-memory.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>networkImageViewDidFailToLoad:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>ac6b87d3157c16038705df537e9624a89</Anchor>
+    <Abstract>A network request failed to load.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initialImage</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>ad7c89b7d5586d247d9a01c953000ad6f</Anchor>
+    <Abstract>The image being displayed while the network image is being fetched.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>memoryCachePrefix</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a352ecee4de738eff827447d637fd2c5a</Anchor>
+    <Abstract>A prefix for the memory cache key.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastPathToNetworkImage</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a576b2950355e43205c35700091d74dc3</Anchor>
+    <Abstract>The last path assigned to the image view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>isLoading</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>aa3207a010aa79b94a894e60105f4b7a6</Anchor>
+    <Abstract>Whether there is an active request for this image view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>delegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a7e60fd5a2b8c3fc57c92f24fc7dca8d3</Anchor>
+    <Abstract>Delegate for state change notifications.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>sizeForDisplay</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>acafe40b5cfb6e75848a8f91f3f8b9e51</Anchor>
+    <Abstract>A flag for enabling the resizing of images for display.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>cropImageForDisplay</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a39d645379ba10de8a0c6850aa52b8029</Anchor>
+    <Abstract>A flag for enabling the cropping of images to fit their display frame.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>imageMemoryCache</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a8f43300cafa80378ee333a5cb8551b22</Anchor>
+    <Abstract>The image memory cache used by this image view to store the image in memory.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>imageDiskCache</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>af331d0f41ba2509b2edfcc437aadc3a6</Anchor>
+    <Abstract>The image disk cache used by this image view to store the image on disk.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>networkOperationQueue</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a690fae40ceeaa8304dea5177b9d48e2a</Anchor>
+    <Abstract>The network operation queue used by this image view to load the image from network and disk...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>maxAge</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a7b9356e33ed3ad110b0a08290b4f1a27</Anchor>
+    <Abstract>The maximum amount of time that an image will stay in memory after the request completes.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>diskCacheLifetime</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a0432bac81c750d0e9fa0d23329eed93f</Anchor>
+    <Abstract>The lifetime for an image stored in the disk cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NINetworkImageViewDelegate</Name>
+      <APILanguage>c</APILanguage>
+      <Type>intf</Type>
+      <Scope>NINetworkImageViewDelegate</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_network_image_view_delegate-p.html</Path>
+    <Abstract>The image view delegate used to inform of state changes.</Abstract>
+    <DeclaredIn>NINetworkImageView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>networkImageViewDidStartLoad:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NINetworkImageViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_network_image_view_delegate-p.html</Path>
+    <Anchor>a7bd8d13ada058216b947c25741631b43</Anchor>
+    <Abstract>The image has begun an asynchronous download of the image.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>networkImageView:didLoadImage:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NINetworkImageViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_network_image_view_delegate-p.html</Path>
+    <Anchor>a96383c1312874a264d5065594c7bce43</Anchor>
+    <Abstract>The image has completed an asynchronous download of the image.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>networkImageViewDidFailLoad:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NINetworkImageViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_network_image_view_delegate-p.html</Path>
+    <Anchor>a9f091692ef4ed418c2c9e1e1b642b304</Anchor>
+    <Abstract>The asynchronous download failed.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>

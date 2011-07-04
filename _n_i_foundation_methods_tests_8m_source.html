@@ -43,7 +43,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.3</span>
+   &#160;<span id="projectnumber">0.3.4</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -130,7 +130,23 @@
 <a name="l00057"></a>00057 }
 <a name="l00058"></a>00058 
 <a name="l00059"></a>00059 
-<a name="l00060"></a>00060 <span class="keyword">@end</span>
+<a name="l00062"></a>00062 <span class="preprocessor">#pragma mark -</span>
+<a name="l00063"></a>00063 <span class="preprocessor"></span><span class="preprocessor">#pragma mark NSRange Methods</span>
+<a name="l00064"></a>00064 <span class="preprocessor"></span>
+<a name="l00065"></a>00065 
+<a name="l00067"></a>00067 - (void)testNSRangeMethods {
+<a name="l00068"></a>00068   CFRange cfRange = CFRangeMake(0, 10);
+<a name="l00069"></a>00069   NSRange nsRange = <a class="code" href="group___n_s_range-_methods.html#ga77e0126e3a06cedd946d9307d286c55b" title="Create an NSRange object from a CFRange object.">NIMakeNSRangeFromCFRange</a>(cfRange);
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071   STAssertEquals(nsRange.location, (NSUInteger)cfRange.location,
+<a name="l00072"></a>00072                  <span class="stringliteral">@&quot;The two locations should be equal.&quot;</span>);
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074   STAssertEquals(nsRange.length, (NSUInteger)cfRange.length,
+<a name="l00075"></a>00075                  <span class="stringliteral">@&quot;The two lengths should be equal.&quot;</span>);
+<a name="l00076"></a>00076 }
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

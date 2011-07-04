@@ -43,7 +43,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.3</span>
+   &#160;<span id="projectnumber">0.3.4</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -94,8 +94,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Designated initializer. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NILinkedListLocation *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e">addObject:</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Append an object to the linked list.  <a href="#a424313c1e697b5ba6a136be7a7d8dd3e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a459824a248ba4917d0434643f29fd5f4">objectAtLocation:</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the object at a specific location.  <a href="#a459824a248ba4917d0434643f29fd5f4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#add49cd92d036f3fa6bce44cbb12287e7">removeAllObjects</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all objects from the linked list.  <a href="#add49cd92d036f3fa6bce44cbb12287e7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a8662894eef060157e9f25af267d0242f">removeObject:</a></td></tr>
@@ -109,6 +107,8 @@ Public Member Functions</h2></td></tr>
 </div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NILinkedListLocation *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a2446ec1db7456c41e3b27bf234b3dc62">locationOfObject:</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for an object in the linked list.  <a href="#a2446ec1db7456c41e3b27bf234b3dc62"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a459824a248ba4917d0434643f29fd5f4">objectAtLocation:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the object at a specific location.  <a href="#a459824a248ba4917d0434643f29fd5f4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a34f62252fbfc6df20e115e7c4d17031f">removeObjectAtLocation:</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an object at a predetermined location.  <a href="#a34f62252fbfc6df20e115e7c4d17031f"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
@@ -131,21 +131,45 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <div class="textblock"><p>A singly linked list implementation. </p>
 <p>This data structure is provided for constant time insertion and deletion of objects in a collection.</p>
 <p>Example: Building a first-in-first-out list of operations.</p>
-<div class="fragment"><pre class="fragment"> <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll = [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> <a class="code" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea" title="Convenience method for creating an autoreleased linked list.">linkedList</a>];
- <span class="comment">// Add the operations to the linked list like you would an array.</span>
- [ll addObject:operation1];
- <span class="comment">// Each addObject call appends the object to the end of the linked list.</span>
- [ll addObject:operation2];
+<div class="fragment"><pre class="fragment">  <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll = [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> <a class="code" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea" title="Convenience method for creating an autoreleased linked list.">linkedList</a>];
 
- <span class="comment">// Later on...</span>
+  <span class="comment">// Add the operations to the linked list like you would an array.</span>
+  [ll addObject:operation1];
 
- NSOperation* op1 = [ll <a class="code" href="interface_n_i_linked_list.html#aa2527b210de77fde4dd5b99d94ebaba6" title="The first object in the linked list.">firstObject</a>];
- <span class="comment">// Process the operation...</span>
+  <span class="comment">// Each addObject call appends the object to the end of the linked list.</span>
+  [ll addObject:operation2];
 
- <span class="comment">// Remove the head of the linked list in constant time.</span>
- [ll <a class="code" href="interface_n_i_linked_list.html#acf58608c591cd3350d92a51520ec5c56" title="Remove the first object from the linked list.">removeFirstObject</a>];
+  <span class="comment">// Later on...</span>
+
+  NSOperation* op1 = [ll <a class="code" href="interface_n_i_linked_list.html#aa2527b210de77fde4dd5b99d94ebaba6" title="The first object in the linked list.">firstObject</a>];
+  <span class="comment">// Process the operation...</span>
+
+  <span class="comment">// Remove the head of the linked list in constant time.</span>
+  [ll <a class="code" href="interface_n_i_linked_list.html#acf58608c591cd3350d92a51520ec5c56" title="Remove the first object from the linked list.">removeFirstObject</a>];
+</pre></div><p>Example: Removing an item from the middle of the list.</p>
+<div class="fragment"><pre class="fragment">  <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll = [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> <a class="code" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea" title="Convenience method for creating an autoreleased linked list.">linkedList</a>];
+
+  [ll addObject:obj1];
+  [ll addObject:obj2];
+  [ll addObject:obj3];
+  [ll addObject:obj4];
+
+  <span class="comment">// Find an object in the linked list in linear time.</span>
+  NILinkedListLocation* location = [ll locationOfObject:obj3];
+
+  <span class="comment">// Remove the object in constant time.</span>
+  [ll removeObjectAtLocation:location];
+
+  <span class="comment">// Location has been released by this point.</span>
+  location = nil;
+
+  <span class="comment">// Remove an object in linear time. This is simply a more concise version of the above.</span>
+  [ll removeObject:obj4];
+
+  <span class="comment">// We would use the location version to remove the object if we were storing location</span>
+  <span class="comment">// in an external data structure and wanted constant time removal, for example.</span>
 </pre></div> 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8h_source.html#l00066">66</a> of file <a class="el" href="_n_i_data_structures_8h_source.html">NIDataStructures.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8h_source.html#l00091">91</a> of file <a class="el" href="_n_i_data_structures_8h_source.html">NIDataStructures.h</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a424313c1e697b5ba6a136be7a7d8dd3e"></a><!-- doxytag: member="NILinkedList::addObject:" ref="a424313c1e697b5ba6a136be7a7d8dd3e" args="(id object)" -->
 <div class="memitem">
@@ -166,7 +190,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Run-time: O(1)</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A location within the linked list. </dd></dl>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00228">228</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00230">230</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -187,7 +211,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Convenience method for creating an autoreleased linked list. </p>
 <p>Identical to [[[<a class="el" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> alloc] init] autorelease]; </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00045">45</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00047">47</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -207,10 +231,12 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <div class="memdoc">
 
 <p>Search for an object in the linked list. </p>
+<p>The NILinkedListLocation object will remain valid as long as the object is still in the linked list. Once the object is removed from the linked list, however, the location object is released from memory and should no longer be used.</p>
+<p>TODO (jverkoey July 1, 2011): Consider creating a wrapper object for the location so that we can deal with incorrect usage more safely.</p>
 <p>Run-time: O(count)</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A location within the linked list. </dd></dl>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00294">294</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00302">302</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -232,7 +258,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Retrieve the object at a specific location. </p>
 <p>Run-time: O(1) </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00250">250</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00258">258</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -253,7 +279,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Remove all objects from the linked list. </p>
 <p>Run-time: Theta(count) </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00256">256</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00264">264</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -274,7 +300,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Remove the first object from the linked list. </p>
 <p>Run-time: O(1) </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00282">282</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00290">290</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -295,7 +321,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Remove the last object from the linked list. </p>
 <p>Run-time: O(1) </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00288">288</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00296">296</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -317,7 +343,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Remove an object from the linked list. </p>
 <p>Run-time: O(count) </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00273">273</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00281">281</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -341,7 +367,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>It is assumed that this location still exists in the linked list. If the object this location refers to has since been removed then this method will have undefined results.</p>
 <p>This is provided as an optimization over the O(n) removal method but should be used with care. </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00307">307</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00315">315</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>

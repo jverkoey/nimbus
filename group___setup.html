@@ -43,7 +43,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.3</span>
+   &#160;<span id="projectnumber">0.3.4</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -77,58 +77,42 @@
 <div class="title">Adding Nimbus Libraries to Your Project</div>  </div>
 </div>
 <div class="contents">
-
-<p> 
-<a href="#details">More...</a></p>
 <table class="memberdecls">
 </table>
-<p>. There are two recommended models for adding Nimbus libraries to your project: as dependent libraries, or by adding the code directly to your project. Each has its advantages and disadvantages, outlined below.</p>
-<h1>Recommended: add the Nimbus component source directly to your project</h1>
+<h1>Two primary means of adding <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> to your project</h1>
+<p>.. There are two recommended models for adding <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> libraries to your project: as dependent libraries, or by adding the code directly to your project. Each has its advantages and disadvantages, outlined below.</p>
+<h2>Recommended: add the <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> component source directly to your project</h2>
 <p>Advantages:</p>
 <ul>
-<li>Debugging and stepping into Nimbus code is much easier when the source is built in your project.</li>
-<li>You can easily modify the Nimbus source code within your project.</li>
+<li>Debugging and stepping into <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> code is much easier when the source is built in your project.</li>
+<li>You can easily modify the <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> source code within your project.</li>
 <li>Only one precompiled header needs to be built.</li>
 </ul>
 <p>Disadvantages:</p>
 <ul>
-<li>You will have to actively keep your projects up-to-date with Nimbus by adding and removing files whenever a Nimbus library changes.</li>
+<li>You will have to actively keep your projects up-to-date with <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> by adding and removing files whenever a <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> library changes.</li>
 <li>If you have multiple projects then the build products won't be reused, causing some duplicate build time between different projects.</li>
 </ul>
-<h1>Add Nimbus components as dependent libraries</h1>
+<h2>Add <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> components as dependent libraries</h2>
 <p>Advantages:</p>
 <ul>
-<li>Changes to Nimbus' project layout won't require any maintenance on your part because the library will handle all of Nimbus' building. If a new file is added to a Nimbus library then your projects will automatically include these by nature of linking to the library.</li>
+<li>Changes to Nimbus' project layout won't require any maintenance on your part because the library will handle all of Nimbus' building. If a new file is added to a <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> library then your projects will automatically include these by nature of linking to the library.</li>
 <li>Build results can be reused between multiple projects. This can lower the overall build time if you maintain multiple projects.</li>
 </ul>
 <p>Disadvantages:</p>
 <ul>
 <li>Adding libraries to a project can be a pain in the ass and the learning curve is steep if the automated nimbus script doesn't work for your project.</li>
-<li>Finding documentation and setting breakpoints in Nimbus can be frustrating at best.</li>
-<li>If you want to browse the Nimbus source you will need to keep multiple Xcode projects open. This can be very problematic in Xcode 4.</li>
-<li>Headers must be protected because they get copied to a separate directory. This can be frustrating if you want to hack on Nimbus.</li>
+<li>Finding documentation and setting breakpoints in <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> can be frustrating at best.</li>
+<li>If you want to browse the <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> source you will need to keep multiple Xcode projects open. This can be very problematic in Xcode 4.</li>
+<li>Headers must be protected because they get copied to a separate directory. This can be frustrating if you want to hack on <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a>.</li>
 </ul>
 <p>See examples/launcher/BasicLauncher for an example project that adds the source directly to the project.</p>
-<h1>Which model should I use?</h1>
-<p>It's entirely up to you to weigh the above pros and cons with your own requirements. It is recommended that you <b>add the source directly to your project</b>. While this will create a bit more work for you if Nimbus changes drastically down the line, the day-to-day advantages far outweigh the downside of what is realistically a rare event.</p>
+<h3>Which model should I use?</h3>
+<p>You must weigh the above pros and cons with your own requirements. Our recommendation is to <b>add the source directly to your project</b>. While this will create a bit more work for you if <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> changes drastically down the line, the day-to-day advantages far outweigh the downside of what is realistically a rare event.</p>
 <p>If you choose to use dependent libraries, please consider using the nimbus script found in nimbus/scripts/. It may be advantageous to you to add nimbus/scripts to your PATH so that you can run nimbus directly.</p>
-<h1>Adding a Nimbus library to your project</h1>
-<p>Let's quickly go over the basic structure of a Nimbus library.</p>
-<p>Within the root <code>src</code> directory resides each of the Nimbus libraries. Also included in this directory are this <a class="el" href="_doxygen_8h_source.html">Doxygen.h</a> header, which includes many of Nimbus' articles, and the <code>common</code> and <code>resources</code> directories, used for sharing things between each of the libraries.</p>
-<p>Each library is placed in its own folder with the following directory structure:</p>
-<pre>
- deps           Declares this library's dependencies, one on each line, by name.
- examples/      Contrived examples that demo particular features.
- lib/           Used only in building the library as a static library.
- src/           The source for the library.
- unittests/     Used only in unit testing the library.
- </pre><p>When you want to add a Nimbus library to your project there are only two things you need to care about: the <code>src</code> directory and the <code>deps</code> file.</p>
-<p>The <code>deps</code> file contains the list of libraries that you will need to include in your project in order for the library to build. Nearly every Nimbus library depends on core.</p>
-<p>To add a library to your project, simply drag all of the source files within the library's <code>src</code> directory to your project. Do this for each of the dependencies as well and then include the library's header file in your project somewhere. The library's header file will usually be some form of <code>NimbusLibraryName.h</code> and will include all of the library's important features.</p>
-<p>For example, if you were to add the Nimbus Core library to your project, you'd add all of the files within <code>src/core/src</code> to your project and then include the following:</p>
-<pre>
- #import "NimbusCore.h"
- </pre> </div>
+<h1>Adding a <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> library to your project</h1>
+<p>Please refer to the <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted/01-BasicSetup">getting started project</a> for a walkthrough of adding <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> to your project. </p>
+</div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>

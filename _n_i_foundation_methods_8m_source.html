@@ -43,7 +43,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.3</span>
+   &#160;<span id="projectnumber">0.3.4</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -95,22 +95,41 @@
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 <span class="preprocessor">#import &quot;NIFoundationMethods.h&quot;</span>
 <a name="l00018"></a>00018 
-<a name="l00019"></a>00019 
-<a name="l00021"></a><a class="code" href="group___c_g_rect-_methods.html#ga931be414630989f17e57381643459857">00021</a> CGRect <a class="code" href="group___c_g_rect-_methods.html#ga931be414630989f17e57381643459857" title="Modifies only the right and bottom edges of a CGRect.">NIRectContract</a>(CGRect rect, CGFloat dx, CGFloat dy) {
-<a name="l00022"></a>00022   <span class="keywordflow">return</span> CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - dx, rect.size.height - dy);
-<a name="l00023"></a>00023 }
-<a name="l00024"></a>00024 
-<a name="l00025"></a>00025 
-<a name="l00027"></a><a class="code" href="group___c_g_rect-_methods.html#gabcfc5613fd39ec197b2b2f6377d7d1b2">00027</a> CGRect <a class="code" href="group___c_g_rect-_methods.html#gabcfc5613fd39ec197b2b2f6377d7d1b2" title="Modifies only the top and left edges of a CGRect.">NIRectShift</a>(CGRect rect, CGFloat dx, CGFloat dy) {
-<a name="l00028"></a>00028   <span class="keywordflow">return</span> CGRectOffset(<a class="code" href="group___c_g_rect-_methods.html#ga931be414630989f17e57381643459857" title="Modifies only the right and bottom edges of a CGRect.">NIRectContract</a>(rect, dx, dy), dx, dy);
-<a name="l00029"></a>00029 }
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031 
-<a name="l00033"></a><a class="code" href="group___c_g_rect-_methods.html#ga6be0b565e24d85481bbecbdb3635993f">00033</a> CGRect <a class="code" href="group___c_g_rect-_methods.html#ga6be0b565e24d85481bbecbdb3635993f" title="Add the insets to a CGRect - equivalent to padding in CSS.">NIRectInset</a>(CGRect rect, UIEdgeInsets insets) {
-<a name="l00034"></a>00034   <span class="keywordflow">return</span> CGRectMake(rect.origin.x + insets.left, rect.origin.y + insets.top,
-<a name="l00035"></a>00035                     rect.size.width - (insets.left + insets.right),
-<a name="l00036"></a>00036                     rect.size.height - (insets.top + insets.bottom));
+<a name="l00019"></a>00019 <span class="preprocessor">#import &quot;NIDebuggingTools.h&quot;</span>
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00024"></a>00024 <span class="preprocessor">#pragma mark -</span>
+<a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#pragma mark CGRect Methods</span>
+<a name="l00026"></a>00026 <span class="preprocessor"></span>
+<a name="l00027"></a>00027 
+<a name="l00029"></a><a class="code" href="group___c_g_rect-_methods.html#ga931be414630989f17e57381643459857">00029</a> CGRect <a class="code" href="group___c_g_rect-_methods.html#ga931be414630989f17e57381643459857" title="Modifies only the right and bottom edges of a CGRect.">NIRectContract</a>(CGRect rect, CGFloat dx, CGFloat dy) {
+<a name="l00030"></a>00030   <span class="keywordflow">return</span> CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - dx, rect.size.height - dy);
+<a name="l00031"></a>00031 }
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033 
+<a name="l00035"></a><a class="code" href="group___c_g_rect-_methods.html#gabcfc5613fd39ec197b2b2f6377d7d1b2">00035</a> CGRect <a class="code" href="group___c_g_rect-_methods.html#gabcfc5613fd39ec197b2b2f6377d7d1b2" title="Modifies only the top and left edges of a CGRect.">NIRectShift</a>(CGRect rect, CGFloat dx, CGFloat dy) {
+<a name="l00036"></a>00036   <span class="keywordflow">return</span> CGRectOffset(<a class="code" href="group___c_g_rect-_methods.html#ga931be414630989f17e57381643459857" title="Modifies only the right and bottom edges of a CGRect.">NIRectContract</a>(rect, dx, dy), dx, dy);
 <a name="l00037"></a>00037 }
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 
+<a name="l00041"></a><a class="code" href="group___c_g_rect-_methods.html#ga6be0b565e24d85481bbecbdb3635993f">00041</a> CGRect <a class="code" href="group___c_g_rect-_methods.html#ga6be0b565e24d85481bbecbdb3635993f" title="Add the insets to a CGRect - equivalent to padding in CSS.">NIRectInset</a>(CGRect rect, UIEdgeInsets insets) {
+<a name="l00042"></a>00042   <span class="keywordflow">return</span> CGRectMake(rect.origin.x + insets.left, rect.origin.y + insets.top,
+<a name="l00043"></a>00043                     rect.size.width - (insets.left + insets.right),
+<a name="l00044"></a>00044                     rect.size.height - (insets.top + insets.bottom));
+<a name="l00045"></a>00045 }
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047 
+<a name="l00050"></a>00050 <span class="preprocessor">#pragma mark -</span>
+<a name="l00051"></a>00051 <span class="preprocessor"></span><span class="preprocessor">#pragma mark NSRange Methods</span>
+<a name="l00052"></a>00052 <span class="preprocessor"></span>
+<a name="l00053"></a>00053 
+<a name="l00055"></a><a class="code" href="group___n_s_range-_methods.html#ga77e0126e3a06cedd946d9307d286c55b">00055</a> NSRange <a class="code" href="group___n_s_range-_methods.html#ga77e0126e3a06cedd946d9307d286c55b" title="Create an NSRange object from a CFRange object.">NIMakeNSRangeFromCFRange</a>(CFRange range) {
+<a name="l00056"></a>00056   <span class="comment">// CFRange stores its values in signed longs, but we&#39;re about to copy the values into</span>
+<a name="l00057"></a>00057   <span class="comment">// unsigned integers, let&#39;s check whether we&#39;re about to lose any information.</span>
+<a name="l00058"></a>00058   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(range.location &gt;= 0 &amp;&amp; range.location &lt;= NSIntegerMax);
+<a name="l00059"></a>00059   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(range.length &gt;= 0 &amp;&amp; range.length &lt;= NSIntegerMax);
+<a name="l00060"></a>00060   <span class="keywordflow">return</span> NSMakeRange(range.location, range.length);
+<a name="l00061"></a>00061 }
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

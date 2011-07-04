@@ -43,7 +43,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.3</span>
+   &#160;<span id="projectnumber">0.3.4</span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -89,7 +89,7 @@ Inheritance diagram for NIMemoryCache:</div>
  <div class="center">
   <img src="interface_n_i_memory_cache.png" usemap="#NIMemoryCache_map" alt=""/>
   <map id="NIMemoryCache_map" name="NIMemoryCache_map">
-<area href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with a least-recently-used memory cap." alt="NIImageMemoryCache" shape="rect" coords="0,56,140,80"/>
+<area href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels." alt="NIImageMemoryCache" shape="rect" coords="0,56,140,80"/>
 </map>
  </div></div>
 
@@ -129,9 +129,9 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>An in-memory cache for storing objects with expiration support. </p>
-<p>The Nimbus in-memory object cache allows you to store objects in memory with an expiration date attached. Objects with expiration dates drop out of the cache when they have expired. </p>
+<p>The <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> in-memory object cache allows you to store objects in memory with an expiration date attached. Objects with expiration dates drop out of the cache when they have expired. </p>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8h_source.html#l00041">41</a> of file <a class="el" href="_n_i_in_memory_cache_8h_source.html">NIInMemoryCache.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8h_source.html#l00038">38</a> of file <a class="el" href="_n_i_in_memory_cache_8h_source.html">NIInMemoryCache.h</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a879b58be06ace929185997a92f7bb35b"></a><!-- doxytag: member="NIMemoryCache::initWithCapacity:" ref="a879b58be06ace929185997a92f7bb35b" args="(NSUInteger capacity)" -->
 <div class="memitem">
@@ -177,7 +177,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>Retrive an object from the cache. </p>
 <p>If the object has expired then the object will be removed from the cache and nil will be returned. </p>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00222">222</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00241">241</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -200,7 +200,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 <p>Reimplemented in <a class="el" href="interface_n_i_image_memory_cache.html#aae2b67d113009d11330555fdfa96dece">NIImageMemoryCache</a>.</p>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00253">253</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00274">274</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -221,7 +221,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>Remove all objects from the cache, regardless of expiration dates. </p>
 <p>This will completely clear out the cache and all objects in the cache will be released. </p>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00246">246</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00267">267</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -248,7 +248,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00240">240</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00261">261</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -287,7 +287,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </dl>
 <p>The object will be stored without an expiration date. The object will stay in the cache until it's bumped out due to the cache's memory limit. </p>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00188">188</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00202">202</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -333,7 +333,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </dl>
 <p>If an object is stored with an expiration date that has already passed then the object will not be stored in the cache and any existing object will be removed. The rationale behind this is that the object would be removed from the cache the next time it was accessed anyway. </p>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00194">194</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00208">208</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -373,7 +373,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 <p>Reimplemented in <a class="el" href="interface_n_i_image_memory_cache.html#a3fcbee22186d02b51e3c10b6d732bede">NIImageMemoryCache</a>.</p>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00176">176</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00190">190</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -420,7 +420,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 <p>Reimplemented in <a class="el" href="interface_n_i_image_memory_cache.html#a5ca3796a2cf1d986852fc9ebc2d918ff">NIImageMemoryCache</a>.</p>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00170">170</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00184">184</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
