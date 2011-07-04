@@ -56,12 +56,6 @@
  */
 
 /**
- * The delegate protocol for the network image view.
- *
- * @defgroup Network-Image-Protocols Protocols
- */
-
-/**
  * The network requests that power the network image view.
  *
  * @defgroup Network-Image-Requests Network Requests

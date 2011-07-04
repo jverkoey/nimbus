@@ -27,6 +27,11 @@
 @protocol NINetworkImageViewDelegate;
 @protocol ASICacheDelegate;
 
+typedef enum {
+  NINetworkImageViewDiskCacheLifetimeSession,
+  NINetworkImageViewDiskCacheLifetimePermanent,
+} NINetworkImageViewDiskCacheLifetime;
+
 /**
  * A network-enabled image view that consumes minimal amounts of memory.
  *
@@ -42,7 +47,7 @@
  *
  *  // Initialize the network image view with a preloaded image, usually a "default" image
  *  // to be displayed until the network image downloads.
- *  NINetworkImageView imageView = [[[NINetworkImageView alloc] initWithImage:image] autorelease];
+ *  NINetworkImageView* imageView = [[[NINetworkImageView alloc] initWithImage:image] autorelease];
  *
  *  // Method #1: Use the image's frame to determine the display size for the network image.
  *
@@ -61,6 +66,25 @@
  *                    forDisplaySize: CGSizeMake(100, 100)];
  * @endcode
  *
+ * Example: use a different contentMode for the network image.
+ *
+ * @code
+ *  UIImage* image; // some previously loaded image.
+ *
+ *  NINetworkImageView* imageView = [[[NINetworkImageView alloc] initWithImage:image] autorelease];
+ *
+ *  // Center the initial image in the frame.
+ *  imageView.contentMode = UIViewContentModeCenter;
+ *
+ *  // When we download the image, fill the frame with an aspect fill content mode.
+ *  // Specifying contentMode in the setPathToNetworkImage method overrides self.contentMode
+ *  // so that you can display the resulting network image differently.
+ *  // If your display size matches the image frame's size, then self.contentMode won't
+ *  // affect the way the image is drawn because the dimensions will be identical.
+ *  [imageView setPathToNetworkImage: @"http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg"
+ *                       contentMode: UIViewContentModeScaleAspectFill];
+ *
+ * @endcode
  */
 @interface NINetworkImageView : UIImageView {
 @private
@@ -73,8 +97,10 @@
 
   NSString* _lastPathToNetworkImage;
 
-  BOOL _cropImageForDisplay;
   BOOL _sizeForDisplay;
+  BOOL _cropImageForDisplay;
+
+  NINetworkImageViewDiskCacheLifetime _diskCacheLifetime;
 
   id<NINetworkImageViewDelegate> _delegate;
 
@@ -220,6 +246,27 @@
  */
 @property (nonatomic, readwrite, assign) NSTimeInterval maxAge;
 
+/**
+ * The lifetime for an image stored in the disk cache.
+ *
+ * You can choose to keep the image around forever (until explicitly deleted) or for the life
+ * of an applicaton's session (when the app starts the next time the cache will be cleared).
+ *
+ * Example: Clearing the session cache.
+ * @code
+ *  [imageDiskCache clearCachedResponsesForStoragePolicy:ASICacheForSessionDurationCacheStoragePolicy];
+ * @endcode
+ *
+ * Example: Clearing the permanent cache.
+ * @code
+ *  [imageDiskCache clearCachedResponsesForStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+ * @endcode
+ *
+ * By default this is NINetworkImageViewDiskCacheLifetimePermanent.
+ */
+@property (nonatomic, readwrite, assign) NINetworkImageViewDiskCacheLifetime diskCacheLifetime;
+
+
 /**@}*/// End of Basic Configuration
 
 
@@ -292,6 +339,8 @@
  * Loads the image from the memory cache if possible, otherwise fires off a network request
  * with this object's network image information.
  *
+ * Uses self.contentMode to crop and resize the image.
+ *
  * The image's current frame will be used as the display size for the image.
  *
  *      @param pathToNetworkImage  The network path to the image to be displayed.
@@ -304,6 +353,8 @@
  * Loads the image from the memory cache if possible, otherwise fires off a network request
  * with this object's network image information.
  *
+ * Uses self.contentMode to crop and resize the image.
+ *
  *      @param pathToNetworkImage  The network path to the image to be displayed.
  *      @param displaySize         Used instead of the image's frame to determine the display size.
  */
@@ -311,10 +362,26 @@
                forDisplaySize: (CGSize)displaySize;
 
 /**
+ * Load an image from the network with a specific display size.
+ *
+ * Loads the image from the memory cache if possible, otherwise fires off a network request
+ * with this object's network image information.
+ *
+ *      @param pathToNetworkImage  The network path to the image to be displayed.
+ *      @param displaySize         Used instead of the image's frame to determine the display size.
+ *      @param contentMode         The content mode used to crop and resize the image.
+ */
+- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
+               forDisplaySize: (CGSize)displaySize
+                  contentMode: (UIViewContentMode)contentMode;
+
+/**
  * Load an image from the network with a crop rect and the current frame as the display size.
  *
  * Loads the image from the memory cache if possible, otherwise fires off a network request
  * with this object's network image information.
+ *
+ * Uses self.contentMode to crop and resize the image.
  *
  * The image's current frame will be used as the display size for the image.
  *
@@ -326,6 +393,20 @@
                      cropRect: (CGRect)cropRect;
 
 /**
+ * Load an image from the network with a specific display size.
+ *
+ * Loads the image from the memory cache if possible, otherwise fires off a network request
+ * with this object's network image information.
+ *
+ * The image's current frame will be used as the display size for the image.
+ *
+ *      @param pathToNetworkImage  The network path to the image to be displayed.
+ *      @param contentMode         The content mode used to crop and resize the image.
+ */
+- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
+                  contentMode: (UIViewContentMode)contentMode;
+
+/**
  * Load an image from the network with a specific display size and crop rect.
  *
  * Loads the image from the memory cache if possible, otherwise fires off a network request
@@ -335,10 +416,12 @@
  *      @param cropRect            x/y, width/height are in percent coordinates.
  *                                 Valid range is [0..1] for all values.
  *      @param displaySize         Used instead of the image's frame to determine the display size.
+ *      @param contentMode         The content mode used to crop and resize the image.
  */
 - (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
                      cropRect: (CGRect)cropRect
-               forDisplaySize: (CGSize)displaySize;
+               forDisplaySize: (CGSize)displaySize
+                  contentMode: (UIViewContentMode)contentMode;
 
 
 /**@}*/// End of Request a network image
@@ -376,7 +459,7 @@
 /**
  * The image view delegate used to inform of state changes.
  *
- *      @ingroup Network-Image-Protocols
+ *      @ingroup Network-Image-User-Interface
  */
 @protocol NINetworkImageViewDelegate <NSObject>
 @optional

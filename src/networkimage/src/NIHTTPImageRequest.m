@@ -65,6 +65,9 @@
     self.imageDisplaySize = CGSizeZero;
     self.cropImageForDisplay = YES;
     self.imageContentMode = UIViewContentModeScaleToFill;
+
+    // Store the image permanently, by default.
+    self.cacheStoragePolicy = ASICachePermanentlyCacheStoragePolicy;
   }
   return self;
 }

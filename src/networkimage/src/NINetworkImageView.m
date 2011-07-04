@@ -56,6 +56,7 @@
 @synthesize imageDiskCache          = _imageDiskCache;
 @synthesize networkOperationQueue   = _networkOperationQueue;
 @synthesize maxAge                  = _maxAge;
+@synthesize diskCacheLifetime       = _diskCacheLifetime;
 @synthesize initialImage            = _initialImage;
 @synthesize memoryCachePrefix       = _memoryCachePrefix;
 @synthesize lastPathToNetworkImage  = _lastPathToNetworkImage;
@@ -87,6 +88,8 @@
     // Assign defaults.
     self.sizeForDisplay = YES;
     self.cropImageForDisplay = YES;
+
+    self.diskCacheLifetime = NINetworkImageViewDiskCacheLifetimePermanent;
 
     self.imageMemoryCache = [Nimbus globalImageMemoryCache];
     self.networkOperationQueue = [Nimbus globalNetworkOperationQueue];
@@ -196,6 +199,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (ASICacheStoragePolicy)cacheStoragePolicy {
+  switch (self.diskCacheLifetime) {
+    case NINetworkImageViewDiskCacheLifetimeSession: {
+      return ASICacheForSessionDurationCacheStoragePolicy;
+    }
+    default:
+    case NINetworkImageViewDiskCacheLifetimePermanent: {
+      return ASICachePermanentlyCacheStoragePolicy;
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Subclassing
@@ -227,28 +244,59 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setPathToNetworkImage: (NSString *)pathToNetworkImage {
-  [self setPathToNetworkImage:pathToNetworkImage cropRect:CGRectZero];
+  [self setPathToNetworkImage: pathToNetworkImage
+                     cropRect: CGRectZero
+               forDisplaySize: CGSizeZero
+                  contentMode: self.contentMode];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
                forDisplaySize: (CGSize)displaySize {
-  [self setPathToNetworkImage:pathToNetworkImage cropRect:CGRectZero forDisplaySize:displaySize];
+  [self setPathToNetworkImage: pathToNetworkImage
+                     cropRect: CGRectZero
+               forDisplaySize: displaySize
+                  contentMode: self.contentMode];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
+               forDisplaySize: (CGSize)displaySize
+                  contentMode: (UIViewContentMode)contentMode {
+  [self setPathToNetworkImage: pathToNetworkImage
+                     cropRect: CGRectZero
+               forDisplaySize: displaySize
+                  contentMode: contentMode];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
                      cropRect: (CGRect)cropRect {
-  [self setPathToNetworkImage:pathToNetworkImage cropRect:cropRect forDisplaySize:CGSizeZero];
+  [self setPathToNetworkImage: pathToNetworkImage
+                     cropRect: cropRect
+               forDisplaySize: CGSizeZero
+                  contentMode: self.contentMode];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
+                  contentMode: (UIViewContentMode)contentMode {
+  [self setPathToNetworkImage: pathToNetworkImage
+                     cropRect: CGRectZero
+               forDisplaySize: CGSizeZero
+                  contentMode: contentMode];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
                      cropRect: (CGRect)cropRect
-               forDisplaySize: (CGSize)displaySize {
+               forDisplaySize: (CGSize)displaySize
+                  contentMode: (UIViewContentMode)contentMode {
   [self.request clearDelegatesAndCancel];
 
   if (NIIsStringWithAnyText(pathToNetworkImage)) {
@@ -313,11 +361,13 @@
       [request setDidFinishSelector:@selector(requestDidFinish:)];
       [request setDidFailSelector:@selector(requestDidFail:)];
 
+      [request setCacheStoragePolicy:self.cacheStoragePolicy];
+
       [request setImageCropRect:cropRect];
       [request setCropImageForDisplay:self.cropImageForDisplay];
       if (self.sizeForDisplay) {
         [request setImageDisplaySize:displaySize];
-        [request setImageContentMode:self.contentMode];
+        [request setImageContentMode:contentMode];
       }
 
       self.request = request;
