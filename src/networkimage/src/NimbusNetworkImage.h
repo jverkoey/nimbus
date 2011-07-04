@@ -15,7 +15,8 @@
 //
 
 /**
- * Network image support with threaded image manipulation and NINetworkImageView.
+ * Image views that load images from the network and efficiently store the result in memory and on
+ * disk.
  *
  * @defgroup NimbusNetworkImage Nimbus Network Image
  * @{
