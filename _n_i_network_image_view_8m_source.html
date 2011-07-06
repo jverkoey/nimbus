@@ -124,7 +124,7 @@
 <a name="l00051"></a>00051 
 <a name="l00052"></a>00052 <span class="keyword">@synthesize</span> request                 = _request;
 <a name="l00053"></a>00053 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_network_image_view.html#acafe40b5cfb6e75848a8f91f3f8b9e51" title="A flag for enabling the resizing of images for display.">sizeForDisplay</a>          = _sizeForDisplay;
-<a name="l00054"></a>00054 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_network_image_view.html#a39d645379ba10de8a0c6850aa52b8029" title="A flag for enabling the cropping of images to fit their display frame.">cropImageForDisplay</a>     = _cropImageForDisplay;
+<a name="l00054"></a>00054 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_network_image_view.html#a7faef9d6a8e6e3a5886cf88c0262d4e1" title="Options for modifying the way images are cropped when scaling.">scaleOptions</a>            = _scaleOptions;
 <a name="l00055"></a>00055 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_network_image_view.html#a8f43300cafa80378ee333a5cb8551b22" title="The image memory cache used by this image view to store the image in memory.">imageMemoryCache</a>        = _imageMemoryCache;
 <a name="l00056"></a>00056 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_network_image_view.html#af331d0f41ba2509b2edfcc437aadc3a6" title="The image disk cache used by this image view to store the image on disk.">imageDiskCache</a>          = _imageDiskCache;
 <a name="l00057"></a>00057 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_network_image_view.html#a690fae40ceeaa8304dea5177b9d48e2a" title="The network operation queue used by this image view to load the image from network and disk...">networkOperationQueue</a>   = _networkOperationQueue;
@@ -158,7 +158,7 @@
 <a name="l00087"></a>00087   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super initWithImage:image])) {
 <a name="l00088"></a>00088     <span class="comment">// Assign defaults.</span>
 <a name="l00089"></a>00089     <span class="keyword">self</span>.sizeForDisplay = YES;
-<a name="l00090"></a>00090     <span class="keyword">self</span>.cropImageForDisplay = YES;
+<a name="l00090"></a>00090     <span class="keyword">self</span>.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
 <a name="l00091"></a>00091 
 <a name="l00092"></a>00092     <span class="keyword">self</span>.diskCacheLifetime = NINetworkImageViewDiskCacheLifetimePermanent;
 <a name="l00093"></a>00093 
@@ -189,7 +189,7 @@
 <a name="l00121"></a>00121 - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)cacheKeyForURL: (NSURL *)URL
 <a name="l00122"></a>00122                    imageSize: (CGSize)imageSize
 <a name="l00123"></a>00123                  contentMode: (UIViewContentMode)contentMode
-<a name="l00124"></a>00124          cropImageForDisplay: (BOOL)cropImageForDisplay {
+<a name="l00124"></a>00124                 scaleOptions: (<a class="code" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a>)scaleOptions {
 <a name="l00125"></a>00125   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* cacheKey = [URL absoluteString];
 <a name="l00126"></a>00126 
 <a name="l00127"></a>00127   <span class="comment">// Prefix cache key to create a namespace.</span>
@@ -204,7 +204,7 @@
 <a name="l00136"></a>00136     cacheKey = [cacheKey stringByAppendingString:NSStringFromCGSize(imageSize)];
 <a name="l00137"></a>00137   }
 <a name="l00138"></a>00138 
-<a name="l00139"></a>00139   cacheKey = [cacheKey stringByAppendingFormat:@&quot;{%d,%d}&quot;, contentMode, cropImageForDisplay];
+<a name="l00139"></a>00139   cacheKey = [cacheKey stringByAppendingFormat:@&quot;{%d,%d}&quot;, contentMode, scaleOptions];
 <a name="l00140"></a>00140 
 <a name="l00141"></a>00141   <span class="comment">// The resulting cache key will look like:</span>
 <a name="l00142"></a>00142   <span class="comment">// (memoryCachePrefix)/path/to/image({width,height}){contentMode,cropImageForDisplay}</span>
@@ -228,7 +228,7 @@
 <a name="l00164"></a>00164     <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* cacheKey = [<span class="keyword">self</span> cacheKeyForURL: request.url
 <a name="l00165"></a>00165                                     imageSize: request.imageDisplaySize
 <a name="l00166"></a>00166                                   contentMode: request.imageContentMode
-<a name="l00167"></a>00167                           cropImageForDisplay: request.cropImageForDisplay];
+<a name="l00167"></a>00167                                  scaleOptions: request.scaleOptions];
 <a name="l00168"></a>00168 
 <a name="l00169"></a>00169     <span class="comment">// Get the expiration date from the response headers for the request.</span>
 <a name="l00170"></a>00170     NSDate* expirationDate = [ASIHTTPRequest expiryDateForRequest:request maxAge:self.maxAge];
@@ -386,8 +386,8 @@
 <a name="l00337"></a>00337     <span class="keywordflow">if</span> (nil != <span class="keyword">self</span>.<a class="code" href="interface_n_i_network_image_view.html#a8f43300cafa80378ee333a5cb8551b22" title="The image memory cache used by this image view to store the image in memory.">imageMemoryCache</a>) {
 <a name="l00338"></a>00338       <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* cacheKey = [<span class="keyword">self</span> cacheKeyForURL: url
 <a name="l00339"></a>00339                                       imageSize: displaySize
-<a name="l00340"></a>00340                                     contentMode: self.contentMode
-<a name="l00341"></a>00341                             cropImageForDisplay: self.cropImageForDisplay];
+<a name="l00340"></a>00340                                     contentMode: contentMode
+<a name="l00341"></a>00341                                    scaleOptions: self.scaleOptions];
 <a name="l00342"></a>00342       image = [<span class="keyword">self</span>.imageMemoryCache objectWithName:cacheKey];
 <a name="l00343"></a>00343     }
 <a name="l00344"></a>00344 
@@ -413,7 +413,7 @@
 <a name="l00364"></a>00364       [request setCacheStoragePolicy:self.cacheStoragePolicy];
 <a name="l00365"></a>00365 
 <a name="l00366"></a>00366       [request setImageCropRect:cropRect];
-<a name="l00367"></a>00367       [request setCropImageForDisplay:self.cropImageForDisplay];
+<a name="l00367"></a>00367       [request setScaleOptions:self.scaleOptions];
 <a name="l00368"></a>00368       <span class="keywordflow">if</span> (<span class="keyword">self</span>.<a class="code" href="interface_n_i_network_image_view.html#acafe40b5cfb6e75848a8f91f3f8b9e51" title="A flag for enabling the resizing of images for display.">sizeForDisplay</a>) {
 <a name="l00369"></a>00369         [request setImageDisplaySize:displaySize];
 <a name="l00370"></a>00370         [request setImageContentMode:contentMode];

@@ -697,14 +697,14 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>cropImageForDisplay</Name>
+      <Name>scaleOptions</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
       <Scope>NIHTTPImageRequest</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_h_t_t_p_image_request.html</Path>
-    <Anchor>ad8e6db74933f106cbc00b42d6f0eb9e4</Anchor>
-    <Abstract>When this is enabled, the final image is cropped to fit the display size perfectly.</Abstract>
+    <Anchor>a11f4b6cc61cceb33a41423c62e4e735c</Anchor>
+    <Abstract>Options for modifying the way images are cropped when scaling.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1895,14 +1895,14 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>cropImageForDisplay</Name>
+      <Name>scaleOptions</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
       <Scope>NINetworkImageView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a39d645379ba10de8a0c6850aa52b8029</Anchor>
-    <Abstract>A flag for enabling the cropping of images to fit their display frame.</Abstract>
+    <Anchor>a7faef9d6a8e6e3a5886cf88c0262d4e1</Anchor>
+    <Abstract>Options for modifying the way images are cropped when scaling.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>

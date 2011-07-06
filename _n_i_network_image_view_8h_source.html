@@ -106,123 +106,131 @@
 <a name="l00027"></a>00027 <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_network_image_view_delegate-p.html" title="The image view delegate used to inform of state changes.">NINetworkImageViewDelegate</a>;
 <a name="l00028"></a>00028 <span class="keyword">@protocol </span>ASICacheDelegate;
 <a name="l00029"></a>00029 
-<a name="l00030"></a>00030 <span class="keyword">typedef</span> <span class="keyword">enum</span> {
-<a name="l00031"></a>00031   NINetworkImageViewDiskCacheLifetimeSession,
-<a name="l00032"></a>00032   NINetworkImageViewDiskCacheLifetimePermanent,
-<a name="l00033"></a>00033 } NINetworkImageViewDiskCacheLifetime;
-<a name="l00034"></a>00034 
-<a name="l00089"></a><a class="code" href="interface_n_i_network_image_view.html">00089</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a> : UIImageView {
-<a name="l00090"></a>00090 <span class="keyword">@private</span>
-<a name="l00091"></a>00091   <span class="comment">// The active network request for the image.</span>
-<a name="l00092"></a>00092   <a class="code" href="interface_n_i_h_t_t_p_image_request.html" title="A threaded network request for an image that chops up and resizes the image before returning to the U...">NIHTTPImageRequest</a>* _request;
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* _memoryCachePrefix;
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096   UIImage* _initialImage;
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* _lastPathToNetworkImage;
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100   BOOL _sizeForDisplay;
-<a name="l00101"></a>00101   BOOL _cropImageForDisplay;
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103   NINetworkImageViewDiskCacheLifetime _diskCacheLifetime;
-<a name="l00104"></a>00104 
-<a name="l00105"></a>00105   id&lt;NINetworkImageViewDelegate&gt; _delegate;
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107   <span class="comment">// Expiration information.</span>
-<a name="l00108"></a>00108   NSTimeInterval  _maxAge;
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>*   _imageMemoryCache;
-<a name="l00111"></a>00111   id&lt;ASICacheDelegate&gt;  _imageDiskCache;
-<a name="l00112"></a>00112   NSOperationQueue*     _networkOperationQueue;
-<a name="l00113"></a>00113 }
-<a name="l00114"></a>00114 
-<a name="l00126"></a><a class="code" href="interface_n_i_network_image_view.html#ad7c89b7d5586d247d9a01c953000ad6f">00126</a> <span class="keyword">@property</span> (nonatomic, readwrite, retain) UIImage* initialImage;
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128 
-<a name="l00136"></a>00136 <span class="preprocessor">#pragma mark Presentation Configuration</span>
-<a name="l00137"></a>00137 <span class="preprocessor"></span>
-<a name="l00152"></a><a class="code" href="interface_n_i_network_image_view.html#acafe40b5cfb6e75848a8f91f3f8b9e51">00152</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) BOOL sizeForDisplay;
-<a name="l00153"></a>00153 
-<a name="l00173"></a><a class="code" href="interface_n_i_network_image_view.html#a39d645379ba10de8a0c6850aa52b8029">00173</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) BOOL cropImageForDisplay;
-<a name="l00174"></a>00174 
-<a name="l00175"></a>00175 <span class="comment">// End of Presentation Configuration</span>
-<a name="l00177"></a>00177 
-<a name="l00178"></a>00178 
-<a name="l00185"></a>00185 <span class="preprocessor">#pragma mark Basic Configuration</span>
-<a name="l00186"></a>00186 <span class="preprocessor"></span>
-<a name="l00206"></a><a class="code" href="interface_n_i_network_image_view.html#a8f43300cafa80378ee333a5cb8551b22">00206</a> <span class="keyword">@property</span> (nonatomic, readwrite, retain) <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* imageMemoryCache;
-<a name="l00207"></a>00207 
-<a name="l00219"></a><a class="code" href="interface_n_i_network_image_view.html#af331d0f41ba2509b2edfcc437aadc3a6">00219</a> <span class="keyword">@property</span> (nonatomic, readwrite, retain) id&lt;ASICacheDelegate&gt; imageDiskCache;
-<a name="l00220"></a>00220 
-<a name="l00232"></a><a class="code" href="interface_n_i_network_image_view.html#a690fae40ceeaa8304dea5177b9d48e2a">00232</a> <span class="keyword">@property</span> (nonatomic, readwrite, retain) NSOperationQueue* networkOperationQueue;
+<a name="l00030"></a>00030 <span class="comment">// See the diskCacheLifetime property for more documentation related to this enumeration.</span>
+<a name="l00031"></a>00031 <span class="keyword">typedef</span> <span class="keyword">enum</span> {
+<a name="l00036"></a>00036   NINetworkImageViewDiskCacheLifetimeSession,
+<a name="l00037"></a>00037 
+<a name="l00042"></a>00042   NINetworkImageViewDiskCacheLifetimePermanent,
+<a name="l00043"></a>00043 } NINetworkImageViewDiskCacheLifetime;
+<a name="l00044"></a>00044 
+<a name="l00165"></a><a class="code" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856">00165</a> <span class="keyword">typedef</span> <span class="keyword">enum</span> {
+<a name="l00166"></a>00166   NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess = 0x00,
+<a name="l00167"></a>00167   NINetworkImageViewScaleToFitCropsExcess    = 0x01,
+<a name="l00168"></a>00168   NINetworkImageViewScaleToFillLeavesExcess  = 0x02,
+<a name="l00169"></a>00169 } <a class="code" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a>;
+<a name="l00170"></a>00170 
+<a name="l00225"></a><a class="code" href="interface_n_i_network_image_view.html">00225</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a> : UIImageView {
+<a name="l00226"></a>00226 <span class="keyword">@private</span>
+<a name="l00227"></a>00227   <span class="comment">// The active network request for the image.</span>
+<a name="l00228"></a>00228   <a class="code" href="interface_n_i_h_t_t_p_image_request.html" title="A threaded network request for an image that chops up and resizes the image before returning to the U...">NIHTTPImageRequest</a>* _request;
+<a name="l00229"></a>00229 
+<a name="l00230"></a>00230   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* _memoryCachePrefix;
+<a name="l00231"></a>00231 
+<a name="l00232"></a>00232   UIImage* _initialImage;
 <a name="l00233"></a>00233 
-<a name="l00247"></a><a class="code" href="interface_n_i_network_image_view.html#a7b9356e33ed3ad110b0a08290b4f1a27">00247</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) NSTimeInterval maxAge;
-<a name="l00248"></a>00248 
-<a name="l00267"></a><a class="code" href="interface_n_i_network_image_view.html#a0432bac81c750d0e9fa0d23329eed93f">00267</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) NINetworkImageViewDiskCacheLifetime diskCacheLifetime;
-<a name="l00268"></a>00268 
-<a name="l00269"></a>00269 <span class="comment">// End of Basic Configuration</span>
-<a name="l00271"></a>00271 
-<a name="l00272"></a>00272 
-<a name="l00286"></a><a class="code" href="interface_n_i_network_image_view.html#a352ecee4de738eff827447d637fd2c5a">00286</a> <span class="keyword">@property</span> (nonatomic, readwrite, copy) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* memoryCachePrefix;
-<a name="l00287"></a>00287 
-<a name="l00297"></a><a class="code" href="interface_n_i_network_image_view.html#a576b2950355e43205c35700091d74dc3">00297</a> <span class="keyword">@property</span> (nonatomic, readonly, copy) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* lastPathToNetworkImage;
+<a name="l00234"></a>00234   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* _lastPathToNetworkImage;
+<a name="l00235"></a>00235 
+<a name="l00236"></a>00236   BOOL _sizeForDisplay;
+<a name="l00237"></a>00237   <a class="code" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a> _scaleOptions;
+<a name="l00238"></a>00238 
+<a name="l00239"></a>00239   NINetworkImageViewDiskCacheLifetime _diskCacheLifetime;
+<a name="l00240"></a>00240 
+<a name="l00241"></a>00241   id&lt;NINetworkImageViewDelegate&gt; _delegate;
+<a name="l00242"></a>00242 
+<a name="l00243"></a>00243   <span class="comment">// Expiration information.</span>
+<a name="l00244"></a>00244   NSTimeInterval  _maxAge;
+<a name="l00245"></a>00245 
+<a name="l00246"></a>00246   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>*   _imageMemoryCache;
+<a name="l00247"></a>00247   id&lt;ASICacheDelegate&gt;  _imageDiskCache;
+<a name="l00248"></a>00248   NSOperationQueue*     _networkOperationQueue;
+<a name="l00249"></a>00249 }
+<a name="l00250"></a>00250 
+<a name="l00262"></a><a class="code" href="interface_n_i_network_image_view.html#ad7c89b7d5586d247d9a01c953000ad6f">00262</a> <span class="keyword">@property</span> (nonatomic, readwrite, retain) UIImage* initialImage;
+<a name="l00263"></a>00263 
+<a name="l00264"></a>00264 
+<a name="l00272"></a>00272 <span class="preprocessor">#pragma mark Presentation Configuration</span>
+<a name="l00273"></a>00273 <span class="preprocessor"></span>
+<a name="l00288"></a><a class="code" href="interface_n_i_network_image_view.html#acafe40b5cfb6e75848a8f91f3f8b9e51">00288</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) BOOL sizeForDisplay;
+<a name="l00289"></a>00289 
+<a name="l00297"></a><a class="code" href="interface_n_i_network_image_view.html#a7faef9d6a8e6e3a5886cf88c0262d4e1">00297</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) <a class="code" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a> scaleOptions;
 <a name="l00298"></a>00298 
-<a name="l00304"></a><a class="code" href="interface_n_i_network_image_view.html#aa3207a010aa79b94a894e60105f4b7a6">00304</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) BOOL isLoading;
-<a name="l00305"></a>00305 
-<a name="l00309"></a><a class="code" href="interface_n_i_network_image_view.html#a7e60fd5a2b8c3fc57c92f24fc7dca8d3">00309</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NINetworkImageViewDelegate&gt; delegate;
-<a name="l00310"></a>00310 
-<a name="l00316"></a>00316 - (id)initWithImage:(UIImage *)image;
-<a name="l00317"></a>00317 
-<a name="l00324"></a>00324 - (void)prepareForReuse;
-<a name="l00325"></a>00325 
-<a name="l00326"></a>00326 
-<a name="l00334"></a>00334 <span class="preprocessor">#pragma mark Request a network image</span>
-<a name="l00335"></a>00335 <span class="preprocessor"></span>
-<a name="l00348"></a>00348 - (void)setPathToNetworkImage: (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToNetworkImage;
-<a name="l00349"></a>00349 
-<a name="l00361"></a>00361 - (void)setPathToNetworkImage: (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToNetworkImage
-<a name="l00362"></a>00362                forDisplaySize: (CGSize)displaySize;
-<a name="l00363"></a>00363 
-<a name="l00374"></a>00374 - (void)setPathToNetworkImage: (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToNetworkImage
-<a name="l00375"></a>00375                forDisplaySize: (CGSize)displaySize
-<a name="l00376"></a>00376                   contentMode: (UIViewContentMode)contentMode;
-<a name="l00377"></a>00377 
-<a name="l00392"></a>00392 - (void)setPathToNetworkImage: (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToNetworkImage
-<a name="l00393"></a>00393                      cropRect: (CGRect)cropRect;
-<a name="l00394"></a>00394 
-<a name="l00406"></a>00406 - (void)setPathToNetworkImage: (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToNetworkImage
-<a name="l00407"></a>00407                   contentMode: (UIViewContentMode)contentMode;
-<a name="l00408"></a>00408 
-<a name="l00421"></a>00421 - (void)setPathToNetworkImage: (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToNetworkImage
-<a name="l00422"></a>00422                      cropRect: (CGRect)cropRect
-<a name="l00423"></a>00423                forDisplaySize: (CGSize)displaySize
-<a name="l00424"></a>00424                   contentMode: (UIViewContentMode)contentMode;
-<a name="l00425"></a>00425 
-<a name="l00426"></a>00426 <span class="comment">// End of Request a network image</span>
-<a name="l00428"></a>00428 
+<a name="l00299"></a>00299 <span class="comment">// End of Presentation Configuration</span>
+<a name="l00301"></a>00301 
+<a name="l00302"></a>00302 
+<a name="l00309"></a>00309 <span class="preprocessor">#pragma mark Basic Configuration</span>
+<a name="l00310"></a>00310 <span class="preprocessor"></span>
+<a name="l00330"></a><a class="code" href="interface_n_i_network_image_view.html#a8f43300cafa80378ee333a5cb8551b22">00330</a> <span class="keyword">@property</span> (nonatomic, readwrite, retain) <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* imageMemoryCache;
+<a name="l00331"></a>00331 
+<a name="l00343"></a><a class="code" href="interface_n_i_network_image_view.html#af331d0f41ba2509b2edfcc437aadc3a6">00343</a> <span class="keyword">@property</span> (nonatomic, readwrite, retain) id&lt;ASICacheDelegate&gt; imageDiskCache;
+<a name="l00344"></a>00344 
+<a name="l00356"></a><a class="code" href="interface_n_i_network_image_view.html#a690fae40ceeaa8304dea5177b9d48e2a">00356</a> <span class="keyword">@property</span> (nonatomic, readwrite, retain) NSOperationQueue* networkOperationQueue;
+<a name="l00357"></a>00357 
+<a name="l00371"></a><a class="code" href="interface_n_i_network_image_view.html#a7b9356e33ed3ad110b0a08290b4f1a27">00371</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) NSTimeInterval maxAge;
+<a name="l00372"></a>00372 
+<a name="l00391"></a><a class="code" href="interface_n_i_network_image_view.html#a0432bac81c750d0e9fa0d23329eed93f">00391</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) NINetworkImageViewDiskCacheLifetime diskCacheLifetime;
+<a name="l00392"></a>00392 
+<a name="l00393"></a>00393 <span class="comment">// End of Basic Configuration</span>
+<a name="l00395"></a>00395 
+<a name="l00396"></a>00396 
+<a name="l00410"></a><a class="code" href="interface_n_i_network_image_view.html#a352ecee4de738eff827447d637fd2c5a">00410</a> <span class="keyword">@property</span> (nonatomic, readwrite, copy) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* memoryCachePrefix;
+<a name="l00411"></a>00411 
+<a name="l00421"></a><a class="code" href="interface_n_i_network_image_view.html#a576b2950355e43205c35700091d74dc3">00421</a> <span class="keyword">@property</span> (nonatomic, readonly, copy) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* lastPathToNetworkImage;
+<a name="l00422"></a>00422 
+<a name="l00428"></a><a class="code" href="interface_n_i_network_image_view.html#aa3207a010aa79b94a894e60105f4b7a6">00428</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) BOOL isLoading;
 <a name="l00429"></a>00429 
-<a name="l00437"></a>00437 <span class="preprocessor">#pragma mark Subclassing</span>
-<a name="l00438"></a>00438 <span class="preprocessor"></span>
-<a name="l00442"></a>00442 - (void)networkImageViewDidStartLoading;
-<a name="l00443"></a>00443 
-<a name="l00447"></a>00447 - (void)networkImageViewDidLoadImage:(UIImage *)image;
-<a name="l00448"></a>00448 
-<a name="l00452"></a>00452 - (void)networkImageViewDidFailToLoad:(NSError *)error;
-<a name="l00453"></a>00453 
-<a name="l00456"></a>00456 <span class="keyword">@end</span>
-<a name="l00457"></a>00457 
-<a name="l00458"></a>00458 
-<a name="l00464"></a><a class="code" href="protocol_n_i_network_image_view_delegate-p.html">00464</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_network_image_view_delegate-p.html" title="The image view delegate used to inform of state changes.">NINetworkImageViewDelegate</a> &lt;NSObject&gt;
-<a name="l00465"></a>00465 <span class="keyword">@optional</span>
-<a name="l00466"></a>00466 
-<a name="l00470"></a>00470 - (void)networkImageViewDidStartLoad:(<a class="code" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a> *)imageView;
-<a name="l00471"></a>00471 
-<a name="l00475"></a>00475 - (void)networkImageView:(<a class="code" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a> *)imageView didLoadImage:(UIImage *)image;
-<a name="l00476"></a>00476 
-<a name="l00480"></a>00480 - (void)networkImageViewDidFailLoad:(<a class="code" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a> *)imageView;
-<a name="l00481"></a>00481 
-<a name="l00482"></a>00482 <span class="keyword">@end</span>
+<a name="l00433"></a><a class="code" href="interface_n_i_network_image_view.html#a7e60fd5a2b8c3fc57c92f24fc7dca8d3">00433</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NINetworkImageViewDelegate&gt; delegate;
+<a name="l00434"></a>00434 
+<a name="l00440"></a>00440 - (id)initWithImage:(UIImage *)image;
+<a name="l00441"></a>00441 
+<a name="l00448"></a>00448 - (void)prepareForReuse;
+<a name="l00449"></a>00449 
+<a name="l00450"></a>00450 
+<a name="l00458"></a>00458 <span class="preprocessor">#pragma mark Request a network image</span>
+<a name="l00459"></a>00459 <span class="preprocessor"></span>
+<a name="l00472"></a>00472 - (void)setPathToNetworkImage: (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToNetworkImage;
+<a name="l00473"></a>00473 
+<a name="l00485"></a>00485 - (void)setPathToNetworkImage: (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToNetworkImage
+<a name="l00486"></a>00486                forDisplaySize: (CGSize)displaySize;
+<a name="l00487"></a>00487 
+<a name="l00498"></a>00498 - (void)setPathToNetworkImage: (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToNetworkImage
+<a name="l00499"></a>00499                forDisplaySize: (CGSize)displaySize
+<a name="l00500"></a>00500                   contentMode: (UIViewContentMode)contentMode;
+<a name="l00501"></a>00501 
+<a name="l00516"></a>00516 - (void)setPathToNetworkImage: (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToNetworkImage
+<a name="l00517"></a>00517                      cropRect: (CGRect)cropRect;
+<a name="l00518"></a>00518 
+<a name="l00530"></a>00530 - (void)setPathToNetworkImage: (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToNetworkImage
+<a name="l00531"></a>00531                   contentMode: (UIViewContentMode)contentMode;
+<a name="l00532"></a>00532 
+<a name="l00545"></a>00545 - (void)setPathToNetworkImage: (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToNetworkImage
+<a name="l00546"></a>00546                      cropRect: (CGRect)cropRect
+<a name="l00547"></a>00547                forDisplaySize: (CGSize)displaySize
+<a name="l00548"></a>00548                   contentMode: (UIViewContentMode)contentMode;
+<a name="l00549"></a>00549 
+<a name="l00550"></a>00550 <span class="comment">// End of Request a network image</span>
+<a name="l00552"></a>00552 
+<a name="l00553"></a>00553 
+<a name="l00561"></a>00561 <span class="preprocessor">#pragma mark Subclassing</span>
+<a name="l00562"></a>00562 <span class="preprocessor"></span>
+<a name="l00566"></a>00566 - (void)networkImageViewDidStartLoading;
+<a name="l00567"></a>00567 
+<a name="l00571"></a>00571 - (void)networkImageViewDidLoadImage:(UIImage *)image;
+<a name="l00572"></a>00572 
+<a name="l00576"></a>00576 - (void)networkImageViewDidFailToLoad:(NSError *)error;
+<a name="l00577"></a>00577 
+<a name="l00580"></a>00580 <span class="keyword">@end</span>
+<a name="l00581"></a>00581 
+<a name="l00582"></a>00582 
+<a name="l00588"></a><a class="code" href="protocol_n_i_network_image_view_delegate-p.html">00588</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_network_image_view_delegate-p.html" title="The image view delegate used to inform of state changes.">NINetworkImageViewDelegate</a> &lt;NSObject&gt;
+<a name="l00589"></a>00589 <span class="keyword">@optional</span>
+<a name="l00590"></a>00590 
+<a name="l00594"></a>00594 - (void)networkImageViewDidStartLoad:(<a class="code" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a> *)imageView;
+<a name="l00595"></a>00595 
+<a name="l00599"></a>00599 - (void)networkImageView:(<a class="code" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a> *)imageView didLoadImage:(UIImage *)image;
+<a name="l00600"></a>00600 
+<a name="l00604"></a>00604 - (void)networkImageViewDidFailLoad:(<a class="code" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a> *)imageView;
+<a name="l00605"></a>00605 
+<a name="l00606"></a>00606 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

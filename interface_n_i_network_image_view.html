@@ -138,8 +138,8 @@ id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINe
 </div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_network_image_view.html#acafe40b5cfb6e75848a8f91f3f8b9e51">sizeForDisplay</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A flag for enabling the resizing of images for display.  <a href="#acafe40b5cfb6e75848a8f91f3f8b9e51"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_network_image_view.html#a39d645379ba10de8a0c6850aa52b8029">cropImageForDisplay</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A flag for enabling the cropping of images to fit their display frame.  <a href="#a39d645379ba10de8a0c6850aa52b8029"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856">NINetworkImageViewScaleOptions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_network_image_view.html#a7faef9d6a8e6e3a5886cf88c0262d4e1">scaleOptions</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for modifying the way images are cropped when scaling.  <a href="#a7faef9d6a8e6e3a5886cf88c0262d4e1"></a><br/></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Basic Configuration</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Basic properties of the image view that are exposed for configuration. </p>
 </div></td></tr>
@@ -195,7 +195,7 @@ id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINe
   [imageView setPathToNetworkImage: <span class="stringliteral">@&quot;http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg&quot;</span>
                        contentMode: UIViewContentModeScaleAspectFill];
 </pre></div> 
-<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00089">89</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00225">225</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="ade5eba04aa860207d1fbd07a3f3a31ef"></a><!-- doxytag: member="NINetworkImageView::initWithImage:" ref="ade5eba04aa860207d1fbd07a3f3a31ef" args="(UIImage *image)" -->
 <div class="memitem">
@@ -496,28 +496,6 @@ id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINe
 </div>
 </div>
 <hr/><h2>Property Documentation</h2>
-<a class="anchor" id="a39d645379ba10de8a0c6850aa52b8029"></a><!-- doxytag: member="NINetworkImageView::cropImageForDisplay" ref="a39d645379ba10de8a0c6850aa52b8029" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (BOOL) cropImageForDisplay<code> [read, write, assign]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>A flag for enabling the cropping of images to fit their display frame. </p>
-<p>Applicable only when sizeForDisplay is enabled.</p>
-<p>When enabled, the final image is cropped to fit the display size perfectly. If you have a very wide picture being placed in a square frame and the image is sized to fill with aspect ratio maintained, then the left and right edges of the image will be cropped and you will have a square image.</p>
-<p>When disabled, the final image will not be cropped, leaving the excess parts of the image intact. It is your responsibility to enable clipping if you do not wish to see these parts of the image.</p>
-<p>Turning this off is useful when you want to show a grid of square images but still be able to access the image at the correct aspect ratio.</p>
-<p>By default this is enabled. </p>
-
-<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00173">173</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a0432bac81c750d0e9fa0d23329eed93f"></a><!-- doxytag: member="NINetworkImageView::diskCacheLifetime" ref="a0432bac81c750d0e9fa0d23329eed93f" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -537,7 +515,7 @@ id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINe
 <div class="fragment"><pre class="fragment">  [<a class="code" href="interface_n_i_network_image_view.html#af331d0f41ba2509b2edfcc437aadc3a6" title="The image disk cache used by this image view to store the image on disk.">imageDiskCache</a> clearCachedResponsesForStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
 </pre></div><p>By default this is NINetworkImageViewDiskCacheLifetimePermanent. </p>
 
-<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00267">267</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00391">391</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
 
 </div>
 </div>
@@ -557,7 +535,7 @@ id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINe
 <dl class="attention"><dt><b>Attention:</b></dt><dd>Setting this to nil will disable the disk cache. Images downloaded from the network will be stored in the memory cache, if available.</dd></dl>
 <p>By default this is [ASIDownloadCache sharedCache]. </p>
 
-<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00219">219</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00343">343</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
 
 </div>
 </div>
@@ -581,7 +559,7 @@ id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINe
 <a class="el" href="interface_nimbus.html#aad83668affb6b59c0ac19da3bf16edf8" title="Set the global image memory cache.">+ setGlobalImageMemoryCache: (Nimbus)</a></dd></dl>
 <p>By default this will be Nimbus' global image memory cache. </p>
 
-<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00206">206</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00330">330</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
 
 </div>
 </div>
@@ -600,7 +578,7 @@ id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINe
 <p>This is the same image passed into initWithImage: immediately after initialization. This is used when preparing this view for reuse. Changing the initial image after creating the object will only display the new image if the currently displayed image is is the initial image or nil.</p>
 <p>The initial image is drawn only using the view's contentMode. Cropping and resizing are only performed on the image fetched from the network. </p>
 
-<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00126">126</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00262">262</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
 
 </div>
 </div>
@@ -618,7 +596,7 @@ id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINe
 <p>Whether there is an active request for this image view. </p>
 <p>If there is currently an image being fetched then this will be YES. </p>
 
-<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00304">304</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00428">428</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
 
 </div>
 </div>
@@ -637,7 +615,7 @@ id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINe
 <p>This property may be used to avoid setting the network path repeatedly and clobbering previous requests.</p>
 <dl class="note"><dt><b>Note:</b></dt><dd>It is debatable whether this has any practical use and is being considered for removal. </dd></dl>
 
-<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00297">297</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00421">421</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
 
 </div>
 </div>
@@ -658,7 +636,7 @@ id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINe
 <p>A negative value will cause this image to NOT be stored in the memory cache.</p>
 <p>By default this is 0. </p>
 
-<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00247">247</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00371">371</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
 
 </div>
 </div>
@@ -678,7 +656,7 @@ id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINe
 <p>This makes it possible to keep multiple versions of a network image from the same url in memory cropped and/or resized using different parameters. This can be useful if you're downloading a high resolution photo and using that same photo in various locations with different presentation requirements (a table view 50x50 icon and a larger 300x200 thumbnail for example).</p>
 <p>By default this is nil. </p>
 
-<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00286">286</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00410">410</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
 
 </div>
 </div>
@@ -700,7 +678,26 @@ id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINe
 <a class="el" href="interface_nimbus.html#a02c14512b76d2fbcdb3912de5dde87c7" title="Set the global network operation queue.">+ setGlobalNetworkOperationQueue: (Nimbus)</a></dd></dl>
 <p>By default this will be Nimbus' global network operation queue. </p>
 
-<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00232">232</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00356">356</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7faef9d6a8e6e3a5886cf88c0262d4e1"></a><!-- doxytag: member="NINetworkImageView::scaleOptions" ref="a7faef9d6a8e6e3a5886cf88c0262d4e1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856">NINetworkImageViewScaleOptions</a>) scaleOptions<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Options for modifying the way images are cropped when scaling. </p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a></dd></dl>
+<p>By default this is NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess. </p>
+
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00297">297</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
 
 </div>
 </div>
@@ -721,7 +718,7 @@ id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINe
 <p>If your images are pre-cropped and sized then this isn't necessary, but the network image loader is smart enough to realize this so it's in your best interest to leave this on.</p>
 <p>By default this is enabled. </p>
 
-<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00152">152</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00288">288</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
 
 </div>
 </div>

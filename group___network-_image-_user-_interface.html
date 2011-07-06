@@ -74,7 +74,8 @@
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
 <div class="title">User Interface</div>  </div>
 <div class="ingroups"><a class="el" href="group___nimbus_network_image.html">Nimbus Network Image</a></div></div>
@@ -89,9 +90,120 @@ Classes</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A network-enabled image view that consumes minimal amounts of memory.  <a href="interface_n_i_network_image_view.html#details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">protocol &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_n_i_network_image_view_delegate-p.html">&lt;NINetworkImageViewDelegate&gt;</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The image view delegate used to inform of state changes.  <a href="protocol_n_i_network_image_view_delegate-p.html#details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856">NINetworkImageViewScaleOptions</a> </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Flags for modifying the way cropping is handled when scaling images to fit or fill.  <a href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856">More...</a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <p>The view and protocols used to display a network image. </p>
+<hr/><h2>Enumeration Type Documentation</h2>
+<a class="anchor" id="ga44d338b3b1eae1d2a3bb8fd985acf856"></a><!-- doxytag: member="NINetworkImageView.h::NINetworkImageViewScaleOptions" ref="ga44d338b3b1eae1d2a3bb8fd985acf856" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856">NINetworkImageViewScaleOptions</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Flags for modifying the way cropping is handled when scaling images to fit or fill. </p>
+<p>By default the network image view will behave in the following way for these content modes:</p>
+<ul>
+<li><b>UIViewContentModeScaleAspectFit</b>: Leaves unfilled space as transparent.</li>
+<li><b>UIViewContentModeScaleAspectFill</b>: Crops any excess pixels.</li>
+</ul>
+<p>The resulting image size will exactly match the display size.</p>
+<p>You can modify this behavior using the following two flags which should be set using binary operators.</p>
+ 
+ <pre>
+   NINetworkImageViewScaleToFitCropsRemainder
+   The final image size will be shrunk to fit the image such that there is no transparency.
+
+   NINetworkImageViewScaleToFillLeavesRemainder
+   The final image size will be grown to include the excess pixels.
+ </pre>
+ <h1>Examples</h1>
+<p>The following examples use this image:</p>
+<div class="image">
+<img src="clouds500x375.jpeg" alt="clouds500x375.jpeg"/>
+<div class="caption">
+Dimensions: 500x375</div></div>
+ <h2>Default settings with UIViewContentModeScaleAspectFit</h2>
+<h3>Result image (display size 100x100)</h3>
+<div class="image">
+<img src="clouds100x100-fit.png" alt="clouds100x100-fit.png"/>
+<div class="caption">
+Fit image with default settings leaves transparent pixels. Size: 100x100.</div></div>
+ <h3>Example code</h3>
+<div class="fragment"><pre class="fragment">  imageView.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
+
+  [imageView setPathToNetworkImage: <span class="stringliteral">@&quot;http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg&quot;</span>
+                    forDisplaySize: CGSizeMake(100, 100)
+                       contentMode: UIViewContentModeScaleAspectFit];
+
+       source image size: 500x375  [aspect ratio: 1.3333]
+            display size: 100x100  [aspect ratio: 1]
+       result image size: 100x100  [aspect ratio: 1] (transparency on the left and right edges)
+          image blt size: 100x75   [aspect ratio: 1.3333]
+</pre></div><h2>Default settings with UIViewContentModeScaleAspectFill</h2>
+<h3>Result image (display size 100x100)</h3>
+<div class="image">
+<img src="clouds100x100-fill.png" alt="clouds100x100-fill.png"/>
+<div class="caption">
+Fill image with default settings chops excess pixels. Size: 100x100.</div></div>
+ <h3>Example code</h3>
+<div class="fragment"><pre class="fragment">  [imageView setPathToNetworkImage: <span class="stringliteral">@&quot;http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg&quot;</span>
+                    forDisplaySize: CGSizeMake(100, 100)
+                       contentMode: UIViewContentModeScaleAspectFill];
+
+       source image size: 500x375  [aspect ratio: 1.3333]
+            display size: 100x100  [aspect ratio: 1]
+       result image size: 100x100  [aspect ratio: 1]
+          image blt size: 133x100  [aspect ratio: 1.3333]
+</pre></div><h2>NINetworkImageViewScaleToFitCropsExcess with UIViewContentModeScaleAspectFit</h2>
+<h3>Result image (display size 100x100)</h3>
+<div class="image">
+<img src="clouds100x100-fit-cropped.png" alt="clouds100x100-fit-cropped.png"/>
+<div class="caption">
+Fit image with NINetworkImageViewScaleToFitCropsExcess crops the transparency. Size: 100x75.</div></div>
+ <h3>Example code</h3>
+<div class="fragment"><pre class="fragment">  <span class="comment">// Turn on NINetworkImageViewScaleToFitCropsExcess</span>
+  imageView.scaleOptions |= NINetworkImageViewScaleToFitCropsExcess;
+
+  [imageView setPathToNetworkImage: <span class="stringliteral">@&quot;http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg&quot;</span>
+                    forDisplaySize: CGSizeMake(100, 100)
+                       contentMode: UIViewContentModeScaleAspectFill];
+
+       source image size: 500x375  [aspect ratio: 1.3333]
+            display size: 100x100  [aspect ratio: 1]
+       result image size: 100x75   [aspect ratio: 1.3333]
+          image blt size: 100x75   [aspect ratio: 1.3333]
+</pre></div><h2>NINetworkImageViewScaleToFillLeavesExcess with UIViewContentModeScaleAspectFill</h2>
+<h3>Result image (display size 100x100)</h3>
+<div class="image">
+<img src="clouds100x100-fill-excess.png" alt="clouds100x100-fill-excess.png"/>
+<div class="caption">
+Fill image with NINetworkImageViewScaleToFillLeavesExcess leaves the excess. Size: 133x100.</div></div>
+ <h3>Example code</h3>
+<div class="fragment"><pre class="fragment">  <span class="comment">// Turn on NINetworkImageViewScaleToFillLeavesExcess</span>
+  imageView.scaleOptions |= NINetworkImageViewScaleToFillLeavesExcess;
+
+  [imageView setPathToNetworkImage: <span class="stringliteral">@&quot;http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg&quot;</span>
+                    forDisplaySize: CGSizeMake(100, 100)
+                       contentMode: UIViewContentModeScaleAspectFill];
+
+       source image size: 500x375  [aspect ratio: 1.3333]
+            display size: 100x100  [aspect ratio: 1]
+       result image size: 133x100  [aspect ratio: 1.3333]
+          image blt size: 133x100  [aspect ratio: 1.3333]
+</pre></div> 
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00165">165</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
+
+</div>
+</div>
 </div>
 </div>
   <div id="nav-path" class="navpath">

@@ -106,7 +106,7 @@
 <a name="l00030"></a>00030 
 <a name="l00031"></a>00031 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_h_t_t_p_image_request.html#a269bb9693de5df1b6852314ecd62eefa" title="x/y, width/height are in percent coordinates.">imageCropRect</a>       = _imageCropRect;
 <a name="l00032"></a>00032 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_h_t_t_p_image_request.html#ad6389e520bbac3c02e299fc4392f6922" title="The size of the image to be displayed on the screen.">imageDisplaySize</a>    = _imageDisplaySize;
-<a name="l00033"></a>00033 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_h_t_t_p_image_request.html#ad8e6db74933f106cbc00b42d6f0eb9e4" title="When this is enabled, the final image is cropped to fit the display size perfectly.">cropImageForDisplay</a> = _cropImageForDisplay;
+<a name="l00033"></a>00033 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_h_t_t_p_image_request.html#a11f4b6cc61cceb33a41423c62e4e735c" title="Options for modifying the way images are cropped when scaling.">scaleOptions</a>        = _scaleOptions;
 <a name="l00034"></a>00034 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_h_t_t_p_image_request.html#aca396dd63f83234695e9e88a44abf49e" title="Determines how to resize and crop the image.">imageContentMode</a>    = _imageContentMode;
 <a name="l00035"></a>00035 
 <a name="l00036"></a>00036 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_h_t_t_p_image_request.html#af07c5510fc69a3e88e624ff3c59e0eb3" title="Upon completion of the request, this is the chopped and sized result image that should be used for di...">imageCroppedAndSizedForDisplay</a> = _imageCroppedAndSizedForDisplay;
@@ -135,7 +135,7 @@
 <a name="l00063"></a>00063   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super initWithURL:newURL])) {
 <a name="l00064"></a>00064     <span class="keyword">self</span>.imageCropRect = CGRectZero;
 <a name="l00065"></a>00065     <span class="keyword">self</span>.imageDisplaySize = CGSizeZero;
-<a name="l00066"></a>00066     <span class="keyword">self</span>.cropImageForDisplay = YES;
+<a name="l00066"></a>00066     <span class="keyword">self</span>.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
 <a name="l00067"></a>00067     <span class="keyword">self</span>.imageContentMode = UIViewContentModeScaleToFill;
 <a name="l00068"></a>00068 
 <a name="l00069"></a>00069     <span class="comment">// Store the image permanently, by default.</span>
@@ -150,7 +150,7 @@
 <a name="l00079"></a>00079 
 <a name="l00080"></a>00080   [copy setImageCropRect:[<span class="keyword">self</span> imageCropRect]];
 <a name="l00081"></a>00081   [copy setImageDisplaySize:[<span class="keyword">self</span> imageDisplaySize]];
-<a name="l00082"></a>00082   [copy setCropImageForDisplay:[<span class="keyword">self</span> cropImageForDisplay]];
+<a name="l00082"></a>00082   [copy setScaleOptions:[<span class="keyword">self</span> scaleOptions]];
 <a name="l00083"></a>00083   [copy setImageContentMode:[<span class="keyword">self</span> imageContentMode]];
 <a name="l00084"></a>00084   [copy setImageCroppedAndSizedForDisplay:[<span class="keyword">self</span> imageCroppedAndSizedForDisplay]];
 <a name="l00085"></a>00085 
@@ -291,7 +291,7 @@
 <a name="l00229"></a>00229              withContentMode: (UIViewContentMode)contentMode
 <a name="l00230"></a>00230                     cropRect: (CGRect)cropRect
 <a name="l00231"></a>00231                  displaySize: (CGSize)displaySize
-<a name="l00232"></a>00232          cropImageForDisplay: (BOOL)cropImageForDisplay
+<a name="l00232"></a>00232                 scaleOptions: (<a class="code" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a>)scaleOptions
 <a name="l00233"></a>00233         interpolationQuality: (CGInterpolationQuality)interpolationQuality {
 <a name="l00234"></a>00234 
 <a name="l00235"></a>00235   UIImage* resultImage = src;
@@ -325,128 +325,145 @@
 <a name="l00263"></a>00263   <span class="keywordflow">if</span> (0 &lt; displaySize.width
 <a name="l00264"></a>00264       &amp;&amp; 0 &lt; displaySize.height) {
 <a name="l00265"></a>00265 
-<a name="l00266"></a>00266     <span class="keywordflow">if</span> (!<a class="code" href="interface_n_i_h_t_t_p_image_request.html#ad8e6db74933f106cbc00b42d6f0eb9e4" title="When this is enabled, the final image is cropped to fit the display size perfectly.">cropImageForDisplay</a>) {
-<a name="l00267"></a>00267       <span class="comment">// Make the display size match the aspect ratio of the source image.</span>
-<a name="l00268"></a>00268       <span class="comment">// This will likely result in &quot;overlap&quot; of the destination image, so the UIImageView that</span>
-<a name="l00269"></a>00269       <span class="comment">// draws this image should probably have clipping on if this is not desired.</span>
-<a name="l00270"></a>00270       CGFloat imageAspectRatio = srcRect.size.width / srcRect.size.height;
-<a name="l00271"></a>00271       CGFloat displayAspectRatio = displaySize.width / displaySize.height;
-<a name="l00272"></a>00272       <span class="keywordflow">if</span> (imageAspectRatio &gt; displayAspectRatio) {
-<a name="l00273"></a>00273         <span class="comment">// The image has a wider aspect ratio than where it&#39;s intending to be displayed,</span>
-<a name="l00274"></a>00274         <span class="comment">// so let&#39;s change the display width to account for this.</span>
-<a name="l00275"></a>00275         displaySize.width = displaySize.height * imageAspectRatio;
-<a name="l00276"></a>00276 
-<a name="l00277"></a>00277       } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (imageAspectRatio &lt; displayAspectRatio) {
-<a name="l00278"></a>00278         <span class="comment">// The image has a narrower aspect ratio than where it&#39;s intending to be displayed,</span>
-<a name="l00279"></a>00279         <span class="comment">// so let&#39;s change the display height to account for this.</span>
+<a name="l00266"></a>00266     <span class="keywordflow">if</span> ((NINetworkImageViewScaleToFillLeavesExcess
+<a name="l00267"></a>00267          == (NINetworkImageViewScaleToFillLeavesExcess &amp; <a class="code" href="interface_n_i_h_t_t_p_image_request.html#a11f4b6cc61cceb33a41423c62e4e735c" title="Options for modifying the way images are cropped when scaling.">scaleOptions</a>))
+<a name="l00268"></a>00268         &amp;&amp; UIViewContentModeScaleAspectFill == contentMode) {
+<a name="l00269"></a>00269       <span class="comment">// Make the display size match the aspect ratio of the source image by growing the</span>
+<a name="l00270"></a>00270       <span class="comment">// display size.</span>
+<a name="l00271"></a>00271       CGFloat imageAspectRatio = srcRect.size.width / srcRect.size.height;
+<a name="l00272"></a>00272       CGFloat displayAspectRatio = displaySize.width / displaySize.height;
+<a name="l00273"></a>00273 
+<a name="l00274"></a>00274       <span class="keywordflow">if</span> (imageAspectRatio &gt; displayAspectRatio) {
+<a name="l00275"></a>00275         <span class="comment">// The image is wider than the display, so let&#39;s increase the width.</span>
+<a name="l00276"></a>00276         displaySize.width = displaySize.height * imageAspectRatio;
+<a name="l00277"></a>00277 
+<a name="l00278"></a>00278       } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (imageAspectRatio &lt; displayAspectRatio) {
+<a name="l00279"></a>00279         <span class="comment">// The image is taller than the display, so let&#39;s increase the height.</span>
 <a name="l00280"></a>00280         displaySize.height = displaySize.width * (srcRect.size.height / srcRect.size.width);
 <a name="l00281"></a>00281       }
-<a name="l00282"></a>00282     }
-<a name="l00283"></a>00283 
-<a name="l00284"></a>00284     CGRect srcCropRect = [<span class="keyword">self</span> sourceRectWithImageSize: srcRect.size
-<a name="l00285"></a>00285                                            displaySize: displaySize
-<a name="l00286"></a>00286                                            contentMode: contentMode];
-<a name="l00287"></a>00287     srcCropRect = CGRectIntegral(srcCropRect);
-<a name="l00288"></a>00288 
-<a name="l00289"></a>00289     <span class="comment">// Do we need to crop the source?</span>
-<a name="l00290"></a>00290     <span class="keywordflow">if</span> (!CGRectEqualToRect(srcCropRect, srcRect)) {
-<a name="l00291"></a>00291       srcImageRef = CGImageCreateWithImageInRect(srcImageRef, srcCropRect);
-<a name="l00292"></a>00292       trimmedImageRef = srcImageRef;
-<a name="l00293"></a>00293 
-<a name="l00294"></a>00294       srcRect = CGRectMake(0, 0,
-<a name="l00295"></a>00295                            CGRectGetWidth(srcCropRect),
-<a name="l00296"></a>00296                            CGRectGetHeight(srcCropRect));
-<a name="l00297"></a>00297 
-<a name="l00298"></a>00298       <span class="comment">// Release the cropped image source to reduce this thread&#39;s memory consumption.</span>
-<a name="l00299"></a>00299       <span class="keywordflow">if</span> (nil != croppedImageRef) {
-<a name="l00300"></a>00300         CGImageRelease(croppedImageRef);
-<a name="l00301"></a>00301         croppedImageRef = nil;
-<a name="l00302"></a>00302       }
-<a name="l00303"></a>00303     }
-<a name="l00304"></a>00304 
-<a name="l00305"></a>00305     <span class="comment">// Calcuate the destination frame.</span>
-<a name="l00306"></a>00306     CGRect dstBlitRect = [<span class="keyword">self</span> destinationRectWithImageSize: srcRect.size
-<a name="l00307"></a>00307                                                 displaySize: displaySize
-<a name="l00308"></a>00308                                                 contentMode: contentMode];
-<a name="l00309"></a>00309     dstBlitRect = CGRectIntegral(dstBlitRect);
+<a name="l00282"></a>00282 
+<a name="l00283"></a>00283     } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((NINetworkImageViewScaleToFitCropsExcess
+<a name="l00284"></a>00284                 == (NINetworkImageViewScaleToFitCropsExcess &amp; scaleOptions))
+<a name="l00285"></a>00285                &amp;&amp; UIViewContentModeScaleAspectFit == contentMode) {
+<a name="l00286"></a>00286       <span class="comment">// Make the display size match the aspect ratio of the source image by shrinking the</span>
+<a name="l00287"></a>00287       <span class="comment">// display size.</span>
+<a name="l00288"></a>00288       CGFloat imageAspectRatio = srcRect.size.width / srcRect.size.height;
+<a name="l00289"></a>00289       CGFloat displayAspectRatio = displaySize.width / displaySize.height;
+<a name="l00290"></a>00290 
+<a name="l00291"></a>00291       <span class="keywordflow">if</span> (imageAspectRatio &gt; displayAspectRatio) {
+<a name="l00292"></a>00292         <span class="comment">// The image is wider than the display, so let&#39;s decrease the height.</span>
+<a name="l00293"></a>00293         displaySize.height = displaySize.width * (srcRect.size.height / srcRect.size.width);
+<a name="l00294"></a>00294 
+<a name="l00295"></a>00295       } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (imageAspectRatio &lt; displayAspectRatio) {
+<a name="l00296"></a>00296         <span class="comment">// The image is taller than the display, so let&#39;s decrease the width.</span>
+<a name="l00297"></a>00297         displaySize.width = displaySize.height * imageAspectRatio;
+<a name="l00298"></a>00298       }
+<a name="l00299"></a>00299     }
+<a name="l00300"></a>00300 
+<a name="l00301"></a>00301     CGRect srcCropRect = [<span class="keyword">self</span> sourceRectWithImageSize: srcRect.size
+<a name="l00302"></a>00302                                            displaySize: displaySize
+<a name="l00303"></a>00303                                            contentMode: contentMode];
+<a name="l00304"></a>00304     srcCropRect = CGRectIntegral(srcCropRect);
+<a name="l00305"></a>00305 
+<a name="l00306"></a>00306     <span class="comment">// Do we need to crop the source?</span>
+<a name="l00307"></a>00307     <span class="keywordflow">if</span> (!CGRectEqualToRect(srcCropRect, srcRect)) {
+<a name="l00308"></a>00308       srcImageRef = CGImageCreateWithImageInRect(srcImageRef, srcCropRect);
+<a name="l00309"></a>00309       trimmedImageRef = srcImageRef;
 <a name="l00310"></a>00310 
-<a name="l00311"></a>00311     <span class="comment">// See table &quot;Supported Pixel Formats&quot; in the following guide for support iOS bitmap formats:</span>
-<a name="l00312"></a>00312     <span class="comment">// http://developer.apple.com/library/mac/#documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_context/dq_context.html</span>
-<a name="l00313"></a>00313     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-<a name="l00314"></a>00314     CGBitmapInfo bmi = kCGImageAlphaPremultipliedLast;
-<a name="l00315"></a>00315 
-<a name="l00316"></a>00316     <span class="comment">// Create our final composite image.</span>
-<a name="l00317"></a>00317     CGContextRef dstBmp = CGBitmapContextCreate(NULL,
-<a name="l00318"></a>00318                                                 displaySize.width,
-<a name="l00319"></a>00319                                                 displaySize.height,
-<a name="l00320"></a>00320                                                 8,
-<a name="l00321"></a>00321                                                 0,
-<a name="l00322"></a>00322                                                 colorSpace,
-<a name="l00323"></a>00323                                                 bmi);
-<a name="l00324"></a>00324 
-<a name="l00325"></a>00325     <span class="comment">// If this fails then we&#39;re likely creating an invalid bitmap and shit&#39;s about to go down.</span>
-<a name="l00326"></a>00326     <span class="comment">// In production this will fail somewhat gracefully, in that we&#39;ll end up just using the</span>
-<a name="l00327"></a>00327     <span class="comment">// source image instead of the cropped and resized image.</span>
-<a name="l00328"></a>00328     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != dstBmp);
-<a name="l00329"></a>00329 
-<a name="l00330"></a>00330     <span class="keywordflow">if</span> (nil != dstBmp) {
-<a name="l00331"></a>00331       CGRect dstRect = CGRectMake(0, 0, displaySize.width, displaySize.height);
+<a name="l00311"></a>00311       srcRect = CGRectMake(0, 0,
+<a name="l00312"></a>00312                            CGRectGetWidth(srcCropRect),
+<a name="l00313"></a>00313                            CGRectGetHeight(srcCropRect));
+<a name="l00314"></a>00314 
+<a name="l00315"></a>00315       <span class="comment">// Release the cropped image source to reduce this thread&#39;s memory consumption.</span>
+<a name="l00316"></a>00316       <span class="keywordflow">if</span> (nil != croppedImageRef) {
+<a name="l00317"></a>00317         CGImageRelease(croppedImageRef);
+<a name="l00318"></a>00318         croppedImageRef = nil;
+<a name="l00319"></a>00319       }
+<a name="l00320"></a>00320     }
+<a name="l00321"></a>00321 
+<a name="l00322"></a>00322     <span class="comment">// Calcuate the destination frame.</span>
+<a name="l00323"></a>00323     CGRect dstBlitRect = [<span class="keyword">self</span> destinationRectWithImageSize: srcRect.size
+<a name="l00324"></a>00324                                                 displaySize: displaySize
+<a name="l00325"></a>00325                                                 contentMode: contentMode];
+<a name="l00326"></a>00326     dstBlitRect = CGRectIntegral(dstBlitRect);
+<a name="l00327"></a>00327 
+<a name="l00328"></a>00328     <span class="comment">// See table &quot;Supported Pixel Formats&quot; in the following guide for support iOS bitmap formats:</span>
+<a name="l00329"></a>00329     <span class="comment">// http://developer.apple.com/library/mac/#documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_context/dq_context.html</span>
+<a name="l00330"></a>00330     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+<a name="l00331"></a>00331     CGBitmapInfo bmi = kCGImageAlphaPremultipliedLast;
 <a name="l00332"></a>00332 
-<a name="l00333"></a>00333       <span class="comment">// Render the source image into the destination image.</span>
-<a name="l00334"></a>00334       CGContextClearRect(dstBmp, dstRect);
-<a name="l00335"></a>00335       CGContextSetInterpolationQuality(dstBmp, interpolationQuality);
-<a name="l00336"></a>00336       CGContextDrawImage(dstBmp, dstBlitRect, srcImageRef);
-<a name="l00337"></a>00337 
-<a name="l00338"></a>00338       CGImageRef resultImageRef = CGBitmapContextCreateImage(dstBmp);
-<a name="l00339"></a>00339 
-<a name="l00340"></a>00340       <span class="keywordflow">if</span> (nil != resultImageRef) {
-<a name="l00341"></a>00341         resultImage = [UIImage imageWithCGImage:resultImageRef];
-<a name="l00342"></a>00342         CGImageRelease(resultImageRef);
-<a name="l00343"></a>00343       }
-<a name="l00344"></a>00344 
-<a name="l00345"></a>00345       CGContextRelease(dstBmp);
-<a name="l00346"></a>00346       CGColorSpaceRelease(colorSpace);
-<a name="l00347"></a>00347     }
-<a name="l00348"></a>00348 
-<a name="l00349"></a>00349   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (nil != croppedImageRef) {
-<a name="l00350"></a>00350     resultImage = [UIImage imageWithCGImage:srcImageRef];
-<a name="l00351"></a>00351   }
-<a name="l00352"></a>00352 
-<a name="l00353"></a>00353   <span class="comment">// Memory cleanup.</span>
-<a name="l00354"></a>00354   <span class="keywordflow">if</span> (nil != trimmedImageRef) {
-<a name="l00355"></a>00355     CGImageRelease(trimmedImageRef);
-<a name="l00356"></a>00356   }
-<a name="l00357"></a>00357   <span class="keywordflow">if</span> (nil != croppedImageRef) {
-<a name="l00358"></a>00358     CGImageRelease(croppedImageRef);
-<a name="l00359"></a>00359   }
-<a name="l00360"></a>00360 
-<a name="l00361"></a>00361   <span class="keywordflow">return</span> resultImage;
-<a name="l00362"></a>00362 }
-<a name="l00363"></a>00363 
-<a name="l00364"></a>00364 
-<a name="l00366"></a>00366 - (void)requestFinished {
-<a name="l00367"></a>00367   <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a>* responseData = [<span class="keyword">self</span> responseData];
-<a name="l00368"></a>00368   UIImage* image = [[UIImage alloc] initWithData:responseData];
+<a name="l00333"></a>00333     <span class="comment">// Create our final composite image.</span>
+<a name="l00334"></a>00334     CGContextRef dstBmp = CGBitmapContextCreate(NULL,
+<a name="l00335"></a>00335                                                 displaySize.width,
+<a name="l00336"></a>00336                                                 displaySize.height,
+<a name="l00337"></a>00337                                                 8,
+<a name="l00338"></a>00338                                                 0,
+<a name="l00339"></a>00339                                                 colorSpace,
+<a name="l00340"></a>00340                                                 bmi);
+<a name="l00341"></a>00341 
+<a name="l00342"></a>00342     <span class="comment">// If this fails then we&#39;re likely creating an invalid bitmap and shit&#39;s about to go down.</span>
+<a name="l00343"></a>00343     <span class="comment">// In production this will fail somewhat gracefully, in that we&#39;ll end up just using the</span>
+<a name="l00344"></a>00344     <span class="comment">// source image instead of the cropped and resized image.</span>
+<a name="l00345"></a>00345     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != dstBmp);
+<a name="l00346"></a>00346 
+<a name="l00347"></a>00347     <span class="keywordflow">if</span> (nil != dstBmp) {
+<a name="l00348"></a>00348       CGRect dstRect = CGRectMake(0, 0, displaySize.width, displaySize.height);
+<a name="l00349"></a>00349 
+<a name="l00350"></a>00350       <span class="comment">// Render the source image into the destination image.</span>
+<a name="l00351"></a>00351       CGContextClearRect(dstBmp, dstRect);
+<a name="l00352"></a>00352       CGContextSetInterpolationQuality(dstBmp, interpolationQuality);
+<a name="l00353"></a>00353       CGContextDrawImage(dstBmp, dstBlitRect, srcImageRef);
+<a name="l00354"></a>00354 
+<a name="l00355"></a>00355       CGImageRef resultImageRef = CGBitmapContextCreateImage(dstBmp);
+<a name="l00356"></a>00356 
+<a name="l00357"></a>00357       <span class="keywordflow">if</span> (nil != resultImageRef) {
+<a name="l00358"></a>00358         resultImage = [UIImage imageWithCGImage:resultImageRef];
+<a name="l00359"></a>00359         CGImageRelease(resultImageRef);
+<a name="l00360"></a>00360       }
+<a name="l00361"></a>00361 
+<a name="l00362"></a>00362       CGContextRelease(dstBmp);
+<a name="l00363"></a>00363       CGColorSpaceRelease(colorSpace);
+<a name="l00364"></a>00364     }
+<a name="l00365"></a>00365 
+<a name="l00366"></a>00366   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (nil != croppedImageRef) {
+<a name="l00367"></a>00367     resultImage = [UIImage imageWithCGImage:srcImageRef];
+<a name="l00368"></a>00368   }
 <a name="l00369"></a>00369 
-<a name="l00370"></a>00370   <span class="comment">// Clear out the data as quickly as we can. We never use the response data in the</span>
-<a name="l00371"></a>00371   <span class="comment">// NINetworkImageView object, so this avoids doubling our memory on every thread.</span>
-<a name="l00372"></a>00372   [<span class="keyword">self</span> setRawResponseData:nil];
-<a name="l00373"></a>00373 
-<a name="l00374"></a>00374   <span class="comment">// Slice it, dice it!</span>
-<a name="l00375"></a>00375   [<span class="keyword">self</span> setImageCroppedAndSizedForDisplay:[[<span class="keyword">self</span> class] imageFromSource: image
-<a name="l00376"></a>00376                                                         withContentMode: self.imageContentMode
-<a name="l00377"></a>00377                                                                cropRect: self.imageCropRect
-<a name="l00378"></a>00378                                                             displaySize: self.imageDisplaySize
-<a name="l00379"></a>00379                                                     cropImageForDisplay: self.cropImageForDisplay
-<a name="l00380"></a>00380                                                    interpolationQuality: kCGInterpolationMedium]];
+<a name="l00370"></a>00370   <span class="comment">// Memory cleanup.</span>
+<a name="l00371"></a>00371   <span class="keywordflow">if</span> (nil != trimmedImageRef) {
+<a name="l00372"></a>00372     CGImageRelease(trimmedImageRef);
+<a name="l00373"></a>00373   }
+<a name="l00374"></a>00374   <span class="keywordflow">if</span> (nil != croppedImageRef) {
+<a name="l00375"></a>00375     CGImageRelease(croppedImageRef);
+<a name="l00376"></a>00376   }
+<a name="l00377"></a>00377 
+<a name="l00378"></a>00378   <span class="keywordflow">return</span> resultImage;
+<a name="l00379"></a>00379 }
+<a name="l00380"></a>00380 
 <a name="l00381"></a>00381 
-<a name="l00382"></a>00382   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(image);
-<a name="l00383"></a>00383 
-<a name="l00384"></a>00384   [<span class="keyword">super</span> requestFinished];
-<a name="l00385"></a>00385 }
+<a name="l00383"></a>00383 - (void)requestFinished {
+<a name="l00384"></a>00384   <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a>* responseData = [<span class="keyword">self</span> responseData];
+<a name="l00385"></a>00385   UIImage* image = [[UIImage alloc] initWithData:responseData];
 <a name="l00386"></a>00386 
-<a name="l00387"></a>00387 
-<a name="l00388"></a>00388 <span class="keyword">@end</span>
+<a name="l00387"></a>00387   <span class="comment">// Clear out the data as quickly as we can. We never use the response data in the</span>
+<a name="l00388"></a>00388   <span class="comment">// NINetworkImageView object, so this avoids doubling our memory on every thread.</span>
+<a name="l00389"></a>00389   [<span class="keyword">self</span> setRawResponseData:nil];
+<a name="l00390"></a>00390 
+<a name="l00391"></a>00391   <span class="comment">// Slice it, dice it!</span>
+<a name="l00392"></a>00392   [<span class="keyword">self</span> setImageCroppedAndSizedForDisplay:[[<span class="keyword">self</span> class] imageFromSource: image
+<a name="l00393"></a>00393                                                         withContentMode: self.imageContentMode
+<a name="l00394"></a>00394                                                                cropRect: self.imageCropRect
+<a name="l00395"></a>00395                                                             displaySize: self.imageDisplaySize
+<a name="l00396"></a>00396                                                            scaleOptions: self.scaleOptions
+<a name="l00397"></a>00397                                                    interpolationQuality: kCGInterpolationMedium]];
+<a name="l00398"></a>00398 
+<a name="l00399"></a>00399   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(image);
+<a name="l00400"></a>00400 
+<a name="l00401"></a>00401   [<span class="keyword">super</span> requestFinished];
+<a name="l00402"></a>00402 }
+<a name="l00403"></a>00403 
+<a name="l00404"></a>00404 
+<a name="l00405"></a>00405 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
