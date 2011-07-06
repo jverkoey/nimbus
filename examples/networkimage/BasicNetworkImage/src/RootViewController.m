@@ -41,6 +41,12 @@ static const CGFloat kImageSpacing = 10;
   networkImageView.delegate = self;
   networkImageView.contentMode = UIViewContentModeCenter;
 
+  // Try playing with the following scale options and turning off clips to bounds to
+  // see the effects on the result image.
+  //networkImageView.scaleOptions = (NINetworkImageViewScaleToFillLeavesExcess
+  //                                 | NINetworkImageViewScaleToFitCropsExcess);
+  //networkImageView.clipsToBounds = NO;
+
   networkImageView.backgroundColor = [UIColor blackColor];
 
   networkImageView.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.2] CGColor];

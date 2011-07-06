@@ -34,21 +34,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 66EA034B13BEE650004FFE1A /* NimbusCore.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D /* libNimbusCore.a */;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = NimbusCore;
 		};
 		66EA035213BEE650004FFE1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66EA034B13BEE650004FFE1A /* NimbusCore.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 668750F413A1AC6000FF1C56 /* NimbusCoreUnitTests.octest */;
+			remoteGlobalIDString = 668750F413A1AC6000FF1C56;
 			remoteInfo = NimbusCoreUnitTests;
 		};
 		66EA035413BEE658004FFE1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66EA034B13BEE650004FFE1A /* NimbusCore.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D /* NimbusCore */;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = NimbusCore;
 		};
 /* End PBXContainerItemProxy section */

@@ -30,7 +30,7 @@
 
 @synthesize imageCropRect       = _imageCropRect;
 @synthesize imageDisplaySize    = _imageDisplaySize;
-@synthesize cropImageForDisplay = _cropImageForDisplay;
+@synthesize scaleOptions        = _scaleOptions;
 @synthesize imageContentMode    = _imageContentMode;
 
 @synthesize imageCroppedAndSizedForDisplay = _imageCroppedAndSizedForDisplay;
@@ -63,7 +63,7 @@
   if ((self = [super initWithURL:newURL])) {
     self.imageCropRect = CGRectZero;
     self.imageDisplaySize = CGSizeZero;
-    self.cropImageForDisplay = YES;
+    self.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
     self.imageContentMode = UIViewContentModeScaleToFill;
 
     // Store the image permanently, by default.
@@ -79,7 +79,7 @@
 
   [copy setImageCropRect:[self imageCropRect]];
   [copy setImageDisplaySize:[self imageDisplaySize]];
-  [copy setCropImageForDisplay:[self cropImageForDisplay]];
+  [copy setScaleOptions:[self scaleOptions]];
   [copy setImageContentMode:[self imageContentMode]];
   [copy setImageCroppedAndSizedForDisplay:[self imageCroppedAndSizedForDisplay]];
 
@@ -229,7 +229,7 @@
              withContentMode: (UIViewContentMode)contentMode
                     cropRect: (CGRect)cropRect
                  displaySize: (CGSize)displaySize
-         cropImageForDisplay: (BOOL)cropImageForDisplay
+                scaleOptions: (NINetworkImageViewScaleOptions)scaleOptions
         interpolationQuality: (CGInterpolationQuality)interpolationQuality {
 
   UIImage* resultImage = src;
@@ -263,21 +263,38 @@
   if (0 < displaySize.width
       && 0 < displaySize.height) {
 
-    if (!cropImageForDisplay) {
-      // Make the display size match the aspect ratio of the source image.
-      // This will likely result in "overlap" of the destination image, so the UIImageView that
-      // draws this image should probably have clipping on if this is not desired.
+    if ((NINetworkImageViewScaleToFillLeavesExcess
+         == (NINetworkImageViewScaleToFillLeavesExcess & scaleOptions))
+        && UIViewContentModeScaleAspectFill == contentMode) {
+      // Make the display size match the aspect ratio of the source image by growing the
+      // display size.
       CGFloat imageAspectRatio = srcRect.size.width / srcRect.size.height;
       CGFloat displayAspectRatio = displaySize.width / displaySize.height;
+
       if (imageAspectRatio > displayAspectRatio) {
-        // The image has a wider aspect ratio than where it's intending to be displayed,
-        // so let's change the display width to account for this.
+        // The image is wider than the display, so let's increase the width.
         displaySize.width = displaySize.height * imageAspectRatio;
 
       } else if (imageAspectRatio < displayAspectRatio) {
-        // The image has a narrower aspect ratio than where it's intending to be displayed,
-        // so let's change the display height to account for this.
+        // The image is taller than the display, so let's increase the height.
         displaySize.height = displaySize.width * (srcRect.size.height / srcRect.size.width);
+      }
+
+    } else if ((NINetworkImageViewScaleToFitCropsExcess
+                == (NINetworkImageViewScaleToFitCropsExcess & scaleOptions))
+               && UIViewContentModeScaleAspectFit == contentMode) {
+      // Make the display size match the aspect ratio of the source image by shrinking the
+      // display size.
+      CGFloat imageAspectRatio = srcRect.size.width / srcRect.size.height;
+      CGFloat displayAspectRatio = displaySize.width / displaySize.height;
+
+      if (imageAspectRatio > displayAspectRatio) {
+        // The image is wider than the display, so let's decrease the height.
+        displaySize.height = displaySize.width * (srcRect.size.height / srcRect.size.width);
+
+      } else if (imageAspectRatio < displayAspectRatio) {
+        // The image is taller than the display, so let's decrease the width.
+        displaySize.width = displaySize.height * imageAspectRatio;
       }
     }
 
@@ -376,7 +393,7 @@
                                                         withContentMode: self.imageContentMode
                                                                cropRect: self.imageCropRect
                                                             displaySize: self.imageDisplaySize
-                                                    cropImageForDisplay: self.cropImageForDisplay
+                                                           scaleOptions: self.scaleOptions
                                                    interpolationQuality: kCGInterpolationMedium]];
 
   NI_RELEASE_SAFELY(image);

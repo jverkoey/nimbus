@@ -51,7 +51,7 @@
 
 @synthesize request                 = _request;
 @synthesize sizeForDisplay          = _sizeForDisplay;
-@synthesize cropImageForDisplay     = _cropImageForDisplay;
+@synthesize scaleOptions            = _scaleOptions;
 @synthesize imageMemoryCache        = _imageMemoryCache;
 @synthesize imageDiskCache          = _imageDiskCache;
 @synthesize networkOperationQueue   = _networkOperationQueue;
@@ -87,7 +87,7 @@
   if ((self = [super initWithImage:image])) {
     // Assign defaults.
     self.sizeForDisplay = YES;
-    self.cropImageForDisplay = YES;
+    self.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
 
     self.diskCacheLifetime = NINetworkImageViewDiskCacheLifetimePermanent;
 
@@ -121,7 +121,7 @@
 - (NSString *)cacheKeyForURL: (NSURL *)URL
                    imageSize: (CGSize)imageSize
                  contentMode: (UIViewContentMode)contentMode
-         cropImageForDisplay: (BOOL)cropImageForDisplay {
+                scaleOptions: (NINetworkImageViewScaleOptions)scaleOptions {
   NSString* cacheKey = [URL absoluteString];
 
   // Prefix cache key to create a namespace.
@@ -136,7 +136,7 @@
     cacheKey = [cacheKey stringByAppendingString:NSStringFromCGSize(imageSize)];
   }
 
-  cacheKey = [cacheKey stringByAppendingFormat:@"{%d,%d}", contentMode, cropImageForDisplay];
+  cacheKey = [cacheKey stringByAppendingFormat:@"{%d,%d}", contentMode, scaleOptions];
 
   // The resulting cache key will look like:
   // (memoryCachePrefix)/path/to/image({width,height}){contentMode,cropImageForDisplay}
@@ -164,7 +164,7 @@
     NSString* cacheKey = [self cacheKeyForURL: request.url
                                     imageSize: request.imageDisplaySize
                                   contentMode: request.imageContentMode
-                          cropImageForDisplay: request.cropImageForDisplay];
+                                 scaleOptions: request.scaleOptions];
 
     // Get the expiration date from the response headers for the request.
     NSDate* expirationDate = [ASIHTTPRequest expiryDateForRequest:request maxAge:self.maxAge];
@@ -338,7 +338,7 @@
       NSString* cacheKey = [self cacheKeyForURL: url
                                       imageSize: displaySize
                                     contentMode: contentMode
-                            cropImageForDisplay: self.cropImageForDisplay];
+                                   scaleOptions: self.scaleOptions];
       image = [self.imageMemoryCache objectWithName:cacheKey];
     }
 
@@ -364,7 +364,7 @@
       [request setCacheStoragePolicy:self.cacheStoragePolicy];
 
       [request setImageCropRect:cropRect];
-      [request setCropImageForDisplay:self.cropImageForDisplay];
+      [request setScaleOptions:self.scaleOptions];
       if (self.sizeForDisplay) {
         [request setImageDisplaySize:displaySize];
         [request setImageContentMode:contentMode];

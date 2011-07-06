@@ -19,8 +19,10 @@
 
 #ifdef NIMBUS_STATIC_LIBRARY
 #import "ASIHTTPRequest/NIHTTPRequest.h"
+#import "NimbusNetworkImage/NINetworkImageView.h"
 #else
 #import "NIHTTPRequest.h"
+#import "NINetworkImageView.h"  // For NINetworkImageViewScaleOptions
 #endif
 
 /**
@@ -34,7 +36,7 @@
   CGRect _imageCropRect;
   CGSize _imageDisplaySize;
 
-  BOOL _cropImageForDisplay;
+  NINetworkImageViewScaleOptions _scaleOptions;
 
   UIViewContentMode _imageContentMode;
 
@@ -67,13 +69,13 @@
 @property (assign) CGSize imageDisplaySize;
 
 /**
- * When this is enabled, the final image is cropped to fit the display size perfectly.
- * Otherwise, the final image will be resized to fit the display size, but might overlap the
- * display size slightly in order to maintain the aspect ratio of the source image.
+ * Options for modifying the way images are cropped when scaling.
  *
- * The default value is YES
+ *      @see NINetworkImageViewScaleOptions
+ *
+ * By default this is NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess.
  */
-@property (assign) BOOL cropImageForDisplay;
+@property (assign) NINetworkImageViewScaleOptions scaleOptions;
 
 /**
  * Determines how to resize and crop the image.

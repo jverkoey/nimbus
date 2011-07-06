@@ -27,10 +27,146 @@
 @protocol NINetworkImageViewDelegate;
 @protocol ASICacheDelegate;
 
+// See the diskCacheLifetime property for more documentation related to this enumeration.
 typedef enum {
+  /**
+   * Store images on disk in the session disk cache. Images stored here will be removed when the
+   * app starts again or when the session cache is explicitly cleared.
+   */
   NINetworkImageViewDiskCacheLifetimeSession,
+
+  /**
+   * Store images on disk in the permanent disk cache. Images stored here will only be removed
+   * when the permanent cache is explicitly cleared.
+   */
   NINetworkImageViewDiskCacheLifetimePermanent,
 } NINetworkImageViewDiskCacheLifetime;
+
+/**
+ * Flags for modifying the way cropping is handled when scaling images to fit or fill.
+ *
+ *      @enum NINetworkImageViewScaleOptions
+ *      @ingroup Network-Image-User-Interface
+ *
+ * By default the network image view will behave in the following way for these content modes:
+ *
+ * - <b>UIViewContentModeScaleAspectFit</b>: Leaves unfilled space as transparent.
+ * - <b>UIViewContentModeScaleAspectFill</b>: Crops any excess pixels.
+ *
+ * The resulting image size will exactly match the display size.
+ *
+ * You can modify this behavior using the following two flags which should be set using
+ * binary operators.
+ *
+ * @htmlonly
+ * <pre>
+ *   NINetworkImageViewScaleToFitCropsRemainder
+ *   The final image size will be shrunk to fit the image such that there is no transparency.
+ *
+ *   NINetworkImageViewScaleToFillLeavesRemainder
+ *   The final image size will be grown to include the excess pixels.
+ * </pre>
+ * @endhtmlonly
+ *
+ * <h1>Examples</h1>
+ *
+ * The following examples use this image:
+ *
+ * @image html clouds500x375.jpeg "Dimensions: 500x375"
+ *
+ *
+ * <h2>Default settings with UIViewContentModeScaleAspectFit</h2>
+ *
+ * <h3>Result image (display size 100x100)</h3>
+ *
+ * @image html clouds100x100-fit.png "Fit image with default settings leaves transparent pixels. Size: 100x100."
+ *
+ * <h3>Example code</h3>
+ *
+ * @code
+ *  imageView.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
+ *
+ *  [imageView setPathToNetworkImage: @"http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg"
+ *                    forDisplaySize: CGSizeMake(100, 100)
+ *                       contentMode: UIViewContentModeScaleAspectFit];
+ *
+ *       source image size: 500x375  [aspect ratio: 1.3333]
+ *            display size: 100x100  [aspect ratio: 1]
+ *       result image size: 100x100  [aspect ratio: 1] (transparency on the left and right edges)
+ *          image blt size: 100x75   [aspect ratio: 1.3333]
+ * @endcode
+ *
+ *
+ * <h2>Default settings with UIViewContentModeScaleAspectFill</h2>
+ *
+ * <h3>Result image (display size 100x100)</h3>
+ *
+ * @image html clouds100x100-fill.png "Fill image with default settings chops excess pixels. Size: 100x100."
+ *
+ * <h3>Example code</h3>
+ *
+ * @code
+ *  [imageView setPathToNetworkImage: @"http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg"
+ *                    forDisplaySize: CGSizeMake(100, 100)
+ *                       contentMode: UIViewContentModeScaleAspectFill];
+ *
+ *       source image size: 500x375  [aspect ratio: 1.3333]
+ *            display size: 100x100  [aspect ratio: 1]
+ *       result image size: 100x100  [aspect ratio: 1]
+ *          image blt size: 133x100  [aspect ratio: 1.3333]
+ * @endcode
+ *
+ *
+ * <h2>NINetworkImageViewScaleToFitCropsExcess with UIViewContentModeScaleAspectFit</h2>
+ *
+ * <h3>Result image (display size 100x100)</h3>
+ *
+ * @image html clouds100x100-fit-cropped.png "Fit image with NINetworkImageViewScaleToFitCropsExcess crops the transparency. Size: 100x75."
+ *
+ * <h3>Example code</h3>
+ *
+ * @code
+ *  // Turn on NINetworkImageViewScaleToFitCropsExcess
+ *  imageView.scaleOptions |= NINetworkImageViewScaleToFitCropsExcess;
+ *
+ *  [imageView setPathToNetworkImage: @"http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg"
+ *                    forDisplaySize: CGSizeMake(100, 100)
+ *                       contentMode: UIViewContentModeScaleAspectFill];
+ *
+ *       source image size: 500x375  [aspect ratio: 1.3333]
+ *            display size: 100x100  [aspect ratio: 1]
+ *       result image size: 100x75   [aspect ratio: 1.3333]
+ *          image blt size: 100x75   [aspect ratio: 1.3333]
+ * @endcode
+ *
+ *
+ * <h2>NINetworkImageViewScaleToFillLeavesExcess with UIViewContentModeScaleAspectFill</h2>
+ *
+ * <h3>Result image (display size 100x100)</h3>
+ *
+ * @image html clouds100x100-fill-excess.png "Fill image with NINetworkImageViewScaleToFillLeavesExcess leaves the excess. Size: 133x100."
+ *
+ * <h3>Example code</h3>
+ *
+ * @code
+ *  // Turn on NINetworkImageViewScaleToFillLeavesExcess
+ *  imageView.scaleOptions |= NINetworkImageViewScaleToFillLeavesExcess;
+ *
+ *  [imageView setPathToNetworkImage: @"http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg"
+ *                    forDisplaySize: CGSizeMake(100, 100)
+ *                       contentMode: UIViewContentModeScaleAspectFill];
+ *
+ *       source image size: 500x375  [aspect ratio: 1.3333]
+ *            display size: 100x100  [aspect ratio: 1]
+ *       result image size: 133x100  [aspect ratio: 1.3333]
+ *          image blt size: 133x100  [aspect ratio: 1.3333]
+ * @endcode
+ */
+typedef enum {
+  NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess = 0x00,
+  NINetworkImageViewScaleToFitCropsExcess    = 0x01,
+  NINetworkImageViewScaleToFillLeavesExcess  = 0x02,
+} NINetworkImageViewScaleOptions;
 
 /**
  * A network-enabled image view that consumes minimal amounts of memory.
@@ -98,7 +234,7 @@ typedef enum {
   NSString* _lastPathToNetworkImage;
 
   BOOL _sizeForDisplay;
-  BOOL _cropImageForDisplay;
+  NINetworkImageViewScaleOptions _scaleOptions;
 
   NINetworkImageViewDiskCacheLifetime _diskCacheLifetime;
 
@@ -152,25 +288,13 @@ typedef enum {
 @property (nonatomic, readwrite, assign) BOOL sizeForDisplay;
 
 /**
- * A flag for enabling the cropping of images to fit their display frame.
+ * Options for modifying the way images are cropped when scaling.
  *
- * Applicable only when sizeForDisplay is enabled.
+ *      @see NINetworkImageViewScaleOptions
  *
- * When enabled, the final image is cropped to fit the display size perfectly. If you have
- * a very wide picture being placed in a square frame and the image is sized to fill with aspect
- * ratio maintained, then the left and right edges of the image will be cropped and you will
- * have a square image.
- *
- * When disabled, the final image will not be cropped, leaving the excess parts of the image
- * intact. It is your responsibility to enable clipping if you do not wish to see these parts
- * of the image.
- *
- * Turning this off is useful when you want to show a grid of square images but still be
- * able to access the image at the correct aspect ratio.
- *
- * By default this is enabled.
+ * By default this is NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess.
  */
-@property (nonatomic, readwrite, assign) BOOL cropImageForDisplay;
+@property (nonatomic, readwrite, assign) NINetworkImageViewScaleOptions scaleOptions;
 
 
 /**@}*/// End of Presentation Configuration
