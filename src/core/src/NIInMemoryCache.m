@@ -353,6 +353,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSUInteger)numberOfPixelsUsedByImage:(UIImage *)image {
+  if (nil == image) {
+    return 0;
+  }
+
   NSUInteger numberOfPixels = (NSUInteger)(image.size.width * image.size.height);
   if ([image respondsToSelector:@selector(scale)]) {
     numberOfPixels *= image.scale;
@@ -378,10 +382,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {
-  NIDASSERT([object isKindOfClass:[UIImage class]]);
+  NIDASSERT(nil == object || [object isKindOfClass:[UIImage class]]);
   if (![object isKindOfClass:[UIImage class]]) {
     return;
   }
+
   self.numberOfPixels -= [self numberOfPixelsUsedByImage:previousObject];
   self.numberOfPixels += [self numberOfPixelsUsedByImage:object];
 
@@ -398,8 +403,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willRemoveObject:(id)object withName:(NSString *)name {
-  NIDASSERT([object isKindOfClass:[UIImage class]]);
-  if (![object isKindOfClass:[UIImage class]]) {
+  NIDASSERT(nil == object || [object isKindOfClass:[UIImage class]]);
+  if (nil == object || ![object isKindOfClass:[UIImage class]]) {
     return;
   }
 
