@@ -339,10 +339,17 @@
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGBitmapInfo bmi = kCGImageAlphaPremultipliedLast;
 
+    // For screen sizes with higher resolutions, we create a larger image with a scale value
+    // so that it appears crisper on the screen.
+    CGFloat screenScale = 1;
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+      screenScale = [[UIScreen mainScreen] scale];
+    }
+
     // Create our final composite image.
     CGContextRef dstBmp = CGBitmapContextCreate(NULL,
-                                                displaySize.width,
-                                                displaySize.height,
+                                                displaySize.width * screenScale,
+                                                displaySize.height * screenScale,
                                                 8,
                                                 0,
                                                 colorSpace,
@@ -354,17 +361,26 @@
     NIDASSERT(nil != dstBmp);
 
     if (nil != dstBmp) {
-      CGRect dstRect = CGRectMake(0, 0, displaySize.width, displaySize.height);
+      CGRect dstRect = CGRectMake(0, 0,
+                                  displaySize.width * screenScale,
+                                  displaySize.height * screenScale);
 
       // Render the source image into the destination image.
       CGContextClearRect(dstBmp, dstRect);
       CGContextSetInterpolationQuality(dstBmp, interpolationQuality);
-      CGContextDrawImage(dstBmp, dstBlitRect, srcImageRef);
+
+      CGRect scaledBlitRect = CGRectMake(dstBlitRect.origin.x * screenScale,
+                                         dstBlitRect.origin.y * screenScale,
+                                         dstBlitRect.size.width * screenScale,
+                                         dstBlitRect.size.height * screenScale);
+      CGContextDrawImage(dstBmp, scaledBlitRect, srcImageRef);
 
       CGImageRef resultImageRef = CGBitmapContextCreateImage(dstBmp);
 
       if (nil != resultImageRef) {
-        resultImage = [UIImage imageWithCGImage:resultImageRef];
+        resultImage = [UIImage imageWithCGImage: resultImageRef
+                                          scale: screenScale
+                                    orientation: UIImageOrientationUp];
         CGImageRelease(resultImageRef);
       }
 
