@@ -133,13 +133,12 @@
   // If the display size ever changes, we want to ensure that we're fetching the correct image
   // from the cache.
   if (self.sizeForDisplay) {
-    cacheKey = [cacheKey stringByAppendingString:NSStringFromCGSize(imageSize)];
+    cacheKey = [cacheKey stringByAppendingFormat:@"%@{%d,%d}",
+                NSStringFromCGSize(imageSize), contentMode, scaleOptions];
   }
 
-  cacheKey = [cacheKey stringByAppendingFormat:@"{%d,%d}", contentMode, scaleOptions];
-
   // The resulting cache key will look like:
-  // (memoryCachePrefix)/path/to/image({width,height}){contentMode,cropImageForDisplay}
+  // (memoryCachePrefix)/path/to/image({width,height}{contentMode,cropImageForDisplay})
 
   return cacheKey;
 }
