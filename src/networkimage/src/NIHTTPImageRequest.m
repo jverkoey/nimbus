@@ -301,7 +301,10 @@
     CGRect srcCropRect = [self sourceRectWithImageSize: srcRect.size
                                            displaySize: displaySize
                                            contentMode: contentMode];
-    srcCropRect = CGRectIntegral(srcCropRect);
+    srcCropRect = CGRectMake(floorf(srcCropRect.origin.x),
+                             floorf(srcCropRect.origin.y),
+                             roundf(srcCropRect.size.width),
+                             roundf(srcCropRect.size.height));
 
     // Do we need to crop the source?
     if (!CGRectEqualToRect(srcCropRect, srcRect)) {
@@ -323,7 +326,13 @@
     CGRect dstBlitRect = [self destinationRectWithImageSize: srcRect.size
                                                 displaySize: displaySize
                                                 contentMode: contentMode];
-    dstBlitRect = CGRectIntegral(dstBlitRect);
+    dstBlitRect = CGRectMake(floorf(dstBlitRect.origin.x),
+                             floorf(dstBlitRect.origin.y),
+                             roundf(dstBlitRect.size.width),
+                             roundf(dstBlitRect.size.height));
+
+    // Round any remainder on the display size dimensions.
+    displaySize = CGSizeMake(roundf(displaySize.width), roundf(displaySize.height));
 
     // See table "Supported Pixel Formats" in the following guide for support iOS bitmap formats:
     // http://developer.apple.com/library/mac/#documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_context/dq_context.html
