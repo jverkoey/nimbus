@@ -34,6 +34,7 @@
 
 #ifdef NIMBUS_STATIC_LIBRARY
 // For when you're setting this library as a dependency in your project.
+#import "NimbusCore/NIBlocks.h"
 #import "NimbusCore/NIDataStructures.h"
 #import "NimbusCore/NIDebuggingTools.h"
 #import "NimbusCore/NIDeviceOrientation.h"
@@ -42,6 +43,7 @@
 #import "NimbusCore/NINetworkActivity.h"
 #import "NimbusCore/NINonEmptyCollectionTesting.h"
 #import "NimbusCore/NINonRetainingCollections.h"
+#import "NimbusCore/NIOperations.h"
 #import "NimbusCore/NIPaths.h"
 #import "NimbusCore/NIPreprocessorMacros.h"
 #import "NimbusCore/NIRuntimeClassModifications.h"
@@ -50,6 +52,7 @@
 
 #else
 // For when you're directly including this library in your project.
+#import "NIBlocks.h"
 #import "NIDataStructures.h"
 #import "NIDebuggingTools.h"
 #import "NIDeviceOrientation.h"
@@ -58,6 +61,7 @@
 #import "NINetworkActivity.h"
 #import "NINonEmptyCollectionTesting.h"
 #import "NINonRetainingCollections.h"
+#import "NIOperations.h"
 #import "NIPaths.h"
 #import "NIPreprocessorMacros.h"
 #import "NIRuntimeClassModifications.h"

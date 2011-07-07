@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		665E057C13C5F075008A1D21 /* NIOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 665E057A13C5F075008A1D21 /* NIOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		665E057D13C5F075008A1D21 /* NIOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E057B13C5F075008A1D21 /* NIOperations.m */; };
+		665E059B13C605E4008A1D21 /* NIBlocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 665E059A13C605E4008A1D21 /* NIBlocks.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		665E05C713C64DF4008A1D21 /* NIOperationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E05C613C64DF4008A1D21 /* NIOperationsTests.m */; };
+		665E061813C64F38008A1D21 /* nimbus64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 665E061713C64F38008A1D21 /* nimbus64x64.png */; };
 		668750EE13A17EBD00FF1C56 /* NimbusCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 668750ED13A17EBD00FF1C56 /* NimbusCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6687510913A1AD1C00FF1C56 /* NIFoundationMethodsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6687510613A1ACD500FF1C56 /* NIFoundationMethodsTests.m */; };
 		6687511613A1ADC600FF1C56 /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libNimbusCore.a */; };
@@ -58,6 +63,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		665E057A13C5F075008A1D21 /* NIOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOperations.h; path = src/NIOperations.h; sourceTree = "<group>"; };
+		665E057B13C5F075008A1D21 /* NIOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOperations.m; path = src/NIOperations.m; sourceTree = "<group>"; };
+		665E059A13C605E4008A1D21 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = src/NIBlocks.h; sourceTree = "<group>"; };
+		665E05C613C64DF4008A1D21 /* NIOperationsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOperationsTests.m; path = unittests/NIOperationsTests.m; sourceTree = "<group>"; };
+		665E061713C64F38008A1D21 /* nimbus64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nimbus64x64.png; path = ../resources/nimbus64x64.png; sourceTree = SOURCE_ROOT; };
 		66874FD113A028B800FF1C56 /* library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = library.xcconfig; path = ../common/confs/library.xcconfig; sourceTree = SOURCE_ROOT; };
 		66874FD413A0296900FF1C56 /* project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = project.xcconfig; path = ../common/confs/project.xcconfig; sourceTree = SOURCE_ROOT; };
 		6687502813A117EF00FF1C56 /* NimbusCore_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusCore_Prefix.pch; path = lib/NimbusCore_Prefix.pch; sourceTree = "<group>"; };
@@ -169,6 +179,7 @@
 			children = (
 				668750ED13A17EBD00FF1C56 /* NimbusCore.h */,
 				668754DE13A2793800FF1C56 /* NimbusCore+Additions.h */,
+				665E059A13C605E4008A1D21 /* NIBlocks.h */,
 				66EAFE0D13BE8F09004FFE1A /* NIDataStructures.h */,
 				66D36E1E13B14AE400455D5B /* NIDataStructures.m */,
 				66EAFDFA13BE8E3A004FFE1A /* NIDebuggingTools.h */,
@@ -185,6 +196,8 @@
 				66EAFE2E13BE90AE004FFE1A /* NINonEmptyCollectionTesting.m */,
 				66EAFDBA13BE883B004FFE1A /* NINonRetainingCollections.h */,
 				66EAFDA313BE8661004FFE1A /* NINonRetainingCollections.m */,
+				665E057A13C5F075008A1D21 /* NIOperations.h */,
+				665E057B13C5F075008A1D21 /* NIOperations.m */,
 				66EAFEE213BE9C90004FFE1A /* NIPaths.h */,
 				668754AD13A2709600FF1C56 /* NIPaths.m */,
 				66EAFDE313BE8D0F004FFE1A /* NIPreprocessorMacros.h */,
@@ -198,6 +211,14 @@
 				6687555613A2857C00FF1C56 /* NSString+NimbusCore.m */,
 			);
 			name = Source;
+			sourceTree = "<group>";
+		};
+		665E061913C64F3B008A1D21 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				665E061713C64F38008A1D21 /* nimbus64x64.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		66874FD013A028A800FF1C56 /* Configurations */ = {
@@ -221,10 +242,12 @@
 		6687510813A1ACDF00FF1C56 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
+				665E061913C64F3B008A1D21 /* Resources */,
 				66D36EA213B1AA8300455D5B /* NIDataStructureTests.m */,
 				6687510613A1ACD500FF1C56 /* NIFoundationMethodsTests.m */,
 				66EAFE4D13BE9163004FFE1A /* NINonEmptyCollectionTestingTests.m */,
 				66EAFDB013BE86BF004FFE1A /* NINonRetainingCollectionsTests.m */,
+				665E05C613C64DF4008A1D21 /* NIOperationsTests.m */,
 				66EAFE9013BE94B2004FFE1A /* NIRuntimeClassModificationsTests.m */,
 				6687552C13A2825700FF1C56 /* NICoreAdditionTests.m */,
 				66D36CD213AFAE0200455D5B /* NIMemoryCacheTests.m */,
@@ -264,6 +287,8 @@
 				66EAFEFC13BE9D83004FFE1A /* NIInMemoryCache.h in Headers */,
 				66EA02D313BED4F3004FFE1A /* NINetworkActivity.h in Headers */,
 				66EA039613BEF1A8004FFE1A /* NIState.h in Headers */,
+				665E057C13C5F075008A1D21 /* NIOperations.h in Headers */,
+				665E059B13C605E4008A1D21 /* NIBlocks.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +362,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				665E061813C64F38008A1D21 /* nimbus64x64.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +397,7 @@
 				66EAFDB113BE86BF004FFE1A /* NINonRetainingCollectionsTests.m in Sources */,
 				66EAFE4E13BE9163004FFE1A /* NINonEmptyCollectionTestingTests.m in Sources */,
 				66EAFE9113BE94B2004FFE1A /* NIRuntimeClassModificationsTests.m in Sources */,
+				665E05C713C64DF4008A1D21 /* NIOperationsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +419,7 @@
 				66EAFEAC13BE9799004FFE1A /* NIFoundationMethods.m in Sources */,
 				66EA02D413BED4F3004FFE1A /* NINetworkActivity.m in Sources */,
 				66EA039713BEF1A8004FFE1A /* NIState.m in Sources */,
+				665E057D13C5F075008A1D21 /* NIOperations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
