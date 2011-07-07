@@ -233,8 +233,10 @@ typedef enum {
 
   NSString* _lastPathToNetworkImage;
 
-  BOOL _sizeForDisplay;
-  NINetworkImageViewScaleOptions _scaleOptions;
+  // Presentation configuration
+  BOOL                            _sizeForDisplay;
+  NINetworkImageViewScaleOptions  _scaleOptions;
+  CGInterpolationQuality          _interpolationQuality;
 
   NINetworkImageViewDiskCacheLifetime _diskCacheLifetime;
 
@@ -295,6 +297,13 @@ typedef enum {
  * By default this is NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess.
  */
 @property (nonatomic, readwrite, assign) NINetworkImageViewScaleOptions scaleOptions;
+
+/**
+ * The interpolation quality to use when resizing the image.
+ *
+ * The default value is kCGInterpolationMedium.
+ */
+@property (nonatomic, readwrite, assign) CGInterpolationQuality interpolationQuality;
 
 
 /**@}*/// End of Presentation Configuration

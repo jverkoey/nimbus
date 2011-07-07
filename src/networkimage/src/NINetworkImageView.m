@@ -52,6 +52,7 @@
 @synthesize request                 = _request;
 @synthesize sizeForDisplay          = _sizeForDisplay;
 @synthesize scaleOptions            = _scaleOptions;
+@synthesize interpolationQuality    = _interpolationQuality;
 @synthesize imageMemoryCache        = _imageMemoryCache;
 @synthesize imageDiskCache          = _imageDiskCache;
 @synthesize networkOperationQueue   = _networkOperationQueue;
@@ -88,6 +89,7 @@
     // Assign defaults.
     self.sizeForDisplay = YES;
     self.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
+    self.interpolationQuality = kCGInterpolationMedium;
 
     self.diskCacheLifetime = NINetworkImageViewDiskCacheLifetimePermanent;
 
@@ -364,6 +366,7 @@
 
       [request setImageCropRect:cropRect];
       [request setScaleOptions:self.scaleOptions];
+      [request setInterpolationQuality:self.interpolationQuality];
       if (self.sizeForDisplay) {
         [request setImageDisplaySize:displaySize];
         [request setImageContentMode:contentMode];

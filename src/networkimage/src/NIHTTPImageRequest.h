@@ -37,6 +37,7 @@
   CGSize _imageDisplaySize;
 
   NINetworkImageViewScaleOptions _scaleOptions;
+  CGInterpolationQuality         _interpolationQuality;
 
   UIViewContentMode _imageContentMode;
 
@@ -73,9 +74,16 @@
  *
  *      @see NINetworkImageViewScaleOptions
  *
- * By default this is NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess.
+ * The default value is NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess.
  */
 @property (assign) NINetworkImageViewScaleOptions scaleOptions;
+
+/**
+ * The interpolation quality to use when resizing the image.
+ *
+ * The default value is kCGInterpolationMedium.
+ */
+@property (assign) CGInterpolationQuality interpolationQuality;
 
 /**
  * Determines how to resize and crop the image.

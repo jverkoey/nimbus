@@ -31,6 +31,7 @@
 @synthesize imageCropRect       = _imageCropRect;
 @synthesize imageDisplaySize    = _imageDisplaySize;
 @synthesize scaleOptions        = _scaleOptions;
+@synthesize interpolationQuality = _interpolationQuality;
 @synthesize imageContentMode    = _imageContentMode;
 
 @synthesize imageCroppedAndSizedForDisplay = _imageCroppedAndSizedForDisplay;
@@ -63,6 +64,7 @@
   if ((self = [super initWithURL:newURL])) {
     self.imageCropRect = CGRectZero;
     self.imageDisplaySize = CGSizeZero;
+    self.interpolationQuality = kCGInterpolationMedium;
     self.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
     self.imageContentMode = UIViewContentModeScaleToFill;
 
@@ -80,11 +82,9 @@
   [copy setImageCropRect:[self imageCropRect]];
   [copy setImageDisplaySize:[self imageDisplaySize]];
   [copy setScaleOptions:[self scaleOptions]];
+  [copy setInterpolationQuality:[self interpolationQuality]];
   [copy setImageContentMode:[self imageContentMode]];
   [copy setImageCroppedAndSizedForDisplay:[self imageCroppedAndSizedForDisplay]];
-
-  // Don't copy over the value of didStartNetworkRequest because if it's yes, we'd then call
-  // stop twice, which is incorrect.
 
   return copy;
 }
@@ -419,7 +419,7 @@
                                                                cropRect: self.imageCropRect
                                                             displaySize: self.imageDisplaySize
                                                            scaleOptions: self.scaleOptions
-                                                   interpolationQuality: kCGInterpolationMedium]];
+                                                   interpolationQuality: self.interpolationQuality]];
 
   NI_RELEASE_SAFELY(image);
 
