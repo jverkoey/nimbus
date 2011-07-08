@@ -17,44 +17,39 @@
 /**
  * @mainpage
  *
- * <h1>What is Nimbus?</h1>
+ * Nimbus is an iOS framework whose feature set grows only as fast as its documentation.
  *
- * Nimbus is an iOS framework that grows only as fast as its documentation. Its roots stem
- * from the Three20 framework and much of its code is forked from Three20, though with meticulous
- * care and thought.
- *
- * In short, you'll find a number of features within Nimbus to accelerate your development of
- * iOS applications. Nimbus will be evolving quickly over time so it is likely in your best
- * interest to simply browse the documentation by checking out Nimbus'
- * <a href="http://jverkoey.github.com/nimbus/modules.html">Modules</a>.
+ * By focusing on documentation first and features second, Nimbus hopes to be a framework
+ * that accelerates the development process of any application by being easy to use and simple
+ * to understand.
  *
  * <h2>Getting Started</h2>
  *
  * - Learn how to <a href="http://jverkoey.github.com/nimbus/group___setup.html">add Nimbus to your project</a>.
- * - Check out the README for <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted/01-BasicSetup"> the introduction sample project</a>.
- * - Follow Nimbus through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">Version History</a>.
+ * - Check out the README for <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted/01-BasicSetup">the introduction sample project</a>.
+ * - Follow Nimbus through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
  *
- * <h1>Three20 was garbage though, why would I use Nimbus?</h1>
+ * <h2>Nimbus' Background</h1>
  *
- * Three20 most certainly has issues. Among them:
+ * Nimbus has been built with much inspiration from the Three20 framework. That being said, there
+ * are a number of fundamental problems with Three20 that Nimbus works very hard to avoid.
+ * Among them:
  *
- * - Relatively zero documentation.
+ * - Poor documentation.
  * - Spaghetti dependencies.
  * - Suffering from a "kitchen sink" complex.
- * - Complex build structure.
- * - Enormous number of difficult-to-solve bugs.
- * - Low test coverage.
+ * - A complex build structure.
+ * - An enormous number of difficult-to-solve bugs.
+ * - Next-to-zero test coverage.
  *
- * But for its weaknesses, Three20 does provide a good deal of value through its feature set. It is
+ * For its weaknesses, Three20 does provide a good deal of value through its feature set. It is
  * used in over 100 apps in the app store by companies such as Facebook, LinkedIn, Posterous,
  * Meetup, and SCVNGR.
  *
- * The goal of Nimbus is to one day provide this same value through its feature set. Along the way,
- * infinitely more value will be provided in better documentation, better test coverage, and
- * a smaller learning curve.
+ * Nimbus hopes to one day provide as much value as Three20 does on a feature-by-feature
+ * comparison, but with the invaluable benefit of sublime documentation and test coverage.
  *
- *
- * <h1>What are the plans for Nimbus?</h1>
+ * <h2>Nimbus' Development Roadmap</h2>
  *
  * I'm a strong believer in shipping early, shipping fast, and shipping often. Any other way of
  * being genuinely frustrates me so I hope to apply this to Nimbus.
@@ -65,11 +60,9 @@
  *
  * - The Launcher (done!)
  * - Network images (done!)
- * - TTNavigator.
+ * - TTNavigator (in progress)
  *
- * For each day that I work on Nimbus I hope to have a pseudo-stable build that I can push out
- * and summarize the changes since the previous day's build. For this reason I will likely use
- * a <b>MAJOR.MINOR.SCORE</b> version model.
+ * I will use a <b>MAJOR.MINOR.INCREMENTAL</b> versioning system.
  *
  * <b>Major</b> version numbers will be reserved for major milestones in the project (completing a
  * large set of features, for example).
@@ -77,19 +70,19 @@
  * <b>Minor</b> version numbers will be reserved for minor milestones in the project (completing a
  * small set of features, for example).
  *
- * <b>Score</b> version numbers will be reserved for stable cuts of Nimbus after individual tasks
- * are completed (fully implementing the Launcher, for example).
+ * <b>Incremental</b> version numbers will be reserved for stable cuts of Nimbus after individual
+ * tasks are completed (fully implementing the Launcher, for example).
  *
- * I'd like to treat the score version number like points from a video game. Finishing an
+ * I'd like to treat the incremental version number like points from a video game. Finishing an
  * individual task will increase the score for a particular major release, so version 1.130.2
  * indicates "the first major release of Nimbus, 130 tasks tackled, and 2 incremental builds
  * for bugfixes and daily progress since the 130th task was finished". Perhaps there may be some
  * merit in allowing people who complete tasks to earn these points in some sense as well to
  * encourage some friendly competition.
  *
- * <h1>Who's working on Nimbus?</h1>
+ * <h2>Who's working on Nimbus?</h2>
  *
- * Nimbus was started by me (Jeff Verkoeyen) in June 2011. My background includes over 10 years
+ * Nimbus was started by me (Jeff Verkoeyen) in June of 2011. My background includes over 10 years
  * of software development and experience at Google and Facebook designing software and
  * building user interfaces. I took over the Three20 project in 2009 after its original creator,
  * Joe Hewitt, moved on to other projects. Over the proceeding 6 months much time was invested in
@@ -101,13 +94,12 @@
  * I checked out of life and, as a direct result, little progress was made with Three20. Over the
  * last year I've found that shedding baggage is not only an emotionally satisfying process, but
  * also a necessary one. So I am shedding Three20's baggage and out of the remaining bits building
- * Nimbus. I learned a lot about working with an open source project and community and sincerely
- * hope to carry much of this knowledge over to Nimbus.
+ * Nimbus. I learned a great deal from working with an open source project and community and
+ * sincerely hope to carry much of this knowledge over to Nimbus.
  *
+ * <h2>What's happening to Three20?</h2>
  *
- * <h1>So what about everyone who's still using Three20?</h1>
- *
- * My goal with Nimbus is to eventually provide a feature set that contains Three20's. I
+ * My goal with Nimbus is to eventually provide a feature set that overlaps Three20's. I
  * sincerely hope to make it easy for anyone using Three20 to transition to Nimbus. In the
  * meantime, Three20 will likely stay in a bug-fixing state. The library is stable as it stands
  * so I have every bit of confidence in the community to tackle any bugs as necessary.
@@ -155,13 +147,16 @@
 /**
  * @defgroup Setup Adding Nimbus Libraries to Your Project
  *
- * <h1>Two primary means of adding Nimbus to your project</h1>
+ * <h1></h1>
  *
- * .. There are two recommended models for adding Nimbus libraries to your project: as
+ * There are two recommended models for adding Nimbus libraries to your project: as
  * dependent libraries, or by adding the code directly to your project. Each has its
  * advantages and disadvantages, outlined below.
  *
- * <h2>Recommended: add the Nimbus component source directly to your project</h2>
+ * <h2>Recommended: add the Nimbus source code to your project</h2>
+ *
+ * This model involves dragging the source files from each Nimbus library you wish to add
+ * into your Xcode project and adding the source files to your application target.
  *
  * Advantages:
  *
@@ -200,7 +195,7 @@
  * See examples/launcher/BasicLauncher for an example project that adds the source directly to
  * the project.
  *
- * <h3>Which model should I use?</h3>
+ * <h2>Which model should I use?</h2>
  *
  * You must weigh the above pros and cons with your own requirements. Our recommendation is
  * to <b>add the source directly to your project</b>. While this will
@@ -211,7 +206,7 @@
  * in nimbus/scripts/. It may be advantageous to you to add nimbus/scripts to your PATH so that
  * you can run nimbus directly.
  *
- * <h1>Adding a Nimbus library to your project</h1>
+ * <h2>Example project</h2>
  *
  * Please refer to the <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted/01-BasicSetup">getting started project</a>
  * for a walkthrough of adding Nimbus to your project.

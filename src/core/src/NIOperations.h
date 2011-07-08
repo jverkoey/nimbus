@@ -148,18 +148,26 @@
   NSData*   _data;
 }
 
+
+/**
+ * @name Creating an operation
+ * @{
+ */
+#pragma mark Creating an operation
+
 /**
  * Designated initializer.
  */
 - (id)initWithPathToFile:(NSString *)pathToFile;
 
+/**@}*/
+
+
 /**
- * @name In
+ * @name Configuring the Operation
  * @{
- *
- * The following properties must be set before the operation begins.
  */
-#pragma mark In
+#pragma mark Configuring the operation
 
 /**
  * The path to the file that should be read from disk.
@@ -170,17 +178,17 @@
 
 
 /**
- * @name Out
+ * @name Operation Results
  * @{
- *
- * The following properties will be valid upon successful completion of the operation.
  */
-#pragma mark Out
+#pragma mark Operation Results
 
 /**
  * The data that was read from disk.
  *
  * Will be nil if the data couldn't be read.
+ *
+ *      @sa NIOperation::lastError
  */
 @property (nonatomic, readonly, retain) NSData* data;
 

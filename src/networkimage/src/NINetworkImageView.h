@@ -457,13 +457,12 @@ typedef enum {
 
 
 /**
- * @name Request a network image
+ * @name Requesting a Network Image
  * @{
  *
- * The following methods each achieve the same goal of loading an image from the network but
- * allow for customization of the parameters.
+ * Begin loading an image from the network with optional presentation configuration options.
  */
-#pragma mark Request a network image
+#pragma mark Requesting a Network Image
 
 /**
  * Load an image from the network using the current frame as the display size.
