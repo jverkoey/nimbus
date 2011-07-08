@@ -37,7 +37,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NINetworkImageView()
 
-@property (nonatomic, readwrite, retain) NIHTTPImageRequest* request;
+@property (nonatomic, readwrite, retain) NSOperation* operation;
 
 @property (nonatomic, readwrite, copy) NSString* lastPathToNetworkImage;
 
@@ -49,7 +49,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NINetworkImageView
 
-@synthesize request                 = _request;
+@synthesize operation               = _operation;
 @synthesize sizeForDisplay          = _sizeForDisplay;
 @synthesize scaleOptions            = _scaleOptions;
 @synthesize interpolationQuality    = _interpolationQuality;
@@ -65,9 +65,22 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)cancelOperation {
+  if ([self.operation isKindOfClass:[ASIHTTPRequest class]]) {
+    ASIHTTPRequest* request = (ASIHTTPRequest *)self.operation;
+    [request clearDelegatesAndCancel];
+
+  } else {
+    [self.operation cancel];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  [self.request clearDelegatesAndCancel];
-  self.request = nil;
+  [self cancelOperation];
+
+  NI_RELEASE_SAFELY(_operation);
 
   NI_RELEASE_SAFELY(_initialImage);
 
@@ -149,54 +162,98 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark ASIHTTPRequest Delegation
+#pragma mark Internal consistent implementation of state changes
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestStarted:(NIHTTPImageRequest *)request {
+- (void)_didStartLoading {
+  if ([self.delegate respondsToSelector:@selector(networkImageViewDidStartLoad:)]) {
+    [self.delegate networkImageViewDidStartLoad:self];
+  }
+
   [self networkImageViewDidStartLoading];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestDidFinish:(NIHTTPImageRequest *)request {
-  // Store the resulting image in the memory cache.
+- (void)_didFinishLoadingWithImage: (UIImage *)image
+                               URL: (NSURL *)url
+                       displaySize: (CGSize)displaySize
+                       contentMode: (UIViewContentMode)contentMode
+                      scaleOptions: (NINetworkImageViewScaleOptions)scaleOptions
+                    expirationDate: (NSDate *)expirationDate {
+  // Store the result image in the memory cache.
   if (nil != self.imageMemoryCache) {
-    NSString* cacheKey = [self cacheKeyForURL: request.url
-                                    imageSize: request.imageDisplaySize
-                                  contentMode: request.imageContentMode
-                                 scaleOptions: request.scaleOptions];
-
-    // Get the expiration date from the response headers for the request.
-    NSDate* expirationDate = [ASIHTTPRequest expiryDateForRequest:request maxAge:self.maxAge];
+    NSString* cacheKey = [self cacheKeyForURL: url
+                                    imageSize: displaySize
+                                  contentMode: contentMode
+                                 scaleOptions: scaleOptions];
 
     // Store the image in the memory cache, possibly with an expiration date. The expiration
     // date will allow the image to be released from memory if it expires whenever we receive
     // a memory warning.
-    [self.imageMemoryCache storeObject: request.imageCroppedAndSizedForDisplay
+    [self.imageMemoryCache storeObject: image
                               withName: cacheKey
                           expiresAfter: expirationDate];
   }
 
   // Display the new image.
-  [self setImage:request.imageCroppedAndSizedForDisplay];
+  [self setImage:image];
 
-  self.request = nil;
+  self.operation = nil;
 
   if ([self.delegate respondsToSelector:@selector(networkImageView:didLoadImage:)]) {
     [self.delegate networkImageView:self didLoadImage:self.image];
   }
 
-  [self networkImageViewDidLoadImage:request.imageCroppedAndSizedForDisplay];
+  [self networkImageViewDidLoadImage:image];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_didFailToLoadWithError:(NSError *)error {
+  self.operation = nil;
+
+  [self networkImageViewDidFailToLoad:error];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark ASIHTTPRequestDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)requestStarted:(NIHTTPImageRequest *)request {
+  [self _didStartLoading];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)requestDidFinish:(NIHTTPImageRequest *)request {
+  // Get the expiration date from the response headers for the request.
+  NSDate* expirationDate = [ASIHTTPRequest expiryDateForRequest:request maxAge:self.maxAge];
+
+  [self _didFinishLoadingWithImage: request.imageCroppedAndSizedForDisplay
+                               URL: request.url
+                       displaySize: request.imageDisplaySize
+                       contentMode: request.imageContentMode
+                      scaleOptions: request.scaleOptions
+                    expirationDate: expirationDate];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)requestDidFail:(NIHTTPImageRequest *)request {
-  self.request = nil;
-
-  [self networkImageViewDidFailToLoad:request.error];
+  [self _didFailToLoadWithError:request.error];
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Utility Methods
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -298,7 +355,7 @@
                      cropRect: (CGRect)cropRect
                forDisplaySize: (CGSize)displaySize
                   contentMode: (UIViewContentMode)contentMode {
-  [self.request clearDelegatesAndCancel];
+  [self cancelOperation];
 
   if (NIIsStringWithAnyText(pathToNetworkImage)) {
     self.lastPathToNetworkImage = pathToNetworkImage;
@@ -314,23 +371,22 @@
       displaySize = self.frame.size;
     }
 
-    NSURL* url = [NSURL URLWithString:pathToNetworkImage];
+    NSURL* url = nil;
 
-    /*
-    // TODO: Implement loading directly from disk.
-    //handle file:// urls because TTHTTPImageRequest does not handle them.
-    if ([url isFileURL]) {
-      UIImage* image = [UIImage imageWithContentsOfFile:[url path]];
-      if (image) {
-        [self setImage:image];
+    // Check for file URLs.
+    if ([pathToNetworkImage hasPrefix:@"/"]) {
+      // If the url starts with / then it's likely a file URL, so treat it accordingly.
+      url = [NSURL fileURLWithPath:pathToNetworkImage];
 
-        if ([self.delegate respondsToSelector:@selector(networkImageView:didLoadImage:)]) {
-          [self.delegate networkImageView:self didLoadImage:self.image];
-        }
-        isCached = YES;
-        return;
-      }
-    }*/
+    } else {
+      // Otherwise we assume it's a regular URL.
+      url = [NSURL URLWithString:pathToNetworkImage];
+    }
+
+    // If the URL failed to be created, there's not much we can do here.
+    if (nil == url) {
+      return;
+    }
 
     UIImage* image = nil;
 
@@ -354,6 +410,11 @@
     } else {
       // Unable to load the image from memory, fire off the load request (which will load
       // the image from the disk if possible and fall back to loading from the network).
+
+      // NIHTTPImageRequest handles file urls by simply loading the image from the disk and firing
+      // off the necessary delegate notifications. No network objects are created in the
+      // image request thread when this happens.
+
       NIHTTPImageRequest* request =
       [NIHTTPImageRequest requestWithURL: url
                               usingCache: self.imageDiskCache];
@@ -372,9 +433,9 @@
         [request setImageContentMode:contentMode];
       }
 
-      self.request = request;
+      self.operation = request;
 
-      [self.networkOperationQueue addOperation:request];
+      [self.networkOperationQueue addOperation:self.operation];
     }
   }
 }
@@ -382,7 +443,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prepareForReuse {
-  [self.request clearDelegatesAndCancel];
+  [self cancelOperation];
 
   [self setImage:self.initialImage];
 }
@@ -410,7 +471,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)isLoading {
-  return nil != _request;
+  return nil != self.operation;
 }
 
 

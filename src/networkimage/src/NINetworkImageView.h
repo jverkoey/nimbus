@@ -23,7 +23,6 @@
 #import "NIInMemoryCache.h"
 #endif
 
-@class NIHTTPImageRequest;
 @protocol NINetworkImageViewDelegate;
 @protocol ASICacheDelegate;
 
@@ -224,8 +223,8 @@ typedef enum {
  */
 @interface NINetworkImageView : UIImageView {
 @private
-  // The active network request for the image.
-  NIHTTPImageRequest* _request;
+  // The active operation for the image.
+  NSOperation* _operation;
 
   NSString* _memoryCachePrefix;
 

@@ -38,20 +38,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)showNetworkActivityIndicator {
-  // Override the default implementation so that we use the Nimbus Network Activity feature found
-  // in the core.
-  NINetworkActivityTaskDidStart();
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)hideNetworkActivityIndicator {
-  NINetworkActivityTaskDidFinish();
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_imageCroppedAndSizedForDisplay);
 
@@ -88,6 +74,79 @@
 
   return copy;
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)main {
+  if ([self.url isFileURL]) {
+    // Special case: load the image from disk without hitting the network.
+
+    // Most of the following code is borrowed from ASIHTTPRequest to get the bare minimum
+    // functionality working such that the delegates are properly notified.
+    [self performSelectorOnMainThread: @selector(requestStarted)
+                           withObject: nil
+                        waitUntilDone: [NSThread isMainThread]];
+
+    NSError* dataReadError = nil;
+
+    // The meat of the load-from-disk operation.
+    NSString* filePath = [self.url path];
+    NSMutableData* data = [NSMutableData dataWithContentsOfFile: filePath
+                                                        options: 0
+                                                          error: &dataReadError];
+
+    if (nil != dataReadError) {
+      // This generally happens when the file path points to a file that doesn't exist.
+      // dataReadError has the complete details.
+      [self failWithError:dataReadError];
+
+    } else {
+      [self setRawResponseData:data];
+
+      // Notifies the delegates of the request completion.
+      [self requestFinished];
+    }
+
+    [self markAsFinished];
+
+  } else {
+    // If we're not loading an image from disk then just let ASI handle the network magic
+    // for us.
+    [super main];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)requestFinished {
+  NSData* responseData = [self responseData];
+  UIImage* image = [[UIImage alloc] initWithData:responseData];
+
+  // Clear out the data as quickly as we can. We never use the response data in the
+  // NINetworkImageView object, so this avoids doubling our memory on every thread.
+  [self setRawResponseData:nil];
+
+  // Slice it, dice it!
+  [self setImageCroppedAndSizedForDisplay:[[self class] imageFromSource: image
+                                                        withContentMode: self.imageContentMode
+                                                               cropRect: self.imageCropRect
+                                                            displaySize: self.imageDisplaySize
+                                                           scaleOptions: self.scaleOptions
+                                                   interpolationQuality: self.interpolationQuality]];
+
+  NI_RELEASE_SAFELY(image);
+
+  [super requestFinished];
+}
+
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NIHTTPImageRequest (ImageModifications)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -401,29 +460,6 @@
   }
 
   return resultImage;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestFinished {
-  NSData* responseData = [self responseData];
-  UIImage* image = [[UIImage alloc] initWithData:responseData];
-
-  // Clear out the data as quickly as we can. We never use the response data in the
-  // NINetworkImageView object, so this avoids doubling our memory on every thread.
-  [self setRawResponseData:nil];
-
-  // Slice it, dice it!
-  [self setImageCroppedAndSizedForDisplay:[[self class] imageFromSource: image
-                                                        withContentMode: self.imageContentMode
-                                                               cropRect: self.imageCropRect
-                                                            displaySize: self.imageDisplaySize
-                                                           scaleOptions: self.scaleOptions
-                                                   interpolationQuality: self.interpolationQuality]];
-
-  NI_RELEASE_SAFELY(image);
-
-  [super requestFinished];
 }
 
 
