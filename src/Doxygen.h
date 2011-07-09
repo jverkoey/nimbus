@@ -25,9 +25,9 @@
  *
  * <h2>Getting Started</h2>
  *
- * - Learn how to <a href="http://jverkoey.github.com/nimbus/group___setup.html">add Nimbus to your project</a>.
- * - Check out the README for <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted/01-BasicSetup">the introduction sample project</a>.
- * - Follow Nimbus through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
+ * - Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
+ * - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
+ * - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
  *
  * <h2>Nimbus' Background</h1>
  *
@@ -145,69 +145,125 @@
  */
 
 /**
- * @defgroup Setup Adding Nimbus Libraries to Your Project
+ * @defgroup Three20-Migration-Guide Three20 Migration Guide
  *
- * <h1></h1>
+ * <h2>Getting Started</h2>
  *
- * There are two recommended models for adding Nimbus libraries to your project: as
- * dependent libraries, or by adding the code directly to your project. Each has its
- * advantages and disadvantages, outlined below.
+ * If you've added Three20 to one of your projects then you're undoubtedly familiar with the
+ * incredible overhead of the framework's size and work involved in tweaking project
+ * settings. While the concept of shared static libraries has its benefits, the reality is
+ * that most applications are standalone entities and it is rare that you would be switching
+ * between building one application and another rapidly enough to justify the shared build times.
  *
- * <h2>Recommended: add the Nimbus source code to your project</h2>
+ * Nimbus reduces build times by throwing this model out the window altogether and being
+ * truly modular. When you add Nimbus to your project, you only add the code for the features
+ * you <i>want</i> to use, and you add this code directly to your project. With Nimbus, you only
+ * need to manage one project's settings, one target for your application, and zero dependent
+ * static libraries (unless you're using a non-Nimbus library of course). This also means that
+ * if there is a feature within Nimbus that you've already built or included in your app
+ * (ASIHTTPRequest), for example, then you can simply use that code and modify it as you wish.
  *
- * This model involves dragging the source files from each Nimbus library you wish to add
- * into your Xcode project and adding the source files to your application target.
+ * <h3>The Nimbus Namespace</h3>
  *
- * Advantages:
+ * The Nimbus namespace is an <code>NI</code> prefix to all types and functions. Three20's
+ * is <code>TT</code>. Quite often Three20 features will exist in Nimbus as well. When this
+ * is the case, you simply have to replace the <code>TT</code> prefix with <code>NI</code>.
  *
- * - Debugging and stepping into Nimbus code is much easier when the source is built in your
- *   project.
- * - You can easily modify the Nimbus source code within your project.
- * - Only one precompiled header needs to be built.
+ * <h3>Using Nimbus Alongside Three20</h3>
  *
- * Disadvantages:
+ * It is possible for both frameworks to exist in one application because the two frameworks
+ * use different prefices. This has the obvious downside of only increasing the size of your
+ * application, but as Nimbus develops the benefit of replacing certain features with Nimbus
+ * equivalents may prove worth the cost. In the future it is hoped that Nimbus will reach
+ * feature parity with Three20, at which point you would be able to remove Three20 from your
+ * project altogether.
  *
- * - You will have to actively keep your projects up-to-date with Nimbus by adding and removing
- *   files whenever a Nimbus library changes.
- * - If you have multiple projects then the build products won't be reused, causing some duplicate
- *   build time between different projects.
+ * <h2>Features That Map One-to-One</h2>
  *
- * <h2>Add Nimbus components as dependent libraries</h2>
+ * Certain features map from Three20 to Nimbus directly. You can begin using these features
+ * simply by doing a global find and replace in your application's code.
  *
- * Advantages:
+ * <h3>Debugging Tools</h3>
  *
- * - Changes to Nimbus' project layout won't require any maintenance on your part because
- *   the library will handle all of Nimbus' building. If a new file is added to a Nimbus library
- *   then your projects will automatically include these by nature of linking to the library.
- * - Build results can be reused between multiple projects. This can lower the overall build time
- *   if you maintain multiple projects.
+ * <pre>
+ *  Three20                         Nimbus
+ *  -----------------------------   --------------------------------------
+ *  TTDASSERT()                     NIDASSERT()
+ *  TTDCONDITIONLOG()               NIDCONDITIONLOG()
+ *  TTDPRINT()                      NIDPRINT()
+ *  TTDPRINTMETHODNAME()            NIDPRINTMETHODNAME()
+ *  TTDINFO()                       NIDINFO()
+ *  TTDERROR()                      NIDERROR()
+ *  TTDWARNING()                    NIDWARNING()
+ * </pre>
  *
- * Disadvantages:
+ * <h3>Device Orientation</h3>
  *
- * - Adding libraries to a project can be a pain in the ass and the learning curve is steep if
- *   the automated nimbus script doesn't work for your project.
- * - Finding documentation and setting breakpoints in Nimbus can be frustrating at best.
- * - If you want to browse the Nimbus source you will need to keep multiple Xcode projects open.
- *   This can be very problematic in Xcode 4.
- * - Headers must be protected because they get copied to a separate directory. This can be
- *   frustrating if you want to hack on Nimbus.
+ * <pre>
+ *  Three20                         Nimbus
+ *  -----------------------------   --------------------------------------
+ *  TTIsSupportedOrientation()      NIIsSupportedOrientation()
+ * </pre>
  *
- * See examples/launcher/BasicLauncher for an example project that adds the source directly to
- * the project.
+ * <h3>Network Activity</h3>
  *
- * <h2>Which model should I use?</h2>
+ * <pre>
+ *  Three20                         Nimbus
+ *  -----------------------------   --------------------------------------
+ *  TTNetworkRequestStarted()       NINetworkActivityTaskDidStart()
+ *  TTNetworkRequestStopped()       NINetworkActivityTaskDidFinish()
+ * </pre>
  *
- * You must weigh the above pros and cons with your own requirements. Our recommendation is
- * to <b>add the source directly to your project</b>. While this will
- * create a bit more work for you if Nimbus changes drastically down the line, the day-to-day
- * advantages far outweigh the downside of what is realistically a rare event.
+ * <h3>Preprocessor Macros</h3>
  *
- * If you choose to use dependent libraries, please consider using the nimbus script found
- * in nimbus/scripts/. It may be advantageous to you to add nimbus/scripts to your PATH so that
- * you can run nimbus directly.
+ * <pre>
+ *  Three20                         Nimbus
+ *  -----------------------------   --------------------------------------
+ *  __TT_DEPRECATED_METHOD          __NI_DEPRECATED_METHOD
+ *  TT_FIX_CATEGORY_BUG()           NI_FIX_CATEGORY_BUG()
+ *  TT_RELEASE_SAFELY()             NI_RELEASE_SAFELY()
+ * </pre>
  *
- * <h2>Example project</h2>
+ * <h2>Three20 Features Deprecated by Nimbus Features</h2>
  *
- * Please refer to the <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted/01-BasicSetup">getting started project</a>
- * for a walkthrough of adding Nimbus to your project.
+ * Some features built for Nimbus completely deprecate closely related Three20 features. To
+ * switch from using the Three20 feature to the Nimbus equivalent may require some extra work
+ * beyond a simply find-and-replace. Where possible the architectural differences are noted
+ * below to aid in the transition process.
+ *
+ * <h3>In-Memory Caching With TTURLCache</h3>
+ *
+ * Nimbus provides NIMemoryCache for caching objects in memory. It is designed only for
+ * storing objects in memory and does not provide disk caching. This is by design: touching
+ * the disk should be an explicit activity so that the performance implications are obvious.
+ * TTURLCache was not clear on how it accessed the disk cache.
+ *
+ * Due to this design choice, one of the primary differences between NIMemoryCache and
+ * TTURLCache is the fact that NIMemoryCache does not provide a disk cache. You can't
+ * use an NIMemoryCache to store or load images from disk.
+ *
+ * TTURLCache is primarily used for caching images in memory and on disk. It uses a fake
+ * least-recently-used cache removal algorithm where images are removed in the same order that
+ * they're added to the cache. This can lead to unexpected cache misses when the cache is
+ * used heavily and images start being removed even though they were recently used.
+ *
+ * NIImageMemoryCache solves this problem by taking advantage of the true least-recently-used
+ * cache removal algorithm built into NIMemoryCache. Whenever an image is accessed it moves
+ * to the end of a linked list. When the cache limit is reached or a memory warning is received,
+ * images are removed from the front of the linked list until the memory constraints are
+ * satisfied.
+ *
+ * <h3>Global Singletons</h3>
+ *
+ * Three20 implements singletons directly in the class that provides the singleton
+ * implementation. This places too much emphasis on the fact that the object is meant to
+ * be used as a singleton, so Nimbus avoids this practice.
+ *
+ * Instead, Nimbus provides access to singletons via the global Nimbus state object. You'll
+ * notice that Nimbus is highlighted as a link throughout the documentation, this is because
+ * Nimbus is a class within the Nimbus framework. To access singletons, you call class
+ * methods on Nimbus.
+ *
+ * For example, to access Nimbus' equivalent to TTURLCache, you use
+ * <code>[Nimbus globalImageMemoryCache]</code>.
  */

@@ -15,18 +15,34 @@
 //
 
 /**
- * Nimbus' Core library contains many often used utilities.
- *
  * @defgroup NimbusCore Nimbus Core
- * @{
  *
- * The Nimbus Core sets the foundation for all of Nimbus' other libraries. By establishing a
- * strong base of helpful utility methods and debugging tools, the rest of the libraries can
- * benefit from this code reuse and decreased time spent re-inventing the wheel.
+ * Nimbus' Core defines the foundation upon which all other Nimbus features are built.
  *
- * In your own projects, consider familiarizing yourself with Nimbus by first adding the
- * Core and feeling your way around. For existing projects this is especially recommended
- * because it allows you to gradually introduce concepts found within Nimbus.
+ * <h2>How Features are Added to the Core</h2>
+ *
+ * As a general rule of thumb, if something is used between multiple independent libraries or
+ * applications with little variation, it likely qualifies to be added to the Core.
+ *
+ * <h3>Exceptions</h3>
+ *
+ * Standalone user interface components are <i>rarely</i> acceptable features to add to the Core.
+ * For example: photo viewers, pull to refresh, launchers, attributed labels.
+ *
+ * Nimbus is not UIKit: we don't have the privilege of being an assumed cost on every iOS
+ * device. Developers must carefully weigh whether it is worth adding a Nimbus feature - along
+ * with its dependencies - over building the feature themselves or using another library. This
+ * means that an incredible amount of care must be placed into deciding what gets added to the
+ * Core.
+ *
+ * <h3>Moving a Feature out of the Core</h3>
+ *
+ * It is inevitable that certain aspects of the Core will grow and develop over time. If a
+ * feature gets to the point where the value of being a separate library surpasses the overhead
+ * of managing such a library, then the feature should be considered for removal from the Core.
+ *
+ * Great care must be taken to ensure that Nimbus doesn't become a framework composed of
+ * hundreds of miniscule libraries.
  */
 
 #import <Foundation/Foundation.h>
@@ -68,5 +84,3 @@
 #import "NISDKAvailability.h"
 #import "NIState.h"
 #endif
-
-/**@}*/
