@@ -10,7 +10,7 @@ to understand.
 - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
 - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
 
-<h2>Nimbus' Background</h1>
+<h2>Nimbus' Background</h2>
 
 Nimbus has been built with much inspiration from the Three20 framework. That being said, there
 are a number of fundamental problems with Three20 that Nimbus works very hard to avoid.
