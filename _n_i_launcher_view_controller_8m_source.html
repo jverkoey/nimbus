@@ -32,10 +32,9 @@
 <div id="page">
 <div style="position:relative">
 <div id="top"><!-- do not remove this div! -->
-<a href="http://github.com/jverkoey/nimbus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork Nimbus on GitHub"></a>
 
 <div id="titlearea">
-<a style="float: right;margin-right:100px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
+<a style="float: right;margin-right:20px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -43,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1</span>
+   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -142,7 +141,7 @@
 <a name="l00072"></a>00072 <span class="preprocessor"></span><span class="preprocessor">#pragma mark NILauncherDataSource</span>
 <a name="l00073"></a>00073 <span class="preprocessor"></span>
 <a name="l00074"></a>00074 
-<a name="l00076"></a><a class="code" href="interface_n_i_launcher_view_controller.html#ac269f2109a8170c2db5ae96c4b5b16c3">00076</a> - (NSInteger)numberOfRowsPerPageInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView {
+<a name="l00076"></a>00076 - (NSInteger)numberOfRowsPerPageInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView {
 <a name="l00077"></a>00077   <span class="comment">// Replace this with NILauncherViewDynamic to allow the launcher view to calculate the number</span>
 <a name="l00078"></a>00078   <span class="comment">// of rows and columns automatically.</span>
 <a name="l00079"></a>00079   <span class="keywordflow">return</span> (<a class="code" href="group___s_d_k-_availability.html#gaf7d2c830b4c39cfeeb37d59258abb722" title="Checks whether the device the app is currently running on is an iPad or not.">NIIsPad</a>()
@@ -152,7 +151,7 @@
 <a name="l00083"></a>00083 }
 <a name="l00084"></a>00084 
 <a name="l00085"></a>00085 
-<a name="l00087"></a><a class="code" href="interface_n_i_launcher_view_controller.html#a7670d2b814ecd9bc5c997b87260db835">00087</a> - (NSInteger)numberOfColumnsPerPageInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView {
+<a name="l00087"></a>00087 - (NSInteger)numberOfColumnsPerPageInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView {
 <a name="l00088"></a>00088   <span class="keywordflow">return</span> (<a class="code" href="group___s_d_k-_availability.html#gaf7d2c830b4c39cfeeb37d59258abb722" title="Checks whether the device the app is currently running on is an iPad or not.">NIIsPad</a>()
 <a name="l00089"></a>00089           ? 5
 <a name="l00090"></a>00090           : (UIInterfaceOrientationIsPortrait(<a class="code" href="group___device-_orientation.html#ga7c59ce546cc2e2835532fa9dea2a4869" title="Returns the application&#39;s current interface orientation.">NIInterfaceOrientation</a>())
@@ -160,20 +159,20 @@
 <a name="l00092"></a>00092 }
 <a name="l00093"></a>00093 
 <a name="l00094"></a>00094 
-<a name="l00096"></a><a class="code" href="interface_n_i_launcher_view_controller.html#aeff929d8f8b796ff61956d24dc393cc9">00096</a> - (NSInteger)numberOfPagesInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView {
+<a name="l00096"></a>00096 - (NSInteger)numberOfPagesInLauncherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView {
 <a name="l00097"></a>00097   <span class="keywordflow">return</span> [_pages count];
 <a name="l00098"></a>00098 }
 <a name="l00099"></a>00099 
 <a name="l00100"></a>00100 
-<a name="l00102"></a><a class="code" href="interface_n_i_launcher_view_controller.html#aade7d0e41b8822171bd8efcd9aa06a5c">00102</a> - (NSInteger)launcherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView numberOfButtonsInPage:(NSInteger)page {
+<a name="l00102"></a>00102 - (NSInteger)launcherView:(<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView numberOfButtonsInPage:(NSInteger)page {
 <a name="l00103"></a>00103   <span class="keywordflow">return</span> [[_pages objectAtIndex:page] count];
 <a name="l00104"></a>00104 }
 <a name="l00105"></a>00105 
 <a name="l00106"></a>00106 
-<a name="l00108"></a><a class="code" href="interface_n_i_launcher_view_controller.html#a4b446599258ec63732ba8da1ca435451">00108</a> - (UIButton *)launcherView: (<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView
+<a name="l00108"></a>00108 - (UIButton *)launcherView: (<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcherView
 <a name="l00109"></a>00109              buttonForPage: (NSInteger)page
 <a name="l00110"></a>00110                    atIndex: (NSInteger)index {
-<a name="l00111"></a>00111   UIButton* button = [[[[<span class="keyword">self</span> <a class="code" href="interface_n_i_launcher_view_controller.html#a21629435d3eea13bb429361dae2ac0b5" title="The launcher button view class.">launcherButtonClass</a>] alloc] init] autorelease];
+<a name="l00111"></a>00111   UIButton* button = [[[[<span class="keyword">self</span> launcherButtonClass] alloc] init] autorelease];
 <a name="l00112"></a>00112 
 <a name="l00113"></a>00113   <span class="comment">// launcherButtonClass must return a class that is a subclass of UIButton.</span>
 <a name="l00114"></a>00114   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([button isKindOfClass:[UIButton <span class="keyword">class</span>]]);
@@ -194,7 +193,7 @@
 <a name="l00131"></a>00131 <span class="preprocessor"></span><span class="preprocessor">#pragma mark NILauncherDelegate</span>
 <a name="l00132"></a>00132 <span class="preprocessor"></span>
 <a name="l00133"></a>00133 
-<a name="l00135"></a><a class="code" href="interface_n_i_launcher_view_controller.html#aa34567e04d59adda70eadf99c4e2dc13">00135</a> - (void)launcherView: (<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcher
+<a name="l00135"></a>00135 - (void)launcherView: (<a class="code" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> *)launcher
 <a name="l00136"></a>00136      didSelectButton: (UIButton *)button
 <a name="l00137"></a>00137               onPage: (NSInteger)page
 <a name="l00138"></a>00138              atIndex: (NSInteger)index {
@@ -231,7 +230,7 @@
 <a name="l00174"></a>00174 <span class="preprocessor"></span>
 <a name="l00175"></a>00175 
 <a name="l00177"></a>00177 - (void)setPages:(NSArray *)pages {
-<a name="l00178"></a>00178   <span class="keywordflow">if</span> (_pages != <a class="code" href="interface_n_i_launcher_view_controller.html#ae6d4791037f7aec351b814ebc0dfad00" title="An array of arrays of NILauncherItemDetails.">pages</a>) {
+<a name="l00178"></a>00178   <span class="keywordflow">if</span> (_pages != pages) {
 <a name="l00179"></a>00179     [_pages release];
 <a name="l00180"></a>00180     _pages = [pages mutableCopy];
 <a name="l00181"></a>00181 
@@ -242,7 +241,7 @@
 <a name="l00186"></a>00186 }
 <a name="l00187"></a>00187 
 <a name="l00188"></a>00188 
-<a name="l00190"></a>00190 - (NSArray *)<a class="code" href="interface_n_i_launcher_view_controller.html#ae6d4791037f7aec351b814ebc0dfad00" title="An array of arrays of NILauncherItemDetails.">pages</a> {
+<a name="l00190"></a>00190 - (NSArray *)pages {
 <a name="l00191"></a>00191   <span class="keywordflow">return</span> [NSArray arrayWithArray:_pages];
 <a name="l00192"></a>00192 }
 <a name="l00193"></a>00193 

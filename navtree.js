@@ -3,7 +3,6 @@ var NAVTREE =
   [ "Nimbus", "index.html", [
     [ "Main Page", "index.html", null ],
     [ "Modules", "modules.html", [
-      [ "Adding Nimbus Libraries to Your Project", "group___setup.html", null ],
       [ "Nimbus Core", "group___nimbus_core.html", [
         [ "Data Structures", "group___data-_structures.html", null ],
         [ "Debugging Tools", "group___debugging-_tools.html", null ],
@@ -16,6 +15,9 @@ var NAVTREE =
         [ "Network Activity", "group___network-_activity.html", null ],
         [ "Non-Empty Collection Testing", "group___non-_empty-_collection-_testing.html", null ],
         [ "Non-Retaining Collections", "group___non-_retaining-_collections.html", null ],
+        [ "Operations", "group___operations.html", [
+          [ "Crafting Operations", "group___crafting-_operations.html", null ]
+        ] ],
         [ "Paths", "group___paths.html", null ],
         [ "Preprocessor Macros", "group___preprocessor-_macros.html", null ],
         [ "Runtime Class Modifications", "group___runtime-_class-_modifications.html", null ],
@@ -30,6 +32,7 @@ var NAVTREE =
         [ "Network Requests", "group___network-_image-_requests.html", null ],
         [ "User Interface", "group___network-_image-_user-_interface.html", null ]
       ] ],
+      [ "Three20 Migration Guide", "group___three20-_migration-_guide.html", null ],
       [ "Version History", "group___version-_history.html", null ]
     ] ],
     [ "Class List", "annotated.html", [
@@ -48,6 +51,9 @@ var NAVTREE =
       [ "NIMemoryCacheInfo", "interface_n_i_memory_cache_info.html", null ],
       [ "NINetworkImageView", "interface_n_i_network_image_view.html", null ],
       [ "<NINetworkImageViewDelegate>", "protocol_n_i_network_image_view_delegate-p.html", null ],
+      [ "NIOperation", "interface_n_i_operation.html", null ],
+      [ "<NIOperationDelegate>", "protocol_n_i_operation_delegate-p.html", null ],
+      [ "NIReadFileFromDiskOperation", "interface_n_i_read_file_from_disk_operation.html", null ],
       [ "NSData", "class_n_s_data.html", null ],
       [ "NSString", "class_n_s_string.html", null ]
     ] ],
@@ -73,6 +79,10 @@ var NAVTREE =
       [ "NIMemoryCacheInfo", "interface_n_i_memory_cache_info.html", null ],
       [ "NINetworkImageView", "interface_n_i_network_image_view.html", null ],
       [ "<NINetworkImageViewDelegate>", "protocol_n_i_network_image_view_delegate-p.html", null ],
+      [ "NIOperation", "interface_n_i_operation.html", [
+        [ "NIReadFileFromDiskOperation", "interface_n_i_read_file_from_disk_operation.html", null ]
+      ] ],
+      [ "<NIOperationDelegate>", "protocol_n_i_operation_delegate-p.html", null ],
       [ "NSData", "class_n_s_data.html", null ],
       [ "NSString", "class_n_s_string.html", null ]
     ] ],
@@ -162,6 +172,7 @@ var NAVTREE =
       [ "/Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/unittests/Tests/StressTests.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/unittests/Tests/StressTests.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/examples/ExampleRuntimeDebugging.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIBlocks.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIDataStructures.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIDataStructures.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIDebuggingTools.h", null, null ],
@@ -180,6 +191,8 @@ var NAVTREE =
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NINonEmptyCollectionTesting.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NINonRetainingCollections.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NINonRetainingCollections.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIOperations.h", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIOperations.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIPaths.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIPaths.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIPreprocessorMacros.h", null, null ],
@@ -197,6 +210,7 @@ var NAVTREE =
       [ "/Users/featherless/workbench/ios/nimbus/src/core/unittests/NIMemoryCacheTests.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/unittests/NINonEmptyCollectionTestingTests.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/unittests/NINonRetainingCollectionsTests.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/core/unittests/NIOperationsTests.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/unittests/NIRuntimeClassModificationsTests.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/unittests/NSDate+UnitTesting.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/unittests/NSDate+UnitTesting.m", null, null ],

@@ -32,10 +32,9 @@
 <div id="page">
 <div style="position:relative">
 <div id="top"><!-- do not remove this div! -->
-<a href="http://github.com/jverkoey/nimbus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork Nimbus on GitHub"></a>
 
 <div id="titlearea">
-<a style="float: right;margin-right:100px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
+<a style="float: right;margin-right:20px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -43,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1</span>
+   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -79,9 +78,16 @@
 <div class="title">Nimbus Core</div>  </div>
 </div>
 <div class="contents">
-
-<p>Nimbus' Core library contains many often used utilities.  
-<a href="#details">More...</a></p>
+<hr/><a name="details" id="details"></a><h2>Overview</h2>
+<p>Nimbus' Core defines the foundation upon which all other <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> features are built. </p>
+<h2>How Features are Added to the Core</h2>
+<p>As a general rule of thumb, if something is used between multiple independent libraries or applications with little variation, it likely qualifies to be added to the Core.</p>
+<h3>Exceptions</h3>
+<p>Standalone user interface components are <em>rarely</em> acceptable features to add to the Core. For example: photo viewers, pull to refresh, launchers, attributed labels.</p>
+<p><a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> is not UIKit: we don't have the privilege of being an assumed cost on every iOS device. Developers must carefully weigh whether it is worth adding a <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> feature - along with its dependencies - over building the feature themselves or using another library. This means that an incredible amount of care must be placed into deciding what gets added to the Core.</p>
+<h3>Moving a Feature out of the Core</h3>
+<p>It is inevitable that certain aspects of the Core will grow and develop over time. If a feature gets to the point where the value of being a separate library surpasses the overhead of managing such a library, then the feature should be considered for removal from the Core.</p>
+<p>Great care must be taken to ensure that <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> doesn't become a framework composed of hundreds of miniscule libraries. </p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="groups"></a>
 Modules</h2></td></tr>
@@ -125,6 +131,11 @@ Modules</h2></td></tr>
 <p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>For collections that don't retain their objects. </p>
 <br/></td></tr>
 </p>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___operations.html">Operations</a></td></tr>
+
+<p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>For common NSOperation implementations. </p>
+<br/></td></tr>
+</p>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___paths.html">Paths</a></td></tr>
 
 <p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>For creating standard system paths. </p>
@@ -151,10 +162,6 @@ Modules</h2></td></tr>
 <br/></td></tr>
 </p>
 </table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<p>Nimbus' Core library contains many often used utilities. </p>
-<p>The <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> Core sets the foundation for all of Nimbus' other libraries. By establishing a strong base of helpful utility methods and debugging tools, the rest of the libraries can benefit from this code reuse and decreased time spent re-inventing the wheel.</p>
-<p>In your own projects, consider familiarizing yourself with <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> by first adding the Core and feeling your way around. For existing projects this is especially recommended because it allows you to gradually introduce concepts found within <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a>. </p>
 </div>
 </div>
   <div id="nav-path" class="navpath">

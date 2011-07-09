@@ -32,10 +32,9 @@
 <div id="page">
 <div style="position:relative">
 <div id="top"><!-- do not remove this div! -->
-<a href="http://github.com/jverkoey/nimbus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork Nimbus on GitHub"></a>
 
 <div id="titlearea">
-<a style="float: right;margin-right:100px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
+<a style="float: right;margin-right:20px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -43,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1</span>
+   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -79,9 +78,11 @@
 <div class="title">User Interface</div>  </div>
 <div class="ingroups"><a class="el" href="group___nimbus_launcher.html">Nimbus Launcher</a></div></div>
 <div class="contents">
-
-<p>The views and data containers used to display a launcher user interface.  
-<a href="#details">More...</a></p>
+<hr/><a name="details" id="details"></a><h2>Overview</h2>
+<p>The views and data containers used to display a launcher user interface. </p>
+<p>The <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> launcher is composed primarily of the <a class="el" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> and its <a class="el" href="group___launcher-_protocols.html">protocols</a>. The <a class="el" href="interface_n_i_launcher_view_controller.html" title="A view controller that displays a launcher view and implements its protocols.">NILauncherViewController</a>, <a class="el" href="class_n_i_launcher_button.html" title="A simple launcher button that shows an image and text.">NILauncherButton</a>, and <a class="el" href="class_n_i_launcher_item_details.html" title="A convenience class for managing the data used to create an NILauncherButton.">NILauncherItemDetails</a> objects are all auxiliary objects and exist purely to provide an example implementation of the launcher view.</p>
+<h3>Hacking Notes</h3>
+<p>As mentioned above, the meat of the launcher is contained in <a class="el" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a>. If you want to customize anything about it, start by subclassing <a class="el" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a>. The launcher view is built to mimic the design of UITableView in its use of a delegate and data source. This design decision is a conscious one because it allows us to maintain the data for the launcher view outside of the view itself. This allows the launcher view to be "dumb" and separates the data used to populate the launcher from the presentation. When we inevitably receive a low memory warning on a view controller that's off screen, we can discard the launcher view and be confident that we won't lose any state information. </p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -94,11 +95,6 @@ Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_n_i_launcher_item_details.html">NILauncherItemDetails</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A convenience class for managing the data used to create an <a class="el" href="class_n_i_launcher_button.html" title="A simple launcher button that shows an image and text.">NILauncherButton</a>.  <a href="class_n_i_launcher_item_details.html#details">More...</a><br/></td></tr>
 </table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<p>The views and data containers used to display a launcher user interface. </p>
-<p>The <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> launcher is composed primarily of the <a class="el" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a> and its <a class="el" href="group___launcher-_protocols.html">protocols</a>. The <a class="el" href="interface_n_i_launcher_view_controller.html" title="A view controller that displays a launcher view and implements its protocols.">NILauncherViewController</a>, <a class="el" href="class_n_i_launcher_button.html" title="A simple launcher button that shows an image and text.">NILauncherButton</a>, and <a class="el" href="class_n_i_launcher_item_details.html" title="A convenience class for managing the data used to create an NILauncherButton.">NILauncherItemDetails</a> objects are all auxiliary objects and exist purely to provide an example implementation of the launcher view.</p>
-<h3>Hacking Notes</h3>
-<p>As mentioned above, the meat of the launcher is contained in <a class="el" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a>. If you want to customize anything about it, start by subclassing <a class="el" href="interface_n_i_launcher_view.html" title="A launcher view that simulates iOS&#39; home screen launcher functionality.">NILauncherView</a>. The launcher view is built to mimic the design of UITableView in its use of a delegate and data source. This design decision is a conscious one because it allows us to maintain the data for the launcher view outside of the view itself. This allows the launcher view to be "dumb" and separates the data used to populate the launcher from the presentation. When we inevitably receive a low memory warning on a view controller that's off screen, we can discard the launcher view and be confident that we won't lose any state information. </p>
 </div>
 </div>
   <div id="nav-path" class="navpath">

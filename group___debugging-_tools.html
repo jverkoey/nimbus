@@ -32,10 +32,9 @@
 <div id="page">
 <div style="position:relative">
 <div id="top"><!-- do not remove this div! -->
-<a href="http://github.com/jverkoey/nimbus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork Nimbus on GitHub"></a>
 
 <div id="titlearea">
-<a style="float: right;margin-right:100px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
+<a style="float: right;margin-right:20px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -43,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1</span>
+   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -80,9 +79,20 @@
 <div class="title">Debugging Tools</div>  </div>
 <div class="ingroups"><a class="el" href="group___nimbus_core.html">Nimbus Core</a></div></div>
 <div class="contents">
-
-<p>For inspecting code and writing to logs in debug builds.  
-<a href="#details">More...</a></p>
+<hr/><a name="details" id="details"></a><h2>Overview</h2>
+<p>For inspecting code and writing to logs in debug builds. </p>
+<p>Provided in this header are a set of debugging methods and macros. Nearly all of the methods found within this header will only do anything interesting if the DEBUG macro is defined. The recommended way to enable the debug tools is to specify DEBUG in the "Preprocessor Macros" field in your application's Debug target settings. Be careful not to set this for your release or app store builds.</p>
+<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(statement);
+</pre></div><p>If statement is false, the statement will be written to the log and if you are running in the simulator with a debugger attached, the app will break on the assertion line.</p>
+<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26" title="Only writes to the log when DEBUG is defined.">NIDPRINT</a>(<span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
+</pre></div><p>Print the given formatted text to the log.</p>
+<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8" title="Write the containing method&#39;s name to the log using NIDPRINT.">NIDPRINTMETHODNAME</a>();
+</pre></div><p>Print the current method name to the log.</p>
+<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#ga2d769dcaac3915eea5b9860a40bd179a" title="Only writes to the log if condition is satisified.">NIDCONDITIONLOG</a>(statement, <span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
+</pre></div><p>If statement is true, then the formatted text will be written to the log.</p>
+<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_INFO.">NIDINFO</a>/<a class="code" href="group___debugging-_tools.html#gacc8f90bb05765e613bb0dbb16d372dfc" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_WARNING.">NIDWARNING</a>/<a class="code" href="group___debugging-_tools.html#gab5d8a773517976d97335706474ae1317" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_ERROR.">NIDERROR</a>(<span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
+</pre></div><p>Will only write the formatted text to the log if NIMaxLogLevel is greater than the respective NID* method's log level. See below for log levels.</p>
+<p>The default maximum log level is NILOGLEVEL_WARNING. </p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
@@ -111,20 +121,6 @@ Level-Based Loggers</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84">NIDINFO</a>(xx,...)&#160;&#160;&#160;NIDCONDITIONLOG((NILOGLEVEL_INFO &lt;= <a class="el" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505">NIMaxLogLevel</a>), xx, ##__VA_ARGS__)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_INFO. <br/></td></tr>
 </table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<p>For inspecting code and writing to logs in debug builds. </p>
-<p>Provided in this header are a set of debugging methods and macros. Nearly all of the methods found within this header will only do anything interesting if the DEBUG macro is defined. The recommended way to enable the debug tools is to specify DEBUG in the "Preprocessor Macros" field in your application's Debug target settings. Be careful not to set this for your release or app store builds.</p>
-<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(statement);
-</pre></div><p>If statement is false, the statement will be written to the log and if you are running in the simulator with a debugger attached, the app will break on the assertion line.</p>
-<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26" title="Only writes to the log when DEBUG is defined.">NIDPRINT</a>(<span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
-</pre></div><p>Print the given formatted text to the log.</p>
-<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8" title="Write the containing method&#39;s name to the log using NIDPRINT.">NIDPRINTMETHODNAME</a>();
-</pre></div><p>Print the current method name to the log.</p>
-<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#ga2d769dcaac3915eea5b9860a40bd179a" title="Only writes to the log if condition is satisified.">NIDCONDITIONLOG</a>(statement, <span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
-</pre></div><p>If statement is true, then the formatted text will be written to the log.</p>
-<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_INFO.">NIDINFO</a>/<a class="code" href="group___debugging-_tools.html#gacc8f90bb05765e613bb0dbb16d372dfc" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_WARNING.">NIDWARNING</a>/<a class="code" href="group___debugging-_tools.html#gab5d8a773517976d97335706474ae1317" title="Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_ERROR.">NIDERROR</a>(<span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
-</pre></div><p>Will only write the formatted text to the log if NIMaxLogLevel is greater than the respective NID* method's log level. See below for log levels.</p>
-<p>The default maximum log level is NILOGLEVEL_WARNING. </p>
 <hr/><h2>Define Documentation</h2>
 <a class="anchor" id="ga13cc3ae82820ea8141bc319bcb76ab7f"></a><!-- doxytag: member="NIDebuggingTools.h::NIDASSERT" ref="ga13cc3ae82820ea8141bc319bcb76ab7f" args="(xx)" -->
 <div class="memitem">

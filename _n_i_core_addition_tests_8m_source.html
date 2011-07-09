@@ -32,10 +32,9 @@
 <div id="page">
 <div style="position:relative">
 <div id="top"><!-- do not remove this div! -->
-<a href="http://github.com/jverkoey/nimbus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork Nimbus on GitHub"></a>
 
 <div id="titlearea">
-<a style="float: right;margin-right:100px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
+<a style="float: right;margin-right:20px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -43,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1</span>
+   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -259,7 +258,7 @@
 <a name="l00192"></a>00192                          @&quot;three20&quot;, @&quot;q&quot;,
 <a name="l00193"></a>00193                          @&quot;en&quot;,      @&quot;hl&quot;,
 <a name="l00194"></a>00194                          nil];
-<a name="l00195"></a>00195   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* baseUrlWithQuery = [baseUrl <a class="code" href="class_n_s_string.html#a4aa72a6d70054e4e1224d622c340e6bc" title="Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.">stringByAddingQueryDictionary</a>:query];
+<a name="l00195"></a>00195   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* baseUrlWithQuery = [baseUrl stringByAddingQueryDictionary:query];
 <a name="l00196"></a>00196   STAssertTrue([baseUrlWithQuery isEqualToString:[baseUrl
 <a name="l00197"></a>00197                                                   stringByAppendingString:<span class="stringliteral">@&quot;?hl=en&amp;q=three20&quot;</span>]]
 <a name="l00198"></a>00198                || [baseUrlWithQuery isEqualToString:[baseUrl

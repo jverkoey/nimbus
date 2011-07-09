@@ -32,10 +32,9 @@
 <div id="page">
 <div style="position:relative">
 <div id="top"><!-- do not remove this div! -->
-<a href="http://github.com/jverkoey/nimbus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork Nimbus on GitHub"></a>
 
 <div id="titlearea">
-<a style="float: right;margin-right:100px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
+<a style="float: right;margin-right:20px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -43,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1</span>
+   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -375,9 +374,9 @@
 <a name="l00365"></a>00365 }
 <a name="l00366"></a>00366 
 <a name="l00367"></a>00367 
-<a name="l00369"></a><a class="code" href="interface_n_i_image_memory_cache.html#aae2b67d113009d11330555fdfa96dece">00369</a> - (void)<a class="code" href="interface_n_i_image_memory_cache.html#aae2b67d113009d11330555fdfa96dece" title="Remove all expired objects from the cache.">reduceMemoryUsage</a> {
+<a name="l00369"></a>00369 - (void)<a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Remove all expired objects from the cache.">reduceMemoryUsage</a> {
 <a name="l00370"></a>00370   <span class="comment">// Remove all expired images first.</span>
-<a name="l00371"></a>00371   [<span class="keyword">super</span> <a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Remove all expired objects from the cache.">reduceMemoryUsage</a>];
+<a name="l00371"></a>00371   [<span class="keyword">super</span> reduceMemoryUsage];
 <a name="l00372"></a>00372 
 <a name="l00373"></a>00373   <span class="keywordflow">if</span> (<span class="keyword">self</span>.<a class="code" href="interface_n_i_image_memory_cache.html#a8e3384e158b74b2f582ee5c26608a7b1" title="The maximum number of pixels this cache may store after a call to reduceMemoryUsage.">maxNumberOfPixelsUnderStress</a> &gt; 0) {
 <a name="l00374"></a>00374     <span class="comment">// Remove the least recently used images by iterating over the linked list.</span>
@@ -389,14 +388,14 @@
 <a name="l00380"></a>00380 }
 <a name="l00381"></a>00381 
 <a name="l00382"></a>00382 
-<a name="l00384"></a><a class="code" href="interface_n_i_image_memory_cache.html#a5ca3796a2cf1d986852fc9ebc2d918ff">00384</a> - (void)willSetObject:(<span class="keywordtype">id</span>)object withName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name previousObject:(<span class="keywordtype">id</span>)previousObject {
+<a name="l00384"></a>00384 - (void)willSetObject:(<span class="keywordtype">id</span>)object withName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name previousObject:(<span class="keywordtype">id</span>)previousObject {
 <a name="l00385"></a>00385   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil == <span class="keywordtype">object</span> || [<span class="keywordtype">object</span> isKindOfClass:[UIImage <span class="keyword">class</span>]]);
 <a name="l00386"></a>00386   <span class="keywordflow">if</span> (![<span class="keywordtype">object</span> isKindOfClass:[UIImage <span class="keyword">class</span>]]) {
 <a name="l00387"></a>00387     <span class="keywordflow">return</span>;
 <a name="l00388"></a>00388   }
 <a name="l00389"></a>00389 
-<a name="l00390"></a>00390   <span class="keyword">self</span>.numberOfPixels -= [<span class="keyword">self</span> numberOfPixelsUsedByImage:previousObject];
-<a name="l00391"></a>00391   <span class="keyword">self</span>.numberOfPixels += [<span class="keyword">self</span> numberOfPixelsUsedByImage:object];
+<a name="l00390"></a>00390   <span class="keyword">self</span>.numberOfPixels -= [self numberOfPixelsUsedByImage:previousObject];
+<a name="l00391"></a>00391   <span class="keyword">self</span>.numberOfPixels += [self numberOfPixelsUsedByImage:object];
 <a name="l00392"></a>00392 
 <a name="l00393"></a>00393   <span class="keywordflow">if</span> (<span class="keyword">self</span>.<a class="code" href="interface_n_i_image_memory_cache.html#a44eec58a5fda0ad0390d5e43591c1fec" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a> &gt; 0) {
 <a name="l00394"></a>00394     <span class="comment">// Remove least recently used images until we satisfy our memory constraints.</span>
@@ -409,7 +408,7 @@
 <a name="l00401"></a>00401 }
 <a name="l00402"></a>00402 
 <a name="l00403"></a>00403 
-<a name="l00405"></a><a class="code" href="interface_n_i_image_memory_cache.html#a3fcbee22186d02b51e3c10b6d732bede">00405</a> - (void)willRemoveObject:(<span class="keywordtype">id</span>)object withName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name {
+<a name="l00405"></a>00405 - (void)willRemoveObject:(<span class="keywordtype">id</span>)object withName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name {
 <a name="l00406"></a>00406   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil == <span class="keywordtype">object</span> || [<span class="keywordtype">object</span> isKindOfClass:[UIImage <span class="keyword">class</span>]]);
 <a name="l00407"></a>00407   <span class="keywordflow">if</span> (nil == <span class="keywordtype">object</span> || ![<span class="keywordtype">object</span> isKindOfClass:[UIImage <span class="keyword">class</span>]]) {
 <a name="l00408"></a>00408     <span class="keywordflow">return</span>;
@@ -418,7 +417,7 @@
 <a name="l00411"></a>00411   <a class="code" href="interface_n_i_memory_cache_info.html" title="A single cache item&#39;s information.">NIMemoryCacheInfo</a>* info = [<span class="keyword">self</span> cacheInfoForName:name];
 <a name="l00412"></a>00412   [<span class="keyword">self</span>.lruCacheObjects removeObjectAtLocation:info.lruLocation];
 <a name="l00413"></a>00413 
-<a name="l00414"></a>00414   <span class="keyword">self</span>.numberOfPixels -= [<span class="keyword">self</span> numberOfPixelsUsedByImage:object];
+<a name="l00414"></a>00414   <span class="keyword">self</span>.numberOfPixels -= [self numberOfPixelsUsedByImage:object];
 <a name="l00415"></a>00415 }
 <a name="l00416"></a>00416 
 <a name="l00417"></a>00417 

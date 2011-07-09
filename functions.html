@@ -32,10 +32,9 @@
 <div id="page">
 <div style="position:relative">
 <div id="top"><!-- do not remove this div! -->
-<a href="http://github.com/jverkoey/nimbus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork Nimbus on GitHub"></a>
 
 <div id="titlearea">
-<a style="float: right;margin-right:100px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
+<a style="float: right;margin-right:20px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -43,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1</span>
+   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -81,12 +80,9 @@
       <li><a href="#index_n"><span>n</span></a></li>
       <li><a href="#index_o"><span>o</span></a></li>
       <li><a href="#index_p"><span>p</span></a></li>
-      <li><a href="#index_q"><span>q</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
       <li><a href="#index_t"><span>t</span></a></li>
-      <li><a href="#index_u"><span>u</span></a></li>
-      <li><a href="#index_v"><span>v</span></a></li>
       <li><a href="#index_w"><span>w</span></a></li>
     </ul>
   </div>
@@ -130,15 +126,16 @@
 
 
 <h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
+<li>data
+: <a class="el" href="interface_n_i_read_file_from_disk_operation.html#a754e08489a25c244257bfd6e733f61e2">NIReadFileFromDiskOperation</a>
+</li>
 <li>dataSource
 : <a class="el" href="interface_n_i_launcher_view.html#af849642b45b213adbd85e85054925428">NILauncherView</a>
 </li>
 <li>delegate
-: <a class="el" href="interface_n_i_launcher_view.html#a5680da202a46fb3ce6437d6987a7d41d">NILauncherView</a>
-, <a class="el" href="interface_n_i_network_image_view.html#a7e60fd5a2b8c3fc57c92f24fc7dca8d3">NINetworkImageView</a>
-</li>
-<li>destinationRectWithImageSize:displaySize:contentMode:
-: <a class="el" href="interface_n_i_h_t_t_p_image_request.html#ab2beef0fa37be65210feff5a14696cea">NIHTTPImageRequest</a>
+: <a class="el" href="interface_n_i_network_image_view.html#a7e60fd5a2b8c3fc57c92f24fc7dca8d3">NINetworkImageView</a>
+, <a class="el" href="interface_n_i_launcher_view.html#a5680da202a46fb3ce6437d6987a7d41d">NILauncherView</a>
+, <a class="el" href="interface_n_i_operation.html#a8fcfebd75a9559d0a41e9f8bcd01facf">NIOperation</a>
 </li>
 <li>diskCacheLifetime
 : <a class="el" href="interface_n_i_network_image_view.html#a0432bac81c750d0e9fa0d23329eed93f">NINetworkImageView</a>
@@ -174,9 +171,6 @@
 <li>hasExpired
 : <a class="el" href="interface_n_i_memory_cache_info.html#ae854ab244f76213c32704ead39bd3e2a">NIMemoryCacheInfo</a>
 </li>
-<li>heightWithFont:constrainedToWidth:lineBreakMode:
-: <a class="el" href="class_n_s_string.html#afb69ae33493b2a463f6fcae7333cec66">NSString</a>
-</li>
 </ul>
 
 
@@ -195,6 +189,9 @@
 </li>
 <li>imageDisplaySize
 : <a class="el" href="interface_n_i_h_t_t_p_image_request.html#ad6389e520bbac3c02e299fc4392f6922">NIHTTPImageRequest</a>
+</li>
+<li>imageFromSource:withContentMode:cropRect:displaySize:scaleOptions:interpolationQuality:
+: <a class="el" href="interface_n_i_h_t_t_p_image_request.html#a42847898d10e49db4666e7c7fb1a30ef">NIHTTPImageRequest</a>
 </li>
 <li>imageMemoryCache
 : <a class="el" href="interface_n_i_network_image_view.html#a8f43300cafa80378ee333a5cb8551b22">NINetworkImageView</a>
@@ -215,14 +212,18 @@
 <li>initWithImage:
 : <a class="el" href="interface_n_i_network_image_view.html#ade5eba04aa860207d1fbd07a3f3a31ef">NINetworkImageView</a>
 </li>
+<li>initWithPathToFile:
+: <a class="el" href="interface_n_i_read_file_from_disk_operation.html#a8700010910b9dad07f61cc040b163da7">NIReadFileFromDiskOperation</a>
+</li>
 <li>initWithTitle:imagePath:
 : <a class="el" href="class_n_i_launcher_item_details.html#afe62c8eb25254b87f227547cd0c7457b">NILauncherItemDetails</a>
 </li>
+<li>interpolationQuality
+: <a class="el" href="interface_n_i_network_image_view.html#adc399e63572dcce6e0984ef12353ec4d">NINetworkImageView</a>
+, <a class="el" href="interface_n_i_h_t_t_p_image_request.html#a944c80da8f3884d2d1bbab8bf3efeeef">NIHTTPImageRequest</a>
+</li>
 <li>isLoading
 : <a class="el" href="interface_n_i_network_image_view.html#aa3207a010aa79b94a894e60105f4b7a6">NINetworkImageView</a>
-</li>
-<li>isWhitespaceAndNewlines
-: <a class="el" href="class_n_s_string.html#a121c44a9dac429d5d5b943b823cd578a">NSString</a>
 </li>
 <li>itemDetailsWithTitle:imagePath:
 : <a class="el" href="class_n_i_launcher_item_details.html#a0fa897dde241f7de94d531ccc242befa">NILauncherItemDetails</a>
@@ -233,6 +234,9 @@
 <h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
 <li>lastAccessTime
 : <a class="el" href="interface_n_i_memory_cache_info.html#a5df65400aecde4270f65396746022494">NIMemoryCacheInfo</a>
+</li>
+<li>lastError
+: <a class="el" href="interface_n_i_operation.html#add09c9ae4ab576c27648f4a3ab3b9cea">NIOperation</a>
 </li>
 <li>lastObject
 : <a class="el" href="interface_n_i_linked_list.html#a7c0066b07b3753ba3abab3ef7b49673c">NILinkedList</a>
@@ -245,15 +249,12 @@
 </li>
 <li>launcherView:buttonForPage:atIndex:
 : <a class="el" href="protocol_n_i_launcher_data_source-p.html#a2da5ac9e819e16c7ca4410a0497bf2ee">&lt;NILauncherDataSource&gt;</a>
-, <a class="el" href="interface_n_i_launcher_view_controller.html#a4b446599258ec63732ba8da1ca435451">NILauncherViewController</a>
 </li>
 <li>launcherView:didSelectButton:onPage:atIndex:
-: <a class="el" href="interface_n_i_launcher_view_controller.html#aa34567e04d59adda70eadf99c4e2dc13">NILauncherViewController</a>
-, <a class="el" href="protocol_n_i_launcher_delegate-p.html#a5354d4b3a37c6d1909b785cc4be2ac7c">&lt;NILauncherDelegate&gt;</a>
+: <a class="el" href="protocol_n_i_launcher_delegate-p.html#a5354d4b3a37c6d1909b785cc4be2ac7c">&lt;NILauncherDelegate&gt;</a>
 </li>
 <li>launcherView:numberOfButtonsInPage:
 : <a class="el" href="protocol_n_i_launcher_data_source-p.html#ad330b76b58eebe5dde7b7f7495575e2a">&lt;NILauncherDataSource&gt;</a>
-, <a class="el" href="interface_n_i_launcher_view_controller.html#aade7d0e41b8822171bd8efcd9aa06a5c">NILauncherViewController</a>
 </li>
 <li>linkedList
 : <a class="el" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea">NILinkedList</a>
@@ -276,10 +277,6 @@
 </li>
 <li>maxNumberOfPixelsUnderStress
 : <a class="el" href="interface_n_i_image_memory_cache.html#a8e3384e158b74b2f582ee5c26608a7b1">NIImageMemoryCache</a>
-</li>
-<li>md5Hash
-: <a class="el" href="class_n_s_data.html#aa579e3e3c247cd6daa6c0981ff07d718">NSData</a>
-, <a class="el" href="class_n_s_string.html#a5b8e06192865b0f1f7bbe9bf000a17a3">NSString</a>
 </li>
 <li>memoryCachePrefix
 : <a class="el" href="interface_n_i_network_image_view.html#a352ecee4de738eff827447d637fd2c5a">NINetworkImageView</a>
@@ -314,18 +311,15 @@
 </li>
 <li>numberOfColumnsPerPageInLauncherView:
 : <a class="el" href="protocol_n_i_launcher_data_source-p.html#acfc94919beaa588ef131d9d7beecf7f9">&lt;NILauncherDataSource&gt;</a>
-, <a class="el" href="interface_n_i_launcher_view_controller.html#a7670d2b814ecd9bc5c997b87260db835">NILauncherViewController</a>
 </li>
 <li>numberOfPagesInLauncherView:
 : <a class="el" href="protocol_n_i_launcher_data_source-p.html#a7386f18ee064778a4808a26a3cf06f41">&lt;NILauncherDataSource&gt;</a>
-, <a class="el" href="interface_n_i_launcher_view_controller.html#aeff929d8f8b796ff61956d24dc393cc9">NILauncherViewController</a>
 </li>
 <li>numberOfPixels
 : <a class="el" href="interface_n_i_image_memory_cache.html#a40447c10f9dfc71c04bacb51895ba5e8">NIImageMemoryCache</a>
 </li>
 <li>numberOfRowsPerPageInLauncherView:
-: <a class="el" href="interface_n_i_launcher_view_controller.html#ac269f2109a8170c2db5ae96c4b5b16c3">NILauncherViewController</a>
-, <a class="el" href="protocol_n_i_launcher_data_source-p.html#ace9be595b80fb6d52e4d94a550748f54">&lt;NILauncherDataSource&gt;</a>
+: <a class="el" href="protocol_n_i_launcher_data_source-p.html#ace9be595b80fb6d52e4d94a550748f54">&lt;NILauncherDataSource&gt;</a>
 </li>
 </ul>
 
@@ -340,6 +334,24 @@
 <li>objectWithName:
 : <a class="el" href="interface_n_i_memory_cache.html#afdd7b533b55c5d8753078e207ec0a9d7">NIMemoryCache</a>
 </li>
+<li>operationDidFail:withError:
+: <a class="el" href="protocol_n_i_operation_delegate-p.html#a03cc8cc14147e2ad8f2c3e84f9eb11e2">&lt;NIOperationDelegate&gt;</a>
+</li>
+<li>operationDidFailWithError:
+: <a class="el" href="interface_n_i_operation.html#abcac75178abd6f277fcac4332bad2976">NIOperation</a>
+</li>
+<li>operationDidFinish
+: <a class="el" href="interface_n_i_operation.html#aa348248e667a2f1021f6451cb7cbbc0f">NIOperation</a>
+</li>
+<li>operationDidFinish:
+: <a class="el" href="protocol_n_i_operation_delegate-p.html#ac3bf1a396bbc1c4f78f8569ca5df4455">&lt;NIOperationDelegate&gt;</a>
+</li>
+<li>operationDidStart
+: <a class="el" href="interface_n_i_operation.html#a8c484d9ee1a76ea72b0d3afc0782f8fc">NIOperation</a>
+</li>
+<li>operationDidStart:
+: <a class="el" href="protocol_n_i_operation_delegate-p.html#a67316e75bd418453d0ee0626b86f0480">&lt;NIOperationDelegate&gt;</a>
+</li>
 </ul>
 
 
@@ -348,11 +360,11 @@
 : <a class="el" href="interface_n_i_launcher_view.html#af8767bdd838ce4b0b8959331ccecfb8f">NILauncherView</a>
 , <a class="el" href="class_n_i_launcher_button.html#a19f85e61da3480d9209058b450afaa82">NILauncherButton</a>
 </li>
-<li>pageAndIndexOfButton:page:index:
-: <a class="el" href="interface_n_i_launcher_view.html#a75f1fdd3afb7238daf7b92de550e79c5">NILauncherView</a>
-</li>
 <li>pages
 : <a class="el" href="interface_n_i_launcher_view_controller.html#ae6d4791037f7aec351b814ebc0dfad00">NILauncherViewController</a>
+</li>
+<li>pathToFile
+: <a class="el" href="interface_n_i_read_file_from_disk_operation.html#adbd0fb5979eafbc48a938204e54c38c8">NIReadFileFromDiskOperation</a>
 </li>
 <li>prepareForReuse
 : <a class="el" href="interface_n_i_network_image_view.html#a7cce26c40c058f1c8b7265b971b2abc5">NINetworkImageView</a>
@@ -360,24 +372,16 @@
 </ul>
 
 
-<h3><a class="anchor" id="index_q"></a>- q -</h3><ul>
-<li>queryContentsUsingEncoding:
-: <a class="el" href="class_n_s_string.html#a0a019898f6bbdee69b2b826bb44d8098">NSString</a>
-</li>
-</ul>
-
-
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
 <li>reduceMemoryUsage
 : <a class="el" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2">NIMemoryCache</a>
-, <a class="el" href="interface_n_i_image_memory_cache.html#aae2b67d113009d11330555fdfa96dece">NIImageMemoryCache</a>
 </li>
 <li>reloadData
 : <a class="el" href="interface_n_i_launcher_view.html#a00cd8720501ea27c466fa6e2201d41d4">NILauncherView</a>
 </li>
 <li>removeAllObjects
-: <a class="el" href="interface_n_i_linked_list.html#add49cd92d036f3fa6bce44cbb12287e7">NILinkedList</a>
-, <a class="el" href="interface_n_i_memory_cache.html#a26fda388dffc22aa78dd17905a6fce73">NIMemoryCache</a>
+: <a class="el" href="interface_n_i_memory_cache.html#a26fda388dffc22aa78dd17905a6fce73">NIMemoryCache</a>
+, <a class="el" href="interface_n_i_linked_list.html#add49cd92d036f3fa6bce44cbb12287e7">NILinkedList</a>
 </li>
 <li>removeFirstObject
 : <a class="el" href="interface_n_i_linked_list.html#acf58608c591cd3350d92a51520ec5c56">NILinkedList</a>
@@ -429,24 +433,14 @@
 <li>setPathToNetworkImage:forDisplaySize:contentMode:
 : <a class="el" href="interface_n_i_network_image_view.html#a0fe80155480019a31d7be5d3d8ae07ca">NINetworkImageView</a>
 </li>
-<li>sha1Hash
-: <a class="el" href="class_n_s_string.html#a6579c27a90e18b5e9d531773e2c91cb8">NSString</a>
-, <a class="el" href="class_n_s_data.html#a3531895202d4316334ac39a39a255059">NSData</a>
-</li>
 <li>sizeForDisplay
 : <a class="el" href="interface_n_i_network_image_view.html#acafe40b5cfb6e75848a8f91f3f8b9e51">NINetworkImageView</a>
-</li>
-<li>sourceRectWithImageSize:displaySize:contentMode:
-: <a class="el" href="interface_n_i_h_t_t_p_image_request.html#af2d7c4617f1557520e254f79a9f1b9a5">NIHTTPImageRequest</a>
 </li>
 <li>storeObject:withName:
 : <a class="el" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd">NIMemoryCache</a>
 </li>
 <li>storeObject:withName:expiresAfter:
 : <a class="el" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4">NIMemoryCache</a>
-</li>
-<li>stringByAddingQueryDictionary:
-: <a class="el" href="class_n_s_string.html#a4aa72a6d70054e4e1224d622c340e6bc">NSString</a>
 </li>
 </ul>
 
@@ -458,28 +452,12 @@
 </ul>
 
 
-<h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
-<li>updatePageIndex
-: <a class="el" href="interface_n_i_launcher_view.html#a778566f3be925a44f7863c2df529c021">NILauncherView</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_v"></a>- v -</h3><ul>
-<li>versionStringCompare:
-: <a class="el" href="class_n_s_string.html#a9d95a21b73c2d0dd6b3e21fa759517ca">NSString</a>
-</li>
-</ul>
-
-
 <h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
 <li>willRemoveObject:withName:
 : <a class="el" href="interface_n_i_memory_cache.html#a07a3aa62d34f2cae0c4c76668de9608e">NIMemoryCache</a>
-, <a class="el" href="interface_n_i_image_memory_cache.html#a3fcbee22186d02b51e3c10b6d732bede">NIImageMemoryCache</a>
 </li>
 <li>willSetObject:withName:previousObject:
 : <a class="el" href="interface_n_i_memory_cache.html#ae1aac8c4de4609814f7f24440cca011f">NIMemoryCache</a>
-, <a class="el" href="interface_n_i_image_memory_cache.html#a5ca3796a2cf1d986852fc9ebc2d918ff">NIImageMemoryCache</a>
 </li>
 </ul>
 </div>

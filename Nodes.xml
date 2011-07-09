@@ -14,12 +14,6 @@
         <Path>modules.html</Path>
         <Subnodes>
          <Node>
-          <Name>Adding Nimbus Libraries to Your Project</Name>
-          <Path>group___setup.html</Path>
-          <Subnodes>
-          </Subnodes>
-         </Node>
-         <Node>
           <Name>Nimbus Core</Name>
           <Path>group___nimbus_core.html</Path>
           <Subnodes>
@@ -81,6 +75,18 @@
             <Name>Non-Retaining Collections</Name>
             <Path>group___non-_retaining-_collections.html</Path>
             <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Operations</Name>
+            <Path>group___operations.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>Crafting Operations</Name>
+              <Path>group___crafting-_operations.html</Path>
+              <Subnodes>
+              </Subnodes>
+             </Node>
             </Subnodes>
            </Node>
            <Node>
@@ -149,6 +155,12 @@
             <Subnodes>
             </Subnodes>
            </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>Three20 Migration Guide</Name>
+          <Path>group___three20-_migration-_guide.html</Path>
+          <Subnodes>
           </Subnodes>
          </Node>
          <Node>
@@ -222,6 +234,18 @@
          <Node>
           <Name>&lt;NINetworkImageViewDelegate&gt;</Name>
           <Path>protocol_n_i_network_image_view_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOperation</Name>
+          <Path>interface_n_i_operation.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIOperationDelegate&gt;</Name>
+          <Path>protocol_n_i_operation_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NIReadFileFromDiskOperation</Name>
+          <Path>interface_n_i_read_file_from_disk_operation.html</Path>
          </Node>
          <Node>
           <Name>NSData</Name>
@@ -312,6 +336,20 @@
          <Node>
           <Name>&lt;NINetworkImageViewDelegate&gt;</Name>
           <Path>protocol_n_i_network_image_view_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOperation</Name>
+          <Path>interface_n_i_operation.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>NIReadFileFromDiskOperation</Name>
+            <Path>interface_n_i_read_file_from_disk_operation.html</Path>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>&lt;NIOperationDelegate&gt;</Name>
+          <Path>protocol_n_i_operation_delegate-p.html</Path>
          </Node>
          <Node>
           <Name>NSData</Name>

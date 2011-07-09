@@ -202,7 +202,7 @@
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
     <Path>group___nimbus_core.html</Path>
-    <Abstract>Nimbus&amp;#39; Core library contains many often used utilities.</Abstract>
+    <Abstract>Nimbus&amp;#39; Core defines the foundation upon which all other Nimbus features are built.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -327,6 +327,22 @@
     <Path>group___non-_retaining-_collections.html</Path>
     <Anchor>ga8e9ffb851ec72ac6be2cc895b35470dc</Anchor>
     <Abstract>Creates a mutable set which does not retain references to the values it contains.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Operations</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___operations.html</Path>
+    <Abstract>For common NSOperation implementations.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Crafting-Operations</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___crafting-_operations.html</Path>
+    <Abstract>For crafting operations.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -587,10 +603,10 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>Setup</Name>
+      <Name>Three20-Migration-Guide</Name>
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
-    <Path>group___setup.html</Path>
+    <Path>group___three20-_migration-_guide.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -653,25 +669,14 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>sourceRectWithImageSize:displaySize:contentMode:</Name>
+      <Name>imageFromSource:withContentMode:cropRect:displaySize:scaleOptions:interpolationQuality:</Name>
       <APILanguage>occ</APILanguage>
       <Type>clm</Type>
       <Scope>NIHTTPImageRequest</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_h_t_t_p_image_request.html</Path>
-    <Anchor>af2d7c4617f1557520e254f79a9f1b9a5</Anchor>
-    <Abstract>Calculate the source rect in the source image from which we&amp;#39;ll extract the image before drawing it in...</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>destinationRectWithImageSize:displaySize:contentMode:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>clm</Type>
-      <Scope>NIHTTPImageRequest</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_h_t_t_p_image_request.html</Path>
-    <Anchor>ab2beef0fa37be65210feff5a14696cea</Anchor>
-    <Abstract>Calculate the destination rect in the destination image where we will draw the cropped source image...</Abstract>
+    <Anchor>a42847898d10e49db4666e7c7fb1a30ef</Anchor>
+    <Abstract>Take a source image and resize and crop it according to a set of display properties.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -705,6 +710,17 @@
     <Path>interface_n_i_h_t_t_p_image_request.html</Path>
     <Anchor>a11f4b6cc61cceb33a41423c62e4e735c</Anchor>
     <Abstract>Options for modifying the way images are cropped when scaling.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>interpolationQuality</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIHTTPImageRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_h_t_t_p_image_request.html</Path>
+    <Anchor>a944c80da8f3884d2d1bbab8bf3efeeef</Anchor>
+    <Abstract>The interpolation quality to use when resizing the image.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -749,39 +765,6 @@
     <Path>interface_n_i_image_memory_cache.html</Path>
     <Abstract>An in-memory cache for storing images with caps on the total number of pixels.</Abstract>
     <DeclaredIn>NIInMemoryCache.h</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>reduceMemoryUsage</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIImageMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_image_memory_cache.html</Path>
-    <Anchor>aae2b67d113009d11330555fdfa96dece</Anchor>
-    <Abstract>Remove all expired objects from the cache.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>willSetObject:withName:previousObject:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIImageMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_image_memory_cache.html</Path>
-    <Anchor>a5ca3796a2cf1d986852fc9ebc2d918ff</Anchor>
-    <Abstract>An object is about to be stored in the cache.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>willRemoveObject:withName:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIImageMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_image_memory_cache.html</Path>
-    <Anchor>a3fcbee22186d02b51e3c10b6d732bede</Anchor>
-    <Abstract>An object is about to be removed from the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -859,6 +842,39 @@
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a26fda388dffc22aa78dd17905a6fce73</Anchor>
     <Abstract>Remove all objects from the cache, regardless of expiration dates.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>reduceMemoryUsage</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a8164a276bcc012398b4025d45fe597d2</Anchor>
+    <Abstract>Remove all expired objects from the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>willSetObject:withName:previousObject:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>ae1aac8c4de4609814f7f24440cca011f</Anchor>
+    <Abstract>An object is about to be stored in the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>willRemoveObject:withName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a07a3aa62d34f2cae0c4c76668de9608e</Anchor>
+    <Abstract>An object is about to be removed from the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1115,28 +1131,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>updatePageIndex</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILauncherView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_launcher_view.html</Path>
-    <Anchor>a778566f3be925a44f7863c2df529c021</Anchor>
-    <Abstract>Update the pager&amp;#39;s current page based on the scroll view&amp;#39;s content offset.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>pageAndIndexOfButton:page:index:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILauncherView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_launcher_view.html</Path>
-    <Anchor>a75f1fdd3afb7238daf7b92de550e79c5</Anchor>
-    <Abstract>Find a button in the pages and retrieve its page and index.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>padding</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
@@ -1181,68 +1175,13 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>numberOfRowsPerPageInLauncherView:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILauncherViewController</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_launcher_view_controller.html</Path>
-    <Anchor>ac269f2109a8170c2db5ae96c4b5b16c3</Anchor>
-    <Abstract>Override the default number of rows which is dynamically calculated.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>numberOfColumnsPerPageInLauncherView:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILauncherViewController</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_launcher_view_controller.html</Path>
-    <Anchor>a7670d2b814ecd9bc5c997b87260db835</Anchor>
-    <Abstract>Override the default number of columns which is dynamically calculated.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>numberOfPagesInLauncherView:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILauncherViewController</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_launcher_view_controller.html</Path>
-    <Anchor>aeff929d8f8b796ff61956d24dc393cc9</Anchor>
-    <Abstract>The total number of pages to be shown in the launcher view.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>launcherView:numberOfButtonsInPage:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILauncherViewController</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_launcher_view_controller.html</Path>
-    <Anchor>aade7d0e41b8822171bd8efcd9aa06a5c</Anchor>
-    <Abstract>The total number of buttons in a given page.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>launcherView:buttonForPage:atIndex:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILauncherViewController</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_launcher_view_controller.html</Path>
-    <Anchor>a4b446599258ec63732ba8da1ca435451</Anchor>
-    <Abstract>Retrieve the button to be displayed at a given page and index.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>launcherView:didSelectButton:onPage:atIndex:</Name>
       <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILauncherViewController</Scope>
+      <Type>intfm</Type>
+      <Scope>NILauncherDelegate-p</Scope>
     </TokenIdentifier>
-    <Path>interface_n_i_launcher_view_controller.html</Path>
-    <Anchor>aa34567e04d59adda70eadf99c4e2dc13</Anchor>
+    <Path>protocol_n_i_launcher_delegate-p.html</Path>
+    <Anchor>a5354d4b3a37c6d1909b785cc4be2ac7c</Anchor>
     <Abstract>Called when the user taps and releases a launcher button.</Abstract>
   </Token>
   <Token>
@@ -1255,6 +1194,61 @@
     <Path>protocol_n_i_launcher_data_source-p.html</Path>
     <Anchor>aef59561eb420c3699d5c5b3dbe0cb16d</Anchor>
     <Abstract>Override the default button dimensions 80x80.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>numberOfRowsPerPageInLauncherView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NILauncherDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_data_source-p.html</Path>
+    <Anchor>ace9be595b80fb6d52e4d94a550748f54</Anchor>
+    <Abstract>Override the default number of rows which is dynamically calculated.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>numberOfColumnsPerPageInLauncherView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NILauncherDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_data_source-p.html</Path>
+    <Anchor>acfc94919beaa588ef131d9d7beecf7f9</Anchor>
+    <Abstract>Override the default number of columns which is dynamically calculated.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>numberOfPagesInLauncherView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NILauncherDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_data_source-p.html</Path>
+    <Anchor>a7386f18ee064778a4808a26a3cf06f41</Anchor>
+    <Abstract>The total number of pages to be shown in the launcher view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>launcherView:numberOfButtonsInPage:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NILauncherDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_data_source-p.html</Path>
+    <Anchor>ad330b76b58eebe5dde7b7f7495575e2a</Anchor>
+    <Abstract>The total number of buttons in a given page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>launcherView:buttonForPage:atIndex:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NILauncherDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_launcher_data_source-p.html</Path>
+    <Anchor>a2da5ac9e819e16c7ca4410a0497bf2ee</Anchor>
+    <Abstract>Retrieve the button to be displayed at a given page and index.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1906,6 +1900,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>interpolationQuality</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>adc399e63572dcce6e0984ef12353ec4d</Anchor>
+    <Abstract>The interpolation quality to use when resizing the image.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>imageMemoryCache</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
@@ -2005,6 +2010,215 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NIOperation</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Abstract>A base implementation of an NSOperation that supports traditional delegation and blocks.</Abstract>
+    <DeclaredIn>NIOperations.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidStart</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a8c484d9ee1a76ea72b0d3afc0782f8fc</Anchor>
+    <Abstract>On the main thread, notify the delegate that the operation has begun.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidFinish</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>aa348248e667a2f1021f6451cb7cbbc0f</Anchor>
+    <Abstract>On the main thread, notify the delegate that the operation has finished.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidFailWithError:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>abcac75178abd6f277fcac4332bad2976</Anchor>
+    <Abstract>On the main thread, notify the delegate that the operation has failed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>delegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a8fcfebd75a9559d0a41e9f8bcd01facf</Anchor>
+    <Abstract>The delegate through which changes are notified for this operation.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastError</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>add09c9ae4ab576c27648f4a3ab3b9cea</Anchor>
+    <Abstract>The error last passed to the didFailWithError notification.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOperationDelegate</Name>
+      <APILanguage>c</APILanguage>
+      <Type>intf</Type>
+      <Scope>NIOperationDelegate</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_operation_delegate-p.html</Path>
+    <Abstract>The delegate protocol for an NSOperation.</Abstract>
+    <DeclaredIn>NIOperations.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidStart:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOperationDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_operation_delegate-p.html</Path>
+    <Anchor>a67316e75bd418453d0ee0626b86f0480</Anchor>
+    <Abstract>The operation has started executing.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidFinish:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOperationDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_operation_delegate-p.html</Path>
+    <Anchor>ac3bf1a396bbc1c4f78f8569ca5df4455</Anchor>
+    <Abstract>The operation has completed successfully.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidFail:withError:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOperationDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_operation_delegate-p.html</Path>
+    <Anchor>a03cc8cc14147e2ad8f2c3e84f9eb11e2</Anchor>
+    <Abstract>The operation failed in some way and has completed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIReadFileFromDiskOperation</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIReadFileFromDiskOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_read_file_from_disk_operation.html</Path>
+    <Abstract>An operation that reads a file from disk.</Abstract>
+    <DeclaredIn>NIOperations.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithPathToFile:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIReadFileFromDiskOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_read_file_from_disk_operation.html</Path>
+    <Anchor>a8700010910b9dad07f61cc040b163da7</Anchor>
+    <Abstract>Designated initializer.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidStart</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a8c484d9ee1a76ea72b0d3afc0782f8fc</Anchor>
+    <Abstract>On the main thread, notify the delegate that the operation has begun.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidFinish</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>aa348248e667a2f1021f6451cb7cbbc0f</Anchor>
+    <Abstract>On the main thread, notify the delegate that the operation has finished.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidFailWithError:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>abcac75178abd6f277fcac4332bad2976</Anchor>
+    <Abstract>On the main thread, notify the delegate that the operation has failed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>delegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a8fcfebd75a9559d0a41e9f8bcd01facf</Anchor>
+    <Abstract>The delegate through which changes are notified for this operation.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastError</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>add09c9ae4ab576c27648f4a3ab3b9cea</Anchor>
+    <Abstract>The error last passed to the didFailWithError notification.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pathToFile</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIReadFileFromDiskOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_read_file_from_disk_operation.html</Path>
+    <Anchor>adbd0fb5979eafbc48a938204e54c38c8</Anchor>
+    <Abstract>The path to the file that should be read from disk.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>data</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIReadFileFromDiskOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_read_file_from_disk_operation.html</Path>
+    <Anchor>a754e08489a25c244257bfd6e733f61e2</Anchor>
+    <Abstract>The data that was read from disk.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NSData</Name>
       <APILanguage>c</APILanguage>
       <Type>cl</Type>
@@ -2015,28 +2229,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>md5Hash</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NSData</Scope>
-    </TokenIdentifier>
-    <Path>class_n_s_data.html</Path>
-    <Anchor>aa579e3e3c247cd6daa6c0981ff07d718</Anchor>
-    <Abstract>Calculate an md5 hash using CC_MD5.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>sha1Hash</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NSData</Scope>
-    </TokenIdentifier>
-    <Path>class_n_s_data.html</Path>
-    <Anchor>a3531895202d4316334ac39a39a255059</Anchor>
-    <Abstract>Calculate the SHA1 hash using CC_SHA1.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>NSString</Name>
       <APILanguage>c</APILanguage>
       <Type>cl</Type>
@@ -2044,82 +2236,5 @@
     </TokenIdentifier>
     <Path>class_n_s_string.html</Path>
     <Abstract>For manipulating NSStrings.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>isWhitespaceAndNewlines</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NSString</Scope>
-    </TokenIdentifier>
-    <Path>class_n_s_string.html</Path>
-    <Anchor>a121c44a9dac429d5d5b943b823cd578a</Anchor>
-    <Abstract>Determines if the string contains only whitespace and newlines.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>heightWithFont:constrainedToWidth:lineBreakMode:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NSString</Scope>
-    </TokenIdentifier>
-    <Path>class_n_s_string.html</Path>
-    <Anchor>afb69ae33493b2a463f6fcae7333cec66</Anchor>
-    <Abstract>Calculates the height of this text given the font, max width, and line break mode.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>queryContentsUsingEncoding:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NSString</Scope>
-    </TokenIdentifier>
-    <Path>class_n_s_string.html</Path>
-    <Anchor>a0a019898f6bbdee69b2b826bb44d8098</Anchor>
-    <Abstract>Parses a URL query string into a dictionary where the values are arrays.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>stringByAddingQueryDictionary:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NSString</Scope>
-    </TokenIdentifier>
-    <Path>class_n_s_string.html</Path>
-    <Anchor>a4aa72a6d70054e4e1224d622c340e6bc</Anchor>
-    <Abstract>Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>versionStringCompare:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NSString</Scope>
-    </TokenIdentifier>
-    <Path>class_n_s_string.html</Path>
-    <Anchor>a9d95a21b73c2d0dd6b3e21fa759517ca</Anchor>
-    <Abstract>Compares two strings expressing software versions.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>md5Hash</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NSString</Scope>
-    </TokenIdentifier>
-    <Path>class_n_s_string.html</Path>
-    <Anchor>a5b8e06192865b0f1f7bbe9bf000a17a3</Anchor>
-    <Abstract>Calculate the md5 hash using CC_MD5.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>sha1Hash</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NSString</Scope>
-    </TokenIdentifier>
-    <Path>class_n_s_string.html</Path>
-    <Anchor>a6579c27a90e18b5e9d531773e2c91cb8</Anchor>
-    <Abstract>Calculate the SHA1 hash using CommonCrypto CC_SHA1.</Abstract>
   </Token>
 </Tokens>

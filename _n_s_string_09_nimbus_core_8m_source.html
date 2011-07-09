@@ -32,10 +32,9 @@
 <div id="page">
 <div style="position:relative">
 <div id="top"><!-- do not remove this div! -->
-<a href="http://github.com/jverkoey/nimbus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork Nimbus on GitHub"></a>
 
 <div id="titlearea">
-<a style="float: right;margin-right:100px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
+<a style="float: right;margin-right:20px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -43,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1</span>
+   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -103,7 +102,7 @@
 <a name="l00030"></a>00030 
 <a name="l00031"></a>00031 
 <a name="l00033"></a>00033 
-<a name="l00036"></a><a class="code" href="class_n_s_string.html#a121c44a9dac429d5d5b943b823cd578a">00036</a> - (BOOL)<a class="code" href="class_n_s_string.html#a121c44a9dac429d5d5b943b823cd578a" title="Determines if the string contains only whitespace and newlines.">isWhitespaceAndNewlines</a> {
+<a name="l00036"></a>00036 - (BOOL)isWhitespaceAndNewlines {
 <a name="l00037"></a>00037   NSCharacterSet* whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
 <a name="l00038"></a>00038   <span class="keywordflow">for</span> (NSInteger i = 0; i &lt; <span class="keyword">self</span>.length; ++i) {
 <a name="l00039"></a>00039     unichar c = [<span class="keyword">self</span> characterAtIndex:i];
@@ -116,7 +115,7 @@
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 
 <a name="l00049"></a>00049 
-<a name="l00054"></a><a class="code" href="class_n_s_string.html#afb69ae33493b2a463f6fcae7333cec66">00054</a> - (CGFloat)heightWithFont: (UIFont*)font
+<a name="l00054"></a>00054 - (CGFloat)heightWithFont: (UIFont*)font
 <a name="l00055"></a>00055        constrainedToWidth: (CGFloat)width
 <a name="l00056"></a>00056             lineBreakMode: (UILineBreakMode)lineBreakMode {
 <a name="l00057"></a>00057   <span class="keywordflow">return</span> [<span class="keyword">self</span> sizeWithFont: font
@@ -126,7 +125,7 @@
 <a name="l00061"></a>00061 
 <a name="l00062"></a>00062 
 <a name="l00064"></a>00064 
-<a name="l00074"></a><a class="code" href="class_n_s_string.html#a0a019898f6bbdee69b2b826bb44d8098">00074</a> - (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding {
+<a name="l00074"></a>00074 - (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding {
 <a name="l00075"></a>00075   NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@&quot;&amp;;&quot;];
 <a name="l00076"></a>00076   NSMutableDictionary* pairs = [NSMutableDictionary dictionary];
 <a name="l00077"></a>00077   NSScanner* scanner = [[[NSScanner alloc] initWithString:self] autorelease];
@@ -158,7 +157,7 @@
 <a name="l00103"></a>00103 
 <a name="l00104"></a>00104 
 <a name="l00106"></a>00106 
-<a name="l00109"></a><a class="code" href="class_n_s_string.html#a4aa72a6d70054e4e1224d622c340e6bc">00109</a> - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>*)stringByAddingQueryDictionary:(NSDictionary*)query {
+<a name="l00109"></a>00109 - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>*)stringByAddingQueryDictionary:(NSDictionary*)query {
 <a name="l00110"></a>00110   NSMutableArray* pairs = [NSMutableArray array];
 <a name="l00111"></a>00111   <span class="keywordflow">for</span> (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* key in [query keyEnumerator]) {
 <a name="l00112"></a>00112     <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* value = [query objectForKey:key];
@@ -179,7 +178,7 @@
 <a name="l00127"></a>00127 
 <a name="l00128"></a>00128 
 <a name="l00130"></a>00130 
-<a name="l00166"></a><a class="code" href="class_n_s_string.html#a9d95a21b73c2d0dd6b3e21fa759517ca">00166</a> - (NSComparisonResult)versionStringCompare:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)other {
+<a name="l00166"></a>00166 - (NSComparisonResult)versionStringCompare:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)other {
 <a name="l00167"></a>00167   NSArray *oneComponents = [<span class="keyword">self</span> componentsSeparatedByString:@&quot;a&quot;];
 <a name="l00168"></a>00168   NSArray *twoComponents = [other componentsSeparatedByString:@&quot;a&quot;];
 <a name="l00169"></a>00169 
@@ -215,13 +214,13 @@
 <a name="l00199"></a>00199 
 <a name="l00200"></a>00200 
 <a name="l00202"></a>00202 
-<a name="l00207"></a><a class="code" href="class_n_s_string.html#a5b8e06192865b0f1f7bbe9bf000a17a3">00207</a> - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>*)<a class="code" href="class_n_s_string.html#a5b8e06192865b0f1f7bbe9bf000a17a3" title="Calculate the md5 hash using CC_MD5.">md5Hash</a> {
+<a name="l00207"></a>00207 - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>*)md5Hash {
 <a name="l00208"></a>00208   <span class="keywordflow">return</span> [[<span class="keyword">self</span> dataUsingEncoding:NSUTF8StringEncoding] md5Hash];
 <a name="l00209"></a>00209 }
 <a name="l00210"></a>00210 
 <a name="l00211"></a>00211 
 <a name="l00213"></a>00213 
-<a name="l00218"></a><a class="code" href="class_n_s_string.html#a6579c27a90e18b5e9d531773e2c91cb8">00218</a> - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>*)<a class="code" href="class_n_s_string.html#a6579c27a90e18b5e9d531773e2c91cb8" title="Calculate the SHA1 hash using CommonCrypto CC_SHA1.">sha1Hash</a> {
+<a name="l00218"></a>00218 - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>*)sha1Hash {
 <a name="l00219"></a>00219   <span class="keywordflow">return</span> [[<span class="keyword">self</span> dataUsingEncoding:NSUTF8StringEncoding] sha1Hash];
 <a name="l00220"></a>00220 }
 <a name="l00221"></a>00221 

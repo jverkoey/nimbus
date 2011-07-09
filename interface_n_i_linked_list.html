@@ -32,10 +32,9 @@
 <div id="page">
 <div style="position:relative">
 <div id="top"><!-- do not remove this div! -->
-<a href="http://github.com/jverkoey/nimbus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork Nimbus on GitHub"></a>
 
 <div id="titlearea">
-<a style="float: right;margin-right:100px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
+<a style="float: right;margin-right:20px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -43,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1</span>
+   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -81,53 +80,7 @@
 <div class="title">NILinkedList Class Reference<div class="ingroups"><a class="el" href="group___data-_structures.html">Data Structures</a></div></div>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="NILinkedList" -->
-<p>A singly linked list implementation.  
- <a href="interface_n_i_linked_list.html#details">More...</a></p>
-
-<p><a href="class_n_i_linked_list-members.html">List of all members.</a></p>
-<table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bdb25b42516d25a0910d2b3f5dafd1c"></a><!-- doxytag: member="NILinkedList::init" ref="a8bdb25b42516d25a0910d2b3f5dafd1c" args="()" -->
-(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a8bdb25b42516d25a0910d2b3f5dafd1c">init</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Designated initializer. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NILinkedListLocation *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e">addObject:</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Append an object to the linked list.  <a href="#a424313c1e697b5ba6a136be7a7d8dd3e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#add49cd92d036f3fa6bce44cbb12287e7">removeAllObjects</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all objects from the linked list.  <a href="#add49cd92d036f3fa6bce44cbb12287e7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a8662894eef060157e9f25af267d0242f">removeObject:</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an object from the linked list.  <a href="#a8662894eef060157e9f25af267d0242f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#acf58608c591cd3350d92a51520ec5c56">removeFirstObject</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the first object from the linked list.  <a href="#acf58608c591cd3350d92a51520ec5c56"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#ac6e78ad1db0893fb12421c309f2b6c09">removeLastObject</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the last object from the linked list.  <a href="#ac6e78ad1db0893fb12421c309f2b6c09"></a><br/></td></tr>
-<tr><td colspan="2"><div class="groupHeader">Pseudo-index support</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>The following methods are provided to aid in accessing objects in the linked list in constant time. </p>
-</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NILinkedListLocation *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a2446ec1db7456c41e3b27bf234b3dc62">locationOfObject:</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for an object in the linked list.  <a href="#a2446ec1db7456c41e3b27bf234b3dc62"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a459824a248ba4917d0434643f29fd5f4">objectAtLocation:</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the object at a specific location.  <a href="#a459824a248ba4917d0434643f29fd5f4"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a34f62252fbfc6df20e115e7c4d17031f">removeObjectAtLocation:</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an object at a predetermined location.  <a href="#a34f62252fbfc6df20e115e7c4d17031f"></a><br/></td></tr>
-<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_n_i_linked_list.html">NILinkedList</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea">linkedList</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience method for creating an autoreleased linked list.  <a href="#a33b030b2a3c23c237735d347e7bfbeea"></a><br/></td></tr>
-<tr><td colspan="2"><h2><a name="properties"></a>
-Properties</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2527b210de77fde4dd5b99d94ebaba6"></a><!-- doxytag: member="NILinkedList::firstObject" ref="aa2527b210de77fde4dd5b99d94ebaba6" args="" -->
-id&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_linked_list.html#aa2527b210de77fde4dd5b99d94ebaba6">firstObject</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The first object in the linked list. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c0066b07b3753ba3abab3ef7b49673c"></a><!-- doxytag: member="NILinkedList::lastObject" ref="a7c0066b07b3753ba3abab3ef7b49673c" args="" -->
-id&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_linked_list.html#a7c0066b07b3753ba3abab3ef7b49673c">lastObject</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The last object in the linked list. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91782fdbe13bf28a662784568ffdca43"></a><!-- doxytag: member="NILinkedList::count" ref="a91782fdbe13bf28a662784568ffdca43" args="" -->
-unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_linked_list.html#a91782fdbe13bf28a662784568ffdca43">count</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of objects in the linked list. <br/></td></tr>
-</table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<!-- doxytag: class="NILinkedList" --><hr/><a name="details" id="details"></a><h2>Overview</h2>
 <div class="textblock"><p>A singly linked list implementation. </p>
 <p>This data structure is provided for constant time insertion and deletion of objects in a collection.</p>
 <p>Example: Building a first-in-first-out list of operations.</p>
@@ -170,7 +123,48 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   <span class="comment">// in an external data structure and wanted constant time removal, for example.</span>
 </pre></div> 
 <p>Definition at line <a class="el" href="_n_i_data_structures_8h_source.html#l00091">91</a> of file <a class="el" href="_n_i_data_structures_8h_source.html">NIDataStructures.h</a>.</p>
-</div><hr/><h2>Member Function Documentation</h2>
+</div><table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bdb25b42516d25a0910d2b3f5dafd1c"></a><!-- doxytag: member="NILinkedList::init" ref="a8bdb25b42516d25a0910d2b3f5dafd1c" args="()" -->
+(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a8bdb25b42516d25a0910d2b3f5dafd1c">init</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Designated initializer. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NILinkedListLocation *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e">addObject:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Append an object to the linked list.  <a href="#a424313c1e697b5ba6a136be7a7d8dd3e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#add49cd92d036f3fa6bce44cbb12287e7">removeAllObjects</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all objects from the linked list.  <a href="#add49cd92d036f3fa6bce44cbb12287e7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a8662894eef060157e9f25af267d0242f">removeObject:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an object from the linked list.  <a href="#a8662894eef060157e9f25af267d0242f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#acf58608c591cd3350d92a51520ec5c56">removeFirstObject</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the first object from the linked list.  <a href="#acf58608c591cd3350d92a51520ec5c56"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#ac6e78ad1db0893fb12421c309f2b6c09">removeLastObject</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the last object from the linked list.  <a href="#ac6e78ad1db0893fb12421c309f2b6c09"></a><br/></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Pseudo-index support</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>The following methods are provided to aid in accessing objects in the linked list in constant time. </p>
+</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NILinkedListLocation *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a2446ec1db7456c41e3b27bf234b3dc62">locationOfObject:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Search for an object in the linked list.  <a href="#a2446ec1db7456c41e3b27bf234b3dc62"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a459824a248ba4917d0434643f29fd5f4">objectAtLocation:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the object at a specific location.  <a href="#a459824a248ba4917d0434643f29fd5f4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a34f62252fbfc6df20e115e7c4d17031f">removeObjectAtLocation:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an object at a predetermined location.  <a href="#a34f62252fbfc6df20e115e7c4d17031f"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_n_i_linked_list.html">NILinkedList</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea">linkedList</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience method for creating an autoreleased linked list.  <a href="#a33b030b2a3c23c237735d347e7bfbeea"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="properties"></a>
+Properties</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2527b210de77fde4dd5b99d94ebaba6"></a><!-- doxytag: member="NILinkedList::firstObject" ref="aa2527b210de77fde4dd5b99d94ebaba6" args="" -->
+id&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_linked_list.html#aa2527b210de77fde4dd5b99d94ebaba6">firstObject</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The first object in the linked list. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c0066b07b3753ba3abab3ef7b49673c"></a><!-- doxytag: member="NILinkedList::lastObject" ref="a7c0066b07b3753ba3abab3ef7b49673c" args="" -->
+id&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_linked_list.html#a7c0066b07b3753ba3abab3ef7b49673c">lastObject</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The last object in the linked list. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91782fdbe13bf28a662784568ffdca43"></a><!-- doxytag: member="NILinkedList::count" ref="a91782fdbe13bf28a662784568ffdca43" args="" -->
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_linked_list.html#a91782fdbe13bf28a662784568ffdca43">count</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of objects in the linked list. <br/></td></tr>
+</table>
+<hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a424313c1e697b5ba6a136be7a7d8dd3e"></a><!-- doxytag: member="NILinkedList::addObject:" ref="a424313c1e697b5ba6a136be7a7d8dd3e" args="(id object)" -->
 <div class="memitem">
 <div class="memproto">

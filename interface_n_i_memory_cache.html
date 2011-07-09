@@ -32,10 +32,9 @@
 <div id="page">
 <div style="position:relative">
 <div id="top"><!-- do not remove this div! -->
-<a href="http://github.com/jverkoey/nimbus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork Nimbus on GitHub"></a>
 
 <div id="titlearea">
-<a style="float: right;margin-right:100px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
+<a style="float: right;margin-right:20px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -43,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1</span>
+   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -80,10 +79,12 @@
 <div class="title">NIMemoryCache Class Reference<div class="ingroups"><a class="el" href="group___in-_memory-_caches.html">In-Memory Caches</a></div></div>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="NIMemoryCache" -->
-<p>An in-memory cache for storing objects with expiration support.  
- <a href="interface_n_i_memory_cache.html#details">More...</a></p>
-<div class="dynheader">
+<!-- doxytag: class="NIMemoryCache" --><hr/><a name="details" id="details"></a><h2>Overview</h2>
+<div class="textblock"><p>An in-memory cache for storing objects with expiration support. </p>
+<p>The <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> in-memory object cache allows you to store objects in memory with an expiration date attached. Objects with expiration dates drop out of the cache when they have expired. </p>
+
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8h_source.html#l00038">38</a> of file <a class="el" href="_n_i_in_memory_cache_8h_source.html">NIInMemoryCache.h</a>.</p>
+</div><div class="dynheader">
 Inheritance diagram for NIMemoryCache:</div>
 <div class="dyncontent">
  <div class="center">
@@ -92,8 +93,6 @@ Inheritance diagram for NIMemoryCache:</div>
 <area href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels." alt="NIImageMemoryCache" shape="rect" coords="0,56,140,80"/>
 </map>
  </div></div>
-
-<p><a href="class_n_i_memory_cache-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -127,12 +126,7 @@ Properties</h2></td></tr>
 NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_memory_cache.html#a7d62c34e4297861c986948bd75156d63">count</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of objects stored in this cache. <br/></td></tr>
 </table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>An in-memory cache for storing objects with expiration support. </p>
-<p>The <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> in-memory object cache allows you to store objects in memory with an expiration date attached. Objects with expiration dates drop out of the cache when they have expired. </p>
-
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8h_source.html#l00038">38</a> of file <a class="el" href="_n_i_in_memory_cache_8h_source.html">NIInMemoryCache.h</a>.</p>
-</div><hr/><h2>Member Function Documentation</h2>
+<hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a879b58be06ace929185997a92f7bb35b"></a><!-- doxytag: member="NIMemoryCache::initWithCapacity:" ref="a879b58be06ace929185997a92f7bb35b" args="(NSUInteger capacity)" -->
 <div class="memitem">
 <div class="memproto">
@@ -197,8 +191,6 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 <p>Remove all expired objects from the cache. </p>
 <p>This is meant to be used when a memory warning is received. Subclasses may add additional functionality to this implementation. </p>
-
-<p>Reimplemented in <a class="el" href="interface_n_i_image_memory_cache.html#aae2b67d113009d11330555fdfa96dece">NIImageMemoryCache</a>.</p>
 
 <p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00274">274</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
@@ -371,8 +363,6 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="interface_n_i_image_memory_cache.html#a3fcbee22186d02b51e3c10b6d732bede">NIImageMemoryCache</a>.</p>
-
 <p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00190">190</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
@@ -417,8 +407,6 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </table>
   </dd>
 </dl>
-
-<p>Reimplemented in <a class="el" href="interface_n_i_image_memory_cache.html#a5ca3796a2cf1d986852fc9ebc2d918ff">NIImageMemoryCache</a>.</p>
 
 <p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00184">184</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 

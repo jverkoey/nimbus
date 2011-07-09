@@ -32,10 +32,9 @@
 <div id="page">
 <div style="position:relative">
 <div id="top"><!-- do not remove this div! -->
-<a href="http://github.com/jverkoey/nimbus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork Nimbus on GitHub"></a>
 
 <div id="titlearea">
-<a style="float: right;margin-right:100px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
+<a style="float: right;margin-right:20px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -43,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1</span>
+   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -446,7 +445,7 @@
 <a name="l00392"></a>00392 
 <a name="l00393"></a>00393   <span class="comment">// Our &quot;low memory&quot; cache size will only fit one image. The first image should be the one</span>
 <a name="l00394"></a>00394   <span class="comment">// removed.</span>
-<a name="l00395"></a>00395   [cache <a class="code" href="interface_n_i_image_memory_cache.html#aae2b67d113009d11330555fdfa96dece" title="Remove all expired objects from the cache.">reduceMemoryUsage</a>];
+<a name="l00395"></a>00395   [cache <a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Remove all expired objects from the cache.">reduceMemoryUsage</a>];
 <a name="l00396"></a>00396 
 <a name="l00397"></a>00397   STAssertEquals([cache count], (NSUInteger)1, <span class="stringliteral">@&quot;Cache should have one object.&quot;</span>);
 <a name="l00398"></a>00398   STAssertNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Image 1 should not still be around.&quot;</span>);
@@ -476,7 +475,7 @@
 <a name="l00423"></a>00423   STAssertEquals([cache count], (NSUInteger)2, <span class="stringliteral">@&quot;Cache should have two objects.&quot;</span>);
 <a name="l00424"></a>00424 
 <a name="l00425"></a>00425   <span class="comment">// Our &quot;low memory&quot; cache size will only fit one image.</span>
-<a name="l00426"></a>00426   [cache <a class="code" href="interface_n_i_image_memory_cache.html#aae2b67d113009d11330555fdfa96dece" title="Remove all expired objects from the cache.">reduceMemoryUsage</a>];
+<a name="l00426"></a>00426   [cache <a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Remove all expired objects from the cache.">reduceMemoryUsage</a>];
 <a name="l00427"></a>00427 
 <a name="l00428"></a>00428   STAssertEquals([cache count], (NSUInteger)1, <span class="stringliteral">@&quot;Cache should have one object.&quot;</span>);
 <a name="l00429"></a>00429   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Image 1 should still be around.&quot;</span>);
@@ -508,7 +507,7 @@
 <a name="l00456"></a>00456   STAssertEquals([cache count], (NSUInteger)2, <span class="stringliteral">@&quot;Cache should have two objects.&quot;</span>);
 <a name="l00457"></a>00457 
 <a name="l00458"></a>00458   <span class="comment">// Our &quot;low memory&quot; cache size will only fit one image.</span>
-<a name="l00459"></a>00459   [cache <a class="code" href="interface_n_i_image_memory_cache.html#aae2b67d113009d11330555fdfa96dece" title="Remove all expired objects from the cache.">reduceMemoryUsage</a>];
+<a name="l00459"></a>00459   [cache <a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Remove all expired objects from the cache.">reduceMemoryUsage</a>];
 <a name="l00460"></a>00460 
 <a name="l00461"></a>00461   STAssertEquals([cache count], (NSUInteger)1, <span class="stringliteral">@&quot;Cache should have one object.&quot;</span>);
 <a name="l00462"></a>00462   STAssertNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Image 1 should not still be around.&quot;</span>);

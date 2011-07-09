@@ -32,10 +32,9 @@
 <div id="page">
 <div style="position:relative">
 <div id="top"><!-- do not remove this div! -->
-<a href="http://github.com/jverkoey/nimbus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork Nimbus on GitHub"></a>
 
 <div id="titlearea">
-<a style="float: right;margin-right:100px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
+<a style="float: right;margin-right:20px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -43,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1</span>
+   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -80,10 +79,19 @@
 <div class="title">NIImageMemoryCache Class Reference<div class="ingroups"><a class="el" href="group___in-_memory-_caches.html">In-Memory Caches</a></div></div>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="NIImageMemoryCache" --><!-- doxytag: inherits="NIMemoryCache" -->
-<p>An in-memory cache for storing images with caps on the total number of pixels.  
- <a href="interface_n_i_image_memory_cache.html#details">More...</a></p>
-<div class="dynheader">
+<!-- doxytag: class="NIImageMemoryCache" --><!-- doxytag: inherits="NIMemoryCache" --><hr/><a name="details" id="details"></a><h2>Overview</h2>
+<div class="textblock"><p>An in-memory cache for storing images with caps on the total number of pixels. </p>
+<p>When reduceMemoryUsage is called, the least recently used images are removed from the cache until the numberOfPixels is below maxNumberOfPixelsUnderStress.</p>
+<p>When an image is added to the cache that causes the memory usage to pass the max, the least recently used images are removed from the cache until the numberOfPixels is below maxNumberOfPixels.</p>
+<p>By default the image memory cache has no limit to its pixel count. You must explicitly set this value in your application.</p>
+<dl class="attention"><dt><b>Attention:</b></dt><dd>If the cache is too small to fit the newly added image, then all images will end up being removed including the one being added.</dd></dl>
+<dl class="remark"><dt><b>Remarks:</b></dt><dd>Memory is calculated in total number of pixels.</dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="interface_nimbus.html#adbf106f287bc083a7c50f2e537d39d92" title="Access the global image memory cache.">+ globalImageMemoryCache (Nimbus)</a> </dd>
+<dd>
+<a class="el" href="interface_nimbus.html#aad83668affb6b59c0ac19da3bf16edf8" title="Set the global image memory cache.">+ setGlobalImageMemoryCache: (Nimbus)</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8h_source.html#l00173">173</a> of file <a class="el" href="_n_i_in_memory_cache_8h_source.html">NIInMemoryCache.h</a>.</p>
+</div><div class="dynheader">
 Inheritance diagram for NIImageMemoryCache:</div>
 <div class="dyncontent">
  <div class="center">
@@ -92,17 +100,9 @@ Inheritance diagram for NIImageMemoryCache:</div>
 <area href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support." alt="NIMemoryCache" shape="rect" coords="0,0,140,24"/>
 </map>
  </div></div>
-
-<p><a href="class_n_i_image_memory_cache-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_image_memory_cache.html#aae2b67d113009d11330555fdfa96dece">reduceMemoryUsage</a><code> [implementation]</code></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all expired objects from the cache.  <a href="#aae2b67d113009d11330555fdfa96dece"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_image_memory_cache.html#a5ca3796a2cf1d986852fc9ebc2d918ff">willSetObject:withName:previousObject:</a><code> [implementation]</code></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An object is about to be stored in the cache.  <a href="#a5ca3796a2cf1d986852fc9ebc2d918ff"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_image_memory_cache.html#a3fcbee22186d02b51e3c10b6d732bede">willRemoveObject:withName:</a><code> [implementation]</code></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An object is about to be removed from the cache.  <a href="#a3fcbee22186d02b51e3c10b6d732bede"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39f4b8e789e9034c528deb14f1555d80"></a><!-- doxytag: member="NIImageMemoryCache::init" ref="a39f4b8e789e9034c528deb14f1555d80" args="()" -->
 (id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_memory_cache.html#a39f4b8e789e9034c528deb14f1555d80">init</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the cache with no initial capacity. <br/></td></tr>
@@ -118,6 +118,15 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an object in the cache.  <a href="#a5dab1798d4e3bcd2b686837f63f31d1c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_memory_cache.html#a26fda388dffc22aa78dd17905a6fce73">removeAllObjects</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all objects from the cache, regardless of expiration dates.  <a href="#a26fda388dffc22aa78dd17905a6fce73"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2">reduceMemoryUsage</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all expired objects from the cache.  <a href="#a8164a276bcc012398b4025d45fe597d2"></a><br/></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Subclassing</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>The following methods are provided to aid in subclassing and are not meant to be used externally. </p>
+</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_memory_cache.html#ae1aac8c4de4609814f7f24440cca011f">willSetObject:withName:previousObject:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An object is about to be stored in the cache.  <a href="#ae1aac8c4de4609814f7f24440cca011f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_memory_cache.html#a07a3aa62d34f2cae0c4c76668de9608e">willRemoveObject:withName:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An object is about to be removed from the cache.  <a href="#a07a3aa62d34f2cae0c4c76668de9608e"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40447c10f9dfc71c04bacb51895ba5e8"></a><!-- doxytag: member="NIImageMemoryCache::numberOfPixels" ref="a40447c10f9dfc71c04bacb51895ba5e8" args="" -->
@@ -131,19 +140,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_memory_cache.html#a7d62c34e4297861c986948bd75156d63">count</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of objects stored in this cache. <br/></td></tr>
 </table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>An in-memory cache for storing images with caps on the total number of pixels. </p>
-<p>When reduceMemoryUsage is called, the least recently used images are removed from the cache until the numberOfPixels is below maxNumberOfPixelsUnderStress.</p>
-<p>When an image is added to the cache that causes the memory usage to pass the max, the least recently used images are removed from the cache until the numberOfPixels is below maxNumberOfPixels.</p>
-<p>By default the image memory cache has no limit to its pixel count. You must explicitly set this value in your application.</p>
-<dl class="attention"><dt><b>Attention:</b></dt><dd>If the cache is too small to fit the newly added image, then all images will end up being removed including the one being added.</dd></dl>
-<dl class="remark"><dt><b>Remarks:</b></dt><dd>Memory is calculated in total number of pixels.</dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="interface_nimbus.html#adbf106f287bc083a7c50f2e537d39d92" title="Access the global image memory cache.">+ globalImageMemoryCache (Nimbus)</a> </dd>
-<dd>
-<a class="el" href="interface_nimbus.html#aad83668affb6b59c0ac19da3bf16edf8" title="Set the global image memory cache.">+ setGlobalImageMemoryCache: (Nimbus)</a> </dd></dl>
-
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8h_source.html#l00173">173</a> of file <a class="el" href="_n_i_in_memory_cache_8h_source.html">NIInMemoryCache.h</a>.</p>
-</div><hr/><h2>Member Function Documentation</h2>
+<hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a879b58be06ace929185997a92f7bb35b"></a><!-- doxytag: member="NIImageMemoryCache::initWithCapacity:" ref="a879b58be06ace929185997a92f7bb35b" args="(NSUInteger capacity)" -->
 <div class="memitem">
 <div class="memproto">
@@ -192,7 +189,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 </div>
 </div>
-<a class="anchor" id="aae2b67d113009d11330555fdfa96dece"></a><!-- doxytag: member="NIImageMemoryCache::reduceMemoryUsage" ref="aae2b67d113009d11330555fdfa96dece" args="()" -->
+<a class="anchor" id="a8164a276bcc012398b4025d45fe597d2"></a><!-- doxytag: member="NIImageMemoryCache::reduceMemoryUsage" ref="a8164a276bcc012398b4025d45fe597d2" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -200,7 +197,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
           <td class="memname">- (void) reduceMemoryUsage </td>
           <td></td>
           <td class="paramname"></td>
-          <td><code> [implementation]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -209,9 +206,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>Remove all expired objects from the cache. </p>
 <p>This is meant to be used when a memory warning is received. Subclasses may add additional functionality to this implementation. </p>
 
-<p>Reimplemented from <a class="el" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2">NIMemoryCache</a>.</p>
-
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00369">369</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00274">274</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -348,7 +343,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 </div>
 </div>
-<a class="anchor" id="a3fcbee22186d02b51e3c10b6d732bede"></a><!-- doxytag: member="NIImageMemoryCache::willRemoveObject:withName:" ref="a3fcbee22186d02b51e3c10b6d732bede" args="(id object,[withName] NSString *name)" -->
+<a class="anchor" id="a07a3aa62d34f2cae0c4c76668de9608e"></a><!-- doxytag: member="NIImageMemoryCache::willRemoveObject:withName:" ref="a07a3aa62d34f2cae0c4c76668de9608e" args="(id object,[withName] NSString *name)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -367,7 +362,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
         <tr>
           <td></td>
           <td></td>
-          <td></td><td><code> [implementation]</code></td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
@@ -382,13 +377,11 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Reimplemented from <a class="el" href="interface_n_i_memory_cache.html#a07a3aa62d34f2cae0c4c76668de9608e">NIMemoryCache</a>.</p>
-
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00405">405</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00190">190</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5ca3796a2cf1d986852fc9ebc2d918ff"></a><!-- doxytag: member="NIImageMemoryCache::willSetObject:withName:previousObject:" ref="a5ca3796a2cf1d986852fc9ebc2d918ff" args="(id object,[withName] NSString *name,[previousObject] id previousObject)" -->
+<a class="anchor" id="ae1aac8c4de4609814f7f24440cca011f"></a><!-- doxytag: member="NIImageMemoryCache::willSetObject:withName:previousObject:" ref="ae1aac8c4de4609814f7f24440cca011f" args="(id object,[withName] NSString *name,[previousObject] id previousObject)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -413,7 +406,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
         <tr>
           <td></td>
           <td></td>
-          <td></td><td><code> [implementation]</code></td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
@@ -429,9 +422,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Reimplemented from <a class="el" href="interface_n_i_memory_cache.html#ae1aac8c4de4609814f7f24440cca011f">NIMemoryCache</a>.</p>
-
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00384">384</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00184">184</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>

@@ -32,10 +32,9 @@
 <div id="page">
 <div style="position:relative">
 <div id="top"><!-- do not remove this div! -->
-<a href="http://github.com/jverkoey/nimbus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork Nimbus on GitHub"></a>
 
 <div id="titlearea">
-<a style="float: right;margin-right:100px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
+<a style="float: right;margin-right:20px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -43,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1</span>
+   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -107,9 +106,9 @@
 <a name="l00036"></a>00036 <span class="preprocessor"></span>
 <a name="l00037"></a>00037 <span class="keyword">@interface </span><a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a> (NimbusCore)
 <a name="l00038"></a>00038 
-<a name="l00039"></a>00039 <span class="keyword">@property</span> (nonatomic, readonly) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* <a class="code" href="class_n_s_data.html#aa579e3e3c247cd6daa6c0981ff07d718" title="Calculate an md5 hash using CC_MD5.">md5Hash</a>;
+<a name="l00039"></a>00039 <span class="keyword">@property</span> (nonatomic, readonly) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* md5Hash;
 <a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="keyword">@property</span> (nonatomic, readonly) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* <a class="code" href="class_n_s_data.html#a3531895202d4316334ac39a39a255059" title="Calculate the SHA1 hash using CC_SHA1.">sha1Hash</a>;
+<a name="l00041"></a>00041 <span class="keyword">@property</span> (nonatomic, readonly) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* sha1Hash;
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043 <span class="keyword">@end</span>
 <a name="l00044"></a>00044 
@@ -122,7 +121,7 @@
 <a name="l00051"></a>00051 
 <a name="l00052"></a>00052 <span class="preprocessor">#pragma mark Checking String Contents</span>
 <a name="l00053"></a>00053 <span class="preprocessor"></span>
-<a name="l00054"></a>00054 - (BOOL)<a class="code" href="class_n_s_string.html#a121c44a9dac429d5d5b943b823cd578a" title="Determines if the string contains only whitespace and newlines.">isWhitespaceAndNewlines</a>;
+<a name="l00054"></a>00054 - (BOOL)isWhitespaceAndNewlines;
 <a name="l00055"></a>00055 
 <a name="l00056"></a>00056 
 <a name="l00057"></a>00057 <span class="preprocessor">#pragma mark Display</span>
@@ -146,8 +145,8 @@
 <a name="l00075"></a>00075 
 <a name="l00076"></a>00076 <span class="preprocessor">#pragma mark Hashing</span>
 <a name="l00077"></a>00077 <span class="preprocessor"></span>
-<a name="l00078"></a>00078 <span class="keyword">@property</span> (nonatomic, readonly) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* <a class="code" href="class_n_s_string.html#a5b8e06192865b0f1f7bbe9bf000a17a3" title="Calculate the md5 hash using CC_MD5.">md5Hash</a>;
-<a name="l00079"></a>00079 <span class="keyword">@property</span> (nonatomic, readonly) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* <a class="code" href="class_n_s_string.html#a6579c27a90e18b5e9d531773e2c91cb8" title="Calculate the SHA1 hash using CommonCrypto CC_SHA1.">sha1Hash</a>;
+<a name="l00078"></a>00078 <span class="keyword">@property</span> (nonatomic, readonly) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* md5Hash;
+<a name="l00079"></a>00079 <span class="keyword">@property</span> (nonatomic, readonly) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* sha1Hash;
 <a name="l00080"></a>00080 
 <a name="l00081"></a>00081 
 <a name="l00082"></a>00082 <span class="keyword">@end</span>

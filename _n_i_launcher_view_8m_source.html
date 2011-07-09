@@ -32,10 +32,9 @@
 <div id="page">
 <div style="position:relative">
 <div id="top"><!-- do not remove this div! -->
-<a href="http://github.com/jverkoey/nimbus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork Nimbus on GitHub"></a>
 
 <div id="titlearea">
-<a style="float: right;margin-right:100px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
+<a style="float: right;margin-right:20px;margin-top:20px" href='http://www.pledgie.com/campaigns/15519'><img alt='Click here to support Nimbus development and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/15519.png?skin_name=chrome' border='0' /></a>
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
@@ -43,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1</span>
+   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -230,7 +229,7 @@
 <a name="l00160"></a>00160 
 <a name="l00161"></a>00161 
 <a name="l00163"></a>00163 
-<a name="l00168"></a><a class="code" href="interface_n_i_launcher_view.html#a778566f3be925a44f7863c2df529c021">00168</a> - (void)<a class="code" href="interface_n_i_launcher_view.html#a778566f3be925a44f7863c2df529c021" title="Update the pager&#39;s current page based on the scroll view&#39;s content offset.">updatePageIndex</a> {
+<a name="l00168"></a>00168 - (void)updatePageIndex {
 <a name="l00169"></a>00169   CGFloat pageWidth = _scrollView.frame.size.width;
 <a name="l00170"></a>00170   NSInteger pageIndex = roundf(_scrollView.contentOffset.x / pageWidth);
 <a name="l00171"></a>00171   <span class="keywordflow">if</span> (_pager.currentPage != pageIndex) {
@@ -413,7 +412,7 @@
 <a name="l00360"></a>00360 <span class="preprocessor"></span>
 <a name="l00361"></a>00361 
 <a name="l00363"></a>00363 
-<a name="l00371"></a><a class="code" href="interface_n_i_launcher_view.html#a75f1fdd3afb7238daf7b92de550e79c5">00371</a> - (BOOL)pageAndIndexOfButton: (UIButton *)searchButton
+<a name="l00371"></a>00371 - (BOOL)pageAndIndexOfButton: (UIButton *)searchButton
 <a name="l00372"></a>00372                         page: (NSInteger *)pPage
 <a name="l00373"></a>00373                        index: (NSInteger *)pIndex {
 <a name="l00374"></a>00374   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != pPage);
