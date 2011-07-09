@@ -266,4 +266,22 @@
  *
  * For example, to access Nimbus' equivalent to TTURLCache, you use
  * <code>[Nimbus globalImageMemoryCache]</code>.
+ *
+ * <h3>Network Images with TTImageView</h3>
+ *
+ * Three20's network image view is completely deprecated by Nimbus' NINetworkImageView.
+ * Three20's network image view is an overly complicated TTView object with too many
+ * non-critical features built in. NINetworkImageView, on the other hand, is a simple
+ * UIImageView view.
+ *
+ * NINetworkImageView is incredibly efficient when it comes to using memory. Where TTImageView
+ * would download an image and them simply crop and resize the image whenever the view was
+ * drawn, NINetworkImageView crops and resizes the image on a separate thread and then draws
+ * the image without any scaling required. The image stored in the memory cache is also much
+ * smaller as result. Performance is noticeably improved when many image views are on
+ * the screen at once. A good example would be flipping through a friend list on the iPad with
+ * large, high-resolution images laid out in a grid.
+ *
+ * NINetworkImageView also handles retina displays more intelligently than TTImageView by
+ * creating true scaled UIImages.
  */
