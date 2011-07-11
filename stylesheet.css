@@ -909,3 +909,13 @@ dl {
   font-weight: bold;
   font-size: 11px;
 }
+
+.suffix {
+  font-style: italic;
+  color: #996;
+  font-size: 91.67%;
+}
+
+div.groupHeader {
+  margin-top: 0.6em;
+}

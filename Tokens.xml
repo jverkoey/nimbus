@@ -18,6 +18,16 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NIDASSERT</Name>
+      <APILanguage>c</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>ga13cc3ae82820ea8141bc319bcb76ab7f</Anchor>
+    <Abstract>Assertions that only fire when DEBUG is defined.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NIDPRINT</Name>
       <APILanguage>c</APILanguage>
       <Type>macro</Type>
@@ -38,16 +48,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>NIDASSERT</Name>
-      <APILanguage>c</APILanguage>
-      <Type>macro</Type>
-    </TokenIdentifier>
-    <Path>group___debugging-_tools.html</Path>
-    <Anchor>ga13cc3ae82820ea8141bc319bcb76ab7f</Anchor>
-    <Abstract>Assertions that only fire when DEBUG is defined.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>NIDCONDITIONLOG</Name>
       <APILanguage>c</APILanguage>
       <Type>macro</Type>
@@ -55,16 +55,6 @@
     <Path>group___debugging-_tools.html</Path>
     <Anchor>ga2d769dcaac3915eea5b9860a40bd179a</Anchor>
     <Abstract>Only writes to the log if condition is satisified.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>NIMaxLogLevel</Name>
-      <APILanguage>c</APILanguage>
-      <Type>data</Type>
-    </TokenIdentifier>
-    <Path>group___debugging-_tools.html</Path>
-    <Anchor>ga4772ce14310fecf30ed2bc36dfe7c505</Anchor>
-    <Abstract>The maximum log level to output for Nimbus debug logs.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -95,6 +85,16 @@
     <Path>group___debugging-_tools.html</Path>
     <Anchor>gaf0d5ca9cb5bd5c57cfaee0b9a565bb84</Anchor>
     <Abstract>Only writes to the log if NIMaxLogLevel &amp;gt;= NILOGLEVEL_INFO.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIMaxLogLevel</Name>
+      <APILanguage>c</APILanguage>
+      <Type>data</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>ga4772ce14310fecf30ed2bc36dfe7c505</Anchor>
+    <Abstract>The maximum log level to output for Nimbus debug logs.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -669,17 +669,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>imageFromSource:withContentMode:cropRect:displaySize:scaleOptions:interpolationQuality:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>clm</Type>
-      <Scope>NIHTTPImageRequest</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_h_t_t_p_image_request.html</Path>
-    <Anchor>a42847898d10e49db4666e7c7fb1a30ef</Anchor>
-    <Abstract>Take a source image and resize and crop it according to a set of display properties.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>imageCropRect</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
@@ -735,6 +724,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>imageFromSource:withContentMode:cropRect:displaySize:scaleOptions:interpolationQuality:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIHTTPImageRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_h_t_t_p_image_request.html</Path>
+    <Anchor>a42847898d10e49db4666e7c7fb1a30ef</Anchor>
+    <Abstract>Take a source image and resize and crop it according to a set of display properties.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>imageCroppedAndSizedForDisplay</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
@@ -765,116 +765,6 @@
     <Path>interface_n_i_image_memory_cache.html</Path>
     <Abstract>An in-memory cache for storing images with caps on the total number of pixels.</Abstract>
     <DeclaredIn>NIInMemoryCache.h</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>init</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>a39f4b8e789e9034c528deb14f1555d80</Anchor>
-    <Abstract>Initialize the cache with no initial capacity.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>initWithCapacity:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>a879b58be06ace929185997a92f7bb35b</Anchor>
-    <Abstract>Designated initializer.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>storeObject:withName:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>a7bc119332422cd4d36863a5f1d7751bd</Anchor>
-    <Abstract>Store an object in the cache.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>storeObject:withName:expiresAfter:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>acaa6af8abea20907cf230ce1191e7ad4</Anchor>
-    <Abstract>Store an object in the cache with an expiration date.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>objectWithName:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>afdd7b533b55c5d8753078e207ec0a9d7</Anchor>
-    <Abstract>Retrive an object from the cache.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>removeObjectWithName:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>a5dab1798d4e3bcd2b686837f63f31d1c</Anchor>
-    <Abstract>Remove an object in the cache.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>removeAllObjects</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>a26fda388dffc22aa78dd17905a6fce73</Anchor>
-    <Abstract>Remove all objects from the cache, regardless of expiration dates.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>reduceMemoryUsage</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>a8164a276bcc012398b4025d45fe597d2</Anchor>
-    <Abstract>Remove all expired objects from the cache.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>willSetObject:withName:previousObject:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>ae1aac8c4de4609814f7f24440cca011f</Anchor>
-    <Abstract>An object is about to be stored in the cache.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>willRemoveObject:withName:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>a07a3aa62d34f2cae0c4c76668de9608e</Anchor>
-    <Abstract>An object is about to be removed from the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -919,6 +809,116 @@
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a7d62c34e4297861c986948bd75156d63</Anchor>
     <Abstract>The number of objects stored in this cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>init</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a39f4b8e789e9034c528deb14f1555d80</Anchor>
+    <Abstract>Initialize the cache with zero initial capacity.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithCapacity:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a879b58be06ace929185997a92f7bb35b</Anchor>
+    <Abstract>Designated initializer.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>storeObject:withName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a7bc119332422cd4d36863a5f1d7751bd</Anchor>
+    <Abstract>Store an object in the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>storeObject:withName:expiresAfter:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>acaa6af8abea20907cf230ce1191e7ad4</Anchor>
+    <Abstract>Store an object in the cache with an expiration date.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>removeObjectWithName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a5dab1798d4e3bcd2b686837f63f31d1c</Anchor>
+    <Abstract>Remove an object in the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>removeAllObjects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a26fda388dffc22aa78dd17905a6fce73</Anchor>
+    <Abstract>Remove all objects from the cache, regardless of expiration dates.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectWithName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>afdd7b533b55c5d8753078e207ec0a9d7</Anchor>
+    <Abstract>Retrive an object from the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>reduceMemoryUsage</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a8164a276bcc012398b4025d45fe597d2</Anchor>
+    <Abstract>Remove all expired objects from the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>willSetObject:withName:previousObject:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>ae1aac8c4de4609814f7f24440cca011f</Anchor>
+    <Abstract>An object is about to be stored in the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>willRemoveObject:withName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a07a3aa62d34f2cae0c4c76668de9608e</Anchor>
+    <Abstract>An object is about to be removed from the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1054,28 +1054,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>initWithTitle:imagePath:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILauncherItemDetails</Scope>
-    </TokenIdentifier>
-    <Path>class_n_i_launcher_item_details.html</Path>
-    <Anchor>afe62c8eb25254b87f227547cd0c7457b</Anchor>
-    <Abstract>The designated initializer.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>itemDetailsWithTitle:imagePath:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>clm</Type>
-      <Scope>NILauncherItemDetails</Scope>
-    </TokenIdentifier>
-    <Path>class_n_i_launcher_item_details.html</Path>
-    <Anchor>a0fa897dde241f7de94d531ccc242befa</Anchor>
-    <Abstract>Convenience method for creating a launcher item details object.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>title</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
@@ -1098,6 +1076,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>itemDetailsWithTitle:imagePath:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NILauncherItemDetails</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_launcher_item_details.html</Path>
+    <Anchor>a0fa897dde241f7de94d531ccc242befa</Anchor>
+    <Abstract>Convenience method for creating a launcher item details object.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithTitle:imagePath:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherItemDetails</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_launcher_item_details.html</Path>
+    <Anchor>afe62c8eb25254b87f227547cd0c7457b</Anchor>
+    <Abstract>The designated initializer.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NILauncherView</Name>
       <APILanguage>c</APILanguage>
       <Type>cl</Type>
@@ -1106,28 +1106,6 @@
     <Path>interface_n_i_launcher_view.html</Path>
     <Abstract>A launcher view that simulates iOS&amp;#39; home screen launcher functionality.</Abstract>
     <DeclaredIn>NILauncherView.h</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>reloadData</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILauncherView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_launcher_view.html</Path>
-    <Anchor>a00cd8720501ea27c466fa6e2201d41d4</Anchor>
-    <Abstract>Reload the launcher data.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>setFrame:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILauncherView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_launcher_view.html</Path>
-    <Anchor>a37761e0617ece5ef925ea575647a8620</Anchor>
-    <Abstract>Lays out the subviews for this launcher view.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1164,6 +1142,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>reloadData</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view.html</Path>
+    <Anchor>a00cd8720501ea27c466fa6e2201d41d4</Anchor>
+    <Abstract>Reload the launcher data.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setFrame:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILauncherView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view.html</Path>
+    <Anchor>a37761e0617ece5ef925ea575647a8620</Anchor>
+    <Abstract>Lays out the subviews for this launcher view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NILauncherViewController</Name>
       <APILanguage>c</APILanguage>
       <Type>cl</Type>
@@ -1172,6 +1172,17 @@
     <Path>interface_n_i_launcher_view_controller.html</Path>
     <Abstract>A view controller that displays a launcher view and implements its protocols.</Abstract>
     <DeclaredIn>NILauncherViewController.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pages</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NILauncherViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_launcher_view_controller.html</Path>
+    <Anchor>ae6d4791037f7aec351b814ebc0dfad00</Anchor>
+    <Abstract>An array of arrays of NILauncherItemDetails.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1263,17 +1274,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>pages</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NILauncherViewController</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_launcher_view_controller.html</Path>
-    <Anchor>ae6d4791037f7aec351b814ebc0dfad00</Anchor>
-    <Abstract>An array of arrays of NILauncherItemDetails.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>NILinkedList</Name>
       <APILanguage>c</APILanguage>
       <Type>cl</Type>
@@ -1285,6 +1285,39 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>firstObject</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>aa2527b210de77fde4dd5b99d94ebaba6</Anchor>
+    <Abstract>The first object in the linked list.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastObject</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>a7c0066b07b3753ba3abab3ef7b49673c</Anchor>
+    <Abstract>The last object in the linked list.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>count</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>a91782fdbe13bf28a662784568ffdca43</Anchor>
+    <Abstract>The number of objects in the linked list.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>init</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -1293,6 +1326,17 @@
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>a8bdb25b42516d25a0910d2b3f5dafd1c</Anchor>
     <Abstract>Designated initializer.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>linkedList</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>a33b030b2a3c23c237735d347e7bfbeea</Anchor>
+    <Abstract>Convenience method for creating an autoreleased linked list.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1384,50 +1428,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>linkedList</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>clm</Type>
-      <Scope>NILinkedList</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_linked_list.html</Path>
-    <Anchor>a33b030b2a3c23c237735d347e7bfbeea</Anchor>
-    <Abstract>Convenience method for creating an autoreleased linked list.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>firstObject</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NILinkedList</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_linked_list.html</Path>
-    <Anchor>aa2527b210de77fde4dd5b99d94ebaba6</Anchor>
-    <Abstract>The first object in the linked list.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>lastObject</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NILinkedList</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_linked_list.html</Path>
-    <Anchor>a7c0066b07b3753ba3abab3ef7b49673c</Anchor>
-    <Abstract>The last object in the linked list.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>count</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NILinkedList</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_linked_list.html</Path>
-    <Anchor>a91782fdbe13bf28a662784568ffdca43</Anchor>
-    <Abstract>The number of objects in the linked list.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>Nimbus</Name>
       <APILanguage>c</APILanguage>
       <Type>cl</Type>
@@ -1439,46 +1439,46 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>globalImageMemoryCache</Name>
+      <Name>imageMemoryCache</Name>
       <APILanguage>occ</APILanguage>
       <Type>clm</Type>
       <Scope>Nimbus</Scope>
     </TokenIdentifier>
     <Path>interface_nimbus.html</Path>
-    <Anchor>adbf106f287bc083a7c50f2e537d39d92</Anchor>
+    <Anchor>a3c0417e0cf4a64e6d8004346fc744ce3</Anchor>
     <Abstract>Access the global image memory cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>globalNetworkOperationQueue</Name>
+      <Name>networkOperationQueue</Name>
       <APILanguage>occ</APILanguage>
       <Type>clm</Type>
       <Scope>Nimbus</Scope>
     </TokenIdentifier>
     <Path>interface_nimbus.html</Path>
-    <Anchor>a7753d4cb8a77b2b4885c36697f34f2e9</Anchor>
+    <Anchor>a1b76dec78c8c30a174aaea7a6f859b8e</Anchor>
     <Abstract>Access the global network operation queue.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>setGlobalImageMemoryCache:</Name>
+      <Name>setImageMemoryCache:</Name>
       <APILanguage>occ</APILanguage>
       <Type>clm</Type>
       <Scope>Nimbus</Scope>
     </TokenIdentifier>
     <Path>interface_nimbus.html</Path>
-    <Anchor>aad83668affb6b59c0ac19da3bf16edf8</Anchor>
+    <Anchor>a342e309249ac5309fb6feb238da6630e</Anchor>
     <Abstract>Set the global image memory cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>setGlobalNetworkOperationQueue:</Name>
+      <Name>setNetworkOperationQueue:</Name>
       <APILanguage>occ</APILanguage>
       <Type>clm</Type>
       <Scope>Nimbus</Scope>
     </TokenIdentifier>
     <Path>interface_nimbus.html</Path>
-    <Anchor>a02c14512b76d2fbcdb3912de5dde87c7</Anchor>
+    <Anchor>ae74df4b59708c91c251273369a3c4caf</Anchor>
     <Abstract>Set the global network operation queue.</Abstract>
   </Token>
   <Token>
@@ -1494,6 +1494,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>count</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a7d62c34e4297861c986948bd75156d63</Anchor>
+    <Abstract>The number of objects stored in this cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>init</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -1501,7 +1512,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a39f4b8e789e9034c528deb14f1555d80</Anchor>
-    <Abstract>Initialize the cache with no initial capacity.</Abstract>
+    <Abstract>Initialize the cache with zero initial capacity.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1538,17 +1549,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>objectWithName:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>afdd7b533b55c5d8753078e207ec0a9d7</Anchor>
-    <Abstract>Retrive an object from the cache.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>removeObjectWithName:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -1568,6 +1568,17 @@
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a26fda388dffc22aa78dd17905a6fce73</Anchor>
     <Abstract>Remove all objects from the cache, regardless of expiration dates.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectWithName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>afdd7b533b55c5d8753078e207ec0a9d7</Anchor>
+    <Abstract>Retrive an object from the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1604,17 +1615,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>count</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>a7d62c34e4297861c986948bd75156d63</Anchor>
-    <Abstract>The number of objects stored in this cache.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>NIMemoryCacheInfo</Name>
       <APILanguage>c</APILanguage>
       <Type>cl</Type>
@@ -1622,17 +1622,6 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache_info.html</Path>
     <Abstract>A single cache item&amp;#39;s information.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>hasExpired</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIMemoryCacheInfo</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache_info.html</Path>
-    <Anchor>ae854ab244f76213c32704ead39bd3e2a</Anchor>
-    <Abstract>Determine whether this cache entry has past its expiration date.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1691,6 +1680,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>hasExpired</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCacheInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache_info.html</Path>
+    <Anchor>ae854ab244f76213c32704ead39bd3e2a</Anchor>
+    <Abstract>Determine whether this cache entry has past its expiration date.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NINetworkImageView</Name>
       <APILanguage>c</APILanguage>
       <Type>cl</Type>
@@ -1699,6 +1699,61 @@
     <Path>interface_n_i_network_image_view.html</Path>
     <Abstract>A network-enabled image view that consumes minimal amounts of memory.</Abstract>
     <DeclaredIn>NINetworkImageView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initialImage</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>ad7c89b7d5586d247d9a01c953000ad6f</Anchor>
+    <Abstract>The image being displayed while the network image is being fetched.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>memoryCachePrefix</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a352ecee4de738eff827447d637fd2c5a</Anchor>
+    <Abstract>A prefix for the memory cache key.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastPathToNetworkImage</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a576b2950355e43205c35700091d74dc3</Anchor>
+    <Abstract>The last path assigned to the image view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>isLoading</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>aa3207a010aa79b94a894e60105f4b7a6</Anchor>
+    <Abstract>Whether there is an active request for this image view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>delegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a7e60fd5a2b8c3fc57c92f24fc7dca8d3</Anchor>
+    <Abstract>Delegate for state change notifications.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1721,6 +1776,94 @@
     <Path>interface_n_i_network_image_view.html</Path>
     <Anchor>a7cce26c40c058f1c8b7265b971b2abc5</Anchor>
     <Abstract>Kill any network requests and replace the displayed image with the initial image.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>sizeForDisplay</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>acafe40b5cfb6e75848a8f91f3f8b9e51</Anchor>
+    <Abstract>A flag for enabling the resizing of images for display.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>scaleOptions</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a7faef9d6a8e6e3a5886cf88c0262d4e1</Anchor>
+    <Abstract>Options for modifying the way images are cropped when scaling.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>interpolationQuality</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>adc399e63572dcce6e0984ef12353ec4d</Anchor>
+    <Abstract>The interpolation quality to use when resizing the image.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>imageMemoryCache</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a8f43300cafa80378ee333a5cb8551b22</Anchor>
+    <Abstract>The image memory cache used by this image view to store the image in memory.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>imageDiskCache</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>af331d0f41ba2509b2edfcc437aadc3a6</Anchor>
+    <Abstract>The image disk cache used by this image view to store the image on disk.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>networkOperationQueue</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a690fae40ceeaa8304dea5177b9d48e2a</Anchor>
+    <Abstract>The network operation queue used by this image view to load the image from network and disk...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>maxAge</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a7b9356e33ed3ad110b0a08290b4f1a27</Anchor>
+    <Abstract>The maximum amount of time that an image will stay in memory after the request completes.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>diskCacheLifetime</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a0432bac81c750d0e9fa0d23329eed93f</Anchor>
+    <Abstract>The lifetime for an image stored in the disk cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1823,149 +1966,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>initialImage</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>ad7c89b7d5586d247d9a01c953000ad6f</Anchor>
-    <Abstract>The image being displayed while the network image is being fetched.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>memoryCachePrefix</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a352ecee4de738eff827447d637fd2c5a</Anchor>
-    <Abstract>A prefix for the memory cache key.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>lastPathToNetworkImage</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a576b2950355e43205c35700091d74dc3</Anchor>
-    <Abstract>The last path assigned to the image view.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>isLoading</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>aa3207a010aa79b94a894e60105f4b7a6</Anchor>
-    <Abstract>Whether there is an active request for this image view.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>delegate</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a7e60fd5a2b8c3fc57c92f24fc7dca8d3</Anchor>
-    <Abstract>Delegate for state change notifications.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>sizeForDisplay</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>acafe40b5cfb6e75848a8f91f3f8b9e51</Anchor>
-    <Abstract>A flag for enabling the resizing of images for display.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>scaleOptions</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a7faef9d6a8e6e3a5886cf88c0262d4e1</Anchor>
-    <Abstract>Options for modifying the way images are cropped when scaling.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>interpolationQuality</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>adc399e63572dcce6e0984ef12353ec4d</Anchor>
-    <Abstract>The interpolation quality to use when resizing the image.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>imageMemoryCache</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a8f43300cafa80378ee333a5cb8551b22</Anchor>
-    <Abstract>The image memory cache used by this image view to store the image in memory.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>imageDiskCache</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>af331d0f41ba2509b2edfcc437aadc3a6</Anchor>
-    <Abstract>The image disk cache used by this image view to store the image on disk.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>networkOperationQueue</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a690fae40ceeaa8304dea5177b9d48e2a</Anchor>
-    <Abstract>The network operation queue used by this image view to load the image from network and disk...</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>maxAge</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a7b9356e33ed3ad110b0a08290b4f1a27</Anchor>
-    <Abstract>The maximum amount of time that an image will stay in memory after the request completes.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>diskCacheLifetime</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a0432bac81c750d0e9fa0d23329eed93f</Anchor>
-    <Abstract>The lifetime for an image stored in the disk cache.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>NINetworkImageViewDelegate</Name>
       <APILanguage>c</APILanguage>
       <Type>intf</Type>
@@ -2021,6 +2021,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>delegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a8fcfebd75a9559d0a41e9f8bcd01facf</Anchor>
+    <Abstract>The delegate through which changes are notified for this operation.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastError</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>add09c9ae4ab576c27648f4a3ab3b9cea</Anchor>
+    <Abstract>The error last passed to the didFailWithError notification.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>operationDidStart</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -2051,28 +2073,6 @@
     <Path>interface_n_i_operation.html</Path>
     <Anchor>abcac75178abd6f277fcac4332bad2976</Anchor>
     <Abstract>On the main thread, notify the delegate that the operation has failed.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>delegate</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIOperation</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_operation.html</Path>
-    <Anchor>a8fcfebd75a9559d0a41e9f8bcd01facf</Anchor>
-    <Abstract>The delegate through which changes are notified for this operation.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>lastError</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIOperation</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_operation.html</Path>
-    <Anchor>add09c9ae4ab576c27648f4a3ab3b9cea</Anchor>
-    <Abstract>The error last passed to the didFailWithError notification.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2131,50 +2131,6 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>initWithPathToFile:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIReadFileFromDiskOperation</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_read_file_from_disk_operation.html</Path>
-    <Anchor>a8700010910b9dad07f61cc040b163da7</Anchor>
-    <Abstract>Designated initializer.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>operationDidStart</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIOperation</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_operation.html</Path>
-    <Anchor>a8c484d9ee1a76ea72b0d3afc0782f8fc</Anchor>
-    <Abstract>On the main thread, notify the delegate that the operation has begun.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>operationDidFinish</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIOperation</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_operation.html</Path>
-    <Anchor>aa348248e667a2f1021f6451cb7cbbc0f</Anchor>
-    <Abstract>On the main thread, notify the delegate that the operation has finished.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>operationDidFailWithError:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIOperation</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_operation.html</Path>
-    <Anchor>abcac75178abd6f277fcac4332bad2976</Anchor>
-    <Abstract>On the main thread, notify the delegate that the operation has failed.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>delegate</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
@@ -2216,6 +2172,50 @@
     <Path>interface_n_i_read_file_from_disk_operation.html</Path>
     <Anchor>a754e08489a25c244257bfd6e733f61e2</Anchor>
     <Abstract>The data that was read from disk.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithPathToFile:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIReadFileFromDiskOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_read_file_from_disk_operation.html</Path>
+    <Anchor>a8700010910b9dad07f61cc040b163da7</Anchor>
+    <Abstract>Designated initializer.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidStart</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a8c484d9ee1a76ea72b0d3afc0782f8fc</Anchor>
+    <Abstract>On the main thread, notify the delegate that the operation has begun.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidFinish</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>aa348248e667a2f1021f6451cb7cbbc0f</Anchor>
+    <Abstract>On the main thread, notify the delegate that the operation has finished.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidFailWithError:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>abcac75178abd6f277fcac4332bad2976</Anchor>
+    <Abstract>On the main thread, notify the delegate that the operation has failed.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
