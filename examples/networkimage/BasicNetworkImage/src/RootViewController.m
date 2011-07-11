@@ -225,7 +225,7 @@ static const CGFloat kImageSpacing = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)networkImageView:(NINetworkImageView *)imageView didLoadImage:(UIImage *)image {
   _memoryUsageLabel.text = [NSString stringWithFormat:@"In-memory cache size: %d pixels",
-                            [[Nimbus globalImageMemoryCache] numberOfPixels]];
+                            [[Nimbus imageMemoryCache] numberOfPixels]];
   [_memoryUsageLabel sizeToFit];
   _memoryUsageLabel.frame = CGRectMake(kFramePadding, kFramePadding,
                                        _memoryUsageLabel.frame.size.width,

@@ -106,8 +106,8 @@
 
     self.diskCacheLifetime = NINetworkImageViewDiskCacheLifetimePermanent;
 
-    self.imageMemoryCache = [Nimbus globalImageMemoryCache];
-    self.networkOperationQueue = [Nimbus globalNetworkOperationQueue];
+    self.imageMemoryCache = [Nimbus imageMemoryCache];
+    self.networkOperationQueue = [Nimbus networkOperationQueue];
     self.imageDiskCache = [ASIDownloadCache sharedCache];
 
     // Retain the initial image.
@@ -480,7 +480,7 @@
   // Don't allow a nil network operation queue.
   NIDASSERT(nil != queue);
   if (nil == queue) {
-    queue = [Nimbus globalNetworkOperationQueue];
+    queue = [Nimbus networkOperationQueue];
   }
   if (queue != _networkOperationQueue) {
     [_networkOperationQueue release];

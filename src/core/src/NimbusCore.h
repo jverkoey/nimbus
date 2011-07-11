@@ -35,11 +35,12 @@
  * means that an incredible amount of care must be placed into deciding what gets added to the
  * Core.
  *
- * <h3>Moving a Feature out of the Core</h3>
+ * <h2>How Features are Removed from the Core</h2>
  *
  * It is inevitable that certain aspects of the Core will grow and develop over time. If a
- * feature gets to the point where the value of being a separate library surpasses the overhead
- * of managing such a library, then the feature should be considered for removal from the Core.
+ * feature gets to the point where the value of being a separate library is greater than the
+ * overhead of managing such a library, then the feature should be considered for removal
+ * from the Core.
  *
  * Great care must be taken to ensure that Nimbus doesn't become a framework composed of
  * hundreds of miniscule libraries.

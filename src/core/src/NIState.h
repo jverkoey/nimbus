@@ -50,7 +50,7 @@
  *      @remarks The default image cache has no upper limit on its memory consumption. It is
  *               up to you to specify an upper limit in your application.
  */
-+ (NIImageMemoryCache *)globalImageMemoryCache;
++ (NIImageMemoryCache *)imageMemoryCache;
 
 /**
  * Access the global network operation queue.
@@ -63,21 +63,21 @@
  * If an operation queue hasn't been assigned via Nimbus::setGlobalNetworkOperationQueue: then
  * one will be created automatically with the default iOS settings.
  */
-+ (NSOperationQueue *)globalNetworkOperationQueue;
++ (NSOperationQueue *)networkOperationQueue;
 
 /**
  * Set the global image memory cache.
  *
  * The cache will be retained and the old cache released.
  */
-+ (void)setGlobalImageMemoryCache:(NIImageMemoryCache *)imageMemoryCache;
++ (void)setImageMemoryCache:(NIImageMemoryCache *)imageMemoryCache;
 
 /**
  * Set the global network operation queue.
  *
  * The queue will be retained and the old queue released.
  */
-+ (void)setGlobalNetworkOperationQueue:(NSOperationQueue *)queue;
++ (void)setNetworkOperationQueue:(NSOperationQueue *)queue;
 
 @end
 

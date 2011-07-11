@@ -60,7 +60,7 @@
   //                relatively instantly from the disk.
   //                When the max is unset, all of the images take a bit longer to load.
 
-  [[Nimbus globalNetworkOperationQueue] setMaxConcurrentOperationCount:1];
+  [[Nimbus networkOperationQueue] setMaxConcurrentOperationCount:1];
 
 
   // Try experimenting with this value to see how the total number of pixels is affected.
