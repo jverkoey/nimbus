@@ -21,22 +21,27 @@
 /**
  * For inspecting code and writing to logs in debug builds.
  *
- * @ingroup NimbusCore
- * @defgroup Debugging-Tools Debugging Tools
- * @{
- *
- * Provided in this header are a set of debugging methods and macros. Nearly all of the methods
- * found within this header will only do anything interesting if the DEBUG macro is defined.
+ * Nearly all of the following macros will only do anything if the DEBUG macro is defined.
  * The recommended way to enable the debug tools is to specify DEBUG in the "Preprocessor Macros"
  * field in your application's Debug target settings. Be careful not to set this for your release
- * or app store builds.
+ * or app store builds because this will enable code that may cause your app to be rejected.
+ *
+ *
+ * <h2>Debug Assertions</h2>
+ *
+ * Debug assertions are a lightweight "sanity check". They won't crash the app, nor will they
+ * be included in release builds. They <i>will</i> halt the app's execution when debugging so
+ * that you can inspect the values that caused the failure.
  *
  * @code
  *  NIDASSERT(statement);
  * @endcode
  *
- * If statement is false, the statement will be written to the log and if you are running in
+ * If <i>statement</i> is false, the statement will be written to the log and if you are running in
  * the simulator with a debugger attached, the app will break on the assertion line.
+ *
+ *
+ * <h2>Debug Logging</h2>
  *
  * @code
  *  NIDPRINT(@"formatted log text %d", param1);
@@ -64,7 +69,46 @@
  * NID* method's log level. See below for log levels.
  *
  * The default maximum log level is NILOGLEVEL_WARNING.
+ *
+ * <h3>Turning up the log level while the app is running</h3>
+ *
+ * NIMaxLogLevel is declared a non-const extern so that you can modify it at runtime. This can
+ * be helpful for turning logging on while the application is running.
+ *
+ * @code
+ *  NIMaxLogLevel = NILOGLEVEL_INFO;
+ * @endcode
+ *
+ *      @ingroup NimbusCore
+ *      @defgroup Debugging-Tools Debugging Tools
+ *      @{
  */
+
+#ifdef DEBUG
+
+/**
+ * Assertions that only fire when DEBUG is defined.
+ *
+ * An assertion is like a programmatic breakpoint. Use it for sanity checks to save headache while
+ * writing your code.
+ */
+#import <TargetConditionals.h>
+
+#if TARGET_IPHONE_SIMULATOR
+int NIIsInDebugger();
+// We leave the __asm__ in this macro so that when a break occurs, we don't have to step out of
+// a "breakInDebugger" function.
+#define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@"NIDASSERT failed: %s", #xx); \
+if (NIIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
+} ((void)0)
+#else
+#define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@"NIDASSERT failed: %s", #xx); } } ((void)0)
+#endif // #if TARGET_IPHONE_SIMULATOR
+
+#else
+#define NIDASSERT(xx) ((void)0)
+#endif // #ifdef DEBUG
+
 
 #define NILOGLEVEL_INFO     5
 #define NILOGLEVEL_WARNING  3
@@ -73,7 +117,7 @@
 /**
  * The maximum log level to output for Nimbus debug logs.
  *
- * This value may be changed at run-time if you so desire.
+ * This value may be changed at run-time.
  *
  * The default value is NILOGLEVEL_WARNING.
  */
@@ -96,31 +140,6 @@ extern NSInteger NIMaxLogLevel;
  */
 #define NIDPRINTMETHODNAME() NIDPRINT(@"%s", __PRETTY_FUNCTION__)
 
-/**
- * Assertions that only fire when DEBUG is defined.
- *
- * An assertion is like a programmatic breakpoint. Use it for sanity checks to save headache while
- * writing your code.
- */
-#ifdef DEBUG
-
-#import <TargetConditionals.h>
-
-#if TARGET_IPHONE_SIMULATOR
-int NIIsInDebugger();
-// We leave the __asm__ in this macro so that when a break occurs, we don't have to step out of
-// a "breakInDebugger" function.
-#define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@"NIDASSERT failed: %s", #xx); \
-if (NIIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
-} ((void)0)
-#else
-#define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@"NIDASSERT failed: %s", #xx); } } ((void)0)
-#endif // #if TARGET_IPHONE_SIMULATOR
-
-#else
-#define NIDASSERT(xx) ((void)0)
-#endif // #ifdef DEBUG
-
 #ifdef DEBUG
 /**
  * Only writes to the log if condition is satisified.
@@ -134,13 +153,6 @@ if (NIIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
 #define NIDCONDITIONLOG(condition, xx, ...) ((void)0)
 #endif // #ifdef DEBUG
 
-
-#pragma mark Level-Based Loggers
-
-/**
- * @name Level-Based Loggers
- * @{
- */
 
 /**
  * Only writes to the log if NIMaxLogLevel >= NILOGLEVEL_ERROR.
@@ -157,8 +169,6 @@ xx, ##__VA_ARGS__)
  * Only writes to the log if NIMaxLogLevel >= NILOGLEVEL_INFO.
  */
 #define NIDINFO(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_INFO <= NIMaxLogLevel), xx, ##__VA_ARGS__)
-
-/**@}*/// End of Level-Based Loggers
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

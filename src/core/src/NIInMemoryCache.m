@@ -97,6 +97,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+
   NI_RELEASE_SAFELY(_cacheMap);
   NI_RELEASE_SAFELY(_lruCacheObjects);
 
@@ -115,6 +117,12 @@
   if ((self = [super init])) {
     _cacheMap = [[NSMutableDictionary alloc] initWithCapacity:capacity];
     _lruCacheObjects = [[NILinkedList alloc] init];
+
+    // Automatically reduce memory usage when we get a memory warning.
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(reduceMemoryUsage)
+                                                 name: UIApplicationDidReceiveMemoryWarningNotification
+                                               object: nil];
   }
   return self;
 }

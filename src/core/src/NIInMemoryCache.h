@@ -19,12 +19,12 @@
 /**
  * For storing and accessing objects in memory.
  *
- * @ingroup NimbusCore
- * @defgroup In-Memory-Caches In-Memory Caches
- * @{
- *
  * The base class, NIMemoryCache, is a generic object store that may be used for anything that
  * requires support for expiration.
+ *
+ *      @ingroup NimbusCore
+ *      @defgroup In-Memory-Caches In-Memory Caches
+ *      @{
  */
 
 @class NILinkedList;
@@ -45,7 +45,13 @@
 }
 
 /**
- * Initialize the cache with no initial capacity.
+ * @name Creating an In-Memory Cache
+ * @{
+ */
+#pragma mark Creating an In-Memory Cache
+
+/**
+ * Initialize the cache with zero initial capacity.
  */
 - (id)init;
 
@@ -56,6 +62,15 @@
  * - at least up up to a certain point - as the cache grows.
  */
 - (id)initWithCapacity:(NSUInteger)capacity;
+
+/**@}*/// End of Creating an In-Memory Cache
+
+
+/**
+ * @name Storing Objects in the Cache
+ * @{
+ */
+#pragma mark Storing Objects in the Cache
 
 /**
  * Store an object in the cache.
@@ -81,13 +96,14 @@
  */
 - (void)storeObject:(id)object withName:(NSString *)name expiresAfter:(NSDate *)expirationDate;
 
+/**@}*/// End of Storing Objects in the Cache
+
+
 /**
- * Retrive an object from the cache.
- *
- * If the object has expired then the object will be removed from the cache and nil will be
- * returned.
+ * @name Removing Objects from the Cache
+ * @{
  */
-- (id)objectWithName:(NSString *)name;
+#pragma mark Removing Objects from the Cache
 
 /**
  * Remove an object in the cache.
@@ -103,18 +119,57 @@
  */
 - (void)removeAllObjects;
 
+/**@}*/// End of Storing Objects in the Cache
+
+
+/**
+ * @name Accessing Objects in the Cache
+ * @{
+ */
+#pragma mark Accessing Objects in the Cache
+
+/**
+ * Retrive an object from the cache.
+ *
+ * If the object has expired then the object will be removed from the cache and nil will be
+ * returned.
+ */
+- (id)objectWithName:(NSString *)name;
+
+/**@}*/// End of Accessing Objects in the Cache
+
+
+/**
+ * @name Reducing Memory Usage Explicitly
+ * @{
+ */
+#pragma mark Reducing Memory Usage Explicitly
+
 /**
  * Remove all expired objects from the cache.
  *
- * This is meant to be used when a memory warning is received. Subclasses may add additional
- * functionality to this implementation.
+ * Subclasses may add additional functionality to this implementation and should generally
+ * call super.
+ *
+ * This will be called when UIApplicationDidReceiveMemoryWarningNotification is posted.
  */
 - (void)reduceMemoryUsage;
+
+/**@}*/// End of Reducing Memory Usage Explicitly
+
+
+/**
+ * @name Querying an In-Memory Cache
+ * @{
+ */
+#pragma mark Querying an In-Memory Cache
 
 /**
  * The number of objects stored in this cache.
  */
 @property (nonatomic, readonly) NSUInteger count;
+
+/**@}*/// End of Querying an In-Memory Cache
 
 
 /**
@@ -165,10 +220,8 @@
  *      @attention If the cache is too small to fit the newly added image, then all images
  *                 will end up being removed including the one being added.
  *
- *      @remark Memory is calculated in total number of pixels.
- *
- *      @see Nimbus::globalImageMemoryCache
- *      @see Nimbus::setGlobalImageMemoryCache:
+ *      @see Nimbus::imageMemoryCache
+ *      @see Nimbus::setImageMemoryCache:
  */
 @interface NIImageMemoryCache : NIMemoryCache {
 @private
@@ -178,10 +231,26 @@
   NSUInteger _maxNumberOfPixelsUnderStress;
 }
 
+
+/**
+ * @name Querying an In-Memory Image Cache
+ * @{
+ */
+#pragma mark Querying an In-Memory Image Cache
+
 /**
  * The total number of pixels being stored in the cache.
  */
 @property (nonatomic, readonly, assign) NSUInteger numberOfPixels;
+
+/**@}*/// End of Querying an In-Memory Image Cache
+
+
+/**
+ * @name Setting the Maximum Number of Pixels
+ * @{
+ */
+#pragma mark Setting the Maximum Number of Pixels
 
 /**
  * The maximum number of pixels this cache may ever store.
@@ -196,6 +265,8 @@
  * Defaults to 0, which is special cased to represent an unlimited number of pixels.
  */
 @property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixelsUnderStress;
+
+/**@}*/// End of Setting the Maximum Number of Pixels
 
 @end
 

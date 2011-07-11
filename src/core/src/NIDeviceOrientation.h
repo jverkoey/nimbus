@@ -25,9 +25,19 @@
 /**
  * For dealing with device orientations.
  *
- * @ingroup NimbusCore
- * @defgroup Device-Orientation Device Orientation
- * @{
+ * <h2>Examples</h2>
+ *
+ * <h3>Use NIIsSupportedOrientation to Enable Autorotation</h3>
+ *
+ * @code
+ *  - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+ *    return NIIsSupportedOrientation(toInterfaceOrientation);
+ *  }
+ * @endcode
+ *
+ *      @ingroup NimbusCore
+ *      @defgroup Device-Orientation Device Orientation
+ *      @{
  */
 
 /**
@@ -46,6 +56,8 @@ BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation);
 
 /**
  * Returns the application's current interface orientation.
+ *
+ * This is simply a convenience method for [UIApplication sharedApplication].statusBarOrientation.
  *
  *      @returns The current interface orientation.
  */
