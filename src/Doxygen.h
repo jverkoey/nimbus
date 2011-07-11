@@ -153,7 +153,7 @@
  * incredible overhead of the framework's size and work involved in tweaking project
  * settings. While the concept of shared static libraries has its benefits, the reality is
  * that most applications are standalone entities and it is rare that you would be switching
- * between building one application and another rapidly enough to justify the shared build times.
+ * between applications rapidly enough to justify the shared build times.
  *
  * Nimbus reduces build times by throwing this model out the window altogether and being
  * truly modular. When you add Nimbus to your project, you only add the code for the features
@@ -181,7 +181,7 @@
  * <h2>Features That Map One-to-One</h2>
  *
  * Certain features map from Three20 to Nimbus directly. You can begin using these features
- * simply by doing a global find and replace in your application's code.
+ * by doing a global find and replace in your application's code.
  *
  * <h3>Debugging Tools</h3>
  *
@@ -242,9 +242,9 @@
  * TTURLCache is the fact that NIMemoryCache does not provide a disk cache. You can't
  * use an NIMemoryCache to store or load images from disk.
  *
- * TTURLCache is primarily used for caching images in memory and on disk. It uses a fake
+ * TTURLCache is primarily used for caching images. It uses a fake,
  * least-recently-used cache removal algorithm where images are removed in the same order that
- * they're added to the cache. This can lead to unexpected cache misses when the cache is
+ * they were added to the cache. This can lead to unexpected cache misses when the cache is
  * used heavily and images start being removed even though they were recently used.
  *
  * NIImageMemoryCache solves this problem by taking advantage of the true least-recently-used
@@ -265,7 +265,7 @@
  * methods on Nimbus.
  *
  * For example, to access Nimbus' equivalent to TTURLCache, you use
- * <code>[Nimbus globalImageMemoryCache]</code>.
+ * <code>[Nimbus imageMemoryCache]</code>.
  *
  * <h3>Network Images with TTImageView</h3>
  *
@@ -283,5 +283,5 @@
  * large, high-resolution images laid out in a grid.
  *
  * NINetworkImageView also handles retina displays more intelligently than TTImageView by
- * creating true scaled UIImages.
+ * creating scaled UIImages.
  */
