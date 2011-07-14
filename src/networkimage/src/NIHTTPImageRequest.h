@@ -81,7 +81,7 @@
 /**
  * The interpolation quality to use when resizing the image.
  *
- * The default value is kCGInterpolationMedium.
+ * The default value is kCGInterpolationDefault.
  */
 @property (assign) CGInterpolationQuality interpolationQuality;
 

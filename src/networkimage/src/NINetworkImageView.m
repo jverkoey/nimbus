@@ -102,7 +102,7 @@
     // Assign defaults.
     self.sizeForDisplay = YES;
     self.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
-    self.interpolationQuality = kCGInterpolationMedium;
+    self.interpolationQuality = kCGInterpolationDefault;
 
     self.diskCacheLifetime = NINetworkImageViewDiskCacheLifetimePermanent;
 

@@ -50,7 +50,7 @@
   if ((self = [super initWithURL:newURL])) {
     self.imageCropRect = CGRectZero;
     self.imageDisplaySize = CGSizeZero;
-    self.interpolationQuality = kCGInterpolationMedium;
+    self.interpolationQuality = kCGInterpolationDefault;
     self.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
     self.imageContentMode = UIViewContentModeScaleToFill;
 
@@ -400,10 +400,7 @@
 
     // For screen sizes with higher resolutions, we create a larger image with a scale value
     // so that it appears crisper on the screen.
-    CGFloat screenScale = 1;
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
-      screenScale = [[UIScreen mainScreen] scale];
-    }
+    CGFloat screenScale = NIScreenScale();
 
     // Create our final composite image.
     CGContextRef dstBmp = CGBitmapContextCreate(NULL,
@@ -437,9 +434,14 @@
       CGImageRef resultImageRef = CGBitmapContextCreateImage(dstBmp);
 
       if (nil != resultImageRef) {
-        resultImage = [UIImage imageWithCGImage: resultImageRef
-                                          scale: screenScale
-                                    orientation: UIImageOrientationUp];
+        if ([[UIImage class] respondsToSelector:@selector(imageWithCGImage:scale:orientation:)]) {
+          resultImage = [UIImage imageWithCGImage: resultImageRef
+                                            scale: screenScale
+                                      orientation: UIImageOrientationUp];
+
+        } else {
+          resultImage = [UIImage imageWithCGImage: resultImageRef];
+        }
         CGImageRelease(resultImageRef);
       }
 

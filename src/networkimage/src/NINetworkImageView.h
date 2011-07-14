@@ -300,7 +300,7 @@ typedef enum {
 /**
  * The interpolation quality to use when resizing the image.
  *
- * The default value is kCGInterpolationMedium.
+ * The default value is kCGInterpolationDefault.
  */
 @property (nonatomic, readwrite, assign) CGInterpolationQuality interpolationQuality;
 
