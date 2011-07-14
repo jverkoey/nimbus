@@ -65,6 +65,41 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setMaxMinZoomScalesForCurrentBounds {
+  CGSize imageSize = _imageView.bounds.size;
+
+  // Avoid crashing if the image has no dimensions.
+  NIDASSERT(imageSize.width > 0 && imageSize.height > 0);
+  if (imageSize.width <= 0 || imageSize.height <= 0) {
+    self.maximumZoomScale = 1;
+    self.minimumZoomScale = 1;
+    return;
+  }
+
+  // The following code is from Apple's ImageScrollView example application and has been used
+  // here because it is well-documented and concise.
+
+  CGSize boundsSize = self.bounds.size;
+
+  CGFloat xScale = boundsSize.width / imageSize.width;   // The scale needed to perfectly fit the image width-wise.
+  CGFloat yScale = boundsSize.height / imageSize.height; // The scale needed to perfectly fit the image height-wise.
+  CGFloat minScale = MIN(xScale, yScale);                // Use the minimum of these to allow the image to become fully visible.
+
+  // On high resolution screens we have double the pixel density, so we will be seeing
+  // every pixel if we limit the maximum zoom scale to 0.5.
+  CGFloat maxScale = 1.0 / NIScreenScale();
+
+  // Don't let minScale exceed maxScale. (If the image is smaller than the screen, we
+  // don't want to force it to be zoomed.)
+  minScale = MIN(minScale, maxScale);
+
+  // If zooming is disabled then we flatten the range for zooming to only allow the min zoom.
+  self.maximumZoomScale = _zoomingIsEnabled ? maxScale : minScale;
+  self.minimumZoomScale = minScale;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark UIView
@@ -317,37 +352,12 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setMaxMinZoomScalesForCurrentBounds {
-  CGSize imageSize = _imageView.bounds.size;
-
-  // Avoid crashing if the image has no dimensions.
-  NIDASSERT(imageSize.width > 0 && imageSize.height > 0);
-  if (imageSize.width <= 0 || imageSize.height <= 0) {
-    self.maximumZoomScale = 1;
-    self.minimumZoomScale = 1;
-    return;
-  }
-
-  // The following code is from Apple's ImageScrollView example application and has been used
-  // here because it is well-documented and concise.
-
-  CGSize boundsSize = self.bounds.size;
-
-  CGFloat xScale = boundsSize.width / imageSize.width;   // The scale needed to perfectly fit the image width-wise.
-  CGFloat yScale = boundsSize.height / imageSize.height; // The scale needed to perfectly fit the image height-wise.
-  CGFloat minScale = MIN(xScale, yScale);                // Use the minimum of these to allow the image to become fully visible.
-
-  // On high resolution screens we have double the pixel density, so we will be seeing
-  // every pixel if we limit the maximum zoom scale to 0.5.
-  CGFloat maxScale = 1.0 / NIScreenScale();
-
-  // Don't let minScale exceed maxScale. (If the image is smaller than the screen, we
-  // don't want to force it to be zoomed.)
-  minScale = MIN(minScale, maxScale);
-
-  // If zooming is disabled then we flatten the range for zooming to only allow the min zoom.
-  self.maximumZoomScale = _zoomingIsEnabled ? maxScale : minScale;
-  self.minimumZoomScale = minScale;
+- (void)setFrameAndMaintainZoomAndCenter:(CGRect)frame {
+  CGPoint restorePoint = [self pointToCenterAfterRotation];
+  CGFloat restoreScale = [self scaleToRestoreAfterRotation];
+  self.frame = frame;
+  [self setMaxMinZoomScalesForCurrentBounds];
+  [self restoreCenterPoint:restorePoint scale:restoreScale];
 }
 
 

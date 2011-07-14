@@ -52,11 +52,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-  CGPoint restorePoint = [_photoView pointToCenterAfterRotation];
-  CGFloat restoreScale = [_photoView scaleToRestoreAfterRotation];
-  _photoView.frame = self.view.bounds;
-  [_photoView setMaxMinZoomScalesForCurrentBounds];
-  [_photoView restoreCenterPoint:restorePoint scale:restoreScale];
+  [_photoView setFrameAndMaintainZoomAndCenter:self.view.bounds];
 }
 
 

@@ -68,23 +68,8 @@
 #pragma mark Saving/Restoring Offset and Scale
 
 /**
- * Returns the center point, in image coordinate space, to try to restore after rotation.
+ * Set the frame of the view while maintaining the zoom and center of the scroll view.
  */
-- (CGPoint)pointToCenterAfterRotation;
-
-/**
- * Returns the zoom scale to attempt to restore after rotation.
- */
-- (CGFloat)scaleToRestoreAfterRotation;
-
-/**
- * Adjusts content offset and scale to try to preserve the old zoomscale and center.
- */
-- (void)restoreCenterPoint:(CGPoint)oldCenter scale:(CGFloat)oldScale;
-
-/**
- * Set the minimum and maximum zoom scales for the current bounds.
- */
-- (void)setMaxMinZoomScalesForCurrentBounds;
+- (void)setFrameAndMaintainZoomAndCenter:(CGRect)frame;
 
 @end
