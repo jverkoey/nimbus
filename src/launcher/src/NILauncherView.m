@@ -64,9 +64,9 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
     _padding = UIEdgeInsetsMake(kDefaultPadding, kDefaultPadding,
                                 kDefaultPadding, kDefaultPadding);
 
+    // The paging scroll view.
     _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
     _scrollView.delegate = self;
-
     _scrollView.pagingEnabled = YES;
 
     // We don't need scroll indicators because we have a pager. Vertical scrolling is handled
@@ -76,7 +76,9 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
     [self addSubview:_scrollView];
 
+    // The pager displayed at the bottom of the scroll view.
     _pager = [[UIPageControl alloc] init];
+    _pager.hidesForSinglePage = YES;
 
     // So, this is weird. Apparently if you don't set a background color on the pager control
     // then taps won't be handled anywhere but within the dot area. If you do set a background
@@ -85,9 +87,7 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
     _pager.backgroundColor = [UIColor blackColor];
     // Similarly for the scroll view anywhere there isn't a subview.
     _scrollView.backgroundColor = [UIColor blackColor];
-
-    // Hide the pager when there is only one page.
-    _pager.hidesForSinglePage = YES;
+    // We update these background colors when the launcher view's own background color is set.
 
     // Don't update the pager when the user taps until we've handled the tap ourselves.
     // This allows us to reset the page index forcefully if necessary without flickering the
@@ -137,8 +137,8 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
                                  pageWidth,
                                  self.frame.size.height - _pager.frame.size.height);
 
-  // We never want the scroll view to scroll vertically, so make sure the content size is always
-  // exactly the scroll view height.
+  // We never want the paging scroll view to scroll vertically, so make sure the content size
+  // is always exactly the scroll view height.
   _scrollView.contentSize = CGSizeMake(pageWidth * _numberOfPages,
                                        _scrollView.frame.size.height);
 
