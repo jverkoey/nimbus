@@ -107,7 +107,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-  return self.zoomingIsEnabled ? _imageView : nil;
+  return _imageView;
 }
 
 
@@ -203,6 +203,20 @@
   self.zoomScale = 1;
 
   self.contentSize = self.bounds.size;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setZoomingIsEnabled:(BOOL)enabled {
+  _zoomingIsEnabled = enabled;
+
+  [self setMaxMinZoomScalesForCurrentBounds];
+
+  // Fit the image on screen.
+  self.zoomScale = self.minimumZoomScale;
+
+  // Disable zoom bouncing if zooming is disabled, otherwise the view will allow pinching.
+  self.bouncesZoom = enabled;
 }
 
 
@@ -331,7 +345,8 @@
   // don't want to force it to be zoomed.)
   minScale = MIN(minScale, maxScale);
 
-  self.maximumZoomScale = maxScale;
+  // If zooming is disabled then we flatten the range for zooming to only allow the min zoom.
+  self.maximumZoomScale = _zoomingIsEnabled ? maxScale : minScale;
   self.minimumZoomScale = minScale;
 }
 
