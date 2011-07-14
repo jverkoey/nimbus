@@ -143,17 +143,73 @@ BOOL NIIsPad();
 BOOL NIDeviceOSVersionIsAtLeast(double versionNumber);
 
 /**
+ * Fetch the screen's scale in an SDK-agnostic way. This will work on any pre-iOS 4.0 SDK.
+ *
+ * Pre-iOS 4.0: will always return 1.
+ *     iOS 4.0: returns the device's screen scale.
+ */
+CGFloat NIScreenScale();
+
+/**
  * Safely fetch the UIPopoverController class if it is available.
  *
  * The class is cached to avoid repeated lookups.
  *
  * Uses NSClassFromString to fetch the popover controller class.
  *
+ * This class was first introduced in iOS 3.2 April 3, 2010.
+ *
  *      @attention If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method
  *                 instead of directly referring to UIPopoverController anywhere within your code.
  *                 Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices.
  */
 Class NIUIPopoverControllerClass();
+
+/**
+ * Safely fetch the UITapGestureRecognizer class if it is available.
+ *
+ * The class is cached to avoid repeated lookups.
+ *
+ * Uses NSClassFromString to fetch the tap gesture recognizer class.
+ *
+ * This class was first introduced in iOS 3.2 April 3, 2010.
+ *
+ *      @attention If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method
+ *                 instead of directly referring to UIPopoverController anywhere within your code.
+ *                 Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices.
+ */
+Class NIUITapGestureRecognizerClass();
+
+
+#pragma mark Building with Old SDKs
+
+// Define classes that were introduced in iOS 3.2.
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < NIIOS_3_2
+
+@class UIPopoverController;
+@class UITapGestureRecognizer;
+
+#endif
+
+
+// Define methods that were introduced in iOS 4.0.
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < NIIOS_4_0
+
+@interface UIImage (NimbusSDKAvailability)
+
++ (UIImage *)imageWithCGImage:(CGImageRef)imageRef scale:(CGFloat)scale orientation:(UIImageOrientation)orientation;
+
+- (CGFloat)scale;
+
+@end
+
+@interface UIScreen (NimbusSDKAvailability)
+
+- (CGFloat)scale;
+
+@end
+
+#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

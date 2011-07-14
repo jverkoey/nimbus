@@ -40,10 +40,48 @@ BOOL NIDeviceOSVersionIsAtLeast(double versionNumber) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+CGFloat NIScreenScale() {
+  static int respondsToScale = -1;
+  if (respondsToScale == -1) {
+    // Avoid calling this anymore than we need to.
+    respondsToScale = !!([[UIScreen mainScreen] respondsToSelector:@selector(scale)]);
+  }
+
+  if (respondsToScale) {
+    return [[UIScreen mainScreen] scale];
+
+  } else {
+    return 1;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 Class NIUIPopoverControllerClass() {
   static Class sClass = nil;
-  if (nil == sClass) {
+  static BOOL hasChecked = NO;
+  if (!hasChecked) {
+    hasChecked = YES;
     sClass = NSClassFromString(@"UIPopoverController");
+  }
+  return sClass;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+Class NIUITapGestureRecognizerClass() {
+  static Class sClass = nil;
+  static BOOL hasChecked = NO;
+  if (!hasChecked) {
+    hasChecked = YES;
+
+    // An interesting gotcha: UITapGestureRecognizer actually *does* exist in iOS 3.0, but does
+    // not conform to all of the same methods that the 3.2 implementation does. This can be
+    // really confusing, so instead of returning the class, we'll always return nil on
+    // pre-iOS 3.2 devices.
+    if (NIDeviceOSVersionIsAtLeast(kCFCoreFoundationVersionNumber_iPhoneOS_3_2)) {
+      sClass = NSClassFromString(@"UITapGestureRecognizer");
+    }
   }
   return sClass;
 }

@@ -367,7 +367,7 @@
 
   NSUInteger numberOfPixels = (NSUInteger)(image.size.width * image.size.height);
   if ([image respondsToSelector:@selector(scale)]) {
-    numberOfPixels *= image.scale;
+    numberOfPixels *= [image scale];
   }
   return numberOfPixels;
 }
