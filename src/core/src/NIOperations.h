@@ -56,45 +56,71 @@
 @private
   id<NIOperationDelegate> _delegate;
 
-  NSError*                _lastError;
+  NSInteger _tag;
+
+  NSError* _lastError;
 
 #if NS_BLOCKS_AVAILABLE
+  // Performed on the main thread.
   NIBasicBlock _didStartBlock;
   NIBasicBlock _didFinishBlock;
   NIErrorBlock _didFailWithErrorBlock;
+
+  // Performed in the operation's thread.
+  NIBasicBlock _willFinishBlock;
 #endif // #if NS_BLOCKS_AVAILABLE
 }
 
 /**
  * The delegate through which changes are notified for this operation.
  */
-@property (nonatomic, readwrite, assign) id<NIOperationDelegate> delegate;
+@property (readwrite, assign) id<NIOperationDelegate> delegate;
+
+/**
+ * A simple tagging mechanism for identifying operations.
+ */
+@property (readwrite, assign) NSInteger tag;
 
 /**
  * The error last passed to the didFailWithError notification.
  */
-@property (nonatomic, readonly, retain) NSError* lastError;
+@property (readonly, retain) NSError* lastError;
 
 #if NS_BLOCKS_AVAILABLE
 
 /**
  * The operation has started executing.
+ *
+ * Performed on the main thread.
  */
-@property (nonatomic, readwrite, copy) NIBasicBlock didStartBlock;
+@property (readwrite, copy) NIBasicBlock didStartBlock;
 
 /**
  * The operation has completed successfully.
  *
  * This will not be called if the operation fails.
+ *
+ * Performed on the main thread.
  */
-@property (nonatomic, readwrite, copy) NIBasicBlock didFinishBlock;
+@property (readwrite, copy) NIBasicBlock didFinishBlock;
 
 /**
  * The operation failed in some way and has completed.
  *
  * didFinishBlock will not be executed.
+ *
+ * Performed on the main thread.
  */
-@property (nonatomic, readwrite, copy) NIErrorBlock didFailWithErrorBlock;
+@property (readwrite, copy) NIErrorBlock didFailWithErrorBlock;
+
+/**
+ * The operation is about to complete successfully.
+ *
+ * This will not be called if the operation fails.
+ *
+ * Performed in the operation's thread.
+ */
+@property (readwrite, copy) NIBasicBlock willFinishBlock;
 
 #endif // #if NS_BLOCKS_AVAILABLE
 
@@ -123,6 +149,11 @@
  */
 - (void)operationDidFailWithError:(NSError *)error;
 
+/**
+ * In the operation's thread, notify the delegate that the operation will finish successfully.
+ */
+- (void)operationWillFinish;
+
 /**@}*/
 
 @end
@@ -146,6 +177,7 @@
 
   // [out]
   NSData*   _data;
+  id        _processedObject;
 }
 
 
@@ -172,7 +204,7 @@
 /**
  * The path to the file that should be read from disk.
  */
-@property (nonatomic, readwrite, copy) NSString* pathToFile;
+@property (readwrite, copy) NSString* pathToFile;
 
 /**@}*/
 
@@ -190,7 +222,16 @@
  *
  *      @sa NIOperation::lastError
  */
-@property (nonatomic, readonly, retain) NSData* data;
+@property (readonly, retain) NSData* data;
+
+/**
+ * An object created from the data that was read from disk.
+ *
+ * Will be nil if the data couldn't be read.
+ *
+ *      @sa NIOperation::lastError
+ */
+@property (readwrite, retain) id processedObject;
 
 /**@}*/
 
@@ -209,6 +250,15 @@
  * The operation has started executing.
  */
 - (void)operationDidStart:(NSOperation *)operation;
+
+/**
+ * The operation is about to complete successfully.
+ *
+ * This will not be called if the operation fails.
+ *
+ * This will be called from within the operation's runloop and must be thread safe.
+ */
+- (void)operationWillFinish:(NSOperation *)operation;
 
 /**
  * The operation has completed successfully.
