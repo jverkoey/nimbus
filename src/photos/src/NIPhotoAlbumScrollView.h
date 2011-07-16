@@ -17,18 +17,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-/**
- * Contextual information about the size of the photo.
- */
-typedef enum {
-  // The full-size image.
-  NIPhotoScrollViewPhotoSizeOriginal,
+#import "NIPhotoScrollView.h"
 
-  // A smaller version of the image.
-  NIPhotoScrollViewPhotoSizeThumbnail,
-} NIPhotoScrollViewPhotoSize;
+@protocol NIPhotoAlbumScrollViewDataSource;
 
-@interface NIPhotoAlbumScrollView : UIView {
+@interface NIPhotoAlbumScrollView : UIView <UIScrollViewDelegate> {
 @private
   UIScrollView* _pagingScrollView;
 
@@ -36,6 +29,19 @@ typedef enum {
   NSMutableSet* _recycledPages;
 
   UIImage* _loadingImage;
+
+  CGFloat _pageHorizontalMargin;
+
+  // State information when rotating.
+  NSInteger _firstVisiblePageIndexBeforeRotation;
+  CGFloat _percentScrolledIntoFirstVisiblePage;
+
+  BOOL _zoomingIsEnabled;
+
+  // Data source information.
+  NSInteger _numberOfPages;
+
+  id<NIPhotoAlbumScrollViewDataSource> _dataSource;
 }
 
 /**
@@ -45,17 +51,61 @@ typedef enum {
  */
 @property (nonatomic, readwrite, retain) UIImage* loadingImage;
 
+/**
+ * The number of pixels on either side of each photo page. The space between each photo
+ * will be double this.
+ *
+ * By default this is NIPhotoAlbumScrollViewDefaultPageHorizontalMargin.
+ */
+@property (nonatomic, readwrite, assign) CGFloat pageHorizontalMargin;
+
+/**
+ * Whether zooming is enabled or not.
+ *
+ * By default this is YES.
+ */
+@property (nonatomic, readwrite, assign) BOOL zoomingIsEnabled;
+
+
+/**
+ * The data source for this photo album view.
+ */
+@property (nonatomic, readwrite, assign) id<NIPhotoAlbumScrollViewDataSource> dataSource;
+
+/**
+ * Force the view to reload its data by asking the data source for information.
+ */
+- (void)reloadData;
+
+
+#pragma mark Notifying the View of Loaded Photos
 
 /**
  * Notify the scroll view that a photo has been loaded at a given index.
  */
-- (void)didLoadPhotoAtIndex: (NSInteger)photoIndex
-                  photoSize: (NIPhotoScrollViewPhotoSize)photoSize;
+- (void)didLoadPhoto: (UIImage *)image
+             atIndex: (NSInteger)photoIndex
+           photoSize: (NIPhotoScrollViewPhotoSize)photoSize;
+
+
+#pragma mark Rotating the Scroll View
+
+/**
+ * Stores the current state of the scroll view.
+ */
+- (void)willRotateToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
+                                duration: (NSTimeInterval)duration;
+
+/**
+ * Updates the frame of the scroll view while maintaining the current visible page's state.
+ */
+- (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
+                                         duration: (NSTimeInterval)duration;
 
 @end
 
 
-@protocol NIPhotoScrollViewDataSource
+@protocol NIPhotoAlbumScrollViewDataSource <NSObject>
 
 @required
 
@@ -94,10 +144,24 @@ typedef enum {
  * photoSize should be set accordingly if an image is returned.
  * If the image is not available yet you should set isLoading to YES.
  */
-- (UIImage *)photoScrollView: (NIPhotoAlbumScrollView *)photoScrollView
-                photoAtIndex: (NSInteger)photoIndex
-                   photoSize: (NIPhotoScrollViewPhotoSize *)photoSize
-                   isLoading: (BOOL *)isLoading;
+- (UIImage *)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
+                     photoAtIndex: (NSInteger)photoIndex
+                        photoSize: (NIPhotoScrollViewPhotoSize *)photoSize
+                        isLoading: (BOOL *)isLoading;
+
+@optional
+
+/**
+ * Cancel any asynchronous loading requests for the given photo.
+ *
+ * When a photo is not immediately visible this method is called to allow the data
+ * source to minimize the number of active asynchronous operations in place.
+ *
+ * This method is optional, though recommended because it focuses the device's processing
+ * power on the most immediately accessible photos.
+ */
+- (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
+     stopLoadingPhotoAtIndex: (NSInteger)photoIndex;
 
 @end
 

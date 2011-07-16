@@ -22,7 +22,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIPhotoScrollView
 
-@synthesize photoIndex = _photoIndex;
+@synthesize photoIndex  = _photoIndex;
+@synthesize photoSize   = _photoSize;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
 
 
@@ -37,11 +38,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
+    // Disable the scroll indicators.
     self.showsVerticalScrollIndicator = NO;
     self.showsHorizontalScrollIndicator = NO;
-    self.bouncesZoom = YES;
+
+    // Photo viewers should feel sticky when you're panning around, not smooth and slippery
+    // like a UITableView.
     self.decelerationRate = UIScrollViewDecelerationRateFast;
 
+    // Ensure that empty areas of the scroll view are draggable.
     self.backgroundColor = [UIColor blackColor];
 
     // We implement viewForZoomingInScrollView: and return the image view for zooming.
@@ -109,12 +114,12 @@
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  // center the image as it becomes smaller than the size of the screen
+  // Center the image as it becomes smaller than the size of the screen.
 
   CGSize boundsSize = self.bounds.size;
   CGRect frameToCenter = _imageView.frame;
 
-  // center horizontally
+  // Center horizontally.
   if (frameToCenter.size.width < boundsSize.width) {
     frameToCenter.origin.x = floorf((boundsSize.width - frameToCenter.size.width) / 2);
 
@@ -122,7 +127,7 @@
     frameToCenter.origin.x = 0;
   }
 
-  // center vertically
+  // Center vertically.
   if (frameToCenter.size.height < boundsSize.height) {
     frameToCenter.origin.y = floorf((boundsSize.height - frameToCenter.size.height) / 2);
 
@@ -165,19 +170,24 @@
   CGSize scaledBoundsSize = CGSizeMake(boundsSize.width / zoomScale,
                                        boundsSize.height / zoomScale);
 
+  CGRect rect = CGRectMake(point.x - scaledBoundsSize.width / 2,
+                           point.y - scaledBoundsSize.height / 2,
+                           scaledBoundsSize.width,
+                           scaledBoundsSize.height);
+
   // When the image is zoomed out there is a bit of empty space around the image due
   // to the fact that it's centered on the screen. When we created the rect around the
   // point we need to take this "space" into account.
+
   // 1: get the frame of the image in this view's coordinates.
   CGRect imageScaledFrame = [self convertRect:_imageView.frame toView:self];
 
-  // 2: Shift the frame by the excess amount. This will ensure that the zoomed location
+  // 2: Offset the frame by the excess amount. This will ensure that the zoomed location
   //    is always centered on the tap location. We only allow positive values because a
   //    negative value implies that there isn't actually any offset.
-  return CGRectMake(point.x - scaledBoundsSize.width / 2 - MAX(0, imageScaledFrame.origin.x),
-                    point.y - scaledBoundsSize.height / 2 - MAX(0, imageScaledFrame.origin.y),
-                    scaledBoundsSize.width,
-                    scaledBoundsSize.height);
+  rect = CGRectOffset(rect, -MAX(0, imageScaledFrame.origin.x), -MAX(0, imageScaledFrame.origin.y));
+
+  return rect;
 }
 
 
@@ -206,12 +216,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setImage:(UIImage *)image {
-  // prepareForReuse has not been called on this view and it must be.
-  NIDASSERT(nil == _imageView.image);
-
+- (void)setImage:(UIImage *)image photoSize:(NIPhotoScrollViewPhotoSize)photoSize {
   _imageView.image = image;
   [_imageView sizeToFit];
+
+  if (nil == image) {
+    self.photoSize = NIPhotoScrollViewPhotoSizeUnknown;
+
+  } else {
+    self.photoSize = photoSize;
+  }
 
   // The min/max zoom values assume that the content size is the image size. The max zoom will
   // be a value that allows the image to be seen at a 1-to-1 pixel resolution, while the min
@@ -234,6 +248,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prepareForReuse {
   _imageView.image = nil;
+
+  self.photoSize = NIPhotoScrollViewPhotoSizeUnknown;
 
   self.zoomScale = 1;
 
@@ -266,11 +282,13 @@
     [[NIUITapGestureRecognizerClass() alloc] initWithTarget: self
                                                      action: @selector(didDoubleTap:)];
 
+    // I freaking love gesture recognizers.
     [_doubleTapGestureRecognizer setNumberOfTapsRequired:2];
 
     [self addGestureRecognizer:_doubleTapGestureRecognizer];
   }
 
+  // If the recognizer hasn't been initialized then this will fire on nil and do nothing.
   [_doubleTapGestureRecognizer setEnabled:enabled];
 }
 
@@ -292,6 +310,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Fetch the visual center point of this view in the image view's coordinate space.
 - (CGPoint)pointToCenterAfterRotation {
   CGPoint boundsCenter = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
   return [self convertPoint:boundsCenter toView:_imageView];

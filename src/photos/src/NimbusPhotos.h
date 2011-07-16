@@ -18,10 +18,12 @@
 #ifdef NIMBUS_STATIC_LIBRARY
 #import "NimbusCore/NimbusCore.h"
 #import "NimbusPhotos/NIPhotoViewController.h"
+#import "NimbusPhotos/NIPhotoAlbumScrollView.h"
 #import "NimbusPhotos/NIPhotoScrollView.h"
 #else
 #import "NimbusCore.h"
 #import "NIPhotoViewController.h"
+#import "NIPhotoAlbumScrollView.h"
 #import "NIPhotoScrollView.h"
 #endif
 
