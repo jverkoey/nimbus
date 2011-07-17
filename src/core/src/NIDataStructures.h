@@ -328,7 +328,7 @@ typedef void NILinkedListLocation;
  *  // Remove the object in constant time.
  *  [ll removeObjectAtLocation:location];
  *
- *  // Location has been released by this point.
+ *  // Location is no longer valid at this point.
  *  location = nil;
  *
  *  // Remove an object in linear time. This is simply a more concise version of the above.
@@ -340,4 +340,23 @@ typedef void NILinkedListLocation;
  * @endcode
  *
  *      @sa NIMemoryCache
+ *
+ *
+ * <h3>Using the location object for constant time operations</h3>
+ *
+ * @code
+ *  NILinkedList* ll = [NILinkedList linkedList];
+ *
+ *  [ll addObject:obj1];
+ *  NILinkedListLocation* location = [ll addObject:obj2];
+ *  [ll addObject:obj3];
+ *  [ll addObject:obj4];
+ *
+ *  // Remove the second object in constant time.
+ *  [ll removeObjectAtLocation:location];
+ *
+ *  // Location is no longer valid at this point.
+ *  location = nil;
+ * @endcode
+ *
  */
