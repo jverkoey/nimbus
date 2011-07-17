@@ -55,6 +55,7 @@
 #ifdef NIMBUS_STATIC_LIBRARY
 // For when you're setting this library as a dependency in your project.
 #import "NimbusCore/NIBlocks.h"
+#import "NimbusCore/NICommonViewDimensions.h"
 #import "NimbusCore/NIDataStructures.h"
 #import "NimbusCore/NIDebuggingTools.h"
 #import "NimbusCore/NIDeviceOrientation.h"
@@ -73,6 +74,7 @@
 #else
 // For when you're directly including this library in your project.
 #import "NIBlocks.h"
+#import "NICommonViewDimensions.h"
 #import "NIDataStructures.h"
 #import "NIDebuggingTools.h"
 #import "NIDeviceOrientation.h"

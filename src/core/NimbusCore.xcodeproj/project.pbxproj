@@ -31,6 +31,8 @@
 		66EA02D413BED4F3004FFE1A /* NINetworkActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA02D213BED4F3004FFE1A /* NINetworkActivity.m */; };
 		66EA039613BEF1A8004FFE1A /* NIState.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EA039413BEF1A8004FFE1A /* NIState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66EA039713BEF1A8004FFE1A /* NIState.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA039513BEF1A8004FFE1A /* NIState.m */; };
+		66EAC63A13D2872900BDFF34 /* NICommonViewDimensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EAC63813D2872900BDFF34 /* NICommonViewDimensions.h */; };
+		66EAC63B13D2872900BDFF34 /* NICommonViewDimensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EAC63913D2872900BDFF34 /* NICommonViewDimensions.m */; };
 		66EAFDA413BE8661004FFE1A /* NINonRetainingCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EAFDA313BE8661004FFE1A /* NINonRetainingCollections.m */; };
 		66EAFDB113BE86BF004FFE1A /* NINonRetainingCollectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EAFDB013BE86BF004FFE1A /* NINonRetainingCollectionsTests.m */; };
 		66EAFDBB13BE883B004FFE1A /* NINonRetainingCollections.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EAFDBA13BE883B004FFE1A /* NINonRetainingCollections.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -96,6 +98,8 @@
 		66EA02D213BED4F3004FFE1A /* NINetworkActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkActivity.m; path = src/NINetworkActivity.m; sourceTree = "<group>"; };
 		66EA039413BEF1A8004FFE1A /* NIState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIState.h; path = src/NIState.h; sourceTree = "<group>"; };
 		66EA039513BEF1A8004FFE1A /* NIState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIState.m; path = src/NIState.m; sourceTree = "<group>"; };
+		66EAC63813D2872900BDFF34 /* NICommonViewDimensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonViewDimensions.h; path = src/NICommonViewDimensions.h; sourceTree = "<group>"; };
+		66EAC63913D2872900BDFF34 /* NICommonViewDimensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonViewDimensions.m; path = src/NICommonViewDimensions.m; sourceTree = "<group>"; };
 		66EAFDA313BE8661004FFE1A /* NINonRetainingCollections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINonRetainingCollections.m; path = src/NINonRetainingCollections.m; sourceTree = "<group>"; };
 		66EAFDB013BE86BF004FFE1A /* NINonRetainingCollectionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINonRetainingCollectionsTests.m; path = unittests/NINonRetainingCollectionsTests.m; sourceTree = "<group>"; };
 		66EAFDBA13BE883B004FFE1A /* NINonRetainingCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINonRetainingCollections.h; path = src/NINonRetainingCollections.h; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 				668750ED13A17EBD00FF1C56 /* NimbusCore.h */,
 				668754DE13A2793800FF1C56 /* NimbusCore+Additions.h */,
 				665E059A13C605E4008A1D21 /* NIBlocks.h */,
+				66EAC63813D2872900BDFF34 /* NICommonViewDimensions.h */,
+				66EAC63913D2872900BDFF34 /* NICommonViewDimensions.m */,
 				66EAFE0D13BE8F09004FFE1A /* NIDataStructures.h */,
 				66D36E1E13B14AE400455D5B /* NIDataStructures.m */,
 				66EAFDFA13BE8E3A004FFE1A /* NIDebuggingTools.h */,
@@ -289,6 +295,7 @@
 				66EA039613BEF1A8004FFE1A /* NIState.h in Headers */,
 				665E057C13C5F075008A1D21 /* NIOperations.h in Headers */,
 				665E059B13C605E4008A1D21 /* NIBlocks.h in Headers */,
+				66EAC63A13D2872900BDFF34 /* NICommonViewDimensions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +427,7 @@
 				66EA02D413BED4F3004FFE1A /* NINetworkActivity.m in Sources */,
 				66EA039713BEF1A8004FFE1A /* NIState.m in Sources */,
 				665E057D13C5F075008A1D21 /* NIOperations.m in Sources */,
+				66EAC63B13D2872900BDFF34 /* NICommonViewDimensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
