@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		665E09A813CB7D84008A1D21 /* NimbusPhotos.h in Headers */ = {isa = PBXBuildFile; fileRef = 665E09A713CB7D84008A1D21 /* NimbusPhotos.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		665E0AE713CCAF2C008A1D21 /* NIPhotoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 665E0AE513CCAF2C008A1D21 /* NIPhotoViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		665E0AE813CCAF2C008A1D21 /* NIPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0AE613CCAF2C008A1D21 /* NIPhotoViewController.m */; };
+		665E0AE713CCAF2C008A1D21 /* NIToolbarPhotoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 665E0AE513CCAF2C008A1D21 /* NIToolbarPhotoViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		665E0AE813CCAF2C008A1D21 /* NIToolbarPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0AE613CCAF2C008A1D21 /* NIToolbarPhotoViewController.m */; };
 		665E0B1213CCE000008A1D21 /* NIPhotoAlbumScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 665E0B1013CCE000008A1D21 /* NIPhotoAlbumScrollView.h */; };
 		665E0B1313CCE000008A1D21 /* NIPhotoAlbumScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0B1113CCE000008A1D21 /* NIPhotoAlbumScrollView.m */; };
 		665E0B4313CE624A008A1D21 /* NIPhotoScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 665E0B4113CE624A008A1D21 /* NIPhotoScrollView.h */; };
@@ -47,8 +47,8 @@
 		665E092613CB7CE2008A1D21 /* library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = library.xcconfig; path = ../common/confs/library.xcconfig; sourceTree = SOURCE_ROOT; };
 		665E092713CB7CE2008A1D21 /* project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = project.xcconfig; path = ../common/confs/project.xcconfig; sourceTree = SOURCE_ROOT; };
 		665E09A713CB7D84008A1D21 /* NimbusPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusPhotos.h; path = src/NimbusPhotos.h; sourceTree = "<group>"; };
-		665E0AE513CCAF2C008A1D21 /* NIPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPhotoViewController.h; path = src/NIPhotoViewController.h; sourceTree = "<group>"; };
-		665E0AE613CCAF2C008A1D21 /* NIPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPhotoViewController.m; path = src/NIPhotoViewController.m; sourceTree = "<group>"; };
+		665E0AE513CCAF2C008A1D21 /* NIToolbarPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIToolbarPhotoViewController.h; path = src/NIToolbarPhotoViewController.h; sourceTree = "<group>"; };
+		665E0AE613CCAF2C008A1D21 /* NIToolbarPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIToolbarPhotoViewController.m; path = src/NIToolbarPhotoViewController.m; sourceTree = "<group>"; };
 		665E0AF213CCCE6A008A1D21 /* NimbusCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NimbusCore.xcodeproj; path = ../core/NimbusCore.xcodeproj; sourceTree = SOURCE_ROOT; };
 		665E0B1013CCE000008A1D21 /* NIPhotoAlbumScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPhotoAlbumScrollView.h; path = src/NIPhotoAlbumScrollView.h; sourceTree = "<group>"; };
 		665E0B1113CCE000008A1D21 /* NIPhotoAlbumScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPhotoAlbumScrollView.m; path = src/NIPhotoAlbumScrollView.m; sourceTree = "<group>"; };
@@ -103,8 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				665E09A713CB7D84008A1D21 /* NimbusPhotos.h */,
-				665E0AE513CCAF2C008A1D21 /* NIPhotoViewController.h */,
-				665E0AE613CCAF2C008A1D21 /* NIPhotoViewController.m */,
+				665E0AE513CCAF2C008A1D21 /* NIToolbarPhotoViewController.h */,
+				665E0AE613CCAF2C008A1D21 /* NIToolbarPhotoViewController.m */,
 				665E0B1013CCE000008A1D21 /* NIPhotoAlbumScrollView.h */,
 				665E0B1113CCE000008A1D21 /* NIPhotoAlbumScrollView.m */,
 				665E0B4113CE624A008A1D21 /* NIPhotoScrollView.h */,
@@ -140,7 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				665E09A813CB7D84008A1D21 /* NimbusPhotos.h in Headers */,
-				665E0AE713CCAF2C008A1D21 /* NIPhotoViewController.h in Headers */,
+				665E0AE713CCAF2C008A1D21 /* NIToolbarPhotoViewController.h in Headers */,
 				665E0B1213CCE000008A1D21 /* NIPhotoAlbumScrollView.h in Headers */,
 				665E0B4313CE624A008A1D21 /* NIPhotoScrollView.h in Headers */,
 			);
@@ -220,7 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				665E0AE813CCAF2C008A1D21 /* NIPhotoViewController.m in Sources */,
+				665E0AE813CCAF2C008A1D21 /* NIToolbarPhotoViewController.m in Sources */,
 				665E0B1313CCE000008A1D21 /* NIPhotoAlbumScrollView.m in Sources */,
 				665E0B4413CE624A008A1D21 /* NIPhotoScrollView.m in Sources */,
 			);

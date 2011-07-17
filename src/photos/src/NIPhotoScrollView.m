@@ -25,6 +25,7 @@
 @synthesize photoIndex  = _photoIndex;
 @synthesize photoSize   = _photoSize;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
+@synthesize photoScrollViewDelegate = _photoScrollViewDelegate;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,9 +95,11 @@
   // every pixel if we limit the maximum zoom scale to 0.5.
   CGFloat maxScale = 1.0 / NIScreenScale();
 
-  // Don't let minScale exceed maxScale. (If the image is smaller than the screen, we
-  // don't want to force it to be zoomed.)
-  minScale = MIN(minScale, maxScale);
+  if (self.photoSize != NIPhotoScrollViewPhotoSizeThumbnail) {
+    // Don't let minScale exceed maxScale. (If the image is smaller than the screen, we
+    // don't want to force it to be zoomed.)
+    minScale = MIN(minScale, maxScale);
+  }
 
   // If zooming is disabled then we flatten the range for zooming to only allow the min zoom.
   self.maximumZoomScale = _zoomingIsEnabled ? maxScale : minScale;
@@ -195,9 +198,13 @@
 - (void)didDoubleTap:(UITapGestureRecognizer *)tapGesture {
   BOOL isCompletelyZoomedIn = (self.maximumZoomScale <= self.zoomScale + FLT_EPSILON);
 
+  BOOL didZoomIn;
+
   if (isCompletelyZoomedIn) {
     // Zoom the photo back out.
     [self setZoomScale:self.minimumZoomScale animated:YES];
+
+    didZoomIn = NO;
 
   } else {
     // Zoom into the tap point.
@@ -205,6 +212,13 @@
 
     CGRect maxZoomRect = [self rectAroundPoint:tapCenter atZoomScale:self.maximumZoomScale];
     [self zoomToRect:maxZoomRect animated:YES];
+
+    didZoomIn = YES;
+  }
+
+  if ([self.photoScrollViewDelegate respondsToSelector:
+       @selector(photoScrollViewDidDoubleTapToZoom:didZoomIn:)]) {
+    [self.photoScrollViewDelegate photoScrollViewDidDoubleTapToZoom:self didZoomIn:didZoomIn];
   }
 }
 

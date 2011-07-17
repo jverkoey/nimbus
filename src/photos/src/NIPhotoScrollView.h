@@ -31,20 +31,27 @@ typedef enum {
   NIPhotoScrollViewPhotoSizeOriginal,
 } NIPhotoScrollViewPhotoSize;
 
+@protocol NIPhotoScrollViewDelegate;
+
 @interface NIPhotoScrollView : UIScrollView <
   UIScrollViewDelegate
 > {
 @private
-  NSInteger                   _photoIndex;
-  NIPhotoScrollViewPhotoSize  _photoSize;
-
   // The photo view to be zoomed.
   UIImageView*  _imageView;
 
-  // State
+  // Photo Album State
+  NSInteger _photoIndex;
+
+  // Photo Information
+  NIPhotoScrollViewPhotoSize _photoSize;
+
+  // Configurable State
   BOOL _zoomingIsEnabled;
 
   UITapGestureRecognizer* _doubleTapGestureRecognizer;
+
+  id<NIPhotoScrollViewDelegate> _photoScrollViewDelegate;
 }
 
 /**
@@ -77,6 +84,10 @@ typedef enum {
  */
 @property (nonatomic, readwrite, assign, getter=isDoubleTapToZoomIsEnabled) BOOL doubleTapToZoomIsEnabled;
 
+/**
+ * The photo scroll view delegate.
+ */
+@property (nonatomic, readwrite, assign) id<NIPhotoScrollViewDelegate> photoScrollViewDelegate;
 
 /**
  * Remove image and reset the zoom scale.
@@ -104,5 +115,20 @@ typedef enum {
  * Set the frame of the view while maintaining the zoom and center of the scroll view.
  */
 - (void)setFrameAndMaintainZoomAndCenter:(CGRect)frame;
+
+@end
+
+@protocol NIPhotoScrollViewDelegate <NSObject>
+
+@optional
+
+/**
+ * The user has double-tapped the photo to zoom either in or out.
+ *
+ *      @param photoScrollView  The photo scroll view that was tapped.
+ *      @param didZoomIn        YES if the photo was zoomed in. NO if the photo was zoomed out.
+ */
+- (void)photoScrollViewDidDoubleTapToZoom: (NIPhotoScrollView *)photoScrollView
+                                didZoomIn: (BOOL)didZoomIn;
 
 @end

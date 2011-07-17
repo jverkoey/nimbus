@@ -30,6 +30,9 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 @synthesize pageHorizontalMargin = _pageHorizontalMargin;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
 @synthesize dataSource = _dataSource;
+@synthesize delegate = _delegate;
+@synthesize currentCenterPhotoIndex = _currentCenterPhotoIndex;
+@synthesize numberOfPhotos = _numberOfPages;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,6 +57,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
     _firstVisiblePageIndexBeforeRotation = -1;
     _percentScrolledIntoFirstVisiblePage = -1;
+    _currentCenterPhotoIndex = -1;
 
     _pagingScrollView = [[[UIScrollView alloc] initWithFrame:frame] autorelease];
     _pagingScrollView.pagingEnabled = YES;
@@ -215,7 +219,8 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
     [page setImage:self.loadingImage photoSize:NIPhotoScrollViewPhotoSizeUnknown];
 
   } else {
-    page.zoomingIsEnabled = self.zoomingIsEnabled;
+    page.zoomingIsEnabled = (self.zoomingIsEnabled
+                             && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
     if (photoSize > page.photoSize) {
       [page setImage:image photoSize:photoSize];
     }
@@ -230,10 +235,27 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)displayPageForIndex:(NSInteger)index {
+  NIPhotoScrollView* page = [self dequeueRecycledPage];
+
+  if (nil == page) {
+    page = [[[NIPhotoScrollView alloc] init] autorelease];
+    page.photoScrollViewDelegate = self;
+  }
+
+  // This will only be called once each time the page is shown.
+  [self configurePage:page forIndex:index];
+
+  [_pagingScrollView addSubview:page];
+  [_visiblePages addObject:page];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateVisiblePages {
   NSRange visiblePageRange = [self visiblePageRange];
 
-  NSInteger currentVisiblePageIndex = [self currentVisiblePageIndex];
+  _currentCenterPhotoIndex = [self currentVisiblePageIndex];
 
   // Recycle no-longer-visible pages and reset off-screen pages.
   for (NIPhotoScrollView* page in _visiblePages) {
@@ -246,27 +268,19 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
         [_dataSource photoAlbumScrollView: self
                   stopLoadingPhotoAtIndex: page.photoIndex];
       }
-
-    } else if (page.photoIndex != currentVisiblePageIndex) {
-      [self resetPage:page];
     }
   }
   [_visiblePages minusSet:_recycledPages];
 
+  // Prioritize displaying the currently visible page.
+  if (![self isDisplayingPageForIndex:_currentCenterPhotoIndex]) {
+    [self displayPageForIndex:_currentCenterPhotoIndex];
+  }
+
   // Add missing pages.
   for (int index = visiblePageRange.location; index < NSMaxRange(visiblePageRange); ++index) {
     if (![self isDisplayingPageForIndex:index]) {
-      NIPhotoScrollView* page = [self dequeueRecycledPage];
-
-      if (nil == page) {
-        page = [[[NIPhotoScrollView alloc] init] autorelease];
-      }
-
-      // This will only be called once each time the page is shown.
-      [self configurePage:page forIndex:index];
-
-      [_pagingScrollView addSubview:page];
-      [_visiblePages addObject:page];
+      [self displayPageForIndex:index];
     }
   }
 }
@@ -280,7 +294,60 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  NSInteger oldCenterPhotoIndex = _currentCenterPhotoIndex;
+
+  // This method is called repeatedly as the user scrolls so updateVisiblePages must be
+  // leight-weight enough not to noticeably impact performance.
   [self updateVisiblePages];
+
+  if (!_isModifyingContentOffset
+      && [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidScroll:)]) {
+    [self.delegate photoAlbumScrollViewDidScroll:self];
+  }
+
+  if (oldCenterPhotoIndex != _currentCenterPhotoIndex
+      && [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidChangePages:)]) {
+    [self.delegate photoAlbumScrollViewDidChangePages:self];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)resetSurroundingPages {
+  for (NIPhotoScrollView* page in _visiblePages) {
+    if (page.photoIndex != self.currentCenterPhotoIndex) {
+      [self resetPage:page];
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+  if (!decelerate) {
+    [self resetSurroundingPages];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+  [self resetSurroundingPages];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NIPhotoScrollViewDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)photoScrollViewDidDoubleTapToZoom: (NIPhotoScrollView *)photoScrollView
+                                didZoomIn: (BOOL)didZoomIn {
+  if ([self.delegate respondsToSelector:@selector(photoAlbumScrollView:didZoomIn:)]) {
+    [self.delegate photoAlbumScrollView:self didZoomIn:didZoomIn];
+  }
 }
 
 
@@ -292,17 +359,37 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reloadData {
+  NIDASSERT(nil != _dataSource);
+
+  // Remove any visible pages from the view before we release the sets.
+  for (NIPhotoScrollView* page in _visiblePages) {
+    [page removeFromSuperview];
+  }
+
   NI_RELEASE_SAFELY(_visiblePages);
   NI_RELEASE_SAFELY(_recycledPages);
 
-  _visiblePages = [[NSMutableSet alloc] initWithCapacity:3];
+  // Reset the state of the scroll view.
+  _pagingScrollView.contentSize = self.bounds.size;
+  _pagingScrollView.contentOffset = CGPointZero;
+
+  // If there is no data source then we can't do anything particularly interesting.
+  if (nil == _dataSource) {
+    return;
+  }
+
+  _visiblePages = [[NSMutableSet alloc] init];
   _recycledPages = [[NSMutableSet alloc] init];
 
+  // Cache the number of pages.
   _numberOfPages = [_dataSource numberOfPhotosInPhotoScrollView:self];
 
   _pagingScrollView.frame = [self frameForPagingScrollView];
+
+  // The content size will be calculated based on the number of pages.
   _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
 
+  // Begin requesting the photo information from the data source.
   [self updateVisiblePages];
 }
 
@@ -313,8 +400,14 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
            photoSize: (NIPhotoScrollViewPhotoSize)photoSize {
   for (NIPhotoScrollView* page in _visiblePages) {
     if (page.photoIndex == photoIndex) {
-      page.zoomingIsEnabled = self.zoomingIsEnabled;
-      [page setImage:image photoSize:photoSize];
+
+      page.zoomingIsEnabled = (self.zoomingIsEnabled
+                               && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
+
+      // Only replace the photo if it's of a higher quality than one we're already showing.
+      if (photoSize > page.photoSize) {
+        [page setImage:image photoSize:photoSize];
+      }
       break;
     }
   }
@@ -358,7 +451,65 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   CGFloat pageWidth = _pagingScrollView.bounds.size.width;
   CGFloat newOffset = ((_firstVisiblePageIndexBeforeRotation * pageWidth)
                        + (_percentScrolledIntoFirstVisiblePage * pageWidth));
+  _isModifyingContentOffset = YES;
   _pagingScrollView.contentOffset = CGPointMake(newOffset, 0);
+  _isModifyingContentOffset = NO;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasNext {
+  return (self.currentCenterPhotoIndex < self.numberOfPhotos - 1);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasPrevious {
+  return self.currentCenterPhotoIndex > 0;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didStopModifyingContentOffset {
+  _isModifyingContentOffset = NO;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)moveToNextAnimated:(BOOL)animated {
+  if ([self hasNext]) {
+    CGPoint offset = [self frameForPageAtIndex:self.currentCenterPhotoIndex + 1].origin;
+    offset.x -= self.pageHorizontalMargin;
+
+    _isModifyingContentOffset = YES;
+    [_pagingScrollView setContentOffset:offset animated:animated];
+    SEL selector = @selector(didStopModifyingContentOffset);
+    [NSObject cancelPreviousPerformRequestsWithTarget: self
+                                             selector: selector
+                                               object: nil];
+    [self performSelector: selector
+               withObject: nil
+               afterDelay: 0.4];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)moveToPreviousAnimated:(BOOL)animated {
+  if ([self hasPrevious]) {
+    CGPoint offset = [self frameForPageAtIndex:self.currentCenterPhotoIndex - 1].origin;
+    offset.x -= self.pageHorizontalMargin;
+
+    _isModifyingContentOffset = YES;
+    [_pagingScrollView setContentOffset:offset animated:animated];
+    SEL selector = @selector(didStopModifyingContentOffset);
+    [NSObject cancelPreviousPerformRequestsWithTarget: self
+                                             selector: selector
+                                               object: nil];
+    [self performSelector: selector
+               withObject: nil
+               afterDelay: 0.4];
+  }
 }
 
 
