@@ -192,6 +192,14 @@
 - (void)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject;
 
 /**
+ * An object has been stored in the cache.
+ *
+ *      @param object          The object that was stored in the cache.
+ *      @param name            The cache name for the object.
+ */
+- (void)didSetObject:(id)object withName:(NSString *)name;
+
+/**
  * An object is about to be removed from the cache.
  *
  *      @param object  The object about to removed from the cache.

@@ -464,4 +464,30 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testImageCacheStoringWithTinyLimit {
+  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+
+  cache.maxNumberOfPixels = 1;
+
+  UIImage* img1 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+  UIImage* img2 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+
+  [cache storeObject: img1
+            withName: @"obj1"];
+
+  STAssertEquals([cache count], (NSUInteger)0, @"Cache should have zero objects.");
+
+  [cache storeObject: img2
+            withName: @"obj2"];
+
+  STAssertEquals([cache count], (NSUInteger)0, @"Cache should have zero objects.");
+
+  [cache reduceMemoryUsage];
+
+  STAssertEquals([cache count], (NSUInteger)0, @"Cache should have zero objects.");
+
+}
+
+
 @end
