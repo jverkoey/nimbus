@@ -18,13 +18,13 @@
 #import <UIKit/UIKit.h>
 
 /**
- * For common view dimensions.
+ * For common system metrics.
  *
  * Definitions of common view dimensions on the iPhone and iPad touch taking into account any
  * applicable context.
  *
  *      @ingroup NimbusCore
- *      @defgroup Common-View-Dimensions Common View Dimensions
+ *      @defgroup Common-Metrics Common Metrics
  *      @{
  */
 
@@ -39,7 +39,20 @@
  */
 CGFloat NIToolbarHeightForOrientation(UIInterfaceOrientation orientation);
 
+/**
+ * The animation curve used when animating the status bar.
+ *
+ * Value: UIViewAnimationCurveLinear
+ */
+UIViewAnimationCurve NIStatusBarAnimationCurve();
+
+/**
+ * The animation duration for animating the status bar.
+ *
+ * Value: 0.3 seconds
+ */
+NSTimeInterval NIStatusBarAnimationDuration();
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/**@}*/// End of Common View Dimensions ///////////////////////////////////////////////////////////
+/**@}*/// End of Common Metrics ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////

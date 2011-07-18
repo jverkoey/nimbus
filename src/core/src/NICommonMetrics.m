@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "NICommonViewDimensions.h"
+#import "NICommonMetrics.h"
 
 #import "NISDKAvailability.h"
 
@@ -26,4 +26,16 @@ CGFloat NIToolbarHeightForOrientation(UIInterfaceOrientation orientation) {
           : (UIInterfaceOrientationIsPortrait(orientation)
              ? 44
              : 33));;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+UIViewAnimationCurve NIStatusBarAnimationCurve() {
+  return UIViewAnimationCurveEaseIn;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NSTimeInterval NIStatusBarAnimationDuration() {
+  return 0.3;
 }
