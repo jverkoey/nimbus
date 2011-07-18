@@ -309,4 +309,14 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  */
 - (void)photoAlbumScrollViewDidChangePages:(NIPhotoAlbumScrollView *)photoAlbumScrollView;
 
+/**
+ * The next photo in the album has been loaded and is ready to be displayed.
+ */
+- (void)photoAlbumScrollViewDidLoadNextPhoto:(NIPhotoAlbumScrollView *)photoAlbumScrollView;
+
+/**
+ * The previous photo in the album has been loaded and is ready to be displayed.
+ */
+- (void)photoAlbumScrollViewDidLoadPreviousPhoto:(NIPhotoAlbumScrollView *)photoAlbumScrollView;
+
 @end

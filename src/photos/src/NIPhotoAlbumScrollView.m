@@ -80,6 +80,19 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)notifyDelegatePhotoDidLoadAtIndex:(NSInteger)photoIndex {
+  if (photoIndex == (self.currentCenterPhotoIndex + 1)
+      && [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidLoadNextPhoto:)]) {
+    [self.delegate photoAlbumScrollViewDidLoadNextPhoto:self];
+
+  } else if (photoIndex == (self.currentCenterPhotoIndex - 1)
+             && [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidLoadPreviousPhoto:)]) {
+    [self.delegate photoAlbumScrollViewDidLoadPreviousPhoto:self];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Page Layout
@@ -223,6 +236,10 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
                              && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
     if (photoSize > page.photoSize) {
       [page setImage:image photoSize:photoSize];
+
+      if (NIPhotoScrollViewPhotoSizeOriginal == photoSize) {
+        [self notifyDelegatePhotoDidLoadAtIndex:index];
+      }
     }
   }
 }
@@ -235,7 +252,17 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)displayPageForIndex:(NSInteger)index {
+- (void)resetSurroundingPages {
+  for (NIPhotoScrollView* page in _visiblePages) {
+    if (page.photoIndex != self.currentCenterPhotoIndex) {
+      [self resetPage:page];
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)displayPageAtIndex:(NSInteger)index {
   NIPhotoScrollView* page = [self dequeueRecycledPage];
 
   if (nil == page) {
@@ -253,16 +280,20 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateVisiblePages {
+  NSInteger oldCenterPhotoIndex = self.currentCenterPhotoIndex;
+
   NSRange visiblePageRange = [self visiblePageRange];
 
   _currentCenterPhotoIndex = [self currentVisiblePageIndex];
 
-  // Recycle no-longer-visible pages and reset off-screen pages.
+  // Recycle no-longer-visible pages.
   for (NIPhotoScrollView* page in _visiblePages) {
     if (!NSLocationInRange(page.photoIndex, visiblePageRange)) {
       [_recycledPages addObject:page];
       [page removeFromSuperview];
 
+      // Give the data source the opportunity to kill any asynchronous operations for this
+      // now-recycled page.
       if ([_dataSource respondsToSelector:
            @selector(photoAlbumScrollView:stopLoadingPhotoAtIndex:)]) {
         [_dataSource photoAlbumScrollView: self
@@ -274,14 +305,19 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
   // Prioritize displaying the currently visible page.
   if (![self isDisplayingPageForIndex:_currentCenterPhotoIndex]) {
-    [self displayPageForIndex:_currentCenterPhotoIndex];
+    [self displayPageAtIndex:_currentCenterPhotoIndex];
   }
 
   // Add missing pages.
   for (int index = visiblePageRange.location; index < NSMaxRange(visiblePageRange); ++index) {
     if (![self isDisplayingPageForIndex:index]) {
-      [self displayPageForIndex:index];
+      [self displayPageAtIndex:index];
     }
+  }
+
+  if (oldCenterPhotoIndex != _currentCenterPhotoIndex
+      && [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidChangePages:)]) {
+    [self.delegate photoAlbumScrollViewDidChangePages:self];
   }
 }
 
@@ -294,8 +330,6 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-  NSInteger oldCenterPhotoIndex = _currentCenterPhotoIndex;
-
   // This method is called repeatedly as the user scrolls so updateVisiblePages must be
   // leight-weight enough not to noticeably impact performance.
   [self updateVisiblePages];
@@ -303,21 +337,6 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   if (!_isModifyingContentOffset
       && [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidScroll:)]) {
     [self.delegate photoAlbumScrollViewDidScroll:self];
-  }
-
-  if (oldCenterPhotoIndex != _currentCenterPhotoIndex
-      && [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidChangePages:)]) {
-    [self.delegate photoAlbumScrollViewDidChangePages:self];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)resetSurroundingPages {
-  for (NIPhotoScrollView* page in _visiblePages) {
-    if (page.photoIndex != self.currentCenterPhotoIndex) {
-      [self resetPage:page];
-    }
   }
 }
 
@@ -386,7 +405,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
   _pagingScrollView.frame = [self frameForPagingScrollView];
 
-  // The content size will be calculated based on the number of pages.
+  // The content size is calculated based on the number of pages and the scroll view frame.
   _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
 
   // Begin requesting the photo information from the data source.
@@ -407,6 +426,11 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
       // Only replace the photo if it's of a higher quality than one we're already showing.
       if (photoSize > page.photoSize) {
         [page setImage:image photoSize:photoSize];
+
+        // Notify the delegate that the photo has been loaded.
+        if (NIPhotoScrollViewPhotoSizeOriginal == photoSize) {
+          [self notifyDelegatePhotoDidLoadAtIndex:photoIndex];
+        }
       }
       break;
     }
