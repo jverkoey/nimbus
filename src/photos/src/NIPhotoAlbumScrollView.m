@@ -18,6 +18,7 @@
 
 #import "NIPhotoScrollView.h"
 
+const NSInteger NIPhotoAlbumScrollViewUnknownNumberOfPhotos = -1;
 const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
@@ -58,6 +59,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
     _firstVisiblePageIndexBeforeRotation = -1;
     _percentScrolledIntoFirstVisiblePage = -1;
     _currentCenterPhotoIndex = -1;
+    _numberOfPages = NIPhotoAlbumScrollViewUnknownNumberOfPhotos;
 
     _pagingScrollView = [[[UIScrollView alloc] initWithFrame:frame] autorelease];
     _pagingScrollView.pagingEnabled = YES;

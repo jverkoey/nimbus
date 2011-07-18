@@ -33,6 +33,11 @@ typedef enum {
 
 @protocol NIPhotoScrollViewDelegate;
 
+/**
+ * A single photo view that supports zooming and rotation.
+ *
+ *      @ingroup Photos-Views
+ */
 @interface NIPhotoScrollView : UIScrollView <
   UIScrollViewDelegate
 > {
@@ -118,9 +123,21 @@ typedef enum {
 
 @end
 
+
+/**
+ * The photo scroll view delegate.
+ *
+ *      @ingroup Photos-Views
+ */
 @protocol NIPhotoScrollViewDelegate <NSObject>
 
 @optional
+
+/**
+ * @name [Delegate] Zooming
+ * @{
+ */
+#pragma mark Zooming
 
 /**
  * The user has double-tapped the photo to zoom either in or out.
@@ -130,5 +147,7 @@ typedef enum {
  */
 - (void)photoScrollViewDidDoubleTapToZoom: (NIPhotoScrollView *)photoScrollView
                                 didZoomIn: (BOOL)didZoomIn;
+
+/**@}*/// End of Zooming
 
 @end

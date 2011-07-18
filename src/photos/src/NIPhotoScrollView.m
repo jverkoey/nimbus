@@ -93,7 +93,11 @@
 
   // On high resolution screens we have double the pixel density, so we will be seeing
   // every pixel if we limit the maximum zoom scale to 0.5.
-  CGFloat maxScale = 1.0 / NIScreenScale();
+  // If zooming disabled we always want to show the image at a 1-to-1 ratio if the image too small.
+  // This primarily applies to the loading image on retina displays. If we use the screen scale
+  // to calculate the max scale then the loading image will end up being half the size it should
+  // be.
+  CGFloat maxScale = (_zoomingIsEnabled ? (1.0 / NIScreenScale()) : 1);
 
   if (self.photoSize != NIPhotoScrollViewPhotoSizeThumbnail) {
     // Don't let minScale exceed maxScale. (If the image is smaller than the screen, we
