@@ -44,6 +44,8 @@
  * <h2>Examples</h2>
  *
  * @image html photos-iphone-example1.png "Screenshot of the BasicPhotoAlbum application on the iPhone."
+ *
+ * Image source: <a href="http://www.flickr.com/photos/janekm/360669001/">flickr.com/photos/janekm/360669001</a>
  */
 
 /**
