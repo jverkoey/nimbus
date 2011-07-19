@@ -67,6 +67,7 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
   NSInteger _firstVisiblePageIndexBeforeRotation;
   CGFloat   _percentScrolledIntoFirstVisiblePage;
   BOOL      _isModifyingContentOffset;
+  BOOL      _isAnimatingToPhoto;
   NSInteger _currentCenterPhotoIndex;
 
   // Cached Data Source Information

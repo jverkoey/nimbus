@@ -37,6 +37,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+    // Default Configuration Settings
     self.showPhotoAlbumBeneathToolbar = YES;
     self.hidesChromeWhenScrolling = YES;
     self.chromeCanBeHidden = YES;
@@ -225,17 +226,28 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setChromeVisibility:(BOOL)isVisible animated:(BOOL)animated {
-  if ((!isVisible && (self.toolbar.hidden || _isAnimatingChrome))
+  if (_isAnimatingChrome
+      || (!isVisible && self.toolbar.hidden)
       || (isVisible && !self.toolbar.hidden)
       || !self.chromeCanBeHidden) {
     // Nothing to do here.
     return;
   }
 
-  if (isVisible) {
+  CGRect toolbarFrame = self.toolbar.frame;
+  CGRect bounds = self.view.bounds;
+
+  // Reset the toolbar's initial position.
+  if (!isVisible) {
+    toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
+
+  } else {
     // Ensure that the toolbar is visible through the animation.
     self.toolbar.hidden = NO;
+
+    toolbarFrame.origin.y = bounds.size.height;
   }
+  self.toolbar.frame = toolbarFrame;
 
   // Show/hide the system chrome.
   if ([[UIApplication sharedApplication] respondsToSelector:
@@ -252,9 +264,7 @@
                                                  animated: animated];
   }
 
-  CGRect toolbarFrame = self.toolbar.frame;
-  CGRect bounds = self.view.bounds;
-
+  // Place the toolbar at its final location.
   if (isVisible) {
     // Slide up.
     toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
@@ -264,6 +274,7 @@
     toolbarFrame.origin.y = bounds.size.height;
   }
 
+  // If there is a navigation bar, place it at its final location.
   CGRect navigationBarFrame = CGRectZero;
   if (nil != self.navigationController.navigationBar) {
     navigationBarFrame = self.navigationController.navigationBar.frame;

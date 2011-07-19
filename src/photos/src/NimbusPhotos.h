@@ -65,6 +65,8 @@
  * @defgroup Photos-Controllers Photo View Controllers
  */
 
+/**@}*/
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
@@ -79,5 +81,3 @@
 #import "NIPhotoAlbumScrollView.h"
 #import "NIPhotoScrollView.h"
 #endif
-
-/**@}*/

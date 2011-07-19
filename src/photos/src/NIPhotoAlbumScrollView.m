@@ -193,16 +193,21 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
   // Whatever image is currently displayed in the center of the screen is the currently
   // visible image.
-  return floorf((contentOffset.x + boundsSize.width / 2) / boundsSize.width);
+  return MAX(0, MIN(self.numberOfPhotos,
+                    floorf((contentOffset.x + boundsSize.width / 2) / boundsSize.width)));
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSRange)visiblePageRange {
+  if (0 >= _numberOfPages) {
+    return NSMakeRange(0, 0);
+  }
+
   NSInteger currentVisiblePageIndex = [self currentVisiblePageIndex];
 
   int firstVisiblePageIndex = MAX(currentVisiblePageIndex - 1, 0);
-  int lastVisiblePageIndex  = MIN(currentVisiblePageIndex + 1, _numberOfPages - 1);
+  int lastVisiblePageIndex  = MAX(0, MIN(currentVisiblePageIndex + 1, _numberOfPages - 1));
 
   return NSMakeRange(firstVisiblePageIndex, lastVisiblePageIndex - firstVisiblePageIndex + 1);
 }
@@ -331,14 +336,31 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-  // This method is called repeatedly as the user scrolls so updateVisiblePages must be
-  // leight-weight enough not to noticeably impact performance.
-  [self updateVisiblePages];
+- (void)setFrame:(CGRect)frame {
+  // We have to modify this method because it eventually leads to changing the content offset
+  // programmatically. When this happens we end up getting a scrollViewDidScroll: message
+  // during which we do not want to modify the visible pages because this is handled elsewhere.
 
-  if (!_isModifyingContentOffset
-      && [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidScroll:)]) {
-    [self.delegate photoAlbumScrollViewDidScroll:self];
+
+  // Don't lose the previous modification state if an animation is occurring when the
+  // frame changes, like when the device changes orientation.
+  BOOL wasModifyingContentOffset = _isModifyingContentOffset;
+  _isModifyingContentOffset = YES;
+  [super setFrame:frame];
+  _isModifyingContentOffset = wasModifyingContentOffset;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  if (!_isModifyingContentOffset) {
+    // This method is called repeatedly as the user scrolls so updateVisiblePages must be
+    // leight-weight enough not to noticeably impact performance.
+    [self updateVisiblePages];
+
+    if ([self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidScroll:)]) {
+      [self.delegate photoAlbumScrollViewDidScroll:self];
+    }
   }
 }
 
@@ -391,8 +413,10 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   NI_RELEASE_SAFELY(_recycledPages);
 
   // Reset the state of the scroll view.
+  _isModifyingContentOffset = YES;
   _pagingScrollView.contentSize = self.bounds.size;
   _pagingScrollView.contentOffset = CGPointZero;
+  _isModifyingContentOffset = NO;
 
   // If there is no data source then we can't do anything particularly interesting.
   if (nil == _dataSource) {
@@ -465,8 +489,12 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
                                          duration: (NSTimeInterval)duration {
+  BOOL wasModifyingContentOffset = _isModifyingContentOffset;
+
   // Recalculate contentSize based on current orientation.
+  _isModifyingContentOffset = YES;
   _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
+  _isModifyingContentOffset = wasModifyingContentOffset;
 
   // adjust frames and configuration of each visible page.
   for (NIPhotoScrollView* page in _visiblePages) {
@@ -479,7 +507,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
                        + (_percentScrolledIntoFirstVisiblePage * pageWidth));
   _isModifyingContentOffset = YES;
   _pagingScrollView.contentOffset = CGPointMake(newOffset, 0);
-  _isModifyingContentOffset = NO;
+  _isModifyingContentOffset = wasModifyingContentOffset;
 }
 
 
@@ -496,26 +524,60 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didStopModifyingContentOffset {
+- (void)didAnimateToPage:(NSNumber *)photoIndex {
+  _isAnimatingToPhoto = NO;
+
+  // Reset the content offset once the animation completes, just to be sure that the
+  // viewer sits on a page bounds even if we rotate the device while animating.
+  CGPoint offset = [self frameForPageAtIndex:[photoIndex intValue]].origin;
+  offset.x -= self.pageHorizontalMargin;
+
+  _isModifyingContentOffset = YES;
+  _pagingScrollView.contentOffset = offset;
   _isModifyingContentOffset = NO;
+
+  [self updateVisiblePages];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)moveToPageAtIndex:(NSInteger)photoIndex animated:(BOOL)animated {
+  if (_isAnimatingToPhoto) {
+    // Don't allow re-entry for sliding animations.
+    return;
+  }
+
+  CGPoint offset = [self frameForPageAtIndex:photoIndex].origin;
+  offset.x -= self.pageHorizontalMargin;
+
+  _isModifyingContentOffset = YES;
+  [_pagingScrollView setContentOffset:offset animated:animated];
+
+  NSNumber* index = [NSNumber numberWithInt:photoIndex];
+  if (animated) {
+    _isAnimatingToPhoto = YES;
+    SEL selector = @selector(didAnimateToPage:);
+    [NSObject cancelPreviousPerformRequestsWithTarget: self];
+
+    // When the animation is finished we reset the content offset just in case the frame
+    // changes while we're animating (like when rotating the device). To do this we need
+    // to know the destination index for the animation.
+    [self performSelector: selector
+               withObject: index
+               afterDelay: 0.4];
+
+  } else {
+    [self didAnimateToPage:index];
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)moveToNextAnimated:(BOOL)animated {
   if ([self hasNext]) {
-    CGPoint offset = [self frameForPageAtIndex:self.currentCenterPhotoIndex + 1].origin;
-    offset.x -= self.pageHorizontalMargin;
+    NSInteger index = self.currentCenterPhotoIndex + 1;
 
-    _isModifyingContentOffset = YES;
-    [_pagingScrollView setContentOffset:offset animated:animated];
-    SEL selector = @selector(didStopModifyingContentOffset);
-    [NSObject cancelPreviousPerformRequestsWithTarget: self
-                                             selector: selector
-                                               object: nil];
-    [self performSelector: selector
-               withObject: nil
-               afterDelay: 0.4];
+    [self moveToPageAtIndex:index animated:animated];
   }
 }
 
@@ -523,18 +585,9 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)moveToPreviousAnimated:(BOOL)animated {
   if ([self hasPrevious]) {
-    CGPoint offset = [self frameForPageAtIndex:self.currentCenterPhotoIndex - 1].origin;
-    offset.x -= self.pageHorizontalMargin;
+    NSInteger index = self.currentCenterPhotoIndex - 1;
 
-    _isModifyingContentOffset = YES;
-    [_pagingScrollView setContentOffset:offset animated:animated];
-    SEL selector = @selector(didStopModifyingContentOffset);
-    [NSObject cancelPreviousPerformRequestsWithTarget: self
-                                             selector: selector
-                                               object: nil];
-    [self performSelector: selector
-               withObject: nil
-               afterDelay: 0.4];
+    [self moveToPageAtIndex:index animated:animated];
   }
 }
 

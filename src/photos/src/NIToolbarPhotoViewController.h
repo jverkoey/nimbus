@@ -28,6 +28,8 @@
 /**
  * A simple photo album view controller implementation with a toolbar.
  *
+ *      @ingroup Photos-Controllers
+ *
  * This controller does not implement the photo album data source, it simply implements
  * some of the most common UI elements that are associated with a photo viewer.
  *
@@ -36,7 +38,7 @@
  *
  * <h2>Implementing Delegate Methods</h2>
  *
- * This view controller already implements NIPhotoAlbumScrollViewDelegate, so if you want to
+ * This view controller already implements NIPhotoAlbumScrollViewDelegate. If you want to
  * implement methods of this delegate you should take care to call the super implementation
  * if necessary. The following methods have implementations in this class:
  *
@@ -46,6 +48,8 @@
  *
  *
  * <h2>Recommended Configurations</h2>
+ *
+ * <h3>Default: Zooming enabled with translucent toolbar</h3>
  *
  * The default settings are good for showing a photo album that takes up the entire screen.
  * The photos will be visible beneath the toolbar because it is translucent. The chrome will
@@ -57,6 +61,8 @@
  *  chromeCanBeHidden = YES;
  * @endcode
  *
+ * <h3>Zooming disabled with opaque toolbar</h3>
+ *
  * The following settings are good for viewing photo albums when you want to keep the chrome
  * visible at all times without zooming enabled.
  *
@@ -65,12 +71,9 @@
  *  chromeCanBeHidden = NO;
  *  photoAlbumView.zoomingIsEnabled = NO;
  * @endcode
- *
- *      @ingroup Photos-Controllers
  */
 @interface NIToolbarPhotoViewController : UIViewController <
-  NIPhotoAlbumScrollViewDelegate
-> {
+  NIPhotoAlbumScrollViewDelegate > {
 @private
   // Views
   UIToolbar*              _toolbar;
@@ -92,7 +95,6 @@
   BOOL _chromeCanBeHidden;
   BOOL _animateMovingToNextAndPreviousPhotos;
 }
-
 
 /**
  * @name Configuring Functionality
