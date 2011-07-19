@@ -24,6 +24,7 @@
 
 @synthesize photoIndex  = _photoIndex;
 @synthesize photoSize   = _photoSize;
+@synthesize photoDimensions = _photoDimensions;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
 @synthesize photoScrollViewDelegate = _photoScrollViewDelegate;
 
@@ -71,6 +72,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)minScaleForSize:(CGSize)size boundsSize:(CGSize)boundsSize {
+  CGFloat xScale = boundsSize.width / size.width;   // The scale needed to perfectly fit the image width-wise.
+  CGFloat yScale = boundsSize.height / size.height; // The scale needed to perfectly fit the image height-wise.
+  CGFloat minScale = MIN(xScale, yScale);           // Use the minimum of these to allow the image to become fully visible.
+
+  return minScale;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setMaxMinZoomScalesForCurrentBounds {
   CGSize imageSize = _imageView.bounds.size;
 
@@ -87,9 +98,20 @@
 
   CGSize boundsSize = self.bounds.size;
 
-  CGFloat xScale = boundsSize.width / imageSize.width;   // The scale needed to perfectly fit the image width-wise.
-  CGFloat yScale = boundsSize.height / imageSize.height; // The scale needed to perfectly fit the image height-wise.
-  CGFloat minScale = MIN(xScale, yScale);                // Use the minimum of these to allow the image to become fully visible.
+  CGFloat minScale = [self minScaleForSize:imageSize boundsSize:boundsSize];
+
+  // When we show thumbnails for images that are too small for the bounds, we try to use
+  // the known photo dimensions to scale the minimum scale to match what the final image
+  // will be. This avoids any "snapping" effects from stretching the thumbnail too large.
+  if ((NIPhotoScrollViewPhotoSizeThumbnail == self.photoSize)
+      && !CGSizeEqualToSize(self.photoDimensions, CGSizeZero)) {
+    // Modify the scale according to the final image's minScale.
+    CGFloat minIdealScale = [self minScaleForSize:self.photoDimensions boundsSize:boundsSize];
+    if (minIdealScale > 1) {
+      // Only modify the scale if the final image is smaller than the photo frame.
+      minScale = (minScale / minIdealScale);
+    }
+  }
 
   // On high resolution screens we have double the pixel density, so we will be seeing
   // every pixel if we limit the maximum zoom scale to 0.5.

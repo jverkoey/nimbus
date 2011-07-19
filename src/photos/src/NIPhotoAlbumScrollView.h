@@ -335,7 +335,8 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
 - (UIImage *)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
                      photoAtIndex: (NSInteger)photoIndex
                         photoSize: (NIPhotoScrollViewPhotoSize *)photoSize
-                        isLoading: (BOOL *)isLoading;
+                        isLoading: (BOOL *)isLoading
+          originalPhotoDimensions: (CGSize *)originalPhotoDimensions;
 
 /**@}*/// End of Fetching Required Album Information
 

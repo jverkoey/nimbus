@@ -49,7 +49,8 @@ typedef enum {
   NSInteger _photoIndex;
 
   // Photo Information
-  NIPhotoScrollViewPhotoSize _photoSize;
+  NIPhotoScrollViewPhotoSize  _photoSize;
+  CGSize                      _photoDimensions;
 
   // Configurable State
   BOOL _zoomingIsEnabled;
@@ -72,6 +73,19 @@ typedef enum {
  * This is used to replace the photo only with successively higher-quality versions.
  */
 @property (nonatomic, readwrite, assign) NIPhotoScrollViewPhotoSize photoSize;
+
+/**
+ * The largest dimensions of the photo.
+ *
+ * This is used to show the thumbnail at the final image size in case the final image size
+ * is smaller than the album's frame. Without this value we have to assume that the thumbnail
+ * will take up the full screen. If the final image doesn't take up the full screen, then
+ * the photo view will appear to "snap" to the smaller full-size image when the final image
+ * does load.
+ *
+ * CGSizeZero is used to signify an unknown final photo dimension.
+ */
+@property (nonatomic, readwrite, assign) CGSize photoDimensions;
 
 /**
  * Whether the photo is allowed to be zoomed.

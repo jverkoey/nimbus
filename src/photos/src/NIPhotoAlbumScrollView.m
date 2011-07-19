@@ -229,10 +229,14 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   //    this case.
   NIPhotoScrollViewPhotoSize photoSize = NIPhotoScrollViewPhotoSizeUnknown;
   BOOL isLoading = NO;
+  CGSize originalPhotoDimensions = CGSizeZero;
   UIImage* image = [_dataSource photoAlbumScrollView: self
                                         photoAtIndex: index
                                            photoSize: &photoSize
-                                           isLoading: &isLoading];
+                                           isLoading: &isLoading
+                             originalPhotoDimensions: &originalPhotoDimensions];
+
+  page.photoDimensions = originalPhotoDimensions;
 
   if (nil == image) {
     page.zoomingIsEnabled = NO;
