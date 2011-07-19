@@ -28,26 +28,26 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadThumbnails {
-  for (NSInteger ix = 0; ix < 4; ++ix) {
-    __block NIReadFileFromDiskOperation* readOp =
-    [[[NIReadFileFromDiskOperation alloc] initWithPathToFile:
-      NIPathForBundleResource(nil, [NSString stringWithFormat:@"clouds_thumbnail/clouds_%d.jpeg", ix])]
-     autorelease];
+  for (NSInteger ix = 0; ix < [_photoInformation count]; ++ix) {
+    NSDictionary* photo = [_photoInformation objectAtIndex:ix];
+
+    NSString* thumbnailSource = [photo objectForKey:@"thumbnailSource"];
+    NSURL* url = [NSURL URLWithString:thumbnailSource];
+
+    __block NIHTTPRequest* readOp = [[[NIHTTPRequest alloc] initWithURL:url] autorelease];
 
     readOp.tag = -1;
 
-    NSString* photoIndexKey = [NSString stringWithFormat:@"%d", ix + 1];
+    NSString* photoIndexKey = [NSString stringWithFormat:@"%d", ix];
 
-    [readOp setWillFinishBlock:^{
-      readOp.processedObject = [UIImage imageWithData:readOp.data];
-    }];
+    [readOp setCompletionBlock:^{
+      UIImage* image = [UIImage imageWithData:[readOp responseData]];
 
-    [readOp setDidFinishBlock:^{
-      [_thumbnailImageCache storeObject: readOp.processedObject
+      [_thumbnailImageCache storeObject: image
                                withName: photoIndexKey];
 
-      [self.photoAlbumView didLoadPhoto: readOp.processedObject
-                                atIndex: ix + 1
+      [self.photoAlbumView didLoadPhoto: image
+                                atIndex: ix
                               photoSize: NIPhotoScrollViewPhotoSizeThumbnail];
     }];
 
@@ -63,17 +63,15 @@
   _highQualityImageCache = [[NIImageMemoryCache alloc] initWithCapacity:5];
   _thumbnailImageCache = [[NIImageMemoryCache alloc] initWithCapacity:5];
 
-  _queue = [[NSOperationQueue alloc] init];
-  // Load photos serially.
-  [_queue setMaxConcurrentOperationCount:1];
+  [_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024*1024*3];
 
-  [self loadThumbnails];
+  _queue = [[NSOperationQueue alloc] init];
 
   self.photoAlbumView.loadingImage = [UIImage imageWithContentsOfFile:
                                       NIPathForBundleResource(nil, @"photoDefault.png")];
   self.photoAlbumView.dataSource = self;
 
-  NSString* albumURLPath = @"http://graph.facebook.com/6196758417/photos";
+  NSString* albumURLPath = @"http://graph.facebook.com/10150219083838418/photos";
   NIJSONHTTPRequest* albumRequest = [[[NIJSONHTTPRequest alloc] initWithURL:
                                       [NSURL URLWithString:albumURLPath]] autorelease];
 
@@ -104,7 +102,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)requestFinished:(NIJSONHTTPRequest *)request {
   _photoInformation = [request.rootObject retain];
-  NSLog(@"%@", _photoInformation);
+
+  [self loadThumbnails];
+
+  [self.photoAlbumView reloadData];
 }
 
 
@@ -135,7 +136,7 @@
     NSString* originalImageSource = [[sortedImages objectAtIndex:0] objectForKey:@"source"];
 
     NSInteger thumbnailIndex = ([sortedImages count] - 1
-                                - MIN([sortedImages count] - 2, NIIsPad() ? 3 : 0));
+                                - MIN([sortedImages count] - 2, ((NIIsPad() || NIScreenScale() > 1) ? 1 : 0)));
 
     NSString* thumbnailImageSource = nil;
     if (0 < thumbnailIndex) {
@@ -160,7 +161,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)numberOfPhotosInPhotoScrollView:(NIPhotoAlbumScrollView *)photoScrollView {
-  return 5;
+  return [_photoInformation count];
 }
 
 
@@ -171,48 +172,45 @@
                         isLoading: (BOOL *)isLoading {
   UIImage* image = nil;
 
-  if (photoIndex > 0) {
-    NSString* photoIndexKey = [NSString stringWithFormat:@"%d", photoIndex];
+  NSString* photoIndexKey = [NSString stringWithFormat:@"%d", photoIndex];
 
-    image = [_highQualityImageCache objectWithName:photoIndexKey];
-    if (nil != image) {
-      *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
-
-    } else {
-      // We must use the __block declarator here so that we don't create a retain cycle
-      // when accessing the readOp in the blocks below.
-      __block NIReadFileFromDiskOperation* readOp =
-      [[[NIReadFileFromDiskOperation alloc] initWithPathToFile:
-        NIPathForBundleResource(nil, [NSString stringWithFormat:@"clouds_original/clouds_%d.jpeg", photoIndex - 1])]
-       autorelease];
-
-      readOp.tag = photoIndex;
-
-      [readOp setWillFinishBlock:^{
-        readOp.processedObject = [UIImage imageWithData:readOp.data];
-      }];
-
-      [readOp setDidFinishBlock:^{
-        [_highQualityImageCache storeObject: readOp.processedObject
-                                   withName: photoIndexKey];
-
-        [photoAlbumScrollView didLoadPhoto: readOp.processedObject
-                                   atIndex: photoIndex
-                                 photoSize: NIPhotoScrollViewPhotoSizeOriginal];
-      }];
-
-      [_queue addOperation:readOp];
-
-      *isLoading = YES;
-
-      image = [_thumbnailImageCache objectWithName:photoIndexKey];
-      if (nil != image) {
-        *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
-      }
-    }
+  image = [_highQualityImageCache objectWithName:photoIndexKey];
+  if (nil != image) {
+    *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
 
   } else {
+    // We must use the __block declarator here so that we don't create a retain cycle
+    // when accessing the readOp in the blocks below.
+    NSDictionary* photo = [_photoInformation objectAtIndex:photoIndex];
+
+    NSString* source = [photo objectForKey:@"originalSource"];
+    NSURL* url = [NSURL URLWithString:source];
+
+    __block NIHTTPRequest* readOp = [[[NIHTTPRequest alloc] initWithURL:url] autorelease];
+
+    readOp.tag = photoIndex;
+
+    NSString* photoIndexKey = [NSString stringWithFormat:@"%d", photoIndex];
+
+    [readOp setCompletionBlock:^{
+      UIImage* image = [UIImage imageWithData:[readOp responseData]];
+
+      [_highQualityImageCache storeObject: image
+                                 withName: photoIndexKey];
+
+      [self.photoAlbumView didLoadPhoto: image
+                                atIndex: photoIndex
+                              photoSize: NIPhotoScrollViewPhotoSizeOriginal];
+    }];
+
+    [_queue addOperation:readOp];
+
     *isLoading = YES;
+
+    image = [_thumbnailImageCache objectWithName:photoIndexKey];
+    if (nil != image) {
+      *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
+    }
   }
 
   return image;
@@ -222,7 +220,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
      stopLoadingPhotoAtIndex: (NSInteger)photoIndex {
-  for (NIOperation* op in [_queue operations]) {
+  for (ASIHTTPRequest* op in [_queue operations]) {
     if (op.tag == photoIndex) {
       [op cancel];
     }
