@@ -17,20 +17,29 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "ASIHTTPRequestDelegate.h"
-#import "NIJSONHTTPProcessor.h"
+#import "NIHTTPRequest.h"
 
-@interface RootViewController : NIToolbarPhotoViewController <
-  NIPhotoAlbumScrollViewDataSource,
-  ASIHTTPRequestDelegate
-> {
+@protocol NIProcessorDelegate;
+
+@interface NIJSONHTTPRequest : NIHTTPRequest {
 @private
-  NSOperationQueue* _queue;
+  id _rootObject;
 
-  NSArray* _photoInformation;
-
-  NIImageMemoryCache* _highQualityImageCache;
-  NIImageMemoryCache* _thumbnailImageCache;
+  id<NIProcessorDelegate> _processorDelegate;
 }
 
+@property (nonatomic, readonly, retain) id rootObject;
+
+@property (nonatomic, readwrite, assign) id<NIProcessorDelegate> processorDelegate;
+
 @end
+
+
+@protocol NIProcessorDelegate <NSObject>
+
+@required
+
+- (id)request:(NIJSONHTTPRequest *)request processRootObject:(id)rootObject;
+
+@end
+

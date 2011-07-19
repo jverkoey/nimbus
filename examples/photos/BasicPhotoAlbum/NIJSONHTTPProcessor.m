@@ -14,51 +14,53 @@
 // limitations under the License.
 //
 
-#import "AppDelegate.h"
+#import "NIJSONHTTPProcessor.h"
 
-#import "RootViewController.h"
+#import "ASIHTTPRequest.h"
+#import "JSONKit.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation AppDelegate
+@implementation NIJSONHTTPRequest
 
-@synthesize window = _window;
+@synthesize rootObject = _rootObject;
+@synthesize processorDelegate = _processorDelegate;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  [_window release];
-  _window = nil;
-
-  NI_RELEASE_SAFELY(_rootViewController);
+  NI_RELEASE_SAFELY(_rootObject);
 
   [super dealloc];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Application lifecycle
+- (void)requestStarted {
+  NI_RELEASE_SAFELY(_rootObject);
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)              application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+- (void)requestFinished {
+  NSData* responseData = [self responseData];
 
-  RootViewController* rootVC = [[[RootViewController alloc] initWithNibName:nil bundle:nil]
-                                autorelease];
+  _rootObject = [[JSONDecoder decoder] objectWithData:responseData];
+  responseData = nil;
 
-  _rootViewController = [[UINavigationController alloc] initWithRootViewController:rootVC];
+  // Release the raw response data immediately.
+  [self setRawResponseData:nil];
 
-  [self.window addSubview:_rootViewController.view];
+  if ([_processorDelegate respondsToSelector:@selector(request:processRootObject:)]) {
+    _rootObject = [[_processorDelegate request:self processRootObject:_rootObject] retain];
 
-  [self.window makeKeyAndVisible];
+  } else {
+    _rootObject = nil;
+  }
 
-  return YES;
+  [super requestFinished];
 }
 
 
