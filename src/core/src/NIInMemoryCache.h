@@ -129,12 +129,32 @@
 #pragma mark Accessing Objects in the Cache
 
 /**
- * Retrive an object from the cache.
+ * Retrieve an object from the cache.
  *
  * If the object has expired then the object will be removed from the cache and nil will be
  * returned.
  */
 - (id)objectWithName:(NSString *)name;
+
+/**
+ * Determine whether an object is in the cache or not without modifying the access time.
+ *
+ * This is useful if you simply want to check the cache for the existence of an object.
+ *
+ * If the object has expired then the object will be removed from the cache and nil will be
+ * returned.
+ */
+- (BOOL)hasObjectWithName:(NSString *)name;
+
+/**
+ * Retrieve the data that the object with the given name was last accessed.
+ *
+ * This will not update the access time of the object.
+ *
+ * If the object has expired then the object will be removed from the cache and nil will be
+ * returned.
+ */
+- (NSDate *)dateOfLastAccessWithName:(NSString *)name;
 
 /**@}*/// End of Accessing Objects in the Cache
 

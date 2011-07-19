@@ -230,6 +230,42 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testHasObject {
+  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+
+  id cacheObject1 = [NSArray array];
+  [cache storeObject:cacheObject1 withName:@"obj1"];
+
+  STAssertTrue([cache hasObjectWithName:@"obj1"], @"obj1 should exist in the cache.");
+
+  STAssertFalse([cache hasObjectWithName:@"obj2"], @"obj2 should not exist in the cache.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testAccessTimeModifications {
+  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+
+  id cacheObject1 = [NSArray array];
+  [cache storeObject:cacheObject1 withName:@"obj1"];
+
+  NSDate* lastAccessTime = [cache dateOfLastAccessWithName:@"obj1"];
+
+  // Does not update the access time.
+  [cache hasObjectWithName:@"obj1"];
+
+  STAssertEquals(lastAccessTime, [cache dateOfLastAccessWithName:@"obj1"],
+                 @"Access time should not have been modified.");
+
+  // Does update the access time.
+  [cache objectWithName:@"obj1"];
+
+  STAssertFalse([lastAccessTime isEqualToDate:[cache dateOfLastAccessWithName:@"obj1"]],
+                 @"Access time should have been modified.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testReduceMemoryUsage {
   NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
 

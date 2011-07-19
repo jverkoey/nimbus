@@ -260,19 +260,47 @@
 - (id)objectWithName:(NSString *)name {
   NIMemoryCacheInfo* info = [self cacheInfoForName:name];
 
+  id object = nil;
+
+  if (nil != info) {
+    if ([info hasExpired]) {
+      [self removeObjectWithName:name];
+
+    } else {
+      // Update the access time whenever we fetch an object from the cache.
+      [self updateAccessTimeForInfo:info];
+
+      object = info.object;
+    }
+  }
+
+  return object;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasObjectWithName:(NSString *)name {
+  NIMemoryCacheInfo* info = [self cacheInfoForName:name];
+
   if ([info hasExpired]) {
     [self removeObjectWithName:name];
-    info = nil;
+    return NO;
+  }
 
+  return (nil != info);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSDate *)dateOfLastAccessWithName:(NSString *)name {
+  NIMemoryCacheInfo* info = [self cacheInfoForName:name];
+
+  if ([info hasExpired]) {
+    [self removeObjectWithName:name];
     return nil;
   }
 
-  if (nil != info) {
-    // Update the access time whenever we fetch an object from the cache.
-    [self updateAccessTimeForInfo:info];
-  }
-
-  return info.object;
+  return [info lastAccessTime];
 }
 
 
