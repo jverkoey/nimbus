@@ -436,6 +436,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setChromeCanBeHidden:(BOOL)canBeHidden {
+  if (nil == NIUITapGestureRecognizerClass()) {
+    // Don't allow the chrome to be hidden if we can't tap to make it visible again.
+    canBeHidden = NO;
+  }
+
   _chromeCanBeHidden = canBeHidden;
 
   if (!canBeHidden) {
