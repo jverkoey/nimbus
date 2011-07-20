@@ -51,18 +51,22 @@
 /**
  * The views and protocols used to display and interact with photos.
  *
+ *      @defgroup Photos-Views Photo Views
+ *
  * NIPhotoAlbumScrollView is the meat of the Nimbus photo viewer's functionality. Contained
  * within this view are pages of NIPhotoScrollView views. In your view controller you are
  * expected to implement the NIPhotoAlbumScrollViewDataSource in order to provide the photo
  * album view with the necessary information for presenting an album.
- *
- * @defgroup Photos-Views Photo Views
  */
 
 /**
  * Basic photo album view controller implementations.
  *
- * @defgroup Photos-Controllers Photo View Controllers
+ *      @defgroup Photos-Controllers Photo View Controllers
+ *
+ * The view controllers provided here are not meant to be fully functional view controllers
+ * on their own. It's up to you to build the data source, whether that be from disk or from
+ * a network API.
  */
 
 /**@}*/
