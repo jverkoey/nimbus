@@ -302,6 +302,7 @@
   }
 
   self.toolbar.frame = toolbarFrame;
+  self.toolbar.alpha = (isVisible ? 1 : 0);
   if (nil != self.navigationController.navigationBar) {
     self.navigationController.navigationBar.frame = navigationBarFrame;
     self.navigationController.navigationBar.alpha = (isVisible ? 1 : 0);

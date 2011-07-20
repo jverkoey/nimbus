@@ -29,6 +29,17 @@
 @synthesize thumbnailImageCache = _thumbnailImageCache;
 @synthesize queue = _queue;
 
+- (void)dealloc {
+  for (ASIHTTPRequest *request in _queue.operations) {
+    request.delegate = nil;
+  }
+  [_queue cancelAllOperations];
+  NI_RELEASE_SAFELY(_queue);
+  NI_RELEASE_SAFELY(_highQualityImageCache);
+  NI_RELEASE_SAFELY(_thumbnailImageCache);  
+  [super dealloc];
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)cacheKeyForPhotoIndex:(NSInteger)photoIndex {
