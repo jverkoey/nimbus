@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -100,7 +100,7 @@
 <a name="l00022"></a>00022 
 <a name="l00026"></a>00026 <span class="keyword">@interface </span><a class="code" href="interface_n_i_read_file_from_disk_operation.html" title="An operation that reads a file from disk.">NIReadFileFromDiskOperation</a>()
 <a name="l00027"></a>00027 
-<a name="l00028"></a>00028 <span class="keyword">@property</span> (nonatomic, readwrite, retain) <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a>* <a class="code" href="interface_n_i_read_file_from_disk_operation.html#a754e08489a25c244257bfd6e733f61e2" title="The data that was read from disk.">data</a>;
+<a name="l00028"></a>00028 <span class="keyword">@property</span> (readwrite, retain) <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a>* <a class="code" href="interface_n_i_read_file_from_disk_operation.html#a754e08489a25c244257bfd6e733f61e2" title="The data that was read from disk.">data</a>;
 <a name="l00029"></a>00029 
 <a name="l00030"></a>00030 <span class="keyword">@end</span>
 <a name="l00031"></a>00031 
@@ -109,167 +109,185 @@
 <a name="l00037"></a>00037 
 <a name="l00038"></a>00038 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_read_file_from_disk_operation.html#adbd0fb5979eafbc48a938204e54c38c8" title="The path to the file that should be read from disk.">pathToFile</a>  = _pathToFile;
 <a name="l00039"></a>00039 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_read_file_from_disk_operation.html#a754e08489a25c244257bfd6e733f61e2" title="The data that was read from disk.">data</a>        = _data;
-<a name="l00040"></a>00040 
+<a name="l00040"></a>00040 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_read_file_from_disk_operation.html#af07b3fadfa7445e1993bf2eedd596aa6" title="An object created from the data that was read from disk.">processedObject</a> = _processedObject;
 <a name="l00041"></a>00041 
-<a name="l00043"></a>00043 - (void)dealloc {
-<a name="l00044"></a>00044   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_pathToFile);
-<a name="l00045"></a>00045   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_data);
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047   [<span class="keyword">super</span> dealloc];
-<a name="l00048"></a>00048 }
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050 
-<a name="l00052"></a><a class="code" href="interface_n_i_read_file_from_disk_operation.html#a8700010910b9dad07f61cc040b163da7">00052</a> - (id)initWithPathToFile:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToFile {
-<a name="l00053"></a>00053   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super init])) {
-<a name="l00054"></a>00054     <span class="keyword">self</span>.pathToFile = <a class="code" href="interface_n_i_read_file_from_disk_operation.html#adbd0fb5979eafbc48a938204e54c38c8" title="The path to the file that should be read from disk.">pathToFile</a>;
-<a name="l00055"></a>00055   }
-<a name="l00056"></a>00056   <span class="keywordflow">return</span> <span class="keyword">self</span>;
-<a name="l00057"></a>00057 }
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059 
-<a name="l00062"></a>00062 <span class="preprocessor">#pragma mark -</span>
-<a name="l00063"></a>00063 <span class="preprocessor"></span><span class="preprocessor">#pragma mark NSOperation</span>
-<a name="l00064"></a>00064 <span class="preprocessor"></span>
-<a name="l00065"></a>00065 
-<a name="l00067"></a>00067 - (void)main {
-<a name="l00068"></a>00068   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070   [<span class="keyword">self</span> operationDidStart];
+<a name="l00042"></a>00042 
+<a name="l00044"></a>00044 - (void)dealloc {
+<a name="l00045"></a>00045   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_pathToFile);
+<a name="l00046"></a>00046   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_data);
+<a name="l00047"></a>00047   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_processedObject);
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049   [<span class="keyword">super</span> dealloc];
+<a name="l00050"></a>00050 }
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052 
+<a name="l00054"></a><a class="code" href="interface_n_i_read_file_from_disk_operation.html#a8700010910b9dad07f61cc040b163da7">00054</a> - (id)initWithPathToFile:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToFile {
+<a name="l00055"></a>00055   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super init])) {
+<a name="l00056"></a>00056     <span class="keyword">self</span>.pathToFile = <a class="code" href="interface_n_i_read_file_from_disk_operation.html#adbd0fb5979eafbc48a938204e54c38c8" title="The path to the file that should be read from disk.">pathToFile</a>;
+<a name="l00057"></a>00057   }
+<a name="l00058"></a>00058   <span class="keywordflow">return</span> <span class="keyword">self</span>;
+<a name="l00059"></a>00059 }
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061 
+<a name="l00064"></a>00064 <span class="preprocessor">#pragma mark -</span>
+<a name="l00065"></a>00065 <span class="preprocessor"></span><span class="preprocessor">#pragma mark NSOperation</span>
+<a name="l00066"></a>00066 <span class="preprocessor"></span>
+<a name="l00067"></a>00067 
+<a name="l00069"></a>00069 - (void)main {
+<a name="l00070"></a>00070   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 <a name="l00071"></a>00071 
-<a name="l00072"></a>00072   NSError* error = nil;
+<a name="l00072"></a>00072   [<span class="keyword">self</span> operationDidStart];
 <a name="l00073"></a>00073 
-<a name="l00074"></a>00074   <span class="keyword">self</span>.data = [[<a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a> dataWithContentsOfFile: self.pathToFile
-<a name="l00075"></a>00075                                       options: 0
-<a name="l00076"></a>00076                                         error: &amp;error]
-<a name="l00077"></a>00077                copy];
-<a name="l00078"></a>00078 
+<a name="l00074"></a>00074   NSError* error = nil;
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076   <span class="keyword">self</span>.data = [<a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a> dataWithContentsOfFile: self.pathToFile
+<a name="l00077"></a>00077                                      options: 0
+<a name="l00078"></a>00078                                        error: &amp;error];
 <a name="l00079"></a>00079 
-<a name="l00080"></a>00080   <span class="keywordflow">if</span> (nil != error) {
-<a name="l00081"></a>00081     [<span class="keyword">self</span> operationDidFailWithError:error];
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083   } <span class="keywordflow">else</span> {
-<a name="l00084"></a>00084     [<span class="keyword">self</span> operationDidFinish];
-<a name="l00085"></a>00085   }
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(pool);
-<a name="l00088"></a>00088 }
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091 <span class="keyword">@end</span>
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081   <span class="keywordflow">if</span> (nil != error) {
+<a name="l00082"></a>00082     [<span class="keyword">self</span> operationDidFailWithError:error];
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084   } <span class="keywordflow">else</span> {
+<a name="l00085"></a>00085     [<span class="keyword">self</span> operationWillFinish];
+<a name="l00086"></a>00086     [<span class="keyword">self</span> operationDidFinish];
+<a name="l00087"></a>00087   }
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(pool);
+<a name="l00090"></a>00090 }
+<a name="l00091"></a>00091 
 <a name="l00092"></a>00092 
-<a name="l00093"></a>00093 
-<a name="l00097"></a>00097 <span class="keyword">@interface </span><a class="code" href="interface_n_i_operation.html" title="A base implementation of an NSOperation that supports traditional delegation and blocks.">NIOperation</a>()
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099 <span class="keyword">@property</span> (nonatomic, readwrite, retain) NSError* <a class="code" href="interface_n_i_operation.html#add09c9ae4ab576c27648f4a3ab3b9cea" title="The error last passed to the didFailWithError notification.">lastError</a>;
+<a name="l00093"></a>00093 <span class="keyword">@end</span>
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095 
+<a name="l00099"></a>00099 <span class="keyword">@interface </span><a class="code" href="interface_n_i_operation.html" title="A base implementation of an NSOperation that supports traditional delegation and blocks.">NIOperation</a>()
 <a name="l00100"></a>00100 
-<a name="l00101"></a>00101 <span class="keyword">@end</span>
+<a name="l00101"></a>00101 <span class="keyword">@property</span> (readwrite, retain) NSError* <a class="code" href="interface_n_i_operation.html#add09c9ae4ab576c27648f4a3ab3b9cea" title="The error last passed to the didFailWithError notification.">lastError</a>;
 <a name="l00102"></a>00102 
-<a name="l00103"></a>00103 
-<a name="l00107"></a>00107 <span class="keyword">@implementation </span><a class="code" href="interface_n_i_operation.html" title="A base implementation of an NSOperation that supports traditional delegation and blocks.">NIOperation</a>
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_operation.html#a8fcfebd75a9559d0a41e9f8bcd01facf" title="The delegate through which changes are notified for this operation.">delegate</a> = _delegate;
-<a name="l00110"></a>00110 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_operation.html#add09c9ae4ab576c27648f4a3ab3b9cea" title="The error last passed to the didFailWithError notification.">lastError</a> = _lastError;
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00113"></a>00113 <span class="preprocessor"></span><span class="keyword">@synthesize</span> didStartBlock         = _didStartBlock;
-<a name="l00114"></a>00114 <span class="keyword">@synthesize</span> didFinishBlock        = _didFinishBlock;
-<a name="l00115"></a>00115 <span class="keyword">@synthesize</span> didFailWithErrorBlock = _didFailWithErrorBlock;
-<a name="l00116"></a>00116 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
-<a name="l00117"></a>00117 <span class="preprocessor"></span>
-<a name="l00118"></a>00118 
-<a name="l00120"></a>00120 - (void)dealloc {
-<a name="l00121"></a>00121   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_lastError);
+<a name="l00103"></a>00103 <span class="keyword">@end</span>
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105 
+<a name="l00109"></a>00109 <span class="keyword">@implementation </span><a class="code" href="interface_n_i_operation.html" title="A base implementation of an NSOperation that supports traditional delegation and blocks.">NIOperation</a>
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_operation.html#a8fcfebd75a9559d0a41e9f8bcd01facf" title="The delegate through which changes are notified for this operation.">delegate</a> = _delegate;
+<a name="l00112"></a>00112 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_operation.html#a3ffdf65e811b47ea8595c8ea2a1376ec" title="A simple tagging mechanism for identifying operations.">tag</a> = _tag;
+<a name="l00113"></a>00113 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_operation.html#add09c9ae4ab576c27648f4a3ab3b9cea" title="The error last passed to the didFailWithError notification.">lastError</a> = _lastError;
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00116"></a>00116 <span class="preprocessor"></span><span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_operation.html#a6244b38cedcd4c75360a15b19514321f" title="The operation has started executing.">didStartBlock</a>         = _didStartBlock;
+<a name="l00117"></a>00117 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_operation.html#a18e14e4f1f218899b97febe09d48b68d" title="The operation has completed successfully.">didFinishBlock</a>        = _didFinishBlock;
+<a name="l00118"></a>00118 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_operation.html#a6d1ae5a692180c568ecfd8d3b02300e3" title="The operation failed in some way and has completed.">didFailWithErrorBlock</a> = _didFailWithErrorBlock;
+<a name="l00119"></a>00119 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_operation.html#af70a25765166a9b792dc053b7b9378b6" title="The operation is about to complete successfully.">willFinishBlock</a>       = _willFinishBlock;
+<a name="l00120"></a>00120 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
+<a name="l00121"></a>00121 <span class="preprocessor"></span>
 <a name="l00122"></a>00122 
-<a name="l00123"></a>00123 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00124"></a>00124 <span class="preprocessor"></span>  <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_didStartBlock);
-<a name="l00125"></a>00125   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_didFinishBlock);
-<a name="l00126"></a>00126   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_didFailWithErrorBlock);
-<a name="l00127"></a>00127 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
-<a name="l00128"></a>00128 <span class="preprocessor"></span>
-<a name="l00129"></a>00129   [<span class="keyword">super</span> dealloc];
-<a name="l00130"></a>00130 }
-<a name="l00131"></a>00131 
-<a name="l00132"></a>00132 
-<a name="l00135"></a>00135 <span class="preprocessor">#pragma mark -</span>
-<a name="l00136"></a>00136 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Initiate delegate notification from the NSOperation</span>
-<a name="l00137"></a>00137 <span class="preprocessor"></span>
-<a name="l00138"></a>00138 
-<a name="l00140"></a><a class="code" href="interface_n_i_operation.html#a8c484d9ee1a76ea72b0d3afc0782f8fc">00140</a> - (void)<a class="code" href="interface_n_i_operation.html#a8c484d9ee1a76ea72b0d3afc0782f8fc" title="On the main thread, notify the delegate that the operation has begun.">operationDidStart</a> {
-<a name="l00141"></a>00141         [<span class="keyword">self</span> performSelectorOnMainThread: @selector(onMainThreadOperationDidStart)
-<a name="l00142"></a>00142                          withObject: nil
-<a name="l00143"></a>00143                       waitUntilDone: [NSThread isMainThread]];
-<a name="l00144"></a>00144 }
-<a name="l00145"></a>00145 
-<a name="l00146"></a>00146 
-<a name="l00148"></a><a class="code" href="interface_n_i_operation.html#aa348248e667a2f1021f6451cb7cbbc0f">00148</a> - (void)<a class="code" href="interface_n_i_operation.html#aa348248e667a2f1021f6451cb7cbbc0f" title="On the main thread, notify the delegate that the operation has finished.">operationDidFinish</a> {
-<a name="l00149"></a>00149         [<span class="keyword">self</span> performSelectorOnMainThread: @selector(onMainThreadOperationDidFinish)
-<a name="l00150"></a>00150                          withObject: nil
-<a name="l00151"></a>00151                       waitUntilDone: [NSThread isMainThread]];
-<a name="l00152"></a>00152 }
-<a name="l00153"></a>00153 
-<a name="l00154"></a>00154 
-<a name="l00156"></a><a class="code" href="interface_n_i_operation.html#abcac75178abd6f277fcac4332bad2976">00156</a> - (void)operationDidFailWithError:(NSError *)error {
-<a name="l00157"></a>00157   <span class="keyword">self</span>.lastError = error;
+<a name="l00124"></a>00124 - (void)dealloc {
+<a name="l00125"></a>00125   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_lastError);
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00128"></a>00128 <span class="preprocessor"></span>  <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_didStartBlock);
+<a name="l00129"></a>00129   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_didFinishBlock);
+<a name="l00130"></a>00130   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_didFailWithErrorBlock);
+<a name="l00131"></a>00131   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_willFinishBlock);
+<a name="l00132"></a>00132 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
+<a name="l00133"></a>00133 <span class="preprocessor"></span>
+<a name="l00134"></a>00134   [<span class="keyword">super</span> dealloc];
+<a name="l00135"></a>00135 }
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137 
+<a name="l00140"></a>00140 <span class="preprocessor">#pragma mark -</span>
+<a name="l00141"></a>00141 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Initiate delegate notification from the NSOperation</span>
+<a name="l00142"></a>00142 <span class="preprocessor"></span>
+<a name="l00143"></a>00143 
+<a name="l00145"></a><a class="code" href="interface_n_i_operation.html#a8c484d9ee1a76ea72b0d3afc0782f8fc">00145</a> - (void)<a class="code" href="interface_n_i_operation.html#a8c484d9ee1a76ea72b0d3afc0782f8fc" title="On the main thread, notify the delegate that the operation has begun.">operationDidStart</a> {
+<a name="l00146"></a>00146         [<span class="keyword">self</span> performSelectorOnMainThread: @selector(onMainThreadOperationDidStart)
+<a name="l00147"></a>00147                          withObject: nil
+<a name="l00148"></a>00148                       waitUntilDone: [NSThread isMainThread]];
+<a name="l00149"></a>00149 }
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151 
+<a name="l00153"></a><a class="code" href="interface_n_i_operation.html#aa348248e667a2f1021f6451cb7cbbc0f">00153</a> - (void)<a class="code" href="interface_n_i_operation.html#aa348248e667a2f1021f6451cb7cbbc0f" title="On the main thread, notify the delegate that the operation has finished.">operationDidFinish</a> {
+<a name="l00154"></a>00154         [<span class="keyword">self</span> performSelectorOnMainThread: @selector(onMainThreadOperationDidFinish)
+<a name="l00155"></a>00155                          withObject: nil
+<a name="l00156"></a>00156                       waitUntilDone: [NSThread isMainThread]];
+<a name="l00157"></a>00157 }
 <a name="l00158"></a>00158 
-<a name="l00159"></a>00159         [<span class="keyword">self</span> performSelectorOnMainThread: @selector(onMainThreadOperationDidFailWithError:)
-<a name="l00160"></a>00160                          withObject: error
-<a name="l00161"></a>00161                       waitUntilDone: [NSThread isMainThread]];
-<a name="l00162"></a>00162 }
+<a name="l00159"></a>00159 
+<a name="l00161"></a><a class="code" href="interface_n_i_operation.html#abcac75178abd6f277fcac4332bad2976">00161</a> - (void)operationDidFailWithError:(NSError *)error {
+<a name="l00162"></a>00162   <span class="keyword">self</span>.lastError = error;
 <a name="l00163"></a>00163 
-<a name="l00164"></a>00164 
-<a name="l00167"></a>00167 <span class="preprocessor">#pragma mark -</span>
-<a name="l00168"></a>00168 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Main Thread</span>
-<a name="l00169"></a>00169 <span class="preprocessor"></span>
-<a name="l00170"></a>00170 
-<a name="l00172"></a>00172 - (void)onMainThreadOperationDidStart {
-<a name="l00173"></a>00173   <span class="comment">// This method should only be called on the main thread.</span>
-<a name="l00174"></a>00174   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([NSThread isMainThread]);
+<a name="l00164"></a>00164         [<span class="keyword">self</span> performSelectorOnMainThread: @selector(onMainThreadOperationDidFailWithError:)
+<a name="l00165"></a>00165                          withObject: error
+<a name="l00166"></a>00166                       waitUntilDone: [NSThread isMainThread]];
+<a name="l00167"></a>00167 }
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169 
+<a name="l00171"></a><a class="code" href="interface_n_i_operation.html#ac7e636b6ec59af66fc5964c7b30a2930">00171</a> - (void)<a class="code" href="interface_n_i_operation.html#ac7e636b6ec59af66fc5964c7b30a2930" title="In the operation&#39;s thread, notify the delegate that the operation will finish successfully.">operationWillFinish</a> {
+<a name="l00172"></a>00172   <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_operation.html#a8fcfebd75a9559d0a41e9f8bcd01facf" title="The delegate through which changes are notified for this operation.">delegate</a> respondsToSelector:<span class="keyword">@selector</span>(<a class="code" href="interface_n_i_operation.html#ac7e636b6ec59af66fc5964c7b30a2930" title="In the operation&#39;s thread, notify the delegate that the operation will finish successfully.">operationWillFinish</a>:)]) {
+<a name="l00173"></a>00173     [<span class="keyword">self</span>.delegate operationWillFinish:self];
+<a name="l00174"></a>00174   }
 <a name="l00175"></a>00175 
-<a name="l00176"></a>00176   <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_operation.html#a8fcfebd75a9559d0a41e9f8bcd01facf" title="The delegate through which changes are notified for this operation.">delegate</a> respondsToSelector:<span class="keyword">@selector</span>(<a class="code" href="interface_n_i_operation.html#a8c484d9ee1a76ea72b0d3afc0782f8fc" title="On the main thread, notify the delegate that the operation has begun.">operationDidStart</a>:)]) {
-<a name="l00177"></a>00177     [<span class="keyword">self</span>.delegate operationDidStart:self];
-<a name="l00178"></a>00178   }
-<a name="l00179"></a>00179 
-<a name="l00180"></a>00180 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00181"></a>00181 <span class="preprocessor"></span>  <span class="keywordflow">if</span> (nil != <span class="keyword">self</span>.didStartBlock) {
-<a name="l00182"></a>00182     <span class="keyword">self</span>.didStartBlock();
-<a name="l00183"></a>00183   }
-<a name="l00184"></a>00184 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
-<a name="l00185"></a>00185 <span class="preprocessor"></span>}
-<a name="l00186"></a>00186 
-<a name="l00187"></a>00187 
-<a name="l00189"></a>00189 - (void)onMainThreadOperationDidFinish {
-<a name="l00190"></a>00190   <span class="comment">// This method should only be called on the main thread.</span>
-<a name="l00191"></a>00191   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([NSThread isMainThread]);
-<a name="l00192"></a>00192 
-<a name="l00193"></a>00193   <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_operation.html#a8fcfebd75a9559d0a41e9f8bcd01facf" title="The delegate through which changes are notified for this operation.">delegate</a> respondsToSelector:<span class="keyword">@selector</span>(<a class="code" href="interface_n_i_operation.html#aa348248e667a2f1021f6451cb7cbbc0f" title="On the main thread, notify the delegate that the operation has finished.">operationDidFinish</a>:)]) {
-<a name="l00194"></a>00194     [<span class="keyword">self</span>.delegate operationDidFinish:self];
-<a name="l00195"></a>00195   }
-<a name="l00196"></a>00196 
-<a name="l00197"></a>00197 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00198"></a>00198 <span class="preprocessor"></span>  <span class="keywordflow">if</span> (nil != <span class="keyword">self</span>.didFinishBlock) {
-<a name="l00199"></a>00199     <span class="keyword">self</span>.didFinishBlock();
-<a name="l00200"></a>00200   }
-<a name="l00201"></a>00201 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
-<a name="l00202"></a>00202 <span class="preprocessor"></span>}
-<a name="l00203"></a>00203 
-<a name="l00204"></a>00204 
-<a name="l00206"></a>00206 - (void)onMainThreadOperationDidFailWithError:(NSError *)error {
-<a name="l00207"></a>00207   <span class="comment">// This method should only be called on the main thread.</span>
-<a name="l00208"></a>00208   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([NSThread isMainThread]);
-<a name="l00209"></a>00209 
-<a name="l00210"></a>00210   <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_operation.html#a8fcfebd75a9559d0a41e9f8bcd01facf" title="The delegate through which changes are notified for this operation.">delegate</a> respondsToSelector:<span class="keyword">@selector</span>(operationDidFail:withError:)]) {
-<a name="l00211"></a>00211     [<span class="keyword">self</span>.delegate operationDidFail:self withError:error];
-<a name="l00212"></a>00212   }
-<a name="l00213"></a>00213 
-<a name="l00214"></a>00214 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00215"></a>00215 <span class="preprocessor"></span>  <span class="keywordflow">if</span> (nil != <span class="keyword">self</span>.didFailWithErrorBlock) {
-<a name="l00216"></a>00216     <span class="keyword">self</span>.didFailWithErrorBlock(error);
-<a name="l00217"></a>00217   }
-<a name="l00218"></a>00218 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
-<a name="l00219"></a>00219 <span class="preprocessor"></span>}
-<a name="l00220"></a>00220 
-<a name="l00221"></a>00221 
-<a name="l00222"></a>00222 <span class="keyword">@end</span>
+<a name="l00176"></a>00176 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00177"></a>00177 <span class="preprocessor"></span>  <span class="keywordflow">if</span> (nil != <span class="keyword">self</span>.<a class="code" href="interface_n_i_operation.html#af70a25765166a9b792dc053b7b9378b6" title="The operation is about to complete successfully.">willFinishBlock</a>) {
+<a name="l00178"></a>00178     <span class="keyword">self</span>.willFinishBlock();
+<a name="l00179"></a>00179   }
+<a name="l00180"></a>00180 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
+<a name="l00181"></a>00181 <span class="preprocessor"></span>}
+<a name="l00182"></a>00182 
+<a name="l00183"></a>00183 
+<a name="l00186"></a>00186 <span class="preprocessor">#pragma mark -</span>
+<a name="l00187"></a>00187 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Main Thread</span>
+<a name="l00188"></a>00188 <span class="preprocessor"></span>
+<a name="l00189"></a>00189 
+<a name="l00191"></a>00191 - (void)onMainThreadOperationDidStart {
+<a name="l00192"></a>00192   <span class="comment">// This method should only be called on the main thread.</span>
+<a name="l00193"></a>00193   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([NSThread isMainThread]);
+<a name="l00194"></a>00194 
+<a name="l00195"></a>00195   <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_operation.html#a8fcfebd75a9559d0a41e9f8bcd01facf" title="The delegate through which changes are notified for this operation.">delegate</a> respondsToSelector:<span class="keyword">@selector</span>(<a class="code" href="interface_n_i_operation.html#a8c484d9ee1a76ea72b0d3afc0782f8fc" title="On the main thread, notify the delegate that the operation has begun.">operationDidStart</a>:)]) {
+<a name="l00196"></a>00196     [<span class="keyword">self</span>.delegate operationDidStart:self];
+<a name="l00197"></a>00197   }
+<a name="l00198"></a>00198 
+<a name="l00199"></a>00199 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00200"></a>00200 <span class="preprocessor"></span>  <span class="keywordflow">if</span> (nil != <span class="keyword">self</span>.<a class="code" href="interface_n_i_operation.html#a6244b38cedcd4c75360a15b19514321f" title="The operation has started executing.">didStartBlock</a>) {
+<a name="l00201"></a>00201     <span class="keyword">self</span>.didStartBlock();
+<a name="l00202"></a>00202   }
+<a name="l00203"></a>00203 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
+<a name="l00204"></a>00204 <span class="preprocessor"></span>}
+<a name="l00205"></a>00205 
+<a name="l00206"></a>00206 
+<a name="l00208"></a>00208 - (void)onMainThreadOperationDidFinish {
+<a name="l00209"></a>00209   <span class="comment">// This method should only be called on the main thread.</span>
+<a name="l00210"></a>00210   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([NSThread isMainThread]);
+<a name="l00211"></a>00211 
+<a name="l00212"></a>00212   <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_operation.html#a8fcfebd75a9559d0a41e9f8bcd01facf" title="The delegate through which changes are notified for this operation.">delegate</a> respondsToSelector:<span class="keyword">@selector</span>(<a class="code" href="interface_n_i_operation.html#aa348248e667a2f1021f6451cb7cbbc0f" title="On the main thread, notify the delegate that the operation has finished.">operationDidFinish</a>:)]) {
+<a name="l00213"></a>00213     [<span class="keyword">self</span>.delegate operationDidFinish:self];
+<a name="l00214"></a>00214   }
+<a name="l00215"></a>00215 
+<a name="l00216"></a>00216 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00217"></a>00217 <span class="preprocessor"></span>  <span class="keywordflow">if</span> (nil != <span class="keyword">self</span>.<a class="code" href="interface_n_i_operation.html#a18e14e4f1f218899b97febe09d48b68d" title="The operation has completed successfully.">didFinishBlock</a>) {
+<a name="l00218"></a>00218     <span class="keyword">self</span>.didFinishBlock();
+<a name="l00219"></a>00219   }
+<a name="l00220"></a>00220 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
+<a name="l00221"></a>00221 <span class="preprocessor"></span>}
+<a name="l00222"></a>00222 
+<a name="l00223"></a>00223 
+<a name="l00225"></a>00225 - (void)onMainThreadOperationDidFailWithError:(NSError *)error {
+<a name="l00226"></a>00226   <span class="comment">// This method should only be called on the main thread.</span>
+<a name="l00227"></a>00227   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([NSThread isMainThread]);
+<a name="l00228"></a>00228 
+<a name="l00229"></a>00229   <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_operation.html#a8fcfebd75a9559d0a41e9f8bcd01facf" title="The delegate through which changes are notified for this operation.">delegate</a> respondsToSelector:<span class="keyword">@selector</span>(operationDidFail:withError:)]) {
+<a name="l00230"></a>00230     [<span class="keyword">self</span>.delegate operationDidFail:self withError:error];
+<a name="l00231"></a>00231   }
+<a name="l00232"></a>00232 
+<a name="l00233"></a>00233 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00234"></a>00234 <span class="preprocessor"></span>  <span class="keywordflow">if</span> (nil != <span class="keyword">self</span>.<a class="code" href="interface_n_i_operation.html#a6d1ae5a692180c568ecfd8d3b02300e3" title="The operation failed in some way and has completed.">didFailWithErrorBlock</a>) {
+<a name="l00235"></a>00235     <span class="keyword">self</span>.didFailWithErrorBlock(error);
+<a name="l00236"></a>00236   }
+<a name="l00237"></a>00237 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
+<a name="l00238"></a>00238 <span class="preprocessor"></span>}
+<a name="l00239"></a>00239 
+<a name="l00240"></a>00240 
+<a name="l00241"></a>00241 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

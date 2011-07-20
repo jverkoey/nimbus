@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -141,7 +141,7 @@
   <span class="comment">// Remove the object in constant time.</span>
   [ll removeObjectAtLocation:location];
 
-  <span class="comment">// Location has been released by this point.</span>
+  <span class="comment">// Location is no longer valid at this point.</span>
   location = nil;
 
   <span class="comment">// Remove an object in linear time. This is simply a more concise version of the above.</span>
@@ -150,8 +150,21 @@
   <span class="comment">// We would use the NILinkedListLocation to remove the object if we were storing the location</span>
   <span class="comment">// in an external data structure and wanted constant time removal, for example. See</span>
   <span class="comment">// NIMemoryCache for an example of this in action.</span>
-</pre></div><dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a> </dd></dl>
+</pre></div><dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a></dd></dl>
+<h3>Using the location object for constant time operations</h3>
+<div class="fragment"><pre class="fragment">  <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll = [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> <a class="code" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea" title="Convenience method for creating an autoreleased linked list.">linkedList</a>];
 
+  [ll addObject:obj1];
+  NILinkedListLocation* location = [ll addObject:obj2];
+  [ll addObject:obj3];
+  [ll addObject:obj4];
+
+  <span class="comment">// Remove the second object in constant time.</span>
+  [ll removeObjectAtLocation:location];
+
+  <span class="comment">// Location is no longer valid at this point.</span>
+  location = nil;
+</pre></div> 
 <p>Definition at line <a class="el" href="_n_i_data_structures_8h_source.html#l00054">54</a> of file <a class="el" href="_n_i_data_structures_8h_source.html">NIDataStructures.h</a>.</p>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
@@ -217,7 +230,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Convenience method for creating an autoreleased linked list. </p>
 <p>Identical to [[[<a class="el" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> alloc] init] autorelease]; </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00047">47</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00045">45</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -240,7 +253,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Run-time: O(1)</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A location within the linked list. </dd></dl>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00230">230</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00228">228</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -261,7 +274,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Remove all objects from the linked list. </p>
 <p>Run-time: Theta(count) </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00264">264</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00262">262</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -283,7 +296,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Remove an object from the linked list. </p>
 <p>Run-time: O(count) </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00281">281</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00279">279</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -304,7 +317,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Remove the first object from the linked list. </p>
 <p>Run-time: O(1) </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00290">290</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00288">288</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -325,7 +338,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Remove the last object from the linked list. </p>
 <p>Run-time: O(1) </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00296">296</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00294">294</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -350,7 +363,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Run-time: O(count)</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A location within the linked list. </dd></dl>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00302">302</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00300">300</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -372,7 +385,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Retrieve the object at a specific location. </p>
 <p>Run-time: O(1) </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00258">258</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00256">256</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -396,7 +409,7 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>This is provided as an optimization over the O(n) removal method but should be used with care.</p>
 <p>Run-time: O(1) </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00315">315</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00313">313</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>

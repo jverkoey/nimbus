@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -123,7 +123,7 @@
 <a name="l00050"></a>00050   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super initWithURL:newURL])) {
 <a name="l00051"></a>00051     <span class="keyword">self</span>.imageCropRect = CGRectZero;
 <a name="l00052"></a>00052     <span class="keyword">self</span>.imageDisplaySize = CGSizeZero;
-<a name="l00053"></a>00053     <span class="keyword">self</span>.interpolationQuality = kCGInterpolationMedium;
+<a name="l00053"></a>00053     <span class="keyword">self</span>.interpolationQuality = kCGInterpolationDefault;
 <a name="l00054"></a>00054     <span class="keyword">self</span>.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
 <a name="l00055"></a>00055     <span class="keyword">self</span>.imageContentMode = UIViewContentModeScaleToFill;
 <a name="l00056"></a>00056 
@@ -458,70 +458,72 @@
 <a name="l00400"></a>00400 
 <a name="l00401"></a>00401     <span class="comment">// For screen sizes with higher resolutions, we create a larger image with a scale value</span>
 <a name="l00402"></a>00402     <span class="comment">// so that it appears crisper on the screen.</span>
-<a name="l00403"></a>00403     CGFloat screenScale = 1;
-<a name="l00404"></a>00404     <span class="keywordflow">if</span> ([[UIScreen mainScreen] respondsToSelector:<span class="keyword">@selector</span>(scale)]) {
-<a name="l00405"></a>00405       screenScale = [[UIScreen mainScreen] scale];
-<a name="l00406"></a>00406     }
-<a name="l00407"></a>00407 
-<a name="l00408"></a>00408     <span class="comment">// Create our final composite image.</span>
-<a name="l00409"></a>00409     CGContextRef dstBmp = CGBitmapContextCreate(NULL,
-<a name="l00410"></a>00410                                                 displaySize.width * screenScale,
-<a name="l00411"></a>00411                                                 displaySize.height * screenScale,
-<a name="l00412"></a>00412                                                 8,
-<a name="l00413"></a>00413                                                 0,
-<a name="l00414"></a>00414                                                 colorSpace,
-<a name="l00415"></a>00415                                                 bmi);
-<a name="l00416"></a>00416 
-<a name="l00417"></a>00417     <span class="comment">// If this fails then we&#39;re likely creating an invalid bitmap and shit&#39;s about to go down.</span>
-<a name="l00418"></a>00418     <span class="comment">// In production this will fail somewhat gracefully, in that we&#39;ll end up just using the</span>
-<a name="l00419"></a>00419     <span class="comment">// source image instead of the cropped and resized image.</span>
-<a name="l00420"></a>00420     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != dstBmp);
-<a name="l00421"></a>00421 
-<a name="l00422"></a>00422     <span class="keywordflow">if</span> (nil != dstBmp) {
-<a name="l00423"></a>00423       CGRect dstRect = CGRectMake(0, 0,
-<a name="l00424"></a>00424                                   displaySize.width * screenScale,
-<a name="l00425"></a>00425                                   displaySize.height * screenScale);
-<a name="l00426"></a>00426 
-<a name="l00427"></a>00427       <span class="comment">// Render the source image into the destination image.</span>
-<a name="l00428"></a>00428       CGContextClearRect(dstBmp, dstRect);
-<a name="l00429"></a>00429       CGContextSetInterpolationQuality(dstBmp, interpolationQuality);
-<a name="l00430"></a>00430 
-<a name="l00431"></a>00431       CGRect scaledBlitRect = CGRectMake(dstBlitRect.origin.x * screenScale,
-<a name="l00432"></a>00432                                          dstBlitRect.origin.y * screenScale,
-<a name="l00433"></a>00433                                          dstBlitRect.size.width * screenScale,
-<a name="l00434"></a>00434                                          dstBlitRect.size.height * screenScale);
-<a name="l00435"></a>00435       CGContextDrawImage(dstBmp, scaledBlitRect, srcImageRef);
-<a name="l00436"></a>00436 
-<a name="l00437"></a>00437       CGImageRef resultImageRef = CGBitmapContextCreateImage(dstBmp);
-<a name="l00438"></a>00438 
-<a name="l00439"></a>00439       <span class="keywordflow">if</span> (nil != resultImageRef) {
-<a name="l00440"></a>00440         resultImage = [UIImage imageWithCGImage: resultImageRef
-<a name="l00441"></a>00441                                           scale: screenScale
-<a name="l00442"></a>00442                                     orientation: UIImageOrientationUp];
-<a name="l00443"></a>00443         CGImageRelease(resultImageRef);
-<a name="l00444"></a>00444       }
-<a name="l00445"></a>00445 
-<a name="l00446"></a>00446       CGContextRelease(dstBmp);
-<a name="l00447"></a>00447       CGColorSpaceRelease(colorSpace);
-<a name="l00448"></a>00448     }
-<a name="l00449"></a>00449 
-<a name="l00450"></a>00450   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (nil != croppedImageRef) {
-<a name="l00451"></a>00451     resultImage = [UIImage imageWithCGImage:srcImageRef];
-<a name="l00452"></a>00452   }
-<a name="l00453"></a>00453 
-<a name="l00454"></a>00454   <span class="comment">// Memory cleanup.</span>
-<a name="l00455"></a>00455   <span class="keywordflow">if</span> (nil != trimmedImageRef) {
-<a name="l00456"></a>00456     CGImageRelease(trimmedImageRef);
-<a name="l00457"></a>00457   }
-<a name="l00458"></a>00458   <span class="keywordflow">if</span> (nil != croppedImageRef) {
-<a name="l00459"></a>00459     CGImageRelease(croppedImageRef);
-<a name="l00460"></a>00460   }
-<a name="l00461"></a>00461 
-<a name="l00462"></a>00462   <span class="keywordflow">return</span> resultImage;
-<a name="l00463"></a>00463 }
-<a name="l00464"></a>00464 
-<a name="l00465"></a>00465 
-<a name="l00466"></a>00466 <span class="keyword">@end</span>
+<a name="l00403"></a>00403     CGFloat screenScale = <a class="code" href="group___s_d_k-_availability.html#ga90dc63555a6a6ed33b5875c5eaeccb31" title="Fetch the screen&#39;s scale in an SDK-agnostic way.">NIScreenScale</a>();
+<a name="l00404"></a>00404 
+<a name="l00405"></a>00405     <span class="comment">// Create our final composite image.</span>
+<a name="l00406"></a>00406     CGContextRef dstBmp = CGBitmapContextCreate(NULL,
+<a name="l00407"></a>00407                                                 displaySize.width * screenScale,
+<a name="l00408"></a>00408                                                 displaySize.height * screenScale,
+<a name="l00409"></a>00409                                                 8,
+<a name="l00410"></a>00410                                                 0,
+<a name="l00411"></a>00411                                                 colorSpace,
+<a name="l00412"></a>00412                                                 bmi);
+<a name="l00413"></a>00413 
+<a name="l00414"></a>00414     <span class="comment">// If this fails then we&#39;re likely creating an invalid bitmap and shit&#39;s about to go down.</span>
+<a name="l00415"></a>00415     <span class="comment">// In production this will fail somewhat gracefully, in that we&#39;ll end up just using the</span>
+<a name="l00416"></a>00416     <span class="comment">// source image instead of the cropped and resized image.</span>
+<a name="l00417"></a>00417     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != dstBmp);
+<a name="l00418"></a>00418 
+<a name="l00419"></a>00419     <span class="keywordflow">if</span> (nil != dstBmp) {
+<a name="l00420"></a>00420       CGRect dstRect = CGRectMake(0, 0,
+<a name="l00421"></a>00421                                   displaySize.width * screenScale,
+<a name="l00422"></a>00422                                   displaySize.height * screenScale);
+<a name="l00423"></a>00423 
+<a name="l00424"></a>00424       <span class="comment">// Render the source image into the destination image.</span>
+<a name="l00425"></a>00425       CGContextClearRect(dstBmp, dstRect);
+<a name="l00426"></a>00426       CGContextSetInterpolationQuality(dstBmp, interpolationQuality);
+<a name="l00427"></a>00427 
+<a name="l00428"></a>00428       CGRect scaledBlitRect = CGRectMake(dstBlitRect.origin.x * screenScale,
+<a name="l00429"></a>00429                                          dstBlitRect.origin.y * screenScale,
+<a name="l00430"></a>00430                                          dstBlitRect.size.width * screenScale,
+<a name="l00431"></a>00431                                          dstBlitRect.size.height * screenScale);
+<a name="l00432"></a>00432       CGContextDrawImage(dstBmp, scaledBlitRect, srcImageRef);
+<a name="l00433"></a>00433 
+<a name="l00434"></a>00434       CGImageRef resultImageRef = CGBitmapContextCreateImage(dstBmp);
+<a name="l00435"></a>00435 
+<a name="l00436"></a>00436       <span class="keywordflow">if</span> (nil != resultImageRef) {
+<a name="l00437"></a>00437         <span class="keywordflow">if</span> ([[UIImage <span class="keyword">class</span>] respondsToSelector:<span class="keyword">@selector</span>(imageWithCGImage:scale:orientation:)]) {
+<a name="l00438"></a>00438           resultImage = [UIImage imageWithCGImage: resultImageRef
+<a name="l00439"></a>00439                                             scale: screenScale
+<a name="l00440"></a>00440                                       orientation: UIImageOrientationUp];
+<a name="l00441"></a>00441 
+<a name="l00442"></a>00442         } <span class="keywordflow">else</span> {
+<a name="l00443"></a>00443           resultImage = [UIImage imageWithCGImage: resultImageRef];
+<a name="l00444"></a>00444         }
+<a name="l00445"></a>00445         CGImageRelease(resultImageRef);
+<a name="l00446"></a>00446       }
+<a name="l00447"></a>00447 
+<a name="l00448"></a>00448       CGContextRelease(dstBmp);
+<a name="l00449"></a>00449       CGColorSpaceRelease(colorSpace);
+<a name="l00450"></a>00450     }
+<a name="l00451"></a>00451 
+<a name="l00452"></a>00452   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (nil != croppedImageRef) {
+<a name="l00453"></a>00453     resultImage = [UIImage imageWithCGImage:srcImageRef];
+<a name="l00454"></a>00454   }
+<a name="l00455"></a>00455 
+<a name="l00456"></a>00456   <span class="comment">// Memory cleanup.</span>
+<a name="l00457"></a>00457   <span class="keywordflow">if</span> (nil != trimmedImageRef) {
+<a name="l00458"></a>00458     CGImageRelease(trimmedImageRef);
+<a name="l00459"></a>00459   }
+<a name="l00460"></a>00460   <span class="keywordflow">if</span> (nil != croppedImageRef) {
+<a name="l00461"></a>00461     CGImageRelease(croppedImageRef);
+<a name="l00462"></a>00462   }
+<a name="l00463"></a>00463 
+<a name="l00464"></a>00464   <span class="keywordflow">return</span> resultImage;
+<a name="l00465"></a>00465 }
+<a name="l00466"></a>00466 
+<a name="l00467"></a>00467 
+<a name="l00468"></a>00468 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

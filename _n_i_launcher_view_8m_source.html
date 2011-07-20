@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -136,9 +136,9 @@
 <a name="l00064"></a>00064     _padding = UIEdgeInsetsMake(kDefaultPadding, kDefaultPadding,
 <a name="l00065"></a>00065                                 kDefaultPadding, kDefaultPadding);
 <a name="l00066"></a>00066 
-<a name="l00067"></a>00067     _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
-<a name="l00068"></a>00068     _scrollView.delegate = <span class="keyword">self</span>;
-<a name="l00069"></a>00069 
+<a name="l00067"></a>00067     <span class="comment">// The paging scroll view.</span>
+<a name="l00068"></a>00068     _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+<a name="l00069"></a>00069     _scrollView.delegate = <span class="keyword">self</span>;
 <a name="l00070"></a>00070     _scrollView.pagingEnabled = YES;
 <a name="l00071"></a>00071 
 <a name="l00072"></a>00072     <span class="comment">// We don&#39;t need scroll indicators because we have a pager. Vertical scrolling is handled</span>
@@ -148,18 +148,18 @@
 <a name="l00076"></a>00076 
 <a name="l00077"></a>00077     [<span class="keyword">self</span> addSubview:_scrollView];
 <a name="l00078"></a>00078 
-<a name="l00079"></a>00079     _pager = [[UIPageControl alloc] init];
-<a name="l00080"></a>00080 
-<a name="l00081"></a>00081     <span class="comment">// So, this is weird. Apparently if you don&#39;t set a background color on the pager control</span>
-<a name="l00082"></a>00082     <span class="comment">// then taps won&#39;t be handled anywhere but within the dot area. If you do set a background</span>
-<a name="l00083"></a>00083     <span class="comment">// color, however, then taps outside of the dot area DO change the selected page.</span>
-<a name="l00084"></a>00084     <span class="comment">//                                  \(o.o)/</span>
-<a name="l00085"></a>00085     _pager.backgroundColor = [UIColor blackColor];
-<a name="l00086"></a>00086     <span class="comment">// Similarly for the scroll view anywhere there isn&#39;t a subview.</span>
-<a name="l00087"></a>00087     _scrollView.backgroundColor = [UIColor blackColor];
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089     <span class="comment">// Hide the pager when there is only one page.</span>
-<a name="l00090"></a>00090     _pager.hidesForSinglePage = YES;
+<a name="l00079"></a>00079     <span class="comment">// The pager displayed at the bottom of the scroll view.</span>
+<a name="l00080"></a>00080     _pager = [[UIPageControl alloc] init];
+<a name="l00081"></a>00081     _pager.hidesForSinglePage = YES;
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083     <span class="comment">// So, this is weird. Apparently if you don&#39;t set a background color on the pager control</span>
+<a name="l00084"></a>00084     <span class="comment">// then taps won&#39;t be handled anywhere but within the dot area. If you do set a background</span>
+<a name="l00085"></a>00085     <span class="comment">// color, however, then taps outside of the dot area DO change the selected page.</span>
+<a name="l00086"></a>00086     <span class="comment">//                                  \(o.o)/</span>
+<a name="l00087"></a>00087     _pager.backgroundColor = [UIColor blackColor];
+<a name="l00088"></a>00088     <span class="comment">// Similarly for the scroll view anywhere there isn&#39;t a subview.</span>
+<a name="l00089"></a>00089     _scrollView.backgroundColor = [UIColor blackColor];
+<a name="l00090"></a>00090     <span class="comment">// We update these background colors when the launcher view&#39;s own background color is set.</span>
 <a name="l00091"></a>00091 
 <a name="l00092"></a>00092     <span class="comment">// Don&#39;t update the pager when the user taps until we&#39;ve handled the tap ourselves.</span>
 <a name="l00093"></a>00093     <span class="comment">// This allows us to reset the page index forcefully if necessary without flickering the</span>
@@ -206,8 +206,8 @@
 <a name="l00137"></a>00137                                  pageWidth,
 <a name="l00138"></a>00138                                  <span class="keyword">self</span>.frame.size.height - _pager.frame.size.height);
 <a name="l00139"></a>00139 
-<a name="l00140"></a>00140   <span class="comment">// We never want the scroll view to scroll vertically, so make sure the content size is always</span>
-<a name="l00141"></a>00141   <span class="comment">// exactly the scroll view height.</span>
+<a name="l00140"></a>00140   <span class="comment">// We never want the paging scroll view to scroll vertically, so make sure the content size</span>
+<a name="l00141"></a>00141   <span class="comment">// is always exactly the scroll view height.</span>
 <a name="l00142"></a>00142   _scrollView.contentSize = CGSizeMake(pageWidth * _numberOfPages,
 <a name="l00143"></a>00143                                        _scrollView.frame.size.height);
 <a name="l00144"></a>00144 

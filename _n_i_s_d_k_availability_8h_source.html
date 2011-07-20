@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -151,10 +151,45 @@
 <a name="l00132"></a>00132 
 <a name="l00143"></a>00143 BOOL <a class="code" href="group___s_d_k-_availability.html#ga93ac73a742aea0dd9c07562056bf29c4" title="Checks whether the device&#39;s OS version is at least the given version number.">NIDeviceOSVersionIsAtLeast</a>(<span class="keywordtype">double</span> versionNumber);
 <a name="l00144"></a>00144 
-<a name="l00156"></a>00156 Class <a class="code" href="group___s_d_k-_availability.html#gab7b9a8279ba3c54d6654f11f69dbd6f0" title="Safely fetch the UIPopoverController class if it is available.">NIUIPopoverControllerClass</a>();
-<a name="l00157"></a>00157 
-<a name="l00158"></a>00158 
-<a name="l00160"></a>00160 <span class="comment">// End of SDK Availability /////////////////////////////////////////////////////////////////</span>
+<a name="l00151"></a>00151 CGFloat <a class="code" href="group___s_d_k-_availability.html#ga90dc63555a6a6ed33b5875c5eaeccb31" title="Fetch the screen&#39;s scale in an SDK-agnostic way.">NIScreenScale</a>();
+<a name="l00152"></a>00152 
+<a name="l00166"></a>00166 Class <a class="code" href="group___s_d_k-_availability.html#gab7b9a8279ba3c54d6654f11f69dbd6f0" title="Safely fetch the UIPopoverController class if it is available.">NIUIPopoverControllerClass</a>();
+<a name="l00167"></a>00167 
+<a name="l00181"></a>00181 Class <a class="code" href="group___s_d_k-_availability.html#ga622ef4a203e625618b9077c9b1deca24" title="Safely fetch the UITapGestureRecognizer class if it is available.">NIUITapGestureRecognizerClass</a>();
+<a name="l00182"></a>00182 
+<a name="l00183"></a>00183 
+<a name="l00184"></a>00184 <span class="preprocessor">#pragma mark Building with Old SDKs</span>
+<a name="l00185"></a>00185 <span class="preprocessor"></span>
+<a name="l00186"></a>00186 <span class="comment">// Define classes that were introduced in iOS 3.2.</span>
+<a name="l00187"></a>00187 <span class="preprocessor">#if __IPHONE_OS_VERSION_MAX_ALLOWED &lt; NIIOS_3_2</span>
+<a name="l00188"></a>00188 <span class="preprocessor"></span>
+<a name="l00189"></a>00189 <span class="keyword">@class</span> UIPopoverController;
+<a name="l00190"></a>00190 <span class="keyword">@class</span> UITapGestureRecognizer;
+<a name="l00191"></a>00191 
+<a name="l00192"></a>00192 <span class="preprocessor">#endif</span>
+<a name="l00193"></a>00193 <span class="preprocessor"></span>
+<a name="l00194"></a>00194 
+<a name="l00195"></a>00195 <span class="comment">// Define methods that were introduced in iOS 4.0.</span>
+<a name="l00196"></a>00196 <span class="preprocessor">#if __IPHONE_OS_VERSION_MAX_ALLOWED &lt; NIIOS_4_0</span>
+<a name="l00197"></a>00197 <span class="preprocessor"></span>
+<a name="l00198"></a>00198 <span class="keyword">@interface </span>UIImage (NimbusSDKAvailability)
+<a name="l00199"></a>00199 
+<a name="l00200"></a>00200 + (UIImage *)imageWithCGImage:(CGImageRef)imageRef scale:(CGFloat)scale orientation:(UIImageOrientation)orientation;
+<a name="l00201"></a>00201 
+<a name="l00202"></a>00202 - (CGFloat)scale;
+<a name="l00203"></a>00203 
+<a name="l00204"></a>00204 <span class="keyword">@end</span>
+<a name="l00205"></a>00205 
+<a name="l00206"></a>00206 <span class="keyword">@interface </span>UIScreen (NimbusSDKAvailability)
+<a name="l00207"></a>00207 
+<a name="l00208"></a>00208 - (CGFloat)scale;
+<a name="l00209"></a>00209 
+<a name="l00210"></a>00210 <span class="keyword">@end</span>
+<a name="l00211"></a>00211 
+<a name="l00212"></a>00212 <span class="preprocessor">#endif</span>
+<a name="l00213"></a>00213 <span class="preprocessor"></span>
+<a name="l00214"></a>00214 
+<a name="l00216"></a>00216 <span class="comment">// End of SDK Availability /////////////////////////////////////////////////////////////////</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

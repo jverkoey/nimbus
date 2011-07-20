@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -115,13 +115,49 @@
 <a name="l00039"></a>00039 }
 <a name="l00040"></a>00040 
 <a name="l00041"></a>00041 
-<a name="l00043"></a><a class="code" href="group___s_d_k-_availability.html#gab7b9a8279ba3c54d6654f11f69dbd6f0">00043</a> Class <a class="code" href="group___s_d_k-_availability.html#gab7b9a8279ba3c54d6654f11f69dbd6f0" title="Safely fetch the UIPopoverController class if it is available.">NIUIPopoverControllerClass</a>() {
-<a name="l00044"></a>00044   <span class="keyword">static</span> Class sClass = nil;
-<a name="l00045"></a>00045   <span class="keywordflow">if</span> (nil == sClass) {
-<a name="l00046"></a>00046     sClass = NSClassFromString(<span class="stringliteral">@&quot;UIPopoverController&quot;</span>);
-<a name="l00047"></a>00047   }
-<a name="l00048"></a>00048   <span class="keywordflow">return</span> sClass;
-<a name="l00049"></a>00049 }
+<a name="l00043"></a><a class="code" href="group___s_d_k-_availability.html#ga90dc63555a6a6ed33b5875c5eaeccb31">00043</a> CGFloat <a class="code" href="group___s_d_k-_availability.html#ga90dc63555a6a6ed33b5875c5eaeccb31" title="Fetch the screen&#39;s scale in an SDK-agnostic way.">NIScreenScale</a>() {
+<a name="l00044"></a>00044   <span class="keyword">static</span> <span class="keywordtype">int</span> respondsToScale = -1;
+<a name="l00045"></a>00045   <span class="keywordflow">if</span> (respondsToScale == -1) {
+<a name="l00046"></a>00046     <span class="comment">// Avoid calling this anymore than we need to.</span>
+<a name="l00047"></a>00047     respondsToScale = !!([[UIScreen mainScreen] respondsToSelector:@selector(scale)]);
+<a name="l00048"></a>00048   }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050   <span class="keywordflow">if</span> (respondsToScale) {
+<a name="l00051"></a>00051     <span class="keywordflow">return</span> [[UIScreen mainScreen] scale];
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053   } <span class="keywordflow">else</span> {
+<a name="l00054"></a>00054     <span class="keywordflow">return</span> 1;
+<a name="l00055"></a>00055   }
+<a name="l00056"></a>00056 }
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 
+<a name="l00060"></a><a class="code" href="group___s_d_k-_availability.html#gab7b9a8279ba3c54d6654f11f69dbd6f0">00060</a> Class <a class="code" href="group___s_d_k-_availability.html#gab7b9a8279ba3c54d6654f11f69dbd6f0" title="Safely fetch the UIPopoverController class if it is available.">NIUIPopoverControllerClass</a>() {
+<a name="l00061"></a>00061   <span class="keyword">static</span> Class sClass = nil;
+<a name="l00062"></a>00062   <span class="keyword">static</span> BOOL hasChecked = NO;
+<a name="l00063"></a>00063   <span class="keywordflow">if</span> (!hasChecked) {
+<a name="l00064"></a>00064     hasChecked = YES;
+<a name="l00065"></a>00065     sClass = NSClassFromString(<span class="stringliteral">@&quot;UIPopoverController&quot;</span>);
+<a name="l00066"></a>00066   }
+<a name="l00067"></a>00067   <span class="keywordflow">return</span> sClass;
+<a name="l00068"></a>00068 }
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 
+<a name="l00072"></a><a class="code" href="group___s_d_k-_availability.html#ga622ef4a203e625618b9077c9b1deca24">00072</a> Class <a class="code" href="group___s_d_k-_availability.html#ga622ef4a203e625618b9077c9b1deca24" title="Safely fetch the UITapGestureRecognizer class if it is available.">NIUITapGestureRecognizerClass</a>() {
+<a name="l00073"></a>00073   <span class="keyword">static</span> Class sClass = nil;
+<a name="l00074"></a>00074   <span class="keyword">static</span> BOOL hasChecked = NO;
+<a name="l00075"></a>00075   <span class="keywordflow">if</span> (!hasChecked) {
+<a name="l00076"></a>00076     hasChecked = YES;
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078     <span class="comment">// An interesting gotcha: UITapGestureRecognizer actually *does* exist in iOS 3.0, but does</span>
+<a name="l00079"></a>00079     <span class="comment">// not conform to all of the same methods that the 3.2 implementation does. This can be</span>
+<a name="l00080"></a>00080     <span class="comment">// really confusing, so instead of returning the class, we&#39;ll always return nil on</span>
+<a name="l00081"></a>00081     <span class="comment">// pre-iOS 3.2 devices.</span>
+<a name="l00082"></a>00082     <span class="keywordflow">if</span> (<a class="code" href="group___s_d_k-_availability.html#ga93ac73a742aea0dd9c07562056bf29c4" title="Checks whether the device&#39;s OS version is at least the given version number.">NIDeviceOSVersionIsAtLeast</a>(kCFCoreFoundationVersionNumber_iPhoneOS_3_2)) {
+<a name="l00083"></a>00083       sClass = NSClassFromString(<span class="stringliteral">@&quot;UITapGestureRecognizer&quot;</span>);
+<a name="l00084"></a>00084     }
+<a name="l00085"></a>00085   }
+<a name="l00086"></a>00086   <span class="keywordflow">return</span> sClass;
+<a name="l00087"></a>00087 }
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

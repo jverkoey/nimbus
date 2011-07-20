@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -118,7 +118,9 @@ Defines</h2></td></tr>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_d_k-_availability.html#gaf7d2c830b4c39cfeeb37d59258abb722">NIIsPad</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_d_k-_availability.html#ga93ac73a742aea0dd9c07562056bf29c4">NIDeviceOSVersionIsAtLeast</a> (double versionNumber)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">CGFloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_d_k-_availability.html#ga90dc63555a6a6ed33b5875c5eaeccb31">NIScreenScale</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_d_k-_availability.html#gab7b9a8279ba3c54d6654f11f69dbd6f0">NIUIPopoverControllerClass</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_d_k-_availability.html#ga622ef4a203e625618b9077c9b1deca24">NIUITapGestureRecognizerClass</a> ()</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="gaf7d2c830b4c39cfeeb37d59258abb722"></a><!-- doxytag: member="NISDKAvailability.h::NIIsPad" ref="gaf7d2c830b4c39cfeeb37d59258abb722" args="()" -->
@@ -171,6 +173,28 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ga90dc63555a6a6ed33b5875c5eaeccb31"></a><!-- doxytag: member="NISDKAvailability.h::NIScreenScale" ref="ga90dc63555a6a6ed33b5875c5eaeccb31" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CGFloat NIScreenScale </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Fetch the screen's scale in an SDK-agnostic way. </p>
+<p>This will work on any pre-iOS 4.0 SDK.</p>
+<p>Pre-iOS 4.0: will always return 1. iOS 4.0: returns the device's screen scale. </p>
+
+<p>Definition at line <a class="el" href="_n_i_s_d_k_availability_8m_source.html#l00043">43</a> of file <a class="el" href="_n_i_s_d_k_availability_8m_source.html">NISDKAvailability.m</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="gab7b9a8279ba3c54d6654f11f69dbd6f0"></a><!-- doxytag: member="NISDKAvailability.h::NIUIPopoverControllerClass" ref="gab7b9a8279ba3c54d6654f11f69dbd6f0" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -188,9 +212,34 @@ Functions</h2></td></tr>
 <p>Safely fetch the UIPopoverController class if it is available. </p>
 <p>The class is cached to avoid repeated lookups.</p>
 <p>Uses NSClassFromString to fetch the popover controller class.</p>
+<p>This class was first introduced in iOS 3.2 April 3, 2010.</p>
 <dl class="attention"><dt><b>Attention:</b></dt><dd>If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method instead of directly referring to UIPopoverController anywhere within your code. Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices. </dd></dl>
 
-<p>Definition at line <a class="el" href="_n_i_s_d_k_availability_8m_source.html#l00043">43</a> of file <a class="el" href="_n_i_s_d_k_availability_8m_source.html">NISDKAvailability.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_s_d_k_availability_8m_source.html#l00060">60</a> of file <a class="el" href="_n_i_s_d_k_availability_8m_source.html">NISDKAvailability.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga622ef4a203e625618b9077c9b1deca24"></a><!-- doxytag: member="NISDKAvailability.h::NIUITapGestureRecognizerClass" ref="ga622ef4a203e625618b9077c9b1deca24" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Class NIUITapGestureRecognizerClass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Safely fetch the UITapGestureRecognizer class if it is available. </p>
+<p>The class is cached to avoid repeated lookups.</p>
+<p>Uses NSClassFromString to fetch the tap gesture recognizer class.</p>
+<p>This class was first introduced in iOS 3.2 April 3, 2010.</p>
+<dl class="attention"><dt><b>Attention:</b></dt><dd>If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method instead of directly referring to UIPopoverController anywhere within your code. Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices. </dd></dl>
+
+<p>Definition at line <a class="el" href="_n_i_s_d_k_availability_8m_source.html#l00072">72</a> of file <a class="el" href="_n_i_s_d_k_availability_8m_source.html">NISDKAvailability.m</a>.</p>
 
 </div>
 </div>

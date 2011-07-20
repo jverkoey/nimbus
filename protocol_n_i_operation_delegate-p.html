@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -81,7 +81,7 @@
 <!-- doxytag: class="NIOperationDelegate-p" --><hr/><a name="details" id="details"></a><h2>Overview</h2>
 <div class="textblock"><p>The delegate protocol for an NSOperation. </p>
 
-<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00205">205</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00246">246</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
 </div>
 <p>Inherited by NIOperationsTests.</p>
 <table class="memberdecls">
@@ -89,10 +89,32 @@
 Methods</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a67316e75bd418453d0ee0626b86f0480"></a><!-- doxytag: member="NIOperationDelegate&#45;p::operationDidStart:" ref="a67316e75bd418453d0ee0626b86f0480" args="(NSOperation *operation)" -->
 (void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_operation_delegate-p.html#a67316e75bd418453d0ee0626b86f0480">operationDidStart:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_operation_delegate-p.html#ab611d7a71a08106becd2f66114b15d8f">operationWillFinish:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_operation_delegate-p.html#ac3bf1a396bbc1c4f78f8569ca5df4455">operationDidFinish:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_operation_delegate-p.html#a03cc8cc14147e2ad8f2c3e84f9eb11e2">operationDidFail:withError:</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
+<a class="anchor" id="ab611d7a71a08106becd2f66114b15d8f"></a><!-- doxytag: member="NIOperationDelegate&#45;p::operationWillFinish:" ref="ab611d7a71a08106becd2f66114b15d8f" args="(NSOperation *operation)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) operationWillFinish: </td>
+          <td></td>
+          <td class="paramtype">(NSOperation *)&#160;</td>
+          <td class="paramname"><em>operation</em></td>
+          <td><code> [optional]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The operation is about to complete successfully. </p>
+<p>This will not be called if the operation fails.</p>
+<p>This will be called from within the operation's runloop and must be thread safe. </p>
+
+</div>
+</div>
 <a class="anchor" id="ac3bf1a396bbc1c4f78f8569ca5df4455"></a><!-- doxytag: member="NIOperationDelegate&#45;p::operationDidFinish:" ref="ac3bf1a396bbc1c4f78f8569ca5df4455" args="(NSOperation *operation)" -->
 <div class="memitem">
 <div class="memproto">

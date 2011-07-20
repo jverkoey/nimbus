@@ -18,6 +18,12 @@
           <Path>group___nimbus_core.html</Path>
           <Subnodes>
            <Node>
+            <Name>Common Metrics</Name>
+            <Path>group___common-_metrics.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
             <Name>Data Structures</Name>
             <Path>group___data-_structures.html</Path>
             <Subnodes>
@@ -158,6 +164,36 @@
           </Subnodes>
          </Node>
          <Node>
+          <Name>Nimbus Photos</Name>
+          <Path>group___nimbus_photos.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>Photo View Controllers</Name>
+            <Path>group___photos-_controllers.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Photo Views</Name>
+            <Path>group___photos-_views.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>Nimbus Processors</Name>
+          <Path>group___nimbus_processors.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>Network Processors</Name>
+            <Path>group___network-_processors.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
           <Name>Three20 Migration Guide</Name>
           <Path>group___three20-_migration-_guide.html</Path>
           <Subnodes>
@@ -167,6 +203,30 @@
           <Name>Version History</Name>
           <Path>group___version-_history.html</Path>
           <Subnodes>
+           <Node>
+            <Name>Version 0.1</Name>
+            <Path>group___version-1.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Version 0.2</Name>
+            <Path>group___version-2.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Version 0.3</Name>
+            <Path>group___version-3.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Version 0.3 to 0.4 API Changes</Name>
+            <Path>group___version-3-to-4.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
           </Subnodes>
          </Node>
         </Subnodes>
@@ -186,6 +246,10 @@
          <Node>
           <Name>NIImageMemoryCache</Name>
           <Path>interface_n_i_image_memory_cache.html</Path>
+         </Node>
+         <Node>
+          <Name>NIJSONKitProcessorHTTPRequest</Name>
+          <Path>interface_n_i_j_s_o_n_kit_processor_h_t_t_p_request.html</Path>
          </Node>
          <Node>
           <Name>NILauncherButton</Name>
@@ -244,8 +308,44 @@
           <Path>protocol_n_i_operation_delegate-p.html</Path>
          </Node>
          <Node>
+          <Name>NIPhotoAlbumScrollView</Name>
+          <Path>interface_n_i_photo_album_scroll_view.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIPhotoAlbumScrollViewDataSource&gt;</Name>
+          <Path>protocol_n_i_photo_album_scroll_view_data_source-p.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIPhotoAlbumScrollViewDelegate&gt;</Name>
+          <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NIPhotoScrollView</Name>
+          <Path>interface_n_i_photo_scroll_view.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIPhotoScrollViewDelegate&gt;</Name>
+          <Path>protocol_n_i_photo_scroll_view_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIProcessorDelegate&gt;</Name>
+          <Path>protocol_n_i_processor_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NIProcessorHTTPRequest</Name>
+          <Path>interface_n_i_processor_h_t_t_p_request.html</Path>
+         </Node>
+         <Node>
           <Name>NIReadFileFromDiskOperation</Name>
           <Path>interface_n_i_read_file_from_disk_operation.html</Path>
+         </Node>
+         <Node>
+          <Name>NIToolbarPhotoViewController</Name>
+          <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
+         </Node>
+         <Node>
+          <Name>NIURLMap</Name>
+          <Path>interface_n_i_u_r_l_map.html</Path>
          </Node>
          <Node>
           <Name>NSData</Name>
@@ -272,6 +372,16 @@
            <Node>
             <Name>NIHTTPImageRequest</Name>
             <Path>interface_n_i_h_t_t_p_image_request.html</Path>
+           </Node>
+           <Node>
+            <Name>NIProcessorHTTPRequest</Name>
+            <Path>interface_n_i_processor_h_t_t_p_request.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>NIJSONKitProcessorHTTPRequest</Name>
+              <Path>interface_n_i_j_s_o_n_kit_processor_h_t_t_p_request.html</Path>
+             </Node>
+            </Subnodes>
            </Node>
           </Subnodes>
          </Node>
@@ -350,6 +460,42 @@
          <Node>
           <Name>&lt;NIOperationDelegate&gt;</Name>
           <Path>protocol_n_i_operation_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIPhotoAlbumScrollViewDataSource&gt;</Name>
+          <Path>protocol_n_i_photo_album_scroll_view_data_source-p.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIPhotoAlbumScrollViewDelegate&gt;</Name>
+          <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>NIToolbarPhotoViewController</Name>
+            <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>NIPhotoScrollView</Name>
+          <Path>interface_n_i_photo_scroll_view.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIPhotoScrollViewDelegate&gt;</Name>
+          <Path>protocol_n_i_photo_scroll_view_delegate-p.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>NIPhotoAlbumScrollView</Name>
+            <Path>interface_n_i_photo_album_scroll_view.html</Path>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>&lt;NIProcessorDelegate&gt;</Name>
+          <Path>protocol_n_i_processor_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NIURLMap</Name>
+          <Path>interface_n_i_u_r_l_map.html</Path>
          </Node>
          <Node>
           <Name>NSData</Name>

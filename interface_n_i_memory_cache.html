@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -108,12 +108,15 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_memory_cache.html#a26fda388dffc22aa78dd17905a6fce73">removeAllObjects</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Accessing Objects in the Cache</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_memory_cache.html#afdd7b533b55c5d8753078e207ec0a9d7">objectWithName:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_memory_cache.html#a10ca55440e796c6f51187041cf6b8152">hasObjectWithName:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSDate *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_memory_cache.html#a6c016c9a322c58151bbfb30793e9d475">dateOfLastAccessWithName:</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Reducing Memory Usage Explicitly</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2">reduceMemoryUsage</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Subclassing</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>The following methods are provided to aid in subclassing and are not meant to be used externally. </p>
 </div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_memory_cache.html#ae1aac8c4de4609814f7f24440cca011f">willSetObject:withName:previousObject:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_memory_cache.html#ad803d84fcd1c29cf2dadb58c3f719923">didSetObject:withName:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_memory_cache.html#a07a3aa62d34f2cae0c4c76668de9608e">willRemoveObject:withName:</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
@@ -178,7 +181,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </dl>
 <p>The object will be stored without an expiration date. The object will stay in the cache until it's bumped out due to the cache's memory limit. </p>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00210">210</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00221">221</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -224,7 +227,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </dl>
 <p>If an object is stored with an expiration date that has already passed then the object will not be stored in the cache and any existing object will be removed. The rationale behind this is that the object would be removed from the cache the next time it was accessed anyway. </p>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00216">216</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00227">227</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -251,7 +254,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00269">269</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00308">308</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -272,7 +275,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>Remove all objects from the cache, regardless of expiration dates. </p>
 <p>This will completely clear out the cache and all objects in the cache will be released. </p>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00275">275</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00314">314</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -291,10 +294,56 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div>
 <div class="memdoc">
 
-<p>Retrive an object from the cache. </p>
+<p>Retrieve an object from the cache. </p>
 <p>If the object has expired then the object will be removed from the cache and nil will be returned. </p>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00249">249</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00260">260</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a10ca55440e796c6f51187041cf6b8152"></a><!-- doxytag: member="NIMemoryCache::hasObjectWithName:" ref="a10ca55440e796c6f51187041cf6b8152" args="(NSString *name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) hasObjectWithName: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="class_n_s_string.html">NSString</a> *)&#160;</td>
+          <td class="paramname"><em>name</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Determine whether an object is in the cache or not without modifying the access time. </p>
+<p>This is useful if you simply want to check the cache for the existence of an object.</p>
+<p>If the object has expired then the object will be removed from the cache and nil will be returned. </p>
+
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00282">282</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6c016c9a322c58151bbfb30793e9d475"></a><!-- doxytag: member="NIMemoryCache::dateOfLastAccessWithName:" ref="a6c016c9a322c58151bbfb30793e9d475" args="(NSString *name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSDate *) dateOfLastAccessWithName: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="class_n_s_string.html">NSString</a> *)&#160;</td>
+          <td class="paramname"><em>name</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Retrieve the data that the object with the given name was last accessed. </p>
+<p>This will not update the access time of the object.</p>
+<p>If the object has expired then the object will be removed from the cache and nil will be returned. </p>
+
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00295">295</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -316,7 +365,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>Subclasses may add additional functionality to this implementation and should generally call super.</p>
 <p>This will be called when UIApplicationDidReceiveMemoryWarningNotification is posted. </p>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00282">282</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00321">321</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -361,7 +410,45 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00192">192</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00197">197</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad803d84fcd1c29cf2dadb58c3f719923"></a><!-- doxytag: member="NIMemoryCache::didSetObject:withName:" ref="ad803d84fcd1c29cf2dadb58c3f719923" args="(id object,[withName] NSString *name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) didSetObject: </td>
+          <td></td>
+          <td class="paramtype">(id)&#160;</td>
+          <td class="paramname"><em>object</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">withName:</td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="class_n_s_string.html">NSString</a> *)&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>An object has been stored in the cache. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>The object that was stored in the cache. </td></tr>
+    <tr><td class="paramname">name</td><td>The cache name for the object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00203">203</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>
@@ -399,7 +486,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00198">198</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00209">209</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>

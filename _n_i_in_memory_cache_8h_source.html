@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -132,56 +132,62 @@
 <a name="l00129"></a>00129 <span class="preprocessor">#pragma mark Accessing Objects in the Cache</span>
 <a name="l00130"></a>00130 <span class="preprocessor"></span>
 <a name="l00137"></a>00137 - (id)objectWithName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name;
-<a name="l00138"></a>00138 <span class="comment">// End of Accessing Objects in the Cache</span>
-<a name="l00140"></a>00140 
-<a name="l00141"></a>00141 
-<a name="l00146"></a>00146 <span class="preprocessor">#pragma mark Reducing Memory Usage Explicitly</span>
-<a name="l00147"></a>00147 <span class="preprocessor"></span>
-<a name="l00156"></a>00156 - (void)reduceMemoryUsage;
-<a name="l00157"></a>00157 <span class="comment">// End of Reducing Memory Usage Explicitly</span>
-<a name="l00159"></a>00159 
+<a name="l00138"></a>00138 
+<a name="l00147"></a>00147 - (BOOL)hasObjectWithName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name;
+<a name="l00148"></a>00148 
+<a name="l00157"></a>00157 - (NSDate *)dateOfLastAccessWithName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name;
+<a name="l00158"></a>00158 <span class="comment">// End of Accessing Objects in the Cache</span>
 <a name="l00160"></a>00160 
-<a name="l00165"></a>00165 <span class="preprocessor">#pragma mark Querying an In-Memory Cache</span>
-<a name="l00166"></a>00166 <span class="preprocessor"></span>
-<a name="l00170"></a><a class="code" href="interface_n_i_memory_cache.html#a7d62c34e4297861c986948bd75156d63">00170</a> <span class="keyword">@property</span> (nonatomic, readonly) NSUInteger count;
-<a name="l00171"></a>00171 <span class="comment">// End of Querying an In-Memory Cache</span>
-<a name="l00173"></a>00173 
-<a name="l00174"></a>00174 
-<a name="l00182"></a>00182 <span class="preprocessor">#pragma mark Subclassing</span>
-<a name="l00183"></a>00183 <span class="preprocessor"></span>
-<a name="l00192"></a>00192 - (void)willSetObject:(<span class="keywordtype">id</span>)object withName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name previousObject:(<span class="keywordtype">id</span>)previousObject;
+<a name="l00161"></a>00161 
+<a name="l00166"></a>00166 <span class="preprocessor">#pragma mark Reducing Memory Usage Explicitly</span>
+<a name="l00167"></a>00167 <span class="preprocessor"></span>
+<a name="l00176"></a>00176 - (void)reduceMemoryUsage;
+<a name="l00177"></a>00177 <span class="comment">// End of Reducing Memory Usage Explicitly</span>
+<a name="l00179"></a>00179 
+<a name="l00180"></a>00180 
+<a name="l00185"></a>00185 <span class="preprocessor">#pragma mark Querying an In-Memory Cache</span>
+<a name="l00186"></a>00186 <span class="preprocessor"></span>
+<a name="l00190"></a><a class="code" href="interface_n_i_memory_cache.html#a7d62c34e4297861c986948bd75156d63">00190</a> <span class="keyword">@property</span> (nonatomic, readonly) NSUInteger count;
+<a name="l00191"></a>00191 <span class="comment">// End of Querying an In-Memory Cache</span>
 <a name="l00193"></a>00193 
-<a name="l00200"></a>00200 - (void)willRemoveObject:(<span class="keywordtype">id</span>)object withName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name;
-<a name="l00201"></a>00201 
-<a name="l00204"></a>00204 <span class="keyword">@end</span>
-<a name="l00205"></a>00205 
-<a name="l00206"></a>00206 
-<a name="l00226"></a><a class="code" href="interface_n_i_image_memory_cache.html">00226</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> : <a class="code" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a> {
-<a name="l00227"></a>00227 <span class="keyword">@private</span>
-<a name="l00228"></a>00228   NSUInteger _numberOfPixels;
+<a name="l00194"></a>00194 
+<a name="l00202"></a>00202 <span class="preprocessor">#pragma mark Subclassing</span>
+<a name="l00203"></a>00203 <span class="preprocessor"></span>
+<a name="l00212"></a>00212 - (void)willSetObject:(<span class="keywordtype">id</span>)object withName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name previousObject:(<span class="keywordtype">id</span>)previousObject;
+<a name="l00213"></a>00213 
+<a name="l00220"></a>00220 - (void)didSetObject:(<span class="keywordtype">id</span>)object withName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name;
+<a name="l00221"></a>00221 
+<a name="l00228"></a>00228 - (void)willRemoveObject:(<span class="keywordtype">id</span>)object withName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name;
 <a name="l00229"></a>00229 
-<a name="l00230"></a>00230   NSUInteger _maxNumberOfPixels;
-<a name="l00231"></a>00231   NSUInteger _maxNumberOfPixelsUnderStress;
-<a name="l00232"></a>00232 }
+<a name="l00232"></a>00232 <span class="keyword">@end</span>
 <a name="l00233"></a>00233 
 <a name="l00234"></a>00234 
-<a name="l00239"></a>00239 <span class="preprocessor">#pragma mark Querying an In-Memory Image Cache</span>
-<a name="l00240"></a>00240 <span class="preprocessor"></span>
-<a name="l00244"></a><a class="code" href="interface_n_i_image_memory_cache.html#a40447c10f9dfc71c04bacb51895ba5e8">00244</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) NSUInteger numberOfPixels;
-<a name="l00245"></a>00245 <span class="comment">// End of Querying an In-Memory Image Cache</span>
-<a name="l00247"></a>00247 
-<a name="l00248"></a>00248 
-<a name="l00253"></a>00253 <span class="preprocessor">#pragma mark Setting the Maximum Number of Pixels</span>
-<a name="l00254"></a>00254 <span class="preprocessor"></span>
-<a name="l00260"></a><a class="code" href="interface_n_i_image_memory_cache.html#a44eec58a5fda0ad0390d5e43591c1fec">00260</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixels;
+<a name="l00254"></a><a class="code" href="interface_n_i_image_memory_cache.html">00254</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> : <a class="code" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a> {
+<a name="l00255"></a>00255 <span class="keyword">@private</span>
+<a name="l00256"></a>00256   NSUInteger _numberOfPixels;
+<a name="l00257"></a>00257 
+<a name="l00258"></a>00258   NSUInteger _maxNumberOfPixels;
+<a name="l00259"></a>00259   NSUInteger _maxNumberOfPixelsUnderStress;
+<a name="l00260"></a>00260 }
 <a name="l00261"></a>00261 
-<a name="l00267"></a><a class="code" href="interface_n_i_image_memory_cache.html#a8e3384e158b74b2f582ee5c26608a7b1">00267</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixelsUnderStress;
-<a name="l00268"></a>00268 <span class="comment">// End of Setting the Maximum Number of Pixels</span>
-<a name="l00270"></a>00270 
-<a name="l00271"></a>00271 <span class="keyword">@end</span>
-<a name="l00272"></a>00272 
-<a name="l00273"></a>00273 
-<a name="l00275"></a>00275 <span class="comment">// End of In-Memory Cache //////////////////////////////////////////////////////////////////</span>
+<a name="l00262"></a>00262 
+<a name="l00267"></a>00267 <span class="preprocessor">#pragma mark Querying an In-Memory Image Cache</span>
+<a name="l00268"></a>00268 <span class="preprocessor"></span>
+<a name="l00272"></a><a class="code" href="interface_n_i_image_memory_cache.html#a40447c10f9dfc71c04bacb51895ba5e8">00272</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) NSUInteger numberOfPixels;
+<a name="l00273"></a>00273 <span class="comment">// End of Querying an In-Memory Image Cache</span>
+<a name="l00275"></a>00275 
+<a name="l00276"></a>00276 
+<a name="l00281"></a>00281 <span class="preprocessor">#pragma mark Setting the Maximum Number of Pixels</span>
+<a name="l00282"></a>00282 <span class="preprocessor"></span>
+<a name="l00288"></a><a class="code" href="interface_n_i_image_memory_cache.html#a44eec58a5fda0ad0390d5e43591c1fec">00288</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixels;
+<a name="l00289"></a>00289 
+<a name="l00295"></a><a class="code" href="interface_n_i_image_memory_cache.html#a8e3384e158b74b2f582ee5c26608a7b1">00295</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixelsUnderStress;
+<a name="l00296"></a>00296 <span class="comment">// End of Setting the Maximum Number of Pixels</span>
+<a name="l00298"></a>00298 
+<a name="l00299"></a>00299 <span class="keyword">@end</span>
+<a name="l00300"></a>00300 
+<a name="l00301"></a>00301 
+<a name="l00303"></a>00303 <span class="comment">// End of In-Memory Cache //////////////////////////////////////////////////////////////////</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

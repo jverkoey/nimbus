@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -128,7 +128,13 @@
 <h3>Network Images with TTImageView</h3>
 <p>Three20's network image view is completely deprecated by Nimbus' <a class="el" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a>. Three20's network image view is an overly complicated TTView object with too many non-critical features built in. <a class="el" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a>, on the other hand, is a simple UIImageView view.</p>
 <p><a class="el" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a> is incredibly efficient when it comes to using memory. Where TTImageView would download an image and them simply crop and resize the image whenever the view was drawn, <a class="el" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a> crops and resizes the image on a separate thread and then draws the image without any scaling required. The image stored in the memory cache is also much smaller as result. Performance is noticeably improved when many image views are on the screen at once. A good example would be flipping through a friend list on the iPad with large, high-resolution images laid out in a grid.</p>
-<p><a class="el" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a> also handles retina displays more intelligently than TTImageView by creating scaled UIImages. </p>
+<p><a class="el" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a> also handles retina displays more intelligently than TTImageView by creating scaled UIImages.</p>
+<h3>Photo Albums with TTPhotoViewController</h3>
+<p>Three20's photo album viewer was built around the time iOS 3.0 was first coming out. Take a second to let that sink in, because that was a hell of a long time ago by the iOS SDK's standards.</p>
+<p>Around that time the scroll view implementations were certainly lacking some of the nice features required by a photo viewer. As a result, Three20 included a from-the-ground-up implementation of TTScrollView. This is no longer necessary and the new <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> photo viewer rejoices in the use of native UIScrollViews.</p>
+<p>Three20's photo viewer was also incredibly entrenched in the Three20 network model battleground with no hope of salvation. Nimbus' photo viewer is built using a light-weight, completely independent data source/delegate design that is similar in principle to UITableView.</p>
+<p>Instead of using a TTPhotoViewController, you can now use an <a class="el" href="interface_n_i_toolbar_photo_view_controller.html" title="A simple photo album view controller implementation with a toolbar.">NIToolbarPhotoViewController</a>. All you are required to do is implement the data source methods. Examples of such implementations can be found in the network photo album sample app.</p>
+<p><a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> photo viewer is faster, performs better under low-memory conditions, uses native scroll views and has an overall lower memory footprint. It also encourages processing data on separate threads instead of in the main UI thread like Three20's network stack does. </p>
 <table class="memberdecls">
 </table>
 </div>

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.3.4.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -238,11 +238,11 @@
 <a name="l00173"></a>00173   __block BOOL didStart = NO;
 <a name="l00174"></a>00174   __block BOOL didFinish = NO;
 <a name="l00175"></a>00175 
-<a name="l00176"></a>00176   op.didStartBlock = ^{
+<a name="l00176"></a>00176   op.<a class="code" href="interface_n_i_operation.html#a6244b38cedcd4c75360a15b19514321f" title="The operation has started executing.">didStartBlock</a> = ^{
 <a name="l00177"></a>00177     didStart = YES;
 <a name="l00178"></a>00178   };
 <a name="l00179"></a>00179 
-<a name="l00180"></a>00180   op.didFinishBlock = ^{
+<a name="l00180"></a>00180   op.<a class="code" href="interface_n_i_operation.html#a18e14e4f1f218899b97febe09d48b68d" title="The operation has completed successfully.">didFinishBlock</a> = ^{
 <a name="l00181"></a>00181     didFinish = YES;
 <a name="l00182"></a>00182   };
 <a name="l00183"></a>00183 
@@ -263,11 +263,11 @@
 <a name="l00199"></a>00199   __block BOOL didFail = NO;
 <a name="l00200"></a>00200   __block NSError* failureError = nil;
 <a name="l00201"></a>00201 
-<a name="l00202"></a>00202   op.didStartBlock = ^{
+<a name="l00202"></a>00202   op.<a class="code" href="interface_n_i_operation.html#a6244b38cedcd4c75360a15b19514321f" title="The operation has started executing.">didStartBlock</a> = ^{
 <a name="l00203"></a>00203     didStart = YES;
 <a name="l00204"></a>00204   };
 <a name="l00205"></a>00205 
-<a name="l00206"></a>00206   op.didFailWithErrorBlock = ^(NSError* error) {
+<a name="l00206"></a>00206   op.<a class="code" href="interface_n_i_operation.html#a6d1ae5a692180c568ecfd8d3b02300e3" title="The operation failed in some way and has completed.">didFailWithErrorBlock</a> = ^(NSError* error) {
 <a name="l00207"></a>00207     didFail = YES;
 <a name="l00208"></a>00208     failureError = [error copy];
 <a name="l00209"></a>00209   };

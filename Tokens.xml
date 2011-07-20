@@ -2,6 +2,44 @@
 <Tokens version="1.0">
   <Token>
     <TokenIdentifier>
+      <Name>Common-Metrics</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___common-_metrics.html</Path>
+    <Abstract>For common system metrics.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIToolbarHeightForOrientation</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___common-_metrics.html</Path>
+    <Anchor>gae2ad00b094918f5b5929b3520007551b</Anchor>
+    <Abstract>Fetch the height of a toolbar in a given orientation.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIStatusBarAnimationCurve</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___common-_metrics.html</Path>
+    <Anchor>ga0cec7c71cc4f5efee4113d16abde3ca1</Anchor>
+    <Abstract>The animation curve used when animating the status bar.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIStatusBarAnimationDuration</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___common-_metrics.html</Path>
+    <Anchor>gaf476266576d4c565941facf2ae5583e7</Anchor>
+    <Abstract>The animation duration for animating the status bar.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Data-Structures</Name>
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
@@ -578,6 +616,16 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NIScreenScale</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>ga90dc63555a6a6ed33b5875c5eaeccb31</Anchor>
+    <Abstract>Fetch the screen&amp;#39;s scale in an SDK-agnostic way.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NIUIPopoverControllerClass</Name>
       <APILanguage>c</APILanguage>
       <Type>func</Type>
@@ -585,6 +633,16 @@
     <Path>group___s_d_k-_availability.html</Path>
     <Anchor>gab7b9a8279ba3c54d6654f11f69dbd6f0</Anchor>
     <Abstract>Safely fetch the UIPopoverController class if it is available.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIUITapGestureRecognizerClass</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___s_d_k-_availability.html</Path>
+    <Anchor>ga622ef4a203e625618b9077c9b1deca24</Anchor>
+    <Abstract>Safely fetch the UITapGestureRecognizer class if it is available.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -600,6 +658,36 @@
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
     <Path>group___version-_history.html</Path>
+    <Abstract>Presented here are the API diffs for each major release of Nimbus.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Version-3-to-4</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___version-3-to-4.html</Path>
+    <Abstract>Version 0.4 of Nimbus was released on July 20, 2011.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Version-3</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___version-3.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Version-2</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___version-2.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Version-1</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___version-1.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -655,6 +743,46 @@
     </TokenIdentifier>
     <Path>group___network-_image-_requests.html</Path>
     <Abstract>The network requests that power the network image view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NimbusPhotos</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___nimbus_photos.html</Path>
+    <Abstract>Photo viewers are a common, non-trivial feature in many types of iOS apps ranging from simple photo v...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Photos-Views</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___photos-_views.html</Path>
+    <Abstract>The views and protocols used to display and interact with photos.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Photos-Controllers</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___photos-_controllers.html</Path>
+    <Abstract>Basic photo album view controller implementations.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NimbusProcessors</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___nimbus_processors.html</Path>
+    <Abstract>Processors are for performing complex data manipulation on separate threads.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Network-Processors</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___network-_processors.html</Path>
+    <Abstract>Processors designed specifically for network access.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -885,7 +1013,29 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>afdd7b533b55c5d8753078e207ec0a9d7</Anchor>
-    <Abstract>Retrive an object from the cache.</Abstract>
+    <Abstract>Retrieve an object from the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasObjectWithName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a10ca55440e796c6f51187041cf6b8152</Anchor>
+    <Abstract>Determine whether an object is in the cache or not without modifying the access time.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>dateOfLastAccessWithName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a6c016c9a322c58151bbfb30793e9d475</Anchor>
+    <Abstract>Retrieve the data that the object with the given name was last accessed.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -911,6 +1061,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>didSetObject:withName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>ad803d84fcd1c29cf2dadb58c3f719923</Anchor>
+    <Abstract>An object has been stored in the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>willRemoveObject:withName:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -919,6 +1080,61 @@
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a07a3aa62d34f2cae0c4c76668de9608e</Anchor>
     <Abstract>An object is about to be removed from the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIJSONKitProcessorHTTPRequest</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIJSONKitProcessorHTTPRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_j_s_o_n_kit_processor_h_t_t_p_request.html</Path>
+    <Abstract>A processor that uses JSONKit to turn the JSON response into objects.</Abstract>
+    <DeclaredIn>NIJSONKitProcessorHTTPRequest.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>processedObject</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIProcessorHTTPRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_processor_h_t_t_p_request.html</Path>
+    <Anchor>a079aadcb5f4ea692ad4f89f71a41f82d</Anchor>
+    <Abstract>The resulting root object after the request has completed and the data has been processed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>processDataBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIProcessorHTTPRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_processor_h_t_t_p_request.html</Path>
+    <Anchor>ae7c2909f0df1cd0ff2530b74fa458a3f</Anchor>
+    <Abstract>The second step in the processing order for the data.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>processorDelegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIProcessorHTTPRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_processor_h_t_t_p_request.html</Path>
+    <Anchor>a467653946b4e316c00f357fbe6d1cc48</Anchor>
+    <Abstract>The final step in the processing order for the data.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectFromResponseData:error:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIProcessorHTTPRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_processor_h_t_t_p_request.html</Path>
+    <Anchor>af807389013bf372d6693397fd041c0e1</Anchor>
+    <Abstract>A subclass should implement this method and transform the data into an object.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1578,7 +1794,29 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>afdd7b533b55c5d8753078e207ec0a9d7</Anchor>
-    <Abstract>Retrive an object from the cache.</Abstract>
+    <Abstract>Retrieve an object from the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasObjectWithName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a10ca55440e796c6f51187041cf6b8152</Anchor>
+    <Abstract>Determine whether an object is in the cache or not without modifying the access time.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>dateOfLastAccessWithName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a6c016c9a322c58151bbfb30793e9d475</Anchor>
+    <Abstract>Retrieve the data that the object with the given name was last accessed.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1601,6 +1839,17 @@
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>ae1aac8c4de4609814f7f24440cca011f</Anchor>
     <Abstract>An object is about to be stored in the cache.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didSetObject:withName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>ad803d84fcd1c29cf2dadb58c3f719923</Anchor>
+    <Abstract>An object has been stored in the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2032,6 +2281,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>tag</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a3ffdf65e811b47ea8595c8ea2a1376ec</Anchor>
+    <Abstract>A simple tagging mechanism for identifying operations.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>lastError</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
@@ -2040,6 +2300,50 @@
     <Path>interface_n_i_operation.html</Path>
     <Anchor>add09c9ae4ab576c27648f4a3ab3b9cea</Anchor>
     <Abstract>The error last passed to the didFailWithError notification.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didStartBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a6244b38cedcd4c75360a15b19514321f</Anchor>
+    <Abstract>The operation has started executing.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didFinishBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a18e14e4f1f218899b97febe09d48b68d</Anchor>
+    <Abstract>The operation has completed successfully.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didFailWithErrorBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a6d1ae5a692180c568ecfd8d3b02300e3</Anchor>
+    <Abstract>The operation failed in some way and has completed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>willFinishBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>af70a25765166a9b792dc053b7b9378b6</Anchor>
+    <Abstract>The operation is about to complete successfully.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2076,6 +2380,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>operationWillFinish</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>ac7e636b6ec59af66fc5964c7b30a2930</Anchor>
+    <Abstract>In the operation&amp;#39;s thread, notify the delegate that the operation will finish successfully.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NIOperationDelegate</Name>
       <APILanguage>c</APILanguage>
       <Type>intf</Type>
@@ -2095,6 +2410,17 @@
     <Path>protocol_n_i_operation_delegate-p.html</Path>
     <Anchor>a67316e75bd418453d0ee0626b86f0480</Anchor>
     <Abstract>The operation has started executing.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationWillFinish:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOperationDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_operation_delegate-p.html</Path>
+    <Anchor>ab611d7a71a08106becd2f66114b15d8f</Anchor>
+    <Abstract>The operation is about to complete successfully.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2120,6 +2446,501 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NIPhotoAlbumScrollView</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Abstract>A paged scroll view that shows a collection of photos.</Abstract>
+    <DeclaredIn>NIPhotoAlbumScrollView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>dataSource</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>a763ac9859c692caac4232135ce22792d</Anchor>
+    <Abstract>The data source for this photo album view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>reloadData</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>a499e3a1855ebae051598afde7fdc2c3c</Anchor>
+    <Abstract>Force the view to reload its data by asking the data source for information.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>delegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>a992a9408b06190db98f14da4071fe4f4</Anchor>
+    <Abstract>The delegate for this photo album view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>loadingImage</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>a5efc3ce3a183043fe3d6341ae82908cc</Anchor>
+    <Abstract>An image that is displayed while the photo is loading.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pageHorizontalMargin</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>affaad3ec044e3e8f354271a81d723f19</Anchor>
+    <Abstract>The number of pixels on either side of each photo page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>currentCenterPhotoIndex</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>a727d4a7ad102caadc455e4fffddc8589</Anchor>
+    <Abstract>The current center photo index.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>numberOfPhotos</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>aa6f3fca130a6cb8358fde37e33a28fe2</Anchor>
+    <Abstract>The total number of photos in this photo album view, as gathered from the data source.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasNext</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>a3e3b947a25bec57aed70afb27d809471</Anchor>
+    <Abstract>Returns YES if there is a next photo.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasPrevious</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>a5ce7a3118a9b14539afffa572f75a434</Anchor>
+    <Abstract>Returns YES if there is a previous photo.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>moveToNextAnimated:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>a7d6595ba06e27bd5b24868c4fffd6f41</Anchor>
+    <Abstract>Move to the next photo if there is one.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>moveToPreviousAnimated:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>a56349352b0b9a6a045727c0745397a5e</Anchor>
+    <Abstract>Move to the previous photo if there is one.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didLoadPhoto:atIndex:photoSize:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>a8b53749aec990645b6502376cd41558c</Anchor>
+    <Abstract>Notify the scroll view that a photo has been loaded at a given index.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>willRotateToInterfaceOrientation:duration:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>ad8c49847a8e40845c7568c66c6d03cc5</Anchor>
+    <Abstract>Stores the current state of the scroll view in preparation for rotation.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>willAnimateRotationToInterfaceOrientation:duration:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>a8fc80777983d64c632b64ac32d03eb49</Anchor>
+    <Abstract>Updates the frame of the scroll view while maintaining the current visible page&amp;#39;s state...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoScrollViewDidDoubleTapToZoom:didZoomIn:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoScrollViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_scroll_view_delegate-p.html</Path>
+    <Anchor>ad4b3ef423033107ed51c0b41890f698f</Anchor>
+    <Abstract>The user has double-tapped the photo to zoom either in or out.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIPhotoAlbumScrollViewDataSource</Name>
+      <APILanguage>c</APILanguage>
+      <Type>intf</Type>
+      <Scope>NIPhotoAlbumScrollViewDataSource</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_data_source-p.html</Path>
+    <Abstract>The photo album scroll data source.</Abstract>
+    <DeclaredIn>NIPhotoAlbumScrollView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>numberOfPhotosInPhotoScrollView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoAlbumScrollViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_data_source-p.html</Path>
+    <Anchor>a92aada6a17dbb2460144beaef77c1909</Anchor>
+    <Abstract>Fetches the total number of photos in the scroll view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoAlbumScrollView:photoAtIndex:photoSize:isLoading:originalPhotoDimensions:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoAlbumScrollViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_data_source-p.html</Path>
+    <Anchor>a580b6c3527b44349a13112c6460b68d5</Anchor>
+    <Abstract>Fetches the highest-quality image available for the photo at the given index.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoAlbumScrollView:stopLoadingPhotoAtIndex:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoAlbumScrollViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_data_source-p.html</Path>
+    <Anchor>a2bbbf9642de6e944f830365d5f5bc626</Anchor>
+    <Abstract>Called when you should cancel any asynchronous loading requests for the given photo.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIPhotoAlbumScrollViewDelegate</Name>
+      <APILanguage>c</APILanguage>
+      <Type>intf</Type>
+      <Scope>NIPhotoAlbumScrollViewDelegate</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
+    <Abstract>The photo album scroll view delegate.</Abstract>
+    <DeclaredIn>NIPhotoAlbumScrollView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoAlbumScrollViewDidScroll:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoAlbumScrollViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
+    <Anchor>a5fcd4c30753c07f9ea9410cd7fc560fd</Anchor>
+    <Abstract>The user is scrolling between two photos.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoAlbumScrollView:didZoomIn:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoAlbumScrollViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
+    <Anchor>a0eef6e4fa181a3df8ab5d6909523d4ab</Anchor>
+    <Abstract>The user double-tapped to zoom in or out.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoAlbumScrollViewDidChangePages:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoAlbumScrollViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
+    <Anchor>af4852dedcacd71213d41c3c063842882</Anchor>
+    <Abstract>The current page has changed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoAlbumScrollViewDidLoadNextPhoto:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoAlbumScrollViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
+    <Anchor>a32117b185be7beba7883340439dea650</Anchor>
+    <Abstract>The next photo in the album has been loaded and is ready to be displayed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoAlbumScrollViewDidLoadPreviousPhoto:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoAlbumScrollViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
+    <Anchor>a8bb24277692638ee8c113b1a25a6705e</Anchor>
+    <Abstract>The previous photo in the album has been loaded and is ready to be displayed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIPhotoScrollView</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIPhotoScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scroll_view.html</Path>
+    <Abstract>A single photo view that supports zooming and rotation.</Abstract>
+    <DeclaredIn>NIPhotoScrollView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoSize</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scroll_view.html</Path>
+    <Anchor>a6f908f1e81b9b188198bb13e0aa38e5d</Anchor>
+    <Abstract>The current size of the photo.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoDimensions</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scroll_view.html</Path>
+    <Anchor>a9ed737c4d3e0e469d7effb5c43c3f72e</Anchor>
+    <Abstract>The largest dimensions of the photo.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>zoomingIsEnabled</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scroll_view.html</Path>
+    <Anchor>a3d2a03a9d821767241a5cb821ff7afca</Anchor>
+    <Abstract>Whether the photo is allowed to be zoomed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>doubleTapToZoomIsEnabled</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scroll_view.html</Path>
+    <Anchor>a4e9b451beafdb4285991b21b5424eadd</Anchor>
+    <Abstract>Whether double-tapping zooms in and out of the image.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoScrollViewDelegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scroll_view.html</Path>
+    <Anchor>a2e032560bef952835cc820594fca0ced</Anchor>
+    <Abstract>The photo scroll view delegate.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>prepareForReuse</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scroll_view.html</Path>
+    <Anchor>ae810feafd0768dd63ef8437c1c69f316</Anchor>
+    <Abstract>Remove image and reset the zoom scale.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>image</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scroll_view.html</Path>
+    <Anchor>a779cbbcc2a400479d2ae643612358f0b</Anchor>
+    <Abstract>The currently-displayed photo.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setImage:photoSize:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scroll_view.html</Path>
+    <Anchor>a4890f1d3b7bd9feba24b2c312d5ce105</Anchor>
+    <Abstract>Set a new photo with a specific size.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setFrameAndMaintainZoomAndCenter:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scroll_view.html</Path>
+    <Anchor>a022c6d9c29aa3f7e7b31387d5f05f9e0</Anchor>
+    <Abstract>Set the frame of the view while maintaining the zoom and center of the scroll view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIPhotoScrollViewDelegate</Name>
+      <APILanguage>c</APILanguage>
+      <Type>intf</Type>
+      <Scope>NIPhotoScrollViewDelegate</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_scroll_view_delegate-p.html</Path>
+    <Abstract>The photo scroll view delegate.</Abstract>
+    <DeclaredIn>NIPhotoScrollView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoScrollViewDidDoubleTapToZoom:didZoomIn:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoScrollViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_scroll_view_delegate-p.html</Path>
+    <Anchor>ad4b3ef423033107ed51c0b41890f698f</Anchor>
+    <Abstract>The user has double-tapped the photo to zoom either in or out.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIProcessorDelegate</Name>
+      <APILanguage>c</APILanguage>
+      <Type>intf</Type>
+      <Scope>NIProcessorDelegate</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_processor_delegate-p.html</Path>
+    <Abstract>Defines the basic protocol for processing data.</Abstract>
+    <DeclaredIn>NIProcessorDelegate.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>processor:processObject:error:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIProcessorDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_processor_delegate-p.html</Path>
+    <Anchor>af7822e57a67d47340861f06ca5420bc2</Anchor>
+    <Abstract>Called as the final step in the processing order.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIProcessorHTTPRequest</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIProcessorHTTPRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_processor_h_t_t_p_request.html</Path>
+    <Abstract>An HTTP request that processes the returned data on a separate thread.</Abstract>
+    <DeclaredIn>NIProcessorHTTPRequest.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>processedObject</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIProcessorHTTPRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_processor_h_t_t_p_request.html</Path>
+    <Anchor>a079aadcb5f4ea692ad4f89f71a41f82d</Anchor>
+    <Abstract>The resulting root object after the request has completed and the data has been processed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>processDataBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIProcessorHTTPRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_processor_h_t_t_p_request.html</Path>
+    <Anchor>ae7c2909f0df1cd0ff2530b74fa458a3f</Anchor>
+    <Abstract>The second step in the processing order for the data.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>processorDelegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIProcessorHTTPRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_processor_h_t_t_p_request.html</Path>
+    <Anchor>a467653946b4e316c00f357fbe6d1cc48</Anchor>
+    <Abstract>The final step in the processing order for the data.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectFromResponseData:error:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIProcessorHTTPRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_processor_h_t_t_p_request.html</Path>
+    <Anchor>af807389013bf372d6693397fd041c0e1</Anchor>
+    <Abstract>A subclass should implement this method and transform the data into an object.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NIReadFileFromDiskOperation</Name>
       <APILanguage>c</APILanguage>
       <Type>cl</Type>
@@ -2142,6 +2963,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>tag</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a3ffdf65e811b47ea8595c8ea2a1376ec</Anchor>
+    <Abstract>A simple tagging mechanism for identifying operations.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>lastError</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
@@ -2150,6 +2982,50 @@
     <Path>interface_n_i_operation.html</Path>
     <Anchor>add09c9ae4ab576c27648f4a3ab3b9cea</Anchor>
     <Abstract>The error last passed to the didFailWithError notification.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didStartBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a6244b38cedcd4c75360a15b19514321f</Anchor>
+    <Abstract>The operation has started executing.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didFinishBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a18e14e4f1f218899b97febe09d48b68d</Anchor>
+    <Abstract>The operation has completed successfully.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didFailWithErrorBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a6d1ae5a692180c568ecfd8d3b02300e3</Anchor>
+    <Abstract>The operation failed in some way and has completed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>willFinishBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>af70a25765166a9b792dc053b7b9378b6</Anchor>
+    <Abstract>The operation is about to complete successfully.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2172,6 +3048,17 @@
     <Path>interface_n_i_read_file_from_disk_operation.html</Path>
     <Anchor>a754e08489a25c244257bfd6e733f61e2</Anchor>
     <Abstract>The data that was read from disk.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>processedObject</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIReadFileFromDiskOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_read_file_from_disk_operation.html</Path>
+    <Anchor>af07b3fadfa7445e1993bf2eedd596aa6</Anchor>
+    <Abstract>An object created from the data that was read from disk.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2216,6 +3103,193 @@
     <Path>interface_n_i_operation.html</Path>
     <Anchor>abcac75178abd6f277fcac4332bad2976</Anchor>
     <Abstract>On the main thread, notify the delegate that the operation has failed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationWillFinish</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>ac7e636b6ec59af66fc5964c7b30a2930</Anchor>
+    <Abstract>In the operation&amp;#39;s thread, notify the delegate that the operation will finish successfully.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIToolbarPhotoViewController</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIToolbarPhotoViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
+    <Abstract>A simple photo album view controller implementation with a toolbar.</Abstract>
+    <DeclaredIn>NIToolbarPhotoViewController.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>showPhotoAlbumBeneathToolbar</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIToolbarPhotoViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
+    <Anchor>a7bd38a82a21e17d2d3014a7d0bb574d4</Anchor>
+    <Abstract>Whether to show the photo album view beneath the toolbar or not.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hidesChromeWhenScrolling</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIToolbarPhotoViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
+    <Anchor>aa9ee0c17370b57ce498e7864be1bfc33</Anchor>
+    <Abstract>Whether or not to hide the chrome when the user begins interacting with the photo.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>chromeCanBeHidden</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIToolbarPhotoViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
+    <Anchor>ab71b18ae481b0f9dd225f001e0e631b9</Anchor>
+    <Abstract>Whether or not to allow hiding the chrome.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>animateMovingToNextAndPreviousPhotos</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIToolbarPhotoViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
+    <Anchor>aef2b9930b7397117509201a374c7f28f</Anchor>
+    <Abstract>Whether to animate moving to a next or previous photo when the user taps the button.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>toolbar</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIToolbarPhotoViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
+    <Anchor>a9e9dea6df26f101beac8ab6edba27ecd</Anchor>
+    <Abstract>The toolbar view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoAlbumView</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIToolbarPhotoViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
+    <Anchor>a48147d9bffadafe85dc3e9e769565161</Anchor>
+    <Abstract>The photo album view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>nextButton</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIToolbarPhotoViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
+    <Anchor>a55e0a510317f26fee796e36692a3ceb6</Anchor>
+    <Abstract>The &amp;#39;next&amp;#39; button.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>previousButton</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIToolbarPhotoViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
+    <Anchor>a483abaaa360e65d5d2c497c74912e160</Anchor>
+    <Abstract>The &amp;#39;previous&amp;#39; button.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoAlbumScrollViewDidScroll:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoAlbumScrollViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
+    <Anchor>a5fcd4c30753c07f9ea9410cd7fc560fd</Anchor>
+    <Abstract>The user is scrolling between two photos.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoAlbumScrollView:didZoomIn:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoAlbumScrollViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
+    <Anchor>a0eef6e4fa181a3df8ab5d6909523d4ab</Anchor>
+    <Abstract>The user double-tapped to zoom in or out.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoAlbumScrollViewDidChangePages:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoAlbumScrollViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
+    <Anchor>af4852dedcacd71213d41c3c063842882</Anchor>
+    <Abstract>The current page has changed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoAlbumScrollViewDidLoadNextPhoto:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoAlbumScrollViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
+    <Anchor>a32117b185be7beba7883340439dea650</Anchor>
+    <Abstract>The next photo in the album has been loaded and is ready to be displayed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoAlbumScrollViewDidLoadPreviousPhoto:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoAlbumScrollViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
+    <Anchor>a8bb24277692638ee8c113b1a25a6705e</Anchor>
+    <Abstract>The previous photo in the album has been loaded and is ready to be displayed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIURLMap</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIURLMap</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_u_r_l_map.html</Path>
+    <Abstract>A container of one-directional mappings from URLs to objects and vice-versa.</Abstract>
+    <DeclaredIn>NIURLMap.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>from:toViewController:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIURLMap</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_u_r_l_map.html</Path>
+    <Anchor>aad231d89de3d92fe97df1eb367f1eeae</Anchor>
+    <Abstract>Register a URL with a specific view controller.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
