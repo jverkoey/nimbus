@@ -14,23 +14,22 @@
 // limitations under the License.
 //
 
-#import "FacebookPhotoAlbumViewController.h"
+#import "DribbblePhotoAlbumViewController.h"
 
-#import "NIHTTPRequest.h"
 #import "ASIDownloadCache.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation FacebookPhotoAlbumViewController
+@implementation DribbblePhotoAlbumViewController
 
-@synthesize facebookAlbumId = _facebookAlbumId;
+@synthesize apiPath = _apiPath;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  NI_RELEASE_SAFELY(_facebookAlbumId);
+  NI_RELEASE_SAFELY(_apiPath);
 
   [super dealloc];
 }
@@ -39,7 +38,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWith:(id)object {
   if ((self = [self initWithNibName:nil bundle:nil])) {
-    self.facebookAlbumId = object;
+    self.apiPath = object;
   }
   return self;
 }
@@ -65,9 +64,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadAlbumInformation {
-  NSString* albumURLPath = [NSString stringWithFormat:
-                            @"http://graph.facebook.com/%@/photos",
-                            self.facebookAlbumId];
+  NSString* albumURLPath = [@"http://api.dribbble.com" stringByAppendingString:self.apiPath];
 
   // Nimbus processors allow us to perform complex computations on a separate thread before
   // returning the object to the main thread. This is useful here because we perform sorting
@@ -147,49 +144,28 @@
     return nil;
   }
 
-  NSArray* data = [object objectForKey:@"data"];
+  NSArray* data = [object objectForKey:@"shots"];
 
   NSMutableArray* photoInformation = [NSMutableArray arrayWithCapacity:[data count]];
   for (NSDictionary* photo in data) {
-    NSArray* images = [photo objectForKey:@"images"];
 
-    if ([images count] > 0) {
-      // Sort the images in descending order by image size.
-      NSArray* sortedImages =
-      [images sortedArrayUsingDescriptors:
-       [NSArray arrayWithObject:
-        [[[NSSortDescriptor alloc] initWithKey:@"width" ascending:NO] autorelease]]];
+    // Gather the high-quality photo information.
+    NSString* originalImageSource = [photo objectForKey:@"image_url"];
+    NSInteger width = [[photo objectForKey:@"width"] intValue];
+    NSInteger height = [[photo objectForKey:@"height"] intValue];
 
-      // Gather the high-quality photo information.
-      NSDictionary* originalImage = [sortedImages objectAtIndex:0];
-      NSString* originalImageSource = [originalImage objectForKey:@"source"];
-      NSInteger width = [[originalImage objectForKey:@"width"] intValue];
-      NSInteger height = [[originalImage objectForKey:@"height"] intValue];
+    // We gather the highest-quality photo's dimensions so that we can size the thumbnails
+    // correctly until the high-quality image is downloaded.
+    CGSize dimensions = CGSizeMake(width, height);
 
-      // We gather the highest-quality photo's dimensions so that we can size the thumbnails
-      // correctly until the high-quality image is downloaded.
-      CGSize dimensions = CGSizeMake(width, height);
+    NSString* thumbnailImageSource = [photo objectForKey:@"image_teaser_url"];
 
-      NSInteger numberOfImages = [sortedImages count];
-
-      // 0 being the lowest quality. On larger screens we fetch larger thumbnails.
-      NSInteger qualityLevel = (NIIsPad() || NIScreenScale() > 1) ? 1 : 0;
-
-      NSInteger thumbnailIndex = ((numberOfImages - 1)
-                                  - MIN(qualityLevel, numberOfImages - 2));
-
-      NSString* thumbnailImageSource = nil;
-      if (0 < thumbnailIndex) {
-        thumbnailImageSource = [[sortedImages objectAtIndex:thumbnailIndex] objectForKey:@"source"];
-      }
-
-      NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                       originalImageSource, @"originalSource",
-                                       thumbnailImageSource, @"thumbnailSource",
-                                       [NSValue valueWithCGSize:dimensions], @"dimensions",
-                                       nil];
-      [photoInformation addObject:prunedPhotoInfo];
-    }
+    NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     originalImageSource, @"originalSource",
+                                     thumbnailImageSource, @"thumbnailSource",
+                                     [NSValue valueWithCGSize:dimensions], @"dimensions",
+                                     nil];
+    [photoInformation addObject:prunedPhotoInfo];
   }
   return photoInformation;
 }

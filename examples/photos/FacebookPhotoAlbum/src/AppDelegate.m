@@ -17,6 +17,7 @@
 #import "AppDelegate.h"
 
 #import "FacebookPhotoAlbumViewController.h"
+#import "CatalogTableViewController.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,11 +50,15 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
 
+  /*
   FacebookPhotoAlbumViewController* rootVC = [[[FacebookPhotoAlbumViewController alloc] initWithNibName:nil bundle:nil]
                                 autorelease];
   rootVC.facebookAlbumId = @"10150160584103418";
+*/
+  CatalogTableViewController* catalogVC =
+  [[[CatalogTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
 
-  _rootViewController = [[UINavigationController alloc] initWithRootViewController:rootVC];
+  _rootViewController = [[UINavigationController alloc] initWithRootViewController:catalogVC];
 
   [self.window addSubview:_rootViewController.view];
 

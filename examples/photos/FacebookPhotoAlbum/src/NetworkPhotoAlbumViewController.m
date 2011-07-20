@@ -17,6 +17,7 @@
 #import "NetworkPhotoAlbumViewController.h"
 
 #import "NIHTTPRequest.h"
+#import "ASIDownloadCache.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +43,9 @@
   NSURL* url = [NSURL URLWithString:source];
 
   // We must use __block here to avoid creating a retain cycle with the readOp.
-  __block NIHTTPRequest* readOp = [[[NIHTTPRequest alloc] initWithURL:url] autorelease];
+  __block NIHTTPRequest* readOp = [NIHTTPRequest requestWithURL: url
+                                                     usingCache: [ASIDownloadCache sharedCache]];
+  readOp.timeOutSeconds = 30;
 
   // Set an invalid index for thumbnail requests so that they don't get cancelled by
   // photoAlbumScrollView:stopLoadingPhotoAtIndex:

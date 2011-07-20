@@ -52,6 +52,11 @@
 }
 
 /**
+ * The generic entry point used by the catalog view controller to initialize this controller.
+ */
+- (id)initWith:(id)object;
+
+/**
  * The album id of the Facebook album to load.
  *
  * You can preview what the Graph API will generate by fetching the following url:
