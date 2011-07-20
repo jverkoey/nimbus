@@ -34,9 +34,18 @@ typedef id (^NIProcessorBlock)(id object, NSError** error);
  * Called as the final step in the processing order.
  *
  * It is recommended that you implement this method as a class method and assign (id)[self class]
- * to the processorDelegate member of the NIProcessorHTTPRequest instance. This is because
- * this method will be called from the NIProcessorHTTPRequest thread, not the main thread, so
- * you must be careful not to touch any non thread-safe data.
+ * to the processorDelegate member of the NIProcessorHTTPRequest instance. For example:
+ *
+ * @code
+ *  request.delegate = (id)[self class];
+ *
+ *  + (id)processor:(id)processor processObject:(id)object error:(NSError **)processingError {
+ *    // Now, by design, we can't access self which is often not thread safe.
+ *  }
+ * @endcode
+ *
+ * This is because the delegate methods will be called from the NIProcessorHTTPRequest thread -
+ * not the main thread - so you must be careful not to touch any non thread-safe data.
  *
  *      @param processor        The object that initiated the call to this method.
  *      @param object           The latest object in the processing pipeline.

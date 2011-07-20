@@ -33,29 +33,8 @@
  *
  * There are specific implementations of this request built for a variety of data formats that
  * can be used for convenience. There are three ways you can modify the data in the pipeline.
- *
- * The response data is processed in the following order, with the result from each step
- * being fed to the next one.
- *
- * -# [subclass] rootObjectFromResponseData:
- * -#    [block] processDataBlock
- * -# [delegate] request:processRootObject:
- *
- *
- * <h2>Suggestions for Picking a Processing Method</h2>
- *
- * <h3>Use Blocks and NIProcessorDelegate for One-Off Implementations</h3>
- *
- * Blocks can be particularly handy for writing inline code quickly, but after a certain
- * point of complexity it may be cleaner to use the processorDelegate. If you're finding
- * that your block is starting to span more than 10 lines of code or so, it might be worth
- * considering splitting the logic out into the delegate.
- *
- * <h3>Subclass for Common Functionality</h3>
- *
- * Blocks and delegates are good for one-off customization, but if you find yourself repeating
- * the same functionality across a variety of controllers you should consider building a
- * subclass.
+ * See the @link NimbusProcessors Nimbus Processors@endlink documentation for more information
+ * about these three steps.
  *
  *      @ingroup Network-Processors
  */
