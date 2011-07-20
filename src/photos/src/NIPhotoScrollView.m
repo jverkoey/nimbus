@@ -26,7 +26,7 @@
 @synthesize photoSize   = _photoSize;
 @synthesize photoDimensions = _photoDimensions;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
-@synthesize zoomingAboveOriginalSizeEnabled = _zoomingAboveOriginalSizeEnabled;
+@synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
 @synthesize photoScrollViewDelegate = _photoScrollViewDelegate;
 
 
@@ -56,9 +56,9 @@
     self.delegate = self;
 
 
-    // Set up this view's default configuration.
+    // Default configuration.
     self.zoomingIsEnabled = YES;
-    self.zoomingAboveOriginalSizeEnabled = YES;
+    self.zoomingAboveOriginalSizeIsEnabled = YES;
     self.doubleTapToZoomIsEnabled = YES;
 
 
@@ -82,6 +82,69 @@
   return minScale;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Calculate the min and max scale for the given dimensions and photo size.
+ *
+ * minScale will fit the photo to the bounds, unless it is too small in which case it will
+ * show the image at a 1-to-1 resolution.
+ *
+ * maxScale will be whatever value shows the image at a 1-to-1 resolution, UNLESS
+ * isZoomingAboveOriginalSizeEnabled is enabled, in which case maxScale will be calculated
+ * such that the image completely fills the bounds.
+ *
+ * Exception:  If the photo size is unknown (this is a loading image, for example) then
+ * the minimum scale will be set without considering the screen scale. This allows the
+ * loading image to draw with its own image scale if it's a high-res @2x image.
+ */
+- (void)minAndMaxScaleForDimensions: (CGSize)dimensions
+                         boundsSize: (CGSize)boundsSize
+                          photoSize: (NIPhotoScrollViewPhotoSize)photoSize
+                           minScale: (CGFloat *)pMinScale
+                           maxScale: (CGFloat *)pMaxScale {
+  NIDASSERT(nil != pMinScale);
+  NIDASSERT(nil != pMaxScale);
+  if (nil == pMinScale
+      || nil == pMaxScale) {
+    return;
+  }
+
+  CGFloat minScale = [self scaleForSize: dimensions
+                             boundsSize: boundsSize
+                        useMinimalScale: YES];
+
+  // On high resolution screens we have double the pixel density, so we will be seeing
+  // every pixel if we limit the maximum zoom scale to 0.5.
+  // If the photo size is unknown, it's likely that we're showing the loading image and
+  // don't want to shrink it down with the zoom because it should be a scaled image.
+  CGFloat maxScale = ((NIPhotoScrollViewPhotoSizeUnknown == photoSize)
+                      ? 1
+                      : (1.0 / NIScreenScale()));
+
+  if (NIPhotoScrollViewPhotoSizeThumbnail != photoSize) {
+    // Don't let minScale exceed maxScale. (If the image is smaller than the screen, we
+    // don't want to force it to be zoomed.)
+    minScale = MIN(minScale, maxScale);
+  }
+
+  // At this point if the image is small, then minScale and maxScale will be the same because
+  // we don't want to allow the photo to be zoomed.
+
+  // If zooming above the original size IS enabled, however, expand the max zoom to
+  // whatever value would make the image fit the view perfectly.
+  if ([self isZoomingAboveOriginalSizeEnabled]) {
+    CGFloat idealMaxScale = [self scaleForSize: dimensions
+                                    boundsSize: boundsSize
+                               useMinimalScale: NO];
+    maxScale = MAX(maxScale, idealMaxScale);
+  }
+
+  *pMinScale = minScale;
+  *pMaxScale = maxScale;
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setMaxMinZoomScalesForCurrentBounds {
   CGSize imageSize = _imageView.bounds.size;
@@ -99,38 +162,38 @@
 
   CGSize boundsSize = self.bounds.size;
 
-  CGFloat minScale = [self scaleForSize:imageSize boundsSize:boundsSize useMinimalScale:YES];
+  CGFloat minScale = 0;
+  CGFloat maxScale = 0;
+
+  // Calculate the min/max scale for the image to be presented.
+  [self minAndMaxScaleForDimensions: imageSize
+                         boundsSize: boundsSize
+                          photoSize: self.photoSize
+                           minScale: &minScale
+                           maxScale: &maxScale];
 
   // When we show thumbnails for images that are too small for the bounds, we try to use
   // the known photo dimensions to scale the minimum scale to match what the final image
-  // will be. This avoids any "snapping" effects from stretching the thumbnail too large.
+  // would be. This avoids any "snapping" effects from stretching the thumbnail too large.
   if ((NIPhotoScrollViewPhotoSizeThumbnail == self.photoSize)
       && !CGSizeEqualToSize(self.photoDimensions, CGSizeZero)) {
-    // Modify the scale according to the final image's minScale.
-      CGFloat minIdealScale = [self scaleForSize:self.photoDimensions boundsSize:boundsSize useMinimalScale:YES];
-    if (minIdealScale > 1) {
-      // Only modify the scale if the final image is smaller than the photo frame.
-      minScale = (minScale / minIdealScale);
+    CGFloat scaleToFitOriginal = 0;
+    CGFloat originalMaxScale = 0;
+    // Calculate the original-sized image's min/max scale.
+    [self minAndMaxScaleForDimensions: self.photoDimensions
+                           boundsSize: boundsSize
+                            photoSize: NIPhotoScrollViewPhotoSizeOriginal
+                             minScale: &scaleToFitOriginal
+                             maxScale: &originalMaxScale];
+
+    if (scaleToFitOriginal + FLT_EPSILON >= (1.0 / NIScreenScale())) {
+      // If the final image will be smaller than the view then we want to use that
+      // scale as the "true" scale and adjust it relatively to the thumbnail's dimensions.
+      // This ensures that the thumbnail will always be the same visual size as the original
+      // image, giving us that sexy "crisping" effect when the thumbnail is loaded.
+      CGFloat relativeSize = self.photoDimensions.width / imageSize.width;
+      minScale = scaleToFitOriginal * relativeSize;
     }
-  }
-
-  // On high resolution screens we have double the pixel density, so we will be seeing
-  // every pixel if we limit the maximum zoom scale to 0.5.
-  // If zooming disabled we always want to show the image at a 1-to-1 ratio if the image too small.
-  // This primarily applies to the loading image on retina displays. If we use the screen scale
-  // to calculate the max scale then the loading image will end up being half the size it should
-  // be.
-  CGFloat maxScale = (self.isZoomingEnabled ? (1.0 / NIScreenScale()) : 1);
-
-  if (self.isZoomingAboveOriginalSizeEnabled) {
-    CGFloat idealMaxScale = [self scaleForSize:imageSize boundsSize:boundsSize useMinimalScale:NO];
-    maxScale = MAX(maxScale, idealMaxScale);
-  }
-
-  if (self.photoSize != NIPhotoScrollViewPhotoSizeThumbnail) {
-    // Don't let minScale exceed maxScale. (If the image is smaller than the screen, we
-    // don't want to force it to be zoomed.)
-    minScale = MIN(minScale, maxScale);
   }
 
   // If zooming is disabled then we flatten the range for zooming to only allow the min zoom.
