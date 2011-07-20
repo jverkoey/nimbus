@@ -27,6 +27,7 @@
  *
  * - Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
  * - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
+ * - See the <a href="http://jverkoey.github.com/nimbus/group___version-3-to-4.html">latest API diffs</a>.
  * - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
  *
  * <h2>Nimbus' Background</h2>
@@ -439,4 +440,27 @@
  *
  * NINetworkImageView also handles retina displays more intelligently than TTImageView by
  * creating scaled UIImages.
+ *
+ * <h3>Photo Albums with TTPhotoViewController</h3>
+ *
+ * Three20's photo album viewer was built around the time iOS 3.0 was first coming out. Take
+ * a second to let that sink in, because that was a hell of a long time ago by the iOS SDK's
+ * standards.
+ *
+ * Around that time the scroll view implementations were certainly lacking some of the nice
+ * features required by a photo viewer. As a result, Three20 included a from-the-ground-up
+ * implementation of TTScrollView. This is no longer necessary and the new
+ * Nimbus photo viewer rejoices in the use of native UIScrollViews.
+ *
+ * Three20's photo viewer was also incredibly entrenched in the Three20 network model battleground
+ * with no hope of salvation. Nimbus' photo viewer is built using a light-weight, completely
+ * independent data source/delegate design that is similar in principle to UITableView.
+ *
+ * Instead of using a TTPhotoViewController, you can now use an NIToolbarPhotoViewController.
+ * All you are required to do is implement the data source methods. Examples of such
+ * implementations can be found in the network photo album sample app.
+ *
+ * Nimbus photo viewer is faster, performs better under low-memory conditions, uses native
+ * scroll views and has an overall lower memory footprint. It also encourages processing data
+ * on separate threads instead of in the main UI thread like Three20's network stack does.
  */
