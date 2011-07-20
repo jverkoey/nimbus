@@ -41,7 +41,19 @@
  * previous arrows; auto-rotation support; and toggling the chrome.
  *
  *
- * <h2>Examples</h2>
+ * <h2>Example Applications</h2>
+ *
+ * <h3>Facebook Photo Albums</h3>
+ *
+ * <a href="https://github.com/jverkoey/nimbus/tree/master/examples/photos/FacebookPhotoAlbum">View the README on GitHub</a>
+ *
+ * This sample application demos the use of the Facebook Graph API to fetch photos from a public
+ * photo album and display them in high-definition on the iPad and iPhone.
+ *
+ * Sample location: <code>examples/photos/FacebookPhotoAlbum</code>
+ *
+ *
+ * <h2>Screenshots</h2>
  *
  * @image html photos-iphone-example1.png "Screenshot of the BasicPhotoAlbum application on the iPhone."
  *
