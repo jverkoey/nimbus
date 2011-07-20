@@ -25,9 +25,6 @@
 @implementation FacebookPhotoAlbumViewController
 
 @synthesize facebookAlbumId = _facebookAlbumId;
-@synthesize highQualityImageCache = _highQualityImageCache;
-@synthesize thumbnailImageCache = _thumbnailImageCache;
-@synthesize queue = _queue;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,67 +36,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)cacheKeyForPhotoIndex:(NSInteger)photoIndex {
-  return [NSString stringWithFormat:@"%d", photoIndex];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestImageFromSource: (NSString *)source
-                     photoSize: (NIPhotoScrollViewPhotoSize)photoSize
-                    photoIndex: (NSInteger)photoIndex {
-  NSURL* url = [NSURL URLWithString:source];
-
-  // We must use __block here to avoid creating a retain cycle with the readOp.
-  __block NIHTTPRequest* readOp = [[[NIHTTPRequest alloc] initWithURL:url] autorelease];
-
-  // Set an invalid index for thumbnail requests so that they don't get cancelled by
-  // photoAlbumScrollView:stopLoadingPhotoAtIndex:
-  readOp.tag = (photoSize == NIPhotoScrollViewPhotoSizeThumbnail) ? -1 : photoIndex;
-
-  NSString* photoIndexKey = [self cacheKeyForPhotoIndex:photoIndex];
-
-  // The completion block will be executed on the main thread, so we must be careful not
-  // to do anything computationally expensive here.
-  [readOp setCompletionBlock:^{
-    UIImage* image = [UIImage imageWithData:[readOp responseData]];
-
-    // Store the image in the correct image cache.
-    if (NIPhotoScrollViewPhotoSizeThumbnail == photoSize) {
-      [_thumbnailImageCache storeObject: image
-                               withName: photoIndexKey];
-
-    } else {
-      [_highQualityImageCache storeObject: image
-                                 withName: photoIndexKey];
-    }
-
-    // If you decide to move this code around then ensure that this method is called from
-    // the main thread. Calling it from any other thread will have undefined results.
-    [self.photoAlbumView didLoadPhoto: image
-                              atIndex: photoIndex
-                            photoSize: photoSize];
-  }];
-
-
-  // Set the operation priority level.
-
-  if (NIPhotoScrollViewPhotoSizeThumbnail == photoSize) {
-    // Thumbnail images should be lower priority than full-size images.
-    [readOp setQueuePriority:NSOperationQueuePriorityLow];
-
-  } else {
-    [readOp setQueuePriority:NSOperationQueuePriorityNormal];
-  }
-
-
-  // Start the operation.
-
-  [_queue addOperation:readOp];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadThumbnails {
   for (NSInteger ix = 0; ix < [_photoInformation count]; ++ix) {
     NSDictionary* photo = [_photoInformation objectAtIndex:ix];
@@ -107,7 +43,7 @@
     NSString* photoIndexKey = [self cacheKeyForPhotoIndex:ix];
 
     // Don't load the thumbnail if it's already in memory.
-    if (![_thumbnailImageCache hasObjectWithName:photoIndexKey]) {
+    if (![self.thumbnailImageCache hasObjectWithName:photoIndexKey]) {
       NSString* source = [photo objectForKey:@"thumbnailSource"];
       [self requestImageFromSource: source
                          photoSize: NIPhotoScrollViewPhotoSizeThumbnail
@@ -137,7 +73,7 @@
   // from a separate thread.
   albumRequest.processorDelegate = (id)[self class];
 
-  [_queue addOperation:albumRequest];
+  [self.queue addOperation:albumRequest];
 }
 
 
@@ -151,17 +87,6 @@
 - (void)loadView {
   [super loadView];
 
-  _highQualityImageCache = [[NIImageMemoryCache alloc] init];
-  _thumbnailImageCache = [[NIImageMemoryCache alloc] init];
-
-  [_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024*1024*3];
-
-  _queue = [[NSOperationQueue alloc] init];
-
-  // Set the default loading image.
-  self.photoAlbumView.loadingImage = [UIImage imageWithContentsOfFile:
-                                      NIPathForBundleResource(nil, @"NimbusPhotos.bundle/gfx/default.png")];
-
   self.photoAlbumView.dataSource = self;
 
   // This title will be displayed until we get the results back for the album information.
@@ -173,9 +98,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
-  NI_RELEASE_SAFELY(_highQualityImageCache);
-  NI_RELEASE_SAFELY(_thumbnailImageCache);
-  NI_RELEASE_SAFELY(_queue);
   NI_RELEASE_SAFELY(_photoInformation);
 
   [super viewDidUnload];
@@ -289,7 +211,7 @@
   // Let the photo album view know how large the photo will be once it's fully loaded.
   *originalPhotoDimensions = [[photo objectForKey:@"dimensions"] CGSizeValue];
 
-  image = [_highQualityImageCache objectWithName:photoIndexKey];
+  image = [self.highQualityImageCache objectWithName:photoIndexKey];
   if (nil != image) {
     *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
 
@@ -302,7 +224,7 @@
     *isLoading = YES;
 
     // Try to return the thumbnail image if we can.
-    image = [_thumbnailImageCache objectWithName:photoIndexKey];
+    image = [self.thumbnailImageCache objectWithName:photoIndexKey];
     if (nil != image) {
       *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
 
@@ -323,7 +245,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
      stopLoadingPhotoAtIndex: (NSInteger)photoIndex {
-  for (ASIHTTPRequest* op in [_queue operations]) {
+  for (ASIHTTPRequest* op in [self.queue operations]) {
     if (op.tag == photoIndex) {
       [op cancel];
     }

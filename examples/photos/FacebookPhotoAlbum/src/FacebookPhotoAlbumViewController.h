@@ -17,8 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "ASIHTTPRequestDelegate.h"
-#import "NIProcessorHTTPRequest.h"
+#import "NetworkPhotoAlbumViewController.h"
 
 /**
  * Shows a Facebook photo album accessed through the Graph API.
@@ -42,19 +41,14 @@
  * By default the thumbnail cache has no limit to its size, though it may be advantageous to
  * cap the cache at something reasonable.
  */
-@interface FacebookPhotoAlbumViewController : NIToolbarPhotoViewController <
+@interface FacebookPhotoAlbumViewController : NetworkPhotoAlbumViewController <
   NIPhotoAlbumScrollViewDataSource,
   ASIHTTPRequestDelegate
 > {
 @private
-  NSOperationQueue* _queue;
-
   NSString* _facebookAlbumId;
 
   NSArray* _photoInformation;
-
-  NIImageMemoryCache* _highQualityImageCache;
-  NIImageMemoryCache* _thumbnailImageCache;
 }
 
 /**
@@ -71,38 +65,5 @@
  * - 10150160584103418 Spring blossoms at Stanford
  */
 @property (nonatomic, readwrite, copy) NSString* facebookAlbumId;
-
-/**
- * The high quality image cache.
- *
- * All original-sized photos are stored in this cache.
- *
- * By default the cache is unlimited with a max stress size of 1024*1024*3 pixels.
- *
- * Images are stored with a name that corresponds directly to the photo index in the form "%d".
- *
- * This is unloaded when the controller's view is unloaded from memory.
- */
-@property (nonatomic, readonly, retain) NIImageMemoryCache* highQualityImageCache;
-
-/**
- * The thumbnail image cache.
- *
- * All thumbnail photos are stored in this cache.
- *
- * By default the cache is unlimited.
- *
- * Images are stored with a name that corresponds directly to the photo index in the form "%d".
- *
- * This is unloaded when the controller's view is unloaded from memory.
- */
-@property (nonatomic, readonly, retain) NIImageMemoryCache* thumbnailImageCache;
-
-/**
- * The operation queue that runs all of the network and processing operations.
- *
- * This is unloaded when the controller's view is unloaded from memory.
- */
-@property (nonatomic, readonly, retain) NSOperationQueue* queue;
 
 @end

@@ -10,6 +10,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		6631671713D680A500FF0CBE /* NetworkPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631671613D680A500FF0CBE /* NetworkPhotoAlbumViewController.m */; };
 		665E0BB713CE815D008A1D21 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0B9913CE815D008A1D21 /* NIDataStructures.m */; };
 		665E0BB813CE815D008A1D21 /* NIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0B9B13CE815D008A1D21 /* NIDebuggingTools.m */; };
 		665E0BB913CE815D008A1D21 /* NIDeviceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0B9D13CE815D008A1D21 /* NIDeviceOrientation.m */; };
@@ -57,6 +58,8 @@
 		1D6058910D05DD3D006BFB54 /* FacebookPhotoAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookPhotoAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6631671513D680A500FF0CBE /* NetworkPhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkPhotoAlbumViewController.h; path = src/NetworkPhotoAlbumViewController.h; sourceTree = "<group>"; };
+		6631671613D680A500FF0CBE /* NetworkPhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkPhotoAlbumViewController.m; path = src/NetworkPhotoAlbumViewController.m; sourceTree = "<group>"; };
 		665E0B9713CE815D008A1D21 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = ../../../src/core/src/NIBlocks.h; sourceTree = SOURCE_ROOT; };
 		665E0B9813CE815D008A1D21 /* NIDataStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDataStructures.h; path = ../../../src/core/src/NIDataStructures.h; sourceTree = SOURCE_ROOT; };
 		665E0B9913CE815D008A1D21 /* NIDataStructures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDataStructures.m; path = ../../../src/core/src/NIDataStructures.m; sourceTree = SOURCE_ROOT; };
@@ -324,6 +327,8 @@
 				66EA058713C011EC004FFE1A /* main.m */,
 				665E0C0613CE82A1008A1D21 /* FacebookPhotoAlbumViewController.h */,
 				665E0C0713CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m */,
+				6631671513D680A500FF0CBE /* NetworkPhotoAlbumViewController.h */,
+				6631671613D680A500FF0CBE /* NetworkPhotoAlbumViewController.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -444,6 +449,7 @@
 				669815F213D5080500417E8B /* Reachability.m in Sources */,
 				669819E613D573B200417E8B /* NIProcessorHTTPRequest.m in Sources */,
 				669819F013D573DC00417E8B /* NIJSONKitProcessorHTTPRequest.m in Sources */,
+				6631671713D680A500FF0CBE /* NetworkPhotoAlbumViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
