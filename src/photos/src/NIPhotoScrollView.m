@@ -72,14 +72,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)minScaleForSize:(CGSize)size boundsSize:(CGSize)boundsSize {
+- (CGFloat)scaleForSize:(CGSize)size boundsSize:(CGSize)boundsSize useMinimalScale:(BOOL)minimalScale {
   CGFloat xScale = boundsSize.width / size.width;   // The scale needed to perfectly fit the image width-wise.
   CGFloat yScale = boundsSize.height / size.height; // The scale needed to perfectly fit the image height-wise.
-  CGFloat minScale = MIN(xScale, yScale);           // Use the minimum of these to allow the image to become fully visible.
+  CGFloat minScale = minimalScale ? MIN(xScale, yScale) : MAX(xScale, yScale); // Use the minimum of these to allow the image to become fully visible, or the maximum to get fullscreen size
 
   return minScale;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setMaxMinZoomScalesForCurrentBounds {
@@ -98,7 +97,7 @@
 
   CGSize boundsSize = self.bounds.size;
 
-  CGFloat minScale = [self minScaleForSize:imageSize boundsSize:boundsSize];
+  CGFloat minScale = [self scaleForSize:imageSize boundsSize:boundsSize useMinimalScale:YES];
 
   // When we show thumbnails for images that are too small for the bounds, we try to use
   // the known photo dimensions to scale the minimum scale to match what the final image
@@ -106,7 +105,7 @@
   if ((NIPhotoScrollViewPhotoSizeThumbnail == self.photoSize)
       && !CGSizeEqualToSize(self.photoDimensions, CGSizeZero)) {
     // Modify the scale according to the final image's minScale.
-    CGFloat minIdealScale = [self minScaleForSize:self.photoDimensions boundsSize:boundsSize];
+      CGFloat minIdealScale = [self scaleForSize:self.photoDimensions boundsSize:boundsSize useMinimalScale:YES];
     if (minIdealScale > 1) {
       // Only modify the scale if the final image is smaller than the photo frame.
       minScale = (minScale / minIdealScale);
@@ -119,7 +118,9 @@
   // This primarily applies to the loading image on retina displays. If we use the screen scale
   // to calculate the max scale then the loading image will end up being half the size it should
   // be.
-  CGFloat maxScale = ([self isZoomingEnabled] ? (1.0 / NIScreenScale()) : 1);
+  CGFloat idealMaxScale = [self scaleForSize:imageSize boundsSize:boundsSize useMinimalScale:NO];
+  CGFloat maxScale = (self.isZoomingEnabled ? (1.0 / NIScreenScale()) : 1);
+  maxScale = MAX(maxScale, idealMaxScale);
 
   if (self.photoSize != NIPhotoScrollViewPhotoSizeThumbnail) {
     // Don't let minScale exceed maxScale. (If the image is smaller than the screen, we
