@@ -59,6 +59,11 @@
 #pragma mark -
 #pragma mark UITableViewDataSource
 
+/**
+ * TODO (jverkoey July 20, 2011): This data source implementation is totally messy.
+ * There *is* potential here so I might consider cleaning this up someday.
+ */
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)rows {
@@ -158,6 +163,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)objectForIndexPath:(NSIndexPath *)indexPath {
+  // UGH: This is slow. Thankfully it doesn't matter because we know that we're only ever going to
+  // have < 100 items or so.
+
   NSArray* rows = [self rows];
 
   NSInteger sectionIndex = -1;

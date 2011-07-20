@@ -19,6 +19,12 @@
 
 #import "NetworkPhotoAlbumViewController.h"
 
+/**
+ * Shows a Dribbble shot list.
+ *
+ *      Minimum iOS SDK Version: 4.0
+ *      SDK Requirements: Blocks (4.0)
+ */
 @interface DribbblePhotoAlbumViewController : NetworkPhotoAlbumViewController <
   NIPhotoAlbumScrollViewDataSource,
   ASIHTTPRequestDelegate
@@ -31,6 +37,8 @@
 
 /**
  * The generic entry point used by the catalog view controller to initialize this controller.
+ *
+ * Expects a value to be appended to http://api.dribbble.com that will return a list of shots.
  */
 - (id)initWith:(id)object;
 
