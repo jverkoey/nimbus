@@ -31,6 +31,27 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)shutdown {
+  for (ASIHTTPRequest *request in _queue.operations) {
+    request.delegate = nil;
+  }
+  [_queue cancelAllOperations];
+
+  NI_RELEASE_SAFELY(_highQualityImageCache);
+  NI_RELEASE_SAFELY(_thumbnailImageCache);
+  NI_RELEASE_SAFELY(_queue);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  [self shutdown];
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)cacheKeyForPhotoIndex:(NSInteger)photoIndex {
   return [NSString stringWithFormat:@"%d", photoIndex];
 }
@@ -118,9 +139,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
-  NI_RELEASE_SAFELY(_highQualityImageCache);
-  NI_RELEASE_SAFELY(_thumbnailImageCache);
-  NI_RELEASE_SAFELY(_queue);
+  [self shutdown];
 
   [super viewDidUnload];
 }
