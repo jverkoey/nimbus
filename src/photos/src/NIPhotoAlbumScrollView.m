@@ -30,6 +30,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 @synthesize loadingImage = _loadingImage;
 @synthesize pageHorizontalMargin = _pageHorizontalMargin;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
+@synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
 @synthesize dataSource = _dataSource;
 @synthesize delegate = _delegate;
 @synthesize currentCenterPhotoIndex = _currentCenterPhotoIndex;
@@ -55,6 +56,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
     // Default state.
     self.pageHorizontalMargin = NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
     self.zoomingIsEnabled = YES;
+    self.zoomingAboveOriginalSizeIsEnabled = YES;
 
     _firstVisiblePageIndexBeforeRotation = -1;
     _percentScrolledIntoFirstVisiblePage = -1;
@@ -279,6 +281,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   if (nil == page) {
     page = [[[NIPhotoScrollView alloc] init] autorelease];
     page.photoScrollViewDelegate = self;
+    page.zoomingAboveOriginalSizeIsEnabled = [self isZoomingAboveOriginalSizeEnabled];
   }
 
   // This will only be called once each time the page is shown.
@@ -512,6 +515,16 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   _isModifyingContentOffset = YES;
   _pagingScrollView.contentOffset = CGPointMake(newOffset, 0);
   _isModifyingContentOffset = wasModifyingContentOffset;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setZoomingAboveOriginalSizeIsEnabled:(BOOL)enabled {
+  _zoomingAboveOriginalSizeIsEnabled = enabled;
+
+  for (NIPhotoScrollView* page in _visiblePages) {
+    page.zoomingAboveOriginalSizeIsEnabled = enabled;
+  }
 }
 
 

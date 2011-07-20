@@ -54,11 +54,56 @@ typedef enum {
 
   // Configurable State
   BOOL _zoomingIsEnabled;
+  BOOL _zoomingAboveOriginalSizeIsEnabled;
 
   UITapGestureRecognizer* _doubleTapGestureRecognizer;
 
   id<NIPhotoScrollViewDelegate> _photoScrollViewDelegate;
 }
+
+/**
+ * @name Configuring Functionality
+ * @{
+ */
+#pragma mark Configuring Functionality
+
+/**
+ * Whether the photo is allowed to be zoomed.
+ *
+ * By default this is YES.
+ */
+@property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled;
+
+/**
+ * Whether small photos can be zoomed at least until they fit the screen.
+ *
+ * If this is disabled, images smaller than the view size can not be zoomed in beyond
+ * their original dimensions.
+ *
+ * If this is enabled, images smaller than the view size can be zoomed in only until
+ * they fit the view bounds.
+ *
+ * The default behavior in Photos.app allows small photos to be zoomed in.
+ *
+ *      @attention This will allow photos to be zoomed in even if they don't have any more
+ *                 pixels to show, causing the photo to blur. This can look ok for photographs,
+ *                 but might not look ok for software design mockups.
+ *
+ * By default this is YES.
+ */
+@property (nonatomic, readwrite, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled;
+
+/**
+ * Whether double-tapping zooms in and out of the image.
+ *
+ * Available on iOS 3.2 and later.
+ *
+ * By default this is YES.
+ */
+@property (nonatomic, readwrite, assign, getter=isDoubleTapToZoomEnabled) BOOL doubleTapToZoomIsEnabled;
+
+/**@}*/// End of Configuring Functionality
+
 
 /**
  * The index of this photo within a photo album.
@@ -87,21 +132,6 @@ typedef enum {
  */
 @property (nonatomic, readwrite, assign) CGSize photoDimensions;
 
-/**
- * Whether the photo is allowed to be zoomed.
- *
- * By default this is YES.
- */
-@property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled;
-
-/**
- * Whether double-tapping zooms in and out of the image.
- *
- * Available on iOS 3.2 and later.
- *
- * By default this is YES.
- */
-@property (nonatomic, readwrite, assign, getter=isDoubleTapToZoomEnabled) BOOL doubleTapToZoomIsEnabled;
 
 /**
  * The photo scroll view delegate.

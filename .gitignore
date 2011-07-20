@@ -2,3 +2,5 @@
 .pyc
 build/
 docs/output/
+xcuserdata
+*.xcworkspace

@@ -49,8 +49,7 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  */
 @interface NIPhotoAlbumScrollView : UIView <
   UIScrollViewDelegate,
-  NIPhotoScrollViewDelegate
-> {
+  NIPhotoScrollViewDelegate> {
 @private
   UIScrollView* _pagingScrollView;
 
@@ -62,6 +61,7 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
   UIImage* _loadingImage;
   CGFloat _pageHorizontalMargin;
   BOOL _zoomingIsEnabled;
+  BOOL _zoomingAboveOriginalSizeIsEnabled;
 
   // State Information
   NSInteger _firstVisiblePageIndexBeforeRotation;
@@ -93,6 +93,15 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  * By default this is YES.
  */
 @property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled;
+
+/**
+ * Whether small photos can be zoomed at least until they fit the screen.
+ *
+ *      @see NIPhotoScrollView::zoomingAboveOriginalSizeIsEnabled
+ *
+ * By default this is YES.
+ */
+@property (nonatomic, readwrite, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled;
 
 /**@}*/// End of Configuring Functionality
 

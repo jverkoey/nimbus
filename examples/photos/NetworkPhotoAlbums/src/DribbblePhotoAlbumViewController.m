@@ -99,6 +99,10 @@
 
   self.photoAlbumView.dataSource = self;
 
+  // Dribbble is for mockups and designs, so we don't want to allow the photos to be zoomed
+  // in and become blurry.
+  self.photoAlbumView.zoomingAboveOriginalSizeIsEnabled = NO;
+
   // This title will be displayed until we get the results back for the album information.
   self.title = NSLocalizedString(@"Loading...", @"Navigation bar title - Loading a photo album");
 
