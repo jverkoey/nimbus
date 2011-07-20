@@ -92,7 +92,7 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  *
  * By default this is YES.
  */
-@property (nonatomic, readwrite, assign) BOOL zoomingIsEnabled;
+@property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled;
 
 /**@}*/// End of Configuring Functionality
 

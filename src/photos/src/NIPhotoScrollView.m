@@ -119,7 +119,7 @@
   // This primarily applies to the loading image on retina displays. If we use the screen scale
   // to calculate the max scale then the loading image will end up being half the size it should
   // be.
-  CGFloat maxScale = (self.zoomingIsEnabled ? (1.0 / NIScreenScale()) : 1);
+  CGFloat maxScale = ([self isZoomingEnabled] ? (1.0 / NIScreenScale()) : 1);
 
   if (self.photoSize != NIPhotoScrollViewPhotoSizeThumbnail) {
     // Don't let minScale exceed maxScale. (If the image is smaller than the screen, we
@@ -128,7 +128,7 @@
   }
 
   // If zooming is disabled then we flatten the range for zooming to only allow the min zoom.
-  self.maximumZoomScale = self.zoomingIsEnabled ? maxScale : minScale;
+  self.maximumZoomScale = [self isZoomingEnabled] ? maxScale : minScale;
   self.minimumZoomScale = minScale;
 }
 

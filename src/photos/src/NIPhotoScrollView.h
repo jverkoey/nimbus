@@ -92,7 +92,7 @@ typedef enum {
  *
  * By default this is YES.
  */
-@property (nonatomic, readwrite, assign) BOOL zoomingIsEnabled;
+@property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled;
 
 /**
  * Whether double-tapping zooms in and out of the image.
@@ -101,7 +101,7 @@ typedef enum {
  *
  * By default this is YES.
  */
-@property (nonatomic, readwrite, assign, getter=isDoubleTapToZoomIsEnabled) BOOL doubleTapToZoomIsEnabled;
+@property (nonatomic, readwrite, assign, getter=isDoubleTapToZoomEnabled) BOOL doubleTapToZoomIsEnabled;
 
 /**
  * The photo scroll view delegate.

@@ -243,7 +243,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
     [page setImage:self.loadingImage photoSize:NIPhotoScrollViewPhotoSizeUnknown];
 
   } else {
-    page.zoomingIsEnabled = (self.zoomingIsEnabled
+    page.zoomingIsEnabled = ([self isZoomingEnabled]
                              && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
     if (photoSize > page.photoSize) {
       [page setImage:image photoSize:photoSize];
@@ -450,7 +450,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   for (NIPhotoScrollView* page in _visiblePages) {
     if (page.photoIndex == photoIndex) {
 
-      page.zoomingIsEnabled = (self.zoomingIsEnabled
+      page.zoomingIsEnabled = ([self isZoomingEnabled]
                                && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
 
       // Only replace the photo if it's of a higher quality than one we're already showing.
