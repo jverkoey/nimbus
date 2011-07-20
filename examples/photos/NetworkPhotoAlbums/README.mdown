@@ -1,9 +1,14 @@
 
-Facebook Photo Album Sample Application
+Network Photo Albums Sample Application
 =======================================
 
-This sample application demos the use of the Facebook Graph API to fetch photos from a public
+This sample application demos the use of the multiple photo APIs to fetch photos from public
 photo album and display them in high-definition on the iPad and iPhone.
+
+The following APIs are currently demoed:
+
+- Facebook Graph API
+- Dribbble Shots
 
 
 Product Information
@@ -23,7 +28,7 @@ Every Nimbus feature depends on the Core for a variety of common features.
 ### Nimbus Photos
 
 This is the primary feature being demoed in this application. The
-FacebookPhotoAlbumViewController subclasses the NIToolbarPhotoViewController and implements
+NetworkPhotoAlbumViewController subclasses the NIToolbarPhotoViewController and implements
 the necessary data source methods. It fetches the photo album information from the Facebook
 Graph API using ASIHTTPRequest and parses the JSON using JSONKit.
 

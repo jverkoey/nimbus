@@ -26,6 +26,14 @@
  * side of the current image so that the user will ideally always have a high-quality
  * photo experience.
  *
+ * <h2>Adding the Photos Feature to Your Application</h2>
+ *
+ * The Nimbus Photos feature uses a small number of custom photos that are stored in the
+ * NimbusPhotos bundle. You must add this bundle to your application, ensuring that you select
+ * the "Create Folder References" option and that the bundle is copied in the
+ * "Copy Bundle Resources" phase.
+ *
+ * The bundle can be found at <code>src/photos/resources/NimbusPhotos.bundle</code>.
  *
  * <h2>Architecture</h2>
  *
@@ -43,19 +51,24 @@
  *
  * <h2>Example Applications</h2>
  *
- * <h3>Facebook Photo Albums</h3>
+ * <h3>Network Photo Albums</h3>
  *
- * <a href="https://github.com/jverkoey/nimbus/tree/master/examples/photos/FacebookPhotoAlbum">View the README on GitHub</a>
+ * <a href="https://github.com/jverkoey/nimbus/tree/master/examples/photos/NetworkPhotoAlbums">View the README on GitHub</a>
  *
- * This sample application demos the use of the Facebook Graph API to fetch photos from a public
+ * This sample application demos the use of the multiple photo APIs to fetch photos from public
  * photo album and display them in high-definition on the iPad and iPhone.
  *
- * Sample location: <code>examples/photos/FacebookPhotoAlbum</code>
+ * The following APIs are currently demoed:
+ *
+ * - Facebook Graph API
+ * - Dribbble Shots
+ *
+ * Sample location: <code>examples/photos/NetworkPhotoAlbums</code>
  *
  *
  * <h2>Screenshots</h2>
  *
- * @image html photos-iphone-example1.png "Screenshot of the BasicPhotoAlbum application on the iPhone."
+ * @image html photos-iphone-example1.png "Screenshot of a basic photo album on the iPhone."
  *
  * Image source: <a href="http://www.flickr.com/photos/janekm/360669001/">flickr.com/photos/janekm/360669001</a>
  */
