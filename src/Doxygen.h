@@ -117,7 +117,7 @@
  * @ingroup Version-History
  *
  * Version 0.4 of Nimbus was released on July 20, 2011. This major version introduced the new
- * Nimbus @link NimbusPhotos photo viewer@endlink, a high-performance, low-memory photo
+ * Nimbus @link NimbusPhotos photo viewer@endlink, a high-performance, low memory footprint photo
  * viewer built for the iPhone and iPad. This version of Nimbus also introduced
  * @link NimbusProcessors Processors@endlink and JSONKit.
  *
@@ -279,7 +279,7 @@
  *
  * Goal tasks:
  *
- * - Migrate Three20's Navigator to Nimbus (+1)
+ * - Migrate Three20's Launcher to Nimbus (+1)
  */
 
 /**
