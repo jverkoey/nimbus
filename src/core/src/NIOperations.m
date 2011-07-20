@@ -25,7 +25,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NIReadFileFromDiskOperation()
 
-@property (nonatomic, readwrite, retain) NSData* data;
+@property (readwrite, retain) NSData* data;
 
 @end
 
@@ -37,12 +37,14 @@
 
 @synthesize pathToFile  = _pathToFile;
 @synthesize data        = _data;
+@synthesize processedObject = _processedObject;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_pathToFile);
   NI_RELEASE_SAFELY(_data);
+  NI_RELEASE_SAFELY(_processedObject);
 
   [super dealloc];
 }
@@ -71,16 +73,16 @@
 
   NSError* error = nil;
 
-  self.data = [[NSData dataWithContentsOfFile: self.pathToFile
-                                      options: 0
-                                        error: &error]
-               copy];
+  self.data = [NSData dataWithContentsOfFile: self.pathToFile
+                                     options: 0
+                                       error: &error];
 
 
   if (nil != error) {
     [self operationDidFailWithError:error];
 
   } else {
+    [self operationWillFinish];
     [self operationDidFinish];
   }
 
@@ -96,7 +98,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NIOperation()
 
-@property (nonatomic, readwrite, retain) NSError* lastError;
+@property (readwrite, retain) NSError* lastError;
 
 @end
 
@@ -107,12 +109,14 @@
 @implementation NIOperation
 
 @synthesize delegate = _delegate;
+@synthesize tag = _tag;
 @synthesize lastError = _lastError;
 
 #if NS_BLOCKS_AVAILABLE
 @synthesize didStartBlock         = _didStartBlock;
 @synthesize didFinishBlock        = _didFinishBlock;
 @synthesize didFailWithErrorBlock = _didFailWithErrorBlock;
+@synthesize willFinishBlock       = _willFinishBlock;
 #endif // #if NS_BLOCKS_AVAILABLE
 
 
@@ -124,6 +128,7 @@
   NI_RELEASE_SAFELY(_didStartBlock);
   NI_RELEASE_SAFELY(_didFinishBlock);
   NI_RELEASE_SAFELY(_didFailWithErrorBlock);
+  NI_RELEASE_SAFELY(_willFinishBlock);
 #endif // #if NS_BLOCKS_AVAILABLE
 
   [super dealloc];
@@ -159,6 +164,20 @@
 	[self performSelectorOnMainThread: @selector(onMainThreadOperationDidFailWithError:)
                          withObject: error
                       waitUntilDone: [NSThread isMainThread]];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)operationWillFinish {
+  if ([self.delegate respondsToSelector:@selector(operationWillFinish:)]) {
+    [self.delegate operationWillFinish:self];
+  }
+
+#if NS_BLOCKS_AVAILABLE
+  if (nil != self.willFinishBlock) {
+    self.willFinishBlock();
+  }
+#endif // #if NS_BLOCKS_AVAILABLE
 }
 
 

@@ -1,0 +1,412 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		669818FE13D56C4600417E8B /* NIProcessorHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 669818FC13D56C4600417E8B /* NIProcessorHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		669818FF13D56C4600417E8B /* NIProcessorHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 669818FD13D56C4600417E8B /* NIProcessorHTTPRequest.m */; };
+		6698190E13D56C6000417E8B /* NimbusProcessors.h in Headers */ = {isa = PBXBuildFile; fileRef = 6698190D13D56C6000417E8B /* NimbusProcessors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6698192213D56E7700417E8B /* NIProcessorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6698192113D56E7700417E8B /* NIProcessorDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		669819E913D573CB00417E8B /* NIJSONKitProcessorHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 669819E713D573CB00417E8B /* NIJSONKitProcessorHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		669819EA13D573CB00417E8B /* NIJSONKitProcessorHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 669819E813D573CB00417E8B /* NIJSONKitProcessorHTTPRequest.m */; };
+		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		665E0AF713CCCE6A008A1D21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 665E0AF213CCCE6A008A1D21 /* NimbusCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = NimbusCore;
+		};
+		665E0AF913CCCE6A008A1D21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 665E0AF213CCCE6A008A1D21 /* NimbusCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 668750F413A1AC6000FF1C56;
+			remoteInfo = NimbusCoreUnitTests;
+		};
+		665E0AFB13CCCE71008A1D21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 665E0AF213CCCE6A008A1D21 /* NimbusCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = NimbusCore;
+		};
+		6698193813D56F2E00417E8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6698193413D56F2E00417E8B /* ASIHTTPRequest.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D /* libASIHTTPRequest.a */;
+			remoteInfo = ASIHTTPRequest;
+		};
+		6698193A13D56F3500417E8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6698193413D56F2E00417E8B /* ASIHTTPRequest.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D /* ASIHTTPRequest */;
+			remoteInfo = ASIHTTPRequest;
+		};
+		6698197513D5703F00417E8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6698197113D5703F00417E8B /* JSONKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D /* libJSONKit.a */;
+			remoteInfo = JSONKit;
+		};
+		6698197913D5704800417E8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6698197113D5703F00417E8B /* JSONKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D /* JSONKit */;
+			remoteInfo = JSONKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		665E091D13CB7CC0008A1D21 /* NimbusProcessors_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusProcessors_Prefix.pch; path = lib/NimbusProcessors_Prefix.pch; sourceTree = "<group>"; };
+		665E092513CB7CE2008A1D21 /* unittests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = unittests.xcconfig; path = ../common/confs/unittests.xcconfig; sourceTree = SOURCE_ROOT; };
+		665E092613CB7CE2008A1D21 /* library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = library.xcconfig; path = ../common/confs/library.xcconfig; sourceTree = SOURCE_ROOT; };
+		665E092713CB7CE2008A1D21 /* project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = project.xcconfig; path = ../common/confs/project.xcconfig; sourceTree = SOURCE_ROOT; };
+		665E0AF213CCCE6A008A1D21 /* NimbusCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NimbusCore.xcodeproj; path = ../core/NimbusCore.xcodeproj; sourceTree = SOURCE_ROOT; };
+		669818FC13D56C4600417E8B /* NIProcessorHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIProcessorHTTPRequest.h; path = src/NIProcessorHTTPRequest.h; sourceTree = "<group>"; };
+		669818FD13D56C4600417E8B /* NIProcessorHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIProcessorHTTPRequest.m; path = src/NIProcessorHTTPRequest.m; sourceTree = "<group>"; };
+		6698190D13D56C6000417E8B /* NimbusProcessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusProcessors.h; path = src/NimbusProcessors.h; sourceTree = "<group>"; };
+		6698192113D56E7700417E8B /* NIProcessorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIProcessorDelegate.h; path = src/NIProcessorDelegate.h; sourceTree = "<group>"; };
+		6698193413D56F2E00417E8B /* ASIHTTPRequest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ASIHTTPRequest.xcodeproj; path = ../ASIHTTPRequest/ASIHTTPRequest.xcodeproj; sourceTree = SOURCE_ROOT; };
+		6698197113D5703F00417E8B /* JSONKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JSONKit.xcodeproj; path = ../JSONKit/JSONKit.xcodeproj; sourceTree = SOURCE_ROOT; };
+		669819A613D570A500417E8B /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deps; sourceTree = "<group>"; };
+		669819E713D573CB00417E8B /* NIJSONKitProcessorHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIJSONKitProcessorHTTPRequest.h; path = src_JSONKit/NIJSONKitProcessorHTTPRequest.h; sourceTree = "<group>"; };
+		669819E813D573CB00417E8B /* NIJSONKitProcessorHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIJSONKitProcessorHTTPRequest.m; path = src_JSONKit/NIJSONKitProcessorHTTPRequest.m; sourceTree = "<group>"; };
+		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2AAC07E0554694100DB518D /* libNimbusProcessors.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusProcessors.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2AAC07C0554694100DB518D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC07E0554694100DB518D /* libNimbusProcessors.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* NimbusProcessors */ = {
+			isa = PBXGroup;
+			children = (
+				669819A613D570A500417E8B /* deps */,
+				665E091D13CB7CC0008A1D21 /* NimbusProcessors_Prefix.pch */,
+				08FB77AEFE84172EC02AAC07 /* Source */,
+				0867D69AFE84028FC02AAC07 /* Frameworks */,
+				665E092213CB7CDA008A1D21 /* Configurations */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = NimbusProcessors;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				665E0AF213CCCE6A008A1D21 /* NimbusCore.xcodeproj */,
+				6698193413D56F2E00417E8B /* ASIHTTPRequest.xcodeproj */,
+				6698197113D5703F00417E8B /* JSONKit.xcodeproj */,
+				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				6698190D13D56C6000417E8B /* NimbusProcessors.h */,
+				6698192113D56E7700417E8B /* NIProcessorDelegate.h */,
+				669818FC13D56C4600417E8B /* NIProcessorHTTPRequest.h */,
+				669818FD13D56C4600417E8B /* NIProcessorHTTPRequest.m */,
+				669819E713D573CB00417E8B /* NIJSONKitProcessorHTTPRequest.h */,
+				669819E813D573CB00417E8B /* NIJSONKitProcessorHTTPRequest.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		665E092213CB7CDA008A1D21 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				665E092513CB7CE2008A1D21 /* unittests.xcconfig */,
+				665E092613CB7CE2008A1D21 /* library.xcconfig */,
+				665E092713CB7CE2008A1D21 /* project.xcconfig */,
+			);
+			name = Configurations;
+			sourceTree = "<group>";
+		};
+		665E0AF313CCCE6A008A1D21 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				665E0AF813CCCE6A008A1D21 /* libNimbusCore.a */,
+				665E0AFA13CCCE6A008A1D21 /* NimbusCoreUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6698193513D56F2E00417E8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6698193913D56F2E00417E8B /* libASIHTTPRequest.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6698197213D5703F00417E8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6698197613D5703F00417E8B /* libJSONKit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D2AAC07A0554694100DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				669818FE13D56C4600417E8B /* NIProcessorHTTPRequest.h in Headers */,
+				6698190E13D56C6000417E8B /* NimbusProcessors.h in Headers */,
+				6698192213D56E7700417E8B /* NIProcessorDelegate.h in Headers */,
+				669819E913D573CB00417E8B /* NIJSONKitProcessorHTTPRequest.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D2AAC07D0554694100DB518D /* NimbusProcessors */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "NimbusProcessors" */;
+			buildPhases = (
+				D2AAC07A0554694100DB518D /* Headers */,
+				D2AAC07B0554694100DB518D /* Sources */,
+				D2AAC07C0554694100DB518D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				665E0AFC13CCCE71008A1D21 /* PBXTargetDependency */,
+				6698193B13D56F3500417E8B /* PBXTargetDependency */,
+				6698197A13D5704800417E8B /* PBXTargetDependency */,
+			);
+			name = NimbusProcessors;
+			productName = NimbusProcessors;
+			productReference = D2AAC07E0554694100DB518D /* libNimbusProcessors.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "NimbusProcessors" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 0867D691FE84028FC02AAC07 /* NimbusProcessors */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6698193513D56F2E00417E8B /* Products */;
+					ProjectRef = 6698193413D56F2E00417E8B /* ASIHTTPRequest.xcodeproj */;
+				},
+				{
+					ProductGroup = 6698197213D5703F00417E8B /* Products */;
+					ProjectRef = 6698197113D5703F00417E8B /* JSONKit.xcodeproj */;
+				},
+				{
+					ProductGroup = 665E0AF313CCCE6A008A1D21 /* Products */;
+					ProjectRef = 665E0AF213CCCE6A008A1D21 /* NimbusCore.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				D2AAC07D0554694100DB518D /* NimbusProcessors */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		665E0AF813CCCE6A008A1D21 /* libNimbusCore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusCore.a;
+			remoteRef = 665E0AF713CCCE6A008A1D21 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		665E0AFA13CCCE6A008A1D21 /* NimbusCoreUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusCoreUnitTests.octest;
+			remoteRef = 665E0AF913CCCE6A008A1D21 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6698193913D56F2E00417E8B /* libASIHTTPRequest.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libASIHTTPRequest.a;
+			remoteRef = 6698193813D56F2E00417E8B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6698197613D5703F00417E8B /* libJSONKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libJSONKit.a;
+			remoteRef = 6698197513D5703F00417E8B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2AAC07B0554694100DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				669818FF13D56C4600417E8B /* NIProcessorHTTPRequest.m in Sources */,
+				669819EA13D573CB00417E8B /* NIJSONKitProcessorHTTPRequest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		665E0AFC13CCCE71008A1D21 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NimbusCore;
+			targetProxy = 665E0AFB13CCCE71008A1D21 /* PBXContainerItemProxy */;
+		};
+		6698193B13D56F3500417E8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ASIHTTPRequest;
+			targetProxy = 6698193A13D56F3500417E8B /* PBXContainerItemProxy */;
+		};
+		6698197A13D5704800417E8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JSONKit;
+			targetProxy = 6698197913D5704800417E8B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB921F08733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 665E092613CB7CE2008A1D21 /* library.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/NimbusProcessors.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = lib/NimbusProcessors_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					NIMBUS_STATIC_LIBRARY,
+				);
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = NimbusProcessors;
+			};
+			name = Debug;
+		};
+		1DEB922008733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 665E092613CB7CE2008A1D21 /* library.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/NimbusProcessors.dst;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = lib/NimbusProcessors_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = NIMBUS_STATIC_LIBRARY;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = NimbusProcessors;
+			};
+			name = Release;
+		};
+		1DEB922308733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 665E092713CB7CE2008A1D21 /* project.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1DEB922408733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 665E092713CB7CE2008A1D21 /* project.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "NimbusProcessors" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB921F08733DC00010E9CD /* Debug */,
+				1DEB922008733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "NimbusProcessors" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB922308733DC00010E9CD /* Debug */,
+				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}

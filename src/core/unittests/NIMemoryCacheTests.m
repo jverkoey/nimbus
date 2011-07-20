@@ -230,6 +230,42 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testHasObject {
+  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+
+  id cacheObject1 = [NSArray array];
+  [cache storeObject:cacheObject1 withName:@"obj1"];
+
+  STAssertTrue([cache hasObjectWithName:@"obj1"], @"obj1 should exist in the cache.");
+
+  STAssertFalse([cache hasObjectWithName:@"obj2"], @"obj2 should not exist in the cache.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testAccessTimeModifications {
+  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+
+  id cacheObject1 = [NSArray array];
+  [cache storeObject:cacheObject1 withName:@"obj1"];
+
+  NSDate* lastAccessTime = [cache dateOfLastAccessWithName:@"obj1"];
+
+  // Does not update the access time.
+  [cache hasObjectWithName:@"obj1"];
+
+  STAssertEquals(lastAccessTime, [cache dateOfLastAccessWithName:@"obj1"],
+                 @"Access time should not have been modified.");
+
+  // Does update the access time.
+  [cache objectWithName:@"obj1"];
+
+  STAssertFalse([lastAccessTime isEqualToDate:[cache dateOfLastAccessWithName:@"obj1"]],
+                 @"Access time should have been modified.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testReduceMemoryUsage {
   NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
 
@@ -461,6 +497,32 @@
   STAssertEquals([cache count], (NSUInteger)1, @"Cache should have one object.");
   STAssertNil([cache objectWithName:@"obj1"], @"Image 1 should not still be around.");
   STAssertNotNil([cache objectWithName:@"obj2"], @"Image 2 should still be around.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testImageCacheStoringWithTinyLimit {
+  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+
+  cache.maxNumberOfPixels = 1;
+
+  UIImage* img1 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+  UIImage* img2 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+
+  [cache storeObject: img1
+            withName: @"obj1"];
+
+  STAssertEquals([cache count], (NSUInteger)0, @"Cache should have zero objects.");
+
+  [cache storeObject: img2
+            withName: @"obj2"];
+
+  STAssertEquals([cache count], (NSUInteger)0, @"Cache should have zero objects.");
+
+  [cache reduceMemoryUsage];
+
+  STAssertEquals([cache count], (NSUInteger)0, @"Cache should have zero objects.");
+
 }
 
 

@@ -166,7 +166,11 @@
   [self willSetObject: info.object
              withName: name
        previousObject: [self cacheInfoForName:name].object];
+
   [_cacheMap setObject:info forKey:name];
+
+  [self didSetObject: info.object
+            withName: name];
 }
 
 
@@ -178,6 +182,7 @@
   }
 
   [self willRemoveObject:[self cacheInfoForName:name].object withName:name];
+
   [_cacheMap removeObjectForKey:name];
 }
 
@@ -190,6 +195,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {
+  // No-op
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didSetObject:(id)object withName:(NSString *)name {
   // No-op
 }
 
@@ -249,19 +260,47 @@
 - (id)objectWithName:(NSString *)name {
   NIMemoryCacheInfo* info = [self cacheInfoForName:name];
 
+  id object = nil;
+
+  if (nil != info) {
+    if ([info hasExpired]) {
+      [self removeObjectWithName:name];
+
+    } else {
+      // Update the access time whenever we fetch an object from the cache.
+      [self updateAccessTimeForInfo:info];
+
+      object = info.object;
+    }
+  }
+
+  return object;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasObjectWithName:(NSString *)name {
+  NIMemoryCacheInfo* info = [self cacheInfoForName:name];
+
   if ([info hasExpired]) {
     [self removeObjectWithName:name];
-    info = nil;
+    return NO;
+  }
 
+  return (nil != info);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSDate *)dateOfLastAccessWithName:(NSString *)name {
+  NIMemoryCacheInfo* info = [self cacheInfoForName:name];
+
+  if ([info hasExpired]) {
+    [self removeObjectWithName:name];
     return nil;
   }
 
-  if (nil != info) {
-    // Update the access time whenever we fetch an object from the cache.
-    [self updateAccessTimeForInfo:info];
-  }
-
-  return info.object;
+  return [info lastAccessTime];
 }
 
 
@@ -397,7 +436,15 @@
 
   self.numberOfPixels -= [self numberOfPixelsUsedByImage:previousObject];
   self.numberOfPixels += [self numberOfPixelsUsedByImage:object];
+}
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didSetObject:(id)object withName:(NSString *)name {
+  // Reduce the cache size after the object has been set in case the cache size is smaller
+  // than the object that's being added and we need to remove this object right away. If we
+  // try to reduce the cache size before the object's been set, we won't have anything to remove
+  // and we'll get stuck in an infinite loop.
   if (self.maxNumberOfPixels > 0) {
     // Remove least recently used images until we satisfy our memory constraints.
     while (self.numberOfPixels > self.maxNumberOfPixels

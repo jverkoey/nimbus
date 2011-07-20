@@ -1,0 +1,46 @@
+
+Network Photo Albums Sample Application
+=======================================
+
+This sample application demos the use of the multiple photo APIs to fetch photos from public
+photo album and display them in high-definition on the iPad and iPhone.
+
+The following APIs are currently demoed:
+
+- Facebook Graph API
+- Dribbble Shots
+
+
+Product Information
+-------------------
+
+Minimum Deployment Target:  iOS 4.0
+Supported Hardware:         iPod touch, iPhone, and iPad
+
+
+Dependencies
+------------
+
+### Nimbus Core
+
+Every Nimbus feature depends on the Core for a variety of common features.
+
+### Nimbus Photos
+
+This is the primary feature being demoed in this application. The
+NetworkPhotoAlbumViewController subclasses the NIToolbarPhotoViewController and implements
+the necessary data source methods. It fetches the photo album information from the Facebook
+Graph API using ASIHTTPRequest and parses the JSON using JSONKit.
+
+### Nimbus Processors
+
+This application uses the NIJSONKitProcessorHTTPRequest to process the API results on a
+separate thread instead of blocking on the main UI.
+
+### ASIHTTPRequest
+
+The network framework used to make the requests to the API.
+
+### JSONKit
+
+The JSON parser used to parse the JSON responses from the Graph API.
