@@ -54,6 +54,7 @@ typedef enum {
 
   // Configurable State
   BOOL _zoomingIsEnabled;
+  BOOL _zoomingAboveOriginalSizeEnabled;
 
   UITapGestureRecognizer* _doubleTapGestureRecognizer;
 
@@ -93,6 +94,17 @@ typedef enum {
  * By default this is YES.
  */
 @property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled;
+
+/**
+ * Whether the photo is allowed to be zoomed above it's maximum width if
+ * it's smaller than the screen.
+ *
+ * If this is disabled, images smaller then the screen size are not zoomable at all.
+ * Photos.app default behavoir is to zoom up even small images.
+ *
+ * By default this is YES.
+ */
+@property (nonatomic, readwrite, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeEnabled;
 
 /**
  * Whether double-tapping zooms in and out of the image.

@@ -26,6 +26,7 @@
 @synthesize photoSize   = _photoSize;
 @synthesize photoDimensions = _photoDimensions;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
+@synthesize zoomingAboveOriginalSizeEnabled = _zoomingAboveOriginalSizeEnabled;
 @synthesize photoScrollViewDelegate = _photoScrollViewDelegate;
 
 
@@ -57,6 +58,7 @@
 
     // Set up this view's default configuration.
     self.zoomingIsEnabled = YES;
+    self.zoomingAboveOriginalSizeEnabled = YES;
     self.doubleTapToZoomIsEnabled = YES;
 
 
@@ -118,9 +120,12 @@
   // This primarily applies to the loading image on retina displays. If we use the screen scale
   // to calculate the max scale then the loading image will end up being half the size it should
   // be.
-  CGFloat idealMaxScale = [self scaleForSize:imageSize boundsSize:boundsSize useMinimalScale:NO];
   CGFloat maxScale = (self.isZoomingEnabled ? (1.0 / NIScreenScale()) : 1);
-  maxScale = MAX(maxScale, idealMaxScale);
+
+  if (self.isZoomingAboveOriginalSizeEnabled) {
+    CGFloat idealMaxScale = [self scaleForSize:imageSize boundsSize:boundsSize useMinimalScale:NO];
+    maxScale = MAX(maxScale, idealMaxScale);
+  }
 
   if (self.photoSize != NIPhotoScrollViewPhotoSizeThumbnail) {
     // Don't let minScale exceed maxScale. (If the image is smaller than the screen, we
