@@ -450,12 +450,12 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   for (NIPhotoScrollView* page in _visiblePages) {
     if (page.photoIndex == photoIndex) {
 
-      page.zoomingIsEnabled = ([self isZoomingEnabled]
-                               && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
-
       // Only replace the photo if it's of a higher quality than one we're already showing.
       if (photoSize > page.photoSize) {
         [page setImage:image photoSize:photoSize];
+        
+        page.zoomingIsEnabled = ([self isZoomingEnabled]
+                                 && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
 
         // Notify the delegate that the photo has been loaded.
         if (NIPhotoScrollViewPhotoSizeOriginal == photoSize) {
