@@ -108,7 +108,152 @@
 /**
  * @defgroup Version-History Version History
  *
- * <h1>Version History</h1>
+ * Presented here are the API diffs for each major release of Nimbus.
+ */
+
+/**
+ * @defgroup Version-3-to-4 Version 0.3 to 0.4 API Changes
+ * @ingroup Version-History
+ *
+ * Version 0.4 of Nimbus was released on July 20, 2011. This major version introduced the new
+ * Nimbus @link NimbusPhotos photo viewer@endlink, a high-performance, low-memory photo
+ * viewer built for the iPhone and iPad. This version of Nimbus also introduced
+ * @link NimbusProcessors Processors@endlink and JSONKit.
+ *
+ * <h2>Added Frameworks</h2>
+ *
+ * - @link NimbusPhotos Nimbus Photos@endlink
+ * - @link NimbusProcessors Nimbus Processors@endlink
+ * - JSONKit
+ *
+ * <h2>Core</h2>
+ *
+ * <h3>NIBlocks[.h] <span class="apiDiffAdded">Added</span></h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>NIBasicBlock</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NIErrorBlock</code>
+ *
+ * <h3>NICommonMetrics[.h/m] <span class="apiDiffAdded">Added</span></h3>
+ *
+ * @link Common-Metrics Common Metrics@endlink
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>NIToolbarHeightForOrientation()</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NIStatusBarAnimationCurve()</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NIStatusBarAnimationDuration()</code>
+ *
+ * <h3>NIDataStructures[.h]</h3>
+ *
+ * @link Data-Structures Data Structures@endlink
+ *
+ * - Documentation updated for NILinkedList.
+ *
+ * <h3>NIDebuggingTools[.h]</h3>
+ *
+ * @link Debugging-Tools Debugging Tools@endlink
+ *
+ * - Documentation updated.
+ *
+ * <h3>NIDeviceOrientation[.h]</h3>
+ *
+ * @link Device-Orientation Device Orientation@endlink
+ *
+ * - Documentation updated.
+ *
+ * <h3>NIInMemoryCache[.h]</h3>
+ *
+ * - Documentation updated for NIMemoryCache and NIImageMemoryCache.
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIMemoryCache::hasObjectWithName: -[NIMemoryCache hasObjectWithName:]@endlink</code>
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIMemoryCache::dateOfLastAccessWithName: -[NIMemoryCache dateOfLastAccessWithName:]@endlink</code>
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIMemoryCache::didSetObject:withName: -[NIMemoryCache didSetObject:withName:]@endlink</code>
+ * - <span class="apiDiffBugfix">Bugfix</span> NIMemoryCache now automatically responds to <code>UIApplicationDidReceiveMemoryWarningNotification</code> notifications.
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed infinite loop in NIImageMemoryCache when adding images to an empty cache that was
+ *            too small to fit the image.
+ *
+ * <h3>NIOperations[.h/m] <span class="apiDiffAdded">Added</span></h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>NIOperation</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NIOperationDelegate</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NIReadFileFromDiskOperation</code>
+ *
+ * <h3>NISDKAvailability[.h]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>NIScreenScale()</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NIUITapGestureRecognizerClass()</code>
+ *
+ * <h3>NIState[.h]</h3>
+ *
+ * - <span class="apiDiffModified">Modified</span> <code>+[Nimbus @link Nimbus::imageMemoryCache imageMemoryCache@endlink]</code>
+ * <table class="modificationtable"><tr><th></th><th>Declaration</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">+ (NIImageMemoryCache *)globalImageMemoryCache</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>+ (NIImageMemoryCache *)imageMemoryCache</tt></td></tr></table>
+ *
+ * - <span class="apiDiffModified">Modified</span> <code>+[Nimbus @link Nimbus::networkOperationQueue networkOperationQueue@endlink]</code>
+ * <table class="modificationtable"><tr><th></th><th>Declaration</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">+ (NSOperationQueue *)globalNetworkOperationQueue</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>+ (NSOperationQueue *)networkOperationQueue</tt></td></tr></table>
+ *
+ * - <span class="apiDiffModified">Modified</span> <code>+[Nimbus @link Nimbus::setImageMemoryCache: setImageMemoryCache:@endlink]</code>
+ * <table class="modificationtable"><tr><th></th><th>Declaration</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">+ (void)setGlobalImageMemoryCache:(NIImageMemoryCache *)imageMemoryCache</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>+ (void)setImageMemoryCache:(NIImageMemoryCache *)imageMemoryCache</tt></td></tr></table>
+ *
+ * - <span class="apiDiffModified">Modified</span> <code>+[Nimbus @link Nimbus::setNetworkOperationQueue: setNetworkOperationQueue:@endlink]</code>
+ * <table class="modificationtable"><tr><th></th><th>Declaration</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">+ (void)setGlobalNetworkOperationQueue:(NSOperationQueue *)queue</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>+ (void)setNetworkOperationQueue:(NSOperationQueue *)queue</tt></td></tr></table>
+ *
+ * <h2>Network Image</h2>
+ *
+ * <h3>NIHTTPImageRequest[.h]</h3>
+ *
+ * - <span class="apiDiffRemoved">Removed</span> <code>NIHTTPImageRequest.cropImageForDisplay</code>
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIHTTPImageRequest::scaleOptions NIHTTPImageRequest.scaleOptions@endlink</code>
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIHTTPImageRequest::interpolationQuality NIHTTPImageRequest.interpolationQuality@endlink</code>
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIHTTPImageRequest::imageFromSource:withContentMode:cropRect:displaySize:scaleOptions:interpolationQuality: +[NIHTTPImageRequest imageFromSource:withContentMode:cropRect:displaySize:scaleOptions:interpolationQuality:]@endlink</code>
+ * - <span class="apiDiffFeature">Feature</span> Better configuration for image scaling and cropping via @link NINetworkImageViewScaleOptions@endlink.
+ *
+ * <h3>NINetworkImageView[.h]</h3>
+ *
+ * - <span class="apiDiffRemoved">Removed</span> <code>NINetworkImageView.cropImageForDisplay</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NINetworkImageViewScaleToFitCropsExcess</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NINetworkImageViewScaleToFillLeavesExcess</code>
+ * - <span class="apiDiffAdded">Added</span> <code>@link NINetworkImageView::scaleOptions NINetworkImageView.scaleOptions@endlink</code>
+ * - <span class="apiDiffAdded">Added</span> <code>@link NINetworkImageView::interpolationQuality NINetworkImageView.interpolationQuality@endlink</code>
+ * - <span class="apiDiffFeature">Feature</span> Added support for loading images from disk.
+ * - <span class="apiDiffFeature">Feature</span> Better configuration for image scaling and cropping via @link NINetworkImageViewScaleOptions@endlink.
+ *
+ * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ *  <div class="name">Jeff Verkoeyen</div> 
+ *  <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ *
+ * <h3>Add Your Name to This List</h3>
+ *
+ * Contributions are highly encouraged! If you have a feature that you feel would fit within the
+ * Nimbus framework, feel free to fire off a pull request on GitHub. Bugs may be reported
+ * using the issue tracker on GitHub as well.
+ *
+ * Check out the <a href="https://github.com/jverkoey/nimbus/issues?sort=created&direction=desc&state=open&page=1&milestone=5">tasks grab bag</a>
+ * for opportunities to help out.
+ *
+ * <h2>Robots Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <div class="name"><a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ */
+
+/**
+ * @defgroup Version-3 Version 0.3
+ * @ingroup Version-History
  *
  * <h2>0.3.4 - Monday, July 4, 2011</h2>
  *
@@ -121,6 +266,11 @@
  * - Build an in-memory object cache (+1)
  * - Build an in-memory image cache from the in-memory object cache (+1)
  * - Refactor the core library so that it's easier to jump to headers from source files (+1)
+ */
+
+/**
+ * @defgroup Version-2 Version 0.2
+ * @ingroup Version-History
  *
  * <h2>0.2.1 - Tuesday June 14, 2011</h2>
  *
@@ -129,6 +279,11 @@
  * Goal tasks:
  *
  * - Migrate Three20's Navigator to Nimbus (+1)
+ */
+
+/**
+ * @defgroup Version-1 Version 0.1
+ * @ingroup Version-History
  *
  * <h2>0.1.4 - Friday June 10, 2011</h2>
  *
