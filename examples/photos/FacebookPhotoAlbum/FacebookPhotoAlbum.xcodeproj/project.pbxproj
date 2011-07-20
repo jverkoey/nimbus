@@ -28,7 +28,7 @@
 		665E0BCF13CE816E008A1D21 /* NIPhotoAlbumScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BCA13CE816E008A1D21 /* NIPhotoAlbumScrollView.m */; };
 		665E0BD013CE816E008A1D21 /* NIPhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BCC13CE816E008A1D21 /* NIPhotoScrollView.m */; };
 		665E0BD113CE816E008A1D21 /* NIToolbarPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BCE13CE816E008A1D21 /* NIToolbarPhotoViewController.m */; };
-		665E0C0813CE82A1008A1D21 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0C0713CE82A1008A1D21 /* RootViewController.m */; };
+		665E0C0813CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0C0713CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m */; };
 		669815C913D507F000417E8B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 669815C813D507F000417E8B /* JSONKit.m */; };
 		669815E913D5080500417E8B /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 669815D113D5080500417E8B /* ASIAuthenticationDialog.m */; };
 		669815EA13D5080500417E8B /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 669815D413D5080500417E8B /* ASIDataCompressor.m */; };
@@ -44,17 +44,17 @@
 		669815F813D5083200417E8B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669815F713D5083200417E8B /* MobileCoreServices.framework */; };
 		669815FC13D5083600417E8B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669815FB13D5083600417E8B /* SystemConfiguration.framework */; };
 		6698160013D5083A00417E8B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669815FF13D5083A00417E8B /* CFNetwork.framework */; };
-		6698163013D5095300417E8B /* NIJSONHTTPProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6698162F13D5095300417E8B /* NIJSONHTTPProcessor.m */; };
+		669819E613D573B200417E8B /* NIProcessorHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 669819E413D573B200417E8B /* NIProcessorHTTPRequest.m */; };
+		669819F013D573DC00417E8B /* NIJSONKitProcessorHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 669819EF13D573DC00417E8B /* NIJSONKitProcessorHTTPRequest.m */; };
 		66EA058313C011D6004FFE1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA058113C011D6004FFE1A /* AppDelegate.m */; };
 		66EA058813C011EC004FFE1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA058713C011EC004FFE1A /* main.m */; };
-		66EAC26413CF5F5400BDFF34 /* photoDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EAC26313CF5F5400BDFF34 /* photoDefault.png */; };
 		66EAC64D13D28D9A00BDFF34 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EAC64C13D28D9A00BDFF34 /* NICommonMetrics.m */; };
 		66EAC7DC13D2A77D00BDFF34 /* NimbusPhotos.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66EAC7DB13D2A77D00BDFF34 /* NimbusPhotos.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* BasicPhotoAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicPhotoAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* FacebookPhotoAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookPhotoAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		665E0B9713CE815D008A1D21 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = ../../../src/core/src/NIBlocks.h; sourceTree = SOURCE_ROOT; };
@@ -96,8 +96,8 @@
 		665E0BCC13CE816E008A1D21 /* NIPhotoScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPhotoScrollView.m; path = ../../../src/photos/src/NIPhotoScrollView.m; sourceTree = SOURCE_ROOT; };
 		665E0BCD13CE816E008A1D21 /* NIToolbarPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIToolbarPhotoViewController.h; path = ../../../src/photos/src/NIToolbarPhotoViewController.h; sourceTree = SOURCE_ROOT; };
 		665E0BCE13CE816E008A1D21 /* NIToolbarPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIToolbarPhotoViewController.m; path = ../../../src/photos/src/NIToolbarPhotoViewController.m; sourceTree = SOURCE_ROOT; };
-		665E0C0613CE82A1008A1D21 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = src/RootViewController.h; sourceTree = "<group>"; };
-		665E0C0713CE82A1008A1D21 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = src/RootViewController.m; sourceTree = "<group>"; };
+		665E0C0613CE82A1008A1D21 /* FacebookPhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookPhotoAlbumViewController.h; path = src/FacebookPhotoAlbumViewController.h; sourceTree = "<group>"; };
+		665E0C0713CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FacebookPhotoAlbumViewController.m; path = src/FacebookPhotoAlbumViewController.m; sourceTree = "<group>"; };
 		669815C713D507F000417E8B /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = ../../../src/JSONKit/src/JSONKit.h; sourceTree = SOURCE_ROOT; };
 		669815C813D507F000417E8B /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = ../../../src/JSONKit/src/JSONKit.m; sourceTree = SOURCE_ROOT; };
 		669815D013D5080500417E8B /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = ../../../src/ASIHTTPRequest/src/ASIAuthenticationDialog.h; sourceTree = SOURCE_ROOT; };
@@ -128,14 +128,17 @@
 		669815F713D5083200417E8B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		669815FB13D5083600417E8B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		669815FF13D5083A00417E8B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		6698162E13D5095300417E8B /* NIJSONHTTPProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIJSONHTTPProcessor.h; sourceTree = "<group>"; };
-		6698162F13D5095300417E8B /* NIJSONHTTPProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIJSONHTTPProcessor.m; sourceTree = "<group>"; };
+		669819E113D573B200417E8B /* NimbusProcessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusProcessors.h; path = ../../../src/processors/src/NimbusProcessors.h; sourceTree = SOURCE_ROOT; };
+		669819E213D573B200417E8B /* NIProcessorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIProcessorDelegate.h; path = ../../../src/processors/src/NIProcessorDelegate.h; sourceTree = SOURCE_ROOT; };
+		669819E313D573B200417E8B /* NIProcessorHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIProcessorHTTPRequest.h; path = ../../../src/processors/src/NIProcessorHTTPRequest.h; sourceTree = SOURCE_ROOT; };
+		669819E413D573B200417E8B /* NIProcessorHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIProcessorHTTPRequest.m; path = ../../../src/processors/src/NIProcessorHTTPRequest.m; sourceTree = SOURCE_ROOT; };
+		669819EE13D573DC00417E8B /* NIJSONKitProcessorHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIJSONKitProcessorHTTPRequest.h; path = ../../../src/processors/src_JSONKit/NIJSONKitProcessorHTTPRequest.h; sourceTree = SOURCE_ROOT; };
+		669819EF13D573DC00417E8B /* NIJSONKitProcessorHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIJSONKitProcessorHTTPRequest.m; path = ../../../src/processors/src_JSONKit/NIJSONKitProcessorHTTPRequest.m; sourceTree = SOURCE_ROOT; };
 		66EA058013C011D6004FFE1A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = src/AppDelegate.h; sourceTree = "<group>"; };
 		66EA058113C011D6004FFE1A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = src/AppDelegate.m; sourceTree = "<group>"; };
-		66EA058213C011D6004FFE1A /* BasicPhotoAlbum_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicPhotoAlbum_Prefix.pch; path = src/BasicPhotoAlbum_Prefix.pch; sourceTree = "<group>"; };
+		66EA058213C011D6004FFE1A /* FacebookPhotoAlbum_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookPhotoAlbum_Prefix.pch; path = src/FacebookPhotoAlbum_Prefix.pch; sourceTree = "<group>"; };
 		66EA058713C011EC004FFE1A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = src/main.m; sourceTree = "<group>"; };
-		66EA05A213C01297004FFE1A /* BasicPhotoAlbum-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "BasicPhotoAlbum-Info.plist"; path = "resources/BasicPhotoAlbum-Info.plist"; sourceTree = "<group>"; };
-		66EAC26313CF5F5400BDFF34 /* photoDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = photoDefault.png; path = ../../../../../../Desktop/photoDefault.png; sourceTree = SOURCE_ROOT; };
+		66EA05A213C01297004FFE1A /* FacebookPhotoAlbum-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "FacebookPhotoAlbum-Info.plist"; path = "resources/FacebookPhotoAlbum-Info.plist"; sourceTree = "<group>"; };
 		66EAC47F13D2368100BDFF34 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
 		66EAC64B13D28D9A00BDFF34 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../../../src/core/src/NICommonMetrics.h; sourceTree = SOURCE_ROOT; };
 		66EAC64C13D28D9A00BDFF34 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../../../src/core/src/NICommonMetrics.m; sourceTree = SOURCE_ROOT; };
@@ -163,7 +166,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* BasicPhotoAlbum.app */,
+				1D6058910D05DD3D006BFB54 /* FacebookPhotoAlbum.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				66EAC47F13D2368100BDFF34 /* README.mdown */,
-				66EA058213C011D6004FFE1A /* BasicPhotoAlbum_Prefix.pch */,
+				66EA058213C011D6004FFE1A /* FacebookPhotoAlbum_Prefix.pch */,
 				66EA057A13C011C0004FFE1A /* Source */,
 				66EA058E13C0126F004FFE1A /* Nimbus */,
 				66EA059D13C0128E004FFE1A /* Resources */,
@@ -300,16 +303,27 @@
 			path = ../../../src/ASIHTTPRequest/src/Reachability;
 			sourceTree = SOURCE_ROOT;
 		};
+		669819D313D5739D00417E8B /* Processors */ = {
+			isa = PBXGroup;
+			children = (
+				669819E113D573B200417E8B /* NimbusProcessors.h */,
+				669819E213D573B200417E8B /* NIProcessorDelegate.h */,
+				669819E313D573B200417E8B /* NIProcessorHTTPRequest.h */,
+				669819E413D573B200417E8B /* NIProcessorHTTPRequest.m */,
+				669819EE13D573DC00417E8B /* NIJSONKitProcessorHTTPRequest.h */,
+				669819EF13D573DC00417E8B /* NIJSONKitProcessorHTTPRequest.m */,
+			);
+			name = Processors;
+			sourceTree = "<group>";
+		};
 		66EA057A13C011C0004FFE1A /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				66EA058013C011D6004FFE1A /* AppDelegate.h */,
 				66EA058113C011D6004FFE1A /* AppDelegate.m */,
 				66EA058713C011EC004FFE1A /* main.m */,
-				665E0C0613CE82A1008A1D21 /* RootViewController.h */,
-				665E0C0713CE82A1008A1D21 /* RootViewController.m */,
-				6698162E13D5095300417E8B /* NIJSONHTTPProcessor.h */,
-				6698162F13D5095300417E8B /* NIJSONHTTPProcessor.m */,
+				665E0C0613CE82A1008A1D21 /* FacebookPhotoAlbumViewController.h */,
+				665E0C0713CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -320,6 +334,7 @@
 				665E0B9513CE814D008A1D21 /* Core */,
 				665E0BC613CE8161008A1D21 /* Photos */,
 				669815CB13D507F900417E8B /* ASIHTTPRequest */,
+				669819D313D5739D00417E8B /* Processors */,
 				669815CA13D507F200417E8B /* JSONKit */,
 			);
 			name = Nimbus;
@@ -329,8 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				66EAC7DB13D2A77D00BDFF34 /* NimbusPhotos.bundle */,
-				66EAC26313CF5F5400BDFF34 /* photoDefault.png */,
-				66EA05A213C01297004FFE1A /* BasicPhotoAlbum-Info.plist */,
+				66EA05A213C01297004FFE1A /* FacebookPhotoAlbum-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -338,9 +352,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* BasicPhotoAlbum */ = {
+		1D6058900D05DD3D006BFB54 /* FacebookPhotoAlbum */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "BasicPhotoAlbum" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "FacebookPhotoAlbum" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -350,9 +364,9 @@
 			);
 			dependencies = (
 			);
-			name = BasicPhotoAlbum;
-			productName = BasicPhotoAlbum;
-			productReference = 1D6058910D05DD3D006BFB54 /* BasicPhotoAlbum.app */;
+			name = FacebookPhotoAlbum;
+			productName = FacebookPhotoAlbum;
+			productReference = 1D6058910D05DD3D006BFB54 /* FacebookPhotoAlbum.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -360,7 +374,7 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BasicPhotoAlbum" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FacebookPhotoAlbum" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -374,7 +388,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* BasicPhotoAlbum */,
+				1D6058900D05DD3D006BFB54 /* FacebookPhotoAlbum */,
 			);
 		};
 /* End PBXProject section */
@@ -384,7 +398,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66EAC26413CF5F5400BDFF34 /* photoDefault.png in Resources */,
 				66EAC7DC13D2A77D00BDFF34 /* NimbusPhotos.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,7 +429,7 @@
 				665E0BCF13CE816E008A1D21 /* NIPhotoAlbumScrollView.m in Sources */,
 				665E0BD013CE816E008A1D21 /* NIPhotoScrollView.m in Sources */,
 				665E0BD113CE816E008A1D21 /* NIToolbarPhotoViewController.m in Sources */,
-				665E0C0813CE82A1008A1D21 /* RootViewController.m in Sources */,
+				665E0C0813CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m in Sources */,
 				66EAC64D13D28D9A00BDFF34 /* NICommonMetrics.m in Sources */,
 				669815C913D507F000417E8B /* JSONKit.m in Sources */,
 				669815E913D5080500417E8B /* ASIAuthenticationDialog.m in Sources */,
@@ -429,7 +442,8 @@
 				669815F013D5080500417E8B /* ASINetworkQueue.m in Sources */,
 				669815F113D5080500417E8B /* NIHTTPRequest.m in Sources */,
 				669815F213D5080500417E8B /* Reachability.m in Sources */,
-				6698163013D5095300417E8B /* NIJSONHTTPProcessor.m in Sources */,
+				669819E613D573B200417E8B /* NIProcessorHTTPRequest.m in Sources */,
+				669819F013D573DC00417E8B /* NIJSONKitProcessorHTTPRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,10 +458,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = src/BasicPhotoAlbum_Prefix.pch;
-				INFOPLIST_FILE = "resources/BasicPhotoAlbum-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				PRODUCT_NAME = BasicPhotoAlbum;
+				GCC_PREFIX_HEADER = src/FacebookPhotoAlbum_Prefix.pch;
+				INFOPLIST_FILE = "resources/FacebookPhotoAlbum-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = FacebookPhotoAlbum;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -458,10 +472,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = src/BasicPhotoAlbum_Prefix.pch;
-				INFOPLIST_FILE = "resources/BasicPhotoAlbum-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				PRODUCT_NAME = BasicPhotoAlbum;
+				GCC_PREFIX_HEADER = src/FacebookPhotoAlbum_Prefix.pch;
+				INFOPLIST_FILE = "resources/FacebookPhotoAlbum-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = FacebookPhotoAlbum;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -499,7 +513,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "BasicPhotoAlbum" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "FacebookPhotoAlbum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -508,7 +522,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BasicPhotoAlbum" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FacebookPhotoAlbum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

@@ -19,4 +19,6 @@
     #import <UIKit/UIKit.h>
 #import "NimbusCore.h"
 #import "NimbusPhotos.h"
+#import "NimbusProcessors.h"
+#import "NIJSONKitProcessorHTTPRequest.h"
 #endif

@@ -16,7 +16,7 @@
 
 #import "AppDelegate.h"
 
-#import "RootViewController.h"
+#import "FacebookPhotoAlbumViewController.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,8 +49,9 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
 
-  RootViewController* rootVC = [[[RootViewController alloc] initWithNibName:nil bundle:nil]
+  FacebookPhotoAlbumViewController* rootVC = [[[FacebookPhotoAlbumViewController alloc] initWithNibName:nil bundle:nil]
                                 autorelease];
+  rootVC.facebookAlbumId = @"10150160584103418";
 
   _rootViewController = [[UINavigationController alloc] initWithRootViewController:rootVC];
 
