@@ -42,7 +42,7 @@ CGFloat NIToolbarHeightForOrientation(UIInterfaceOrientation orientation);
 /**
  * The animation curve used when animating the status bar.
  *
- * Value: UIViewAnimationCurveLinear
+ * Value: UIViewAnimationCurveEaseIn
  */
 UIViewAnimationCurve NIStatusBarAnimationCurve();
 
