@@ -57,7 +57,7 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* FacebookPhotoAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookPhotoAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* NetworkPhotoAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkPhotoAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6631671513D680A500FF0CBE /* NetworkPhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkPhotoAlbumViewController.h; path = src/NetworkPhotoAlbumViewController.h; sourceTree = "<group>"; };
@@ -145,9 +145,9 @@
 		669819EF13D573DC00417E8B /* NIJSONKitProcessorHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIJSONKitProcessorHTTPRequest.m; path = ../../../src/processors/src_JSONKit/NIJSONKitProcessorHTTPRequest.m; sourceTree = SOURCE_ROOT; };
 		66EA058013C011D6004FFE1A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = src/AppDelegate.h; sourceTree = "<group>"; };
 		66EA058113C011D6004FFE1A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = src/AppDelegate.m; sourceTree = "<group>"; };
-		66EA058213C011D6004FFE1A /* FacebookPhotoAlbum_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookPhotoAlbum_Prefix.pch; path = src/FacebookPhotoAlbum_Prefix.pch; sourceTree = "<group>"; };
+		66EA058213C011D6004FFE1A /* NetworkPhotoAlbum_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkPhotoAlbum_Prefix.pch; path = src/NetworkPhotoAlbum_Prefix.pch; sourceTree = "<group>"; };
 		66EA058713C011EC004FFE1A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = src/main.m; sourceTree = "<group>"; };
-		66EA05A213C01297004FFE1A /* FacebookPhotoAlbum-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "FacebookPhotoAlbum-Info.plist"; path = "resources/FacebookPhotoAlbum-Info.plist"; sourceTree = "<group>"; };
+		66EA05A213C01297004FFE1A /* NetworkPhotoAlbum-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "NetworkPhotoAlbum-Info.plist"; path = "resources/NetworkPhotoAlbum-Info.plist"; sourceTree = "<group>"; };
 		66EAC47F13D2368100BDFF34 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
 		66EAC64B13D28D9A00BDFF34 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../../../src/core/src/NICommonMetrics.h; sourceTree = SOURCE_ROOT; };
 		66EAC64C13D28D9A00BDFF34 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../../../src/core/src/NICommonMetrics.m; sourceTree = SOURCE_ROOT; };
@@ -175,7 +175,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* FacebookPhotoAlbum.app */,
+				1D6058910D05DD3D006BFB54 /* NetworkPhotoAlbum.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,7 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				66EAC47F13D2368100BDFF34 /* README.mdown */,
-				66EA058213C011D6004FFE1A /* FacebookPhotoAlbum_Prefix.pch */,
+				66EA058213C011D6004FFE1A /* NetworkPhotoAlbum_Prefix.pch */,
 				66EA057A13C011C0004FFE1A /* Source */,
 				66EA058E13C0126F004FFE1A /* Nimbus */,
 				66EA059D13C0128E004FFE1A /* Resources */,
@@ -383,7 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				66EAC7DB13D2A77D00BDFF34 /* NimbusPhotos.bundle */,
-				66EA05A213C01297004FFE1A /* FacebookPhotoAlbum-Info.plist */,
+				66EA05A213C01297004FFE1A /* NetworkPhotoAlbum-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -391,9 +391,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* FacebookPhotoAlbum */ = {
+		1D6058900D05DD3D006BFB54 /* NetworkPhotoAlbum */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "FacebookPhotoAlbum" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "NetworkPhotoAlbum" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -403,9 +403,9 @@
 			);
 			dependencies = (
 			);
-			name = FacebookPhotoAlbum;
-			productName = FacebookPhotoAlbum;
-			productReference = 1D6058910D05DD3D006BFB54 /* FacebookPhotoAlbum.app */;
+			name = NetworkPhotoAlbum;
+			productName = NetworkPhotoAlbum;
+			productReference = 1D6058910D05DD3D006BFB54 /* NetworkPhotoAlbum.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -413,7 +413,7 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FacebookPhotoAlbum" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NetworkPhotoAlbum" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -427,7 +427,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* FacebookPhotoAlbum */,
+				1D6058900D05DD3D006BFB54 /* NetworkPhotoAlbum */,
 			);
 		};
 /* End PBXProject section */
@@ -500,10 +500,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = src/FacebookPhotoAlbum_Prefix.pch;
-				INFOPLIST_FILE = "resources/FacebookPhotoAlbum-Info.plist";
+				GCC_PREFIX_HEADER = src/NetworkPhotoAlbum_Prefix.pch;
+				INFOPLIST_FILE = "resources/NetworkPhotoAlbum-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PRODUCT_NAME = FacebookPhotoAlbum;
+				PRODUCT_NAME = NetworkPhotoAlbum;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -514,10 +514,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = src/FacebookPhotoAlbum_Prefix.pch;
-				INFOPLIST_FILE = "resources/FacebookPhotoAlbum-Info.plist";
+				GCC_PREFIX_HEADER = src/NetworkPhotoAlbum_Prefix.pch;
+				INFOPLIST_FILE = "resources/NetworkPhotoAlbum-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PRODUCT_NAME = FacebookPhotoAlbum;
+				PRODUCT_NAME = NetworkPhotoAlbum;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -555,7 +555,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "FacebookPhotoAlbum" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "NetworkPhotoAlbum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -564,7 +564,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FacebookPhotoAlbum" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NetworkPhotoAlbum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
