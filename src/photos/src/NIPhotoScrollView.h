@@ -39,8 +39,7 @@ typedef enum {
  *      @ingroup Photos-Views
  */
 @interface NIPhotoScrollView : UIScrollView <
-  UIScrollViewDelegate
-> {
+  UIScrollViewDelegate> {
 @private
   // The photo view to be zoomed.
   UIImageView*  _imageView;
