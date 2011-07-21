@@ -24,6 +24,34 @@
  * trees structures. Nimbus makes use of the linked list data structure to provide an efficient
  * least-recently-used cache removal policy for its in-memory cache, NIMemoryCache.
  *
+ * <h2>Comparison of Data Structures</h2>
+ *
+ * @htmlonly
+ *<pre>
+ *  Requirement           | NILinkedList | NSArray | NSSet | NSDictionary
+ *  =====================================================================
+ *  Instant arbitrary     |     YES      |   NO    |  YES  |     YES
+ *  insertion/deletion    |     [1]      |         |       |
+ *  ---------------------------------------------------------------------
+ *  Consistent object     |     YES      |   YES   |  NO   |     NO
+ *  ordering              |              |         |       |
+ *  ---------------------------------------------------------------------
+ *  Checking for object   |     NO       |   NO    |  YES  |     NO
+ *  existence quickly     |              |         |       |
+ *  ---------------------------------------------------------------------
+ *  Instant object access |     YES      |   NO    |  YES  |     YES
+ *                        |     [1]      |         |       |     [2]
+ *  ---------------------------------------------------------------------
+ *</pre>
+ * @endhtmlonly
+ *
+ * - [1] Note that being able to instantly remove and access objects in an NILinkedList
+ *       requires additional overhead of maintaining NILinkedListLocation objects in your
+ *       code. If this is your only requirement, then it's likely simpler to use an NSSet.
+ *       A linked list <i>is</i> worth using if you also need consistent ordering, seeing
+ *       as neither NSSet nor NSDictionary provide this.
+ * - [2] This assumes you are accessing the object with its key.
+ *
  *      @ingroup NimbusCore
  *      @defgroup Data-Structures Data Structures
  *      @{
