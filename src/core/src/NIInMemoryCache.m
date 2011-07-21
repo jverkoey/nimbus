@@ -241,7 +241,7 @@
 
   // Create a new cache entry.
   if (nil == info) {
-    info = [[NIMemoryCacheInfo alloc] init];
+    info = [[[NIMemoryCacheInfo alloc] init] autorelease];
     info.name = name;
   }
 
