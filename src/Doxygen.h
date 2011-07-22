@@ -113,7 +113,7 @@
  */
 
 /**
- * @defgroup Version-3-to-4 Version 0.3 to 0.4 API Changes
+ * @defgroup Version-4 Version 0.4 API Changes
  * @ingroup Version-History
  *
  * Version 0.4 of Nimbus was released on July 20, 2011. This major version introduced the new
@@ -121,11 +121,17 @@
  * viewer built for the iPhone and iPad. This version of Nimbus also introduced
  * @link NimbusProcessors Processors@endlink and JSONKit.
  *
+ * <h2>Minor Releases</h2>
+ *
+ * - Version @link Version-4-1 0.4.1.0@endlink - Released on July 22, 2011
+ *
+ *
  * <h2>Added Frameworks</h2>
  *
  * - @link NimbusPhotos Nimbus Photos@endlink
  * - @link NimbusProcessors Nimbus Processors@endlink
  * - JSONKit
+ *
  *
  * <h2>Core</h2>
  *
@@ -203,6 +209,7 @@
  * <tr><th>From</th><td class='Declaration' scope="row">+ (void)setGlobalNetworkOperationQueue:(NSOperationQueue *)queue</td></tr> 
  * <tr><th>To</th><td class='Declaration' scope="row"><tt>+ (void)setNetworkOperationQueue:(NSOperationQueue *)queue</tt></td></tr></table>
  *
+ *
  * <h2>Network Image</h2>
  *
  * <h3>NIHTTPImageRequest[.h]</h3>
@@ -224,7 +231,120 @@
  * - <span class="apiDiffFeature">Feature</span> Added support for loading images from disk.
  * - <span class="apiDiffFeature">Feature</span> Better configuration for image scaling and cropping via @link NINetworkImageViewScaleOptions@endlink.
  *
+ *
  * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ *  <div class="name">Jeff Verkoeyen</div> 
+ *  <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ *
+ * <h3>Add Your Name to This List</h3>
+ *
+ * Contributions are highly encouraged! If you have a feature that you feel would fit within the
+ * Nimbus framework, feel free to fire off a pull request on GitHub. Bugs may be reported
+ * using the issue tracker on GitHub as well.
+ *
+ * Check out the <a href="https://github.com/jverkoey/nimbus/issues?sort=created&direction=desc&state=open&page=1&milestone=5">tasks grab bag</a>
+ * for opportunities to help out.
+ *
+ *
+ * <h2>Robots Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <div class="name"><a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ */
+
+/**
+ * @defgroup Version-4-1 Version 0.4.1 API Changes
+ * @ingroup Version-4
+ *
+ * Version 0.4.1 of Nimbus was released on July 22, 2011. This minor version introduced the new
+ * Nimbus @link NIPhotoScrubberView photo scrubber@endlink, a highly responsive photo
+ * scrubber built for the iPhone and iPad and modeled after Apple's own Photos.app's photo
+ * scrubber.
+ *
+ * @image html scrubber1.png "Screenshot of NIPhotoScrubberView on the iPad."
+ *
+ * <h2>Core</h2>
+ *
+ * <h3>NICommonMetrics[.h]</h3>
+ *
+ * - <span class="apiDiffModified">Modified</span> Fixed incorrect documentation for <code>NIStatusBarAnimationCurve()</code>.
+ *
+ * <h3>NIDataStructures[.h]</h3>
+ *
+ * - <span class="apiDiffModified">Modified</span> Added a new documentation section @link Data-Structures Comparison of Data Structures@endlink.
+ *
+ * <h3>NIInMemoryCache[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed a memory leak in NIMemoryCache.
+ *
+ *
+ * <h2>Photos</h2>
+ *
+ * <h3>NIPhotoAlbumScrollView[.h]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed race condition where loading the thumbnail disabled zooming.
+ *   (thanks to <a href="http://github.com/steipete">steipete</a>.)
+ * - <span class="apiDiffAdded">Added</span> <code>NIPhotoAlbumScrollView.@link NIPhotoAlbumScrollView::zoomingAboveOriginalSizeIsEnabled zoomingAboveOriginalSizeIsEnabled@endlink</code>
+ * - <span class="apiDiffAdded">Added</span> <code>- [NIPhotoAlbumScrollView @link NIPhotoAlbumScrollView::setCenterPhotoIndex:animated: setCenterPhotoIndex:animated:@endlink]</code>
+ * - <span class="apiDiffModified">Modified</span> <code>NIPhotoAlbumScrollView.@link NIPhotoAlbumScrollView::zoomingIsEnabled zoomingIsEnabled@endlink</code>
+ * @htmlonly<table class="modificationtable"><tr><th></th><th>Accessor Name</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">@property (nonatomic, readwrite, assign) BOOL zoomingIsEnabled</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>@property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled</tt></td></tr></table>@endhtmlonly
+ * - <span class="apiDiffModified">Modified</span> <code>NIPhotoAlbumScrollView.@link NIPhotoAlbumScrollView::centerPhotoIndex centerPhotoIndex@endlink</code>
+ * @htmlonly<table class="modificationtable"><tr><th></th><th>Method Name and Access</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">@property (nonatomic, readonly, assign) NSInteger currentCenterPhotoIndex</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>@property (nonatomic, readwrite, assign) NSInteger centerPhotoIndex</tt></td></tr></table>@endhtmlonly
+ *
+ * <h3>NIPhotoScrollView[.h]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fix thumbnail size calculations for photos that are smaller than the screen so that the thumbnail is placed exactly where the photo will appear.
+ * - <span class="apiDiffAdded">Added</span> <code>NIPhotoScrollView.@link NIPhotoScrollView::zoomingAboveOriginalSizeIsEnabled zoomingAboveOriginalSizeIsEnabled@endlink</code>
+ * - <span class="apiDiffModified">Modified</span> <code>NIPhotoScrollView.@link NIPhotoScrollView::zoomingIsEnabled zoomingIsEnabled@endlink</code>
+ * @htmlonly<table class="modificationtable"><tr><th></th><th>Accessor Name</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">@property (nonatomic, readwrite, assign) BOOL zoomingIsEnabled</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>@property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled</tt></td></tr></table>@endhtmlonly
+ * - <span class="apiDiffModified">Modified</span> <code>NIPhotoScrollView.@link NIPhotoScrollView::doubleTapToZoomIsEnabled doubleTapToZoomIsEnabled@endlink</code>
+ * @htmlonly<table class="modificationtable"><tr><th></th><th>Accessor Name</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">@property (nonatomic, readwrite, assign, getter=isDoubleTapToZoomIsEnabled) BOOL doubleTapToZoomIsEnabled</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>@property (nonatomic, readwrite, assign, getter=isDoubleTapToZoomEnabled) BOOL doubleTapToZoomIsEnabled</tt></td></tr></table>@endhtmlonly
+ *
+ *
+ * <h3>NIPhotoScrubberView[.h/m] <span class="apiDiffAdded">Added</span></h3>
+ *
+ *
+ * <h3>NIToolbarPhotoViewController[.h]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>NIToolbarPhotoViewController.@link NIToolbarPhotoViewController::scrubberIsEnabled scrubberIsEnabled@endlink</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NIToolbarPhotoViewController.@link NIToolbarPhotoViewController::photoScrubberView photoScrubberView@endlink</code>
+ *
+ *
+ * <h2>Examples</h2>
+ *
+ * <h3>NetworkPhotoAlbums</h3>
+ *
+ * - <span class="apiDiffFeature">Feature</span> Added Shark Week and Game of Thrones albums to the example application.
+ * - <span class="apiDiffFeature">Feature</span> Implemented the photo scrubber data source in the Facebook and Dribbble controllers.
+ * - <span class="apiDiffBugfix">Bugfix</span> Network requests are no longer duplicated.
+ * - <span class="apiDiffBugfix">Bugfix</span> Cancel network requests when the controller is released to avoid crashing.
+ *   (thanks to <a href="http://github.com/steipete">steipete</a>.)
+ *
+ *
+ * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <img width="135px" height="135px" src="http://www.gravatar.com/avatar/7adfa1038eb46b001fd5c85a47dffc13?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ *  <div class="name">Peter Steinberger</div> 
+ *  <div class="github"><a href="http://github.com/steipete">steipete</a></div> 
+ * </div>
  *
  * <div class="contributor_profile"> 
  *  <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
