@@ -35,6 +35,8 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
 /**
  * A paged scroll view that shows a collection of photos.
  *
+ *      @ingroup Photos-Views
+ *
  * This view provides a light-weight implementation of a photo viewer, complete with
  * pinch-to-zoom and swiping to change photos. It is designed to perform well with
  * large sets of photos and large images that are loaded from either the network or
@@ -44,8 +46,6 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  * implements the data source protocol and presents any required chrome.
  *
  *      @see NIToolbarPhotoViewController
- *
- *      @ingroup Photos-Views
  */
 @interface NIPhotoAlbumScrollView : UIView <
   UIScrollViewDelegate,
@@ -77,11 +77,8 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
   id<NIPhotoAlbumScrollViewDelegate> _delegate;
 }
 
-/**
- * @name Configuring Functionality
- * @{
- */
-#pragma mark Configuring Functionality
+
+#pragma mark Configuring Functionality /** @name Configuring Functionality */
 
 /**
  * Whether zooming is enabled or not.
@@ -103,14 +100,8 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  */
 @property (nonatomic, readwrite, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled;
 
-/**@}*/// End of Configuring Functionality
 
-
-/**
- * @name Data Source
- * @{
- */
-#pragma mark Data Source
+#pragma mark Data Source /** @name Data Source */
 
 /**
  * The data source for this photo album view.
@@ -131,14 +122,8 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  */
 - (void)reloadData;
 
-/**@}*/// End of Data Source
 
-
-/**
- * @name Delegate
- * @{
- */
-#pragma mark Delegate
+#pragma mark Delegate /** @name Delegate */
 
 /**
  * The delegate for this photo album view.
@@ -147,14 +132,8 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  */
 @property (nonatomic, readwrite, assign) id<NIPhotoAlbumScrollViewDelegate> delegate;
 
-/**@}*/// End of Delegate
 
-
-/**
- * @name Configuring Presentation
- * @{
- */
-#pragma mark Configuring Presentation
+#pragma mark Configuring Presentation /** @name Configuring Presentation */
 
 /**
  * An image that is displayed while the photo is loading.
@@ -177,14 +156,8 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  */
 @property (nonatomic, readwrite, assign) CGFloat pageHorizontalMargin;
 
-/**@}*/// End of Configuring Presentation
 
-
-/**
- * @name Accessing State
- * @{
- */
-#pragma mark Accessing State
+#pragma mark State /** @name State */
 
 /**
  * The current center photo index.
@@ -211,14 +184,8 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  */
 @property (nonatomic, readonly, assign) NSInteger numberOfPhotos;
 
-/**@}*/// End of Accessing State
 
-
-/**
- * @name Changing Photos
- * @{
- */
-#pragma mark Changing Photos
+#pragma mark Changing the Visible Photo /** @name Changing the Visible Photo */
 
 /**
  * Returns YES if there is a next photo.
@@ -240,14 +207,8 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  */
 - (void)moveToPreviousAnimated:(BOOL)animated;
 
-/**@}*/// End of Changing Photos
 
-
-/**
- * @name Notifying the View of Loaded Photos
- * @{
- */
-#pragma mark Notifying the View of Loaded Photos
+#pragma mark Notifying the View of Loaded Photos /** @name Notifying the View of Loaded Photos */
 
 /**
  * Notify the scroll view that a photo has been loaded at a given index.
@@ -263,14 +224,8 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
              atIndex: (NSInteger)photoIndex
            photoSize: (NIPhotoScrollViewPhotoSize)photoSize;
 
-/**@}*/// End of Notifying the View of Loaded Photos
 
-
-/**
- * @name Rotating the Scroll View
- * @{
- */
-#pragma mark Rotating the Scroll View
+#pragma mark Rotating the Scroll View /** @name Rotating the Scroll View */
 
 /**
  * Stores the current state of the scroll view in preparation for rotation.
@@ -287,8 +242,6 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
 - (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
                                          duration: (NSTimeInterval)duration;
 
-/**@}*/// End of Rotating the Scroll View
-
 
 @end
 
@@ -296,20 +249,19 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
 /**
  * The photo album scroll data source.
  *
+ *      @ingroup Photos-Protocols
+ *
  * This data source emphasizes speed and memory efficiency by requesting images only when
  * they're needed and encouraging immediate responses from the data source implementation.
  *
- *      @ingroup Photos-Views
+ *      @see NIPhotoAlbumScrollView
  */
 @protocol NIPhotoAlbumScrollViewDataSource <NSObject>
 
 @required
 
-/**
- * @name [Data Source] Fetching Required Album Information
- * @{
- */
-#pragma mark Fetching Required Album Information
+
+#pragma mark Fetching Required Album Information /** @name [NIPhotoAlbumScrollViewDataSource] Fetching Required Album Information */
 
 /**
  * Fetches the total number of photos in the scroll view.
@@ -354,16 +306,11 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
                         isLoading: (BOOL *)isLoading
           originalPhotoDimensions: (CGSize *)originalPhotoDimensions;
 
-/**@}*/// End of Fetching Required Album Information
-
 
 @optional
 
-/**
- * @name [Data Source] Optimizing Data Retrieval
- * @{
- */
-#pragma mark Optimizing Data Retrieval
+
+#pragma mark Optimizing Data Retrieval /** @name [NIPhotoAlbumScrollViewDataSource] Optimizing Data Retrieval */
 
 /**
  * Called when you should cancel any asynchronous loading requests for the given photo.
@@ -377,7 +324,6 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
 - (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
      stopLoadingPhotoAtIndex: (NSInteger)photoIndex;
 
-/**@}*/// End of Optimizing Data Retrieval
 
 @end
 
@@ -385,17 +331,14 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
 /**
  * The photo album scroll view delegate.
  *
- *      @ingroup Photos-Views
+ *      @ingroup Photos-Protocols
+ *      @see NIPhotoAlbumScrollView
  */
 @protocol NIPhotoAlbumScrollViewDelegate <NSObject>
 
 @optional
 
-/**
- * @name [Delegate] Scrolling and Zooming
- * @{
- */
-#pragma mark Scrolling and Zooming
+#pragma mark Scrolling and Zooming /** @name [NIPhotoAlbumScrollViewDelegate] Scrolling and Zooming */
 
 /**
  * The user is scrolling between two photos.
@@ -408,14 +351,8 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
 - (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
                    didZoomIn: (BOOL)didZoomIn;
 
-/**@}*/// End of Optimizing Data Retrieval
 
-
-/**
- * @name [Delegate] Changing Pages
- * @{
- */
-#pragma mark Changing Pages
+#pragma mark Changing Pages /** @name [NIPhotoAlbumScrollViewDelegate] Changing Pages */
 
 /**
  * The current page has changed.
@@ -424,14 +361,8 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  */
 - (void)photoAlbumScrollViewDidChangePages:(NIPhotoAlbumScrollView *)photoAlbumScrollView;
 
-/**@}*/// End of Changing Pages
 
-
-/**
- * @name [Delegate] Data Availability
- * @{
- */
-#pragma mark Data Availability
+#pragma mark Data Availability /** @name [NIPhotoAlbumScrollViewDelegate] Data Availability */
 
 /**
  * The next photo in the album has been loaded and is ready to be displayed.
@@ -443,6 +374,5 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  */
 - (void)photoAlbumScrollViewDidLoadPreviousPhoto:(NIPhotoAlbumScrollView *)photoAlbumScrollView;
 
-/**@}*/// End of Data Availability
 
 @end

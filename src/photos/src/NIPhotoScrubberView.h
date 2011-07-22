@@ -37,7 +37,7 @@
  * is in a physically intuitive way.
  *
  * This view is a completely independent view from the photo scroll view so you can choose
- * to use this in your already built photo viewer, if you so choose.
+ * to use this in your already built photo viewer.
  *
  * @image html scrubber1.png "Screenshot of a photo scrubber on the iPad."
  *
@@ -65,12 +65,7 @@
   id<NIPhotoScrubberViewDelegate> _delegate;
 }
 
-
-/**
- * @name Data Source
- * @{
- */
-#pragma mark Data Source
+#pragma mark Data Source /** @name Data Source */
 
 /**
  * The data source for this scrubber view.
@@ -97,28 +92,16 @@
 - (void)didLoadThumbnail: (UIImage *)image
                  atIndex: (NSInteger)photoIndex;
 
-/**@}*/// End of Data Source
 
-
-/**
- * @name Delegate
- * @{
- */
-#pragma mark Delegate
+#pragma mark Delegate /** @name Delegate */
 
 /**
  * The delegate for this scrubber view.
  */
 @property (nonatomic, readwrite, assign) id<NIPhotoScrubberViewDelegate> delegate;
 
-/**@}*/// End of Delegate
 
-
-/**
- * @name Accessing Selection
- * @{
- */
-#pragma mark Accessing Selection
+#pragma mark Accessing Selection /** @name Accessing Selection */
 
 /**
  * The selected photo index.
@@ -130,14 +113,12 @@
  */
 - (void)setSelectedPhotoIndex:(NSInteger)photoIndex animated:(BOOL)animated;
 
-/**@}*/// End of Accessing Selection
-
 @end
 
 /**
  * The data source for the photo scrubber.
  *
- *      @ingroup Photos-Views
+ *      @ingroup Photos-Protocols
  *
  * <h2>Performance Considerations</h2>
  *
@@ -154,10 +135,14 @@
  * high-resolution images then you'll find that your app quickly burns through memory.
  * If you don't have access to thumbnails from whatever API you're using then you should consider
  * not using a scrubber.
+ *
+ *      @see NIPhotoScrubberView
  */
 @protocol NIPhotoScrubberViewDataSource <NSObject>
 
 @required
+
+#pragma mark Fetching Required Information /** @name Fetching Required Information */
 
 /**
  * Fetches the total number of photos in the scroll view.
@@ -180,13 +165,17 @@
 /**
  * The delegate for the photo scrubber.
  *
- *      @ingroup Photos-Views
+ *      @ingroup Photos-Protocols
  *
  * Sends notifications of state changes.
+ *
+ *      @see NIPhotoScrubberView
  */
 @protocol NIPhotoScrubberViewDelegate <NSObject>
 
 @optional
+
+#pragma mark Selection Changes /** @name Selection Changes */
 
 /**
  * The photo scrubber changed its selection.

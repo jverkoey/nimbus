@@ -36,6 +36,27 @@
  * The bundle can be found at <code>src/photos/resources/NimbusPhotos.bundle</code>.
  *
  *
+ * <h2>Feature Breakdown</h2>
+ *
+ * NIPhotoAlbumScrollView - A paged scroll view that implements a data source similar to that
+ * of UITableView. This scroll view consumes minimal amounts of memory and is built to be fast
+ * and responsive.
+ *
+ * NIPhotoScrollView - A single page within the NIPhotoAlbumScrollView. This view implements
+ * the zooming and rotation functionality for a photo.
+ *
+ * NIPhotoScrubberView - A scrubber view for skimming through a set of photos. This view
+ * made its debut by Apple on the iPad in Photos.app. Nimbus' implementation of this view
+ * is built to be responsive and consume little memory.
+ *
+ * NIToolbarPhotoViewController - A skeleton implementation of a view controller that includes
+ * multiple configurable properties. This controller will show a scrubber on the iPad and
+ * next/previous arrows on the iPhone. It also provides support for hiding and showing the
+ * app's chrome. If you wish to use this controller you must simply implement the data source
+ * for the photo album. NetworkPhotoAlbum in the examples/photos directory demos building
+ * a data source that fetches its information from the network.
+ *
+ *
  * <h2>Architecture</h2>
  *
  * The architectural design of the photo album view takes inspiration from UITableView. Images
@@ -45,7 +66,7 @@
  * NIPhotoAlbumScrollView contains a paging scroll view of these page views and provides
  * interfaces for maintaining the orientation during rotations.
  *
- * The view controller NIToolbarPhotoViewcontroller is provided as a basic implementation of
+ * The view controller NIToolbarPhotoViewController is provided as a basic implementation of
  * functionality that is expected from a photo viewer. This includes: a toolbar with next and
  * previous arrows; auto-rotation support; and toggling the chrome.
  *
@@ -75,7 +96,7 @@
  */
 
 /**
- * The views and protocols used to display and interact with photos.
+ * The views used to display photos.
  *
  *      @defgroup Photos-Views Photo Views
  *
@@ -83,6 +104,12 @@
  * within this view are pages of NIPhotoScrollView views. In your view controller you are
  * expected to implement the NIPhotoAlbumScrollViewDataSource in order to provide the photo
  * album view with the necessary information for presenting an album.
+ */
+
+/**
+ * The protocols used to interact with the photo views.
+ *
+ *      @defgroup Photos-Protocols Photo Protocols
  */
 
 /**

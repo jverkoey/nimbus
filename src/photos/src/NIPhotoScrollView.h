@@ -60,11 +60,7 @@ typedef enum {
   id<NIPhotoScrollViewDelegate> _photoScrollViewDelegate;
 }
 
-/**
- * @name Configuring Functionality
- * @{
- */
-#pragma mark Configuring Functionality
+#pragma mark Configuring Functionality /** @name Configuring Functionality */
 
 /**
  * Whether the photo is allowed to be zoomed.
@@ -101,13 +97,16 @@ typedef enum {
  */
 @property (nonatomic, readwrite, assign, getter=isDoubleTapToZoomEnabled) BOOL doubleTapToZoomIsEnabled;
 
-/**@}*/// End of Configuring Functionality
 
+#pragma mark State /** @name State */
+
+/**
+ * The currently-displayed photo.
+ */
+- (UIImage *)image;
 
 /**
  * The index of this photo within a photo album.
- *
- * TODO: Can we avoid requiring this index to be stored in this view?
  */
 @property (nonatomic, readwrite, assign) NSInteger photoIndex;
 
@@ -132,20 +131,12 @@ typedef enum {
 @property (nonatomic, readwrite, assign) CGSize photoDimensions;
 
 
-/**
- * The photo scroll view delegate.
- */
-@property (nonatomic, readwrite, assign) id<NIPhotoScrollViewDelegate> photoScrollViewDelegate;
+#pragma mark Modifying State /** @name Modifying State */
 
 /**
  * Remove image and reset the zoom scale.
  */
 - (void)prepareForReuse;
-
-/**
- * The currently-displayed photo.
- */
-- (UIImage *)image;
 
 /**
  * Set a new photo with a specific size.
@@ -157,12 +148,21 @@ typedef enum {
 - (void)setImage:(UIImage *)image photoSize:(NIPhotoScrollViewPhotoSize)photoSize;
 
 
-#pragma mark Saving/Restoring Offset and Scale
+#pragma mark Saving/Restoring Offset and Scale /** @name Saving/Restoring Offset and Scale */
 
 /**
  * Set the frame of the view while maintaining the zoom and center of the scroll view.
  */
 - (void)setFrameAndMaintainZoomAndCenter:(CGRect)frame;
+
+
+#pragma mark Photo Scroll View Delegate /** @name Photo Scroll View Delegate */
+
+/**
+ * The photo scroll view delegate.
+ */
+@property (nonatomic, readwrite, assign) id<NIPhotoScrollViewDelegate> photoScrollViewDelegate;
+
 
 @end
 
@@ -170,17 +170,13 @@ typedef enum {
 /**
  * The photo scroll view delegate.
  *
- *      @ingroup Photos-Views
+ *      @ingroup Photos-Protocols
  */
 @protocol NIPhotoScrollViewDelegate <NSObject>
 
 @optional
 
-/**
- * @name [Delegate] Zooming
- * @{
- */
-#pragma mark Zooming
+#pragma mark Zooming /** @name [NIPhotoScrollViewDelegate] Zooming */
 
 /**
  * The user has double-tapped the photo to zoom either in or out.
@@ -190,7 +186,5 @@ typedef enum {
  */
 - (void)photoScrollViewDidDoubleTapToZoom: (NIPhotoScrollView *)photoScrollView
                                 didZoomIn: (BOOL)didZoomIn;
-
-/**@}*/// End of Zooming
 
 @end

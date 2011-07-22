@@ -103,11 +103,7 @@
   BOOL _scrubberIsEnabled;
 }
 
-/**
- * @name Configuring Functionality
- * @{
- */
-#pragma mark Configuring Functionality
+#pragma mark Configuring Functionality /** @name Configuring Functionality */
 
 /**
  * Whether to show the photo album view beneath the toolbar or not.
@@ -166,14 +162,8 @@
  */
 @property (nonatomic, readwrite, assign, getter=isScrubberEnabled) BOOL scrubberIsEnabled;
 
-/**@}*/// End of Configuring Functionality
 
-
-/**
- * @name Views
- * @{
- */
-#pragma mark Views
+#pragma mark Views /** @name Views */
 
 /**
  * The toolbar view.
@@ -190,14 +180,8 @@
  */
 @property (nonatomic, readonly, retain) NIPhotoScrubberView* photoScrubberView;
 
-/**@}*/// End of Views
 
-
-/**
- * @name Toolbar Buttons
- * @{
- */
-#pragma mark Toolbar Buttons
+#pragma mark Toolbar Buttons /** @name Toolbar Buttons */
 
 /**
  * The 'next' button.
@@ -208,8 +192,6 @@
  * The 'previous' button.
  */
 @property (nonatomic, readonly, retain) UIBarButtonItem* previousButton;
-
-/**@}*/// End of Toolbar Buttons
 
 
 @end
