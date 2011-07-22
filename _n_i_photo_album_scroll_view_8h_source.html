@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.1.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -106,26 +106,26 @@
 <a name="l00034"></a>00034 
 <a name="l00050"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html">00050</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a> : UIView &lt;
 <a name="l00051"></a>00051   UIScrollViewDelegate,
-<a name="l00052"></a>00052   <a class="code" href="protocol_n_i_photo_scroll_view_delegate-p.html" title="The photo scroll view delegate.">NIPhotoScrollViewDelegate</a>
-<a name="l00053"></a>00053 &gt; {
-<a name="l00054"></a>00054 <span class="keyword">@private</span>
-<a name="l00055"></a>00055   UIScrollView* _pagingScrollView;
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057   <span class="comment">// Sets of NIPhotoScrollViews</span>
-<a name="l00058"></a>00058   NSMutableSet* _visiblePages;
-<a name="l00059"></a>00059   NSMutableSet* _recycledPages;
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061   <span class="comment">// Configurable Properties</span>
-<a name="l00062"></a>00062   UIImage* _loadingImage;
-<a name="l00063"></a>00063   CGFloat _pageHorizontalMargin;
-<a name="l00064"></a>00064   BOOL _zoomingIsEnabled;
+<a name="l00052"></a>00052   <a class="code" href="protocol_n_i_photo_scroll_view_delegate-p.html" title="The photo scroll view delegate.">NIPhotoScrollViewDelegate</a>&gt; {
+<a name="l00053"></a>00053 <span class="keyword">@private</span>
+<a name="l00054"></a>00054   UIScrollView* _pagingScrollView;
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056   <span class="comment">// Sets of NIPhotoScrollViews</span>
+<a name="l00057"></a>00057   NSMutableSet* _visiblePages;
+<a name="l00058"></a>00058   NSMutableSet* _recycledPages;
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060   <span class="comment">// Configurable Properties</span>
+<a name="l00061"></a>00061   UIImage* _loadingImage;
+<a name="l00062"></a>00062   CGFloat _pageHorizontalMargin;
+<a name="l00063"></a>00063   BOOL _zoomingIsEnabled;
+<a name="l00064"></a>00064   BOOL _zoomingAboveOriginalSizeIsEnabled;
 <a name="l00065"></a>00065 
 <a name="l00066"></a>00066   <span class="comment">// State Information</span>
 <a name="l00067"></a>00067   NSInteger _firstVisiblePageIndexBeforeRotation;
 <a name="l00068"></a>00068   CGFloat   _percentScrolledIntoFirstVisiblePage;
 <a name="l00069"></a>00069   BOOL      _isModifyingContentOffset;
 <a name="l00070"></a>00070   BOOL      _isAnimatingToPhoto;
-<a name="l00071"></a>00071   NSInteger _currentCenterPhotoIndex;
+<a name="l00071"></a>00071   NSInteger _centerPhotoIndex;
 <a name="l00072"></a>00072 
 <a name="l00073"></a>00073   <span class="comment">// Cached Data Source Information</span>
 <a name="l00074"></a>00074   NSInteger _numberOfPages;
@@ -134,129 +134,112 @@
 <a name="l00077"></a>00077   id&lt;NIPhotoAlbumScrollViewDelegate&gt; _delegate;
 <a name="l00078"></a>00078 }
 <a name="l00079"></a>00079 
-<a name="l00084"></a>00084 <span class="preprocessor">#pragma mark Configuring Functionality</span>
-<a name="l00085"></a>00085 <span class="preprocessor"></span>
-<a name="l00095"></a>00095 <span class="keyword">@property</span> (nonatomic, readwrite, assign) BOOL zoomingIsEnabled;
-<a name="l00096"></a>00096 <span class="comment">// End of Configuring Functionality</span>
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099 
-<a name="l00104"></a>00104 <span class="preprocessor">#pragma mark Data Source</span>
-<a name="l00105"></a>00105 <span class="preprocessor"></span>
-<a name="l00112"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html#a763ac9859c692caac4232135ce22792d">00112</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NIPhotoAlbumScrollViewDataSource&gt; dataSource;
-<a name="l00113"></a>00113 
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 <span class="preprocessor">#pragma mark Configuring Functionality </span>
+<a name="l00092"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html#a2990185ef87b7bb83475119e6f6f73fa">00092</a> <span class="preprocessor">@property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled;</span>
+<a name="l00093"></a>00093 <span class="preprocessor"></span>
+<a name="l00101"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html#ae19d7850f86f8bf602daed50758f8d6b">00101</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled;
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 <span class="preprocessor">#pragma mark Data Source </span>
+<a name="l00112"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html#a763ac9859c692caac4232135ce22792d">00112</a> <span class="preprocessor">@property (nonatomic, readwrite, assign) id&lt;NIPhotoAlbumScrollViewDataSource&gt; dataSource;</span>
+<a name="l00113"></a>00113 <span class="preprocessor"></span>
 <a name="l00123"></a>00123 - (void)reloadData;
-<a name="l00124"></a>00124 <span class="comment">// End of Data Source</span>
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127 
-<a name="l00132"></a>00132 <span class="preprocessor">#pragma mark Delegate</span>
-<a name="l00133"></a>00133 <span class="preprocessor"></span>
-<a name="l00139"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html#a992a9408b06190db98f14da4071fe4f4">00139</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NIPhotoAlbumScrollViewDelegate&gt; delegate;
-<a name="l00140"></a>00140 <span class="comment">// End of Delegate</span>
-<a name="l00142"></a>00142 
-<a name="l00143"></a>00143 
-<a name="l00148"></a>00148 <span class="preprocessor">#pragma mark Configuring Presentation</span>
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126 <span class="preprocessor">#pragma mark Delegate </span>
+<a name="l00133"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html#a992a9408b06190db98f14da4071fe4f4">00133</a> <span class="preprocessor">@property (nonatomic, readwrite, assign) id&lt;NIPhotoAlbumScrollViewDelegate&gt; delegate;</span>
+<a name="l00134"></a>00134 <span class="preprocessor"></span>
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136 <span class="preprocessor">#pragma mark Configuring Presentation </span>
+<a name="l00148"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html#a5efc3ce3a183043fe3d6341ae82908cc">00148</a> <span class="preprocessor">@property (nonatomic, readwrite, retain) UIImage* loadingImage;</span>
 <a name="l00149"></a>00149 <span class="preprocessor"></span>
-<a name="l00160"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html#a5efc3ce3a183043fe3d6341ae82908cc">00160</a> <span class="keyword">@property</span> (nonatomic, readwrite, retain) UIImage* loadingImage;
-<a name="l00161"></a>00161 
-<a name="l00169"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html#affaad3ec044e3e8f354271a81d723f19">00169</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) CGFloat pageHorizontalMargin;
-<a name="l00170"></a>00170 <span class="comment">// End of Configuring Presentation</span>
-<a name="l00172"></a>00172 
-<a name="l00173"></a>00173 
-<a name="l00178"></a>00178 <span class="preprocessor">#pragma mark Accessing State</span>
-<a name="l00179"></a>00179 <span class="preprocessor"></span>
-<a name="l00186"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html#a727d4a7ad102caadc455e4fffddc8589">00186</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) NSInteger currentCenterPhotoIndex;
+<a name="l00157"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html#affaad3ec044e3e8f354271a81d723f19">00157</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) CGFloat pageHorizontalMargin;
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160 <span class="preprocessor">#pragma mark State </span>
+<a name="l00170"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html#a8194b80d5c631a5912c6d105a5000ea7">00170</a> <span class="preprocessor">@property (nonatomic, readwrite, assign) NSInteger centerPhotoIndex;</span>
+<a name="l00171"></a>00171 <span class="preprocessor"></span>
+<a name="l00175"></a>00175 - (void)setCenterPhotoIndex:(NSInteger)centerPhotoIndex animated:(BOOL)animated;
+<a name="l00176"></a>00176 
+<a name="l00185"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html#aa6f3fca130a6cb8358fde37e33a28fe2">00185</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) NSInteger numberOfPhotos;
+<a name="l00186"></a>00186 
 <a name="l00187"></a>00187 
-<a name="l00196"></a><a class="code" href="interface_n_i_photo_album_scroll_view.html#aa6f3fca130a6cb8358fde37e33a28fe2">00196</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) NSInteger numberOfPhotos;
-<a name="l00197"></a>00197 <span class="comment">// End of Accessing State</span>
+<a name="l00188"></a>00188 <span class="preprocessor">#pragma mark Changing the Visible Photo </span>
+<a name="l00193"></a>00193 <span class="preprocessor">- (BOOL)hasNext;</span>
+<a name="l00194"></a>00194 <span class="preprocessor"></span>
+<a name="l00198"></a>00198 - (BOOL)hasPrevious;
 <a name="l00199"></a>00199 
-<a name="l00200"></a>00200 
-<a name="l00205"></a>00205 <span class="preprocessor">#pragma mark Changing Photos</span>
-<a name="l00206"></a>00206 <span class="preprocessor"></span>
-<a name="l00210"></a>00210 - (BOOL)hasNext;
-<a name="l00211"></a>00211 
-<a name="l00215"></a>00215 - (BOOL)hasPrevious;
-<a name="l00216"></a>00216 
-<a name="l00220"></a>00220 - (void)moveToNextAnimated:(BOOL)animated;
-<a name="l00221"></a>00221 
-<a name="l00225"></a>00225 - (void)moveToPreviousAnimated:(BOOL)animated;
-<a name="l00226"></a>00226 <span class="comment">// End of Changing Photos</span>
-<a name="l00228"></a>00228 
-<a name="l00229"></a>00229 
-<a name="l00234"></a>00234 <span class="preprocessor">#pragma mark Notifying the View of Loaded Photos</span>
-<a name="l00235"></a>00235 <span class="preprocessor"></span>
-<a name="l00246"></a>00246 - (void)didLoadPhoto: (UIImage *)image
-<a name="l00247"></a>00247              atIndex: (NSInteger)photoIndex
-<a name="l00248"></a>00248            photoSize: (NIPhotoScrollViewPhotoSize)photoSize;
-<a name="l00249"></a>00249 <span class="comment">// End of Notifying the View of Loaded Photos</span>
-<a name="l00251"></a>00251 
-<a name="l00252"></a>00252 
-<a name="l00257"></a>00257 <span class="preprocessor">#pragma mark Rotating the Scroll View</span>
-<a name="l00258"></a>00258 <span class="preprocessor"></span>
-<a name="l00265"></a>00265 - (void)willRotateToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
-<a name="l00266"></a>00266                                 duration: (NSTimeInterval)duration;
-<a name="l00267"></a>00267 
-<a name="l00271"></a>00271 - (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
-<a name="l00272"></a>00272                                          duration: (NSTimeInterval)duration;
-<a name="l00273"></a>00273 <span class="comment">// End of Rotating the Scroll View</span>
-<a name="l00275"></a>00275 
-<a name="l00276"></a>00276 
-<a name="l00277"></a>00277 <span class="keyword">@end</span>
-<a name="l00278"></a>00278 
-<a name="l00279"></a>00279 
-<a name="l00288"></a><a class="code" href="protocol_n_i_photo_album_scroll_view_data_source-p.html">00288</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_photo_album_scroll_view_data_source-p.html" title="The photo album scroll data source.">NIPhotoAlbumScrollViewDataSource</a> &lt;NSObject&gt;
-<a name="l00289"></a>00289 
-<a name="l00290"></a>00290 <span class="keyword">@required</span>
-<a name="l00291"></a>00291 
-<a name="l00296"></a>00296 <span class="preprocessor">#pragma mark Fetching Required Album Information</span>
-<a name="l00297"></a>00297 <span class="preprocessor"></span>
-<a name="l00304"></a>00304 - (NSInteger)numberOfPhotosInPhotoScrollView:(<a class="code" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a> *)photoScrollView;
-<a name="l00305"></a>00305 
-<a name="l00335"></a>00335 - (UIImage *)photoAlbumScrollView: (<a class="code" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a> *)photoAlbumScrollView
-<a name="l00336"></a>00336                      photoAtIndex: (NSInteger)photoIndex
-<a name="l00337"></a>00337                         photoSize: (NIPhotoScrollViewPhotoSize *)photoSize
-<a name="l00338"></a>00338                         isLoading: (BOOL *)isLoading
-<a name="l00339"></a>00339           originalPhotoDimensions: (CGSize *)originalPhotoDimensions;
-<a name="l00340"></a>00340 <span class="comment">// End of Fetching Required Album Information</span>
-<a name="l00342"></a>00342 
-<a name="l00343"></a>00343 
-<a name="l00344"></a>00344 <span class="keyword">@optional</span>
-<a name="l00345"></a>00345 
-<a name="l00350"></a>00350 <span class="preprocessor">#pragma mark Optimizing Data Retrieval</span>
-<a name="l00351"></a>00351 <span class="preprocessor"></span>
-<a name="l00361"></a>00361 - (void)photoAlbumScrollView: (<a class="code" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a> *)photoAlbumScrollView
-<a name="l00362"></a>00362      stopLoadingPhotoAtIndex: (NSInteger)photoIndex;
-<a name="l00363"></a>00363 <span class="comment">// End of Optimizing Data Retrieval</span>
-<a name="l00365"></a>00365 
-<a name="l00366"></a>00366 <span class="keyword">@end</span>
-<a name="l00367"></a>00367 
-<a name="l00368"></a>00368 
-<a name="l00374"></a><a class="code" href="protocol_n_i_photo_album_scroll_view_delegate-p.html">00374</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_photo_album_scroll_view_delegate-p.html" title="The photo album scroll view delegate.">NIPhotoAlbumScrollViewDelegate</a> &lt;NSObject&gt;
-<a name="l00375"></a>00375 
-<a name="l00376"></a>00376 <span class="keyword">@optional</span>
+<a name="l00203"></a>00203 - (void)moveToNextAnimated:(BOOL)animated;
+<a name="l00204"></a>00204 
+<a name="l00208"></a>00208 - (void)moveToPreviousAnimated:(BOOL)animated;
+<a name="l00209"></a>00209 
+<a name="l00210"></a>00210 
+<a name="l00211"></a>00211 <span class="preprocessor">#pragma mark Notifying the View of Loaded Photos </span>
+<a name="l00223"></a>00223 <span class="preprocessor">- (void)didLoadPhoto: (UIImage *)image</span>
+<a name="l00224"></a>00224 <span class="preprocessor"></span>             atIndex: (NSInteger)photoIndex
+<a name="l00225"></a>00225            photoSize: (NIPhotoScrollViewPhotoSize)photoSize;
+<a name="l00226"></a>00226 
+<a name="l00227"></a>00227 
+<a name="l00228"></a>00228 <span class="preprocessor">#pragma mark Rotating the Scroll View </span>
+<a name="l00236"></a>00236 <span class="preprocessor">- (void)willRotateToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation</span>
+<a name="l00237"></a>00237 <span class="preprocessor"></span>                                duration: (NSTimeInterval)duration;
+<a name="l00238"></a>00238 
+<a name="l00242"></a>00242 - (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
+<a name="l00243"></a>00243                                          duration: (NSTimeInterval)duration;
+<a name="l00244"></a>00244 
+<a name="l00245"></a>00245 
+<a name="l00246"></a>00246 <span class="keyword">@end</span>
+<a name="l00247"></a>00247 
+<a name="l00248"></a>00248 
+<a name="l00259"></a><a class="code" href="protocol_n_i_photo_album_scroll_view_data_source-p.html">00259</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_photo_album_scroll_view_data_source-p.html" title="The photo album scroll data source.">NIPhotoAlbumScrollViewDataSource</a> &lt;NSObject&gt;
+<a name="l00260"></a>00260 
+<a name="l00261"></a>00261 <span class="keyword">@required</span>
+<a name="l00262"></a>00262 
+<a name="l00263"></a>00263 
+<a name="l00264"></a>00264 <span class="preprocessor">#pragma mark Fetching Required Album Information </span>
+<a name="l00272"></a>00272 <span class="preprocessor">- (NSInteger)numberOfPhotosInPhotoScrollView:(NIPhotoAlbumScrollView *)photoScrollView;</span>
+<a name="l00273"></a>00273 <span class="preprocessor"></span>
+<a name="l00303"></a>00303 - (UIImage *)photoAlbumScrollView: (<a class="code" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a> *)photoAlbumScrollView
+<a name="l00304"></a>00304                      photoAtIndex: (NSInteger)photoIndex
+<a name="l00305"></a>00305                         photoSize: (NIPhotoScrollViewPhotoSize *)photoSize
+<a name="l00306"></a>00306                         isLoading: (BOOL *)isLoading
+<a name="l00307"></a>00307           originalPhotoDimensions: (CGSize *)originalPhotoDimensions;
+<a name="l00308"></a>00308 
+<a name="l00309"></a>00309 
+<a name="l00310"></a>00310 <span class="keyword">@optional</span>
+<a name="l00311"></a>00311 
+<a name="l00312"></a>00312 
+<a name="l00313"></a>00313 <span class="preprocessor">#pragma mark Optimizing Data Retrieval </span>
+<a name="l00324"></a>00324 <span class="preprocessor">- (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView</span>
+<a name="l00325"></a>00325 <span class="preprocessor"></span>     stopLoadingPhotoAtIndex: (NSInteger)photoIndex;
+<a name="l00326"></a>00326 
+<a name="l00327"></a>00327 
+<a name="l00328"></a>00328 <span class="keyword">@end</span>
+<a name="l00329"></a>00329 
+<a name="l00330"></a>00330 
+<a name="l00337"></a><a class="code" href="protocol_n_i_photo_album_scroll_view_delegate-p.html">00337</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_photo_album_scroll_view_delegate-p.html" title="The photo album scroll view delegate.">NIPhotoAlbumScrollViewDelegate</a> &lt;NSObject&gt;
+<a name="l00338"></a>00338 
+<a name="l00339"></a>00339 <span class="keyword">@optional</span>
+<a name="l00340"></a>00340 
+<a name="l00341"></a>00341 <span class="preprocessor">#pragma mark Scrolling and Zooming </span>
+<a name="l00346"></a>00346 <span class="preprocessor">- (void)photoAlbumScrollViewDidScroll:(NIPhotoAlbumScrollView *)photoAlbumScrollView;</span>
+<a name="l00347"></a>00347 <span class="preprocessor"></span>
+<a name="l00351"></a>00351 - (void)photoAlbumScrollView: (<a class="code" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a> *)photoAlbumScrollView
+<a name="l00352"></a>00352                    didZoomIn: (BOOL)didZoomIn;
+<a name="l00353"></a>00353 
+<a name="l00354"></a>00354 
+<a name="l00355"></a>00355 <span class="preprocessor">#pragma mark Changing Pages </span>
+<a name="l00362"></a>00362 <span class="preprocessor">- (void)photoAlbumScrollViewDidChangePages:(NIPhotoAlbumScrollView *)photoAlbumScrollView;</span>
+<a name="l00363"></a>00363 <span class="preprocessor"></span>
+<a name="l00364"></a>00364 
+<a name="l00365"></a>00365 <span class="preprocessor">#pragma mark Data Availability </span>
+<a name="l00370"></a>00370 <span class="preprocessor">- (void)photoAlbumScrollViewDidLoadNextPhoto:(NIPhotoAlbumScrollView *)photoAlbumScrollView;</span>
+<a name="l00371"></a>00371 <span class="preprocessor"></span>
+<a name="l00375"></a>00375 - (void)photoAlbumScrollViewDidLoadPreviousPhoto:(<a class="code" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a> *)photoAlbumScrollView;
+<a name="l00376"></a>00376 
 <a name="l00377"></a>00377 
-<a name="l00382"></a>00382 <span class="preprocessor">#pragma mark Scrolling and Zooming</span>
-<a name="l00383"></a>00383 <span class="preprocessor"></span>
-<a name="l00387"></a>00387 - (void)photoAlbumScrollViewDidScroll:(<a class="code" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a> *)photoAlbumScrollView;
-<a name="l00388"></a>00388 
-<a name="l00392"></a>00392 - (void)photoAlbumScrollView: (<a class="code" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a> *)photoAlbumScrollView
-<a name="l00393"></a>00393                    didZoomIn: (BOOL)didZoomIn;
-<a name="l00394"></a>00394 <span class="comment">// End of Optimizing Data Retrieval</span>
-<a name="l00396"></a>00396 
-<a name="l00397"></a>00397 
-<a name="l00402"></a>00402 <span class="preprocessor">#pragma mark Changing Pages</span>
-<a name="l00403"></a>00403 <span class="preprocessor"></span>
-<a name="l00409"></a>00409 - (void)photoAlbumScrollViewDidChangePages:(<a class="code" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a> *)photoAlbumScrollView;
-<a name="l00410"></a>00410 <span class="comment">// End of Changing Pages</span>
-<a name="l00412"></a>00412 
-<a name="l00413"></a>00413 
-<a name="l00418"></a>00418 <span class="preprocessor">#pragma mark Data Availability</span>
-<a name="l00419"></a>00419 <span class="preprocessor"></span>
-<a name="l00423"></a>00423 - (void)photoAlbumScrollViewDidLoadNextPhoto:(<a class="code" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a> *)photoAlbumScrollView;
-<a name="l00424"></a>00424 
-<a name="l00428"></a>00428 - (void)photoAlbumScrollViewDidLoadPreviousPhoto:(<a class="code" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a> *)photoAlbumScrollView;
-<a name="l00429"></a>00429 <span class="comment">// End of Data Availability</span>
-<a name="l00431"></a>00431 
-<a name="l00432"></a>00432 <span class="keyword">@end</span>
+<a name="l00378"></a>00378 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

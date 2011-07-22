@@ -168,6 +168,12 @@
           <Path>group___nimbus_photos.html</Path>
           <Subnodes>
            <Node>
+            <Name>Photo Protocols</Name>
+            <Path>group___photos-_protocols.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
             <Name>Photo View Controllers</Name>
             <Path>group___photos-_controllers.html</Path>
             <Subnodes>
@@ -222,9 +228,15 @@
             </Subnodes>
            </Node>
            <Node>
-            <Name>Version 0.3 to 0.4 API Changes</Name>
-            <Path>group___version-3-to-4.html</Path>
+            <Name>Version 0.4 API Changes</Name>
+            <Path>group___version-4.html</Path>
             <Subnodes>
+             <Node>
+              <Name>Version 0.4.1 API Changes</Name>
+              <Path>group___version-4-1.html</Path>
+              <Subnodes>
+              </Subnodes>
+             </Node>
             </Subnodes>
            </Node>
           </Subnodes>
@@ -326,6 +338,18 @@
          <Node>
           <Name>&lt;NIPhotoScrollViewDelegate&gt;</Name>
           <Path>protocol_n_i_photo_scroll_view_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NIPhotoScrubberView</Name>
+          <Path>interface_n_i_photo_scrubber_view.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIPhotoScrubberViewDataSource&gt;</Name>
+          <Path>protocol_n_i_photo_scrubber_view_data_source-p.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIPhotoScrubberViewDelegate&gt;</Name>
+          <Path>protocol_n_i_photo_scrubber_view_delegate-p.html</Path>
          </Node>
          <Node>
           <Name>&lt;NIProcessorDelegate&gt;</Name>
@@ -486,6 +510,24 @@
            <Node>
             <Name>NIPhotoAlbumScrollView</Name>
             <Path>interface_n_i_photo_album_scroll_view.html</Path>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>NIPhotoScrubberView</Name>
+          <Path>interface_n_i_photo_scrubber_view.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIPhotoScrubberViewDataSource&gt;</Name>
+          <Path>protocol_n_i_photo_scrubber_view_data_source-p.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIPhotoScrubberViewDelegate&gt;</Name>
+          <Path>protocol_n_i_photo_scrubber_view_delegate-p.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>NIToolbarPhotoViewController</Name>
+            <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
            </Node>
           </Subnodes>
          </Node>

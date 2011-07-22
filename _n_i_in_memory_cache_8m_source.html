@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.1.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -266,7 +266,7 @@
 <a name="l00241"></a>00241 
 <a name="l00242"></a>00242   <span class="comment">// Create a new cache entry.</span>
 <a name="l00243"></a>00243   <span class="keywordflow">if</span> (nil == info) {
-<a name="l00244"></a>00244     info = [[<a class="code" href="interface_n_i_memory_cache_info.html" title="A single cache item&#39;s information.">NIMemoryCacheInfo</a> alloc] init];
+<a name="l00244"></a>00244     info = [[[<a class="code" href="interface_n_i_memory_cache_info.html" title="A single cache item&#39;s information.">NIMemoryCacheInfo</a> alloc] init] autorelease];
 <a name="l00245"></a>00245     info.<a class="code" href="interface_n_i_memory_cache_info.html#aacf9857f5788e5a989d0ce9b446a32ee" title="The name used to store this object in the cache.">name</a> = name;
 <a name="l00246"></a>00246   }
 <a name="l00247"></a>00247 

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.1.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -84,9 +84,14 @@
 <h2>Adding the Photos Feature to Your Application</h2>
 <p>The <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> Photos feature uses a small number of custom photos that are stored in the NimbusPhotos bundle. You must add this bundle to your application, ensuring that you select the "Create Folder References" option and that the bundle is copied in the "Copy Bundle Resources" phase.</p>
 <p>The bundle can be found at <code>src/photos/resources/NimbusPhotos.bundle</code>.</p>
+<h2>Feature Breakdown</h2>
+<p><a class="el" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a> - A paged scroll view that implements a data source similar to that of UITableView. This scroll view consumes minimal amounts of memory and is built to be fast and responsive.</p>
+<p><a class="el" href="interface_n_i_photo_scroll_view.html" title="A single photo view that supports zooming and rotation.">NIPhotoScrollView</a> - A single page within the <a class="el" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a>. This view implements the zooming and rotation functionality for a photo.</p>
+<p><a class="el" href="interface_n_i_photo_scrubber_view.html" title="A control built for quickly skimming through a collection of images.">NIPhotoScrubberView</a> - A scrubber view for skimming through a set of photos. This view made its debut by Apple on the iPad in Photos.app. Nimbus' implementation of this view is built to be responsive and consume little memory.</p>
+<p><a class="el" href="interface_n_i_toolbar_photo_view_controller.html" title="A simple photo album view controller implementation with a toolbar.">NIToolbarPhotoViewController</a> - A skeleton implementation of a view controller that includes multiple configurable properties. This controller will show a scrubber on the iPad and next/previous arrows on the iPhone. It also provides support for hiding and showing the app's chrome. If you wish to use this controller you must simply implement the data source for the photo album. NetworkPhotoAlbum in the examples/photos directory demos building a data source that fetches its information from the network.</p>
 <h2>Architecture</h2>
 <p>The architectural design of the photo album view takes inspiration from UITableView. Images are requested only when they might become visible and are released when they become inaccessible again. Each page of the photo album view is a recycled <a class="el" href="interface_n_i_photo_scroll_view.html" title="A single photo view that supports zooming and rotation.">NIPhotoScrollView</a>. These page views handle zooming and panning within a given photo. The photo album view <a class="el" href="interface_n_i_photo_album_scroll_view.html" title="A paged scroll view that shows a collection of photos.">NIPhotoAlbumScrollView</a> contains a paging scroll view of these page views and provides interfaces for maintaining the orientation during rotations.</p>
-<p>The view controller NIToolbarPhotoViewcontroller is provided as a basic implementation of functionality that is expected from a photo viewer. This includes: a toolbar with next and previous arrows; auto-rotation support; and toggling the chrome.</p>
+<p>The view controller <a class="el" href="interface_n_i_toolbar_photo_view_controller.html" title="A simple photo album view controller implementation with a toolbar.">NIToolbarPhotoViewController</a> is provided as a basic implementation of functionality that is expected from a photo viewer. This includes: a toolbar with next and previous arrows; auto-rotation support; and toggling the chrome.</p>
 <h2>Example Applications</h2>
 <h3>Network Photo Albums</h3>
 <p><a href="https://github.com/jverkoey/nimbus/tree/master/examples/photos/NetworkPhotoAlbums">View the README on GitHub</a></p>
@@ -107,6 +112,7 @@ Screenshot of a basic photo album on the iPhone.</div></div>
 <tr><td colspan="2"><h2><a name="groups"></a>
 Modules</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___photos-_views.html">Photo Views</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___photos-_protocols.html">Photo Protocols</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___photos-_controllers.html">Photo View Controllers</a></td></tr>
 </table>
 </div>

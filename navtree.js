@@ -34,6 +34,7 @@ var NAVTREE =
         [ "User Interface", "group___network-_image-_user-_interface.html", null ]
       ] ],
       [ "Nimbus Photos", "group___nimbus_photos.html", [
+        [ "Photo Protocols", "group___photos-_protocols.html", null ],
         [ "Photo View Controllers", "group___photos-_controllers.html", null ],
         [ "Photo Views", "group___photos-_views.html", null ]
       ] ],
@@ -45,7 +46,9 @@ var NAVTREE =
         [ "Version 0.1", "group___version-1.html", null ],
         [ "Version 0.2", "group___version-2.html", null ],
         [ "Version 0.3", "group___version-3.html", null ],
-        [ "Version 0.3 to 0.4 API Changes", "group___version-3-to-4.html", null ]
+        [ "Version 0.4 API Changes", "group___version-4.html", [
+          [ "Version 0.4.1 API Changes", "group___version-4-1.html", null ]
+        ] ]
       ] ]
     ] ],
     [ "Class List", "annotated.html", [
@@ -72,6 +75,9 @@ var NAVTREE =
       [ "<NIPhotoAlbumScrollViewDelegate>", "protocol_n_i_photo_album_scroll_view_delegate-p.html", null ],
       [ "NIPhotoScrollView", "interface_n_i_photo_scroll_view.html", null ],
       [ "<NIPhotoScrollViewDelegate>", "protocol_n_i_photo_scroll_view_delegate-p.html", null ],
+      [ "NIPhotoScrubberView", "interface_n_i_photo_scrubber_view.html", null ],
+      [ "<NIPhotoScrubberViewDataSource>", "protocol_n_i_photo_scrubber_view_data_source-p.html", null ],
+      [ "<NIPhotoScrubberViewDelegate>", "protocol_n_i_photo_scrubber_view_delegate-p.html", null ],
       [ "<NIProcessorDelegate>", "protocol_n_i_processor_delegate-p.html", null ],
       [ "NIProcessorHTTPRequest", "interface_n_i_processor_h_t_t_p_request.html", null ],
       [ "NIReadFileFromDiskOperation", "interface_n_i_read_file_from_disk_operation.html", null ],
@@ -116,6 +122,11 @@ var NAVTREE =
       [ "NIPhotoScrollView", "interface_n_i_photo_scroll_view.html", null ],
       [ "<NIPhotoScrollViewDelegate>", "protocol_n_i_photo_scroll_view_delegate-p.html", [
         [ "NIPhotoAlbumScrollView", "interface_n_i_photo_album_scroll_view.html", null ]
+      ] ],
+      [ "NIPhotoScrubberView", "interface_n_i_photo_scrubber_view.html", null ],
+      [ "<NIPhotoScrubberViewDataSource>", "protocol_n_i_photo_scrubber_view_data_source-p.html", null ],
+      [ "<NIPhotoScrubberViewDelegate>", "protocol_n_i_photo_scrubber_view_delegate-p.html", [
+        [ "NIToolbarPhotoViewController", "interface_n_i_toolbar_photo_view_controller.html", null ]
       ] ],
       [ "<NIProcessorDelegate>", "protocol_n_i_processor_delegate-p.html", null ],
       [ "NIURLMap", "interface_n_i_u_r_l_map.html", null ],
@@ -276,6 +287,8 @@ var NAVTREE =
       [ "/Users/featherless/workbench/ios/nimbus/src/photos/src/NIPhotoAlbumScrollView.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/photos/src/NIPhotoScrollView.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/photos/src/NIPhotoScrollView.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/photos/src/NIPhotoScrubberView.h", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/photos/src/NIPhotoScrubberView.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/photos/src/NIToolbarPhotoViewController.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/photos/src/NIToolbarPhotoViewController.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/processors/src/NimbusProcessors.h", null, null ],

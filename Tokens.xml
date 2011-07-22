@@ -662,11 +662,19 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>Version-3-to-4</Name>
+      <Name>Version-4</Name>
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
-    <Path>group___version-3-to-4.html</Path>
+    <Path>group___version-4.html</Path>
     <Abstract>Version 0.4 of Nimbus was released on July 20, 2011.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Version-4-1</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___version-4-1.html</Path>
+    <Abstract>Version 0.4.1 of Nimbus was released on July 22, 2011.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -758,7 +766,15 @@
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
     <Path>group___photos-_views.html</Path>
-    <Abstract>The views and protocols used to display and interact with photos.</Abstract>
+    <Abstract>The views used to display photos.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Photos-Protocols</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___photos-_protocols.html</Path>
+    <Abstract>The protocols used to interact with the photo views.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2457,6 +2473,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>zoomingIsEnabled</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>a2990185ef87b7bb83475119e6f6f73fa</Anchor>
+    <Abstract>Whether zooming is enabled or not.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>zoomingAboveOriginalSizeIsEnabled</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>ae19d7850f86f8bf602daed50758f8d6b</Anchor>
+    <Abstract>Whether small photos can be zoomed at least until they fit the screen.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>dataSource</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
@@ -2512,13 +2550,13 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>currentCenterPhotoIndex</Name>
+      <Name>centerPhotoIndex</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
       <Scope>NIPhotoAlbumScrollView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_photo_album_scroll_view.html</Path>
-    <Anchor>a727d4a7ad102caadc455e4fffddc8589</Anchor>
+    <Anchor>a8194b80d5c631a5912c6d105a5000ea7</Anchor>
     <Abstract>The current center photo index.</Abstract>
   </Token>
   <Token>
@@ -2531,6 +2569,17 @@
     <Path>interface_n_i_photo_album_scroll_view.html</Path>
     <Anchor>aa6f3fca130a6cb8358fde37e33a28fe2</Anchor>
     <Abstract>The total number of photos in this photo album view, as gathered from the data source.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setCenterPhotoIndex:animated:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoAlbumScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_album_scroll_view.html</Path>
+    <Anchor>a3f8d6526d57a471cbc2579b0cd097a8e</Anchor>
+    <Abstract>Change the center photo index with optional animation.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2743,6 +2792,50 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>zoomingIsEnabled</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scroll_view.html</Path>
+    <Anchor>a3d2a03a9d821767241a5cb821ff7afca</Anchor>
+    <Abstract>Whether the photo is allowed to be zoomed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>zoomingAboveOriginalSizeIsEnabled</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scroll_view.html</Path>
+    <Anchor>a3373a0ada0a8496c6eabbb8564da5956</Anchor>
+    <Abstract>Whether small photos can be zoomed at least until they fit the screen.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>doubleTapToZoomIsEnabled</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scroll_view.html</Path>
+    <Anchor>a4e9b451beafdb4285991b21b5424eadd</Anchor>
+    <Abstract>Whether double-tapping zooms in and out of the image.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoIndex</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoScrollView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scroll_view.html</Path>
+    <Anchor>ae687ba8b1937839ba68c4d20876d9c93</Anchor>
+    <Abstract>The index of this photo within a photo album.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>photoSize</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
@@ -2765,25 +2858,14 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>zoomingIsEnabled</Name>
+      <Name>image</Name>
       <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
+      <Type>instm</Type>
       <Scope>NIPhotoScrollView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_photo_scroll_view.html</Path>
-    <Anchor>a3d2a03a9d821767241a5cb821ff7afca</Anchor>
-    <Abstract>Whether the photo is allowed to be zoomed.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>doubleTapToZoomIsEnabled</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIPhotoScrollView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_photo_scroll_view.html</Path>
-    <Anchor>a4e9b451beafdb4285991b21b5424eadd</Anchor>
-    <Abstract>Whether double-tapping zooms in and out of the image.</Abstract>
+    <Anchor>a779cbbcc2a400479d2ae643612358f0b</Anchor>
+    <Abstract>The currently-displayed photo.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2806,17 +2888,6 @@
     <Path>interface_n_i_photo_scroll_view.html</Path>
     <Anchor>ae810feafd0768dd63ef8437c1c69f316</Anchor>
     <Abstract>Remove image and reset the zoom scale.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>image</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIPhotoScrollView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_photo_scroll_view.html</Path>
-    <Anchor>a779cbbcc2a400479d2ae643612358f0b</Anchor>
-    <Abstract>The currently-displayed photo.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2861,6 +2932,138 @@
     <Path>protocol_n_i_photo_scroll_view_delegate-p.html</Path>
     <Anchor>ad4b3ef423033107ed51c0b41890f698f</Anchor>
     <Abstract>The user has double-tapped the photo to zoom either in or out.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIPhotoScrubberView</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIPhotoScrubberView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scrubber_view.html</Path>
+    <Abstract>A control built for quickly skimming through a collection of images.</Abstract>
+    <DeclaredIn>NIPhotoScrubberView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>dataSource</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoScrubberView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scrubber_view.html</Path>
+    <Anchor>af905e00ec09db5d9b4793f41ceb0505f</Anchor>
+    <Abstract>The data source for this scrubber view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>reloadData</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoScrubberView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scrubber_view.html</Path>
+    <Anchor>aaee2253bf84cdc2cb32f416ac1bc3559</Anchor>
+    <Abstract>Forces the scrubber view to reload all of its data.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didLoadThumbnail:atIndex:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoScrubberView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scrubber_view.html</Path>
+    <Anchor>aafbd966a8145848f3d3a0cd8aab81486</Anchor>
+    <Abstract>Notify the scrubber view that a thumbnail has been loaded at a given index.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>delegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoScrubberView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scrubber_view.html</Path>
+    <Anchor>a1fbb84364c8be413ddf971d6710deb7e</Anchor>
+    <Abstract>The delegate for this scrubber view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>selectedPhotoIndex</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIPhotoScrubberView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scrubber_view.html</Path>
+    <Anchor>a4213f30776aeac5d2f6fb61c4b41eb4e</Anchor>
+    <Abstract>The selected photo index.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setSelectedPhotoIndex:animated:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIPhotoScrubberView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_photo_scrubber_view.html</Path>
+    <Anchor>a3cbc6d3db863f4c5e7a964a340ec8f96</Anchor>
+    <Abstract>Set the selected photo with animation.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIPhotoScrubberViewDataSource</Name>
+      <APILanguage>c</APILanguage>
+      <Type>intf</Type>
+      <Scope>NIPhotoScrubberViewDataSource</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_scrubber_view_data_source-p.html</Path>
+    <Abstract>The data source for the photo scrubber.</Abstract>
+    <DeclaredIn>NIPhotoScrubberView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>numberOfPhotosInScrubberView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoScrubberViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_scrubber_view_data_source-p.html</Path>
+    <Anchor>a659135e70f65175fe85053c2573e06fd</Anchor>
+    <Abstract>Fetches the total number of photos in the scroll view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoScrubberView:thumbnailAtIndex:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoScrubberViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_scrubber_view_data_source-p.html</Path>
+    <Anchor>a9133733405c5cdb53f14498478a53326</Anchor>
+    <Abstract>Fetch the thumbnail image for the given photo index.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIPhotoScrubberViewDelegate</Name>
+      <APILanguage>c</APILanguage>
+      <Type>intf</Type>
+      <Scope>NIPhotoScrubberViewDelegate</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_scrubber_view_delegate-p.html</Path>
+    <Abstract>The delegate for the photo scrubber.</Abstract>
+    <DeclaredIn>NIPhotoScrubberView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoScrubberViewDidChangeSelection:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoScrubberViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_scrubber_view_delegate-p.html</Path>
+    <Anchor>a57c268be8d7a941087d978e6307c59d6</Anchor>
+    <Abstract>The photo scrubber changed its selection.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -3172,6 +3375,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>scrubberIsEnabled</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIToolbarPhotoViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
+    <Anchor>a4031bbbd4fcd72e9efde79c2137ff0ef</Anchor>
+    <Abstract>Whether to show a scrubber in the toolbar instead of next/previous buttons.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>toolbar</Name>
       <APILanguage>occ</APILanguage>
       <Type>instp</Type>
@@ -3191,6 +3405,17 @@
     <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
     <Anchor>a48147d9bffadafe85dc3e9e769565161</Anchor>
     <Abstract>The photo album view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoScrubberView</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIToolbarPhotoViewController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
+    <Anchor>af44495fae540512b2c68ccdbbdab24e7</Anchor>
+    <Abstract>The photo scrubber view.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -3268,6 +3493,17 @@
     <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
     <Anchor>a8bb24277692638ee8c113b1a25a6705e</Anchor>
     <Abstract>The previous photo in the album has been loaded and is ready to be displayed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>photoScrubberViewDidChangeSelection:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIPhotoScrubberViewDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_photo_scrubber_view_delegate-p.html</Path>
+    <Anchor>a57c268be8d7a941087d978e6307c59d6</Anchor>
+    <Abstract>The photo scrubber changed its selection.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>

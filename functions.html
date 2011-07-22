@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.1.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -121,15 +121,15 @@
 
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>centerPhotoIndex
+: <a class="el" href="interface_n_i_photo_album_scroll_view.html#a8194b80d5c631a5912c6d105a5000ea7">NIPhotoAlbumScrollView</a>
+</li>
 <li>chromeCanBeHidden
 : <a class="el" href="interface_n_i_toolbar_photo_view_controller.html#ab71b18ae481b0f9dd225f001e0e631b9">NIToolbarPhotoViewController</a>
 </li>
 <li>count
 : <a class="el" href="interface_n_i_linked_list.html#a91782fdbe13bf28a662784568ffdca43">NILinkedList</a>
 , <a class="el" href="interface_n_i_memory_cache.html#a7d62c34e4297861c986948bd75156d63">NIMemoryCache</a>
-</li>
-<li>currentCenterPhotoIndex
-: <a class="el" href="interface_n_i_photo_album_scroll_view.html#a727d4a7ad102caadc455e4fffddc8589">NIPhotoAlbumScrollView</a>
 </li>
 </ul>
 
@@ -140,16 +140,18 @@
 </li>
 <li>dataSource
 : <a class="el" href="interface_n_i_launcher_view.html#af849642b45b213adbd85e85054925428">NILauncherView</a>
+, <a class="el" href="interface_n_i_photo_scrubber_view.html#af905e00ec09db5d9b4793f41ceb0505f">NIPhotoScrubberView</a>
 , <a class="el" href="interface_n_i_photo_album_scroll_view.html#a763ac9859c692caac4232135ce22792d">NIPhotoAlbumScrollView</a>
 </li>
 <li>dateOfLastAccessWithName:
 : <a class="el" href="interface_n_i_memory_cache.html#a6c016c9a322c58151bbfb30793e9d475">NIMemoryCache</a>
 </li>
 <li>delegate
-: <a class="el" href="interface_n_i_photo_album_scroll_view.html#a992a9408b06190db98f14da4071fe4f4">NIPhotoAlbumScrollView</a>
+: <a class="el" href="interface_n_i_network_image_view.html#a7e60fd5a2b8c3fc57c92f24fc7dca8d3">NINetworkImageView</a>
+, <a class="el" href="interface_n_i_photo_album_scroll_view.html#a992a9408b06190db98f14da4071fe4f4">NIPhotoAlbumScrollView</a>
+, <a class="el" href="interface_n_i_photo_scrubber_view.html#a1fbb84364c8be413ddf971d6710deb7e">NIPhotoScrubberView</a>
 , <a class="el" href="interface_n_i_operation.html#a8fcfebd75a9559d0a41e9f8bcd01facf">NIOperation</a>
 , <a class="el" href="interface_n_i_launcher_view.html#a5680da202a46fb3ce6437d6987a7d41d">NILauncherView</a>
-, <a class="el" href="interface_n_i_network_image_view.html#a7e60fd5a2b8c3fc57c92f24fc7dca8d3">NINetworkImageView</a>
 </li>
 <li>didFailWithErrorBlock
 : <a class="el" href="interface_n_i_operation.html#a6d1ae5a692180c568ecfd8d3b02300e3">NIOperation</a>
@@ -159,6 +161,9 @@
 </li>
 <li>didLoadPhoto:atIndex:photoSize:
 : <a class="el" href="interface_n_i_photo_album_scroll_view.html#a8b53749aec990645b6502376cd41558c">NIPhotoAlbumScrollView</a>
+</li>
+<li>didLoadThumbnail:atIndex:
+: <a class="el" href="interface_n_i_photo_scrubber_view.html#aafbd966a8145848f3d3a0cd8aab81486">NIPhotoScrubberView</a>
 </li>
 <li>didSetObject:withName:
 : <a class="el" href="interface_n_i_memory_cache.html#ad803d84fcd1c29cf2dadb58c3f719923">NIMemoryCache</a>
@@ -375,6 +380,9 @@
 <li>numberOfPhotosInPhotoScrollView:
 : <a class="el" href="protocol_n_i_photo_album_scroll_view_data_source-p.html#a92aada6a17dbb2460144beaef77c1909">&lt;NIPhotoAlbumScrollViewDataSource&gt;</a>
 </li>
+<li>numberOfPhotosInScrubberView:
+: <a class="el" href="protocol_n_i_photo_scrubber_view_data_source-p.html#a659135e70f65175fe85053c2573e06fd">&lt;NIPhotoScrubberViewDataSource&gt;</a>
+</li>
 <li>numberOfPixels
 : <a class="el" href="interface_n_i_image_memory_cache.html#a40447c10f9dfc71c04bacb51895ba5e8">NIImageMemoryCache</a>
 </li>
@@ -465,18 +473,30 @@
 <li>photoDimensions
 : <a class="el" href="interface_n_i_photo_scroll_view.html#a9ed737c4d3e0e469d7effb5c43c3f72e">NIPhotoScrollView</a>
 </li>
+<li>photoIndex
+: <a class="el" href="interface_n_i_photo_scroll_view.html#ae687ba8b1937839ba68c4d20876d9c93">NIPhotoScrollView</a>
+</li>
 <li>photoScrollViewDelegate
 : <a class="el" href="interface_n_i_photo_scroll_view.html#a2e032560bef952835cc820594fca0ced">NIPhotoScrollView</a>
 </li>
 <li>photoScrollViewDidDoubleTapToZoom:didZoomIn:
 : <a class="el" href="protocol_n_i_photo_scroll_view_delegate-p.html#ad4b3ef423033107ed51c0b41890f698f">&lt;NIPhotoScrollViewDelegate&gt;</a>
 </li>
+<li>photoScrubberView
+: <a class="el" href="interface_n_i_toolbar_photo_view_controller.html#af44495fae540512b2c68ccdbbdab24e7">NIToolbarPhotoViewController</a>
+</li>
+<li>photoScrubberView:thumbnailAtIndex:
+: <a class="el" href="protocol_n_i_photo_scrubber_view_data_source-p.html#a9133733405c5cdb53f14498478a53326">&lt;NIPhotoScrubberViewDataSource&gt;</a>
+</li>
+<li>photoScrubberViewDidChangeSelection:
+: <a class="el" href="protocol_n_i_photo_scrubber_view_delegate-p.html#a57c268be8d7a941087d978e6307c59d6">&lt;NIPhotoScrubberViewDelegate&gt;</a>
+</li>
 <li>photoSize
 : <a class="el" href="interface_n_i_photo_scroll_view.html#a6f908f1e81b9b188198bb13e0aa38e5d">NIPhotoScrollView</a>
 </li>
 <li>prepareForReuse
-: <a class="el" href="interface_n_i_network_image_view.html#a7cce26c40c058f1c8b7265b971b2abc5">NINetworkImageView</a>
-, <a class="el" href="interface_n_i_photo_scroll_view.html#ae810feafd0768dd63ef8437c1c69f316">NIPhotoScrollView</a>
+: <a class="el" href="interface_n_i_photo_scroll_view.html#ae810feafd0768dd63ef8437c1c69f316">NIPhotoScrollView</a>
+, <a class="el" href="interface_n_i_network_image_view.html#a7cce26c40c058f1c8b7265b971b2abc5">NINetworkImageView</a>
 </li>
 <li>previousButton
 : <a class="el" href="interface_n_i_toolbar_photo_view_controller.html#a483abaaa360e65d5d2c497c74912e160">NIToolbarPhotoViewController</a>
@@ -503,6 +523,7 @@
 </li>
 <li>reloadData
 : <a class="el" href="interface_n_i_launcher_view.html#a00cd8720501ea27c466fa6e2201d41d4">NILauncherView</a>
+, <a class="el" href="interface_n_i_photo_scrubber_view.html#aaee2253bf84cdc2cb32f416ac1bc3559">NIPhotoScrubberView</a>
 , <a class="el" href="interface_n_i_photo_album_scroll_view.html#a499e3a1855ebae051598afde7fdc2c3c">NIPhotoAlbumScrollView</a>
 </li>
 <li>removeAllObjects
@@ -531,6 +552,15 @@
 <li>scaleOptions
 : <a class="el" href="interface_n_i_h_t_t_p_image_request.html#a11f4b6cc61cceb33a41423c62e4e735c">NIHTTPImageRequest</a>
 , <a class="el" href="interface_n_i_network_image_view.html#a7faef9d6a8e6e3a5886cf88c0262d4e1">NINetworkImageView</a>
+</li>
+<li>scrubberIsEnabled
+: <a class="el" href="interface_n_i_toolbar_photo_view_controller.html#a4031bbbd4fcd72e9efde79c2137ff0ef">NIToolbarPhotoViewController</a>
+</li>
+<li>selectedPhotoIndex
+: <a class="el" href="interface_n_i_photo_scrubber_view.html#a4213f30776aeac5d2f6fb61c4b41eb4e">NIPhotoScrubberView</a>
+</li>
+<li>setCenterPhotoIndex:animated:
+: <a class="el" href="interface_n_i_photo_album_scroll_view.html#a3f8d6526d57a471cbc2579b0cd097a8e">NIPhotoAlbumScrollView</a>
 </li>
 <li>setFrame:
 : <a class="el" href="interface_n_i_launcher_view.html#a37761e0617ece5ef925ea575647a8620">NILauncherView</a>
@@ -564,6 +594,9 @@
 </li>
 <li>setPathToNetworkImage:forDisplaySize:contentMode:
 : <a class="el" href="interface_n_i_network_image_view.html#a0fe80155480019a31d7be5d3d8ae07ca">NINetworkImageView</a>
+</li>
+<li>setSelectedPhotoIndex:animated:
+: <a class="el" href="interface_n_i_photo_scrubber_view.html#a3cbc6d3db863f4c5e7a964a340ec8f96">NIPhotoScrubberView</a>
 </li>
 <li>showPhotoAlbumBeneathToolbar
 : <a class="el" href="interface_n_i_toolbar_photo_view_controller.html#a7bd38a82a21e17d2d3014a7d0bb574d4">NIToolbarPhotoViewController</a>
@@ -613,8 +646,13 @@
 
 
 <h3><a class="anchor" id="index_z"></a>- z -</h3><ul>
+<li>zoomingAboveOriginalSizeIsEnabled
+: <a class="el" href="interface_n_i_photo_album_scroll_view.html#ae19d7850f86f8bf602daed50758f8d6b">NIPhotoAlbumScrollView</a>
+, <a class="el" href="interface_n_i_photo_scroll_view.html#a3373a0ada0a8496c6eabbb8564da5956">NIPhotoScrollView</a>
+</li>
 <li>zoomingIsEnabled
-: <a class="el" href="interface_n_i_photo_scroll_view.html#a3d2a03a9d821767241a5cb821ff7afca">NIPhotoScrollView</a>
+: <a class="el" href="interface_n_i_photo_album_scroll_view.html#a2990185ef87b7bb83475119e6f6f73fa">NIPhotoAlbumScrollView</a>
+, <a class="el" href="interface_n_i_photo_scroll_view.html#a3d2a03a9d821767241a5cb821ff7afca">NIPhotoScrollView</a>
 </li>
 </ul>
 </div>

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.1.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -76,7 +76,7 @@
 <div class="title">NIToolbarPhotoViewController Class Reference<div class="ingroups"><a class="el" href="group___photos-_controllers.html">Photo View Controllers</a></div></div>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="NIToolbarPhotoViewController" --><!-- doxytag: inherits="NIPhotoAlbumScrollViewDelegate-p" --><hr/><a name="details" id="details"></a><h2>Overview</h2>
+<!-- doxytag: class="NIToolbarPhotoViewController" --><!-- doxytag: inherits="NIPhotoAlbumScrollViewDelegate-p,NIPhotoScrubberViewDelegate-p" --><hr/><a name="details" id="details"></a><h2>Overview</h2>
 <div class="textblock"><p>A simple photo album view controller implementation with a toolbar. </p>
 <p>This controller does not implement the photo album data source, it simply implements some of the most common UI elements that are associated with a photo viewer.</p>
 <p>For an example of implementing the data source, see the photos examples in the examples directory.</p>
@@ -97,9 +97,9 @@
 <p>The following settings are good for viewing photo albums when you want to keep the chrome visible at all times without zooming enabled.</p>
 <div class="fragment"><pre class="fragment">  <a class="code" href="interface_n_i_toolbar_photo_view_controller.html#a7bd38a82a21e17d2d3014a7d0bb574d4" title="Whether to show the photo album view beneath the toolbar or not.">showPhotoAlbumBeneathToolbar</a> = NO;
   <a class="code" href="interface_n_i_toolbar_photo_view_controller.html#ab71b18ae481b0f9dd225f001e0e631b9" title="Whether or not to allow hiding the chrome.">chromeCanBeHidden</a> = NO;
-  <a class="code" href="interface_n_i_toolbar_photo_view_controller.html#a48147d9bffadafe85dc3e9e769565161" title="The photo album view.">photoAlbumView</a>.zoomingIsEnabled = NO;
+  <a class="code" href="interface_n_i_toolbar_photo_view_controller.html#a48147d9bffadafe85dc3e9e769565161" title="The photo album view.">photoAlbumView</a>.<a class="code" href="interface_n_i_photo_album_scroll_view.html#a2990185ef87b7bb83475119e6f6f73fa" title="Whether zooming is enabled or not.">zoomingIsEnabled</a> = NO;
 </pre></div> 
-<p>Definition at line <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html#l00075">75</a> of file <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html">NIToolbarPhotoViewController.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html#l00077">77</a> of file <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html">NIToolbarPhotoViewController.h</a>.</p>
 </div><div class="dynheader">
 Inheritance diagram for NIToolbarPhotoViewController:</div>
 <div class="dyncontent">
@@ -107,6 +107,7 @@ Inheritance diagram for NIToolbarPhotoViewController:</div>
   <img src="interface_n_i_toolbar_photo_view_controller.png" usemap="#NIToolbarPhotoViewController_map" alt=""/>
   <map id="NIToolbarPhotoViewController_map" name="NIToolbarPhotoViewController_map">
 <area href="protocol_n_i_photo_album_scroll_view_delegate-p.html" title="The photo album scroll view delegate." alt="&lt;NIPhotoAlbumScrollViewDelegate&gt;" shape="rect" coords="0,0,216,24"/>
+<area href="protocol_n_i_photo_scrubber_view_delegate-p.html" title="The delegate for the photo scrubber." alt="&lt;NIPhotoScrubberViewDelegate&gt;" shape="rect" coords="226,0,442,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -117,28 +118,33 @@ Methods</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_toolbar_photo_view_controller.html#aa9ee0c17370b57ce498e7864be1bfc33">hidesChromeWhenScrolling</a> <span class="suffix">property</span></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_toolbar_photo_view_controller.html#ab71b18ae481b0f9dd225f001e0e631b9">chromeCanBeHidden</a> <span class="suffix">property</span></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_toolbar_photo_view_controller.html#aef2b9930b7397117509201a374c7f28f">animateMovingToNextAndPreviousPhotos</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_toolbar_photo_view_controller.html#a4031bbbd4fcd72e9efde79c2137ff0ef">scrubberIsEnabled</a> <span class="suffix">property</span></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Views</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e9dea6df26f101beac8ab6edba27ecd"></a><!-- doxytag: member="NIToolbarPhotoViewController::toolbar" ref="a9e9dea6df26f101beac8ab6edba27ecd" args="" -->
 UIToolbar *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_toolbar_photo_view_controller.html#a9e9dea6df26f101beac8ab6edba27ecd">toolbar</a> <span class="suffix">property</span></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48147d9bffadafe85dc3e9e769565161"></a><!-- doxytag: member="NIToolbarPhotoViewController::photoAlbumView" ref="a48147d9bffadafe85dc3e9e769565161" args="" -->
 <a class="el" href="interface_n_i_photo_album_scroll_view.html">NIPhotoAlbumScrollView</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_toolbar_photo_view_controller.html#a48147d9bffadafe85dc3e9e769565161">photoAlbumView</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af44495fae540512b2c68ccdbbdab24e7"></a><!-- doxytag: member="NIToolbarPhotoViewController::photoScrubberView" ref="af44495fae540512b2c68ccdbbdab24e7" args="" -->
+<a class="el" href="interface_n_i_photo_scrubber_view.html">NIPhotoScrubberView</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_toolbar_photo_view_controller.html#af44495fae540512b2c68ccdbbdab24e7">photoScrubberView</a> <span class="suffix">property</span></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Toolbar Buttons</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55e0a510317f26fee796e36692a3ceb6"></a><!-- doxytag: member="NIToolbarPhotoViewController::nextButton" ref="a55e0a510317f26fee796e36692a3ceb6" args="" -->
 UIBarButtonItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_toolbar_photo_view_controller.html#a55e0a510317f26fee796e36692a3ceb6">nextButton</a> <span class="suffix">property</span></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a483abaaa360e65d5d2c497c74912e160"></a><!-- doxytag: member="NIToolbarPhotoViewController::previousButton" ref="a483abaaa360e65d5d2c497c74912e160" args="" -->
 UIBarButtonItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_toolbar_photo_view_controller.html#a483abaaa360e65d5d2c497c74912e160">previousButton</a> <span class="suffix">property</span></td></tr>
-<tr><td colspan="2"><div class="groupHeader">[Delegate] Scrolling and Zooming</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">[NIPhotoAlbumScrollViewDelegate] Scrolling and Zooming</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fcd4c30753c07f9ea9410cd7fc560fd"></a><!-- doxytag: member="NIToolbarPhotoViewController::photoAlbumScrollViewDidScroll:" ref="a5fcd4c30753c07f9ea9410cd7fc560fd" args="(NIPhotoAlbumScrollView *photoAlbumScrollView)" -->
 (void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_album_scroll_view_delegate-p.html#a5fcd4c30753c07f9ea9410cd7fc560fd">photoAlbumScrollViewDidScroll:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0eef6e4fa181a3df8ab5d6909523d4ab"></a><!-- doxytag: member="NIToolbarPhotoViewController::photoAlbumScrollView:didZoomIn:" ref="a0eef6e4fa181a3df8ab5d6909523d4ab" args="(NIPhotoAlbumScrollView *photoAlbumScrollView,[didZoomIn] BOOL didZoomIn)" -->
 (void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_album_scroll_view_delegate-p.html#a0eef6e4fa181a3df8ab5d6909523d4ab">photoAlbumScrollView:didZoomIn:</a></td></tr>
-<tr><td colspan="2"><div class="groupHeader">[Delegate] Changing Pages</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">[NIPhotoAlbumScrollViewDelegate] Changing Pages</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_album_scroll_view_delegate-p.html#af4852dedcacd71213d41c3c063842882">photoAlbumScrollViewDidChangePages:</a></td></tr>
-<tr><td colspan="2"><div class="groupHeader">[Delegate] Data Availability</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">[NIPhotoAlbumScrollViewDelegate] Data Availability</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32117b185be7beba7883340439dea650"></a><!-- doxytag: member="NIToolbarPhotoViewController::photoAlbumScrollViewDidLoadNextPhoto:" ref="a32117b185be7beba7883340439dea650" args="(NIPhotoAlbumScrollView *photoAlbumScrollView)" -->
 (void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_album_scroll_view_delegate-p.html#a32117b185be7beba7883340439dea650">photoAlbumScrollViewDidLoadNextPhoto:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bb24277692638ee8c113b1a25a6705e"></a><!-- doxytag: member="NIToolbarPhotoViewController::photoAlbumScrollViewDidLoadPreviousPhoto:" ref="a8bb24277692638ee8c113b1a25a6705e" args="(NIPhotoAlbumScrollView *photoAlbumScrollView)" -->
 (void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_album_scroll_view_delegate-p.html#a8bb24277692638ee8c113b1a25a6705e">photoAlbumScrollViewDidLoadPreviousPhoto:</a></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Selection Changes</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_scrubber_view_delegate-p.html#a57c268be8d7a941087d978e6307c59d6">photoScrubberViewDidChangeSelection:</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
 <a class="anchor" id="a7bd38a82a21e17d2d3014a7d0bb574d4"></a><!-- doxytag: member="NIToolbarPhotoViewController::showPhotoAlbumBeneathToolbar" ref="a7bd38a82a21e17d2d3014a7d0bb574d4" args="" -->
@@ -157,7 +163,7 @@ UIBarButtonItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 <p>If this is disabled, the photo will only occupy the remaining space above the toolbar.</p>
 <p>By default this is YES. </p>
 
-<p>Definition at line <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html#l00116">116</a> of file <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html">NIToolbarPhotoViewController.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html#l00119">119</a> of file <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html">NIToolbarPhotoViewController.h</a>.</p>
 
 </div>
 </div>
@@ -178,7 +184,7 @@ UIBarButtonItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 <p>By default this is YES.</p>
 <dl class="attention"><dt><b>Attention:</b></dt><dd>This will be set to NO if toolbarCanBeHidden is set to NO. </dd></dl>
 
-<p>Definition at line <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html#l00130">130</a> of file <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html">NIToolbarPhotoViewController.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html#l00133">133</a> of file <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html">NIToolbarPhotoViewController.h</a>.</p>
 
 </div>
 </div>
@@ -200,7 +206,7 @@ UIBarButtonItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 <p>By default this is YES.</p>
 <dl class="attention"><dt><b>Attention:</b></dt><dd>Setting this to NO will also disable hidesToolbarWhenScrolling. </dd></dl>
 
-<p>Definition at line <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html#l00146">146</a> of file <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html">NIToolbarPhotoViewController.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html#l00149">149</a> of file <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html">NIToolbarPhotoViewController.h</a>.</p>
 
 </div>
 </div>
@@ -218,7 +224,25 @@ UIBarButtonItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 <p>Whether to animate moving to a next or previous photo when the user taps the button. </p>
 <p>By default this is NO. </p>
 
-<p>Definition at line <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html#l00153">153</a> of file <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html">NIToolbarPhotoViewController.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html#l00156">156</a> of file <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html">NIToolbarPhotoViewController.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4031bbbd4fcd72e9efde79c2137ff0ef"></a><!-- doxytag: member="NIToolbarPhotoViewController::scrubberIsEnabled" ref="a4031bbbd4fcd72e9efde79c2137ff0ef" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) scrubberIsEnabled<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Whether to show a scrubber in the toolbar instead of next/previous buttons. </p>
+<p>By default this is YES on the iPad and NO on the iPhone. </p>
+
+<p>Definition at line <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html#l00163">163</a> of file <a class="el" href="_n_i_toolbar_photo_view_controller_8h_source.html">NIToolbarPhotoViewController.h</a>.</p>
 
 </div>
 </div>
@@ -239,6 +263,26 @@ UIBarButtonItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 
 <p>The current page has changed. </p>
 <p>photoAlbumScrollView.currentCenterPhotoIndex will reflect the changed photo index. </p>
+
+</div>
+</div>
+<a class="anchor" id="a57c268be8d7a941087d978e6307c59d6"></a><!-- doxytag: member="NIToolbarPhotoViewController::photoScrubberViewDidChangeSelection:" ref="a57c268be8d7a941087d978e6307c59d6" args="(NIPhotoScrubberView *photoScrubberView)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) photoScrubberViewDidChangeSelection: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="interface_n_i_photo_scrubber_view.html">NIPhotoScrubberView</a> *)&#160;</td>
+          <td class="paramname"><em>photoScrubberView</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The photo scrubber changed its selection. </p>
+<p>Use photoScrubberView.selectedPhotoIndex to access the current selection. </p>
 
 </div>
 </div>

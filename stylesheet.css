@@ -968,11 +968,16 @@ table.modificationtable td {
   color: red;
 }
 
-.apiDiffBugfix,
 .apiDiffFeature {
   font-style: italic;
   font-size: 80%;
   color: orange;
+}
+
+.apiDiffBugfix {
+  font-style: italic;
+  font-size: 80%;
+  color: black;
 }
 
 .contributor_profile {
@@ -1007,4 +1012,8 @@ table.modificationtable td {
 
 .clearfix {
   clear: both;
+}
+
+.contents li {
+  margin: 5px 0;
 }

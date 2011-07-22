@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.1.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -72,8 +72,6 @@
 </script>
 <div id="doc-content">
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Methods</a>  </div>
   <div class="headertitle">
 <div class="title">NIPhotoScrollView Class Reference<div class="ingroups"><a class="el" href="group___photos-_views.html">Photo Views</a></div></div>  </div>
 </div>
@@ -85,58 +83,29 @@
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Configuring Functionality</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scroll_view.html#a3d2a03a9d821767241a5cb821ff7afca">zoomingIsEnabled</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scroll_view.html#a3373a0ada0a8496c6eabbb8564da5956">zoomingAboveOriginalSizeIsEnabled</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scroll_view.html#a4e9b451beafdb4285991b21b5424eadd">doubleTapToZoomIsEnabled</a> <span class="suffix">property</span></td></tr>
+<tr><td colspan="2"><div class="groupHeader">State</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae687ba8b1937839ba68c4d20876d9c93"></a><!-- doxytag: member="NIPhotoScrollView::photoIndex" ref="ae687ba8b1937839ba68c4d20876d9c93" args="" -->
+NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scroll_view.html#ae687ba8b1937839ba68c4d20876d9c93">photoIndex</a> <span class="suffix">property</span></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NIPhotoScrollViewPhotoSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scroll_view.html#a6f908f1e81b9b188198bb13e0aa38e5d">photoSize</a> <span class="suffix">property</span></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">CGSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scroll_view.html#a9ed737c4d3e0e469d7effb5c43c3f72e">photoDimensions</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scroll_view.html#a3d2a03a9d821767241a5cb821ff7afca">zoomingIsEnabled</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scroll_view.html#a4e9b451beafdb4285991b21b5424eadd">doubleTapToZoomIsEnabled</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e032560bef952835cc820594fca0ced"></a><!-- doxytag: member="NIPhotoScrollView::photoScrollViewDelegate" ref="a2e032560bef952835cc820594fca0ced" args="" -->
-id&lt; <a class="el" href="protocol_n_i_photo_scroll_view_delegate-p.html">NIPhotoScrollViewDelegate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scroll_view.html#a2e032560bef952835cc820594fca0ced">photoScrollViewDelegate</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae810feafd0768dd63ef8437c1c69f316"></a><!-- doxytag: member="NIPhotoScrollView::prepareForReuse" ref="ae810feafd0768dd63ef8437c1c69f316" args="()" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_photo_scroll_view.html#ae810feafd0768dd63ef8437c1c69f316">prepareForReuse</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a779cbbcc2a400479d2ae643612358f0b"></a><!-- doxytag: member="NIPhotoScrollView::image" ref="a779cbbcc2a400479d2ae643612358f0b" args="()" -->
 (UIImage *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_photo_scroll_view.html#a779cbbcc2a400479d2ae643612358f0b">image</a></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Photo Scroll View Delegate</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e032560bef952835cc820594fca0ced"></a><!-- doxytag: member="NIPhotoScrollView::photoScrollViewDelegate" ref="a2e032560bef952835cc820594fca0ced" args="" -->
+id&lt; <a class="el" href="protocol_n_i_photo_scroll_view_delegate-p.html">NIPhotoScrollViewDelegate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scroll_view.html#a2e032560bef952835cc820594fca0ced">photoScrollViewDelegate</a> <span class="suffix">property</span></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Modifying State</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae810feafd0768dd63ef8437c1c69f316"></a><!-- doxytag: member="NIPhotoScrollView::prepareForReuse" ref="ae810feafd0768dd63ef8437c1c69f316" args="()" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_photo_scroll_view.html#ae810feafd0768dd63ef8437c1c69f316">prepareForReuse</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_photo_scroll_view.html#a4890f1d3b7bd9feba24b2c312d5ce105">setImage:photoSize:</a></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Saving/Restoring Offset and Scale</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a022c6d9c29aa3f7e7b31387d5f05f9e0"></a><!-- doxytag: member="NIPhotoScrollView::setFrameAndMaintainZoomAndCenter:" ref="a022c6d9c29aa3f7e7b31387d5f05f9e0" args="(CGRect frame)" -->
 (void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_photo_scroll_view.html#a022c6d9c29aa3f7e7b31387d5f05f9e0">setFrameAndMaintainZoomAndCenter:</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
-<a class="anchor" id="a6f908f1e81b9b188198bb13e0aa38e5d"></a><!-- doxytag: member="NIPhotoScrollView::photoSize" ref="a6f908f1e81b9b188198bb13e0aa38e5d" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NIPhotoScrollViewPhotoSize) photoSize<code> [read, write, assign]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>The current size of the photo. </p>
-<p>This is used to replace the photo only with successively higher-quality versions. </p>
-
-<p>Definition at line <a class="el" href="_n_i_photo_scroll_view_8h_source.html#l00068">68</a> of file <a class="el" href="_n_i_photo_scroll_view_8h_source.html">NIPhotoScrollView.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9ed737c4d3e0e469d7effb5c43c3f72e"></a><!-- doxytag: member="NIPhotoScrollView::photoDimensions" ref="a9ed737c4d3e0e469d7effb5c43c3f72e" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (CGSize) photoDimensions<code> [read, write, assign]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>The largest dimensions of the photo. </p>
-<p>This is used to show the thumbnail at the final image size in case the final image size is smaller than the album's frame. Without this value we have to assume that the thumbnail will take up the full screen. If the final image doesn't take up the full screen, then the photo view will appear to "snap" to the smaller full-size image when the final image does load.</p>
-<p>CGSizeZero is used to signify an unknown final photo dimension. </p>
-
-<p>Definition at line <a class="el" href="_n_i_photo_scroll_view_8h_source.html#l00088">88</a> of file <a class="el" href="_n_i_photo_scroll_view_8h_source.html">NIPhotoScrollView.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a3d2a03a9d821767241a5cb821ff7afca"></a><!-- doxytag: member="NIPhotoScrollView::zoomingIsEnabled" ref="a3d2a03a9d821767241a5cb821ff7afca" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -151,7 +120,29 @@ id&lt; <a class="el" href="protocol_n_i_photo_scroll_view_delegate-p.html">NIPho
 <p>Whether the photo is allowed to be zoomed. </p>
 <p>By default this is YES. </p>
 
-<p>Definition at line <a class="el" href="_n_i_photo_scroll_view_8h_source.html#l00095">95</a> of file <a class="el" href="_n_i_photo_scroll_view_8h_source.html">NIPhotoScrollView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_photo_scroll_view_8h_source.html#l00070">70</a> of file <a class="el" href="_n_i_photo_scroll_view_8h_source.html">NIPhotoScrollView.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3373a0ada0a8496c6eabbb8564da5956"></a><!-- doxytag: member="NIPhotoScrollView::zoomingAboveOriginalSizeIsEnabled" ref="a3373a0ada0a8496c6eabbb8564da5956" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) zoomingAboveOriginalSizeIsEnabled<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Whether small photos can be zoomed at least until they fit the screen. </p>
+<p>If this is disabled, images smaller than the view size can not be zoomed in beyond their original dimensions.</p>
+<p>If this is enabled, images smaller than the view size can be zoomed in only until they fit the view bounds.</p>
+<p>The default behavior in Photos.app allows small photos to be zoomed in.</p>
+<dl class="attention"><dt><b>Attention:</b></dt><dd>This will allow photos to be zoomed in even if they don't have any more pixels to show, causing the photo to blur. This can look ok for photographs, but might not look ok for software design mockups.</dd></dl>
+<p>By default this is YES. </p>
+
+<p>Definition at line <a class="el" href="_n_i_photo_scroll_view_8h_source.html#l00089">89</a> of file <a class="el" href="_n_i_photo_scroll_view_8h_source.html">NIPhotoScrollView.h</a>.</p>
 
 </div>
 </div>
@@ -170,7 +161,44 @@ id&lt; <a class="el" href="protocol_n_i_photo_scroll_view_delegate-p.html">NIPho
 <p>Available on iOS 3.2 and later.</p>
 <p>By default this is YES. </p>
 
-<p>Definition at line <a class="el" href="_n_i_photo_scroll_view_8h_source.html#l00104">104</a> of file <a class="el" href="_n_i_photo_scroll_view_8h_source.html">NIPhotoScrollView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_photo_scroll_view_8h_source.html#l00098">98</a> of file <a class="el" href="_n_i_photo_scroll_view_8h_source.html">NIPhotoScrollView.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6f908f1e81b9b188198bb13e0aa38e5d"></a><!-- doxytag: member="NIPhotoScrollView::photoSize" ref="a6f908f1e81b9b188198bb13e0aa38e5d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NIPhotoScrollViewPhotoSize) photoSize<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The current size of the photo. </p>
+<p>This is used to replace the photo only with successively higher-quality versions. </p>
+
+<p>Definition at line <a class="el" href="_n_i_photo_scroll_view_8h_source.html#l00118">118</a> of file <a class="el" href="_n_i_photo_scroll_view_8h_source.html">NIPhotoScrollView.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9ed737c4d3e0e469d7effb5c43c3f72e"></a><!-- doxytag: member="NIPhotoScrollView::photoDimensions" ref="a9ed737c4d3e0e469d7effb5c43c3f72e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (CGSize) photoDimensions<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The largest dimensions of the photo. </p>
+<p>This is used to show the thumbnail at the final image size in case the final image size is smaller than the album's frame. Without this value we have to assume that the thumbnail will take up the full screen. If the final image doesn't take up the full screen, then the photo view will appear to "snap" to the smaller full-size image when the final image does load.</p>
+<p>CGSizeZero is used to signify an unknown final photo dimension. </p>
+
+<p>Definition at line <a class="el" href="_n_i_photo_scroll_view_8h_source.html#l00131">131</a> of file <a class="el" href="_n_i_photo_scroll_view_8h_source.html">NIPhotoScrollView.h</a>.</p>
 
 </div>
 </div>
@@ -203,7 +231,7 @@ id&lt; <a class="el" href="protocol_n_i_photo_scroll_view_delegate-p.html">NIPho
 <p>If image is nil then the photoSize will be overridden as NIPhotoScrollViewPhotoSizeUnknown.</p>
 <p>Resets the current zoom levels and zooms to fit the image. </p>
 
-<p>Definition at line <a class="el" href="_n_i_photo_scroll_view_8m_source.html#l00259">259</a> of file <a class="el" href="_n_i_photo_scroll_view_8m_source.html">NIPhotoScrollView.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_photo_scroll_view_8m_source.html#l00328">328</a> of file <a class="el" href="_n_i_photo_scroll_view_8m_source.html">NIPhotoScrollView.m</a>.</p>
 
 </div>
 </div>

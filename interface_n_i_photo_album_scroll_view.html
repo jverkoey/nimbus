@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.4.0.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.4.1.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -95,6 +95,9 @@ Inheritance diagram for NIPhotoAlbumScrollView:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Configuring Functionality</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_album_scroll_view.html#a2990185ef87b7bb83475119e6f6f73fa">zoomingIsEnabled</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_album_scroll_view.html#ae19d7850f86f8bf602daed50758f8d6b">zoomingAboveOriginalSizeIsEnabled</a> <span class="suffix">property</span></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Data Source</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">id<br class="typebreak"/>
 &lt; <a class="el" href="protocol_n_i_photo_album_scroll_view_data_source-p.html">NIPhotoAlbumScrollViewDataSource</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_album_scroll_view.html#a763ac9859c692caac4232135ce22792d">dataSource</a> <span class="suffix">property</span></td></tr>
@@ -105,10 +108,12 @@ Methods</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Configuring Presentation</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">UIImage *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_album_scroll_view.html#a5efc3ce3a183043fe3d6341ae82908cc">loadingImage</a> <span class="suffix">property</span></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">CGFloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_album_scroll_view.html#affaad3ec044e3e8f354271a81d723f19">pageHorizontalMargin</a> <span class="suffix">property</span></td></tr>
-<tr><td colspan="2"><div class="groupHeader">Accessing State</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_album_scroll_view.html#a727d4a7ad102caadc455e4fffddc8589">currentCenterPhotoIndex</a> <span class="suffix">property</span></td></tr>
+<tr><td colspan="2"><div class="groupHeader">State</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_album_scroll_view.html#a8194b80d5c631a5912c6d105a5000ea7">centerPhotoIndex</a> <span class="suffix">property</span></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_album_scroll_view.html#aa6f3fca130a6cb8358fde37e33a28fe2">numberOfPhotos</a> <span class="suffix">property</span></td></tr>
-<tr><td colspan="2"><div class="groupHeader">Changing Photos</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f8d6526d57a471cbc2579b0cd097a8e"></a><!-- doxytag: member="NIPhotoAlbumScrollView::setCenterPhotoIndex:animated:" ref="a3f8d6526d57a471cbc2579b0cd097a8e" args="(NSInteger centerPhotoIndex,[animated] BOOL animated)" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_photo_album_scroll_view.html#a3f8d6526d57a471cbc2579b0cd097a8e">setCenterPhotoIndex:animated:</a></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Changing the Visible Photo</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e3b947a25bec57aed70afb27d809471"></a><!-- doxytag: member="NIPhotoAlbumScrollView::hasNext" ref="a3e3b947a25bec57aed70afb27d809471" args="()" -->
 (BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_photo_album_scroll_view.html#a3e3b947a25bec57aed70afb27d809471">hasNext</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ce7a3118a9b14539afffa572f75a434"></a><!-- doxytag: member="NIPhotoAlbumScrollView::hasPrevious" ref="a5ce7a3118a9b14539afffa572f75a434" args="()" -->
@@ -123,10 +128,48 @@ Methods</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_photo_album_scroll_view.html#ad8c49847a8e40845c7568c66c6d03cc5">willRotateToInterfaceOrientation:duration:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8fc80777983d64c632b64ac32d03eb49"></a><!-- doxytag: member="NIPhotoAlbumScrollView::willAnimateRotationToInterfaceOrientation:duration:" ref="a8fc80777983d64c632b64ac32d03eb49" args="(UIInterfaceOrientation toInterfaceOrientation,[duration] NSTimeInterval duration)" -->
 (void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_photo_album_scroll_view.html#a8fc80777983d64c632b64ac32d03eb49">willAnimateRotationToInterfaceOrientation:duration:</a></td></tr>
-<tr><td colspan="2"><div class="groupHeader">[Delegate] Zooming</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">[NIPhotoScrollViewDelegate] Zooming</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_scroll_view_delegate-p.html#ad4b3ef423033107ed51c0b41890f698f">photoScrollViewDidDoubleTapToZoom:didZoomIn:</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
+<a class="anchor" id="a2990185ef87b7bb83475119e6f6f73fa"></a><!-- doxytag: member="NIPhotoAlbumScrollView::zoomingIsEnabled" ref="a2990185ef87b7bb83475119e6f6f73fa" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) zoomingIsEnabled<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Whether zooming is enabled or not. </p>
+<p>Regardless of whether this is enabled, only original-sized images will be zoomable. This is because we often don't know how large the final image is so we can't calculate min and max zoom amounts correctly.</p>
+<p>By default this is YES. </p>
+
+<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html#l00092">92</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html">NIPhotoAlbumScrollView.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae19d7850f86f8bf602daed50758f8d6b"></a><!-- doxytag: member="NIPhotoAlbumScrollView::zoomingAboveOriginalSizeIsEnabled" ref="ae19d7850f86f8bf602daed50758f8d6b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) zoomingAboveOriginalSizeIsEnabled<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Whether small photos can be zoomed at least until they fit the screen. </p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="interface_n_i_photo_scroll_view.html#a3373a0ada0a8496c6eabbb8564da5956" title="Whether small photos can be zoomed at least until they fit the screen.">NIPhotoScrollView::zoomingAboveOriginalSizeIsEnabled</a></dd></dl>
+<p>By default this is YES. </p>
+
+<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html#l00101">101</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html">NIPhotoAlbumScrollView.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a763ac9859c692caac4232135ce22792d"></a><!-- doxytag: member="NIPhotoAlbumScrollView::dataSource" ref="a763ac9859c692caac4232135ce22792d" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -159,7 +202,7 @@ Methods</h2></td></tr>
 <p>The delegate for this photo album view. </p>
 <p>Any user interactions or state changes are sent to the delegate through this property. </p>
 
-<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html#l00139">139</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html">NIPhotoAlbumScrollView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html#l00133">133</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html">NIPhotoAlbumScrollView.h</a>.</p>
 
 </div>
 </div>
@@ -179,7 +222,7 @@ Methods</h2></td></tr>
 <p>Zooming is disabled when showing a loading image, regardless of the state of zoomingIsEnabled.</p>
 <p>By default this is nil. </p>
 
-<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html#l00160">160</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html">NIPhotoAlbumScrollView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html#l00148">148</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html">NIPhotoAlbumScrollView.h</a>.</p>
 
 </div>
 </div>
@@ -198,25 +241,26 @@ Methods</h2></td></tr>
 <p>The space between each photo will be 2x this value.</p>
 <p>By default this is NIPhotoAlbumScrollViewDefaultPageHorizontalMargin. </p>
 
-<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html#l00169">169</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html">NIPhotoAlbumScrollView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html#l00157">157</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html">NIPhotoAlbumScrollView.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a727d4a7ad102caadc455e4fffddc8589"></a><!-- doxytag: member="NIPhotoAlbumScrollView::currentCenterPhotoIndex" ref="a727d4a7ad102caadc455e4fffddc8589" args="" -->
+<a class="anchor" id="a8194b80d5c631a5912c6d105a5000ea7"></a><!-- doxytag: member="NIPhotoAlbumScrollView::centerPhotoIndex" ref="a8194b80d5c631a5912c6d105a5000ea7" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSInteger) currentCenterPhotoIndex<code> [read, assign]</code></td>
+          <td class="memname">- (NSInteger) centerPhotoIndex<code> [read, write, assign]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>The current center photo index. </p>
-<p>This is a zero-based value. If you intend to use this in a label such as "photo ## of n" be sure to add one to this value. </p>
+<p>This is a zero-based value. If you intend to use this in a label such as "photo ## of n" be sure to add one to this value.</p>
+<p>Setting this value directly will do so without animation. </p>
 
-<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html#l00186">186</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html">NIPhotoAlbumScrollView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html#l00170">170</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html">NIPhotoAlbumScrollView.h</a>.</p>
 
 </div>
 </div>
@@ -235,7 +279,7 @@ Methods</h2></td></tr>
 <p>This value is cached after reloadData has been called.</p>
 <p>Until reloadData is called the first time, numberOfPhotos will be NIPhotoAlbumScrollViewUnknownNumberOfPhotos. </p>
 
-<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html#l00196">196</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html">NIPhotoAlbumScrollView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html#l00185">185</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8h_source.html">NIPhotoAlbumScrollView.h</a>.</p>
 
 </div>
 </div>
@@ -257,7 +301,7 @@ Methods</h2></td></tr>
 <p>This must be called at least once after dataSource has been set in order for the view to gather any presentable information.</p>
 <p>This method is expensive. It will reset the state of the view and remove all existing pages before requesting the new information from the data source. </p>
 
-<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8m_source.html#l00408">408</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8m_source.html">NIPhotoAlbumScrollView.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8m_source.html#l00411">411</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8m_source.html">NIPhotoAlbumScrollView.m</a>.</p>
 
 </div>
 </div>
@@ -296,7 +340,7 @@ Methods</h2></td></tr>
 <p>You should notify the completed loading of thumbnails as well. Calling this method is fairly lightweight and will only update the images of the visible pages. Err on the side of calling this method too much rather than too little.</p>
 <p>The photo at the given index will only be replaced with the given image if photoSize is of a higher quality than the currently-displayed photo's size. </p>
 
-<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8m_source.html#l00447">447</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8m_source.html">NIPhotoAlbumScrollView.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8m_source.html#l00450">450</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8m_source.html">NIPhotoAlbumScrollView.m</a>.</p>
 
 </div>
 </div>
@@ -328,7 +372,7 @@ Methods</h2></td></tr>
 <p>Stores the current state of the scroll view in preparation for rotation. </p>
 <p>This must be called in conjunction with willAnimateRotationToInterfaceOrientation:duration: in the methods by the same name from the view controller containing this view. </p>
 
-<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8m_source.html#l00472">472</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8m_source.html">NIPhotoAlbumScrollView.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_photo_album_scroll_view_8m_source.html#l00475">475</a> of file <a class="el" href="_n_i_photo_album_scroll_view_8m_source.html">NIPhotoAlbumScrollView.m</a>.</p>
 
 </div>
 </div>
