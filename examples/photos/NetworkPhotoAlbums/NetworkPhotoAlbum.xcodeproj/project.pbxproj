@@ -32,6 +32,7 @@
 		665E0BD013CE816E008A1D21 /* NIPhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BCC13CE816E008A1D21 /* NIPhotoScrollView.m */; };
 		665E0BD113CE816E008A1D21 /* NIToolbarPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BCE13CE816E008A1D21 /* NIToolbarPhotoViewController.m */; };
 		665E0C0813CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0C0713CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m */; };
+		667DC2BE13D89FD100C1B0ED /* NIPhotoScrubberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DC2BD13D89FD100C1B0ED /* NIPhotoScrubberView.m */; };
 		669815C913D507F000417E8B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 669815C813D507F000417E8B /* JSONKit.m */; };
 		669815E913D5080500417E8B /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 669815D113D5080500417E8B /* ASIAuthenticationDialog.m */; };
 		669815EA13D5080500417E8B /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 669815D413D5080500417E8B /* ASIDataCompressor.m */; };
@@ -107,6 +108,8 @@
 		665E0BCE13CE816E008A1D21 /* NIToolbarPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIToolbarPhotoViewController.m; path = ../../../src/photos/src/NIToolbarPhotoViewController.m; sourceTree = SOURCE_ROOT; };
 		665E0C0613CE82A1008A1D21 /* FacebookPhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookPhotoAlbumViewController.h; path = src/FacebookPhotoAlbumViewController.h; sourceTree = "<group>"; };
 		665E0C0713CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FacebookPhotoAlbumViewController.m; path = src/FacebookPhotoAlbumViewController.m; sourceTree = "<group>"; };
+		667DC2BC13D89FD100C1B0ED /* NIPhotoScrubberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPhotoScrubberView.h; path = ../../../src/photos/src/NIPhotoScrubberView.h; sourceTree = "<group>"; };
+		667DC2BD13D89FD100C1B0ED /* NIPhotoScrubberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPhotoScrubberView.m; path = ../../../src/photos/src/NIPhotoScrubberView.m; sourceTree = "<group>"; };
 		669815C713D507F000417E8B /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = ../../../src/JSONKit/src/JSONKit.h; sourceTree = SOURCE_ROOT; };
 		669815C813D507F000417E8B /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = ../../../src/JSONKit/src/JSONKit.m; sourceTree = SOURCE_ROOT; };
 		669815D013D5080500417E8B /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = ../../../src/ASIHTTPRequest/src/ASIAuthenticationDialog.h; sourceTree = SOURCE_ROOT; };
@@ -290,6 +293,8 @@
 				665E0BCC13CE816E008A1D21 /* NIPhotoScrollView.m */,
 				665E0BCD13CE816E008A1D21 /* NIToolbarPhotoViewController.h */,
 				665E0BCE13CE816E008A1D21 /* NIToolbarPhotoViewController.m */,
+				667DC2BC13D89FD100C1B0ED /* NIPhotoScrubberView.h */,
+				667DC2BD13D89FD100C1B0ED /* NIPhotoScrubberView.m */,
 			);
 			name = Photos;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				6631671713D680A500FF0CBE /* NetworkPhotoAlbumViewController.m in Sources */,
 				6631673613D6825800FF0CBE /* CatalogTableViewController.m in Sources */,
 				6631680D13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.m in Sources */,
+				667DC2BE13D89FD100C1B0ED /* NIPhotoScrubberView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +512,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = src/NetworkPhotoAlbum_Prefix.pch;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = DEBUG;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "resources/NetworkPhotoAlbum-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;

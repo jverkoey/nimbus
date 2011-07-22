@@ -36,6 +36,8 @@
     request.delegate = nil;
   }
   [_queue cancelAllOperations];
+  
+  NI_RELEASE_SAFELY(_activeRequests);
 
   NI_RELEASE_SAFELY(_highQualityImageCache);
   NI_RELEASE_SAFELY(_thumbnailImageCache);
@@ -61,6 +63,15 @@
 - (void)requestImageFromSource: (NSString *)source
                      photoSize: (NIPhotoScrollViewPhotoSize)photoSize
                     photoIndex: (NSInteger)photoIndex {
+  BOOL isThumbnail = (NIPhotoScrollViewPhotoSizeThumbnail == photoSize);
+  NSInteger identifier = isThumbnail ? -(photoIndex + 1) : photoIndex;
+  NSNumber* identifierKey = [NSNumber numberWithInt:identifier];
+
+  // Avoid duplicating requests.
+  if ([_activeRequests containsObject:identifierKey]) {
+    return;
+  }
+
   NSURL* url = [NSURL URLWithString:source];
 
   // We must use __block here to avoid creating a retain cycle with the readOp.
@@ -68,9 +79,9 @@
                                                      usingCache: [ASIDownloadCache sharedCache]];
   readOp.timeOutSeconds = 30;
 
-  // Set an invalid index for thumbnail requests so that they don't get cancelled by
+  // Set an negative index for thumbnail requests so that they don't get cancelled by
   // photoAlbumScrollView:stopLoadingPhotoAtIndex:
-  readOp.tag = (photoSize == NIPhotoScrollViewPhotoSizeThumbnail) ? -1 : photoIndex;
+  readOp.tag = isThumbnail ? -(photoIndex + 1) : photoIndex;
 
   NSString* photoIndexKey = [self cacheKeyForPhotoIndex:photoIndex];
 
@@ -80,7 +91,7 @@
     UIImage* image = [UIImage imageWithData:[readOp responseData]];
 
     // Store the image in the correct image cache.
-    if (NIPhotoScrollViewPhotoSizeThumbnail == photoSize) {
+    if (isThumbnail) {
       [_thumbnailImageCache storeObject: image
                                withName: photoIndexKey];
 
@@ -94,6 +105,18 @@
     [self.photoAlbumView didLoadPhoto: image
                               atIndex: photoIndex
                             photoSize: photoSize];
+
+    if (isThumbnail) {
+      [self.photoScrubberView didLoadThumbnail:image atIndex:photoIndex];
+    }
+
+    [_activeRequests removeObject:identifierKey];
+  }];
+  
+  // When this request is canceled (like when we're quickly flipping through an album)
+  // the request will fail, so we must be careful to remove the request from the active set.
+  [readOp setFailedBlock:^{
+    [_activeRequests removeObject:identifierKey];
   }];
 
 
@@ -109,6 +132,8 @@
 
 
   // Start the operation.
+  
+  [_activeRequests addObject:identifierKey];
 
   [_queue addOperation:readOp];
 }
@@ -123,6 +148,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
   [super loadView];
+  
+  _activeRequests = [[NSMutableSet alloc] init];
 
   _highQualityImageCache = [[NIImageMemoryCache alloc] init];
   _thumbnailImageCache = [[NIImageMemoryCache alloc] init];
@@ -130,6 +157,7 @@
   [_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024*1024*3];
 
   _queue = [[NSOperationQueue alloc] init];
+  [_queue setMaxConcurrentOperationCount:5];
 
   // Set the default loading image.
   self.photoAlbumView.loadingImage = [UIImage imageWithContentsOfFile:

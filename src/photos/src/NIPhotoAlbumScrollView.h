@@ -68,7 +68,7 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
   CGFloat   _percentScrolledIntoFirstVisiblePage;
   BOOL      _isModifyingContentOffset;
   BOOL      _isAnimatingToPhoto;
-  NSInteger _currentCenterPhotoIndex;
+  NSInteger _centerPhotoIndex;
 
   // Cached Data Source Information
   NSInteger _numberOfPages;
@@ -191,8 +191,15 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  *
  * This is a zero-based value. If you intend to use this in a label such as "photo ## of n" be
  * sure to add one to this value.
+ *
+ * Setting this value directly will do so without animation.
  */
-@property (nonatomic, readonly, assign) NSInteger currentCenterPhotoIndex;
+@property (nonatomic, readwrite, assign) NSInteger centerPhotoIndex;
+
+/**
+ * Change the center photo index with optional animation.
+ */
+- (void)setCenterPhotoIndex:(NSInteger)centerPhotoIndex animated:(BOOL)animated;
 
 /**
  * The total number of photos in this photo album view, as gathered from the data source.

@@ -103,6 +103,16 @@
              @"Spring blossoms at Stanford", @"title",
              @"10150160584103418", @"initWith",
              nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:
+             [FacebookPhotoAlbumViewController class], @"class",
+             @"Shark Week", @"title",
+             @"208546235826221", @"initWith",
+             nil],
+            [NSDictionary dictionaryWithObjectsAndKeys:
+             [FacebookPhotoAlbumViewController class], @"class",
+             @"Game of Thrones", @"title",
+             @"489714642733", @"initWith",
+             nil],
 
             nil];
     [rows retain];

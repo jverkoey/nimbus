@@ -50,6 +50,8 @@
 > {
 @private
   NSOperationQueue* _queue;
+  
+  NSMutableSet* _activeRequests;
 
   NIImageMemoryCache* _highQualityImageCache;
   NIImageMemoryCache* _thumbnailImageCache;

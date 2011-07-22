@@ -27,6 +27,7 @@
  */
 @interface DribbblePhotoAlbumViewController : NetworkPhotoAlbumViewController <
   NIPhotoAlbumScrollViewDataSource,
+  NIPhotoScrubberViewDataSource,
   ASIHTTPRequestDelegate
 > {
 @private

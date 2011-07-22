@@ -27,6 +27,7 @@
  */
 @interface FacebookPhotoAlbumViewController : NetworkPhotoAlbumViewController <
   NIPhotoAlbumScrollViewDataSource,
+  NIPhotoScrubberViewDataSource,
   ASIHTTPRequestDelegate
 > {
 @private

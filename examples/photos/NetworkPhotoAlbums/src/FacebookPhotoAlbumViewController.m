@@ -66,7 +66,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadAlbumInformation {
   NSString* albumURLPath = [NSString stringWithFormat:
-                            @"http://graph.facebook.com/%@/photos",
+                            @"http://graph.facebook.com/%@/photos?limit=200",
                             self.facebookAlbumId];
 
   // Nimbus processors allow us to perform complex computations on a separate thread before
@@ -76,7 +76,9 @@
   NIProcessorHTTPRequest* albumRequest =
   [NIJSONKitProcessorHTTPRequest requestWithURL: url
                                      usingCache: [ASIDownloadCache sharedCache]];
-  albumRequest.timeOutSeconds = 30;
+  // Facebook albums are painfully slow to load if they have a lot of comments. Even more
+  // frustrating is that you can't ask *not* to receive the comments from the graph API.
+  albumRequest.timeOutSeconds = 200;
 
   // When the request fully completes we'll be notified via this delegate on the main thread.
   albumRequest.delegate = self;
@@ -101,6 +103,7 @@
   [super loadView];
 
   self.photoAlbumView.dataSource = self;
+  self.photoScrubberView.dataSource = self;
 
   // This title will be displayed until we get the results back for the album information.
   self.title = NSLocalizedString(@"Loading...", @"Navigation bar title - Loading a photo album");
@@ -130,6 +133,8 @@
   [self.photoAlbumView reloadData];
 
   [self loadThumbnails];
+
+  [self.photoScrubberView reloadData];
 }
 
 
@@ -198,6 +203,37 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
+#pragma mark NIPhotoScrubberViewDataSource
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)numberOfPhotosInScrubberView:(NIPhotoScrubberView *)photoScrubberView {
+  return [_photoInformation count];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIImage *)photoScrubberView: (NIPhotoScrubberView *)photoScrubberView
+              thumbnailAtIndex: (NSInteger)thumbnailIndex {
+  NSString* photoIndexKey = [self cacheKeyForPhotoIndex:thumbnailIndex];
+
+  UIImage* image = [self.thumbnailImageCache objectWithName:photoIndexKey];
+  if (nil == image) {
+    NSDictionary* photo = [_photoInformation objectAtIndex:thumbnailIndex];
+
+    NSString* thumbnailSource = [photo objectForKey:@"thumbnailSource"];
+    [self requestImageFromSource: thumbnailSource
+                       photoSize: NIPhotoScrollViewPhotoSizeThumbnail
+                      photoIndex: thumbnailIndex];
+  }
+
+  return image;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
 #pragma mark NIPhotoAlbumScrollViewDataSource
 
 
@@ -245,7 +281,6 @@
       [self requestImageFromSource: thumbnailSource
                          photoSize: NIPhotoScrollViewPhotoSizeThumbnail
                         photoIndex: photoIndex];
-
     }
   }
 

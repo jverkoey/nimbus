@@ -35,6 +35,7 @@
  *
  * The bundle can be found at <code>src/photos/resources/NimbusPhotos.bundle</code>.
  *
+ *
  * <h2>Architecture</h2>
  *
  * The architectural design of the photo album view takes inspiration from UITableView. Images
@@ -104,9 +105,11 @@
 #import "NimbusPhotos/NIPhotoViewController.h"
 #import "NimbusPhotos/NIPhotoAlbumScrollView.h"
 #import "NimbusPhotos/NIPhotoScrollView.h"
+#import "NimbusPhotos/NIPhotoScrubberView.h"
 #else
 #import "NimbusCore.h"
 #import "NIToolbarPhotoViewController.h"
 #import "NIPhotoAlbumScrollView.h"
 #import "NIPhotoScrollView.h"
+#import "NIPhotoScrubberView.h"
 #endif

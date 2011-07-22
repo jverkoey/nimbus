@@ -19,8 +19,10 @@
 
 #ifdef NIMBUS_STATIC_LIBRARY
 #import "NimbusPhotos/NIPhotoAlbumScrollView.h"
+#import "NimbusPhotos/NIPhotoScrubberView.h"
 #else
 #import "NIPhotoAlbumScrollView.h"
+#import "NIPhotoScrubberView.h"
 #endif
 
 @class NIPhotoAlbumScrollView;
@@ -73,15 +75,19 @@
  * @endcode
  */
 @interface NIToolbarPhotoViewController : UIViewController <
-  NIPhotoAlbumScrollViewDelegate > {
+  NIPhotoAlbumScrollViewDelegate,
+  NIPhotoScrubberViewDelegate > {
 @private
   // Views
   UIToolbar*              _toolbar;
   NIPhotoAlbumScrollView* _photoAlbumView;
 
-  // Toolbar buttons
+  // Toolbar Buttons
   UIBarButtonItem* _nextButton;
   UIBarButtonItem* _previousButton;
+
+  // Scrubber View
+  NIPhotoScrubberView* _photoScrubberView;
 
   // Gestures
   UITapGestureRecognizer* _tapGesture;
@@ -94,6 +100,7 @@
   BOOL _hidesChromeWhenScrolling;
   BOOL _chromeCanBeHidden;
   BOOL _animateMovingToNextAndPreviousPhotos;
+  BOOL _scrubberIsEnabled;
 }
 
 /**
@@ -152,6 +159,13 @@
  */
 @property (nonatomic, readwrite, assign) BOOL animateMovingToNextAndPreviousPhotos;
 
+/**
+ * Whether to show a scrubber in the toolbar instead of next/previous buttons.
+ *
+ * By default this is YES on the iPad and NO on the iPhone.
+ */
+@property (nonatomic, readwrite, assign, getter=isScrubberEnabled) BOOL scrubberIsEnabled;
+
 /**@}*/// End of Configuring Functionality
 
 
@@ -170,6 +184,11 @@
  * The photo album view.
  */
 @property (nonatomic, readonly, retain) NIPhotoAlbumScrollView* photoAlbumView;
+
+/**
+ * The photo scrubber view.
+ */
+@property (nonatomic, readonly, retain) NIPhotoScrubberView* photoScrubberView;
 
 /**@}*/// End of Views
 

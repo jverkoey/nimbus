@@ -98,6 +98,7 @@
   [super loadView];
 
   self.photoAlbumView.dataSource = self;
+  self.photoScrubberView.dataSource = self;
 
   // Dribbble is for mockups and designs, so we don't want to allow the photos to be zoomed
   // in and become blurry.
@@ -131,6 +132,8 @@
   [self.photoAlbumView reloadData];
 
   [self loadThumbnails];
+  
+  [self.photoScrubberView reloadData];
 }
 
 
@@ -172,6 +175,37 @@
     [photoInformation addObject:prunedPhotoInfo];
   }
   return photoInformation;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NIPhotoScrubberViewDataSource
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)numberOfPhotosInScrubberView:(NIPhotoScrubberView *)photoScrubberView {
+  return [_photoInformation count];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIImage *)photoScrubberView: (NIPhotoScrubberView *)photoScrubberView
+              thumbnailAtIndex: (NSInteger)thumbnailIndex {
+  NSString* photoIndexKey = [self cacheKeyForPhotoIndex:thumbnailIndex];
+  
+  UIImage* image = [self.thumbnailImageCache objectWithName:photoIndexKey];
+  if (nil == image) {
+    NSDictionary* photo = [_photoInformation objectAtIndex:thumbnailIndex];
+    
+    NSString* thumbnailSource = [photo objectForKey:@"thumbnailSource"];
+    [self requestImageFromSource: thumbnailSource
+                       photoSize: NIPhotoScrollViewPhotoSizeThumbnail
+                      photoIndex: thumbnailIndex];
+  }
+  
+  return image;
 }
 
 

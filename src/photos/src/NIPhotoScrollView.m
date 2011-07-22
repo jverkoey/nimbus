@@ -370,13 +370,22 @@
 - (void)setZoomingIsEnabled:(BOOL)enabled {
   _zoomingIsEnabled = enabled;
 
-  [self setMaxMinZoomScalesForCurrentBounds];
+  if (nil != _imageView.image) {
+    [self setMaxMinZoomScalesForCurrentBounds];
 
-  // Fit the image on screen.
-  self.zoomScale = self.minimumZoomScale;
+    // Fit the image on screen.
+    self.zoomScale = self.minimumZoomScale;
 
-  // Disable zoom bouncing if zooming is disabled, otherwise the view will allow pinching.
-  self.bouncesZoom = enabled;
+    // Disable zoom bouncing if zooming is disabled, otherwise the view will allow pinching.
+    self.bouncesZoom = enabled;
+
+  } else {
+    // Reset to the defaults if there is no set image yet.
+    self.zoomScale = 1;
+    self.minimumZoomScale = 1;
+    self.maximumZoomScale = 1;
+    self.bouncesZoom = NO;
+  }
 }
 
 

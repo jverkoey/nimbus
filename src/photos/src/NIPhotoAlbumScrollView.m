@@ -33,7 +33,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 @synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
 @synthesize dataSource = _dataSource;
 @synthesize delegate = _delegate;
-@synthesize currentCenterPhotoIndex = _currentCenterPhotoIndex;
+@synthesize centerPhotoIndex = _centerPhotoIndex;
 @synthesize numberOfPhotos = _numberOfPages;
 
 
@@ -60,7 +60,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
     _firstVisiblePageIndexBeforeRotation = -1;
     _percentScrolledIntoFirstVisiblePage = -1;
-    _currentCenterPhotoIndex = -1;
+    _centerPhotoIndex = -1;
     _numberOfPages = NIPhotoAlbumScrollViewUnknownNumberOfPhotos;
 
     _pagingScrollView = [[[UIScrollView alloc] initWithFrame:frame] autorelease];
@@ -85,11 +85,11 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)notifyDelegatePhotoDidLoadAtIndex:(NSInteger)photoIndex {
-  if (photoIndex == (self.currentCenterPhotoIndex + 1)
+  if (photoIndex == (self.centerPhotoIndex + 1)
       && [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidLoadNextPhoto:)]) {
     [self.delegate photoAlbumScrollViewDidLoadNextPhoto:self];
 
-  } else if (photoIndex == (self.currentCenterPhotoIndex - 1)
+  } else if (photoIndex == (self.centerPhotoIndex - 1)
              && [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidLoadPreviousPhoto:)]) {
     [self.delegate photoAlbumScrollViewDidLoadPreviousPhoto:self];
   }
@@ -267,7 +267,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resetSurroundingPages {
   for (NIPhotoScrollView* page in _visiblePages) {
-    if (page.photoIndex != self.currentCenterPhotoIndex) {
+    if (page.photoIndex != self.centerPhotoIndex) {
       [self resetPage:page];
     }
   }
@@ -294,11 +294,11 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateVisiblePages {
-  NSInteger oldCenterPhotoIndex = self.currentCenterPhotoIndex;
+  NSInteger oldCenterPhotoIndex = self.centerPhotoIndex;
 
   NSRange visiblePageRange = [self visiblePageRange];
 
-  _currentCenterPhotoIndex = [self currentVisiblePageIndex];
+  _centerPhotoIndex = [self currentVisiblePageIndex];
 
   // Recycle no-longer-visible pages.
   for (NIPhotoScrollView* page in _visiblePages) {
@@ -318,8 +318,8 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   [_visiblePages minusSet:_recycledPages];
 
   // Prioritize displaying the currently visible page.
-  if (![self isDisplayingPageForIndex:_currentCenterPhotoIndex]) {
-    [self displayPageAtIndex:_currentCenterPhotoIndex];
+  if (![self isDisplayingPageForIndex:_centerPhotoIndex]) {
+    [self displayPageAtIndex:_centerPhotoIndex];
   }
 
   // Add missing pages.
@@ -329,7 +329,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
     }
   }
 
-  if (oldCenterPhotoIndex != _currentCenterPhotoIndex
+  if (oldCenterPhotoIndex != _centerPhotoIndex
       && [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidChangePages:)]) {
     [self.delegate photoAlbumScrollViewDidChangePages:self];
   }
@@ -530,13 +530,13 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasNext {
-  return (self.currentCenterPhotoIndex < self.numberOfPhotos - 1);
+  return (self.centerPhotoIndex < self.numberOfPhotos - 1);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasPrevious {
-  return self.currentCenterPhotoIndex > 0;
+  return self.centerPhotoIndex > 0;
 }
 
 
@@ -592,7 +592,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)moveToNextAnimated:(BOOL)animated {
   if ([self hasNext]) {
-    NSInteger index = self.currentCenterPhotoIndex + 1;
+    NSInteger index = self.centerPhotoIndex + 1;
 
     [self moveToPageAtIndex:index animated:animated];
   }
@@ -602,10 +602,22 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)moveToPreviousAnimated:(BOOL)animated {
   if ([self hasPrevious]) {
-    NSInteger index = self.currentCenterPhotoIndex - 1;
+    NSInteger index = self.centerPhotoIndex - 1;
 
     [self moveToPageAtIndex:index animated:animated];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCenterPhotoIndex:(NSInteger)centerPhotoIndex animated:(BOOL)animated {
+  [self moveToPageAtIndex:centerPhotoIndex animated:animated];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCenterPhotoIndex:(NSInteger)centerPhotoIndex {
+  [self setCenterPhotoIndex:centerPhotoIndex animated:NO];
 }
 
 
