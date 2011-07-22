@@ -26,7 +26,6 @@
  *
  * <h2>Comparison of Data Structures</h2>
  *
- * @htmlonly
  *<pre>
  *  Requirement           | NILinkedList | NSArray | NSSet | NSDictionary
  *  =====================================================================
@@ -41,9 +40,7 @@
  *  ---------------------------------------------------------------------
  *  Instant object access |     YES      |   NO    |  YES  |     YES
  *                        |     [1]      |         |       |     [2]
- *  ---------------------------------------------------------------------
- *</pre>
- * @endhtmlonly
+ *  ---------------------------------------------------------------------</pre>
  *
  * - [1] Note that being able to instantly remove and access objects in an NILinkedList
  *       requires additional overhead of maintaining NILinkedListLocation objects in your

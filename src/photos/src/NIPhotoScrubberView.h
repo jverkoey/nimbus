@@ -39,7 +39,7 @@
  * This view is a completely independent view from the photo scroll view so you can choose
  * to use this in your already built photo viewer.
  *
- * @image html scrubber1.png "Screenshot of a photo scrubber on the iPad."
+ * @image html scrubber1.png "Screenshot of NIPhotoScrubberView on the iPad."
  *
  *      @see NIPhotoScrubberViewDataSource
  *      @see NIPhotoScrubberViewDelegate
