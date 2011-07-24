@@ -63,6 +63,13 @@ BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation);
  */
 UIInterfaceOrientation NIInterfaceOrientation();
 
+/**
+ * Creates an affine transform for the given device orientation.
+ *
+ * This is useful for creating a transformation matrix for a view that has been added
+ * directly to the window and doesn't automatically have its transformation modified.
+ */
+CGAffineTransform NIRotateTransformForOrientation(UIInterfaceOrientation orientation);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Device Orientation ///////////////////////////////////////////////////////////////

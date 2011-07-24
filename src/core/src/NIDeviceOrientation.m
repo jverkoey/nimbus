@@ -53,3 +53,20 @@ UIInterfaceOrientation NIInterfaceOrientation() {
 
   return orient;
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+CGAffineTransform NIRotateTransformForOrientation(UIInterfaceOrientation orientation) {
+  if (orientation == UIInterfaceOrientationLandscapeLeft) {
+    return CGAffineTransformMakeRotation(M_PI*1.5);
+    
+  } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+    return CGAffineTransformMakeRotation(M_PI/2);
+    
+  } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+    return CGAffineTransformMakeRotation(-M_PI);
+    
+  } else {
+    return CGAffineTransformIdentity;
+  }
+}
