@@ -16,6 +16,8 @@
 
 #import "NIDeviceInfo.h"
 
+#ifdef DEBUG
+
 #import <mach/mach.h>
 #import <mach/mach_host.h>
 
@@ -144,3 +146,5 @@ static NSDictionary*        sFileSystem = nil;
 
 
 @end
+
+#endif

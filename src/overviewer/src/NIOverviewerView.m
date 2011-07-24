@@ -16,6 +16,8 @@
 
 #import "NIOverviewerView.h"
 
+#ifdef DEBUG
+
 #import "NIDeviceInfo.h"
 
 
@@ -73,3 +75,5 @@
 
 
 @end
+
+#endif

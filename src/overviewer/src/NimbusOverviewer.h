@@ -16,14 +16,10 @@
 
 #import <Foundation/Foundation.h>
 
-#ifdef DEBUG
-
 #ifdef NIMBUS_STATIC_LIBRARY
 #import "NimbusCore/NimbusCore.h"
 #import "NimbusOverviewer/NIOverviewer.h"
 #else
 #import "NimbusCore.h"
 #import "NIOverviewer.h"
-#endif
-
 #endif

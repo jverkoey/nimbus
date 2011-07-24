@@ -208,7 +208,11 @@ void NIOverviewerLogger(const char *message, unsigned length, BOOL withSyslogBan
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)height {
+#ifdef DEBUG
   return sOverviewerHeight;
+#else
+  return 0;
+#endif
 }
 
 
@@ -278,7 +282,11 @@ void NIOverviewerLogger(const char *message, unsigned length, BOOL withSyslogBan
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (UIView *)view {
+#ifdef DEBUG
   return sOverviewerView;
+#else
+  return nil;
+#endif
 }
 
 

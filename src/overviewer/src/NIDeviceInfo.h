@@ -16,6 +16,9 @@
 
 #import <Foundation/Foundation.h>
 
+// This class is only available in debug builds of the app.
+#ifdef DEBUG
+
 @interface NIDeviceInfo : NSObject
 
 /**
@@ -61,3 +64,5 @@
 + (void)endCachedDeviceInfo;
 
 @end
+
+#endif

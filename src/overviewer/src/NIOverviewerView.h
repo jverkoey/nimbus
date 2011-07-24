@@ -16,9 +16,13 @@
 
 #import <UIKit/UIKit.h>
 
+#ifdef DEBUG
+
 @interface NIOverviewerView : UIView {
 @private
   UILabel* _memoryLabel;
 }
 
 @end
+
+#endif
