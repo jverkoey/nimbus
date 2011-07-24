@@ -50,6 +50,11 @@
 		6698160013D5083A00417E8B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669815FF13D5083A00417E8B /* CFNetwork.framework */; };
 		669819E613D573B200417E8B /* NIProcessorHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 669819E413D573B200417E8B /* NIProcessorHTTPRequest.m */; };
 		669819F013D573DC00417E8B /* NIJSONKitProcessorHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 669819EF13D573DC00417E8B /* NIJSONKitProcessorHTTPRequest.m */; };
+		66C52CC613DAA7A900D6BA6F /* NIOverviewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C52CC513DAA7A900D6BA6F /* NIOverviewer.m */; };
+		66C52CC813DAA7AF00D6BA6F /* NimbusOverviewer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66C52CC713DAA7AF00D6BA6F /* NimbusOverviewer.bundle */; };
+		66C52CCC13DAAE4900D6BA6F /* NIOverviewerSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C52CCB13DAAE4900D6BA6F /* NIOverviewerSwizzling.m */; };
+		66C52CCF13DB17AF00D6BA6F /* NIDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C52CCE13DB17AF00D6BA6F /* NIDeviceInfo.m */; };
+		66C52CD213DC917C00D6BA6F /* NIOverviewerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C52CD113DC917C00D6BA6F /* NIOverviewerView.m */; };
 		66EA058313C011D6004FFE1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA058113C011D6004FFE1A /* AppDelegate.m */; };
 		66EA058813C011EC004FFE1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA058713C011EC004FFE1A /* main.m */; };
 		66EAC64D13D28D9A00BDFF34 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EAC64C13D28D9A00BDFF34 /* NICommonMetrics.m */; };
@@ -146,6 +151,16 @@
 		669819E413D573B200417E8B /* NIProcessorHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIProcessorHTTPRequest.m; path = ../../../src/processors/src/NIProcessorHTTPRequest.m; sourceTree = SOURCE_ROOT; };
 		669819EE13D573DC00417E8B /* NIJSONKitProcessorHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIJSONKitProcessorHTTPRequest.h; path = ../../../src/processors/src_JSONKit/NIJSONKitProcessorHTTPRequest.h; sourceTree = SOURCE_ROOT; };
 		669819EF13D573DC00417E8B /* NIJSONKitProcessorHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIJSONKitProcessorHTTPRequest.m; path = ../../../src/processors/src_JSONKit/NIJSONKitProcessorHTTPRequest.m; sourceTree = SOURCE_ROOT; };
+		66C52CC413DAA7A900D6BA6F /* NIOverviewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOverviewer.h; path = ../../../src/overviewer/src/NIOverviewer.h; sourceTree = "<group>"; };
+		66C52CC513DAA7A900D6BA6F /* NIOverviewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOverviewer.m; path = ../../../src/overviewer/src/NIOverviewer.m; sourceTree = "<group>"; };
+		66C52CC713DAA7AF00D6BA6F /* NimbusOverviewer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusOverviewer.bundle; path = ../../../src/overviewer/resources/NimbusOverviewer.bundle; sourceTree = "<group>"; };
+		66C52CC913DAA7E000D6BA6F /* NimbusOverviewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusOverviewer.h; path = ../../../src/overviewer/src/NimbusOverviewer.h; sourceTree = "<group>"; };
+		66C52CCA13DAAE4900D6BA6F /* NIOverviewerSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOverviewerSwizzling.h; path = ../../../src/overviewer/src/NIOverviewerSwizzling.h; sourceTree = "<group>"; };
+		66C52CCB13DAAE4900D6BA6F /* NIOverviewerSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOverviewerSwizzling.m; path = ../../../src/overviewer/src/NIOverviewerSwizzling.m; sourceTree = "<group>"; };
+		66C52CCD13DB17AF00D6BA6F /* NIDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDeviceInfo.h; path = ../../../src/overviewer/src/NIDeviceInfo.h; sourceTree = "<group>"; };
+		66C52CCE13DB17AF00D6BA6F /* NIDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDeviceInfo.m; path = ../../../src/overviewer/src/NIDeviceInfo.m; sourceTree = "<group>"; };
+		66C52CD013DC917C00D6BA6F /* NIOverviewerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOverviewerView.h; path = ../../../src/overviewer/src/NIOverviewerView.h; sourceTree = "<group>"; };
+		66C52CD113DC917C00D6BA6F /* NIOverviewerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOverviewerView.m; path = ../../../src/overviewer/src/NIOverviewerView.m; sourceTree = "<group>"; };
 		66EA058013C011D6004FFE1A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = src/AppDelegate.h; sourceTree = "<group>"; };
 		66EA058113C011D6004FFE1A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = src/AppDelegate.m; sourceTree = "<group>"; };
 		66EA058213C011D6004FFE1A /* NetworkPhotoAlbum_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkPhotoAlbum_Prefix.pch; path = src/NetworkPhotoAlbum_Prefix.pch; sourceTree = "<group>"; };
@@ -361,6 +376,22 @@
 			name = Processors;
 			sourceTree = "<group>";
 		};
+		66C52CC313DAA79E00D6BA6F /* Overviewer */ = {
+			isa = PBXGroup;
+			children = (
+				66C52CC913DAA7E000D6BA6F /* NimbusOverviewer.h */,
+				66C52CCD13DB17AF00D6BA6F /* NIDeviceInfo.h */,
+				66C52CCE13DB17AF00D6BA6F /* NIDeviceInfo.m */,
+				66C52CC413DAA7A900D6BA6F /* NIOverviewer.h */,
+				66C52CC513DAA7A900D6BA6F /* NIOverviewer.m */,
+				66C52CCA13DAAE4900D6BA6F /* NIOverviewerSwizzling.h */,
+				66C52CCB13DAAE4900D6BA6F /* NIOverviewerSwizzling.m */,
+				66C52CD013DC917C00D6BA6F /* NIOverviewerView.h */,
+				66C52CD113DC917C00D6BA6F /* NIOverviewerView.m */,
+			);
+			name = Overviewer;
+			sourceTree = "<group>";
+		};
 		66EA057A13C011C0004FFE1A /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +410,7 @@
 			children = (
 				665E0B9513CE814D008A1D21 /* Core */,
 				665E0BC613CE8161008A1D21 /* Photos */,
+				66C52CC313DAA79E00D6BA6F /* Overviewer */,
 				669815CB13D507F900417E8B /* ASIHTTPRequest */,
 				669819D313D5739D00417E8B /* Processors */,
 				669815CA13D507F200417E8B /* JSONKit */,
@@ -389,6 +421,7 @@
 		66EA059D13C0128E004FFE1A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				66C52CC713DAA7AF00D6BA6F /* NimbusOverviewer.bundle */,
 				66EAC7DB13D2A77D00BDFF34 /* NimbusPhotos.bundle */,
 				66EA05A213C01297004FFE1A /* NetworkPhotoAlbum-Info.plist */,
 			);
@@ -448,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66EAC7DC13D2A77D00BDFF34 /* NimbusPhotos.bundle in Resources */,
+				66C52CC813DAA7AF00D6BA6F /* NimbusOverviewer.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +531,10 @@
 				6631673613D6825800FF0CBE /* CatalogTableViewController.m in Sources */,
 				6631680D13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.m in Sources */,
 				667DC2BE13D89FD100C1B0ED /* NIPhotoScrubberView.m in Sources */,
+				66C52CC613DAA7A900D6BA6F /* NIOverviewer.m in Sources */,
+				66C52CCC13DAAE4900D6BA6F /* NIOverviewerSwizzling.m in Sources */,
+				66C52CCF13DB17AF00D6BA6F /* NIDeviceInfo.m in Sources */,
+				66C52CD213DC917C00D6BA6F /* NIOverviewerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
