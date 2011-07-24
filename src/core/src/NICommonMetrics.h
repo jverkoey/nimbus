@@ -53,6 +53,23 @@ UIViewAnimationCurve NIStatusBarAnimationCurve();
  */
 NSTimeInterval NIStatusBarAnimationDuration();
 
+/**
+ * Get the status bar's current height.
+ *
+ * If the status bar is hidden this will return 0.
+ */
+CGFloat NIStatusBarHeight();
+
+/**
+ * The animation duration when the device is rotating to a new orientation.
+ *
+ * Value: 0.4 seconds if the device is being rotated 90 degrees.
+ *        0.8 seconds if the device is being rotated 180 degrees.
+ *
+ *      @param isFlippingUpsideDown YES if the device is being flipped upside down.
+ */
+NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown);
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Common Metrics ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////

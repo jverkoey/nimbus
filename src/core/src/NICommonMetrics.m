@@ -39,3 +39,17 @@ UIViewAnimationCurve NIStatusBarAnimationCurve() {
 NSTimeInterval NIStatusBarAnimationDuration() {
   return 0.3;
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+CGFloat NIStatusBarHeight() {
+  CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+  CGFloat statusBarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);
+  return statusBarHeight;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown) {
+  return isFlippingUpsideDown ? 0.8 : 0.4;
+}
