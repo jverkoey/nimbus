@@ -55,6 +55,8 @@
 		66C52CCC13DAAE4900D6BA6F /* NIOverviewerSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C52CCB13DAAE4900D6BA6F /* NIOverviewerSwizzling.m */; };
 		66C52CCF13DB17AF00D6BA6F /* NIDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C52CCE13DB17AF00D6BA6F /* NIDeviceInfo.m */; };
 		66C52CD213DC917C00D6BA6F /* NIOverviewerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C52CD113DC917C00D6BA6F /* NIOverviewerView.m */; };
+		66C52CD513DCA0C500D6BA6F /* NIOverviewerPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C52CD413DCA0C500D6BA6F /* NIOverviewerPageView.m */; };
+		66C52CD813DDA39900D6BA6F /* NIOverviewerLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C52CD713DDA39900D6BA6F /* NIOverviewerLogger.m */; };
 		66EA058313C011D6004FFE1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA058113C011D6004FFE1A /* AppDelegate.m */; };
 		66EA058813C011EC004FFE1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA058713C011EC004FFE1A /* main.m */; };
 		66EAC64D13D28D9A00BDFF34 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EAC64C13D28D9A00BDFF34 /* NICommonMetrics.m */; };
@@ -161,6 +163,10 @@
 		66C52CCE13DB17AF00D6BA6F /* NIDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDeviceInfo.m; path = ../../../src/overviewer/src/NIDeviceInfo.m; sourceTree = "<group>"; };
 		66C52CD013DC917C00D6BA6F /* NIOverviewerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOverviewerView.h; path = ../../../src/overviewer/src/NIOverviewerView.h; sourceTree = "<group>"; };
 		66C52CD113DC917C00D6BA6F /* NIOverviewerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOverviewerView.m; path = ../../../src/overviewer/src/NIOverviewerView.m; sourceTree = "<group>"; };
+		66C52CD313DCA0C500D6BA6F /* NIOverviewerPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOverviewerPageView.h; path = ../../../src/overviewer/src/NIOverviewerPageView.h; sourceTree = "<group>"; };
+		66C52CD413DCA0C500D6BA6F /* NIOverviewerPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOverviewerPageView.m; path = ../../../src/overviewer/src/NIOverviewerPageView.m; sourceTree = "<group>"; };
+		66C52CD613DDA39800D6BA6F /* NIOverviewerLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOverviewerLogger.h; path = ../../../src/overviewer/src/NIOverviewerLogger.h; sourceTree = "<group>"; };
+		66C52CD713DDA39900D6BA6F /* NIOverviewerLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOverviewerLogger.m; path = ../../../src/overviewer/src/NIOverviewerLogger.m; sourceTree = "<group>"; };
 		66EA058013C011D6004FFE1A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = src/AppDelegate.h; sourceTree = "<group>"; };
 		66EA058113C011D6004FFE1A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = src/AppDelegate.m; sourceTree = "<group>"; };
 		66EA058213C011D6004FFE1A /* NetworkPhotoAlbum_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkPhotoAlbum_Prefix.pch; path = src/NetworkPhotoAlbum_Prefix.pch; sourceTree = "<group>"; };
@@ -388,6 +394,10 @@
 				66C52CCB13DAAE4900D6BA6F /* NIOverviewerSwizzling.m */,
 				66C52CD013DC917C00D6BA6F /* NIOverviewerView.h */,
 				66C52CD113DC917C00D6BA6F /* NIOverviewerView.m */,
+				66C52CD313DCA0C500D6BA6F /* NIOverviewerPageView.h */,
+				66C52CD413DCA0C500D6BA6F /* NIOverviewerPageView.m */,
+				66C52CD613DDA39800D6BA6F /* NIOverviewerLogger.h */,
+				66C52CD713DDA39900D6BA6F /* NIOverviewerLogger.m */,
 			);
 			name = Overviewer;
 			sourceTree = "<group>";
@@ -535,6 +545,8 @@
 				66C52CCC13DAAE4900D6BA6F /* NIOverviewerSwizzling.m in Sources */,
 				66C52CCF13DB17AF00D6BA6F /* NIDeviceInfo.m in Sources */,
 				66C52CD213DC917C00D6BA6F /* NIOverviewerView.m in Sources */,
+				66C52CD513DCA0C500D6BA6F /* NIOverviewerPageView.m in Sources */,
+				66C52CD813DDA39900D6BA6F /* NIOverviewerLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
