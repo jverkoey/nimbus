@@ -18,15 +18,20 @@
 
 #ifdef DEBUG
 
+#import "NIOverviewerGraphView.h"
+
 @interface NIOverviewerPageView : UIView {
 @private
   NSString* _pageTitle;
+  UILabel*  _titleLabel;
 }
 
 /**
  * Returns an autoreleased instance of this view.
  */
 + (NIOverviewerPageView *)page;
+
+@property (nonatomic, readonly, retain) UILabel* titleLabel;
 
 /**
  * Request that this page update its information.
@@ -35,6 +40,8 @@
  */
 - (void)update;
 
+- (UILabel *)label;
+
 /**
  * The title of the page.
  */
@@ -42,9 +49,35 @@
 
 @end
 
-@interface NIOverviewerMemoryPageView : NIOverviewerPageView {
+@interface NIOverviewerGraphPageView : NIOverviewerPageView {
 @private
-  UILabel* _memoryLabel;
+  UILabel* _label1;
+  UILabel* _label2;
+  NIOverviewerGraphView* _graphView;
+}
+
+@property (nonatomic, readonly, retain) UILabel* label1;
+@property (nonatomic, readonly, retain) UILabel* label2;
+@property (nonatomic, readonly, retain) NIOverviewerGraphView* graphView;
+
+@end
+
+@interface NIOverviewerMemoryPageView : NIOverviewerGraphPageView <
+  NIOverviewerGraphViewDataSource
+> {
+@private
+  NSEnumerator* _enumerator;
+  unsigned long long _minMemory;
+}
+
+@end
+
+@interface NIOverviewerDiskPageView : NIOverviewerGraphPageView <
+  NIOverviewerGraphViewDataSource
+> {
+@private
+  NSEnumerator* _enumerator;
+  unsigned long long _minDiskUse;
 }
 
 @end

@@ -114,6 +114,20 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (unsigned long long)bytesOfTotalMemory {
+  if (!sIsCaching && [self updateHostStatistics]) {
+    return 0;
+  }
+  unsigned long long mem_free = (((unsigned long long)sVMStats.free_count
+                                  + (unsigned long long)sVMStats.active_count
+                                  + (unsigned long long)sVMStats.inactive_count
+                                  + (unsigned long long)sVMStats.wire_count)
+                                 * (unsigned long long)sPageSize);
+  return mem_free;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (unsigned long long)bytesOfTotalDiskSpace {
   if (!sIsCaching && [self updateFileSystemAttributes]) {
     return 0;

@@ -17,6 +17,7 @@
 #import <Foundation/Foundation.h>
 
 @class NIOverviewerView;
+@class NIOverviewerLogger;
 
 /**
  * The global overviewer state.
@@ -48,6 +49,8 @@
  * underneath the status bar (if it is visible).
  */
 + (void)addOverviewerToWindow:(UIWindow *)window;
+
++ (NIOverviewerLogger *)logger;
 
 
 #pragma mark State Information

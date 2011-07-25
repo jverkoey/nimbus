@@ -36,6 +36,11 @@ NSString* NIStringFromBytes(unsigned long long bytes);
 + (unsigned long long)bytesOfFreeMemory;
 
 /**
+ * The total number of bytes of memory.
+ */
++ (unsigned long long)bytesOfTotalMemory;
+
+/**
  * The total number of bytes of disk space.
  */
 + (unsigned long long)bytesOfTotalDiskSpace;

@@ -159,7 +159,11 @@
 - (void)setTranslucent:(BOOL)translucent {
   if (_translucent != translucent) {
     _translucent = translucent;
-
+    
+    _pagingScrollView.indicatorStyle = (_translucent
+                                        ? UIScrollViewIndicatorStyleWhite
+                                        : UIScrollViewIndicatorStyleDefault);
+    
     self.backgroundColor = (_translucent
                             ? [UIColor colorWithWhite:0 alpha:0.5]
                             : [UIColor colorWithPatternImage:_backgroundImage]);

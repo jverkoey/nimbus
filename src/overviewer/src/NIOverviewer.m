@@ -25,7 +25,7 @@
 #import "NIOverviewerLogger.h"
 
 // Static state.
-static CGFloat  sOverviewerHeight   = 44;
+static CGFloat  sOverviewerHeight   = 60;
 static BOOL     sOverviewerIsAwake  = NO;
 
 static NSTimer* sOverviewerHeartbeatTimer = nil;
@@ -171,6 +171,7 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
   logEntry.bytesOfTotalDiskSpace = [NIDeviceInfo bytesOfTotalDiskSpace];
   logEntry.bytesOfFreeDiskSpace = [NIDeviceInfo bytesOfFreeDiskSpace];
   logEntry.bytesOfFreeMemory = [NIDeviceInfo bytesOfFreeMemory];
+  logEntry.bytesOfTotalMemory = [NIDeviceInfo bytesOfTotalMemory];
   logEntry.batteryLevel = [NIDeviceInfo batteryLevel];
   logEntry.batteryState = [NIDeviceInfo batteryState];
   [NIDeviceInfo endCachedDeviceInfo];
@@ -209,7 +210,7 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil];
 
-    sOverviewerHeartbeatTimer = [[NSTimer scheduledTimerWithTimeInterval: 1
+    sOverviewerHeartbeatTimer = [[NSTimer scheduledTimerWithTimeInterval: 0.5
                                                                   target: self
                                                                 selector: @selector(heartbeat)
                                                                 userInfo: nil
@@ -236,7 +237,7 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
   
   [sOverviewerView addPageView:[NIOverviewerMemoryPageView page]];
   
-  [sOverviewerView addPageView:[NIOverviewerMemoryPageView page]];
+  [sOverviewerView addPageView:[NIOverviewerDiskPageView page]];
 
   // Hide the view initially because the initial frame will be wrong when the device
   // starts the app in any orientation other than portrait. Don't worry, we'll fade the
@@ -244,6 +245,16 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
   sOverviewerView.hidden = YES;
 
   [window addSubview:sOverviewerView];
+#endif
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NIOverviewerLogger *)logger {
+#ifdef DEBUG
+  return sOverviewerLogger;
+#else
+  return nil;
 #endif
 }
 

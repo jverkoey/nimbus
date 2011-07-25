@@ -23,6 +23,7 @@
 @implementation NIOverviewerLogger
 
 @synthesize oldestLogAge = _oldestLogAge;
+@synthesize deviceLogs = _deviceLogs;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,7 +39,7 @@
   if ((self = [super init])) {
     _deviceLogs = [[NILinkedList alloc] init];
     
-    _oldestLogAge = 60 * 5;
+    _oldestLogAge = 60;
   }
   return self;
 }
@@ -100,6 +101,7 @@
 @implementation NIOverviewerDeviceLogEntry
 
 @synthesize bytesOfFreeMemory = _bytesOfFreeMemory;
+@synthesize bytesOfTotalMemory = _bytesOfTotalMemory;
 @synthesize bytesOfTotalDiskSpace = _bytesOfTotalDiskSpace;
 @synthesize bytesOfFreeDiskSpace = _bytesOfFreeDiskSpace;
 @synthesize batteryLevel = _batteryLevel;

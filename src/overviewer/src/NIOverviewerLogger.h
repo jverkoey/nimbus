@@ -21,6 +21,7 @@
 @interface NIOverviewerLogger : NSObject {
 @private
   NILinkedList* _deviceLogs;
+  NILinkedList* _consoleLogs;
   NSTimeInterval _oldestLogAge;
 }
 
@@ -29,7 +30,7 @@
  *
  * Log items older than this amount will be pruned from the log.
  *
- * By default this is 5 minutes.
+ * By default this is 1 minute.
  */
 @property (nonatomic, readwrite, assign) NSTimeInterval oldestLogAge;
 
@@ -37,6 +38,8 @@
  * Add a device log.
  */
 - (void)addDeviceLog:(NIOverviewerDeviceLogEntry *)logEntry;
+
+@property (nonatomic, readonly, retain) NILinkedList* deviceLogs;
 
 @end
 
@@ -68,6 +71,7 @@
 @interface NIOverviewerDeviceLogEntry : NIOverviewerLogEntry {
 @private
   unsigned long long _bytesOfFreeMemory;
+  unsigned long long _bytesOfTotalMemory;
   unsigned long long _bytesOfTotalDiskSpace;
   unsigned long long _bytesOfFreeDiskSpace;
 
@@ -76,6 +80,7 @@
 }
 
 @property (nonatomic, readwrite, assign) unsigned long long bytesOfFreeMemory;
+@property (nonatomic, readwrite, assign) unsigned long long bytesOfTotalMemory;
 @property (nonatomic, readwrite, assign) unsigned long long bytesOfTotalDiskSpace;
 @property (nonatomic, readwrite, assign) unsigned long long bytesOfFreeDiskSpace;
 @property (nonatomic, readwrite, assign) CGFloat batteryLevel;
