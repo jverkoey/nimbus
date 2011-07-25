@@ -190,6 +190,20 @@ typedef void NILinkedListLocation;
 
 
 /**
+ * @name Enumerating Objects
+ * @{
+ */
+#pragma mark Enumerating Objects
+
+/**
+ * Create an enumerator that can be used to enumerate this linked list.
+ */
+- (NSEnumerator *)objectEnumerator;
+
+/**@}*/// End of Enumerating Objects
+
+
+/**
  * @name Constant-Time Access
  * @{
  */
