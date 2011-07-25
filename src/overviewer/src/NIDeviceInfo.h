@@ -16,6 +16,15 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ * Formats a number of bytes in a human-readable format.
+ *
+ * Will create a string showing the size in bytes, KBs, MBs, GBs.
+ *
+ * This method only works up to the GBs.
+ */
+NSString* NIStringFromBytes(unsigned long long bytes);
+
 // This class is only available in debug builds of the app.
 #ifdef DEBUG
 

@@ -23,6 +23,7 @@
 #endif
 
 #import "NIOverviewer.h"
+#import "NIOverviewerView.h"
 
 
 #ifdef DEBUG
@@ -155,12 +156,10 @@ void NIOverviewerSwizzleMethods() {
   // TODO (jverkoey July 23, 2011): Add a translucent property to the overviewer view.
   if (UIStatusBarStyleDefault == statusBarStyle
       || UIStatusBarStyleBlackOpaque == statusBarStyle) {
-    [NIOverviewer view].backgroundColor =
-    [[NIOverviewer view].backgroundColor colorWithAlphaComponent:1];
+    [[NIOverviewer view] setTranslucent:NO];
 
   } else if (UIStatusBarStyleBlackTranslucent == statusBarStyle) {
-    [NIOverviewer view].backgroundColor =
-    [UIColor colorWithWhite:0 alpha:0.5];
+    [[NIOverviewer view] setTranslucent:YES];
   }
 
   if (animated) {

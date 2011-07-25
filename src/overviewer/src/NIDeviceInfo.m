@@ -27,6 +27,39 @@ static vm_size_t            sPageSize = 0;
 static vm_statistics_data_t sVMStats;
 static NSDictionary*        sFileSystem = nil;
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NSString* NIStringFromBytes(unsigned long long bytes) {
+  static const void* sOrdersOfMagnitude[] = {
+    @"bytes", @"KBs", @"MBs", @"GBs"
+  };
+
+  // Determine what magnitude the number of bytes is by shifting off 10 bits at a time
+  // (equivalent to dividing by 1024).
+  NSInteger magnitude = 0;
+  unsigned long long highbits = bytes;
+  unsigned long long inverseBits = ~((unsigned long long)0x3FF);
+  while ((highbits & inverseBits)
+         && magnitude + 1 < (sizeof(sOrdersOfMagnitude) / sizeof(void *))) {
+    // Shift off an order of magnitude.
+    highbits >>= 10;
+    magnitude++;
+  }
+
+  if (magnitude > 0) {
+    unsigned long long dividend = 1024 << (magnitude - 1) * 10;
+    double result = ((double)bytes / (double)(dividend));
+    return [NSString stringWithFormat:@"%.2f %@",
+            result,
+            sOrdersOfMagnitude[magnitude]];
+
+  } else {
+    // We don't need to bother with dividing bytes.
+    return [NSString stringWithFormat:@"%lld %@", bytes, sOrdersOfMagnitude[magnitude]];
+  }
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////

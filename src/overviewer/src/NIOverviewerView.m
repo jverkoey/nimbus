@@ -19,18 +19,28 @@
 #ifdef DEBUG
 
 #import "NIDeviceInfo.h"
+#import "NIOverviewerPageView.h"
 
+@interface NIOverviewerView()
+
+- (CGFloat)pageHorizontalMargin;
+- (CGRect)frameForPagingScrollView;
+
+@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIOverviewerView
 
+@synthesize translucent = _translucent;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  NI_RELEASE_SAFELY(_memoryLabel);
-  
+  NI_RELEASE_SAFELY(_backgroundImage);
+  NI_RELEASE_SAFELY(_pageViews);
+
   [super dealloc];
 }
 
@@ -38,39 +48,145 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
-    _memoryLabel = [[UILabel alloc] init];
-    UIImage* patternImage = [UIImage imageWithContentsOfFile:NIPathForBundleResource(nil, @"blueprint.gif")];
-    self.backgroundColor = [UIColor colorWithPatternImage:patternImage];
-    _memoryLabel.backgroundColor = [UIColor clearColor];
-    _memoryLabel.font = [UIFont boldSystemFontOfSize:12];
-    _memoryLabel.textColor = [UIColor whiteColor];
-    _memoryLabel.shadowColor = [UIColor blackColor];
-    _memoryLabel.shadowOffset = CGSizeMake(0, 1);
-    [self addSubview:_memoryLabel];
-    
-    [NSTimer scheduledTimerWithTimeInterval:1
-                                     target:self
-                                   selector:@selector(memoryTick)
-                                   userInfo:nil repeats:YES];
+    _pageViews = [[NSMutableArray alloc] init];
+
+    _backgroundImage = [[UIImage imageWithContentsOfFile:
+                         NIPathForBundleResource(nil, @"blueprint.gif")]
+                        retain];
+    self.backgroundColor = [UIColor colorWithPatternImage:_backgroundImage];
+
+    _pagingScrollView = [[[UIScrollView alloc] initWithFrame:[self frameForPagingScrollView]]
+                         autorelease];
+    _pagingScrollView.pagingEnabled = YES;
+    _pagingScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, self.pageHorizontalMargin,
+                                                               0, self.pageHorizontalMargin);
+
+    _pagingScrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                          | UIViewAutoresizingFlexibleHeight);
+
+    [self addSubview:_pagingScrollView];
   }
   return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)memoryTick {
-  [NIDeviceInfo beginCachedDeviceInfo];
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Page Layout
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)pageHorizontalMargin {
+  return 10;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGRect)frameForPagingScrollView {
+  CGRect frame = self.bounds;
+
+  // We make the paging scroll view a little bit wider on the side edges so that there
+  // there is space between the pages when flipping through them.
+  frame.origin.x -= self.pageHorizontalMargin;
+  frame.size.width += (2 * self.pageHorizontalMargin);
+
+  return frame;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGSize)contentSizeForPagingScrollView {
+  CGRect bounds = _pagingScrollView.bounds;
+  return CGSizeMake(bounds.size.width * [_pageViews count], bounds.size.height);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGRect)frameForPageAtIndex:(NSInteger)index {
+  // We have to use our paging scroll view's bounds, not frame, to calculate the page
+  // placement. When the device is in landscape orientation, the frame will still be in
+  // portrait because the pagingScrollView is the root view controller's view, so its
+  // frame is in window coordinate space, which is never rotated. Its bounds, however,
+  // will be in landscape because it has a rotation transform applied.
+  CGRect bounds = _pagingScrollView.bounds;
+  CGRect pageFrame = bounds;
+
+  // We need to counter the extra spacing added to the paging scroll view in
+  // frameForPagingScrollView:
+  pageFrame.size.width -= self.pageHorizontalMargin * 2;
+  pageFrame.origin.x = (bounds.size.width * index) + self.pageHorizontalMargin;
+
+  return pageFrame;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)layoutPages {
+  _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
   
-  _memoryLabel.text = [NSString stringWithFormat:
-                       @"Remaining memory: %.2f MBs Total disk space: %.2f Free disk space: %.2f"
-                       @" Battery percentage: %.2f Battery state: %d",
-                       (((CGFloat)[NIDeviceInfo bytesOfFreeMemory] / 1024.0f) / 1024.0f),
-                       (((CGFloat)[NIDeviceInfo bytesOfTotalDiskSpace] / 1024.0f) / 1024.0f),
-                       (((CGFloat)[NIDeviceInfo bytesOfFreeDiskSpace] / 1024.0f) / 1024.0f),
-                       [NIDeviceInfo batteryLevel] * 100, [NIDeviceInfo batteryState]];
-  [_memoryLabel sizeToFit];
+  for (NSInteger ix = 0; ix < [_pageViews count]; ++ix) {
+    UIView* pageView = [_pageViews objectAtIndex:ix];
+    pageView.frame = [self frameForPageAtIndex:ix];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setBounds:(CGRect)bounds {
+  CGFloat offset = _pagingScrollView.contentOffset.x;
+  CGFloat pageWidth = _pagingScrollView.bounds.size.width;
   
-  [NIDeviceInfo endCachedDeviceInfo];
+  NSInteger visiblePageIndex = floorf(offset / pageWidth);
+
+  [super setBounds:bounds];
+
+  [self layoutPages];
+
+  pageWidth = _pagingScrollView.bounds.size.width;
+  CGFloat newOffset = (visiblePageIndex * pageWidth);
+  _pagingScrollView.contentOffset = CGPointMake(newOffset, 0);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Public Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setTranslucent:(BOOL)translucent {
+  if (_translucent != translucent) {
+    _translucent = translucent;
+
+    self.backgroundColor = (_translucent
+                            ? [UIColor colorWithWhite:0 alpha:0.5]
+                            : [UIColor colorWithPatternImage:_backgroundImage]);
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)addPageView:(NIOverviewerPageView *)page {
+  [_pageViews addObject:page];
+  [_pagingScrollView addSubview:page];
+
+  [self layoutPages];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)updatePages {
+  for (NIOverviewerPageView* pageView in _pageViews) {
+    [pageView update];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)flashScrollIndicators {
+  [_pagingScrollView flashScrollIndicators];
 }
 
 

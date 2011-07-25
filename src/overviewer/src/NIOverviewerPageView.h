@@ -18,36 +18,34 @@
 
 #ifdef DEBUG
 
-@class NIOverviewerPageView;
-
-@interface NIOverviewerView : UIView {
+@interface NIOverviewerPageView : UIView {
 @private
-  UIImage*  _backgroundImage;
-  
-  // State
-  BOOL            _translucent;
-  NSMutableArray* _pageViews;
-
-  // Views
-  UIScrollView* _pagingScrollView;
+  NSString* _pageTitle;
 }
 
 /**
- * Whether the view has a translucent background or not.
+ * Returns an autoreleased instance of this view.
  */
-@property (nonatomic, readwrite, assign) BOOL translucent;
++ (NIOverviewerPageView *)page;
 
 /**
- * Adds a new page to the overviewer.
+ * Request that this page update its information.
+ *
+ * Should be implemented by the subclass. The default implementation does nothing.
  */
-- (void)addPageView:(NIOverviewerPageView *)page;
+- (void)update;
 
 /**
- * Update all of the views.
+ * The title of the page.
  */
-- (void)updatePages;
+@property (nonatomic, readwrite, copy) NSString* pageTitle;
 
-- (void)flashScrollIndicators;
+@end
+
+@interface NIOverviewerMemoryPageView : NIOverviewerPageView {
+@private
+  UILabel* _memoryLabel;
+}
 
 @end
 

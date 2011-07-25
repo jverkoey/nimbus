@@ -16,15 +16,22 @@
 
 #import "NIOverviewer.h"
 
-#import "NIOverviewerView.h"
-#import "NIOverviewerSwizzling.h"
-
 #ifdef DEBUG
+
+#import "NIDeviceInfo.h"
+#import "NIOverviewerView.h"
+#import "NIOverviewerPageView.h"
+#import "NIOverviewerSwizzling.h"
+#import "NIOverviewerLogger.h"
 
 // Static state.
 static CGFloat  sOverviewerHeight   = 44;
 static BOOL     sOverviewerIsAwake  = NO;
-static UIView*  sOverviewerView     = nil;
+
+static NSTimer* sOverviewerHeartbeatTimer = nil;
+
+static NIOverviewerView* sOverviewerView = nil;
+static NIOverviewerLogger* sOverviewerLogger = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,7 +65,7 @@ extern void _NSSetLogCStringFunction(void(*)(const char *, unsigned, BOOL));
  * This method is passed as an argument to _NSSetLogCStringFunction to pipe all NSLog
  * messages through here.
  */
-void NIOverviewerLogger(const char *message, unsigned length, BOOL withSyslogBanner) {
+void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslogBanner) {
   static NSDateFormatter* formatter = nil;
   if (nil == formatter) {
     formatter = [[NSDateFormatter alloc] init];
@@ -144,6 +151,8 @@ void NIOverviewerLogger(const char *message, unsigned length, BOOL withSyslogBan
   // Get ready to fade the overviewer back in.
   sOverviewerView.hidden = NO;
   sOverviewerView.alpha = 0;
+  
+  [sOverviewerView flashScrollIndicators];
 
   // Fade!
   [UIView beginAnimations:nil context:nil];
@@ -151,6 +160,26 @@ void NIOverviewerLogger(const char *message, unsigned length, BOOL withSyslogBan
   sOverviewerView.alpha = 1;
   [UIView commitAnimations];
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)heartbeat {
+  [NIDeviceInfo beginCachedDeviceInfo];
+  NIOverviewerDeviceLogEntry* logEntry =
+  [[[NIOverviewerDeviceLogEntry alloc] initWithTimestamp:[NSDate date]]
+   autorelease];
+  logEntry.bytesOfTotalDiskSpace = [NIDeviceInfo bytesOfTotalDiskSpace];
+  logEntry.bytesOfFreeDiskSpace = [NIDeviceInfo bytesOfFreeDiskSpace];
+  logEntry.bytesOfFreeMemory = [NIDeviceInfo bytesOfFreeMemory];
+  logEntry.batteryLevel = [NIDeviceInfo batteryLevel];
+  logEntry.batteryState = [NIDeviceInfo batteryState];
+  [NIDeviceInfo endCachedDeviceInfo];
+
+  [sOverviewerLogger addDeviceLog:logEntry];
+  
+  [sOverviewerView updatePages];
+}
+
 
 #endif
 
@@ -169,7 +198,9 @@ void NIOverviewerLogger(const char *message, unsigned length, BOOL withSyslogBan
 
     // Set up the logger right away so that all calls to NSLog will be captured by the
     // overviewer.
-    _NSSetLogCStringFunction(NIOverviewerLogger);
+    _NSSetLogCStringFunction(NIOverviewerLogMethod);
+
+    sOverviewerLogger = [[NIOverviewerLogger alloc] init];
 
     NIOverviewerSwizzleMethods();
 
@@ -177,6 +208,13 @@ void NIOverviewerLogger(const char *message, unsigned length, BOOL withSyslogBan
                                              selector:@selector(didChangeOrientation)
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil];
+
+    sOverviewerHeartbeatTimer = [[NSTimer scheduledTimerWithTimeInterval: 1
+                                                                  target: self
+                                                                selector: @selector(heartbeat)
+                                                                userInfo: nil
+                                                                 repeats: YES]
+                                 retain];
 
     NSLog(@"The Overviewer has awoken.");
   }
@@ -195,6 +233,10 @@ void NIOverviewerLogger(const char *message, unsigned length, BOOL withSyslogBan
   }
 
   sOverviewerView = [[NIOverviewerView alloc] initWithFrame:[self frame]];
+  
+  [sOverviewerView addPageView:[NIOverviewerMemoryPageView page]];
+  
+  [sOverviewerView addPageView:[NIOverviewerMemoryPageView page]];
 
   // Hide the view initially because the initial frame will be wrong when the device
   // starts the app in any orientation other than portrait. Don't worry, we'll fade the

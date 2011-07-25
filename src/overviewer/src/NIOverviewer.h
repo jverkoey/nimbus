@@ -16,6 +16,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class NIOverviewerView;
+
 /**
  * The global overviewer state.
  *
@@ -63,6 +65,6 @@
 /**
  * The overviewer view.
  */
-+ (UIView *)view;
++ (NIOverviewerView *)view;
 
 @end
