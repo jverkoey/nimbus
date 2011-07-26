@@ -68,11 +68,11 @@
 - (void)cancelOperation {
   if ([self.operation isKindOfClass:[ASIHTTPRequest class]]) {
     ASIHTTPRequest* request = (ASIHTTPRequest *)self.operation;
-    [request clearDelegatesAndCancel];
-
-  } else {
-    [self.operation cancel];
+    // Clear the delegate so that we don't receive a didFail notification when we cancel the
+    // operation.
+    request.delegate = nil;
   }
+  [self.operation cancel];
 }
 
 
@@ -189,9 +189,7 @@
                                   contentMode: contentMode
                                  scaleOptions: scaleOptions];
 
-    // Store the image in the memory cache, possibly with an expiration date. The expiration
-    // date will allow the image to be released from memory if it expires whenever we receive
-    // a memory warning.
+    // Store the image in the memory cache, possibly with an expiration date.
     [self.imageMemoryCache storeObject: image
                               withName: cacheKey
                           expiresAfter: expirationDate];
