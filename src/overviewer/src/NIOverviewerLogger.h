@@ -16,6 +16,12 @@
 
 #import <Foundation/Foundation.h>
 
+#ifdef NIMBUS_STATIC_LIBRARY
+#import "NimbusCore/NimbusCore.h"
+#else
+#import "NimbusCore.h"
+#endif
+
 @class NIOverviewerDeviceLogEntry;
 
 @interface NIOverviewerLogger : NSObject {

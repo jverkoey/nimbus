@@ -18,6 +18,12 @@
 
 #ifdef DEBUG
 
+#ifdef NIMBUS_STATIC_LIBRARY
+#import "NimbusCore/NimbusCore.h"
+#else
+#import "NimbusCore.h"
+#endif
+
 #import "NIDeviceInfo.h"
 #import "NIOverviewerPageView.h"
 

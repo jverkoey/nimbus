@@ -30,7 +30,7 @@
   if ((self = [super initWithFrame:frame])) {
     self.opaque = NO;
     self.layer.borderWidth = 1;
-    self.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.4].CGColor;
+    self.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.2].CGColor;
   }
   return self;
 }
@@ -63,7 +63,7 @@
     isFirstPoint = NO;
   }
 
-	CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+	CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.6].CGColor);
 	CGContextStrokePath(context);
 }
 
@@ -71,11 +71,35 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawRect:(CGRect)rect {
 	CGContextRef context = UIGraphicsGetCurrentContext();
+
+  CGRect bounds = self.bounds;
   
   UIGraphicsPushContext(context);
 
 	CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.2].CGColor);
-	CGContextFillRect(context, self.bounds);
+	CGContextFillRect(context, bounds);
+
+  CGGradientRef glossGradient = nil;
+  CGColorSpaceRef colorspace = nil;
+  size_t numberOfLocations = 2;
+  CGFloat locations[2] = { 0.0, 1.0 };
+  CGFloat components[8] = {
+    1.0, 1.0, 1.0, 0.35,
+    1.0, 1.0, 1.0, 0.06
+  };
+  
+  colorspace = CGColorSpaceCreateDeviceRGB();
+  glossGradient = CGGradientCreateWithColorComponents(colorspace,
+                                                      components, locations, numberOfLocations);
+
+  CGPoint topCenter = CGPointMake(CGRectGetMidX(bounds), 0.0f);
+  CGPoint midCenter = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+  CGContextDrawLinearGradient(context, glossGradient, topCenter, midCenter, 0);
+  
+  CGGradientRelease(glossGradient);
+  glossGradient = nil;
+  CGColorSpaceRelease(colorspace);
+  colorspace = nil;
 	
   [self drawGraphWithContext:context];
   

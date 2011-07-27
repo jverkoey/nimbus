@@ -78,7 +78,7 @@ static const CGFloat kGraphRightMargin = 5;
     _titleLabel = [[[UILabel alloc] init] autorelease];
     _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.font = [UIFont boldSystemFontOfSize:11];
-    _titleLabel.textColor = [UIColor colorWithWhite:1 alpha:0.5];
+    _titleLabel.textColor = [UIColor colorWithWhite:1 alpha:0.8];
     [self addSubview:_titleLabel];
   }
   return self;
@@ -370,7 +370,7 @@ static const CGFloat kGraphRightMargin = 5;
   unsigned long long maxY = 0;
   for (NIOverviewerDeviceLogEntry* entry in deviceLogs) {
     minY = MIN(entry.bytesOfFreeDiskSpace, minY);
-    maxY = MAX(entry.bytesOfTotalDiskSpace, maxY);
+    maxY = MAX(entry.bytesOfFreeDiskSpace, maxY);
   }
   unsigned long long range = maxY - minY;
   _minDiskUse = minY;
