@@ -49,11 +49,14 @@
 
 @end
 
-@interface NIOverviewerGraphPageView : NIOverviewerPageView {
+@interface NIOverviewerGraphPageView : NIOverviewerPageView <
+  NIOverviewerGraphViewDataSource
+> {
 @private
   UILabel* _label1;
   UILabel* _label2;
   NIOverviewerGraphView* _graphView;
+  NSEnumerator* _eventEnumerator;
 }
 
 @property (nonatomic, readonly, retain) UILabel* label1;
@@ -62,9 +65,7 @@
 
 @end
 
-@interface NIOverviewerMemoryPageView : NIOverviewerGraphPageView <
-  NIOverviewerGraphViewDataSource
-> {
+@interface NIOverviewerMemoryPageView : NIOverviewerGraphPageView {
 @private
   NSEnumerator* _enumerator;
   unsigned long long _minMemory;
@@ -72,9 +73,7 @@
 
 @end
 
-@interface NIOverviewerDiskPageView : NIOverviewerGraphPageView <
-  NIOverviewerGraphViewDataSource
-> {
+@interface NIOverviewerDiskPageView : NIOverviewerGraphPageView {
 @private
   NSEnumerator* _enumerator;
   unsigned long long _minDiskUse;

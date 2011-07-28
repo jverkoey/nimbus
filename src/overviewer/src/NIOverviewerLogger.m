@@ -27,12 +27,14 @@ NSString* const NIOverviewerLoggerDidAddConsoleLog = @"NIOverviewerLoggerDidAddC
 @synthesize oldestLogAge = _oldestLogAge;
 @synthesize deviceLogs = _deviceLogs;
 @synthesize consoleLogs = _consoleLogs;
+@synthesize eventLogs = _eventLogs;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_deviceLogs);
   NI_RELEASE_SAFELY(_consoleLogs);
+  NI_RELEASE_SAFELY(_eventLogs);
 
   [super dealloc];
 }
@@ -43,6 +45,7 @@ NSString* const NIOverviewerLoggerDidAddConsoleLog = @"NIOverviewerLoggerDidAddC
   if ((self = [super init])) {
     _deviceLogs = [[NILinkedList alloc] init];
     _consoleLogs = [[NILinkedList alloc] init];
+    _eventLogs = [[NILinkedList alloc] init];
     
     _oldestLogAge = 60;
   }
@@ -76,6 +79,14 @@ NSString* const NIOverviewerLoggerDidAddConsoleLog = @"NIOverviewerLoggerDidAddC
                                                       object: nil
                                                     userInfo:
    [NSDictionary dictionaryWithObject:logEntry forKey:@"entry"]];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)addEventLog:(NIOverviewerEventLogEntry *)logEntry {
+  [self pruneEntriesFromLinkedList:_eventLogs];
+
+  [_eventLogs addObject:logEntry];
 }
 
 
@@ -147,6 +158,27 @@ NSString* const NIOverviewerLoggerDidAddConsoleLog = @"NIOverviewerLoggerDidAddC
     _log = [log copy];
   }
 
+  return self;
+}
+
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NIOverviewerEventLogEntry
+
+@synthesize type = _type;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithType:(NSInteger)type {
+  if ((self = [super initWithTimestamp:[NSDate date]])) {
+    _type = type;
+  }
+  
   return self;
 }
 

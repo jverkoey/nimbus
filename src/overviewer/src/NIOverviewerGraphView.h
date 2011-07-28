@@ -39,4 +39,9 @@
 - (BOOL)nextPointInGraphView: (NIOverviewerGraphView *)graphView
                        point: (CGPoint *)point;
 
+- (void)resetEventIterator;
+- (BOOL)nextEventInGraphView: (NIOverviewerGraphView *)graphView
+                      xValue: (CGFloat *)xValue
+                       color: (UIColor **)color;
+
 @end

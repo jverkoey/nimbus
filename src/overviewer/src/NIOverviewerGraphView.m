@@ -50,8 +50,7 @@
   
   BOOL isFirstPoint = YES;
   CGPoint point = CGPointZero;
-  while ([self.dataSource nextPointInGraphView:self
-                                         point:&point]) {
+  while ([self.dataSource nextPointInGraphView:self point:&point]) {
     CGPoint scaledPoint = CGPointMake(point.x / xRange, point.y / yRange);
     CGPoint plotPoint = CGPointMake(floorf(scaledPoint.x * contentSize.width) - 0.5f,
                                     contentSize.height
@@ -66,6 +65,20 @@
 
 	CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.6].CGColor);
 	CGContextStrokePath(context);
+  
+  [self.dataSource resetEventIterator];
+
+  CGFloat xValue = 0;
+  UIColor* color = nil;
+  while ([self.dataSource nextEventInGraphView:self xValue:&xValue color:&color]) {
+    CGFloat scaledXValue = xValue / xRange;
+    CGFloat plotXValue = floorf(scaledXValue * contentSize.width) - 0.5f;
+    CGContextMoveToPoint(context, plotXValue, 0);
+    CGContextAddLineToPoint(context, plotXValue, contentSize.height);
+
+    CGContextSetStrokeColorWithColor(context, color.CGColor);
+    CGContextStrokePath(context);
+  }
 }
 
 

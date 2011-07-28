@@ -26,11 +26,13 @@ extern NSString* const NIOverviewerLoggerDidAddConsoleLog;
 
 @class NIOverviewerDeviceLogEntry;
 @class NIOverviewerConsoleLogEntry;
+@class NIOverviewerEventLogEntry;
 
 @interface NIOverviewerLogger : NSObject {
 @private
   NILinkedList* _deviceLogs;
   NILinkedList* _consoleLogs;
+  NILinkedList* _eventLogs;
   NSTimeInterval _oldestLogAge;
 }
 
@@ -53,8 +55,14 @@ extern NSString* const NIOverviewerLoggerDidAddConsoleLog;
  */
 - (void)addConsoleLog:(NIOverviewerConsoleLogEntry *)logEntry;
 
+/**
+ * Add a event log.
+ */
+- (void)addEventLog:(NIOverviewerEventLogEntry *)logEntry;
+
 @property (nonatomic, readonly, retain) NILinkedList* deviceLogs;
 @property (nonatomic, readonly, retain) NILinkedList* consoleLogs;
+@property (nonatomic, readonly, retain) NILinkedList* eventLogs;
 
 @end
 
@@ -117,5 +125,26 @@ extern NSString* const NIOverviewerLoggerDidAddConsoleLog;
 - (id)initWithLog:(NSString *)log;
 
 @property (nonatomic, readwrite, copy) NSString* log;
+
+@end
+
+typedef enum {
+  NIOverviewerEventDidReceiveMemoryWarning,
+} NIOverviewerEventType;
+
+/**
+ * A console log entry.
+ */
+@interface NIOverviewerEventLogEntry : NIOverviewerLogEntry {
+@private
+  NSInteger _eventType;
+}
+
+/**
+ * Designated initializer.
+ */
+- (id)initWithType:(NSInteger)type;
+
+@property (nonatomic, readwrite, assign) NSInteger type;
 
 @end

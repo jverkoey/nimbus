@@ -177,6 +177,14 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)didReceiveMemoryWarning {
+  [sOverviewerLogger addEventLog:
+   [[[NIOverviewerEventLogEntry alloc] initWithType:NIOverviewerEventDidReceiveMemoryWarning]
+    autorelease]];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)heartbeat {
   [NIDeviceInfo beginCachedDeviceInfo];
   NIOverviewerDeviceLogEntry* logEntry =
@@ -226,6 +234,10 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(statusBarWillChangeFrame)
                                                  name: UIApplicationWillChangeStatusBarFrameNotification
+                                               object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(didReceiveMemoryWarning)
+                                                 name: UIApplicationDidReceiveMemoryWarningNotification
                                                object: nil];
 
     sOverviewerHeartbeatTimer = [[NSTimer scheduledTimerWithTimeInterval: 0.5
