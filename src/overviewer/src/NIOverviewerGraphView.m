@@ -76,6 +76,8 @@
   
   UIGraphicsPushContext(context);
 
+  [self drawGraphWithContext:context];
+  
 	CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.2].CGColor);
 	CGContextFillRect(context, bounds);
 
@@ -87,7 +89,7 @@
     1.0, 1.0, 1.0, 0.35,
     1.0, 1.0, 1.0, 0.06
   };
-  
+
   colorspace = CGColorSpaceCreateDeviceRGB();
   glossGradient = CGGradientCreateWithColorComponents(colorspace,
                                                       components, locations, numberOfLocations);
@@ -95,14 +97,12 @@
   CGPoint topCenter = CGPointMake(CGRectGetMidX(bounds), 0.0f);
   CGPoint midCenter = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
   CGContextDrawLinearGradient(context, glossGradient, topCenter, midCenter, 0);
-  
+
   CGGradientRelease(glossGradient);
   glossGradient = nil;
   CGColorSpaceRelease(colorspace);
   colorspace = nil;
-	
-  [self drawGraphWithContext:context];
-  
+
   UIGraphicsPopContext();
 }
 

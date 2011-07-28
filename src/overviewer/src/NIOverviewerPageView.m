@@ -338,7 +338,7 @@ static const CGFloat kGraphRightMargin = 5;
                       NIStringFromBytes([NIDeviceInfo bytesOfTotalDiskSpace])];
   
   [NIDeviceInfo endCachedDeviceInfo];
-  
+
   [self setNeedsLayout];
 }
 
@@ -398,6 +398,147 @@ static const CGFloat kGraphRightMargin = 5;
     *point = CGPointMake(interval, difference);
   }
   return nil != entry;
+}
+
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NIOverviewerConsoleLogPageView
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_logScrollView);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UILabel *)label {
+  UILabel* label = [[[UILabel alloc] init] autorelease];
+  
+  label.font = [UIFont boldSystemFontOfSize:11];
+  label.textColor = [UIColor whiteColor];
+  label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
+  label.shadowOffset = CGSizeMake(0, 1);
+  label.backgroundColor = [UIColor clearColor];
+  label.lineBreakMode = UILineBreakModeWordWrap;
+  label.numberOfLines = 0;
+  
+  return label;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithFrame:(CGRect)frame {
+  if ((self = [super initWithFrame:frame])) {
+    self.pageTitle = NSLocalizedString(@"Logs", @"Overview Page Title: Logs");
+
+    self.titleLabel.textColor = [UIColor colorWithWhite:1 alpha:0.5];
+
+    _logScrollView = [[[UIScrollView alloc] initWithFrame:self.bounds] autorelease];
+    _logScrollView.showsHorizontalScrollIndicator = NO;
+    _logScrollView.alwaysBounceVertical = YES;
+    _logScrollView.contentInset = kPagePadding;
+
+    _logScrollView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+
+    [self addSubview:_logScrollView];
+
+    _logLabel = [self label];
+    [_logScrollView addSubview:_logLabel];
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(didAddLog:)
+                                                 name: NIOverviewerLoggerDidAddConsoleLog
+                                               object: nil];
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)contentSizeChanged {
+  BOOL isBottomNearby = NO;
+  if (_logScrollView.contentOffset.y + _logScrollView.bounds.size.height
+      >= _logScrollView.contentSize.height - _logScrollView.bounds.size.height) {
+    isBottomNearby = YES;
+  }
+  
+  _logScrollView.frame = CGRectMake(0, 0,
+                                    self.bounds.size.width,
+                                    self.bounds.size.height);
+  
+  CGSize labelSize = [_logLabel.text sizeWithFont: _logLabel.font
+                                constrainedToSize: CGSizeMake(_logScrollView.bounds.size.width,
+                                                              CGFLOAT_MAX)
+                                    lineBreakMode: _logLabel.lineBreakMode];
+  _logLabel.frame = CGRectMake(0, 0,
+                               labelSize.width, labelSize.height);
+  
+  _logScrollView.contentSize = CGSizeMake(_logScrollView.bounds.size.width
+                                          - kPagePadding.left - kPagePadding.right,
+                                          _logLabel.frame.size.height);
+  
+  if (isBottomNearby) {
+    _logScrollView.contentOffset = CGPointMake(-kPagePadding.left,
+                                               MAX(_logScrollView.contentSize.height
+                                                   - _logScrollView.bounds.size.height
+                                                   + kPagePadding.top,
+                                                   -kPagePadding.top));
+    [_logScrollView flashScrollIndicators];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setFrame:(CGRect)frame {
+  [super setFrame:frame];
+  
+  [self contentSizeChanged];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)layoutSubviews {
+  [super layoutSubviews];
+
+  CGRect labelFrame = self.titleLabel.frame;
+  labelFrame.origin.x = (self.bounds.size.width
+                         - kPagePadding.right - self.titleLabel.frame.size.width);
+  labelFrame.origin.y = (self.bounds.size.height
+                         - kPagePadding.bottom - self.titleLabel.frame.size.height);
+  self.titleLabel.frame = labelFrame;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didAddLog:(NSNotification *)notification {
+  NIOverviewerConsoleLogEntry* entry = [[notification userInfo] objectForKey:@"entry"];
+
+  static NSDateFormatter* formatter = nil;
+  if (nil == formatter) {
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeStyle:kCFDateFormatterShortStyle];
+    [formatter setDateStyle:kCFDateFormatterNoStyle];
+  }
+
+  NSString* formattedLog = [NSString stringWithFormat:@"%@: %@",
+                            [formatter stringFromDate:entry.timestamp],
+                            entry.log];
+
+  if (nil != _logLabel.text) {
+    _logLabel.text = [_logLabel.text stringByAppendingFormat:@"\n%@", formattedLog];
+  } else {
+    _logLabel.text = formattedLog;
+  }
+  
+  [self contentSizeChanged];
 }
 
 

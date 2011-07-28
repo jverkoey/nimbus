@@ -22,7 +22,10 @@
 #import "NimbusCore.h"
 #endif
 
+extern NSString* const NIOverviewerLoggerDidAddConsoleLog;
+
 @class NIOverviewerDeviceLogEntry;
+@class NIOverviewerConsoleLogEntry;
 
 @interface NIOverviewerLogger : NSObject {
 @private
@@ -45,7 +48,13 @@
  */
 - (void)addDeviceLog:(NIOverviewerDeviceLogEntry *)logEntry;
 
+/**
+ * Add a console log.
+ */
+- (void)addConsoleLog:(NIOverviewerConsoleLogEntry *)logEntry;
+
 @property (nonatomic, readonly, retain) NILinkedList* deviceLogs;
+@property (nonatomic, readonly, retain) NILinkedList* consoleLogs;
 
 @end
 
@@ -91,5 +100,22 @@
 @property (nonatomic, readwrite, assign) unsigned long long bytesOfFreeDiskSpace;
 @property (nonatomic, readwrite, assign) CGFloat batteryLevel;
 @property (nonatomic, readwrite, assign) UIDeviceBatteryState batteryState;
+
+@end
+
+/**
+ * A console log entry.
+ */
+@interface NIOverviewerConsoleLogEntry : NIOverviewerLogEntry {
+@private
+  NSString* _log;
+}
+
+/**
+ * Designated initializer.
+ */
+- (id)initWithLog:(NSString *)log;
+
+@property (nonatomic, readwrite, copy) NSString* log;
 
 @end

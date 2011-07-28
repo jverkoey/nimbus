@@ -78,9 +78,12 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
   // We don't autorelease here in an attempt to minimize autorelease thrashing in tight
   // loops.
   NSString* formattedLogMessage = [[NSString alloc] initWithFormat:
-                                   @"%@ %s\n", [formatter stringFromDate:date], message];
+                                   @"%@: %s\n", [formatter stringFromDate:date], message];
 
-  // TODO (jverkoey July 23, 2011): Pipe this to the Overviewer's log.
+  [[NIOverviewer logger] addConsoleLog:
+   [[[NIOverviewerConsoleLogEntry alloc] initWithLog:
+     [NSString stringWithCString:message encoding:NSUTF8StringEncoding]]
+    autorelease]];
 
   fprintf(stderr, "%s", [formattedLogMessage UTF8String]);
   
@@ -216,8 +219,6 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
                                                                 userInfo: nil
                                                                  repeats: YES]
                                  retain];
-
-    NSLog(@"The Overviewer has awoken.");
   }
 #endif
 }
@@ -236,8 +237,8 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
   sOverviewerView = [[NIOverviewerView alloc] initWithFrame:[self frame]];
   
   [sOverviewerView addPageView:[NIOverviewerMemoryPageView page]];
-  
   [sOverviewerView addPageView:[NIOverviewerDiskPageView page]];
+  [sOverviewerView addPageView:[NIOverviewerConsoleLogPageView page]];
 
   // Hide the view initially because the initial frame will be wrong when the device
   // starts the app in any orientation other than portrait. Don't worry, we'll fade the
@@ -245,6 +246,8 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
   sOverviewerView.hidden = YES;
 
   [window addSubview:sOverviewerView];
+  
+  NSLog(@"The Overviewer has been added to a window.");
 #endif
 }
 

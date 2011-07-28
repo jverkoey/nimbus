@@ -82,4 +82,12 @@
 
 @end
 
+@interface NIOverviewerConsoleLogPageView : NIOverviewerPageView {
+@private
+  UIScrollView* _logScrollView;
+  UILabel* _logLabel;
+}
+
+@end
+
 #endif
