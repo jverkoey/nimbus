@@ -42,6 +42,18 @@ NSTimeInterval NIStatusBarAnimationDuration() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+UIViewAnimationCurve NIStatusBarFrameAnimationCurve() {
+  return UIViewAnimationCurveEaseInOut;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NSTimeInterval NIStatusBarFrameAnimationDuration() {
+  return 0.35;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat NIStatusBarHeight() {
   CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
   CGFloat statusBarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);

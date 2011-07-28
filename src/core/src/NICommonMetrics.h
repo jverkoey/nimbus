@@ -54,6 +54,20 @@ UIViewAnimationCurve NIStatusBarAnimationCurve();
 NSTimeInterval NIStatusBarAnimationDuration();
 
 /**
+ * The animation curve used when animating the status bar frame.
+ *
+ * Value: UIViewAnimationCurveEaseInOut
+ */
+UIViewAnimationCurve NIStatusBarFrameAnimationCurve();
+
+/**
+ * The animation duration for animating the status bar frame.
+ *
+ * Value: 0.35 seconds
+ */
+NSTimeInterval NIStatusBarFrameAnimationDuration();
+
+/**
  * Get the status bar's current height.
  *
  * If the status bar is hidden this will return 0.
