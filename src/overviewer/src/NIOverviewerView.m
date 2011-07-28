@@ -130,7 +130,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutPages {
   _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
-  
+
   for (NSInteger ix = 0; ix < [_pageViews count]; ++ix) {
     UIView* pageView = [_pageViews objectAtIndex:ix];
     pageView.frame = [self frameForPageAtIndex:ix];
@@ -139,17 +139,23 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setBounds:(CGRect)bounds {
+- (NSInteger)visiblePageIndex {
   CGFloat offset = _pagingScrollView.contentOffset.x;
   CGFloat pageWidth = _pagingScrollView.bounds.size.width;
-  
-  NSInteger visiblePageIndex = floorf(offset / pageWidth);
+
+  return floorf(offset / pageWidth);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setBounds:(CGRect)bounds {
+  NSInteger visiblePageIndex = [self visiblePageIndex];
 
   [super setBounds:bounds];
 
   [self layoutPages];
 
-  pageWidth = _pagingScrollView.bounds.size.width;
+  CGFloat pageWidth = _pagingScrollView.bounds.size.width;
   CGFloat newOffset = (visiblePageIndex * pageWidth);
   _pagingScrollView.contentOffset = CGPointMake(newOffset, 0);
 }
@@ -165,11 +171,11 @@
 - (void)setTranslucent:(BOOL)translucent {
   if (_translucent != translucent) {
     _translucent = translucent;
-    
+
     _pagingScrollView.indicatorStyle = (_translucent
                                         ? UIScrollViewIndicatorStyleWhite
                                         : UIScrollViewIndicatorStyleDefault);
-    
+
     self.backgroundColor = (_translucent
                             ? [UIColor colorWithWhite:0 alpha:0.5]
                             : [UIColor colorWithPatternImage:_backgroundImage]);
