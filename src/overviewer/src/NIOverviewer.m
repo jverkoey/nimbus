@@ -254,6 +254,7 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
   [sOverviewerView addPageView:[NIOverviewerMemoryPageView page]];
   [sOverviewerView addPageView:[NIOverviewerDiskPageView page]];
   [sOverviewerView addPageView:[NIOverviewerConsoleLogPageView page]];
+  [sOverviewerView addPageView:[NIOverviewerMaxLogLevelPageView page]];
 
   // Hide the view initially because the initial frame will be wrong when the device
   // starts the app in any orientation other than portrait. Don't worry, we'll fade the

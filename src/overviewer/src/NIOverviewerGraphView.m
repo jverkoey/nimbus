@@ -55,7 +55,8 @@
     CGPoint scaledPoint = CGPointMake(point.x / xRange, point.y / yRange);
     CGPoint plotPoint = CGPointMake(floorf(scaledPoint.x * contentSize.width) - 0.5f,
                                     contentSize.height
-                                    - floorf(scaledPoint.y * contentSize.height) - 0.5f);
+                                    - floorf((scaledPoint.y * 0.8 + 0.1)
+                                             * contentSize.height) - 0.5f);
     if (!isFirstPoint) {
       CGContextAddLineToPoint(context, plotPoint.x, plotPoint.y);
     }

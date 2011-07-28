@@ -90,4 +90,14 @@
 
 @end
 
+@interface NIOverviewerMaxLogLevelPageView : NIOverviewerPageView {
+@private
+  UISlider* _logLevelSlider;
+  UILabel* _errorLogLevelLabel;
+  UILabel* _warningLogLevelLabel;
+  UILabel* _infoLogLevelLabel;
+}
+
+@end
+
 #endif

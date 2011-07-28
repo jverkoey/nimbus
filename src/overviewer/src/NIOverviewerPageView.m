@@ -412,7 +412,10 @@ static const CGFloat kGraphRightMargin = 5;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  NI_RELEASE_SAFELY(_logScrollView);
+  [[NSOperationQueue mainQueue] removeObserver:self];
+
+  _logScrollView = nil;
+  _logLabel = nil;
 
   [super dealloc];
 }
@@ -539,6 +542,128 @@ static const CGFloat kGraphRightMargin = 5;
   }
   
   [self contentSizeChanged];
+}
+
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NIOverviewerMaxLogLevelPageView
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  _logLevelSlider = nil;
+  _errorLogLevelLabel = nil;
+  _warningLogLevelLabel = nil;
+  _infoLogLevelLabel = nil;
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UILabel *)label {
+  UILabel* label = [[[UILabel alloc] init] autorelease];
+  
+  label.font = [UIFont boldSystemFontOfSize:11];
+  label.textColor = [UIColor whiteColor];
+  label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
+  label.shadowOffset = CGSizeMake(0, 1);
+  label.backgroundColor = [UIColor clearColor];
+  label.lineBreakMode = UILineBreakModeWordWrap;
+  label.numberOfLines = 0;
+  
+  return label;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)updateLabels {
+  _warningLogLevelLabel.textColor = [_warningLogLevelLabel.textColor colorWithAlphaComponent:
+                                     (NIMaxLogLevel >= NILOGLEVEL_WARNING) ? 1 : 0.6];
+  _infoLogLevelLabel.textColor = [_infoLogLevelLabel.textColor colorWithAlphaComponent:
+                                  (NIMaxLogLevel >= NILOGLEVEL_INFO) ? 1 : 0.6];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithFrame:(CGRect)frame {
+  if ((self = [super initWithFrame:frame])) {
+    self.pageTitle = NSLocalizedString(@"Max Log Level", @"Overview Page Title: Max Log Level");
+
+    self.titleLabel.textColor = [UIColor colorWithWhite:1 alpha:0.5];
+
+    _logLevelSlider = [[[UISlider alloc] init] autorelease];
+    _logLevelSlider.minimumValue = 1;
+    _logLevelSlider.maximumValue = 5;
+    [_logLevelSlider addTarget: self
+                        action: @selector(didChangeSliderValue:)
+              forControlEvents: UIControlEventValueChanged];
+    [self addSubview:_logLevelSlider];
+
+    _logLevelSlider.value = NIMaxLogLevel;
+
+    _errorLogLevelLabel = [self label];
+    _warningLogLevelLabel = [self label];
+    _infoLogLevelLabel = [self label];
+
+    _errorLogLevelLabel.text = NSLocalizedString(@"Error", @"Maximum log level: error");
+    _warningLogLevelLabel.text = NSLocalizedString(@"Warning", @"Maximum log level: warning");
+    _infoLogLevelLabel.text = NSLocalizedString(@"Info", @"Maximum log level: info");
+
+    [self addSubview:_errorLogLevelLabel];
+    [self addSubview:_warningLogLevelLabel];
+    [self addSubview:_infoLogLevelLabel];
+
+    [self updateLabels];
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)layoutSubviews {
+  [super layoutSubviews];
+
+  CGFloat contentSize = self.bounds.size.width - kPagePadding.left - kPagePadding.right;
+
+  _logLevelSlider.frame = CGRectMake(kPagePadding.left, kPagePadding.top,
+                                     contentSize,
+                                     20);
+
+  CGFloat sliderBottom = CGRectGetMaxY(_logLevelSlider.frame);
+
+  [_errorLogLevelLabel sizeToFit];
+  _errorLogLevelLabel.frame = CGRectMake(kPagePadding.left, sliderBottom,
+                                         _errorLogLevelLabel.frame.size.width,
+                                         _errorLogLevelLabel.frame.size.height);
+
+  [_warningLogLevelLabel sizeToFit];
+  _warningLogLevelLabel.frame = CGRectMake(floorf((self.bounds.size.width
+                                                   - _warningLogLevelLabel.frame.size.width) / 2),
+                                           sliderBottom,
+                                           _warningLogLevelLabel.frame.size.width,
+                                           _warningLogLevelLabel.frame.size.height);
+
+  [_infoLogLevelLabel sizeToFit];
+  _infoLogLevelLabel.frame = CGRectMake(kPagePadding.left + contentSize
+                                        - _infoLogLevelLabel.frame.size.width,
+                                        sliderBottom,
+                                        _infoLogLevelLabel.frame.size.width,
+                                        _infoLogLevelLabel.frame.size.height);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didChangeSliderValue:(UISlider *)slider {
+  slider.value = roundf(slider.value);
+  NIMaxLogLevel = round(slider.value);
+
+  [self updateLabels];
 }
 
 
