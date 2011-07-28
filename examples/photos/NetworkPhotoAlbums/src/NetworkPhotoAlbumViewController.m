@@ -32,7 +32,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)shutdown {
-  for (ASIHTTPRequest *request in _queue.operations) {
+  for (ASIHTTPRequest* request in _queue.operations) {
     request.delegate = nil;
   }
   [_queue cancelAllOperations];
