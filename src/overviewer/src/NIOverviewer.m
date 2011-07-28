@@ -135,6 +135,17 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)statusBarWillChangeFrame {
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:NIStatusBarFrameAnimationDuration()];
+  [UIView setAnimationCurve:NIStatusBarFrameAnimationCurve()];
+  CGRect frame = [NIOverviewer frame];
+  sOverviewerView.center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+  [UIView commitAnimations];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)showOverviewerAfterRotation {
   // Don't modify the overviewer's frame directly, just modify the transform/center/bounds
   // properties so that the view is rotated with the device.
@@ -208,10 +219,14 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
 
     NIOverviewerSwizzleMethods();
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didChangeOrientation)
-                                                 name:UIDeviceOrientationDidChangeNotification
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(didChangeOrientation)
+                                                 name: UIDeviceOrientationDidChangeNotification
+                                               object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(statusBarWillChangeFrame)
+                                                 name: UIApplicationWillChangeStatusBarFrameNotification
+                                               object: nil];
 
     sOverviewerHeartbeatTimer = [[NSTimer scheduledTimerWithTimeInterval: 0.5
                                                                   target: self
