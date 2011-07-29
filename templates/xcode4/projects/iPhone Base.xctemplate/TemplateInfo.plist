@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Identifier</key>
+	<string>com.nimbus.iPhoneBase</string>
+	<key>Kind</key>
+	<string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
+	<key>Platforms</key>
+	<array>
+		<string>com.apple.platform.iphoneos</string>
+	</array>
+	<key>Project</key>
+	<dict>
+		<key>SDK</key>
+		<string>iphoneos</string>
+		<key>SharedSettings</key>
+		<dict>
+			<key>ARCHS</key>
+			<string>$(ARCHS_STANDARD_32_BIT)</string>
+			<key>GCC_VERSION</key>
+			<string>com.apple.compilers.llvmgcc42</string>
+			<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+			<string>latest_iphoneos</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

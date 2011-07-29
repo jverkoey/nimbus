@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Ancestors</key>
+	<array>
+		<string>com.nimbus.bundleBase</string>
+	</array>
+	<key>Identifier</key>
+	<string>com.nimbus.objectiveCApplication</string>
+	<key>Kind</key>
+	<string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
+	<key>Targets</key>
+	<array>
+		<dict>
+			<key>BuildPhases</key>
+			<array>
+				<dict>
+					<key>Class</key>
+					<string>Sources</string>
+				</dict>
+				<dict>
+					<key>Class</key>
+					<string>Frameworks</string>
+				</dict>
+				<dict>
+					<key>Class</key>
+					<string>Resources</string>
+				</dict>
+			</array>
+			<key>Configurations</key>
+			<dict>
+				<key>Debug</key>
+				<dict>
+					<key>COPY_PHASE_STRIP</key>
+					<string>NO</string>
+					<key>GCC_DYNAMIC_NO_PIC</key>
+					<string>NO</string>
+				</dict>
+				<key>Release</key>
+				<dict>
+					<key>COPY_PHASE_STRIP</key>
+					<string>YES</string>
+				</dict>
+			</dict>
+			<key>ProductType</key>
+			<string>com.apple.product-type.application</string>
+			<key>SharedSettings</key>
+			<dict>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -37,8 +37,17 @@ copy_xcode3_file_templates(){
 	cp -r xcode3/source/ "${TEMPLATE_DIR}"
 }
 
+# Installs the xcode 4 project templates. Overwrites any existing files.
+copy_xcode4_project_templates(){
+	echo "Installing xcode 4 project templates"
+	TEMPLATE_DIR="${XCODE4_BASE_TEMPLATE_DIR}/Project Templates/Nimbus Application"
+	mkdir -p "${TEMPLATE_DIR}"
+	cp -r xcode4/projects/ "${TEMPLATE_DIR}"
+}
+
 copy_xcode3_project_templates
 copy_xcode3_file_templates
+copy_xcode4_project_templates
 
 #mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/Project\ Templates/Nimbus\ Application
 #cp -r projects/ ~/Library/Application\ Support/Developer/Shared/Xcode/Project\ Templates/Nimbus\ Application
