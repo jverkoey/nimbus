@@ -129,6 +129,22 @@
 <a name="l00053"></a>00053 
 <a name="l00054"></a>00054   <span class="keywordflow">return</span> orient;
 <a name="l00055"></a>00055 }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 
+<a name="l00059"></a><a class="code" href="group___device-_orientation.html#gaa4aabcd2523c4c39e7981778de04fa87">00059</a> CGAffineTransform <a class="code" href="group___device-_orientation.html#gaa4aabcd2523c4c39e7981778de04fa87" title="Creates an affine transform for the given device orientation.">NIRotateTransformForOrientation</a>(UIInterfaceOrientation orientation) {
+<a name="l00060"></a>00060   <span class="keywordflow">if</span> (orientation == UIInterfaceOrientationLandscapeLeft) {
+<a name="l00061"></a>00061     <span class="keywordflow">return</span> CGAffineTransformMakeRotation(M_PI*1.5);
+<a name="l00062"></a>00062     
+<a name="l00063"></a>00063   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (orientation == UIInterfaceOrientationLandscapeRight) {
+<a name="l00064"></a>00064     <span class="keywordflow">return</span> CGAffineTransformMakeRotation(M_PI/2);
+<a name="l00065"></a>00065     
+<a name="l00066"></a>00066   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+<a name="l00067"></a>00067     <span class="keywordflow">return</span> CGAffineTransformMakeRotation(-M_PI);
+<a name="l00068"></a>00068     
+<a name="l00069"></a>00069   } <span class="keywordflow">else</span> {
+<a name="l00070"></a>00070     <span class="keywordflow">return</span> CGAffineTransformIdentity;
+<a name="l00071"></a>00071   }
+<a name="l00072"></a>00072 }
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

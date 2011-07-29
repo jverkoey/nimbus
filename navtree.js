@@ -33,6 +33,14 @@ var NAVTREE =
         [ "Network Requests", "group___network-_image-_requests.html", null ],
         [ "User Interface", "group___network-_image-_user-_interface.html", null ]
       ] ],
+      [ "Nimbus Overview", "group___nimbus_overview.html", [
+        [ "Logger", "group___overview-_logger.html", [
+          [ "Log Entries", "group___overview-_logger-_entries.html", null ]
+        ] ],
+        [ "Overview", "group___overview.html", null ],
+        [ "Pages", "group___overview-_pages.html", null ],
+        [ "Sensors", "group___overview-_sensors.html", null ]
+      ] ],
       [ "Nimbus Photos", "group___nimbus_photos.html", [
         [ "Photo Protocols", "group___photos-_protocols.html", null ],
         [ "Photo View Controllers", "group___photos-_controllers.html", null ],
@@ -52,6 +60,7 @@ var NAVTREE =
       ] ]
     ] ],
     [ "Class List", "annotated.html", [
+      [ "NIDeviceInfo", "interface_n_i_device_info.html", null ],
       [ "NIHTTPImageRequest", "interface_n_i_h_t_t_p_image_request.html", null ],
       [ "NIHTTPRequest", "interface_n_i_h_t_t_p_request.html", null ],
       [ "NIImageMemoryCache", "interface_n_i_image_memory_cache.html", null ],
@@ -70,6 +79,21 @@ var NAVTREE =
       [ "<NINetworkImageViewDelegate>", "protocol_n_i_network_image_view_delegate-p.html", null ],
       [ "NIOperation", "interface_n_i_operation.html", null ],
       [ "<NIOperationDelegate>", "protocol_n_i_operation_delegate-p.html", null ],
+      [ "NIOverview", "interface_n_i_overview.html", null ],
+      [ "NIOverviewConsoleLogEntry", "interface_n_i_overview_console_log_entry.html", null ],
+      [ "NIOverviewConsoleLogPageView", "interface_n_i_overview_console_log_page_view.html", null ],
+      [ "NIOverviewDeviceLogEntry", "interface_n_i_overview_device_log_entry.html", null ],
+      [ "NIOverviewDiskPageView", "interface_n_i_overview_disk_page_view.html", null ],
+      [ "NIOverviewEventLogEntry", "interface_n_i_overview_event_log_entry.html", null ],
+      [ "NIOverviewGraphPageView", "interface_n_i_overview_graph_page_view.html", null ],
+      [ "NIOverviewGraphView", "interface_n_i_overview_graph_view.html", null ],
+      [ "<NIOverviewGraphViewDataSource>", "protocol_n_i_overview_graph_view_data_source-p.html", null ],
+      [ "NIOverviewLogEntry", "interface_n_i_overview_log_entry.html", null ],
+      [ "NIOverviewLogger", "interface_n_i_overview_logger.html", null ],
+      [ "NIOverviewMaxLogLevelPageView", "interface_n_i_overview_max_log_level_page_view.html", null ],
+      [ "NIOverviewMemoryPageView", "interface_n_i_overview_memory_page_view.html", null ],
+      [ "NIOverviewPageView", "interface_n_i_overview_page_view.html", null ],
+      [ "NIOverviewView", "interface_n_i_overview_view.html", null ],
       [ "NIPhotoAlbumScrollView", "interface_n_i_photo_album_scroll_view.html", null ],
       [ "<NIPhotoAlbumScrollViewDataSource>", "protocol_n_i_photo_album_scroll_view_data_source-p.html", null ],
       [ "<NIPhotoAlbumScrollViewDelegate>", "protocol_n_i_photo_album_scroll_view_delegate-p.html", null ],
@@ -88,6 +112,7 @@ var NAVTREE =
     ] ],
     [ "Class Index", "classes.html", null ],
     [ "Class Hierarchy", "hierarchy.html", [
+      [ "NIDeviceInfo", "interface_n_i_device_info.html", null ],
       [ "NIHTTPRequest", "interface_n_i_h_t_t_p_request.html", [
         [ "NIHTTPImageRequest", "interface_n_i_h_t_t_p_image_request.html", null ],
         [ "NIProcessorHTTPRequest", "interface_n_i_processor_h_t_t_p_request.html", [
@@ -115,6 +140,26 @@ var NAVTREE =
         [ "NIReadFileFromDiskOperation", "interface_n_i_read_file_from_disk_operation.html", null ]
       ] ],
       [ "<NIOperationDelegate>", "protocol_n_i_operation_delegate-p.html", null ],
+      [ "NIOverview", "interface_n_i_overview.html", null ],
+      [ "NIOverviewGraphView", "interface_n_i_overview_graph_view.html", null ],
+      [ "<NIOverviewGraphViewDataSource>", "protocol_n_i_overview_graph_view_data_source-p.html", [
+        [ "NIOverviewGraphPageView", "interface_n_i_overview_graph_page_view.html", [
+          [ "NIOverviewDiskPageView", "interface_n_i_overview_disk_page_view.html", null ],
+          [ "NIOverviewMemoryPageView", "interface_n_i_overview_memory_page_view.html", null ]
+        ] ]
+      ] ],
+      [ "NIOverviewLogEntry", "interface_n_i_overview_log_entry.html", [
+        [ "NIOverviewConsoleLogEntry", "interface_n_i_overview_console_log_entry.html", null ],
+        [ "NIOverviewDeviceLogEntry", "interface_n_i_overview_device_log_entry.html", null ],
+        [ "NIOverviewEventLogEntry", "interface_n_i_overview_event_log_entry.html", null ]
+      ] ],
+      [ "NIOverviewLogger", "interface_n_i_overview_logger.html", null ],
+      [ "NIOverviewPageView", "interface_n_i_overview_page_view.html", [
+        [ "NIOverviewConsoleLogPageView", "interface_n_i_overview_console_log_page_view.html", null ],
+        [ "NIOverviewGraphPageView", "interface_n_i_overview_graph_page_view.html", null ],
+        [ "NIOverviewMaxLogLevelPageView", "interface_n_i_overview_max_log_level_page_view.html", null ]
+      ] ],
+      [ "NIOverviewView", "interface_n_i_overview_view.html", null ],
       [ "<NIPhotoAlbumScrollViewDataSource>", "protocol_n_i_photo_album_scroll_view_data_source-p.html", null ],
       [ "<NIPhotoAlbumScrollViewDelegate>", "protocol_n_i_photo_album_scroll_view_delegate-p.html", [
         [ "NIToolbarPhotoViewController", "interface_n_i_toolbar_photo_view_controller.html", null ]
@@ -282,6 +327,21 @@ var NAVTREE =
       [ "/Users/featherless/workbench/ios/nimbus/src/networkimage/src/NimbusNetworkImage.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/networkimage/src/NINetworkImageView.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/networkimage/src/NINetworkImageView.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NIDeviceInfo.h", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NIDeviceInfo.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NimbusOverview.h", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverview.h", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverview.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverviewGraphView.h", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverviewGraphView.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverviewLogger.h", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverviewLogger.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverviewPageView.h", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverviewPageView.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverviewSwizzling.h", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverviewSwizzling.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverviewView.h", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverviewView.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/photos/src/NimbusPhotos.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/photos/src/NIPhotoAlbumScrollView.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/photos/src/NIPhotoAlbumScrollView.m", null, null ],

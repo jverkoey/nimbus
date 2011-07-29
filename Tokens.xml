@@ -40,6 +40,46 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NIStatusBarFrameAnimationCurve</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___common-_metrics.html</Path>
+    <Anchor>ga1c20acb842e5d526de672b5206afff3a</Anchor>
+    <Abstract>The animation curve used when animating the status bar frame.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIStatusBarFrameAnimationDuration</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___common-_metrics.html</Path>
+    <Anchor>gaf1def83034a464eb8d86f1ccae90dabf</Anchor>
+    <Abstract>The animation duration for animating the status bar frame.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIStatusBarHeight</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___common-_metrics.html</Path>
+    <Anchor>gab7dfa3fd3b6311312ba4c7fd59c3f666</Anchor>
+    <Abstract>Get the status bar&amp;#39;s current height.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDeviceRotationDuration</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___common-_metrics.html</Path>
+    <Anchor>ga7d4ebd335b7563adf1b1e5fdcbb6d9d3</Anchor>
+    <Abstract>The animation duration when the device is rotating to a new orientation.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Data-Structures</Name>
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
@@ -161,6 +201,16 @@
     <Path>group___device-_orientation.html</Path>
     <Anchor>ga7c59ce546cc2e2835532fa9dea2a4869</Anchor>
     <Abstract>Returns the application&amp;#39;s current interface orientation.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIRotateTransformForOrientation</Name>
+      <APILanguage>c</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___device-_orientation.html</Path>
+    <Anchor>gaa4aabcd2523c4c39e7981778de04fa87</Anchor>
+    <Abstract>Creates an affine transform for the given device orientation.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -754,6 +804,54 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NimbusOverview</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___nimbus_overview.html</Path>
+    <Abstract>The Overview is a debugging tool for quickly understanding the current state of your application...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Overview-Sensors</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___overview-_sensors.html</Path>
+    <Abstract>The sensors used to power the Overview.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Overview</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___overview.html</Path>
+    <Abstract>The primary classes you&amp;#39;ll use when dealing with the Overview.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Overview-Logger</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___overview-_logger.html</Path>
+    <Abstract>The Overview logger.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Overview-Pages</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___overview-_pages.html</Path>
+    <Abstract>The pages that are shown in the Overview.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Overview-Logger-Entries</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___overview-_logger-_entries.html</Path>
+    <Abstract>Log entries for the Overview logger.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NimbusPhotos</Name>
       <APILanguage>c</APILanguage>
     </TokenIdentifier>
@@ -799,6 +897,105 @@
     </TokenIdentifier>
     <Path>group___network-_processors.html</Path>
     <Abstract>Processors designed specifically for network access.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDeviceInfo</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIDeviceInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_device_info.html</Path>
+    <Abstract>An interface for accessing device information.</Abstract>
+    <DeclaredIn>NIDeviceInfo.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>bytesOfFreeMemory</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIDeviceInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_device_info.html</Path>
+    <Anchor>a8be91b6d997ac7bb82d8edcde4e76d04</Anchor>
+    <Abstract>The number of bytes in memory that are free.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>bytesOfTotalMemory</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIDeviceInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_device_info.html</Path>
+    <Anchor>a982c32e482332f026680faa107d87791</Anchor>
+    <Abstract>The total number of bytes of memory.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>bytesOfFreeDiskSpace</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIDeviceInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_device_info.html</Path>
+    <Anchor>a37b58dc9d49ebd7801a7d905fb324e35</Anchor>
+    <Abstract>The number of bytes free on disk.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>bytesOfTotalDiskSpace</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIDeviceInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_device_info.html</Path>
+    <Anchor>a549f7270f58c07f547f444c59591af0d</Anchor>
+    <Abstract>The total number of bytes of disk space.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>batteryLevel</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIDeviceInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_device_info.html</Path>
+    <Anchor>aac3e7de49c3387e6bc9cce52c98c4095</Anchor>
+    <Abstract>The battery charge level in the range 0 .</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>batteryState</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIDeviceInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_device_info.html</Path>
+    <Anchor>a734cb59e6d82f2d061efde4c7c4fa5ba</Anchor>
+    <Abstract>The current battery state.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>beginCachedDeviceInfo</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIDeviceInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_device_info.html</Path>
+    <Anchor>a4b73fff9581e347814d98ad1e25d5319</Anchor>
+    <Abstract>Fetches the device&amp;#39;s current information and then caches it.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>endCachedDeviceInfo</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIDeviceInfo</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_device_info.html</Path>
+    <Anchor>a7ae5b7746fd3c4f6559a6aeb5b63b210</Anchor>
+    <Abstract>Stop using the cache for the device info methods.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1624,6 +1821,17 @@
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>ac6e78ad1db0893fb12421c309f2b6c09</Anchor>
     <Abstract>Remove the last object from the linked list.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectEnumerator</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>af645be2ad2a961bf8edf10530dfa7266</Anchor>
+    <Abstract>Create an enumerator that can be used to enumerate this linked list.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2459,6 +2667,1150 @@
     <Path>protocol_n_i_operation_delegate-p.html</Path>
     <Anchor>a03cc8cc14147e2ad8f2c3e84f9eb11e2</Anchor>
     <Abstract>The operation failed in some way and has completed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverview</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOverview</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview.html</Path>
+    <Abstract>The Overview state management class.</Abstract>
+    <DeclaredIn>NIOverview.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>applicationDidFinishLaunching</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIOverview</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview.html</Path>
+    <Anchor>af70180942bcd7b774d4311154a7181f7</Anchor>
+    <Abstract>Call this immediately in application:didFinishLaunchingWithOptions:.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>addOverviewToWindow:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIOverview</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview.html</Path>
+    <Anchor>a1bb1fd53f838e9630e68c77efd75d5e3</Anchor>
+    <Abstract>Adds the Overview to the given window.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>height</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIOverview</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview.html</Path>
+    <Anchor>ae16e8cc5ef3a0bc2bd0fb212ded7b526</Anchor>
+    <Abstract>The height of the Overview.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>frame</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIOverview</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview.html</Path>
+    <Anchor>acc2d59e7ca18b42b762c605e391ba01c</Anchor>
+    <Abstract>The frame of the Overview.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>view</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIOverview</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview.html</Path>
+    <Anchor>a52cf10f473a6d46224a2583ad5fc3cbe</Anchor>
+    <Abstract>The Overview view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>logger</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIOverview</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview.html</Path>
+    <Anchor>acd1228a794482118056b0c5d7fb62683</Anchor>
+    <Abstract>The Overview logger.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverviewConsoleLogEntry</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOverviewConsoleLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_console_log_entry.html</Path>
+    <Abstract>A console log entry.</Abstract>
+    <DeclaredIn>NIOverviewLogger.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>log</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewConsoleLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_console_log_entry.html</Path>
+    <Anchor>a7a411d8e7e587361c3efc0ccda36c7ad</Anchor>
+    <Abstract>The text that was written to the console log.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithLog:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewConsoleLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_console_log_entry.html</Path>
+    <Anchor>a3f442d14ff713dee83275d73fac22dc0</Anchor>
+    <Abstract>Designated initializer.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>timestamp</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_log_entry.html</Path>
+    <Anchor>a62dce908251cfeaa50c1205fb3608d0e</Anchor>
+    <Abstract>The timestamp for this log entry.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithTimestamp:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_log_entry.html</Path>
+    <Anchor>af2f7896e2887d56cde6c6073c3af0f52</Anchor>
+    <Abstract>Designated initializer.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverviewConsoleLogPageView</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOverviewConsoleLogPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_console_log_page_view.html</Path>
+    <Abstract>A page that shows all of the logs sent to the console.</Abstract>
+    <DeclaredIn>NIOverviewPageView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pageTitle</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a416c6693ba905d27333224ae48bfe502</Anchor>
+    <Abstract>The title of the page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>titleLabel</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>aeac9b8a944c1950941d3f588a2c71db3</Anchor>
+    <Abstract>The title label for this page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>label</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a6cb0420c7e99a04a5d47e37387ed1b17</Anchor>
+    <Abstract>Creates a generic label for use in the page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>page</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a503fd5cf3030558d4d18fce7eaf5c8d4</Anchor>
+    <Abstract>Returns an autoreleased instance of this view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>update</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>ab5f226b0fae0baeed7b69045bb787fbc</Anchor>
+    <Abstract>Request that this page update its information.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverviewDeviceLogEntry</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOverviewDeviceLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_device_log_entry.html</Path>
+    <Abstract>A device log entry.</Abstract>
+    <DeclaredIn>NIOverviewLogger.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>bytesOfFreeMemory</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewDeviceLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_device_log_entry.html</Path>
+    <Anchor>ab078aa890e76a4406c239bf6679748df</Anchor>
+    <Abstract>The number of bytes of free memory.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>bytesOfTotalMemory</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewDeviceLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_device_log_entry.html</Path>
+    <Anchor>a61f89c2f98949aa4bd63be2e64e4e4c4</Anchor>
+    <Abstract>The number of bytes of total memory.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>bytesOfFreeDiskSpace</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewDeviceLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_device_log_entry.html</Path>
+    <Anchor>a32d0aefadafa709641df9ff4c47a3aee</Anchor>
+    <Abstract>The number of bytes of free disk space.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>bytesOfTotalDiskSpace</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewDeviceLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_device_log_entry.html</Path>
+    <Anchor>adb2fcb24e4470fa9d6eb952332088343</Anchor>
+    <Abstract>The number of bytes of total disk space.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>batteryLevel</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewDeviceLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_device_log_entry.html</Path>
+    <Anchor>a74bf0e48dd2ba94e5ca624e021f47f22</Anchor>
+    <Abstract>The battery level.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>batteryState</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewDeviceLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_device_log_entry.html</Path>
+    <Anchor>a009e4bd4b3eb9aebe661d1db7edbe6d5</Anchor>
+    <Abstract>The state of the battery.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>timestamp</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_log_entry.html</Path>
+    <Anchor>a62dce908251cfeaa50c1205fb3608d0e</Anchor>
+    <Abstract>The timestamp for this log entry.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithTimestamp:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_log_entry.html</Path>
+    <Anchor>af2f7896e2887d56cde6c6073c3af0f52</Anchor>
+    <Abstract>Designated initializer.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverviewDiskPageView</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOverviewDiskPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_disk_page_view.html</Path>
+    <Abstract>A page that renders a graph showing free disk space.</Abstract>
+    <DeclaredIn>NIOverviewPageView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>graphViewXRange:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a48bf9d2a25a99a342d274aea2517eb05</Anchor>
+    <Abstract>Fetches the total range of all x values for this graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>graphViewYRange:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a3cdac73908b6a5bc9719d3e3d209318f</Anchor>
+    <Abstract>Fetches the total range of all y values for this graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>resetPointIterator</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a544cc110bf9dc2904df834fedd837f74</Anchor>
+    <Abstract>The data source should reset its iterator for fetching points in the graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>nextPointInGraphView:point:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a9124b01a4ef642d7170b75783886bb86</Anchor>
+    <Abstract>Fetches the next point in the graph to plot.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>resetEventIterator</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>aa81d70cedade578efcaff7f970d4149d</Anchor>
+    <Abstract>The data source should reset its iterator for fetching events in the graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>nextEventInGraphView:xValue:color:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>ac54a8ddf86ca41d49761053e905514d1</Anchor>
+    <Abstract>Fetches the next event in the graph to plot.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pageTitle</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a416c6693ba905d27333224ae48bfe502</Anchor>
+    <Abstract>The title of the page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>titleLabel</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>aeac9b8a944c1950941d3f588a2c71db3</Anchor>
+    <Abstract>The title label for this page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>label</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a6cb0420c7e99a04a5d47e37387ed1b17</Anchor>
+    <Abstract>Creates a generic label for use in the page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>page</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a503fd5cf3030558d4d18fce7eaf5c8d4</Anchor>
+    <Abstract>Returns an autoreleased instance of this view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>update</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>ab5f226b0fae0baeed7b69045bb787fbc</Anchor>
+    <Abstract>Request that this page update its information.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverviewEventLogEntry</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOverviewEventLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_event_log_entry.html</Path>
+    <Abstract>An event log entry.</Abstract>
+    <DeclaredIn>NIOverviewLogger.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>type</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewEventLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_event_log_entry.html</Path>
+    <Anchor>ae1d4d7b73806280eb959ed15d80a0db9</Anchor>
+    <Abstract>The type of event.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithType:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewEventLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_event_log_entry.html</Path>
+    <Anchor>aa8750ee90afd66e414f8cfad0342606f</Anchor>
+    <Abstract>Designated initializer.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>timestamp</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_log_entry.html</Path>
+    <Anchor>a62dce908251cfeaa50c1205fb3608d0e</Anchor>
+    <Abstract>The timestamp for this log entry.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithTimestamp:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_log_entry.html</Path>
+    <Anchor>af2f7896e2887d56cde6c6073c3af0f52</Anchor>
+    <Abstract>Designated initializer.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverviewGraphPageView</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOverviewGraphPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_graph_page_view.html</Path>
+    <Abstract>A page that renders a graph and two labels.</Abstract>
+    <DeclaredIn>NIOverviewPageView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>graphViewXRange:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a48bf9d2a25a99a342d274aea2517eb05</Anchor>
+    <Abstract>Fetches the total range of all x values for this graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>graphViewYRange:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a3cdac73908b6a5bc9719d3e3d209318f</Anchor>
+    <Abstract>Fetches the total range of all y values for this graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>resetPointIterator</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a544cc110bf9dc2904df834fedd837f74</Anchor>
+    <Abstract>The data source should reset its iterator for fetching points in the graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>nextPointInGraphView:point:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a9124b01a4ef642d7170b75783886bb86</Anchor>
+    <Abstract>Fetches the next point in the graph to plot.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>resetEventIterator</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>aa81d70cedade578efcaff7f970d4149d</Anchor>
+    <Abstract>The data source should reset its iterator for fetching events in the graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>nextEventInGraphView:xValue:color:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>ac54a8ddf86ca41d49761053e905514d1</Anchor>
+    <Abstract>Fetches the next event in the graph to plot.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pageTitle</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a416c6693ba905d27333224ae48bfe502</Anchor>
+    <Abstract>The title of the page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>titleLabel</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>aeac9b8a944c1950941d3f588a2c71db3</Anchor>
+    <Abstract>The title label for this page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>label</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a6cb0420c7e99a04a5d47e37387ed1b17</Anchor>
+    <Abstract>Creates a generic label for use in the page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>page</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a503fd5cf3030558d4d18fce7eaf5c8d4</Anchor>
+    <Abstract>Returns an autoreleased instance of this view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>update</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>ab5f226b0fae0baeed7b69045bb787fbc</Anchor>
+    <Abstract>Request that this page update its information.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverviewGraphView</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOverviewGraphView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_graph_view.html</Path>
+    <Abstract>A graph view.</Abstract>
+    <DeclaredIn>NIOverviewGraphView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>dataSource</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewGraphView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_graph_view.html</Path>
+    <Anchor>a57d53701beb92105342e973f758a438b</Anchor>
+    <Abstract>The data source for this graph view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverviewGraphViewDataSource</Name>
+      <APILanguage>c</APILanguage>
+      <Type>intf</Type>
+      <Scope>NIOverviewGraphViewDataSource</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Abstract>The data source for NIOverviewGraphView.</Abstract>
+    <DeclaredIn>NIOverviewGraphView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>graphViewXRange:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a48bf9d2a25a99a342d274aea2517eb05</Anchor>
+    <Abstract>Fetches the total range of all x values for this graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>graphViewYRange:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a3cdac73908b6a5bc9719d3e3d209318f</Anchor>
+    <Abstract>Fetches the total range of all y values for this graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>resetPointIterator</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a544cc110bf9dc2904df834fedd837f74</Anchor>
+    <Abstract>The data source should reset its iterator for fetching points in the graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>nextPointInGraphView:point:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a9124b01a4ef642d7170b75783886bb86</Anchor>
+    <Abstract>Fetches the next point in the graph to plot.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>resetEventIterator</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>aa81d70cedade578efcaff7f970d4149d</Anchor>
+    <Abstract>The data source should reset its iterator for fetching events in the graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>nextEventInGraphView:xValue:color:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>ac54a8ddf86ca41d49761053e905514d1</Anchor>
+    <Abstract>Fetches the next event in the graph to plot.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverviewLogEntry</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOverviewLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_log_entry.html</Path>
+    <Abstract>The basic requirements for a log entry.</Abstract>
+    <DeclaredIn>NIOverviewLogger.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>timestamp</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_log_entry.html</Path>
+    <Anchor>a62dce908251cfeaa50c1205fb3608d0e</Anchor>
+    <Abstract>The timestamp for this log entry.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithTimestamp:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewLogEntry</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_log_entry.html</Path>
+    <Anchor>af2f7896e2887d56cde6c6073c3af0f52</Anchor>
+    <Abstract>Designated initializer.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverviewLogger</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOverviewLogger</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_logger.html</Path>
+    <Abstract>The Overview logger.</Abstract>
+    <DeclaredIn>NIOverviewLogger.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>oldestLogAge</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewLogger</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_logger.html</Path>
+    <Anchor>a06381e17f301ef75d27168f3e055b319</Anchor>
+    <Abstract>The oldest age of a memory or disk log entry.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>deviceLogs</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewLogger</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_logger.html</Path>
+    <Anchor>a0eea6bdec68e5c08672752cf7a6f91ad</Anchor>
+    <Abstract>The linked list of device logs.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>consoleLogs</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewLogger</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_logger.html</Path>
+    <Anchor>aae148521e230db7cfa551cc5330c71da</Anchor>
+    <Abstract>The linked list of console logs.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>eventLogs</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewLogger</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_logger.html</Path>
+    <Anchor>a49e1b8a96fb9e13c3a5652e06c48d2a9</Anchor>
+    <Abstract>The linked list of events.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>addDeviceLog:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewLogger</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_logger.html</Path>
+    <Anchor>ab63e68f85ea1105bb7636329d492d8ae</Anchor>
+    <Abstract>Add a device log.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>addConsoleLog:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewLogger</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_logger.html</Path>
+    <Anchor>a2f7a0f3cbabb4e81987f7dd95bc54678</Anchor>
+    <Abstract>Add a console log.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>addEventLog:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewLogger</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_logger.html</Path>
+    <Anchor>a93579c6a70c4533de12e66226435bdf9</Anchor>
+    <Abstract>Add a event log.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverviewMaxLogLevelPageView</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOverviewMaxLogLevelPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_max_log_level_page_view.html</Path>
+    <Abstract>A page that allows you to modify NIMaxLogLevel.</Abstract>
+    <DeclaredIn>NIOverviewPageView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pageTitle</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a416c6693ba905d27333224ae48bfe502</Anchor>
+    <Abstract>The title of the page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>titleLabel</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>aeac9b8a944c1950941d3f588a2c71db3</Anchor>
+    <Abstract>The title label for this page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>label</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a6cb0420c7e99a04a5d47e37387ed1b17</Anchor>
+    <Abstract>Creates a generic label for use in the page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>page</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a503fd5cf3030558d4d18fce7eaf5c8d4</Anchor>
+    <Abstract>Returns an autoreleased instance of this view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>update</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>ab5f226b0fae0baeed7b69045bb787fbc</Anchor>
+    <Abstract>Request that this page update its information.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverviewMemoryPageView</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOverviewMemoryPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_memory_page_view.html</Path>
+    <Abstract>A page that renders a graph showing free memory.</Abstract>
+    <DeclaredIn>NIOverviewPageView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>graphViewXRange:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a48bf9d2a25a99a342d274aea2517eb05</Anchor>
+    <Abstract>Fetches the total range of all x values for this graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>graphViewYRange:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a3cdac73908b6a5bc9719d3e3d209318f</Anchor>
+    <Abstract>Fetches the total range of all y values for this graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>resetPointIterator</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a544cc110bf9dc2904df834fedd837f74</Anchor>
+    <Abstract>The data source should reset its iterator for fetching points in the graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>nextPointInGraphView:point:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>a9124b01a4ef642d7170b75783886bb86</Anchor>
+    <Abstract>Fetches the next point in the graph to plot.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>resetEventIterator</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>aa81d70cedade578efcaff7f970d4149d</Anchor>
+    <Abstract>The data source should reset its iterator for fetching events in the graph.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>nextEventInGraphView:xValue:color:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOverviewGraphViewDataSource-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+    <Anchor>ac54a8ddf86ca41d49761053e905514d1</Anchor>
+    <Abstract>Fetches the next event in the graph to plot.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pageTitle</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a416c6693ba905d27333224ae48bfe502</Anchor>
+    <Abstract>The title of the page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>titleLabel</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>aeac9b8a944c1950941d3f588a2c71db3</Anchor>
+    <Abstract>The title label for this page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>label</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a6cb0420c7e99a04a5d47e37387ed1b17</Anchor>
+    <Abstract>Creates a generic label for use in the page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>page</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a503fd5cf3030558d4d18fce7eaf5c8d4</Anchor>
+    <Abstract>Returns an autoreleased instance of this view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>update</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>ab5f226b0fae0baeed7b69045bb787fbc</Anchor>
+    <Abstract>Request that this page update its information.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverviewPageView</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Abstract>A page in the Overview.</Abstract>
+    <DeclaredIn>NIOverviewPageView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pageTitle</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a416c6693ba905d27333224ae48bfe502</Anchor>
+    <Abstract>The title of the page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>titleLabel</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>aeac9b8a944c1950941d3f588a2c71db3</Anchor>
+    <Abstract>The title label for this page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>label</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a6cb0420c7e99a04a5d47e37387ed1b17</Anchor>
+    <Abstract>Creates a generic label for use in the page.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>page</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>a503fd5cf3030558d4d18fce7eaf5c8d4</Anchor>
+    <Abstract>Returns an autoreleased instance of this view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>update</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewPageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_page_view.html</Path>
+    <Anchor>ab5f226b0fae0baeed7b69045bb787fbc</Anchor>
+    <Abstract>Request that this page update its information.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIOverviewView</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>NIOverviewView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_view.html</Path>
+    <Abstract>The root scrolling page view of the Overview.</Abstract>
+    <DeclaredIn>NIOverviewView.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>translucent</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOverviewView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_view.html</Path>
+    <Anchor>a5bc57215a48af4b44082cfb9d25f8ac8</Anchor>
+    <Abstract>Whether the view has a translucent background or not.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>addPageView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_view.html</Path>
+    <Anchor>aea1842f1c976c5eb37aec9cb423d84e9</Anchor>
+    <Abstract>Adds a new page to the Overview.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>updatePages</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOverviewView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_overview_view.html</Path>
+    <Anchor>a808105471f211983616f4d524942939c</Anchor>
+    <Abstract>Update all of the views.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>

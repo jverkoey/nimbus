@@ -164,6 +164,42 @@
           </Subnodes>
          </Node>
          <Node>
+          <Name>Nimbus Overview</Name>
+          <Path>group___nimbus_overview.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>Logger</Name>
+            <Path>group___overview-_logger.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>Log Entries</Name>
+              <Path>group___overview-_logger-_entries.html</Path>
+              <Subnodes>
+              </Subnodes>
+             </Node>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Overview</Name>
+            <Path>group___overview.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Pages</Name>
+            <Path>group___overview-_pages.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Sensors</Name>
+            <Path>group___overview-_sensors.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
           <Name>Nimbus Photos</Name>
           <Path>group___nimbus_photos.html</Path>
           <Subnodes>
@@ -248,6 +284,10 @@
         <Path>annotated.html</Path>
         <Subnodes>
          <Node>
+          <Name>NIDeviceInfo</Name>
+          <Path>interface_n_i_device_info.html</Path>
+         </Node>
+         <Node>
           <Name>NIHTTPImageRequest</Name>
           <Path>interface_n_i_h_t_t_p_image_request.html</Path>
          </Node>
@@ -320,6 +360,66 @@
           <Path>protocol_n_i_operation_delegate-p.html</Path>
          </Node>
          <Node>
+          <Name>NIOverview</Name>
+          <Path>interface_n_i_overview.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewConsoleLogEntry</Name>
+          <Path>interface_n_i_overview_console_log_entry.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewConsoleLogPageView</Name>
+          <Path>interface_n_i_overview_console_log_page_view.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewDeviceLogEntry</Name>
+          <Path>interface_n_i_overview_device_log_entry.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewDiskPageView</Name>
+          <Path>interface_n_i_overview_disk_page_view.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewEventLogEntry</Name>
+          <Path>interface_n_i_overview_event_log_entry.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewGraphPageView</Name>
+          <Path>interface_n_i_overview_graph_page_view.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewGraphView</Name>
+          <Path>interface_n_i_overview_graph_view.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIOverviewGraphViewDataSource&gt;</Name>
+          <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewLogEntry</Name>
+          <Path>interface_n_i_overview_log_entry.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewLogger</Name>
+          <Path>interface_n_i_overview_logger.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewMaxLogLevelPageView</Name>
+          <Path>interface_n_i_overview_max_log_level_page_view.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewMemoryPageView</Name>
+          <Path>interface_n_i_overview_memory_page_view.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewPageView</Name>
+          <Path>interface_n_i_overview_page_view.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewView</Name>
+          <Path>interface_n_i_overview_view.html</Path>
+         </Node>
+         <Node>
           <Name>NIPhotoAlbumScrollView</Name>
           <Path>interface_n_i_photo_album_scroll_view.html</Path>
          </Node>
@@ -389,6 +489,10 @@
         <Name>Class Hierarchy</Name>
         <Path>hierarchy.html</Path>
         <Subnodes>
+         <Node>
+          <Name>NIDeviceInfo</Name>
+          <Path>interface_n_i_device_info.html</Path>
+         </Node>
          <Node>
           <Name>NIHTTPRequest</Name>
           <Path>interface_n_i_h_t_t_p_request.html</Path>
@@ -484,6 +588,78 @@
          <Node>
           <Name>&lt;NIOperationDelegate&gt;</Name>
           <Path>protocol_n_i_operation_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverview</Name>
+          <Path>interface_n_i_overview.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewGraphView</Name>
+          <Path>interface_n_i_overview_graph_view.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIOverviewGraphViewDataSource&gt;</Name>
+          <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>NIOverviewGraphPageView</Name>
+            <Path>interface_n_i_overview_graph_page_view.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>NIOverviewDiskPageView</Name>
+              <Path>interface_n_i_overview_disk_page_view.html</Path>
+             </Node>
+             <Node>
+              <Name>NIOverviewMemoryPageView</Name>
+              <Path>interface_n_i_overview_memory_page_view.html</Path>
+             </Node>
+            </Subnodes>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>NIOverviewLogEntry</Name>
+          <Path>interface_n_i_overview_log_entry.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>NIOverviewConsoleLogEntry</Name>
+            <Path>interface_n_i_overview_console_log_entry.html</Path>
+           </Node>
+           <Node>
+            <Name>NIOverviewDeviceLogEntry</Name>
+            <Path>interface_n_i_overview_device_log_entry.html</Path>
+           </Node>
+           <Node>
+            <Name>NIOverviewEventLogEntry</Name>
+            <Path>interface_n_i_overview_event_log_entry.html</Path>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>NIOverviewLogger</Name>
+          <Path>interface_n_i_overview_logger.html</Path>
+         </Node>
+         <Node>
+          <Name>NIOverviewPageView</Name>
+          <Path>interface_n_i_overview_page_view.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>NIOverviewConsoleLogPageView</Name>
+            <Path>interface_n_i_overview_console_log_page_view.html</Path>
+           </Node>
+           <Node>
+            <Name>NIOverviewGraphPageView</Name>
+            <Path>interface_n_i_overview_graph_page_view.html</Path>
+           </Node>
+           <Node>
+            <Name>NIOverviewMaxLogLevelPageView</Name>
+            <Path>interface_n_i_overview_max_log_level_page_view.html</Path>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>NIOverviewView</Name>
+          <Path>interface_n_i_overview_view.html</Path>
          </Node>
          <Node>
           <Name>&lt;NIPhotoAlbumScrollViewDataSource&gt;</Name>

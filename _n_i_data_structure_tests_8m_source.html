@@ -363,7 +363,7 @@
 <a name="l00303"></a>00303 }
 <a name="l00304"></a>00304 
 <a name="l00305"></a>00305 
-<a name="l00307"></a>00307 - (void)testLinkedListCopying {
+<a name="l00307"></a>00307 - (void)testLinkedListEnumeration {
 <a name="l00308"></a>00308   <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll = [[[<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> alloc] init] autorelease];
 <a name="l00309"></a>00309 
 <a name="l00310"></a>00310   <span class="keywordtype">id</span> object1 = [NSArray array];
@@ -373,33 +373,51 @@
 <a name="l00314"></a>00314   [ll <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:object2];
 <a name="l00315"></a>00315   [ll <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:object3];
 <a name="l00316"></a>00316 
-<a name="l00317"></a>00317   <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll2 = [[ll copy] autorelease];
-<a name="l00318"></a>00318   STAssertEquals(ll2.<a class="code" href="interface_n_i_linked_list.html#a91782fdbe13bf28a662784568ffdca43" title="The number of objects in the linked list.">count</a>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>)3, <span class="stringliteral">@&quot;There should be exactly three objects.&quot;</span>);
-<a name="l00319"></a>00319   STAssertEquals(ll2.<a class="code" href="interface_n_i_linked_list.html#aa2527b210de77fde4dd5b99d94ebaba6" title="The first object in the linked list.">firstObject</a>, object1, <span class="stringliteral">@&quot;Head should be the first object.&quot;</span>);
-<a name="l00320"></a>00320   STAssertEquals(ll2.<a class="code" href="interface_n_i_linked_list.html#a7c0066b07b3753ba3abab3ef7b49673c" title="The last object in the linked list.">lastObject</a>, object3, <span class="stringliteral">@&quot;Tail should be the third object.&quot;</span>);
-<a name="l00321"></a>00321 }
-<a name="l00322"></a>00322 
+<a name="l00317"></a>00317   NSEnumerator* enumerator = [ll <a class="code" href="interface_n_i_linked_list.html#af645be2ad2a961bf8edf10530dfa7266" title="Create an enumerator that can be used to enumerate this linked list.">objectEnumerator</a>];
+<a name="l00318"></a>00318   STAssertEquals([enumerator nextObject], object1, <span class="stringliteral">@&quot;The first object should be object1.&quot;</span>);
+<a name="l00319"></a>00319   STAssertEquals([enumerator nextObject], object2, <span class="stringliteral">@&quot;The first object should be object2.&quot;</span>);
+<a name="l00320"></a>00320   STAssertEquals([enumerator nextObject], object3, <span class="stringliteral">@&quot;The first object should be object3.&quot;</span>);
+<a name="l00321"></a>00321   STAssertNil([enumerator nextObject], <span class="stringliteral">@&quot;The final object should be nil.&quot;</span>);
+<a name="l00322"></a>00322 }
 <a name="l00323"></a>00323 
-<a name="l00325"></a>00325 - (void)testLinkedListCoding {
-<a name="l00326"></a>00326   <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll = [[[<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> alloc] init] autorelease];
-<a name="l00327"></a>00327 
-<a name="l00328"></a>00328   <span class="keywordtype">id</span> object1 = [NSArray array];
-<a name="l00329"></a>00329   <span class="keywordtype">id</span> object2 = [NSDictionary dictionary];
-<a name="l00330"></a>00330   <span class="keywordtype">id</span> object3 = [NSSet set];
-<a name="l00331"></a>00331   [ll <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:object1];
-<a name="l00332"></a>00332   [ll <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:object2];
-<a name="l00333"></a>00333   [ll <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:object3];
-<a name="l00334"></a>00334 
-<a name="l00335"></a>00335   <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a>* data = [NSKeyedArchiver archivedDataWithRootObject:ll];
-<a name="l00336"></a>00336   <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll2 = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-<a name="l00337"></a>00337 
-<a name="l00338"></a>00338   STAssertEquals(ll2.<a class="code" href="interface_n_i_linked_list.html#a91782fdbe13bf28a662784568ffdca43" title="The number of objects in the linked list.">count</a>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>)3, <span class="stringliteral">@&quot;There should be exactly three objects.&quot;</span>);
-<a name="l00339"></a>00339   STAssertEquals(ll2.<a class="code" href="interface_n_i_linked_list.html#aa2527b210de77fde4dd5b99d94ebaba6" title="The first object in the linked list.">firstObject</a>, object1, <span class="stringliteral">@&quot;Head should be the first object.&quot;</span>);
-<a name="l00340"></a>00340   STAssertEquals(ll2.<a class="code" href="interface_n_i_linked_list.html#a7c0066b07b3753ba3abab3ef7b49673c" title="The last object in the linked list.">lastObject</a>, object3, <span class="stringliteral">@&quot;Tail should be the third object.&quot;</span>);
-<a name="l00341"></a>00341 }
+<a name="l00324"></a>00324 
+<a name="l00326"></a>00326 - (void)testLinkedListCopying {
+<a name="l00327"></a>00327   <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll = [[[<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> alloc] init] autorelease];
+<a name="l00328"></a>00328 
+<a name="l00329"></a>00329   <span class="keywordtype">id</span> object1 = [NSArray array];
+<a name="l00330"></a>00330   <span class="keywordtype">id</span> object2 = [NSDictionary dictionary];
+<a name="l00331"></a>00331   <span class="keywordtype">id</span> object3 = [NSSet set];
+<a name="l00332"></a>00332   [ll <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:object1];
+<a name="l00333"></a>00333   [ll <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:object2];
+<a name="l00334"></a>00334   [ll <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:object3];
+<a name="l00335"></a>00335 
+<a name="l00336"></a>00336   <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll2 = [[ll copy] autorelease];
+<a name="l00337"></a>00337   STAssertEquals(ll2.<a class="code" href="interface_n_i_linked_list.html#a91782fdbe13bf28a662784568ffdca43" title="The number of objects in the linked list.">count</a>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>)3, <span class="stringliteral">@&quot;There should be exactly three objects.&quot;</span>);
+<a name="l00338"></a>00338   STAssertEquals(ll2.<a class="code" href="interface_n_i_linked_list.html#aa2527b210de77fde4dd5b99d94ebaba6" title="The first object in the linked list.">firstObject</a>, object1, <span class="stringliteral">@&quot;Head should be the first object.&quot;</span>);
+<a name="l00339"></a>00339   STAssertEquals(ll2.<a class="code" href="interface_n_i_linked_list.html#a7c0066b07b3753ba3abab3ef7b49673c" title="The last object in the linked list.">lastObject</a>, object3, <span class="stringliteral">@&quot;Tail should be the third object.&quot;</span>);
+<a name="l00340"></a>00340 }
+<a name="l00341"></a>00341 
 <a name="l00342"></a>00342 
-<a name="l00343"></a>00343 
-<a name="l00344"></a>00344 <span class="keyword">@end</span>
+<a name="l00344"></a>00344 - (void)testLinkedListCoding {
+<a name="l00345"></a>00345   <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll = [[[<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> alloc] init] autorelease];
+<a name="l00346"></a>00346 
+<a name="l00347"></a>00347   <span class="keywordtype">id</span> object1 = [NSArray array];
+<a name="l00348"></a>00348   <span class="keywordtype">id</span> object2 = [NSDictionary dictionary];
+<a name="l00349"></a>00349   <span class="keywordtype">id</span> object3 = [NSSet set];
+<a name="l00350"></a>00350   [ll <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:object1];
+<a name="l00351"></a>00351   [ll <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:object2];
+<a name="l00352"></a>00352   [ll <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:object3];
+<a name="l00353"></a>00353 
+<a name="l00354"></a>00354   <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a>* data = [NSKeyedArchiver archivedDataWithRootObject:ll];
+<a name="l00355"></a>00355   <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll2 = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+<a name="l00356"></a>00356 
+<a name="l00357"></a>00357   STAssertEquals(ll2.<a class="code" href="interface_n_i_linked_list.html#a91782fdbe13bf28a662784568ffdca43" title="The number of objects in the linked list.">count</a>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>)3, <span class="stringliteral">@&quot;There should be exactly three objects.&quot;</span>);
+<a name="l00358"></a>00358   STAssertEquals(ll2.<a class="code" href="interface_n_i_linked_list.html#aa2527b210de77fde4dd5b99d94ebaba6" title="The first object in the linked list.">firstObject</a>, object1, <span class="stringliteral">@&quot;Head should be the first object.&quot;</span>);
+<a name="l00359"></a>00359   STAssertEquals(ll2.<a class="code" href="interface_n_i_linked_list.html#a7c0066b07b3753ba3abab3ef7b49673c" title="The last object in the linked list.">lastObject</a>, object3, <span class="stringliteral">@&quot;Tail should be the third object.&quot;</span>);
+<a name="l00360"></a>00360 }
+<a name="l00361"></a>00361 
+<a name="l00362"></a>00362 
+<a name="l00363"></a>00363 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

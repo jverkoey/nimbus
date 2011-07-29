@@ -87,6 +87,10 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">CGFloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#gae2ad00b094918f5b5929b3520007551b">NIToolbarHeightForOrientation</a> (UIInterfaceOrientation orientation)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">UIViewAnimationCurve&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga0cec7c71cc4f5efee4113d16abde3ca1">NIStatusBarAnimationCurve</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#gaf476266576d4c565941facf2ae5583e7">NIStatusBarAnimationDuration</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">UIViewAnimationCurve&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga1c20acb842e5d526de672b5206afff3a">NIStatusBarFrameAnimationCurve</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#gaf1def83034a464eb8d86f1ccae90dabf">NIStatusBarFrameAnimationDuration</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">CGFloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#gab7dfa3fd3b6311312ba4c7fd59c3f666">NIStatusBarHeight</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga7d4ebd335b7563adf1b1e5fdcbb6d9d3">NIDeviceRotationDuration</a> (BOOL isFlippingUpsideDown)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="gae2ad00b094918f5b5929b3520007551b"></a><!-- doxytag: member="NICommonMetrics.h::NIToolbarHeightForOrientation" ref="gae2ad00b094918f5b5929b3520007551b" args="(UIInterfaceOrientation orientation)" -->
@@ -155,6 +159,97 @@ Functions</h2></td></tr>
 <p>Value: 0.3 seconds </p>
 
 <p>Definition at line <a class="el" href="_n_i_common_metrics_8m_source.html#l00039">39</a> of file <a class="el" href="_n_i_common_metrics_8m_source.html">NICommonMetrics.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga1c20acb842e5d526de672b5206afff3a"></a><!-- doxytag: member="NICommonMetrics.h::NIStatusBarFrameAnimationCurve" ref="ga1c20acb842e5d526de672b5206afff3a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UIViewAnimationCurve NIStatusBarFrameAnimationCurve </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The animation curve used when animating the status bar frame. </p>
+<p>Value: UIViewAnimationCurveEaseInOut </p>
+
+<p>Definition at line <a class="el" href="_n_i_common_metrics_8m_source.html#l00045">45</a> of file <a class="el" href="_n_i_common_metrics_8m_source.html">NICommonMetrics.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaf1def83034a464eb8d86f1ccae90dabf"></a><!-- doxytag: member="NICommonMetrics.h::NIStatusBarFrameAnimationDuration" ref="gaf1def83034a464eb8d86f1ccae90dabf" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NSTimeInterval NIStatusBarFrameAnimationDuration </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The animation duration for animating the status bar frame. </p>
+<p>Value: 0.35 seconds </p>
+
+<p>Definition at line <a class="el" href="_n_i_common_metrics_8m_source.html#l00051">51</a> of file <a class="el" href="_n_i_common_metrics_8m_source.html">NICommonMetrics.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gab7dfa3fd3b6311312ba4c7fd59c3f666"></a><!-- doxytag: member="NICommonMetrics.h::NIStatusBarHeight" ref="gab7dfa3fd3b6311312ba4c7fd59c3f666" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CGFloat NIStatusBarHeight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the status bar's current height. </p>
+<p>If the status bar is hidden this will return 0. </p>
+
+<p>Definition at line <a class="el" href="_n_i_common_metrics_8m_source.html#l00057">57</a> of file <a class="el" href="_n_i_common_metrics_8m_source.html">NICommonMetrics.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga7d4ebd335b7563adf1b1e5fdcbb6d9d3"></a><!-- doxytag: member="NICommonMetrics.h::NIDeviceRotationDuration" ref="ga7d4ebd335b7563adf1b1e5fdcbb6d9d3" args="(BOOL isFlippingUpsideDown)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NSTimeInterval NIDeviceRotationDuration </td>
+          <td>(</td>
+          <td class="paramtype">BOOL&#160;</td>
+          <td class="paramname"><em>isFlippingUpsideDown</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The animation duration when the device is rotating to a new orientation. </p>
+<p>Value: 0.4 seconds if the device is being rotated 90 degrees. 0.8 seconds if the device is being rotated 180 degrees.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isFlippingUpsideDown</td><td>YES if the device is being flipped upside down. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_n_i_common_metrics_8m_source.html#l00065">65</a> of file <a class="el" href="_n_i_common_metrics_8m_source.html">NICommonMetrics.m</a>.</p>
 
 </div>
 </div>

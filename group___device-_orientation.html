@@ -90,6 +90,7 @@
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___device-_orientation.html#gad11b7958206db7c5d5a85d78f6d5ce4b">NIIsSupportedOrientation</a> (UIInterfaceOrientation orientation)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">UIInterfaceOrientation&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___device-_orientation.html#ga7c59ce546cc2e2835532fa9dea2a4869">NIInterfaceOrientation</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">CGAffineTransform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___device-_orientation.html#gaa4aabcd2523c4c39e7981778de04fa87">NIRotateTransformForOrientation</a> (UIInterfaceOrientation orientation)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="gad11b7958206db7c5d5a85d78f6d5ce4b"></a><!-- doxytag: member="NIDeviceOrientation.h::NIIsSupportedOrientation" ref="gad11b7958206db7c5d5a85d78f6d5ce4b" args="(UIInterfaceOrientation orientation)" -->
@@ -136,6 +137,28 @@ Functions</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The current interface orientation. </dd></dl>
 
 <p>Definition at line <a class="el" href="_n_i_device_orientation_8m_source.html#l00044">44</a> of file <a class="el" href="_n_i_device_orientation_8m_source.html">NIDeviceOrientation.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaa4aabcd2523c4c39e7981778de04fa87"></a><!-- doxytag: member="NIDeviceOrientation.h::NIRotateTransformForOrientation" ref="gaa4aabcd2523c4c39e7981778de04fa87" args="(UIInterfaceOrientation orientation)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CGAffineTransform NIRotateTransformForOrientation </td>
+          <td>(</td>
+          <td class="paramtype">UIInterfaceOrientation&#160;</td>
+          <td class="paramname"><em>orientation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Creates an affine transform for the given device orientation. </p>
+<p>This is useful for creating a transformation matrix for a view that has been added directly to the window and doesn't automatically have its transformation modified. </p>
+
+<p>Definition at line <a class="el" href="_n_i_device_orientation_8m_source.html#l00059">59</a> of file <a class="el" href="_n_i_device_orientation_8m_source.html">NIDeviceOrientation.m</a>.</p>
 
 </div>
 </div>
