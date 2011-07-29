@@ -18,7 +18,7 @@
 
 #import "FacebookPhotoAlbumViewController.h"
 #import "CatalogTableViewController.h"
-#import "NimbusOverviewer.h"
+#import "NimbusOverview.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,20 +49,20 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  
+
+  [NIOverview applicationDidFinishLaunching];
+
   self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
 
   CatalogTableViewController* catalogVC =
   [[[CatalogTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
 
   _rootViewController = [[UINavigationController alloc] initWithRootViewController:catalogVC];
-  
-  [NIOverviewer applicationDidFinishLaunching];
 
   [self.window addSubview:_rootViewController.view];
-  
-  [NIOverviewer addOverviewerToWindow:self.window];
-  
+
+  [NIOverview addOverviewToWindow:self.window];
+
   [self.window makeKeyAndVisible];
   
   return YES;
