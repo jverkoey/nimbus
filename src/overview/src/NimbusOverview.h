@@ -25,25 +25,6 @@
  * scroll view beneath the status bar that contains any number of pages of information.
  * These pages can show anything from graphs of current memory usage to console logs to
  * configuration settings.
- 
- *
- * <h2>How to Use the Overview</h2>
- *
- * To begin using the Overview you need to add two lines of code to your app and define
- * DEBUG in your applicaton's preprocessor macros Debug target settings.
- *
- * @code
- - (BOOL)              application:(UIApplication *)application
- *    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
- *  // Line #1 - Swizzles the necessary methods for making the Overview appear as part of the
- *  // the status bar.
- *  [NIOverview applicationDidFinishLaunching];
- *
- *  // Create the UIWindow for your application.
- *
- *  // Line #2 - Adds the Overview view to the window.
- *  [NIOverview addOverviewToWindow:self.window];
- * @endcode
  *
  * @image html overview1.png "The Overview added to the network photo album app."
  *
@@ -79,6 +60,25 @@
  * @image html overview-maxloglevel1.png "The max log level page."
  *
  * This page allows you to modify NIMaxLogLevel while the app is running.
+ *
+ *
+ * <h2>How to Use the Overview</h2>
+ *
+ * To begin using the Overview you need to add two lines of code to your app and define
+ * DEBUG in your applicaton's preprocessor macros Debug target settings.
+ *
+ * @code
+ - (BOOL)              application:(UIApplication *)application
+ *    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+ *  // Line #1 - Swizzles the necessary methods for making the Overview appear as part of the
+ *  // the status bar.
+ *  [NIOverview applicationDidFinishLaunching];
+ *
+ *  // Create the UIWindow for your application.
+ *
+ *  // Line #2 - Adds the Overview view to the window.
+ *  [NIOverview addOverviewToWindow:self.window];
+ * @endcode
  *
  *
  * <h2>Events</h2>

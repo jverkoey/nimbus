@@ -113,6 +113,90 @@
  */
 
 /**
+ * @defgroup Version-5-0 Version 0.5 API Changes
+ * @ingroup Version-History
+ *
+ * Version 0.5.0 of Nimbus was released on July 29, 2011. This major version introduced the new
+ * Nimbus @link NimbusOverview Overview@endlink, a debugging tool that shows detailed information
+ * about the state of your device and application in the device's status bar area.
+ *
+ * @image html overview1.png "The Overview added to the network photo album app."
+ *
+ *
+ * <h2>Added Frameworks</h2>
+ *
+ * - @link NimbusOverview Nimbus Overview@endlink
+ *
+ *
+ * <h2>Core</h2>
+ *
+ * <h3>NICommonMetrics[.h]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>NIStatusBarFrameAnimationCurve()</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NIStatusBarFrameAnimationDuration()</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NIStatusBarHeight()</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NIDeviceRotationDuration()</code>
+ *
+ * <h3>NIDataStructures[.h]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>[NILinkedList @link NILinkedList::objectEnumerator objectEnumerator@endlink]</code>
+ *
+ * <h3>NIDeviceOrientation[.h]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>NIRotateTransformForOrientation()</code>
+ *
+ *
+ * <h2>Network Image</h2>
+ *
+ * <h3>NINetworkImageView[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Cancel network requests without blocking on the main thread.
+ *
+ *
+ * <h2>Photos</h2>
+ *
+ * <h3>NIToolbarPhotoViewController[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fix various memory leaks related to not releasing views on dealloc.
+ * - <span class="apiDiffBugfix">Bugfix</span> Fix memory leak when toggling the toolbar mode between a scrubber and buttons.
+ *
+ *
+ * <h2>Examples</h2>
+ *
+ * <h3>NetworkPhotoAlbums</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fix various memory leaks related to not releasing views on dealloc.
+ *
+ *
+ * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ *  <div class="name">Jeff Verkoeyen</div> 
+ *  <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ *
+ * <h3>Add Your Name to This List</h3>
+ *
+ * Contributions are highly encouraged! If you have a feature that you feel would fit within the
+ * Nimbus framework, feel free to fire off a pull request on GitHub. Bugs may be reported
+ * using the issue tracker on GitHub as well.
+ *
+ * Check out the <a href="https://github.com/jverkoey/nimbus/issues?sort=created&direction=desc&state=open&page=1&milestone=5">tasks grab bag</a>
+ * for opportunities to help out.
+ *
+ * <h2>Robots Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <div class="name"><a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ */
+
+/**
  * @defgroup Version-4 Version 0.4 API Changes
  * @ingroup Version-History
  *
