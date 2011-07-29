@@ -712,6 +712,14 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>Version-5-0</Name>
+      <APILanguage>c</APILanguage>
+    </TokenIdentifier>
+    <Path>group___version-5-0.html</Path>
+    <Abstract>Version 0.5.0 of Nimbus was released on July 29, 2011.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Version-4</Name>
       <APILanguage>c</APILanguage>
     </TokenIdentifier>

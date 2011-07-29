@@ -56,7 +56,8 @@ var NAVTREE =
         [ "Version 0.3", "group___version-3.html", null ],
         [ "Version 0.4 API Changes", "group___version-4.html", [
           [ "Version 0.4.1 API Changes", "group___version-4-1.html", null ]
-        ] ]
+        ] ],
+        [ "Version 0.5 API Changes", "group___version-5-0.html", null ]
       ] ]
     ] ],
     [ "Class List", "annotated.html", [

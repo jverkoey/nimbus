@@ -275,6 +275,12 @@
              </Node>
             </Subnodes>
            </Node>
+           <Node>
+            <Name>Version 0.5 API Changes</Name>
+            <Path>group___version-5-0.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
           </Subnodes>
          </Node>
         </Subnodes>
