@@ -18,6 +18,7 @@
 
 #import "FacebookPhotoAlbumViewController.h"
 #import "CatalogTableViewController.h"
+#import "NimbusOverview.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,13 +49,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+  [NIOverview applicationDidFinishLaunching];
+
   self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
 
-  /*
-  FacebookPhotoAlbumViewController* rootVC = [[[FacebookPhotoAlbumViewController alloc] initWithNibName:nil bundle:nil]
-                                autorelease];
-  rootVC.facebookAlbumId = @"10150160584103418";
-*/
   CatalogTableViewController* catalogVC =
   [[[CatalogTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
 
@@ -62,8 +61,10 @@
 
   [self.window addSubview:_rootViewController.view];
 
-  [self.window makeKeyAndVisible];
+  [NIOverview addOverviewToWindow:self.window];
 
+  [self.window makeKeyAndVisible];
+  
   return YES;
 }
 

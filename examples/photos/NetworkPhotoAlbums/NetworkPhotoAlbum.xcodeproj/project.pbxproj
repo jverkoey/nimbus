@@ -13,6 +13,14 @@
 		6631671713D680A500FF0CBE /* NetworkPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631671613D680A500FF0CBE /* NetworkPhotoAlbumViewController.m */; };
 		6631673613D6825800FF0CBE /* CatalogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631673513D6825800FF0CBE /* CatalogTableViewController.m */; };
 		6631680D13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631680C13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.m */; };
+		66409FA013E25C5300E9BA5A /* NIDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9213E25C5300E9BA5A /* NIDeviceInfo.m */; };
+		66409FA113E25C5300E9BA5A /* NIOverview.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9513E25C5300E9BA5A /* NIOverview.m */; };
+		66409FA213E25C5300E9BA5A /* NIOverviewGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9713E25C5300E9BA5A /* NIOverviewGraphView.m */; };
+		66409FA313E25C5300E9BA5A /* NIOverviewLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9913E25C5300E9BA5A /* NIOverviewLogger.m */; };
+		66409FA413E25C5300E9BA5A /* NIOverviewPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9B13E25C5300E9BA5A /* NIOverviewPageView.m */; };
+		66409FA513E25C5300E9BA5A /* NIOverviewSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9D13E25C5300E9BA5A /* NIOverviewSwizzling.m */; };
+		66409FA613E25C5300E9BA5A /* NIOverviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9F13E25C5300E9BA5A /* NIOverviewView.m */; };
+		66409FA813E25C5E00E9BA5A /* NimbusOverviewer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66409FA713E25C5E00E9BA5A /* NimbusOverviewer.bundle */; };
 		665E0BB713CE815D008A1D21 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0B9913CE815D008A1D21 /* NIDataStructures.m */; };
 		665E0BB813CE815D008A1D21 /* NIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0B9B13CE815D008A1D21 /* NIDebuggingTools.m */; };
 		665E0BB913CE815D008A1D21 /* NIDeviceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0B9D13CE815D008A1D21 /* NIDeviceOrientation.m */; };
@@ -67,6 +75,22 @@
 		6631673513D6825800FF0CBE /* CatalogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CatalogTableViewController.m; path = src/CatalogTableViewController.m; sourceTree = "<group>"; };
 		6631680B13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DribbblePhotoAlbumViewController.h; path = src/DribbblePhotoAlbumViewController.h; sourceTree = "<group>"; };
 		6631680C13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DribbblePhotoAlbumViewController.m; path = src/DribbblePhotoAlbumViewController.m; sourceTree = "<group>"; };
+		66409F9113E25C5300E9BA5A /* NIDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDeviceInfo.h; path = ../../../src/overview/src/NIDeviceInfo.h; sourceTree = "<group>"; };
+		66409F9213E25C5300E9BA5A /* NIDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDeviceInfo.m; path = ../../../src/overview/src/NIDeviceInfo.m; sourceTree = "<group>"; };
+		66409F9313E25C5300E9BA5A /* NimbusOverview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusOverview.h; path = ../../../src/overview/src/NimbusOverview.h; sourceTree = "<group>"; };
+		66409F9413E25C5300E9BA5A /* NIOverview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOverview.h; path = ../../../src/overview/src/NIOverview.h; sourceTree = "<group>"; };
+		66409F9513E25C5300E9BA5A /* NIOverview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOverview.m; path = ../../../src/overview/src/NIOverview.m; sourceTree = "<group>"; };
+		66409F9613E25C5300E9BA5A /* NIOverviewGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOverviewGraphView.h; path = ../../../src/overview/src/NIOverviewGraphView.h; sourceTree = "<group>"; };
+		66409F9713E25C5300E9BA5A /* NIOverviewGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOverviewGraphView.m; path = ../../../src/overview/src/NIOverviewGraphView.m; sourceTree = "<group>"; };
+		66409F9813E25C5300E9BA5A /* NIOverviewLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOverviewLogger.h; path = ../../../src/overview/src/NIOverviewLogger.h; sourceTree = "<group>"; };
+		66409F9913E25C5300E9BA5A /* NIOverviewLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOverviewLogger.m; path = ../../../src/overview/src/NIOverviewLogger.m; sourceTree = "<group>"; };
+		66409F9A13E25C5300E9BA5A /* NIOverviewPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOverviewPageView.h; path = ../../../src/overview/src/NIOverviewPageView.h; sourceTree = "<group>"; };
+		66409F9B13E25C5300E9BA5A /* NIOverviewPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOverviewPageView.m; path = ../../../src/overview/src/NIOverviewPageView.m; sourceTree = "<group>"; };
+		66409F9C13E25C5300E9BA5A /* NIOverviewSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOverviewSwizzling.h; path = ../../../src/overview/src/NIOverviewSwizzling.h; sourceTree = "<group>"; };
+		66409F9D13E25C5300E9BA5A /* NIOverviewSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOverviewSwizzling.m; path = ../../../src/overview/src/NIOverviewSwizzling.m; sourceTree = "<group>"; };
+		66409F9E13E25C5300E9BA5A /* NIOverviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOverviewView.h; path = ../../../src/overview/src/NIOverviewView.h; sourceTree = "<group>"; };
+		66409F9F13E25C5300E9BA5A /* NIOverviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOverviewView.m; path = ../../../src/overview/src/NIOverviewView.m; sourceTree = "<group>"; };
+		66409FA713E25C5E00E9BA5A /* NimbusOverviewer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusOverviewer.bundle; path = ../../../src/overview/resources/NimbusOverviewer.bundle; sourceTree = "<group>"; };
 		665E0B9713CE815D008A1D21 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = ../../../src/core/src/NIBlocks.h; sourceTree = SOURCE_ROOT; };
 		665E0B9813CE815D008A1D21 /* NIDataStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDataStructures.h; path = ../../../src/core/src/NIDataStructures.h; sourceTree = SOURCE_ROOT; };
 		665E0B9913CE815D008A1D21 /* NIDataStructures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDataStructures.m; path = ../../../src/core/src/NIDataStructures.m; sourceTree = SOURCE_ROOT; };
@@ -361,6 +385,28 @@
 			name = Processors;
 			sourceTree = "<group>";
 		};
+		66C52CC313DAA79E00D6BA6F /* Overview */ = {
+			isa = PBXGroup;
+			children = (
+				66409F9113E25C5300E9BA5A /* NIDeviceInfo.h */,
+				66409F9213E25C5300E9BA5A /* NIDeviceInfo.m */,
+				66409F9313E25C5300E9BA5A /* NimbusOverview.h */,
+				66409F9413E25C5300E9BA5A /* NIOverview.h */,
+				66409F9513E25C5300E9BA5A /* NIOverview.m */,
+				66409F9613E25C5300E9BA5A /* NIOverviewGraphView.h */,
+				66409F9713E25C5300E9BA5A /* NIOverviewGraphView.m */,
+				66409F9813E25C5300E9BA5A /* NIOverviewLogger.h */,
+				66409F9913E25C5300E9BA5A /* NIOverviewLogger.m */,
+				66409F9A13E25C5300E9BA5A /* NIOverviewPageView.h */,
+				66409F9B13E25C5300E9BA5A /* NIOverviewPageView.m */,
+				66409F9C13E25C5300E9BA5A /* NIOverviewSwizzling.h */,
+				66409F9D13E25C5300E9BA5A /* NIOverviewSwizzling.m */,
+				66409F9E13E25C5300E9BA5A /* NIOverviewView.h */,
+				66409F9F13E25C5300E9BA5A /* NIOverviewView.m */,
+			);
+			name = Overview;
+			sourceTree = "<group>";
+		};
 		66EA057A13C011C0004FFE1A /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +425,7 @@
 			children = (
 				665E0B9513CE814D008A1D21 /* Core */,
 				665E0BC613CE8161008A1D21 /* Photos */,
+				66C52CC313DAA79E00D6BA6F /* Overview */,
 				669815CB13D507F900417E8B /* ASIHTTPRequest */,
 				669819D313D5739D00417E8B /* Processors */,
 				669815CA13D507F200417E8B /* JSONKit */,
@@ -389,6 +436,7 @@
 		66EA059D13C0128E004FFE1A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				66409FA713E25C5E00E9BA5A /* NimbusOverviewer.bundle */,
 				66EAC7DB13D2A77D00BDFF34 /* NimbusPhotos.bundle */,
 				66EA05A213C01297004FFE1A /* NetworkPhotoAlbum-Info.plist */,
 			);
@@ -448,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66EAC7DC13D2A77D00BDFF34 /* NimbusPhotos.bundle in Resources */,
+				66409FA813E25C5E00E9BA5A /* NimbusOverviewer.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +546,13 @@
 				6631673613D6825800FF0CBE /* CatalogTableViewController.m in Sources */,
 				6631680D13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.m in Sources */,
 				667DC2BE13D89FD100C1B0ED /* NIPhotoScrubberView.m in Sources */,
+				66409FA013E25C5300E9BA5A /* NIDeviceInfo.m in Sources */,
+				66409FA113E25C5300E9BA5A /* NIOverview.m in Sources */,
+				66409FA213E25C5300E9BA5A /* NIOverviewGraphView.m in Sources */,
+				66409FA313E25C5300E9BA5A /* NIOverviewLogger.m in Sources */,
+				66409FA413E25C5300E9BA5A /* NIOverviewPageView.m in Sources */,
+				66409FA513E25C5300E9BA5A /* NIOverviewSwizzling.m in Sources */,
+				66409FA613E25C5300E9BA5A /* NIOverviewView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

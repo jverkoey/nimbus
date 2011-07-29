@@ -304,6 +304,25 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testLinkedListEnumeration {
+  NILinkedList* ll = [[[NILinkedList alloc] init] autorelease];
+
+  id object1 = [NSArray array];
+  id object2 = [NSDictionary dictionary];
+  id object3 = [NSSet set];
+  [ll addObject:object1];
+  [ll addObject:object2];
+  [ll addObject:object3];
+
+  NSEnumerator* enumerator = [ll objectEnumerator];
+  STAssertEquals([enumerator nextObject], object1, @"The first object should be object1.");
+  STAssertEquals([enumerator nextObject], object2, @"The first object should be object2.");
+  STAssertEquals([enumerator nextObject], object3, @"The first object should be object3.");
+  STAssertNil([enumerator nextObject], @"The final object should be nil.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListCopying {
   NILinkedList* ll = [[[NILinkedList alloc] init] autorelease];
 

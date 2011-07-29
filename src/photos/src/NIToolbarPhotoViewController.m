@@ -37,6 +37,28 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)shutdown {
+  _toolbar = nil;
+  _photoAlbumView = nil;
+  
+  NI_RELEASE_SAFELY(_nextButton);
+  NI_RELEASE_SAFELY(_previousButton);
+  
+  NI_RELEASE_SAFELY(_photoScrubberView);
+  
+  NI_RELEASE_SAFELY(_tapGesture);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  [super dealloc];
+  
+  [self shutdown];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     // Default Configuration Settings
@@ -86,47 +108,64 @@
     NI_RELEASE_SAFELY(_nextButton);
     NI_RELEASE_SAFELY(_previousButton);
 
-    CGRect scrubberFrame = CGRectMake(0, 0,
-                                      self.toolbar.bounds.size.width,
-                                      self.toolbar.bounds.size.height);
-    _photoScrubberView = [[NIPhotoScrubberView alloc] initWithFrame:scrubberFrame];
-    _photoScrubberView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
-                                           | UIViewAutoresizingFlexibleHeight);
-    _photoScrubberView.delegate = self;
+    if (nil == _photoScrubberView) {
+      CGRect scrubberFrame = CGRectMake(0, 0,
+                                        self.toolbar.bounds.size.width,
+                                        self.toolbar.bounds.size.height);
+      _photoScrubberView = [[NIPhotoScrubberView alloc] initWithFrame:scrubberFrame];
+      _photoScrubberView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                             | UIViewAutoresizingFlexibleHeight);
+      _photoScrubberView.delegate = self;
+    }
 
     UIBarButtonItem* scrubberItem =
     [[[UIBarButtonItem alloc] initWithCustomView:self.photoScrubberView] autorelease];
     self.toolbar.items = [NSArray arrayWithObjects:
                           flexibleSpace, scrubberItem, flexibleSpace,
                           nil];
-    
+
     [_photoScrubberView setSelectedPhotoIndex:self.photoAlbumView.centerPhotoIndex];
     
   } else {
-    UIImage* nextIcon = [UIImage imageWithContentsOfFile:
-                         NIPathForBundleResource(nil, @"NimbusPhotos.bundle/gfx/next.png")];
-    UIImage* previousIcon = [UIImage imageWithContentsOfFile:
-                             NIPathForBundleResource(nil, @"NimbusPhotos.bundle/gfx/previous.png")];
-    
-    // We weren't able to find the next or previous icons in your application's resources.
-    // Ensure that you've dragged the NimbusPhotos.bundle from src/photos/resources into your
-    // application with the "Create Folder References" option selected. You can verify that
-    // you've done this correctly by expanding the NimbusPhotos.bundle file in your project
-    // and verifying that the 'gfx' directory is blue. Also verify that the bundle is being
-    // copied in the Copy Bundle Resources phase.
-    NIDASSERT(nil != nextIcon);
-    NIDASSERT(nil != previousIcon);
-  
-    _nextButton = [[UIBarButtonItem alloc] initWithImage: nextIcon
-                                                   style: UIBarButtonItemStylePlain
-                                                  target: self
-                                                  action: @selector(didTapNextButton)];
-    
-    _previousButton = [[UIBarButtonItem alloc] initWithImage: previousIcon
-                                                       style: UIBarButtonItemStylePlain
-                                                      target: self
-                                                      action: @selector(didTapPreviousButton)];
-    
+    NI_RELEASE_SAFELY(_photoScrubberView);
+
+    if (nil == _nextButton) {
+      UIImage* nextIcon = [UIImage imageWithContentsOfFile:
+                           NIPathForBundleResource(nil, @"NimbusPhotos.bundle/gfx/next.png")];
+
+      // We weren't able to find the next or previous icons in your application's resources.
+      // Ensure that you've dragged the NimbusPhotos.bundle from src/photos/resources into your
+      // application with the "Create Folder References" option selected. You can verify that
+      // you've done this correctly by expanding the NimbusPhotos.bundle file in your project
+      // and verifying that the 'gfx' directory is blue. Also verify that the bundle is being
+      // copied in the Copy Bundle Resources phase.
+      NIDASSERT(nil != nextIcon);
+
+      _nextButton = [[UIBarButtonItem alloc] initWithImage: nextIcon
+                                                     style: UIBarButtonItemStylePlain
+                                                    target: self
+                                                    action: @selector(didTapNextButton)];
+      
+    }
+
+    if (nil == _previousButton) {
+      UIImage* previousIcon = [UIImage imageWithContentsOfFile:
+                               NIPathForBundleResource(nil, @"NimbusPhotos.bundle/gfx/previous.png")];
+
+      // We weren't able to find the next or previous icons in your application's resources.
+      // Ensure that you've dragged the NimbusPhotos.bundle from src/photos/resources into your
+      // application with the "Create Folder References" option selected. You can verify that
+      // you've done this correctly by expanding the NimbusPhotos.bundle file in your project
+      // and verifying that the 'gfx' directory is blue. Also verify that the bundle is being
+      // copied in the Copy Bundle Resources phase.
+      NIDASSERT(nil != previousIcon);
+
+      _previousButton = [[UIBarButtonItem alloc] initWithImage: previousIcon
+                                                         style: UIBarButtonItemStylePlain
+                                                        target: self
+                                                        action: @selector(didTapPreviousButton)];
+    }
+
     self.toolbar.items = [NSArray arrayWithObjects:
                           flexibleSpace, self.previousButton,
                           flexibleSpace, self.nextButton,
@@ -180,14 +219,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
-  // We don't have to release the views here because self.view is the only thing retaining them.
-  _photoAlbumView = nil;
-  _toolbar = nil;
-
-  NI_RELEASE_SAFELY(_nextButton);
-  NI_RELEASE_SAFELY(_previousButton);
-
-  NI_RELEASE_SAFELY(_tapGesture);
+  [self shutdown];
 
   [super viewDidUnload];
 }
