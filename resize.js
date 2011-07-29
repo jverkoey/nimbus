@@ -1,6 +1,7 @@
 var cookie_namespace = 'doxygen'; 
 var sidenav,navtree,content,header;
 
+
 function readCookie(cookie) 
 {
   var myCookie = cookie_namespace+"_"+cookie+"=";
