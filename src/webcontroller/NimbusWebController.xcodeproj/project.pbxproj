@@ -1,0 +1,305 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB01A93413E2EC2500C24060 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB01A93313E2EC2500C24060 /* Foundation.framework */; };
+		DB01A96213E2ED5600C24060 /* NimbusWebController_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = DB01A96113E2ED5600C24060 /* NimbusWebController_Prefix.pch */; };
+		DB01A97F13E2F13A00C24060 /* NimbusWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB01A97E13E2F13A00C24060 /* NimbusWebController.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DB01A96D13E2EF9100C24060 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB01A96813E2EF9100C24060 /* NimbusCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = NimbusCore;
+		};
+		DB01A96F13E2EF9100C24060 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB01A96813E2EF9100C24060 /* NimbusCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 668750F413A1AC6000FF1C56;
+			remoteInfo = NimbusCoreUnitTests;
+		};
+		DB01A97513E2F05C00C24060 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB01A96813E2EF9100C24060 /* NimbusCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = NimbusCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DB01A93013E2EC2500C24060 /* libNimbusWebController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusWebController.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB01A93313E2EC2500C24060 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DB01A96113E2ED5600C24060 /* NimbusWebController_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusWebController_Prefix.pch; path = lib/NimbusWebController_Prefix.pch; sourceTree = "<group>"; };
+		DB01A96513E2EF7000C24060 /* library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = library.xcconfig; path = ../common/confs/library.xcconfig; sourceTree = "<group>"; };
+		DB01A96613E2EF7000C24060 /* project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = project.xcconfig; path = ../common/confs/project.xcconfig; sourceTree = "<group>"; };
+		DB01A96713E2EF7000C24060 /* unittests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = unittests.xcconfig; path = ../common/confs/unittests.xcconfig; sourceTree = "<group>"; };
+		DB01A96813E2EF9100C24060 /* NimbusCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NimbusCore.xcodeproj; path = ../core/NimbusCore.xcodeproj; sourceTree = "<group>"; };
+		DB01A97E13E2F13A00C24060 /* NimbusWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusWebController.h; path = src/NimbusWebController.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB01A92D13E2EC2500C24060 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB01A93413E2EC2500C24060 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB01A92513E2EC2400C24060 = {
+			isa = PBXGroup;
+			children = (
+				DB01A96113E2ED5600C24060 /* NimbusWebController_Prefix.pch */,
+				DB01A96313E2ED8800C24060 /* Source */,
+				DB01A93213E2EC2500C24060 /* Frameworks */,
+				DB01A96413E2EF5500C24060 /* Configurations */,
+				DB01A93113E2EC2500C24060 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB01A93113E2EC2500C24060 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB01A93013E2EC2500C24060 /* libNimbusWebController.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB01A93213E2EC2500C24060 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DB01A96813E2EF9100C24060 /* NimbusCore.xcodeproj */,
+				DB01A93313E2EC2500C24060 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB01A96313E2ED8800C24060 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				DB01A97E13E2F13A00C24060 /* NimbusWebController.h */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		DB01A96413E2EF5500C24060 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				DB01A96513E2EF7000C24060 /* library.xcconfig */,
+				DB01A96613E2EF7000C24060 /* project.xcconfig */,
+				DB01A96713E2EF7000C24060 /* unittests.xcconfig */,
+			);
+			name = Configurations;
+			sourceTree = "<group>";
+		};
+		DB01A96913E2EF9100C24060 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB01A96E13E2EF9100C24060 /* libNimbusCore.a */,
+				DB01A97013E2EF9100C24060 /* NimbusCoreUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		DB01A92E13E2EC2500C24060 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB01A96213E2ED5600C24060 /* NimbusWebController_Prefix.pch in Headers */,
+				DB01A97F13E2F13A00C24060 /* NimbusWebController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		DB01A92F13E2EC2500C24060 /* NimbusWebController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB01A95713E2EC2500C24060 /* Build configuration list for PBXNativeTarget "NimbusWebController" */;
+			buildPhases = (
+				DB01A92C13E2EC2500C24060 /* Sources */,
+				DB01A92D13E2EC2500C24060 /* Frameworks */,
+				DB01A92E13E2EC2500C24060 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB01A97613E2F05C00C24060 /* PBXTargetDependency */,
+			);
+			name = NimbusWebController;
+			productName = NimbusWebController;
+			productReference = DB01A93013E2EC2500C24060 /* libNimbusWebController.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB01A92713E2EC2400C24060 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Storm ID Ltd";
+			};
+			buildConfigurationList = DB01A92A13E2EC2400C24060 /* Build configuration list for PBXProject "NimbusWebController" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DB01A92513E2EC2400C24060;
+			productRefGroup = DB01A93113E2EC2500C24060 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = DB01A96913E2EF9100C24060 /* Products */;
+					ProjectRef = DB01A96813E2EF9100C24060 /* NimbusCore.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				DB01A92F13E2EC2500C24060 /* NimbusWebController */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		DB01A96E13E2EF9100C24060 /* libNimbusCore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusCore.a;
+			remoteRef = DB01A96D13E2EF9100C24060 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DB01A97013E2EF9100C24060 /* NimbusCoreUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusCoreUnitTests.octest;
+			remoteRef = DB01A96F13E2EF9100C24060 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB01A92C13E2EC2500C24060 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DB01A97613E2F05C00C24060 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NimbusCore;
+			targetProxy = DB01A97513E2F05C00C24060 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DB01A95513E2EC2500C24060 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DB01A95613E2EC2500C24060 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB01A95813E2EC2500C24060 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/NimbusWebController.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NimbusWebController/NimbusWebController-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DB01A95913E2EC2500C24060 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/NimbusWebController.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NimbusWebController/NimbusWebController-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB01A92A13E2EC2400C24060 /* Build configuration list for PBXProject "NimbusWebController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB01A95513E2EC2500C24060 /* Debug */,
+				DB01A95613E2EC2500C24060 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB01A95713E2EC2500C24060 /* Build configuration list for PBXNativeTarget "NimbusWebController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB01A95813E2EC2500C24060 /* Debug */,
+				DB01A95913E2EC2500C24060 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DB01A92713E2EC2400C24060 /* Project object */;
+}
