@@ -15,12 +15,44 @@
 # limitations under the License.
 #
 
-# Installs the project templates. Overwrites any existing files.
+echo "Nimbus template installer"
 
-mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/Project\ Templates/Nimbus\ Application
-cp -r projects/ ~/Library/Application\ Support/Developer/Shared/Xcode/Project\ Templates/Nimbus\ Application
+XCODE3_BASE_TEMPLATE_DIR="$HOME/Library/Application Support/Developer/Shared/Xcode"
+XCODE4_BASE_TEMPLATE_DIR="$HOME/Library/Developer/Xcode/Templates"
+
+
+# Installs the xcode 3 project templates. Overwrites any existing files.
+copy_xcode3_project_templates(){
+	echo "Installing xcode 3 project templates"
+	TEMPLATE_DIR="${XCODE3_BASE_TEMPLATE_DIR}/Project Templates/Nimbus Application"
+	mkdir -p "${TEMPLATE_DIR}"
+	cp -r xcode3/projects/ "${TEMPLATE_DIR}"
+}
+
+# Installs the xcode 3 source templates. Overwrites any existing files.
+copy_xcode3_file_templates(){
+	echo "Installing xcode 3 file templates"
+	TEMPLATE_DIR="${XCODE3_BASE_TEMPLATE_DIR}/File Templates"
+	mkdir -p "${TEMPLATE_DIR}"
+	cp -r xcode3/source/ "${TEMPLATE_DIR}"
+}
+
+# Installs the xcode 4 project templates. Overwrites any existing files.
+copy_xcode4_project_templates(){
+	echo "Installing xcode 4 project templates"
+	TEMPLATE_DIR="${XCODE4_BASE_TEMPLATE_DIR}/Project Templates/Nimbus Application"
+	mkdir -p "${TEMPLATE_DIR}"
+	cp -r xcode4/projects/ "${TEMPLATE_DIR}"
+}
+
+copy_xcode3_project_templates
+copy_xcode3_file_templates
+copy_xcode4_project_templates
+
+#mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/Project\ Templates/Nimbus\ Application
+#cp -r projects/ ~/Library/Application\ Support/Developer/Shared/Xcode/Project\ Templates/Nimbus\ Application
 
 # Installs the source templates. Overwrites any existing files.
 
-mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/File\ Templates
-cp -r source/ ~/Library/Application\ Support/Developer/Shared/Xcode/File\ Templates
+#mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/File\ Templates
+#cp -r source/ ~/Library/Application\ Support/Developer/Shared/Xcode/File\ Templates
