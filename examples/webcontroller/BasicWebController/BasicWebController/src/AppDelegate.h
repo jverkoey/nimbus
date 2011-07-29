@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Roger Chapman
+// Copyright 2011 Storm ID Ltd
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,13 +14,14 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusCore/NimbusCore.h"
-#import "NimbusWebController/NIWebController.h"
-#else
-#import "NimbusCore.h"
-#import "NIWebController.h"
-#endif
+@interface AppDelegate : NSObject <UIApplicationDelegate> {
+  UIWindow* _window;
+  NIWebController* _rootController;
+}
+
+@property (nonatomic, readwrite, retain) UIWindow* window;
+
+@end
+

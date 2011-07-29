@@ -10,6 +10,8 @@
 		DB01A93413E2EC2500C24060 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB01A93313E2EC2500C24060 /* Foundation.framework */; };
 		DB01A96213E2ED5600C24060 /* NimbusWebController_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = DB01A96113E2ED5600C24060 /* NimbusWebController_Prefix.pch */; };
 		DB01A97F13E2F13A00C24060 /* NimbusWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB01A97E13E2F13A00C24060 /* NimbusWebController.h */; };
+		DB01A98713E2F34400C24060 /* NIWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB01A98513E2F34400C24060 /* NIWebController.h */; };
+		DB01A98813E2F34400C24060 /* NIWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB01A98613E2F34400C24060 /* NIWebController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,9 @@
 		DB01A96713E2EF7000C24060 /* unittests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = unittests.xcconfig; path = ../common/confs/unittests.xcconfig; sourceTree = "<group>"; };
 		DB01A96813E2EF9100C24060 /* NimbusCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NimbusCore.xcodeproj; path = ../core/NimbusCore.xcodeproj; sourceTree = "<group>"; };
 		DB01A97E13E2F13A00C24060 /* NimbusWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusWebController.h; path = src/NimbusWebController.h; sourceTree = "<group>"; };
+		DB01A98013E2F28100C24060 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deps; sourceTree = "<group>"; };
+		DB01A98513E2F34400C24060 /* NIWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIWebController.h; path = src/NIWebController.h; sourceTree = "<group>"; tabWidth = 2; };
+		DB01A98613E2F34400C24060 /* NIWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIWebController.m; path = src/NIWebController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +67,7 @@
 		DB01A92513E2EC2400C24060 = {
 			isa = PBXGroup;
 			children = (
+				DB01A98013E2F28100C24060 /* deps */,
 				DB01A96113E2ED5600C24060 /* NimbusWebController_Prefix.pch */,
 				DB01A96313E2ED8800C24060 /* Source */,
 				DB01A93213E2EC2500C24060 /* Frameworks */,
@@ -91,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				DB01A97E13E2F13A00C24060 /* NimbusWebController.h */,
+				DB01A98513E2F34400C24060 /* NIWebController.h */,
+				DB01A98613E2F34400C24060 /* NIWebController.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -123,6 +131,7 @@
 			files = (
 				DB01A96213E2ED5600C24060 /* NimbusWebController_Prefix.pch in Headers */,
 				DB01A97F13E2F13A00C24060 /* NimbusWebController.h in Headers */,
+				DB01A98713E2F34400C24060 /* NIWebController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB01A98813E2F34400C24060 /* NIWebController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +238,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -244,7 +254,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -258,8 +268,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/NimbusWebController.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SDKROOT)/Developer/Library/Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusWebController/NimbusWebController-Prefix.pch";
+				GCC_PREFIX_HEADER = lib/NimbusWebController_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				HEADER_SEARCH_PATHS = (
+					"$(STDLIB_HEADERS)",
+					"\"$(BUILT_PRODUCTS_DIR)/../nimbus\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../nimbus\"",
+					"\"$(CONFIGURATION_BUILD_DIR)/../../nimbus\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -270,8 +288,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/NimbusWebController.dst;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SDKROOT)/Developer/Library/Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusWebController/NimbusWebController-Prefix.pch";
+				GCC_PREFIX_HEADER = lib/NimbusWebController_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				HEADER_SEARCH_PATHS = (
+					"$(STDLIB_HEADERS)",
+					"\"$(BUILT_PRODUCTS_DIR)/../nimbus\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../nimbus\"",
+					"\"$(CONFIGURATION_BUILD_DIR)/../../nimbus\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
