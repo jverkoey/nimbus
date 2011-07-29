@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "NIOverviewerView.h"
+#import "NIOverviewView.h"
 
 #ifdef DEBUG
 
@@ -25,9 +25,9 @@
 #endif
 
 #import "NIDeviceInfo.h"
-#import "NIOverviewerPageView.h"
+#import "NIOverviewPageView.h"
 
-@interface NIOverviewerView()
+@interface NIOverviewView()
 
 - (CGFloat)pageHorizontalMargin;
 - (CGRect)frameForPagingScrollView;
@@ -37,7 +37,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIOverviewerView
+@implementation NIOverviewView
 
 @synthesize translucent = _translucent;
 
@@ -184,7 +184,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)addPageView:(NIOverviewerPageView *)page {
+- (void)addPageView:(NIOverviewPageView *)page {
   [_pageViews addObject:page];
   [_pagingScrollView addSubview:page];
 
@@ -194,7 +194,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updatePages {
-  for (NIOverviewerPageView* pageView in _pageViews) {
+  for (NIOverviewPageView* pageView in _pageViews) {
     [pageView update];
   }
 }

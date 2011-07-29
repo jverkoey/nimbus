@@ -18,9 +18,14 @@
 
 #ifdef DEBUG
 
-@class NIOverviewerPageView;
+@class NIOverviewPageView;
 
-@interface NIOverviewerView : UIView {
+/**
+ * The root scrolling page view of the Overview.
+ *
+ *      @ingroup Overview
+ */
+@interface NIOverviewView : UIView {
 @private
   UIImage*  _backgroundImage;
   
@@ -38,9 +43,9 @@
 @property (nonatomic, readwrite, assign) BOOL translucent;
 
 /**
- * Adds a new page to the overviewer.
+ * Adds a new page to the Overview.
  */
-- (void)addPageView:(NIOverviewerPageView *)page;
+- (void)addPageView:(NIOverviewPageView *)page;
 
 /**
  * Update all of the views.

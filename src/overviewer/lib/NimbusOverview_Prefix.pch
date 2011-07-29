@@ -14,12 +14,7 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusCore/NimbusCore.h"
-#import "NimbusOverviewer/NIOverviewer.h"
-#else
-#import "NimbusCore.h"
-#import "NIOverviewer.h"
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
 #endif

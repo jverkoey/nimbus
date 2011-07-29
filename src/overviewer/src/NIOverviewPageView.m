@@ -14,14 +14,14 @@
 // limitations under the License.
 //
 
-#import "NIOverviewerPageView.h"
+#import "NIOverviewPageView.h"
 
 #ifdef DEBUG
 
-#import "NIOverviewer.h"
+#import "NIOverview.h"
 #import "NIDeviceInfo.h"
-#import "NIOverviewerGraphView.h"
-#import "NIOverViewerLogger.h"
+#import "NIOverviewGraphView.h"
+#import "NIOverViewLogger.h"
 
 static UIEdgeInsets kPagePadding;
 static const CGFloat kGraphRightMargin = 5;
@@ -30,7 +30,7 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIOverviewerPageView
+@implementation NIOverviewPageView
 
 @synthesize pageTitle = _pageTitle;
 @synthesize titleLabel = _titleLabel;
@@ -52,7 +52,7 @@ static const CGFloat kGraphRightMargin = 5;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (NIOverviewerPageView *)page {
++ (NIOverviewPageView *)page {
   return [[[[self class] alloc] initWithFrame:CGRectZero] autorelease];
 }
 
@@ -121,7 +121,7 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIOverviewerGraphPageView
+@implementation NIOverviewGraphPageView
 
 @synthesize label1 = _label1;
 @synthesize label2 = _label2;
@@ -148,7 +148,7 @@ static const CGFloat kGraphRightMargin = 5;
     _label2 = [self label];
     [self addSubview:_label2];
     
-    _graphView = [[[NIOverviewerGraphView alloc] init] autorelease];
+    _graphView = [[[NIOverviewGraphView alloc] init] autorelease];
     _graphView.dataSource = self;
     [self addSubview:_graphView];
   }
@@ -199,21 +199,21 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma -
-#pragma NIOverviewerGraphViewDataSource
+#pragma NIOverviewGraphViewDataSource
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)graphViewXRange:(NIOverviewerGraphView *)graphView {
-  NILinkedList* deviceLogs = [[NIOverviewer logger] deviceLogs];
-  NIOverviewerLogEntry* firstEntry = [deviceLogs firstObject];
-  NIOverviewerLogEntry* lastEntry = [deviceLogs lastObject];
+- (CGFloat)graphViewXRange:(NIOverviewGraphView *)graphView {
+  NILinkedList* deviceLogs = [[NIOverview logger] deviceLogs];
+  NIOverviewLogEntry* firstEntry = [deviceLogs firstObject];
+  NIOverviewLogEntry* lastEntry = [deviceLogs lastObject];
   NSTimeInterval interval = [lastEntry.timestamp timeIntervalSinceDate:firstEntry.timestamp];
   return interval;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)graphViewYRange:(NIOverviewerGraphView *)graphView {
+- (CGFloat)graphViewYRange:(NIOverviewGraphView *)graphView {
   return 0;
 }
 
@@ -224,7 +224,7 @@ static const CGFloat kGraphRightMargin = 5;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)nextPointInGraphView: (NIOverviewerGraphView *)graphView
+- (BOOL)nextPointInGraphView: (NIOverviewGraphView *)graphView
                        point: (CGPoint *)point {
   return NO;
 }
@@ -239,21 +239,21 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resetEventIterator {
   NI_RELEASE_SAFELY(_eventEnumerator);
-  _eventEnumerator = [[[[NIOverviewer logger] eventLogs] objectEnumerator] retain];
+  _eventEnumerator = [[[[NIOverview logger] eventLogs] objectEnumerator] retain];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)nextEventInGraphView: (NIOverviewerGraphView *)graphView
+- (BOOL)nextEventInGraphView: (NIOverviewGraphView *)graphView
                       xValue: (CGFloat *)xValue
                        color: (UIColor **)color {
   static NSArray* sEventColors = nil;
   if (nil == sEventColors) {
     sEventColors = [[NSArray arrayWithObjects:
-                     [UIColor redColor], // NIOverviewerEventDidReceiveMemoryWarning
+                     [UIColor redColor], // NIOverviewEventDidReceiveMemoryWarning
                      nil] retain];
   }
-  NIOverviewerEventLogEntry* entry = [_eventEnumerator nextObject];
+  NIOverviewEventLogEntry* entry = [_eventEnumerator nextObject];
   if (nil != entry) {
     NSTimeInterval interval = [entry.timestamp timeIntervalSinceDate:[self initialTimestamp]];
     *xValue = interval;
@@ -269,7 +269,7 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIOverviewerMemoryPageView
+@implementation NIOverviewMemoryPageView
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -312,19 +312,19 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma -
-#pragma NIOverviewerGraphViewDataSource
+#pragma NIOverviewGraphViewDataSource
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)graphViewYRange:(NIOverviewerGraphView *)graphView {
-  NILinkedList* deviceLogs = [[NIOverviewer logger] deviceLogs];
+- (CGFloat)graphViewYRange:(NIOverviewGraphView *)graphView {
+  NILinkedList* deviceLogs = [[NIOverview logger] deviceLogs];
   if ([deviceLogs count] == 0) {
     return 0;
   }
 
   unsigned long long minY = (unsigned long long)-1;
   unsigned long long maxY = 0;
-  for (NIOverviewerDeviceLogEntry* entry in deviceLogs) {
+  for (NIOverviewDeviceLogEntry* entry in deviceLogs) {
     minY = MIN(entry.bytesOfFreeMemory, minY);
     maxY = MAX(entry.bytesOfFreeMemory, maxY);
   }
@@ -337,22 +337,22 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resetPointIterator {
   NI_RELEASE_SAFELY(_enumerator);
-  _enumerator = [[[[NIOverviewer logger] deviceLogs] objectEnumerator] retain];
+  _enumerator = [[[[NIOverview logger] deviceLogs] objectEnumerator] retain];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDate *)initialTimestamp {
-  NILinkedList* deviceLogs = [[NIOverviewer logger] deviceLogs];
-  NIOverviewerLogEntry* firstEntry = [deviceLogs firstObject];
+  NILinkedList* deviceLogs = [[NIOverview logger] deviceLogs];
+  NIOverviewLogEntry* firstEntry = [deviceLogs firstObject];
   return firstEntry.timestamp;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)nextPointInGraphView: (NIOverviewerGraphView *)graphView
+- (BOOL)nextPointInGraphView: (NIOverviewGraphView *)graphView
                        point: (CGPoint *)point {
-  NIOverviewerDeviceLogEntry* entry = [_enumerator nextObject];
+  NIOverviewDeviceLogEntry* entry = [_enumerator nextObject];
   if (nil != entry) {
     NSTimeInterval interval = [entry.timestamp timeIntervalSinceDate:[self initialTimestamp]];
     *point = CGPointMake(interval, ((double)(entry.bytesOfFreeMemory - _minMemory)) / 1024.0 / 1024.0);
@@ -367,7 +367,7 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIOverviewerDiskPageView
+@implementation NIOverviewDiskPageView
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -410,19 +410,19 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma -
-#pragma NIOverviewerGraphViewDataSource
+#pragma NIOverviewGraphViewDataSource
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)graphViewYRange:(NIOverviewerGraphView *)graphView {
-  NILinkedList* deviceLogs = [[NIOverviewer logger] deviceLogs];
+- (CGFloat)graphViewYRange:(NIOverviewGraphView *)graphView {
+  NILinkedList* deviceLogs = [[NIOverview logger] deviceLogs];
   if ([deviceLogs count] == 0) {
     return 0;
   }
   
   unsigned long long minY = (unsigned long long)-1;
   unsigned long long maxY = 0;
-  for (NIOverviewerDeviceLogEntry* entry in deviceLogs) {
+  for (NIOverviewDeviceLogEntry* entry in deviceLogs) {
     minY = MIN(entry.bytesOfFreeDiskSpace, minY);
     maxY = MAX(entry.bytesOfFreeDiskSpace, maxY);
   }
@@ -434,22 +434,22 @@ static const CGFloat kGraphRightMargin = 5;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resetPointIterator {
-  _enumerator = [[[NIOverviewer logger] deviceLogs] objectEnumerator];
+  _enumerator = [[[NIOverview logger] deviceLogs] objectEnumerator];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDate *)initialTimestamp {
-  NILinkedList* deviceLogs = [[NIOverviewer logger] deviceLogs];
-  NIOverviewerLogEntry* firstEntry = [deviceLogs firstObject];
+  NILinkedList* deviceLogs = [[NIOverview logger] deviceLogs];
+  NIOverviewLogEntry* firstEntry = [deviceLogs firstObject];
   return firstEntry.timestamp;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)nextPointInGraphView: (NIOverviewerGraphView *)graphView
+- (BOOL)nextPointInGraphView: (NIOverviewGraphView *)graphView
                        point: (CGPoint *)point {
-  NIOverviewerDeviceLogEntry* entry = [_enumerator nextObject];
+  NIOverviewDeviceLogEntry* entry = [_enumerator nextObject];
   if (nil != entry) {
     NSTimeInterval interval = [entry.timestamp timeIntervalSinceDate:[self initialTimestamp]];
     double difference = ((double)entry.bytesOfFreeDiskSpace / 1024.0 / 1024.0
@@ -466,7 +466,7 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIOverviewerConsoleLogPageView
+@implementation NIOverviewConsoleLogPageView
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -517,7 +517,7 @@ static const CGFloat kGraphRightMargin = 5;
     
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(didAddLog:)
-                                                 name: NIOverviewerLoggerDidAddConsoleLog
+                                                 name: NIOverviewLoggerDidAddConsoleLog
                                                object: nil];
   }
   return self;
@@ -581,7 +581,7 @@ static const CGFloat kGraphRightMargin = 5;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didAddLog:(NSNotification *)notification {
-  NIOverviewerConsoleLogEntry* entry = [[notification userInfo] objectForKey:@"entry"];
+  NIOverviewConsoleLogEntry* entry = [[notification userInfo] objectForKey:@"entry"];
 
   static NSDateFormatter* formatter = nil;
   if (nil == formatter) {
@@ -610,7 +610,7 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIOverviewerMaxLogLevelPageView
+@implementation NIOverviewMaxLogLevelPageView
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

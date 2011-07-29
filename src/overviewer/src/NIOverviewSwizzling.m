@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "NIOverviewerSwizzling.h"
+#import "NIOverviewSwizzling.h"
 
 #ifdef NIMBUS_STATIC_LIBRARY
 #import "NimbusCore/NimbusCore.h"
@@ -22,8 +22,8 @@
 #import "NimbusCore.h"
 #endif
 
-#import "NIOverviewer.h"
-#import "NIOverviewerView.h"
+#import "NIOverview.h"
+#import "NIOverviewView.h"
 
 
 #ifdef DEBUG
@@ -36,7 +36,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CGFloat NIOverviewerStatusBarHeight() {
+CGFloat NIOverviewStatusBarHeight() {
   CGRect statusBarFrame = [[UIApplication sharedApplication] _statusBarFrame];
   CGFloat statusBarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);
   return statusBarHeight;
@@ -44,7 +44,7 @@ CGFloat NIOverviewerStatusBarHeight() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void NIOverviewerSwizzleMethods() {
+void NIOverviewSwizzleMethods() {
   NISwapInstanceMethods([UIViewController class],
                         @selector(_statusBarHeightForCurrentInterfaceOrientation),
                         @selector(__statusBarHeightForCurrentInterfaceOrientation));
@@ -74,7 +74,7 @@ void NIOverviewerSwizzleMethods() {
  * This method is used by view controllers to adjust the size of their views.
  */
 - (float)__statusBarHeightForCurrentInterfaceOrientation {
-  return NIOverviewerStatusBarHeight() + [NIOverviewer height];
+  return NIOverviewStatusBarHeight() + [NIOverview height];
 }
 
 @end
@@ -96,7 +96,7 @@ void NIOverviewerSwizzleMethods() {
  */
 - (CGRect)_statusBarFrame {
   return CGRectMake(0, 0,
-                    CGFLOAT_MAX, NIOverviewerStatusBarHeight() + [NIOverviewer height]);
+                    CGFLOAT_MAX, NIOverviewStatusBarHeight() + [NIOverview height]);
 }
 
 
@@ -104,37 +104,37 @@ void NIOverviewerSwizzleMethods() {
 /**
  * Swizzled implementation of - (void)setStatusBarHidden:withAnimation:
  *
- * This allows us to hide the overviewer when the status bar is hidden.
+ * This allows us to hide the overview when the status bar is hidden.
  */
 - (void)_setStatusBarHidden:(BOOL)hidden withAnimation:(UIStatusBarAnimation)animation {
   [self _setStatusBarHidden:hidden withAnimation:animation];
 
   if (UIStatusBarAnimationNone == animation) {
-    [NIOverviewer view].alpha = 1;
-    [NIOverviewer view].hidden = hidden;
+    [NIOverview view].alpha = 1;
+    [NIOverview view].hidden = hidden;
 
   } else if (UIStatusBarAnimationSlide == animation) {
-    [NIOverviewer view].alpha = 1;
+    [NIOverview view].alpha = 1;
 
-    CGRect frame = [NIOverviewer frame];
+    CGRect frame = [NIOverview frame];
 
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:NIStatusBarAnimationDuration()];
     [UIView setAnimationCurve:NIStatusBarAnimationCurve()];
 
-    [NIOverviewer view].frame = frame;
+    [NIOverview view].frame = frame;
 
     [UIView commitAnimations];
     
   } else if (UIStatusBarAnimationFade == animation) {
-    CGRect frame = [NIOverviewer frame];
-    [NIOverviewer view].frame = frame;
+    CGRect frame = [NIOverview frame];
+    [NIOverview view].frame = frame;
 
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:NIStatusBarAnimationDuration()];
     [UIView setAnimationCurve:NIStatusBarAnimationCurve()];
     
-    [NIOverviewer view].alpha = hidden ? 0 : 1;
+    [NIOverview view].alpha = hidden ? 0 : 1;
     
     [UIView commitAnimations];
   }
@@ -153,13 +153,13 @@ void NIOverviewerSwizzleMethods() {
     [UIView setAnimationDuration:0.3];
   }
 
-  // TODO (jverkoey July 23, 2011): Add a translucent property to the overviewer view.
+  // TODO (jverkoey July 23, 2011): Add a translucent property to the overview view.
   if (UIStatusBarStyleDefault == statusBarStyle
       || UIStatusBarStyleBlackOpaque == statusBarStyle) {
-    [[NIOverviewer view] setTranslucent:NO];
+    [[NIOverview view] setTranslucent:NO];
 
   } else if (UIStatusBarStyleBlackTranslucent == statusBarStyle) {
-    [[NIOverviewer view] setTranslucent:YES];
+    [[NIOverview view] setTranslucent:YES];
   }
 
   if (animated) {

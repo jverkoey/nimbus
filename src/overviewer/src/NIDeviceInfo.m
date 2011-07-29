@@ -16,8 +16,6 @@
 
 #import "NIDeviceInfo.h"
 
-#ifdef DEBUG
-
 #ifdef NIMBUS_STATIC_LIBRARY
 #import "NimbusCore/NimbusCore.h"
 #else
@@ -27,6 +25,7 @@
 #import <mach/mach.h>
 #import <mach/mach_host.h>
 
+// Static local state.
 static BOOL                 sIsCaching = NO;
 static BOOL                 sLastUpdateResult = NO;
 static vm_size_t            sPageSize = 0;
@@ -37,7 +36,7 @@ static NSDictionary*        sFileSystem = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* NIStringFromBytes(unsigned long long bytes) {
   static const void* sOrdersOfMagnitude[] = {
-    @"bytes", @"KBs", @"MBs", @"GBs"
+    @"bytes", @"KB", @"MB", @"GB"
   };
 
   // Determine what magnitude the number of bytes is by shifting off 10 bits at a time
@@ -94,7 +93,10 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
   NI_RELEASE_SAFELY(sFileSystem);
 
 	NSError* error = nil;
+  // This path could be any path that is on the device's local disk.
 	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+
+  // Fetch the file system information based on the path given (the user's documents directory).
 	sFileSystem =
   [[[NSFileManager defaultManager] attributesOfFileSystemForPath: [paths lastObject]
                                                            error: &error] retain];
@@ -110,7 +112,7 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (unsigned long long)bytesOfFreeMemory {
-  if (!sIsCaching && [self updateHostStatistics]) {
+  if (!sIsCaching && ![self updateHostStatistics]) {
     return 0;
   }
   unsigned long long mem_free = ((unsigned long long)sVMStats.free_count
@@ -121,7 +123,7 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (unsigned long long)bytesOfTotalMemory {
-  if (!sIsCaching && [self updateHostStatistics]) {
+  if (!sIsCaching && ![self updateHostStatistics]) {
     return 0;
   }
   unsigned long long mem_free = (((unsigned long long)sVMStats.free_count
@@ -134,22 +136,8 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (unsigned long long)bytesOfTotalDiskSpace {
-  if (!sIsCaching && [self updateFileSystemAttributes]) {
-    return 0;
-  }
-	unsigned long long bytes = 0;
-
-  NSNumber* number = [sFileSystem objectForKey:NSFileSystemSize];
-  bytes = [number unsignedLongLongValue];
-
-  return bytes;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (unsigned long long)bytesOfFreeDiskSpace {
-  if (!sIsCaching && [self updateFileSystemAttributes]) {
+  if (!sIsCaching && ![self updateFileSystemAttributes]) {
     return 0;
   }
 	unsigned long long bytes = 0;
@@ -157,6 +145,20 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
   NSNumber* number = [sFileSystem objectForKey:NSFileSystemFreeSize];
 	bytes = [number unsignedLongLongValue];
 
+  return bytes;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (unsigned long long)bytesOfTotalDiskSpace {
+  if (!sIsCaching && ![self updateFileSystemAttributes]) {
+    return 0;
+  }
+	unsigned long long bytes = 0;
+  
+  NSNumber* number = [sFileSystem objectForKey:NSFileSystemSize];
+  bytes = [number unsignedLongLongValue];
+  
   return bytes;
 }
 
@@ -199,5 +201,3 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
 
 
 @end
-
-#endif

@@ -14,24 +14,24 @@
 // limitations under the License.
 //
 
-#import "NIOverviewer.h"
+#import "NIOverview.h"
 
 #ifdef DEBUG
 
 #import "NIDeviceInfo.h"
-#import "NIOverviewerView.h"
-#import "NIOverviewerPageView.h"
-#import "NIOverviewerSwizzling.h"
-#import "NIOverviewerLogger.h"
+#import "NIOverviewView.h"
+#import "NIOverviewPageView.h"
+#import "NIOverviewSwizzling.h"
+#import "NIOverviewLogger.h"
 
 // Static state.
-static CGFloat  sOverviewerHeight   = 60;
-static BOOL     sOverviewerIsAwake  = NO;
+static CGFloat  sOverviewHeight   = 60;
+static BOOL     sOverviewIsAwake  = NO;
 
-static NSTimer* sOverviewerHeartbeatTimer = nil;
+static NSTimer* sOverviewHeartbeatTimer = nil;
 
-static NIOverviewerView* sOverviewerView = nil;
-static NIOverviewerLogger* sOverviewerLogger = nil;
+static NIOverviewView* sOverviewView = nil;
+static NIOverviewLogger* sOverviewLogger = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ static NIOverviewerLogger* sOverviewerLogger = nil;
 /**
  * @internal
  *
- * Replaces the default logging mechanism with a custom implementation.
+ * An undocumented method that replaces the default logging mechanism with a custom implementation.
  *
  * Your method prototype should look like this:
  *
@@ -53,19 +53,19 @@ static NIOverviewerLogger* sOverviewerLogger = nil;
  *      @attention This method is undocumented, unsupported, and unlikely to be around
  *                 forever. Don't go using it in production code.
  *
- * http://support.apple.com/kb/TA45403?viewlocale=en_US
+ * Source: http://support.apple.com/kb/TA45403?viewlocale=en_US
  */
 extern void _NSSetLogCStringFunction(void(*)(const char *, unsigned, BOOL));
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * Pipes NSLog messages to the overviewer and stderr.
+ * Pipes NSLog messages to the Overview and stderr.
  *
  * This method is passed as an argument to _NSSetLogCStringFunction to pipe all NSLog
  * messages through here.
  */
-void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslogBanner) {
+void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBanner) {
   static NSDateFormatter* formatter = nil;
   if (nil == formatter) {
     formatter = [[NSDateFormatter alloc] init];
@@ -73,17 +73,21 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
     [formatter setDateStyle:kCFDateFormatterMediumStyle];
   }
 
-  NSDate* date = [NSDate date];
-
-  // We don't autorelease here in an attempt to minimize autorelease thrashing in tight
+  // Don't autorelease here in an attempt to minimize autorelease thrashing in tight
   // loops.
-  NSString* formattedLogMessage = [[NSString alloc] initWithFormat:
-                                   @"%@: %s\n", [formatter stringFromDate:date], message];
+  
+  NSString* formattedLogMessage = [[NSString alloc] initWithCString: message
+                                                           encoding: NSUTF8StringEncoding];
 
-  [[NIOverviewer logger] addConsoleLog:
-   [[[NIOverviewerConsoleLogEntry alloc] initWithLog:
-     [NSString stringWithCString:message encoding:NSUTF8StringEncoding]]
-    autorelease]];
+  NIOverviewConsoleLogEntry* entry = [[NIOverviewConsoleLogEntry alloc]
+                                      initWithLog:formattedLogMessage];
+  NI_RELEASE_SAFELY(formattedLogMessage);
+
+  [[NIOverview logger] addConsoleLog:entry];
+  NI_RELEASE_SAFELY(entry);
+
+  formattedLogMessage = [[NSString alloc] initWithFormat:
+                         @"%@: %s\n", [formatter stringFromDate:[NSDate date]], message];
 
   fprintf(stderr, "%s", [formattedLogMessage UTF8String]);
   
@@ -95,7 +99,7 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIOverviewer
+@implementation NIOverview
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,7 +113,7 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
 + (void)didChangeOrientation {
   static UIDeviceOrientation lastOrientation = UIDeviceOrientationUnknown;
 
-  // Don't animate the overviewer if the device didn't actually change orientations.
+  // Don't animate the overview if the device didn't actually change orientations.
   if (lastOrientation != [[UIDevice currentDevice] orientation]
       && [[UIDevice currentDevice] orientation] != UIDeviceOrientationUnknown
       && [[UIDevice currentDevice] orientation] != UIDeviceOrientationFaceUp
@@ -122,13 +126,13 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
                             == UIDeviceOrientationIsLandscape(currentOrientation));
     lastOrientation = currentOrientation;
 
-    // Hide the overviewer right away, we'll make it fade back in when the rotation is
+    // Hide the overview right away, we'll make it fade back in when the rotation is
     // finished.
-    sOverviewerView.hidden = YES;
+    sOverviewView.hidden = YES;
 
-    // Delay showing the overviewer again until the rotation finishes.
+    // Delay showing the overview again until the rotation finishes.
     [self cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(showOverviewerAfterRotation) withObject:nil
+    [self performSelector:@selector(showoverviewAfterRotation) withObject:nil
                afterDelay:NIDeviceRotationDuration(isLongAnimation)];
   }
 }
@@ -139,47 +143,47 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
   [UIView beginAnimations:nil context:nil];
   [UIView setAnimationDuration:NIStatusBarFrameAnimationDuration()];
   [UIView setAnimationCurve:NIStatusBarFrameAnimationCurve()];
-  CGRect frame = [NIOverviewer frame];
-  sOverviewerView.center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+  CGRect frame = [NIOverview frame];
+  sOverviewView.center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
   [UIView commitAnimations];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)showOverviewerAfterRotation {
-  // Don't modify the overviewer's frame directly, just modify the transform/center/bounds
++ (void)showoverviewAfterRotation {
+  // Don't modify the overview's frame directly, just modify the transform/center/bounds
   // properties so that the view is rotated with the device.
 
-  sOverviewerView.transform = NIRotateTransformForOrientation(NIInterfaceOrientation());
+  sOverviewView.transform = NIRotateTransformForOrientation(NIInterfaceOrientation());
 
   // Fetch the frame only to calculate the center.
-  CGRect frame = [NIOverviewer frame];
-  sOverviewerView.center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+  CGRect frame = [NIOverview frame];
+  sOverviewView.center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
 
-  CGRect bounds = sOverviewerView.bounds;
+  CGRect bounds = sOverviewView.bounds;
   bounds.size.width = (UIInterfaceOrientationIsLandscape(NIInterfaceOrientation())
                        ? frame.size.height
                        : frame.size.width);
-  sOverviewerView.bounds = bounds;
+  sOverviewView.bounds = bounds;
 
-  // Get ready to fade the overviewer back in.
-  sOverviewerView.hidden = NO;
-  sOverviewerView.alpha = 0;
+  // Get ready to fade the overview back in.
+  sOverviewView.hidden = NO;
+  sOverviewView.alpha = 0;
   
-  [sOverviewerView flashScrollIndicators];
+  [sOverviewView flashScrollIndicators];
 
   // Fade!
   [UIView beginAnimations:nil context:nil];
   [UIView setAnimationDuration:0.2];
-  sOverviewerView.alpha = 1;
+  sOverviewView.alpha = 1;
   [UIView commitAnimations];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)didReceiveMemoryWarning {
-  [sOverviewerLogger addEventLog:
-   [[[NIOverviewerEventLogEntry alloc] initWithType:NIOverviewerEventDidReceiveMemoryWarning]
+  [sOverviewLogger addEventLog:
+   [[[NIOverviewEventLogEntry alloc] initWithType:NIOverviewEventDidReceiveMemoryWarning]
     autorelease]];
 }
 
@@ -187,8 +191,8 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)heartbeat {
   [NIDeviceInfo beginCachedDeviceInfo];
-  NIOverviewerDeviceLogEntry* logEntry =
-  [[[NIOverviewerDeviceLogEntry alloc] initWithTimestamp:[NSDate date]]
+  NIOverviewDeviceLogEntry* logEntry =
+  [[[NIOverviewDeviceLogEntry alloc] initWithTimestamp:[NSDate date]]
    autorelease];
   logEntry.bytesOfTotalDiskSpace = [NIDeviceInfo bytesOfTotalDiskSpace];
   logEntry.bytesOfFreeDiskSpace = [NIDeviceInfo bytesOfFreeDiskSpace];
@@ -198,9 +202,9 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
   logEntry.batteryState = [NIDeviceInfo batteryState];
   [NIDeviceInfo endCachedDeviceInfo];
 
-  [sOverviewerLogger addDeviceLog:logEntry];
+  [sOverviewLogger addDeviceLog:logEntry];
   
-  [sOverviewerView updatePages];
+  [sOverviewView updatePages];
 }
 
 
@@ -216,16 +220,16 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)applicationDidFinishLaunching {
 #ifdef DEBUG
-  if (!sOverviewerIsAwake) {
-    sOverviewerIsAwake = YES;
+  if (!sOverviewIsAwake) {
+    sOverviewIsAwake = YES;
 
     // Set up the logger right away so that all calls to NSLog will be captured by the
-    // overviewer.
-    _NSSetLogCStringFunction(NIOverviewerLogMethod);
+    // overview.
+    _NSSetLogCStringFunction(NIOverviewLogMethod);
 
-    sOverviewerLogger = [[NIOverviewerLogger alloc] init];
+    sOverviewLogger = [[NIOverviewLogger alloc] init];
 
-    NIOverviewerSwizzleMethods();
+    NIOverviewSwizzleMethods();
 
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(didChangeOrientation)
@@ -240,7 +244,7 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
                                                  name: UIApplicationDidReceiveMemoryWarningNotification
                                                object: nil];
 
-    sOverviewerHeartbeatTimer = [[NSTimer scheduledTimerWithTimeInterval: 0.5
+    sOverviewHeartbeatTimer = [[NSTimer scheduledTimerWithTimeInterval: 0.5
                                                                   target: self
                                                                 selector: @selector(heartbeat)
                                                                 userInfo: nil
@@ -252,38 +256,38 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)addOverviewerToWindow:(UIWindow *)window {
++ (void)addOverviewToWindow:(UIWindow *)window {
 #ifdef DEBUG
-  if (nil != sOverviewerView) {
-    // Remove the old Overviewer in case this gets called multiple times (not sure why you would
+  if (nil != sOverviewView) {
+    // Remove the old overview in case this gets called multiple times (not sure why you would
     // though).
-    [sOverviewerView removeFromSuperview];
-    NI_RELEASE_SAFELY(sOverviewerView);
+    [sOverviewView removeFromSuperview];
+    NI_RELEASE_SAFELY(sOverviewView);
   }
 
-  sOverviewerView = [[NIOverviewerView alloc] initWithFrame:[self frame]];
+  sOverviewView = [[NIOverviewView alloc] initWithFrame:[self frame]];
   
-  [sOverviewerView addPageView:[NIOverviewerMemoryPageView page]];
-  [sOverviewerView addPageView:[NIOverviewerDiskPageView page]];
-  [sOverviewerView addPageView:[NIOverviewerConsoleLogPageView page]];
-  [sOverviewerView addPageView:[NIOverviewerMaxLogLevelPageView page]];
+  [sOverviewView addPageView:[NIOverviewMemoryPageView page]];
+  [sOverviewView addPageView:[NIOverviewDiskPageView page]];
+  [sOverviewView addPageView:[NIOverviewConsoleLogPageView page]];
+  [sOverviewView addPageView:[NIOverviewMaxLogLevelPageView page]];
 
   // Hide the view initially because the initial frame will be wrong when the device
   // starts the app in any orientation other than portrait. Don't worry, we'll fade the
   // view in once we get our first device notification.
-  sOverviewerView.hidden = YES;
+  sOverviewView.hidden = YES;
 
-  [window addSubview:sOverviewerView];
+  [window addSubview:sOverviewView];
   
-  NSLog(@"The Overviewer has been added to a window.");
+  NSLog(@"The overview has been added to a window.");
 #endif
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (NIOverviewerLogger *)logger {
++ (NIOverviewLogger *)logger {
 #ifdef DEBUG
-  return sOverviewerLogger;
+  return sOverviewLogger;
 #else
   return nil;
 #endif
@@ -293,7 +297,7 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)height {
 #ifdef DEBUG
-  return sOverviewerHeight;
+  return sOverviewHeight;
 #else
   return 0;
 #endif
@@ -304,39 +308,39 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
 + (CGRect)frame {
 #ifdef DEBUG
   UIInterfaceOrientation orient = NIInterfaceOrientation();
-  CGFloat overviewerWidth;
+  CGFloat overviewWidth;
   CGRect frame;
 
-  // We can't take advantage of automatic view positioning because the overviewer exists
+  // We can't take advantage of automatic view positioning because the overview exists
   // at the topmost view level (even above the root view controller). As such, we have to
   // calculate the frame depending on the interface orientation.
   if (orient == UIInterfaceOrientationLandscapeLeft) {
-    overviewerWidth = [UIScreen mainScreen].bounds.size.height;
-    frame = CGRectMake(NIOverviewerStatusBarHeight(), 0, sOverviewerHeight, overviewerWidth);
+    overviewWidth = [UIScreen mainScreen].bounds.size.height;
+    frame = CGRectMake(NIOverviewStatusBarHeight(), 0, sOverviewHeight, overviewWidth);
 
   } else if (orient == UIInterfaceOrientationLandscapeRight) {
-    overviewerWidth = [UIScreen mainScreen].bounds.size.height;
+    overviewWidth = [UIScreen mainScreen].bounds.size.height;
     frame = CGRectMake([UIScreen mainScreen].bounds.size.width
-                       - (NIOverviewerStatusBarHeight() + sOverviewerHeight), 0,
-                       sOverviewerHeight, overviewerWidth);
+                       - (NIOverviewStatusBarHeight() + sOverviewHeight), 0,
+                       sOverviewHeight, overviewWidth);
 
   } else if (orient == UIInterfaceOrientationPortraitUpsideDown) {
-    overviewerWidth = [UIScreen mainScreen].bounds.size.width;
+    overviewWidth = [UIScreen mainScreen].bounds.size.width;
     frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height
-                       - (NIOverviewerStatusBarHeight() + sOverviewerHeight),
-                       overviewerWidth, sOverviewerHeight);
+                       - (NIOverviewStatusBarHeight() + sOverviewHeight),
+                       overviewWidth, sOverviewHeight);
 
   } else if (orient == UIInterfaceOrientationPortrait) {
-    overviewerWidth = [UIScreen mainScreen].bounds.size.width;
-    frame = CGRectMake(0, NIOverviewerStatusBarHeight(), overviewerWidth, sOverviewerHeight);
+    overviewWidth = [UIScreen mainScreen].bounds.size.width;
+    frame = CGRectMake(0, NIOverviewStatusBarHeight(), overviewWidth, sOverviewHeight);
 
   } else {
-    overviewerWidth = [UIScreen mainScreen].bounds.size.width;
-    frame = CGRectMake(0, NIOverviewerStatusBarHeight(), overviewerWidth, sOverviewerHeight);
+    overviewWidth = [UIScreen mainScreen].bounds.size.width;
+    frame = CGRectMake(0, NIOverviewStatusBarHeight(), overviewWidth, sOverviewHeight);
   }
 
   if ([[UIApplication sharedApplication] isStatusBarHidden]) {
-    // When the status bar is hidden we want to position the overviewer offscreen.
+    // When the status bar is hidden we want to position the overview offscreen.
     switch (orient) {
       case UIInterfaceOrientationLandscapeLeft: {
         frame = CGRectOffset(frame, -frame.size.width, 0);
@@ -367,7 +371,7 @@ void NIOverviewerLogMethod(const char *message, unsigned length, BOOL withSyslog
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (UIView *)view {
 #ifdef DEBUG
-  return sOverviewerView;
+  return sOverviewView;
 #else
   return nil;
 #endif

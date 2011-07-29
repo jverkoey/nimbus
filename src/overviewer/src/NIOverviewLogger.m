@@ -14,15 +14,15 @@
 // limitations under the License.
 //
 
-#import "NIOverviewerLogger.h"
+#import "NIOverviewLogger.h"
 
-NSString* const NIOverviewerLoggerDidAddConsoleLog = @"NIOverviewerLoggerDidAddConsoleLog";
+NSString* const NIOverviewLoggerDidAddConsoleLog = @"NIOverviewLoggerDidAddConsoleLog";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIOverviewerLogger
+@implementation NIOverviewLogger
 
 @synthesize oldestLogAge = _oldestLogAge;
 @synthesize deviceLogs = _deviceLogs;
@@ -56,7 +56,7 @@ NSString* const NIOverviewerLoggerDidAddConsoleLog = @"NIOverviewerLoggerDidAddC
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)pruneEntriesFromLinkedList:(NILinkedList *)ll {
   NSDate* cutoffDate = [NSDate dateWithTimeIntervalSinceNow:-_oldestLogAge];
-  while ([[((NIOverviewerLogEntry *)[ll firstObject])
+  while ([[((NIOverviewLogEntry *)[ll firstObject])
            timestamp] compare:cutoffDate] == NSOrderedAscending) {
     [ll removeFirstObject];
   }
@@ -64,7 +64,7 @@ NSString* const NIOverviewerLoggerDidAddConsoleLog = @"NIOverviewerLoggerDidAddC
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)addDeviceLog:(NIOverviewerDeviceLogEntry *)logEntry {
+- (void)addDeviceLog:(NIOverviewDeviceLogEntry *)logEntry {
   [self pruneEntriesFromLinkedList:_deviceLogs];
 
   [_deviceLogs addObject:logEntry];
@@ -72,10 +72,10 @@ NSString* const NIOverviewerLoggerDidAddConsoleLog = @"NIOverviewerLoggerDidAddC
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)addConsoleLog:(NIOverviewerConsoleLogEntry *)logEntry {
+- (void)addConsoleLog:(NIOverviewConsoleLogEntry *)logEntry {
   [_consoleLogs addObject:logEntry];
   
-  [[NSNotificationCenter defaultCenter] postNotificationName: NIOverviewerLoggerDidAddConsoleLog
+  [[NSNotificationCenter defaultCenter] postNotificationName: NIOverviewLoggerDidAddConsoleLog
                                                       object: nil
                                                     userInfo:
    [NSDictionary dictionaryWithObject:logEntry forKey:@"entry"]];
@@ -83,7 +83,7 @@ NSString* const NIOverviewerLoggerDidAddConsoleLog = @"NIOverviewerLoggerDidAddC
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)addEventLog:(NIOverviewerEventLogEntry *)logEntry {
+- (void)addEventLog:(NIOverviewEventLogEntry *)logEntry {
   [self pruneEntriesFromLinkedList:_eventLogs];
 
   [_eventLogs addObject:logEntry];
@@ -96,7 +96,7 @@ NSString* const NIOverviewerLoggerDidAddConsoleLog = @"NIOverviewerLoggerDidAddC
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIOverviewerLogEntry
+@implementation NIOverviewLogEntry
 
 @synthesize timestamp = _timestamp;
 
@@ -124,7 +124,7 @@ NSString* const NIOverviewerLoggerDidAddConsoleLog = @"NIOverviewerLoggerDidAddC
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIOverviewerDeviceLogEntry
+@implementation NIOverviewDeviceLogEntry
 
 @synthesize bytesOfFreeMemory = _bytesOfFreeMemory;
 @synthesize bytesOfTotalMemory = _bytesOfTotalMemory;
@@ -139,7 +139,7 @@ NSString* const NIOverviewerLoggerDidAddConsoleLog = @"NIOverviewerLoggerDidAddC
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIOverviewerConsoleLogEntry
+@implementation NIOverviewConsoleLogEntry
 
 @synthesize log = _log;
 
@@ -168,7 +168,7 @@ NSString* const NIOverviewerLoggerDidAddConsoleLog = @"NIOverviewerLoggerDidAddC
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIOverviewerEventLogEntry
+@implementation NIOverviewEventLogEntry
 
 @synthesize type = _type;
 

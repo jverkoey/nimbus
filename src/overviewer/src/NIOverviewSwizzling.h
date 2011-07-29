@@ -17,13 +17,17 @@
 #import <Foundation/Foundation.h>
 
 /**
- * Returns the true status bar height when the overviewer is active.
+ * Returns the true status bar height when the Overview is active.
  *
- * The overviewer swizzles the methods used by NIStatusBarHeight.
+ *      @ingroup Overview-Tools
+ *
+ * The Overview swizzles the methods used by NIStatusBarHeight.
  */
-CGFloat NIOverviewerStatusBarHeight();
+CGFloat NIOverviewStatusBarHeight();
 
 /**
- * Swizzles all the necessary methods to get the overviewer working.
+ * Swizzles all the necessary methods to get the Overview working.
+ *
+ *      @ingroup Overview-Tools
  */
-void NIOverviewerSwizzleMethods();
+void NIOverviewSwizzleMethods();
