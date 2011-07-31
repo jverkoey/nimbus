@@ -305,6 +305,30 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (NSString*) valueWithOldestAccess {
+    NSEnumerator *theEnumerator = [_cacheMap objectEnumerator];
+    NSArray *cacheArray = [theEnumerator allObjects];
+    NSArray *sortedArray = [cacheArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"lastAccessTime" ascending:YES]]];
+    if( [sortedArray count] > 0 ){
+        return [[sortedArray objectAtIndex:0] name];
+    }
+    return nil;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (NSString*) valueWithLastAccess {
+    NSEnumerator *theEnumerator = [_cacheMap objectEnumerator];
+    NSArray *cacheArray = [theEnumerator allObjects];
+    NSArray *sortedArray = [cacheArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"lastAccessTime" ascending:NO]]];
+    if( [sortedArray count] > 0 ){
+        return [[sortedArray objectAtIndex:0] name];
+    }
+    return nil;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeObjectWithName:(NSString *)name {
   [self removeCacheInfoForName:name];
 }
