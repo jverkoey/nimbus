@@ -8,7 +8,7 @@ to understand.
 
 - Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
 - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
-- See the <a href="http://jverkoey.github.com/nimbus/group___version-3-to-4.html">latest API diffs</a>.
+- See the <a href="http://jverkoey.github.com/nimbus/group___version-5-0.html">latest API diffs</a>.
 - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
 
 <h2>Nimbus' Background</h2>
