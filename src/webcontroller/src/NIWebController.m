@@ -102,34 +102,6 @@
   _webView.frame = webViewFrame;
 }
 
-// Shoud this be moved into a Core Category??
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView*)ancestorOrSelf:(UIView*)view withClass:(Class)cls {
-  if ([view isKindOfClass:cls]) {
-    return view;
-    
-  } else if (view.superview) {
-    return [self ancestorOrSelf:view.superview withClass:cls];
-    
-  } else {
-    return nil;
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView*)descendantOrSelf:(UIView*)view withClass:(Class)cls {
-  if ([view isKindOfClass:cls])
-    return view;
-  
-  for (UIView* child in view.subviews) {
-    UIView* it = [self descendantOrSelf:child withClass:cls];
-    if (it)
-      return it;
-  }
-  return nil;
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
