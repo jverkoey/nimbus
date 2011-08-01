@@ -34,9 +34,12 @@
 
 @end
 
+CGFloat NIOverviewStatusBarHeight(void);
+void NIOverviewSwizzleMethods(void);
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CGFloat NIOverviewStatusBarHeight() {
+CGFloat NIOverviewStatusBarHeight(void) {
   CGRect statusBarFrame = [[UIApplication sharedApplication] _statusBarFrame];
   CGFloat statusBarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);
   return statusBarHeight;
@@ -44,7 +47,7 @@ CGFloat NIOverviewStatusBarHeight() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void NIOverviewSwizzleMethods() {
+void NIOverviewSwizzleMethods(void) {
   NISwapInstanceMethods([UIViewController class],
                         @selector(_statusBarHeightForCurrentInterfaceOrientation),
                         @selector(__statusBarHeightForCurrentInterfaceOrientation));

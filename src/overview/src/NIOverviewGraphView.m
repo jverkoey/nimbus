@@ -16,6 +16,8 @@
 
 #import "NIOverviewGraphView.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,7 +32,7 @@
   if ((self = [super initWithFrame:frame])) {
     self.opaque = NO;
     self.layer.borderWidth = 1;
-    self.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.2].CGColor;
+    self.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.2f].CGColor;
   }
   return self;
 }
@@ -42,19 +44,19 @@
 
   CGFloat xRange = [self.dataSource graphViewXRange:self];
   CGFloat yRange = [self.dataSource graphViewYRange:self];
-  
+
   [self.dataSource resetPointIterator];
 
   CGContextSetLineWidth(context, 1);
   CGContextSetShouldAntialias(context, YES);
-  
+
   BOOL isFirstPoint = YES;
   CGPoint point = CGPointZero;
   while ([self.dataSource nextPointInGraphView:self point:&point]) {
     CGPoint scaledPoint = CGPointMake(point.x / xRange, point.y / yRange);
     CGPoint plotPoint = CGPointMake(floorf(scaledPoint.x * contentSize.width) - 0.5f,
                                     contentSize.height
-                                    - floorf((scaledPoint.y * 0.8 + 0.1)
+                                    - floorf((scaledPoint.y * 0.8f + 0.1f)
                                              * contentSize.height) - 0.5f);
     if (!isFirstPoint) {
       CGContextAddLineToPoint(context, plotPoint.x, plotPoint.y);
@@ -63,7 +65,7 @@
     isFirstPoint = NO;
   }
 
-	CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.6].CGColor);
+	CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.6f].CGColor);
 	CGContextStrokePath(context);
   
   [self.dataSource resetEventIterator];
@@ -92,16 +94,16 @@
 
   [self drawGraphWithContext:context];
   
-	CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.2].CGColor);
+	CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.2f].CGColor);
 	CGContextFillRect(context, bounds);
 
   CGGradientRef glossGradient = nil;
   CGColorSpaceRef colorspace = nil;
   size_t numberOfLocations = 2;
-  CGFloat locations[2] = { 0.0, 1.0 };
+  CGFloat locations[2] = { 0.0f, 1.0f };
   CGFloat components[8] = {
-    1.0, 1.0, 1.0, 0.35,
-    1.0, 1.0, 1.0, 0.06
+    1.0f, 1.0f, 1.0f, 0.35f,
+    1.0f, 1.0f, 1.0f, 0.06f
   };
 
   colorspace = CGColorSpaceCreateDeviceRGB();

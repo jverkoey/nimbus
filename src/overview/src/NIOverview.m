@@ -57,6 +57,8 @@ static NIOverviewLogger* sOverviewLogger = nil;
  */
 extern void _NSSetLogCStringFunction(void(*)(const char *, unsigned, BOOL));
 
+void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBanner);
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**

@@ -109,7 +109,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGRect)frameForPageAtIndex:(NSInteger)index {
+- (CGRect)frameForPageAtIndex:(NSInteger)pageIndex {
   // We have to use our paging scroll view's bounds, not frame, to calculate the page
   // placement. When the device is in landscape orientation, the frame will still be in
   // portrait because the pagingScrollView is the root view controller's view, so its
@@ -121,7 +121,7 @@
   // We need to counter the extra spacing added to the paging scroll view in
   // frameForPagingScrollView:
   pageFrame.size.width -= self.pageHorizontalMargin * 2;
-  pageFrame.origin.x = (bounds.size.width * index) + self.pageHorizontalMargin;
+  pageFrame.origin.x = (bounds.size.width * pageIndex) + self.pageHorizontalMargin;
 
   return pageFrame;
 }
@@ -177,7 +177,7 @@
                                         : UIScrollViewIndicatorStyleDefault);
 
     self.backgroundColor = (_translucent
-                            ? [UIColor colorWithWhite:0 alpha:0.5]
+                            ? [UIColor colorWithWhite:0 alpha:0.5f]
                             : [UIColor colorWithPatternImage:_backgroundImage]);
   }
 }

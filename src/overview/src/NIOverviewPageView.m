@@ -63,7 +63,7 @@ static const CGFloat kGraphRightMargin = 5;
   label.backgroundColor = [UIColor clearColor];
   label.font = [UIFont boldSystemFontOfSize:12];
   label.textColor = [UIColor whiteColor];
-  label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
+  label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
   label.shadowOffset = CGSizeMake(0, 1);
   
   return label;
@@ -78,7 +78,7 @@ static const CGFloat kGraphRightMargin = 5;
     _titleLabel = [[[UILabel alloc] init] autorelease];
     _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.font = [UIFont boldSystemFontOfSize:11];
-    _titleLabel.textColor = [UIColor colorWithWhite:1 alpha:0.8];
+    _titleLabel.textColor = [UIColor colorWithWhite:1 alpha:0.8f];
     [self addSubview:_titleLabel];
   }
   return self;
@@ -208,7 +208,7 @@ static const CGFloat kGraphRightMargin = 5;
   NIOverviewLogEntry* firstEntry = [deviceLogs firstObject];
   NIOverviewLogEntry* lastEntry = [deviceLogs lastObject];
   NSTimeInterval interval = [lastEntry.timestamp timeIntervalSinceDate:firstEntry.timestamp];
-  return interval;
+  return (CGFloat)interval;
 }
 
 
@@ -256,7 +256,7 @@ static const CGFloat kGraphRightMargin = 5;
   NIOverviewEventLogEntry* entry = [_eventEnumerator nextObject];
   if (nil != entry) {
     NSTimeInterval interval = [entry.timestamp timeIntervalSinceDate:[self initialTimestamp]];
-    *xValue = interval;
+    *xValue = (CGFloat)interval;
     *color = [sEventColors objectAtIndex:entry.type];
   }
   return nil != entry;
@@ -330,7 +330,7 @@ static const CGFloat kGraphRightMargin = 5;
   }
   unsigned long long range = maxY - minY;
   _minMemory = minY;
-  return ((double)range / 1024.0 / 1024.0);
+  return (CGFloat)((double)range / 1024.0 / 1024.0);
 }
 
 
@@ -355,7 +355,9 @@ static const CGFloat kGraphRightMargin = 5;
   NIOverviewDeviceLogEntry* entry = [_enumerator nextObject];
   if (nil != entry) {
     NSTimeInterval interval = [entry.timestamp timeIntervalSinceDate:[self initialTimestamp]];
-    *point = CGPointMake(interval, ((double)(entry.bytesOfFreeMemory - _minMemory)) / 1024.0 / 1024.0);
+    *point = CGPointMake((CGFloat)interval,
+                         (CGFloat)(((double)(entry.bytesOfFreeMemory - _minMemory))
+                                   / 1024.0 / 1024.0));
   }
   return nil != entry;
 }
@@ -428,7 +430,7 @@ static const CGFloat kGraphRightMargin = 5;
   }
   unsigned long long range = maxY - minY;
   _minDiskUse = minY;
-  return ((double)range / 1024.0 / 1024.0);
+  return (CGFloat)((double)range / 1024.0 / 1024.0);
 }
 
 
@@ -454,7 +456,7 @@ static const CGFloat kGraphRightMargin = 5;
     NSTimeInterval interval = [entry.timestamp timeIntervalSinceDate:[self initialTimestamp]];
     double difference = ((double)entry.bytesOfFreeDiskSpace / 1024.0 / 1024.0
                          - (double)_minDiskUse / 1024.0 / 1024.0);
-    *point = CGPointMake(interval, difference);
+    *point = CGPointMake((CGFloat)interval, (CGFloat)difference);
   }
   return nil != entry;
 }
@@ -486,7 +488,7 @@ static const CGFloat kGraphRightMargin = 5;
   
   label.font = [UIFont boldSystemFontOfSize:11];
   label.textColor = [UIColor whiteColor];
-  label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
+  label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
   label.shadowOffset = CGSizeMake(0, 1);
   label.backgroundColor = [UIColor clearColor];
   label.lineBreakMode = UILineBreakModeWordWrap;
@@ -501,14 +503,14 @@ static const CGFloat kGraphRightMargin = 5;
   if ((self = [super initWithFrame:frame])) {
     self.pageTitle = NSLocalizedString(@"Logs", @"Overview Page Title: Logs");
 
-    self.titleLabel.textColor = [UIColor colorWithWhite:1 alpha:0.5];
+    self.titleLabel.textColor = [UIColor colorWithWhite:1 alpha:0.5f];
 
     _logScrollView = [[[UIScrollView alloc] initWithFrame:self.bounds] autorelease];
     _logScrollView.showsHorizontalScrollIndicator = NO;
     _logScrollView.alwaysBounceVertical = YES;
     _logScrollView.contentInset = kPagePadding;
 
-    _logScrollView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+    _logScrollView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2f];
 
     [self addSubview:_logScrollView];
 
@@ -630,7 +632,7 @@ static const CGFloat kGraphRightMargin = 5;
   
   label.font = [UIFont boldSystemFontOfSize:11];
   label.textColor = [UIColor whiteColor];
-  label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
+  label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
   label.shadowOffset = CGSizeMake(0, 1);
   label.backgroundColor = [UIColor clearColor];
   label.lineBreakMode = UILineBreakModeWordWrap;
@@ -643,9 +645,9 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateLabels {
   _warningLogLevelLabel.textColor = [_warningLogLevelLabel.textColor colorWithAlphaComponent:
-                                     (NIMaxLogLevel >= NILOGLEVEL_WARNING) ? 1 : 0.6];
+                                     (NIMaxLogLevel >= NILOGLEVEL_WARNING) ? 1 : 0.6f];
   _infoLogLevelLabel.textColor = [_infoLogLevelLabel.textColor colorWithAlphaComponent:
-                                  (NIMaxLogLevel >= NILOGLEVEL_INFO) ? 1 : 0.6];
+                                  (NIMaxLogLevel >= NILOGLEVEL_INFO) ? 1 : 0.6f];
 }
 
 
@@ -654,7 +656,7 @@ static const CGFloat kGraphRightMargin = 5;
   if ((self = [super initWithFrame:frame])) {
     self.pageTitle = NSLocalizedString(@"Max Log Level", @"Overview Page Title: Max Log Level");
 
-    self.titleLabel.textColor = [UIColor colorWithWhite:1 alpha:0.5];
+    self.titleLabel.textColor = [UIColor colorWithWhite:1 alpha:0.5f];
 
     _logLevelSlider = [[[UISlider alloc] init] autorelease];
     _logLevelSlider.minimumValue = 1;
@@ -720,7 +722,7 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didChangeSliderValue:(UISlider *)slider {
   slider.value = roundf(slider.value);
-  NIMaxLogLevel = round(slider.value);
+  NIMaxLogLevel = lround(slider.value);
 
   [self updateLabels];
 }

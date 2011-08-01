@@ -153,9 +153,9 @@ NSString* const NIOverviewLoggerDidAddConsoleLog = @"NIOverviewLoggerDidAddConso
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithLog:(NSString *)log {
+- (id)initWithLog:(NSString *)logText {
   if ((self = [super initWithTimestamp:[NSDate date]])) {
-    _log = [log copy];
+    _log = [logText copy];
   }
 
   return self;
@@ -170,13 +170,13 @@ NSString* const NIOverviewLoggerDidAddConsoleLog = @"NIOverviewLoggerDidAddConso
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIOverviewEventLogEntry
 
-@synthesize type = _type;
+@synthesize type = _eventType;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithType:(NSInteger)type {
   if ((self = [super initWithTimestamp:[NSDate date]])) {
-    _type = type;
+    _eventType = type;
   }
   
   return self;
