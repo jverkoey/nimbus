@@ -59,3 +59,37 @@ NSRange NIMakeNSRangeFromCFRange(CFRange range) {
   NIDASSERT(range.length >= 0 && range.length <= NSIntegerMax);
   return NSMakeRange(range.location, range.length);
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark General Purpose Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+CGFloat boundf(CGFloat value, CGFloat min, CGFloat max) {
+  if (value < min) {
+    return min;
+
+  } else if (value > max) {
+    return max;
+
+  } else {
+    return value;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NSInteger boundi(NSInteger value, NSInteger min, NSInteger max) {
+  if (value < min) {
+    return min;
+    
+  } else if (value > max) {
+    return max;
+    
+  } else {
+    return value;
+  }
+}

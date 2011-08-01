@@ -70,10 +70,7 @@ CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy);
  */
 CGRect NIRectInset(CGRect rect, UIEdgeInsets insets);
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-/**@}*/// End of CGRect Methods ///////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/**@}*/
 
 
 #pragma mark -
@@ -99,10 +96,34 @@ CGRect NIRectInset(CGRect rect, UIEdgeInsets insets);
  */
 NSRange NIMakeNSRangeFromCFRange(CFRange range);
 
+/**@}*/
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-/**@}*/// End of NSRange Methods ///////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark -
+#pragma mark General Purpose Methods
+
+/**
+ * For general purpose foundation type manipulation.
+ *
+ * @defgroup General-Purpose-Methods General Purpose Methods
+ * @{
+ */
+
+/**
+ * Bounds a given value within the min and max values.
+ *
+ *      @return min <= result <= max
+ */
+CGFloat boundf(CGFloat value, CGFloat min, CGFloat max);
+
+/**
+ * Bounds a given value within the min and max values.
+ *
+ *      @return min <= result <= max
+ */
+NSInteger boundi(NSInteger value, NSInteger min, NSInteger max);
+
+/**@}*/
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
