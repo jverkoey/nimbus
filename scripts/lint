@@ -39,8 +39,8 @@ import string
 import sys
 from optparse import OptionParser
 
-from pbxproj import pbxproj
-from pbxproj import relpath
+from Pbxproj import Pbxproj
+from Pbxproj import relpath
 
 gcopyrightyears = '2009-2011'
 gdivider = '///////////////////////////////////////////////////////////////////////////////////////////////////'
