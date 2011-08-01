@@ -196,6 +196,12 @@
 + (BOOL)instagramProfileForUsername:(NSString *)username;
 
 /**
+ * Copies a file to a temporary path suitable for use with a UIDocumentInteractionController in
+ * order to open the image in Instagram.
+ */
++ (NSURL *)urlForInstagramImageAtFilePath:(NSString *)filePath error:(NSError **)error;
+
+/**
  * The Instagram App Store ID.
  */
 + (NSString *)instagramAppStoreId;

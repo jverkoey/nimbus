@@ -16,6 +16,12 @@
 
 #import "NIRunApp.h"
 
+#ifdef NIMBUS_STATIC_LIBRARY
+#import "NimbusCore/NimbusCore.h"
+#else
+#import "NimbusCore.h"
+#endif
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -356,6 +362,35 @@ static NSString* const sInstagramScheme = @"instagram:";
   NSString* urlPath = [sInstagramScheme stringByAppendingFormat:@"//user?username=%@",
                        [self stringByEscapingParameterString:username]];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NSURL *)urlForInstagramImageAtFilePath:(NSString *)filePath error:(NSError **)error {
+  NSFileManager* fm = [NSFileManager defaultManager];
+  NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+
+  NIDASSERT(NIIsArrayWithObjects(paths));
+  if (!NIIsArrayWithObjects(paths)) {
+    return nil;
+  }
+
+  NSString* documentsPath = [paths objectAtIndex:0];
+  NSString* destinationPath = [documentsPath stringByAppendingPathComponent:
+                               [NSString stringWithFormat:@"nimbus-instagram-image-%.0f.ig",
+                                [NSDate timeIntervalSinceReferenceDate]]];
+
+  [fm copyItemAtPath: filePath
+              toPath: destinationPath
+               error: error];
+
+  NIDASSERT(nil == error || nil == *error);
+  if (nil == error || nil == *error) {
+    return [NSURL URLWithString:[@"file:" stringByAppendingString:destinationPath]];
+
+  } else {
+    return nil;
+  }
 }
 
 
