@@ -13,6 +13,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+/*
+ * @defgroup NimbusWebController Nimbus Web Controller
+ * @{
+ *
+ * It's common functionality to display a web page within an application without
+ * switching out to safari. This controller allows you to open a URL in a browser 
+ * view and includes common browser functionality such as forward, back, stop and 
+ * refresh buttons on a toolbar. The toolbar also includes an option to open the 
+ * URL in safari. The controller displays the document.title in the NavigationBar
+ * and includes a spinner when loading.
+ *
+ * <h2>Adding the Web Controller to Your Application</h2>
+ *
+ * The Web Controller uses a small number of custom icons that are stored in the
+ * NimbusWebController bundle. You must add this bundle to your application, ensuring 
+ * that you select the "Create Folder References" option and that the bundle is 
+ * copied in the "Copy Bundle Resources" phase.
+ *
+ * The bundle can be found at <code>src/webcontroller/resources/NimbusWebController.bundle</code>.
+ *
+ * <h2>Screenshots</h2>
+ *
+ * @image html webcontroller-iphone-example1.png "Screenshot of a basic web controller on the iPhone."
+ *
+ * @}
+ */
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
