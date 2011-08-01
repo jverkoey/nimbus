@@ -73,10 +73,6 @@
  * @defgroup Network-Image-Requests Network Requests
  */
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusNetworkImage/NINetworkImageView.h"
-#else
 #import "NINetworkImageView.h"
-#endif
 
 /**@}*/
