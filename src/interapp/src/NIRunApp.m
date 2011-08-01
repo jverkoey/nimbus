@@ -367,6 +367,34 @@ static NSString* const sInstagramScheme = @"instagram:";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSURL *)urlForInstagramImageAtFilePath:(NSString *)filePath error:(NSError **)error {
+  UIImage* image = [[UIImage alloc] initWithContentsOfFile:filePath];
+
+  // Unable to read the image.
+  if (nil == image) {
+    if (nil != error) {
+      *error = [NSError errorWithDomain: NSCocoaErrorDomain
+                                   code: NSFileReadUnknownError
+                               userInfo: [NSDictionary dictionaryWithObject: filePath
+                                                                     forKey: NSFilePathErrorKey]];
+    }
+    return nil;
+  }
+
+  // Instagram requires that images are at least 612x612 and preferably square.
+  if (image.size.width < 612
+      || image.size.height < 612) {
+    if (nil != error) {
+      *error = [NSError errorWithDomain: NINimbusErrorDomain
+                                   code: NIImageTooSmall
+                               userInfo: [NSDictionary dictionaryWithObject: image
+                                                                     forKey: NIImageErrorKey]];
+    }
+    return nil;
+  }
+
+  // Immediately remove the image from memory.
+  NI_RELEASE_SAFELY(image);
+  
   NSFileManager* fm = [NSFileManager defaultManager];
   NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 

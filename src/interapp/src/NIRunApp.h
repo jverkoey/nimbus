@@ -196,8 +196,11 @@
 + (BOOL)instagramProfileForUsername:(NSString *)username;
 
 /**
- * Copies a file to a temporary path suitable for use with a UIDocumentInteractionController in
+ * Copies an image to a temporary path suitable for use with a UIDocumentInteractionController in
  * order to open the image in Instagram.
+ *
+ * The image at filePath must be at least 612x612 and preferably square. If the image
+ * is smaller than 612x612 then this method will fail.
  */
 + (NSURL *)urlForInstagramImageAtFilePath:(NSString *)filePath error:(NSError **)error;
 

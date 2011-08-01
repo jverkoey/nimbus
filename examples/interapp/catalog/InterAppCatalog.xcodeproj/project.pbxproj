@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66A03BE913E6E54E00B514F3 /* NIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03BE813E6E54E00B514F3 /* NIError.m */; };
 		66B4E8D613E4BC290098787F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B4E8D513E4BC290098787F /* UIKit.framework */; };
 		66B4E8D813E4BC290098787F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B4E8D713E4BC290098787F /* Foundation.framework */; };
 		66B4E8DA13E4BC290098787F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B4E8D913E4BC290098787F /* CoreGraphics.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66A03BE713E6E54E00B514F3 /* NIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIError.h; path = ../../../src/core/src/NIError.h; sourceTree = "<group>"; };
+		66A03BE813E6E54E00B514F3 /* NIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIError.m; path = ../../../src/core/src/NIError.m; sourceTree = "<group>"; };
 		66B4E8D113E4BC290098787F /* InterAppCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterAppCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66B4E8D513E4BC290098787F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		66B4E8D713E4BC290098787F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -175,6 +178,8 @@
 				66B4E92813E4BCAB0098787F /* NIDebuggingTools.m */,
 				66B4E92913E4BCAB0098787F /* NIDeviceOrientation.h */,
 				66B4E92A13E4BCAB0098787F /* NIDeviceOrientation.m */,
+				66A03BE713E6E54E00B514F3 /* NIError.h */,
+				66A03BE813E6E54E00B514F3 /* NIError.m */,
 				66B4E92B13E4BCAB0098787F /* NIFoundationMethods.h */,
 				66B4E92C13E4BCAB0098787F /* NIFoundationMethods.m */,
 				66B4E92D13E4BCAB0098787F /* NIInMemoryCache.h */,
@@ -303,6 +308,7 @@
 				66B4E97C13E63BE10098787F /* AppDelegate.m in Sources */,
 				66B4E97D13E63BE10098787F /* CatalogTableViewController.m in Sources */,
 				66B4E97E13E63BE10098787F /* main.m in Sources */,
+				66A03BE913E6E54E00B514F3 /* NIError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
