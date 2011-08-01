@@ -40,8 +40,8 @@
     NSURL*            _loadingURL;
 }
 /**
- * The current web view URL. If the web view is currently loading a URL, then the loading URL is
- * returned instead.
+ * The current web view URL. If the web view is currently loading a URL, then the 
+ * loading URL is returned instead.
  */
 @property (nonatomic, readonly) NSURL*  URL;
 
@@ -56,5 +56,11 @@
  * @param request  A URL request identifying the location of the content to load.
  */
 - (void)openRequest:(NSURLRequest*)request;
+
+/**
+ * Sets the toolbar to the given color
+ *
+ */
+- (void)setToolbarTintColor:(UIColor*)color;
 
 @end

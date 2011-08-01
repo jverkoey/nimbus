@@ -342,4 +342,9 @@
   [_webView loadRequest:request];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setToolbarTintColor:(UIColor*)color {
+  _toolbar.tintColor = color;
+}
+
 @end
