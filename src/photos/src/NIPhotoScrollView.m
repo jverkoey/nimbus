@@ -120,7 +120,7 @@
   // don't want to shrink it down with the zoom because it should be a scaled image.
   CGFloat maxScale = ((NIPhotoScrollViewPhotoSizeUnknown == photoSize)
                       ? 1
-                      : (1.0 / NIScreenScale()));
+                      : (1.0f / NIScreenScale()));
 
   if (NIPhotoScrollViewPhotoSizeThumbnail != photoSize) {
     // Don't let minScale exceed maxScale. (If the image is smaller than the screen, we
@@ -339,7 +339,9 @@
   // The min/max zoom values assume that the content size is the image size. The max zoom will
   // be a value that allows the image to be seen at a 1-to-1 pixel resolution, while the min
   // zoom will be small enough to fit the image on the screen perfectly.
-  self.contentSize = image.size;
+  if (nil != image) {
+    self.contentSize = image.size;
+  }
 
   [self setMaxMinZoomScalesForCurrentBounds];
 
@@ -467,7 +469,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)restoreCenterPoint:(CGPoint)oldCenter scale:(CGFloat)oldScale {
   // Step 1: restore zoom scale, making sure it is within the allowable range.
-  self.zoomScale = MIN(self.maximumZoomScale, MAX(self.minimumZoomScale, oldScale));
+  self.zoomScale = boundf(oldScale, self.minimumZoomScale, self.maximumZoomScale);
 
   // Step 2: restore center point, making sure it is within the allowable range.
 
@@ -476,14 +478,14 @@
   CGPoint boundsCenter = [self convertPoint:oldCenter fromView:_imageView];
 
   // 2b: calculate the content offset that would yield that center point
-  CGPoint offset = CGPointMake(boundsCenter.x - self.bounds.size.width / 2.0,
-                               boundsCenter.y - self.bounds.size.height / 2.0);
+  CGPoint offset = CGPointMake(boundsCenter.x - self.bounds.size.width / 2.0f,
+                               boundsCenter.y - self.bounds.size.height / 2.0f);
 
   // 2c: restore offset, adjusted to be within the allowable range
   CGPoint maxOffset = [self maximumContentOffset];
   CGPoint minOffset = [self minimumContentOffset];
-  offset.x = MAX(minOffset.x, MIN(maxOffset.x, offset.x));
-  offset.y = MAX(minOffset.y, MIN(maxOffset.y, offset.y));
+  offset.x = boundf(offset.x, minOffset.x, maxOffset.x);
+  offset.y = boundf(offset.y, minOffset.y, maxOffset.y);
   self.contentOffset = offset;
 }
 

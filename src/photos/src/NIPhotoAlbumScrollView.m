@@ -120,7 +120,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGRect)frameForPageAtIndex:(NSInteger)index {
+- (CGRect)frameForPageAtIndex:(NSInteger)pageIndex {
   // We have to use our paging scroll view's bounds, not frame, to calculate the page
   // placement. When the device is in landscape orientation, the frame will still be in
   // portrait because the pagingScrollView is the root view controller's view, so its
@@ -132,7 +132,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   // We need to counter the extra spacing added to the paging scroll view in
   // frameForPagingScrollView:
   pageFrame.size.width -= self.pageHorizontalMargin * 2;
-  pageFrame.origin.x = (bounds.size.width * index) + self.pageHorizontalMargin;
+  pageFrame.origin.x = (bounds.size.width * pageIndex) + self.pageHorizontalMargin;
 
   return pageFrame;
 }
@@ -172,13 +172,13 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)isDisplayingPageForIndex:(NSInteger)index {
+- (BOOL)isDisplayingPageForIndex:(NSInteger)pageIndex {
   BOOL foundPage = NO;
 
   // There will never be more than 3 visible pages in this array, so this lookup is
   // effectively O(C) constant time.
   for (NIPhotoScrollView* page in _visiblePages) {
-    if (page.photoIndex == index) {
+    if (page.photoIndex == pageIndex) {
       foundPage = YES;
       break;
     }
@@ -195,8 +195,9 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
   // Whatever image is currently displayed in the center of the screen is the currently
   // visible image.
-  return MAX(0, MIN(self.numberOfPhotos,
-                    floorf((contentOffset.x + boundsSize.width / 2) / boundsSize.width)));
+  return boundi((NSInteger)(floorf((contentOffset.x + boundsSize.width / 2) / boundsSize.width)
+                            + 0.5f),
+                0, self.numberOfPhotos);
 }
 
 
@@ -208,8 +209,8 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
   NSInteger currentVisiblePageIndex = [self currentVisiblePageIndex];
 
-  int firstVisiblePageIndex = MAX(currentVisiblePageIndex - 1, 0);
-  int lastVisiblePageIndex  = MAX(0, MIN(currentVisiblePageIndex + 1, _numberOfPages - 1));
+  int firstVisiblePageIndex = boundi(currentVisiblePageIndex - 1, 0, _numberOfPages - 1);
+  int lastVisiblePageIndex  = boundi(currentVisiblePageIndex + 1, 0, _numberOfPages - 1);
 
   return NSMakeRange(firstVisiblePageIndex, lastVisiblePageIndex - firstVisiblePageIndex + 1);
 }
@@ -217,9 +218,9 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)configurePage:(NIPhotoScrollView *)page forIndex:(NSInteger)index {
-  page.photoIndex = index;
-  page.frame = [self frameForPageAtIndex:index];
+- (void)configurePage:(NIPhotoScrollView *)page forIndex:(NSInteger)pageIndex {
+  page.photoIndex = pageIndex;
+  page.frame = [self frameForPageAtIndex:pageIndex];
 
   // When we ask the data source for the image we expect the following to happen:
   // 1) If the data source has any image at this index, it should return it and set the
@@ -233,7 +234,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   BOOL isLoading = NO;
   CGSize originalPhotoDimensions = CGSizeZero;
   UIImage* image = [_dataSource photoAlbumScrollView: self
-                                        photoAtIndex: index
+                                        photoAtIndex: pageIndex
                                            photoSize: &photoSize
                                            isLoading: &isLoading
                              originalPhotoDimensions: &originalPhotoDimensions];
@@ -251,7 +252,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
       [page setImage:image photoSize:photoSize];
 
       if (NIPhotoScrollViewPhotoSizeOriginal == photoSize) {
-        [self notifyDelegatePhotoDidLoadAtIndex:index];
+        [self notifyDelegatePhotoDidLoadAtIndex:pageIndex];
       }
     }
   }
@@ -275,7 +276,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)displayPageAtIndex:(NSInteger)index {
+- (void)displayPageAtIndex:(NSInteger)pageIndex {
   NIPhotoScrollView* page = [self dequeueRecycledPage];
 
   if (nil == page) {
@@ -285,7 +286,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   }
 
   // This will only be called once each time the page is shown.
-  [self configurePage:page forIndex:index];
+  [self configurePage:page forIndex:pageIndex];
 
   [_pagingScrollView addSubview:page];
   [_visiblePages addObject:page];
@@ -323,9 +324,10 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   }
 
   // Add missing pages.
-  for (int index = visiblePageRange.location; index < NSMaxRange(visiblePageRange); ++index) {
-    if (![self isDisplayingPageForIndex:index]) {
-      [self displayPageAtIndex:index];
+  for (int pageIndex = visiblePageRange.location;
+       pageIndex < NSMaxRange(visiblePageRange); ++pageIndex) {
+    if (![self isDisplayingPageForIndex:pageIndex]) {
+      [self displayPageAtIndex:pageIndex];
     }
   }
 
@@ -570,7 +572,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   _isModifyingContentOffset = YES;
   [_pagingScrollView setContentOffset:offset animated:animated];
 
-  NSNumber* index = [NSNumber numberWithInt:photoIndex];
+  NSNumber* photoIndexNumber = [NSNumber numberWithInt:photoIndex];
   if (animated) {
     _isAnimatingToPhoto = YES;
     SEL selector = @selector(didAnimateToPage:);
@@ -580,11 +582,11 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
     // changes while we're animating (like when rotating the device). To do this we need
     // to know the destination index for the animation.
     [self performSelector: selector
-               withObject: index
+               withObject: photoIndexNumber
                afterDelay: 0.4];
 
   } else {
-    [self didAnimateToPage:index];
+    [self didAnimateToPage:photoIndexNumber];
   }
 }
 
@@ -592,9 +594,9 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)moveToNextAnimated:(BOOL)animated {
   if ([self hasNext]) {
-    NSInteger index = self.centerPhotoIndex + 1;
+    NSInteger pageIndex = self.centerPhotoIndex + 1;
 
-    [self moveToPageAtIndex:index animated:animated];
+    [self moveToPageAtIndex:pageIndex animated:animated];
   }
 }
 
@@ -602,9 +604,9 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)moveToPreviousAnimated:(BOOL)animated {
   if ([self hasPrevious]) {
-    NSInteger index = self.centerPhotoIndex - 1;
+    NSInteger pageIndex = self.centerPhotoIndex - 1;
 
-    [self moveToPageAtIndex:index animated:animated];
+    [self moveToPageAtIndex:pageIndex animated:animated];
   }
 }
 

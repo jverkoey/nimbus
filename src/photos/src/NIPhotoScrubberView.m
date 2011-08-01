@@ -79,9 +79,9 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
     self.multipleTouchEnabled = NO;
 
     _containerView = [[UIView alloc] init];
-    _containerView.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.1].CGColor;
+    _containerView.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.1f].CGColor;
     _containerView.layer.borderWidth = 1;
-    _containerView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
+    _containerView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3f];
     _containerView.userInteractionEnabled = NO;
     [self addSubview:_containerView];
     
@@ -131,8 +131,8 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   CGSize boundsSize = self.bounds.size;
 
   // These numbers are roughly estimated from the Photos.app's scrubber.
-  CGFloat photoWidth  = floorf(boundsSize.height / 2.4);
-  CGFloat photoHeight = floorf(photoWidth * 0.75);
+  CGFloat photoWidth  = floorf(boundsSize.height / 2.4f);
+  CGFloat photoHeight = floorf(photoWidth * 0.75f);
   
   return CGSizeMake(photoWidth, photoHeight);
 }
@@ -143,8 +143,8 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   CGSize boundsSize = self.bounds.size;
   
   // These numbers are roughly estimated from the Photos.app's scrubber.
-  CGFloat selectionWidth  = floorf(boundsSize.height / 1.2);
-  CGFloat selectionHeight = floorf(selectionWidth * 0.75);
+  CGFloat selectionWidth  = floorf(boundsSize.height / 1.2f);
+  CGFloat selectionHeight = floorf(selectionWidth * 0.75f);
   
   return CGSizeMake(selectionWidth, selectionHeight);
 }
@@ -187,8 +187,8 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   CGFloat maxContentWidth = ([self maxContentWidth]
                              - _containerView.layer.borderWidth * 2);
 
-  NSInteger numberOfPhotosThatFit = floor((maxContentWidth + spaceBetweenPhotos)
-                                          / (photoSize.width + spaceBetweenPhotos));
+  NSInteger numberOfPhotosThatFit = (NSInteger)floor((maxContentWidth + spaceBetweenPhotos)
+                                                     / (photoSize.width + spaceBetweenPhotos));
   return MIN(_numberOfPhotos, numberOfPhotosThatFit);
 }
 
@@ -209,8 +209,8 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   }
 
   // Calculate the offset into the container view based on index/numberOfPhotos.
-  CGFloat relativeOffset = floor((((CGFloat)photoIndex * containerWidth)
-                                  / (CGFloat)MAX(1, _numberOfPhotos)));
+  CGFloat relativeOffset = floorf((((CGFloat)photoIndex * containerWidth)
+                                   / (CGFloat)MAX(1, _numberOfPhotos)));
   
   return CGRectMake(floorf(_containerView.frame.origin.x
                            + relativeOffset
@@ -281,7 +281,9 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
 // Transforms an index into the number of visible photos into an index into the total
 // number of photos.
 - (NSInteger)photoIndexAtScrubberIndex:(NSInteger)scrubberIndex {
-  return ceil((CGFloat)(scrubberIndex * _numberOfPhotos) / (CGFloat)_numberOfVisiblePhotos);
+  return (NSInteger)(ceilf((CGFloat)(scrubberIndex * _numberOfPhotos)
+                           / (CGFloat)_numberOfVisiblePhotos)
+                     + 0.5f);
 }
 
 
@@ -362,7 +364,8 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
     
   } else {
     // Somewhere in between
-    photoIndex = floor((point.x / _containerView.bounds.size.width) * _numberOfPhotos);
+    photoIndex = (NSInteger)(floorf((point.x / _containerView.bounds.size.width) * _numberOfPhotos)
+                             + 0.5f);
   }
   
   return photoIndex;
