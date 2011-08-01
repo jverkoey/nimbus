@@ -19,7 +19,12 @@
 @implementation RootViewController
 
 -(void)viewDidLoad {
-  
+
+  UIColor *black = [UIColor blackColor];
+
+  self.navigationController.navigationBar.tintColor = black;
+
+  [self setToolbarTintColor:[UIColor blackColor]];
   [self openURL:[NSURL URLWithString:@"http://jverkoey.github.com/nimbus/index.html"]];
 }
 
