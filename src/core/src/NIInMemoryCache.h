@@ -164,7 +164,7 @@
  * If there's no object matching that criteria, return nil;
  */
 
-- (NSString*) valueWithOldestAccess;
+- (NSString *)nameOfLeastRecentlyUsedObject;
 
 /**
  * Retrieve the key with the most fresh access.
@@ -174,8 +174,7 @@
  * If there's no object matching that criteria, return nil;
  */
 
-- (NSString*) valueWithLastAccess;
-
+- (NSString *)nameOfMostRecentlyUsedObject;
 
 /**@}*/// End of Accessing Objects in the Cache
 

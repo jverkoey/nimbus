@@ -306,26 +306,20 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (NSString*) valueWithOldestAccess {
-    NSEnumerator *theEnumerator = [_cacheMap objectEnumerator];
-    NSArray *cacheArray = [theEnumerator allObjects];
-    NSArray *sortedArray = [cacheArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"lastAccessTime" ascending:YES]]];
-    if( [sortedArray count] > 0 ){
-        return [[sortedArray objectAtIndex:0] name];
-    }
-    return nil;
+- (NSString *)nameOfLeastRecentlyUsedObject {
+    NIMemoryCacheInfo* info = [self.lruCacheObjects firstObject];
+    if( [self objectWithName:info.name] == nil )
+        return nil;
+    return info.name;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (NSString*) valueWithLastAccess {
-    NSEnumerator *theEnumerator = [_cacheMap objectEnumerator];
-    NSArray *cacheArray = [theEnumerator allObjects];
-    NSArray *sortedArray = [cacheArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"lastAccessTime" ascending:NO]]];
-    if( [sortedArray count] > 0 ){
-        return [[sortedArray objectAtIndex:0] name];
-    }
-    return nil;
+- (NSString *)nameOfMostRecentlyUsedObject {
+    NIMemoryCacheInfo* info = [self.lruCacheObjects lastObject];
+    if( [self objectWithName:info.name] == nil )
+        return nil;
+    return info.name;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
