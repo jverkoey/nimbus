@@ -13,6 +13,7 @@
 			buildPhases = (
 			);
 			dependencies = (
+				6675730D13E770870076F555 /* PBXTargetDependency */,
 				667572F213E76FB90076F555 /* PBXTargetDependency */,
 				667572B813E7698E0076F555 /* PBXTargetDependency */,
 				6675727513E766980076F555 /* PBXTargetDependency */,
@@ -76,6 +77,10 @@
 		667572EC13E76F5E0076F555 /* NIProcessorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 667572E713E76F5E0076F555 /* NIProcessorDelegate.h */; };
 		667572ED13E76F5E0076F555 /* NIProcessorHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 667572E813E76F5E0076F555 /* NIProcessorHTTPRequest.h */; };
 		667572EE13E76F5E0076F555 /* NIProcessorHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 667572E913E76F5E0076F555 /* NIProcessorHTTPRequest.m */; };
+		667572F813E7705F0076F555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
+		6675730913E7707B0076F555 /* JSONKit_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6675730413E7707B0076F555 /* JSONKit_Prefix.pch */; };
+		6675730A13E7707B0076F555 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6675730713E7707B0076F555 /* JSONKit.h */; };
+		6675730B13E7707B0076F555 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675730813E7707B0076F555 /* JSONKit.m */; };
 		66A03C0D13E6E85E00B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66A03C1B13E6E85E00B514F3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66A03C1D13E6E85E00B514F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
@@ -229,6 +234,13 @@
 			remoteGlobalIDString = 667572BC13E76F460076F555;
 			remoteInfo = NimbusProcessors;
 		};
+		6675730C13E770870076F555 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 667572F613E7705F0076F555;
+			remoteInfo = JSONKit;
+		};
 		66A03C2113E6E85E00B514F3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
@@ -323,6 +335,12 @@
 		667572E813E76F5E0076F555 /* NIProcessorHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIProcessorHTTPRequest.h; sourceTree = "<group>"; };
 		667572E913E76F5E0076F555 /* NIProcessorHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIProcessorHTTPRequest.m; sourceTree = "<group>"; };
 		667572F013E76F9D0076F555 /* NimbusProcessorsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NimbusProcessorsTests-Info.plist"; sourceTree = "<group>"; };
+		667572F713E7705F0076F555 /* libJSONKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJSONKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6675730213E7707B0076F555 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
+		6675730413E7707B0076F555 /* JSONKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit_Prefix.pch; sourceTree = "<group>"; };
+		6675730513E7707B0076F555 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		6675730713E7707B0076F555 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		6675730813E7707B0076F555 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		66A03C0913E6E85E00B514F3 /* libNimbusCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A03C0C13E6E85E00B514F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		66A03C1913E6E85E00B514F3 /* NimbusCoreTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCoreTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -500,6 +518,14 @@
 				667572CD13E76F460076F555 /* Foundation.framework in Frameworks */,
 				667572CE13E76F460076F555 /* CoreGraphics.framework in Frameworks */,
 				667572D113E76F460076F555 /* libNimbusProcessors.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		667572F413E7705F0076F555 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				667572F813E7705F0076F555 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +742,34 @@
 			path = processors/unittests;
 			sourceTree = SOURCE_ROOT;
 		};
+		667572F913E7705F0076F555 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				6675730213E7707B0076F555 /* CHANGELOG.md */,
+				6675730513E7707B0076F555 /* README.md */,
+				6675730313E7707B0076F555 /* lib */,
+				6675730613E7707B0076F555 /* src */,
+			);
+			path = JSONKit;
+			sourceTree = "<group>";
+		};
+		6675730313E7707B0076F555 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				6675730413E7707B0076F555 /* JSONKit_Prefix.pch */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		6675730613E7707B0076F555 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				6675730713E7707B0076F555 /* JSONKit.h */,
+				6675730813E7707B0076F555 /* JSONKit.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		66A03BFC13E6E84800B514F3 = {
 			isa = PBXGroup;
 			children = (
@@ -750,6 +804,7 @@
 				6675728713E769150076F555 /* NimbusPhotosTests.octest */,
 				667572BD13E76F460076F555 /* libNimbusProcessors.a */,
 				667572CA13E76F460076F555 /* NimbusProcessorsTests.octest */,
+				667572F713E7705F0076F555 /* libJSONKit.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -981,6 +1036,7 @@
 			isa = PBXGroup;
 			children = (
 				66A03D6A13E6FA9700B514F3 /* ASIHTTPRequest */,
+				667572F913E7705F0076F555 /* JSONKit */,
 			);
 			name = "Third Party";
 			sourceTree = "<group>";
@@ -1072,6 +1128,15 @@
 				667572EB13E76F5E0076F555 /* NimbusProcessors.h in Headers */,
 				667572EC13E76F5E0076F555 /* NIProcessorDelegate.h in Headers */,
 				667572ED13E76F5E0076F555 /* NIProcessorHTTPRequest.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		667572F513E7705F0076F555 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6675730913E7707B0076F555 /* JSONKit_Prefix.pch in Headers */,
+				6675730A13E7707B0076F555 /* JSONKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1256,6 +1321,23 @@
 			productReference = 667572CA13E76F460076F555 /* NimbusProcessorsTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		667572F613E7705F0076F555 /* JSONKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 667572FF13E7705F0076F555 /* Build configuration list for PBXNativeTarget "JSONKit" */;
+			buildPhases = (
+				667572F313E7705F0076F555 /* Sources */,
+				667572F413E7705F0076F555 /* Frameworks */,
+				667572F513E7705F0076F555 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JSONKit;
+			productName = JSONKit;
+			productReference = 667572F713E7705F0076F555 /* libJSONKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		66A03C0813E6E85E00B514F3 /* NimbusCore */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66A03C2E13E6E85E00B514F3 /* Build configuration list for PBXNativeTarget "NimbusCore" */;
@@ -1414,6 +1496,7 @@
 				667572BC13E76F460076F555 /* NimbusProcessors */,
 				667572C913E76F460076F555 /* NimbusProcessorsTests */,
 				66A03D6713E6FA9700B514F3 /* ASIHTTPRequest */,
+				667572F613E7705F0076F555 /* JSONKit */,
 				66A03CF713E6F15300B514F3 /* Nimbus */,
 			);
 		};
@@ -1601,6 +1684,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		667572F313E7705F0076F555 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6675730B13E7707B0076F555 /* JSONKit.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66A03C0513E6E85E00B514F3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1724,6 +1815,11 @@
 			isa = PBXTargetDependency;
 			target = 667572BC13E76F460076F555 /* NimbusProcessors */;
 			targetProxy = 667572F113E76FB90076F555 /* PBXContainerItemProxy */;
+		};
+		6675730D13E770870076F555 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 667572F613E7705F0076F555 /* JSONKit */;
+			targetProxy = 6675730C13E770870076F555 /* PBXContainerItemProxy */;
 		};
 		66A03C2213E6E85E00B514F3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2066,6 +2162,54 @@
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		6675730013E7705F0076F555 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/JSONKit.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = JSONKit/lib/JSONKit_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		6675730113E7705F0076F555 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/JSONKit.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = JSONKit/lib/JSONKit_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -2521,6 +2665,14 @@
 			buildConfigurations = (
 				667572E013E76F460076F555 /* Debug */,
 				667572E113E76F460076F555 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		667572FF13E7705F0076F555 /* Build configuration list for PBXNativeTarget "JSONKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6675730013E7705F0076F555 /* Debug */,
+				6675730113E7705F0076F555 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
