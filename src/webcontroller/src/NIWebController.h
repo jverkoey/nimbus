@@ -19,8 +19,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@protocol NIWebControllerDelegate;
-
 @interface NIWebController : UIViewController <
   UIWebViewDelegate,
   UIActionSheetDelegate > {
@@ -40,19 +38,12 @@
     UIBarButtonItem*  _activityItem;
     
     NSURL*            _loadingURL;
-    
-    id<NIWebControllerDelegate> _delegate;
 }
 /**
  * The current web view URL. If the web view is currently loading a URL, then the loading URL is
  * returned instead.
  */
 @property (nonatomic, readonly) NSURL*  URL;
-
-/**
- * The web controller delegate
- */
-@property (nonatomic, assign)   id<NIWebControllerDelegate> delegate;
 
 /**
  * Navigate to the given URL.
@@ -65,18 +56,5 @@
  * @param request  A URL request identifying the location of the content to load.
  */
 - (void)openRequest:(NSURLRequest*)request;
-
-@end
-
-@protocol NIWebControllerDelegate <NSObject>
-
-@optional
-- (BOOL)webController:(NIWebController *)controller webView:(UIWebView *)webView
-shouldStartLoadWithRequest:(NSURLRequest *)request
-       navigationType:(UIWebViewNavigationType)navigationType;
-- (void)webController:(NIWebController *)controller webViewDidStartLoad:(UIWebView *)webView;
-- (void)webController:(NIWebController *)controller webViewDidFinishLoad:(UIWebView *)webView;
-- (void)webController:(NIWebController *)controller webView:(UIWebView *)webView
- didFailLoadWithError:(NSError *)error;
 
 @end
