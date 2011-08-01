@@ -18,24 +18,34 @@
  * @{
  *
  * It's common functionality to display a web page within an application without
- * switching out to safari. This controller allows you to open a URL in a browser 
- * view and includes common browser functionality such as forward, back, stop and 
- * refresh buttons on a toolbar. The toolbar also includes an option to open the 
+ * switching out to safari. This controller allows you to open a URL in a browser
+ * view and includes common browser functionality such as forward, back, stop and
+ * refresh buttons on a toolbar. The toolbar also includes an option to open the
  * URL in safari. The controller displays the document.title in the NavigationBar
  * and includes a spinner when loading.
  *
  * <h2>Adding the Web Controller to Your Application</h2>
  *
  * The Web Controller uses a small number of custom icons that are stored in the
- * NimbusWebController bundle. You must add this bundle to your application, ensuring 
- * that you select the "Create Folder References" option and that the bundle is 
+ * NimbusWebController bundle. You must add this bundle to your application, ensuring
+ * that you select the "Create Folder References" option and that the bundle is
  * copied in the "Copy Bundle Resources" phase.
  *
  * The bundle can be found at <code>src/webcontroller/resources/NimbusWebController.bundle</code>.
  *
+ * <h2>Example Applications</h2>
+ *
+ * <h3>Basic Web Controller</h3>
+ *
+ * <a
+ * href="https://github.com/jverkoey/nimbus/tree/master/examples/webcontroller/BasicWebController">
+ * View the README on GitHub</a>
+ *
+ * This sample application demos the use of the web controller on iPhone and iPad
+ *
  * <h2>Screenshots</h2>
  *
- * @image html webcontroller-iphone-example1.png "Screenshot of a basic web controller on the iPhone."
+ * @image html webcontroller-iphone-example1.png "Screenshot of a basic web controller on iPhone"
  *
  * @}
  */
