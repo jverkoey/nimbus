@@ -15,6 +15,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+/*
+ * A simple web view controller implementation with a toolbar.
+ *
+ *      @ingroup Web-Controllers
+ *
+ * <h2>Implementing Delegate Methods</h2>
+ *
+ * This view controller already implements UIWebViewDelegate. If you want to
+ * implement methods of this delegate you should take care to call the super implementation
+ * if necessary. The following methods have implementations in this class:
+ *
+ * - webView:shouldStartLoadWithRequest:navigationType:
+ * - webViewDidStartLoad:
+ * - webViewDidFinishLoad:
+ * - webView:didFailLoadWithError:
+ *
+ * <h2>Recommended Configurations</h2>
+ *
+ * <h3>Default</h3>
+ *
+ * The default settings will create a toolbar with the default tint color, which is normally
+ * light blue on the iPhone and gray on the iPad
+ *
+ * <h3>Colored toolbar</h3>
+ *
+ * The following settings will change the toolbar tint color (in this case black)
+ *
+ * @code
+ *  [self setToolbarTintColor:[UIColor blackColor]]
+ * @endcode
+ *
+ */
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -40,7 +72,7 @@
     NSURL*            _loadingURL;
 }
 /**
- * The current web view URL. If the web view is currently loading a URL, then the 
+ * The current web view URL. If the web view is currently loading a URL, then the
  * loading URL is returned instead.
  */
 @property (nonatomic, readonly) NSURL*  URL;
