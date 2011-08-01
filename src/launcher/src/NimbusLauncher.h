@@ -69,15 +69,10 @@
  * required methods for populating the launcher with data.
  */
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusCore/NimbusCore.h"
-#import "NimbusLauncher/NILauncherViewController.h"
-#import "NimbusLauncher/NILauncherView.h"
-#else
+// Dependencies
 #import "NimbusCore.h"
+
 #import "NILauncherViewController.h"
 #import "NILauncherView.h"
-#endif
-
 
 /**@}*/

@@ -107,7 +107,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIButton *)launcherView: (NILauncherView *)launcherView
              buttonForPage: (NSInteger)page
-                   atIndex: (NSInteger)index {
+                   atIndex: (NSInteger)buttonIndex {
   UIButton* button = [[[[self launcherButtonClass] alloc] init] autorelease];
 
   // launcherButtonClass must return a class that is a subclass of UIButton.
@@ -116,7 +116,7 @@
     return nil;
   }
 
-  NILauncherItemDetails* item = [[_pages objectAtIndex:page] objectAtIndex:index];
+  NILauncherItemDetails* item = [[_pages objectAtIndex:page] objectAtIndex:buttonIndex];
   [button setTitle:item.title forState:UIControlStateNormal];
   [button setImage: [UIImage imageWithContentsOfFile:item.imagePath]
           forState: UIControlStateNormal];
@@ -135,7 +135,7 @@
 - (void)launcherView: (NILauncherView *)launcher
      didSelectButton: (UIButton *)button
               onPage: (NSInteger)page
-             atIndex: (NSInteger)index {
+             atIndex: (NSInteger)buttonIndex {
   // This is purely an example implementation. It is incredibly likely that you will not want to
   // use this in your production code.
 

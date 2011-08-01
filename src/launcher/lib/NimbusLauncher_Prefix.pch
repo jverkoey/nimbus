@@ -16,5 +16,5 @@
 
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
-#import "NimbusCore/NimbusCore.h"
+#import "NimbusCore.h"
 #endif

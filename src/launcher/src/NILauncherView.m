@@ -397,17 +397,17 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTapButton:(UIButton *)tappedButton {
   NSInteger page = -1;
-  NSInteger index = 0;
+  NSInteger buttonIndex = 0;
   if ([self pageAndIndexOfButton:tappedButton
                             page:&page
-                           index:&index]) {
+                           index:&buttonIndex]) {
 
     if ([self.delegate respondsToSelector:
          @selector(launcherView:didSelectButton:onPage:atIndex:)]) {
       [self.delegate launcherView: self
                   didSelectButton: tappedButton
                            onPage: page
-                          atIndex: index];
+                          atIndex: buttonIndex];
     }
 
   } else {
