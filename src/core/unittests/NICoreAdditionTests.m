@@ -20,7 +20,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "NimbusCore/NimbusCore+Additions.h"
+#import "NimbusCore+Additions.h"
 
 @interface NimbusCoreAdditionTests : SenTestCase {
 }

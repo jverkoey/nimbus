@@ -18,6 +18,8 @@
 
 #import "NIDeviceOrientation.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "NIDebuggingTools.h"
 #import "NISDKAvailability.h"
 
@@ -41,7 +43,7 @@ BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-UIInterfaceOrientation NIInterfaceOrientation() {
+UIInterfaceOrientation NIInterfaceOrientation(void) {
   UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
 
   // This code used to use the navigator to find the currently visible view controller and
@@ -58,14 +60,14 @@ UIInterfaceOrientation NIInterfaceOrientation() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGAffineTransform NIRotateTransformForOrientation(UIInterfaceOrientation orientation) {
   if (orientation == UIInterfaceOrientationLandscapeLeft) {
-    return CGAffineTransformMakeRotation(M_PI*1.5);
-    
+    return CGAffineTransformMakeRotation((CGFloat)(M_PI * 1.5));
+
   } else if (orientation == UIInterfaceOrientationLandscapeRight) {
-    return CGAffineTransformMakeRotation(M_PI/2);
-    
+    return CGAffineTransformMakeRotation((CGFloat)(M_PI / 2.0));
+
   } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
-    return CGAffineTransformMakeRotation(-M_PI);
-    
+    return CGAffineTransformMakeRotation((CGFloat)(-M_PI));
+
   } else {
     return CGAffineTransformIdentity;
   }

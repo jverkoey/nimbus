@@ -1,6 +1,8 @@
 //
 // Copyright 2011 Jeff Verkoeyen
 //
+// Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -14,21 +16,12 @@
 // limitations under the License.
 //
 
-/**
- * @ingroup NimbusCore
- * @{
- *
- * All category documentation is found in the source files due to limitations of Doxygen.
- * Look for the documentation in the Classes tab of the documentation.
- */
-
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
-#import "NimbusCore.h"
+@interface NSData (NimbusCore)
 
-// Additions
-#import "NSData+NimbusCore.h"
-#import "NSString+NimbusCore.h"
+@property (nonatomic, readonly) NSString* md5Hash;
 
-/**@}*/
+@property (nonatomic, readonly) NSString* sha1Hash;
+
+@end

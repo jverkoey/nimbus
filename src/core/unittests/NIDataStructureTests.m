@@ -20,7 +20,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "NimbusCore/NimbusCore.h"
+#import "NimbusCore.h"
 
 @interface NIDataStructureTests : SenTestCase {
 }

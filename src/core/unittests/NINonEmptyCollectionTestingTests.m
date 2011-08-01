@@ -20,7 +20,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "NimbusCore/NINonEmptyCollectionTesting.h"
+#import "NINonEmptyCollectionTesting.h"
 
 
 #pragma mark -

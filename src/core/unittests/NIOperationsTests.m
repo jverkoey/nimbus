@@ -20,9 +20,9 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "NimbusCore/NIOperations.h"
-#import "NimbusCore/NIPreprocessorMacros.h"
-#import "NimbusCore/NIPaths.h"
+#import "NIOperations.h"
+#import "NIPreprocessorMacros.h"
+#import "NIPaths.h"
 
 @interface NIOperationsTests : SenTestCase <NIOperationDelegate> {
 @private

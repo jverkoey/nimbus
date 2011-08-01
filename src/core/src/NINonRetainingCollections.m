@@ -24,7 +24,7 @@ static void NIReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSMutableArray* NICreateNonRetainingMutableArray() {
+NSMutableArray* NICreateNonRetainingMutableArray(void) {
   CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
   callbacks.retain = NIRetainNoOp;
   callbacks.release = NIReleaseNoOp;
@@ -33,7 +33,7 @@ NSMutableArray* NICreateNonRetainingMutableArray() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSMutableDictionary* NICreateNonRetainingMutableDictionary() {
+NSMutableDictionary* NICreateNonRetainingMutableDictionary(void) {
   CFDictionaryKeyCallBacks keyCallbacks = kCFTypeDictionaryKeyCallBacks;
   CFDictionaryValueCallBacks callbacks = kCFTypeDictionaryValueCallBacks;
   callbacks.retain = NIRetainNoOp;
@@ -43,7 +43,7 @@ NSMutableDictionary* NICreateNonRetainingMutableDictionary() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSMutableSet* NICreateNonRetainingMutableSet() {
+NSMutableSet* NICreateNonRetainingMutableSet(void) {
   CFSetCallBacks callbacks = kCFTypeSetCallBacks;
   callbacks.retain = NIRetainNoOp;
   callbacks.release = NIReleaseNoOp;

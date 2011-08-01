@@ -37,7 +37,7 @@
  *
  * This method is threadsafe.
  */
-void NINetworkActivityTaskDidStart();
+void NINetworkActivityTaskDidStart(void);
 
 /**
  * Decrement the number of active network tasks.
@@ -46,7 +46,7 @@ void NINetworkActivityTaskDidStart();
  *
  * This method is threadsafe.
  */
-void NINetworkActivityTaskDidFinish();
+void NINetworkActivityTaskDidFinish(void);
 
 /**
  * @name For Debugging Only
@@ -72,7 +72,7 @@ void NINetworkActivityTaskDidFinish();
  *
  * If debugging was previously enabled, this does nothing.
  */
-void NIEnableNetworkActivityDebugging();
+void NIEnableNetworkActivityDebugging(void);
 
 /**
  * Disable network activity debugging.
@@ -84,7 +84,7 @@ void NIEnableNetworkActivityDebugging();
  *
  * If debugging wasn't previously enabled, this does nothing.
  */
-void NIDisableNetworkActivityDebugging();
+void NIDisableNetworkActivityDebugging(void);
 
 /**@}*/// End of For Debugging Only
 

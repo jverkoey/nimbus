@@ -128,7 +128,7 @@
  *
  *      @returns YES if the device is an iPad.
  */
-BOOL NIIsPad();
+BOOL NIIsPad(void);
 
 /**
  * Checks whether the device's OS version is at least the given version number.
@@ -148,7 +148,7 @@ BOOL NIDeviceOSVersionIsAtLeast(double versionNumber);
  * Pre-iOS 4.0: will always return 1.
  *     iOS 4.0: returns the device's screen scale.
  */
-CGFloat NIScreenScale();
+CGFloat NIScreenScale(void);
 
 /**
  * Safely fetch the UIPopoverController class if it is available.
@@ -163,7 +163,7 @@ CGFloat NIScreenScale();
  *                 instead of directly referring to UIPopoverController anywhere within your code.
  *                 Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices.
  */
-Class NIUIPopoverControllerClass();
+Class NIUIPopoverControllerClass(void);
 
 /**
  * Safely fetch the UITapGestureRecognizer class if it is available.
@@ -178,7 +178,7 @@ Class NIUIPopoverControllerClass();
  *                 instead of directly referring to UIPopoverController anywhere within your code.
  *                 Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices.
  */
-Class NIUITapGestureRecognizerClass();
+Class NIUITapGestureRecognizerClass(void);
 
 
 #pragma mark Building with Old SDKs

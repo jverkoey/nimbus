@@ -18,8 +18,8 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "NimbusCore/NIPreprocessorMacros.h"
-#import "NimbusCore/NIRuntimeClassModifications.h"
+#import "NIPreprocessorMacros.h"
+#import "NIRuntimeClassModifications.h"
 
 #pragma mark -
 #pragma mark Unit Test Documentation

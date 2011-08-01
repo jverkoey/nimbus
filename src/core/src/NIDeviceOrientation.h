@@ -61,7 +61,7 @@ BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation);
  *
  *      @returns The current interface orientation.
  */
-UIInterfaceOrientation NIInterfaceOrientation();
+UIInterfaceOrientation NIInterfaceOrientation(void);
 
 /**
  * Creates an affine transform for the given device orientation.

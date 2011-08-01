@@ -30,31 +30,31 @@ CGFloat NIToolbarHeightForOrientation(UIInterfaceOrientation orientation) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-UIViewAnimationCurve NIStatusBarAnimationCurve() {
+UIViewAnimationCurve NIStatusBarAnimationCurve(void) {
   return UIViewAnimationCurveEaseIn;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSTimeInterval NIStatusBarAnimationDuration() {
+NSTimeInterval NIStatusBarAnimationDuration(void) {
   return 0.3;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-UIViewAnimationCurve NIStatusBarFrameAnimationCurve() {
+UIViewAnimationCurve NIStatusBarFrameAnimationCurve(void) {
   return UIViewAnimationCurveEaseInOut;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSTimeInterval NIStatusBarFrameAnimationDuration() {
+NSTimeInterval NIStatusBarFrameAnimationDuration(void) {
   return 0.35;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CGFloat NIStatusBarHeight() {
+CGFloat NIStatusBarHeight(void) {
   CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
   CGFloat statusBarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);
   return statusBarHeight;

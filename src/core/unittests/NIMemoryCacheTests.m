@@ -20,7 +20,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "NimbusCore/NIInMemoryCache.h"
+#import "NIDebuggingTools.h"
+#import "NIInMemoryCache.h"
 #import "NSDate+UnitTesting.h"
 
 
@@ -338,6 +339,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testImageCacheNils {
+  // Disable NIDASSERTs from breaking the program execution.
+  NIDebugAssertionsShouldBreak = NO;
+
   NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
 
   [cache storeObject: nil
@@ -381,6 +385,8 @@
   [cache removeObjectWithName:nil];
 
   STAssertEquals([cache count], (NSUInteger)0, @"No objects should have been stored in the cache.");
+  
+  NIDebugAssertionsShouldBreak = YES;
 }
 
 

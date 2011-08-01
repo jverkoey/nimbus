@@ -38,21 +38,21 @@
  *
  * Typically used with arrays of delegates.
  */
-NSMutableArray* NICreateNonRetainingMutableArray();
+NSMutableArray* NICreateNonRetainingMutableArray(void);
 
 /**
  * Creates a mutable dictionary which does not retain references to the values it contains.
  *
  * Typically used with dictionaries of delegates.
  */
-NSMutableDictionary* NICreateNonRetainingMutableDictionary();
+NSMutableDictionary* NICreateNonRetainingMutableDictionary(void);
 
 /**
  * Creates a mutable set which does not retain references to the values it contains.
  *
  * Typically used with sets of delegates.
  */
-NSMutableSet* NICreateNonRetainingMutableSet();
+NSMutableSet* NICreateNonRetainingMutableSet(void);
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

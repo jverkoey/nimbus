@@ -44,35 +44,35 @@ CGFloat NIToolbarHeightForOrientation(UIInterfaceOrientation orientation);
  *
  * Value: UIViewAnimationCurveEaseIn
  */
-UIViewAnimationCurve NIStatusBarAnimationCurve();
+UIViewAnimationCurve NIStatusBarAnimationCurve(void);
 
 /**
  * The animation duration for animating the status bar.
  *
  * Value: 0.3 seconds
  */
-NSTimeInterval NIStatusBarAnimationDuration();
+NSTimeInterval NIStatusBarAnimationDuration(void);
 
 /**
  * The animation curve used when animating the status bar frame.
  *
  * Value: UIViewAnimationCurveEaseInOut
  */
-UIViewAnimationCurve NIStatusBarFrameAnimationCurve();
+UIViewAnimationCurve NIStatusBarFrameAnimationCurve(void);
 
 /**
  * The animation duration for animating the status bar frame.
  *
  * Value: 0.35 seconds
  */
-NSTimeInterval NIStatusBarFrameAnimationDuration();
+NSTimeInterval NIStatusBarFrameAnimationDuration(void);
 
 /**
  * Get the status bar's current height.
  *
  * If the status bar is hidden this will return 0.
  */
-CGFloat NIStatusBarHeight();
+CGFloat NIStatusBarHeight(void);
 
 /**
  * The animation duration when the device is rotating to a new orientation.

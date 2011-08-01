@@ -20,8 +20,8 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "NimbusCore/NIPreprocessorMacros.h"
-#import "NimbusCore/NINonRetainingCollections.h"
+#import "NIPreprocessorMacros.h"
+#import "NINonRetainingCollections.h"
 
 
 #pragma mark -

@@ -27,9 +27,8 @@
 static int              gNetworkTaskCount = 0;
 static pthread_mutex_t  gMutex = PTHREAD_MUTEX_INITIALIZER;
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void NINetworkActivityTaskDidStart() {
+void NINetworkActivityTaskDidStart(void) {
   pthread_mutex_lock(&gMutex);
 
   BOOL enableNetworkActivityIndicator = (0 == gNetworkTaskCount);
@@ -45,7 +44,7 @@ void NINetworkActivityTaskDidStart() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void NINetworkActivityTaskDidFinish() {
+void NINetworkActivityTaskDidFinish(void) {
   pthread_mutex_lock(&gMutex);
 
   --gNetworkTaskCount;
@@ -67,6 +66,8 @@ void NINetworkActivityTaskDidFinish() {
 #ifdef DEBUG
 
 static BOOL gNetworkActivityDebuggingEnabled = NO;
+
+void NISwizzleMethodsForNetworkActivityDebugging(void);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,7 +102,7 @@ static BOOL gNetworkActivityDebuggingEnabled = NO;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void NISwizzleMethodsForNetworkActivityDebugging() {
+void NISwizzleMethodsForNetworkActivityDebugging(void) {
   NISwapInstanceMethods([UIApplication class],
                         @selector(setNetworkActivityIndicatorVisible:),
                         @selector(nimbusDebugSetNetworkActivityIndicatorVisible:));
@@ -109,7 +110,7 @@ void NISwizzleMethodsForNetworkActivityDebugging() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void NIEnableNetworkActivityDebugging() {
+void NIEnableNetworkActivityDebugging(void) {
   if (!gNetworkActivityDebuggingEnabled) {
     gNetworkActivityDebuggingEnabled = YES;
     NISwizzleMethodsForNetworkActivityDebugging();
@@ -118,7 +119,7 @@ void NIEnableNetworkActivityDebugging() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void NIDisableNetworkActivityDebugging() {
+void NIDisableNetworkActivityDebugging(void) {
   if (gNetworkActivityDebuggingEnabled) {
     gNetworkActivityDebuggingEnabled = NO;
     NISwizzleMethodsForNetworkActivityDebugging();
@@ -130,13 +131,13 @@ void NIDisableNetworkActivityDebugging() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void NIEnableNetworkActivityDebugging() {
+void NIEnableNetworkActivityDebugging(void) {
   // No-op
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void NIDisableNetworkActivityDebugging() {
+void NIDisableNetworkActivityDebugging(void) {
   // No-op
 }
 

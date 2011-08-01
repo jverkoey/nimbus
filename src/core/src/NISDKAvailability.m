@@ -20,7 +20,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-BOOL NIIsPad() {
+BOOL NIIsPad(void) {
 #ifdef UI_USER_INTERFACE_IDIOM
   static NSInteger isPad = -1;
   if (isPad < 0) {
@@ -40,7 +40,7 @@ BOOL NIDeviceOSVersionIsAtLeast(double versionNumber) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CGFloat NIScreenScale() {
+CGFloat NIScreenScale(void) {
   static int respondsToScale = -1;
   if (respondsToScale == -1) {
     // Avoid calling this anymore than we need to.
@@ -57,7 +57,7 @@ CGFloat NIScreenScale() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-Class NIUIPopoverControllerClass() {
+Class NIUIPopoverControllerClass(void) {
   static Class sClass = nil;
   static BOOL hasChecked = NO;
   if (!hasChecked) {
@@ -69,7 +69,7 @@ Class NIUIPopoverControllerClass() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-Class NIUITapGestureRecognizerClass() {
+Class NIUITapGestureRecognizerClass(void) {
   static Class sClass = nil;
   static BOOL hasChecked = NO;
   if (!hasChecked) {

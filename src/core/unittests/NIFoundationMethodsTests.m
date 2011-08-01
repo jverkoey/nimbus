@@ -20,7 +20,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "NimbusCore/NIFoundationMethods.h"
+#import "NIFoundationMethods.h"
 
 @interface NIFoundationMethodsTests : SenTestCase {
 }

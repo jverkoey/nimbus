@@ -95,11 +95,11 @@
 #import <TargetConditionals.h>
 
 #if TARGET_IPHONE_SIMULATOR
-int NIIsInDebugger();
+int NIIsInDebugger(void);
 // We leave the __asm__ in this macro so that when a break occurs, we don't have to step out of
 // a "breakInDebugger" function.
 #define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@"NIDASSERT failed: %s", #xx); \
-if (NIIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
+if (NIDebugAssertionsShouldBreak && NIIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
 } ((void)0)
 #else
 #define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@"NIDASSERT failed: %s", #xx); } } ((void)0)
@@ -122,6 +122,16 @@ if (NIIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
  * The default value is NILOGLEVEL_WARNING.
  */
 extern NSInteger NIMaxLogLevel;
+
+/**
+ * Whether or not debug assertions should halt program execution like a breakpoint when they fail.
+ *
+ * An example of when this is used is in unit tests, when failure cases are tested that will
+ * fire debug assertions.
+ *
+ * The default value is YES.
+ */
+extern BOOL NIDebugAssertionsShouldBreak;
 
 /**
  * Only writes to the log when DEBUG is defined.
