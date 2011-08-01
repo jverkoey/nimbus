@@ -389,6 +389,7 @@ static NSString* const sInstagramScheme = @"instagram:";
                                userInfo: [NSDictionary dictionaryWithObject: image
                                                                      forKey: NIImageErrorKey]];
     }
+    NI_RELEASE_SAFELY(image);
     return nil;
   }
 
