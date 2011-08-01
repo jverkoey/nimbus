@@ -28,7 +28,7 @@
     UIWebView*        _webView;
     UIToolbar*        _toolbar;
     UIActionSheet*    _actionSheet;
-  
+
     // Toolbar buttons
     UIBarButtonItem*  _backButton;
     UIBarButtonItem*  _forwardButton;
@@ -36,7 +36,7 @@
     UIBarButtonItem*  _stopButton;
     UIBarButtonItem*  _actionButton;
     UIBarButtonItem*  _activityItem;
-    
+
     NSURL*            _loadingURL;
 }
 /**

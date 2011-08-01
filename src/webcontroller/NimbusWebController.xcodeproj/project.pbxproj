@@ -48,7 +48,7 @@
 		DB01A96813E2EF9100C24060 /* NimbusCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NimbusCore.xcodeproj; path = ../core/NimbusCore.xcodeproj; sourceTree = "<group>"; };
 		DB01A97E13E2F13A00C24060 /* NimbusWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusWebController.h; path = src/NimbusWebController.h; sourceTree = "<group>"; };
 		DB01A98013E2F28100C24060 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deps; sourceTree = "<group>"; };
-		DB01A98513E2F34400C24060 /* NIWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIWebController.h; path = src/NIWebController.h; sourceTree = "<group>"; tabWidth = 2; };
+		DB01A98513E2F34400C24060 /* NIWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIWebController.h; path = src/NIWebController.h; sourceTree = "<group>"; };
 		DB01A98613E2F34400C24060 /* NIWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIWebController.m; path = src/NIWebController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +145,7 @@
 				DB01A92C13E2EC2500C24060 /* Sources */,
 				DB01A92D13E2EC2500C24060 /* Frameworks */,
 				DB01A92E13E2EC2500C24060 /* Headers */,
+				DB01AA2A13E6B3CD00C24060 /* Lint */,
 			);
 			buildRules = (
 			);
@@ -203,6 +204,24 @@
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DB01AA2A13E6B3CD00C24060 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/env python ../../scripts/lint";
+			shellScript = "";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DB01A92C13E2EC2500C24060 /* Sources */ = {
