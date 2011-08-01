@@ -29,7 +29,6 @@
     // Views
     UIWebView*        _webView;
     UIToolbar*        _toolbar;
-    UIView*           _headerView;
     UIActionSheet*    _actionSheet;
   
     // Toolbar buttons
@@ -49,11 +48,6 @@
  * returned instead.
  */
 @property (nonatomic, readonly) NSURL*  URL;
-
-/**
- * A view that is inserted at the top of the web view, within the scroller.
- */
-@property (nonatomic, retain)   UIView* headerView;
 
 /**
  * The web controller delegate

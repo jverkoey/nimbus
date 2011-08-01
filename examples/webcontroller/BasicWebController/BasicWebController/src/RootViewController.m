@@ -19,7 +19,8 @@
 @implementation RootViewController
 
 -(void)viewDidLoad {
-  [self openURL:[NSURL URLWithString:@"http://www.google.com"]];
+  
+  [self openURL:[NSURL URLWithString:@"http://jverkoey.github.com/nimbus/index.html"]];
 }
 
 @end

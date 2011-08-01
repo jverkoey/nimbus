@@ -23,13 +23,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIWebController
 
-@synthesize delegate    = _delegate;
-@synthesize headerView  = _headerView;
+@synthesize delegate = _delegate;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_loadingURL);
-  NI_RELEASE_SAFELY(_headerView);
   NI_RELEASE_SAFELY(_actionSheet);
   
   [super dealloc];
@@ -118,6 +116,19 @@
   } else {
     return nil;
   }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIView*)descendantOrSelf:(UIView*)view withClass:(Class)cls {
+  if ([view isKindOfClass:cls])
+    return view;
+  
+  for (UIView* child in view.subviews) {
+    UIView* it = [self descendantOrSelf:child withClass:cls];
+    if (it)
+      return it;
+  }
+  return nil;
 }
 
 
@@ -361,35 +372,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSURL*)URL {
   return _loadingURL ? _loadingURL : _webView.request.URL;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setHeaderView:(UIView*)headerView {
-  if (headerView != _headerView) {
-    BOOL addingHeader = !_headerView && headerView;
-    BOOL removingHeader = _headerView && !headerView;
-    
-    [_headerView removeFromSuperview];
-    [_headerView release];
-    _headerView = [headerView retain];
-    _headerView.frame = CGRectMake(0, 0, _webView.frame.size.width, _headerView.frame.size.height);
-    
-    [self view];
-    UIView* scroller = [self ancestorOrSelf:_webView withClass:NSClassFromString(@"UIScroller")];
-    UIView* docView = [self ancestorOrSelf:scroller withClass:NSClassFromString(@"UIWebDocumentView")];
-    [scroller addSubview:_headerView];
-    
-    CGRect docViewFrame = docView.frame;
-    if (addingHeader) {
-      docViewFrame.origin.y += headerView.frame.size.height;
-      docViewFrame.size.height -= headerView.frame.size.height;
-      
-    } else if (removingHeader) {
-      docViewFrame.origin.y -= headerView.frame.size.height;
-      docViewFrame.size.height += headerView.frame.size.height;
-    }
-    docView.frame = docViewFrame;
-  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
