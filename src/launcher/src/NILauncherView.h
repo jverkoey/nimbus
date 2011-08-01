@@ -57,6 +57,9 @@ extern const NSInteger NILauncherViewDynamic;
   NSMutableArray* _pagesOfButtons;      // NSArray< NSArray< UIButton *> >
   NSMutableArray* _pagesOfScrollViews;  // NSArray< UIScrollView *>
 
+  // Edit Information
+  BOOL            _editing;
+  
   // Protocols
   id<NILauncherDelegate>    _delegate;
   id<NILauncherDataSource>  _dataSource;
@@ -87,6 +90,11 @@ extern const NSInteger NILauncherViewDynamic;
  * The launcher view populates its pages with information from the data source.
  */
 @property (nonatomic, readwrite, assign) id<NILauncherDataSource> dataSource;
+
+/**
+ * Returns true when the launcher is in it's editing state
+ */
+@property (nonatomic, readonly) BOOL editing;
 
 /**
  * Reload the launcher data.
