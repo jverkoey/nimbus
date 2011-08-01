@@ -23,8 +23,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIWebController
 
-@synthesize delegate = _delegate;
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_loadingURL);
@@ -230,8 +228,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
   [super viewDidUnload];
-  
-  _delegate = nil;
+
   _webView.delegate = nil;
   
   NI_RELEASE_SAFELY(_webView);
@@ -280,13 +277,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request
  navigationType:(UIWebViewNavigationType)navigationType {
-  if ([_delegate respondsToSelector:
-       @selector(webController:webView:shouldStartLoadWithRequest:navigationType:)] &&
-      ![_delegate webController:self webView:webView
-     shouldStartLoadWithRequest:request navigationType:navigationType]) {
-        return NO;
-      }
-  
+    
   [_loadingURL release];
   _loadingURL = [request.URL retain];
   _backButton.enabled = [_webView canGoBack];
@@ -296,9 +287,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webViewDidStartLoad:(UIWebView*)webView {
-  if ([_delegate respondsToSelector:@selector(webController:webViewDidStartLoad:)]) {
-    [_delegate webController:self webViewDidStartLoad:webView];
-  }
   
   self.title = NSLocalizedString(@"Loading...", @"");
   if (!self.navigationItem.rightBarButtonItem) {
@@ -321,9 +309,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webViewDidFinishLoad:(UIWebView*)webView {
-  if ([_delegate respondsToSelector:@selector(webController:webViewDidFinishLoad:)]) {
-    [_delegate webController:self webViewDidFinishLoad:webView];
-  }
   
   NI_RELEASE_SAFELY(_loadingURL);
   self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
@@ -348,9 +333,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error {
-  if ([_delegate respondsToSelector:@selector(webController:webView:didFailLoadWithError:)]) {
-    [_delegate webController:self webView:webView didFailLoadWithError:error];
-  }
   
   NI_RELEASE_SAFELY(_loadingURL);
   [self webViewDidFinishLoad:webView];
