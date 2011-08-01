@@ -27,6 +27,22 @@ typedef BOOL (^BasicBlockReturnBool)(void);
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)cleanupDocController {
+  NI_RELEASE_SAFELY(_docController);
+  [[NSFileManager defaultManager] removeItemAtURL:_fileUrl error:nil];
+  NI_RELEASE_SAFELY(_fileUrl);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  [self cleanupDocController];
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:style])) {
     self.title = NSLocalizedString(@"InterApp Catalog", @"");
@@ -51,6 +67,18 @@ typedef BOOL (^BasicBlockReturnBool)(void);
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
   return NIIsSupportedOrientation(toInterfaceOrientation);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIDocumentInteractionControllerDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)documentInteractionControllerDidDismissOpenInMenu:(UIDocumentInteractionController *)controller {
+  [self cleanupDocController];
 }
 
 
@@ -150,11 +178,35 @@ typedef BOOL (^BasicBlockReturnBool)(void);
              [^{ return [NIRunApp instagramCamera];} autorelease], @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"featherless", @"title",
              [^{ return [NIRunApp instagramProfileForUsername:@"featherless"];} autorelease], @"block", nil],
+            [NSDictionary dictionaryWithObjectsAndKeys: @"Open local image in Instagram", @"title",
+             [NSValue valueWithPointer:@selector(openInstagramImage:)], @"selector", nil],
 
             nil];
     [rows retain];
   }
   return rows;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)openInstagramImage:(NSIndexPath *)indexPath {
+  [self cleanupDocController];
+
+  NSError* error = nil;
+  _fileUrl = [[NIRunApp urlForInstagramImageAtFilePath: NIPathForBundleResource(nil, @"dilly.jpg")
+                                                        error: &error]
+              retain];
+  NIDASSERT(nil != _fileUrl);
+  if (nil != _fileUrl) {
+    _docController = [[UIDocumentInteractionController interactionControllerWithURL:_fileUrl]
+                      retain];
+    _docController.delegate = self;
+
+    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [_docController presentOpenInMenuFromRect: cell.frame
+                                       inView: self.tableView
+                                     animated: YES];
+  }
 }
 
 
@@ -266,15 +318,21 @@ typedef BOOL (^BasicBlockReturnBool)(void);
   id object = [self objectForIndexPath:indexPath];
 
   BasicBlockReturnBool block = [object objectForKey:@"block"];
-  BOOL result = block();
-  if (!result) {
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle: @"We've givin' her all she's got, cap'n!"
-                                                     message: @"The app you tried to open does not appear to be installed on this device."
-                                                    delegate: nil
-                                           cancelButtonTitle: @"Oh well"
-                                           otherButtonTitles: nil]
-                          autorelease];
-    [alert show];
+  if (nil != block) {
+    BOOL result = block();
+    if (!result) {
+      UIAlertView* alert = [[[UIAlertView alloc] initWithTitle: @"We've givin' her all she's got, cap'n!"
+                                                       message: @"The app you tried to open does not appear to be installed on this device."
+                                                      delegate: nil
+                                             cancelButtonTitle: @"Oh well"
+                                             otherButtonTitles: nil]
+                            autorelease];
+      [alert show];
+    }
+
+  } else if (nil != [object objectForKey:@"selector"]) {
+    SEL selector = (SEL)[[object objectForKey:@"selector"] pointerValue];
+    [self performSelector:selector withObject:indexPath];
   }
 }
 

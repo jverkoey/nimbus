@@ -17,8 +17,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface CatalogTableViewController : UITableViewController {
+@interface CatalogTableViewController : UITableViewController <
+  UIDocumentInteractionControllerDelegate
+> {
 @private
+  UIDocumentInteractionController* _docController;
+  NSURL* _fileUrl;
 }
 
 @end
