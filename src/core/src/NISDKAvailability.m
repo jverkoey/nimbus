@@ -85,3 +85,73 @@ Class NIUITapGestureRecognizerClass(void) {
   }
   return sClass;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+Class NIUIPinchGestureRecognizerClass() {
+  static Class sClass = nil;
+  static BOOL hasChecked = NO;
+  if (!hasChecked) {
+    hasChecked = YES;
+
+    if (NIDeviceOSVersionIsAtLeast(kCFCoreFoundationVersionNumber_iPhoneOS_3_2)) {
+      sClass = NSClassFromString(@"UIPinchGestureRecognizer");
+    }
+  }
+  return sClass;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+Class NIUIRotationGestureRecognizerClass() {
+  static Class sClass = nil;
+  static BOOL hasChecked = NO;
+  if (!hasChecked) {
+    hasChecked = YES;
+
+    if (NIDeviceOSVersionIsAtLeast(kCFCoreFoundationVersionNumber_iPhoneOS_3_2)) {
+      sClass = NSClassFromString(@"UIRotationGestureRecognizer");
+    }
+  }
+  return sClass;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+Class NIUISwipeGestureRecognizerClass() {
+  static Class sClass = nil;
+  static BOOL hasChecked = NO;
+  if (!hasChecked) {
+    hasChecked = YES;
+
+    if (NIDeviceOSVersionIsAtLeast(kCFCoreFoundationVersionNumber_iPhoneOS_3_2)) {
+      sClass = NSClassFromString(@"UISwipeGestureRecognizer");
+    }
+  }
+  return sClass;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+Class NIUIPanGestureRecognizerClass() {
+  static Class sClass = nil;
+  static BOOL hasChecked = NO;
+  if (!hasChecked) {
+    hasChecked = YES;
+
+    if (NIDeviceOSVersionIsAtLeast(kCFCoreFoundationVersionNumber_iPhoneOS_3_2)) {
+      sClass = NSClassFromString(@"UIPanGestureRecognizer");
+    }
+  }
+  return sClass;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+Class NIUILongPressGestureRecognizerClass() {
+  static Class sClass = nil;
+  static BOOL hasChecked = NO;
+  if (!hasChecked) {
+    hasChecked = YES;
+    
+    if (NIDeviceOSVersionIsAtLeast(kCFCoreFoundationVersionNumber_iPhoneOS_3_2)) {
+      sClass = NSClassFromString(@"UILongPressGestureRecognizer");
+    }
+  }
+  return sClass;
+}
