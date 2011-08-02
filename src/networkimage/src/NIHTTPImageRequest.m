@@ -446,8 +446,9 @@
       }
 
       CGContextRelease(dstBmp);
-      CGColorSpaceRelease(colorSpace);
     }
+
+    CGColorSpaceRelease(colorSpace);
 
   } else if (nil != croppedImageRef) {
     resultImage = [UIImage imageWithCGImage:srcImageRef];
