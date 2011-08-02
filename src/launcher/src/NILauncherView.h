@@ -107,6 +107,16 @@ extern const NSInteger NILauncherViewDynamic;
 - (void)reloadData;
 
 /**
+ * Changes the launcher to edit mode
+ */
+- (void)beginEditing;
+
+/**
+ * Ends launcher edit mode
+ */
+- (void)endEditing;
+
+/**
  * Lays out the subviews for this launcher view.
  *
  * If you subclass this view and implement setFrame, you should either replicate the
@@ -139,6 +149,16 @@ extern const NSInteger NILauncherViewDynamic;
      didSelectButton: (UIButton *)button
               onPage: (NSInteger)page
              atIndex: (NSInteger)index;
+
+/**
+ * Called when the launcher enters edit mode.
+ */
+- (void)launcherViewDidBeginEditing:(NILauncherView *)launcher;
+
+/**
+ * Called when the launcher exits edit mode.
+ */
+- (void)launcherViewDidEndEditing:(NILauncherView *)launcher;
 
 @end
 
