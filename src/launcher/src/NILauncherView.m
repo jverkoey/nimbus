@@ -308,32 +308,6 @@ static const CFTimeInterval kPressHoldTimeInterval = 1;
 #pragma mark -
 #pragma mark Private Methods
 
-// Global method?
-///////////////////////////////////////////////////////////////////////////////////////////////////
--(BOOL) gesturesAreAvailable {
-
-  BOOL available = NO;
-
-  Class gestureClass = NSClassFromString(@"UIGestureRecognizer");
-  if (gestureClass != nil) {
-    // To determine whether a class is available at runtime in a given iOS release, you typically
-    // check whether the class is nil. Unfortunately, this test is not cleanly accurate for
-    // UIGestureRecognizer.
-    // Although this class was publicly available starting with iOS 3.2, it was in development a short
-    // period prior to that. Although the class exists in an earlier release, use of it and other
-    // gesture-recognizer classes are not supported in that earlier release. Therefore we check if it
-    // responds to the location in view selector which was added in iOS 3.2
-    UIGestureRecognizer *gestureRecognizer = [[UIGestureRecognizer alloc] 
-                                              initWithTarget:self 
-                                              action:nil];
-    if ([gestureRecognizer respondsToSelector:@selector(locationInView:)]) {
-      available = YES;
-    }
-    NI_RELEASE_SAFELY(gestureRecognizer);
-  }
-  return available;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) pressAndHold:(UIGestureRecognizer*)gesture {
   if (gesture.state == UIGestureRecognizerStateBegan) {
@@ -512,16 +486,16 @@ static const CFTimeInterval kPressHoldTimeInterval = 1;
                      action: @selector(didTapButton:)
            forControlEvents: UIControlEventTouchUpInside];
       
-      if ([self gesturesAreAvailable]) {
+      Class longPressGestureClass = NIUILongPressGestureRecognizerClass();
+      if (longPressGestureClass != nil) {
         UILongPressGestureRecognizer* longPress = 
-        [[UILongPressGestureRecognizer alloc] initWithTarget:self 
-                                                      action:@selector(pressAndHold:)];
+        [[longPressGestureClass alloc] initWithTarget:self 
+                                               action:@selector(pressAndHold:)];
         longPress.minimumPressDuration = kPressHoldTimeInterval;
         
         [item addGestureRecognizer:longPress];
       }
-      
-      
+
       [page addObject:item];
       [pageScrollView addSubview:item];
     }
