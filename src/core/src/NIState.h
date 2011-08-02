@@ -41,6 +41,8 @@
  */
 @interface Nimbus : NSObject
 
+#pragma mark Accessing Global State /** @name Accessing Global State */
+
 /**
  * Access the global image memory cache.
  *
@@ -64,6 +66,9 @@
  * one will be created automatically with the default iOS settings.
  */
 + (NSOperationQueue *)networkOperationQueue;
+
+
+#pragma mark Modifying Global State /** @name Modifying Global State */
 
 /**
  * Set the global image memory cache.

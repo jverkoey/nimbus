@@ -86,12 +86,7 @@ typedef void NILinkedListLocation;
   unsigned long _modificationNumber;
 }
 
-
-/**
- * @name Creating a Linked List
- * @{
- */
-#pragma mark Creating a Linked List
+#pragma mark Creating a Linked List /** @name Creating a Linked List */
 
 /**
  * Designated initializer.
@@ -107,14 +102,8 @@ typedef void NILinkedListLocation;
  */
 + (NILinkedList *)linkedList;
 
-/**@}*/// End of Creating a Linked List
 
-
-/**
- * @name Querying a Linked List
- * @{
- */
-#pragma mark Querying a Linked List
+#pragma mark Querying a Linked List /** @name Querying a Linked List */
 
 /**
  * The first object in the linked list.
@@ -131,14 +120,8 @@ typedef void NILinkedListLocation;
  */
 @property (nonatomic, readonly) unsigned long count;
 
-/**@}*/// End of Querying a Linked List
 
-
-/**
- * @name Adding Objects
- * @{
- */
-#pragma mark Adding Objects
+#pragma mark Adding Objects /** @name Adding Objects */
 
 /**
  * Append an object to the linked list.
@@ -149,14 +132,8 @@ typedef void NILinkedListLocation;
  */
 - (NILinkedListLocation *)addObject:(id)object;
 
-/**@}*/// End of Adding Objects
 
-
-/**
- * @name Removing Objects
- * @{
- */
-#pragma mark Removing Objects
+#pragma mark Removing Objects /** @name Removing Objects */
 
 /**
  * Remove all objects from the linked list.
@@ -186,28 +163,16 @@ typedef void NILinkedListLocation;
  */
 - (void)removeLastObject;
 
-/**@}*/// End of Removing Objects
 
-
-/**
- * @name Enumerating Objects
- * @{
- */
-#pragma mark Enumerating Objects
+#pragma mark Enumerating Objects /** @name Enumerating Objects */
 
 /**
  * Create an enumerator that can be used to enumerate this linked list.
  */
 - (NSEnumerator *)objectEnumerator;
 
-/**@}*/// End of Enumerating Objects
 
-
-/**
- * @name Constant-Time Access
- * @{
- */
-#pragma mark Constant-Time Access
+#pragma mark Constant-Time Access /** @name Constant-Time Access */
 
 /**
  * Search for an object in the linked list.
@@ -244,8 +209,6 @@ typedef void NILinkedListLocation;
  *
  */
 - (void)removeObjectAtLocation:(NILinkedListLocation *)location;
-
-/**@}*/// End of Constant-Time Access
 
 @end
 
@@ -397,5 +360,4 @@ typedef void NILinkedListLocation;
  *  // Location is no longer valid at this point.
  *  location = nil;
  * @endcode
- *
  */

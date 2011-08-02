@@ -16,7 +16,10 @@
 // limitations under the License.
 //
 
-#import "NimbusCore+Additions.h"
+#import "NSString+NimbusCore.h"
+
+#import "NSData+NimbusCore.h"
+#import "NIPreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

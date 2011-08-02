@@ -71,22 +71,35 @@
 #endif // #if NS_BLOCKS_AVAILABLE
 }
 
+#pragma mark Delegation /** @name Delegation */
+
 /**
  * The delegate through which changes are notified for this operation.
+ *
+ * All delegate methods are performed on the main thread.
  */
 @property (readwrite, assign) id<NIOperationDelegate> delegate;
 
-/**
- * A simple tagging mechanism for identifying operations.
- */
-@property (readwrite, assign) NSInteger tag;
+
+#pragma mark Post-Operation Properties /** @name Post-Operation Properties */
 
 /**
  * The error last passed to the didFailWithError notification.
  */
 @property (readonly, retain) NSError* lastError;
 
+
+#pragma mark Identification /** @name Identification */
+
+/**
+ * A simple tagging mechanism for identifying operations.
+ */
+@property (readwrite, assign) NSInteger tag;
+
+
 #if NS_BLOCKS_AVAILABLE
+
+#pragma mark Blocks /** @name Blocks */
 
 /**
  * The operation has started executing.
@@ -127,7 +140,6 @@
 
 /**
  * @name Subclassing
- * @{
  *
  * The following methods are provided to aid in subclassing and are not meant to be
  * used externally.
@@ -154,8 +166,6 @@
  */
 - (void)operationWillFinish;
 
-/**@}*/
-
 @end
 
 
@@ -180,40 +190,23 @@
   id        _processedObject;
 }
 
-
-/**
- * @name Creating an operation
- * @{
- */
-#pragma mark Creating an operation
+#pragma mark Creating an Operation /** @name Creating an Operation */
 
 /**
  * Designated initializer.
  */
 - (id)initWithPathToFile:(NSString *)pathToFile;
 
-/**@}*/
 
-
-/**
- * @name Configuring the Operation
- * @{
- */
-#pragma mark Configuring the operation
+#pragma mark Configuring the Operation /** @name Configuring the Operation */
 
 /**
  * The path to the file that should be read from disk.
  */
 @property (readwrite, copy) NSString* pathToFile;
 
-/**@}*/
 
-
-/**
- * @name Operation Results
- * @{
- */
-#pragma mark Operation Results
+#pragma mark Operation Results /** @name Operation Results */
 
 /**
  * The data that was read from disk.
@@ -233,8 +226,6 @@
  */
 @property (readwrite, retain) id processedObject;
 
-/**@}*/
-
 @end
 
 
@@ -245,6 +236,8 @@
  */
 @protocol NIOperationDelegate <NSObject>
 @optional
+
+#pragma mark State Changes /** @name [NIOperationDelegate] State Changes */
 
 /**
  * The operation has started executing.

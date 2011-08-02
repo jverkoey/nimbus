@@ -44,11 +44,7 @@
   NILinkedList*         _lruCacheObjects;
 }
 
-/**
- * @name Creating an In-Memory Cache
- * @{
- */
-#pragma mark Creating an In-Memory Cache
+#pragma mark Creating an In-Memory Cache /** @name Creating an In-Memory Cache */
 
 /**
  * Initialize the cache with zero initial capacity.
@@ -63,14 +59,8 @@
  */
 - (id)initWithCapacity:(NSUInteger)capacity;
 
-/**@}*/// End of Creating an In-Memory Cache
 
-
-/**
- * @name Storing Objects in the Cache
- * @{
- */
-#pragma mark Storing Objects in the Cache
+#pragma mark Storing Objects in the Cache /** @name Storing Objects in the Cache */
 
 /**
  * Store an object in the cache.
@@ -96,14 +86,8 @@
  */
 - (void)storeObject:(id)object withName:(NSString *)name expiresAfter:(NSDate *)expirationDate;
 
-/**@}*/// End of Storing Objects in the Cache
 
-
-/**
- * @name Removing Objects from the Cache
- * @{
- */
-#pragma mark Removing Objects from the Cache
+#pragma mark Removing Objects from the Cache /** @name Removing Objects from the Cache */
 
 /**
  * Remove an object in the cache.
@@ -119,14 +103,8 @@
  */
 - (void)removeAllObjects;
 
-/**@}*/// End of Storing Objects in the Cache
 
-
-/**
- * @name Accessing Objects in the Cache
- * @{
- */
-#pragma mark Accessing Objects in the Cache
+#pragma mark Accessing Objects in the Cache /** @name Accessing Objects in the Cache */
 
 /**
  * Retrieve an object from the cache.
@@ -156,14 +134,8 @@
  */
 - (NSDate *)dateOfLastAccessWithName:(NSString *)name;
 
-/**@}*/// End of Accessing Objects in the Cache
 
-
-/**
- * @name Reducing Memory Usage Explicitly
- * @{
- */
-#pragma mark Reducing Memory Usage Explicitly
+#pragma mark Reducing Memory Usage Explicitly /** @name Reducing Memory Usage Explicitly */
 
 /**
  * Remove all expired objects from the cache.
@@ -175,26 +147,17 @@
  */
 - (void)reduceMemoryUsage;
 
-/**@}*/// End of Reducing Memory Usage Explicitly
 
-
-/**
- * @name Querying an In-Memory Cache
- * @{
- */
-#pragma mark Querying an In-Memory Cache
+#pragma mark Querying an In-Memory Cache /** @name Querying an In-Memory Cache */
 
 /**
  * The number of objects stored in this cache.
  */
 @property (nonatomic, readonly) NSUInteger count;
 
-/**@}*/// End of Querying an In-Memory Cache
-
 
 /**
  * @name Subclassing
- * @{
  *
  * The following methods are provided to aid in subclassing and are not meant to be
  * used externally.
@@ -227,8 +190,6 @@
  */
 - (void)willRemoveObject:(id)object withName:(NSString *)name;
 
-/**@}*/
-
 @end
 
 
@@ -260,25 +221,15 @@
 }
 
 
-/**
- * @name Querying an In-Memory Image Cache
- * @{
- */
-#pragma mark Querying an In-Memory Image Cache
+#pragma mark Querying an In-Memory Image Cache /** @name Querying an In-Memory Image Cache */
 
 /**
  * The total number of pixels being stored in the cache.
  */
 @property (nonatomic, readonly, assign) NSUInteger numberOfPixels;
 
-/**@}*/// End of Querying an In-Memory Image Cache
 
-
-/**
- * @name Setting the Maximum Number of Pixels
- * @{
- */
-#pragma mark Setting the Maximum Number of Pixels
+#pragma mark Setting the Maximum Number of Pixels /** @name Setting the Maximum Number of Pixels */
 
 /**
  * The maximum number of pixels this cache may ever store.
@@ -293,8 +244,6 @@
  * Defaults to 0, which is special cased to represent an unlimited number of pixels.
  */
 @property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixelsUnderStress;
-
-/**@}*/// End of Setting the Maximum Number of Pixels
 
 @end
 

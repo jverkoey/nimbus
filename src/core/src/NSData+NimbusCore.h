@@ -18,6 +18,7 @@
 
 #import <Foundation/Foundation.h>
 
+// Documentation for these additions is found in the .m file.
 @interface NSData (NimbusCore)
 
 @property (nonatomic, readonly) NSString* md5Hash;
