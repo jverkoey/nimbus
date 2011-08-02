@@ -21,8 +21,10 @@
 
 /**
  * An interface for interacting with other apps installed on the device.
+ *
+ *      @ingroup NimbusInterapp
  */
-@interface NIRunApp : NSObject
+@interface NIInterapp : NSObject
 
 #pragma mark Safari /** @name Safari **/
 

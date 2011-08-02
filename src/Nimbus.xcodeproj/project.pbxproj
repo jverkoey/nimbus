@@ -89,8 +89,9 @@
 		6675732313E771380076F555 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */; };
 		6675732613E771380076F555 /* libNimbusInterapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6675731213E771380076F555 /* libNimbusInterapp.a */; };
 		6675733D13E7718B0076F555 /* NimbusInterapp_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6675733913E7718B0076F555 /* NimbusInterapp_Prefix.pch */; };
-		6675733E13E7718B0076F555 /* NIRunApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 6675733B13E7718B0076F555 /* NIRunApp.h */; };
-		6675733F13E7718B0076F555 /* NIRunApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675733C13E7718B0076F555 /* NIRunApp.m */; };
+		6675733E13E7718B0076F555 /* NIInterapp.h in Headers */ = {isa = PBXBuildFile; fileRef = 6675733B13E7718B0076F555 /* NIInterapp.h */; };
+		6675733F13E7718B0076F555 /* NIInterapp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675733C13E7718B0076F555 /* NIInterapp.m */; };
+		6675734513E773AA0076F555 /* NimbusInterapp.h in Headers */ = {isa = PBXBuildFile; fileRef = 6675734413E773AA0076F555 /* NimbusInterapp.h */; };
 		66A03C0D13E6E85E00B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66A03C1B13E6E85E00B514F3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66A03C1D13E6E85E00B514F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
@@ -369,9 +370,10 @@
 		6675731F13E771380076F555 /* NimbusInterappTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusInterappTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675733713E7718B0076F555 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = interapp/deps; sourceTree = SOURCE_ROOT; };
 		6675733913E7718B0076F555 /* NimbusInterapp_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusInterapp_Prefix.pch; sourceTree = "<group>"; };
-		6675733B13E7718B0076F555 /* NIRunApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIRunApp.h; sourceTree = "<group>"; };
-		6675733C13E7718B0076F555 /* NIRunApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIRunApp.m; sourceTree = "<group>"; };
+		6675733B13E7718B0076F555 /* NIInterapp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIInterapp.h; sourceTree = "<group>"; };
+		6675733C13E7718B0076F555 /* NIInterapp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIInterapp.m; sourceTree = "<group>"; };
 		6675734313E772100076F555 /* NimbusInterappTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NimbusInterappTests-Info.plist"; sourceTree = "<group>"; };
+		6675734413E773AA0076F555 /* NimbusInterapp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusInterapp.h; sourceTree = "<group>"; };
 		66A03C0913E6E85E00B514F3 /* libNimbusCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A03C0C13E6E85E00B514F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		66A03C1913E6E85E00B514F3 /* NimbusCoreTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCoreTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -844,8 +846,9 @@
 		6675733A13E7718B0076F555 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				6675733B13E7718B0076F555 /* NIRunApp.h */,
-				6675733C13E7718B0076F555 /* NIRunApp.m */,
+				6675734413E773AA0076F555 /* NimbusInterapp.h */,
+				6675733B13E7718B0076F555 /* NIInterapp.h */,
+				6675733C13E7718B0076F555 /* NIInterapp.m */,
 			);
 			name = src;
 			path = interapp/src;
@@ -1238,7 +1241,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6675733D13E7718B0076F555 /* NimbusInterapp_Prefix.pch in Headers */,
-				6675733E13E7718B0076F555 /* NIRunApp.h in Headers */,
+				6675733E13E7718B0076F555 /* NIInterapp.h in Headers */,
+				6675734513E773AA0076F555 /* NimbusInterapp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1856,7 +1860,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6675733F13E7718B0076F555 /* NIRunApp.m in Sources */,
+				6675733F13E7718B0076F555 /* NIInterapp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

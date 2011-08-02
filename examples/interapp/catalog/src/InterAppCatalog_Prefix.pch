@@ -7,4 +7,5 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "NimbusCore.h"
+#import "NimbusInterapp.h"
 #endif

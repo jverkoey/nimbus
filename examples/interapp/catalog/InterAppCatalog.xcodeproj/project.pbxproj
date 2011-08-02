@@ -28,7 +28,7 @@
 		66B4E95213E4BCAB0098787F /* NSData+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B4E94213E4BCAB0098787F /* NSData+NimbusCore.m */; };
 		66B4E95313E4BCAB0098787F /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B4E94313E4BCAB0098787F /* NSString+NimbusCore.m */; };
 		66B4E95D13E4C0270098787F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B4E95C13E4C0270098787F /* CoreLocation.framework */; };
-		66B4E96813E63AA20098787F /* NIRunApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B4E96713E63AA20098787F /* NIRunApp.m */; };
+		66B4E96813E63AA20098787F /* NIInterapp.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B4E96713E63AA20098787F /* NIInterapp.m */; };
 		66B4E97C13E63BE10098787F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B4E97813E63BE10098787F /* AppDelegate.m */; };
 		66B4E97D13E63BE10098787F /* CatalogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B4E97A13E63BE10098787F /* CatalogTableViewController.m */; };
 		66B4E97E13E63BE10098787F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B4E97B13E63BE10098787F /* main.m */; };
@@ -36,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6675734B13E77CFC0076F555 /* NimbusInterapp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusInterapp.h; path = ../../../src/interapp/src/NimbusInterapp.h; sourceTree = "<group>"; };
 		66A03BE713E6E54E00B514F3 /* NIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIError.h; path = ../../../src/core/src/NIError.h; sourceTree = "<group>"; };
 		66A03BE813E6E54E00B514F3 /* NIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIError.m; path = ../../../src/core/src/NIError.m; sourceTree = "<group>"; };
 		66B4E8D113E4BC290098787F /* InterAppCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterAppCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,8 +78,8 @@
 		66B4E94213E4BCAB0098787F /* NSData+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+NimbusCore.m"; path = "../../../src/core/src/NSData+NimbusCore.m"; sourceTree = "<group>"; };
 		66B4E94313E4BCAB0098787F /* NSString+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NimbusCore.m"; path = "../../../src/core/src/NSString+NimbusCore.m"; sourceTree = "<group>"; };
 		66B4E95C13E4C0270098787F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		66B4E96613E63AA20098787F /* NIRunApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIRunApp.h; path = ../../../src/interapp/src/NIRunApp.h; sourceTree = "<group>"; };
-		66B4E96713E63AA20098787F /* NIRunApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIRunApp.m; path = ../../../src/interapp/src/NIRunApp.m; sourceTree = "<group>"; };
+		66B4E96613E63AA20098787F /* NIInterapp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIInterapp.h; path = ../../../src/interapp/src/NIInterapp.h; sourceTree = "<group>"; };
+		66B4E96713E63AA20098787F /* NIInterapp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIInterapp.m; path = ../../../src/interapp/src/NIInterapp.m; sourceTree = "<group>"; };
 		66B4E97513E63BD00098787F /* InterAppCatalog_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InterAppCatalog_Prefix.pch; path = src/InterAppCatalog_Prefix.pch; sourceTree = "<group>"; };
 		66B4E97613E63BD80098787F /* InterAppCatalog-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "InterAppCatalog-Info.plist"; path = "resources/InterAppCatalog-Info.plist"; sourceTree = SOURCE_ROOT; };
 		66B4E97713E63BE10098787F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = src/AppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -221,8 +222,9 @@
 		66B4E95813E4BE0C0098787F /* InterApp */ = {
 			isa = PBXGroup;
 			children = (
-				66B4E96613E63AA20098787F /* NIRunApp.h */,
-				66B4E96713E63AA20098787F /* NIRunApp.m */,
+				6675734B13E77CFC0076F555 /* NimbusInterapp.h */,
+				66B4E96613E63AA20098787F /* NIInterapp.h */,
+				66B4E96713E63AA20098787F /* NIInterapp.m */,
 			);
 			name = InterApp;
 			sourceTree = "<group>";
@@ -304,7 +306,7 @@
 				66B4E95113E4BCAB0098787F /* NIState.m in Sources */,
 				66B4E95213E4BCAB0098787F /* NSData+NimbusCore.m in Sources */,
 				66B4E95313E4BCAB0098787F /* NSString+NimbusCore.m in Sources */,
-				66B4E96813E63AA20098787F /* NIRunApp.m in Sources */,
+				66B4E96813E63AA20098787F /* NIInterapp.m in Sources */,
 				66B4E97C13E63BE10098787F /* AppDelegate.m in Sources */,
 				66B4E97D13E63BE10098787F /* CatalogTableViewController.m in Sources */,
 				66B4E97E13E63BE10098787F /* main.m in Sources */,
