@@ -36,9 +36,8 @@ static const CGFloat kBadgeLineSize = 2.0;
   return self;
 }
 
--(void) sizeToFit {
+-(CGSize)sizeThatFits:(CGSize)size {
 
-  CGSize retValue;
 	CGFloat rectWidth, rectHeight;
 	CGSize stringSize = [self.text sizeWithFont:_font];
   
@@ -47,12 +46,10 @@ static const CGFloat kBadgeLineSize = 2.0;
 	if ([self.text length]>=2) {
 		rectWidth = 10 + (stringSize.width + [self.text length]); 
     rectHeight = 20;
-		retValue = CGSizeMake(rectWidth, rectHeight * scaleFactor);
-	} else {
-		retValue = CGSizeMake(20 * scaleFactor, 20 * scaleFactor);
+		
+    return CGSizeMake(rectWidth, rectHeight * scaleFactor);
 	}
-	self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, retValue.width, retValue.height);
-	[self setNeedsDisplay];
+  return CGSizeMake(20 * scaleFactor, 20 * scaleFactor);
 }
 
 -(void)setText:(NSString *)text {
