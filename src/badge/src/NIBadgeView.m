@@ -18,8 +18,6 @@
 
 static const CGFloat kBadgeRadius = 0.4;
 static const CGFloat kBadgeLineSize = 2.0;
-static const CGFloat kTextHPadding = 2.5;
-static const CGFloat kTextVPadding = 1.2;
 
 @implementation NIBadgeView
 
@@ -27,8 +25,8 @@ static const CGFloat kTextVPadding = 1.2;
 @synthesize tintColor = _tintColor;
 @synthesize font      = _font;
 
-- (id) init {
-  self = [super init];
+- (id) initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
   if (self) {
     self.contentScaleFactor = NIScreenScale();
 		self.backgroundColor = [UIColor clearColor];
@@ -38,40 +36,8 @@ static const CGFloat kTextVPadding = 1.2;
   return self;
 }
 
-- (id)initWithText:(NSString*)t {
-    self = [self init];
-    if (self) {
-      self.text = t;
-    }
-    return self;
-}
+-(void) sizeToFit {
 
-- (id)initWithText:(NSString*)t font:(UIFont*)f {
-  self = [self initWithText:t];
-  if (self) {
-    self.font = f;
-  }
-  return self;
-}
-
-- (id)initWithText:(NSString*)t tintColor:(UIColor*)c {
-  self = [self initWithText:t];
-  if (self) {
-    self.tintColor = c;
-  }
-  return self;
-}
-
-- (id)initWithText:(NSString*)t font:(UIFont*)f tintColor:(UIColor*)c {
-  self = [self initWithText:t font:f];
-  if (self) {
-    self.tintColor = c;
-  }
-  return self;
-}
-
--(void) autoFit {
-  
   CGSize retValue;
 	CGFloat rectWidth, rectHeight;
 	CGSize stringSize = [self.text sizeWithFont:_font];
@@ -91,12 +57,12 @@ static const CGFloat kTextVPadding = 1.2;
 
 -(void)setText:(NSString *)text {
   _text = text;
-  [self autoFit];
+  [self setNeedsDisplay];
 }
 
 -(void)setFont:(UIFont *)font {
   _font = font;
-  [self autoFit];
+  [self setNeedsDisplay];
 }
 
 -(void)setTintColor:(UIColor *)tintColor {
@@ -146,9 +112,11 @@ static const CGFloat kTextVPadding = 1.2;
   // Should this be customizable?
   [[UIColor whiteColor] set];
   CGSize textSize = [self.text sizeWithFont:self.font];
+  
+  // We remove 1 point from the y-axis to account for the drop shadow.
   [self.text drawAtPoint:
-   CGPointMake((rect.size.width/2-textSize.width/2), 
-               (rect.size.height/2-textSize.height/2)-1) 
+   CGPointMake(floorf(rect.size.width/2-textSize.width/2), 
+               floorf(rect.size.height/2-textSize.height/2-1)) 
                 withFont:self.font];
   
   }

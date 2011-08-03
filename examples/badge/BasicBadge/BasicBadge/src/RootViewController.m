@@ -15,28 +15,37 @@
   self.title = @"Nimbus Badge";
   self.view.backgroundColor = [UIColor whiteColor];
   
-  NIBadgeView *badge1 = [[[NIBadgeView alloc] initWithText:@"2"] autorelease];
+  NIBadgeView *badge1 = [[[NIBadgeView alloc] initWithFrame:CGRectZero] autorelease];
+  badge1.text = @"2";
+  [badge1 sizeToFit];
   [self.view addSubview:badge1];
   
-  NIBadgeView *badge2 = [[[NIBadgeView alloc] initWithText:@"56"] autorelease];
-  badge2.frame = 
-    CGRectMake(0, badge1.frame.size.height, 
-               badge2.frame.size.width, badge2.frame.size.height);
+  NIBadgeView *badge2 = [[[NIBadgeView alloc] 
+                          initWithFrame:
+                            CGRectMake(0, badge1.frame.size.height, 
+                                       50, 25)] 
+                         autorelease];
+  badge2.text = @"56";
   [self.view addSubview:badge2];
   
-  NIBadgeView *badge3 = [[[NIBadgeView alloc] initWithText:@"99+" 
-                                                 tintColor:[UIColor blueColor]] autorelease];
-  badge3.frame = 
-    CGRectMake(0, badge2.frame.origin.y + badge2.frame.size.height, 
-               badge3.frame.size.width, badge3.frame.size.height);
+  NIBadgeView *badge3 = [[[NIBadgeView alloc] 
+                          initWithFrame:
+                            CGRectMake(0, badge2.frame.origin.y + badge2.frame.size.height,
+                                       0, 0)] 
+                         autorelease];
+  badge3.text = @"99+";
+  badge3.tintColor = [UIColor blueColor];
+  [badge3 sizeToFit];
   [self.view addSubview:badge3];
   
-  NIBadgeView *badge4 = [[[NIBadgeView alloc] initWithText:@"nimbus" 
-                                                      font:[UIFont boldSystemFontOfSize:22]
-                                                 tintColor:[UIColor blueColor]] autorelease];
-  badge4.frame = 
-    CGRectMake(0, badge3.frame.origin.y + badge3.frame.size.height, 
-               badge4.frame.size.width, badge4.frame.size.height);
+  NIBadgeView *badge4 = [[[NIBadgeView alloc] 
+                          initWithFrame:
+                            CGRectMake(0, badge3.frame.origin.y + badge3.frame.size.height,                                                                  
+                                       0, 0)] 
+                         autorelease];
+  badge4.text = @"nimbus";
+  badge4.font = [UIFont boldSystemFontOfSize:22];
+  [badge4 sizeToFit];
   [self.view addSubview:badge4];
 }
 

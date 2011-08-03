@@ -22,16 +22,22 @@
   UIFont* _font;
 }
 
+/*
+ * The text to display within the badge.
+ */
 @property (nonatomic, readwrite, copy) NSString* text;
 
+
+/*
+ * The tint color of the badge. The default color is red.
+ */
 @property (nonatomic, readwrite, assign) UIColor* tintColor;
 
+
+/*
+ * The font of the text within the badge. The default is the bold system
+ * font of size 13
+ */
 @property (nonatomic, readwrite, assign) UIFont* font;
-
-
-- (id)initWithText:(NSString*)t;
-- (id)initWithText:(NSString*)t font:(UIFont*)f;
-- (id)initWithText:(NSString*)t tintColor:(UIColor*)c;
-- (id)initWithText:(NSString*)t font:(UIFont*)f tintColor:(UIColor*)c;
 
 @end
