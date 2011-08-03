@@ -20,8 +20,40 @@
 /**
  * For common system metrics.
  *
- * Definitions of common view dimensions on the iPhone and iPad touch taking into account any
- * applicable context.
+ * If you ever need to work with system metrics in any way it can be a pain in the ass to try
+ * to figure out what the exact metrics are. Figuring out how long it takes the status bar
+ * to animate is not something you should be spending your time on. The metrics in this file
+ * are provided as a means of unifying a number of system metrics for use in your applications.
+ *
+ *
+ * <h2>What Qualifies as a Core Metric</h2>
+ *
+ * Core metrics are related to system components, such as the dimensions of a toolbar in
+ * a particular orientation or the duration of a standard animation. This is
+ * not the place to put feature-specific metrics, such as the height of a photo scrubber
+ * view.
+ *
+ *
+ * <h2>Examples</h2>
+ *
+ * <h3>Positioning a Toolbar</h3>
+ *
+ * The following example updates the position and height of a toolbar when the device
+ * orientation is changing. This ensures that, in landscape mode on the iPhone, the toolbar
+ * is slightly shorter to accomodate the smaller height of the screen.
+ *
+ * @code
+ * - (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
+ *                                          duration: (NSTimeInterval)duration {
+ *   [super willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
+ *                                           duration: duration];
+ * 
+ *   CGRect toolbarFrame = self.toolbar.frame;
+ *   toolbarFrame.size.height = NIToolbarHeightForOrientation(toInterfaceOrientation);
+ *   toolbarFrame.origin.y = self.view.bounds.size.height - toolbarFrame.size.height;
+ *   self.toolbar.frame = toolbarFrame;
+ * }
+ * @endcode
  *
  *      @ingroup NimbusCore
  *      @defgroup Common-Metrics Common Metrics
@@ -40,37 +72,47 @@
 CGFloat NIToolbarHeightForOrientation(UIInterfaceOrientation orientation);
 
 /**
- * The animation curve used when animating the status bar.
+ * The animation curve used when changing the status bar's visibility.
+ *
+ * This is the curve of the animation used by
+ * <code>-[[UIApplication sharedApplication] setStatusBarHidden:withAnimation:].</code>
  *
  * Value: UIViewAnimationCurveEaseIn
  */
 UIViewAnimationCurve NIStatusBarAnimationCurve(void);
 
 /**
- * The animation duration for animating the status bar.
+ * The animation duration used when changing the status bar's visibility.
+ *
+ * This is the duration of the animation used by
+ * <code>-[[UIApplication sharedApplication] setStatusBarHidden:withAnimation:].</code>
  *
  * Value: 0.3 seconds
  */
 NSTimeInterval NIStatusBarAnimationDuration(void);
 
 /**
- * The animation curve used when animating the status bar frame.
+ * The animation curve used when the status bar's bounds change (when a call is received,
+ * for example).
  *
  * Value: UIViewAnimationCurveEaseInOut
  */
-UIViewAnimationCurve NIStatusBarFrameAnimationCurve(void);
+UIViewAnimationCurve NIStatusBarBoundsChangeAnimationCurve(void);
 
 /**
- * The animation duration for animating the status bar frame.
+ * The animation duration used when the status bar's bounds change (when a call is received,
+ * for example).
  *
  * Value: 0.35 seconds
  */
-NSTimeInterval NIStatusBarFrameAnimationDuration(void);
+NSTimeInterval NIStatusBarBoundsChangeAnimationDuration(void);
 
 /**
  * Get the status bar's current height.
  *
  * If the status bar is hidden this will return 0.
+ *
+ * This is generally 20 when the status bar is its normal height.
  */
 CGFloat NIStatusBarHeight(void);
 

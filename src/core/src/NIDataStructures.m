@@ -21,20 +21,40 @@
 
 @interface NILinkedList()
 
+/**
+ * @internal
+ *
+ * Exposed so that the linked list enumerator can iterate over the nodes directly.
+ */
 @property (nonatomic, readonly, assign) struct NILinkedListNode* head;
 
 @end
 
 
+#pragma mark -
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @internal
+ *
+ * A implementation of NSEnumerator for NILinkedList.
+ *
+ * This class simply implements the nextObject NSEnumerator method and traverses a linked list.
+ * The linked list is retained when this enumerator is created and released once the enumerator
+ * is either released or deallocated.
+ */
 @interface NILinkedListEnumerator : NSEnumerator {
 @private
   NILinkedList* _ll;
   struct NILinkedListNode* _iterator;
 }
 
+/**
+ * Designated initializer. Retains the linked list.
+ */
 - (id)initWithLinkedList:(NILinkedList *)ll;
 
 @end
@@ -49,6 +69,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_ll);
+  _iterator = nil;
 
   [super dealloc];
 }
@@ -67,14 +88,19 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)nextObject {
   id object = nil;
+
+  // Iteration step.
   if (nil != _iterator) {
     object = _iterator->object;
     _iterator = _iterator->next;
 
+  // Completion step.
   } else {
     // As per the guidelines in the Objective-C docs for enumerators, we release the linked
     // list when we are finished enumerating.
     NI_RELEASE_SAFELY(_ll);
+    
+    // We don't have to set _iterator to nil here because is already is.
   }
   return object;
 }
@@ -83,13 +109,15 @@
 @end
 
 
+#pragma mark -
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NILinkedList
 
 @synthesize head = _head;
-@synthesize count = _count;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,15 +129,36 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  return [super init];
-}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Linked List Creation
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NILinkedList *)linkedList {
   return [[[[self class] alloc] init] autorelease];
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NILinkedList *)linkedListWithArray:(NSArray *)array {
+  return [[[[self class] alloc] initWithArray:array] autorelease];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithArray:(NSArray *)anArray {
+  if ((self = [self init])) {
+    for (id object in anArray) {
+      [self addObject:object];
+    }
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Private Methods
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -132,14 +181,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)_setCount:(unsigned long)count {
+- (void)_setCount:(NSUInteger)count {
   _count = count;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
 #pragma mark NSCopying
 
 
@@ -147,26 +195,10 @@
 - (id)copyWithZone:(NSZone *)zone {
   NILinkedList* copy = [[[self class] allocWithZone:zone] init];
 
-  struct NILinkedListNode* prevCopiedNode = 0;
-
   struct NILinkedListNode* node = _head;
+
   while (0 != node) {
-
-    struct NILinkedListNode* copiedNode = malloc(sizeof(struct NILinkedListNode));
-    memset(copiedNode, 0, sizeof(struct NILinkedListNode));
-    copiedNode->object = [node->object retain];
-    copiedNode->prev = prevCopiedNode;
-
-    if (0 != prevCopiedNode) {
-      prevCopiedNode->next = copiedNode;
-
-    } else {
-      [copy _setHead:copiedNode];
-    }
-
-    [copy _setTail:copiedNode];
-
-    prevCopiedNode = node;
+    [copy addObject:node->object];
     node = node->next;
   }
 
@@ -178,13 +210,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
 #pragma mark NSCoding
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)encodeWithCoder:(NSCoder *)coder {
-  [coder encodeValueOfObjCType:@encode(unsigned long) at:&_count];
+  [coder encodeValueOfObjCType:@encode(NSUInteger) at:&_count];
 
   struct NILinkedListNode* node = _head;
   while (0 != node) {
@@ -197,29 +228,19 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder *)decoder {
   if ((self = [super init])) {
-    [decoder decodeValueOfObjCType:@encode(unsigned long) at:&_count];
+    // We'll let addObject modify the count, so create a local count here so that we don't
+    // double count every object.
+    NSUInteger count = 0;
+    [decoder decodeValueOfObjCType:@encode(NSUInteger) at:&count];
 
-    struct NILinkedListNode* prevNode = 0;
-
-    for (unsigned long ix = 0; ix < _count; ++ix) {
+    for (NSUInteger ix = 0; ix < count; ++ix) {
       id object = [decoder decodeObject];
 
-      struct NILinkedListNode* node = malloc(sizeof(struct NILinkedListNode));
-      memset(node, 0, sizeof(struct NILinkedListNode));
-      node->object = [object retain];
-      node->prev = prevNode;
-
-      if (0 != prevNode) {
-        prevNode->next = node;
-
-      } else {
-        _head = node;
-      }
-
-      _tail = node;
-
-      prevNode = node;
+      [self addObject:object];
     }
+
+    // Sanity check.
+    NIDASSERT(count == _count);
   }
   return self;
 }
@@ -227,7 +248,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
 #pragma mark NSFastEnumeration
 
 
@@ -237,7 +257,8 @@
                                     count: (NSUInteger)len {
   // Initialization condition.
   if (0 == state->state) {
-    // Whenever the linked list is modified, the modification number increases.
+    // Whenever the linked list is modified, the modification number increases. This allows
+    // enumeration to bail out if the linked list is modified mid-flight.
     state->mutationsPtr = &_modificationNumber;
   }
 
@@ -249,10 +270,13 @@
 
     if (0 == state->state) {
       // Initialize the state here instead of above when we check 0 == state->state because
-      // for single item linked lists head == tail.
+      // for single item linked lists head == tail. If we initialized it in the initialization
+      // condition, state->state != _tail check would fail and we wouldn't return the single
+      // object.
       state->state = (unsigned long)_head;
     }
 
+    // Return *at most* the number of request objects.
     while ((0 != state->state) && (numberOfItemsReturned < len)) {
       struct NILinkedListNode* node = (struct NILinkedListNode *)state->state;
       stackbuf[numberOfItemsReturned] = node->object;
@@ -261,6 +285,9 @@
     }
 
     if (0 == state->state) {
+      // Final step condition. We allow the above loop to overstep the end one iteration,
+      // because we rewind it one step here (to ensure that the next time enumeration occurs,
+      // state == _tail.
       state->state = (unsigned long)_tail;
     }
 
@@ -273,7 +300,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
 #pragma mark Public Methods
 
 
@@ -290,74 +316,53 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NILinkedListLocation *)addObject:(id)object {
-  // nil objects can not be added to a linked list.
-  NIDASSERT(nil != object);
-  if (nil == object) {
-    return nil;
+- (NSUInteger)count {
+  return _count;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Extended Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSArray *)allObjects {
+  NSMutableArray* mutableArrayOfObjects = [[NSMutableArray alloc] initWithCapacity:self.count];
+  
+  for (id object in self) {
+    [mutableArrayOfObjects addObject:object];
   }
+  
+  NSArray* arrayOfObjects = [mutableArrayOfObjects copy];
+  NI_RELEASE_SAFELY(mutableArrayOfObjects);
+  return [arrayOfObjects autorelease];
+}
 
-  struct NILinkedListNode* node = malloc(sizeof(struct NILinkedListNode));
-  memset(node, 0, sizeof(struct NILinkedListNode));
-  node->object = [object retain];
-  if (nil == _tail) {
-    _head = node;
-    _tail = node;
 
-  } else {
-    _tail->next = (struct NILinkedListNode*)node;
-    node->prev = (struct NILinkedListNode*)_tail;
-    _tail = node;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)containsObject:(id)anObject {
+  for (id object in self) {
+    if (object == anObject) {
+      return YES;
+    }
   }
+  
+  return NO;
+}
 
-  ++_count;
-  ++_modificationNumber;
 
-  return (NILinkedListLocation *)node;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)description {
+  // In general we should try to avoid cheating by using allObjects for memory performance reasons,
+  // but the description method is complex enough that it's not worth reinventing the wheel here.
+  return [[self allObjects] description];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)objectAtLocation:(NILinkedListLocation *)location {
   return ((struct NILinkedListNode *)location)->object;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)removeAllObjects {
-  struct NILinkedListNode* node = _head;
-  while (nil != node) {
-    struct NILinkedListNode* next = (struct NILinkedListNode *)node->next;
-    [self _eraseNode:node];
-    node = next;
-  }
-
-  _head = nil;
-  _tail = nil;
-
-  _count = 0;
-  ++_modificationNumber;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)removeObject:(id)object {
-  NILinkedListLocation* location = [self locationOfObject:object];
-  if (0 != location) {
-    [self removeObjectAtLocation:location];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)removeFirstObject {
-  [self removeObjectAtLocation:_head];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)removeLastObject {
-  [self removeObjectAtLocation:_tail];
 }
 
 
@@ -385,29 +390,102 @@
   if (0 == location) {
     return;
   }
-
+  
   struct NILinkedListNode* node = (struct NILinkedListNode *)location;
-
+  
   if (0 != node->prev) {
     node->prev->next = node->next;
-
+    
   } else {
     _head = node->next;
   }
-
+  
   if (0 != node->next) {
     node->next->prev = node->prev;
-
+    
   } else {
     _tail = node->prev;
   }
-
+  
   [self _eraseNode:node];
-
+  
   --_count;
   ++_modificationNumber;
 }
 
 
-@end
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NILinkedListLocation *)addObject:(id)object {
+  // nil objects can not be added to a linked list.
+  NIDASSERT(nil != object);
+  if (nil == object) {
+    return nil;
+  }
+  
+  struct NILinkedListNode* node = malloc(sizeof(struct NILinkedListNode));
+  memset(node, 0, sizeof(struct NILinkedListNode));
+  
+  node->object = [object retain];
+  
+  // Empty condition.
+  if (nil == _tail) {
+    _head = node;
+    _tail = node;
+    
+  } else {
+    // Non-empty condition.
+    _tail->next = (struct NILinkedListNode*)node;
+    node->prev = (struct NILinkedListNode*)_tail;
+    _tail = node;
+  }
+  
+  ++_count;
+  ++_modificationNumber;
+  
+  return (NILinkedListLocation *)node;
+}
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Mutable Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)removeAllObjects {
+  struct NILinkedListNode* node = _head;
+  while (nil != node) {
+    struct NILinkedListNode* next = (struct NILinkedListNode *)node->next;
+    [self _eraseNode:node];
+    node = next;
+  }
+  
+  _head = nil;
+  _tail = nil;
+  
+  _count = 0;
+  ++_modificationNumber;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)removeObject:(id)object {
+  NILinkedListLocation* location = [self locationOfObject:object];
+  if (0 != location) {
+    [self removeObjectAtLocation:location];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)removeFirstObject {
+  [self removeObjectAtLocation:_head];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)removeLastObject {
+  [self removeObjectAtLocation:_tail];
+}
+
+@end

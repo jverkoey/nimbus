@@ -44,9 +44,36 @@
 - (void)testEmptyLinkedList {
   NILinkedList* ll = [[[NILinkedList alloc] init] autorelease];
 
-  STAssertEquals([ll count], (unsigned long)0, @"Initial linked list should be empty.");
+  STAssertEquals([ll count], (NSUInteger)0, @"Initial linked list should be empty.");
   STAssertNil(ll.firstObject, @"Initial linked list should not have a head object.");
   STAssertNil(ll.lastObject, @"Initial linked list should not have a tail object.");
+
+  ll = [NILinkedList linkedList];
+
+  STAssertEquals([ll count], (NSUInteger)0, @"Initial linked list should be empty.");
+  STAssertNil(ll.firstObject, @"Initial linked list should not have a head object.");
+  STAssertNil(ll.lastObject, @"Initial linked list should not have a tail object.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testLinkedListWithArray {
+  id object1 = [NSArray array];
+  id object2 = [NSDictionary dictionary];
+  id object3 = [NSSet set];
+  NSArray* array = [NSArray arrayWithObjects:object1, object2, object3, nil];
+  
+  NILinkedList* ll = [[[NILinkedList alloc] initWithArray:array] autorelease];
+  
+  STAssertEquals([ll count], (NSUInteger)3, @"Should have 3 objects.");
+  STAssertEquals(ll.firstObject, object1, @"Head object should be object1.");
+  STAssertEquals(ll.lastObject, object3, @"Tail object should be object3.");
+
+  ll = [NILinkedList linkedListWithArray:array];
+  
+  STAssertEquals([ll count], (NSUInteger)3, @"Should have 3 objects.");
+  STAssertEquals(ll.firstObject, object1, @"Head object should be object1.");
+  STAssertEquals(ll.lastObject, object3, @"Tail object should be object3.");
 }
 
 
@@ -56,7 +83,7 @@
 
   NSArray* object = [NSArray array];
   [ll addObject:object];
-  STAssertEquals(ll.count, (unsigned long)1, @"There should be exactly one object.");
+  STAssertEquals(ll.count, (NSUInteger)1, @"There should be exactly one object.");
   STAssertEquals(ll.firstObject, object, @"Head should be the object.");
   STAssertEquals(ll.lastObject, object, @"Tail should be the object.");
 }
@@ -70,7 +97,7 @@
   id object2 = [NSDictionary dictionary];
   [ll addObject:object1];
   [ll addObject:object2];
-  STAssertEquals(ll.count, (unsigned long)2, @"There should be exactly two objects.");
+  STAssertEquals(ll.count, (NSUInteger)2, @"There should be exactly two objects.");
   STAssertEquals(ll.firstObject, object1, @"Head should be the first object.");
   STAssertEquals(ll.lastObject, object2, @"Tail should be the second object.");
 }
@@ -86,9 +113,76 @@
   [ll addObject:object1];
   [ll addObject:object2];
   [ll addObject:object3];
-  STAssertEquals(ll.count, (unsigned long)3, @"There should be exactly three objects.");
+  STAssertEquals(ll.count, (NSUInteger)3, @"There should be exactly three objects.");
   STAssertEquals(ll.firstObject, object1, @"Head should be the first object.");
   STAssertEquals(ll.lastObject, object3, @"Tail should be the third object.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testLinkedListCount {
+  NILinkedList* ll = [[[NILinkedList alloc] init] autorelease];
+  
+  id object1 = [NSArray array];
+  id object2 = [NSDictionary dictionary];
+  id object3 = [NSSet set];
+  STAssertEquals(ll.count, (NSUInteger)0, @"There should be exactly zero objects.");
+  [ll addObject:object1];
+  STAssertEquals(ll.count, (NSUInteger)1, @"There should be exactly one object.");
+  [ll addObject:object2];
+  STAssertEquals(ll.count, (NSUInteger)2, @"There should be exactly two objects.");
+  [ll addObject:object3];
+  STAssertEquals(ll.count, (NSUInteger)3, @"There should be exactly three objects.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testLinkedListAllObjects {
+  id object1 = [NSArray array];
+  id object2 = [NSDictionary dictionary];
+  id object3 = [NSSet set];
+  NSArray* array = [NSArray arrayWithObjects:object1, object2, object3, nil];
+  
+  NILinkedList* ll = [NILinkedList linkedListWithArray:array];
+  
+  array = [ll allObjects];
+
+  STAssertEquals([array count], (NSUInteger)3, @"There should be 3 objects in the array.");
+  STAssertEquals([array objectAtIndex:0], object1, @"The first object should be object1.");
+  STAssertEquals([array objectAtIndex:1], object2, @"The second object should be object2.");
+  STAssertEquals([array objectAtIndex:2], object3, @"The third object should be object3.");
+
+  // Test empty case.
+  array = [NSArray array];
+  
+  ll = [NILinkedList linkedListWithArray:array];
+
+  array = [ll allObjects];
+
+  STAssertEquals([array count], (NSUInteger)0, @"There should be no objects in the array.");
+
+  // Test nil case.
+  ll = [NILinkedList linkedListWithArray:nil];
+  
+  array = [ll allObjects];
+  
+  STAssertEquals([array count], (NSUInteger)0, @"There should be no objects in the array.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testLinkedListContainsObject {
+  id object1 = [NSArray array];
+  id object2 = [NSDictionary dictionary];
+  id object3 = [NSSet set];
+  NSArray* array = [NSArray arrayWithObjects:object1, object2, nil];
+  
+  NILinkedList* ll = [NILinkedList linkedListWithArray:array];
+  
+  STAssertTrue([ll containsObject:object1], @"The linked list should contain object1.");
+  STAssertTrue([ll containsObject:object2], @"The linked list should contain object2.");
+  STAssertFalse([ll containsObject:object3], @"The linked list should not contain object3.");
+  STAssertFalse([ll containsObject:nil], @"Checking for the nil object should never be true.");
 }
 
 
@@ -118,17 +212,17 @@
   [ll addObject:object2];
   [ll addObject:object3];
   [ll removeFirstObject];
-  STAssertEquals(ll.count, (unsigned long)2, @"There should be exactly two objects.");
+  STAssertEquals(ll.count, (NSUInteger)2, @"There should be exactly two objects.");
   STAssertEquals(ll.firstObject, object2, @"Head should be the second object.");
   STAssertEquals(ll.lastObject, object3, @"Tail should be the third object.");
 
   [ll removeFirstObject];
-  STAssertEquals(ll.count, (unsigned long)1, @"There should be exactly one object.");
+  STAssertEquals(ll.count, (NSUInteger)1, @"There should be exactly one object.");
   STAssertEqualObjects(ll.firstObject, object3, @"Head should be the third object.");
   STAssertEqualObjects(ll.lastObject, object3, @"Tail should be the third object.");
 
   [ll removeFirstObject];
-  STAssertEquals(ll.count, (unsigned long)0, @"There should be exactly zero objects.");
+  STAssertEquals(ll.count, (NSUInteger)0, @"There should be exactly zero objects.");
   STAssertNil(ll.firstObject, @"Head should be nil.");
   STAssertNil(ll.lastObject, @"Tail should be nil.");
 }
@@ -145,17 +239,17 @@
   [ll addObject:object2];
   [ll addObject:object3];
   [ll removeLastObject];
-  STAssertEquals(ll.count, (unsigned long)2, @"There should be exactly two objects.");
+  STAssertEquals(ll.count, (NSUInteger)2, @"There should be exactly two objects.");
   STAssertEquals(ll.firstObject, object1, @"Head should be the first object.");
   STAssertEquals(ll.lastObject, object2, @"Tail should be the second object.");
 
   [ll removeLastObject];
-  STAssertEquals(ll.count, (unsigned long)1, @"There should be exactly one object.");
+  STAssertEquals(ll.count, (NSUInteger)1, @"There should be exactly one object.");
   STAssertEquals(ll.firstObject, object1, @"Head should be the first object.");
   STAssertEquals(ll.lastObject, object1, @"Tail should be the first object.");
 
   [ll removeLastObject];
-  STAssertEquals(ll.count, (unsigned long)0, @"There should be exactly zero objects.");
+  STAssertEquals(ll.count, (NSUInteger)0, @"There should be exactly zero objects.");
   STAssertNil(ll.firstObject, @"Head should be nil.");
   STAssertNil(ll.lastObject, @"Tail should be nil.");
 }
@@ -173,7 +267,7 @@
   [ll addObject:object3];
   [ll removeAllObjects];
 
-  STAssertEquals(ll.count, (unsigned long)0, @"There should be exactly zero objects.");
+  STAssertEquals(ll.count, (NSUInteger)0, @"There should be exactly zero objects.");
   STAssertNil(ll.firstObject, @"Head should be nil.");
   STAssertNil(ll.lastObject, @"Tail should be nil.");
 }
@@ -193,19 +287,19 @@
 
   [ll removeLastObject];
 
-  STAssertEquals(ll.count, (unsigned long)0, @"There should be exactly zero objects.");
+  STAssertEquals(ll.count, (NSUInteger)0, @"There should be exactly zero objects.");
   STAssertNil(ll.firstObject, @"Head should be nil.");
   STAssertNil(ll.lastObject, @"Tail should be nil.");
 
   [ll removeFirstObject];
 
-  STAssertEquals(ll.count, (unsigned long)0, @"There should be exactly zero objects.");
+  STAssertEquals(ll.count, (NSUInteger)0, @"There should be exactly zero objects.");
   STAssertNil(ll.firstObject, @"Head should be nil.");
   STAssertNil(ll.lastObject, @"Tail should be nil.");
 
   [ll removeAllObjects];
 
-  STAssertEquals(ll.count, (unsigned long)0, @"There should be exactly zero objects.");
+  STAssertEquals(ll.count, (NSUInteger)0, @"There should be exactly zero objects.");
   STAssertNil(ll.firstObject, @"Head should be nil.");
   STAssertNil(ll.lastObject, @"Tail should be nil.");
 }
@@ -238,21 +332,21 @@
   [ll addObject:object3];
   [ll removeObject:object2];
 
-  STAssertEquals(ll.count, (unsigned long)2, @"There should be exactly two objects.");
+  STAssertEquals(ll.count, (NSUInteger)2, @"There should be exactly two objects.");
   STAssertEquals(ll.firstObject, object1, @"Head should be the first object.");
   STAssertEquals(ll.lastObject, object3, @"Tail should be the third object.");
 
   // Test removing an object that has already been removed.
   [ll removeObject:object2];
 
-  STAssertEquals(ll.count, (unsigned long)2, @"There should be exactly two objects.");
+  STAssertEquals(ll.count, (NSUInteger)2, @"There should be exactly two objects.");
   STAssertEquals(ll.firstObject, object1, @"Head should be the first object.");
   STAssertEquals(ll.lastObject, object3, @"Tail should be the third object.");
 
   // Test removing the tail.
   [ll removeObject:object3];
 
-  STAssertEquals(ll.count, (unsigned long)1, @"There should be exactly one object.");
+  STAssertEquals(ll.count, (NSUInteger)1, @"There should be exactly one object.");
   STAssertEquals(ll.firstObject, object1, @"Head should be the first object.");
   STAssertEquals(ll.lastObject, object1, @"Tail should be the first object.");
 }
@@ -270,7 +364,7 @@
   [ll addObject:object3];
   [ll removeObjectAtLocation:[ll locationOfObject:object2]];
 
-  STAssertEquals(ll.count, (unsigned long)2, @"There should be exactly two objects.");
+  STAssertEquals(ll.count, (NSUInteger)2, @"There should be exactly two objects.");
   STAssertEquals(ll.firstObject, object1, @"Head should be the first object.");
   STAssertEquals(ll.lastObject, object3, @"Tail should be the third object.");
 }
@@ -334,7 +428,7 @@
   [ll addObject:object3];
 
   NILinkedList* ll2 = [[ll copy] autorelease];
-  STAssertEquals(ll2.count, (unsigned long)3, @"There should be exactly three objects.");
+  STAssertEquals(ll2.count, (NSUInteger)3, @"There should be exactly three objects.");
   STAssertEquals(ll2.firstObject, object1, @"Head should be the first object.");
   STAssertEquals(ll2.lastObject, object3, @"Tail should be the third object.");
 }
@@ -354,7 +448,7 @@
   NSData* data = [NSKeyedArchiver archivedDataWithRootObject:ll];
   NILinkedList* ll2 = [NSKeyedUnarchiver unarchiveObjectWithData:data];
 
-  STAssertEquals(ll2.count, (unsigned long)3, @"There should be exactly three objects.");
+  STAssertEquals(ll2.count, (NSUInteger )3, @"There should be exactly three objects.");
   STAssertEquals(ll2.firstObject, object1, @"Head should be the first object.");
   STAssertEquals(ll2.lastObject, object3, @"Tail should be the third object.");
 }

@@ -143,8 +143,8 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)statusBarWillChangeFrame {
   [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:NIStatusBarFrameAnimationDuration()];
-  [UIView setAnimationCurve:NIStatusBarFrameAnimationCurve()];
+  [UIView setAnimationDuration:NIStatusBarBoundsChangeAnimationDuration()];
+  [UIView setAnimationCurve:NIStatusBarBoundsChangeAnimationCurve()];
   CGRect frame = [NIOverview frame];
   sOverviewView.center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
   [UIView commitAnimations];

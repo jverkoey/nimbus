@@ -42,13 +42,13 @@ NSTimeInterval NIStatusBarAnimationDuration(void) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-UIViewAnimationCurve NIStatusBarFrameAnimationCurve(void) {
+UIViewAnimationCurve NIStatusBarBoundsChangeAnimationCurve(void) {
   return UIViewAnimationCurveEaseInOut;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSTimeInterval NIStatusBarFrameAnimationDuration(void) {
+NSTimeInterval NIStatusBarBoundsChangeAnimationDuration(void) {
   return 0.35;
 }
 
@@ -56,7 +56,11 @@ NSTimeInterval NIStatusBarFrameAnimationDuration(void) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat NIStatusBarHeight(void) {
   CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+
+  // We take advantage of the fact that the status bar will always be wider than it is tall
+  // in order to avoid having to check the status bar orientation.
   CGFloat statusBarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);
+
   return statusBarHeight;
 }
 

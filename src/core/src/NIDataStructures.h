@@ -20,9 +20,10 @@
  * For classic computer science data structures.
  *
  * iOS provides most of the important data structures such as arrays, dictionaries, and sets.
- * However, it is missing some lesser-used data structures such as linked lists and easy-to-use
- * trees structures. Nimbus makes use of the linked list data structure to provide an efficient
- * least-recently-used cache removal policy for its in-memory cache, NIMemoryCache.
+ * However, it is missing some lesser-used data structures such as linked lists. Nimbus makes
+ * use of the linked list data structure to provide an efficient, least-recently-used cache
+ * removal policy for its in-memory cache, NIMemoryCache.
+ *
  *
  * <h2>Comparison of Data Structures</h2>
  *
@@ -49,17 +50,31 @@
  *       as neither NSSet nor NSDictionary provide this.
  * - [2] This assumes you are accessing the object with its key.
  *
+ *
+ * <h2>Why NILinkedList was Built</h2>
+ *
+ * NILinkedList was built to solve a specific need in Nimbus' in-memory caches of having
+ * a collection that guaranteed ordering, constant-time appending, and constant
+ * time removal of arbitrary objects.
+ * NSArray does not guarantee constant-time removal of objects, NSSet does not enforce ordering
+ * (though the new NSOrderedSet introduced in iOS 5 does), and NSDictionary also does not
+ * enforce ordering.
+ *
+ *
  *      @ingroup NimbusCore
  *      @defgroup Data-Structures Data Structures
  *      @{
  */
 
+// This is not to be used externally.
 struct NILinkedListNode {
   id    object;
   struct NILinkedListNode* prev;
   struct NILinkedListNode* next;
 };
 
+// A thin veil over NILinkedListNode pointers. This is the "public" interface to an object's
+// location. Internally, this is cast to an NILinkedListNode*.
 typedef void NILinkedListLocation;
 
 /**
@@ -71,144 +86,80 @@ typedef void NILinkedListLocation;
  * A linked list is different from an NSMutableArray solely in the runtime of adding and
  * removing objects. It is always possible to remove objects from both the beginning and end of
  * a linked list in constant time, contrasted with an NSMutableArray where removing an object
- * from the beginning of the list could result in O(N) linear time in the best of cases, where
+ * from the beginning of the list could result in O(N) linear time, where
  * N is the number of objects in the collection when the action is performed.
  * If an object's location is known, it is possible to get O(1) constant time removal
  * with a linked list, where an NSMutableArray would get at best O(N) linear time.
+ *
+ * This collection implements NSFastEnumeration which allows you to use foreach-style
+ * iteration on the linked list. If you would like more control over the iteration of the
+ * linked list you can use
+ * <code>-[NILinkedList @link NILinkedList::objectEnumerator objectEnumerator@endlink]</code>
+ *
+ *
+ * <h2>When You Should Use a Linked List</h2>
+ *
+ * Linked lists should be used when you need guaranteed constant-time performance characteristics
+ * for adding arbitrary objects to and removing arbitrary objects from a collection that
+ * also enforces consistent ordering.
+ *
+ * Linked lists are used in NIMemoryCache to implement
+ * efficient least-recently used collections for in-memory caches. It is important
+ * that these caches use a collection with guaranteed constant-time properties because
+ * in-memory caches must operate as fast as possible in order to avoid locking up the UI.
+ * Specifically, in-memory caches could potentially have thousands of objects. Every time
+ * we access one of these objects we move its lru placement to the end of the lru list. If
+ * we were to use an NSArray for this data structure we could easily run into an
+ * O(N^2) exponential-time operation which is absolutely unacceptable.
  */
 @interface NILinkedList : NSObject <NSCopying, NSCoding, NSFastEnumeration> {
 @private
   struct NILinkedListNode* _head;
   struct NILinkedListNode* _tail;
-  unsigned long _count;
+  NSUInteger _count;
 
   // Used internally to track modifications to the linked list.
   unsigned long _modificationNumber;
 }
 
-#pragma mark Creating a Linked List /** @name Creating a Linked List */
+- (NSUInteger)count;
 
-/**
- * Designated initializer.
- *
- * Creates an empty mutable linked list.
- */
-- (id)init;
+- (id)firstObject;
+- (id)lastObject;
 
-/**
- * Convenience method for creating an autoreleased linked list.
- *
- * Identical to [[[NILinkedList alloc] init] autorelease];
- */
+
+// Linked List Creation
+
 + (NILinkedList *)linkedList;
++ (NILinkedList *)linkedListWithArray:(NSArray *)array;
+
+- (id)initWithArray:(NSArray *)anArray;
 
 
-#pragma mark Querying a Linked List /** @name Querying a Linked List */
+// Extended Methods
 
-/**
- * The first object in the linked list.
- */
-@property (nonatomic, readonly) id firstObject;
-
-/**
- * The last object in the linked list.
- */
-@property (nonatomic, readonly) id lastObject;
-
-/**
- * The number of objects in the linked list.
- */
-@property (nonatomic, readonly) unsigned long count;
-
-
-#pragma mark Adding Objects /** @name Adding Objects */
-
-/**
- * Append an object to the linked list.
- *
- *      Run-time: O(1)
- *
- *      @returns A location within the linked list.
- */
-- (NILinkedListLocation *)addObject:(id)object;
-
-
-#pragma mark Removing Objects /** @name Removing Objects */
-
-/**
- * Remove all objects from the linked list.
- *
- *      Run-time: Theta(count)
- */
-- (void)removeAllObjects;
-
-/**
- * Remove an object from the linked list.
- *
- *      Run-time: O(count)
- */
-- (void)removeObject:(id)object;
-
-/**
- * Remove the first object from the linked list.
- *
- *      Run-time: O(1)
- */
-- (void)removeFirstObject;
-
-/**
- * Remove the last object from the linked list.
- *
- *      Run-time: O(1)
- */
-- (void)removeLastObject;
-
-
-#pragma mark Enumerating Objects /** @name Enumerating Objects */
-
-/**
- * Create an enumerator that can be used to enumerate this linked list.
- */
+- (NSArray *)allObjects;
 - (NSEnumerator *)objectEnumerator;
 
+- (BOOL)containsObject:(id)anObject;
 
-#pragma mark Constant-Time Access /** @name Constant-Time Access */
+- (NSString *)description;
 
-/**
- * Search for an object in the linked list.
- *
- * The NILinkedListLocation object will remain valid as long as the object is still in the
- * linked list. Once the object is removed from the linked list, however, the location object
- * is released from memory and should no longer be used.
- *
- * TODO (jverkoey July 1, 2011): Consider creating a wrapper object for the location so that
- *                               we can deal with incorrect usage more safely.
- *
- *      Run-time: O(count)
- *
- *      @returns A location within the linked list.
- */
+// Methods for constant-time access.
 - (NILinkedListLocation *)locationOfObject:(id)object;
-
-/**
- * Retrieve the object at a specific location.
- *
- *      Run-time: O(1)
- */
 - (id)objectAtLocation:(NILinkedListLocation *)location;
-
-/**
- * Remove an object at a predetermined location.
- *
- * It is assumed that this location still exists in the linked list. If the object this
- * location refers to has since been removed then this method will have undefined results.
- *
- * This is provided as an optimization over the O(n) removal method but should be used with care.
- *
- *      Run-time: O(1)
- *
- */
 - (void)removeObjectAtLocation:(NILinkedListLocation *)location;
+
+
+// Mutable Methods
+// TODO (jverkoey August 3, 2011): Consider creating an NIMutableLinkedList implementation.
+
+- (NILinkedListLocation *)addObject:(id)object;
+
+- (void)removeAllObjects;
+- (void)removeObject:(id)object;
+- (void)removeFirstObject;
+- (void)removeLastObject;
 
 @end
 
@@ -360,4 +311,186 @@ typedef void NILinkedListLocation;
  *  // Location is no longer valid at this point.
  *  location = nil;
  * @endcode
+ */
+
+
+#pragma mark Creating a Linked List /** @name Creating a Linked List */
+
+/**
+ * Convenience method for creating an autoreleased linked list.
+ *
+ * Identical to [[[NILinkedList alloc] init] autorelease];
+ *
+ *      @fn NILinkedList::linkedList
+ */
+
+/**
+ * Convenience method for creating an autoreleased linked list with an array.
+ *
+ * Identical to [[[NILinkedList alloc] initWithArray:array] autorelease];
+ *
+ *      @fn NILinkedList::linkedListWithArray:
+ */
+
+/**
+ * Designated initializer.
+ *
+ * Creates an empty mutable linked list.
+ *
+ *      @fn NILinkedList::init
+ */
+
+/**
+ * Initializes a newly allocated linked list by placing in it the objects contained
+ * in a given array.
+ *
+ *      @fn NILinkedList::initWithArray:
+ *      @param anArray An array.
+ *      @returns A linked list initialized to contain the objects in anArray.
+ */
+
+
+#pragma mark Querying a Linked List /** @name Querying a Linked List */
+
+/**
+ * Returns the number of objects currently in the linked list.
+ *
+ *      @fn NILinkedList::count
+ *      @returns The number of objects currently in the linked list.
+ */
+
+/**
+ * Returns the first object in the linked list.
+ *
+ *      @fn NILinkedList::firstObject
+ *      @returns The first object in the linked list. If the linked list is empty, returns nil.
+ */
+
+/**
+ * Returns the last object in the linked list.
+ *
+ *      @fn NILinkedList::lastObject
+ *      @returns The last object in the linked list. If the linked list is empty, returns nil.
+ */
+
+/**
+ * Returns an array containing the linked list's objects, or an empty array if the linked list
+ * has no objects.
+ *
+ *      @fn NILinkedList::allObjects
+ *      @returns An array containing the linked list's objects, or an empty array if the linked
+ *               list has no objects. The objects will be in the same order as the linked list.
+ */
+
+/**
+ * Returns an enumerator object that lets you access each object in the linked list.
+ *
+ *      @fn NILinkedList::objectEnumerator
+ *      @returns An enumerator object that lets you access each object in the linked list, in
+ *               order, from the first object to the last.
+ *      @attention When you use this method you must not modify the linked list during enumeration.
+ */
+
+/**
+ * Returns a Boolean value that indicates whether a given object is present in the linked list.
+ *
+ *      Run-time: O(count) linear
+ *
+ *      @fn NILinkedList::containsObject:
+ *      @returns YES if anObject is present in the linked list, otherwise NO.
+ */
+
+/**
+ * Returns a string that represents the contents of the linked list, formatted as a property list.
+ *
+ *      @fn NILinkedList::description
+ *      @returns A string that represents the contents of the linked list,
+ *               formatted as a property list.
+ */
+
+
+#pragma mark Adding Objects /** @name Adding Objects */
+
+/**
+ * Append an object to the linked list.
+ *
+ *      Run-time: O(1) constant
+ *
+ *      @fn NILinkedList::addObject:
+ *      @returns A location within the linked list.
+ */
+
+
+#pragma mark Removing Objects /** @name Removing Objects */
+
+/**
+ * Remove all objects from the linked list.
+ *
+ *      Run-time: Theta(count) linear
+ *
+ *      @fn NILinkedList::removeAllObjects
+ */
+
+/**
+ * Remove an object from the linked list.
+ *
+ *      Run-time: O(count) linear
+ *
+ *      @fn NILinkedList::removeObject:
+ */
+
+/**
+ * Remove the first object from the linked list.
+ *
+ *      Run-time: O(1) constant
+ *
+ *      @fn NILinkedList::removeFirstObject
+ */
+
+/**
+ * Remove the last object from the linked list.
+ *
+ *      Run-time: O(1) constant
+ *
+ *      @fn NILinkedList::removeLastObject
+ */
+
+
+#pragma mark Constant-Time Access /** @name Constant-Time Access */
+
+/**
+ * Search for an object in the linked list.
+ *
+ * The NILinkedListLocation object will remain valid as long as the object is still in the
+ * linked list. Once the object is removed from the linked list, however, the location object
+ * is released from memory and should no longer be used.
+ *
+ * TODO (jverkoey July 1, 2011): Consider creating a wrapper object for the location so that
+ *                               we can deal with incorrect usage more safely.
+ *
+ *      Run-time: O(count) linear
+ *
+ *      @fn NILinkedList::locationOfObject:
+ *      @returns A location within the linked list.
+ */
+
+/**
+ * Retrieve the object at a specific location.
+ *
+ *      Run-time: O(1) constant
+ *
+ *      @fn NILinkedList::objectAtLocation:
+ */
+
+/**
+ * Remove an object at a predetermined location.
+ *
+ * It is assumed that this location still exists in the linked list. If the object this
+ * location refers to has since been removed then this method will have undefined results.
+ *
+ * This is provided as an optimization over the O(n) removal method but should be used with care.
+ *
+ *      Run-time: O(1) constant
+ *
+ *      @fn NILinkedList::removeObjectAtLocation:
  */
