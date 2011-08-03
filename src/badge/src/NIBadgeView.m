@@ -45,11 +45,11 @@ static const CGFloat kBadgeLineSize = 2.0;
   
 	if ([self.text length]>=2) {
 		rectWidth = 10 + (stringSize.width + [self.text length]); 
-    rectHeight = 20;
+    rectHeight = 22;
 		
     return CGSizeMake(rectWidth, rectHeight * scaleFactor);
 	}
-  return CGSizeMake(20 * scaleFactor, 20 * scaleFactor);
+  return CGSizeMake(22 * scaleFactor, 22 * scaleFactor);
 }
 
 -(void)setText:(NSString *)text {
@@ -73,11 +73,11 @@ static const CGFloat kBadgeLineSize = 2.0;
   CGContextSaveGState(context);
   
   CGFloat radius = CGRectGetMaxY(rect)*kBadgeRadius;
-  CGFloat buffer = CGRectGetMaxY(rect)*0.10;
-	CGFloat maxX = CGRectGetMaxX(rect) - buffer;
-	CGFloat maxY = CGRectGetMaxY(rect) - buffer;
-	CGFloat minX = CGRectGetMinX(rect) + buffer;
-	CGFloat minY = CGRectGetMinY(rect) + buffer;
+  CGFloat buffer = CGRectGetMaxY(rect)*0.015;
+	CGFloat maxX = CGRectGetMaxX(rect) - buffer - 2;
+	CGFloat maxY = CGRectGetMaxY(rect) - buffer - 4;
+	CGFloat minX = CGRectGetMinX(rect) + buffer + 2;
+	CGFloat minY = CGRectGetMinY(rect) + buffer + 1;
   
   // Draw the main rounded rectangle
   CGContextBeginPath(context);
@@ -107,10 +107,10 @@ static const CGFloat kBadgeLineSize = 2.0;
   CGContextSaveGState(context);
   
   CGContextBeginPath(context);
-	CGContextAddArc(context, (maxX-radius), (minY+radius), radius, M_PI+(M_PI/2), 0, 0);
+	CGContextAddArc(context, maxX-radius, minY+radius, radius, M_PI+(M_PI/2), 0, 0);
 	CGContextAddArc(context, maxX-radius, (maxY-radius)/3, radius, 0, M_PI/2, 0);
 	CGContextAddArc(context, minX+radius, (maxY-radius)/3, radius, M_PI/2, M_PI, 0);
-	CGContextAddArc(context, (minX+radius), (minY+radius), radius, M_PI, M_PI+M_PI/2, 0);
+	CGContextAddArc(context, minX+radius, minY+radius, radius, M_PI, M_PI+M_PI/2, 0);
 	CGContextClip(context);
 	
 	
