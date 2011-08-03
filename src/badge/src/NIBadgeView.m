@@ -103,7 +103,37 @@ static const CGFloat kBadgeLineSize = 2.0;
 	CGContextClosePath(context);
 	CGContextStrokePath(context);
   
-  //TODO: Add the gloss effect
+  //Add the gloss effect
+  CGContextSaveGState(context);
+  
+  CGContextBeginPath(context);
+	CGContextAddArc(context, (maxX-radius), (minY+radius), radius, M_PI+(M_PI/2), 0, 0);
+	CGContextAddArc(context, maxX-radius, (maxY-radius)/3, radius, 0, M_PI/2, 0);
+	CGContextAddArc(context, minX+radius, (maxY-radius)/3, radius, M_PI/2, M_PI, 0);
+	CGContextAddArc(context, (minX+radius), (minY+radius), radius, M_PI, M_PI+M_PI/2, 0);
+	CGContextClip(context);
+	
+	
+	size_t num_locations = 2;
+	CGFloat locations[2] = { 0.0, 0.4 };
+	CGFloat components[8] = {  0.92, 1.0, 1.0, 1.0, 0.82, 0.82, 0.82, 0.2 };
+  
+	CGColorSpaceRef cspace;
+	CGGradientRef gradient;
+	cspace = CGColorSpaceCreateDeviceRGB();
+	gradient = CGGradientCreateWithColorComponents (cspace, components, locations, num_locations);
+	
+	CGPoint sPoint, ePoint;
+	sPoint.x = 0;
+	sPoint.y = 0;
+	ePoint.x = 0;
+	ePoint.y = maxY;
+	CGContextDrawLinearGradient (context, gradient, sPoint, ePoint, 0);
+	
+	CGColorSpaceRelease(cspace);
+	CGGradientRelease(gradient);
+  
+  CGContextRestoreGState(context);
   
   // Draw text
   // Should this be customizable?
