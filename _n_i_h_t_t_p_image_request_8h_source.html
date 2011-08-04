@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -95,59 +95,48 @@
 <a name="l00017"></a>00017 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 <a name="l00018"></a>00018 <span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span>
 <a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <span class="preprocessor">#ifdef NIMBUS_STATIC_LIBRARY</span>
-<a name="l00021"></a>00021 <span class="preprocessor"></span><span class="preprocessor">#import &quot;ASIHTTPRequest/NIHTTPRequest.h&quot;</span>
-<a name="l00022"></a>00022 <span class="preprocessor">#import &quot;NimbusNetworkImage/NINetworkImageView.h&quot;</span>
-<a name="l00023"></a>00023 <span class="preprocessor">#else</span>
-<a name="l00024"></a>00024 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NIHTTPRequest.h&quot;</span>
-<a name="l00025"></a>00025 <span class="preprocessor">#import &quot;NINetworkImageView.h&quot;</span>  <span class="comment">// For NINetworkImageViewScaleOptions</span>
-<a name="l00026"></a>00026 <span class="preprocessor">#endif</span>
-<a name="l00027"></a>00027 <span class="preprocessor"></span>
-<a name="l00034"></a><a class="code" href="interface_n_i_h_t_t_p_image_request.html">00034</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_h_t_t_p_image_request.html" title="A threaded network request for an image that chops up and resizes the image before returning to the U...">NIHTTPImageRequest</a> : <a class="code" href="interface_n_i_h_t_t_p_request.html" title="An implementation of ASIHTTPRequest that uses the core network activity features in Nimbus...">NIHTTPRequest</a> {
-<a name="l00035"></a>00035 <span class="keyword">@private</span>
-<a name="l00036"></a>00036   CGRect _imageCropRect;
-<a name="l00037"></a>00037   CGSize _imageDisplaySize;
+<a name="l00020"></a>00020 <span class="preprocessor">#import &quot;NIHTTPRequest.h&quot;</span>
+<a name="l00021"></a>00021 <span class="preprocessor">#import &quot;NINetworkImageView.h&quot;</span>  <span class="comment">// For NINetworkImageViewScaleOptions</span>
+<a name="l00022"></a>00022 
+<a name="l00029"></a><a class="code" href="interface_n_i_h_t_t_p_image_request.html">00029</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_h_t_t_p_image_request.html" title="A threaded network request for an image that chops up and resizes the image before returning to the U...">NIHTTPImageRequest</a> : <a class="code" href="interface_n_i_h_t_t_p_request.html" title="An implementation of ASIHTTPRequest that uses the core network activity features in Nimbus...">NIHTTPRequest</a> {
+<a name="l00030"></a>00030 <span class="keyword">@private</span>
+<a name="l00031"></a>00031   CGRect _imageCropRect;
+<a name="l00032"></a>00032   CGSize _imageDisplaySize;
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034   <a class="code" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a> _scaleOptions;
+<a name="l00035"></a>00035   CGInterpolationQuality         _interpolationQuality;
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037   UIViewContentMode _imageContentMode;
 <a name="l00038"></a>00038 
-<a name="l00039"></a>00039   <a class="code" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a> _scaleOptions;
-<a name="l00040"></a>00040   CGInterpolationQuality         _interpolationQuality;
+<a name="l00039"></a>00039   UIImage* _imageCroppedAndSizedForDisplay;
+<a name="l00040"></a>00040 }
 <a name="l00041"></a>00041 
-<a name="l00042"></a>00042   UIViewContentMode _imageContentMode;
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044   UIImage* _imageCroppedAndSizedForDisplay;
-<a name="l00045"></a>00045 }
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047 <span class="preprocessor">#pragma mark Before request is sent to the queue</span>
-<a name="l00048"></a>00048 <span class="preprocessor"></span>
-<a name="l00060"></a><a class="code" href="interface_n_i_h_t_t_p_image_request.html#a269bb9693de5df1b6852314ecd62eefa">00060</a> <span class="keyword">@property</span> (assign) CGRect imageCropRect;
-<a name="l00061"></a>00061 
-<a name="l00070"></a><a class="code" href="interface_n_i_h_t_t_p_image_request.html#ad6389e520bbac3c02e299fc4392f6922">00070</a> <span class="keyword">@property</span> (assign) CGSize imageDisplaySize;
-<a name="l00071"></a>00071 
-<a name="l00079"></a><a class="code" href="interface_n_i_h_t_t_p_image_request.html#a11f4b6cc61cceb33a41423c62e4e735c">00079</a> <span class="keyword">@property</span> (assign) <a class="code" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a> scaleOptions;
-<a name="l00080"></a>00080 
-<a name="l00086"></a><a class="code" href="interface_n_i_h_t_t_p_image_request.html#a944c80da8f3884d2d1bbab8bf3efeeef">00086</a> <span class="keyword">@property</span> (assign) CGInterpolationQuality interpolationQuality;
-<a name="l00087"></a>00087 
-<a name="l00098"></a><a class="code" href="interface_n_i_h_t_t_p_image_request.html#aca396dd63f83234695e9e88a44abf49e">00098</a> <span class="keyword">@property</span> (assign) UIViewContentMode imageContentMode;
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100 
-<a name="l00108"></a>00108 <span class="preprocessor">#pragma mark After request completion</span>
-<a name="l00109"></a>00109 <span class="preprocessor"></span>
-<a name="l00114"></a><a class="code" href="interface_n_i_h_t_t_p_image_request.html#af07c5510fc69a3e88e624ff3c59e0eb3">00114</a> <span class="keyword">@property</span> (retain) UIImage* imageCroppedAndSizedForDisplay;
-<a name="l00115"></a>00115 <span class="comment">// End of After request completion</span>
-<a name="l00117"></a>00117 
-<a name="l00118"></a>00118 <span class="keyword">@end</span>
-<a name="l00119"></a>00119 
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121 <span class="keyword">@interface </span><a class="code" href="interface_n_i_h_t_t_p_image_request.html" title="A threaded network request for an image that chops up and resizes the image before returning to the U...">NIHTTPImageRequest</a> (ImageModifications)
-<a name="l00122"></a>00122 
-<a name="l00144"></a>00144 + (UIImage *)imageFromSource: (UIImage *)src
-<a name="l00145"></a>00145              withContentMode: (UIViewContentMode)contentMode
-<a name="l00146"></a>00146                     cropRect: (CGRect)cropRect
-<a name="l00147"></a>00147                  displaySize: (CGSize)displaySize
-<a name="l00148"></a>00148                 scaleOptions: (<a class="code" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a>)scaleOptions
-<a name="l00149"></a>00149         interpolationQuality: (CGInterpolationQuality)interpolationQuality;
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151 <span class="keyword">@end</span>
-<a name="l00152"></a>00152 
+<a name="l00042"></a>00042 <span class="preprocessor">#pragma mark Configurable Properties</span>
+<a name="l00043"></a>00043 <span class="preprocessor"></span>
+<a name="l00044"></a><a class="code" href="interface_n_i_h_t_t_p_image_request.html#ac7d042c084fe692087bbbe6359642780">00044</a> <span class="keyword">@property</span> (assign) CGRect imageCropRect;                          <span class="comment">// Default: CGRectZero</span>
+<a name="l00045"></a><a class="code" href="interface_n_i_h_t_t_p_image_request.html#a98b6b9986e30decafe821755bdae5f3f">00045</a> <span class="keyword">@property</span> (assign) CGSize imageDisplaySize;                       <span class="comment">// Default: CGSizeZero</span>
+<a name="l00046"></a><a class="code" href="interface_n_i_h_t_t_p_image_request.html#aee0571051fc0f4e1952ec0a3f4bfe8de">00046</a> <span class="keyword">@property</span> (assign) <a class="code" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a> scaleOptions;   <span class="comment">// Default: NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess</span>
+<a name="l00047"></a><a class="code" href="interface_n_i_h_t_t_p_image_request.html#abba79b08eabfdd05d8d30a40cd272829">00047</a> <span class="keyword">@property</span> (assign) CGInterpolationQuality interpolationQuality;   <span class="comment">// Default: kCGInterpolationDefault</span>
+<a name="l00048"></a><a class="code" href="interface_n_i_h_t_t_p_image_request.html#a85f304984ea0cc6640396dc0d7f0517d">00048</a> <span class="keyword">@property</span> (assign) UIViewContentMode imageContentMode;            <span class="comment">// Default: UIViewContentModeScaleToFill</span>
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="preprocessor">#pragma mark Results</span>
+<a name="l00051"></a>00051 <span class="preprocessor"></span>
+<a name="l00052"></a><a class="code" href="interface_n_i_h_t_t_p_image_request.html#a68c2a89f112c47d56c54715596d89d85">00052</a> <span class="keyword">@property</span> (retain) UIImage* imageCroppedAndSizedForDisplay;
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 <span class="keyword">@end</span>
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <span class="keyword">@interface </span><a class="code" href="interface_n_i_h_t_t_p_image_request.html" title="A threaded network request for an image that chops up and resizes the image before returning to the U...">NIHTTPImageRequest</a> (ImageModifications)
+<a name="l00058"></a>00058 
+<a name="l00082"></a>00082 + (UIImage *)imageFromSource: (UIImage *)src
+<a name="l00083"></a>00083              withContentMode: (UIViewContentMode)contentMode
+<a name="l00084"></a>00084                     cropRect: (CGRect)cropRect
+<a name="l00085"></a>00085                  displaySize: (CGSize)displaySize
+<a name="l00086"></a>00086                 scaleOptions: (<a class="code" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a>)scaleOptions
+<a name="l00087"></a>00087         interpolationQuality: (CGInterpolationQuality)interpolationQuality;
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 <span class="keyword">@end</span>
+<a name="l00090"></a>00090 
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -114,10 +114,10 @@
 <a name="l00040"></a>00040 
 <a name="l00041"></a>00041 <span class="keyword">@synthesize</span> maxNumberOfButtonsPerPage = _maxNumberOfButtonsPerPage;
 <a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_launcher_view.html#af8767bdd838ce4b0b8959331ccecfb8f" title="The amount of padding on each side of the launcher view pages.">padding</a> = _padding;
+<a name="l00043"></a>00043 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_launcher_view.html#ae5a62c785693f02a50ae67792acc664e" title="The amount of padding on each side of the launcher view pages.">padding</a> = _padding;
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_launcher_view.html#a5680da202a46fb3ce6437d6987a7d41d" title="The launcher view notifies the delegate of any user interaction or state changes.">delegate</a>    = _delegate;
-<a name="l00046"></a>00046 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_launcher_view.html#af849642b45b213adbd85e85054925428" title="The launcher view populates its pages with information from the data source.">dataSource</a>  = _dataSource;
+<a name="l00045"></a>00045 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_launcher_view.html#a1da7308b8ff117197ba646d7ae53f29a" title="The launcher view notifies the delegate of any user interaction or state changes.">delegate</a>    = _delegate;
+<a name="l00046"></a>00046 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_launcher_view.html#a03a9f61511cf61e94b3d3550a2bb557a" title="The launcher view populates its pages with information from the data source.">dataSource</a>  = _dataSource;
 <a name="l00047"></a>00047 
 <a name="l00048"></a>00048 
 <a name="l00050"></a>00050 - (void)dealloc {
@@ -190,7 +190,7 @@
 <a name="l00120"></a>00120 }
 <a name="l00121"></a>00121 
 <a name="l00122"></a>00122 
-<a name="l00124"></a><a class="code" href="interface_n_i_launcher_view.html#a37761e0617ece5ef925ea575647a8620">00124</a> - (void)setFrame:(CGRect)frame {
+<a name="l00124"></a>00124 - (void)setFrame:(CGRect)frame {
 <a name="l00125"></a>00125   [<span class="keyword">super</span> setFrame:frame];
 <a name="l00126"></a>00126 
 <a name="l00127"></a>00127   <span class="comment">// Lay out the pager first. The remaining space is used for the launcher scroll view.</span>
@@ -262,7 +262,7 @@
 <a name="l00199"></a>00199   CGFloat pageHeight = frame.size.height - _padding.top - _padding.bottom;
 <a name="l00200"></a>00200 
 <a name="l00201"></a>00201   CGSize buttonDimensions = CGSizeMake(kDefaultButtonDimensions, kDefaultButtonDimensions);
-<a name="l00202"></a>00202   <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_launcher_view.html#af849642b45b213adbd85e85054925428" title="The launcher view populates its pages with information from the data source.">dataSource</a> respondsToSelector:<span class="keyword">@selector</span>(buttonDimensionsInLauncherView:)]) {
+<a name="l00202"></a>00202   <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_launcher_view.html#a03a9f61511cf61e94b3d3550a2bb557a" title="The launcher view populates its pages with information from the data source.">dataSource</a> respondsToSelector:<span class="keyword">@selector</span>(buttonDimensionsInLauncherView:)]) {
 <a name="l00203"></a>00203     CGSize dataSourceButtonDimensions = [<span class="keyword">self</span>.dataSource buttonDimensionsInLauncherView:self];
 <a name="l00204"></a>00204 
 <a name="l00205"></a>00205     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(dataSourceButtonDimensions.width &gt; 0 &amp;&amp; dataSourceButtonDimensions.height &gt; 0);
@@ -274,10 +274,10 @@
 <a name="l00211"></a>00211   NSInteger numberOfColumns = NILauncherViewDynamic;
 <a name="l00212"></a>00212   NSInteger numberOfRows = NILauncherViewDynamic;
 <a name="l00213"></a>00213 
-<a name="l00214"></a>00214   <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_launcher_view.html#af849642b45b213adbd85e85054925428" title="The launcher view populates its pages with information from the data source.">dataSource</a> respondsToSelector:<span class="keyword">@selector</span>(numberOfColumnsPerPageInLauncherView:)]) {
+<a name="l00214"></a>00214   <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_launcher_view.html#a03a9f61511cf61e94b3d3550a2bb557a" title="The launcher view populates its pages with information from the data source.">dataSource</a> respondsToSelector:<span class="keyword">@selector</span>(numberOfColumnsPerPageInLauncherView:)]) {
 <a name="l00215"></a>00215     numberOfColumns = [<span class="keyword">self</span>.dataSource numberOfColumnsPerPageInLauncherView:self];
 <a name="l00216"></a>00216   }
-<a name="l00217"></a>00217   <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_launcher_view.html#af849642b45b213adbd85e85054925428" title="The launcher view populates its pages with information from the data source.">dataSource</a> respondsToSelector:<span class="keyword">@selector</span>(numberOfRowsPerPageInLauncherView:)]) {
+<a name="l00217"></a>00217   <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_launcher_view.html#a03a9f61511cf61e94b3d3550a2bb557a" title="The launcher view populates its pages with information from the data source.">dataSource</a> respondsToSelector:<span class="keyword">@selector</span>(numberOfRowsPerPageInLauncherView:)]) {
 <a name="l00218"></a>00218     numberOfRows = [<span class="keyword">self</span>.dataSource numberOfRowsPerPageInLauncherView:self];
 <a name="l00219"></a>00219   }
 <a name="l00220"></a>00220 
@@ -440,17 +440,17 @@
 <a name="l00396"></a>00396 
 <a name="l00398"></a>00398 - (void)didTapButton:(UIButton *)tappedButton {
 <a name="l00399"></a>00399   NSInteger page = -1;
-<a name="l00400"></a>00400   NSInteger index = 0;
+<a name="l00400"></a>00400   NSInteger buttonIndex = 0;
 <a name="l00401"></a>00401   <span class="keywordflow">if</span> ([<span class="keyword">self</span> pageAndIndexOfButton:tappedButton
 <a name="l00402"></a>00402                             page:&amp;page
-<a name="l00403"></a>00403                            index:&amp;index]) {
+<a name="l00403"></a>00403                            index:&amp;buttonIndex]) {
 <a name="l00404"></a>00404 
-<a name="l00405"></a>00405     <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_launcher_view.html#a5680da202a46fb3ce6437d6987a7d41d" title="The launcher view notifies the delegate of any user interaction or state changes.">delegate</a> respondsToSelector:
+<a name="l00405"></a>00405     <span class="keywordflow">if</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_launcher_view.html#a1da7308b8ff117197ba646d7ae53f29a" title="The launcher view notifies the delegate of any user interaction or state changes.">delegate</a> respondsToSelector:
 <a name="l00406"></a>00406          <span class="keyword">@selector</span>(launcherView:didSelectButton:onPage:atIndex:)]) {
 <a name="l00407"></a>00407       [<span class="keyword">self</span>.delegate launcherView: self
 <a name="l00408"></a>00408                   didSelectButton: tappedButton
 <a name="l00409"></a>00409                            onPage: page
-<a name="l00410"></a>00410                           atIndex: index];
+<a name="l00410"></a>00410                           atIndex: buttonIndex];
 <a name="l00411"></a>00411     }
 <a name="l00412"></a>00412 
 <a name="l00413"></a>00413   } <span class="keywordflow">else</span> {
@@ -494,7 +494,7 @@
 <a name="l00454"></a>00454   _pagesOfScrollViews = [[NSMutableArray alloc] initWithCapacity:_numberOfPages];
 <a name="l00455"></a>00455   <span class="keywordflow">for</span> (NSInteger ixPage = 0; ixPage &lt; _numberOfPages; ++ixPage) {
 <a name="l00456"></a>00456     NSInteger numberOfItems = MIN(_maxNumberOfButtonsPerPage,
-<a name="l00457"></a>00457                                   [<span class="keyword">self</span>.<a class="code" href="interface_n_i_launcher_view.html#af849642b45b213adbd85e85054925428" title="The launcher view populates its pages with information from the data source.">dataSource</a> launcherView: <span class="keyword">self</span>
+<a name="l00457"></a>00457                                   [<span class="keyword">self</span>.<a class="code" href="interface_n_i_launcher_view.html#a03a9f61511cf61e94b3d3550a2bb557a" title="The launcher view populates its pages with information from the data source.">dataSource</a> launcherView: <span class="keyword">self</span>
 <a name="l00458"></a>00458                                           numberOfButtonsInPage: ixPage]);
 <a name="l00459"></a>00459 
 <a name="l00460"></a>00460     NSMutableArray* page = [[[NSMutableArray alloc] initWithCapacity:numberOfItems]

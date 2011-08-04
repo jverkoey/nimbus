@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -84,23 +84,24 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___network-_activity.html#ga891e92e9a0937f27411fa6413f30cdfa">NINetworkActivityTaskDidStart</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___network-_activity.html#gac403d3b1b127ca02ac65ab38b3cc7f5d">NINetworkActivityTaskDidFinish</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___network-_activity.html#ga3e923f142d5a8fc6fab084c6ab215750">NINetworkActivityTaskDidStart</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___network-_activity.html#ga2c80c44ffd1d89dfffa834864d7f64c1">NINetworkActivityTaskDidFinish</a> (void)</td></tr>
 <tr><td colspan="2"><h2><a name="member-group"></a>
 For Debugging Only</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp60303a93a9a1360aee685c2c8aab70c3"></a>Methods that will only do anything interesting if the DEBUG preprocessor macro is defined. </p>
 </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___network-_activity.html#ga407c75bc669bcbb55604bdb64f4e9030">NIEnableNetworkActivityDebugging</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___network-_activity.html#gae76fb8b8a0a7ec02854b656962fde118">NIDisableNetworkActivityDebugging</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___network-_activity.html#ga2793f13bdaa6cbec2d67752e994918a4">NIEnableNetworkActivityDebugging</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___network-_activity.html#ga3839c61537abef204dcaaab5148446e3">NIDisableNetworkActivityDebugging</a> (void)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ga891e92e9a0937f27411fa6413f30cdfa"></a><!-- doxytag: member="NINetworkActivity.h::NINetworkActivityTaskDidStart" ref="ga891e92e9a0937f27411fa6413f30cdfa" args="()" -->
+<a class="anchor" id="ga3e923f142d5a8fc6fab084c6ab215750"></a><!-- doxytag: member="NINetworkActivity.h::NINetworkActivityTaskDidStart" ref="ga3e923f142d5a8fc6fab084c6ab215750" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void NINetworkActivityTaskDidStart </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -112,17 +113,18 @@ For Debugging Only</h2></td></tr>
 <p>The status bar activity indicator will be spinning while there are active tasks.</p>
 <p>This method is threadsafe. </p>
 
-<p>Definition at line <a class="el" href="_n_i_network_activity_8m_source.html#l00032">32</a> of file <a class="el" href="_n_i_network_activity_8m_source.html">NINetworkActivity.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_activity_8m_source.html#l00031">31</a> of file <a class="el" href="_n_i_network_activity_8m_source.html">NINetworkActivity.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="gac403d3b1b127ca02ac65ab38b3cc7f5d"></a><!-- doxytag: member="NINetworkActivity.h::NINetworkActivityTaskDidFinish" ref="gac403d3b1b127ca02ac65ab38b3cc7f5d" args="()" -->
+<a class="anchor" id="ga2c80c44ffd1d89dfffa834864d7f64c1"></a><!-- doxytag: member="NINetworkActivity.h::NINetworkActivityTaskDidFinish" ref="ga2c80c44ffd1d89dfffa834864d7f64c1" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void NINetworkActivityTaskDidFinish </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -134,17 +136,18 @@ For Debugging Only</h2></td></tr>
 <p>The status bar activity indicator will be spinning while there are active tasks.</p>
 <p>This method is threadsafe. </p>
 
-<p>Definition at line <a class="el" href="_n_i_network_activity_8m_source.html#l00048">48</a> of file <a class="el" href="_n_i_network_activity_8m_source.html">NINetworkActivity.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_activity_8m_source.html#l00047">47</a> of file <a class="el" href="_n_i_network_activity_8m_source.html">NINetworkActivity.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ga407c75bc669bcbb55604bdb64f4e9030"></a><!-- doxytag: member="NINetworkActivity.h::NIEnableNetworkActivityDebugging" ref="ga407c75bc669bcbb55604bdb64f4e9030" args="()" -->
+<a class="anchor" id="ga2793f13bdaa6cbec2d67752e994918a4"></a><!-- doxytag: member="NINetworkActivity.h::NIEnableNetworkActivityDebugging" ref="ga2793f13bdaa6cbec2d67752e994918a4" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void NIEnableNetworkActivityDebugging </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -158,17 +161,18 @@ For Debugging Only</h2></td></tr>
 <p>When enabled, the networkActivityIndicatorVisible method on UIApplication will be swizzled with a debugging method that checks the global network task count and verifies that state is maintained correctly. If it is found that networkActivityIndicatorVisible is being accessed directly, then an assertion will be fired.</p>
 <p>If debugging was previously enabled, this does nothing. </p>
 
-<p>Definition at line <a class="el" href="_n_i_network_activity_8m_source.html#l00112">112</a> of file <a class="el" href="_n_i_network_activity_8m_source.html">NINetworkActivity.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_activity_8m_source.html#l00113">113</a> of file <a class="el" href="_n_i_network_activity_8m_source.html">NINetworkActivity.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="gae76fb8b8a0a7ec02854b656962fde118"></a><!-- doxytag: member="NINetworkActivity.h::NIDisableNetworkActivityDebugging" ref="gae76fb8b8a0a7ec02854b656962fde118" args="()" -->
+<a class="anchor" id="ga3839c61537abef204dcaaab5148446e3"></a><!-- doxytag: member="NINetworkActivity.h::NIDisableNetworkActivityDebugging" ref="ga3839c61537abef204dcaaab5148446e3" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void NIDisableNetworkActivityDebugging </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -181,7 +185,7 @@ For Debugging Only</h2></td></tr>
 <p>When disabled, the networkActivityIndicatorVisible will be restored if this was previously enabled, otherwise this method does nothing.</p>
 <p>If debugging wasn't previously enabled, this does nothing. </p>
 
-<p>Definition at line <a class="el" href="_n_i_network_activity_8m_source.html#l00121">121</a> of file <a class="el" href="_n_i_network_activity_8m_source.html">NINetworkActivity.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_network_activity_8m_source.html#l00122">122</a> of file <a class="el" href="_n_i_network_activity_8m_source.html">NINetworkActivity.m</a>.</p>
 
 </div>
 </div>

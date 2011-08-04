@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -94,22 +94,18 @@
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 <span class="preprocessor">#import &quot;NIJSONKitProcessorHTTPRequest.h&quot;</span>
 <a name="l00018"></a>00018 
-<a name="l00019"></a>00019 <span class="preprocessor">#ifdef NIMBUS_STATIC_LIBRARY</span>
-<a name="l00020"></a>00020 <span class="preprocessor"></span><span class="preprocessor">#import &quot;JSONKit/JSONKit.h&quot;</span>
-<a name="l00021"></a>00021 <span class="preprocessor">#else</span>
-<a name="l00022"></a>00022 <span class="preprocessor"></span><span class="preprocessor">#import &quot;JSONKit.h&quot;</span>
-<a name="l00023"></a>00023 <span class="preprocessor">#endif</span>
-<a name="l00024"></a>00024 <span class="preprocessor"></span>
-<a name="l00025"></a>00025 
-<a name="l00029"></a>00029 <span class="keyword">@implementation </span><a class="code" href="interface_n_i_j_s_o_n_kit_processor_h_t_t_p_request.html" title="A processor that uses JSONKit to turn the JSON response into objects.">NIJSONKitProcessorHTTPRequest</a>
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031 
-<a name="l00033"></a>00033 - (id)objectFromResponseData:(<a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a> *)data error:(NSError **)processingError {
-<a name="l00034"></a>00034   <span class="keywordflow">return</span> [[JSONDecoder decoder] objectWithData:data error:processingError];
-<a name="l00035"></a>00035 }
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038 <span class="keyword">@end</span>
+<a name="l00019"></a>00019 <span class="preprocessor">#import &quot;JSONKit.h&quot;</span>
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00025"></a>00025 <span class="keyword">@implementation </span><a class="code" href="interface_n_i_j_s_o_n_kit_processor_h_t_t_p_request.html" title="A processor that uses JSONKit to turn the JSON response into objects.">NIJSONKitProcessorHTTPRequest</a>
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027 
+<a name="l00029"></a>00029 - (id)objectFromResponseData:(<a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a> *)data error:(NSError **)processingError {
+<a name="l00030"></a>00030   <span class="keywordflow">return</span> [[JSONDecoder decoder] objectWithData:data error:processingError];
+<a name="l00031"></a>00031 }
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

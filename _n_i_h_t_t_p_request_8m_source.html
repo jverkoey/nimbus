@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -94,70 +94,66 @@
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 <span class="preprocessor">#import &quot;NIHTTPRequest.h&quot;</span>
 <a name="l00018"></a>00018 
-<a name="l00019"></a>00019 <span class="preprocessor">#ifdef NIMBUS_STATIC_LIBRARY</span>
-<a name="l00020"></a>00020 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NimbusCore/NimbusCore.h&quot;</span>
-<a name="l00021"></a>00021 <span class="preprocessor">#else</span>
-<a name="l00022"></a>00022 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NimbusCore.h&quot;</span>
-<a name="l00023"></a>00023 <span class="preprocessor">#endif</span>
-<a name="l00024"></a>00024 <span class="preprocessor"></span>
-<a name="l00025"></a>00025 
-<a name="l00029"></a>00029 <span class="keyword">@implementation </span><a class="code" href="interface_n_i_h_t_t_p_request.html" title="An implementation of ASIHTTPRequest that uses the core network activity features in Nimbus...">NIHTTPRequest</a>
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031 
-<a name="l00033"></a>00033 + (void)initialize {
-<a name="l00034"></a>00034   <span class="comment">// Disable ASIHTTPRequest&#39;s network activity indicator logic because it doesn&#39;t play nice with</span>
-<a name="l00035"></a>00035   <span class="comment">// Nimbus&#39; network activity logic.</span>
-<a name="l00036"></a>00036   [ASIHTTPRequest setShouldUpdateNetworkActivityIndicator:NO];
-<a name="l00037"></a>00037 }
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 
-<a name="l00041"></a>00041 - (void)dealloc {
-<a name="l00042"></a>00042   <span class="comment">// Sometimes the request will be deallocated before it completes or fails, so let&#39;s be sure</span>
-<a name="l00043"></a>00043   <span class="comment">// we clear out the network indicator before we go away.</span>
-<a name="l00044"></a>00044   <span class="keywordflow">if</span> (_didStartNetworkRequest) {
-<a name="l00045"></a>00045     <a class="code" href="group___network-_activity.html#gac403d3b1b127ca02ac65ab38b3cc7f5d" title="Decrement the number of active network tasks.">NINetworkActivityTaskDidFinish</a>();
-<a name="l00046"></a>00046     _didStartNetworkRequest = NO;
-<a name="l00047"></a>00047   }
+<a name="l00019"></a>00019 <span class="preprocessor">#import &quot;NimbusCore.h&quot;</span>
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00025"></a>00025 <span class="keyword">@implementation </span><a class="code" href="interface_n_i_h_t_t_p_request.html" title="An implementation of ASIHTTPRequest that uses the core network activity features in Nimbus...">NIHTTPRequest</a>
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027 
+<a name="l00029"></a>00029 + (void)initialize {
+<a name="l00030"></a>00030   <span class="comment">// Disable ASIHTTPRequest&#39;s network activity indicator logic because it doesn&#39;t play nice with</span>
+<a name="l00031"></a>00031   <span class="comment">// Nimbus&#39; network activity logic.</span>
+<a name="l00032"></a>00032   [ASIHTTPRequest setShouldUpdateNetworkActivityIndicator:NO];
+<a name="l00033"></a>00033 }
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 
+<a name="l00037"></a>00037 - (void)dealloc {
+<a name="l00038"></a>00038   <span class="comment">// Sometimes the request will be deallocated before it completes or fails, so let&#39;s be sure</span>
+<a name="l00039"></a>00039   <span class="comment">// we clear out the network indicator before we go away.</span>
+<a name="l00040"></a>00040   <span class="keywordflow">if</span> (_didStartNetworkRequest) {
+<a name="l00041"></a>00041     <a class="code" href="group___network-_activity.html#ga2c80c44ffd1d89dfffa834864d7f64c1" title="Decrement the number of active network tasks.">NINetworkActivityTaskDidFinish</a>();
+<a name="l00042"></a>00042     _didStartNetworkRequest = NO;
+<a name="l00043"></a>00043   }
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045   [<span class="keyword">super</span> dealloc];
+<a name="l00046"></a>00046 }
+<a name="l00047"></a>00047 
 <a name="l00048"></a>00048 
-<a name="l00049"></a>00049   [<span class="keyword">super</span> dealloc];
-<a name="l00050"></a>00050 }
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 
-<a name="l00054"></a>00054 - (void)requestStarted {
-<a name="l00055"></a>00055   <span class="comment">// Only show the network indicator while a network request is within a request.</span>
-<a name="l00056"></a>00056   <span class="comment">// By default, ASIHTTPRequest enables the network indicator any time a request thread is</span>
-<a name="l00057"></a>00057   <span class="comment">// running which makes it appear that more network activity is occurring than there actually</span>
-<a name="l00058"></a>00058   <span class="comment">// is.</span>
-<a name="l00059"></a>00059   <span class="keywordflow">if</span> (!_didStartNetworkRequest) {
-<a name="l00060"></a>00060     _didStartNetworkRequest = YES;
-<a name="l00061"></a>00061     <a class="code" href="group___network-_activity.html#ga891e92e9a0937f27411fa6413f30cdfa" title="Increment the number of active network tasks.">NINetworkActivityTaskDidStart</a>();
-<a name="l00062"></a>00062   }
+<a name="l00050"></a>00050 - (void)requestStarted {
+<a name="l00051"></a>00051   <span class="comment">// Only show the network indicator while a network request is within a request.</span>
+<a name="l00052"></a>00052   <span class="comment">// By default, ASIHTTPRequest enables the network indicator any time a request thread is</span>
+<a name="l00053"></a>00053   <span class="comment">// running which makes it appear that more network activity is occurring than there actually</span>
+<a name="l00054"></a>00054   <span class="comment">// is.</span>
+<a name="l00055"></a>00055   <span class="keywordflow">if</span> (!_didStartNetworkRequest) {
+<a name="l00056"></a>00056     _didStartNetworkRequest = YES;
+<a name="l00057"></a>00057     <a class="code" href="group___network-_activity.html#ga3e923f142d5a8fc6fab084c6ab215750" title="Increment the number of active network tasks.">NINetworkActivityTaskDidStart</a>();
+<a name="l00058"></a>00058   }
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060   [<span class="keyword">super</span> requestStarted];
+<a name="l00061"></a>00061 }
+<a name="l00062"></a>00062 
 <a name="l00063"></a>00063 
-<a name="l00064"></a>00064   [<span class="keyword">super</span> requestStarted];
-<a name="l00065"></a>00065 }
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067 
-<a name="l00069"></a>00069 - (void)requestFinished {
-<a name="l00070"></a>00070   <span class="keywordflow">if</span> (_didStartNetworkRequest) {
-<a name="l00071"></a>00071     <a class="code" href="group___network-_activity.html#gac403d3b1b127ca02ac65ab38b3cc7f5d" title="Decrement the number of active network tasks.">NINetworkActivityTaskDidFinish</a>();
-<a name="l00072"></a>00072     _didStartNetworkRequest = NO;
-<a name="l00073"></a>00073   }
+<a name="l00065"></a>00065 - (void)requestFinished {
+<a name="l00066"></a>00066   <span class="keywordflow">if</span> (_didStartNetworkRequest) {
+<a name="l00067"></a>00067     <a class="code" href="group___network-_activity.html#ga2c80c44ffd1d89dfffa834864d7f64c1" title="Decrement the number of active network tasks.">NINetworkActivityTaskDidFinish</a>();
+<a name="l00068"></a>00068     _didStartNetworkRequest = NO;
+<a name="l00069"></a>00069   }
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071   [<span class="keyword">super</span> requestFinished];
+<a name="l00072"></a>00072 }
+<a name="l00073"></a>00073 
 <a name="l00074"></a>00074 
-<a name="l00075"></a>00075   [<span class="keyword">super</span> requestFinished];
-<a name="l00076"></a>00076 }
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 
-<a name="l00080"></a>00080 - (void)failWithError:(NSError *)theError {
-<a name="l00081"></a>00081   <span class="keywordflow">if</span> (_didStartNetworkRequest) {
-<a name="l00082"></a>00082     <a class="code" href="group___network-_activity.html#gac403d3b1b127ca02ac65ab38b3cc7f5d" title="Decrement the number of active network tasks.">NINetworkActivityTaskDidFinish</a>();
-<a name="l00083"></a>00083     _didStartNetworkRequest = NO;
-<a name="l00084"></a>00084   }
+<a name="l00076"></a>00076 - (void)failWithError:(NSError *)theError {
+<a name="l00077"></a>00077   <span class="keywordflow">if</span> (_didStartNetworkRequest) {
+<a name="l00078"></a>00078     <a class="code" href="group___network-_activity.html#ga2c80c44ffd1d89dfffa834864d7f64c1" title="Decrement the number of active network tasks.">NINetworkActivityTaskDidFinish</a>();
+<a name="l00079"></a>00079     _didStartNetworkRequest = NO;
+<a name="l00080"></a>00080   }
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082   [<span class="keyword">super</span> failWithError:theError];
+<a name="l00083"></a>00083 }
+<a name="l00084"></a>00084 
 <a name="l00085"></a>00085 
-<a name="l00086"></a>00086   [<span class="keyword">super</span> failWithError:theError];
-<a name="l00087"></a>00087 }
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090 <span class="keyword">@end</span>
+<a name="l00086"></a>00086 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

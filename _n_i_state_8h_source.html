@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -94,26 +94,25 @@
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 <a name="l00018"></a>00018 
-<a name="l00019"></a>00019 <span class="preprocessor">#ifdef NIMBUS_STATIC_LIBRARY</span>
-<a name="l00020"></a>00020 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NimbusCore/NIInMemoryCache.h&quot;</span>
-<a name="l00021"></a>00021 <span class="preprocessor">#else</span>
-<a name="l00022"></a>00022 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NIInMemoryCache.h&quot;</span>
-<a name="l00023"></a>00023 <span class="preprocessor">#endif</span>
-<a name="l00024"></a>00024 <span class="preprocessor"></span>
-<a name="l00042"></a><a class="code" href="interface_nimbus.html">00042</a> <span class="keyword">@interface </span><a class="code" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> : NSObject
-<a name="l00043"></a>00043 
-<a name="l00053"></a>00053 + (<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> *)<a class="code" href="interface_nimbus.html#a3c0417e0cf4a64e6d8004346fc744ce3" title="Access the global image memory cache.">imageMemoryCache</a>;
-<a name="l00054"></a>00054 
-<a name="l00066"></a>00066 + (NSOperationQueue *)<a class="code" href="interface_nimbus.html#a1b76dec78c8c30a174aaea7a6f859b8e" title="Access the global network operation queue.">networkOperationQueue</a>;
-<a name="l00067"></a>00067 
-<a name="l00073"></a>00073 + (void)setImageMemoryCache:(<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> *)imageMemoryCache;
-<a name="l00074"></a>00074 
-<a name="l00080"></a>00080 + (void)setNetworkOperationQueue:(NSOperationQueue *)queue;
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082 <span class="keyword">@end</span>
-<a name="l00083"></a>00083 
+<a name="l00019"></a>00019 <span class="preprocessor">#import &quot;NIInMemoryCache.h&quot;</span>
+<a name="l00020"></a>00020 
+<a name="l00038"></a><a class="code" href="interface_nimbus.html">00038</a> <span class="keyword">@interface </span><a class="code" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> : NSObject
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 <span class="preprocessor">#pragma mark Accessing Global State </span>
+<a name="l00051"></a>00051 <span class="preprocessor">+ (NIImageMemoryCache *)imageMemoryCache;</span>
+<a name="l00052"></a>00052 <span class="preprocessor"></span>
+<a name="l00064"></a>00064 + (NSOperationQueue *)<a class="code" href="interface_nimbus.html#a1b76dec78c8c30a174aaea7a6f859b8e" title="Access the global network operation queue.">networkOperationQueue</a>;
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067 <span class="preprocessor">#pragma mark Modifying Global State </span>
+<a name="l00074"></a>00074 <span class="preprocessor">+ (void)setImageMemoryCache:(NIImageMemoryCache *)imageMemoryCache;</span>
+<a name="l00075"></a>00075 <span class="preprocessor"></span>
+<a name="l00081"></a>00081 + (void)setNetworkOperationQueue:(NSOperationQueue *)queue;
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 <span class="keyword">@end</span>
 <a name="l00084"></a>00084 
-<a name="l00086"></a>00086 <span class="comment">// End of State ////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00085"></a>00085 
+<a name="l00087"></a>00087 <span class="comment">// End of State ////////////////////////////////////////////////////////////////////////////</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

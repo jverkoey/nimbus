@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -72,8 +72,6 @@
 </script>
 <div id="doc-content">
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Methods</a>  </div>
   <div class="headertitle">
 <div class="title">NILauncherView Class Reference<div class="ingroups"><a class="el" href="group___launcher-_user-_interface.html">User Interface</a></div></div>  </div>
 </div>
@@ -85,21 +83,23 @@
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">UIEdgeInsets&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_launcher_view.html#af8767bdd838ce4b0b8959331ccecfb8f">padding</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5680da202a46fb3ce6437d6987a7d41d"></a><!-- doxytag: member="NILauncherView::delegate" ref="a5680da202a46fb3ce6437d6987a7d41d" args="" -->
-id&lt; <a class="el" href="protocol_n_i_launcher_delegate-p.html">NILauncherDelegate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_launcher_view.html#a5680da202a46fb3ce6437d6987a7d41d">delegate</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af849642b45b213adbd85e85054925428"></a><!-- doxytag: member="NILauncherView::dataSource" ref="af849642b45b213adbd85e85054925428" args="" -->
-id&lt; <a class="el" href="protocol_n_i_launcher_data_source-p.html">NILauncherDataSource</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_launcher_view.html#af849642b45b213adbd85e85054925428">dataSource</a> <span class="suffix">property</span></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Configurable Properties</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">UIEdgeInsets&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_launcher_view.html#ae5a62c785693f02a50ae67792acc664e">padding</a> <span class="suffix">property</span></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Delegation</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1da7308b8ff117197ba646d7ae53f29a"></a><!-- doxytag: member="NILauncherView::delegate" ref="a1da7308b8ff117197ba646d7ae53f29a" args="" -->
+id&lt; <a class="el" href="protocol_n_i_launcher_delegate-p.html">NILauncherDelegate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_launcher_view.html#a1da7308b8ff117197ba646d7ae53f29a">delegate</a> <span class="suffix">property</span></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Data Source</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03a9f61511cf61e94b3d3550a2bb557a"></a><!-- doxytag: member="NILauncherView::dataSource" ref="a03a9f61511cf61e94b3d3550a2bb557a" args="" -->
+id&lt; <a class="el" href="protocol_n_i_launcher_data_source-p.html">NILauncherDataSource</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_launcher_view.html#a03a9f61511cf61e94b3d3550a2bb557a">dataSource</a> <span class="suffix">property</span></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_launcher_view.html#a00cd8720501ea27c466fa6e2201d41d4">reloadData</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_launcher_view.html#a37761e0617ece5ef925ea575647a8620">setFrame:</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
-<a class="anchor" id="af8767bdd838ce4b0b8959331ccecfb8f"></a><!-- doxytag: member="NILauncherView::padding" ref="af8767bdd838ce4b0b8959331ccecfb8f" args="" -->
+<a class="anchor" id="ae5a62c785693f02a50ae67792acc664e"></a><!-- doxytag: member="NILauncherView::padding" ref="ae5a62c785693f02a50ae67792acc664e" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (UIEdgeInsets) padding<code> [read, write, assign]</code></td>
+          <td class="memname">- NILauncherView:<code> [read, write, assign]</code></td>
         </tr>
       </table>
 </div>
@@ -109,7 +109,7 @@ id&lt; <a class="el" href="protocol_n_i_launcher_data_source-p.html">NILauncherD
 <p>The bottom padding is considered above the page control.</p>
 <p>Default values are 10 pixels of padding on all sides. </p>
 
-<p>Definition at line <a class="el" href="_n_i_launcher_view_8h_source.html#l00070">70</a> of file <a class="el" href="_n_i_launcher_view_8h_source.html">NILauncherView.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_launcher_view_8h_source.html#l00067">67</a> of file <a class="el" href="_n_i_launcher_view_8h_source.html">NILauncherView.h</a>.</p>
 
 </div>
 </div>
@@ -132,29 +132,6 @@ id&lt; <a class="el" href="protocol_n_i_launcher_data_source-p.html">NILauncherD
 <p>Unlike the UITableView's reloadData, this is not a cheap method to call. </p>
 
 <p>Definition at line <a class="el" href="_n_i_launcher_view_8m_source.html#l00427">427</a> of file <a class="el" href="_n_i_launcher_view_8m_source.html">NILauncherView.m</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a37761e0617ece5ef925ea575647a8620"></a><!-- doxytag: member="NILauncherView::setFrame:" ref="a37761e0617ece5ef925ea575647a8620" args="(CGRect frame)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) setFrame: </td>
-          <td></td>
-          <td class="paramtype">(CGRect)&#160;</td>
-          <td class="paramname"><em>frame</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Lays out the subviews for this launcher view. </p>
-<p>If you subclass this view and implement setFrame, you should either replicate the functionality found within or call [super setFrame:].</p>
-<dl class="note"><dt><b>Note:</b></dt><dd>Subviews are laid out in this method instead of layoutSubviews due to the fact that the scroll view offset and content size are modified within this method. If we modify these values in layoutSubviews then we will end up breaking the scroll view because whenever the user drags their finger to scroll the scroll view, layoutSubviews is called on the launcher view. </dd></dl>
-
-<p>Definition at line <a class="el" href="_n_i_launcher_view_8m_source.html#l00124">124</a> of file <a class="el" href="_n_i_launcher_view_8m_source.html">NILauncherView.m</a>.</p>
 
 </div>
 </div>

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -95,45 +95,36 @@
 <a name="l00017"></a>00017 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 <a name="l00018"></a>00018 <span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span>
 <a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <span class="preprocessor">#ifdef NIMBUS_STATIC_LIBRARY</span>
-<a name="l00021"></a>00021 <span class="preprocessor"></span><span class="preprocessor">#import &quot;ASIHTTPRequest/NIHTTPRequest.h&quot;</span>
-<a name="l00022"></a>00022 <span class="preprocessor">#import &quot;NimbusProcessors/NIProcessorDelegate.h&quot;</span>
-<a name="l00023"></a>00023 <span class="preprocessor">#else</span>
-<a name="l00024"></a>00024 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NIHTTPRequest.h&quot;</span>
-<a name="l00025"></a>00025 <span class="preprocessor">#import &quot;NIProcessorDelegate.h&quot;</span>
-<a name="l00026"></a>00026 <span class="preprocessor">#endif</span>
-<a name="l00027"></a>00027 <span class="preprocessor"></span>
-<a name="l00041"></a><a class="code" href="interface_n_i_processor_h_t_t_p_request.html">00041</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_processor_h_t_t_p_request.html" title="An HTTP request that processes the returned data on a separate thread.">NIProcessorHTTPRequest</a> : <a class="code" href="interface_n_i_h_t_t_p_request.html" title="An implementation of ASIHTTPRequest that uses the core network activity features in Nimbus...">NIHTTPRequest</a> {
-<a name="l00042"></a>00042 <span class="keyword">@private</span>
-<a name="l00043"></a>00043   <span class="keywordtype">id</span> _processedObject;
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045   id&lt;NIProcessorDelegate&gt; _processorDelegate;
+<a name="l00020"></a>00020 <span class="preprocessor">#import &quot;NIHTTPRequest.h&quot;</span>
+<a name="l00021"></a>00021 <span class="preprocessor">#import &quot;NIProcessorDelegate.h&quot;</span>
+<a name="l00022"></a>00022 
+<a name="l00036"></a><a class="code" href="interface_n_i_processor_h_t_t_p_request.html">00036</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_processor_h_t_t_p_request.html" title="An HTTP request that processes the returned data on a separate thread.">NIProcessorHTTPRequest</a> : <a class="code" href="interface_n_i_h_t_t_p_request.html" title="An implementation of ASIHTTPRequest that uses the core network activity features in Nimbus...">NIHTTPRequest</a> {
+<a name="l00037"></a>00037 <span class="keyword">@private</span>
+<a name="l00038"></a>00038   <span class="keywordtype">id</span> _processedObject;
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040   id&lt;NIProcessorDelegate&gt; _processorDelegate;
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00043"></a>00043 <span class="preprocessor"></span>  NIProcessorBlock _processDataBlock;
+<a name="l00044"></a>00044 <span class="preprocessor">#endif</span>
+<a name="l00045"></a>00045 <span class="preprocessor"></span>}
 <a name="l00046"></a>00046 
-<a name="l00047"></a>00047 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00048"></a>00048 <span class="preprocessor"></span>  NIProcessorBlock _processDataBlock;
-<a name="l00049"></a>00049 <span class="preprocessor">#endif</span>
-<a name="l00050"></a>00050 <span class="preprocessor"></span>}
-<a name="l00051"></a>00051 
-<a name="l00056"></a>00056 <span class="preprocessor">#pragma mark Accessing the Processed Object</span>
-<a name="l00057"></a>00057 <span class="preprocessor"></span>
-<a name="l00061"></a><a class="code" href="interface_n_i_processor_h_t_t_p_request.html#a079aadcb5f4ea692ad4f89f71a41f82d">00061</a> <span class="keyword">@property</span> (nonatomic, readonly, retain) <span class="keywordtype">id</span> processedObject;
-<a name="l00062"></a>00062 <span class="comment">// End of Accessing the Processed Object</span>
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065 
-<a name="l00070"></a>00070 <span class="preprocessor">#pragma mark Pipeline Processing Steps</span>
-<a name="l00071"></a>00071 <span class="preprocessor"></span>
-<a name="l00077"></a>00077 - (id)objectFromResponseData:(<a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a> *)data error:(NSError **)error;
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00080"></a>00080 <span class="preprocessor"></span>
-<a name="l00087"></a><a class="code" href="interface_n_i_processor_h_t_t_p_request.html#ae7c2909f0df1cd0ff2530b74fa458a3f">00087</a> <span class="keyword">@property</span> (readwrite, copy) NIProcessorBlock processDataBlock;
-<a name="l00088"></a>00088 
-<a name="l00095"></a><a class="code" href="interface_n_i_processor_h_t_t_p_request.html#a467653946b4e316c00f357fbe6d1cc48">00095</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NIProcessorDelegate&gt; processorDelegate;
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097 <span class="preprocessor">#endif</span>
-<a name="l00098"></a>00098 <span class="preprocessor"></span><span class="comment">// End of Pipeline Processing Steps</span>
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101 <span class="keyword">@end</span>
+<a name="l00047"></a>00047 <span class="preprocessor">#pragma mark Results </span>
+<a name="l00052"></a><a class="code" href="interface_n_i_processor_h_t_t_p_request.html#a079aadcb5f4ea692ad4f89f71a41f82d">00052</a> <span class="preprocessor">@property (nonatomic, readonly, retain) id processedObject;</span>
+<a name="l00053"></a>00053 <span class="preprocessor"></span>
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055 <span class="preprocessor">#pragma mark Pipeline Processing Steps </span>
+<a name="l00062"></a>00062 <span class="preprocessor">- (id)objectFromResponseData:(NSData *)data error:(NSError **)error;</span>
+<a name="l00063"></a>00063 <span class="preprocessor"></span>
+<a name="l00064"></a>00064 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00065"></a>00065 <span class="preprocessor"></span>
+<a name="l00072"></a><a class="code" href="interface_n_i_processor_h_t_t_p_request.html#ae7c2909f0df1cd0ff2530b74fa458a3f">00072</a> <span class="keyword">@property</span> (readwrite, copy) NIProcessorBlock processDataBlock;
+<a name="l00073"></a>00073 
+<a name="l00080"></a><a class="code" href="interface_n_i_processor_h_t_t_p_request.html#a467653946b4e316c00f357fbe6d1cc48">00080</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NIProcessorDelegate&gt; processorDelegate;
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082 <span class="preprocessor">#endif</span>
+<a name="l00083"></a>00083 <span class="preprocessor"></span>
+<a name="l00084"></a>00084 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

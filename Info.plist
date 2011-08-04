@@ -6,7 +6,11 @@
      <key>CFBundleName</key>
      <string>Nimbus</string>
      <key>CFBundleIdentifier</key>
-     <string>org.jeffverkoeyen.nimbus.docset</string>
+     <string>org.jeffverkoeyen.nimbus</string>
+     <key>CFBundleVersion</key>
+     <string>0.6.0</string>
+     <key>DocSetFeedURL</key>
+     <string>http://jverkoey.github.com/nimbus/nimbusdocset.atom</string>
      <key>DocSetFeedName</key>
      <string>Nimbus Documentation</string>
      <key>DocSetPublisherIdentifier</key>

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -72,8 +72,6 @@
 </script>
 <div id="doc-content">
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Methods</a>  </div>
   <div class="headertitle">
 <div class="title">&lt;NIOperationDelegate&gt; Protocol Reference<div class="ingroups"><a class="el" href="group___operations.html">Operations</a></div></div>  </div>
 </div>
@@ -81,19 +79,38 @@
 <!-- doxytag: class="NIOperationDelegate-p" --><hr/><a name="details" id="details"></a><h2>Overview</h2>
 <div class="textblock"><p>The delegate protocol for an NSOperation. </p>
 
-<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00246">246</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00124">124</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
 </div>
 <p>Inherited by NIOperationsTests.</p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a67316e75bd418453d0ee0626b86f0480"></a><!-- doxytag: member="NIOperationDelegate&#45;p::operationDidStart:" ref="a67316e75bd418453d0ee0626b86f0480" args="(NSOperation *operation)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_operation_delegate-p.html#a67316e75bd418453d0ee0626b86f0480">operationDidStart:</a></td></tr>
+<tr><td colspan="2"><div class="groupHeader">[NIOperationDelegate] State Changes</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_operation_delegate-p.html#a67316e75bd418453d0ee0626b86f0480">operationDidStart:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_operation_delegate-p.html#ab611d7a71a08106becd2f66114b15d8f">operationWillFinish:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_operation_delegate-p.html#ac3bf1a396bbc1c4f78f8569ca5df4455">operationDidFinish:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_operation_delegate-p.html#a03cc8cc14147e2ad8f2c3e84f9eb11e2">operationDidFail:withError:</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
+<a class="anchor" id="a67316e75bd418453d0ee0626b86f0480"></a><!-- doxytag: member="NIOperationDelegate&#45;p::operationDidStart:" ref="a67316e75bd418453d0ee0626b86f0480" args="(NSOperation *operation)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) operationDidStart: </td>
+          <td></td>
+          <td class="paramtype">(NSOperation *)&#160;</td>
+          <td class="paramname"><em>operation</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The operation has started executing. </p>
+
+</div>
+</div>
 <a class="anchor" id="ab611d7a71a08106becd2f66114b15d8f"></a><!-- doxytag: member="NIOperationDelegate&#45;p::operationWillFinish:" ref="ab611d7a71a08106becd2f66114b15d8f" args="(NSOperation *operation)" -->
 <div class="memitem">
 <div class="memproto">
@@ -103,7 +120,7 @@ Methods</h2></td></tr>
           <td></td>
           <td class="paramtype">(NSOperation *)&#160;</td>
           <td class="paramname"><em>operation</em></td>
-          <td><code> [optional]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -124,7 +141,7 @@ Methods</h2></td></tr>
           <td></td>
           <td class="paramtype">(NSOperation *)&#160;</td>
           <td class="paramname"><em>operation</em></td>
-          <td><code> [optional]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -154,14 +171,14 @@ Methods</h2></td></tr>
         <tr>
           <td></td>
           <td></td>
-          <td></td><td><code> [optional]</code></td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>The operation failed in some way and has completed. </p>
-<p>operationDidFinish will not be called. </p>
+<p>operationDidFinish: will not be called. </p>
 
 </div>
 </div>

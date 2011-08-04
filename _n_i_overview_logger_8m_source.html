@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -209,9 +209,9 @@
 <a name="l00152"></a>00152 }
 <a name="l00153"></a>00153 
 <a name="l00154"></a>00154 
-<a name="l00156"></a><a class="code" href="interface_n_i_overview_console_log_entry.html#a3f442d14ff713dee83275d73fac22dc0">00156</a> - (id)initWithLog:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)log {
+<a name="l00156"></a><a class="code" href="interface_n_i_overview_console_log_entry.html#a3f442d14ff713dee83275d73fac22dc0">00156</a> - (id)initWithLog:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)logText {
 <a name="l00157"></a>00157   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super initWithTimestamp:[NSDate date]])) {
-<a name="l00158"></a>00158     _log = [log copy];
+<a name="l00158"></a>00158     _log = [logText copy];
 <a name="l00159"></a>00159   }
 <a name="l00160"></a>00160 
 <a name="l00161"></a>00161   <span class="keywordflow">return</span> <span class="keyword">self</span>;
@@ -223,12 +223,12 @@
 <a name="l00167"></a>00167 
 <a name="l00171"></a>00171 <span class="keyword">@implementation </span><a class="code" href="interface_n_i_overview_event_log_entry.html" title="An event log entry.">NIOverviewEventLogEntry</a>
 <a name="l00172"></a>00172 
-<a name="l00173"></a>00173 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_overview_event_log_entry.html#ae1d4d7b73806280eb959ed15d80a0db9" title="The type of event.">type</a> = _type;
+<a name="l00173"></a>00173 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_overview_event_log_entry.html#ae1d4d7b73806280eb959ed15d80a0db9" title="The type of event.">type</a> = _eventType;
 <a name="l00174"></a>00174 
 <a name="l00175"></a>00175 
 <a name="l00177"></a><a class="code" href="interface_n_i_overview_event_log_entry.html#aa8750ee90afd66e414f8cfad0342606f">00177</a> - (id)initWithType:(NSInteger)type {
 <a name="l00178"></a>00178   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super initWithTimestamp:[NSDate date]])) {
-<a name="l00179"></a>00179     _type = <a class="code" href="interface_n_i_overview_event_log_entry.html#ae1d4d7b73806280eb959ed15d80a0db9" title="The type of event.">type</a>;
+<a name="l00179"></a>00179     _eventType = <a class="code" href="interface_n_i_overview_event_log_entry.html#ae1d4d7b73806280eb959ed15d80a0db9" title="The type of event.">type</a>;
 <a name="l00180"></a>00180   }
 <a name="l00181"></a>00181   
 <a name="l00182"></a>00182   <span class="keywordflow">return</span> <span class="keyword">self</span>;

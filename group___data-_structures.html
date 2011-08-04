@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -80,7 +80,7 @@
 <div class="contents">
 <hr/><a name="details" id="details"></a><h2>Overview</h2>
 <p>For classic computer science data structures. </p>
-<p>iOS provides most of the important data structures such as arrays, dictionaries, and sets. However, it is missing some lesser-used data structures such as linked lists and easy-to-use trees structures. <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> makes use of the linked list data structure to provide an efficient least-recently-used cache removal policy for its in-memory cache, <a class="el" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a>.</p>
+<p>iOS provides most of the important data structures such as arrays, dictionaries, and sets. However, it is missing some lesser-used data structures such as linked lists. <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> makes use of the linked list data structure to provide an efficient, least-recently-used cache removal policy for its in-memory cache, <a class="el" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a>.</p>
 <h2>Comparison of Data Structures</h2>
 <pre>
   Requirement           | <a class="el" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> | NSArray | NSSet | NSDictionary
@@ -98,8 +98,10 @@
                         |     [1]      |         |       |     [2]
   ---------------------------------------------------------------------</pre><ul>
 <li>[1] Note that being able to instantly remove and access objects in an <a class="el" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> requires additional overhead of maintaining NILinkedListLocation objects in your code. If this is your only requirement, then it's likely simpler to use an NSSet. A linked list <em>is</em> worth using if you also need consistent ordering, seeing as neither NSSet nor NSDictionary provide this.</li>
-<li>[2] This assumes you are accessing the object with its key. </li>
+<li>[2] This assumes you are accessing the object with its key.</li>
 </ul>
+<h2>Why <a class="el" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> was Built</h2>
+<p><a class="el" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> was built to solve a specific need in Nimbus' in-memory caches of having a collection that guaranteed ordering, constant-time appending, and constant time removal of arbitrary objects. NSArray does not guarantee constant-time removal of objects, NSSet does not enforce ordering (though the new NSOrderedSet introduced in iOS 5 does), and NSDictionary also does not enforce ordering. </p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>

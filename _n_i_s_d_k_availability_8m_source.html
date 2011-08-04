@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -97,7 +97,7 @@
 <a name="l00019"></a>00019 <span class="preprocessor">#import &quot;NimbusCore.h&quot;</span>
 <a name="l00020"></a>00020 
 <a name="l00021"></a>00021 
-<a name="l00023"></a><a class="code" href="group___s_d_k-_availability.html#gaf7d2c830b4c39cfeeb37d59258abb722">00023</a> BOOL <a class="code" href="group___s_d_k-_availability.html#gaf7d2c830b4c39cfeeb37d59258abb722" title="Checks whether the device the app is currently running on is an iPad or not.">NIIsPad</a>() {
+<a name="l00023"></a><a class="code" href="group___s_d_k-_availability.html#ga7c693df0e5edd930db9d711852561eb4">00023</a> BOOL <a class="code" href="group___s_d_k-_availability.html#ga7c693df0e5edd930db9d711852561eb4" title="Checks whether the device the app is currently running on is an iPad or not.">NIIsPad</a>(<span class="keywordtype">void</span>) {
 <a name="l00024"></a>00024 <span class="preprocessor">#ifdef UI_USER_INTERFACE_IDIOM</span>
 <a name="l00025"></a>00025 <span class="preprocessor"></span>  <span class="keyword">static</span> NSInteger isPad = -1;
 <a name="l00026"></a>00026   <span class="keywordflow">if</span> (isPad &lt; 0) {
@@ -115,7 +115,7 @@
 <a name="l00039"></a>00039 }
 <a name="l00040"></a>00040 
 <a name="l00041"></a>00041 
-<a name="l00043"></a><a class="code" href="group___s_d_k-_availability.html#ga90dc63555a6a6ed33b5875c5eaeccb31">00043</a> CGFloat <a class="code" href="group___s_d_k-_availability.html#ga90dc63555a6a6ed33b5875c5eaeccb31" title="Fetch the screen&#39;s scale in an SDK-agnostic way.">NIScreenScale</a>() {
+<a name="l00043"></a><a class="code" href="group___s_d_k-_availability.html#ga8ffc9070109f21db5092d5e2b65b7578">00043</a> CGFloat <a class="code" href="group___s_d_k-_availability.html#ga8ffc9070109f21db5092d5e2b65b7578" title="Fetch the screen&#39;s scale in an SDK-agnostic way.">NIScreenScale</a>(<span class="keywordtype">void</span>) {
 <a name="l00044"></a>00044   <span class="keyword">static</span> <span class="keywordtype">int</span> respondsToScale = -1;
 <a name="l00045"></a>00045   <span class="keywordflow">if</span> (respondsToScale == -1) {
 <a name="l00046"></a>00046     <span class="comment">// Avoid calling this anymore than we need to.</span>
@@ -131,7 +131,7 @@
 <a name="l00056"></a>00056 }
 <a name="l00057"></a>00057 
 <a name="l00058"></a>00058 
-<a name="l00060"></a><a class="code" href="group___s_d_k-_availability.html#gab7b9a8279ba3c54d6654f11f69dbd6f0">00060</a> Class <a class="code" href="group___s_d_k-_availability.html#gab7b9a8279ba3c54d6654f11f69dbd6f0" title="Safely fetch the UIPopoverController class if it is available.">NIUIPopoverControllerClass</a>() {
+<a name="l00060"></a><a class="code" href="group___s_d_k-_availability.html#ga3462c46b1f1a8145bdede278e66a88b3">00060</a> Class <a class="code" href="group___s_d_k-_availability.html#ga3462c46b1f1a8145bdede278e66a88b3" title="Safely fetch the UIPopoverController class if it is available.">NIUIPopoverControllerClass</a>(<span class="keywordtype">void</span>) {
 <a name="l00061"></a>00061   <span class="keyword">static</span> Class sClass = nil;
 <a name="l00062"></a>00062   <span class="keyword">static</span> BOOL hasChecked = NO;
 <a name="l00063"></a>00063   <span class="keywordflow">if</span> (!hasChecked) {
@@ -142,7 +142,7 @@
 <a name="l00068"></a>00068 }
 <a name="l00069"></a>00069 
 <a name="l00070"></a>00070 
-<a name="l00072"></a><a class="code" href="group___s_d_k-_availability.html#ga622ef4a203e625618b9077c9b1deca24">00072</a> Class <a class="code" href="group___s_d_k-_availability.html#ga622ef4a203e625618b9077c9b1deca24" title="Safely fetch the UITapGestureRecognizer class if it is available.">NIUITapGestureRecognizerClass</a>() {
+<a name="l00072"></a><a class="code" href="group___s_d_k-_availability.html#ga90530f627a0a0785a02d319111f2155c">00072</a> Class <a class="code" href="group___s_d_k-_availability.html#ga90530f627a0a0785a02d319111f2155c" title="Safely fetch the UITapGestureRecognizer class if it is available.">NIUITapGestureRecognizerClass</a>(<span class="keywordtype">void</span>) {
 <a name="l00073"></a>00073   <span class="keyword">static</span> Class sClass = nil;
 <a name="l00074"></a>00074   <span class="keyword">static</span> BOOL hasChecked = NO;
 <a name="l00075"></a>00075   <span class="keywordflow">if</span> (!hasChecked) {

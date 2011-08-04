@@ -3,7 +3,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Common-Metrics</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___common-_metrics.html</Path>
     <Abstract>For common system metrics.</Abstract>
@@ -11,7 +11,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIToolbarHeightForOrientation</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___common-_metrics.html</Path>
@@ -21,57 +21,57 @@
   <Token>
     <TokenIdentifier>
       <Name>NIStatusBarAnimationCurve</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___common-_metrics.html</Path>
-    <Anchor>ga0cec7c71cc4f5efee4113d16abde3ca1</Anchor>
-    <Abstract>The animation curve used when animating the status bar.</Abstract>
+    <Anchor>ga4d89d2266bfbfb0bb5743cfbba210dfe</Anchor>
+    <Abstract>The animation curve used when changing the status bar&amp;#39;s visibility.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>NIStatusBarAnimationDuration</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___common-_metrics.html</Path>
-    <Anchor>gaf476266576d4c565941facf2ae5583e7</Anchor>
-    <Abstract>The animation duration for animating the status bar.</Abstract>
+    <Anchor>ga6794a4a04b97cd3ffaeac318b7d27b4f</Anchor>
+    <Abstract>The animation duration used when changing the status bar&amp;#39;s visibility.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>NIStatusBarFrameAnimationCurve</Name>
-      <APILanguage>c</APILanguage>
+      <Name>NIStatusBarBoundsChangeAnimationCurve</Name>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___common-_metrics.html</Path>
-    <Anchor>ga1c20acb842e5d526de672b5206afff3a</Anchor>
-    <Abstract>The animation curve used when animating the status bar frame.</Abstract>
+    <Anchor>ga2d72a62ebc7f5ec053e60547b2f3e91f</Anchor>
+    <Abstract>The animation curve used when the status bar&amp;#39;s bounds change (when a call is received, for example).</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>NIStatusBarFrameAnimationDuration</Name>
-      <APILanguage>c</APILanguage>
+      <Name>NIStatusBarBoundsChangeAnimationDuration</Name>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___common-_metrics.html</Path>
-    <Anchor>gaf1def83034a464eb8d86f1ccae90dabf</Anchor>
-    <Abstract>The animation duration for animating the status bar frame.</Abstract>
+    <Anchor>ga9526db6e49bdbeea5f4293d63dded111</Anchor>
+    <Abstract>The animation duration used when the status bar&amp;#39;s bounds change (when a call is received, for example).</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>NIStatusBarHeight</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___common-_metrics.html</Path>
-    <Anchor>gab7dfa3fd3b6311312ba4c7fd59c3f666</Anchor>
+    <Anchor>ga2e9bd96c79383760a4b81539339960fb</Anchor>
     <Abstract>Get the status bar&amp;#39;s current height.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>NIDeviceRotationDuration</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___common-_metrics.html</Path>
@@ -81,7 +81,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Data-Structures</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___data-_structures.html</Path>
     <Abstract>For classic computer science data structures.</Abstract>
@@ -89,7 +89,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Debugging-Tools</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___debugging-_tools.html</Path>
     <Abstract>For inspecting code and writing to logs in debug builds.</Abstract>
@@ -97,7 +97,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIDASSERT</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___debugging-_tools.html</Path>
@@ -107,7 +107,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIDPRINT</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___debugging-_tools.html</Path>
@@ -117,7 +117,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIDPRINTMETHODNAME</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___debugging-_tools.html</Path>
@@ -127,7 +127,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIDCONDITIONLOG</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___debugging-_tools.html</Path>
@@ -137,7 +137,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIDERROR</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___debugging-_tools.html</Path>
@@ -147,7 +147,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIDWARNING</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___debugging-_tools.html</Path>
@@ -157,7 +157,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIDINFO</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___debugging-_tools.html</Path>
@@ -167,7 +167,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIMaxLogLevel</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>data</Type>
     </TokenIdentifier>
     <Path>group___debugging-_tools.html</Path>
@@ -176,8 +176,18 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NIDebugAssertionsShouldBreak</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>data</Type>
+    </TokenIdentifier>
+    <Path>group___debugging-_tools.html</Path>
+    <Anchor>ga9b5abee5150b99d8ccce041099d44706</Anchor>
+    <Abstract>Whether or not debug assertions should halt program execution like a breakpoint when they fail...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Device-Orientation</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___device-_orientation.html</Path>
     <Abstract>For dealing with device orientations.</Abstract>
@@ -185,7 +195,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIsSupportedOrientation</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___device-_orientation.html</Path>
@@ -195,17 +205,17 @@
   <Token>
     <TokenIdentifier>
       <Name>NIInterfaceOrientation</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___device-_orientation.html</Path>
-    <Anchor>ga7c59ce546cc2e2835532fa9dea2a4869</Anchor>
+    <Anchor>ga350d238bb40115bab71c59aab4d74958</Anchor>
     <Abstract>Returns the application&amp;#39;s current interface orientation.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>NIRotateTransformForOrientation</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___device-_orientation.html</Path>
@@ -214,8 +224,46 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>Errors</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___errors.html</Path>
+    <Abstract>For defining various error types used throughout the Nimbus framework.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NINimbusErrorDomain</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>data</Type>
+    </TokenIdentifier>
+    <Path>group___errors.html</Path>
+    <Anchor>gaee32bc92b5f43e18a9179907453b99cf</Anchor>
+    <Abstract>The Nimbus error domain.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIImageErrorKey</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>data</Type>
+    </TokenIdentifier>
+    <Path>group___errors.html</Path>
+    <Anchor>gac8f7694224872fbc5d78543a200555ef</Anchor>
+    <Abstract>The key used for images in the error&amp;#39;s userInfo.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIImageTooSmall</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>econst</Type>
+    </TokenIdentifier>
+    <Path>group___errors.html</Path>
+    <Anchor>ggaa5f795b948c499dd5c3f7914a777eda0a6d2368fd7471b52b4ed05b04244b12d0</Anchor>
+    <Abstract>The image is too small to be used.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Foundation-Methods</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___foundation-_methods.html</Path>
     <Abstract>For filling in gaps in Apple&amp;#39;s Foundation framework.</Abstract>
@@ -223,7 +271,7 @@
   <Token>
     <TokenIdentifier>
       <Name>CGRect-Methods</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___c_g_rect-_methods.html</Path>
     <Abstract>For manipulating CGRects.</Abstract>
@@ -231,7 +279,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIRectContract</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___c_g_rect-_methods.html</Path>
@@ -241,7 +289,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIRectShift</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___c_g_rect-_methods.html</Path>
@@ -251,7 +299,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIRectInset</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___c_g_rect-_methods.html</Path>
@@ -261,7 +309,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NSRange-Methods</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___n_s_range-_methods.html</Path>
     <Abstract>For manipulating NSRange.</Abstract>
@@ -269,7 +317,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIMakeNSRangeFromCFRange</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___n_s_range-_methods.html</Path>
@@ -278,8 +326,36 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>General-Purpose-Methods</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___general-_purpose-_methods.html</Path>
+    <Abstract>For general purpose foundation type manipulation.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>boundf</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___general-_purpose-_methods.html</Path>
+    <Anchor>ga983d44cb238c454d070504924bf4e7d5</Anchor>
+    <Abstract>Bounds a given value within the min and max values.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>boundi</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___general-_purpose-_methods.html</Path>
+    <Anchor>gace7056b3790906a7496f61835889cb34</Anchor>
+    <Abstract>Bounds a given value within the min and max values.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>In-Memory-Caches</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___in-_memory-_caches.html</Path>
     <Abstract>For storing and accessing objects in memory.</Abstract>
@@ -287,7 +363,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NimbusCore</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___nimbus_core.html</Path>
     <Abstract>Nimbus&amp;#39; Core defines the foundation upon which all other Nimbus features are built.</Abstract>
@@ -295,7 +371,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Network-Activity</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___network-_activity.html</Path>
     <Abstract>For showing network activity in the device&amp;#39;s status bar.</Abstract>
@@ -303,47 +379,47 @@
   <Token>
     <TokenIdentifier>
       <Name>NINetworkActivityTaskDidStart</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___network-_activity.html</Path>
-    <Anchor>ga891e92e9a0937f27411fa6413f30cdfa</Anchor>
+    <Anchor>ga3e923f142d5a8fc6fab084c6ab215750</Anchor>
     <Abstract>Increment the number of active network tasks.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>NINetworkActivityTaskDidFinish</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___network-_activity.html</Path>
-    <Anchor>gac403d3b1b127ca02ac65ab38b3cc7f5d</Anchor>
+    <Anchor>ga2c80c44ffd1d89dfffa834864d7f64c1</Anchor>
     <Abstract>Decrement the number of active network tasks.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>NIEnableNetworkActivityDebugging</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___network-_activity.html</Path>
-    <Anchor>ga407c75bc669bcbb55604bdb64f4e9030</Anchor>
+    <Anchor>ga2793f13bdaa6cbec2d67752e994918a4</Anchor>
     <Abstract>Enable network activity debugging.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>NIDisableNetworkActivityDebugging</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___network-_activity.html</Path>
-    <Anchor>gae76fb8b8a0a7ec02854b656962fde118</Anchor>
+    <Anchor>ga3839c61537abef204dcaaab5148446e3</Anchor>
     <Abstract>Disable network activity debugging.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>Non-Empty-Collection-Testing</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___non-_empty-_collection-_testing.html</Path>
     <Abstract>For testing whether a collection is of a certain type and is non-empty.</Abstract>
@@ -351,7 +427,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIsArrayWithObjects</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___non-_empty-_collection-_testing.html</Path>
@@ -361,7 +437,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIsSetWithObjects</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___non-_empty-_collection-_testing.html</Path>
@@ -371,7 +447,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIsStringWithAnyText</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___non-_empty-_collection-_testing.html</Path>
@@ -381,7 +457,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Non-Retaining-Collections</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___non-_retaining-_collections.html</Path>
     <Abstract>For collections that don&amp;#39;t retain their objects.</Abstract>
@@ -389,53 +465,45 @@
   <Token>
     <TokenIdentifier>
       <Name>NICreateNonRetainingMutableArray</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___non-_retaining-_collections.html</Path>
-    <Anchor>gaac64ec97e335bdc4510454b96401c428</Anchor>
+    <Anchor>ga326d3bbb01f451440f243305229b03ac</Anchor>
     <Abstract>Creates a mutable array which does not retain references to the objects it contains.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>NICreateNonRetainingMutableDictionary</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___non-_retaining-_collections.html</Path>
-    <Anchor>ga7d8bc03279587a225edb68c321d78d5b</Anchor>
+    <Anchor>ga98d9435c67db0855b6dea10b92ce4b35</Anchor>
     <Abstract>Creates a mutable dictionary which does not retain references to the values it contains.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>NICreateNonRetainingMutableSet</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___non-_retaining-_collections.html</Path>
-    <Anchor>ga8e9ffb851ec72ac6be2cc895b35470dc</Anchor>
+    <Anchor>ga4120b0385cbe3a10fd067fc594af198b</Anchor>
     <Abstract>Creates a mutable set which does not retain references to the values it contains.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>Operations</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___operations.html</Path>
-    <Abstract>For common NSOperation implementations.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>Crafting-Operations</Name>
-      <APILanguage>c</APILanguage>
-    </TokenIdentifier>
-    <Path>group___crafting-_operations.html</Path>
-    <Abstract>For crafting operations.</Abstract>
+    <Abstract>For writing code that runs concurrently.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>Paths</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___paths.html</Path>
     <Abstract>For creating standard system paths.</Abstract>
@@ -443,7 +511,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIPathForBundleResource</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___paths.html</Path>
@@ -453,7 +521,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIPathForDocumentsResource</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___paths.html</Path>
@@ -463,7 +531,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Preprocessor-Macros</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___preprocessor-_macros.html</Path>
     <Abstract>For generating code where methods can&amp;#39;t be used.</Abstract>
@@ -471,7 +539,7 @@
   <Token>
     <TokenIdentifier>
       <Name>__NI_DEPRECATED_METHOD</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___preprocessor-_macros.html</Path>
@@ -481,7 +549,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NI_FIX_CATEGORY_BUG</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___preprocessor-_macros.html</Path>
@@ -491,7 +559,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NI_RELEASE_SAFELY</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___preprocessor-_macros.html</Path>
@@ -501,7 +569,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Runtime-Class-Modifications</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___runtime-_class-_modifications.html</Path>
     <Abstract>For modifying class implementations at runtime.</Abstract>
@@ -509,7 +577,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NISwapInstanceMethods</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___runtime-_class-_modifications.html</Path>
@@ -519,7 +587,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NISwapClassMethods</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___runtime-_class-_modifications.html</Path>
@@ -529,7 +597,7 @@
   <Token>
     <TokenIdentifier>
       <Name>SDK-Availability</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
     <Abstract>For checking SDK feature availibility.</Abstract>
@@ -537,7 +605,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIOS_2_0</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
@@ -547,7 +615,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIOS_2_1</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
@@ -557,7 +625,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIOS_2_2</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
@@ -567,7 +635,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIOS_3_0</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
@@ -577,7 +645,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIOS_3_1</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
@@ -587,7 +655,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIOS_3_2</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
@@ -597,7 +665,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIOS_4_0</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
@@ -607,7 +675,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIOS_4_1</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
@@ -617,7 +685,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIOS_4_2</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
@@ -627,7 +695,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIOS_4_3</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
@@ -637,7 +705,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIOS_5_0</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>macro</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
@@ -647,17 +715,17 @@
   <Token>
     <TokenIdentifier>
       <Name>NIIsPad</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
-    <Anchor>gaf7d2c830b4c39cfeeb37d59258abb722</Anchor>
+    <Anchor>ga7c693df0e5edd930db9d711852561eb4</Anchor>
     <Abstract>Checks whether the device the app is currently running on is an iPad or not.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>NIDeviceOSVersionIsAtLeast</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
@@ -667,37 +735,37 @@
   <Token>
     <TokenIdentifier>
       <Name>NIScreenScale</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
-    <Anchor>ga90dc63555a6a6ed33b5875c5eaeccb31</Anchor>
+    <Anchor>ga8ffc9070109f21db5092d5e2b65b7578</Anchor>
     <Abstract>Fetch the screen&amp;#39;s scale in an SDK-agnostic way.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>NIUIPopoverControllerClass</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
-    <Anchor>gab7b9a8279ba3c54d6654f11f69dbd6f0</Anchor>
+    <Anchor>ga3462c46b1f1a8145bdede278e66a88b3</Anchor>
     <Abstract>Safely fetch the UIPopoverController class if it is available.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>NIUITapGestureRecognizerClass</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>func</Type>
     </TokenIdentifier>
     <Path>group___s_d_k-_availability.html</Path>
-    <Anchor>ga622ef4a203e625618b9077c9b1deca24</Anchor>
+    <Anchor>ga90530f627a0a0785a02d319111f2155c</Anchor>
     <Abstract>Safely fetch the UITapGestureRecognizer class if it is available.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>Core-State</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___core-_state.html</Path>
     <Abstract>For modifying Nimbus state information.</Abstract>
@@ -705,15 +773,23 @@
   <Token>
     <TokenIdentifier>
       <Name>Version-History</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___version-_history.html</Path>
     <Abstract>Presented here are the API diffs for each major release of Nimbus.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>Version-6-0</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___version-6-0.html</Path>
+    <Abstract>Version 0.6.0 of Nimbus was released on August 4, 2011.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Version-5-0</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___version-5-0.html</Path>
     <Abstract>Version 0.5.0 of Nimbus was released on July 29, 2011.</Abstract>
@@ -721,7 +797,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Version-4</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___version-4.html</Path>
     <Abstract>Version 0.4 of Nimbus was released on July 20, 2011.</Abstract>
@@ -729,7 +805,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Version-4-1</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___version-4-1.html</Path>
     <Abstract>Version 0.4.1 of Nimbus was released on July 22, 2011.</Abstract>
@@ -737,35 +813,43 @@
   <Token>
     <TokenIdentifier>
       <Name>Version-3</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___version-3.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>Version-2</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___version-2.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>Version-1</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___version-1.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
       <Name>Three20-Migration-Guide</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___three20-_migration-_guide.html</Path>
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NimbusInterapp</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___nimbus_interapp.html</Path>
+    <Abstract>Nimbus&amp;#39; inter-application communication feature for interacting with other applications installed on ...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NimbusLauncher</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___nimbus_launcher.html</Path>
     <Abstract>Nimbus&amp;#39; Launcher view and related components.</Abstract>
@@ -773,7 +857,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Launcher-User-Interface</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___launcher-_user-_interface.html</Path>
     <Abstract>The views and data containers used to display a launcher user interface.</Abstract>
@@ -781,7 +865,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Launcher-Protocols</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___launcher-_protocols.html</Path>
     <Abstract>The delegate and data source protocols that allow the user interface to be simple.</Abstract>
@@ -789,7 +873,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NimbusNetworkImage</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___nimbus_network_image.html</Path>
     <Abstract>Image views that load images from the network and efficiently store the result in memory and on disk...</Abstract>
@@ -797,7 +881,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Network-Image-User-Interface</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___network-_image-_user-_interface.html</Path>
     <Abstract>The view and protocols used to display a network image.</Abstract>
@@ -805,7 +889,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Network-Image-Requests</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___network-_image-_requests.html</Path>
     <Abstract>The network requests that power the network image view.</Abstract>
@@ -813,7 +897,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NimbusOverview</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___nimbus_overview.html</Path>
     <Abstract>The Overview is a debugging tool for quickly understanding the current state of your application...</Abstract>
@@ -821,7 +905,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Overview-Sensors</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___overview-_sensors.html</Path>
     <Abstract>The sensors used to power the Overview.</Abstract>
@@ -829,7 +913,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Overview</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___overview.html</Path>
     <Abstract>The primary classes you&amp;#39;ll use when dealing with the Overview.</Abstract>
@@ -837,7 +921,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Overview-Logger</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___overview-_logger.html</Path>
     <Abstract>The Overview logger.</Abstract>
@@ -845,7 +929,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Overview-Pages</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___overview-_pages.html</Path>
     <Abstract>The pages that are shown in the Overview.</Abstract>
@@ -853,7 +937,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Overview-Logger-Entries</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___overview-_logger-_entries.html</Path>
     <Abstract>Log entries for the Overview logger.</Abstract>
@@ -861,7 +945,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NimbusPhotos</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___nimbus_photos.html</Path>
     <Abstract>Photo viewers are a common, non-trivial feature in many types of iOS apps ranging from simple photo v...</Abstract>
@@ -869,7 +953,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Photos-Views</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___photos-_views.html</Path>
     <Abstract>The views used to display photos.</Abstract>
@@ -877,7 +961,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Photos-Protocols</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___photos-_protocols.html</Path>
     <Abstract>The protocols used to interact with the photo views.</Abstract>
@@ -885,7 +969,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Photos-Controllers</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___photos-_controllers.html</Path>
     <Abstract>Basic photo album view controller implementations.</Abstract>
@@ -893,7 +977,7 @@
   <Token>
     <TokenIdentifier>
       <Name>NimbusProcessors</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___nimbus_processors.html</Path>
     <Abstract>Processors are for performing complex data manipulation on separate threads.</Abstract>
@@ -901,7 +985,7 @@
   <Token>
     <TokenIdentifier>
       <Name>Network-Processors</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___network-_processors.html</Path>
     <Abstract>Processors designed specifically for network access.</Abstract>
@@ -909,9 +993,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIDeviceInfo</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIDeviceInfo</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_device_info.html</Path>
     <Abstract>An interface for accessing device information.</Abstract>
@@ -1008,9 +1091,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIHTTPImageRequest</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIHTTPImageRequest</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_h_t_t_p_image_request.html</Path>
     <Abstract>A threaded network request for an image that chops up and resizes the image before returning to the U...</Abstract>
@@ -1024,7 +1106,7 @@
       <Scope>NIHTTPImageRequest</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_h_t_t_p_image_request.html</Path>
-    <Anchor>a269bb9693de5df1b6852314ecd62eefa</Anchor>
+    <Anchor>ac7d042c084fe692087bbbe6359642780</Anchor>
     <Abstract>x/y, width/height are in percent coordinates.</Abstract>
   </Token>
   <Token>
@@ -1035,7 +1117,7 @@
       <Scope>NIHTTPImageRequest</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_h_t_t_p_image_request.html</Path>
-    <Anchor>ad6389e520bbac3c02e299fc4392f6922</Anchor>
+    <Anchor>a98b6b9986e30decafe821755bdae5f3f</Anchor>
     <Abstract>The size of the image to be displayed on the screen.</Abstract>
   </Token>
   <Token>
@@ -1046,7 +1128,7 @@
       <Scope>NIHTTPImageRequest</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_h_t_t_p_image_request.html</Path>
-    <Anchor>a11f4b6cc61cceb33a41423c62e4e735c</Anchor>
+    <Anchor>aee0571051fc0f4e1952ec0a3f4bfe8de</Anchor>
     <Abstract>Options for modifying the way images are cropped when scaling.</Abstract>
   </Token>
   <Token>
@@ -1057,7 +1139,7 @@
       <Scope>NIHTTPImageRequest</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_h_t_t_p_image_request.html</Path>
-    <Anchor>a944c80da8f3884d2d1bbab8bf3efeeef</Anchor>
+    <Anchor>abba79b08eabfdd05d8d30a40cd272829</Anchor>
     <Abstract>The interpolation quality to use when resizing the image.</Abstract>
   </Token>
   <Token>
@@ -1068,8 +1150,19 @@
       <Scope>NIHTTPImageRequest</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_h_t_t_p_image_request.html</Path>
-    <Anchor>aca396dd63f83234695e9e88a44abf49e</Anchor>
+    <Anchor>a85f304984ea0cc6640396dc0d7f0517d</Anchor>
     <Abstract>Determines how to resize and crop the image.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>imageCroppedAndSizedForDisplay</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIHTTPImageRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_h_t_t_p_image_request.html</Path>
+    <Anchor>a68c2a89f112c47d56c54715596d89d85</Anchor>
+    <Abstract>Upon completion of the request, this is the chopped and sized result image that should be used for di...</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1084,21 +1177,9 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>imageCroppedAndSizedForDisplay</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIHTTPImageRequest</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_h_t_t_p_image_request.html</Path>
-    <Anchor>af07c5510fc69a3e88e624ff3c59e0eb3</Anchor>
-    <Abstract>Upon completion of the request, this is the chopped and sized result image that should be used for di...</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>NIHTTPRequest</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIHTTPRequest</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_h_t_t_p_request.html</Path>
     <Abstract>An implementation of ASIHTTPRequest that uses the core network activity features in Nimbus...</Abstract>
@@ -1107,9 +1188,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIImageMemoryCache</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIImageMemoryCache</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_image_memory_cache.html</Path>
     <Abstract>An in-memory cache for storing images with caps on the total number of pixels.</Abstract>
@@ -1123,8 +1203,8 @@
       <Scope>NIImageMemoryCache</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_image_memory_cache.html</Path>
-    <Anchor>a40447c10f9dfc71c04bacb51895ba5e8</Anchor>
-    <Abstract>The total number of pixels being stored in the cache.</Abstract>
+    <Anchor>a12b709e0f6f319e76c3dc3d6dbe3ee5a</Anchor>
+    <Abstract>Returns the total number of pixels being stored in the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1134,7 +1214,7 @@
       <Scope>NIImageMemoryCache</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_image_memory_cache.html</Path>
-    <Anchor>a44eec58a5fda0ad0390d5e43591c1fec</Anchor>
+    <Anchor>a30bd865b4e57ff8a73fd459114c22aed</Anchor>
     <Abstract>The maximum number of pixels this cache may ever store.</Abstract>
   </Token>
   <Token>
@@ -1145,30 +1225,8 @@
       <Scope>NIImageMemoryCache</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_image_memory_cache.html</Path>
-    <Anchor>a8e3384e158b74b2f582ee5c26608a7b1</Anchor>
+    <Anchor>a100ad5b6dea102a5ae296dab5830ce50</Anchor>
     <Abstract>The maximum number of pixels this cache may store after a call to reduceMemoryUsage.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>count</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>a7d62c34e4297861c986948bd75156d63</Anchor>
-    <Abstract>The number of objects stored in this cache.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>init</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>a39f4b8e789e9034c528deb14f1555d80</Anchor>
-    <Abstract>Initialize the cache with zero initial capacity.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1179,7 +1237,18 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a879b58be06ace929185997a92f7bb35b</Anchor>
-    <Abstract>Designated initializer.</Abstract>
+    <Abstract>Initializes a newly allocated cache with the given capacity.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>count</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a61996ab64791ed19840b5055b68c7c95</Anchor>
+    <Abstract>Returns the number of objects currently in the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1190,7 +1259,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a7bc119332422cd4d36863a5f1d7751bd</Anchor>
-    <Abstract>Store an object in the cache.</Abstract>
+    <Abstract>Stores an object in the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1201,7 +1270,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>acaa6af8abea20907cf230ce1191e7ad4</Anchor>
-    <Abstract>Store an object in the cache with an expiration date.</Abstract>
+    <Abstract>Stores an object in the cache with an expiration date.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1212,7 +1281,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a5dab1798d4e3bcd2b686837f63f31d1c</Anchor>
-    <Abstract>Remove an object in the cache.</Abstract>
+    <Abstract>Removes an object from the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1223,7 +1292,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a26fda388dffc22aa78dd17905a6fce73</Anchor>
-    <Abstract>Remove all objects from the cache, regardless of expiration dates.</Abstract>
+    <Abstract>Removes all objects from the cache, regardless of expiration dates.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1234,18 +1303,18 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>afdd7b533b55c5d8753078e207ec0a9d7</Anchor>
-    <Abstract>Retrieve an object from the cache.</Abstract>
+    <Abstract>Retrieves an object from the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>hasObjectWithName:</Name>
+      <Name>containsObjectWithName:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
       <Scope>NIMemoryCache</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>a10ca55440e796c6f51187041cf6b8152</Anchor>
-    <Abstract>Determine whether an object is in the cache or not without modifying the access time.</Abstract>
+    <Anchor>aadf04db4cd1ef2087971ac58b416c590</Anchor>
+    <Abstract>Returns a Boolean value that indicates whether an object with the given name is present in the cache...</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1256,7 +1325,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a6c016c9a322c58151bbfb30793e9d475</Anchor>
-    <Abstract>Retrieve the data that the object with the given name was last accessed.</Abstract>
+    <Abstract>Returns the date that the object with the given name was last accessed.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1267,7 +1336,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a8164a276bcc012398b4025d45fe597d2</Anchor>
-    <Abstract>Remove all expired objects from the cache.</Abstract>
+    <Abstract>Removes all expired objects from the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1304,10 +1373,349 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>NIJSONKitProcessorHTTPRequest</Name>
-      <APILanguage>c</APILanguage>
+      <Name>NIInterapp</Name>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIJSONKitProcessorHTTPRequest</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Abstract>An interface for interacting with other apps installed on the device.</Abstract>
+    <DeclaredIn>NIInterapp.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>safariWithURL:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a41f556d96345c5b08ab7bb105e18e806</Anchor>
+    <Abstract>Opens the given URL in Safari.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>googleMapAtLocation:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a417276af0aa40cbee842d9a9ac6db96c</Anchor>
+    <Abstract>Opens Google Maps at the given location.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>googleMapAtLocation:title:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>ae11d38f74c573ab3a9f8249c70f553d4</Anchor>
+    <Abstract>Opens Google Maps at the given location with a title.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>googleMapDirectionsFromLocation:toLocation:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>af3ca75687a4eac9abb447c5e6152adfe</Anchor>
+    <Abstract>Opens Google Maps with directions from one location to another.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>googleMapWithQuery:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a15e7b4f46db2e31a963f6d8fb4f0cb9f</Anchor>
+    <Abstract>Opens Google Maps with a generic query.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>phone</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a522d8719bca65cc33d532f79ca55987b</Anchor>
+    <Abstract>Opens the phone app.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>phoneWithNumber:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a9079e75e30288ca10f8bba315c4a5af2</Anchor>
+    <Abstract>Make a phone call with the given number.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>sms</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a5568688ec3523b068267803537bd3055</Anchor>
+    <Abstract>Opens the phone app.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>smsWithNumber:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>aea39ed33e7ce9c9a49d732b8c48cd02c</Anchor>
+    <Abstract>Start texting the given number.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>mailWithInvocation:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>af0494ebd8c0515a5acf5f6ce49274e72</Anchor>
+    <Abstract>Opens mail with the given invocation properties.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>youTubeWithVideoId:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a061d62bc30a444b4437b720b1cbedb65</Anchor>
+    <Abstract>Opens the YouTube video with the given video id.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>appStoreWithAppId:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a58ee555bc198bba2a78a5d16f6c798a8</Anchor>
+    <Abstract>Opens the App Store page for the app with the given ID.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>iBooksIsInstalled</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>ae1fc3de102ba9aa83fe7ea27bface8d1</Anchor>
+    <Abstract>Returns YES if the iBooks application is installed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>iBooks</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a43a34f3b351eb2a253aae386a5713600</Anchor>
+    <Abstract>Opens the iBooks application.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>iBooksAppStoreId</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>ab1af012d2fa16fa3077181f0109760e0</Anchor>
+    <Abstract>The iBooks App Store ID.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>facebookIsInstalled</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>ad00679f79fd97aabad62b3fb5f1231e3</Anchor>
+    <Abstract>Returns YES if the Facebook application is installed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>facebook</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>af1da1e9c2220b0d129bedd076acfc425</Anchor>
+    <Abstract>Opens the Facebook application.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>facebookProfileWithId:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a3c179bae1fe2484eb90574547ba31e4c</Anchor>
+    <Abstract>Opens the Facebook profile with the given id.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>facebookAppStoreId</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>abc475dc2ca8d601fff70741dc3c20a55</Anchor>
+    <Abstract>The Facebook App Store ID.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>twitterIsInstalled</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a9897ac0bcc4c821bcacb113fe2890faf</Anchor>
+    <Abstract>Returns YES if the Twitter application is installed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>twitter</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a16b8fb1f3e916b17445cee83ab028df5</Anchor>
+    <Abstract>Opens the Twitter application.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>twitterWithMessage:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a7ffcea7cc1b16667ba9362be26443415</Anchor>
+    <Abstract>Begins composing a message.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>twitterProfileForUsername:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>ac1304759824f440d79fca56813464163</Anchor>
+    <Abstract>Opens the profile for the given username.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>twitterAppStoreId</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a5b49069a0f186de21fed8d36c69f4c89</Anchor>
+    <Abstract>The Twitter App Store ID.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>instagramIsInstalled</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a0b9858ffebaedb3390158f09019005f3</Anchor>
+    <Abstract>Returns YES if the Instagram application is installed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>instagram</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a1c086fd3ae3d12ca632ea2c0ca38ebe2</Anchor>
+    <Abstract>Opens the Instagram application.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>instagramCamera</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a7a6fbfd8d2b54d43d797598f08800d98</Anchor>
+    <Abstract>Opens the Instagram camera.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>instagramProfileForUsername:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>abc3fb242a941aa6a1d3b148e61fac892</Anchor>
+    <Abstract>Opens the profile for the given username.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>urlForInstagramImageAtFilePath:error:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>ad4a834d5cb64789e00cf21ce11e121cb</Anchor>
+    <Abstract>Copies an image to a temporary path suitable for use with a UIDocumentInteractionController in order ...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>instagramAppStoreId</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a710908f494eae1eeb0cfbee20f9c771d</Anchor>
+    <Abstract>The Instagram App Store ID.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIJSONKitProcessorHTTPRequest</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
     </TokenIdentifier>
     <Path>interface_n_i_j_s_o_n_kit_processor_h_t_t_p_request.html</Path>
     <Abstract>A processor that uses JSONKit to turn the JSON response into objects.</Abstract>
@@ -1360,9 +1768,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NILauncherButton</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NILauncherButton</Scope>
     </TokenIdentifier>
     <Path>class_n_i_launcher_button.html</Path>
     <Abstract>A simple launcher button that shows an image and text.</Abstract>
@@ -1382,9 +1789,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NILauncherDataSource</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>intf</Type>
-      <Scope>NILauncherDataSource</Scope>
     </TokenIdentifier>
     <Path>protocol_n_i_launcher_data_source-p.html</Path>
     <Abstract>The launcher data source used to populate the view.</Abstract>
@@ -1459,9 +1865,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NILauncherDelegate</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>intf</Type>
-      <Scope>NILauncherDelegate</Scope>
     </TokenIdentifier>
     <Path>protocol_n_i_launcher_delegate-p.html</Path>
     <Abstract>The launcher delegate used to inform of state changes and user interactions.</Abstract>
@@ -1481,9 +1886,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NILauncherItemDetails</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NILauncherItemDetails</Scope>
     </TokenIdentifier>
     <Path>class_n_i_launcher_item_details.html</Path>
     <Abstract>A convenience class for managing the data used to create an NILauncherButton.</Abstract>
@@ -1536,9 +1940,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NILauncherView</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NILauncherView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_launcher_view.html</Path>
     <Abstract>A launcher view that simulates iOS&amp;#39; home screen launcher functionality.</Abstract>
@@ -1552,7 +1955,7 @@
       <Scope>NILauncherView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_launcher_view.html</Path>
-    <Anchor>af8767bdd838ce4b0b8959331ccecfb8f</Anchor>
+    <Anchor>ae5a62c785693f02a50ae67792acc664e</Anchor>
     <Abstract>The amount of padding on each side of the launcher view pages.</Abstract>
   </Token>
   <Token>
@@ -1563,7 +1966,7 @@
       <Scope>NILauncherView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_launcher_view.html</Path>
-    <Anchor>a5680da202a46fb3ce6437d6987a7d41d</Anchor>
+    <Anchor>a1da7308b8ff117197ba646d7ae53f29a</Anchor>
     <Abstract>The launcher view notifies the delegate of any user interaction or state changes.</Abstract>
   </Token>
   <Token>
@@ -1574,7 +1977,7 @@
       <Scope>NILauncherView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_launcher_view.html</Path>
-    <Anchor>af849642b45b213adbd85e85054925428</Anchor>
+    <Anchor>a03a9f61511cf61e94b3d3550a2bb557a</Anchor>
     <Abstract>The launcher view populates its pages with information from the data source.</Abstract>
   </Token>
   <Token>
@@ -1590,21 +1993,9 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>setFrame:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILauncherView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_launcher_view.html</Path>
-    <Anchor>a37761e0617ece5ef925ea575647a8620</Anchor>
-    <Abstract>Lays out the subviews for this launcher view.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>NILauncherViewController</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NILauncherViewController</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_launcher_view_controller.html</Path>
     <Abstract>A view controller that displays a launcher view and implements its protocols.</Abstract>
@@ -1712,9 +2103,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NILinkedList</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NILinkedList</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_linked_list.html</Path>
     <Abstract>A singly linked list implementation.</Abstract>
@@ -1722,47 +2112,80 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>firstObject</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NILinkedList</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_linked_list.html</Path>
-    <Anchor>aa2527b210de77fde4dd5b99d94ebaba6</Anchor>
-    <Abstract>The first object in the linked list.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>lastObject</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NILinkedList</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_linked_list.html</Path>
-    <Anchor>a7c0066b07b3753ba3abab3ef7b49673c</Anchor>
-    <Abstract>The last object in the linked list.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>count</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NILinkedList</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_linked_list.html</Path>
-    <Anchor>a91782fdbe13bf28a662784568ffdca43</Anchor>
-    <Abstract>The number of objects in the linked list.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>init</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
       <Scope>NILinkedList</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_linked_list.html</Path>
-    <Anchor>a8bdb25b42516d25a0910d2b3f5dafd1c</Anchor>
-    <Abstract>Designated initializer.</Abstract>
+    <Anchor>ab9b7ffb722b41ddbb38ddd0a365d4d50</Anchor>
+    <Abstract>Returns the number of objects currently in the linked list.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>firstObject</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>a989a790899210a08e919780742be0fab</Anchor>
+    <Abstract>Returns the first object in the linked list.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastObject</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>a1aa16240ab9b1fa49b08850f71da3466</Anchor>
+    <Abstract>Returns the last object in the linked list.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>allObjects</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>a1e74e880b1a307a51d083e22c1b40390</Anchor>
+    <Abstract>Returns an array containing the linked list&amp;#39;s objects, or an empty array if the linked list has no ob...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectEnumerator</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>af645be2ad2a961bf8edf10530dfa7266</Anchor>
+    <Abstract>Returns an enumerator object that lets you access each object in the linked list.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>containsObject:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>ac4364e4541406af80cd5654b062b12b8</Anchor>
+    <Abstract>Returns a Boolean value that indicates whether a given object is present in the linked list...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>description</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>a9feffa4a1b9a66312dd9495472c0554b</Anchor>
+    <Abstract>Returns a string that represents the contents of the linked list, formatted as a property list...</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1774,6 +2197,61 @@
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>a33b030b2a3c23c237735d347e7bfbeea</Anchor>
     <Abstract>Convenience method for creating an autoreleased linked list.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>linkedListWithArray:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>a864c1485a3d2e39cbee7b74c90471f96</Anchor>
+    <Abstract>Convenience method for creating an autoreleased linked list with an array.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithArray:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>a8d50d5a46ef86d8b7e6097e657a22184</Anchor>
+    <Abstract>Initializes a newly allocated linked list by placing in it the objects contained in a given array...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>locationOfObject:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>a2446ec1db7456c41e3b27bf234b3dc62</Anchor>
+    <Abstract>Search for an object in the linked list.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectAtLocation:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>a459824a248ba4917d0434643f29fd5f4</Anchor>
+    <Abstract>Retrieve the object at a specific location.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>removeObjectAtLocation:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>a34f62252fbfc6df20e115e7c4d17031f</Anchor>
+    <Abstract>Remove an object at a predetermined location.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1832,54 +2310,9 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>objectEnumerator</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILinkedList</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_linked_list.html</Path>
-    <Anchor>af645be2ad2a961bf8edf10530dfa7266</Anchor>
-    <Abstract>Create an enumerator that can be used to enumerate this linked list.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>locationOfObject:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILinkedList</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_linked_list.html</Path>
-    <Anchor>a2446ec1db7456c41e3b27bf234b3dc62</Anchor>
-    <Abstract>Search for an object in the linked list.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>objectAtLocation:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILinkedList</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_linked_list.html</Path>
-    <Anchor>a459824a248ba4917d0434643f29fd5f4</Anchor>
-    <Abstract>Retrieve the object at a specific location.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>removeObjectAtLocation:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NILinkedList</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_linked_list.html</Path>
-    <Anchor>a34f62252fbfc6df20e115e7c4d17031f</Anchor>
-    <Abstract>Remove an object at a predetermined location.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>Nimbus</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>Nimbus</Scope>
     </TokenIdentifier>
     <Path>interface_nimbus.html</Path>
     <Abstract>The Nimbus state interface.</Abstract>
@@ -1932,35 +2365,12 @@
   <Token>
     <TokenIdentifier>
       <Name>NIMemoryCache</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIMemoryCache</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Abstract>An in-memory cache for storing objects with expiration support.</Abstract>
     <DeclaredIn>NIInMemoryCache.h</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>count</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>a7d62c34e4297861c986948bd75156d63</Anchor>
-    <Abstract>The number of objects stored in this cache.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>init</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIMemoryCache</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>a39f4b8e789e9034c528deb14f1555d80</Anchor>
-    <Abstract>Initialize the cache with zero initial capacity.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1971,7 +2381,18 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a879b58be06ace929185997a92f7bb35b</Anchor>
-    <Abstract>Designated initializer.</Abstract>
+    <Abstract>Initializes a newly allocated cache with the given capacity.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>count</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a61996ab64791ed19840b5055b68c7c95</Anchor>
+    <Abstract>Returns the number of objects currently in the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1982,7 +2403,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a7bc119332422cd4d36863a5f1d7751bd</Anchor>
-    <Abstract>Store an object in the cache.</Abstract>
+    <Abstract>Stores an object in the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1993,7 +2414,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>acaa6af8abea20907cf230ce1191e7ad4</Anchor>
-    <Abstract>Store an object in the cache with an expiration date.</Abstract>
+    <Abstract>Stores an object in the cache with an expiration date.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2004,7 +2425,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a5dab1798d4e3bcd2b686837f63f31d1c</Anchor>
-    <Abstract>Remove an object in the cache.</Abstract>
+    <Abstract>Removes an object from the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2015,7 +2436,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a26fda388dffc22aa78dd17905a6fce73</Anchor>
-    <Abstract>Remove all objects from the cache, regardless of expiration dates.</Abstract>
+    <Abstract>Removes all objects from the cache, regardless of expiration dates.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2026,18 +2447,18 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>afdd7b533b55c5d8753078e207ec0a9d7</Anchor>
-    <Abstract>Retrieve an object from the cache.</Abstract>
+    <Abstract>Retrieves an object from the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>hasObjectWithName:</Name>
+      <Name>containsObjectWithName:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
       <Scope>NIMemoryCache</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
-    <Anchor>a10ca55440e796c6f51187041cf6b8152</Anchor>
-    <Abstract>Determine whether an object is in the cache or not without modifying the access time.</Abstract>
+    <Anchor>aadf04db4cd1ef2087971ac58b416c590</Anchor>
+    <Abstract>Returns a Boolean value that indicates whether an object with the given name is present in the cache...</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2048,7 +2469,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a6c016c9a322c58151bbfb30793e9d475</Anchor>
-    <Abstract>Retrieve the data that the object with the given name was last accessed.</Abstract>
+    <Abstract>Returns the date that the object with the given name was last accessed.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2059,7 +2480,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a8164a276bcc012398b4025d45fe597d2</Anchor>
-    <Abstract>Remove all expired objects from the cache.</Abstract>
+    <Abstract>Removes all expired objects from the cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2097,9 +2518,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIMemoryCacheInfo</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIMemoryCacheInfo</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_memory_cache_info.html</Path>
     <Abstract>A single cache item&amp;#39;s information.</Abstract>
@@ -2173,9 +2593,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NINetworkImageView</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NINetworkImageView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_network_image_view.html</Path>
     <Abstract>A network-enabled image view that consumes minimal amounts of memory.</Abstract>
@@ -2189,8 +2608,85 @@
       <Scope>NINetworkImageView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>ad7c89b7d5586d247d9a01c953000ad6f</Anchor>
+    <Anchor>a3dc0b8d1ba6db1eb96a3645f06f99b6a</Anchor>
     <Abstract>The image being displayed while the network image is being fetched.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>sizeForDisplay</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>ae89362b1efb1347953529ddec044787f</Anchor>
+    <Abstract>A flag for enabling the resizing of images for display.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>scaleOptions</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a00d2df629a934ac974a6b27a83b75ca3</Anchor>
+    <Abstract>Options for modifying the way images are cropped when scaling.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>interpolationQuality</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a04b3e01db91e87205984e10babc601be</Anchor>
+    <Abstract>The interpolation quality to use when resizing the image.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>imageMemoryCache</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>a797e8d53348de870b8471e020d1babca</Anchor>
+    <Abstract>The image memory cache used by this image view to store the image in memory.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>networkOperationQueue</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>ac5182e8400d566e77764d9314a1128d5</Anchor>
+    <Abstract>The network operation queue used by this image view to load the image from network and disk...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>maxAge</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>aa3100ac85be1d2eff7ed3e5d24dcfcba</Anchor>
+    <Abstract>The maximum amount of time that an image will stay in memory after the request completes.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>diskCacheLifetime</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>aae7d355189078b5aa8b78b8958864560</Anchor>
+    <Abstract>The lifetime for an image stored in the disk cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2200,7 +2696,7 @@
       <Scope>NINetworkImageView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a352ecee4de738eff827447d637fd2c5a</Anchor>
+    <Anchor>a3f93f09bc3843a75f9ccce303a847b1b</Anchor>
     <Abstract>A prefix for the memory cache key.</Abstract>
   </Token>
   <Token>
@@ -2211,7 +2707,7 @@
       <Scope>NINetworkImageView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a576b2950355e43205c35700091d74dc3</Anchor>
+    <Anchor>ad770af40e9cb2673b210c3f199f83210</Anchor>
     <Abstract>The last path assigned to the image view.</Abstract>
   </Token>
   <Token>
@@ -2233,7 +2729,7 @@
       <Scope>NINetworkImageView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a7e60fd5a2b8c3fc57c92f24fc7dca8d3</Anchor>
+    <Anchor>a763e5fdecb23fa0708f2fab957d1090c</Anchor>
     <Abstract>Delegate for state change notifications.</Abstract>
   </Token>
   <Token>
@@ -2246,105 +2742,6 @@
     <Path>interface_n_i_network_image_view.html</Path>
     <Anchor>ade5eba04aa860207d1fbd07a3f3a31ef</Anchor>
     <Abstract>Designated initializer.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>prepareForReuse</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a7cce26c40c058f1c8b7265b971b2abc5</Anchor>
-    <Abstract>Kill any network requests and replace the displayed image with the initial image.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>sizeForDisplay</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>acafe40b5cfb6e75848a8f91f3f8b9e51</Anchor>
-    <Abstract>A flag for enabling the resizing of images for display.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>scaleOptions</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a7faef9d6a8e6e3a5886cf88c0262d4e1</Anchor>
-    <Abstract>Options for modifying the way images are cropped when scaling.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>interpolationQuality</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>adc399e63572dcce6e0984ef12353ec4d</Anchor>
-    <Abstract>The interpolation quality to use when resizing the image.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>imageMemoryCache</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a8f43300cafa80378ee333a5cb8551b22</Anchor>
-    <Abstract>The image memory cache used by this image view to store the image in memory.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>imageDiskCache</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>af331d0f41ba2509b2edfcc437aadc3a6</Anchor>
-    <Abstract>The image disk cache used by this image view to store the image on disk.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>networkOperationQueue</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a690fae40ceeaa8304dea5177b9d48e2a</Anchor>
-    <Abstract>The network operation queue used by this image view to load the image from network and disk...</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>maxAge</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a7b9356e33ed3ad110b0a08290b4f1a27</Anchor>
-    <Abstract>The maximum amount of time that an image will stay in memory after the request completes.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>diskCacheLifetime</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NINetworkImageView</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>a0432bac81c750d0e9fa0d23329eed93f</Anchor>
-    <Abstract>The lifetime for an image stored in the disk cache.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2381,6 +2778,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>setPathToNetworkImage:forDisplaySize:contentMode:cropRect:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NINetworkImageView</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_image_view.html</Path>
+    <Anchor>af5d994d1815d398b875437523869971d</Anchor>
+    <Abstract>Load an image from the network with a specific display size and crop rect.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>setPathToNetworkImage:cropRect:</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
@@ -2403,14 +2811,14 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>setPathToNetworkImage:cropRect:forDisplaySize:contentMode:</Name>
+      <Name>prepareForReuse</Name>
       <APILanguage>occ</APILanguage>
       <Type>instm</Type>
       <Scope>NINetworkImageView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_network_image_view.html</Path>
-    <Anchor>ab0909160c9d85e5f7f5eb6f9918213a2</Anchor>
-    <Abstract>Load an image from the network with a specific display size and crop rect.</Abstract>
+    <Anchor>a7cce26c40c058f1c8b7265b971b2abc5</Anchor>
+    <Abstract>Kill any network requests and replace the displayed image with the initial image.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2448,9 +2856,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NINetworkImageViewDelegate</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>intf</Type>
-      <Scope>NINetworkImageViewDelegate</Scope>
     </TokenIdentifier>
     <Path>protocol_n_i_network_image_view_delegate-p.html</Path>
     <Abstract>The image view delegate used to inform of state changes.</Abstract>
@@ -2492,9 +2899,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOperation</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOperation</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_operation.html</Path>
     <Abstract>A base implementation of an NSOperation that supports traditional delegation and blocks.</Abstract>
@@ -2508,19 +2914,8 @@
       <Scope>NIOperation</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_operation.html</Path>
-    <Anchor>a8fcfebd75a9559d0a41e9f8bcd01facf</Anchor>
+    <Anchor>af4051a42c46f1ddb9d308daf9596c40d</Anchor>
     <Abstract>The delegate through which changes are notified for this operation.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>tag</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIOperation</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_operation.html</Path>
-    <Anchor>a3ffdf65e811b47ea8595c8ea2a1376ec</Anchor>
-    <Abstract>A simple tagging mechanism for identifying operations.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2530,8 +2925,19 @@
       <Scope>NIOperation</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_operation.html</Path>
-    <Anchor>add09c9ae4ab576c27648f4a3ab3b9cea</Anchor>
+    <Anchor>ab16ac8d4ce97062b0d4545df15226c27</Anchor>
     <Abstract>The error last passed to the didFailWithError notification.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>tag</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a9229f5fb6b21513181aed08ba7592ba6</Anchor>
+    <Abstract>A simple tagging mechanism for identifying operations.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2541,7 +2947,7 @@
       <Scope>NIOperation</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_operation.html</Path>
-    <Anchor>a6244b38cedcd4c75360a15b19514321f</Anchor>
+    <Anchor>aed06f75966016ce2da29d77740ce4ac5</Anchor>
     <Abstract>The operation has started executing.</Abstract>
   </Token>
   <Token>
@@ -2552,7 +2958,7 @@
       <Scope>NIOperation</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_operation.html</Path>
-    <Anchor>a18e14e4f1f218899b97febe09d48b68d</Anchor>
+    <Anchor>af5538a8120694393733756e11b5752e5</Anchor>
     <Abstract>The operation has completed successfully.</Abstract>
   </Token>
   <Token>
@@ -2563,7 +2969,7 @@
       <Scope>NIOperation</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_operation.html</Path>
-    <Anchor>a6d1ae5a692180c568ecfd8d3b02300e3</Anchor>
+    <Anchor>a1b39afe4f59c082cf04189a8763e6964</Anchor>
     <Abstract>The operation failed in some way and has completed.</Abstract>
   </Token>
   <Token>
@@ -2574,7 +2980,7 @@
       <Scope>NIOperation</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_operation.html</Path>
-    <Anchor>af70a25765166a9b792dc053b7b9378b6</Anchor>
+    <Anchor>a14bfd44503230b2e7c9e57ea83f16fcf</Anchor>
     <Abstract>The operation is about to complete successfully.</Abstract>
   </Token>
   <Token>
@@ -2624,9 +3030,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOperationDelegate</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>intf</Type>
-      <Scope>NIOperationDelegate</Scope>
     </TokenIdentifier>
     <Path>protocol_n_i_operation_delegate-p.html</Path>
     <Abstract>The delegate protocol for an NSOperation.</Abstract>
@@ -2679,9 +3084,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverview</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOverview</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_overview.html</Path>
     <Abstract>The Overview state management class.</Abstract>
@@ -2756,9 +3160,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverviewConsoleLogEntry</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOverviewConsoleLogEntry</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_overview_console_log_entry.html</Path>
     <Abstract>A console log entry.</Abstract>
@@ -2811,9 +3214,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverviewConsoleLogPageView</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOverviewConsoleLogPageView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_overview_console_log_page_view.html</Path>
     <Abstract>A page that shows all of the logs sent to the console.</Abstract>
@@ -2877,9 +3279,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverviewDeviceLogEntry</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOverviewDeviceLogEntry</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_overview_device_log_entry.html</Path>
     <Abstract>A device log entry.</Abstract>
@@ -2976,9 +3377,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverviewDiskPageView</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOverviewDiskPageView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_overview_disk_page_view.html</Path>
     <Abstract>A page that renders a graph showing free disk space.</Abstract>
@@ -3108,9 +3508,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverviewEventLogEntry</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOverviewEventLogEntry</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_overview_event_log_entry.html</Path>
     <Abstract>An event log entry.</Abstract>
@@ -3163,9 +3562,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverviewGraphPageView</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOverviewGraphPageView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_overview_graph_page_view.html</Path>
     <Abstract>A page that renders a graph and two labels.</Abstract>
@@ -3295,9 +3693,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverviewGraphView</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOverviewGraphView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_overview_graph_view.html</Path>
     <Abstract>A graph view.</Abstract>
@@ -3317,9 +3714,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverviewGraphViewDataSource</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>intf</Type>
-      <Scope>NIOverviewGraphViewDataSource</Scope>
     </TokenIdentifier>
     <Path>protocol_n_i_overview_graph_view_data_source-p.html</Path>
     <Abstract>The data source for NIOverviewGraphView.</Abstract>
@@ -3394,9 +3790,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverviewLogEntry</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOverviewLogEntry</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_overview_log_entry.html</Path>
     <Abstract>The basic requirements for a log entry.</Abstract>
@@ -3427,9 +3822,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverviewLogger</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOverviewLogger</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_overview_logger.html</Path>
     <Abstract>The Overview logger.</Abstract>
@@ -3515,9 +3909,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverviewMaxLogLevelPageView</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOverviewMaxLogLevelPageView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_overview_max_log_level_page_view.html</Path>
     <Abstract>A page that allows you to modify NIMaxLogLevel.</Abstract>
@@ -3581,9 +3974,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverviewMemoryPageView</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOverviewMemoryPageView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_overview_memory_page_view.html</Path>
     <Abstract>A page that renders a graph showing free memory.</Abstract>
@@ -3713,9 +4105,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverviewPageView</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOverviewPageView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_overview_page_view.html</Path>
     <Abstract>A page in the Overview.</Abstract>
@@ -3779,9 +4170,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIOverviewView</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIOverviewView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_overview_view.html</Path>
     <Abstract>The root scrolling page view of the Overview.</Abstract>
@@ -3823,9 +4213,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIPhotoAlbumScrollView</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIPhotoAlbumScrollView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_photo_album_scroll_view.html</Path>
     <Abstract>A paged scroll view that shows a collection of photos.</Abstract>
@@ -4032,9 +4421,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIPhotoAlbumScrollViewDataSource</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>intf</Type>
-      <Scope>NIPhotoAlbumScrollViewDataSource</Scope>
     </TokenIdentifier>
     <Path>protocol_n_i_photo_album_scroll_view_data_source-p.html</Path>
     <Abstract>The photo album scroll data source.</Abstract>
@@ -4076,9 +4464,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIPhotoAlbumScrollViewDelegate</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>intf</Type>
-      <Scope>NIPhotoAlbumScrollViewDelegate</Scope>
     </TokenIdentifier>
     <Path>protocol_n_i_photo_album_scroll_view_delegate-p.html</Path>
     <Abstract>The photo album scroll view delegate.</Abstract>
@@ -4142,9 +4529,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIPhotoScrollView</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIPhotoScrollView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_photo_scroll_view.html</Path>
     <Abstract>A single photo view that supports zooming and rotation.</Abstract>
@@ -4274,9 +4660,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIPhotoScrollViewDelegate</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>intf</Type>
-      <Scope>NIPhotoScrollViewDelegate</Scope>
     </TokenIdentifier>
     <Path>protocol_n_i_photo_scroll_view_delegate-p.html</Path>
     <Abstract>The photo scroll view delegate.</Abstract>
@@ -4296,9 +4681,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIPhotoScrubberView</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIPhotoScrubberView</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_photo_scrubber_view.html</Path>
     <Abstract>A control built for quickly skimming through a collection of images.</Abstract>
@@ -4373,9 +4757,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIPhotoScrubberViewDataSource</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>intf</Type>
-      <Scope>NIPhotoScrubberViewDataSource</Scope>
     </TokenIdentifier>
     <Path>protocol_n_i_photo_scrubber_view_data_source-p.html</Path>
     <Abstract>The data source for the photo scrubber.</Abstract>
@@ -4406,9 +4789,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIPhotoScrubberViewDelegate</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>intf</Type>
-      <Scope>NIPhotoScrubberViewDelegate</Scope>
     </TokenIdentifier>
     <Path>protocol_n_i_photo_scrubber_view_delegate-p.html</Path>
     <Abstract>The delegate for the photo scrubber.</Abstract>
@@ -4428,9 +4810,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIProcessorDelegate</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>intf</Type>
-      <Scope>NIProcessorDelegate</Scope>
     </TokenIdentifier>
     <Path>protocol_n_i_processor_delegate-p.html</Path>
     <Abstract>Defines the basic protocol for processing data.</Abstract>
@@ -4450,9 +4831,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIProcessorHTTPRequest</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIProcessorHTTPRequest</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_processor_h_t_t_p_request.html</Path>
     <Abstract>An HTTP request that processes the returned data on a separate thread.</Abstract>
@@ -4505,90 +4885,12 @@
   <Token>
     <TokenIdentifier>
       <Name>NIReadFileFromDiskOperation</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIReadFileFromDiskOperation</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_read_file_from_disk_operation.html</Path>
     <Abstract>An operation that reads a file from disk.</Abstract>
     <DeclaredIn>NIOperations.h</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>delegate</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIOperation</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_operation.html</Path>
-    <Anchor>a8fcfebd75a9559d0a41e9f8bcd01facf</Anchor>
-    <Abstract>The delegate through which changes are notified for this operation.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>tag</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIOperation</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_operation.html</Path>
-    <Anchor>a3ffdf65e811b47ea8595c8ea2a1376ec</Anchor>
-    <Abstract>A simple tagging mechanism for identifying operations.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>lastError</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIOperation</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_operation.html</Path>
-    <Anchor>add09c9ae4ab576c27648f4a3ab3b9cea</Anchor>
-    <Abstract>The error last passed to the didFailWithError notification.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>didStartBlock</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIOperation</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_operation.html</Path>
-    <Anchor>a6244b38cedcd4c75360a15b19514321f</Anchor>
-    <Abstract>The operation has started executing.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>didFinishBlock</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIOperation</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_operation.html</Path>
-    <Anchor>a18e14e4f1f218899b97febe09d48b68d</Anchor>
-    <Abstract>The operation has completed successfully.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>didFailWithErrorBlock</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIOperation</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_operation.html</Path>
-    <Anchor>a6d1ae5a692180c568ecfd8d3b02300e3</Anchor>
-    <Abstract>The operation failed in some way and has completed.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>willFinishBlock</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instp</Type>
-      <Scope>NIOperation</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_operation.html</Path>
-    <Anchor>af70a25765166a9b792dc053b7b9378b6</Anchor>
-    <Abstract>The operation is about to complete successfully.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -4598,7 +4900,7 @@
       <Scope>NIReadFileFromDiskOperation</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_read_file_from_disk_operation.html</Path>
-    <Anchor>adbd0fb5979eafbc48a938204e54c38c8</Anchor>
+    <Anchor>a1b446956cc71992cb3284756f61f76d6</Anchor>
     <Abstract>The path to the file that should be read from disk.</Abstract>
   </Token>
   <Token>
@@ -4609,7 +4911,7 @@
       <Scope>NIReadFileFromDiskOperation</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_read_file_from_disk_operation.html</Path>
-    <Anchor>a754e08489a25c244257bfd6e733f61e2</Anchor>
+    <Anchor>a794a03af3fcce7c13084c08ce02f2a8f</Anchor>
     <Abstract>The data that was read from disk.</Abstract>
   </Token>
   <Token>
@@ -4620,7 +4922,7 @@
       <Scope>NIReadFileFromDiskOperation</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_read_file_from_disk_operation.html</Path>
-    <Anchor>af07b3fadfa7445e1993bf2eedd596aa6</Anchor>
+    <Anchor>a009c36d0454d5879e8a32eaf6b4a23ea</Anchor>
     <Abstract>An object created from the data that was read from disk.</Abstract>
   </Token>
   <Token>
@@ -4632,7 +4934,84 @@
     </TokenIdentifier>
     <Path>interface_n_i_read_file_from_disk_operation.html</Path>
     <Anchor>a8700010910b9dad07f61cc040b163da7</Anchor>
-    <Abstract>Designated initializer.</Abstract>
+    <Abstract>Initializes a newly allocated &amp;quot;read from disk&amp;quot; operation with a given path to a file to be read...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>delegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>af4051a42c46f1ddb9d308daf9596c40d</Anchor>
+    <Abstract>The delegate through which changes are notified for this operation.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastError</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>ab16ac8d4ce97062b0d4545df15226c27</Anchor>
+    <Abstract>The error last passed to the didFailWithError notification.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>tag</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a9229f5fb6b21513181aed08ba7592ba6</Anchor>
+    <Abstract>A simple tagging mechanism for identifying operations.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didStartBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>aed06f75966016ce2da29d77740ce4ac5</Anchor>
+    <Abstract>The operation has started executing.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didFinishBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>af5538a8120694393733756e11b5752e5</Anchor>
+    <Abstract>The operation has completed successfully.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didFailWithErrorBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a1b39afe4f59c082cf04189a8763e6964</Anchor>
+    <Abstract>The operation failed in some way and has completed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>willFinishBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a14bfd44503230b2e7c9e57ea83f16fcf</Anchor>
+    <Abstract>The operation is about to complete successfully.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -4681,9 +5060,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NIToolbarPhotoViewController</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NIToolbarPhotoViewController</Scope>
     </TokenIdentifier>
     <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
     <Abstract>A simple photo album view controller implementation with a toolbar.</Abstract>
@@ -4867,32 +5245,9 @@
   </Token>
   <Token>
     <TokenIdentifier>
-      <Name>NIURLMap</Name>
-      <APILanguage>c</APILanguage>
-      <Type>cl</Type>
-      <Scope>NIURLMap</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_u_r_l_map.html</Path>
-    <Abstract>A container of one-directional mappings from URLs to objects and vice-versa.</Abstract>
-    <DeclaredIn>NIURLMap.h</DeclaredIn>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>from:toViewController:</Name>
-      <APILanguage>occ</APILanguage>
-      <Type>instm</Type>
-      <Scope>NIURLMap</Scope>
-    </TokenIdentifier>
-    <Path>interface_n_i_u_r_l_map.html</Path>
-    <Anchor>aad231d89de3d92fe97df1eb367f1eeae</Anchor>
-    <Abstract>Register a URL with a specific view controller.</Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
       <Name>NSData</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NSData</Scope>
     </TokenIdentifier>
     <Path>class_n_s_data.html</Path>
     <Abstract>For hashing raw data.</Abstract>
@@ -4900,9 +5255,8 @@
   <Token>
     <TokenIdentifier>
       <Name>NSString</Name>
-      <APILanguage>c</APILanguage>
+      <APILanguage>occ</APILanguage>
       <Type>cl</Type>
-      <Scope>NSString</Scope>
     </TokenIdentifier>
     <Path>class_n_s_string.html</Path>
     <Abstract>For manipulating NSStrings.</Abstract>

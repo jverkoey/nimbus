@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -89,7 +89,7 @@ NINetworkImage Design</div></div>
 <li>To begin using a network image view, simply create an instance of an <a class="el" href="interface_n_i_network_image_view.html" title="A network-enabled image view that consumes minimal amounts of memory.">NINetworkImageView</a> and use it as you would a UIImageView. The initial image you assign to the view will be used as the "loading" image and must be a locally accessible image. Note that this image will not be cropped and resized in any way, so you should take care to crop and resize it beforehand as necessary.</li>
 <li>Once you have created your network image view and assigned the initial image, the next step is to load the network image. Call any of the <a class="el" href="interface_n_i_network_image_view.html#af0531138d9eb4de6275b3704b7e293c2">setPathToNetworkImage</a> methods to fire off a network request for the image on a separate thread.</li>
 <li>A new <a class="el" href="interface_n_i_h_t_t_p_image_request.html" title="A threaded network request for an image that chops up and resizes the image before returning to the U...">NIHTTPImageRequest</a> thread will spin off and initiate the request to the network.</li>
-<li>Once the image has been retrieved from the net, the thread crops and resizes the image depending on the presentation configurations specified by the image view. In this example, <a class="el" href="interface_n_i_network_image_view.html#acafe40b5cfb6e75848a8f91f3f8b9e51">sizeForDisplay</a> and <a class="el" href="">cropImageForDisplay</a> are enabled. In this step the image is resized to fit the aspect ratio of the display size.</li>
+<li>Once the image has been retrieved from the net, the thread crops and resizes the image depending on the presentation configurations specified by the image view. In this example, <a class="el" href="interface_n_i_network_image_view.html#ae89362b1efb1347953529ddec044787f">sizeForDisplay</a> and <a class="el" href="">cropImageForDisplay</a> are enabled. In this step the image is resized to fit the aspect ratio of the display size.</li>
 <li>We then crop the image to fit the display frame.</li>
 <li>Upon completion of all image modifications, we complete the request and return only the modified image to the image view. This helps to reduce memory usage.</li>
 <li>The resized and cropped image is then stored in the in-memory image cache for quick access in the future.</li>

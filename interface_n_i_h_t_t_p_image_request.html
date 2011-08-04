@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -72,8 +72,6 @@
 </script>
 <div id="doc-content">
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Methods</a>  </div>
   <div class="headertitle">
 <div class="title">NIHTTPImageRequest Class Reference<div class="ingroups"><a class="el" href="group___network-_image-_requests.html">Network Requests</a></div></div>  </div>
 </div>
@@ -81,7 +79,7 @@
 <!-- doxytag: class="NIHTTPImageRequest" --><!-- doxytag: inherits="NIHTTPRequest" --><hr/><a name="details" id="details"></a><h2>Overview</h2>
 <div class="textblock"><p>A threaded network request for an image that chops up and resizes the image before returning to the UI thread. </p>
 
-<p>Definition at line <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html#l00034">34</a> of file <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html">NIHTTPImageRequest.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html#l00029">29</a> of file <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html">NIHTTPImageRequest.h</a>.</p>
 </div><div class="dynheader">
 Inheritance diagram for NIHTTPImageRequest:</div>
 <div class="dyncontent">
@@ -94,25 +92,25 @@ Inheritance diagram for NIHTTPImageRequest:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">CGRect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_h_t_t_p_image_request.html#a269bb9693de5df1b6852314ecd62eefa">imageCropRect</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">CGSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_h_t_t_p_image_request.html#ad6389e520bbac3c02e299fc4392f6922">imageDisplaySize</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856">NINetworkImageViewScaleOptions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_h_t_t_p_image_request.html#a11f4b6cc61cceb33a41423c62e4e735c">scaleOptions</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">CGInterpolationQuality&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_h_t_t_p_image_request.html#a944c80da8f3884d2d1bbab8bf3efeeef">interpolationQuality</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">UIViewContentMode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_h_t_t_p_image_request.html#aca396dd63f83234695e9e88a44abf49e">imageContentMode</a> <span class="suffix">property</span></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Configurable Properties</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">CGRect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_h_t_t_p_image_request.html#ac7d042c084fe692087bbbe6359642780">imageCropRect</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">CGSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_h_t_t_p_image_request.html#a98b6b9986e30decafe821755bdae5f3f">imageDisplaySize</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856">NINetworkImageViewScaleOptions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_h_t_t_p_image_request.html#aee0571051fc0f4e1952ec0a3f4bfe8de">scaleOptions</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">CGInterpolationQuality&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_h_t_t_p_image_request.html#abba79b08eabfdd05d8d30a40cd272829">interpolationQuality</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">UIViewContentMode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_h_t_t_p_image_request.html#a85f304984ea0cc6640396dc0d7f0517d">imageContentMode</a> <span class="suffix">property</span></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Results</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a68c2a89f112c47d56c54715596d89d85"></a><!-- doxytag: member="NIHTTPImageRequest::imageCroppedAndSizedForDisplay" ref="a68c2a89f112c47d56c54715596d89d85" args="" -->
+UIImage *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_h_t_t_p_image_request.html#a68c2a89f112c47d56c54715596d89d85">imageCroppedAndSizedForDisplay</a> <span class="suffix">property</span></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Image Modifications</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(UIImage *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_h_t_t_p_image_request.html#a42847898d10e49db4666e7c7fb1a30ef">imageFromSource:withContentMode:cropRect:displaySize:scaleOptions:interpolationQuality:</a></td></tr>
-<tr><td colspan="2"><div class="groupHeader">After request completion</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>The following methods are provided to aid in subclassing and are not meant to be used externally. </p>
-</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af07c5510fc69a3e88e624ff3c59e0eb3"></a><!-- doxytag: member="NIHTTPImageRequest::imageCroppedAndSizedForDisplay" ref="af07c5510fc69a3e88e624ff3c59e0eb3" args="" -->
-UIImage *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_h_t_t_p_image_request.html#af07c5510fc69a3e88e624ff3c59e0eb3">imageCroppedAndSizedForDisplay</a> <span class="suffix">property</span></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
-<a class="anchor" id="a269bb9693de5df1b6852314ecd62eefa"></a><!-- doxytag: member="NIHTTPImageRequest::imageCropRect" ref="a269bb9693de5df1b6852314ecd62eefa" args="" -->
+<a class="anchor" id="ac7d042c084fe692087bbbe6359642780"></a><!-- doxytag: member="NIHTTPImageRequest::imageCropRect" ref="ac7d042c084fe692087bbbe6359642780" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (CGRect) imageCropRect<code> [read, write, assign]</code></td>
+          <td class="memname">- NIHTTPImageRequest:<code> [read, write, assign]</code></td>
         </tr>
       </table>
 </div>
@@ -122,18 +120,18 @@ UIImage *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <p>Valid range is [0..1] for all values.</p>
 <p>Examples:</p>
 <p>CGRectZero - Do not crop this image. CGRect(0, 0, 1, 1) - Do not crop this image.</p>
-<p>The default value is CGRectZero </p>
+<p>The default value is CGRectZero. </p>
 
-<p>Definition at line <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html#l00060">60</a> of file <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html">NIHTTPImageRequest.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html#l00044">44</a> of file <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html">NIHTTPImageRequest.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad6389e520bbac3c02e299fc4392f6922"></a><!-- doxytag: member="NIHTTPImageRequest::imageDisplaySize" ref="ad6389e520bbac3c02e299fc4392f6922" args="" -->
+<a class="anchor" id="a98b6b9986e30decafe821755bdae5f3f"></a><!-- doxytag: member="NIHTTPImageRequest::imageDisplaySize" ref="a98b6b9986e30decafe821755bdae5f3f" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (CGSize) imageDisplaySize<code> [read, write, assign]</code></td>
+          <td class="memname">- NIHTTPImageRequest:<code> [read, write, assign]</code></td>
         </tr>
       </table>
 </div>
@@ -142,37 +140,37 @@ UIImage *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <p>The size of the image to be displayed on the screen. </p>
 <p>This is the final size that imageCroppedAndSizedForDisplay will be, unless cropImageForDisplay is NO.</p>
 <p>If this is CGSizeZero, the image will not be resized. It will bereturned at its original size.</p>
-<p>The default value is CGSizeZero </p>
+<p>The default value is CGSizeZero. </p>
 
-<p>Definition at line <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html#l00070">70</a> of file <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html">NIHTTPImageRequest.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html#l00045">45</a> of file <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html">NIHTTPImageRequest.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a11f4b6cc61cceb33a41423c62e4e735c"></a><!-- doxytag: member="NIHTTPImageRequest::scaleOptions" ref="a11f4b6cc61cceb33a41423c62e4e735c" args="" -->
+<a class="anchor" id="aee0571051fc0f4e1952ec0a3f4bfe8de"></a><!-- doxytag: member="NIHTTPImageRequest::scaleOptions" ref="aee0571051fc0f4e1952ec0a3f4bfe8de" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (<a class="el" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856">NINetworkImageViewScaleOptions</a>) scaleOptions<code> [read, write, assign]</code></td>
+          <td class="memname">- NIHTTPImageRequest:<code> [read, write, assign]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>Options for modifying the way images are cropped when scaling. </p>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a></dd></dl>
-<p>The default value is NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess. </p>
+<p>The default value is NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess.</p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html#l00079">79</a> of file <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html">NIHTTPImageRequest.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html#l00046">46</a> of file <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html">NIHTTPImageRequest.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a944c80da8f3884d2d1bbab8bf3efeeef"></a><!-- doxytag: member="NIHTTPImageRequest::interpolationQuality" ref="a944c80da8f3884d2d1bbab8bf3efeeef" args="" -->
+<a class="anchor" id="abba79b08eabfdd05d8d30a40cd272829"></a><!-- doxytag: member="NIHTTPImageRequest::interpolationQuality" ref="abba79b08eabfdd05d8d30a40cd272829" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (CGInterpolationQuality) interpolationQuality<code> [read, write, assign]</code></td>
+          <td class="memname">- NIHTTPImageRequest:<code> [read, write, assign]</code></td>
         </tr>
       </table>
 </div>
@@ -181,16 +179,16 @@ UIImage *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <p>The interpolation quality to use when resizing the image. </p>
 <p>The default value is kCGInterpolationDefault. </p>
 
-<p>Definition at line <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html#l00086">86</a> of file <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html">NIHTTPImageRequest.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html#l00047">47</a> of file <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html">NIHTTPImageRequest.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aca396dd63f83234695e9e88a44abf49e"></a><!-- doxytag: member="NIHTTPImageRequest::imageContentMode" ref="aca396dd63f83234695e9e88a44abf49e" args="" -->
+<a class="anchor" id="a85f304984ea0cc6640396dc0d7f0517d"></a><!-- doxytag: member="NIHTTPImageRequest::imageContentMode" ref="a85f304984ea0cc6640396dc0d7f0517d" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (UIViewContentMode) imageContentMode<code> [read, write, assign]</code></td>
+          <td class="memname">- NIHTTPImageRequest:<code> [read, write, assign]</code></td>
         </tr>
       </table>
 </div>
@@ -202,9 +200,9 @@ UIImage *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <li>UIViewContentModeScaleToFill</li>
 <li>UIViewContentModeScaleAspectFill</li>
 </ul>
-<p>The default value is UIViewContentModeScaleToFill </p>
+<p>The default value is UIViewContentModeScaleToFill. </p>
 
-<p>Definition at line <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html#l00098">98</a> of file <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html">NIHTTPImageRequest.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html#l00048">48</a> of file <a class="el" href="_n_i_h_t_t_p_image_request_8h_source.html">NIHTTPImageRequest.h</a>.</p>
 
 </div>
 </div>

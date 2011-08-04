@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -80,16 +80,31 @@
 <div class="contents">
 <hr/><a name="details" id="details"></a><h2>Overview</h2>
 <p>For common system metrics. </p>
-<p>Definitions of common view dimensions on the iPhone and iPad touch taking into account any applicable context. </p>
-<table class="memberdecls">
+<p>If you ever need to work with system metrics in any way it can be a pain in the ass to try to figure out what the exact metrics are. Figuring out how long it takes the status bar to animate is not something you should be spending your time on. The metrics in this file are provided as a means of unifying a number of system metrics for use in your applications.</p>
+<h2>What Qualifies as a Core Metric</h2>
+<p>Core metrics are related to system components, such as the dimensions of a toolbar in a particular orientation or the duration of a standard animation. This is not the place to put feature-specific metrics, such as the height of a photo scrubber view.</p>
+<h2>Examples</h2>
+<h3>Positioning a Toolbar</h3>
+<p>The following example updates the position and height of a toolbar when the device orientation is changing. This ensures that, in landscape mode on the iPhone, the toolbar is slightly shorter to accomodate the smaller height of the screen.</p>
+<div class="fragment"><pre class="fragment"> - (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
+                                          duration: (NSTimeInterval)duration {
+   [super willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
+                                           duration: duration];
+ 
+   CGRect toolbarFrame = <span class="keyword">self</span>.toolbar.frame;
+   toolbarFrame.size.height = <a class="code" href="group___common-_metrics.html#gae2ad00b094918f5b5929b3520007551b" title="Fetch the height of a toolbar in a given orientation.">NIToolbarHeightForOrientation</a>(toInterfaceOrientation);
+   toolbarFrame.origin.y = <span class="keyword">self</span>.view.bounds.size.height - toolbarFrame.size.height;
+   <span class="keyword">self</span>.toolbar.frame = toolbarFrame;
+ }
+</pre></div> <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">CGFloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#gae2ad00b094918f5b5929b3520007551b">NIToolbarHeightForOrientation</a> (UIInterfaceOrientation orientation)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">UIViewAnimationCurve&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga0cec7c71cc4f5efee4113d16abde3ca1">NIStatusBarAnimationCurve</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#gaf476266576d4c565941facf2ae5583e7">NIStatusBarAnimationDuration</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">UIViewAnimationCurve&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga1c20acb842e5d526de672b5206afff3a">NIStatusBarFrameAnimationCurve</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#gaf1def83034a464eb8d86f1ccae90dabf">NIStatusBarFrameAnimationDuration</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">CGFloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#gab7dfa3fd3b6311312ba4c7fd59c3f666">NIStatusBarHeight</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">UIViewAnimationCurve&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga4d89d2266bfbfb0bb5743cfbba210dfe">NIStatusBarAnimationCurve</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga6794a4a04b97cd3ffaeac318b7d27b4f">NIStatusBarAnimationDuration</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">UIViewAnimationCurve&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga2d72a62ebc7f5ec053e60547b2f3e91f">NIStatusBarBoundsChangeAnimationCurve</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga9526db6e49bdbeea5f4293d63dded111">NIStatusBarBoundsChangeAnimationDuration</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">CGFloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga2e9bd96c79383760a4b81539339960fb">NIStatusBarHeight</a> (void)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga7d4ebd335b7563adf1b1e5fdcbb6d9d3">NIDeviceRotationDuration</a> (BOOL isFlippingUpsideDown)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
@@ -120,13 +135,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga0cec7c71cc4f5efee4113d16abde3ca1"></a><!-- doxytag: member="NICommonMetrics.h::NIStatusBarAnimationCurve" ref="ga0cec7c71cc4f5efee4113d16abde3ca1" args="()" -->
+<a class="anchor" id="ga4d89d2266bfbfb0bb5743cfbba210dfe"></a><!-- doxytag: member="NICommonMetrics.h::NIStatusBarAnimationCurve" ref="ga4d89d2266bfbfb0bb5743cfbba210dfe" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">UIViewAnimationCurve NIStatusBarAnimationCurve </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -134,20 +150,22 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>The animation curve used when animating the status bar. </p>
+<p>The animation curve used when changing the status bar's visibility. </p>
+<p>This is the curve of the animation used by <code>-[[UIApplication sharedApplication] setStatusBarHidden:withAnimation:].</code></p>
 <p>Value: UIViewAnimationCurveEaseIn </p>
 
 <p>Definition at line <a class="el" href="_n_i_common_metrics_8m_source.html#l00033">33</a> of file <a class="el" href="_n_i_common_metrics_8m_source.html">NICommonMetrics.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="gaf476266576d4c565941facf2ae5583e7"></a><!-- doxytag: member="NICommonMetrics.h::NIStatusBarAnimationDuration" ref="gaf476266576d4c565941facf2ae5583e7" args="()" -->
+<a class="anchor" id="ga6794a4a04b97cd3ffaeac318b7d27b4f"></a><!-- doxytag: member="NICommonMetrics.h::NIStatusBarAnimationDuration" ref="ga6794a4a04b97cd3ffaeac318b7d27b4f" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">NSTimeInterval NIStatusBarAnimationDuration </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -155,20 +173,22 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>The animation duration for animating the status bar. </p>
+<p>The animation duration used when changing the status bar's visibility. </p>
+<p>This is the duration of the animation used by <code>-[[UIApplication sharedApplication] setStatusBarHidden:withAnimation:].</code></p>
 <p>Value: 0.3 seconds </p>
 
 <p>Definition at line <a class="el" href="_n_i_common_metrics_8m_source.html#l00039">39</a> of file <a class="el" href="_n_i_common_metrics_8m_source.html">NICommonMetrics.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ga1c20acb842e5d526de672b5206afff3a"></a><!-- doxytag: member="NICommonMetrics.h::NIStatusBarFrameAnimationCurve" ref="ga1c20acb842e5d526de672b5206afff3a" args="()" -->
+<a class="anchor" id="ga2d72a62ebc7f5ec053e60547b2f3e91f"></a><!-- doxytag: member="NICommonMetrics.h::NIStatusBarBoundsChangeAnimationCurve" ref="ga2d72a62ebc7f5ec053e60547b2f3e91f" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">UIViewAnimationCurve NIStatusBarFrameAnimationCurve </td>
+          <td class="memname">UIViewAnimationCurve NIStatusBarBoundsChangeAnimationCurve </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -176,20 +196,21 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>The animation curve used when animating the status bar frame. </p>
+<p>The animation curve used when the status bar's bounds change (when a call is received, for example). </p>
 <p>Value: UIViewAnimationCurveEaseInOut </p>
 
 <p>Definition at line <a class="el" href="_n_i_common_metrics_8m_source.html#l00045">45</a> of file <a class="el" href="_n_i_common_metrics_8m_source.html">NICommonMetrics.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="gaf1def83034a464eb8d86f1ccae90dabf"></a><!-- doxytag: member="NICommonMetrics.h::NIStatusBarFrameAnimationDuration" ref="gaf1def83034a464eb8d86f1ccae90dabf" args="()" -->
+<a class="anchor" id="ga9526db6e49bdbeea5f4293d63dded111"></a><!-- doxytag: member="NICommonMetrics.h::NIStatusBarBoundsChangeAnimationDuration" ref="ga9526db6e49bdbeea5f4293d63dded111" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">NSTimeInterval NIStatusBarFrameAnimationDuration </td>
+          <td class="memname">NSTimeInterval NIStatusBarBoundsChangeAnimationDuration </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -197,20 +218,21 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>The animation duration for animating the status bar frame. </p>
+<p>The animation duration used when the status bar's bounds change (when a call is received, for example). </p>
 <p>Value: 0.35 seconds </p>
 
 <p>Definition at line <a class="el" href="_n_i_common_metrics_8m_source.html#l00051">51</a> of file <a class="el" href="_n_i_common_metrics_8m_source.html">NICommonMetrics.m</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="gab7dfa3fd3b6311312ba4c7fd59c3f666"></a><!-- doxytag: member="NICommonMetrics.h::NIStatusBarHeight" ref="gab7dfa3fd3b6311312ba4c7fd59c3f666" args="()" -->
+<a class="anchor" id="ga2e9bd96c79383760a4b81539339960fb"></a><!-- doxytag: member="NICommonMetrics.h::NIStatusBarHeight" ref="ga2e9bd96c79383760a4b81539339960fb" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">CGFloat NIStatusBarHeight </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -219,7 +241,8 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Get the status bar's current height. </p>
-<p>If the status bar is hidden this will return 0. </p>
+<p>If the status bar is hidden this will return 0.</p>
+<p>This is generally 20 when the status bar is its normal height. </p>
 
 <p>Definition at line <a class="el" href="_n_i_common_metrics_8m_source.html#l00057">57</a> of file <a class="el" href="_n_i_common_metrics_8m_source.html">NICommonMetrics.m</a>.</p>
 
@@ -249,7 +272,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_n_i_common_metrics_8m_source.html#l00065">65</a> of file <a class="el" href="_n_i_common_metrics_8m_source.html">NICommonMetrics.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_common_metrics_8m_source.html#l00069">69</a> of file <a class="el" href="_n_i_common_metrics_8m_source.html">NICommonMetrics.m</a>.</p>
 
 </div>
 </div>

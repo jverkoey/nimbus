@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -98,7 +98,7 @@
 <a name="l00020"></a>00020 
 <a name="l00021"></a>00021 
 <a name="l00023"></a><a class="code" href="group___common-_metrics.html#gae2ad00b094918f5b5929b3520007551b">00023</a> CGFloat <a class="code" href="group___common-_metrics.html#gae2ad00b094918f5b5929b3520007551b" title="Fetch the height of a toolbar in a given orientation.">NIToolbarHeightForOrientation</a>(UIInterfaceOrientation orientation) {
-<a name="l00024"></a>00024   <span class="keywordflow">return</span> (<a class="code" href="group___s_d_k-_availability.html#gaf7d2c830b4c39cfeeb37d59258abb722" title="Checks whether the device the app is currently running on is an iPad or not.">NIIsPad</a>()
+<a name="l00024"></a>00024   <span class="keywordflow">return</span> (<a class="code" href="group___s_d_k-_availability.html#ga7c693df0e5edd930db9d711852561eb4" title="Checks whether the device the app is currently running on is an iPad or not.">NIIsPad</a>()
 <a name="l00025"></a>00025           ? 44
 <a name="l00026"></a>00026           : (UIInterfaceOrientationIsPortrait(orientation)
 <a name="l00027"></a>00027              ? 44
@@ -106,36 +106,40 @@
 <a name="l00029"></a>00029 }
 <a name="l00030"></a>00030 
 <a name="l00031"></a>00031 
-<a name="l00033"></a><a class="code" href="group___common-_metrics.html#ga0cec7c71cc4f5efee4113d16abde3ca1">00033</a> UIViewAnimationCurve <a class="code" href="group___common-_metrics.html#ga0cec7c71cc4f5efee4113d16abde3ca1" title="The animation curve used when animating the status bar.">NIStatusBarAnimationCurve</a>() {
+<a name="l00033"></a><a class="code" href="group___common-_metrics.html#ga4d89d2266bfbfb0bb5743cfbba210dfe">00033</a> UIViewAnimationCurve <a class="code" href="group___common-_metrics.html#ga4d89d2266bfbfb0bb5743cfbba210dfe" title="The animation curve used when changing the status bar&#39;s visibility.">NIStatusBarAnimationCurve</a>(<span class="keywordtype">void</span>) {
 <a name="l00034"></a>00034   <span class="keywordflow">return</span> UIViewAnimationCurveEaseIn;
 <a name="l00035"></a>00035 }
 <a name="l00036"></a>00036 
 <a name="l00037"></a>00037 
-<a name="l00039"></a><a class="code" href="group___common-_metrics.html#gaf476266576d4c565941facf2ae5583e7">00039</a> NSTimeInterval <a class="code" href="group___common-_metrics.html#gaf476266576d4c565941facf2ae5583e7" title="The animation duration for animating the status bar.">NIStatusBarAnimationDuration</a>() {
+<a name="l00039"></a><a class="code" href="group___common-_metrics.html#ga6794a4a04b97cd3ffaeac318b7d27b4f">00039</a> NSTimeInterval <a class="code" href="group___common-_metrics.html#ga6794a4a04b97cd3ffaeac318b7d27b4f" title="The animation duration used when changing the status bar&#39;s visibility.">NIStatusBarAnimationDuration</a>(<span class="keywordtype">void</span>) {
 <a name="l00040"></a>00040   <span class="keywordflow">return</span> 0.3;
 <a name="l00041"></a>00041 }
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043 
-<a name="l00045"></a><a class="code" href="group___common-_metrics.html#ga1c20acb842e5d526de672b5206afff3a">00045</a> UIViewAnimationCurve <a class="code" href="group___common-_metrics.html#ga1c20acb842e5d526de672b5206afff3a" title="The animation curve used when animating the status bar frame.">NIStatusBarFrameAnimationCurve</a>() {
+<a name="l00045"></a><a class="code" href="group___common-_metrics.html#ga2d72a62ebc7f5ec053e60547b2f3e91f">00045</a> UIViewAnimationCurve <a class="code" href="group___common-_metrics.html#ga2d72a62ebc7f5ec053e60547b2f3e91f" title="The animation curve used when the status bar&#39;s bounds change (when a call is received, for example).">NIStatusBarBoundsChangeAnimationCurve</a>(<span class="keywordtype">void</span>) {
 <a name="l00046"></a>00046   <span class="keywordflow">return</span> UIViewAnimationCurveEaseInOut;
 <a name="l00047"></a>00047 }
 <a name="l00048"></a>00048 
 <a name="l00049"></a>00049 
-<a name="l00051"></a><a class="code" href="group___common-_metrics.html#gaf1def83034a464eb8d86f1ccae90dabf">00051</a> NSTimeInterval <a class="code" href="group___common-_metrics.html#gaf1def83034a464eb8d86f1ccae90dabf" title="The animation duration for animating the status bar frame.">NIStatusBarFrameAnimationDuration</a>() {
+<a name="l00051"></a><a class="code" href="group___common-_metrics.html#ga9526db6e49bdbeea5f4293d63dded111">00051</a> NSTimeInterval <a class="code" href="group___common-_metrics.html#ga9526db6e49bdbeea5f4293d63dded111" title="The animation duration used when the status bar&#39;s bounds change (when a call is received, for example).">NIStatusBarBoundsChangeAnimationDuration</a>(<span class="keywordtype">void</span>) {
 <a name="l00052"></a>00052   <span class="keywordflow">return</span> 0.35;
 <a name="l00053"></a>00053 }
 <a name="l00054"></a>00054 
 <a name="l00055"></a>00055 
-<a name="l00057"></a><a class="code" href="group___common-_metrics.html#gab7dfa3fd3b6311312ba4c7fd59c3f666">00057</a> CGFloat <a class="code" href="group___common-_metrics.html#gab7dfa3fd3b6311312ba4c7fd59c3f666" title="Get the status bar&#39;s current height.">NIStatusBarHeight</a>() {
+<a name="l00057"></a><a class="code" href="group___common-_metrics.html#ga2e9bd96c79383760a4b81539339960fb">00057</a> CGFloat <a class="code" href="group___common-_metrics.html#ga2e9bd96c79383760a4b81539339960fb" title="Get the status bar&#39;s current height.">NIStatusBarHeight</a>(<span class="keywordtype">void</span>) {
 <a name="l00058"></a>00058   CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-<a name="l00059"></a>00059   CGFloat statusBarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);
-<a name="l00060"></a>00060   <span class="keywordflow">return</span> statusBarHeight;
-<a name="l00061"></a>00061 }
-<a name="l00062"></a>00062 
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060   <span class="comment">// We take advantage of the fact that the status bar will always be wider than it is tall</span>
+<a name="l00061"></a>00061   <span class="comment">// in order to avoid having to check the status bar orientation.</span>
+<a name="l00062"></a>00062   CGFloat statusBarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);
 <a name="l00063"></a>00063 
-<a name="l00065"></a><a class="code" href="group___common-_metrics.html#ga7d4ebd335b7563adf1b1e5fdcbb6d9d3">00065</a> NSTimeInterval <a class="code" href="group___common-_metrics.html#ga7d4ebd335b7563adf1b1e5fdcbb6d9d3" title="The animation duration when the device is rotating to a new orientation.">NIDeviceRotationDuration</a>(BOOL isFlippingUpsideDown) {
-<a name="l00066"></a>00066   <span class="keywordflow">return</span> isFlippingUpsideDown ? 0.8 : 0.4;
-<a name="l00067"></a>00067 }
+<a name="l00064"></a>00064   <span class="keywordflow">return</span> statusBarHeight;
+<a name="l00065"></a>00065 }
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067 
+<a name="l00069"></a><a class="code" href="group___common-_metrics.html#ga7d4ebd335b7563adf1b1e5fdcbb6d9d3">00069</a> NSTimeInterval <a class="code" href="group___common-_metrics.html#ga7d4ebd335b7563adf1b1e5fdcbb6d9d3" title="The animation duration when the device is rotating to a new orientation.">NIDeviceRotationDuration</a>(BOOL isFlippingUpsideDown) {
+<a name="l00070"></a>00070   <span class="keywordflow">return</span> isFlippingUpsideDown ? 0.8 : 0.4;
+<a name="l00071"></a>00071 }
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

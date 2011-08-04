@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -94,44 +94,47 @@
 <a name="l00016"></a>00016 <span class="comment">// limitations under the License.</span>
 <a name="l00017"></a>00017 <span class="comment">//</span>
 <a name="l00018"></a>00018 
-<a name="l00019"></a>00019 <span class="preprocessor">#import &quot;NimbusCore+Additions.h&quot;</span>
+<a name="l00019"></a>00019 <span class="preprocessor">#import &quot;NSData+NimbusCore.h&quot;</span>
 <a name="l00020"></a>00020 
-<a name="l00021"></a>00021 <span class="preprocessor">#import &lt;CommonCrypto/CommonDigest.h&gt;</span>
+<a name="l00021"></a>00021 <span class="preprocessor">#import &quot;NIPreprocessorMacros.h&quot;</span>
 <a name="l00022"></a>00022 
-<a name="l00026"></a>00026 <a class="code" href="group___preprocessor-_macros.html#ga55ff03b06ecaecaf3c88463ebd81b9a6" title="Force a category to be loaded when an app starts up.">NI_FIX_CATEGORY_BUG</a>(NSDataNimbusCore)
-<a name="l00033"></a><a class="code" href="class_n_s_data.html">00033</a> <span class="keyword">@implementation </span><a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a> (NimbusCore)
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035 
+<a name="l00023"></a>00023 <span class="preprocessor">#import &lt;CommonCrypto/CommonDigest.h&gt;</span>
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 
+<a name="l00029"></a>00029 <a class="code" href="group___preprocessor-_macros.html#ga55ff03b06ecaecaf3c88463ebd81b9a6" title="Force a category to be loaded when an app starts up.">NI_FIX_CATEGORY_BUG</a>(NSDataNimbusCore)
+<a name="l00036"></a><a class="code" href="class_n_s_data.html">00036</a> <span class="keyword">@implementation </span><a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a> (NimbusCore)
 <a name="l00037"></a>00037 
-<a name="l00042"></a>00042 - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)md5Hash {
-<a name="l00043"></a>00043   <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> result[CC_MD5_DIGEST_LENGTH];
-<a name="l00044"></a>00044   CC_MD5([<span class="keyword">self</span> bytes], [<span class="keyword">self</span> length], result);
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046   <span class="keywordflow">return</span> [<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> stringWithFormat:
-<a name="l00047"></a>00047           @&quot;%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x&quot;,
-<a name="l00048"></a>00048           result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
-<a name="l00049"></a>00049           result[8], result[9], result[10], result[11], result[12], result[13], result[14],
-<a name="l00050"></a>00050           result[15]
-<a name="l00051"></a>00051           ];
-<a name="l00052"></a>00052 }
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 
+<a name="l00038"></a>00038 
+<a name="l00040"></a>00040 
+<a name="l00045"></a>00045 - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)md5Hash {
+<a name="l00046"></a>00046   <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> result[CC_MD5_DIGEST_LENGTH];
+<a name="l00047"></a>00047   CC_MD5([<span class="keyword">self</span> bytes], [<span class="keyword">self</span> length], result);
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049   <span class="keywordflow">return</span> [<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> stringWithFormat:
+<a name="l00050"></a>00050           @&quot;%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x&quot;,
+<a name="l00051"></a>00051           result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
+<a name="l00052"></a>00052           result[8], result[9], result[10], result[11], result[12], result[13], result[14],
+<a name="l00053"></a>00053           result[15]
+<a name="l00054"></a>00054           ];
+<a name="l00055"></a>00055 }
 <a name="l00056"></a>00056 
-<a name="l00061"></a>00061 - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)sha1Hash {
-<a name="l00062"></a>00062   <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> result[CC_SHA1_DIGEST_LENGTH];
-<a name="l00063"></a>00063   CC_SHA1([<span class="keyword">self</span> bytes], [<span class="keyword">self</span> length], result);
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065   <span class="keywordflow">return</span> [<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> stringWithFormat:
-<a name="l00066"></a>00066           @&quot;%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x&quot;,
-<a name="l00067"></a>00067           result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
-<a name="l00068"></a>00068           result[8], result[9], result[10], result[11], result[12], result[13], result[14],
-<a name="l00069"></a>00069           result[15], result[16], result[17], result[18], result[19]
-<a name="l00070"></a>00070           ];
-<a name="l00071"></a>00071 }
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 <span class="keyword">@end</span>
+<a name="l00057"></a>00057 
+<a name="l00059"></a>00059 
+<a name="l00064"></a>00064 - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)sha1Hash {
+<a name="l00065"></a>00065   <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> result[CC_SHA1_DIGEST_LENGTH];
+<a name="l00066"></a>00066   CC_SHA1([<span class="keyword">self</span> bytes], [<span class="keyword">self</span> length], result);
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068   <span class="keywordflow">return</span> [<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> stringWithFormat:
+<a name="l00069"></a>00069           @&quot;%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x&quot;,
+<a name="l00070"></a>00070           result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
+<a name="l00071"></a>00071           result[8], result[9], result[10], result[11], result[12], result[13], result[14],
+<a name="l00072"></a>00072           result[15], result[16], result[17], result[18], result[19]
+<a name="l00073"></a>00073           ];
+<a name="l00074"></a>00074 }
 <a name="l00075"></a>00075 
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077 <span class="keyword">@end</span>
+<a name="l00078"></a>00078 
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

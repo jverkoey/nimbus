@@ -8,23 +8,24 @@ var NAVTREE =
         [ "Data Structures", "group___data-_structures.html", null ],
         [ "Debugging Tools", "group___debugging-_tools.html", null ],
         [ "Device Orientation", "group___device-_orientation.html", null ],
+        [ "Errors", "group___errors.html", null ],
         [ "Foundation Methods", "group___foundation-_methods.html", [
           [ "CGRect Methods", "group___c_g_rect-_methods.html", null ],
+          [ "General Purpose Methods", "group___general-_purpose-_methods.html", null ],
           [ "NSRange Methods", "group___n_s_range-_methods.html", null ]
         ] ],
         [ "In-Memory Caches", "group___in-_memory-_caches.html", null ],
         [ "Network Activity", "group___network-_activity.html", null ],
         [ "Non-Empty Collection Testing", "group___non-_empty-_collection-_testing.html", null ],
         [ "Non-Retaining Collections", "group___non-_retaining-_collections.html", null ],
-        [ "Operations", "group___operations.html", [
-          [ "Crafting Operations", "group___crafting-_operations.html", null ]
-        ] ],
+        [ "Operations", "group___operations.html", null ],
         [ "Paths", "group___paths.html", null ],
         [ "Preprocessor Macros", "group___preprocessor-_macros.html", null ],
         [ "Runtime Class Modifications", "group___runtime-_class-_modifications.html", null ],
         [ "SDK Availability", "group___s_d_k-_availability.html", null ],
         [ "State", "group___core-_state.html", null ]
       ] ],
+      [ "Nimbus Interapp", "group___nimbus_interapp.html", null ],
       [ "Nimbus Launcher", "group___nimbus_launcher.html", [
         [ "Protocols", "group___launcher-_protocols.html", null ],
         [ "User Interface", "group___launcher-_user-_interface.html", null ]
@@ -57,7 +58,8 @@ var NAVTREE =
         [ "Version 0.4 API Changes", "group___version-4.html", [
           [ "Version 0.4.1 API Changes", "group___version-4-1.html", null ]
         ] ],
-        [ "Version 0.5 API Changes", "group___version-5-0.html", null ]
+        [ "Version 0.5 API Changes", "group___version-5-0.html", null ],
+        [ "Version 0.6 API Changes", "group___version-6-0.html", null ]
       ] ]
     ] ],
     [ "Class List", "annotated.html", [
@@ -65,6 +67,7 @@ var NAVTREE =
       [ "NIHTTPImageRequest", "interface_n_i_h_t_t_p_image_request.html", null ],
       [ "NIHTTPRequest", "interface_n_i_h_t_t_p_request.html", null ],
       [ "NIImageMemoryCache", "interface_n_i_image_memory_cache.html", null ],
+      [ "NIInterapp", "interface_n_i_interapp.html", null ],
       [ "NIJSONKitProcessorHTTPRequest", "interface_n_i_j_s_o_n_kit_processor_h_t_t_p_request.html", null ],
       [ "NILauncherButton", "class_n_i_launcher_button.html", null ],
       [ "<NILauncherDataSource>", "protocol_n_i_launcher_data_source-p.html", null ],
@@ -107,7 +110,6 @@ var NAVTREE =
       [ "NIProcessorHTTPRequest", "interface_n_i_processor_h_t_t_p_request.html", null ],
       [ "NIReadFileFromDiskOperation", "interface_n_i_read_file_from_disk_operation.html", null ],
       [ "NIToolbarPhotoViewController", "interface_n_i_toolbar_photo_view_controller.html", null ],
-      [ "NIURLMap", "interface_n_i_u_r_l_map.html", null ],
       [ "NSData", "class_n_s_data.html", null ],
       [ "NSString", "class_n_s_string.html", null ]
     ] ],
@@ -120,6 +122,7 @@ var NAVTREE =
           [ "NIJSONKitProcessorHTTPRequest", "interface_n_i_j_s_o_n_kit_processor_h_t_t_p_request.html", null ]
         ] ]
       ] ],
+      [ "NIInterapp", "interface_n_i_interapp.html", null ],
       [ "NILauncherButton", "class_n_i_launcher_button.html", null ],
       [ "<NILauncherDataSource>", "protocol_n_i_launcher_data_source-p.html", [
         [ "NILauncherViewController", "interface_n_i_launcher_view_controller.html", null ]
@@ -175,7 +178,6 @@ var NAVTREE =
         [ "NIToolbarPhotoViewController", "interface_n_i_toolbar_photo_view_controller.html", null ]
       ] ],
       [ "<NIProcessorDelegate>", "protocol_n_i_processor_delegate-p.html", null ],
-      [ "NIURLMap", "interface_n_i_u_r_l_map.html", null ],
       [ "NSData", "class_n_s_data.html", null ],
       [ "NSString", "class_n_s_string.html", null ]
     ] ],
@@ -274,6 +276,8 @@ var NAVTREE =
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIDebuggingTools.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIDeviceOrientation.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIDeviceOrientation.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIError.h", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIError.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIFoundationMethods.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIFoundationMethods.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIInMemoryCache.h", null, null ],
@@ -297,7 +301,9 @@ var NAVTREE =
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NISDKAvailability.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIState.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NIState.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NSData+NimbusCore.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NSData+NimbusCore.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NSString+NimbusCore.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/src/NSString+NimbusCore.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/unittests/NICoreAdditionTests.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/unittests/NIDataStructureTests.m", null, null ],
@@ -309,6 +315,9 @@ var NAVTREE =
       [ "/Users/featherless/workbench/ios/nimbus/src/core/unittests/NIRuntimeClassModificationsTests.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/unittests/NSDate+UnitTesting.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/core/unittests/NSDate+UnitTesting.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/interapp/src/NIInterapp.h", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/interapp/src/NIInterapp.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/interapp/src/NimbusInterapp.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/JSONKit/src/JSONKit.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/JSONKit/src/JSONKit.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/launcher/src/NILauncherButton.m", null, null ],
@@ -318,11 +327,6 @@ var NAVTREE =
       [ "/Users/featherless/workbench/ios/nimbus/src/launcher/src/NILauncherViewController.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/launcher/src/NILauncherViewController.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/launcher/src/NimbusLauncher.h", null, null ],
-      [ "/Users/featherless/workbench/ios/nimbus/src/navigator/src/NimbusNavigator.h", null, null ],
-      [ "/Users/featherless/workbench/ios/nimbus/src/navigator/src/NINavigator.h", null, null ],
-      [ "/Users/featherless/workbench/ios/nimbus/src/navigator/src/NINavigator.m", null, null ],
-      [ "/Users/featherless/workbench/ios/nimbus/src/navigator/src/NIURLMap.h", null, null ],
-      [ "/Users/featherless/workbench/ios/nimbus/src/navigator/src/NIURLMap.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/networkimage/src/NIHTTPImageRequest.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/networkimage/src/NIHTTPImageRequest.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/networkimage/src/NimbusNetworkImage.h", null, null ],

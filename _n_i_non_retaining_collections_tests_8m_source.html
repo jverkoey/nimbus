@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -98,8 +98,8 @@
 <a name="l00020"></a>00020 
 <a name="l00021"></a>00021 <span class="preprocessor">#import &lt;SenTestingKit/SenTestingKit.h&gt;</span>
 <a name="l00022"></a>00022 
-<a name="l00023"></a>00023 <span class="preprocessor">#import &quot;NimbusCore/NIPreprocessorMacros.h&quot;</span>
-<a name="l00024"></a>00024 <span class="preprocessor">#import &quot;NimbusCore/NINonRetainingCollections.h&quot;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#import &quot;NIPreprocessorMacros.h&quot;</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#import &quot;NINonRetainingCollections.h&quot;</span>
 <a name="l00025"></a>00025 
 <a name="l00026"></a>00026 
 <a name="l00027"></a>00027 <span class="preprocessor">#pragma mark -</span>
@@ -115,7 +115,7 @@
 <a name="l00061"></a>00061 
 <a name="l00062"></a>00062 
 <a name="l00064"></a>00064 - (void)testNonRetainingArray {
-<a name="l00065"></a>00065   NSMutableArray* array = <a class="code" href="group___non-_retaining-_collections.html#gaac64ec97e335bdc4510454b96401c428" title="Creates a mutable array which does not retain references to the objects it contains.">NICreateNonRetainingMutableArray</a>();
+<a name="l00065"></a>00065   NSMutableArray* array = <a class="code" href="group___non-_retaining-_collections.html#ga326d3bbb01f451440f243305229b03ac" title="Creates a mutable array which does not retain references to the objects it contains.">NICreateNonRetainingMutableArray</a>();
 <a name="l00066"></a>00066   <span class="keywordtype">id</span> testObject = [[NSArray alloc] init];
 <a name="l00067"></a>00067   NSUInteger initialRetainCount = [testObject retainCount];
 <a name="l00068"></a>00068 
@@ -134,7 +134,7 @@
 <a name="l00081"></a>00081 
 <a name="l00082"></a>00082 
 <a name="l00084"></a>00084 - (void)testNonRetainingDictionary {
-<a name="l00085"></a>00085   NSMutableDictionary* dictionary = <a class="code" href="group___non-_retaining-_collections.html#ga7d8bc03279587a225edb68c321d78d5b" title="Creates a mutable dictionary which does not retain references to the values it contains.">NICreateNonRetainingMutableDictionary</a>();
+<a name="l00085"></a>00085   NSMutableDictionary* dictionary = <a class="code" href="group___non-_retaining-_collections.html#ga98d9435c67db0855b6dea10b92ce4b35" title="Creates a mutable dictionary which does not retain references to the values it contains.">NICreateNonRetainingMutableDictionary</a>();
 <a name="l00086"></a>00086   <span class="keywordtype">id</span> testObject = [[NSArray alloc] init];
 <a name="l00087"></a>00087   NSUInteger initialRetainCount = [testObject retainCount];
 <a name="l00088"></a>00088 
@@ -153,7 +153,7 @@
 <a name="l00101"></a>00101 
 <a name="l00102"></a>00102 
 <a name="l00104"></a>00104 - (void)testNonRetainingSet {
-<a name="l00105"></a>00105   NSMutableSet* <span class="keyword">set</span> = <a class="code" href="group___non-_retaining-_collections.html#ga8e9ffb851ec72ac6be2cc895b35470dc" title="Creates a mutable set which does not retain references to the values it contains.">NICreateNonRetainingMutableSet</a>();
+<a name="l00105"></a>00105   NSMutableSet* <span class="keyword">set</span> = <a class="code" href="group___non-_retaining-_collections.html#ga4120b0385cbe3a10fd067fc594af198b" title="Creates a mutable set which does not retain references to the values it contains.">NICreateNonRetainingMutableSet</a>();
 <a name="l00106"></a>00106   <span class="keywordtype">id</span> testObject = [[NSArray alloc] init];
 <a name="l00107"></a>00107   NSUInteger initialRetainCount = [testObject retainCount];
 <a name="l00108"></a>00108 

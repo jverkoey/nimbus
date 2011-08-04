@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -101,7 +101,7 @@
 <a name="l00023"></a>00023 <span class="keyword">static</span> <span class="keywordtype">void</span> NIReleaseNoOp(CFAllocatorRef allocator, <span class="keyword">const</span> <span class="keywordtype">void</span> *value) { }
 <a name="l00024"></a>00024 
 <a name="l00025"></a>00025 
-<a name="l00027"></a><a class="code" href="group___non-_retaining-_collections.html#gaac64ec97e335bdc4510454b96401c428">00027</a> NSMutableArray* <a class="code" href="group___non-_retaining-_collections.html#gaac64ec97e335bdc4510454b96401c428" title="Creates a mutable array which does not retain references to the objects it contains.">NICreateNonRetainingMutableArray</a>() {
+<a name="l00027"></a><a class="code" href="group___non-_retaining-_collections.html#ga326d3bbb01f451440f243305229b03ac">00027</a> NSMutableArray* <a class="code" href="group___non-_retaining-_collections.html#ga326d3bbb01f451440f243305229b03ac" title="Creates a mutable array which does not retain references to the objects it contains.">NICreateNonRetainingMutableArray</a>(<span class="keywordtype">void</span>) {
 <a name="l00028"></a>00028   CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
 <a name="l00029"></a>00029   callbacks.retain = NIRetainNoOp;
 <a name="l00030"></a>00030   callbacks.release = NIReleaseNoOp;
@@ -109,7 +109,7 @@
 <a name="l00032"></a>00032 }
 <a name="l00033"></a>00033 
 <a name="l00034"></a>00034 
-<a name="l00036"></a><a class="code" href="group___non-_retaining-_collections.html#ga7d8bc03279587a225edb68c321d78d5b">00036</a> NSMutableDictionary* <a class="code" href="group___non-_retaining-_collections.html#ga7d8bc03279587a225edb68c321d78d5b" title="Creates a mutable dictionary which does not retain references to the values it contains.">NICreateNonRetainingMutableDictionary</a>() {
+<a name="l00036"></a><a class="code" href="group___non-_retaining-_collections.html#ga98d9435c67db0855b6dea10b92ce4b35">00036</a> NSMutableDictionary* <a class="code" href="group___non-_retaining-_collections.html#ga98d9435c67db0855b6dea10b92ce4b35" title="Creates a mutable dictionary which does not retain references to the values it contains.">NICreateNonRetainingMutableDictionary</a>(<span class="keywordtype">void</span>) {
 <a name="l00037"></a>00037   CFDictionaryKeyCallBacks keyCallbacks = kCFTypeDictionaryKeyCallBacks;
 <a name="l00038"></a>00038   CFDictionaryValueCallBacks callbacks = kCFTypeDictionaryValueCallBacks;
 <a name="l00039"></a>00039   callbacks.retain = NIRetainNoOp;
@@ -118,7 +118,7 @@
 <a name="l00042"></a>00042 }
 <a name="l00043"></a>00043 
 <a name="l00044"></a>00044 
-<a name="l00046"></a><a class="code" href="group___non-_retaining-_collections.html#ga8e9ffb851ec72ac6be2cc895b35470dc">00046</a> NSMutableSet* <a class="code" href="group___non-_retaining-_collections.html#ga8e9ffb851ec72ac6be2cc895b35470dc" title="Creates a mutable set which does not retain references to the values it contains.">NICreateNonRetainingMutableSet</a>() {
+<a name="l00046"></a><a class="code" href="group___non-_retaining-_collections.html#ga4120b0385cbe3a10fd067fc594af198b">00046</a> NSMutableSet* <a class="code" href="group___non-_retaining-_collections.html#ga4120b0385cbe3a10fd067fc594af198b" title="Creates a mutable set which does not retain references to the values it contains.">NICreateNonRetainingMutableSet</a>(<span class="keywordtype">void</span>) {
 <a name="l00047"></a>00047   CFSetCallBacks callbacks = kCFTypeSetCallBacks;
 <a name="l00048"></a>00048   callbacks.retain = NIRetainNoOp;
 <a name="l00049"></a>00049   callbacks.release = NIReleaseNoOp;

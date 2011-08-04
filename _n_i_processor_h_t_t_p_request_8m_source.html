@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -94,79 +94,75 @@
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 <span class="preprocessor">#import &quot;NIProcessorHTTPRequest.h&quot;</span>
 <a name="l00018"></a>00018 
-<a name="l00019"></a>00019 <span class="preprocessor">#ifdef NIMBUS_STATIC_LIBRARY</span>
-<a name="l00020"></a>00020 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NimbusCore/NimbusCore.h&quot;</span>
-<a name="l00021"></a>00021 <span class="preprocessor">#else</span>
-<a name="l00022"></a>00022 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NimbusCore.h&quot;</span>
-<a name="l00023"></a>00023 <span class="preprocessor">#endif</span>
-<a name="l00024"></a>00024 <span class="preprocessor"></span>
-<a name="l00025"></a>00025 
-<a name="l00029"></a>00029 <span class="keyword">@implementation </span><a class="code" href="interface_n_i_processor_h_t_t_p_request.html" title="An HTTP request that processes the returned data on a separate thread.">NIProcessorHTTPRequest</a>
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_processor_h_t_t_p_request.html#a079aadcb5f4ea692ad4f89f71a41f82d" title="The resulting root object after the request has completed and the data has been processed.">processedObject</a> = _processedObject;
-<a name="l00032"></a>00032 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_processor_h_t_t_p_request.html#a467653946b4e316c00f357fbe6d1cc48" title="The final step in the processing order for the data.">processorDelegate</a> = _processorDelegate;
-<a name="l00033"></a>00033 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00034"></a>00034 <span class="preprocessor"></span><span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_processor_h_t_t_p_request.html#ae7c2909f0df1cd0ff2530b74fa458a3f" title="The second step in the processing order for the data.">processDataBlock</a> = _processDataBlock;
-<a name="l00035"></a>00035 <span class="preprocessor">#endif</span>
-<a name="l00036"></a>00036 <span class="preprocessor"></span>
-<a name="l00037"></a>00037 
-<a name="l00039"></a>00039 - (void)dealloc {
-<a name="l00040"></a>00040   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_processedObject);
-<a name="l00041"></a>00041 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00042"></a>00042 <span class="preprocessor"></span>  <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_processDataBlock);
-<a name="l00043"></a>00043 <span class="preprocessor">#endif</span>
-<a name="l00044"></a>00044 <span class="preprocessor"></span>
-<a name="l00045"></a>00045   [<span class="keyword">super</span> dealloc];
-<a name="l00046"></a>00046 }
-<a name="l00047"></a>00047 
+<a name="l00019"></a>00019 <span class="preprocessor">#import &quot;NimbusCore.h&quot;</span>
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00025"></a>00025 <span class="keyword">@implementation </span><a class="code" href="interface_n_i_processor_h_t_t_p_request.html" title="An HTTP request that processes the returned data on a separate thread.">NIProcessorHTTPRequest</a>
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_processor_h_t_t_p_request.html#a079aadcb5f4ea692ad4f89f71a41f82d" title="The resulting root object after the request has completed and the data has been processed.">processedObject</a> = _processedObject;
+<a name="l00028"></a>00028 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_processor_h_t_t_p_request.html#a467653946b4e316c00f357fbe6d1cc48" title="The final step in the processing order for the data.">processorDelegate</a> = _processorDelegate;
+<a name="l00029"></a>00029 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00030"></a>00030 <span class="preprocessor"></span><span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_processor_h_t_t_p_request.html#ae7c2909f0df1cd0ff2530b74fa458a3f" title="The second step in the processing order for the data.">processDataBlock</a> = _processDataBlock;
+<a name="l00031"></a>00031 <span class="preprocessor">#endif</span>
+<a name="l00032"></a>00032 <span class="preprocessor"></span>
+<a name="l00033"></a>00033 
+<a name="l00035"></a>00035 - (void)dealloc {
+<a name="l00036"></a>00036   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_processedObject);
+<a name="l00037"></a>00037 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00038"></a>00038 <span class="preprocessor"></span>  <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_processDataBlock);
+<a name="l00039"></a>00039 <span class="preprocessor">#endif</span>
+<a name="l00040"></a>00040 <span class="preprocessor"></span>
+<a name="l00041"></a>00041   [<span class="keyword">super</span> dealloc];
+<a name="l00042"></a>00042 }
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 
+<a name="l00046"></a>00046 - (void)requestStarted {
+<a name="l00047"></a>00047   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_processedObject);
 <a name="l00048"></a>00048 
-<a name="l00050"></a>00050 - (void)requestStarted {
-<a name="l00051"></a>00051   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_processedObject);
+<a name="l00049"></a>00049   [<span class="keyword">super</span> requestStarted];
+<a name="l00050"></a>00050 }
+<a name="l00051"></a>00051 
 <a name="l00052"></a>00052 
-<a name="l00053"></a>00053   [<span class="keyword">super</span> requestStarted];
-<a name="l00054"></a>00054 }
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 
-<a name="l00058"></a><a class="code" href="interface_n_i_processor_h_t_t_p_request.html#af807389013bf372d6693397fd041c0e1">00058</a> - (id)objectFromResponseData:(<a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a> *)data error:(NSError **)error {
-<a name="l00059"></a>00059   <span class="comment">// Do nothing in the base implementation. Subclasses should implement this method and</span>
-<a name="l00060"></a>00060   <span class="comment">// do something more interesting.</span>
-<a name="l00061"></a>00061   <span class="keywordflow">return</span> data;
-<a name="l00062"></a>00062 }
-<a name="l00063"></a>00063 
+<a name="l00054"></a><a class="code" href="interface_n_i_processor_h_t_t_p_request.html#af807389013bf372d6693397fd041c0e1">00054</a> - (id)objectFromResponseData:(<a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a> *)data error:(NSError **)error {
+<a name="l00055"></a>00055   <span class="comment">// Do nothing in the base implementation. Subclasses should implement this method and</span>
+<a name="l00056"></a>00056   <span class="comment">// do something more interesting.</span>
+<a name="l00057"></a>00057   <span class="keywordflow">return</span> data;
+<a name="l00058"></a>00058 }
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 
+<a name="l00062"></a>00062 - (void)requestFinished {
+<a name="l00063"></a>00063   <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a>* responseData = [<span class="keyword">self</span> responseData];
 <a name="l00064"></a>00064 
-<a name="l00066"></a>00066 - (void)requestFinished {
-<a name="l00067"></a>00067   <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a>* responseData = [<span class="keyword">self</span> responseData];
+<a name="l00065"></a>00065   <span class="comment">// First, let the subclass process the data.</span>
+<a name="l00066"></a>00066   NSError* processingError = nil;
+<a name="l00067"></a>00067   _processedObject = [[<span class="keyword">self</span> objectFromResponseData:responseData error:&amp;processingError] retain];
 <a name="l00068"></a>00068 
-<a name="l00069"></a>00069   <span class="comment">// First, let the subclass process the data.</span>
-<a name="l00070"></a>00070   NSError* processingError = nil;
-<a name="l00071"></a>00071   _processedObject = [[<span class="keyword">self</span> objectFromResponseData:responseData error:&amp;processingError] retain];
+<a name="l00069"></a>00069   <span class="comment">// Release the raw response data immediately.</span>
+<a name="l00070"></a>00070   [<span class="keyword">self</span> setRawResponseData:nil];
+<a name="l00071"></a>00071   responseData = nil;
 <a name="l00072"></a>00072 
-<a name="l00073"></a>00073   <span class="comment">// Release the raw response data immediately.</span>
-<a name="l00074"></a>00074   [<span class="keyword">self</span> setRawResponseData:nil];
-<a name="l00075"></a>00075   responseData = nil;
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00078"></a>00078 <span class="preprocessor"></span>  <span class="comment">// Second, let the block further chew on the data.</span>
-<a name="l00079"></a>00079   <span class="keywordflow">if</span> (nil != <span class="keyword">self</span>.<a class="code" href="interface_n_i_processor_h_t_t_p_request.html#ae7c2909f0df1cd0ff2530b74fa458a3f" title="The second step in the processing order for the data.">processDataBlock</a>) {
-<a name="l00080"></a>00080     _processedObject = [<span class="keyword">self</span>.processDataBlock(_processedObject, &amp;processingError) retain];
-<a name="l00081"></a>00081   }
-<a name="l00082"></a>00082 <span class="preprocessor">#endif</span>
-<a name="l00083"></a>00083 <span class="preprocessor"></span>
-<a name="l00084"></a>00084   <span class="comment">// Third, let the delegate process the data last.</span>
-<a name="l00085"></a>00085   <span class="keywordflow">if</span> ([_processorDelegate respondsToSelector:<span class="keyword">@selector</span>(processor:processObject:error:)]) {
-<a name="l00086"></a>00086     <span class="keywordtype">id</span> oldObject = _processedObject;
-<a name="l00087"></a>00087     _processedObject = [[_processorDelegate processor: self
-<a name="l00088"></a>00088                                         processObject: oldObject
-<a name="l00089"></a>00089                                                 error: &amp;processingError]
-<a name="l00090"></a>00090                         retain];
-<a name="l00091"></a>00091     <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(oldObject);
-<a name="l00092"></a>00092   }
+<a name="l00073"></a>00073 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00074"></a>00074 <span class="preprocessor"></span>  <span class="comment">// Second, let the block further chew on the data.</span>
+<a name="l00075"></a>00075   <span class="keywordflow">if</span> (nil != <span class="keyword">self</span>.<a class="code" href="interface_n_i_processor_h_t_t_p_request.html#ae7c2909f0df1cd0ff2530b74fa458a3f" title="The second step in the processing order for the data.">processDataBlock</a>) {
+<a name="l00076"></a>00076     _processedObject = [<span class="keyword">self</span>.processDataBlock(_processedObject, &amp;processingError) retain];
+<a name="l00077"></a>00077   }
+<a name="l00078"></a>00078 <span class="preprocessor">#endif</span>
+<a name="l00079"></a>00079 <span class="preprocessor"></span>
+<a name="l00080"></a>00080   <span class="comment">// Third, let the delegate process the data last.</span>
+<a name="l00081"></a>00081   <span class="keywordflow">if</span> ([_processorDelegate respondsToSelector:<span class="keyword">@selector</span>(processor:processObject:error:)]) {
+<a name="l00082"></a>00082     <span class="keywordtype">id</span> oldObject = _processedObject;
+<a name="l00083"></a>00083     _processedObject = [[_processorDelegate processor: self
+<a name="l00084"></a>00084                                         processObject: oldObject
+<a name="l00085"></a>00085                                                 error: &amp;processingError]
+<a name="l00086"></a>00086                         retain];
+<a name="l00087"></a>00087     <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(oldObject);
+<a name="l00088"></a>00088   }
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090   [<span class="keyword">super</span> requestFinished];
+<a name="l00091"></a>00091 }
+<a name="l00092"></a>00092 
 <a name="l00093"></a>00093 
-<a name="l00094"></a>00094   [<span class="keyword">super</span> requestFinished];
-<a name="l00095"></a>00095 }
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098 <span class="keyword">@end</span>
+<a name="l00094"></a>00094 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

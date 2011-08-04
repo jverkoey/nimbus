@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -101,8 +101,8 @@
 <p><a class="el" href="group___common-_metrics.html">Common Metrics</a></p>
 <ul>
 <li><span class="apiDiffAdded">Added</span> <code><a class="el" href="group___common-_metrics.html#gae2ad00b094918f5b5929b3520007551b" title="Fetch the height of a toolbar in a given orientation.">NIToolbarHeightForOrientation()</a></code></li>
-<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="group___common-_metrics.html#ga0cec7c71cc4f5efee4113d16abde3ca1" title="The animation curve used when animating the status bar.">NIStatusBarAnimationCurve()</a></code></li>
-<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="group___common-_metrics.html#gaf476266576d4c565941facf2ae5583e7" title="The animation duration for animating the status bar.">NIStatusBarAnimationDuration()</a></code></li>
+<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="group___common-_metrics.html#ga4d89d2266bfbfb0bb5743cfbba210dfe" title="The animation curve used when changing the status bar&#39;s visibility.">NIStatusBarAnimationCurve()</a></code></li>
+<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="group___common-_metrics.html#ga6794a4a04b97cd3ffaeac318b7d27b4f" title="The animation duration used when changing the status bar&#39;s visibility.">NIStatusBarAnimationDuration()</a></code></li>
 </ul>
 <h3>NIDataStructures[.h]</h3>
 <p><a class="el" href="group___data-_structures.html">Data Structures</a></p>
@@ -122,7 +122,7 @@
 <h3>NIInMemoryCache[.h]</h3>
 <ul>
 <li>Documentation updated for <a class="el" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a> and <a class="el" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>.</li>
-<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="interface_n_i_memory_cache.html#a10ca55440e796c6f51187041cf6b8152">-[NIMemoryCache hasObjectWithName:]</a></code></li>
+<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="">-[NIMemoryCache hasObjectWithName:]</a></code></li>
 <li><span class="apiDiffAdded">Added</span> <code><a class="el" href="interface_n_i_memory_cache.html#a6c016c9a322c58151bbfb30793e9d475">-[NIMemoryCache dateOfLastAccessWithName:]</a></code></li>
 <li><span class="apiDiffAdded">Added</span> <code><a class="el" href="interface_n_i_memory_cache.html#ad803d84fcd1c29cf2dadb58c3f719923">-[NIMemoryCache didSetObject:withName:]</a></code></li>
 <li><span class="apiDiffBugfix">Bugfix</span> <a class="el" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a> now automatically responds to <code>UIApplicationDidReceiveMemoryWarningNotification</code> notifications.</li>
@@ -136,8 +136,8 @@
 </ul>
 <h3>NISDKAvailability[.h]</h3>
 <ul>
-<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="group___s_d_k-_availability.html#ga90dc63555a6a6ed33b5875c5eaeccb31" title="Fetch the screen&#39;s scale in an SDK-agnostic way.">NIScreenScale()</a></code></li>
-<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="group___s_d_k-_availability.html#ga622ef4a203e625618b9077c9b1deca24" title="Safely fetch the UITapGestureRecognizer class if it is available.">NIUITapGestureRecognizerClass()</a></code></li>
+<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="group___s_d_k-_availability.html#ga8ffc9070109f21db5092d5e2b65b7578" title="Fetch the screen&#39;s scale in an SDK-agnostic way.">NIScreenScale()</a></code></li>
+<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="group___s_d_k-_availability.html#ga90530f627a0a0785a02d319111f2155c" title="Safely fetch the UITapGestureRecognizer class if it is available.">NIUITapGestureRecognizerClass()</a></code></li>
 </ul>
 <h3>NIState[.h]</h3>
 <ul>
@@ -188,8 +188,8 @@
 <h3><a class="el" href="interface_n_i_h_t_t_p_image_request.html" title="A threaded network request for an image that chops up and resizes the image before returning to the U...">NIHTTPImageRequest</a>[.h]</h3>
 <ul>
 <li><span class="apiDiffRemoved">Removed</span> <code>NIHTTPImageRequest.cropImageForDisplay</code></li>
-<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="interface_n_i_h_t_t_p_image_request.html#a11f4b6cc61cceb33a41423c62e4e735c">NIHTTPImageRequest.scaleOptions</a></code></li>
-<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="interface_n_i_h_t_t_p_image_request.html#a944c80da8f3884d2d1bbab8bf3efeeef">NIHTTPImageRequest.interpolationQuality</a></code></li>
+<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="interface_n_i_h_t_t_p_image_request.html#aee0571051fc0f4e1952ec0a3f4bfe8de">NIHTTPImageRequest.scaleOptions</a></code></li>
+<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="interface_n_i_h_t_t_p_image_request.html#abba79b08eabfdd05d8d30a40cd272829">NIHTTPImageRequest.interpolationQuality</a></code></li>
 <li><span class="apiDiffAdded">Added</span> <code><a class="el" href="interface_n_i_h_t_t_p_image_request.html#a42847898d10e49db4666e7c7fb1a30ef">+[NIHTTPImageRequest imageFromSource:withContentMode:cropRect:displaySize:scaleOptions:interpolationQuality:]</a></code></li>
 <li><span class="apiDiffFeature">Feature</span> Better configuration for image scaling and cropping via <a class="el" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856">NINetworkImageViewScaleOptions</a>.</li>
 </ul>
@@ -199,8 +199,8 @@
 <li><span class="apiDiffAdded">Added</span> <code>NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess</code></li>
 <li><span class="apiDiffAdded">Added</span> <code>NINetworkImageViewScaleToFitCropsExcess</code></li>
 <li><span class="apiDiffAdded">Added</span> <code>NINetworkImageViewScaleToFillLeavesExcess</code></li>
-<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="interface_n_i_network_image_view.html#a7faef9d6a8e6e3a5886cf88c0262d4e1">NINetworkImageView.scaleOptions</a></code></li>
-<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="interface_n_i_network_image_view.html#adc399e63572dcce6e0984ef12353ec4d">NINetworkImageView.interpolationQuality</a></code></li>
+<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="interface_n_i_network_image_view.html#a00d2df629a934ac974a6b27a83b75ca3">NINetworkImageView.scaleOptions</a></code></li>
+<li><span class="apiDiffAdded">Added</span> <code><a class="el" href="interface_n_i_network_image_view.html#a04b3e01db91e87205984e10babc601be">NINetworkImageView.interpolationQuality</a></code></li>
 <li><span class="apiDiffFeature">Feature</span> Added support for loading images from disk.</li>
 <li><span class="apiDiffFeature">Feature</span> Better configuration for image scaling and cropping via <a class="el" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856">NINetworkImageViewScaleOptions</a>.</li>
 </ul>

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -95,105 +95,95 @@
 <a name="l00017"></a>00017 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 <a name="l00018"></a>00018 <span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span>
 <a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <span class="preprocessor">#ifdef NIMBUS_STATIC_LIBRARY</span>
-<a name="l00021"></a>00021 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NimbusCore/NIBlocks.h&quot;</span>
-<a name="l00022"></a>00022 <span class="preprocessor">#else</span>
-<a name="l00023"></a>00023 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NIBlocks.h&quot;</span>
-<a name="l00024"></a>00024 <span class="preprocessor">#endif</span>
-<a name="l00025"></a>00025 <span class="preprocessor"></span>
-<a name="l00044"></a>00044 <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_operation_delegate-p.html" title="The delegate protocol for an NSOperation.">NIOperationDelegate</a>;
-<a name="l00045"></a>00045 
-<a name="l00055"></a><a class="code" href="interface_n_i_operation.html">00055</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_operation.html" title="A base implementation of an NSOperation that supports traditional delegation and blocks.">NIOperation</a> : NSOperation {
-<a name="l00056"></a>00056 <span class="keyword">@private</span>
-<a name="l00057"></a>00057   id&lt;NIOperationDelegate&gt; _delegate;
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059   NSInteger _tag;
+<a name="l00020"></a>00020 <span class="preprocessor">#import &quot;NIBlocks.h&quot;</span>
+<a name="l00021"></a>00021 
+<a name="l00033"></a>00033 <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_operation_delegate-p.html" title="The delegate protocol for an NSOperation.">NIOperationDelegate</a>;
+<a name="l00034"></a>00034 
+<a name="l00047"></a><a class="code" href="interface_n_i_operation.html">00047</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_operation.html" title="A base implementation of an NSOperation that supports traditional delegation and blocks.">NIOperation</a> : NSOperation {
+<a name="l00048"></a>00048 <span class="keyword">@private</span>
+<a name="l00049"></a>00049   id&lt;NIOperationDelegate&gt; _delegate;
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051   NSInteger _tag;
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053   NSError* _lastError;
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00056"></a>00056 <span class="preprocessor"></span>  <span class="comment">// Performed on the main thread.</span>
+<a name="l00057"></a>00057   NIBasicBlock _didStartBlock;
+<a name="l00058"></a>00058   NIBasicBlock _didFinishBlock;
+<a name="l00059"></a>00059   NIErrorBlock _didFailWithErrorBlock;
 <a name="l00060"></a>00060 
-<a name="l00061"></a>00061   NSError* _lastError;
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00064"></a>00064 <span class="preprocessor"></span>  <span class="comment">// Performed on the main thread.</span>
-<a name="l00065"></a>00065   NIBasicBlock _didStartBlock;
-<a name="l00066"></a>00066   NIBasicBlock _didFinishBlock;
-<a name="l00067"></a>00067   NIErrorBlock _didFailWithErrorBlock;
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069   <span class="comment">// Performed in the operation&#39;s thread.</span>
-<a name="l00070"></a>00070   NIBasicBlock _willFinishBlock;
-<a name="l00071"></a>00071 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
-<a name="l00072"></a>00072 <span class="preprocessor"></span>}
-<a name="l00073"></a>00073 
-<a name="l00077"></a><a class="code" href="interface_n_i_operation.html#a8fcfebd75a9559d0a41e9f8bcd01facf">00077</a> <span class="keyword">@property</span> (readwrite, assign) id&lt;NIOperationDelegate&gt; delegate;
-<a name="l00078"></a>00078 
-<a name="l00082"></a><a class="code" href="interface_n_i_operation.html#a3ffdf65e811b47ea8595c8ea2a1376ec">00082</a> <span class="keyword">@property</span> (readwrite, assign) NSInteger tag;
-<a name="l00083"></a>00083 
-<a name="l00087"></a><a class="code" href="interface_n_i_operation.html#add09c9ae4ab576c27648f4a3ab3b9cea">00087</a> <span class="keyword">@property</span> (readonly, retain) NSError* lastError;
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00090"></a>00090 <span class="preprocessor"></span>
-<a name="l00096"></a><a class="code" href="interface_n_i_operation.html#a6244b38cedcd4c75360a15b19514321f">00096</a> <span class="keyword">@property</span> (readwrite, copy) NIBasicBlock didStartBlock;
-<a name="l00097"></a>00097 
-<a name="l00105"></a><a class="code" href="interface_n_i_operation.html#a18e14e4f1f218899b97febe09d48b68d">00105</a> <span class="keyword">@property</span> (readwrite, copy) NIBasicBlock didFinishBlock;
-<a name="l00106"></a>00106 
-<a name="l00114"></a><a class="code" href="interface_n_i_operation.html#a6d1ae5a692180c568ecfd8d3b02300e3">00114</a> <span class="keyword">@property</span> (readwrite, copy) NIErrorBlock didFailWithErrorBlock;
+<a name="l00061"></a>00061   <span class="comment">// Performed in the operation&#39;s thread.</span>
+<a name="l00062"></a>00062   NIBasicBlock _willFinishBlock;
+<a name="l00063"></a>00063 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
+<a name="l00064"></a>00064 <span class="preprocessor"></span>}
+<a name="l00065"></a>00065 
+<a name="l00066"></a><a class="code" href="interface_n_i_operation.html#af4051a42c46f1ddb9d308daf9596c40d">00066</a> <span class="keyword">@property</span> (readwrite, assign) id&lt;NIOperationDelegate&gt; delegate;
+<a name="l00067"></a><a class="code" href="interface_n_i_operation.html#ab16ac8d4ce97062b0d4545df15226c27">00067</a> <span class="keyword">@property</span> (readonly, retain) NSError* lastError;
+<a name="l00068"></a><a class="code" href="interface_n_i_operation.html#a9229f5fb6b21513181aed08ba7592ba6">00068</a> <span class="keyword">@property</span> (readwrite, assign) NSInteger tag;
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00072"></a>00072 <span class="preprocessor"></span>
+<a name="l00073"></a><a class="code" href="interface_n_i_operation.html#aed06f75966016ce2da29d77740ce4ac5">00073</a> <span class="keyword">@property</span> (readwrite, copy) NIBasicBlock didStartBlock;
+<a name="l00074"></a><a class="code" href="interface_n_i_operation.html#af5538a8120694393733756e11b5752e5">00074</a> <span class="keyword">@property</span> (readwrite, copy) NIBasicBlock didFinishBlock;
+<a name="l00075"></a><a class="code" href="interface_n_i_operation.html#a1b39afe4f59c082cf04189a8763e6964">00075</a> <span class="keyword">@property</span> (readwrite, copy) NIErrorBlock didFailWithErrorBlock;
+<a name="l00076"></a><a class="code" href="interface_n_i_operation.html#a14bfd44503230b2e7c9e57ea83f16fcf">00076</a> <span class="keyword">@property</span> (readwrite, copy) NIBasicBlock willFinishBlock;
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
+<a name="l00079"></a>00079 <span class="preprocessor"></span>
+<a name="l00080"></a>00080 - (void)operationDidStart;
+<a name="l00081"></a>00081 - (void)operationDidFinish;
+<a name="l00082"></a>00082 - (void)operationDidFailWithError:(NSError *)error;
+<a name="l00083"></a>00083 - (void)operationWillFinish;
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 <span class="keyword">@end</span>
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087 
+<a name="l00099"></a><a class="code" href="interface_n_i_read_file_from_disk_operation.html">00099</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_read_file_from_disk_operation.html" title="An operation that reads a file from disk.">NIReadFileFromDiskOperation</a> : <a class="code" href="interface_n_i_operation.html" title="A base implementation of an NSOperation that supports traditional delegation and blocks.">NIOperation</a> {
+<a name="l00100"></a>00100 <span class="keyword">@private</span>
+<a name="l00101"></a>00101   <span class="comment">// [in]</span>
+<a name="l00102"></a>00102   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* _pathToFile;
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104   <span class="comment">// [out]</span>
+<a name="l00105"></a>00105   <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a>*   _data;
+<a name="l00106"></a>00106   <span class="keywordtype">id</span>        _processedObject;
+<a name="l00107"></a>00107 }
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109 <span class="comment">// Designated initializer.</span>
+<a name="l00110"></a>00110 - (id)initWithPathToFile:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToFile;
+<a name="l00111"></a>00111 
+<a name="l00112"></a><a class="code" href="interface_n_i_read_file_from_disk_operation.html#a1b446956cc71992cb3284756f61f76d6">00112</a> <span class="keyword">@property</span> (readwrite, copy) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* pathToFile;
+<a name="l00113"></a><a class="code" href="interface_n_i_read_file_from_disk_operation.html#a794a03af3fcce7c13084c08ce02f2a8f">00113</a> <span class="keyword">@property</span> (readonly, retain) <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a>* data;
+<a name="l00114"></a><a class="code" href="interface_n_i_read_file_from_disk_operation.html#a009c36d0454d5879e8a32eaf6b4a23ea">00114</a> <span class="keyword">@property</span> (readwrite, retain) <span class="keywordtype">id</span> processedObject;
 <a name="l00115"></a>00115 
-<a name="l00123"></a><a class="code" href="interface_n_i_operation.html#af70a25765166a9b792dc053b7b9378b6">00123</a> <span class="keyword">@property</span> (readwrite, copy) NIBasicBlock willFinishBlock;
-<a name="l00124"></a>00124 
-<a name="l00125"></a>00125 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
-<a name="l00126"></a>00126 <span class="preprocessor"></span>
-<a name="l00127"></a>00127 
-<a name="l00135"></a>00135 <span class="preprocessor">#pragma mark Subclassing</span>
-<a name="l00136"></a>00136 <span class="preprocessor"></span>
-<a name="l00140"></a>00140 - (void)operationDidStart;
-<a name="l00141"></a>00141 
-<a name="l00145"></a>00145 - (void)operationDidFinish;
-<a name="l00146"></a>00146 
-<a name="l00150"></a>00150 - (void)operationDidFailWithError:(NSError *)error;
-<a name="l00151"></a>00151 
-<a name="l00155"></a>00155 - (void)operationWillFinish;
+<a name="l00116"></a>00116 <span class="keyword">@end</span>
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118 
+<a name="l00124"></a><a class="code" href="protocol_n_i_operation_delegate-p.html">00124</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_operation_delegate-p.html" title="The delegate protocol for an NSOperation.">NIOperationDelegate</a> &lt;NSObject&gt;
+<a name="l00125"></a>00125 <span class="keyword">@optional</span>
+<a name="l00126"></a>00126 
+<a name="l00130"></a>00130 - (void)operationDidStart:(NSOperation *)operation;
+<a name="l00131"></a>00131 
+<a name="l00139"></a>00139 - (void)operationWillFinish:(NSOperation *)operation;
+<a name="l00140"></a>00140 
+<a name="l00146"></a>00146 - (void)operationDidFinish:(NSOperation *)operation;
+<a name="l00147"></a>00147 
+<a name="l00153"></a>00153 - (void)operationDidFail:(NSOperation *)operation withError:(NSError *)error;
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155 <span class="keyword">@end</span>
 <a name="l00156"></a>00156 
-<a name="l00159"></a>00159 <span class="keyword">@end</span>
+<a name="l00157"></a>00157 
+<a name="l00159"></a>00159 <span class="comment">// NIOperation</span>
 <a name="l00160"></a>00160 
-<a name="l00161"></a>00161 
-<a name="l00173"></a><a class="code" href="interface_n_i_read_file_from_disk_operation.html">00173</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_read_file_from_disk_operation.html" title="An operation that reads a file from disk.">NIReadFileFromDiskOperation</a> : <a class="code" href="interface_n_i_operation.html" title="A base implementation of an NSOperation that supports traditional delegation and blocks.">NIOperation</a> {
-<a name="l00174"></a>00174 <span class="keyword">@private</span>
-<a name="l00175"></a>00175   <span class="comment">// [in]</span>
-<a name="l00176"></a>00176   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* _pathToFile;
-<a name="l00177"></a>00177 
-<a name="l00178"></a>00178   <span class="comment">// [out]</span>
-<a name="l00179"></a>00179   <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a>*   _data;
-<a name="l00180"></a>00180   <span class="keywordtype">id</span>        _processedObject;
-<a name="l00181"></a>00181 }
-<a name="l00182"></a>00182 
-<a name="l00183"></a>00183 
-<a name="l00188"></a>00188 <span class="preprocessor">#pragma mark Creating an operation</span>
-<a name="l00189"></a>00189 <span class="preprocessor"></span>
-<a name="l00193"></a>00193 - (id)initWithPathToFile:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)pathToFile;
-<a name="l00194"></a>00194 
-<a name="l00202"></a>00202 <span class="preprocessor">#pragma mark Configuring the operation</span>
-<a name="l00203"></a>00203 <span class="preprocessor"></span>
-<a name="l00207"></a><a class="code" href="interface_n_i_read_file_from_disk_operation.html#adbd0fb5979eafbc48a938204e54c38c8">00207</a> <span class="keyword">@property</span> (readwrite, copy) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* pathToFile;
-<a name="l00208"></a>00208 
-<a name="l00216"></a>00216 <span class="preprocessor">#pragma mark Operation Results</span>
-<a name="l00217"></a>00217 <span class="preprocessor"></span>
-<a name="l00225"></a><a class="code" href="interface_n_i_read_file_from_disk_operation.html#a754e08489a25c244257bfd6e733f61e2">00225</a> <span class="keyword">@property</span> (readonly, retain) <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a>* data;
-<a name="l00226"></a>00226 
-<a name="l00234"></a><a class="code" href="interface_n_i_read_file_from_disk_operation.html#af07b3fadfa7445e1993bf2eedd596aa6">00234</a> <span class="keyword">@property</span> (readwrite, retain) <span class="keywordtype">id</span> processedObject;
-<a name="l00235"></a>00235 
-<a name="l00238"></a>00238 <span class="keyword">@end</span>
-<a name="l00239"></a>00239 
-<a name="l00240"></a>00240 
-<a name="l00246"></a><a class="code" href="protocol_n_i_operation_delegate-p.html">00246</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_operation_delegate-p.html" title="The delegate protocol for an NSOperation.">NIOperationDelegate</a> &lt;NSObject&gt;
-<a name="l00247"></a>00247 <span class="keyword">@optional</span>
-<a name="l00248"></a>00248 
-<a name="l00252"></a>00252 - (void)operationDidStart:(NSOperation *)operation;
-<a name="l00253"></a>00253 
-<a name="l00261"></a>00261 - (void)operationWillFinish:(NSOperation *)operation;
-<a name="l00262"></a>00262 
-<a name="l00268"></a>00268 - (void)operationDidFinish:(NSOperation *)operation;
-<a name="l00269"></a>00269 
-<a name="l00275"></a>00275 - (void)operationDidFail:(NSOperation *)operation withError:(NSError *)error;
-<a name="l00276"></a>00276 
-<a name="l00277"></a>00277 <span class="keyword">@end</span>
+<a name="l00190"></a>00190 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00191"></a>00191 <span class="preprocessor"></span>
+<a name="l00230"></a>00230 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
+<a name="l00231"></a>00231 <span class="preprocessor"></span>
+<a name="l00232"></a>00232 
+<a name="l00265"></a>00265 
+<a name="l00266"></a>00266 <span class="comment">// NIReadFileFromDiskOperation</span>
+<a name="l00267"></a>00267 
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

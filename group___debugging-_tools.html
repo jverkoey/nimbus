@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -116,6 +116,7 @@ Defines</h2></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505">NIMaxLogLevel</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga9b5abee5150b99d8ccce041099d44706">NIDebugAssertionsShouldBreak</a></td></tr>
 </table>
 <hr/><h2>Define Documentation</h2>
 <a class="anchor" id="ga13cc3ae82820ea8141bc319bcb76ab7f"></a><!-- doxytag: member="NIDebuggingTools.h::NIDASSERT" ref="ga13cc3ae82820ea8141bc319bcb76ab7f" args="(xx)" -->
@@ -168,7 +169,7 @@ Variables</h2></td></tr>
 <p>Only writes to the log when DEBUG is defined. </p>
 <p>This log method will always write to the log, regardless of log levels. It is used by all of the other logging methods in Nimbus' debugging library. </p>
 
-<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00133">133</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00143">143</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
 
 </div>
 </div>
@@ -208,7 +209,7 @@ Variables</h2></td></tr>
 <p>Only writes to the log if condition is satisified. </p>
 <p>This macro powers the level-based loggers. It can also be used for conditionally enabling families of logs. </p>
 
-<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00150">150</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00160">160</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
 
 </div>
 </div>
@@ -229,6 +230,25 @@ Variables</h2></td></tr>
 <p>The default value is NILOGLEVEL_WARNING. </p>
 
 <p>Definition at line <a class="el" href="_n_i_debugging_tools_8m_source.html#l00020">20</a> of file <a class="el" href="_n_i_debugging_tools_8m_source.html">NIDebuggingTools.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga9b5abee5150b99d8ccce041099d44706"></a><!-- doxytag: member="NIDebuggingTools.h::NIDebugAssertionsShouldBreak" ref="ga9b5abee5150b99d8ccce041099d44706" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL <a class="el" href="group___debugging-_tools.html#ga9b5abee5150b99d8ccce041099d44706">NIDebugAssertionsShouldBreak</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Whether or not debug assertions should halt program execution like a breakpoint when they fail. </p>
+<p>An example of when this is used is in unit tests, when failure cases are tested that will fire debug assertions.</p>
+<p>The default value is YES. </p>
+
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8m_source.html#l00021">21</a> of file <a class="el" href="_n_i_debugging_tools_8m_source.html">NIDebuggingTools.m</a>.</p>
 
 </div>
 </div>

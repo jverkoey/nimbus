@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -94,134 +94,133 @@
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 <span class="preprocessor">#import &quot;NIOverviewSwizzling.h&quot;</span>
 <a name="l00018"></a>00018 
-<a name="l00019"></a>00019 <span class="preprocessor">#ifdef NIMBUS_STATIC_LIBRARY</span>
-<a name="l00020"></a>00020 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NimbusCore/NimbusCore.h&quot;</span>
-<a name="l00021"></a>00021 <span class="preprocessor">#else</span>
-<a name="l00022"></a>00022 <span class="preprocessor"></span><span class="preprocessor">#import &quot;NimbusCore.h&quot;</span>
-<a name="l00023"></a>00023 <span class="preprocessor">#endif</span>
-<a name="l00024"></a>00024 <span class="preprocessor"></span>
-<a name="l00025"></a>00025 <span class="preprocessor">#import &quot;NIOverview.h&quot;</span>
-<a name="l00026"></a>00026 <span class="preprocessor">#import &quot;NIOverviewView.h&quot;</span>
-<a name="l00027"></a>00027 
+<a name="l00019"></a>00019 <span class="preprocessor">#import &quot;NimbusCore.h&quot;</span>
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 <span class="preprocessor">#import &quot;NIOverview.h&quot;</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#import &quot;NIOverviewView.h&quot;</span>
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 <span class="preprocessor">#ifdef DEBUG</span>
+<a name="l00026"></a>00026 <span class="preprocessor"></span>
+<a name="l00027"></a>00027 <span class="keyword">@interface </span>UIApplication (NIDebugging)
 <a name="l00028"></a>00028 
-<a name="l00029"></a>00029 <span class="preprocessor">#ifdef DEBUG</span>
-<a name="l00030"></a>00030 <span class="preprocessor"></span>
-<a name="l00031"></a>00031 <span class="keyword">@interface </span>UIApplication (NIDebugging)
+<a name="l00029"></a>00029 - (CGRect)_statusBarFrame;
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031 <span class="keyword">@end</span>
 <a name="l00032"></a>00032 
-<a name="l00033"></a>00033 - (CGRect)_statusBarFrame;
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035 <span class="keyword">@end</span>
+<a name="l00033"></a>00033 CGFloat NIOverviewStatusBarHeight(<span class="keywordtype">void</span>);
+<a name="l00034"></a>00034 <span class="keywordtype">void</span> NIOverviewSwizzleMethods(<span class="keywordtype">void</span>);
+<a name="l00035"></a>00035 
 <a name="l00036"></a>00036 
-<a name="l00037"></a>00037 
-<a name="l00039"></a>00039 CGFloat NIOverviewStatusBarHeight() {
-<a name="l00040"></a>00040   CGRect statusBarFrame = [[UIApplication sharedApplication] _statusBarFrame];
-<a name="l00041"></a>00041   CGFloat statusBarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);
-<a name="l00042"></a>00042   <span class="keywordflow">return</span> statusBarHeight;
-<a name="l00043"></a>00043 }
+<a name="l00038"></a>00038 CGFloat NIOverviewStatusBarHeight(<span class="keywordtype">void</span>) {
+<a name="l00039"></a>00039   CGRect statusBarFrame = [[UIApplication sharedApplication] _statusBarFrame];
+<a name="l00040"></a>00040   CGFloat statusBarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);
+<a name="l00041"></a>00041   <span class="keywordflow">return</span> statusBarHeight;
+<a name="l00042"></a>00042 }
+<a name="l00043"></a>00043 
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045 
-<a name="l00047"></a>00047 <span class="keywordtype">void</span> NIOverviewSwizzleMethods() {
-<a name="l00048"></a>00048   <a class="code" href="group___runtime-_class-_modifications.html#gac41d32344f050e0adc00a6ccc7e67b4e" title="Swap two class instance method implementations.">NISwapInstanceMethods</a>([UIViewController <span class="keyword">class</span>],
-<a name="l00049"></a>00049                         <span class="keyword">@selector</span>(_statusBarHeightForCurrentInterfaceOrientation),
-<a name="l00050"></a>00050                         <span class="keyword">@selector</span>(__statusBarHeightForCurrentInterfaceOrientation));
-<a name="l00051"></a>00051   <a class="code" href="group___runtime-_class-_modifications.html#gac41d32344f050e0adc00a6ccc7e67b4e" title="Swap two class instance method implementations.">NISwapInstanceMethods</a>([UIApplication <span class="keyword">class</span>],
-<a name="l00052"></a>00052                         <span class="keyword">@selector</span>(statusBarFrame),
-<a name="l00053"></a>00053                         <span class="keyword">@selector</span>(_statusBarFrame));
-<a name="l00054"></a>00054   <a class="code" href="group___runtime-_class-_modifications.html#gac41d32344f050e0adc00a6ccc7e67b4e" title="Swap two class instance method implementations.">NISwapInstanceMethods</a>([UIApplication <span class="keyword">class</span>],
-<a name="l00055"></a>00055                         <span class="keyword">@selector</span>(setStatusBarHidden:withAnimation:),
-<a name="l00056"></a>00056                         <span class="keyword">@selector</span>(_setStatusBarHidden:withAnimation:));
-<a name="l00057"></a>00057   <a class="code" href="group___runtime-_class-_modifications.html#gac41d32344f050e0adc00a6ccc7e67b4e" title="Swap two class instance method implementations.">NISwapInstanceMethods</a>([UIApplication <span class="keyword">class</span>],
-<a name="l00058"></a>00058                         <span class="keyword">@selector</span>(setStatusBarStyle:animated:),
-<a name="l00059"></a>00059                         <span class="keyword">@selector</span>(_setStatusBarStyle:animated:));
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061 }
+<a name="l00046"></a>00046 <span class="keywordtype">void</span> NIOverviewSwizzleMethods(<span class="keywordtype">void</span>) {
+<a name="l00047"></a>00047   <a class="code" href="group___runtime-_class-_modifications.html#gac41d32344f050e0adc00a6ccc7e67b4e" title="Swap two class instance method implementations.">NISwapInstanceMethods</a>([UIViewController <span class="keyword">class</span>],
+<a name="l00048"></a>00048                         <span class="keyword">@selector</span>(_statusBarHeightForCurrentInterfaceOrientation),
+<a name="l00049"></a>00049                         <span class="keyword">@selector</span>(__statusBarHeightForCurrentInterfaceOrientation));
+<a name="l00050"></a>00050   <a class="code" href="group___runtime-_class-_modifications.html#gac41d32344f050e0adc00a6ccc7e67b4e" title="Swap two class instance method implementations.">NISwapInstanceMethods</a>([UIApplication <span class="keyword">class</span>],
+<a name="l00051"></a>00051                         <span class="keyword">@selector</span>(statusBarFrame),
+<a name="l00052"></a>00052                         <span class="keyword">@selector</span>(_statusBarFrame));
+<a name="l00053"></a>00053   <a class="code" href="group___runtime-_class-_modifications.html#gac41d32344f050e0adc00a6ccc7e67b4e" title="Swap two class instance method implementations.">NISwapInstanceMethods</a>([UIApplication <span class="keyword">class</span>],
+<a name="l00054"></a>00054                         <span class="keyword">@selector</span>(setStatusBarHidden:withAnimation:),
+<a name="l00055"></a>00055                         <span class="keyword">@selector</span>(_setStatusBarHidden:withAnimation:));
+<a name="l00056"></a>00056   <a class="code" href="group___runtime-_class-_modifications.html#gac41d32344f050e0adc00a6ccc7e67b4e" title="Swap two class instance method implementations.">NISwapInstanceMethods</a>([UIApplication <span class="keyword">class</span>],
+<a name="l00057"></a>00057                         <span class="keyword">@selector</span>(setStatusBarStyle:animated:),
+<a name="l00058"></a>00058                         <span class="keyword">@selector</span>(_setStatusBarStyle:animated:));
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 }
+<a name="l00061"></a>00061 
 <a name="l00062"></a>00062 
-<a name="l00063"></a>00063 
-<a name="l00067"></a>00067 <span class="keyword">@implementation </span>UIViewController (NIDebugging)
+<a name="l00066"></a>00066 <span class="keyword">@implementation </span>UIViewController (NIDebugging)
+<a name="l00067"></a>00067 
 <a name="l00068"></a>00068 
-<a name="l00069"></a>00069 
-<a name="l00071"></a>00071 
-<a name="l00076"></a>00076 - (float)__statusBarHeightForCurrentInterfaceOrientation {
-<a name="l00077"></a>00077   <span class="keywordflow">return</span> NIOverviewStatusBarHeight() + [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> height];
-<a name="l00078"></a>00078 }
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080 <span class="keyword">@end</span>
+<a name="l00070"></a>00070 
+<a name="l00075"></a>00075 - (float)__statusBarHeightForCurrentInterfaceOrientation {
+<a name="l00076"></a>00076   <span class="keywordflow">return</span> NIOverviewStatusBarHeight() + [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> height];
+<a name="l00077"></a>00077 }
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 <span class="keyword">@end</span>
+<a name="l00080"></a>00080 
 <a name="l00081"></a>00081 
-<a name="l00082"></a>00082 
-<a name="l00086"></a>00086 <span class="keyword">@implementation </span>UIApplication (NIDebugging)
+<a name="l00085"></a>00085 <span class="keyword">@implementation </span>UIApplication (NIDebugging)
+<a name="l00086"></a>00086 
 <a name="l00087"></a>00087 
-<a name="l00088"></a>00088 
-<a name="l00090"></a>00090 
-<a name="l00097"></a>00097 - (CGRect)_statusBarFrame {
-<a name="l00098"></a>00098   <span class="keywordflow">return</span> CGRectMake(0, 0,
-<a name="l00099"></a>00099                     CGFLOAT_MAX, NIOverviewStatusBarHeight() + [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> height]);
-<a name="l00100"></a>00100 }
+<a name="l00089"></a>00089 
+<a name="l00096"></a>00096 - (CGRect)_statusBarFrame {
+<a name="l00097"></a>00097   <span class="keywordflow">return</span> CGRectMake(0, 0,
+<a name="l00098"></a>00098                     CGFLOAT_MAX, NIOverviewStatusBarHeight() + [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> height]);
+<a name="l00099"></a>00099 }
+<a name="l00100"></a>00100 
 <a name="l00101"></a>00101 
-<a name="l00102"></a>00102 
-<a name="l00104"></a>00104 
-<a name="l00109"></a>00109 - (void)_setStatusBarHidden:(BOOL)hidden withAnimation:(UIStatusBarAnimation)animation {
-<a name="l00110"></a>00110   [<span class="keyword">self</span> _setStatusBarHidden:hidden withAnimation:animation];
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112   <span class="keywordflow">if</span> (UIStatusBarAnimationNone == animation) {
-<a name="l00113"></a>00113     [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>].alpha = 1;
-<a name="l00114"></a>00114     [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>].hidden = hidden;
-<a name="l00115"></a>00115 
-<a name="l00116"></a>00116   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (UIStatusBarAnimationSlide == animation) {
-<a name="l00117"></a>00117     [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>].alpha = 1;
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119     CGRect frame = [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#acc2d59e7ca18b42b762c605e391ba01c" title="The frame of the Overview.">frame</a>];
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121     [UIView beginAnimations:nil context:nil];
-<a name="l00122"></a>00122     [UIView setAnimationDuration:NIStatusBarAnimationDuration()];
-<a name="l00123"></a>00123     [UIView setAnimationCurve:NIStatusBarAnimationCurve()];
-<a name="l00124"></a>00124 
-<a name="l00125"></a>00125     [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>].frame = frame;
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127     [UIView commitAnimations];
-<a name="l00128"></a>00128     
-<a name="l00129"></a>00129   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (UIStatusBarAnimationFade == animation) {
-<a name="l00130"></a>00130     CGRect frame = [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#acc2d59e7ca18b42b762c605e391ba01c" title="The frame of the Overview.">frame</a>];
-<a name="l00131"></a>00131     [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>].frame = frame;
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133     [UIView beginAnimations:nil context:nil];
-<a name="l00134"></a>00134     [UIView setAnimationDuration:NIStatusBarAnimationDuration()];
-<a name="l00135"></a>00135     [UIView setAnimationCurve:NIStatusBarAnimationCurve()];
-<a name="l00136"></a>00136     
-<a name="l00137"></a>00137     [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>].alpha = hidden ? 0 : 1;
-<a name="l00138"></a>00138     
-<a name="l00139"></a>00139     [UIView commitAnimations];
-<a name="l00140"></a>00140   }
-<a name="l00141"></a>00141 }
+<a name="l00103"></a>00103 
+<a name="l00108"></a>00108 - (void)_setStatusBarHidden:(BOOL)hidden withAnimation:(UIStatusBarAnimation)animation {
+<a name="l00109"></a>00109   [<span class="keyword">self</span> _setStatusBarHidden:hidden withAnimation:animation];
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111   <span class="keywordflow">if</span> (UIStatusBarAnimationNone == animation) {
+<a name="l00112"></a>00112     [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>].alpha = 1;
+<a name="l00113"></a>00113     [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>].hidden = hidden;
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (UIStatusBarAnimationSlide == animation) {
+<a name="l00116"></a>00116     [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>].alpha = 1;
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118     CGRect frame = [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#acc2d59e7ca18b42b762c605e391ba01c" title="The frame of the Overview.">frame</a>];
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120     [UIView beginAnimations:nil context:nil];
+<a name="l00121"></a>00121     [UIView setAnimationDuration:NIStatusBarAnimationDuration()];
+<a name="l00122"></a>00122     [UIView setAnimationCurve:NIStatusBarAnimationCurve()];
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124     [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>].frame = frame;
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126     [UIView commitAnimations];
+<a name="l00127"></a>00127     
+<a name="l00128"></a>00128   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (UIStatusBarAnimationFade == animation) {
+<a name="l00129"></a>00129     CGRect frame = [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#acc2d59e7ca18b42b762c605e391ba01c" title="The frame of the Overview.">frame</a>];
+<a name="l00130"></a>00130     [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>].frame = frame;
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132     [UIView beginAnimations:nil context:nil];
+<a name="l00133"></a>00133     [UIView setAnimationDuration:NIStatusBarAnimationDuration()];
+<a name="l00134"></a>00134     [UIView setAnimationCurve:NIStatusBarAnimationCurve()];
+<a name="l00135"></a>00135     
+<a name="l00136"></a>00136     [<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>].alpha = hidden ? 0 : 1;
+<a name="l00137"></a>00137     
+<a name="l00138"></a>00138     [UIView commitAnimations];
+<a name="l00139"></a>00139   }
+<a name="l00140"></a>00140 }
+<a name="l00141"></a>00141 
 <a name="l00142"></a>00142 
-<a name="l00143"></a>00143 
-<a name="l00145"></a>00145 
-<a name="l00148"></a>00148 - (void)_setStatusBarStyle:(UIStatusBarStyle)statusBarStyle animated:(BOOL)animated {
-<a name="l00149"></a>00149   [<span class="keyword">self</span> _setStatusBarStyle:statusBarStyle animated:animated];
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151   <span class="keywordflow">if</span> (animated) {
-<a name="l00152"></a>00152     [UIView beginAnimations:nil context:nil];
-<a name="l00153"></a>00153     [UIView setAnimationDuration:0.3];
-<a name="l00154"></a>00154   }
-<a name="l00155"></a>00155 
-<a name="l00156"></a>00156   <span class="comment">// TODO (jverkoey July 23, 2011): Add a translucent property to the overview view.</span>
-<a name="l00157"></a>00157   <span class="keywordflow">if</span> (UIStatusBarStyleDefault == statusBarStyle
-<a name="l00158"></a>00158       || UIStatusBarStyleBlackOpaque == statusBarStyle) {
-<a name="l00159"></a>00159     [[<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>] setTranslucent:NO];
-<a name="l00160"></a>00160 
-<a name="l00161"></a>00161   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (UIStatusBarStyleBlackTranslucent == statusBarStyle) {
-<a name="l00162"></a>00162     [[<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>] setTranslucent:YES];
-<a name="l00163"></a>00163   }
-<a name="l00164"></a>00164 
-<a name="l00165"></a>00165   <span class="keywordflow">if</span> (animated) {
-<a name="l00166"></a>00166     [UIView commitAnimations];
-<a name="l00167"></a>00167   }
-<a name="l00168"></a>00168 }
+<a name="l00144"></a>00144 
+<a name="l00147"></a>00147 - (void)_setStatusBarStyle:(UIStatusBarStyle)statusBarStyle animated:(BOOL)animated {
+<a name="l00148"></a>00148   [<span class="keyword">self</span> _setStatusBarStyle:statusBarStyle animated:animated];
+<a name="l00149"></a>00149 
+<a name="l00150"></a>00150   <span class="keywordflow">if</span> (animated) {
+<a name="l00151"></a>00151     [UIView beginAnimations:nil context:nil];
+<a name="l00152"></a>00152     [UIView setAnimationDuration:0.3];
+<a name="l00153"></a>00153   }
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155   <span class="comment">// TODO (jverkoey July 23, 2011): Add a translucent property to the overview view.</span>
+<a name="l00156"></a>00156   <span class="keywordflow">if</span> (UIStatusBarStyleDefault == statusBarStyle
+<a name="l00157"></a>00157       || UIStatusBarStyleBlackOpaque == statusBarStyle) {
+<a name="l00158"></a>00158     [[<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>] setTranslucent:NO];
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (UIStatusBarStyleBlackTranslucent == statusBarStyle) {
+<a name="l00161"></a>00161     [[<a class="code" href="interface_n_i_overview.html" title="The Overview state management class.">NIOverview</a> <a class="code" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe" title="The Overview view.">view</a>] setTranslucent:YES];
+<a name="l00162"></a>00162   }
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164   <span class="keywordflow">if</span> (animated) {
+<a name="l00165"></a>00165     [UIView commitAnimations];
+<a name="l00166"></a>00166   }
+<a name="l00167"></a>00167 }
+<a name="l00168"></a>00168 
 <a name="l00169"></a>00169 
-<a name="l00170"></a>00170 
-<a name="l00171"></a>00171 <span class="keyword">@end</span>
+<a name="l00170"></a>00170 <span class="keyword">@end</span>
+<a name="l00171"></a>00171 
 <a name="l00172"></a>00172 
-<a name="l00173"></a>00173 
-<a name="l00174"></a>00174 <span class="preprocessor">#endif</span>
+<a name="l00173"></a>00173 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

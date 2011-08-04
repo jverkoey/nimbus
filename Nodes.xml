@@ -42,12 +42,24 @@
             </Subnodes>
            </Node>
            <Node>
+            <Name>Errors</Name>
+            <Path>group___errors.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
             <Name>Foundation Methods</Name>
             <Path>group___foundation-_methods.html</Path>
             <Subnodes>
              <Node>
               <Name>CGRect Methods</Name>
               <Path>group___c_g_rect-_methods.html</Path>
+              <Subnodes>
+              </Subnodes>
+             </Node>
+             <Node>
+              <Name>General Purpose Methods</Name>
+              <Path>group___general-_purpose-_methods.html</Path>
               <Subnodes>
               </Subnodes>
              </Node>
@@ -87,12 +99,6 @@
             <Name>Operations</Name>
             <Path>group___operations.html</Path>
             <Subnodes>
-             <Node>
-              <Name>Crafting Operations</Name>
-              <Path>group___crafting-_operations.html</Path>
-              <Subnodes>
-              </Subnodes>
-             </Node>
             </Subnodes>
            </Node>
            <Node>
@@ -125,6 +131,12 @@
             <Subnodes>
             </Subnodes>
            </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>Nimbus Interapp</Name>
+          <Path>group___nimbus_interapp.html</Path>
+          <Subnodes>
           </Subnodes>
          </Node>
          <Node>
@@ -281,6 +293,12 @@
             <Subnodes>
             </Subnodes>
            </Node>
+           <Node>
+            <Name>Version 0.6 API Changes</Name>
+            <Path>group___version-6-0.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
           </Subnodes>
          </Node>
         </Subnodes>
@@ -304,6 +322,10 @@
          <Node>
           <Name>NIImageMemoryCache</Name>
           <Path>interface_n_i_image_memory_cache.html</Path>
+         </Node>
+         <Node>
+          <Name>NIInterapp</Name>
+          <Path>interface_n_i_interapp.html</Path>
          </Node>
          <Node>
           <Name>NIJSONKitProcessorHTTPRequest</Name>
@@ -474,10 +496,6 @@
           <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
          </Node>
          <Node>
-          <Name>NIURLMap</Name>
-          <Path>interface_n_i_u_r_l_map.html</Path>
-         </Node>
-         <Node>
           <Name>NSData</Name>
           <Path>class_n_s_data.html</Path>
          </Node>
@@ -518,6 +536,10 @@
             </Subnodes>
            </Node>
           </Subnodes>
+         </Node>
+         <Node>
+          <Name>NIInterapp</Name>
+          <Path>interface_n_i_interapp.html</Path>
          </Node>
          <Node>
           <Name>NILauncherButton</Name>
@@ -716,10 +738,6 @@
          <Node>
           <Name>&lt;NIProcessorDelegate&gt;</Name>
           <Path>protocol_n_i_processor_delegate-p.html</Path>
-         </Node>
-         <Node>
-          <Name>NIURLMap</Name>
-          <Path>interface_n_i_u_r_l_map.html</Path>
          </Node>
          <Node>
           <Name>NSData</Name>

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -72,17 +72,16 @@
 </script>
 <div id="doc-content">
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Methods</a>  </div>
   <div class="headertitle">
-<div class="title">NIOperation Class Reference<div class="ingroups"><a class="el" href="group___crafting-_operations.html">Crafting Operations</a></div></div>  </div>
+<div class="title">NIOperation Class Reference<div class="ingroups"><a class="el" href="group___operations.html">Operations</a></div></div>  </div>
 </div>
 <div class="contents">
 <!-- doxytag: class="NIOperation" --><hr/><a name="details" id="details"></a><h2>Overview</h2>
 <div class="textblock"><p>A base implementation of an NSOperation that supports traditional delegation and blocks. </p>
+<h2>Subclassing</h2>
 <p>A subclass should call the operationDid* methods to notify the delegate on the main thread of changes in the operation's state. Calling these methods will notify the delegate and the blocks if provided. </p>
 
-<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00055">55</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00047">47</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
 </div><div class="dynheader">
 Inheritance diagram for NIOperation:</div>
 <div class="dyncontent">
@@ -95,16 +94,19 @@ Inheritance diagram for NIOperation:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8fcfebd75a9559d0a41e9f8bcd01facf"></a><!-- doxytag: member="NIOperation::delegate" ref="a8fcfebd75a9559d0a41e9f8bcd01facf" args="" -->
-id&lt; <a class="el" href="protocol_n_i_operation_delegate-p.html">NIOperationDelegate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_operation.html#a8fcfebd75a9559d0a41e9f8bcd01facf">delegate</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ffdf65e811b47ea8595c8ea2a1376ec"></a><!-- doxytag: member="NIOperation::tag" ref="a3ffdf65e811b47ea8595c8ea2a1376ec" args="" -->
-NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_operation.html#a3ffdf65e811b47ea8595c8ea2a1376ec">tag</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add09c9ae4ab576c27648f4a3ab3b9cea"></a><!-- doxytag: member="NIOperation::lastError" ref="add09c9ae4ab576c27648f4a3ab3b9cea" args="" -->
-NSError *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_operation.html#add09c9ae4ab576c27648f4a3ab3b9cea">lastError</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NIBasicBlock&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_operation.html#a6244b38cedcd4c75360a15b19514321f">didStartBlock</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NIBasicBlock&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_operation.html#a18e14e4f1f218899b97febe09d48b68d">didFinishBlock</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NIErrorBlock&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_operation.html#a6d1ae5a692180c568ecfd8d3b02300e3">didFailWithErrorBlock</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NIBasicBlock&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_operation.html#af70a25765166a9b792dc053b7b9378b6">willFinishBlock</a> <span class="suffix">property</span></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Delegation</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">id&lt; <a class="el" href="protocol_n_i_operation_delegate-p.html">NIOperationDelegate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_operation.html#af4051a42c46f1ddb9d308daf9596c40d">delegate</a> <span class="suffix">property</span></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Post-Operation Properties</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab16ac8d4ce97062b0d4545df15226c27"></a><!-- doxytag: member="NIOperation::lastError" ref="ab16ac8d4ce97062b0d4545df15226c27" args="" -->
+NSError *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_operation.html#ab16ac8d4ce97062b0d4545df15226c27">lastError</a> <span class="suffix">property</span></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Identification</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9229f5fb6b21513181aed08ba7592ba6"></a><!-- doxytag: member="NIOperation::tag" ref="a9229f5fb6b21513181aed08ba7592ba6" args="" -->
+NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_operation.html#a9229f5fb6b21513181aed08ba7592ba6">tag</a> <span class="suffix">property</span></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Blocks</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NIBasicBlock&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_operation.html#aed06f75966016ce2da29d77740ce4ac5">didStartBlock</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NIBasicBlock&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_operation.html#af5538a8120694393733756e11b5752e5">didFinishBlock</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NIErrorBlock&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_operation.html#a1b39afe4f59c082cf04189a8763e6964">didFailWithErrorBlock</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NIBasicBlock&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_operation.html#a14bfd44503230b2e7c9e57ea83f16fcf">willFinishBlock</a> <span class="suffix">property</span></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Subclassing</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>The following methods are provided to aid in subclassing and are not meant to be used externally. </p>
 </div></td></tr>
@@ -118,12 +120,30 @@ NSError *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 (void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_operation.html#ac7e636b6ec59af66fc5964c7b30a2930">operationWillFinish</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
-<a class="anchor" id="a6244b38cedcd4c75360a15b19514321f"></a><!-- doxytag: member="NIOperation::didStartBlock" ref="a6244b38cedcd4c75360a15b19514321f" args="" -->
+<a class="anchor" id="af4051a42c46f1ddb9d308daf9596c40d"></a><!-- doxytag: member="NIOperation::delegate" ref="af4051a42c46f1ddb9d308daf9596c40d" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NIBasicBlock) didStartBlock<code> [read, write, copy]</code></td>
+          <td class="memname">- NIOperation:<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The delegate through which changes are notified for this operation. </p>
+<p>All delegate methods are performed on the main thread. </p>
+
+<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00066">66</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aed06f75966016ce2da29d77740ce4ac5"></a><!-- doxytag: member="NIOperation::didStartBlock" ref="aed06f75966016ce2da29d77740ce4ac5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- NIOperation:<code> [read, write, copy]</code></td>
         </tr>
       </table>
 </div>
@@ -132,16 +152,16 @@ NSError *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <p>The operation has started executing. </p>
 <p>Performed on the main thread. </p>
 
-<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00096">96</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00073">73</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a18e14e4f1f218899b97febe09d48b68d"></a><!-- doxytag: member="NIOperation::didFinishBlock" ref="a18e14e4f1f218899b97febe09d48b68d" args="" -->
+<a class="anchor" id="af5538a8120694393733756e11b5752e5"></a><!-- doxytag: member="NIOperation::didFinishBlock" ref="af5538a8120694393733756e11b5752e5" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NIBasicBlock) didFinishBlock<code> [read, write, copy]</code></td>
+          <td class="memname">- NIOperation:<code> [read, write, copy]</code></td>
         </tr>
       </table>
 </div>
@@ -151,16 +171,16 @@ NSError *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <p>This will not be called if the operation fails.</p>
 <p>Performed on the main thread. </p>
 
-<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00105">105</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00074">74</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a6d1ae5a692180c568ecfd8d3b02300e3"></a><!-- doxytag: member="NIOperation::didFailWithErrorBlock" ref="a6d1ae5a692180c568ecfd8d3b02300e3" args="" -->
+<a class="anchor" id="a1b39afe4f59c082cf04189a8763e6964"></a><!-- doxytag: member="NIOperation::didFailWithErrorBlock" ref="a1b39afe4f59c082cf04189a8763e6964" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NIErrorBlock) didFailWithErrorBlock<code> [read, write, copy]</code></td>
+          <td class="memname">- NIOperation:<code> [read, write, copy]</code></td>
         </tr>
       </table>
 </div>
@@ -170,16 +190,16 @@ NSError *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <p>didFinishBlock will not be executed.</p>
 <p>Performed on the main thread. </p>
 
-<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00114">114</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00075">75</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af70a25765166a9b792dc053b7b9378b6"></a><!-- doxytag: member="NIOperation::willFinishBlock" ref="af70a25765166a9b792dc053b7b9378b6" args="" -->
+<a class="anchor" id="a14bfd44503230b2e7c9e57ea83f16fcf"></a><!-- doxytag: member="NIOperation::willFinishBlock" ref="a14bfd44503230b2e7c9e57ea83f16fcf" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NIBasicBlock) willFinishBlock<code> [read, write, copy]</code></td>
+          <td class="memname">- NIOperation:<code> [read, write, copy]</code></td>
         </tr>
       </table>
 </div>
@@ -189,7 +209,7 @@ NSError *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <p>This will not be called if the operation fails.</p>
 <p>Performed in the operation's thread. </p>
 
-<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00123">123</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00076">76</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
 
 </div>
 </div>

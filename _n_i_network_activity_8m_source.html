@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -105,111 +105,112 @@
 <a name="l00027"></a>00027 <span class="keyword">static</span> <span class="keywordtype">int</span>              gNetworkTaskCount = 0;
 <a name="l00028"></a>00028 <span class="keyword">static</span> pthread_mutex_t  gMutex = PTHREAD_MUTEX_INITIALIZER;
 <a name="l00029"></a>00029 
-<a name="l00030"></a>00030 
-<a name="l00032"></a><a class="code" href="group___network-_activity.html#ga891e92e9a0937f27411fa6413f30cdfa">00032</a> <span class="keywordtype">void</span> <a class="code" href="group___network-_activity.html#ga891e92e9a0937f27411fa6413f30cdfa" title="Increment the number of active network tasks.">NINetworkActivityTaskDidStart</a>() {
-<a name="l00033"></a>00033   pthread_mutex_lock(&amp;gMutex);
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035   BOOL enableNetworkActivityIndicator = (0 == gNetworkTaskCount);
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037   ++gNetworkTaskCount;
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039   <span class="keywordflow">if</span> (enableNetworkActivityIndicator) {
-<a name="l00040"></a>00040     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-<a name="l00041"></a>00041   }
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043   pthread_mutex_unlock(&amp;gMutex);
-<a name="l00044"></a>00044 }
+<a name="l00031"></a><a class="code" href="group___network-_activity.html#ga3e923f142d5a8fc6fab084c6ab215750">00031</a> <span class="keywordtype">void</span> <a class="code" href="group___network-_activity.html#ga3e923f142d5a8fc6fab084c6ab215750" title="Increment the number of active network tasks.">NINetworkActivityTaskDidStart</a>(<span class="keywordtype">void</span>) {
+<a name="l00032"></a>00032   pthread_mutex_lock(&amp;gMutex);
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034   BOOL enableNetworkActivityIndicator = (0 == gNetworkTaskCount);
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036   ++gNetworkTaskCount;
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038   <span class="keywordflow">if</span> (enableNetworkActivityIndicator) {
+<a name="l00039"></a>00039     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+<a name="l00040"></a>00040   }
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042   pthread_mutex_unlock(&amp;gMutex);
+<a name="l00043"></a>00043 }
+<a name="l00044"></a>00044 
 <a name="l00045"></a>00045 
-<a name="l00046"></a>00046 
-<a name="l00048"></a><a class="code" href="group___network-_activity.html#gac403d3b1b127ca02ac65ab38b3cc7f5d">00048</a> <span class="keywordtype">void</span> <a class="code" href="group___network-_activity.html#gac403d3b1b127ca02ac65ab38b3cc7f5d" title="Decrement the number of active network tasks.">NINetworkActivityTaskDidFinish</a>() {
-<a name="l00049"></a>00049   pthread_mutex_lock(&amp;gMutex);
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051   --gNetworkTaskCount;
-<a name="l00052"></a>00052   <span class="comment">// If this asserts, you don&#39;t have enough stop requests to match your start requests.</span>
-<a name="l00053"></a>00053   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(gNetworkTaskCount &gt;= 0);
-<a name="l00054"></a>00054   gNetworkTaskCount = MAX(0, gNetworkTaskCount);
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056   <span class="keywordflow">if</span> (gNetworkTaskCount == 0) {
-<a name="l00057"></a>00057     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-<a name="l00058"></a>00058   }
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060   pthread_mutex_unlock(&amp;gMutex);
-<a name="l00061"></a>00061 }
+<a name="l00047"></a><a class="code" href="group___network-_activity.html#ga2c80c44ffd1d89dfffa834864d7f64c1">00047</a> <span class="keywordtype">void</span> <a class="code" href="group___network-_activity.html#ga2c80c44ffd1d89dfffa834864d7f64c1" title="Decrement the number of active network tasks.">NINetworkActivityTaskDidFinish</a>(<span class="keywordtype">void</span>) {
+<a name="l00048"></a>00048   pthread_mutex_lock(&amp;gMutex);
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050   --gNetworkTaskCount;
+<a name="l00051"></a>00051   <span class="comment">// If this asserts, you don&#39;t have enough stop requests to match your start requests.</span>
+<a name="l00052"></a>00052   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(gNetworkTaskCount &gt;= 0);
+<a name="l00053"></a>00053   gNetworkTaskCount = MAX(0, gNetworkTaskCount);
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055   <span class="keywordflow">if</span> (gNetworkTaskCount == 0) {
+<a name="l00056"></a>00056     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+<a name="l00057"></a>00057   }
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059   pthread_mutex_unlock(&amp;gMutex);
+<a name="l00060"></a>00060 }
+<a name="l00061"></a>00061 
 <a name="l00062"></a>00062 
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064 <span class="preprocessor">#pragma mark -</span>
-<a name="l00065"></a>00065 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Network Activity Debugging</span>
-<a name="l00066"></a>00066 <span class="preprocessor"></span>
-<a name="l00067"></a>00067 <span class="preprocessor">#ifdef DEBUG</span>
-<a name="l00068"></a>00068 <span class="preprocessor"></span>
-<a name="l00069"></a>00069 <span class="keyword">static</span> BOOL gNetworkActivityDebuggingEnabled = NO;
-<a name="l00070"></a>00070 
-<a name="l00073"></a>00073 <span class="keyword">@implementation </span>UIApplication (NimbusNetworkActivityDebugging)
-<a name="l00074"></a>00074 
+<a name="l00063"></a>00063 <span class="preprocessor">#pragma mark -</span>
+<a name="l00064"></a>00064 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Network Activity Debugging</span>
+<a name="l00065"></a>00065 <span class="preprocessor"></span>
+<a name="l00066"></a>00066 <span class="preprocessor">#ifdef DEBUG</span>
+<a name="l00067"></a>00067 <span class="preprocessor"></span>
+<a name="l00068"></a>00068 <span class="keyword">static</span> BOOL gNetworkActivityDebuggingEnabled = NO;
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 <span class="keywordtype">void</span> NISwizzleMethodsForNetworkActivityDebugging(<span class="keywordtype">void</span>);
+<a name="l00071"></a>00071 
+<a name="l00074"></a>00074 <span class="keyword">@implementation </span>UIApplication (NimbusNetworkActivityDebugging)
 <a name="l00075"></a>00075 
-<a name="l00077"></a>00077 - (void)nimbusDebugSetNetworkActivityIndicatorVisible:(BOOL)visible {
-<a name="l00078"></a>00078   <span class="comment">// This method will only be used when swizzled, so this will actually call</span>
-<a name="l00079"></a>00079   <span class="comment">// setNetworkActivityIndicatorVisible:</span>
-<a name="l00080"></a>00080   [<span class="keyword">self</span> nimbusDebugSetNetworkActivityIndicatorVisible:visible];
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082   <span class="comment">// Sanity check that this method isn&#39;t being called directly when debugging isn&#39;t enabled.</span>
-<a name="l00083"></a>00083   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(gNetworkActivityDebuggingEnabled);
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085   <span class="comment">// If either of the following assertions fail then you should look at the call stack to</span>
-<a name="l00086"></a>00086   <span class="comment">// determine what code is erroneously calling setNetworkActivityIndicatorVisible: directly.</span>
-<a name="l00087"></a>00087   <span class="keywordflow">if</span> (visible) {
-<a name="l00088"></a>00088     <span class="comment">// The only time we should be enabling the network activity indicator is when the task</span>
-<a name="l00089"></a>00089     <span class="comment">// count is one.</span>
-<a name="l00090"></a>00090     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(1 == gNetworkTaskCount);
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092   } <span class="keywordflow">else</span> {
-<a name="l00093"></a>00093     <span class="comment">// The only time we should be disabling the network activity indicator is when the task</span>
-<a name="l00094"></a>00094     <span class="comment">// count is zero.</span>
-<a name="l00095"></a>00095     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(0 == gNetworkTaskCount);
-<a name="l00096"></a>00096   }
-<a name="l00097"></a>00097 }
-<a name="l00098"></a>00098 
+<a name="l00076"></a>00076 
+<a name="l00078"></a>00078 - (void)nimbusDebugSetNetworkActivityIndicatorVisible:(BOOL)visible {
+<a name="l00079"></a>00079   <span class="comment">// This method will only be used when swizzled, so this will actually call</span>
+<a name="l00080"></a>00080   <span class="comment">// setNetworkActivityIndicatorVisible:</span>
+<a name="l00081"></a>00081   [<span class="keyword">self</span> nimbusDebugSetNetworkActivityIndicatorVisible:visible];
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083   <span class="comment">// Sanity check that this method isn&#39;t being called directly when debugging isn&#39;t enabled.</span>
+<a name="l00084"></a>00084   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(gNetworkActivityDebuggingEnabled);
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086   <span class="comment">// If either of the following assertions fail then you should look at the call stack to</span>
+<a name="l00087"></a>00087   <span class="comment">// determine what code is erroneously calling setNetworkActivityIndicatorVisible: directly.</span>
+<a name="l00088"></a>00088   <span class="keywordflow">if</span> (visible) {
+<a name="l00089"></a>00089     <span class="comment">// The only time we should be enabling the network activity indicator is when the task</span>
+<a name="l00090"></a>00090     <span class="comment">// count is one.</span>
+<a name="l00091"></a>00091     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(1 == gNetworkTaskCount);
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093   } <span class="keywordflow">else</span> {
+<a name="l00094"></a>00094     <span class="comment">// The only time we should be disabling the network activity indicator is when the task</span>
+<a name="l00095"></a>00095     <span class="comment">// count is zero.</span>
+<a name="l00096"></a>00096     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(0 == gNetworkTaskCount);
+<a name="l00097"></a>00097   }
+<a name="l00098"></a>00098 }
 <a name="l00099"></a>00099 
-<a name="l00100"></a>00100 <span class="keyword">@end</span>
-<a name="l00101"></a>00101 
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101 <span class="keyword">@end</span>
 <a name="l00102"></a>00102 
-<a name="l00104"></a>00104 <span class="keywordtype">void</span> NISwizzleMethodsForNetworkActivityDebugging() {
-<a name="l00105"></a>00105   <a class="code" href="group___runtime-_class-_modifications.html#gac41d32344f050e0adc00a6ccc7e67b4e" title="Swap two class instance method implementations.">NISwapInstanceMethods</a>([UIApplication <span class="keyword">class</span>],
-<a name="l00106"></a>00106                         <span class="keyword">@selector</span>(setNetworkActivityIndicatorVisible:),
-<a name="l00107"></a>00107                         <span class="keyword">@selector</span>(nimbusDebugSetNetworkActivityIndicatorVisible:));
-<a name="l00108"></a>00108 }
-<a name="l00109"></a>00109 
+<a name="l00103"></a>00103 
+<a name="l00105"></a>00105 <span class="keywordtype">void</span> NISwizzleMethodsForNetworkActivityDebugging(<span class="keywordtype">void</span>) {
+<a name="l00106"></a>00106   <a class="code" href="group___runtime-_class-_modifications.html#gac41d32344f050e0adc00a6ccc7e67b4e" title="Swap two class instance method implementations.">NISwapInstanceMethods</a>([UIApplication <span class="keyword">class</span>],
+<a name="l00107"></a>00107                         <span class="keyword">@selector</span>(setNetworkActivityIndicatorVisible:),
+<a name="l00108"></a>00108                         <span class="keyword">@selector</span>(nimbusDebugSetNetworkActivityIndicatorVisible:));
+<a name="l00109"></a>00109 }
 <a name="l00110"></a>00110 
-<a name="l00112"></a><a class="code" href="group___network-_activity.html#ga407c75bc669bcbb55604bdb64f4e9030">00112</a> <span class="keywordtype">void</span> <a class="code" href="group___network-_activity.html#ga407c75bc669bcbb55604bdb64f4e9030" title="Enable network activity debugging.">NIEnableNetworkActivityDebugging</a>() {
-<a name="l00113"></a>00113   <span class="keywordflow">if</span> (!gNetworkActivityDebuggingEnabled) {
-<a name="l00114"></a>00114     gNetworkActivityDebuggingEnabled = YES;
-<a name="l00115"></a>00115     NISwizzleMethodsForNetworkActivityDebugging();
-<a name="l00116"></a>00116   }
-<a name="l00117"></a>00117 }
-<a name="l00118"></a>00118 
+<a name="l00111"></a>00111 
+<a name="l00113"></a><a class="code" href="group___network-_activity.html#ga2793f13bdaa6cbec2d67752e994918a4">00113</a> <span class="keywordtype">void</span> <a class="code" href="group___network-_activity.html#ga2793f13bdaa6cbec2d67752e994918a4" title="Enable network activity debugging.">NIEnableNetworkActivityDebugging</a>(<span class="keywordtype">void</span>) {
+<a name="l00114"></a>00114   <span class="keywordflow">if</span> (!gNetworkActivityDebuggingEnabled) {
+<a name="l00115"></a>00115     gNetworkActivityDebuggingEnabled = YES;
+<a name="l00116"></a>00116     NISwizzleMethodsForNetworkActivityDebugging();
+<a name="l00117"></a>00117   }
+<a name="l00118"></a>00118 }
 <a name="l00119"></a>00119 
-<a name="l00121"></a><a class="code" href="group___network-_activity.html#gae76fb8b8a0a7ec02854b656962fde118">00121</a> <span class="keywordtype">void</span> <a class="code" href="group___network-_activity.html#gae76fb8b8a0a7ec02854b656962fde118" title="Disable network activity debugging.">NIDisableNetworkActivityDebugging</a>() {
-<a name="l00122"></a>00122   <span class="keywordflow">if</span> (gNetworkActivityDebuggingEnabled) {
-<a name="l00123"></a>00123     gNetworkActivityDebuggingEnabled = NO;
-<a name="l00124"></a>00124     NISwizzleMethodsForNetworkActivityDebugging();
-<a name="l00125"></a>00125   }
-<a name="l00126"></a>00126 }
-<a name="l00127"></a>00127 
+<a name="l00120"></a>00120 
+<a name="l00122"></a><a class="code" href="group___network-_activity.html#ga3839c61537abef204dcaaab5148446e3">00122</a> <span class="keywordtype">void</span> <a class="code" href="group___network-_activity.html#ga3839c61537abef204dcaaab5148446e3" title="Disable network activity debugging.">NIDisableNetworkActivityDebugging</a>(<span class="keywordtype">void</span>) {
+<a name="l00123"></a>00123   <span class="keywordflow">if</span> (gNetworkActivityDebuggingEnabled) {
+<a name="l00124"></a>00124     gNetworkActivityDebuggingEnabled = NO;
+<a name="l00125"></a>00125     NISwizzleMethodsForNetworkActivityDebugging();
+<a name="l00126"></a>00126   }
+<a name="l00127"></a>00127 }
 <a name="l00128"></a>00128 
-<a name="l00129"></a>00129 <span class="preprocessor">#else // #ifndef DEBUG</span>
-<a name="l00130"></a>00130 <span class="preprocessor"></span>
-<a name="l00131"></a>00131 
-<a name="l00133"></a>00133 <span class="keywordtype">void</span> <a class="code" href="group___network-_activity.html#ga407c75bc669bcbb55604bdb64f4e9030" title="Enable network activity debugging.">NIEnableNetworkActivityDebugging</a>() {
-<a name="l00134"></a>00134   <span class="comment">// No-op</span>
-<a name="l00135"></a>00135 }
-<a name="l00136"></a>00136 
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130 <span class="preprocessor">#else // #ifndef DEBUG</span>
+<a name="l00131"></a>00131 <span class="preprocessor"></span>
+<a name="l00132"></a>00132 
+<a name="l00134"></a>00134 <span class="keywordtype">void</span> <a class="code" href="group___network-_activity.html#ga2793f13bdaa6cbec2d67752e994918a4" title="Enable network activity debugging.">NIEnableNetworkActivityDebugging</a>(<span class="keywordtype">void</span>) {
+<a name="l00135"></a>00135   <span class="comment">// No-op</span>
+<a name="l00136"></a>00136 }
 <a name="l00137"></a>00137 
-<a name="l00139"></a>00139 <span class="keywordtype">void</span> <a class="code" href="group___network-_activity.html#gae76fb8b8a0a7ec02854b656962fde118" title="Disable network activity debugging.">NIDisableNetworkActivityDebugging</a>() {
-<a name="l00140"></a>00140   <span class="comment">// No-op</span>
-<a name="l00141"></a>00141 }
-<a name="l00142"></a>00142 
+<a name="l00138"></a>00138 
+<a name="l00140"></a>00140 <span class="keywordtype">void</span> <a class="code" href="group___network-_activity.html#ga3839c61537abef204dcaaab5148446e3" title="Disable network activity debugging.">NIDisableNetworkActivityDebugging</a>(<span class="keywordtype">void</span>) {
+<a name="l00141"></a>00141   <span class="comment">// No-op</span>
+<a name="l00142"></a>00142 }
 <a name="l00143"></a>00143 
-<a name="l00144"></a>00144 <span class="preprocessor">#endif // #ifdef DEBUG</span>
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145 <span class="preprocessor">#endif // #ifdef DEBUG</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

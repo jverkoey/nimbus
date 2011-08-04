@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -148,13 +148,13 @@
 <a name="l00106"></a>00106 }
 <a name="l00107"></a>00107 
 <a name="l00108"></a>00108 
-<a name="l00110"></a><a class="code" href="interface_n_i_memory_cache.html#a39f4b8e789e9034c528deb14f1555d80">00110</a> - (id)<a class="code" href="interface_n_i_memory_cache.html#a39f4b8e789e9034c528deb14f1555d80" title="Initialize the cache with zero initial capacity.">init</a> {
-<a name="l00111"></a>00111   <span class="keywordflow">return</span> [<span class="keyword">self</span> <a class="code" href="interface_n_i_memory_cache.html#a879b58be06ace929185997a92f7bb35b" title="Designated initializer.">initWithCapacity</a>:1];
+<a name="l00110"></a>00110 - (id)init {
+<a name="l00111"></a>00111   <span class="keywordflow">return</span> [<span class="keyword">self</span> initWithCapacity:0];
 <a name="l00112"></a>00112 }
 <a name="l00113"></a>00113 
 <a name="l00114"></a>00114 
 <a name="l00116"></a><a class="code" href="interface_n_i_memory_cache.html#a879b58be06ace929185997a92f7bb35b">00116</a> - (id)initWithCapacity:(NSUInteger)capacity {
-<a name="l00117"></a>00117   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super <a class="code" href="interface_n_i_memory_cache.html#a39f4b8e789e9034c528deb14f1555d80" title="Initialize the cache with zero initial capacity.">init</a>])) {
+<a name="l00117"></a>00117   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super init])) {
 <a name="l00118"></a>00118     _cacheMap = [[NSMutableDictionary alloc] initWithCapacity:capacity];
 <a name="l00119"></a>00119     _lruCacheObjects = [[<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> alloc] init];
 <a name="l00120"></a>00120 
@@ -245,7 +245,7 @@
 <a name="l00218"></a>00218 <span class="preprocessor"></span>
 <a name="l00219"></a>00219 
 <a name="l00221"></a><a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd">00221</a> - (void)storeObject:(<span class="keywordtype">id</span>)object withName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name {
-<a name="l00222"></a>00222   [<span class="keyword">self</span> <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Store an object in the cache with an expiration date.">storeObject</a>:object <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Store an object in the cache with an expiration date.">withName</a>:name <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Store an object in the cache with an expiration date.">expiresAfter</a>:nil];
+<a name="l00222"></a>00222   [<span class="keyword">self</span> <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>:object <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>:name <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>:nil];
 <a name="l00223"></a>00223 }
 <a name="l00224"></a>00224 
 <a name="l00225"></a>00225 
@@ -257,7 +257,7 @@
 <a name="l00232"></a>00232 
 <a name="l00233"></a>00233   <span class="keywordflow">if</span> (nil != expirationDate &amp;&amp; [[NSDate date] timeIntervalSinceDate:expirationDate] &gt;= 0) {
 <a name="l00234"></a>00234     <span class="comment">// The object being stored is already expired so remove the object from the cache altogether.</span>
-<a name="l00235"></a>00235     [<span class="keyword">self</span> <a class="code" href="interface_n_i_memory_cache.html#a5dab1798d4e3bcd2b686837f63f31d1c" title="Remove an object in the cache.">removeObjectWithName</a>:name];
+<a name="l00235"></a>00235     [<span class="keyword">self</span> <a class="code" href="interface_n_i_memory_cache.html#a5dab1798d4e3bcd2b686837f63f31d1c" title="Removes an object from the cache.">removeObjectWithName</a>:name];
 <a name="l00236"></a>00236 
 <a name="l00237"></a>00237     <span class="comment">// We&#39;re done here.</span>
 <a name="l00238"></a>00238     <span class="keywordflow">return</span>;
@@ -288,7 +288,7 @@
 <a name="l00264"></a>00264 
 <a name="l00265"></a>00265   <span class="keywordflow">if</span> (nil != info) {
 <a name="l00266"></a>00266     <span class="keywordflow">if</span> ([info hasExpired]) {
-<a name="l00267"></a>00267       [<span class="keyword">self</span> <a class="code" href="interface_n_i_memory_cache.html#a5dab1798d4e3bcd2b686837f63f31d1c" title="Remove an object in the cache.">removeObjectWithName</a>:name];
+<a name="l00267"></a>00267       [<span class="keyword">self</span> <a class="code" href="interface_n_i_memory_cache.html#a5dab1798d4e3bcd2b686837f63f31d1c" title="Removes an object from the cache.">removeObjectWithName</a>:name];
 <a name="l00268"></a>00268 
 <a name="l00269"></a>00269     } <span class="keywordflow">else</span> {
 <a name="l00270"></a>00270       <span class="comment">// Update the access time whenever we fetch an object from the cache.</span>
@@ -298,15 +298,15 @@
 <a name="l00274"></a>00274     }
 <a name="l00275"></a>00275   }
 <a name="l00276"></a>00276 
-<a name="l00277"></a>00277   <span class="keywordflow">return</span> object;
+<a name="l00277"></a>00277   <span class="keywordflow">return</span> [[object retain] autorelease];
 <a name="l00278"></a>00278 }
 <a name="l00279"></a>00279 
 <a name="l00280"></a>00280 
-<a name="l00282"></a><a class="code" href="interface_n_i_memory_cache.html#a10ca55440e796c6f51187041cf6b8152">00282</a> - (BOOL)hasObjectWithName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name {
+<a name="l00282"></a><a class="code" href="interface_n_i_memory_cache.html#aadf04db4cd1ef2087971ac58b416c590">00282</a> - (BOOL)containsObjectWithName:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)name {
 <a name="l00283"></a>00283   <a class="code" href="interface_n_i_memory_cache_info.html" title="A single cache item&#39;s information.">NIMemoryCacheInfo</a>* info = [<span class="keyword">self</span> cacheInfoForName:name];
 <a name="l00284"></a>00284 
 <a name="l00285"></a>00285   <span class="keywordflow">if</span> ([info hasExpired]) {
-<a name="l00286"></a>00286     [<span class="keyword">self</span> <a class="code" href="interface_n_i_memory_cache.html#a5dab1798d4e3bcd2b686837f63f31d1c" title="Remove an object in the cache.">removeObjectWithName</a>:name];
+<a name="l00286"></a>00286     [<span class="keyword">self</span> <a class="code" href="interface_n_i_memory_cache.html#a5dab1798d4e3bcd2b686837f63f31d1c" title="Removes an object from the cache.">removeObjectWithName</a>:name];
 <a name="l00287"></a>00287     <span class="keywordflow">return</span> NO;
 <a name="l00288"></a>00288   }
 <a name="l00289"></a>00289 
@@ -318,7 +318,7 @@
 <a name="l00296"></a>00296   <a class="code" href="interface_n_i_memory_cache_info.html" title="A single cache item&#39;s information.">NIMemoryCacheInfo</a>* info = [<span class="keyword">self</span> cacheInfoForName:name];
 <a name="l00297"></a>00297 
 <a name="l00298"></a>00298   <span class="keywordflow">if</span> ([info hasExpired]) {
-<a name="l00299"></a>00299     [<span class="keyword">self</span> <a class="code" href="interface_n_i_memory_cache.html#a5dab1798d4e3bcd2b686837f63f31d1c" title="Remove an object in the cache.">removeObjectWithName</a>:name];
+<a name="l00299"></a>00299     [<span class="keyword">self</span> <a class="code" href="interface_n_i_memory_cache.html#a5dab1798d4e3bcd2b686837f63f31d1c" title="Removes an object from the cache.">removeObjectWithName</a>:name];
 <a name="l00300"></a>00300     <span class="keywordflow">return</span> nil;
 <a name="l00301"></a>00301   }
 <a name="l00302"></a>00302 
@@ -331,13 +331,13 @@
 <a name="l00310"></a>00310 }
 <a name="l00311"></a>00311 
 <a name="l00312"></a>00312 
-<a name="l00314"></a><a class="code" href="interface_n_i_memory_cache.html#a26fda388dffc22aa78dd17905a6fce73">00314</a> - (void)<a class="code" href="interface_n_i_memory_cache.html#a26fda388dffc22aa78dd17905a6fce73" title="Remove all objects from the cache, regardless of expiration dates.">removeAllObjects</a> {
+<a name="l00314"></a><a class="code" href="interface_n_i_memory_cache.html#a26fda388dffc22aa78dd17905a6fce73">00314</a> - (void)<a class="code" href="interface_n_i_memory_cache.html#a26fda388dffc22aa78dd17905a6fce73" title="Removes all objects from the cache, regardless of expiration dates.">removeAllObjects</a> {
 <a name="l00315"></a>00315   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_cacheMap);
 <a name="l00316"></a>00316   _cacheMap = [[NSMutableDictionary alloc] init];
 <a name="l00317"></a>00317 }
 <a name="l00318"></a>00318 
 <a name="l00319"></a>00319 
-<a name="l00321"></a><a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2">00321</a> - (void)<a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Remove all expired objects from the cache.">reduceMemoryUsage</a> {
+<a name="l00321"></a><a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2">00321</a> - (void)<a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Removes all expired objects from the cache.">reduceMemoryUsage</a> {
 <a name="l00322"></a>00322   <span class="comment">// Copy the cache map because it&#39;s likely that we&#39;re going to modify it.</span>
 <a name="l00323"></a>00323   NSDictionary* cacheMap = [_cacheMap copy];
 <a name="l00324"></a>00324 
@@ -353,7 +353,7 @@
 <a name="l00334"></a>00334 }
 <a name="l00335"></a>00335 
 <a name="l00336"></a>00336 
-<a name="l00338"></a>00338 - (NSUInteger)<a class="code" href="interface_n_i_memory_cache.html#a7d62c34e4297861c986948bd75156d63" title="The number of objects stored in this cache.">count</a> {
+<a name="l00338"></a><a class="code" href="interface_n_i_memory_cache.html#a61996ab64791ed19840b5055b68c7c95">00338</a> - (NSUInteger)<a class="code" href="interface_n_i_memory_cache.html#a61996ab64791ed19840b5055b68c7c95" title="Returns the number of objects currently in the cache.">count</a> {
 <a name="l00339"></a>00339   <span class="keywordflow">return</span> [_cacheMap count];
 <a name="l00340"></a>00340 }
 <a name="l00341"></a>00341 
@@ -393,16 +393,16 @@
 <a name="l00383"></a>00383 <span class="keyword">@interface </span><a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>()
 <a name="l00384"></a>00384 
 <a name="l00385"></a>00385 <span class="comment">// Internally only.</span>
-<a name="l00386"></a>00386 <span class="keyword">@property</span> (nonatomic, readwrite, assign) NSUInteger <a class="code" href="interface_n_i_image_memory_cache.html#a40447c10f9dfc71c04bacb51895ba5e8" title="The total number of pixels being stored in the cache.">numberOfPixels</a>;
+<a name="l00386"></a>00386 <span class="keyword">@property</span> (nonatomic, readwrite, assign) NSUInteger <a class="code" href="interface_n_i_image_memory_cache.html#a12b709e0f6f319e76c3dc3d6dbe3ee5a" title="Returns the total number of pixels being stored in the cache.">numberOfPixels</a>;
 <a name="l00387"></a>00387 
 <a name="l00388"></a>00388 <span class="keyword">@end</span>
 <a name="l00389"></a>00389 
 <a name="l00390"></a>00390 
 <a name="l00394"></a>00394 <span class="keyword">@implementation </span><a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>
 <a name="l00395"></a>00395 
-<a name="l00396"></a>00396 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_image_memory_cache.html#a40447c10f9dfc71c04bacb51895ba5e8" title="The total number of pixels being stored in the cache.">numberOfPixels</a>                = _numberOfPixels;
-<a name="l00397"></a>00397 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_image_memory_cache.html#a44eec58a5fda0ad0390d5e43591c1fec" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a>             = _maxNumberOfPixels;
-<a name="l00398"></a>00398 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_image_memory_cache.html#a8e3384e158b74b2f582ee5c26608a7b1" title="The maximum number of pixels this cache may store after a call to reduceMemoryUsage.">maxNumberOfPixelsUnderStress</a>  = _maxNumberOfPixelsUnderStress;
+<a name="l00396"></a>00396 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_image_memory_cache.html#a12b709e0f6f319e76c3dc3d6dbe3ee5a" title="Returns the total number of pixels being stored in the cache.">numberOfPixels</a>                = _numberOfPixels;
+<a name="l00397"></a>00397 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_image_memory_cache.html#a30bd865b4e57ff8a73fd459114c22aed" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a>             = _maxNumberOfPixels;
+<a name="l00398"></a>00398 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_image_memory_cache.html#a100ad5b6dea102a5ae296dab5830ce50" title="The maximum number of pixels this cache may store after a call to reduceMemoryUsage.">maxNumberOfPixelsUnderStress</a>  = _maxNumberOfPixelsUnderStress;
 <a name="l00399"></a>00399 
 <a name="l00400"></a>00400 
 <a name="l00402"></a>00402 - (NSUInteger)numberOfPixelsUsedByImage:(UIImage *)image {
@@ -410,21 +410,21 @@
 <a name="l00404"></a>00404     <span class="keywordflow">return</span> 0;
 <a name="l00405"></a>00405   }
 <a name="l00406"></a>00406 
-<a name="l00407"></a>00407   NSUInteger <a class="code" href="interface_n_i_image_memory_cache.html#a40447c10f9dfc71c04bacb51895ba5e8" title="The total number of pixels being stored in the cache.">numberOfPixels</a> = (NSUInteger)(image.size.width * image.size.height);
+<a name="l00407"></a>00407   NSUInteger <a class="code" href="interface_n_i_image_memory_cache.html#a12b709e0f6f319e76c3dc3d6dbe3ee5a" title="Returns the total number of pixels being stored in the cache.">numberOfPixels</a> = (NSUInteger)(image.size.width * image.size.height);
 <a name="l00408"></a>00408   <span class="keywordflow">if</span> ([image respondsToSelector:<span class="keyword">@selector</span>(scale)]) {
 <a name="l00409"></a>00409     numberOfPixels *= [image scale];
 <a name="l00410"></a>00410   }
-<a name="l00411"></a>00411   <span class="keywordflow">return</span> <a class="code" href="interface_n_i_image_memory_cache.html#a40447c10f9dfc71c04bacb51895ba5e8" title="The total number of pixels being stored in the cache.">numberOfPixels</a>;
+<a name="l00411"></a>00411   <span class="keywordflow">return</span> <a class="code" href="interface_n_i_image_memory_cache.html#a12b709e0f6f319e76c3dc3d6dbe3ee5a" title="Returns the total number of pixels being stored in the cache.">numberOfPixels</a>;
 <a name="l00412"></a>00412 }
 <a name="l00413"></a>00413 
 <a name="l00414"></a>00414 
-<a name="l00416"></a>00416 - (void)<a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Remove all expired objects from the cache.">reduceMemoryUsage</a> {
+<a name="l00416"></a>00416 - (void)<a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Removes all expired objects from the cache.">reduceMemoryUsage</a> {
 <a name="l00417"></a>00417   <span class="comment">// Remove all expired images first.</span>
 <a name="l00418"></a>00418   [<span class="keyword">super</span> reduceMemoryUsage];
 <a name="l00419"></a>00419 
-<a name="l00420"></a>00420   <span class="keywordflow">if</span> (<span class="keyword">self</span>.<a class="code" href="interface_n_i_image_memory_cache.html#a8e3384e158b74b2f582ee5c26608a7b1" title="The maximum number of pixels this cache may store after a call to reduceMemoryUsage.">maxNumberOfPixelsUnderStress</a> &gt; 0) {
+<a name="l00420"></a>00420   <span class="keywordflow">if</span> (<span class="keyword">self</span>.<a class="code" href="interface_n_i_image_memory_cache.html#a100ad5b6dea102a5ae296dab5830ce50" title="The maximum number of pixels this cache may store after a call to reduceMemoryUsage.">maxNumberOfPixelsUnderStress</a> &gt; 0) {
 <a name="l00421"></a>00421     <span class="comment">// Remove the least recently used images by iterating over the linked list.</span>
-<a name="l00422"></a>00422     <span class="keywordflow">while</span> (<span class="keyword">self</span>.numberOfPixels &gt; <span class="keyword">self</span>.<a class="code" href="interface_n_i_image_memory_cache.html#a8e3384e158b74b2f582ee5c26608a7b1" title="The maximum number of pixels this cache may store after a call to reduceMemoryUsage.">maxNumberOfPixelsUnderStress</a>) {
+<a name="l00422"></a>00422     <span class="keywordflow">while</span> (<span class="keyword">self</span>.numberOfPixels &gt; <span class="keyword">self</span>.<a class="code" href="interface_n_i_image_memory_cache.html#a100ad5b6dea102a5ae296dab5830ce50" title="The maximum number of pixels this cache may store after a call to reduceMemoryUsage.">maxNumberOfPixelsUnderStress</a>) {
 <a name="l00423"></a>00423       <a class="code" href="interface_n_i_memory_cache_info.html" title="A single cache item&#39;s information.">NIMemoryCacheInfo</a>* info = [<span class="keyword">self</span>.lruCacheObjects firstObject];
 <a name="l00424"></a>00424       [<span class="keyword">self</span> removeCacheInfoForName:info.name];
 <a name="l00425"></a>00425     }
@@ -448,10 +448,10 @@
 <a name="l00445"></a>00445   <span class="comment">// than the object that&#39;s being added and we need to remove this object right away. If we</span>
 <a name="l00446"></a>00446   <span class="comment">// try to reduce the cache size before the object&#39;s been set, we won&#39;t have anything to remove</span>
 <a name="l00447"></a>00447   <span class="comment">// and we&#39;ll get stuck in an infinite loop.</span>
-<a name="l00448"></a>00448   <span class="keywordflow">if</span> (<span class="keyword">self</span>.<a class="code" href="interface_n_i_image_memory_cache.html#a44eec58a5fda0ad0390d5e43591c1fec" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a> &gt; 0) {
+<a name="l00448"></a>00448   <span class="keywordflow">if</span> (<span class="keyword">self</span>.<a class="code" href="interface_n_i_image_memory_cache.html#a30bd865b4e57ff8a73fd459114c22aed" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a> &gt; 0) {
 <a name="l00449"></a>00449     <span class="comment">// Remove least recently used images until we satisfy our memory constraints.</span>
-<a name="l00450"></a>00450     <span class="keywordflow">while</span> (<span class="keyword">self</span>.numberOfPixels &gt; <span class="keyword">self</span>.<a class="code" href="interface_n_i_image_memory_cache.html#a44eec58a5fda0ad0390d5e43591c1fec" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a>
-<a name="l00451"></a>00451            &amp;&amp; [<span class="keyword">self</span>.lruCacheObjects <a class="code" href="interface_n_i_memory_cache.html#a7d62c34e4297861c986948bd75156d63" title="The number of objects stored in this cache.">count</a>] &gt; 0) {
+<a name="l00450"></a>00450     <span class="keywordflow">while</span> (<span class="keyword">self</span>.numberOfPixels &gt; <span class="keyword">self</span>.<a class="code" href="interface_n_i_image_memory_cache.html#a30bd865b4e57ff8a73fd459114c22aed" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a>
+<a name="l00451"></a>00451            &amp;&amp; [<span class="keyword">self</span>.lruCacheObjects <a class="code" href="interface_n_i_memory_cache.html#a61996ab64791ed19840b5055b68c7c95" title="Returns the number of objects currently in the cache.">count</a>] &gt; 0) {
 <a name="l00452"></a>00452       <a class="code" href="interface_n_i_memory_cache_info.html" title="A single cache item&#39;s information.">NIMemoryCacheInfo</a>* info = [<span class="keyword">self</span>.lruCacheObjects firstObject];
 <a name="l00453"></a>00453       [<span class="keyword">self</span> removeCacheInfoForName:info.name];
 <a name="l00454"></a>00454     }

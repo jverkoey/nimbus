@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -142,7 +142,7 @@
 <a name="l00070"></a>00070     <span class="comment">// The scrubber is better use of the extra real estate on the iPad.</span>
 <a name="l00071"></a>00071     <span class="comment">// If you ask me, though, the scrubber works pretty well on the iPhone too. It&#39;s up</span>
 <a name="l00072"></a>00072     <span class="comment">// to you if you want to use it in your own implementations.</span>
-<a name="l00073"></a>00073     <span class="keyword">self</span>.scrubberIsEnabled = <a class="code" href="group___s_d_k-_availability.html#gaf7d2c830b4c39cfeeb37d59258abb722" title="Checks whether the device the app is currently running on is an iPad or not.">NIIsPad</a>();
+<a name="l00073"></a>00073     <span class="keyword">self</span>.scrubberIsEnabled = <a class="code" href="group___s_d_k-_availability.html#ga7c693df0e5edd930db9d711852561eb4" title="Checks whether the device the app is currently running on is an iPad or not.">NIIsPad</a>();
 <a name="l00074"></a>00074 
 <a name="l00075"></a>00075     <span class="comment">// Allow the photos to display beneath the status bar.</span>
 <a name="l00076"></a>00076     <span class="keyword">self</span>.wantsFullScreenLayout = YES;
@@ -153,7 +153,7 @@
 <a name="l00081"></a>00081 
 <a name="l00083"></a>00083 - (void)addTapGestureToView {
 <a name="l00084"></a>00084   <span class="keywordflow">if</span> ([<span class="keyword">self</span> isViewLoaded]
-<a name="l00085"></a>00085       &amp;&amp; nil != <a class="code" href="group___s_d_k-_availability.html#ga622ef4a203e625618b9077c9b1deca24" title="Safely fetch the UITapGestureRecognizer class if it is available.">NIUITapGestureRecognizerClass</a>()
+<a name="l00085"></a>00085       &amp;&amp; nil != <a class="code" href="group___s_d_k-_availability.html#ga90530f627a0a0785a02d319111f2155c" title="Safely fetch the UITapGestureRecognizer class if it is available.">NIUITapGestureRecognizerClass</a>()
 <a name="l00086"></a>00086       &amp;&amp; [<span class="keyword">self</span>.<a class="code" href="interface_n_i_toolbar_photo_view_controller.html#a48147d9bffadafe85dc3e9e769565161" title="The photo album view.">photoAlbumView</a> respondsToSelector:<span class="keyword">@selector</span>(addGestureRecognizer:)]) {
 <a name="l00087"></a>00087     <span class="keywordflow">if</span> (nil == _tapGesture) {
 <a name="l00088"></a>00088       _tapGesture =
@@ -253,7 +253,7 @@
 <a name="l00184"></a>00184 
 <a name="l00185"></a>00185   <span class="comment">// Toolbar Setup</span>
 <a name="l00186"></a>00186 
-<a name="l00187"></a>00187   CGFloat toolbarHeight = <a class="code" href="group___common-_metrics.html#gae2ad00b094918f5b5929b3520007551b" title="Fetch the height of a toolbar in a given orientation.">NIToolbarHeightForOrientation</a>(<a class="code" href="group___device-_orientation.html#ga7c59ce546cc2e2835532fa9dea2a4869" title="Returns the application&#39;s current interface orientation.">NIInterfaceOrientation</a>());
+<a name="l00187"></a>00187   CGFloat toolbarHeight = <a class="code" href="group___common-_metrics.html#gae2ad00b094918f5b5929b3520007551b" title="Fetch the height of a toolbar in a given orientation.">NIToolbarHeightForOrientation</a>(<a class="code" href="group___device-_orientation.html#ga350d238bb40115bab71c59aab4d74958" title="Returns the application&#39;s current interface orientation.">NIInterfaceOrientation</a>());
 <a name="l00188"></a>00188   CGRect toolbarFrame = CGRectMake(0, bounds.size.height - toolbarHeight,
 <a name="l00189"></a>00189                                    bounds.size.width, toolbarHeight);
 <a name="l00190"></a>00190 
@@ -570,7 +570,7 @@
 <a name="l00530"></a>00530 
 <a name="l00531"></a>00531 
 <a name="l00533"></a>00533 - (void)setChromeCanBeHidden:(BOOL)canBeHidden {
-<a name="l00534"></a>00534   <span class="keywordflow">if</span> (nil == <a class="code" href="group___s_d_k-_availability.html#ga622ef4a203e625618b9077c9b1deca24" title="Safely fetch the UITapGestureRecognizer class if it is available.">NIUITapGestureRecognizerClass</a>()) {
+<a name="l00534"></a>00534   <span class="keywordflow">if</span> (nil == <a class="code" href="group___s_d_k-_availability.html#ga90530f627a0a0785a02d319111f2155c" title="Safely fetch the UITapGestureRecognizer class if it is available.">NIUITapGestureRecognizerClass</a>()) {
 <a name="l00535"></a>00535     <span class="comment">// Don&#39;t allow the chrome to be hidden if we can&#39;t tap to make it visible again.</span>
 <a name="l00536"></a>00536     canBeHidden = NO;
 <a name="l00537"></a>00537   }

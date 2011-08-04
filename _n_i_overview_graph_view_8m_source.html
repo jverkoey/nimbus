@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.5.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.6.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -94,106 +94,108 @@
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 <span class="preprocessor">#import &quot;NIOverviewGraphView.h&quot;</span>
 <a name="l00018"></a>00018 
-<a name="l00019"></a>00019 
-<a name="l00023"></a>00023 <span class="keyword">@implementation </span><a class="code" href="interface_n_i_overview_graph_view.html" title="A graph view.">NIOverviewGraphView</a>
-<a name="l00024"></a>00024 
-<a name="l00025"></a>00025 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_overview_graph_view.html#a57d53701beb92105342e973f758a438b" title="The data source for this graph view.">dataSource</a> = _dataSource;
+<a name="l00019"></a>00019 <span class="preprocessor">#import &lt;QuartzCore/QuartzCore.h&gt;</span>
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00025"></a>00025 <span class="keyword">@implementation </span><a class="code" href="interface_n_i_overview_graph_view.html" title="A graph view.">NIOverviewGraphView</a>
 <a name="l00026"></a>00026 
-<a name="l00027"></a>00027 
-<a name="l00029"></a>00029 - (id)initWithFrame:(CGRect)frame {
-<a name="l00030"></a>00030   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super initWithFrame:frame])) {
-<a name="l00031"></a>00031     <span class="keyword">self</span>.opaque = NO;
-<a name="l00032"></a>00032     <span class="keyword">self</span>.layer.borderWidth = 1;
-<a name="l00033"></a>00033     <span class="keyword">self</span>.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.2].CGColor;
-<a name="l00034"></a>00034   }
-<a name="l00035"></a>00035   <span class="keywordflow">return</span> <span class="keyword">self</span>;
-<a name="l00036"></a>00036 }
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038 
-<a name="l00040"></a>00040 - (void)drawGraphWithContext:(CGContextRef)context {
-<a name="l00041"></a>00041   CGSize contentSize = <span class="keyword">self</span>.bounds.size;
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043   CGFloat xRange = [<span class="keyword">self</span>.dataSource graphViewXRange:self];
-<a name="l00044"></a>00044   CGFloat yRange = [<span class="keyword">self</span>.dataSource graphViewYRange:self];
-<a name="l00045"></a>00045   
-<a name="l00046"></a>00046   [<span class="keyword">self</span>.dataSource resetPointIterator];
+<a name="l00027"></a>00027 <span class="keyword">@synthesize</span> <a class="code" href="interface_n_i_overview_graph_view.html#a57d53701beb92105342e973f758a438b" title="The data source for this graph view.">dataSource</a> = _dataSource;
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029 
+<a name="l00031"></a>00031 - (id)initWithFrame:(CGRect)frame {
+<a name="l00032"></a>00032   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super initWithFrame:frame])) {
+<a name="l00033"></a>00033     <span class="keyword">self</span>.opaque = NO;
+<a name="l00034"></a>00034     <span class="keyword">self</span>.layer.borderWidth = 1;
+<a name="l00035"></a>00035     <span class="keyword">self</span>.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.2f].CGColor;
+<a name="l00036"></a>00036   }
+<a name="l00037"></a>00037   <span class="keywordflow">return</span> <span class="keyword">self</span>;
+<a name="l00038"></a>00038 }
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 
+<a name="l00042"></a>00042 - (void)drawGraphWithContext:(CGContextRef)context {
+<a name="l00043"></a>00043   CGSize contentSize = <span class="keyword">self</span>.bounds.size;
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045   CGFloat xRange = [<span class="keyword">self</span>.dataSource graphViewXRange:self];
+<a name="l00046"></a>00046   CGFloat yRange = [<span class="keyword">self</span>.dataSource graphViewYRange:self];
 <a name="l00047"></a>00047 
-<a name="l00048"></a>00048   CGContextSetLineWidth(context, 1);
-<a name="l00049"></a>00049   CGContextSetShouldAntialias(context, YES);
-<a name="l00050"></a>00050   
-<a name="l00051"></a>00051   BOOL isFirstPoint = YES;
-<a name="l00052"></a>00052   CGPoint point = CGPointZero;
-<a name="l00053"></a>00053   <span class="keywordflow">while</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_overview_graph_view.html#a57d53701beb92105342e973f758a438b" title="The data source for this graph view.">dataSource</a> nextPointInGraphView:<span class="keyword">self</span> point:&amp;point]) {
-<a name="l00054"></a>00054     CGPoint scaledPoint = CGPointMake(point.x / xRange, point.y / yRange);
-<a name="l00055"></a>00055     CGPoint plotPoint = CGPointMake(floorf(scaledPoint.x * contentSize.width) - 0.5f,
-<a name="l00056"></a>00056                                     contentSize.height
-<a name="l00057"></a>00057                                     - floorf((scaledPoint.y * 0.8 + 0.1)
-<a name="l00058"></a>00058                                              * contentSize.height) - 0.5f);
-<a name="l00059"></a>00059     <span class="keywordflow">if</span> (!isFirstPoint) {
-<a name="l00060"></a>00060       CGContextAddLineToPoint(context, plotPoint.x, plotPoint.y);
-<a name="l00061"></a>00061     }
-<a name="l00062"></a>00062     CGContextMoveToPoint(context, plotPoint.x, plotPoint.y);
-<a name="l00063"></a>00063     isFirstPoint = NO;
-<a name="l00064"></a>00064   }
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066         CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.6].CGColor);
-<a name="l00067"></a>00067         CGContextStrokePath(context);
-<a name="l00068"></a>00068   
-<a name="l00069"></a>00069   [<span class="keyword">self</span>.dataSource resetEventIterator];
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071   CGFloat xValue = 0;
-<a name="l00072"></a>00072   UIColor* color = nil;
-<a name="l00073"></a>00073   <span class="keywordflow">while</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_overview_graph_view.html#a57d53701beb92105342e973f758a438b" title="The data source for this graph view.">dataSource</a> nextEventInGraphView:<span class="keyword">self</span> xValue:&amp;xValue color:&amp;color]) {
-<a name="l00074"></a>00074     CGFloat scaledXValue = xValue / xRange;
-<a name="l00075"></a>00075     CGFloat plotXValue = floorf(scaledXValue * contentSize.width) - 0.5f;
-<a name="l00076"></a>00076     CGContextMoveToPoint(context, plotXValue, 0);
-<a name="l00077"></a>00077     CGContextAddLineToPoint(context, plotXValue, contentSize.height);
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079     CGContextSetStrokeColorWithColor(context, color.CGColor);
-<a name="l00080"></a>00080     CGContextStrokePath(context);
-<a name="l00081"></a>00081   }
-<a name="l00082"></a>00082 }
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 
-<a name="l00086"></a>00086 - (void)drawRect:(CGRect)rect {
-<a name="l00087"></a>00087         CGContextRef context = UIGraphicsGetCurrentContext();
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089   CGRect bounds = <span class="keyword">self</span>.bounds;
-<a name="l00090"></a>00090   
-<a name="l00091"></a>00091   UIGraphicsPushContext(context);
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093   [<span class="keyword">self</span> drawGraphWithContext:context];
-<a name="l00094"></a>00094   
-<a name="l00095"></a>00095         CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.2].CGColor);
-<a name="l00096"></a>00096         CGContextFillRect(context, bounds);
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098   CGGradientRef glossGradient = nil;
-<a name="l00099"></a>00099   CGColorSpaceRef colorspace = nil;
-<a name="l00100"></a>00100   <span class="keywordtype">size_t</span> numberOfLocations = 2;
-<a name="l00101"></a>00101   CGFloat locations[2] = { 0.0, 1.0 };
-<a name="l00102"></a>00102   CGFloat components[8] = {
-<a name="l00103"></a>00103     1.0, 1.0, 1.0, 0.35,
-<a name="l00104"></a>00104     1.0, 1.0, 1.0, 0.06
-<a name="l00105"></a>00105   };
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107   colorspace = CGColorSpaceCreateDeviceRGB();
-<a name="l00108"></a>00108   glossGradient = CGGradientCreateWithColorComponents(colorspace,
-<a name="l00109"></a>00109                                                       components, locations, numberOfLocations);
-<a name="l00110"></a>00110 
-<a name="l00111"></a>00111   CGPoint topCenter = CGPointMake(CGRectGetMidX(bounds), 0.0f);
-<a name="l00112"></a>00112   CGPoint midCenter = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
-<a name="l00113"></a>00113   CGContextDrawLinearGradient(context, glossGradient, topCenter, midCenter, 0);
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115   CGGradientRelease(glossGradient);
-<a name="l00116"></a>00116   glossGradient = nil;
-<a name="l00117"></a>00117   CGColorSpaceRelease(colorspace);
-<a name="l00118"></a>00118   colorspace = nil;
-<a name="l00119"></a>00119 
-<a name="l00120"></a>00120   UIGraphicsPopContext();
-<a name="l00121"></a>00121 }
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124 <span class="keyword">@end</span>
+<a name="l00048"></a>00048   [<span class="keyword">self</span>.dataSource resetPointIterator];
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050   CGContextSetLineWidth(context, 1);
+<a name="l00051"></a>00051   CGContextSetShouldAntialias(context, YES);
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053   BOOL isFirstPoint = YES;
+<a name="l00054"></a>00054   CGPoint point = CGPointZero;
+<a name="l00055"></a>00055   <span class="keywordflow">while</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_overview_graph_view.html#a57d53701beb92105342e973f758a438b" title="The data source for this graph view.">dataSource</a> nextPointInGraphView:<span class="keyword">self</span> point:&amp;point]) {
+<a name="l00056"></a>00056     CGPoint scaledPoint = CGPointMake(point.x / xRange, point.y / yRange);
+<a name="l00057"></a>00057     CGPoint plotPoint = CGPointMake(floorf(scaledPoint.x * contentSize.width) - 0.5f,
+<a name="l00058"></a>00058                                     contentSize.height
+<a name="l00059"></a>00059                                     - floorf((scaledPoint.y * 0.8f + 0.1f)
+<a name="l00060"></a>00060                                              * contentSize.height) - 0.5f);
+<a name="l00061"></a>00061     <span class="keywordflow">if</span> (!isFirstPoint) {
+<a name="l00062"></a>00062       CGContextAddLineToPoint(context, plotPoint.x, plotPoint.y);
+<a name="l00063"></a>00063     }
+<a name="l00064"></a>00064     CGContextMoveToPoint(context, plotPoint.x, plotPoint.y);
+<a name="l00065"></a>00065     isFirstPoint = NO;
+<a name="l00066"></a>00066   }
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068         CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.6f].CGColor);
+<a name="l00069"></a>00069         CGContextStrokePath(context);
+<a name="l00070"></a>00070   
+<a name="l00071"></a>00071   [<span class="keyword">self</span>.dataSource resetEventIterator];
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073   CGFloat xValue = 0;
+<a name="l00074"></a>00074   UIColor* color = nil;
+<a name="l00075"></a>00075   <span class="keywordflow">while</span> ([<span class="keyword">self</span>.<a class="code" href="interface_n_i_overview_graph_view.html#a57d53701beb92105342e973f758a438b" title="The data source for this graph view.">dataSource</a> nextEventInGraphView:<span class="keyword">self</span> xValue:&amp;xValue color:&amp;color]) {
+<a name="l00076"></a>00076     CGFloat scaledXValue = xValue / xRange;
+<a name="l00077"></a>00077     CGFloat plotXValue = floorf(scaledXValue * contentSize.width) - 0.5f;
+<a name="l00078"></a>00078     CGContextMoveToPoint(context, plotXValue, 0);
+<a name="l00079"></a>00079     CGContextAddLineToPoint(context, plotXValue, contentSize.height);
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081     CGContextSetStrokeColorWithColor(context, color.CGColor);
+<a name="l00082"></a>00082     CGContextStrokePath(context);
+<a name="l00083"></a>00083   }
+<a name="l00084"></a>00084 }
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086 
+<a name="l00088"></a>00088 - (void)drawRect:(CGRect)rect {
+<a name="l00089"></a>00089         CGContextRef context = UIGraphicsGetCurrentContext();
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091   CGRect bounds = <span class="keyword">self</span>.bounds;
+<a name="l00092"></a>00092   
+<a name="l00093"></a>00093   UIGraphicsPushContext(context);
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095   [<span class="keyword">self</span> drawGraphWithContext:context];
+<a name="l00096"></a>00096   
+<a name="l00097"></a>00097         CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.2f].CGColor);
+<a name="l00098"></a>00098         CGContextFillRect(context, bounds);
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100   CGGradientRef glossGradient = nil;
+<a name="l00101"></a>00101   CGColorSpaceRef colorspace = nil;
+<a name="l00102"></a>00102   <span class="keywordtype">size_t</span> numberOfLocations = 2;
+<a name="l00103"></a>00103   CGFloat locations[2] = { 0.0f, 1.0f };
+<a name="l00104"></a>00104   CGFloat components[8] = {
+<a name="l00105"></a>00105     1.0f, 1.0f, 1.0f, 0.35f,
+<a name="l00106"></a>00106     1.0f, 1.0f, 1.0f, 0.06f
+<a name="l00107"></a>00107   };
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109   colorspace = CGColorSpaceCreateDeviceRGB();
+<a name="l00110"></a>00110   glossGradient = CGGradientCreateWithColorComponents(colorspace,
+<a name="l00111"></a>00111                                                       components, locations, numberOfLocations);
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113   CGPoint topCenter = CGPointMake(CGRectGetMidX(bounds), 0.0f);
+<a name="l00114"></a>00114   CGPoint midCenter = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+<a name="l00115"></a>00115   CGContextDrawLinearGradient(context, glossGradient, topCenter, midCenter, 0);
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117   CGGradientRelease(glossGradient);
+<a name="l00118"></a>00118   glossGradient = nil;
+<a name="l00119"></a>00119   CGColorSpaceRelease(colorspace);
+<a name="l00120"></a>00120   colorspace = nil;
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122   UIGraphicsPopContext();
+<a name="l00123"></a>00123 }
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
