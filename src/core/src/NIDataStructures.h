@@ -127,16 +127,14 @@ typedef void NILinkedListLocation;
 - (id)firstObject;
 - (id)lastObject;
 
-
-// Linked List Creation
+#pragma mark Linked List Creation
 
 + (NILinkedList *)linkedList;
 + (NILinkedList *)linkedListWithArray:(NSArray *)array;
 
 - (id)initWithArray:(NSArray *)anArray;
 
-
-// Extended Methods
+#pragma mark Extended Methods
 
 - (NSArray *)allObjects;
 - (NSEnumerator *)objectEnumerator;
@@ -145,13 +143,13 @@ typedef void NILinkedListLocation;
 
 - (NSString *)description;
 
-// Methods for constant-time access.
+#pragma mark Methods for constant-time access.
+
 - (NILinkedListLocation *)locationOfObject:(id)object;
 - (id)objectAtLocation:(NILinkedListLocation *)location;
 - (void)removeObjectAtLocation:(NILinkedListLocation *)location;
 
-
-// Mutable Methods
+#pragma mark Mutable Operations
 // TODO (jverkoey August 3, 2011): Consider creating an NIMutableLinkedList implementation.
 
 - (NILinkedListLocation *)addObject:(id)object;

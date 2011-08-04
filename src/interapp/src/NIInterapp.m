@@ -16,24 +16,13 @@
 
 #import "NIInterapp.h"
 
-#import "NimbusCore.h"
+#import "NimbusCore+Additions.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIInterapp
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (NSString *)stringByEscapingParameterString:(NSString *)parameter {
-  return [(NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                              (CFStringRef)parameter,
-                                                              NULL,
-                                                              (CFStringRef)@";/?:@&=+$,",
-                                                              kCFStringEncodingUTF8)
-          autorelease];
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -86,7 +75,7 @@
                       title: (NSString *)title {
   NSString* urlPath = [NSString stringWithFormat:
                        @"http://maps.google.com/maps?q=%@@%f,%f",
-                       [self stringByEscapingParameterString:title], location.latitude, location.longitude];
+                       [title stringByAddingPercentEscapesForURLParameter], location.latitude, location.longitude];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
@@ -106,7 +95,7 @@
 + (BOOL)googleMapWithQuery:(NSString *)query {
   NSString* urlPath = [NSString stringWithFormat:
                        @"http://maps.google.com/maps?q=%@",
-                       [self stringByEscapingParameterString:query]];
+                       [query stringByAddingPercentEscapesForURLParameter]];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
@@ -126,6 +115,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)phoneWithNumber:(NSString *)phoneNumber {
   phoneNumber = [self sanitizedPhoneNumberFromString:phoneNumber];
+
+  if (nil == phoneNumber) {
+    phoneNumber = @"";
+  }
 
   NSString* urlPath = [@"tel:" stringByAppendingString:phoneNumber];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
@@ -147,7 +140,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)smsWithNumber:(NSString *)phoneNumber {
   phoneNumber = [self sanitizedPhoneNumberFromString:phoneNumber];
-  
+
+  if (nil == phoneNumber) {
+    phoneNumber = @"";
+  }
+
   NSString* urlPath = [@"sms:" stringByAppendingString:phoneNumber];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
@@ -163,27 +160,29 @@ static NSString* const sMailScheme = @"mailto:";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)mailWithInvocation:(NIMailAppInvocation *)invocation {
+  NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
+
   NSString* urlPath = sMailScheme;
+
   if (NIIsStringWithAnyText(invocation.recipient)) {
-    urlPath = [urlPath stringByAppendingString:[self stringByEscapingParameterString:
-                                                invocation.recipient]];
+    urlPath = [urlPath stringByAppendingString:[invocation.recipient stringByAddingPercentEscapesForURLParameter]];
   }
-  NSMutableArray* parameters = [NSMutableArray array];
+
   if (NIIsStringWithAnyText(invocation.cc)) {
-    [parameters addObject:[@"cc=" stringByAppendingString:[self stringByEscapingParameterString:invocation.cc]]];
+    [parameters setObject:invocation.cc forKey:@"cc"];
   }
   if (NIIsStringWithAnyText(invocation.bcc)) {
-    [parameters addObject:[@"bcc=" stringByAppendingString:[self stringByEscapingParameterString:invocation.bcc]]];
+    [parameters setObject:invocation.bcc forKey:@"bcc"];
   }
   if (NIIsStringWithAnyText(invocation.subject)) {
-    [parameters addObject:[@"subject=" stringByAppendingString:[self stringByEscapingParameterString:invocation.subject]]];
+    [parameters setObject:invocation.subject forKey:@"subject"];
   }
   if (NIIsStringWithAnyText(invocation.body)) {
-    [parameters addObject:[@"body=" stringByAppendingString:[self stringByEscapingParameterString:invocation.body]]];
+    [parameters setObject:invocation.body forKey:@"body"];
   }
-  if ([parameters count] > 0) {
-    urlPath = [urlPath stringByAppendingFormat:@"?%@", [parameters componentsJoinedByString:@"&"]];
-  }
+
+  urlPath = [urlPath stringByAddingQueryDictionary:parameters];
+
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
@@ -301,7 +300,7 @@ static NSString* const sTwitterScheme = @"twitter:";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)twitterWithMessage:(NSString *)message {
   NSString* urlPath = [sTwitterScheme stringByAppendingFormat:@"//post?message=%@",
-                       [self stringByEscapingParameterString:message]];
+                       [message stringByAddingPercentEscapesForURLParameter]];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
@@ -309,7 +308,7 @@ static NSString* const sTwitterScheme = @"twitter:";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)twitterProfileForUsername:(NSString *)username {
   NSString* urlPath = [sTwitterScheme stringByAppendingFormat:@"//user?screen_name=%@",
-                       [self stringByEscapingParameterString:username]];
+                       [username stringByAddingPercentEscapesForURLParameter]];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
@@ -356,7 +355,7 @@ static NSString* const sInstagramScheme = @"instagram:";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)instagramProfileForUsername:(NSString *)username {
   NSString* urlPath = [sInstagramScheme stringByAppendingFormat:@"//user?username=%@",
-                       [self stringByEscapingParameterString:username]];
+                       [username stringByAddingPercentEscapesForURLParameter]];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 

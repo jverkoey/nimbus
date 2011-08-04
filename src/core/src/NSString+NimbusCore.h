@@ -25,25 +25,21 @@
 
 - (BOOL)isWhitespaceAndNewlines;
 
-
 #pragma mark Display
 
 - (CGFloat)heightWithFont: (UIFont*)font
        constrainedToWidth: (CGFloat)width
             lineBreakMode: (UILineBreakMode)lineBreakMode;
 
-
 #pragma mark URL queries
 
 - (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding;
-
+- (NSString *)stringByAddingPercentEscapesForURLParameter;
 - (NSString*)stringByAddingQueryDictionary:(NSDictionary*)query;
-
 
 #pragma mark Versions
 
 - (NSComparisonResult)versionStringCompare:(NSString *)other;
-
 
 #pragma mark Hashing
 
