@@ -307,6 +307,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		66325D5613EB0301008D6EAD /* HACKERS.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = HACKERS.mdown; path = ../HACKERS.mdown; sourceTree = "<group>"; };
+		66325D5713EB0302008D6EAD /* README.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.mdown; path = ../README.mdown; sourceTree = "<group>"; };
 		6675722913E765BF0076F555 /* libNimbusOverview.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusOverview.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675723613E765BF0076F555 /* NimbusOverviewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusOverviewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675724F13E765F70076F555 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = overview/deps; sourceTree = SOURCE_ROOT; };
@@ -852,7 +854,8 @@
 		66A03BFC13E6E84800B514F3 = {
 			isa = PBXGroup;
 			children = (
-				669E98AD13E9EA1F00D99140 /* libz.dylib */,
+				66325D5713EB0302008D6EAD /* README.mdown */,
+				66325D5613EB0301008D6EAD /* HACKERS.mdown */,
 				66A03CBA13E6F03600B514F3 /* Doxygen.h */,
 				66A03DFB13E6FE1700B514F3 /* AUTHORS */,
 				66A03DFC13E6FE1800B514F3 /* DONORS */,
@@ -895,6 +898,7 @@
 		66A03C0B13E6E85E00B514F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				669E98AD13E9EA1F00D99140 /* libz.dylib */,
 				66A03DF913E6FD3000B514F3 /* SystemConfiguration.framework */,
 				66A03DF713E6FD2700B514F3 /* CFNetwork.framework */,
 				66A03DF513E6FD1800B514F3 /* MobileCoreServices.framework */,
