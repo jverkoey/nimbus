@@ -108,7 +108,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  return [self initWithCapacity:1];
+  return [self initWithCapacity:0];
 }
 
 
@@ -274,12 +274,12 @@
     }
   }
 
-  return object;
+  return [[object retain] autorelease];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)hasObjectWithName:(NSString *)name {
+- (BOOL)containsObjectWithName:(NSString *)name {
   NIMemoryCacheInfo* info = [self cacheInfoForName:name];
 
   if ([info hasExpired]) {

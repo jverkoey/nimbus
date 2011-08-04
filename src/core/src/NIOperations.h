@@ -24,21 +24,14 @@
 #endif
 
 /**
- * For common NSOperation implementations.
+ * For writing code that runs concurrently.
  *
  * @ingroup NimbusCore
  * @defgroup Operations Operations
  *
- * Some tasks take time to complete and are best done asynchronously. This collection of
- * operations is meant to provide a minimum set of functionality for common tasks to be
- * performed asynchronously.
- */
-
-/**
- * For crafting operations.
- *
- * @ingroup Operations
- * @defgroup Crafting-Operations Crafting Operations
+ * This collection of NSOperation implementations is meant to provide a set of common
+ * operations that might be used in an application to offload complex processing to a separate
+ * thread.
  */
 
 @protocol NIOperationDelegate;
@@ -46,11 +39,14 @@
 /**
  * A base implementation of an NSOperation that supports traditional delegation and blocks.
  *
- *      @ingroup Crafting-Operations
+ *
+ * <h2>Subclassing</h2>
  *
  * A subclass should call the operationDid* methods to notify the delegate on the main thread
  * of changes in the operation's state. Calling these methods will notify the delegate and the
  * blocks if provided.
+ *
+ *      @ingroup Operations
  */
 @interface NIOperation : NSOperation {
 @private
@@ -71,99 +67,23 @@
 #endif // #if NS_BLOCKS_AVAILABLE
 }
 
-#pragma mark Delegation /** @name Delegation */
-
-/**
- * The delegate through which changes are notified for this operation.
- *
- * All delegate methods are performed on the main thread.
- */
 @property (readwrite, assign) id<NIOperationDelegate> delegate;
-
-
-#pragma mark Post-Operation Properties /** @name Post-Operation Properties */
-
-/**
- * The error last passed to the didFailWithError notification.
- */
 @property (readonly, retain) NSError* lastError;
-
-
-#pragma mark Identification /** @name Identification */
-
-/**
- * A simple tagging mechanism for identifying operations.
- */
 @property (readwrite, assign) NSInteger tag;
 
 
 #if NS_BLOCKS_AVAILABLE
 
-#pragma mark Blocks /** @name Blocks */
-
-/**
- * The operation has started executing.
- *
- * Performed on the main thread.
- */
 @property (readwrite, copy) NIBasicBlock didStartBlock;
-
-/**
- * The operation has completed successfully.
- *
- * This will not be called if the operation fails.
- *
- * Performed on the main thread.
- */
 @property (readwrite, copy) NIBasicBlock didFinishBlock;
-
-/**
- * The operation failed in some way and has completed.
- *
- * didFinishBlock will not be executed.
- *
- * Performed on the main thread.
- */
 @property (readwrite, copy) NIErrorBlock didFailWithErrorBlock;
-
-/**
- * The operation is about to complete successfully.
- *
- * This will not be called if the operation fails.
- *
- * Performed in the operation's thread.
- */
 @property (readwrite, copy) NIBasicBlock willFinishBlock;
 
 #endif // #if NS_BLOCKS_AVAILABLE
 
-
-/**
- * @name Subclassing
- *
- * The following methods are provided to aid in subclassing and are not meant to be
- * used externally.
- */
-#pragma mark Subclassing
-
-/**
- * On the main thread, notify the delegate that the operation has begun.
- */
 - (void)operationDidStart;
-
-/**
- * On the main thread, notify the delegate that the operation has finished.
- */
 - (void)operationDidFinish;
-
-/**
- * On the main thread, notify the delegate that the operation has failed.
- */
 - (void)operationDidFailWithError:(NSError *)error;
-
-/**
- * In the operation's thread, notify the delegate that the operation will finish successfully.
- */
 - (void)operationWillFinish;
 
 @end
@@ -172,13 +92,13 @@
 /**
  * An operation that reads a file from disk.
  *
- *      @ingroup Operations
- *
  * Provides asynchronous file reading support when added to an NSOperationQueue.
  *
  * It is recommended to add this operation to a serial NSOperationQueue to avoid overlapping
  * disk read attempts. This will noticeably improve performance when loading many files
  * from disk at once.
+ *
+ *      @ingroup Operations
  */
 @interface NIReadFileFromDiskOperation : NIOperation {
 @private
@@ -190,40 +110,11 @@
   id        _processedObject;
 }
 
-#pragma mark Creating an Operation /** @name Creating an Operation */
-
-/**
- * Designated initializer.
- */
+// Designated initializer.
 - (id)initWithPathToFile:(NSString *)pathToFile;
 
-
-#pragma mark Configuring the Operation /** @name Configuring the Operation */
-
-/**
- * The path to the file that should be read from disk.
- */
 @property (readwrite, copy) NSString* pathToFile;
-
-
-#pragma mark Operation Results /** @name Operation Results */
-
-/**
- * The data that was read from disk.
- *
- * Will be nil if the data couldn't be read.
- *
- *      @sa NIOperation::lastError
- */
 @property (readonly, retain) NSData* data;
-
-/**
- * An object created from the data that was read from disk.
- *
- * Will be nil if the data couldn't be read.
- *
- *      @sa NIOperation::lastError
- */
 @property (readwrite, retain) id processedObject;
 
 @end
@@ -237,11 +128,9 @@
 @protocol NIOperationDelegate <NSObject>
 @optional
 
-#pragma mark State Changes /** @name [NIOperationDelegate] State Changes */
+/** @name [NIOperationDelegate] State Changes */
 
-/**
- * The operation has started executing.
- */
+/** The operation has started executing. */
 - (void)operationDidStart:(NSOperation *)operation;
 
 /**
@@ -263,8 +152,157 @@
 /**
  * The operation failed in some way and has completed.
  *
- * operationDidFinish will not be called.
+ * operationDidFinish: will not be called.
  */
 - (void)operationDidFail:(NSOperation *)operation withError:(NSError *)error;
 
 @end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NIOperation
+
+/** @name Delegation */
+
+/**
+ * The delegate through which changes are notified for this operation.
+ *
+ * All delegate methods are performed on the main thread.
+ *
+ *      @fn NIOperation::delegate
+ */
+
+
+/** @name Post-Operation Properties */
+
+/**
+ * The error last passed to the didFailWithError notification.
+ *
+ *      @fn NIOperation::lastError
+ */
+
+
+/** @name Identification */
+
+/**
+ * A simple tagging mechanism for identifying operations.
+ *
+ *      @fn NIOperation::tag
+ */
+
+
+#if NS_BLOCKS_AVAILABLE
+/** @name Blocks */
+
+/**
+ * The operation has started executing.
+ *
+ * Performed on the main thread.
+ *
+ *      @fn NIOperation::didStartBlock
+ */
+
+/**
+ * The operation has completed successfully.
+ *
+ * This will not be called if the operation fails.
+ *
+ * Performed on the main thread.
+ *
+ *      @fn NIOperation::didFinishBlock
+ */
+
+/**
+ * The operation failed in some way and has completed.
+ *
+ * didFinishBlock will not be executed.
+ *
+ * Performed on the main thread.
+ *
+ *      @fn NIOperation::didFailWithErrorBlock
+ */
+
+/**
+ * The operation is about to complete successfully.
+ *
+ * This will not be called if the operation fails.
+ *
+ * Performed in the operation's thread.
+ *
+ *      @fn NIOperation::willFinishBlock
+ */
+#endif // #if NS_BLOCKS_AVAILABLE
+
+
+/**
+ * @name Subclassing
+ *
+ * The following methods are provided to aid in subclassing and are not meant to be
+ * used externally.
+ */
+
+/**
+ * On the main thread, notify the delegate that the operation has begun.
+ *
+ *      @fn NIOperation::operationDidStart
+ */
+
+/**
+ * On the main thread, notify the delegate that the operation has finished.
+ *
+ *      @fn NIOperation::operationDidFinish
+ */
+
+/**
+ * On the main thread, notify the delegate that the operation has failed.
+ *
+ *      @fn NIOperation::operationDidFailWithError:
+ */
+
+/**
+ * In the operation's thread, notify the delegate that the operation will finish successfully.
+ *
+ *      @fn NIOperation::operationWillFinish
+ */
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NIReadFileFromDiskOperation
+
+/** @name Creating an Operation */
+
+/**
+ * Initializes a newly allocated "read from disk" operation with a given path to a file to be read.
+ *
+ *      @fn NIReadFileFromDiskOperation::initWithPathToFile:
+ */
+
+
+/** @name Configuring the Operation */
+
+/**
+ * The path to the file that should be read from disk.
+ *
+ *      @fn NIReadFileFromDiskOperation::pathToFile
+ */
+
+
+/** @name Operation Results */
+
+/**
+ * The data that was read from disk.
+ *
+ * Will be nil if the data couldn't be read.
+ *
+ *      @sa NIOperation::lastError
+ *      @fn NIReadFileFromDiskOperation::data
+ */
+
+/**
+ * An object created from the data that was read from disk.
+ *
+ * Will be nil if the data couldn't be read.
+ *
+ *      @sa NIOperation::lastError
+ *      @fn NIReadFileFromDiskOperation::processedObject
+ */

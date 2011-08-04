@@ -44,150 +44,28 @@
   NILinkedList*         _lruCacheObjects;
 }
 
-#pragma mark Creating an In-Memory Cache /** @name Creating an In-Memory Cache */
-
-/**
- * Initialize the cache with zero initial capacity.
- */
-- (id)init;
-
-/**
- * Designated initializer. Initialize the cache with an initial capacity.
- *
- * Use a best guess to avoid having the internal data structure reallocate its memory repeatedly
- * - at least up up to a certain point - as the cache grows.
- */
+// Designated initializer.
 - (id)initWithCapacity:(NSUInteger)capacity;
 
+- (NSUInteger)count;
 
-#pragma mark Storing Objects in the Cache /** @name Storing Objects in the Cache */
-
-/**
- * Store an object in the cache.
- *
- *      @param object  The object being stored in the cache.
- *      @param name    The name used as a key to store this object.
- *
- * The object will be stored without an expiration date. The object will stay in the cache until
- * it's bumped out due to the cache's memory limit.
- */
 - (void)storeObject:(id)object withName:(NSString *)name;
-
-/**
- * Store an object in the cache with an expiration date.
- *
- *      @param object          The object being stored in the cache.
- *      @param name            The name used as a key to store this object.
- *      @param expirationDate  A date after which this object is no longer valid in the cache.
- *
- * If an object is stored with an expiration date that has already passed then the object will
- * not be stored in the cache and any existing object will be removed. The rationale behind this
- * is that the object would be removed from the cache the next time it was accessed anyway.
- */
 - (void)storeObject:(id)object withName:(NSString *)name expiresAfter:(NSDate *)expirationDate;
 
-
-#pragma mark Removing Objects from the Cache /** @name Removing Objects from the Cache */
-
-/**
- * Remove an object in the cache.
- *
- *      @param name The name used as a key to store this object.
- */
 - (void)removeObjectWithName:(NSString *)name;
-
-/**
- * Remove all objects from the cache, regardless of expiration dates.
- *
- * This will completely clear out the cache and all objects in the cache will be released.
- */
 - (void)removeAllObjects;
 
-
-#pragma mark Accessing Objects in the Cache /** @name Accessing Objects in the Cache */
-
-/**
- * Retrieve an object from the cache.
- *
- * If the object has expired then the object will be removed from the cache and nil will be
- * returned.
- */
 - (id)objectWithName:(NSString *)name;
-
-/**
- * Determine whether an object is in the cache or not without modifying the access time.
- *
- * This is useful if you simply want to check the cache for the existence of an object.
- *
- * If the object has expired then the object will be removed from the cache and nil will be
- * returned.
- */
-- (BOOL)hasObjectWithName:(NSString *)name;
-
-/**
- * Retrieve the data that the object with the given name was last accessed.
- *
- * This will not update the access time of the object.
- *
- * If the object has expired then the object will be removed from the cache and nil will be
- * returned.
- */
+- (BOOL)containsObjectWithName:(NSString *)name;
 - (NSDate *)dateOfLastAccessWithName:(NSString *)name;
 
-
-#pragma mark Reducing Memory Usage Explicitly /** @name Reducing Memory Usage Explicitly */
-
-/**
- * Remove all expired objects from the cache.
- *
- * Subclasses may add additional functionality to this implementation and should generally
- * call super.
- *
- * This will be called when UIApplicationDidReceiveMemoryWarningNotification is posted.
- */
 - (void)reduceMemoryUsage;
 
 
-#pragma mark Querying an In-Memory Cache /** @name Querying an In-Memory Cache */
+// Subclassing
 
-/**
- * The number of objects stored in this cache.
- */
-@property (nonatomic, readonly) NSUInteger count;
-
-
-/**
- * @name Subclassing
- *
- * The following methods are provided to aid in subclassing and are not meant to be
- * used externally.
- */
-#pragma mark Subclassing
-
-/**
- * An object is about to be stored in the cache.
- *
- *      @param object          The object to be stored in the cache.
- *      @param name            The cache name for the object.
- *      @param previousObject  The object previously stored in the cache. This may be the
- *                             same as object.
- */
 - (void)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject;
-
-/**
- * An object has been stored in the cache.
- *
- *      @param object          The object that was stored in the cache.
- *      @param name            The cache name for the object.
- */
 - (void)didSetObject:(id)object withName:(NSString *)name;
-
-/**
- * An object is about to be removed from the cache.
- *
- *      @param object  The object about to removed from the cache.
- *      @param name    The cache name for the object about to be removed.
- */
 - (void)willRemoveObject:(id)object withName:(NSString *)name;
 
 @end
@@ -220,29 +98,8 @@
   NSUInteger _maxNumberOfPixelsUnderStress;
 }
 
-
-#pragma mark Querying an In-Memory Image Cache /** @name Querying an In-Memory Image Cache */
-
-/**
- * The total number of pixels being stored in the cache.
- */
 @property (nonatomic, readonly, assign) NSUInteger numberOfPixels;
-
-
-#pragma mark Setting the Maximum Number of Pixels /** @name Setting the Maximum Number of Pixels */
-
-/**
- * The maximum number of pixels this cache may ever store.
- *
- * Defaults to 0, which is special cased to represent an unlimited number of pixels.
- */
 @property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixels;
-
-/**
- * The maximum number of pixels this cache may store after a call to reduceMemoryUsage.
- *
- * Defaults to 0, which is special cased to represent an unlimited number of pixels.
- */
 @property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixelsUnderStress;
 
 @end
@@ -251,3 +108,193 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of In-Memory Cache //////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/** @name Creating an In-Memory Cache */
+
+/**
+ * Initializes a newly allocated cache with the given capacity.
+ *
+ *      @returns An in-memory cache initialized with the given capacity.
+ *      @fn NIMemoryCache::initWithCapacity:
+ */
+
+
+/** @name Storing Objects in the Cache */
+
+/**
+ * Stores an object in the cache.
+ *
+ * The object will be stored without an expiration date. The object will stay in the cache until
+ * it's bumped out due to the cache's memory limit.
+ *
+ *      @param object  The object being stored in the cache.
+ *      @param name    The name used as a key to store this object.
+ *      @fn NIMemoryCache::storeObject:withName:
+ */
+
+/**
+ * Stores an object in the cache with an expiration date.
+ *
+ * If an object is stored with an expiration date that has already passed then the object will
+ * not be stored in the cache and any existing object will be removed. The rationale behind this
+ * is that the object would be removed from the cache the next time it was accessed anyway.
+ *
+ *      @param object          The object being stored in the cache.
+ *      @param name            The name used as a key to store this object.
+ *      @param expirationDate  A date after which this object is no longer valid in the cache.
+ *      @fn NIMemoryCache::storeObject:withName:expiresAfter:
+ */
+
+
+/** @name Removing Objects from the Cache */
+
+/**
+ * Removes an object from the cache.
+ *
+ *      @param name The name used as a key to store this object.
+ *      @fn NIMemoryCache::removeObjectWithName:
+ */
+
+/**
+ * Removes all objects from the cache, regardless of expiration dates.
+ *
+ * This will completely clear out the cache and all objects in the cache will be released.
+ *
+ *      @fn NIMemoryCache::removeAllObjects
+ */
+
+
+/** @name Accessing Objects in the Cache */
+
+/**
+ * Retrieves an object from the cache.
+ *
+ * If the object has expired then the object will be removed from the cache and nil will be
+ * returned.
+ *
+ *      @returns The object stored in the cache. The object is retained and autoreleased to
+ *               ensure that it survives this run loop if you then remove it from the cache.
+ *      @fn NIMemoryCache::objectWithName:
+ */
+
+/**
+ * Returns a Boolean value that indicates whether an object with the given name is present
+ * in the cache.
+ *
+ * Does not update the access time of the object.
+ *
+ * If the object has expired then the object will be removed from the cache and NO will be
+ * returned.
+ *
+ *      @returns YES if an object with the given name is present in the cache and has not expired,
+ *               otherwise NO.
+ *      @fn NIMemoryCache::containsObjectWithName:
+ */
+
+/**
+ * Returns the date that the object with the given name was last accessed.
+ *
+ * Does not update the access time of the object.
+ *
+ * If the object has expired then the object will be removed from the cache and nil will be
+ * returned.
+ *
+ *      @returns The last access date of the object if it exists and has not expired, nil
+ *               otherwise.
+ *      @fn NIMemoryCache::dateOfLastAccessWithName:
+ */
+
+
+/** @name Reducing Memory Usage Explicitly */
+
+/**
+ * Removes all expired objects from the cache.
+ *
+ * Subclasses may add additional functionality to this implementation.
+ * Subclasses should call super in order to prune expired objects.
+ *
+ * This will be called when <code>UIApplicationDidReceiveMemoryWarningNotification</code>
+ * is posted.
+ *
+ *      @fn NIMemoryCache::reduceMemoryUsage
+ */
+
+
+/** @name Querying an In-Memory Cache */
+
+/**
+ * Returns the number of objects currently in the cache.
+ *
+ *      @returns The number of objects currently in the cache.
+ *      @fn NIMemoryCache::count
+ */
+
+
+/**
+ * @name Subclassing
+ *
+ * The following methods are provided to aid in subclassing and are not meant to be
+ * used externally.
+ */
+
+/**
+ * An object is about to be stored in the cache.
+ *
+ *      @param object          The object that is about to be stored in the cache.
+ *      @param name            The cache name for the object.
+ *      @param previousObject  The object previously stored in the cache. This may be the
+ *                             same as object.
+ *      @fn NIMemoryCache::willSetObject:withName:previousObject:
+ */
+
+/**
+ * An object has been stored in the cache.
+ *
+ *      @param object          The object that was stored in the cache.
+ *      @param name            The cache name for the object.
+ *      @fn NIMemoryCache::didSetObject:withName:
+ */
+
+/**
+ * An object is about to be removed from the cache.
+ *
+ *      @param object  The object about to removed from the cache.
+ *      @param name    The cache name for the object about to be removed.
+ *      @fn NIMemoryCache::willRemoveObject:withName:
+ */
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NIImageMemoryCache
+
+/** @name Querying an In-Memory Image Cache */
+
+/**
+ * Returns the total number of pixels being stored in the cache.
+ *
+ *      @returns The total number of pixels being stored in the cache.
+ *      @fn NIImageMemoryCache::numberOfPixels
+ */
+
+
+/** @name Setting the Maximum Number of Pixels */
+
+/**
+ * The maximum number of pixels this cache may ever store.
+ *
+ * Defaults to 0, which is special cased to represent an unlimited number of pixels.
+ *
+ *      @returns The maximum number of pixels this cache may ever store.
+ *      @fn NIImageMemoryCache::maxNumberOfPixels
+ */
+
+/**
+ * The maximum number of pixels this cache may store after a call to reduceMemoryUsage.
+ *
+ * Defaults to 0, which is special cased to represent an unlimited number of pixels.
+ *
+ *      @returns The maximum number of pixels this cache may store after a call
+ *               to reduceMemoryUsage.
+ *      @fn NIImageMemoryCache::maxNumberOfPixelsUnderStress
+ */

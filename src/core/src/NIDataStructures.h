@@ -314,7 +314,7 @@ typedef void NILinkedListLocation;
  */
 
 
-#pragma mark Creating a Linked List /** @name Creating a Linked List */
+/** @name Creating a Linked List */
 
 /**
  * Convenience method for creating an autoreleased linked list.
@@ -342,7 +342,7 @@ typedef void NILinkedListLocation;
  */
 
 
-#pragma mark Querying a Linked List /** @name Querying a Linked List */
+/** @name Querying a Linked List */
 
 /**
  * Returns the number of objects currently in the linked list.
@@ -401,7 +401,7 @@ typedef void NILinkedListLocation;
  */
 
 
-#pragma mark Adding Objects /** @name Adding Objects */
+/** @name Adding Objects */
 
 /**
  * Append an object to the linked list.
@@ -413,7 +413,7 @@ typedef void NILinkedListLocation;
  */
 
 
-#pragma mark Removing Objects /** @name Removing Objects */
+/** @name Removing Objects */
 
 /**
  * Remove all objects from the linked list.
@@ -448,7 +448,7 @@ typedef void NILinkedListLocation;
  */
 
 
-#pragma mark Constant-Time Access /** @name Constant-Time Access */
+/** @name Constant-Time Access */
 
 /**
  * Search for an object in the linked list.
