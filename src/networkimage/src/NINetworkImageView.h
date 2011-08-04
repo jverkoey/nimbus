@@ -29,17 +29,133 @@
 // See the diskCacheLifetime property for more documentation related to this enumeration.
 typedef enum {
   /**
-   * Store images on disk in the session disk cache. Images stored here will be removed when the
-   * app starts again or when the session cache is explicitly cleared.
+   * Store images on disk in the session disk cache. Images stored with this lifetime will
+   * be removed when the app starts again or when the session cache is explicitly cleared.
    */
   NINetworkImageViewDiskCacheLifetimeSession,
 
   /**
-   * Store images on disk in the permanent disk cache. Images stored here will only be removed
-   * when the permanent cache is explicitly cleared.
+   * Store images on disk in the permanent disk cache. Images stored with this lifetime will
+   * only be removed when the permanent cache is explicitly cleared.
    */
   NINetworkImageViewDiskCacheLifetimePermanent,
 } NINetworkImageViewDiskCacheLifetime;
+
+typedef enum {
+  NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess = 0x00,
+  NINetworkImageViewScaleToFitCropsExcess    = 0x01,
+  NINetworkImageViewScaleToFillLeavesExcess  = 0x02,
+} NINetworkImageViewScaleOptions;
+
+/**
+ * A network-enabled image view that consumes minimal amounts of memory.
+ *
+ * Intelligently crops and resizes images for optimal memory use and uses threads to avoid
+ * processing images on the UI thread.
+ *
+ *      @ingroup Network-Image-User-Interface
+ */
+@interface NINetworkImageView : UIImageView {
+@private
+  // The active operation for the image
+  NSOperation* _operation;
+
+  // Configurable Presentation Properties
+  UIImage*                        _initialImage;
+  BOOL                            _sizeForDisplay;
+  NINetworkImageViewScaleOptions  _scaleOptions;
+  CGInterpolationQuality          _interpolationQuality;
+  
+  // Configurable Properties
+  NSString* _memoryCachePrefix;
+  NSString* _lastPathToNetworkImage;
+  NSTimeInterval                      _maxAge;
+  NINetworkImageViewDiskCacheLifetime _diskCacheLifetime;
+  NIImageMemoryCache*   _imageMemoryCache;
+  id<ASICacheDelegate>  _imageDiskCache;
+  NSOperationQueue*     _networkOperationQueue;
+
+  // Delegation
+  id<NINetworkImageViewDelegate> _delegate;
+}
+
+#pragma mark Creating a Network Image View
+
+- (id)initWithImage:(UIImage *)image;
+
+#pragma mark Configurable Presentation Properties
+
+@property (nonatomic, readwrite, retain) UIImage* initialImage;     // Default: nil
+@property (nonatomic, readwrite, assign) BOOL sizeForDisplay;       // Default: YES
+@property (nonatomic, readwrite, assign) NINetworkImageViewScaleOptions scaleOptions; // Default: NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess
+@property (nonatomic, readwrite, assign) CGInterpolationQuality interpolationQuality; // Default: kCGInterpolationDefault
+
+#pragma mark Configurable Properties
+
+@property (nonatomic, readwrite, retain) NIImageMemoryCache* imageMemoryCache;    // Default: [Nimbus imageMemoryCache]
+@property (nonatomic, readwrite, retain) id<ASICacheDelegate> imageDiskCache;     // Default: [ASIDownloadCache sharedCache]
+@property (nonatomic, readwrite, retain) NSOperationQueue* networkOperationQueue; // Default: [Nimbus networkOperationQueue]
+
+@property (nonatomic, readwrite, assign) NSTimeInterval maxAge;     // Default: 0
+@property (nonatomic, readwrite, assign) NINetworkImageViewDiskCacheLifetime diskCacheLifetime; // Default: NINetworkImageViewDiskCacheLifetimePermanent
+
+@property (nonatomic, readwrite, copy) NSString* memoryCachePrefix; // Default: nil
+@property (nonatomic, readonly, copy) NSString* lastPathToNetworkImage;
+
+#pragma mark Requesting a Network Image
+
+- (void)setPathToNetworkImage:(NSString *)pathToNetworkImage;
+- (void)setPathToNetworkImage:(NSString *)pathToNetworkImage forDisplaySize:(CGSize)displaySize;
+- (void)setPathToNetworkImage:(NSString *)pathToNetworkImage forDisplaySize:(CGSize)displaySize contentMode:(UIViewContentMode)contentMode;
+- (void)setPathToNetworkImage:(NSString *)pathToNetworkImage forDisplaySize:(CGSize)displaySize contentMode:(UIViewContentMode)contentMode cropRect:(CGRect)cropRect;
+- (void)setPathToNetworkImage:(NSString *)pathToNetworkImage cropRect:(CGRect)cropRect;
+- (void)setPathToNetworkImage:(NSString *)pathToNetworkImage contentMode:(UIViewContentMode)contentMode;
+
+#pragma mark State
+
+@property (nonatomic, readonly, assign) BOOL isLoading;
+
+#pragma mark Reusable View
+
+- (void)prepareForReuse;
+
+#pragma mark Delegation
+
+@property (nonatomic, readwrite, assign) id<NINetworkImageViewDelegate> delegate;
+
+#pragma mark Subclassing
+
+- (void)networkImageViewDidStartLoading;
+- (void)networkImageViewDidLoadImage:(UIImage *)image;
+- (void)networkImageViewDidFailToLoad:(NSError *)error;
+
+@end
+
+
+/**
+ * The image view delegate used to inform of state changes.
+ *
+ *      @ingroup Network-Image-User-Interface
+ */
+@protocol NINetworkImageViewDelegate <NSObject>
+@optional
+
+/**
+ * The image has begun an asynchronous download of the image.
+ */
+- (void)networkImageViewDidStartLoad:(NINetworkImageView *)imageView;
+
+/**
+ * The image has completed an asynchronous download of the image.
+ */
+- (void)networkImageView:(NINetworkImageView *)imageView didLoadImage:(UIImage *)image;
+
+/**
+ * The asynchronous download failed.
+ */
+- (void)networkImageViewDidFailLoad:(NINetworkImageView *)imageView;
+
+@end
 
 /**
  * Flags for modifying the way cropping is handled when scaling images to fit or fill.
@@ -161,93 +277,96 @@ typedef enum {
  *          image blt size: 133x100  [aspect ratio: 1.3333]
  * @endcode
  */
-typedef enum {
-  NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess = 0x00,
-  NINetworkImageViewScaleToFitCropsExcess    = 0x01,
-  NINetworkImageViewScaleToFillLeavesExcess  = 0x02,
-} NINetworkImageViewScaleOptions;
 
 /**
- * A network-enabled image view that consumes minimal amounts of memory.
+ * @class NINetworkImageView
  *
- *      @ingroup Network-Image-User-Interface
  *
- * Intelligently crops and resizes images for optimal memory use and uses threads to avoid
- * processing images on the UI thread.
+ * <h2>Examples</h2>
  *
- * Example: two basic methods for setting the display size of the network image
+ * <h3>Two basic methods for setting the display size of the network image</h3>
  *
  * @code
  *  UIImage* image; // some previously loaded image.
- *
- *  // Initialize the network image view with a preloaded image, usually a "default" image
- *  // to be displayed until the network image downloads.
  *  NINetworkImageView* imageView = [[[NINetworkImageView alloc] initWithImage:image] autorelease];
  *
  *  // Method #1: Use the image's frame to determine the display size for the network image.
- *
- *  // We must take care to set the frame before requesting the network image, otherwise the
- *  // image's display size will be 0,0 and the network image won't be cropped or sized to fit.
  *  imageView.frame = CGRectMake(0, 0, 100, 100);
- *
- *  // Begin loading the network image.
  *  [imageView setPathToNetworkImage:@"http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg"];
  *
  *  // Method #2: use the method setPathToNetworkImage:forDisplaySize:
- *
- *  // If you don't want to modify the frame of the image yet, you can alternatively specify
- *  // the display size as a parameter to the setPathToNetworkImage: method.
  *  [imageView setPathToNetworkImage: @"http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg"
  *                    forDisplaySize: CGSizeMake(100, 100)];
  * @endcode
  *
- * Example: use a different contentMode for the network image.
+ * <i>Code Breakdown</i>
+ *
+ * @code
+ *  NINetworkImageView* imageView = [[[NINetworkImageView alloc] initWithImage:image] autorelease];
+ * @endcode
+ *
+ * Initializes the network image view with a preloaded image, usually a "default" image
+ * to be displayed until the network image downloads.
+ *
+ * @code
+ *  imageView.frame = CGRectMake(0, 0, 100, 100);
+ *  [imageView setPathToNetworkImage:@"http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg"];
+ * @endcode
+ *
+ * We must take care to set the frame before requesting the network image, otherwise the
+ * image's display size will be 0,0 and the network image won't be cropped or sized to fit.
+ *
+ * @code
+ *  [imageView setPathToNetworkImage: @"http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg"
+ *                    forDisplaySize: CGSizeMake(100, 100)];
+ * @endcode
+ *
+ * If you don't want to modify the frame of the image, you can alternatively specify
+ * the display size as a parameter to the setPathToNetworkImage: method.
+ *
+ *
+ * <h3>Use a different contentMode for the network image.</h3>
  *
  * @code
  *  UIImage* image; // some previously loaded image.
- *
  *  NINetworkImageView* imageView = [[[NINetworkImageView alloc] initWithImage:image] autorelease];
  *
- *  // Center the initial image in the frame.
- *  imageView.contentMode = UIViewContentModeCenter;
- *
- *  // When we download the image, fill the frame with an aspect fill content mode.
- *  // Specifying contentMode in the setPathToNetworkImage method overrides self.contentMode
- *  // so that you can display the resulting network image differently.
- *  // If your display size matches the image frame's size, then self.contentMode won't
- *  // affect the way the image is drawn because the dimensions will be identical.
+ *  imageView.frame = CGRectMake(0, 0, 100, 100);
+ *  imageView.contentMode = UIViewContentModeCenter; // Centers the image in the frame.
  *  [imageView setPathToNetworkImage: @"http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg"
  *                       contentMode: UIViewContentModeScaleAspectFill];
- *
  * @endcode
+ *
+ * <i>Code Breakdown</i>
+ *
+ * @code
+ *  [imageView setPathToNetworkImage: @"http://farm2.static.flickr.com/1165/644335254_4b8a712be5.jpg"
+ *                       contentMode: UIViewContentModeScaleAspectFill];
+ * @endcode
+ *
+ * This means: <i>after the image is downloaded, crop and resize the image with an aspect
+ * fill content mode.</i>
+ * The image returned from the thread will be cropped and sized to fit the imageView perfectly
+ * at the given 100x100 dimensions.
+ * Because imageView has a contentMode of UIViewContentModeCenter, if we were to make the
+ * image view larger the downloaded image would stay in the center of the image view and
+ * leave empty space on all sides.
  */
-@interface NINetworkImageView : UIImageView {
-@private
-  // The active operation for the image.
-  NSOperation* _operation;
 
-  NSString* _memoryCachePrefix;
 
-  UIImage* _initialImage;
+/** @name Creating a Network Image View */
 
-  NSString* _lastPathToNetworkImage;
+/**
+ * Designated initializer.
+ *
+ *      @param image  This will be the initialImage.
+ *      @fn NINetworkImageView::initWithImage:
+ */
 
-  // Presentation configuration
-  BOOL                            _sizeForDisplay;
-  NINetworkImageViewScaleOptions  _scaleOptions;
-  CGInterpolationQuality          _interpolationQuality;
 
-  NINetworkImageViewDiskCacheLifetime _diskCacheLifetime;
-
-  id<NINetworkImageViewDelegate> _delegate;
-
-  // Expiration information.
-  NSTimeInterval  _maxAge;
-
-  NIImageMemoryCache*   _imageMemoryCache;
-  id<ASICacheDelegate>  _imageDiskCache;
-  NSOperationQueue*     _networkOperationQueue;
-}
+/**
+ * @name Configurable Presentation Properties
+ */
 
 /**
  * The image being displayed while the network image is being fetched.
@@ -259,18 +378,9 @@ typedef enum {
  *
  * The initial image is drawn only using the view's contentMode. Cropping and resizing are only
  * performed on the image fetched from the network.
- */
-@property (nonatomic, readwrite, retain) UIImage* initialImage;
-
-
-/**
- * @name Presentation Configuration
- * @{
  *
- * Properties that allow you to configure the way downloaded images are displayed. These properties
- * do not affect the way the initial image is drawn.
+ *      @fn NINetworkImageView::initialImage
  */
-#pragma mark Presentation Configuration
 
 /**
  * A flag for enabling the resizing of images for display.
@@ -284,37 +394,31 @@ typedef enum {
  * If your images are pre-cropped and sized then this isn't necessary, but the network image
  * loader is smart enough to realize this so it's in your best interest to leave this on.
  *
- * By default this is enabled.
+ * By default this is YES.
+ *
+ *      @fn NINetworkImageView::sizeForDisplay
  */
-@property (nonatomic, readwrite, assign) BOOL sizeForDisplay;
 
 /**
  * Options for modifying the way images are cropped when scaling.
  *
- *      @see NINetworkImageViewScaleOptions
- *
  * By default this is NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess.
+ *
+ *      @see NINetworkImageViewScaleOptions
+ *      @fn NINetworkImageView::scaleOptions
  */
-@property (nonatomic, readwrite, assign) NINetworkImageViewScaleOptions scaleOptions;
 
 /**
  * The interpolation quality to use when resizing the image.
  *
  * The default value is kCGInterpolationDefault.
- */
-@property (nonatomic, readwrite, assign) CGInterpolationQuality interpolationQuality;
-
-
-/**@}*/// End of Presentation Configuration
-
-
-/**
- * @name Basic Configuration
- * @{
  *
- * Basic properties of the image view that are exposed for configuration.
+ *      @fn NINetworkImageView::interpolationQuality
  */
-#pragma mark Basic Configuration
+
+
+/** @name Configurable Properties */
+
 
 /**
  * The image memory cache used by this image view to store the image in memory.
@@ -322,6 +426,8 @@ typedef enum {
  * It may be useful to specify your own image memory cache if you have a unique memory requirement
  * and do not want the image being placed in the global memory cache, potentially pushing out
  * other images.
+ *
+ * By default this is [Nimbus imageMemoryCache].
  *
  *      @attention Setting this to nil will disable the memory cache. This will force the
  *                 image view to load the image from the disk cache or network, depending on
@@ -332,10 +438,8 @@ typedef enum {
  *
  *      @see Nimbus::globalImageMemoryCache
  *      @see Nimbus::setGlobalImageMemoryCache:
- *
- * By default this will be Nimbus' global image memory cache.
+ *      @fn NINetworkImageView::imageMemoryCache
  */
-@property (nonatomic, readwrite, retain) NIImageMemoryCache* imageMemoryCache;
 
 /**
  * The image disk cache used by this image view to store the image on disk.
@@ -343,15 +447,18 @@ typedef enum {
  * After the image has finished downloading we store it in a disk cache to avoid hitting the
  * network again if we want to load the image later on.
  *
+ * By default this is [ASIDownloadCache sharedCache].
+ *
  *      @attention Setting this to nil will disable the disk cache. Images downloaded from the
  *                 network will be stored in the memory cache, if available.
  *
- * By default this is [ASIDownloadCache sharedCache].
+ *      @fn NINetworkImageView::imageMemoryCache
  */
-@property (nonatomic, readwrite, retain) id<ASICacheDelegate> imageDiskCache;
 
 /**
  * The network operation queue used by this image view to load the image from network and disk.
+ *
+ * By default this is [Nimbus networkOperationQueue].
  *
  *      @attention This property must be non-nil. If you attempt to set it to nil, a debug
  *                 assertion will fire and Nimbus' global network operation queue will be set.
@@ -359,9 +466,8 @@ typedef enum {
  *      @see Nimbus::globalNetworkOperationQueue
  *      @see Nimbus::setGlobalNetworkOperationQueue:
  *
- * By default this will be Nimbus' global network operation queue.
+ *      @fn NINetworkImageView::networkOperationQueue
  */
-@property (nonatomic, readwrite, retain) NSOperationQueue* networkOperationQueue;
 
 /**
  * The maximum amount of time that an image will stay in memory after the request completes.
@@ -375,8 +481,9 @@ typedef enum {
  * A negative value will cause this image to NOT be stored in the memory cache.
  *
  * By default this is 0.
+ *
+ *      @fn NINetworkImageView::maxAge
  */
-@property (nonatomic, readwrite, assign) NSTimeInterval maxAge;
 
 /**
  * The lifetime for an image stored in the disk cache.
@@ -395,12 +502,9 @@ typedef enum {
  * @endcode
  *
  * By default this is NINetworkImageViewDiskCacheLifetimePermanent.
+ *
+ *      @fn NINetworkImageView::diskCacheLifetime
  */
-@property (nonatomic, readwrite, assign) NINetworkImageViewDiskCacheLifetime diskCacheLifetime;
-
-
-/**@}*/// End of Basic Configuration
-
 
 /**
  * A prefix for the memory cache key.
@@ -414,8 +518,9 @@ typedef enum {
  * for example).
  *
  * By default this is nil.
+ *
+ *      @fn NINetworkImageView::memoryCachePrefix
  */
-@property (nonatomic, readwrite, copy) NSString* memoryCachePrefix;
 
 /**
  * The last path assigned to the image view.
@@ -425,44 +530,46 @@ typedef enum {
  *
  *      @note It is debatable whether this has any practical use and is being considered
  *            for removal.
+ *
+ *      @fn NINetworkImageView::lastPathToNetworkImage
  */
-@property (nonatomic, readonly, copy) NSString* lastPathToNetworkImage;
+
+
+/** @name State */
 
 /**
  * Whether there is an active request for this image view.
  *
  * If there is currently an image being fetched then this will be YES.
+ *
+ *      @fn NINetworkImageView::isLoading
  */
-@property (nonatomic, readonly, assign) BOOL isLoading;
+
+
+/** @name Delegation */
 
 /**
  * Delegate for state change notifications.
- */
-@property (nonatomic, readwrite, assign) id<NINetworkImageViewDelegate> delegate;
-
-/**
- * Designated initializer.
  *
- *      @param image  This will be the initialImage.
+ *      @fn NINetworkImageView::delegate
  */
-- (id)initWithImage:(UIImage *)image;
+
+
+/** @name Reusable View */
 
 /**
  * Kill any network requests and replace the displayed image with the initial image.
  *
  * Prepares this view for reuse by cancelling any existing requests and displaying the
  * initial image again.
+ *
+ *      @fn NINetworkImageView::prepareForReuse
  */
-- (void)prepareForReuse;
 
 
 /**
  * @name Requesting a Network Image
- * @{
- *
- * Begin loading an image from the network with optional presentation configuration options.
  */
-#pragma mark Requesting a Network Image
 
 /**
  * Load an image from the network using the current frame as the display size.
@@ -475,8 +582,8 @@ typedef enum {
  * The image's current frame will be used as the display size for the image.
  *
  *      @param pathToNetworkImage  The network path to the image to be displayed.
+ *      @fn NINetworkImageView::setPathToNetworkImage:
  */
-- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage;
 
 /**
  * Load an image from the network with a specific display size.
@@ -488,9 +595,8 @@ typedef enum {
  *
  *      @param pathToNetworkImage  The network path to the image to be displayed.
  *      @param displaySize         Used instead of the image's frame to determine the display size.
+ *      @fn NINetworkImageView::setPathToNetworkImage:forDisplaySize:
  */
-- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
-               forDisplaySize: (CGSize)displaySize;
 
 /**
  * Load an image from the network with a specific display size.
@@ -501,10 +607,8 @@ typedef enum {
  *      @param pathToNetworkImage  The network path to the image to be displayed.
  *      @param displaySize         Used instead of the image's frame to determine the display size.
  *      @param contentMode         The content mode used to crop and resize the image.
+ *      @fn NINetworkImageView::setPathToNetworkImage:forDisplaySize:contentMode:
  */
-- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
-               forDisplaySize: (CGSize)displaySize
-                  contentMode: (UIViewContentMode)contentMode;
 
 /**
  * Load an image from the network with a crop rect and the current frame as the display size.
@@ -519,9 +623,8 @@ typedef enum {
  *      @param pathToNetworkImage  The network path to the image to be displayed.
  *      @param cropRect            x/y, width/height are in percent coordinates.
  *                                 Valid range is [0..1] for all values.
+ *      @fn NINetworkImageView::setPathToNetworkImage:cropRect:
  */
-- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
-                     cropRect: (CGRect)cropRect;
 
 /**
  * Load an image from the network with a specific display size.
@@ -533,9 +636,8 @@ typedef enum {
  *
  *      @param pathToNetworkImage  The network path to the image to be displayed.
  *      @param contentMode         The content mode used to crop and resize the image.
+ *      @fn NINetworkImageView::setPathToNetworkImage:contentMode:
  */
-- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
-                  contentMode: (UIViewContentMode)contentMode;
 
 /**
  * Load an image from the network with a specific display size and crop rect.
@@ -548,66 +650,31 @@ typedef enum {
  *                                 Valid range is [0..1] for all values.
  *      @param displaySize         Used instead of the image's frame to determine the display size.
  *      @param contentMode         The content mode used to crop and resize the image.
+ *      @fn NINetworkImageView::setPathToNetworkImage:forDisplaySize:contentMode:cropRect:
  */
-- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
-                     cropRect: (CGRect)cropRect
-               forDisplaySize: (CGSize)displaySize
-                  contentMode: (UIViewContentMode)contentMode;
-
-
-/**@}*/// End of Request a network image
 
 
 /**
  * @name Subclassing
- * @{
  *
  * The following methods are provided to aid in subclassing and are not meant to be
  * used externally.
  */
-#pragma mark Subclassing
 
 /**
  * A network request has begun.
+ *
+ *      @fn NINetworkImageView::networkImageViewDidStartLoading
  */
-- (void)networkImageViewDidStartLoading;
 
 /**
  * The image has been loaded, either from the network or in-memory.
+ *
+ *      @fn NINetworkImageView::networkImageViewDidLoadImage:
  */
-- (void)networkImageViewDidLoadImage:(UIImage *)image;
 
 /**
  * A network request failed to load.
- */
-- (void)networkImageViewDidFailToLoad:(NSError *)error;
-
-/**@}*/
-
-@end
-
-
-/**
- * The image view delegate used to inform of state changes.
  *
- *      @ingroup Network-Image-User-Interface
+ *      @fn NINetworkImageView::networkImageViewDidFailToLoad:
  */
-@protocol NINetworkImageViewDelegate <NSObject>
-@optional
-
-/**
- * The image has begun an asynchronous download of the image.
- */
-- (void)networkImageViewDidStartLoad:(NINetworkImageView *)imageView;
-
-/**
- * The image has completed an asynchronous download of the image.
- */
-- (void)networkImageView:(NINetworkImageView *)imageView didLoadImage:(UIImage *)image;
-
-/**
- * The asynchronous download failed.
- */
-- (void)networkImageViewDidFailLoad:(NINetworkImageView *)imageView;
-
-@end

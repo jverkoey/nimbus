@@ -299,60 +299,52 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage {
+- (void)setPathToNetworkImage:(NSString *)pathToNetworkImage {
   [self setPathToNetworkImage: pathToNetworkImage
-                     cropRect: CGRectZero
                forDisplaySize: CGSizeZero
-                  contentMode: self.contentMode];
+                  contentMode: self.contentMode
+                     cropRect: CGRectZero];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
-               forDisplaySize: (CGSize)displaySize {
+- (void)setPathToNetworkImage:(NSString *)pathToNetworkImage forDisplaySize:(CGSize)displaySize {
   [self setPathToNetworkImage: pathToNetworkImage
-                     cropRect: CGRectZero
                forDisplaySize: displaySize
-                  contentMode: self.contentMode];
+                  contentMode: self.contentMode
+                     cropRect: CGRectZero];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
-               forDisplaySize: (CGSize)displaySize
-                  contentMode: (UIViewContentMode)contentMode {
+- (void)setPathToNetworkImage:(NSString *)pathToNetworkImage forDisplaySize:(CGSize)displaySize contentMode:(UIViewContentMode)contentMode {
   [self setPathToNetworkImage: pathToNetworkImage
-                     cropRect: CGRectZero
                forDisplaySize: displaySize
-                  contentMode: contentMode];
+                  contentMode: contentMode
+                     cropRect: CGRectZero];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
-                     cropRect: (CGRect)cropRect {
+- (void)setPathToNetworkImage:(NSString *)pathToNetworkImage cropRect:(CGRect)cropRect {
   [self setPathToNetworkImage: pathToNetworkImage
-                     cropRect: cropRect
                forDisplaySize: CGSizeZero
-                  contentMode: self.contentMode];
+                  contentMode: self.contentMode
+                     cropRect: cropRect];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
-                  contentMode: (UIViewContentMode)contentMode {
+- (void)setPathToNetworkImage:(NSString *)pathToNetworkImage contentMode:(UIViewContentMode)contentMode {
   [self setPathToNetworkImage: pathToNetworkImage
-                     cropRect: CGRectZero
                forDisplaySize: CGSizeZero
-                  contentMode: contentMode];
+                  contentMode: contentMode
+                     cropRect: CGRectZero];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setPathToNetworkImage: (NSString *)pathToNetworkImage
-                     cropRect: (CGRect)cropRect
-               forDisplaySize: (CGSize)displaySize
-                  contentMode: (UIViewContentMode)contentMode {
+- (void)setPathToNetworkImage:(NSString *)pathToNetworkImage forDisplaySize:(CGSize)displaySize contentMode:(UIViewContentMode)contentMode cropRect:(CGRect)cropRect {
   [self cancelOperation];
 
   if (NIIsStringWithAnyText(pathToNetworkImage)) {

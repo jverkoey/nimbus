@@ -26,7 +26,8 @@
  * Applications may define schemes that make it possible to open them from your own application
  * using <code>[[UIApplication sharedApplication] openURL:]</code>. There is no way to
  * ask an application which URLs it implements, so Interapp strives to provide a growing
- * set of implementations for known Application interfaces.
+ * set of implementations for known application interfaces.
+ *
  *
  * <h2>When to Use Interapp</h2>
  *

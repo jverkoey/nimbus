@@ -44,81 +44,24 @@
   UIImage* _imageCroppedAndSizedForDisplay;
 }
 
-#pragma mark Before request is sent to the queue
+#pragma mark Configurable Properties
 
-/**
- * x/y, width/height are in percent coordinates.
- * Valid range is [0..1] for all values.
- *
- * Examples:
- *
- * CGRectZero - Do not crop this image.
- * CGRect(0, 0, 1, 1) - Do not crop this image.
- *
- * The default value is CGRectZero
- */
-@property (assign) CGRect imageCropRect;
+@property (assign) CGRect imageCropRect;                          // Default: CGRectZero
+@property (assign) CGSize imageDisplaySize;                       // Default: CGSizeZero
+@property (assign) NINetworkImageViewScaleOptions scaleOptions;   // Default: NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess
+@property (assign) CGInterpolationQuality interpolationQuality;   // Default: kCGInterpolationDefault
+@property (assign) UIViewContentMode imageContentMode;            // Default: UIViewContentModeScaleToFill
 
-/**
- * The size of the image to be displayed on the screen. This is the final size that
- * imageCroppedAndSizedForDisplay will be, unless cropImageForDisplay is NO.
- *
- * If this is CGSizeZero, the image will not be resized. It will bereturned at its original size.
- *
- * The default value is CGSizeZero
- */
-@property (assign) CGSize imageDisplaySize;
+#pragma mark Results
 
-/**
- * Options for modifying the way images are cropped when scaling.
- *
- *      @see NINetworkImageViewScaleOptions
- *
- * The default value is NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess.
- */
-@property (assign) NINetworkImageViewScaleOptions scaleOptions;
-
-/**
- * The interpolation quality to use when resizing the image.
- *
- * The default value is kCGInterpolationDefault.
- */
-@property (assign) CGInterpolationQuality interpolationQuality;
-
-/**
- * Determines how to resize and crop the image.
- *
- * Supported content modes:
- *
- *  - UIViewContentModeScaleToFill
- *  - UIViewContentModeScaleAspectFill
- *
- * The default value is UIViewContentModeScaleToFill
- */
-@property (assign) UIViewContentMode imageContentMode;
-
-
-/**
- * @name After request completion
- * @{
- *
- * The following methods are provided to aid in subclassing and are not meant to be
- * used externally.
- */
-#pragma mark After request completion
-
-/**
- * Upon completion of the request, this is the chopped and sized result image that should be
- * used for display.
- */
 @property (retain) UIImage* imageCroppedAndSizedForDisplay;
-
-/**@}*/// End of After request completion
 
 @end
 
 
 @interface NIHTTPImageRequest (ImageModifications)
+
+/** @name Image Modifications */
 
 /**
  * Take a source image and resize and crop it according to a set of display properties.
@@ -150,3 +93,69 @@
 
 @end
 
+/** @name Configurable Properties **/
+
+/**
+ * x/y, width/height are in percent coordinates.
+ * Valid range is [0..1] for all values.
+ *
+ * Examples:
+ *
+ * CGRectZero - Do not crop this image.
+ * CGRect(0, 0, 1, 1) - Do not crop this image.
+ *
+ * The default value is CGRectZero.
+ *
+ *      @fn NIHTTPImageRequest::imageCropRect
+ */
+
+/**
+ * The size of the image to be displayed on the screen. This is the final size that
+ * imageCroppedAndSizedForDisplay will be, unless cropImageForDisplay is NO.
+ *
+ * If this is CGSizeZero, the image will not be resized. It will bereturned at its original size.
+ *
+ * The default value is CGSizeZero.
+ *
+ *      @fn NIHTTPImageRequest::imageDisplaySize
+ */
+
+/**
+ * Options for modifying the way images are cropped when scaling.
+ *
+ * The default value is NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess.
+ *
+ *      @see NINetworkImageViewScaleOptions
+ *      @fn NIHTTPImageRequest::scaleOptions
+ */
+
+/**
+ * The interpolation quality to use when resizing the image.
+ *
+ * The default value is kCGInterpolationDefault.
+ *
+ *      @fn NIHTTPImageRequest::interpolationQuality
+ */
+
+/**
+ * Determines how to resize and crop the image.
+ *
+ * Supported content modes:
+ *
+ *  - UIViewContentModeScaleToFill
+ *  - UIViewContentModeScaleAspectFill
+ *
+ * The default value is UIViewContentModeScaleToFill.
+ *
+ *      @fn NIHTTPImageRequest::imageContentMode
+ */
+
+
+/** @name Results */
+
+/**
+ * Upon completion of the request, this is the chopped and sized result image that should be
+ * used for display.
+ *
+ *      @fn NIHTTPImageRequest::imageCroppedAndSizedForDisplay
+ */
