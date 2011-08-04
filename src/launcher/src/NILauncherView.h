@@ -62,54 +62,23 @@ extern const NSInteger NILauncherViewDynamic;
   id<NILauncherDataSource>  _dataSource;
 }
 
-/**
- * The maximum number of buttons allowed on a given page.
- *
- * By default this value is NSIntegerMax.
- */
-@property (nonatomic, readwrite, assign) NSInteger maxNumberOfButtonsPerPage;
+#pragma mark Configurable Properties
 
-/**
- * The amount of padding on each side of the launcher view pages.
- *
- * The bottom padding is considered above the page control.
- *
- * Default values are 10 pixels of padding on all sides.
- */
-@property (nonatomic, readwrite, assign) UIEdgeInsets padding;
+@property (nonatomic, readwrite, assign) NSInteger maxNumberOfButtonsPerPage; // Default: NSIntegerMax
+@property (nonatomic, readwrite, assign) UIEdgeInsets padding; // Default: 10px on all sides
 
-/**
- * The launcher view notifies the delegate of any user interaction or state changes.
- */
+#pragma mark Delegation
+
 @property (nonatomic, readwrite, assign) id<NILauncherDelegate> delegate;
 
-/**
- * The launcher view populates its pages with information from the data source.
- */
+#pragma mark Data Source
+
 @property (nonatomic, readwrite, assign) id<NILauncherDataSource> dataSource;
 
-/**
- * Reload the launcher data.
- *
- * This will release all of the launcher's buttons and call all necessary data source methods
- * again.
- *
- * Unlike the UITableView's reloadData, this is not a cheap method to call.
- */
 - (void)reloadData;
 
-/**
- * Lays out the subviews for this launcher view.
- *
- * If you subclass this view and implement setFrame, you should either replicate the
- * functionality found within or call [super setFrame:].
- *
- *      @note Subviews are laid out in this method instead of layoutSubviews due to the fact
- *            that the scroll view offset and content size are modified within this method.
- *            If we modify these values in layoutSubviews then we will end up breaking the
- *            scroll view because whenever the user drags their finger to scroll the scroll
- *            view, layoutSubviews is called on the launcher view.
- */
+#pragma mark Subclassing
+
 - (void)setFrame:(CGRect)frame;
 
 @end
@@ -187,3 +156,68 @@ extern const NSInteger NILauncherViewDynamic;
                    atIndex: (NSInteger)index;
 
 @end
+
+/** @name Configurable Properties */
+
+/**
+ * The maximum number of buttons allowed on a given page.
+ *
+ * By default this value is NSIntegerMax.
+ *
+ *      @fn NILauncherView::maxNumberOfButtonsPerPage
+ */
+
+/**
+ * The amount of padding on each side of the launcher view pages.
+ *
+ * The bottom padding is considered above the page control.
+ *
+ * Default values are 10 pixels of padding on all sides.
+ *
+ *      @fn NILauncherView::padding
+ */
+
+
+/** @name Delegation */
+
+/**
+ * The launcher view notifies the delegate of any user interaction or state changes.
+ *
+ *      @fn NILauncherView::delegate
+ */
+
+
+/** @name Data Source */
+
+/**
+ * The launcher view populates its pages with information from the data source.
+ *
+ *      @fn NILauncherView::dataSource
+ */
+
+/**
+ * Reload the launcher data.
+ *
+ * This will release all of the launcher's buttons and call all necessary data source methods
+ * again.
+ *
+ * Unlike the UITableView's reloadData, this is not a cheap method to call.
+ *
+ *      @fn NILauncherView::reloadData
+ */
+
+
+/** @name Subclassing */
+
+/**
+ * Lays out the subviews for this launcher view.
+ *
+ * If you subclass this view and implement setFrame, you should either replicate the
+ * functionality found within or call [super setFrame:].
+ *
+ *      @note Subviews are laid out in this method instead of layoutSubviews due to the fact
+ *            that the scroll view offset and content size are modified within this method.
+ *            If we modify these values in layoutSubviews then we will end up breaking the
+ *            scroll view because whenever the user drags their finger to scroll the scroll
+ *            view, layoutSubviews is called on the launcher view.
+ */
