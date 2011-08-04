@@ -54,7 +54,7 @@
     NSString* photoIndexKey = [self cacheKeyForPhotoIndex:ix];
 
     // Don't load the thumbnail if it's already in memory.
-    if (![self.thumbnailImageCache hasObjectWithName:photoIndexKey]) {
+    if (![self.thumbnailImageCache containsObjectWithName:photoIndexKey]) {
       NSString* source = [photo objectForKey:@"thumbnailSource"];
       [self requestImageFromSource: source
                          photoSize: NIPhotoScrollViewPhotoSizeThumbnail
