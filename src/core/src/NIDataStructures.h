@@ -333,14 +333,6 @@ typedef void NILinkedListLocation;
  */
 
 /**
- * Designated initializer.
- *
- * Creates an empty mutable linked list.
- *
- *      @fn NILinkedList::init
- */
-
-/**
  * Initializes a newly allocated linked list by placing in it the objects contained
  * in a given array.
  *

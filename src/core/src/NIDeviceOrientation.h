@@ -19,9 +19,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#pragma mark -
-#pragma mark Device Orientation
-
 /**
  * For dealing with device orientations.
  *

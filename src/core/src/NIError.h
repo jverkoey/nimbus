@@ -28,16 +28,29 @@
 /** The Nimbus error domain. */
 extern NSString* const NINimbusErrorDomain;
 
-/** The key used for images in the NSError userInfo. */
+/** The key used for images in the error's userInfo. */
 extern NSString* const NIImageErrorKey;
 
 /** NSError codes in NINimbusErrorDomain. */
-enum {
+typedef enum {
   /** The image is too small to be used. */
   NIImageTooSmall = 1,
-};
+} NINimbusErrorDomainCode;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Errors ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * <h3>Example</h3>
+ *
+ * @code
+ * error = [NSError errorWithDomain: NINimbusErrorDomain
+ *                             code: NIImageTooSmall
+ *                         userInfo: [NSDictionary dictionaryWithObject: image
+ *                                                               forKey: NIImageErrorKey]];
+ * @endcode
+ *
+ *      @enum NINimbusErrorDomainCode
+ */
