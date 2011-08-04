@@ -27,7 +27,7 @@
  * 
  * - Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
  * - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
- * - See the <a href="http://jverkoey.github.com/nimbus/group___version-5-0.html">latest API diffs</a>.
+ * - See the <a href="http://jverkoey.github.com/nimbus/group___version-6-0.html">latest API diffs</a>.
  * - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
  * 
  * <h2>Nimbus' Background</h2>
@@ -125,6 +125,167 @@
  * @defgroup Version-History Version History
  *
  * Presented here are the API diffs for each major release of Nimbus.
+ */
+
+/**
+ * @defgroup Version-6-0 Version 0.6 API Changes
+ * @ingroup Version-History
+ *
+ * Version 0.6.0 of Nimbus was released on August 4, 2011. This major version introduced the new
+ * Nimbus @link NimbusInterapp Interapp@endlink, a feature for making it easy to interact with
+ * the exposed interfaces of other apps installed on the device.
+ *
+ *
+ * <h2>Added Frameworks</h2>
+ *
+ * - @link NimbusInterapp Nimbus Interapp@endlink
+ *
+ *
+ * <h2>Noteworthy Non-API Changes</h2>
+ *
+ * - Xcode 4 sample project have been added
+ *   (thanks to <a href="http://github.com/rogchap">rogchap</a>.)
+ * - The README and HACKERS files have been updated.
+ * - AUTHORS and DONORS have been added to keep track of all the generous contributions to Nimbus.
+ * - All Nimbus features have been combined into one Xcode project (one project to rule them all).
+ * - Removed the use of the NIMBUS_STATIC_LIBRARY preprocessor macro. This removes the duplication
+ *   of all imports throughout the project. I'm now solely recommending that you add Nimbus
+ *   directly to your project (instead of as a dependent static library).
+ * - Xcode docsets are now available for download. The docsets will automatically update whenever
+ *   a new version of Nimbus is released if you subscribe to the RSS feed.
+ *
+ * @image html docsets1.png "The new Nimbus Xcode docset allows you to Alt+Click any Nimbus class to get detailed documentation."
+ *
+ * <h2>Subscribing to the Nimbus Docset Feed</h2>
+ *
+ * Nimbus now provides automatic updates for integrated docsets. To set this up you simply need
+ * to add the docset feed URL to Xcode. Follow these basic steps:
+ *
+ * - Open the Xcode Preferences (Cmd+, while Xcode is focused)
+ * - Open the Documentation tab.
+ * - Click the plus (+) button to add a new docset feed url.
+ * - Paste http://jverkoey.github.com/nimbus/nimbusdocset.atom into the form.
+ * - Click Add.
+ * - Click the "Get" button next to the Nimbus docset.
+ * - Wait a bit while the docset downloads...
+ * - Voila! You now have the Nimbus documentation built in to Xcode! Try Alt+Clicking some Nimbus
+ *   classes and methods to give it a whirl.
+ *
+ *
+ * <h2>Core</h2>
+ *
+ * <h3>NICommonMetrics[.h]</h3>
+ *
+ * - <span class="apiDiffModified">Modified</span> <code>NIStatusBarBoundsChangeAnimationCurve()</code>
+ * <table class="modificationtable"><tr><th></th><th>Declaration</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">UIViewAnimationCurve NIStatusBarFrameAnimationCurve()</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>UIViewAnimationCurve NIStatusBarBoundsChangeAnimationCurve(void)</tt></td></tr></table>
+ * - <span class="apiDiffModified">Modified</span> <code>NIStatusBarBoundsChangeAnimationDuration()</code>
+ * <table class="modificationtable"><tr><th></th><th>Declaration</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">NSTimeInterval NIStatusBarFrameAnimationDuration()</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>NSTimeInterval NIStatusBarBoundsChangeAnimationDuration(void)</tt></td></tr></table>
+ *
+ * <h3>NIDataStructures[.h]</h3>
+ *
+ * - <span class="apiDiffModified">Modified</span> <code>-[NILinkedList @link NILinkedList::count count@endlink]</code>
+ * @htmlonly<table class="modificationtable"><tr><th></th><th>Declaration and Type</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">@property (nonatomic, readonly) unsigned long count</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>- (NSUInteger)count</tt></td></tr></table>@endhtmlonly
+ * - <span class="apiDiffModified">Modified</span> <code>-[NILinkedList @link NILinkedList::firstObject firstObject@endlink]</code>
+ * @htmlonly<table class="modificationtable"><tr><th></th><th>Declaration</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">@property (nonatomic, readonly) id firstObject</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>- (id)firstObject</tt></td></tr></table>@endhtmlonly
+ * - <span class="apiDiffModified">Modified</span> <code>-[NILinkedList @link NILinkedList::lastObject lastObject@endlink]</code>
+ * @htmlonly<table class="modificationtable"><tr><th></th><th>Declaration</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">@property (nonatomic, readonly) id lastObject</td></tr>
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>- (id)lastObject</tt></td></tr></table>@endhtmlonly
+ * - <span class="apiDiffAdded">Added</span> <code>+[NILinkedList @link NILinkedList::linkedListWithArray: linkedListWithArray:@endlink]</code>
+ * - <span class="apiDiffAdded">Added</span> <code>-[NILinkedList @link NILinkedList::initWithArray: initWithArray:@endlink]</code>
+ * - <span class="apiDiffAdded">Added</span> <code>-[NILinkedList @link NILinkedList::allObjects allObjects@endlink]</code>
+ * - <span class="apiDiffAdded">Added</span> <code>-[NILinkedList @link NILinkedList::containsObject: containsObject:@endlink]</code>
+ * - <span class="apiDiffAdded">Added</span> <code>-[NILinkedList @link NILinkedList::description description@endlink]</code>
+ *
+ * <h3>NIDebuggingTools[.h]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>NIDebugAssertionsShouldBreak</code>
+ *
+ * <h3>NIError[.h|m] Added</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>NINimbusErrorDomain</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NIImageErrorKey</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NIImageTooSmall</code>
+ * - <span class="apiDiffAdded">Added</span> <code>NINimbusErrorDomainCode</code>
+ *
+ * <h3>NIFoundationMethods[.h]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>boundf()</code>
+ * - <span class="apiDiffAdded">Added</span> <code>boundi()</code>
+ *
+ * <h3>NIInMemoryCache[.h]</h3>
+ *
+ * - <span class="apiDiffModified">Modified</span> <code>-[NIMemoryCache @link NIMemoryCache::containsObjectWithName: containsObjectWithName:@endlink]</code>
+ * <table class="modificationtable"><tr><th></th><th>Declaration</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">- (BOOL)hasObjectWithName:(NSString *)name</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>- (BOOL)containsObjectWithName:(NSString *)name</tt></td></tr></table>
+ *
+ *
+ * <h2>Network Image</h2>
+ *
+ * <h3>NIHTTPImageRequest[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed a potential memory leak caused by not releasing the color space when the bitmap failed to be created.
+ *
+ * <h3>NINetworkImageView[.h]</h3>
+ *
+ * - <span class="apiDiffModified">Modified</span> <code>-[NINetworkImageView @link NINetworkImageView::setPathToNetworkImage:forDisplaySize:contentMode:cropRect: setPathToNetworkImage:forDisplaySize:contentMode:cropRect:@endlink]</code>
+ * <table class="modificationtable"><tr><th></th><th>Declaration</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">- (void)setPathToNetworkImage:(NSString *)pathToNetworkImage cropRect:(CGRect)cropRect forDisplaySize:(CGSize)displaySize contentMode:(UIViewContentMode)contentMode</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>- (void)setPathToNetworkImage:(NSString *)pathToNetworkImage forDisplaySize:(CGSize)displaySize contentMode:(UIViewContentMode)contentMode cropRect:(CGRect)cropRect</tt></td></tr></table>
+ *
+ *
+ * <h2>Examples</h2>
+ *
+ * <h3>Interapp Catalog [added]</h3>
+ *
+ *
+ * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Roger Chapman</div> 
+ * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
+ * </div>
+ * 
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/261d7ac023a174844c46e5f9f7a096b0?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Avi Itskovich</div> 
+ * <div class="github"><a href="http://github.com/aitskovi">aitskovi</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Jeff Verkoeyen</div> 
+ * <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ *
+ * <h3>Add Your Name to This List</h3>
+ *
+ * Contributions are highly encouraged! If you have a feature that you feel would fit within the
+ * Nimbus framework, feel free to fire off a pull request on GitHub. Bugs may be reported
+ * using the issue tracker on GitHub as well.
+ *
+ * Check out the <a href="https://github.com/jverkoey/nimbus/issues?sort=created&direction=desc&state=open&page=1&milestone=5">tasks grab bag</a>
+ * for opportunities to help out.
+ *
+ * <h2>Robots Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <div class="name"><a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
  */
 
 /**
