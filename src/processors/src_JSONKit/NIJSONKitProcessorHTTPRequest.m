@@ -16,11 +16,7 @@
 
 #import "NIJSONKitProcessorHTTPRequest.h"
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "JSONKit/JSONKit.h"
-#else
 #import "JSONKit.h"
-#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

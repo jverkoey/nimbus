@@ -17,11 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusCore/NIInMemoryCache.h"
-#else
 #import "NIInMemoryCache.h"
-#endif
 
 @protocol NINetworkImageViewDelegate;
 @protocol ASICacheDelegate;

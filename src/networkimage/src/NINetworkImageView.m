@@ -18,15 +18,9 @@
 
 #import "NINetworkImageView.h"
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusCore/NimbusCore.h"
-#import "ASIHTTPRequest/ASIHTTPRequest.h"
-#import "ASIHTTPRequest/ASIDownloadCache.h"
-#else
 #import "NimbusCore.h"
 #import "ASIHTTPRequest.h"
 #import "ASIDownloadCache.h"
-#endif
 
 #import "NIHTTPImageRequest.h"
 

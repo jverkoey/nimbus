@@ -17,13 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "ASIHTTPRequest/NIHTTPRequest.h"
-#import "NimbusNetworkImage/NINetworkImageView.h"
-#else
 #import "NIHTTPRequest.h"
 #import "NINetworkImageView.h"  // For NINetworkImageViewScaleOptions
-#endif
 
 /**
  * A threaded network request for an image that chops up and resizes the image before returning

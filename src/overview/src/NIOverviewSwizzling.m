@@ -16,11 +16,7 @@
 
 #import "NIOverviewSwizzling.h"
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusCore/NimbusCore.h"
-#else
 #import "NimbusCore.h"
-#endif
 
 #import "NIOverview.h"
 #import "NIOverviewView.h"

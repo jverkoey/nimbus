@@ -17,11 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#ifdef BASE_PRODUCT_NAME
-#import "NimbusLauncher/NILauncherView.h"
-#else
 #import "NILauncherView.h"
-#endif
 
 /**
  * A view controller that displays a launcher view and implements its protocols.

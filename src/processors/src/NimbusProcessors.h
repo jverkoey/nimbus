@@ -112,12 +112,7 @@
  * but before the UI has to deal with it.
  */
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusProcessors/NIProcessorHTTPRequest.h"
-#import "NimbusProcessors/NIProcessorDelegate.h"
-#else
 #import "NIProcessorHTTPRequest.h"
 #import "NIProcessorDelegate.h"
-#endif
 
 /**@}*/

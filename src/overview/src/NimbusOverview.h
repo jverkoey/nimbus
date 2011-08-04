@@ -141,10 +141,5 @@
  * @ingroup Overview-Logger
  */
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusCore/NimbusCore.h"
-#import "NimbusOverview/NIOverview.h"
-#else
 #import "NimbusCore.h"
 #import "NIOverview.h"
-#endif

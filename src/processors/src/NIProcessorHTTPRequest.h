@@ -17,13 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "ASIHTTPRequest/NIHTTPRequest.h"
-#import "NimbusProcessors/NIProcessorDelegate.h"
-#else
 #import "NIHTTPRequest.h"
 #import "NIProcessorDelegate.h"
-#endif
 
 /**
  * An HTTP request that processes the returned data on a separate thread.
@@ -49,25 +44,15 @@
 #endif
 }
 
-/**
- * @name Accessing the Processed Object
- * @{
- */
-#pragma mark Accessing the Processed Object
+#pragma mark Results /** @name Results */
 
 /**
  * The resulting root object after the request has completed and the data has been processed.
  */
 @property (nonatomic, readonly, retain) id processedObject;
 
-/**@}*/// End of Accessing the Processed Object
 
-
-/**
- * @name Pipeline Processing Steps
- * @{
- */
-#pragma mark Pipeline Processing Steps
+#pragma mark Pipeline Processing Steps /** @name Pipeline Processing Steps */
 
 /**
  * A subclass should implement this method and transform the data into an object.
@@ -95,7 +80,5 @@
 @property (nonatomic, readwrite, assign) id<NIProcessorDelegate> processorDelegate;
 
 #endif
-
-/**@}*/// End of Pipeline Processing Steps
 
 @end

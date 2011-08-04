@@ -17,13 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusPhotos/NIPhotoAlbumScrollView.h"
-#import "NimbusPhotos/NIPhotoScrubberView.h"
-#else
 #import "NIPhotoAlbumScrollView.h"
 #import "NIPhotoScrubberView.h"
-#endif
 
 @class NIPhotoAlbumScrollView;
 

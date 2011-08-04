@@ -17,11 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusProcessors/NIProcessorHTTPRequest.h"
-#else
 #import "NIProcessorHTTPRequest.h"
-#endif
 
 /**
  * A processor that uses JSONKit to turn the JSON response into objects.

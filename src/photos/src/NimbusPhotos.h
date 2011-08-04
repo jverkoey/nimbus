@@ -127,16 +127,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusCore/NimbusCore.h"
-#import "NimbusPhotos/NIPhotoViewController.h"
-#import "NimbusPhotos/NIPhotoAlbumScrollView.h"
-#import "NimbusPhotos/NIPhotoScrollView.h"
-#import "NimbusPhotos/NIPhotoScrubberView.h"
-#else
 #import "NimbusCore.h"
 #import "NIToolbarPhotoViewController.h"
 #import "NIPhotoAlbumScrollView.h"
 #import "NIPhotoScrollView.h"
 #import "NIPhotoScrubberView.h"
-#endif

@@ -17,11 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusCore/NIBlocks.h"
-#else
 #import "NIBlocks.h"
-#endif
 
 /**
  * For writing code that runs concurrently.

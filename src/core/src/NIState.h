@@ -16,11 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusCore/NIInMemoryCache.h"
-#else
 #import "NIInMemoryCache.h"
-#endif
 
 /**
  * For modifying Nimbus state information.
