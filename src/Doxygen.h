@@ -18,78 +18,92 @@
  * @mainpage
  *
  * Nimbus is an iOS framework whose feature set grows only as fast as its documentation.
- *
+ * 
  * By focusing on documentation first and features second, Nimbus hopes to be a framework
  * that accelerates the development process of any application by being easy to use and simple
  * to understand.
- *
+ * 
  * <h2>Getting Started</h2>
- *
+ * 
  * - Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
  * - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
- * - See the <a href="http://jverkoey.github.com/nimbus/group___version-3-to-4.html">latest API diffs</a>.
+ * - See the <a href="http://jverkoey.github.com/nimbus/group___version-5-0.html">latest API diffs</a>.
  * - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
- *
+ * 
  * <h2>Nimbus' Background</h2>
- *
+ * 
  * Nimbus has been built with much inspiration from the Three20 framework. That being said, there
  * are a number of fundamental problems with Three20 that Nimbus works very hard to avoid.
  * Among them:
- *
+ * 
  * - Poor documentation.
  * - Spaghetti dependencies.
  * - Suffering from a "kitchen sink" complex.
  * - A complex build structure.
  * - An enormous number of difficult-to-solve bugs.
  * - Next-to-zero test coverage.
- *
+ * 
  * For its weaknesses, Three20 does provide a good deal of value through its feature set. It is
  * used in over 100 apps in the app store by companies such as Facebook, LinkedIn, Posterous,
  * Meetup, and SCVNGR.
- *
+ * 
  * Nimbus hopes to one day provide as much value as Three20 does on a feature-by-feature
  * comparison, but with the invaluable benefit of sublime documentation and test coverage.
- *
+ * 
  * <h2>Nimbus' Development Roadmap</h2>
- *
- * I'm a strong believer in shipping early, shipping fast, and shipping often. Any other way of
- * being genuinely frustrates me so I hope to apply this to Nimbus.
- *
- * I plan to tackle Nimbus by first building a strong foundation in the Nimbus Core. From there
- * I will branch out and tackle migrating a variety of features over from Three20. Some features
- * on my immediate horizon in increasing order of difficulty:
- *
- * - The Launcher (done!)
- * - Network images (done!)
- * - TTNavigator (in progress)
- *
- * I will use a <b>MAJOR.MINOR.INCREMENTAL</b> versioning system.
- *
- * <b>Major</b> version numbers will be reserved for major milestones in the project (completing a
- * large set of features, for example).
- *
- * <b>Minor</b> version numbers will be reserved for minor milestones in the project (completing a
- * small set of features, for example).
- *
- * <b>Incremental</b> version numbers will be reserved for stable cuts of Nimbus after individual
- * tasks are completed (fully implementing the Launcher, for example).
- *
- * I'd like to treat the incremental version number like points from a video game. Finishing an
- * individual task will increase the score for a particular major release, so version 1.130.2
- * indicates "the first major release of Nimbus, 130 tasks tackled, and 2 incremental builds
- * for bugfixes and daily progress since the 130th task was finished". Perhaps there may be some
- * merit in allowing people who complete tasks to earn these points in some sense as well to
- * encourage some friendly competition.
- *
- * <h2>Who's working on Nimbus?</h2>
- *
+ * 
+ * Most of the discussion revolving around Nimbus' roadmap is in the Github issue tracker. In
+ * particular, check out the grab bag of tasks that are actively being worked on here:
+ * 
+ * https://github.com/jverkoey/nimbus/issues?milestone=5&sort=created&direction=desc&state=open
+ * 
+ * 
+ * <h2>Nimbus Contributors</h2>
+ * 
+ * Contributing to Nimbus is a great way to feel all warm and fuzzy inside. Either by adding your
+ * banner to the cause and writing code or donating money to the pledgie link, every bit is greatly
+ * appreciated and helps keep Nimbus running.
+ * 
+ * http://pledgie.com/campaigns/15519
+ * 
+ * <h3>Source Code Contributors (alphabetical by last name)</h3>
+ * 
+ * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Roger Chapman</div> 
+ * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
+ * </div>
+ * 
+ * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/7adfa1038eb46b001fd5c85a47dffc13?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Peter Steinberger</div> 
+ * <div class="github"><a href="http://github.com/steipete">steipete</a></div> 
+ * </div>
+ * 
+ * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Jeff Verkoeyen</div> 
+ * <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+ * </div>
+ * 
+ * <div style="clear:both"></div>
+ * 
+ * <h3>Generous Donations Have Been Made By the Following People</h3>
+ * 
+ * - Peter Nelson
+ * - Craig Gilchrist
+ * - Atsushi Nagase
+ * 
+ * 
+ * <h2>The Nimbus Backstory</h2>
+ * 
  * Nimbus was started by me (Jeff Verkoeyen) in June of 2011. My background includes over 10 years
  * of software development and experience at Google and Facebook designing software and
  * building user interfaces. I took over the Three20 project in 2009 after its original creator,
  * Joe Hewitt, moved on to other projects. Over the proceeding 6 months much time was invested in
  * splitting the framework apart and attempting to clobber its spaghetti dependencies while
  * improving the project's documentation.
- *
+ * 
  * In early May of 2010, my life was completely shaken up: my mother suddenly passed
  * away at age 42 due to a pulmonary embolism. This is relevant because for the following year
  * I checked out of life and, as a direct result, little progress was made with Three20. Over the
@@ -97,9 +111,10 @@
  * also a necessary one. So I am shedding Three20's baggage and out of the remaining bits building
  * Nimbus. I learned a great deal from working with an open source project and community and
  * sincerely hope to carry much of this knowledge over to Nimbus.
- *
+ * 
+ * 
  * <h2>What's happening to Three20?</h2>
- *
+ * 
  * My goal with Nimbus is to eventually provide a feature set that overlaps Three20's. I
  * sincerely hope to make it easy for anyone using Three20 to transition to Nimbus. In the
  * meantime, Three20 will likely stay in a bug-fixing state. The library is stable as it stands
