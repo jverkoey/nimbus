@@ -53,10 +53,5 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusCore/NimbusCore.h"
-#import "NimbusWebController/NIWebController.h"
-#else
 #import "NimbusCore.h"
 #import "NIWebController.h"
-#endif
