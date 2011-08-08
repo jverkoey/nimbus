@@ -495,6 +495,7 @@ static const CGFloat kButtonAnimatRadians = 2.5;
     // How exactly did we tap a button that wasn't a part of the launcher view?
     NIDASSERT(NO);
   }
+
 }
 
 - (void) startEditingButton:(UIButton*)button {
@@ -505,7 +506,7 @@ static const CGFloat kButtonAnimatRadians = 2.5;
     
     // This is normally where we would show a close button, allow dragging etc, however we want to
     // to keep the lancher view "dumb" from the datasource. Instead we fire a delegate.
-    
+
     NSInteger page = -1;
     NSInteger index = 0;
     if ([self pageAndIndexOfButton:button

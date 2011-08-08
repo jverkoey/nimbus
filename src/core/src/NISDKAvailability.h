@@ -255,6 +255,81 @@ Class NIUIPanGestureRecognizerClass();
  */
 Class NIUILongPressGestureRecognizerClass();
 
+/**
+ * Safely fetch the UIPinchGestureRecognizer class if it is available.
+ *
+ * The class is cached to avoid repeated lookups.
+ *
+ * Uses NSClassFromString to fetch the pinch gesture recognizer class.
+ *
+ * This class was first introduced in iOS 3.2 April 3, 2010.
+ *
+ *      @attention If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method
+ *                 instead of directly referring to UIPinchGestureRecognizer anywhere within your code.
+ *                 Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices.
+ */
+Class NIUIPinchGestureRecognizerClass();
+
+/**
+ * Safely fetch the UIRotationGestureRecognizer class if it is available.
+ *
+ * The class is cached to avoid repeated lookups.
+ *
+ * Uses NSClassFromString to fetch the rotation gesture recognizer class.
+ *
+ * This class was first introduced in iOS 3.2 April 3, 2010.
+ *
+ *      @attention If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method
+ *                 instead of directly referring to UIRotationGestureRecognizer anywhere within your code.
+ *                 Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices.
+ */
+Class NIUIRotationGestureRecognizerClass();
+
+/**
+ * Safely fetch the UISwipeGestureRecognizer class if it is available.
+ *
+ * The class is cached to avoid repeated lookups.
+ *
+ * Uses NSClassFromString to fetch the swipe gesture recognizer class.
+ *
+ * This class was first introduced in iOS 3.2 April 3, 2010.
+ *
+ *      @attention If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method
+ *                 instead of directly referring to UISwipeGestureRecognizer anywhere within your code.
+ *                 Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices.
+ */
+Class NIUISwipeGestureRecognizerClass();
+
+/**
+ * Safely fetch the UIPanGestureRecognizer class if it is available.
+ *
+ * The class is cached to avoid repeated lookups.
+ *
+ * Uses NSClassFromString to fetch the pan gesture recognizer class.
+ *
+ * This class was first introduced in iOS 3.2 April 3, 2010.
+ *
+ *      @attention If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method
+ *                 instead of directly referring to UIPanGestureRecognizer anywhere within your code.
+ *                 Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices.
+ */
+Class NIUIPanGestureRecognizerClass();
+
+/**
+ * Safely fetch the UILongPressGestureRecognizer class if it is available.
+ *
+ * The class is cached to avoid repeated lookups.
+ *
+ * Uses NSClassFromString to fetch the long press gesture recognizer class.
+ *
+ * This class was first introduced in iOS 3.2 April 3, 2010.
+ *
+ *      @attention If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method
+ *                 instead of directly referring to UILongPressGestureRecognizer anywhere within your code.
+ *                 Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices.
+ */
+Class NIUILongPressGestureRecognizerClass();
+
 
 #pragma mark Building with Old SDKs
 
