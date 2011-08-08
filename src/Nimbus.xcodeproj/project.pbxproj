@@ -198,7 +198,6 @@
 		DB84BD8413EFDDCA00DACCFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		DB84BD8513EFDDCA00DACCFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */; };
 		DB84BD8813EFDDCA00DACCFE /* libNimbusWebController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB84BD7413EFDDC900DACCFE /* libNimbusWebController.a */; };
-		DB84BDAB13EFDF5900DACCFE /* NimbusWebController_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = DB84BDA613EFDF5900DACCFE /* NimbusWebController_Prefix.pch */; };
 		DB84BDAC13EFDF5900DACCFE /* NimbusWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB84BDA813EFDF5900DACCFE /* NimbusWebController.h */; };
 		DB84BDAD13EFDF5900DACCFE /* NIWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB84BDA913EFDF5900DACCFE /* NIWebController.h */; };
 		DB84BDAE13EFDF5900DACCFE /* NIWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB84BDAA13EFDF5900DACCFE /* NIWebController.m */; };
@@ -339,6 +338,8 @@
 		66325D5713EB0302008D6EAD /* README.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.mdown; path = ../README.mdown; sourceTree = "<group>"; };
 		66325D6013EB1BFA008D6EAD /* NIJSONKitProcessorHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIJSONKitProcessorHTTPRequest.h; sourceTree = "<group>"; };
 		66325D6113EB1BFA008D6EAD /* NIJSONKitProcessorHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIJSONKitProcessorHTTPRequest.m; sourceTree = "<group>"; };
+		6661BAFF13F0AA6000D14F92 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = webcontroller/deps; sourceTree = "<group>"; };
+		6661BB0013F0AA7200D14F92 /* NimbusWebController_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NimbusWebController_Prefix.pch; sourceTree = "<group>"; };
 		6675722913E765BF0076F555 /* libNimbusOverview.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusOverview.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675723613E765BF0076F555 /* NimbusOverviewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusOverviewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675724F13E765F70076F555 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = overview/deps; sourceTree = SOURCE_ROOT; };
@@ -515,8 +516,6 @@
 		66A03DFC13E6FE1800B514F3 /* DONORS */ = {isa = PBXFileReference; lastKnownFileType = text; name = DONORS; path = ../DONORS; sourceTree = "<group>"; };
 		DB84BD7413EFDDC900DACCFE /* libNimbusWebController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusWebController.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB84BD8113EFDDCA00DACCFE /* NimbusWebControllerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusWebControllerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB84BD9B13EFDE7C00DACCFE /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = webcontroller/deps; sourceTree = "<group>"; };
-		DB84BDA613EFDF5900DACCFE /* NimbusWebController_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusWebController_Prefix.pch; sourceTree = "<group>"; };
 		DB84BDA813EFDF5900DACCFE /* NimbusWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusWebController.h; sourceTree = "<group>"; };
 		DB84BDA913EFDF5900DACCFE /* NIWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIWebController.h; sourceTree = "<group>"; };
 		DB84BDAA13EFDF5900DACCFE /* NIWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIWebController.m; sourceTree = "<group>"; };
@@ -1250,7 +1249,7 @@
 		DB84BD9A13EFDE3C00DACCFE /* NimbusWebController */ = {
 			isa = PBXGroup;
 			children = (
-				DB84BD9B13EFDE7C00DACCFE /* deps */,
+				6661BAFF13F0AA6000D14F92 /* deps */,
 				DB84BDA513EFDF5900DACCFE /* lib */,
 				DB84BDA713EFDF5900DACCFE /* src */,
 				DB84BDAF13EFDF6900DACCFE /* unittests */,
@@ -1261,7 +1260,7 @@
 		DB84BDA513EFDF5900DACCFE /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				DB84BDA613EFDF5900DACCFE /* NimbusWebController_Prefix.pch */,
+				6661BB0013F0AA7200D14F92 /* NimbusWebController_Prefix.pch */,
 			);
 			name = lib;
 			path = webcontroller/lib;
@@ -1417,7 +1416,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB84BDAB13EFDF5900DACCFE /* NimbusWebController_Prefix.pch in Headers */,
 				DB84BDAC13EFDF5900DACCFE /* NimbusWebController.h in Headers */,
 				DB84BDAD13EFDF5900DACCFE /* NIWebController.h in Headers */,
 			);
