@@ -24,9 +24,24 @@
 @implementation NIWebController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)releaseAllSubviews {
+  _webView.delegate = nil;
+
+  NI_RELEASE_SAFELY(_webView);
+  NI_RELEASE_SAFELY(_toolbar);
+  NI_RELEASE_SAFELY(_backButton);
+  NI_RELEASE_SAFELY(_forwardButton);
+  NI_RELEASE_SAFELY(_refreshButton);
+  NI_RELEASE_SAFELY(_stopButton);
+  NI_RELEASE_SAFELY(_actionButton);
+  NI_RELEASE_SAFELY(_activityItem);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_loadingURL);
   NI_RELEASE_SAFELY(_actionSheet);
+  [self releaseAllSubviews];
 
   [super dealloc];
 }
@@ -212,16 +227,7 @@
 - (void)viewDidUnload {
   [super viewDidUnload];
 
-  _webView.delegate = nil;
-
-  NI_RELEASE_SAFELY(_webView);
-  NI_RELEASE_SAFELY(_toolbar);
-  NI_RELEASE_SAFELY(_backButton);
-  NI_RELEASE_SAFELY(_forwardButton);
-  NI_RELEASE_SAFELY(_refreshButton);
-  NI_RELEASE_SAFELY(_stopButton);
-  NI_RELEASE_SAFELY(_actionButton);
-  NI_RELEASE_SAFELY(_activityItem);
+  [self releaseAllSubviews];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -233,7 +239,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillDisappear:(BOOL)animated {
   // If the browser launched the media player, it steals the key window and never gives it
-  // back, so this is a way to try and fix that
+  // back, so this is a way to try and fix that.
   [self.view.window makeKeyWindow];
 
   [super viewWillDisappear:animated];
