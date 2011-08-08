@@ -463,6 +463,9 @@ static const CGFloat kButtonAnimatRadians = 2.5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTapButton:(UIButton *)tappedButton {
 
+  NSInteger page = -1;
+  NSInteger index = 0;
+  
   if ([self pageAndIndexOfButton:tappedButton
                             page:&page
                            index:&index]) {
@@ -502,6 +505,7 @@ static const CGFloat kButtonAnimatRadians = 2.5;
     
     // This is normally where we would show a close button, allow dragging etc, however we want to
     // to keep the lancher view "dumb" from the datasource. Instead we fire a delegate.
+    
     NSInteger page = -1;
     NSInteger index = 0;
     if ([self pageAndIndexOfButton:button
