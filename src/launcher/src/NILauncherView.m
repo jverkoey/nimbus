@@ -17,6 +17,7 @@
 //
 
 #import "NILauncherView.h"
+#include <stdlib.h>
 
 const NSInteger NILauncherViewDynamic = -1;
 
@@ -25,6 +26,8 @@ static const CGFloat kDefaultPadding          = 10;
 static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
 static const CFTimeInterval kPressHoldTimeInterval = 1;
+static const NSTimeInterval kButtonAnimateTime = 0.08;
+static const CGFloat kButtonAnimatRadians = 2.5;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -309,9 +312,62 @@ static const CFTimeInterval kPressHoldTimeInterval = 1;
 #pragma mark Private Methods
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(void) pressAndHold:(UIGestureRecognizer*)gesture {
-  if (gesture.state == UIGestureRecognizerStateBegan) {
-    NSLog(@"PressAndHold", nil);
+- (void) animateButtons {
+  
+  if (_editing) {
+    static BOOL shouldAnimateLeft = NO;
+    
+    CGFloat rotation = (kButtonAnimatRadians * M_PI) / 180.0;
+    CGAffineTransform animateLeft = CGAffineTransformMakeRotation(rotation);
+    CGAffineTransform animateRight = CGAffineTransformMakeRotation(-rotation);
+    
+    
+    [UIView beginAnimations:nil context:nil];
+    // setAnimationDuration: must be called straight away otherwise it won't take effect.
+    [UIView setAnimationDuration:kButtonAnimateTime];
+    NSInteger animatingButtons = 0;
+    
+    for (NSInteger ixPage = 0; ixPage < [_pagesOfButtons count]; ++ixPage) {
+      NSArray* page = [_pagesOfButtons objectAtIndex:ixPage];
+      for (NSInteger ixButton = 0; ixButton < [page count]; ++ixButton) {
+        UIButton* button = [page objectAtIndex:ixButton];
+        
+        CGFloat rx = (random() % 2) * (shouldAnimateLeft ? 1 : -1);
+        CGFloat ry = (random() % 2) * (shouldAnimateLeft ? -1 : 1);
+        
+        CGAffineTransform animateMove = CGAffineTransformMakeTranslation(rx, ry);
+        
+        CGAffineTransform finalTransform;
+        if (ixButton % 2) {
+          finalTransform = 
+          CGAffineTransformConcat(animateMove, shouldAnimateLeft ? animateRight : animateLeft);
+        } else {
+          finalTransform = 
+          CGAffineTransformConcat(animateMove, shouldAnimateLeft ? animateLeft : animateRight); 
+        }
+        button.transform = finalTransform;
+        animatingButtons++;
+      }
+    }
+    
+    if (animatingButtons >= 1) {
+      [UIView setAnimationDelegate:self];
+      [UIView setAnimationDidStopSelector:@selector(animateButtons)];
+      shouldAnimateLeft = !shouldAnimateLeft;
+      
+    } else {
+      [NSObject cancelPreviousPerformRequestsWithTarget:self];
+      [self performSelector:@selector(animateButtons) withObject:nil afterDelay:kButtonAnimateTime];
+    }
+    
+    [UIView commitAnimations];
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) pressAndHold:(UIGestureRecognizer*)gesture {
+  if (gesture.state == UIGestureRecognizerStateBegan && !_editing) {
+    [self beginEditing];
   }
 }
 
@@ -412,6 +468,7 @@ static const CFTimeInterval kPressHoldTimeInterval = 1;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTapButton:(UIButton *)tappedButton {
   
+<<<<<<< HEAD
   NSInteger page = -1;
   NSInteger buttonIndex = 0;
   if ([self pageAndIndexOfButton:tappedButton
@@ -424,11 +481,27 @@ static const CFTimeInterval kPressHoldTimeInterval = 1;
                   didSelectButton: tappedButton
                            onPage: page
                           atIndex: buttonIndex];
+=======
+  if (!_editing) {
+    NSInteger page = -1;
+    NSInteger index = 0;
+    if ([self pageAndIndexOfButton:tappedButton
+                              page:&page
+                             index:&index]) {
+      
+      if ([self.delegate respondsToSelector:
+           @selector(launcherView:didSelectButton:onPage:atIndex:)]) {
+        [self.delegate launcherView: self
+                    didSelectButton: tappedButton
+                             onPage: page
+                            atIndex: index];
+      }
+      
+    } else {
+      // How exactly did we tap a button that wasn't a part of the launcher view?
+      NIDASSERT(NO);
+>>>>>>> Added better button item animation that looks more like the iOS Springboard
     }
-
-  } else {
-    // How exactly did we tap a button that wasn't a part of the launcher view?
-    NIDASSERT(NO);
   }
 }
 
@@ -509,5 +582,37 @@ static const CFTimeInterval kPressHoldTimeInterval = 1;
   [self layoutPages];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) beginEditing {
+  _editing = YES;
+  
+  [self animateButtons];
+  
+  if ([_delegate respondsToSelector:@selector(launcherViewDidBeginEditing:)]) {
+    [_delegate launcherViewDidBeginEditing:self];
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) endEditing {
+  _editing = NO;
+  
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:kButtonAnimateTime];
+  [UIView setAnimationDelegate:self];
+  
+  for (NSInteger ixPage = 0; ixPage < [_pagesOfButtons count]; ++ixPage) {
+    NSArray* page = [_pagesOfButtons objectAtIndex:ixPage];
+    for (NSInteger ixButton = 0; ixButton < [page count]; ++ixButton) {
+      UIButton* button = [page objectAtIndex:ixButton];
+      button.transform = CGAffineTransformIdentity;
+    }
+  }
+  [UIView commitAnimations];
+  
+  if ([_delegate respondsToSelector:@selector(launcherViewDidEndEditing:)]) {
+    [_delegate launcherViewDidEndEditing:self];
+  }
+}
 
 @end
