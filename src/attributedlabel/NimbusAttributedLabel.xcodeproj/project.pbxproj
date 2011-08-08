@@ -1,0 +1,299 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB66B89B13EAFAE8003F89DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB66B89A13EAFAE8003F89DA /* Foundation.framework */; };
+		DB66B8AD13EAFB61003F89DA /* NimbusAttributedLabel-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = DB66B8AC13EAFB61003F89DA /* NimbusAttributedLabel-Prefix.pch */; };
+		DB66B8D213EAFBF2003F89DA /* NimbusAttributedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = DB66B8D113EAFBF2003F89DA /* NimbusAttributedLabel.h */; };
+		DB66B8E013EAFC42003F89DA /* NIAttributedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = DB66B8DE13EAFC42003F89DA /* NIAttributedLabel.h */; };
+		DB66B8E113EAFC42003F89DA /* NIAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB66B8DF13EAFC42003F89DA /* NIAttributedLabel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DB66B8C113EAFBAC003F89DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB66B8BC13EAFBAC003F89DA /* NimbusCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = NimbusCore;
+		};
+		DB66B8C313EAFBAC003F89DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB66B8BC13EAFBAC003F89DA /* NimbusCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 668750F413A1AC6000FF1C56;
+			remoteInfo = NimbusCoreUnitTests;
+		};
+		DB66B8CF13EAFBC7003F89DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB66B8BC13EAFBAC003F89DA /* NimbusCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = NimbusCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DB66B89713EAFAE8003F89DA /* libNimbusAttributedLabel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusAttributedLabel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB66B89A13EAFAE8003F89DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DB66B8AC13EAFB61003F89DA /* NimbusAttributedLabel-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusAttributedLabel-Prefix.pch"; path = "lib/NimbusAttributedLabel-Prefix.pch"; sourceTree = "<group>"; };
+		DB66B8BC13EAFBAC003F89DA /* NimbusCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NimbusCore.xcodeproj; path = ../core/NimbusCore.xcodeproj; sourceTree = "<group>"; };
+		DB66B8D113EAFBF2003F89DA /* NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusAttributedLabel.h; path = src/NimbusAttributedLabel.h; sourceTree = "<group>"; };
+		DB66B8DE13EAFC42003F89DA /* NIAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIAttributedLabel.h; path = src/NIAttributedLabel.h; sourceTree = "<group>"; };
+		DB66B8DF13EAFC42003F89DA /* NIAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIAttributedLabel.m; path = src/NIAttributedLabel.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB66B89413EAFAE8003F89DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB66B89B13EAFAE8003F89DA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB66B88C13EAFAE8003F89DA = {
+			isa = PBXGroup;
+			children = (
+				DB66B8AC13EAFB61003F89DA /* NimbusAttributedLabel-Prefix.pch */,
+				DB66B8AB13EAFB53003F89DA /* Source */,
+				DB66B89913EAFAE8003F89DA /* Frameworks */,
+				DB66B89813EAFAE8003F89DA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB66B89813EAFAE8003F89DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB66B89713EAFAE8003F89DA /* libNimbusAttributedLabel.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB66B89913EAFAE8003F89DA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DB66B8BC13EAFBAC003F89DA /* NimbusCore.xcodeproj */,
+				DB66B89A13EAFAE8003F89DA /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB66B8AB13EAFB53003F89DA /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				DB66B8D113EAFBF2003F89DA /* NimbusAttributedLabel.h */,
+				DB66B8DE13EAFC42003F89DA /* NIAttributedLabel.h */,
+				DB66B8DF13EAFC42003F89DA /* NIAttributedLabel.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		DB66B8BD13EAFBAC003F89DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB66B8C213EAFBAC003F89DA /* libNimbusCore.a */,
+				DB66B8C413EAFBAC003F89DA /* NimbusCoreUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		DB66B89513EAFAE8003F89DA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB66B8AD13EAFB61003F89DA /* NimbusAttributedLabel-Prefix.pch in Headers */,
+				DB66B8D213EAFBF2003F89DA /* NimbusAttributedLabel.h in Headers */,
+				DB66B8E013EAFC42003F89DA /* NIAttributedLabel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		DB66B89613EAFAE8003F89DA /* NimbusAttributedLabel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB66B8A413EAFAE8003F89DA /* Build configuration list for PBXNativeTarget "NimbusAttributedLabel" */;
+			buildPhases = (
+				DB66B89313EAFAE8003F89DA /* Sources */,
+				DB66B89413EAFAE8003F89DA /* Frameworks */,
+				DB66B89513EAFAE8003F89DA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB66B8D013EAFBC7003F89DA /* PBXTargetDependency */,
+			);
+			name = NimbusAttributedLabel;
+			productName = NimbusAttributedLabel;
+			productReference = DB66B89713EAFAE8003F89DA /* libNimbusAttributedLabel.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB66B88E13EAFAE8003F89DA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Storm ID Ltd";
+			};
+			buildConfigurationList = DB66B89113EAFAE8003F89DA /* Build configuration list for PBXProject "NimbusAttributedLabel" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DB66B88C13EAFAE8003F89DA;
+			productRefGroup = DB66B89813EAFAE8003F89DA /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = DB66B8BD13EAFBAC003F89DA /* Products */;
+					ProjectRef = DB66B8BC13EAFBAC003F89DA /* NimbusCore.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				DB66B89613EAFAE8003F89DA /* NimbusAttributedLabel */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		DB66B8C213EAFBAC003F89DA /* libNimbusCore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNimbusCore.a;
+			remoteRef = DB66B8C113EAFBAC003F89DA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DB66B8C413EAFBAC003F89DA /* NimbusCoreUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbusCoreUnitTests.octest;
+			remoteRef = DB66B8C313EAFBAC003F89DA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB66B89313EAFAE8003F89DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB66B8E113EAFC42003F89DA /* NIAttributedLabel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DB66B8D013EAFBC7003F89DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NimbusCore;
+			targetProxy = DB66B8CF13EAFBC7003F89DA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DB66B8A213EAFAE8003F89DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DB66B8A313EAFAE8003F89DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB66B8A513EAFAE8003F89DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/NimbusAttributedLabel.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib/NimbusAttributedLabel-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DB66B8A613EAFAE8003F89DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/NimbusAttributedLabel.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lib/NimbusAttributedLabel-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB66B89113EAFAE8003F89DA /* Build configuration list for PBXProject "NimbusAttributedLabel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB66B8A213EAFAE8003F89DA /* Debug */,
+				DB66B8A313EAFAE8003F89DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB66B8A413EAFAE8003F89DA /* Build configuration list for PBXNativeTarget "NimbusAttributedLabel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB66B8A513EAFAE8003F89DA /* Debug */,
+				DB66B8A613EAFAE8003F89DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DB66B88E13EAFAE8003F89DA /* Project object */;
+}
