@@ -843,4 +843,14 @@
  * Nimbus photo viewer is faster, performs better under low-memory conditions, uses native
  * scroll views and has an overall lower memory footprint. It also encourages processing data
  * on separate threads instead of in the main UI thread like Three20's network stack does.
+ *
+ * <h3>Web Views with TTWebController</h3>
+ *
+ * Three20's web controller is one of the most popular controllers used in the Three20 framework.
+ * It is tied to the UI, UINavigator, UICommon, Style, Network and Core libraries though which
+ * meant that you had to pull in the entire Three20 framework just to use the web controller.
+ *
+ * NIWebController's only dependency is the Nimbus Core and it a direct subclass
+ * of UIViewController. This makes it is remarkably easy to add the web controller to any
+ * project with minimal overhead.
  */
