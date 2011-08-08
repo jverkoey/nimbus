@@ -846,11 +846,11 @@
  *
  * <h3>Web Views with TTWebController</h3>
  *
- * Three20's web controller is one of the most popular controllers used in the Three20 framework,
- * however it is tied heavily to the Three20UI, Three20UINavigator, Three20UICommon Three20Style, 
- * Three20Network and Three20Core and therfore you require to reference the whole Three20 project
- * in order to implement.
+ * Three20's web controller is one of the most popular controllers used in the Three20 framework.
+ * It is tied to the UI, UINavigator, UICommon, Style, Network and Core libraries though which
+ * meant that you had to pull in the entire Three20 framework just to use the web controller.
  *
- * NIWebController 's only dependency is the Nimbus Core and is a direct subclass of UIViewController. 
- * This means it is very easy to implement into any project with minimal overhead.
+ * NIWebController's only dependency is the Nimbus Core and it a direct subclass
+ * of UIViewController. This makes it is remarkably easy to add the web controller to any
+ * project with minimal overhead.
  */
