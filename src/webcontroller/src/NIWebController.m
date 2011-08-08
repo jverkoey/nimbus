@@ -69,20 +69,34 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)shareAction {
-  if (nil == _actionSheet) {
-    // Not sure how we are going to deal with localization at this point
-    _actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                               delegate:self
-                                      cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
-                                 destructiveButtonTitle:nil
-                                      otherButtonTitles:NSLocalizedString(@"Open in Safari", @""),
-                    nil];
+  // Dismiss the action menu if the user taps the action button again on the iPad.
+  if ([_actionSheet isVisible]) {
+    // It shouldn't be possible to tap the share action button again on anything but the iPad.
+    NIDASSERT(NIIsPad());
+
+    [_actionSheet dismissWithClickedButtonIndex:-1 animated:YES];
+
+    // We remove the action sheet here just in case the delegate isn't properly implemented.
+    NI_RELEASE_SAFELY(_actionSheet);
+
+    // Don't show the menu again.
+    return;
   }
-  
+
+  if (nil == _actionSheet) {
+    _actionSheet =
+    [[UIActionSheet alloc] initWithTitle: nil
+                                delegate: self
+                       cancelButtonTitle: NSLocalizedString(@"Cancel", @"")
+                  destructiveButtonTitle: nil
+                       otherButtonTitles: NSLocalizedString(@"Open in Safari", @""), nil];
+  }
+
   if (NIIsPad()) {
     [_actionSheet showFromBarButtonItem:_actionButton animated:YES];
-  }  else {
-    [_actionSheet showInView: self.view];
+
+  } else {
+    [_actionSheet showInView:self.view];
   }
 }
 
