@@ -15,10 +15,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-/*
+
+/**
  * A simple web view controller implementation with a toolbar.
  *
- *      @ingroup Web-Controllers
+ *      @ingroup NimbusWebController
  *
  * <h2>Implementing Delegate Methods</h2>
  *

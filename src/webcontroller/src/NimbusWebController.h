@@ -13,7 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-/*
+
+/**
  * @defgroup NimbusWebController Nimbus Web Controller
  * @{
  *
@@ -47,8 +48,15 @@
  *
  * @image html webcontroller-iphone-example1.png "Screenshot of a basic web controller on iPhone"
  *
- * @}
- */
+ * <h2>The Web Controller on iPad</h2>
+ *
+ * With an increase is screen size it makes sence for the web controller to have the control buttons nested
+ * withing the navigation bar at the top. 
+ * Although the current implementation works on the iPad the toolbar feels wrongly placed.
+ * 
+ * In a future version we hope to have navigation controls appropriately place for the iPad.
+ *
+ * @}*/
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
