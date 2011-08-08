@@ -332,21 +332,24 @@ static const CGFloat kButtonAnimatRadians = 2.5;
       for (NSInteger ixButton = 0; ixButton < [page count]; ++ixButton) {
         UIButton* button = [page objectAtIndex:ixButton];
         
-        CGFloat rx = (random() % 2) * (shouldAnimateLeft ? 1 : -1);
-        CGFloat ry = (random() % 2) * (shouldAnimateLeft ? -1 : 1);
-        
-        CGAffineTransform animateMove = CGAffineTransformMakeTranslation(rx, ry);
-        
-        CGAffineTransform finalTransform;
-        if (ixButton % 2) {
-          finalTransform = 
-          CGAffineTransformConcat(animateMove, shouldAnimateLeft ? animateRight : animateLeft);
-        } else {
-          finalTransform = 
-          CGAffineTransformConcat(animateMove, shouldAnimateLeft ? animateLeft : animateRight); 
+        if (button != _buttonBeingEdited) {
+          CGFloat rx = (random() % 2) * (shouldAnimateLeft ? 1 : -1);
+          CGFloat ry = (random() % 2) * (shouldAnimateLeft ? -1 : 1);
+          
+          CGAffineTransform animateMove = CGAffineTransformMakeTranslation(rx, ry);
+          
+          CGAffineTransform finalTransform;
+          if (ixButton % 2) {
+            finalTransform = 
+            CGAffineTransformConcat(animateMove, shouldAnimateLeft ? animateRight : animateLeft);
+          } else {
+            finalTransform = 
+            CGAffineTransformConcat(animateMove, shouldAnimateLeft ? animateLeft : animateRight); 
+          }
+          button.transform = finalTransform;
+          animatingButtons++;
+
         }
-        button.transform = finalTransform;
-        animatingButtons++;
       }
     }
     
@@ -361,13 +364,6 @@ static const CGFloat kButtonAnimatRadians = 2.5;
     }
     
     [UIView commitAnimations];
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) pressAndHold:(UIGestureRecognizer*)gesture {
-  if (gesture.state == UIGestureRecognizerStateBegan && !_editing) {
-    [self beginEditing];
   }
 }
 
@@ -460,35 +456,30 @@ static const CGFloat kButtonAnimatRadians = 2.5;
       }
     }
   }
-
   return NO;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTapButton:(UIButton *)tappedButton {
-  
-<<<<<<< HEAD
-  NSInteger page = -1;
-  NSInteger buttonIndex = 0;
+
   if ([self pageAndIndexOfButton:tappedButton
                             page:&page
-                           index:&buttonIndex]) {
-
-    if ([self.delegate respondsToSelector:
-         @selector(launcherView:didSelectButton:onPage:atIndex:)]) {
-      [self.delegate launcherView: self
-                  didSelectButton: tappedButton
-                           onPage: page
-                          atIndex: buttonIndex];
-=======
-  if (!_editing) {
-    NSInteger page = -1;
-    NSInteger index = 0;
-    if ([self pageAndIndexOfButton:tappedButton
-                              page:&page
-                             index:&index]) {
+                           index:&index]) {
+    
+    if (_editing) {
+      _buttonBeingEdited = nil;
+      tappedButton.transform = CGAffineTransformIdentity;
       
+      if ([self.delegate respondsToSelector:
+           @selector(launcherView:didFinishEditingButton:onPage:atIndex:)]) {
+        [self.delegate launcherView: self
+             didFinishEditingButton: tappedButton
+                             onPage: page
+                            atIndex: index];
+      }
+    } else {
+
       if ([self.delegate respondsToSelector:
            @selector(launcherView:didSelectButton:onPage:atIndex:)]) {
         [self.delegate launcherView: self
@@ -496,11 +487,72 @@ static const CGFloat kButtonAnimatRadians = 2.5;
                              onPage: page
                             atIndex: index];
       }
+    }
+  } else {
+    // How exactly did we tap a button that wasn't a part of the launcher view?
+    NIDASSERT(NO);
+  }
+}
+
+- (void) startEditingButton:(UIButton*)button {
+  
+  if (_editing) {
+    button.transform = CGAffineTransformIdentity;
+    _buttonBeingEdited = button;
+    
+    // This is normally where we would show a close button, allow dragging etc, however we want to
+    // to keep the lancher view "dumb" from the datasource. Instead we fire a delegate.
+    NSInteger page = -1;
+    NSInteger index = 0;
+    if ([self pageAndIndexOfButton:button
+                              page:&page
+                             index:&index]) {
+      
+      if ([self.delegate respondsToSelector:
+           @selector(launcherView:didStartEditingButton:onPage:atIndex:)]) {
+        [self.delegate launcherView: self
+              didStartEditingButton: button
+                             onPage: page
+                            atIndex: index];
+      }
       
     } else {
       // How exactly did we tap a button that wasn't a part of the launcher view?
       NIDASSERT(NO);
->>>>>>> Added better button item animation that looks more like the iOS Springboard
+    }
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) pressAndHold:(UILongPressGestureRecognizer*)gesture {
+  if (gesture.state == UIGestureRecognizerStateBegan && !_editing) {
+    [self beginEditing];
+    [self startEditingButton:(UIButton*)gesture.view];
+  }
+}
+
+- (void) didReleaseButton:(UIButton*)releasedButton {
+  if (_editing) {
+    _buttonBeingEdited = nil;
+    releasedButton.transform = CGAffineTransformIdentity;
+    
+    NSInteger page = -1;
+    NSInteger index = 0;
+    if ([self pageAndIndexOfButton:releasedButton
+                              page:&page
+                             index:&index]) {
+      
+      if ([self.delegate respondsToSelector:
+           @selector(launcherView:didFinishEditingButton:onPage:atIndex:)]) {
+        [self.delegate launcherView: self
+             didFinishEditingButton: releasedButton
+                             onPage: page
+                            atIndex: index];
+      }
+      
+    } else {
+      // How exactly did we tap a button that wasn't a part of the launcher view?
+      NIDASSERT(NO);
     }
   }
 }
@@ -509,7 +561,6 @@ static const CGFloat kButtonAnimatRadians = 2.5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Public Methods
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reloadData {
@@ -556,15 +607,22 @@ static const CGFloat kButtonAnimatRadians = 2.5;
                                        buttonForPage: ixPage
                                              atIndex: ixItem];
       [item       addTarget: self
+                     action: @selector(startEditingButton:)
+           forControlEvents: UIControlEventTouchDown];
+      [item       addTarget: self
                      action: @selector(didTapButton:)
            forControlEvents: UIControlEventTouchUpInside];
-      
+      [item       addTarget: self
+                     action: @selector(didReleaseButton:)
+           forControlEvents: UIControlEventTouchUpOutside];
+
       Class longPressGestureClass = NIUILongPressGestureRecognizerClass();
       if (longPressGestureClass != nil) {
         UILongPressGestureRecognizer* longPress = 
         [[longPressGestureClass alloc] initWithTarget:self 
                                                action:@selector(pressAndHold:)];
         longPress.minimumPressDuration = kPressHoldTimeInterval;
+        longPress.cancelsTouchesInView = NO;
         
         [item addGestureRecognizer:longPress];
       }
@@ -609,6 +667,8 @@ static const CGFloat kButtonAnimatRadians = 2.5;
     }
   }
   [UIView commitAnimations];
+  
+  [self layoutPages];
   
   if ([_delegate respondsToSelector:@selector(launcherViewDidEndEditing:)]) {
     [_delegate launcherViewDidEndEditing:self];

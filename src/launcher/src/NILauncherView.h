@@ -59,6 +59,7 @@ extern const NSInteger NILauncherViewDynamic;
 
   // Edit Information
   BOOL            _editing;
+  UIButton*       _buttonBeingEdited;
   
   // Protocols
   id<NILauncherDelegate>    _delegate;
@@ -150,6 +151,23 @@ extern const NSInteger NILauncherViewDynamic;
  */
 - (void)launcherViewDidEndEditing:(NILauncherView *)launcher;
 
+/**
+ * Called when the user taps and holds on a launcher button for 1 second (This will cause the
+ * the view to enter edit mode if enabled and will call launcherViewDidBeginEditing:) 
+ * or taps a launcher button in edit mode.
+ */
+- (void) launcherView: (NILauncherView *)launcher
+didStartEditingButton: (UIButton *)button
+               onPage: (NSInteger)page
+              atIndex: (NSInteger)index;
+
+/**
+ * Called when a user releases a previous tap on a launcher button when in edit mode.
+ */
+- (void)  launcherView: (NILauncherView *)launcher
+didFinishEditingButton: (UIButton *)button
+                onPage: (NSInteger)page
+               atIndex: (NSInteger)index;
 @end
 
 
