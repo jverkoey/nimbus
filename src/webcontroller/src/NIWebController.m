@@ -77,16 +77,12 @@
                                  destructiveButtonTitle:nil
                                       otherButtonTitles:NSLocalizedString(@"Open in Safari", @""),
                     nil];
-    if (NIIsPad()) {
-      [_actionSheet showFromBarButtonItem:_actionButton animated:YES];
-
-    }  else {
-      [_actionSheet showInView: self.view];
-    }
-
-  } else {
-    [_actionSheet dismissWithClickedButtonIndex:-1 animated:YES];
-    NI_RELEASE_SAFELY(_actionSheet);
+  }
+  
+  if (NIIsPad()) {
+    [_actionSheet showFromBarButtonItem:_actionButton animated:YES];
+  }  else {
+    [_actionSheet showInView: self.view];
   }
 }
 
