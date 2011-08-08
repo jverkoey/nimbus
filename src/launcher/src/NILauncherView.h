@@ -57,6 +57,9 @@ extern const NSInteger NILauncherViewDynamic;
   NSMutableArray* _pagesOfButtons;      // NSArray< NSArray< UIButton *> >
   NSMutableArray* _pagesOfScrollViews;  // NSArray< UIScrollView *>
 
+  // Edit Information
+  BOOL            _editing;
+  
   // Protocols
   id<NILauncherDelegate>    _delegate;
   id<NILauncherDataSource>  _dataSource;
@@ -75,6 +78,19 @@ extern const NSInteger NILauncherViewDynamic;
 
 @property (nonatomic, readwrite, assign) id<NILauncherDataSource> dataSource;
 
+/**
+ * Returns true when the launcher is in it's editing state
+ */
+@property (nonatomic, readonly) BOOL editing;
+
+/**
+ * Reload the launcher data.
+ *
+ * This will release all of the launcher's buttons and call all necessary data source methods
+ * again.
+ *
+ * Unlike the UITableView's reloadData, this is not a cheap method to call.
+ */
 - (void)reloadData;
 
 #pragma mark Subclassing

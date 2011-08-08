@@ -24,6 +24,8 @@ static const CGFloat kDefaultButtonDimensions = 80;
 static const CGFloat kDefaultPadding          = 10;
 static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
+static const CFTimeInterval kPressHoldTimeInterval = 1;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NILauncherView()
@@ -44,6 +46,8 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
 @synthesize delegate    = _delegate;
 @synthesize dataSource  = _dataSource;
+
+@synthesize editing     = _editing;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -299,6 +303,43 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Private Methods
+
+// Global method?
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(BOOL) gesturesAreAvailable {
+
+  BOOL available = NO;
+
+  Class gestureClass = NSClassFromString(@"UIGestureRecognizer");
+  if (gestureClass != nil) {
+    // To determine whether a class is available at runtime in a given iOS release, you typically
+    // check whether the class is nil. Unfortunately, this test is not cleanly accurate for
+    // UIGestureRecognizer.
+    // Although this class was publicly available starting with iOS 3.2, it was in development a short
+    // period prior to that. Although the class exists in an earlier release, use of it and other
+    // gesture-recognizer classes are not supported in that earlier release. Therefore we check if it
+    // responds to the location in view selector which was added in iOS 3.2
+    UIGestureRecognizer *gestureRecognizer = [[UIGestureRecognizer alloc] 
+                                              initWithTarget:self 
+                                              action:nil];
+    if ([gestureRecognizer respondsToSelector:@selector(locationInView:)]) {
+      available = YES;
+    }
+    NI_RELEASE_SAFELY(gestureRecognizer);
+  }
+  return available;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void) pressAndHold:(UIGestureRecognizer*)gesture {
+  if (gesture.state == UIGestureRecognizerStateBegan) {
+    NSLog(@"PressAndHold", nil);
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -396,6 +437,7 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTapButton:(UIButton *)tappedButton {
+  
   NSInteger page = -1;
   NSInteger buttonIndex = 0;
   if ([self pageAndIndexOfButton:tappedButton
@@ -415,7 +457,6 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
     NIDASSERT(NO);
   }
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -470,6 +511,17 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
       [item       addTarget: self
                      action: @selector(didTapButton:)
            forControlEvents: UIControlEventTouchUpInside];
+      
+      if ([self gesturesAreAvailable]) {
+        UILongPressGestureRecognizer* longPress = 
+        [[UILongPressGestureRecognizer alloc] initWithTarget:self 
+                                                      action:@selector(pressAndHold:)];
+        longPress.minimumPressDuration = kPressHoldTimeInterval;
+        
+        [item addGestureRecognizer:longPress];
+      }
+      
+      
       [page addObject:item];
       [pageScrollView addSubview:item];
     }
