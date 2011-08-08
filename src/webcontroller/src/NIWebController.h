@@ -21,32 +21,36 @@
  *
  *      @ingroup NimbusWebController
  *
- * <h2>Implementing Delegate Methods</h2>
  *
- * This view controller already implements UIWebViewDelegate. If you want to
- * implement methods of this delegate you should take care to call the super implementation
+ * <h2>Subclassing</h2>
+ *
+ * This view controller implements UIWebViewDelegate. If you want to
+ * implement methods of this delegate then you should take care to call the super implementation
  * if necessary. The following methods have implementations in this class:
  *
+ * @code
  * - webView:shouldStartLoadWithRequest:navigationType:
  * - webViewDidStartLoad:
  * - webViewDidFinishLoad:
  * - webView:didFailLoadWithError:
+ * @endcode
+ *
  *
  * <h2>Recommended Configurations</h2>
  *
  * <h3>Default</h3>
  *
  * The default settings will create a toolbar with the default tint color, which is normally
- * light blue on the iPhone and gray on the iPad
+ * light blue on the iPhone and gray on the iPad.
  *
- * <h3>Colored toolbar</h3>
+ *
+ * <h3>Colored Toolbar</h3>
  *
  * The following settings will change the toolbar tint color (in this case black)
  *
  * @code
- *  [self setToolbarTintColor:[UIColor blackColor]]
+ *  [webController setToolbarTintColor:[UIColor blackColor]];
  * @endcode
- *
  */
 
 #import <Foundation/Foundation.h>
@@ -55,44 +59,44 @@
 @interface NIWebController : UIViewController <
   UIWebViewDelegate,
   UIActionSheetDelegate > {
+@protected
+  // Views
+  UIWebView*        _webView;
+  UIToolbar*        _toolbar;
+  UIActionSheet*    _actionSheet;
+  
+  // Toolbar buttons
+  UIBarButtonItem*  _backButton;
+  UIBarButtonItem*  _forwardButton;
+  UIBarButtonItem*  _refreshButton;
+  UIBarButtonItem*  _stopButton;
+  UIBarButtonItem*  _actionButton;
+  UIBarButtonItem*  _activityItem;
 
-    @protected
-    // Views
-    UIWebView*        _webView;
-    UIToolbar*        _toolbar;
-    UIActionSheet*    _actionSheet;
-
-    // Toolbar buttons
-    UIBarButtonItem*  _backButton;
-    UIBarButtonItem*  _forwardButton;
-    UIBarButtonItem*  _refreshButton;
-    UIBarButtonItem*  _stopButton;
-    UIBarButtonItem*  _actionButton;
-    UIBarButtonItem*  _activityItem;
-
-    NSURL*            _loadingURL;
+  NSURL*            _loadingURL;
 }
-/**
- * The current web view URL. If the web view is currently loading a URL, then the
- * loading URL is returned instead.
- */
-@property (nonatomic, readonly) NSURL*  URL;
 
 /**
- * Navigate to the given URL.
+ * The current web view URL.
+ *
+ * If the web view is currently loading a URL then the loading URL is returned instead.
+ */
+- (NSURL *)URL;
+
+/**
+ * Opens the given URL in the web view.
  */
 - (void)openURL:(NSURL*)URL;
 
 /**
  * Load the given request using UIWebView's loadRequest:.
  *
- * @param request  A URL request identifying the location of the content to load.
+ *      @param request  A URL request identifying the location of the content to load.
  */
 - (void)openRequest:(NSURLRequest*)request;
 
 /**
- * Sets the toolbar to the given color
- *
+ * Sets the toolbar to the given color.
  */
 - (void)setToolbarTintColor:(UIColor*)color;
 

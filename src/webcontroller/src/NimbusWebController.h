@@ -18,21 +18,30 @@
  * @defgroup NimbusWebController Nimbus Web Controller
  * @{
  *
- * It's common functionality to display a web page within an application without
- * switching out to safari. This controller allows you to open a URL in a browser
- * view and includes common browser functionality such as forward, back, stop and
- * refresh buttons on a toolbar. The toolbar also includes an option to open the
- * URL in safari. The controller displays the document.title in the NavigationBar
- * and includes a spinner when loading.
+ * This controller presents a UIWebView with a toolbar containing basic chrome for interacting
+ * with it. The chrome shows forward, back, stop and refresh buttons on a toolbar aligned
+ * to the bottom of the view controller's view. The toolbar includes an option to open the
+ * URL in Safari. If the controller is shown in a navigation controller, self.title will
+ * show the current web page's title. A spinner will be shown in the navigation bar's right
+ * bar button area if there are any active requests.
+ *
  *
  * <h2>Adding the Web Controller to Your Application</h2>
  *
- * The Web Controller uses a small number of custom icons that are stored in the
+ * The web controller uses a small number of custom icons that are stored in the
  * NimbusWebController bundle. You must add this bundle to your application, ensuring
  * that you select the "Create Folder References" option and that the bundle is
  * copied in the "Copy Bundle Resources" phase.
  *
  * The bundle can be found at <code>src/webcontroller/resources/NimbusWebController.bundle</code>.
+ *
+ *
+ * <h2>Future Goals</h2>
+ *
+ * - Better use of screen real estate on the iPad. We will ideally provide multiple implementation
+ *   styles. For example: native Safari, with the toolbar at the top; native Twitter, with the
+ *   toolbar at the bottom; plain, with no toolbar at all.
+ *
  *
  * <h2>Example Applications</h2>
  *
@@ -42,19 +51,11 @@
  * href="https://github.com/jverkoey/nimbus/tree/master/examples/webcontroller/BasicWebController">
  * View the README on GitHub</a>
  *
- * This sample application demos the use of the web controller on iPhone and iPad
+ * This sample application demos the use of the web controller on the iPhone and iPad.
  *
  * <h2>Screenshots</h2>
  *
- * @image html webcontroller-iphone-example1.png "Screenshot of a basic web controller on iPhone"
- *
- * <h2>The Web Controller on iPad</h2>
- *
- * With an increase is screen size it makes sence for the web controller to have the control buttons nested
- * withing the navigation bar at the top. 
- * Although the current implementation works on the iPad the toolbar feels wrongly placed.
- * 
- * In a future version we hope to have navigation controls appropriately place for the iPad.
+ * @image html webcontroller-iphone-example1.png "Screenshot of a basic web controller on the iPhone"
  *
  * @}*/
 
