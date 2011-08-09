@@ -27,7 +27,7 @@
  * 
  * - Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
  * - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
- * - See the <a href="http://jverkoey.github.com/nimbus/group___version-6-0.html">latest API diffs</a>.
+ * - See the <a href="http://jverkoey.github.com/nimbus/group___version-6-1.html">latest API diffs</a>.
  * - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
  * 
  * <h2>Nimbus' Background</h2>
@@ -128,12 +128,86 @@
  */
 
 /**
+ * @defgroup Version-6-1 Version 0.6.1 API Changes
+ * @ingroup Version-6-0
+ *
+ * Version 0.6.1 of Nimbus was released on August 8, 2011. This minor version introduced the new
+ * Nimbus @link NimbusWebController WebController@endlink, a ported version of Three20's
+ * TTWebController.
+ *
+ *
+ * <h2>Added Frameworks</h2>
+ *
+ * - @link NimbusWebController Nimbus WebController@endlink
+ *
+ * @image html webcontroller-iphone-example1.png "Screenshot of a basic web controller on the iPhone"
+ *
+ *
+ * <h2>Noteworthy Non-API Changes</h2>
+ *
+ * - Added the Three20 lint tool.
+ *   (thanks to <a href="http://github.com/rogchap">rogchap</a>.)
+ * - Added migration information from TTWebController to NIWebController.
+ *   (thanks to <a href="http://github.com/rogchap">rogchap</a>.)
+ * - LICENSE and NOTICE files have been added to the project.
+ *
+ *
+ * <h2>Examples</h2>
+ *
+ * <h3>Basic Web Controller [added]</h3>
+ *
+ *
+ * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Roger Chapman</div> 
+ * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Jeff Verkoeyen</div> 
+ * <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/03a8bbdb4e0ca0078241c9b6ab04b906?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">John Wang</div> 
+ * <div class="github"><a href="http://github.com/jwang">jwang</a></div> 
+ * </div>
+ * <div class="clearfix"></div>
+ *
+ * <h3>Add Your Name to This List</h3>
+ *
+ * Contributions are highly encouraged! If you have a feature that you feel would fit within the
+ * Nimbus framework, feel free to fire off a pull request on GitHub. Bugs may be reported
+ * using the issue tracker on GitHub as well.
+ *
+ * Check out the <a href="https://github.com/jverkoey/nimbus/issues?sort=created&direction=desc&state=open&page=1&milestone=5">tasks grab bag</a>
+ * for opportunities to help out.
+ *
+ * <h2>Robots Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <div class="name"><a href="https://github.com/nimbusios/Doxygen">Nimbus Doxygen</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ */
+
+/**
  * @defgroup Version-6-0 Version 0.6 API Changes
  * @ingroup Version-History
  *
  * Version 0.6.0 of Nimbus was released on August 4, 2011. This major version introduced the new
  * Nimbus @link NimbusInterapp Interapp@endlink, a feature for making it easy to interact with
  * the exposed interfaces of other apps installed on the device.
+ *
+ *
+ * <h2>Minor Releases</h2>
+ *
+ * - Version @link Version-6-1 0.6.1.0@endlink - Released on August 8, 2011
  *
  *
  * <h2>Added Frameworks</h2>
