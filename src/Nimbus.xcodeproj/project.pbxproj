@@ -340,6 +340,8 @@
 		66325D6113EB1BFA008D6EAD /* NIJSONKitProcessorHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIJSONKitProcessorHTTPRequest.m; sourceTree = "<group>"; };
 		6661BAFF13F0AA6000D14F92 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = webcontroller/deps; sourceTree = "<group>"; };
 		6661BB0013F0AA7200D14F92 /* NimbusWebController_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NimbusWebController_Prefix.pch; sourceTree = "<group>"; };
+		6661BB0813F0B37000D14F92 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		6661BB0A13F0B38D00D14F92 /* NOTICE */ = {isa = PBXFileReference; lastKnownFileType = text; name = NOTICE; path = ../NOTICE; sourceTree = "<group>"; };
 		6675722913E765BF0076F555 /* libNimbusOverview.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusOverview.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675723613E765BF0076F555 /* NimbusOverviewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusOverviewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675724F13E765F70076F555 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = overview/deps; sourceTree = SOURCE_ROOT; };
@@ -927,6 +929,8 @@
 				66A03CBA13E6F03600B514F3 /* Doxygen.h */,
 				66A03DFB13E6FE1700B514F3 /* AUTHORS */,
 				66A03DFC13E6FE1800B514F3 /* DONORS */,
+				6661BB0813F0B37000D14F92 /* LICENSE */,
+				6661BB0A13F0B38D00D14F92 /* NOTICE */,
 				66A03C0E13E6E85E00B514F3 /* NimbusCore */,
 				6675731413E771380076F555 /* NimbusInterapp */,
 				66A03CC113E6F0ED00B514F3 /* NimbusLauncher */,
