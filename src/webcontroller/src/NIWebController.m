@@ -27,6 +27,7 @@
 - (void)releaseAllSubviews {
   _webView.delegate = nil;
 
+  NI_RELEASE_SAFELY(_actionSheet);
   NI_RELEASE_SAFELY(_webView);
   NI_RELEASE_SAFELY(_toolbar);
   NI_RELEASE_SAFELY(_backButton);
@@ -40,7 +41,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_loadingURL);
-  NI_RELEASE_SAFELY(_actionSheet);
   [self releaseAllSubviews];
 
   [super dealloc];
@@ -339,6 +339,10 @@
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+  NI_RELEASE_SAFELY(_actionSheet);
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSURL *)URL {
