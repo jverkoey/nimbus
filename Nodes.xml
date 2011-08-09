@@ -248,6 +248,12 @@
           </Subnodes>
          </Node>
          <Node>
+          <Name>Nimbus Web Controller</Name>
+          <Path>group___nimbus_web_controller.html</Path>
+          <Subnodes>
+          </Subnodes>
+         </Node>
+         <Node>
           <Name>Three20 Migration Guide</Name>
           <Path>group___three20-_migration-_guide.html</Path>
           <Subnodes>
@@ -297,6 +303,12 @@
             <Name>Version 0.6 API Changes</Name>
             <Path>group___version-6-0.html</Path>
             <Subnodes>
+             <Node>
+              <Name>Version 0.6.1 API Changes</Name>
+              <Path>group___version-6-1.html</Path>
+              <Subnodes>
+              </Subnodes>
+             </Node>
             </Subnodes>
            </Node>
           </Subnodes>
@@ -494,6 +506,10 @@
          <Node>
           <Name>NIToolbarPhotoViewController</Name>
           <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
+         </Node>
+         <Node>
+          <Name>NIWebController</Name>
+          <Path>interface_n_i_web_controller.html</Path>
          </Node>
          <Node>
           <Name>NSData</Name>
@@ -738,6 +754,10 @@
          <Node>
           <Name>&lt;NIProcessorDelegate&gt;</Name>
           <Path>protocol_n_i_processor_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NIWebController</Name>
+          <Path>interface_n_i_web_controller.html</Path>
          </Node>
          <Node>
           <Name>NSData</Name>

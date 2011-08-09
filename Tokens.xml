@@ -780,6 +780,14 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>Version-6-1</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___version-6-1.html</Path>
+    <Abstract>Version 0.6.1 of Nimbus was released on August 8, 2011.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Version-6-0</Name>
       <APILanguage>occ</APILanguage>
     </TokenIdentifier>
@@ -989,6 +997,14 @@
     </TokenIdentifier>
     <Path>group___network-_processors.html</Path>
     <Abstract>Processors designed specifically for network access.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NimbusWebController</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___nimbus_web_controller.html</Path>
+    <Abstract>This controller presents a UIWebView with a toolbar containing basic chrome for interacting with it...</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -5242,6 +5258,60 @@
     <Path>protocol_n_i_photo_scrubber_view_delegate-p.html</Path>
     <Anchor>a57c268be8d7a941087d978e6307c59d6</Anchor>
     <Abstract>The photo scrubber changed its selection.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIWebController</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_web_controller.html</Path>
+    <Abstract>A simple web view controller implementation with a toolbar.</Abstract>
+    <DeclaredIn>NIWebController.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>URL</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIWebController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_web_controller.html</Path>
+    <Anchor>ad0ae0b23fa476080ef1b1bcae053fb9d</Anchor>
+    <Abstract>The current web view URL.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>openURL:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIWebController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_web_controller.html</Path>
+    <Anchor>a0f68cdfe622b1dccc1d1e31e32dc7afa</Anchor>
+    <Abstract>Opens the given URL in the web view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>openRequest:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIWebController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_web_controller.html</Path>
+    <Anchor>aa533d6e1345d438678112140bf231f8c</Anchor>
+    <Abstract>Load the given request using UIWebView&amp;#39;s loadRequest:.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setToolbarTintColor:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIWebController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_web_controller.html</Path>
+    <Anchor>a3b99dd49315fd6fa7b971bc31a114dfe</Anchor>
+    <Abstract>Sets the toolbar to the given color.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>

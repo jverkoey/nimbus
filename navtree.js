@@ -50,6 +50,7 @@ var NAVTREE =
       [ "Nimbus Processors", "group___nimbus_processors.html", [
         [ "Network Processors", "group___network-_processors.html", null ]
       ] ],
+      [ "Nimbus Web Controller", "group___nimbus_web_controller.html", null ],
       [ "Three20 Migration Guide", "group___three20-_migration-_guide.html", null ],
       [ "Version History", "group___version-_history.html", [
         [ "Version 0.1", "group___version-1.html", null ],
@@ -59,7 +60,9 @@ var NAVTREE =
           [ "Version 0.4.1 API Changes", "group___version-4-1.html", null ]
         ] ],
         [ "Version 0.5 API Changes", "group___version-5-0.html", null ],
-        [ "Version 0.6 API Changes", "group___version-6-0.html", null ]
+        [ "Version 0.6 API Changes", "group___version-6-0.html", [
+          [ "Version 0.6.1 API Changes", "group___version-6-1.html", null ]
+        ] ]
       ] ]
     ] ],
     [ "Class List", "annotated.html", [
@@ -110,6 +113,7 @@ var NAVTREE =
       [ "NIProcessorHTTPRequest", "interface_n_i_processor_h_t_t_p_request.html", null ],
       [ "NIReadFileFromDiskOperation", "interface_n_i_read_file_from_disk_operation.html", null ],
       [ "NIToolbarPhotoViewController", "interface_n_i_toolbar_photo_view_controller.html", null ],
+      [ "NIWebController", "interface_n_i_web_controller.html", null ],
       [ "NSData", "class_n_s_data.html", null ],
       [ "NSString", "class_n_s_string.html", null ]
     ] ],
@@ -178,6 +182,7 @@ var NAVTREE =
         [ "NIToolbarPhotoViewController", "interface_n_i_toolbar_photo_view_controller.html", null ]
       ] ],
       [ "<NIProcessorDelegate>", "protocol_n_i_processor_delegate-p.html", null ],
+      [ "NIWebController", "interface_n_i_web_controller.html", null ],
       [ "NSData", "class_n_s_data.html", null ],
       [ "NSString", "class_n_s_string.html", null ]
     ] ],
@@ -361,7 +366,10 @@ var NAVTREE =
       [ "/Users/featherless/workbench/ios/nimbus/src/processors/src/NIProcessorHTTPRequest.h", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/processors/src/NIProcessorHTTPRequest.m", null, null ],
       [ "/Users/featherless/workbench/ios/nimbus/src/processors/src_JSONKit/NIJSONKitProcessorHTTPRequest.h", null, null ],
-      [ "/Users/featherless/workbench/ios/nimbus/src/processors/src_JSONKit/NIJSONKitProcessorHTTPRequest.m", null, null ]
+      [ "/Users/featherless/workbench/ios/nimbus/src/processors/src_JSONKit/NIJSONKitProcessorHTTPRequest.m", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/webcontroller/src/NimbusWebController.h", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/webcontroller/src/NIWebController.h", null, null ],
+      [ "/Users/featherless/workbench/ios/nimbus/src/webcontroller/src/NIWebController.m", null, null ]
     ] ],
     [ "Examples", "examples.html", [
       [ "ExampleRuntimeDebugging.m", "_example_runtime_debugging_8m-example.html", null ]
