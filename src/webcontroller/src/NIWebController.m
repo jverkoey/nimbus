@@ -100,11 +100,11 @@
 
   if (nil == _actionSheet) {
     _actionSheet =
-    [[UIActionSheet alloc] initWithTitle: nil
-                                delegate: self
-                       cancelButtonTitle: NSLocalizedString(@"Cancel", @"")
-                  destructiveButtonTitle: nil
-                       otherButtonTitles: NSLocalizedString(@"Open in Safari", @""), nil];
+    [[UIActionSheet alloc] initWithTitle:[self.URL absoluteString]
+                                delegate:self
+                       cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+                  destructiveButtonTitle:nil
+                       otherButtonTitles:NSLocalizedString(@"Open in Safari", @""), NSLocalizedString(@"Copy URL", @""), nil];
   }
 
   if (NIIsPad()) {
@@ -336,6 +336,9 @@
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
   if (buttonIndex == 0) {
     [[UIApplication sharedApplication] openURL:self.URL];
+  }
+  else if (buttonIndex == 1) {
+    [[UIPasteboard generalPasteboard] setURL:self.URL];
   }
 }
 
