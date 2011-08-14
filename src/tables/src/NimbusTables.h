@@ -14,12 +14,18 @@
 // limitations under the License.
 //
 
+/**
+ * 
+ * @defgroup NimbusTables Nimbus Tables
+ * @{
+ */
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface CatalogTableViewController : UITableViewController <NITableViewModelDelegate> {
-@private
-  NITableViewModel* _model;
-}
+// Dependencies
+#import "NimbusCore.h"
 
-@end
+#import "NITableViewModel.h"
+
+/**@}*/

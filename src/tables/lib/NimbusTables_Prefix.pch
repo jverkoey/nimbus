@@ -14,12 +14,7 @@
 // limitations under the License.
 //
 
+#ifdef __OBJC__
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-@interface CatalogTableViewController : UITableViewController <NITableViewModelDelegate> {
-@private
-  NITableViewModel* _model;
-}
-
-@end
+#import "NimbusCore.h"
+#endif

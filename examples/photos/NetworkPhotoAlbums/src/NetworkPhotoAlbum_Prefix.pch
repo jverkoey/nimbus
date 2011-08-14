@@ -21,5 +21,6 @@
 #import "NimbusCore.h"
 #import "NimbusPhotos.h"
 #import "NimbusProcessors.h"
+#import "NimbusTables.h"
 #import "NIJSONKitProcessorHTTPRequest.h"
 #endif

@@ -13,6 +13,7 @@
 		6631671713D680A500FF0CBE /* NetworkPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631671613D680A500FF0CBE /* NetworkPhotoAlbumViewController.m */; };
 		6631673613D6825800FF0CBE /* CatalogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631673513D6825800FF0CBE /* CatalogTableViewController.m */; };
 		6631680D13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631680C13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.m */; };
+		663F85CC13F86D780042CDE3 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 663F85CB13F86D780042CDE3 /* NITableViewModel.m */; };
 		66409FA013E25C5300E9BA5A /* NIDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9213E25C5300E9BA5A /* NIDeviceInfo.m */; };
 		66409FA113E25C5300E9BA5A /* NIOverview.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9513E25C5300E9BA5A /* NIOverview.m */; };
 		66409FA213E25C5300E9BA5A /* NIOverviewGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9713E25C5300E9BA5A /* NIOverviewGraphView.m */; };
@@ -75,6 +76,9 @@
 		6631673513D6825800FF0CBE /* CatalogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CatalogTableViewController.m; path = src/CatalogTableViewController.m; sourceTree = "<group>"; };
 		6631680B13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DribbblePhotoAlbumViewController.h; path = src/DribbblePhotoAlbumViewController.h; sourceTree = "<group>"; };
 		6631680C13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DribbblePhotoAlbumViewController.m; path = src/DribbblePhotoAlbumViewController.m; sourceTree = "<group>"; };
+		663F85C913F86D780042CDE3 /* NimbusTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusTables.h; path = ../../../src/tables/src/NimbusTables.h; sourceTree = "<group>"; };
+		663F85CA13F86D780042CDE3 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITableViewModel.h; path = ../../../src/tables/src/NITableViewModel.h; sourceTree = "<group>"; };
+		663F85CB13F86D780042CDE3 /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITableViewModel.m; path = ../../../src/tables/src/NITableViewModel.m; sourceTree = "<group>"; };
 		66409F9113E25C5300E9BA5A /* NIDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDeviceInfo.h; path = ../../../src/overview/src/NIDeviceInfo.h; sourceTree = "<group>"; };
 		66409F9213E25C5300E9BA5A /* NIDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDeviceInfo.m; path = ../../../src/overview/src/NIDeviceInfo.m; sourceTree = "<group>"; };
 		66409F9313E25C5300E9BA5A /* NimbusOverview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusOverview.h; path = ../../../src/overview/src/NimbusOverview.h; sourceTree = "<group>"; };
@@ -266,6 +270,16 @@
 			name = Dribbble;
 			sourceTree = "<group>";
 		};
+		663F85C813F86D5D0042CDE3 /* Tables */ = {
+			isa = PBXGroup;
+			children = (
+				663F85C913F86D780042CDE3 /* NimbusTables.h */,
+				663F85CA13F86D780042CDE3 /* NITableViewModel.h */,
+				663F85CB13F86D780042CDE3 /* NITableViewModel.m */,
+			);
+			name = Tables;
+			sourceTree = "<group>";
+		};
 		665E0B9513CE814D008A1D21 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,11 +437,12 @@
 		66EA058E13C0126F004FFE1A /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
-				665E0B9513CE814D008A1D21 /* Core */,
-				665E0BC613CE8161008A1D21 /* Photos */,
-				66C52CC313DAA79E00D6BA6F /* Overview */,
 				669815CB13D507F900417E8B /* ASIHTTPRequest */,
+				665E0B9513CE814D008A1D21 /* Core */,
+				66C52CC313DAA79E00D6BA6F /* Overview */,
+				665E0BC613CE8161008A1D21 /* Photos */,
 				669819D313D5739D00417E8B /* Processors */,
+				663F85C813F86D5D0042CDE3 /* Tables */,
 				669815CA13D507F200417E8B /* JSONKit */,
 			);
 			name = Nimbus;
@@ -553,6 +568,7 @@
 				66409FA413E25C5300E9BA5A /* NIOverviewPageView.m in Sources */,
 				66409FA513E25C5300E9BA5A /* NIOverviewSwizzling.m in Sources */,
 				66409FA613E25C5300E9BA5A /* NIOverviewView.m in Sources */,
+				663F85CC13F86D780042CDE3 /* NITableViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
