@@ -305,6 +305,32 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)nameOfLeastRecentlyUsedObject {
+  NIMemoryCacheInfo* info = [self.lruCacheObjects firstObject];
+
+  if ([info hasExpired]) {
+    [self removeObjectWithName:info.name];
+    return nil;
+  }
+
+  return info.name;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)nameOfMostRecentlyUsedObject {
+  NIMemoryCacheInfo* info = [self.lruCacheObjects lastObject];
+
+  if ([info hasExpired]) {
+    [self removeObjectWithName:info.name];
+    return nil;
+  }
+
+  return info.name;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeObjectWithName:(NSString *)name {
   [self removeCacheInfoForName:name];
 }
