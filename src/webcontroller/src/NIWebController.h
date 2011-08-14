@@ -73,6 +73,7 @@
   UIBarButtonItem*  _actionButton;
   UIBarButtonItem*  _activityItem;
 
+  NSURL*            _actionSheetURL;
   NSURL*            _loadingURL;
 }
 

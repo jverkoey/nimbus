@@ -40,6 +40,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
+  NI_RELEASE_SAFELY(_actionSheetURL);
   NI_RELEASE_SAFELY(_loadingURL);
   [self releaseAllSubviews];
 
@@ -93,14 +94,19 @@
 
     // We remove the action sheet here just in case the delegate isn't properly implemented.
     NI_RELEASE_SAFELY(_actionSheet);
+    NI_RELEASE_SAFELY(_actionSheetURL);
 
     // Don't show the menu again.
     return;
   }
 
+  // Remember the URL at this point
+  [_actionSheetURL release];
+  _actionSheetURL = [self.URL copy];
+
   if (nil == _actionSheet) {
     _actionSheet =
-    [[UIActionSheet alloc] initWithTitle:[self.URL absoluteString]
+    [[UIActionSheet alloc] initWithTitle:[_actionSheetURL absoluteString]
                                 delegate:self
                        cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
                   destructiveButtonTitle:nil
@@ -335,16 +341,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
   if (buttonIndex == 0) {
-    [[UIApplication sharedApplication] openURL:self.URL];
+    [[UIApplication sharedApplication] openURL:_actionSheetURL];
   }
   else if (buttonIndex == 1) {
-    [[UIPasteboard generalPasteboard] setURL:self.URL];
+    [[UIPasteboard generalPasteboard] setURL:_actionSheetURL];
   }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
   NI_RELEASE_SAFELY(_actionSheet);
+  NI_RELEASE_SAFELY(_actionSheetURL);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
