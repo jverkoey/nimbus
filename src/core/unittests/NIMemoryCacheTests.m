@@ -267,6 +267,37 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testLeastAndMostRecentlyUsedObjects {
+  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+
+  STAssertNil([cache nameOfLeastRecentlyUsedObject],
+              @"There should not be a least-recently-used object.");
+  STAssertNil([cache nameOfMostRecentlyUsedObject],
+              @"There should not be a most-recently-used object.");
+
+  id cacheObject1 = [NSArray array];
+  id cacheObject2 = [NSDictionary dictionary];
+  id cacheObject3 = [NSSet set];
+  [cache storeObject:cacheObject1 withName:@"obj1"];
+  [cache storeObject:cacheObject2 withName:@"obj2"];
+  [cache storeObject:cacheObject3 withName:@"obj3"];
+
+  STAssertEquals(@"obj1", [cache nameOfLeastRecentlyUsedObject],
+                 @"The least recently used object should be object 1.");
+  STAssertEquals(@"obj3", [cache nameOfMostRecentlyUsedObject],
+                 @"The most recently used object should be object 3.");
+
+  // Make object 1 the most-recently-accessed
+  [cache objectWithName:@"obj1"];
+
+  STAssertEquals(@"obj2", [cache nameOfLeastRecentlyUsedObject],
+                 @"The least recently used object should be object 2.");
+  STAssertEquals(@"obj1", [cache nameOfMostRecentlyUsedObject],
+                 @"The most recently used object should be object 1.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testReduceMemoryUsage {
   NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
 
