@@ -59,6 +59,25 @@
 - (BOOL)containsObjectWithName:(NSString *)name;
 - (NSDate *)dateOfLastAccessWithName:(NSString *)name;
 
+/**
+ * Retrieve the key with the most stale access.
+ *
+ * This will not update the access time of the object.
+ *
+ * If there's no object matching that criteria, return nil;
+ */
+- (NSString *)nameOfLeastRecentlyUsedObject;
+
+/**
+ * Retrieve the key with the most fresh access.
+ *
+ * This will not update the access time of the object.
+ *
+ * If there's no object matching that criteria, return nil;
+ */
+
+- (NSString *)nameOfMostRecentlyUsedObject;
+
 - (void)reduceMemoryUsage;
 
 
