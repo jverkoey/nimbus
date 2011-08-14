@@ -59,23 +59,7 @@
 - (BOOL)containsObjectWithName:(NSString *)name;
 - (NSDate *)dateOfLastAccessWithName:(NSString *)name;
 
-/**
- * Retrieve the key with the most stale access.
- *
- * This will not update the access time of the object.
- *
- * If there's no object matching that criteria, return nil;
- */
 - (NSString *)nameOfLeastRecentlyUsedObject;
-
-/**
- * Retrieve the key with the most fresh access.
- *
- * This will not update the access time of the object.
- *
- * If there's no object matching that criteria, return nil;
- */
-
 - (NSString *)nameOfMostRecentlyUsedObject;
 
 - (void)reduceMemoryUsage;
@@ -222,6 +206,26 @@
  *      @returns The last access date of the object if it exists and has not expired, nil
  *               otherwise.
  *      @fn NIMemoryCache::dateOfLastAccessWithName:
+ */
+
+/**
+ * Retrieve the name of the object that was least recently used.
+ *
+ * This will not update the access time of the object.
+ *
+ * If the cache is empty, returns nil.
+ *
+ *      @fn NIMemoryCache::nameOfLeastRecentlyUsedObject
+ */
+
+/**
+ * Retrieve the key with the most fresh access.
+ *
+ * This will not update the access time of the object.
+ *
+ * If the cache is empty, returns nil.
+ *
+ *      @fn NIMemoryCache::nameOfMostRecentlyUsedObject
  */
 
 
