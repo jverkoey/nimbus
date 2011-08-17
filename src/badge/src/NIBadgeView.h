@@ -36,24 +36,23 @@
   UIColor* _textColor;
 }
 
-/*
+/**
  * The text to display within the badge.
  *
  *      @attention  If you want the view to rezise based on the text be sure
  *                  be sure to call -sizeToFit after you set the text, as this 
  *                  will not happen automatically.
-       
  */
 @property (nonatomic, readwrite, copy) NSString* text;
 
 
-/*
+/**
  * The tint color of the badge. The default color is red.
  */
 @property (nonatomic, readwrite, assign) UIColor* tintColor;
 
 
-/*
+/**
  * The font of the text within the badge. 
  * The default is bold system font of size 13.
  *
@@ -64,7 +63,7 @@
 @property (nonatomic, readwrite, assign) UIFont* font;
 
 
-/*
+/**
  * The text color for the badge. The default color is white.
  */
 @property (nonatomic, readwrite, assign) UIColor* textColor;
