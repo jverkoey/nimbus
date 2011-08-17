@@ -103,7 +103,7 @@
 
   // Remember the URL at this point
   [_actionSheetURL release];
-  _actionSheetURL = [self.URL copy];
+  _actionSheetURL = [_webView.request.URL copy];
 
   if (nil == _actionSheet) {
     _actionSheet =
