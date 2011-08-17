@@ -1,5 +1,6 @@
 //
 // Copyright 2011 Roger Chapman
+// Copyright 2011 Benedikt Meurer
 //
 // Forked from Three20 July 29, 2011 - Copyright 2009-2011 Facebook
 //
@@ -111,7 +112,9 @@
                        cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
                   destructiveButtonTitle:nil
                        otherButtonTitles:nil];
+    // Let -willPresentActionSheet: setup the action sheet
     if (![self willPresentActionSheet:_actionSheet]) {
+      // A subclass decided to handle the action in another way
       NI_RELEASE_SAFELY(_actionSheet);
       NI_RELEASE_SAFELY(_actionSheetURL);
       return;
