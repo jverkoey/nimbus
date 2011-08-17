@@ -16,13 +16,8 @@
 
 #import "NIBadgeView.h"
 
-<<<<<<< HEAD
 static const CGFloat kBadgeRadius = 0.4f;
 static const CGFloat kBadgeLineSize = 2.0f;
-=======
-static const CGFloat kBadgeRadius = 0.4;
-static const CGFloat kBadgeLineSize = 2.0;
->>>>>>> 1fbcdefc50bdf266393fa720900923f521402100
 
 @implementation NIBadgeView
 
