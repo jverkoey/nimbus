@@ -53,6 +53,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NITableViewModel
 
+@synthesize sectionIndexType = _sectionIndexType;
+@synthesize sectionIndexShowsSearch = _sectionIndexShowsSearch;
+@synthesize sectionIndexShowsSummary = _sectionIndexShowsSummary;
 @synthesize delegate = _delegate;
 #if NS_BLOCKS_AVAILABLE
 @synthesize createCellBlock = _createCellBlock;
@@ -62,6 +65,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_sections);
+  NI_RELEASE_SAFELY(_sectionIndexTitles);
+  NI_RELEASE_SAFELY(_sectionPrefixToSectionIndex);
 
 #if NS_BLOCKS_AVAILABLE
   NI_RELEASE_SAFELY(_createCellBlock);
@@ -75,6 +80,10 @@
 - (id)initWithDelegate:(id<NITableViewModelDelegate>)delegate {
   if ((self = [super init])) {
     self.delegate = delegate;
+
+    _sectionIndexType = NITableViewModelSectionIndexNone;
+    _sectionIndexShowsSearch = NO;
+    _sectionIndexShowsSummary = NO;
 
     [self _resetCompiledData];
   }
@@ -109,6 +118,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_resetCompiledData {
   NI_RELEASE_SAFELY(_sections);
+  NI_RELEASE_SAFELY(_sectionIndexTitles);
+  NI_RELEASE_SAFELY(_sectionPrefixToSectionIndex);
 }
 
 
@@ -186,6 +197,93 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_compileSectionIndex {
+  NI_RELEASE_SAFELY(_sectionIndexTitles);
+
+  // Prime the section index and the map
+  NSMutableArray* titles = nil;
+  NSMutableDictionary* sectionPrefixToSectionIndex = nil;
+  if (NITableViewModelSectionIndexNone != _sectionIndexType) {
+    titles = [NSMutableArray array];
+    sectionPrefixToSectionIndex = [NSMutableDictionary dictionary];
+
+    // The search symbol is always first in the index.
+    if (_sectionIndexShowsSearch) {
+      [titles addObject:UITableViewIndexSearch];
+    }
+  }
+
+  // A dynamic index shows the first letter of every section in the index in whatever order the
+  // sections are ordered (this may not be alphabetical).
+  if (NITableViewModelSectionIndexDynamic == _sectionIndexType) {
+    for (NITableViewModelSection* section in _sections) {
+      NSString* headerTitle = section.headerTitle;
+      if (NIIsStringWithAnyText(headerTitle)) {
+        NSString* prefix = [headerTitle substringToIndex:1];
+        if (NIIsStringWithAnyText(prefix)) {
+          [titles addObject:prefix];
+        }
+      }
+    }
+
+    // Use the localized indexed collation to create the index. In English, this will always be
+    // the entire alphabet.
+  } else if (NITableViewModelSectionIndexAlphabetical == _sectionIndexType) {
+    NSArray* sectionIndexTitles = [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
+
+    // The localized indexed collection sometimes includes a # for summaries, but we might
+    // not want to show a summary in the index, so prune it out. It's not guaranteed that
+    // a # will actually be included in the section index titles, so we always attempt to
+    // remove it for consistency's sake and then add it back down below if it is requested.
+    for (NSString* letter in sectionIndexTitles) {
+      if (![letter isEqualToString:@"#"]) {
+        [titles addObject:letter];
+      }
+    }
+  }
+
+  // Add the section summary symbol if it was requested.
+  if (_sectionIndexShowsSummary) {
+    [titles addObject:@"#"];
+  }
+
+  // Build the prefix => section index map.
+  if (NITableViewModelSectionIndexNone != _sectionIndexType) {
+
+    // Map all of the sections to indices.
+    NSInteger sectionIndex = 0;
+    for (NITableViewModelSection* section in _sections) {
+      NSString* headerTitle = section.headerTitle;
+      if (NIIsStringWithAnyText(headerTitle)) {
+        NSString* prefix = [headerTitle substringToIndex:1];
+        if (NIIsStringWithAnyText(prefix)) {
+          if (nil == [sectionPrefixToSectionIndex objectForKey:prefix]) {
+            [sectionPrefixToSectionIndex setObject:[NSNumber numberWithInt:sectionIndex] forKey:prefix];
+          }
+        }
+      }
+      ++sectionIndex;
+    }
+
+    // Map the unmapped section titles to the next closest earlier section.
+    NSInteger lastIndex = 0;
+    for (NSString* title in titles) {
+      NSString* prefix = [title substringToIndex:1];
+      if (nil != [sectionPrefixToSectionIndex objectForKey:prefix]) {
+        lastIndex = [[sectionPrefixToSectionIndex objectForKey:prefix] intValue];
+        
+      } else {
+        [sectionPrefixToSectionIndex setObject:[NSNumber numberWithInt:lastIndex] forKey:prefix];
+      }
+    }
+  }
+
+  _sectionIndexTitles = [titles copy];
+  _sectionPrefixToSectionIndex = [sectionPrefixToSectionIndex copy];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -193,7 +291,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  // We don't use [_sectionTitles count] because if there are no sections we should still return 1.
   return MAX(1, [_sections count]);
 }
 
@@ -226,6 +323,31 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
   // This is a static model; nothing can be edited.
   return NO;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+  return _sectionIndexTitles;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+  if (tableView.tableHeaderView) {
+    if (index == 0 && [_sectionIndexTitles count] > 0
+        && [_sectionIndexTitles objectAtIndex:0] == UITableViewIndexSearch)  {
+      // This is a hack to get the table header to appear when the user touches the
+      // first row in the section index.  By default, it shows the first row, which is
+      // not usually what you want.
+      [tableView scrollRectToVisible:tableView.tableHeaderView.bounds animated:NO];
+      return -1;
+    }
+  }
+
+  NSString* letter = [title substringToIndex:1];
+  NSNumber* sectionIndex = [_sectionPrefixToSectionIndex objectForKey:letter];
+  return (nil != sectionIndex) ? [sectionIndex intValue] : -1;
 }
 
 
@@ -289,6 +411,20 @@
   }
 
   return object;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setSectionIndexType:(NITableViewModelSectionIndex)sectionIndexType showsSearch:(BOOL)showsSearch showsSummary:(BOOL)showsSummary {
+  if (_sectionIndexType != sectionIndexType
+      || _sectionIndexShowsSearch != showsSearch
+      || _sectionIndexShowsSummary != showsSummary) {
+    _sectionIndexType = sectionIndexType;
+    _sectionIndexShowsSearch = showsSearch;
+    _sectionIndexShowsSummary = showsSummary;
+
+    [self _compileSectionIndex];
+  }
 }
 
 

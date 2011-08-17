@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		666C0D6213FC5A9D00C6E955 /* StaticIndexedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666C0D6113FC5A9D00C6E955 /* StaticIndexedTableViewController.m */; };
 		66FE7D8213FB90C40061B987 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FE7D8113FB90C40061B987 /* UIKit.framework */; };
 		66FE7D8413FB90C40061B987 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FE7D8313FB90C40061B987 /* Foundation.framework */; };
 		66FE7D8613FB90C40061B987 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FE7D8513FB90C40061B987 /* CoreGraphics.framework */; };
@@ -37,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		666C0D6013FC5A9D00C6E955 /* StaticIndexedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticIndexedTableViewController.h; path = src/StaticIndexedTableViewController.h; sourceTree = "<group>"; };
+		666C0D6113FC5A9D00C6E955 /* StaticIndexedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StaticIndexedTableViewController.m; path = src/StaticIndexedTableViewController.m; sourceTree = "<group>"; };
 		66FE7D7D13FB90C40061B987 /* ModelCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModelCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FE7D8113FB90C40061B987 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		66FE7D8313FB90C40061B987 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -89,7 +92,7 @@
 		66FE7DD513FBF06F0061B987 /* NimbusModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusModels.h; path = ../../../../src/models/src/NimbusModels.h; sourceTree = "<group>"; };
 		66FE7DD613FBF06F0061B987 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITableViewModel.h; path = ../../../../src/models/src/NITableViewModel.h; sourceTree = "<group>"; };
 		66FE7DD713FBF06F0061B987 /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITableViewModel.m; path = ../../../../src/models/src/NITableViewModel.m; sourceTree = "<group>"; };
-		66FE7DDA13FBF1520061B987 /* StaticSectionedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; name = StaticSectionedTableViewController.h; path = src/StaticSectionedTableViewController.h; sourceTree = "<group>"; };
+		66FE7DDA13FBF1520061B987 /* StaticSectionedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticSectionedTableViewController.h; path = src/StaticSectionedTableViewController.h; sourceTree = "<group>"; };
 		66FE7DDB13FBF1520061B987 /* StaticSectionedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StaticSectionedTableViewController.m; path = src/StaticSectionedTableViewController.m; sourceTree = "<group>"; };
 		66FE7DDF13FBF4EB0061B987 /* StaticListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticListTableViewController.h; path = src/StaticListTableViewController.h; sourceTree = "<group>"; };
 		66FE7DE013FBF4EB0061B987 /* StaticListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StaticListTableViewController.m; path = src/StaticListTableViewController.m; sourceTree = "<group>"; };
@@ -109,6 +112,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		666C0D5E13FC5A6A00C6E955 /* Static Indexed Model */ = {
+			isa = PBXGroup;
+			children = (
+				666C0D6013FC5A9D00C6E955 /* StaticIndexedTableViewController.h */,
+				666C0D6113FC5A9D00C6E955 /* StaticIndexedTableViewController.m */,
+			);
+			name = "Static Indexed Model";
+			sourceTree = "<group>";
+		};
 		66FE7D7213FB90C40061B987 = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +258,7 @@
 			children = (
 				66FE7DDE13FBF4CD0061B987 /* Static List Model */,
 				66FE7DDD13FBF2E90061B987 /* Static Sectioned Model */,
+				666C0D5E13FC5A6A00C6E955 /* Static Indexed Model */,
 			);
 			name = "Table View Models";
 			sourceTree = "<group>";
@@ -352,6 +365,7 @@
 				66FE7DD813FBF06F0061B987 /* NITableViewModel.m in Sources */,
 				66FE7DDC13FBF1520061B987 /* StaticSectionedTableViewController.m in Sources */,
 				66FE7DE113FBF4EB0061B987 /* StaticListTableViewController.m in Sources */,
+				666C0D6213FC5A9D00C6E955 /* StaticIndexedTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +453,7 @@
 				66FE7D9613FB90C40061B987 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

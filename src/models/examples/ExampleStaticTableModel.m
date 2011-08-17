@@ -55,6 +55,7 @@
 
      @"Section 2",
      [NSDictionary dictionaryWithObject:@"Row 4" forKey:@"title"],
+     [NITableViewModelFooter footerWithTitle:@"Footer"],
      nil];
     
     // This controller creates the table view cells.

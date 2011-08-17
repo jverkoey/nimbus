@@ -22,8 +22,17 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
 
 @protocol NITableViewModelDelegate;
 
+
+#pragma mark Sectioned Array Objects
+
 // Classes used when creating NITableViewModels.
 @class NITableViewModelFooter;  // Provides the information for a footer.
+
+typedef enum {
+  NITableViewModelSectionIndexNone, // Displays no section index.
+  NITableViewModelSectionIndexDynamic, // Generates a section index from the first letters of the section titles.
+  NITableViewModelSectionIndexAlphabetical, // Generates an alphabetical section index.
+} NITableViewModelSectionIndex;
 
 /**
  * A non-mutable table view model that complies to the UITableViewDataSource protocol.
@@ -40,6 +49,12 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
 @private
   // Compiled Information
   NSArray* _sections;  // Array of internal section objects
+  NSArray* _sectionIndexTitles;
+  NSDictionary* _sectionPrefixToSectionIndex;
+
+  NITableViewModelSectionIndex _sectionIndexType;
+  BOOL _sectionIndexShowsSearch;
+  BOOL _sectionIndexShowsSummary;
 
   // Creating Table View Cells
   id<NITableViewModelDelegate> _delegate;
@@ -54,11 +69,20 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
 // Designated initializer.
 - (id)initWithDelegate:(id<NITableViewModelDelegate>)delegate;
 - (id)initWithListArray:(NSArray *)sectionedArray delegate:(id<NITableViewModelDelegate>)delegate;
+// Each NSString in the array starts a new section. Any other object is a new row (with exception of certain model-specific objects).
 - (id)initWithSectionedArray:(NSArray *)sectionedArray delegate:(id<NITableViewModelDelegate>)delegate;
 
 #pragma mark Accessing Objects
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+
+#pragma mark Configuration
+
+- (void)setSectionIndexType:(NITableViewModelSectionIndex)sectionIndexType showsSearch:(BOOL)showsSearch showsSummary:(BOOL)showsSummary;
+
+@property (nonatomic, readonly, assign) NITableViewModelSectionIndex sectionIndexType;
+@property (nonatomic, readonly, assign) BOOL sectionIndexShowsSearch;
+@property (nonatomic, readonly, assign) BOOL sectionIndexShowsSummary;
 
 #pragma mark Creating Table View Cells
 
@@ -99,7 +123,7 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
  * <h3>Example</h3>
  *
  * @code
- *  [NITableViewModelFooter footerWithTitle:@"Footer"],
+ *  [NITableViewModelFooter footerWithTitle:@"Footer"]
  * @endcode
  */
 @interface NITableViewModelFooter : NSObject {
@@ -164,6 +188,7 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
  *  // This section is empty.
  *  @"Section 3",
  *  [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
+ *  [NITableViewModelFooter footerWithTitle:@"Footer"],
  *  nil];
  * [[NIStaticTableViewModel alloc] initWithSectionedArray:contents delegate:self];
  * @endcode
@@ -181,6 +206,46 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
  * will be returned.
  *
  *      @fn NITableViewModel::objectAtIndexPath:
+ */
+
+
+/** @name Configuration */
+
+/**
+ * Configures the model's section index properties.
+ *
+ * Calling this method will compile the section index depending on the index type chosen.
+ *
+ *      @param sectionIndexType The type of section index to display.
+ *      @param showsSearch      Whether or not to show the search icon at the top of the index.
+ *      @param showsSummary     Whether or not to show the summary icon at the bottom of the index.
+ *      @fn NITableViewModel::setSectionIndexType:showsSearch:showsSummary:
+ */
+
+/**
+ * The section index type.
+ *
+ * You will likely use NITableViewModelSectionIndexAlphabetical in practice.
+ *
+ * NITableViewModelSectionIndexNone by default.
+ *
+ *      @fn NITableViewModel::sectionIndexType
+ */
+
+/**
+ * Whether or not the search symbol will be shown in the section index.
+ *
+ * NO by default.
+ *
+ *      @fn NITableViewModel::sectionIndexShowsSearch
+ */
+
+/**
+ * Whether or not the summary symbol will be shown in the section index.
+ *
+ * NO by default.
+ *
+ *      @fn NITableViewModel::sectionIndexShowsSummary
  */
 
 

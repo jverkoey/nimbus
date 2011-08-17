@@ -14,17 +14,13 @@
 // limitations under the License.
 //
 
-#import "CatalogViewController.h"
-
-#import "StaticListTableViewController.h"
-#import "StaticSectionedTableViewController.h"
 #import "StaticIndexedTableViewController.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation CatalogViewController
+@implementation StaticIndexedTableViewController
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +28,7 @@
   // The model is a retained object in this controller, so we must release it when the controller
   // is deallocated.
   NI_RELEASE_SAFELY(_model);
-  
+
   [super dealloc];
 }
 
@@ -40,22 +36,57 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-    self.title = NSLocalizedString(@"Model Catalog", @"Controller Title: Model Catalog");
-
+    self.title = NSLocalizedString(@"Indexed Model", @"Controller Title: Indexed Model");
+    
     NSArray* tableContents =
     [NSArray arrayWithObjects:
-     @"Table View Models",
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      @"List", @"title", [StaticListTableViewController class], @"controllerClass", nil],
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      @"Sectioned", @"title", [StaticSectionedTableViewController class], @"controllerClass", nil],
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      @"Indexed", @"title", [StaticIndexedTableViewController class], @"controllerClass", nil],
+     @"A",
+     [NSDictionary dictionaryWithObject:@"Jon Abrams" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Crystal Arbor" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Mike Axiom" forKey:@"title"],
+     
+     @"B",
+     [NSDictionary dictionaryWithObject:@"Joey Bannister" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Ray Bowl" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Jane Byte" forKey:@"title"],
+     
+     @"C",
+     [NSDictionary dictionaryWithObject:@"JJ Cranilly" forKey:@"title"],
+     
+     @"K",
+     [NSDictionary dictionaryWithObject:@"Jake Klark" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Viktor Krum" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Abraham Kyle" forKey:@"title"],
+     
+     @"L",
+     [NSDictionary dictionaryWithObject:@"Mr Larry" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Mo Lundlum" forKey:@"title"],
+     
+     @"N",
+     [NSDictionary dictionaryWithObject:@"Carl Nolly" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Jeremy Nym" forKey:@"title"],
+
+     @"O",
+     [NSDictionary dictionaryWithObject:@"Number 1 Otter" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Number 2 Otter" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Number 3 Otter" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Number 4 Otter" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Number 5 Otter" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Number 6 Otter" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Number 7 Otter" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Number 8 Otter" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Number 9 Otter" forKey:@"title"],
+     [NSDictionary dictionaryWithObject:@"Number 10 Otter" forKey:@"title"],
+     
+     @"X",
+     [NSDictionary dictionaryWithObject:@"Charles Xavier" forKey:@"title"],
+
      nil];
     
     // This controller creates the table view cells.
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
                                                      delegate:self];
+    [_model setSectionIndexType:NITableViewModelSectionIndexAlphabetical showsSearch:YES showsSummary:NO];
   }
   return self;
 }
@@ -64,13 +95,22 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
+
   // Only assign the table view's data source after the view has loaded.
   // You must be careful when you call self.tableView in general because it will call loadView
   // if the view has not been loaded yet. You do not need to clear the data source when the
   // view is unloaded (more importantly: you shouldn't, due to the reason just outlined
   // regarding loadView).
   self.tableView.dataSource = _model;
+
+  // Create a dummy search display controller just to show the use of a search bar.
+  UISearchBar* searchBar = [[[UISearchBar alloc] init] autorelease];
+  [searchBar sizeToFit];
+  _searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+  self.tableView.tableHeaderView = _searchController.searchBar;
+
+  // Show that entering the "edit" mode does not allow modifications to this static model.
+  self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 
@@ -86,24 +126,13 @@
     cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
                                    reuseIdentifier: @"row"]
             autorelease];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
   }
   
   cell.textLabel.text = [object objectForKey:@"title"];
   
   return cell;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  // This is the stock UIKit didSelectRow method, provided here simply as an example of
-  // fetching an object from the model.
-  
-  id object = [_model objectAtIndexPath:indexPath];
-  Class cls = [object objectForKey:@"controllerClass"];
-  UIViewController* controller = [[[cls alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-  [self.navigationController pushViewController:controller animated:YES];
 }
 
 
