@@ -15,9 +15,5 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#ifdef NIMBUS_STATIC_LIBRARY
-#import "NimbusBadge/NIBadgeView.h"
-#else
+#import "NimbusCore.h"
 #import "NIBadgeView.h"
-#endif

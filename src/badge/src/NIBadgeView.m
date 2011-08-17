@@ -16,8 +16,8 @@
 
 #import "NIBadgeView.h"
 
-static const CGFloat kBadgeRadius = 0.4;
-static const CGFloat kBadgeLineSize = 2.0;
+static const CGFloat kBadgeRadius = 0.4f;
+static const CGFloat kBadgeLineSize = 2.0f;
 
 @implementation NIBadgeView
 
@@ -80,20 +80,23 @@ static const CGFloat kBadgeLineSize = 2.0;
   CGContextSaveGState(context);
   
   CGFloat radius = CGRectGetMaxY(rect)*kBadgeRadius;
-  CGFloat buffer = CGRectGetMaxY(rect)*0.015;
-	CGFloat maxX = CGRectGetMaxX(rect) - buffer - 2;
-	CGFloat maxY = CGRectGetMaxY(rect) - buffer - 4;
-	CGFloat minX = CGRectGetMinX(rect) + buffer + 2;
-	CGFloat minY = CGRectGetMinY(rect) + buffer + 1;
+  CGFloat buffer = CGRectGetMaxY(rect)*0.015f;
+	CGFloat maxX = CGRectGetMaxX(rect) - buffer - 2.0f;
+	CGFloat maxY = CGRectGetMaxY(rect) - buffer - 4.0f;
+	CGFloat minX = CGRectGetMinX(rect) + buffer + 2.0f;
+	CGFloat minY = CGRectGetMinY(rect) + buffer + 1.0f;
+  
+  // Used to suppress warning: Implicit conversion shortens 64-bit value into 32-bit value
+  CGFloat pi = (CGFloat)M_PI;
   
   // Draw the main rounded rectangle
   CGContextBeginPath(context);
   CGContextSetFillColorWithColor(context, [_tintColor CGColor]);
-  CGContextAddArc(context, maxX-radius, minY+radius, radius, M_PI+(M_PI/2), 0, 0);
-	CGContextAddArc(context, maxX-radius, maxY-radius, radius, 0, M_PI/2, 0);
-	CGContextAddArc(context, minX+radius, maxY-radius, radius, M_PI/2, M_PI, 0);
-	CGContextAddArc(context, minX+radius, minY+radius, radius, M_PI, M_PI+M_PI/2, 0);
-  CGContextSetShadowWithColor(context, CGSizeMake(0.0,2.0), 3.0, [[UIColor blackColor] CGColor]);
+  CGContextAddArc(context, maxX-radius, minY+radius, radius, pi+(pi/2), 0, 0);
+	CGContextAddArc(context, maxX-radius, maxY-radius, radius, 0, pi/2, 0);
+	CGContextAddArc(context, minX+radius, maxY-radius, radius, pi/2, pi, 0);
+	CGContextAddArc(context, minX+radius, minY+radius, radius, pi, pi+pi/2, 0);
+  CGContextSetShadowWithColor(context, CGSizeMake(0.0f,2.0f), 3.0f, [[UIColor blackColor] CGColor]);
   CGContextFillPath(context);
   
   CGContextRestoreGState(context);
@@ -102,14 +105,14 @@ static const CGFloat kBadgeLineSize = 2.0;
   CGContextSaveGState(context);
   
   CGContextBeginPath(context);
-  CGContextAddArc(context, maxX-radius, minY+radius, radius, M_PI+(M_PI/2), 0, 0);
-	CGContextAddArc(context, minX+radius, minY+radius, radius, M_PI, M_PI+M_PI/2, 0);
+  CGContextAddArc(context, maxX-radius, minY+radius, radius, pi+(pi/2), 0, 0);
+	CGContextAddArc(context, minX+radius, minY+radius, radius, pi, pi+pi/2, 0);
   // Gloss should have a bottom curve. Math anyone?
 	CGContextClip(context);
 	
 	size_t num_locations = 2;
-	CGFloat locations[2] = { 0.0, 0.3 };
-	CGFloat components[8] = {  0.92, 1.0, 1.0, 1.0, 0.82, 0.82, 0.82, 0.3 };
+	CGFloat locations[2] = { 0.0f, 0.3f };
+	CGFloat components[8] = {  0.92f, 1.0f, 1.0f, 1.0f, 0.82f, 0.82f, 0.82f, 0.3f };
   
 	CGColorSpaceRef cspace;
 	CGGradientRef gradient;
@@ -133,10 +136,10 @@ static const CGFloat kBadgeLineSize = 2.0;
   CGContextSetLineWidth(context, kBadgeLineSize);
   // Should this be customizable?
   CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-  CGContextAddArc(context, maxX-radius, minY+radius, radius, M_PI+(M_PI/2), 0, 0);
-	CGContextAddArc(context, maxX-radius, maxY-radius, radius, 0, M_PI/2, 0);
-	CGContextAddArc(context, minX+radius, maxY-radius, radius, M_PI/2, M_PI, 0);
-	CGContextAddArc(context, minX+radius, minY+radius, radius, M_PI, M_PI+M_PI/2, 0);
+  CGContextAddArc(context, maxX-radius, minY+radius, radius, pi+(pi/2), 0, 0);
+	CGContextAddArc(context, maxX-radius, maxY-radius, radius, 0, pi/2, 0);
+	CGContextAddArc(context, minX+radius, maxY-radius, radius, pi/2, pi, 0);
+	CGContextAddArc(context, minX+radius, minY+radius, radius, pi, pi+pi/2, 0);
 	CGContextClosePath(context);
 	CGContextStrokePath(context);
   

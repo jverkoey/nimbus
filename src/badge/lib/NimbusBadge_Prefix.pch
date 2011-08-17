@@ -18,4 +18,5 @@
   #import <Foundation/Foundation.h>
   #import <UIKit/UIKit.h>
   #import <QuartzCore/QuartzCore.h>
+  #import "NimbusCore.h"
 #endif
