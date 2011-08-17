@@ -22,6 +22,9 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
 
 @protocol NITableViewModelDelegate;
 
+// Classes used when creating NITableViewModels.
+@class NITableViewModelFooter;  // Provides the information for a footer.
+
 /**
  * A non-mutable table view model that complies to the UITableViewDataSource protocol.
  *
@@ -36,13 +39,11 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
 @interface NITableViewModel : NSObject <UITableViewDataSource> {
 @private
   // Compiled Information
-  NSInteger _numberOfSections;
-  NSArray* _sectionTitles;  // Array of NSStrings
-  NSArray* _sectionsOfRows; // Array of NSArrays
+  NSArray* _sections;  // Array of internal section objects
 
   // Creating Table View Cells
   id<NITableViewModelDelegate> _delegate;
-  
+
 #if NS_BLOCKS_AVAILABLE
   NITableViewModelCellForIndexPathBlock _createCellBlock;
 #endif // #if NS_BLOCKS_AVAILABLE
@@ -52,6 +53,7 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
 
 // Designated initializer.
 - (id)initWithDelegate:(id<NITableViewModelDelegate>)delegate;
+- (id)initWithListArray:(NSArray *)sectionedArray delegate:(id<NITableViewModelDelegate>)delegate;
 - (id)initWithSectionedArray:(NSArray *)sectionedArray delegate:(id<NITableViewModelDelegate>)delegate;
 
 #pragma mark Accessing Objects
@@ -71,7 +73,7 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
 @end
 
 /**
- * A protocol for NITableViewModel to fetch information from the controller.
+ * A protocol for NITableViewModel to fetch rows to be displayed for the table view.
  */
 @protocol NITableViewModelDelegate <NSObject>
 
@@ -89,6 +91,29 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
 
 @end
 
+/**
+ * An object used in sectioned arrays to denote a section footer title.
+ *
+ * Meant to be used in a sectioned array for NITableViewModel.
+ *
+ * <h3>Example</h3>
+ *
+ * @code
+ *  [NITableViewModelFooter footerWithTitle:@"Footer"],
+ * @endcode
+ */
+@interface NITableViewModelFooter : NSObject {
+@private
+  NSString* _title;
+}
+
++ (id)footerWithTitle:(NSString *)title;
+- (id)initWithTitle:(NSString *)title;
+
+@property (nonatomic, readwrite, copy) NSString* title;
+
+@end
+
 /** @name Creating Table View Models */
 
 /**
@@ -97,6 +122,27 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
  * This method can be used to create an empty model.
  *
  *      @fn NITableViewModel::initWithDelegate:
+ */
+
+/**
+ * Initializes a newly allocated static model with the contents of a list array.
+ *
+ * A list array is a one-dimensional array that defines a flat list of rows. There will be
+ * no sectioning of contents in any way.
+ *
+ * <h3>Example</h3>
+ *
+ * @code
+ * NSArray* contents =
+ * [NSArray arrayWithObjects:
+ *  [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"],
+ *  [NSDictionary dictionaryWithObject:@"Row 2" forKey:@"title"],
+ *  [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
+ *  nil];
+ * [[NIStaticTableViewModel alloc] initWithListArray:contents delegate:self];
+ * @endcode
+ *
+ *      @fn NITableViewModel::initWithListArray:delegate:
  */
 
 /**

@@ -20,9 +20,29 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+@interface NITableViewModelSection : NSObject {
+@private
+  NSString* _headerTitle;
+  NSString* _footerTitle;
+  NSArray* _rows;
+}
+
++ (id)section;
+
+@property (nonatomic, readwrite, copy) NSString* headerTitle;
+@property (nonatomic, readwrite, copy) NSString* footerTitle;
+@property (nonatomic, readwrite, copy) NSArray* rows;
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NITableViewModel()
 
 - (void)_resetCompiledData;
+- (void)_compileDataWithListArray:(NSArray *)listArray;
 - (void)_compileDataWithSectionedArray:(NSArray *)sectionedArray;
 
 @end
@@ -41,8 +61,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  NI_RELEASE_SAFELY(_sectionTitles);
-  NI_RELEASE_SAFELY(_sectionsOfRows);
+  NI_RELEASE_SAFELY(_sections);
 
 #if NS_BLOCKS_AVAILABLE
   NI_RELEASE_SAFELY(_createCellBlock);
@@ -58,6 +77,15 @@
     self.delegate = delegate;
 
     [self _resetCompiledData];
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithListArray:(NSArray *)listArray delegate:(id<NITableViewModelDelegate>)delegate {
+  if ((self = [self initWithDelegate:delegate])) {
+    [self _compileDataWithListArray:listArray];
   }
   return self;
 }
@@ -80,9 +108,17 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_resetCompiledData {
-  _numberOfSections = 1;
-  NI_RELEASE_SAFELY(_sectionTitles);
-  NI_RELEASE_SAFELY(_sectionsOfRows);
+  NI_RELEASE_SAFELY(_sections);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_compileDataWithListArray:(NSArray *)listArray {
+  [self _resetCompiledData];
+
+  NITableViewModelSection* section = [NITableViewModelSection section];
+  section.rows = listArray;
+  _sections = [[NSArray arrayWithObject:section] retain];
 }
 
 
@@ -90,41 +126,62 @@
 - (void)_compileDataWithSectionedArray:(NSArray *)sectionedArray {
   [self _resetCompiledData];
 
-  NSInteger numberOfSections = 0;
-  NSMutableArray* sectionTitles = [NSMutableArray array];
-  NSMutableArray* sectionsOfRows = [NSMutableArray array];
-  NSMutableArray* currentSection = nil;
+  NSMutableArray* sections = [NSMutableArray array];
+
+  NSString* currentSectionHeaderTitle = nil;
+  NSString* currentSectionFooterTitle = nil;
+  NSMutableArray* currentSectionRows = nil;
 
   for (id object in sectionedArray) {
     BOOL isSection = [object isKindOfClass:[NSString class]];
-    if (isSection) {
-      ++numberOfSections;
-      [sectionTitles addObject:object];
+    BOOL isSectionFooter = [object isKindOfClass:[NITableViewModelFooter class]];
 
-      // Add a new section of rows.
-      currentSection = [NSMutableArray array];
-      [sectionsOfRows addObject:currentSection];
+    NSString* nextSectionHeaderTitle = nil;
+
+    if (isSection) {
+      nextSectionHeaderTitle = object;
+
+    } else if (isSectionFooter) {
+      NITableViewModelFooter* footer = object;
+      currentSectionFooterTitle = footer.title;
 
     } else {
-      // If this asserts then you forgot to add an initial section title.
-      // Your first section will be missing until you fix this.
-      NIDASSERT(nil != currentSection);
+      if (nil == currentSectionRows) {
+        currentSectionRows = [[NSMutableArray alloc] init];
+      }
+      [currentSectionRows addObject:object];
+    }
 
-      [currentSection addObject:object];
+    // A section footer or title has been encountered,
+    if (nil != nextSectionHeaderTitle || nil != currentSectionFooterTitle) {
+      if (nil != currentSectionFooterTitle
+          || nil != currentSectionFooterTitle
+          || nil != currentSectionRows) {
+        NITableViewModelSection* section = [NITableViewModelSection section];
+        section.headerTitle = currentSectionHeaderTitle;
+        section.footerTitle = currentSectionFooterTitle;
+        section.rows = currentSectionRows;
+        [sections addObject:section];
+      }
+
+      NI_RELEASE_SAFELY(currentSectionRows);
+      currentSectionHeaderTitle = nextSectionHeaderTitle;
+      currentSectionFooterTitle = nil;
     }
   }
-
-  // There is always at least one section.
-  numberOfSections = MAX(1, numberOfSections);
+  
+  // Commit any unfinished sections.
+  if (NIIsArrayWithObjects(currentSectionRows)) {
+    NITableViewModelSection* section = [NITableViewModelSection section];
+    section.headerTitle = currentSectionHeaderTitle;
+    section.footerTitle = currentSectionFooterTitle;
+    section.rows = currentSectionRows;
+    [sections addObject:section];
+  }
+  NI_RELEASE_SAFELY(currentSectionRows);
 
   // Update the compiled information for this data source.
-  _numberOfSections = numberOfSections;
-  _sectionTitles = [sectionTitles copy];
-  _sectionsOfRows = [sectionsOfRows copy];
-
-  // Sanity check. If this asserts then it's likely that either the above code is broken or
-  // you forgot to provide a title for the first section.
-  NIDASSERT([_sectionTitles count] == [_sectionsOfRows count]);
+  _sections = [sections copy];
 }
 
 
@@ -137,15 +194,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   // We don't use [_sectionTitles count] because if there are no sections we should still return 1.
-  return _numberOfSections;
+  return MAX(1, [_sections count]);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-  NIDASSERT(section < [_sectionTitles count]);
-  if (section < [_sectionTitles count]) {
-    return [_sectionTitles objectAtIndex:section];
+  NIDASSERT(section < [_sections count] || 0 == [_sections count]);
+  if (section < [_sections count]) {
+    return [[_sections objectAtIndex:section] headerTitle];
 
   } else {
     return nil;
@@ -154,10 +211,29 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+  NIDASSERT(section < [_sections count] || 0 == [_sections count]);
+  if (section < [_sections count]) {
+    return [[_sections objectAtIndex:section] footerTitle];
+    
+  } else {
+    return nil;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+  // This is a static model; nothing can be edited.
+  return NO;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  NIDASSERT(section < [_sectionsOfRows count]);
-  if (section < [_sectionsOfRows count]) {
-    return [[_sectionsOfRows objectAtIndex:section] count];
+  NIDASSERT(section < [_sections count] || 0 == [_sections count]);
+  if (section < [_sections count]) {
+    return [[[_sections objectAtIndex:section] rows] count];
 
   } else {
     return 0;
@@ -202,9 +278,9 @@
 
   id object = nil;
 
-  NIDASSERT(section < [_sectionsOfRows count]);
-  if (section < [_sectionsOfRows count]) {
-    NSArray* rows = [_sectionsOfRows objectAtIndex:section];
+  NIDASSERT(section < [_sections count]);
+  if (section < [_sections count]) {
+    NSArray* rows = [[_sections objectAtIndex:section] rows];
 
     NIDASSERT(row < [rows count]);
     if (row < [rows count]) {
@@ -213,6 +289,69 @@
   }
 
   return object;
+}
+
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NITableViewModelFooter
+
+@synthesize title = _title;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NITableViewModelFooter *)footerWithTitle:(NSString *)title {
+  return [[[self alloc] initWithTitle:title] autorelease];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_title);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithTitle:(NSString *)title {
+  if ((self = [super init])) {
+    self.title = title;
+  }
+  return self;
+}
+
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NITableViewModelSection
+
+@synthesize headerTitle = _headerTitle;
+@synthesize footerTitle = _footerTitle;
+@synthesize rows = _rows;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_headerTitle);
+  NI_RELEASE_SAFELY(_footerTitle);
+  NI_RELEASE_SAFELY(_rows);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)section {
+  return [[[self alloc] init] autorelease];
 }
 
 

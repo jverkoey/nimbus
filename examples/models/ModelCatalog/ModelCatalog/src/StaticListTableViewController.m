@@ -14,91 +14,81 @@
 // limitations under the License.
 //
 
-/**
- * @example ExampleStaticTableModel.m
- *
- * <h2>Overview</h2>
- *
- * This example shows how to create a standard UITableViewController using a static Nimbus
- * NITableViewModel instead of implementing the data source methods by hand.
- *
- * Part of the @link NimbusModels Nimbus Models@endlink feature.
- */
+#import "StaticListTableViewController.h"
 
-@interface ExampleTableViewController : UITableViewController <
-  // We must implement the model delegate in order to create table view rows.
-  NITableViewModelDelegate> {
-@private
-  NITableViewModel* _model;
-}
 
-@end
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation StaticListTableViewController
 
-@implementation CatalogTableViewController
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   // The model is a retained object in this controller, so we must release it when the controller
   // is deallocated.
   NI_RELEASE_SAFELY(_model);
-
+  
   [super dealloc];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+    self.title = NSLocalizedString(@"List Model", @"Controller Title: List Model");
+
     NSArray* tableContents =
     [NSArray arrayWithObjects:
-     @"Section 1",
      [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"],
      [NSDictionary dictionaryWithObject:@"Row 2" forKey:@"title"],
      [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
-
-     @"Section 2",
-     [NSDictionary dictionaryWithObject:@"Row 4" forKey:@"title"],
      nil];
-    
+
     // This controller creates the table view cells.
-    _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
-                                                     delegate:self];
+    _model = [[NITableViewModel alloc] initWithListArray:tableContents
+                                                delegate:self];
   }
   return self;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  
   // Only assign the table view's data source after the view has loaded.
   // You must be careful when you call self.tableView in general because it will call loadView
   // if the view has not been loaded yet. You do not need to clear the data source when the
   // view is unloaded (more importantly: you shouldn't, due to the reason just outlined
   // regarding loadView).
   self.tableView.dataSource = _model;
+  
+  // Show that entering the "edit" mode does not allow modifications to this static model.
+  self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel
                    cellForTableView: (UITableView *)tableView
                         atIndexPath: (NSIndexPath *)indexPath
                          withObject: (id)object {
   // A pretty standard implementation of creating table view cells follows.
   UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
-
+  
   if (nil == cell) {
     cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
                                    reuseIdentifier: @"row"]
             autorelease];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
   }
-
+  
   cell.textLabel.text = [object objectForKey:@"title"];
-
+  
   return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  // This is the stock UIKit didSelectRow method, provided here simply as an example of
-  // fetching an object from the model.
-
-  id object = [_model objectAtIndexPath:indexPath];
-}
 
 @end

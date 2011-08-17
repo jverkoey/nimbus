@@ -39,51 +39,52 @@
   if ((self = [super initWithStyle:style])) {
     self.title = NSLocalizedString(@"Photo Album Catalog", @"");
 
-    NSArray* tableContents = [NSArray arrayWithObjects:
-                              @"Dribbble",
-                              [NSDictionary dictionaryWithObjectsAndKeys:
-                               [DribbblePhotoAlbumViewController class], @"class",
-                               @"Popular Shots", @"title",
-                               @"/shots", @"initWith",
-                               nil],
-                              [NSDictionary dictionaryWithObjectsAndKeys:
-                               [DribbblePhotoAlbumViewController class], @"class",
-                               @"Everyone's Shots", @"title",
-                               @"/shots/everyone", @"initWith",
-                               nil],
-                              [NSDictionary dictionaryWithObjectsAndKeys:
-                               [DribbblePhotoAlbumViewController class], @"class",
-                               @"Debuts", @"title",
-                               @"/shots/debuts", @"initWith",
-                               nil],
-                              
-                              @"Facebook Albums",
-                              [NSDictionary dictionaryWithObjectsAndKeys:
-                               [FacebookPhotoAlbumViewController class], @"class",
-                               @"120th Commencement in Pictures", @"title",
-                               @"10150219083838418", @"initWith",
-                               nil],
-                              [NSDictionary dictionaryWithObjectsAndKeys:
-                               [FacebookPhotoAlbumViewController class], @"class",
-                               @"Stanford 40th Annual Powwow", @"title",
-                               @"10150185938728418", @"initWith",
-                               nil],
-                              [NSDictionary dictionaryWithObjectsAndKeys:
-                               [FacebookPhotoAlbumViewController class], @"class",
-                               @"Spring blossoms at Stanford", @"title",
-                               @"10150160584103418", @"initWith",
-                               nil],
-                              [NSDictionary dictionaryWithObjectsAndKeys:
-                               [FacebookPhotoAlbumViewController class], @"class",
-                               @"Shark Week", @"title",
-                               @"208546235826221", @"initWith",
-                               nil],
-                              [NSDictionary dictionaryWithObjectsAndKeys:
-                               [FacebookPhotoAlbumViewController class], @"class",
-                               @"Game of Thrones", @"title",
-                               @"489714642733", @"initWith",
-                               nil],
-                              nil];
+    NSArray* tableContents =
+    [NSArray arrayWithObjects:
+     @"Dribbble",
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [DribbblePhotoAlbumViewController class], @"class",
+      @"Popular Shots", @"title",
+      @"/shots", @"initWith",
+      nil],
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [DribbblePhotoAlbumViewController class], @"class",
+      @"Everyone's Shots", @"title",
+      @"/shots/everyone", @"initWith",
+      nil],
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [DribbblePhotoAlbumViewController class], @"class",
+      @"Debuts", @"title",
+      @"/shots/debuts", @"initWith",
+      nil],
+     
+     @"Facebook Albums",
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [FacebookPhotoAlbumViewController class], @"class",
+      @"120th Commencement in Pictures", @"title",
+      @"10150219083838418", @"initWith",
+      nil],
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [FacebookPhotoAlbumViewController class], @"class",
+      @"Stanford 40th Annual Powwow", @"title",
+      @"10150185938728418", @"initWith",
+      nil],
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [FacebookPhotoAlbumViewController class], @"class",
+      @"Spring blossoms at Stanford", @"title",
+      @"10150160584103418", @"initWith",
+      nil],
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [FacebookPhotoAlbumViewController class], @"class",
+      @"Shark Week", @"title",
+      @"208546235826221", @"initWith",
+      nil],
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [FacebookPhotoAlbumViewController class], @"class",
+      @"Game of Thrones", @"title",
+      @"489714642733", @"initWith",
+      nil],
+     nil];
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
                                                      delegate:self];
   }

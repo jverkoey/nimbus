@@ -29,18 +29,14 @@
 /**
  * @defgroup TableViewModels Table View Models
  *
- * Building table views often requires implementing many of the same data source methods
- * over and over again in the view controller. Nimbus approaches this process from a different
- * direction and attempts to provide a true model-view-controller paradigm by separating the
- * data source functionality from the controller. Instead of implementing UITableViewDataSource
- * methods in your table view controller, you create a NITableViewModel object and set that
- * as the data source. You can then directly interact with the model to manipulate the
- * information being displayed in your UITableView.
+ * Nimbus table view models make building table views remarkably easy. Rather than implement
+ * the data source methods in each table view controller, you can assign a model to
+ * self.tableView.dataSource and only think about row creation.
  *
  * Nimbus table view models implement much of the standard functionality required for
  * table views, including section titles, grouped rows, and section indices. By
  * providing this functionality in one object Nimbus can also provide much more
- * efficient implementations than one-off naive implementations that might otherwise
+ * efficient implementations than one-off, naive implementations that might otherwise
  * be copied from one controller to another.
  *
  * See example: @link ExampleStaticTableModel.m Static Table Model Creation@endlink
