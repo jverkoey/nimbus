@@ -24,6 +24,14 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
 
 /**
  * A non-mutable table view model that complies to the UITableViewDataSource protocol.
+ *
+ * This model allows you to easily create a data source for a UITableView without having to
+ * implement the UITableViewDataSource methods in your UITableViewController.
+ *
+ * This base class is non-mutable, much like an NSArray. You must initialize this model with
+ * the contents when you create it.
+ *
+ *      @ingroup TableViewModels
  */
 @interface NITableViewModel : NSObject <UITableViewDataSource> {
 @private
@@ -55,7 +63,8 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
 @property (nonatomic, readwrite, assign) id<NITableViewModelDelegate> delegate;
 
 #if NS_BLOCKS_AVAILABLE
-// If both the delegate and this block are provided, cells returned by this block will be used.
+// If both the delegate and this block are provided, cells returned by this block will be used
+// and the delegate will not be called.
 @property (nonatomic, readwrite, copy) NITableViewModelCellForIndexPathBlock createCellBlock;
 #endif // #if NS_BLOCKS_AVAILABLE
 
@@ -83,32 +92,37 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
 /** @name Creating Table View Models */
 
 /**
- * Designated initializer.
+ * Initializes a newly allocated static model with the given delegate and empty contents.
  *
- *      @fn NITableViewModel::init
+ * This method can be used to create an empty model.
+ *
+ *      @fn NITableViewModel::initWithDelegate:
  */
 
 /**
  * Initializes a newly allocated static model with the contents of a sectioned array.
  *
- * A sectioned array contains objects that are either NSStrings or non-NSStrings.
- * Each NSString denotes a new section. Each non-NSString object denotes a new row.
+ * A sectioned array is a one-dimensional array that defines a list of sections and each
+ * section's contents. Each NSString begins a new section and any other object defines a
+ * row for the current section.
  *
  * <h3>Example</h3>
  *
  * @code
- * [[NIStaticTableViewModel alloc] initWithSectionedArray:
- *  [NSArray arrayWithObjects:
- *   @"Section 1",
- *   [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"],
- *   [NSDictionary dictionaryWithObject:@"Row 2" forKey:@"title"],
- *   @"Section 2",
- *   @"Section 3",
- *   [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
- *   nil]];
+ * NSArray* contents =
+ * [NSArray arrayWithObjects:
+ *  @"Section 1",
+ *  [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"],
+ *  [NSDictionary dictionaryWithObject:@"Row 2" forKey:@"title"],
+ *  @"Section 2",
+ *  // This section is empty.
+ *  @"Section 3",
+ *  [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
+ *  nil];
+ * [[NIStaticTableViewModel alloc] initWithSectionedArray:contents delegate:self];
  * @endcode
  *
- *      @fn NITableViewModel::initWithSectionedArray:
+ *      @fn NITableViewModel::initWithSectionedArray:delegate:
  */
 
 
@@ -116,6 +130,9 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
 
 /**
  * Returns the object at the given index path.
+ *
+ * If no object exists at the given index path (an invalid index path, for example) then nil
+ * will be returned.
  *
  *      @fn NITableViewModel::objectAtIndexPath:
  */

@@ -34,12 +34,19 @@
 @implementation NITableViewModel
 
 @synthesize delegate = _delegate;
+#if NS_BLOCKS_AVAILABLE
 @synthesize createCellBlock = _createCellBlock;
+#endif // #if NS_BLOCKS_AVAILABLE
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_sectionTitles);
+  NI_RELEASE_SAFELY(_sectionsOfRows);
+
+#if NS_BLOCKS_AVAILABLE
+  NI_RELEASE_SAFELY(_createCellBlock);
+#endif // #if NS_BLOCKS_AVAILABLE
 
   [super dealloc];
 }
@@ -75,6 +82,7 @@
 - (void)_resetCompiledData {
   _numberOfSections = 1;
   NI_RELEASE_SAFELY(_sectionTitles);
+  NI_RELEASE_SAFELY(_sectionsOfRows);
 }
 
 
@@ -191,19 +199,19 @@
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath {
   NSInteger section = [indexPath section];
   NSInteger row = [indexPath row];
-  
+
   id object = nil;
-  
+
   NIDASSERT(section < [_sectionsOfRows count]);
   if (section < [_sectionsOfRows count]) {
     NSArray* rows = [_sectionsOfRows objectAtIndex:section];
-    
+
     NIDASSERT(row < [rows count]);
     if (row < [rows count]) {
       object = [rows objectAtIndex:row];
     }
   }
-  
+
   return object;
 }
 
