@@ -110,7 +110,12 @@
                                 delegate:self
                        cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
                   destructiveButtonTitle:nil
-                       otherButtonTitles:NSLocalizedString(@"Open in Safari", @""), NSLocalizedString(@"Copy URL", @""), nil];
+                       otherButtonTitles:nil];
+    if (![self willPresentActionSheet:_actionSheet]) {
+      NI_RELEASE_SAFELY(_actionSheet);
+      NI_RELEASE_SAFELY(_actionSheetURL);
+      return;
+    }
   }
 
   if (NIIsPad()) {
@@ -355,6 +360,11 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Public
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSURL *)URL {
   return _loadingURL ? _loadingURL : _webView.request.URL;
 }
@@ -375,6 +385,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setToolbarTintColor:(UIColor*)color {
   _toolbar.tintColor = color;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)willPresentActionSheet:(UIActionSheet *)actionSheet {
+  [actionSheet addButtonWithTitle:NSLocalizedString(@"Open in Safari", @"")];
+  [actionSheet addButtonWithTitle:NSLocalizedString(@"Copy URL", @"")];
+  return YES;
 }
 
 @end
