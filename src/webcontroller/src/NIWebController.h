@@ -101,4 +101,11 @@
  */
 - (void)setToolbarTintColor:(UIColor*)color;
 
+/**
+ * TODO
+ *
+ * @param actionSheet The UIActionSheet that will be presented to the user.
+ */
+- (BOOL)willPresentActionSheet:(UIActionSheet *)actionSheet;
+
 @end
