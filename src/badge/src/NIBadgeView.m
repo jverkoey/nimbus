@@ -16,8 +16,13 @@
 
 #import "NIBadgeView.h"
 
+<<<<<<< HEAD
 static const CGFloat kBadgeRadius = 0.4f;
 static const CGFloat kBadgeLineSize = 2.0f;
+=======
+static const CGFloat kBadgeRadius = 0.4;
+static const CGFloat kBadgeLineSize = 2.0;
+>>>>>>> 1fbcdefc50bdf266393fa720900923f521402100
 
 @implementation NIBadgeView
 
@@ -87,7 +92,7 @@ static const CGFloat kBadgeLineSize = 2.0f;
 	CGFloat minY = CGRectGetMinY(rect) + buffer + 1.0f;
   
   // Used to suppress warning: Implicit conversion shortens 64-bit value into 32-bit value
-  CGFloat pi = (CGFloat)M_PI;
+  CGFloat pi = (CGFloat)M_PI;  
   
   // Draw the main rounded rectangle
   CGContextBeginPath(context);

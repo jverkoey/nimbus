@@ -45,12 +45,10 @@
  */
 @property (nonatomic, readwrite, copy) NSString* text;
 
-
 /**
  * The tint color of the badge. The default color is red.
  */
 @property (nonatomic, readwrite, assign) UIColor* tintColor;
-
 
 /**
  * The font of the text within the badge. 
@@ -61,7 +59,6 @@
  *                  this will not happen automatically.
  */
 @property (nonatomic, readwrite, assign) UIFont* font;
-
 
 /**
  * The text color for the badge. The default color is white.
