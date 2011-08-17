@@ -1329,7 +1329,7 @@
 			);
 			name = src;
 			path = webcontroller/src;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		DB84BDAF13EFDF6900DACCFE /* unittests */ = {
 			isa = PBXGroup;
@@ -3671,6 +3671,7 @@
 				DB84BDFA13FBCA4400DACCFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB84BDFB13FBCA4400DACCFE /* Build configuration list for PBXNativeTarget "NimbusBadgeTests" */ = {
 			isa = XCConfigurationList;
@@ -3679,6 +3680,7 @@
 				DB84BDFD13FBCA4400DACCFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -14,6 +14,35 @@
 // limitations under the License.
 //
 
+/**
+ * @defgroup NimbusBadge Nimbus Badge
+ * @{
+ * This view mimics the badge view found on iOS springboard icons; normally
+ * indicating a notification with a number inside a red circle. This view is 
+ * not limited to just a red badge, and is customizalbe via -setTintColor:. In
+ * the same way the label is not limited to a number and can be any text.
+ *
+ * <h2>Example screenshots</h2>
+ *
+ * @image html badge-iphone-example1.png "Screenshot of a Nimbus badge on the iPhone"
+ *
+ *
+ * <h2>Adding the Web Controller to Your Application</h2>
+ * 
+ * The badge view does not rely on any imagery, so adding it to your application is like
+ * adding any other UIView.
+ *
+ * <h2>Example Applications</h2>
+ *
+ * <h3>Basic Badge View</h3>
+ *
+ * <a
+ * href="https://github.com/jverkoey/nimbus/tree/master/examples/badge/BasicBadge">
+ * View the README on GitHub</a>
+ *
+ * This sample application demos the use of a badge.
+ * @} */
+
 #import <Foundation/Foundation.h>
 #import "NimbusCore.h"
 #import "NIBadgeView.h"

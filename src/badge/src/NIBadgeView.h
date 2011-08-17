@@ -19,7 +19,7 @@
 /**
  * A styled view that mimics the iOS badge on a app icon.
  *
- *      @ingroup Badge-Views
+ *      @ingroup NimbusBadge
  *
  * This style comprises of four elements: the main colored background, the
  * white border, the gloss effect and a drop shadow. The tint color of the
