@@ -1,5 +1,6 @@
 //
 // Copyright 2011 Roger Chapman
+// Copyright 2011 Benedikt Meurer
 //
 // Forked from Three20 July 29, 2011 - Copyright 2009-2011 Facebook
 //
@@ -73,6 +74,7 @@
   UIBarButtonItem*  _actionButton;
   UIBarButtonItem*  _activityItem;
 
+  NSURL*            _actionSheetURL;
   NSURL*            _loadingURL;
 }
 
@@ -99,5 +101,17 @@
  * Sets the toolbar to the given color.
  */
 - (void)setToolbarTintColor:(UIColor*)color;
+
+/**
+ * This message is send to the receiver in response to the user clicking the action toolbar button.
+ * You can provide your own implementation here and customize the @c actionSheet that is shown the
+ * user, or even cancel the presentation of the @c actionSheet at all by returning @c NO from your
+ * implementation.
+ *
+ * @param actionSheet The UIActionSheet that will be presented to the user.
+ *
+ * @return @c YES to present the @p actionSheet, @c NO if you want to perform a custom action.
+ */
+- (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet;
 
 @end
