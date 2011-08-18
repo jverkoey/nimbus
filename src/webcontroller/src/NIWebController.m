@@ -286,7 +286,7 @@
  navigationType:(UIWebViewNavigationType)navigationType {
 
   [_loadingURL release];
-  _loadingURL = [request.URL retain];
+  _loadingURL = [request.mainDocumentURL copy];
   _backButton.enabled = [_webView canGoBack];
   _forwardButton.enabled = [_webView canGoForward];
   return YES;
