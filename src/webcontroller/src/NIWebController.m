@@ -91,7 +91,7 @@
     // It shouldn't be possible to tap the share action button again on anything but the iPad.
     NIDASSERT(NIIsPad());
 
-    [_actionSheet dismissWithClickedButtonIndex:-1 animated:YES];
+    [_actionSheet dismissWithClickedButtonIndex:[_actionSheet cancelButtonIndex] animated:YES];
 
     // We remove the action sheet here just in case the delegate isn't properly implemented.
     NI_RELEASE_SAFELY(_actionSheet);
@@ -109,7 +109,7 @@
     _actionSheet =
     [[UIActionSheet alloc] initWithTitle:[_actionSheetURL absoluteString]
                                 delegate:self
-                       cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+                       cancelButtonTitle:nil
                   destructiveButtonTitle:nil
                        otherButtonTitles:nil];
     // Let -shouldPresentActionSheet: setup the action sheet
@@ -118,6 +118,10 @@
       NI_RELEASE_SAFELY(_actionSheet);
       NI_RELEASE_SAFELY(_actionSheetURL);
       return;
+    }
+    // Add "Cancel" button except for iPads
+    if (!NIIsPad()) {
+      [_actionSheet setCancelButtonIndex:[_actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", @"")]];
     }
   }
 
