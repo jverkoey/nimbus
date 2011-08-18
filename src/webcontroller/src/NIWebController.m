@@ -112,8 +112,8 @@
                        cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
                   destructiveButtonTitle:nil
                        otherButtonTitles:nil];
-    // Let -willPresentActionSheet: setup the action sheet
-    if (![self willPresentActionSheet:_actionSheet]) {
+    // Let -shouldPresentActionSheet: setup the action sheet
+    if (![self shouldPresentActionSheet:_actionSheet]) {
       // A subclass decided to handle the action in another way
       NI_RELEASE_SAFELY(_actionSheet);
       NI_RELEASE_SAFELY(_actionSheetURL);
@@ -391,7 +391,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)willPresentActionSheet:(UIActionSheet *)actionSheet {
+- (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet {
   [actionSheet addButtonWithTitle:NSLocalizedString(@"Open in Safari", @"")];
   [actionSheet addButtonWithTitle:NSLocalizedString(@"Copy URL", @"")];
   return YES;

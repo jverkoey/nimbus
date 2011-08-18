@@ -112,6 +112,6 @@
  *
  * @return @c YES to present the @p actionSheet, @c NO if you want to perform a custom action.
  */
-- (BOOL)willPresentActionSheet:(UIActionSheet *)actionSheet;
+- (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet;
 
 @end
