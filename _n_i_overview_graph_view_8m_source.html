@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: /Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverviewGraphView.m Source File</title>
+<title>Nimbus: src/overview/src/NIOverviewGraphView.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,7 +73,7 @@
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverviewGraphView.m</div>  </div>
+<div class="title">src/overview/src/NIOverviewGraphView.m</div>  </div>
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
@@ -138,8 +138,8 @@
 <a name="l00065"></a>00065     isFirstPoint = NO;
 <a name="l00066"></a>00066   }
 <a name="l00067"></a>00067 
-<a name="l00068"></a>00068         CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.6f].CGColor);
-<a name="l00069"></a>00069         CGContextStrokePath(context);
+<a name="l00068"></a>00068   CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.6f].CGColor);
+<a name="l00069"></a>00069   CGContextStrokePath(context);
 <a name="l00070"></a>00070   
 <a name="l00071"></a>00071   [<span class="keyword">self</span>.dataSource resetEventIterator];
 <a name="l00072"></a>00072 
@@ -158,7 +158,7 @@
 <a name="l00085"></a>00085 
 <a name="l00086"></a>00086 
 <a name="l00088"></a>00088 - (void)drawRect:(CGRect)rect {
-<a name="l00089"></a>00089         CGContextRef context = UIGraphicsGetCurrentContext();
+<a name="l00089"></a>00089   CGContextRef context = UIGraphicsGetCurrentContext();
 <a name="l00090"></a>00090 
 <a name="l00091"></a>00091   CGRect bounds = <span class="keyword">self</span>.bounds;
 <a name="l00092"></a>00092   
@@ -166,8 +166,8 @@
 <a name="l00094"></a>00094 
 <a name="l00095"></a>00095   [<span class="keyword">self</span> drawGraphWithContext:context];
 <a name="l00096"></a>00096   
-<a name="l00097"></a>00097         CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.2f].CGColor);
-<a name="l00098"></a>00098         CGContextFillRect(context, bounds);
+<a name="l00097"></a>00097   CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:1 alpha:0.2f].CGColor);
+<a name="l00098"></a>00098   CGContextFillRect(context, bounds);
 <a name="l00099"></a>00099 
 <a name="l00100"></a>00100   CGGradientRef glossGradient = nil;
 <a name="l00101"></a>00101   CGColorSpaceRef colorspace = nil;

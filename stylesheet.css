@@ -1017,3 +1017,13 @@ table.modificationtable td {
 .contents li {
   margin: 5px 0;
 }
+
+.side-by-side-compare {
+  float: left;
+  width: 45%;
+  overflow: auto;
+  border: 1px solid #999;
+  font-family: Consolas,Monaco,"Lucida Console","Liberation Mono","DejaVu Sans Mono","Bitstream Vera Sans Mono","Courier New";
+  margin-right: 10px;
+  font-size: 0.5em;
+}

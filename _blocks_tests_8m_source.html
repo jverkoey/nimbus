@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: /Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/unittests/Tests/BlocksTests.m Source File</title>
+<title>Nimbus: src/ASIHTTPRequest/unittests/Tests/BlocksTests.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,7 +73,7 @@
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">/Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/unittests/Tests/BlocksTests.m</div>  </div>
+<div class="title">src/ASIHTTPRequest/unittests/Tests/BlocksTests.m</div>  </div>
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
@@ -99,84 +99,84 @@
 <a name="l00021"></a>00021 <span class="preprocessor"></span><span class="comment">// It isn&#39;t safe to allow the view to deallocate on a thread other than the main thread / web thread, so this test is designed to cause a crash semi-reliably</span>
 <a name="l00022"></a>00022 - (void)testBlockMainThreadSafety
 <a name="l00023"></a>00023 {
-<a name="l00024"></a>00024         NSURL *url = [NSURL URLWithString:@&quot;http://allseeing-i.com&quot;];
-<a name="l00025"></a>00025         UIWebView *webView = [[[UIWebView alloc] initWithFrame:CGRectMake(0,0,200,200)] autorelease];
-<a name="l00026"></a>00026         __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-<a name="l00027"></a>00027         [request setCompletionBlock:^ {[webView loadHTMLString:[request responseString] baseURL:url]; }];
-<a name="l00028"></a>00028         [request startAsynchronous];
+<a name="l00024"></a>00024   NSURL *url = [NSURL URLWithString:@&quot;http://allseeing-i.com&quot;];
+<a name="l00025"></a>00025   UIWebView *webView = [[[UIWebView alloc] initWithFrame:CGRectMake(0,0,200,200)] autorelease];
+<a name="l00026"></a>00026   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+<a name="l00027"></a>00027   [request setCompletionBlock:^ {[webView loadHTMLString:[request responseString] baseURL:url]; }];
+<a name="l00028"></a>00028   [request startAsynchronous];
 <a name="l00029"></a>00029 }
 <a name="l00030"></a>00030 <span class="preprocessor">#endif</span>
 <a name="l00031"></a>00031 <span class="preprocessor"></span>
 <a name="l00032"></a>00032 - (void)testBlocks
 <a name="l00033"></a>00033 {
-<a name="l00034"></a>00034         <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a> *dataToSend = [@&quot;This is my post body&quot; dataUsingEncoding:NSUTF8StringEncoding];
-<a name="l00035"></a>00035         
-<a name="l00036"></a>00036         __block BOOL started = NO;
-<a name="l00037"></a>00037         __block BOOL receivedHeaders = NO;
-<a name="l00038"></a>00038         __block BOOL complete = NO;
-<a name="l00039"></a>00039         __block BOOL failed = NO;
-<a name="l00040"></a>00040         __block <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> totalBytesReceived = 0;
-<a name="l00041"></a>00041         __block <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> totalDownloadSize = 0;
-<a name="l00042"></a>00042         __block <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> totalBytesSent = 0;
-<a name="l00043"></a>00043         __block <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> totalUploadSize = 0; 
-<a name="l00044"></a>00044         NSMutableData *dataReceived = [NSMutableData data];
-<a name="l00045"></a>00045         
-<a name="l00046"></a>00046         <span class="comment">// There&#39;s actually no need for us to use &#39;__block&#39; here, because we aren&#39;t using the request inside any of our blocks, but it&#39;s good to get into the habit of doing this anyway.</span>
-<a name="l00047"></a>00047         __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com/ASIHTTPRequest/tests/blocks&quot;]];
-<a name="l00048"></a>00048         [request setStartedBlock:^{
-<a name="l00049"></a>00049                 started = YES;
-<a name="l00050"></a>00050         }];
-<a name="l00051"></a>00051         [request setHeadersReceivedBlock:^(NSDictionary *headers) {
-<a name="l00052"></a>00052                 receivedHeaders = YES;
-<a name="l00053"></a>00053         }];
-<a name="l00054"></a>00054         [request setCompletionBlock:^{
-<a name="l00055"></a>00055                 complete = YES;
-<a name="l00056"></a>00056         }];
-<a name="l00057"></a>00057         [request setFailedBlock:^{
-<a name="l00058"></a>00058                 failed = YES;
-<a name="l00059"></a>00059         }];
-<a name="l00060"></a>00060         [request setBytesReceivedBlock:^(unsigned long long length, unsigned long long total) {
-<a name="l00061"></a>00061                 totalBytesReceived += length;
-<a name="l00062"></a>00062         }];
-<a name="l00063"></a>00063         [request setDownloadSizeIncrementedBlock:^(long long length){
-<a name="l00064"></a>00064                 totalDownloadSize += length;
-<a name="l00065"></a>00065         }];
-<a name="l00066"></a>00066         [request setBytesSentBlock:^(unsigned long long length, unsigned long long total) {
-<a name="l00067"></a>00067                 totalBytesSent += length;
-<a name="l00068"></a>00068         }];
-<a name="l00069"></a>00069         [request setUploadSizeIncrementedBlock:^(long long length){
-<a name="l00070"></a>00070                 totalUploadSize += length;
-<a name="l00071"></a>00071         }];
-<a name="l00072"></a>00072         [request setDataReceivedBlock:^(NSData *data){
+<a name="l00034"></a>00034   <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a> *dataToSend = [@&quot;This is my post body&quot; dataUsingEncoding:NSUTF8StringEncoding];
+<a name="l00035"></a>00035   
+<a name="l00036"></a>00036   __block BOOL started = NO;
+<a name="l00037"></a>00037   __block BOOL receivedHeaders = NO;
+<a name="l00038"></a>00038   __block BOOL complete = NO;
+<a name="l00039"></a>00039   __block BOOL failed = NO;
+<a name="l00040"></a>00040   __block <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> totalBytesReceived = 0;
+<a name="l00041"></a>00041   __block <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> totalDownloadSize = 0;
+<a name="l00042"></a>00042   __block <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> totalBytesSent = 0;
+<a name="l00043"></a>00043   __block <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> totalUploadSize = 0; 
+<a name="l00044"></a>00044   NSMutableData *dataReceived = [NSMutableData data];
+<a name="l00045"></a>00045   
+<a name="l00046"></a>00046   <span class="comment">// There&#39;s actually no need for us to use &#39;__block&#39; here, because we aren&#39;t using the request inside any of our blocks, but it&#39;s good to get into the habit of doing this anyway.</span>
+<a name="l00047"></a>00047   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com/ASIHTTPRequest/tests/blocks&quot;]];
+<a name="l00048"></a>00048   [request setStartedBlock:^{
+<a name="l00049"></a>00049     started = YES;
+<a name="l00050"></a>00050   }];
+<a name="l00051"></a>00051   [request setHeadersReceivedBlock:^(NSDictionary *headers) {
+<a name="l00052"></a>00052     receivedHeaders = YES;
+<a name="l00053"></a>00053   }];
+<a name="l00054"></a>00054   [request setCompletionBlock:^{
+<a name="l00055"></a>00055     complete = YES;
+<a name="l00056"></a>00056   }];
+<a name="l00057"></a>00057   [request setFailedBlock:^{
+<a name="l00058"></a>00058     failed = YES;
+<a name="l00059"></a>00059   }];
+<a name="l00060"></a>00060   [request setBytesReceivedBlock:^(unsigned long long length, unsigned long long total) {
+<a name="l00061"></a>00061     totalBytesReceived += length;
+<a name="l00062"></a>00062   }];
+<a name="l00063"></a>00063   [request setDownloadSizeIncrementedBlock:^(long long length){
+<a name="l00064"></a>00064     totalDownloadSize += length;
+<a name="l00065"></a>00065   }];
+<a name="l00066"></a>00066   [request setBytesSentBlock:^(unsigned long long length, unsigned long long total) {
+<a name="l00067"></a>00067     totalBytesSent += length;
+<a name="l00068"></a>00068   }];
+<a name="l00069"></a>00069   [request setUploadSizeIncrementedBlock:^(long long length){
+<a name="l00070"></a>00070     totalUploadSize += length;
+<a name="l00071"></a>00071   }];
+<a name="l00072"></a>00072   [request setDataReceivedBlock:^(NSData *data){
 <a name="l00073"></a>00073         [dataReceived appendData:data];
 <a name="l00074"></a>00074     }];
-<a name="l00075"></a>00075         
-<a name="l00076"></a>00076         [request setRequestMethod:@&quot;PUT&quot;];
-<a name="l00077"></a>00077         [request appendPostData:dataToSend];
-<a name="l00078"></a>00078         [request startSynchronous];
-<a name="l00079"></a>00079         
-<a name="l00080"></a>00080         GHAssertFalse(failed,<span class="stringliteral">@&quot;Request failed, cannot proceed with test&quot;</span>);
-<a name="l00081"></a>00081         GHAssertTrue(started,<span class="stringliteral">@&quot;Failed to call started block&quot;</span>);
-<a name="l00082"></a>00082         GHAssertTrue(receivedHeaders,<span class="stringliteral">@&quot;Failed to call received headers block&quot;</span>);
-<a name="l00083"></a>00083         GHAssertTrue(complete,<span class="stringliteral">@&quot;Failed to call completed block&quot;</span>);
-<a name="l00084"></a>00084         
-<a name="l00085"></a>00085         BOOL success = (totalBytesReceived == 457);
-<a name="l00086"></a>00086         GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to call bytes received block, or got wrong amount of data&quot;</span>);
-<a name="l00087"></a>00087         success = (totalDownloadSize == 457);
-<a name="l00088"></a>00088         GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to call download size increment block&quot;</span>);
-<a name="l00089"></a>00089         
-<a name="l00090"></a>00090         success = (totalBytesSent == [dataToSend length]);
-<a name="l00091"></a>00091         GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to call bytes sent block&quot;</span>);
-<a name="l00092"></a>00092         success = (totalUploadSize == [dataToSend length]);
-<a name="l00093"></a>00093         GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to call upload size increment block&quot;</span>);
-<a name="l00094"></a>00094         
-<a name="l00095"></a>00095         
-<a name="l00096"></a>00096         request = [ASIHTTPRequest requestWithURL:nil];
-<a name="l00097"></a>00097         [request setFailedBlock:^{
-<a name="l00098"></a>00098                 failed = YES;
-<a name="l00099"></a>00099         }];
-<a name="l00100"></a>00100         [request startSynchronous];
-<a name="l00101"></a>00101         GHAssertTrue(failed,<span class="stringliteral">@&quot;Failed to call request failure block&quot;</span>);
+<a name="l00075"></a>00075   
+<a name="l00076"></a>00076   [request setRequestMethod:@&quot;PUT&quot;];
+<a name="l00077"></a>00077   [request appendPostData:dataToSend];
+<a name="l00078"></a>00078   [request startSynchronous];
+<a name="l00079"></a>00079   
+<a name="l00080"></a>00080   GHAssertFalse(failed,<span class="stringliteral">@&quot;Request failed, cannot proceed with test&quot;</span>);
+<a name="l00081"></a>00081   GHAssertTrue(started,<span class="stringliteral">@&quot;Failed to call started block&quot;</span>);
+<a name="l00082"></a>00082   GHAssertTrue(receivedHeaders,<span class="stringliteral">@&quot;Failed to call received headers block&quot;</span>);
+<a name="l00083"></a>00083   GHAssertTrue(complete,<span class="stringliteral">@&quot;Failed to call completed block&quot;</span>);
+<a name="l00084"></a>00084   
+<a name="l00085"></a>00085   BOOL success = (totalBytesReceived == 457);
+<a name="l00086"></a>00086   GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to call bytes received block, or got wrong amount of data&quot;</span>);
+<a name="l00087"></a>00087   success = (totalDownloadSize == 457);
+<a name="l00088"></a>00088   GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to call download size increment block&quot;</span>);
+<a name="l00089"></a>00089   
+<a name="l00090"></a>00090   success = (totalBytesSent == [dataToSend length]);
+<a name="l00091"></a>00091   GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to call bytes sent block&quot;</span>);
+<a name="l00092"></a>00092   success = (totalUploadSize == [dataToSend length]);
+<a name="l00093"></a>00093   GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to call upload size increment block&quot;</span>);
+<a name="l00094"></a>00094   
+<a name="l00095"></a>00095   
+<a name="l00096"></a>00096   request = [ASIHTTPRequest requestWithURL:nil];
+<a name="l00097"></a>00097   [request setFailedBlock:^{
+<a name="l00098"></a>00098     failed = YES;
+<a name="l00099"></a>00099   }];
+<a name="l00100"></a>00100   [request startSynchronous];
+<a name="l00101"></a>00101   GHAssertTrue(failed,<span class="stringliteral">@&quot;Failed to call request failure block&quot;</span>);
 <a name="l00102"></a>00102 }
 <a name="l00103"></a>00103 <span class="preprocessor">#endif</span>
 <a name="l00104"></a>00104 <span class="preprocessor"></span>

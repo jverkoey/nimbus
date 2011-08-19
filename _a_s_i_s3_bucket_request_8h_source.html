@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: /Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/src_optional/S3/ASIS3BucketRequest.h Source File</title>
+<title>Nimbus: src/ASIHTTPRequest/src_optional/S3/ASIS3BucketRequest.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,7 +73,7 @@
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">/Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/src_optional/S3/ASIS3BucketRequest.h</div>  </div>
+<div class="title">src/ASIHTTPRequest/src_optional/S3/ASIS3BucketRequest.h</div>  </div>
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
@@ -91,32 +91,32 @@
 <a name="l00013"></a>00013 <span class="keyword">@class</span> ASIS3BucketObject;
 <a name="l00014"></a>00014 
 <a name="l00015"></a>00015 <span class="keyword">@interface </span>ASIS3BucketRequest : ASIS3Request {
-<a name="l00016"></a>00016         
-<a name="l00017"></a>00017         <span class="comment">// Name of the bucket to talk to</span>
-<a name="l00018"></a>00018         <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *bucket;
-<a name="l00019"></a>00019         
-<a name="l00020"></a>00020         <span class="comment">// A parameter passed to S3 in the query string to tell it to return specialised information</span>
-<a name="l00021"></a>00021         <span class="comment">// Consult the S3 REST API documentation for more info</span>
-<a name="l00022"></a>00022         <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *subResource;
-<a name="l00023"></a>00023         
-<a name="l00024"></a>00024         <span class="comment">// Options for filtering GET requests</span>
-<a name="l00025"></a>00025         <span class="comment">// See http://docs.amazonwebservices.com/AmazonS3/2006-03-01/index.html?RESTBucketGET.html</span>
-<a name="l00026"></a>00026         <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *prefix;
-<a name="l00027"></a>00027         <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *marker;
-<a name="l00028"></a>00028         <span class="keywordtype">int</span> maxResultCount;
-<a name="l00029"></a>00029         <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *delimiter;
-<a name="l00030"></a>00030         
-<a name="l00031"></a>00031         <span class="comment">// Internally used while parsing the response</span>
-<a name="l00032"></a>00032         ASIS3BucketObject *currentObject;
-<a name="l00033"></a>00033         
-<a name="l00034"></a>00034         <span class="comment">// Returns an array of ASIS3BucketObjects created from the XML response</span>
-<a name="l00035"></a>00035         NSMutableArray *objects;        
-<a name="l00036"></a>00036         
-<a name="l00037"></a>00037         <span class="comment">// Will be populated with a list of &#39;folders&#39; when a delimiter is set</span>
-<a name="l00038"></a>00038         NSMutableArray *commonPrefixes;
-<a name="l00039"></a>00039         
-<a name="l00040"></a>00040         <span class="comment">// Will be true if this request did not return all the results matching the query (use maxResultCount to configure the number of results to return)</span>
-<a name="l00041"></a>00041         BOOL isTruncated;
+<a name="l00016"></a>00016   
+<a name="l00017"></a>00017   <span class="comment">// Name of the bucket to talk to</span>
+<a name="l00018"></a>00018   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *bucket;
+<a name="l00019"></a>00019   
+<a name="l00020"></a>00020   <span class="comment">// A parameter passed to S3 in the query string to tell it to return specialised information</span>
+<a name="l00021"></a>00021   <span class="comment">// Consult the S3 REST API documentation for more info</span>
+<a name="l00022"></a>00022   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *subResource;
+<a name="l00023"></a>00023   
+<a name="l00024"></a>00024   <span class="comment">// Options for filtering GET requests</span>
+<a name="l00025"></a>00025   <span class="comment">// See http://docs.amazonwebservices.com/AmazonS3/2006-03-01/index.html?RESTBucketGET.html</span>
+<a name="l00026"></a>00026   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *prefix;
+<a name="l00027"></a>00027   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *marker;
+<a name="l00028"></a>00028   <span class="keywordtype">int</span> maxResultCount;
+<a name="l00029"></a>00029   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *delimiter;
+<a name="l00030"></a>00030   
+<a name="l00031"></a>00031   <span class="comment">// Internally used while parsing the response</span>
+<a name="l00032"></a>00032   ASIS3BucketObject *currentObject;
+<a name="l00033"></a>00033   
+<a name="l00034"></a>00034   <span class="comment">// Returns an array of ASIS3BucketObjects created from the XML response</span>
+<a name="l00035"></a>00035   NSMutableArray *objects;  
+<a name="l00036"></a>00036   
+<a name="l00037"></a>00037   <span class="comment">// Will be populated with a list of &#39;folders&#39; when a delimiter is set</span>
+<a name="l00038"></a>00038   NSMutableArray *commonPrefixes;
+<a name="l00039"></a>00039   
+<a name="l00040"></a>00040   <span class="comment">// Will be true if this request did not return all the results matching the query (use maxResultCount to configure the number of results to return)</span>
+<a name="l00041"></a>00041   BOOL isTruncated;
 <a name="l00042"></a>00042 }
 <a name="l00043"></a>00043 
 <a name="l00044"></a>00044 <span class="comment">// Fetch a bucket</span>

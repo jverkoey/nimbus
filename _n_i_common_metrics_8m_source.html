@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: /Users/featherless/workbench/ios/nimbus/src/core/src/NICommonMetrics.m Source File</title>
+<title>Nimbus: src/core/src/NICommonMetrics.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,7 +73,7 @@
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">/Users/featherless/workbench/ios/nimbus/src/core/src/NICommonMetrics.m</div>  </div>
+<div class="title">src/core/src/NICommonMetrics.m</div>  </div>
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
@@ -140,6 +140,11 @@
 <a name="l00069"></a><a class="code" href="group___common-_metrics.html#ga7d4ebd335b7563adf1b1e5fdcbb6d9d3">00069</a> NSTimeInterval <a class="code" href="group___common-_metrics.html#ga7d4ebd335b7563adf1b1e5fdcbb6d9d3" title="The animation duration when the device is rotating to a new orientation.">NIDeviceRotationDuration</a>(BOOL isFlippingUpsideDown) {
 <a name="l00070"></a>00070   <span class="keywordflow">return</span> isFlippingUpsideDown ? 0.8 : 0.4;
 <a name="l00071"></a>00071 }
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 
+<a name="l00075"></a><a class="code" href="group___common-_metrics.html#ga5224edb22eb775228169b74b11ecb8f6">00075</a> UIEdgeInsets <a class="code" href="group___common-_metrics.html#ga5224edb22eb775228169b74b11ecb8f6" title="The padding around a standard cell in a table view.">NICellContentPadding</a>(<span class="keywordtype">void</span>) {
+<a name="l00076"></a>00076   <span class="keywordflow">return</span> UIEdgeInsetsMake(10, 10, 10, 10);
+<a name="l00077"></a>00077 }
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

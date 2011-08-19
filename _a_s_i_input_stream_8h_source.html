@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: /Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/src/ASIInputStream.h Source File</title>
+<title>Nimbus: src/ASIHTTPRequest/src/ASIInputStream.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,7 +73,7 @@
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">/Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/src/ASIInputStream.h</div>  </div>
+<div class="title">src/ASIHTTPRequest/src/ASIInputStream.h</div>  </div>
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
@@ -93,8 +93,8 @@
 <a name="l00015"></a>00015 <span class="comment">// It is used by ASIHTTPRequest whenever we have a request body, and handles measuring and throttling the bandwidth used for uploading</span>
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 <span class="keyword">@interface </span>ASIInputStream : NSObject {
-<a name="l00018"></a>00018         NSInputStream *stream;
-<a name="l00019"></a>00019         ASIHTTPRequest *request;
+<a name="l00018"></a>00018   NSInputStream *stream;
+<a name="l00019"></a>00019   ASIHTTPRequest *request;
 <a name="l00020"></a>00020 }
 <a name="l00021"></a>00021 + (id)inputStreamWithFileAtPath:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)path request:(ASIHTTPRequest *)request;
 <a name="l00022"></a>00022 + (id)inputStreamWithData:(<a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a> *)data request:(ASIHTTPRequest *)request;

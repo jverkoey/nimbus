@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: /Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/src_optional/S3/ASIS3Request.h Source File</title>
+<title>Nimbus: src/ASIHTTPRequest/src_optional/S3/ASIS3Request.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,7 +73,7 @@
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">/Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/src_optional/S3/ASIS3Request.h</div>  </div>
+<div class="title">src/ASIHTTPRequest/src_optional/S3/ASIS3Request.h</div>  </div>
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
@@ -115,39 +115,39 @@
 <a name="l00037"></a>00037 
 <a name="l00038"></a>00038 
 <a name="l00039"></a>00039 <span class="keyword">@interface </span>ASIS3Request : ASIHTTPRequest &lt;NSCopying, NSXMLParserDelegate&gt; {
-<a name="l00040"></a>00040         
-<a name="l00041"></a>00041         <span class="comment">// Your S3 access key. Set it on the request, or set it globally using [ASIS3Request setSharedAccessKey:]</span>
-<a name="l00042"></a>00042         <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *accessKey;
-<a name="l00043"></a>00043         
-<a name="l00044"></a>00044         <span class="comment">// Your S3 secret access key. Set it on the request, or set it globally using [ASIS3Request setSharedSecretAccessKey:]</span>
-<a name="l00045"></a>00045         <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *secretAccessKey;
-<a name="l00046"></a>00046         
-<a name="l00047"></a>00047         <span class="comment">// Set to ASIS3RequestSchemeHTTPS to send your requests via HTTPS (default is ASIS3RequestSchemeHTTP)</span>
-<a name="l00048"></a>00048         <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *requestScheme;
+<a name="l00040"></a>00040   
+<a name="l00041"></a>00041   <span class="comment">// Your S3 access key. Set it on the request, or set it globally using [ASIS3Request setSharedAccessKey:]</span>
+<a name="l00042"></a>00042   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *accessKey;
+<a name="l00043"></a>00043   
+<a name="l00044"></a>00044   <span class="comment">// Your S3 secret access key. Set it on the request, or set it globally using [ASIS3Request setSharedSecretAccessKey:]</span>
+<a name="l00045"></a>00045   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *secretAccessKey;
+<a name="l00046"></a>00046   
+<a name="l00047"></a>00047   <span class="comment">// Set to ASIS3RequestSchemeHTTPS to send your requests via HTTPS (default is ASIS3RequestSchemeHTTP)</span>
+<a name="l00048"></a>00048   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *requestScheme;
 <a name="l00049"></a>00049 
-<a name="l00050"></a>00050         <span class="comment">// The string that will be used in the HTTP date header. Generally you&#39;ll want to ignore this and let the class add the current date for you, but the accessor is used by the tests</span>
-<a name="l00051"></a>00051         <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *dateString;
+<a name="l00050"></a>00050   <span class="comment">// The string that will be used in the HTTP date header. Generally you&#39;ll want to ignore this and let the class add the current date for you, but the accessor is used by the tests</span>
+<a name="l00051"></a>00051   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *dateString;
 <a name="l00052"></a>00052 
-<a name="l00053"></a>00053         <span class="comment">// The access policy to use when PUTting a file (see the string constants at the top ASIS3Request.h for details on what the possible options are)</span>
-<a name="l00054"></a>00054         <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *accessPolicy;
+<a name="l00053"></a>00053   <span class="comment">// The access policy to use when PUTting a file (see the string constants at the top ASIS3Request.h for details on what the possible options are)</span>
+<a name="l00054"></a>00054   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *accessPolicy;
 <a name="l00055"></a>00055 
-<a name="l00056"></a>00056         <span class="comment">// Internally used while parsing errors</span>
-<a name="l00057"></a>00057         <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *currentXMLElementContent;
-<a name="l00058"></a>00058         NSMutableArray *currentXMLElementStack;
+<a name="l00056"></a>00056   <span class="comment">// Internally used while parsing errors</span>
+<a name="l00057"></a>00057   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *currentXMLElementContent;
+<a name="l00058"></a>00058   NSMutableArray *currentXMLElementStack;
 <a name="l00059"></a>00059 }
 <a name="l00060"></a>00060 
 <a name="l00061"></a>00061 <span class="comment">// Uses the supplied date to create a Date header string</span>
 <a name="l00062"></a>00062 - (void)setDate:(NSDate *)date;
 <a name="l00063"></a>00063 
 <a name="l00064"></a>00064 <span class="comment">// Will return a dictionary of the &#39;amz-&#39; headers that wil be sent to S3</span>
-<a name="l00065"></a>00065 <span class="comment">// Override in subclasses to add new ones       </span>
+<a name="l00065"></a>00065 <span class="comment">// Override in subclasses to add new ones </span>
 <a name="l00066"></a>00066 - (NSMutableDictionary *)S3Headers;
-<a name="l00067"></a>00067         
+<a name="l00067"></a>00067   
 <a name="l00068"></a>00068 <span class="comment">// Returns the string that will used to create a signature for this request</span>
 <a name="l00069"></a>00069 <span class="comment">// Is overridden in ASIS3ObjectRequest</span>
 <a name="l00070"></a>00070 - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)stringToSignForHeaders:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)canonicalizedAmzHeaders resource:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)canonicalizedResource;
 <a name="l00071"></a>00071 
-<a name="l00072"></a>00072 <span class="comment">// Parses the response to work out if S3 returned an error      </span>
+<a name="l00072"></a>00072 <span class="comment">// Parses the response to work out if S3 returned an error  </span>
 <a name="l00073"></a>00073 - (void)parseResponseXML;
 <a name="l00074"></a>00074 
 <a name="l00075"></a>00075 <span class="preprocessor">#pragma mark shared access keys</span>
@@ -159,10 +159,10 @@
 <a name="l00081"></a>00081 + (void)setSharedSecretAccessKey:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)newAccessKey;
 <a name="l00082"></a>00082 
 <a name="l00083"></a>00083 <span class="preprocessor"># pragma mark helpers</span>
-<a name="l00084"></a>00084 <span class="preprocessor"></span>        
+<a name="l00084"></a>00084 <span class="preprocessor"></span>  
 <a name="l00085"></a>00085 <span class="comment">// Returns a date formatter than can be used to parse a date from S3</span>
 <a name="l00086"></a>00086 + (NSDateFormatter*)S3ResponseDateFormatter;
-<a name="l00087"></a>00087         
+<a name="l00087"></a>00087   
 <a name="l00088"></a>00088 <span class="comment">// Returns a date formatter than can be used to send a date header to S3</span>
 <a name="l00089"></a>00089 + (NSDateFormatter*)S3RequestDateFormatter;
 <a name="l00090"></a>00090 

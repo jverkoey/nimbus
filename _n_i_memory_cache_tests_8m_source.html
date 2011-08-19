@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: /Users/featherless/workbench/ios/nimbus/src/core/unittests/NIMemoryCacheTests.m Source File</title>
+<title>Nimbus: src/core/unittests/NIMemoryCacheTests.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,7 +73,7 @@
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">/Users/featherless/workbench/ios/nimbus/src/core/unittests/NIMemoryCacheTests.m</div>  </div>
+<div class="title">src/core/unittests/NIMemoryCacheTests.m</div>  </div>
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
@@ -325,205 +325,205 @@
 <a name="l00266"></a>00266 }
 <a name="l00267"></a>00267 
 <a name="l00268"></a>00268 
-<a name="l00270"></a>00270 - (void)testReduceMemoryUsage {
+<a name="l00270"></a>00270 - (void)testLeastAndMostRecentlyUsedObjects {
 <a name="l00271"></a>00271   <a class="code" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a> alloc] init] autorelease];
 <a name="l00272"></a>00272 
-<a name="l00273"></a>00273   <span class="keywordtype">id</span> cacheObject1 = [NSArray array];
-<a name="l00274"></a>00274   [cache <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>: cacheObject1
-<a name="l00275"></a>00275             <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>: @&quot;obj1&quot;
-<a name="l00276"></a>00276         <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>: [NSDate dateWithTimeIntervalSinceNow:1]];
+<a name="l00273"></a>00273   STAssertNil([cache nameOfLeastRecentlyUsedObject],
+<a name="l00274"></a>00274               <span class="stringliteral">@&quot;There should not be a least-recently-used object.&quot;</span>);
+<a name="l00275"></a>00275   STAssertNil([cache nameOfMostRecentlyUsedObject],
+<a name="l00276"></a>00276               <span class="stringliteral">@&quot;There should not be a most-recently-used object.&quot;</span>);
 <a name="l00277"></a>00277 
-<a name="l00278"></a>00278   <span class="keywordtype">id</span> cacheObject2 = [NSDictionary dictionary];
-<a name="l00279"></a>00279   [cache <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>: cacheObject2
-<a name="l00280"></a>00280             <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>: @&quot;obj2&quot;
-<a name="l00281"></a>00281         <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>: [NSDate dateWithTimeIntervalSinceNow:10]];
-<a name="l00282"></a>00282 
-<a name="l00283"></a>00283   [NSDate setFakeDate:[NSDate dateWithTimeIntervalSinceNow:2]];
+<a name="l00278"></a>00278   <span class="keywordtype">id</span> cacheObject1 = [NSArray array];
+<a name="l00279"></a>00279   <span class="keywordtype">id</span> cacheObject2 = [NSDictionary dictionary];
+<a name="l00280"></a>00280   <span class="keywordtype">id</span> cacheObject3 = [NSSet set];
+<a name="l00281"></a>00281   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>:cacheObject1 <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>:@&quot;obj1&quot;];
+<a name="l00282"></a>00282   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>:cacheObject2 <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>:@&quot;obj2&quot;];
+<a name="l00283"></a>00283   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>:cacheObject3 <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>:@&quot;obj3&quot;];
 <a name="l00284"></a>00284 
-<a name="l00285"></a>00285   <span class="comment">// This makes [NSDate date] call our fakeDate implementation, which allows us to fake the</span>
-<a name="l00286"></a>00286   <span class="comment">// current time so that we don&#39;t have to pause the tests while we wait for the object to</span>
-<a name="l00287"></a>00287   <span class="comment">// expire.</span>
-<a name="l00288"></a>00288   [NSDate swizzleMethodsForUnitTesting];
+<a name="l00285"></a>00285   STAssertEquals(<span class="stringliteral">@&quot;obj1&quot;</span>, [cache nameOfLeastRecentlyUsedObject],
+<a name="l00286"></a>00286                  <span class="stringliteral">@&quot;The least recently used object should be object 1.&quot;</span>);
+<a name="l00287"></a>00287   STAssertEquals(<span class="stringliteral">@&quot;obj3&quot;</span>, [cache nameOfMostRecentlyUsedObject],
+<a name="l00288"></a>00288                  <span class="stringliteral">@&quot;The most recently used object should be object 3.&quot;</span>);
 <a name="l00289"></a>00289 
-<a name="l00290"></a>00290   STAssertEquals([cache count], (NSUInteger)2, <span class="stringliteral">@&quot;Cache should have two objects.&quot;</span>);
-<a name="l00291"></a>00291 
-<a name="l00292"></a>00292   [cache <a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Removes all expired objects from the cache.">reduceMemoryUsage</a>];
-<a name="l00293"></a>00293 
-<a name="l00294"></a>00294   STAssertNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Object 1 should have expired.&quot;</span>);
-<a name="l00295"></a>00295 
-<a name="l00296"></a>00296   STAssertEquals([cache count], (NSUInteger)1, <span class="stringliteral">@&quot;Cache should have one object left.&quot;</span>);
-<a name="l00297"></a>00297 
-<a name="l00298"></a>00298   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj2&quot;</span>], <span class="stringliteral">@&quot;Object 2 should still be around.&quot;</span>);
+<a name="l00290"></a>00290   <span class="comment">// Make object 1 the most-recently-accessed</span>
+<a name="l00291"></a>00291   [cache <a class="code" href="interface_n_i_memory_cache.html#afdd7b533b55c5d8753078e207ec0a9d7" title="Retrieves an object from the cache.">objectWithName</a>:@&quot;obj1&quot;];
+<a name="l00292"></a>00292 
+<a name="l00293"></a>00293   STAssertEquals(<span class="stringliteral">@&quot;obj2&quot;</span>, [cache nameOfLeastRecentlyUsedObject],
+<a name="l00294"></a>00294                  <span class="stringliteral">@&quot;The least recently used object should be object 2.&quot;</span>);
+<a name="l00295"></a>00295   STAssertEquals(<span class="stringliteral">@&quot;obj1&quot;</span>, [cache nameOfMostRecentlyUsedObject],
+<a name="l00296"></a>00296                  <span class="stringliteral">@&quot;The most recently used object should be object 1.&quot;</span>);
+<a name="l00297"></a>00297 }
+<a name="l00298"></a>00298 
 <a name="l00299"></a>00299 
-<a name="l00300"></a>00300   <span class="comment">// Reset the class implementations when we&#39;re done with them.</span>
-<a name="l00301"></a>00301   [NSDate swizzleMethodsForUnitTesting];
-<a name="l00302"></a>00302 }
+<a name="l00301"></a>00301 - (void)testReduceMemoryUsage {
+<a name="l00302"></a>00302   <a class="code" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a> alloc] init] autorelease];
 <a name="l00303"></a>00303 
-<a name="l00304"></a>00304 
-<a name="l00307"></a>00307 <span class="preprocessor">#pragma mark -</span>
-<a name="l00308"></a>00308 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Image In-Memory Cache</span>
-<a name="l00309"></a>00309 <span class="preprocessor"></span>
-<a name="l00310"></a>00310 
-<a name="l00312"></a>00312 <span class="comment">// Create an image of a given size. The contents are undefined.</span>
-<a name="l00313"></a>00313 - (UIImage *)emptyImageWithSize:(CGSize)size {
-<a name="l00314"></a>00314   UIGraphicsBeginImageContext(size);
-<a name="l00315"></a>00315   UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
-<a name="l00316"></a>00316   UIGraphicsEndImageContext();
-<a name="l00317"></a>00317 
-<a name="l00318"></a>00318   <span class="keywordflow">return</span> image;
-<a name="l00319"></a>00319 }
+<a name="l00304"></a>00304   <span class="keywordtype">id</span> cacheObject1 = [NSArray array];
+<a name="l00305"></a>00305   [cache <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>: cacheObject1
+<a name="l00306"></a>00306             <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>: @&quot;obj1&quot;
+<a name="l00307"></a>00307         <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>: [NSDate dateWithTimeIntervalSinceNow:1]];
+<a name="l00308"></a>00308 
+<a name="l00309"></a>00309   <span class="keywordtype">id</span> cacheObject2 = [NSDictionary dictionary];
+<a name="l00310"></a>00310   [cache <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>: cacheObject2
+<a name="l00311"></a>00311             <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>: @&quot;obj2&quot;
+<a name="l00312"></a>00312         <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>: [NSDate dateWithTimeIntervalSinceNow:10]];
+<a name="l00313"></a>00313 
+<a name="l00314"></a>00314   [NSDate setFakeDate:[NSDate dateWithTimeIntervalSinceNow:2]];
+<a name="l00315"></a>00315 
+<a name="l00316"></a>00316   <span class="comment">// This makes [NSDate date] call our fakeDate implementation, which allows us to fake the</span>
+<a name="l00317"></a>00317   <span class="comment">// current time so that we don&#39;t have to pause the tests while we wait for the object to</span>
+<a name="l00318"></a>00318   <span class="comment">// expire.</span>
+<a name="l00319"></a>00319   [NSDate swizzleMethodsForUnitTesting];
 <a name="l00320"></a>00320 
-<a name="l00321"></a>00321 
-<a name="l00323"></a>00323 - (void)testImageCacheNoLimit {
-<a name="l00324"></a>00324   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> alloc] init] autorelease];
-<a name="l00325"></a>00325 
-<a name="l00326"></a>00326   UIImage* img1 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
-<a name="l00327"></a>00327   UIImage* img2 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
+<a name="l00321"></a>00321   STAssertEquals([cache count], (NSUInteger)2, <span class="stringliteral">@&quot;Cache should have two objects.&quot;</span>);
+<a name="l00322"></a>00322 
+<a name="l00323"></a>00323   [cache <a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Removes all expired objects from the cache.">reduceMemoryUsage</a>];
+<a name="l00324"></a>00324 
+<a name="l00325"></a>00325   STAssertNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Object 1 should have expired.&quot;</span>);
+<a name="l00326"></a>00326 
+<a name="l00327"></a>00327   STAssertEquals([cache count], (NSUInteger)1, <span class="stringliteral">@&quot;Cache should have one object left.&quot;</span>);
 <a name="l00328"></a>00328 
-<a name="l00329"></a>00329   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img1
-<a name="l00330"></a>00330             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj1&quot;];
-<a name="l00331"></a>00331   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img2
-<a name="l00332"></a>00332             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj2&quot;];
-<a name="l00333"></a>00333 
-<a name="l00334"></a>00334   STAssertEquals([cache count], (NSUInteger)2, <span class="stringliteral">@&quot;Cache should have two objects.&quot;</span>);
-<a name="l00335"></a>00335   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Image 1 should still be around.&quot;</span>);
-<a name="l00336"></a>00336   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj2&quot;</span>], <span class="stringliteral">@&quot;Image 2 should still be around.&quot;</span>);
-<a name="l00337"></a>00337 }
-<a name="l00338"></a>00338 
-<a name="l00339"></a>00339 
-<a name="l00341"></a>00341 - (void)testImageCacheNils {
-<a name="l00342"></a>00342   <span class="comment">// Disable NIDASSERTs from breaking the program execution.</span>
-<a name="l00343"></a>00343   <a class="code" href="group___debugging-_tools.html#ga9b5abee5150b99d8ccce041099d44706" title="Whether or not debug assertions should halt program execution like a breakpoint when they fail...">NIDebugAssertionsShouldBreak</a> = NO;
-<a name="l00344"></a>00344 
-<a name="l00345"></a>00345   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> alloc] init] autorelease];
-<a name="l00346"></a>00346 
-<a name="l00347"></a>00347   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: nil
-<a name="l00348"></a>00348             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj1&quot;];
-<a name="l00349"></a>00349   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
-<a name="l00350"></a>00350 
-<a name="l00351"></a>00351   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: nil
-<a name="l00352"></a>00352             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: nil];
-<a name="l00353"></a>00353   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
-<a name="l00354"></a>00354 
-<a name="l00355"></a>00355   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: [NSDictionary dictionary]
-<a name="l00356"></a>00356             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: nil];
-<a name="l00357"></a>00357   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
-<a name="l00358"></a>00358 
-<a name="l00359"></a>00359   [cache <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>: [NSDictionary dictionary]
-<a name="l00360"></a>00360             <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>: nil
-<a name="l00361"></a>00361         <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>: nil];
-<a name="l00362"></a>00362   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
-<a name="l00363"></a>00363 
-<a name="l00364"></a>00364   [cache <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>: [NSDictionary dictionary]
-<a name="l00365"></a>00365             <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>: nil
-<a name="l00366"></a>00366         <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>: [NSDate dateWithTimeIntervalSinceNow:1]];
-<a name="l00367"></a>00367   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
-<a name="l00368"></a>00368 
-<a name="l00369"></a>00369   [cache <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>: nil
-<a name="l00370"></a>00370             <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>: @&quot;obj1&quot;
-<a name="l00371"></a>00371         <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>: nil];
-<a name="l00372"></a>00372   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
-<a name="l00373"></a>00373 
-<a name="l00374"></a>00374   [cache <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>: nil
-<a name="l00375"></a>00375             <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>: nil
-<a name="l00376"></a>00376         <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>: [NSDate dateWithTimeIntervalSinceNow:1]];
-<a name="l00377"></a>00377   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
-<a name="l00378"></a>00378 
-<a name="l00379"></a>00379   [cache <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>: nil
-<a name="l00380"></a>00380             <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>: nil
-<a name="l00381"></a>00381         <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>: nil];
-<a name="l00382"></a>00382   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
-<a name="l00383"></a>00383 
-<a name="l00384"></a>00384   STAssertNil([cache objectWithName:nil], <span class="stringliteral">@&quot;The result should be nil&quot;</span>);
-<a name="l00385"></a>00385   [cache <a class="code" href="interface_n_i_memory_cache.html#a5dab1798d4e3bcd2b686837f63f31d1c" title="Removes an object from the cache.">removeObjectWithName</a>:nil];
-<a name="l00386"></a>00386 
-<a name="l00387"></a>00387   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
-<a name="l00388"></a>00388   
-<a name="l00389"></a>00389   <a class="code" href="group___debugging-_tools.html#ga9b5abee5150b99d8ccce041099d44706" title="Whether or not debug assertions should halt program execution like a breakpoint when they fail...">NIDebugAssertionsShouldBreak</a> = YES;
-<a name="l00390"></a>00390 }
-<a name="l00391"></a>00391 
-<a name="l00392"></a>00392 
-<a name="l00394"></a>00394 - (void)testImageCacheStoreTooMuch {
-<a name="l00395"></a>00395   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> alloc] init] autorelease];
-<a name="l00396"></a>00396 
-<a name="l00397"></a>00397   <span class="keyword">static</span> <span class="keyword">const</span> NSUInteger numberOfPixelsInOneImage = 100 * 100;
-<a name="l00398"></a>00398   cache.<a class="code" href="interface_n_i_image_memory_cache.html#a30bd865b4e57ff8a73fd459114c22aed" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a> = numberOfPixelsInOneImage;
+<a name="l00329"></a>00329   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj2&quot;</span>], <span class="stringliteral">@&quot;Object 2 should still be around.&quot;</span>);
+<a name="l00330"></a>00330 
+<a name="l00331"></a>00331   <span class="comment">// Reset the class implementations when we&#39;re done with them.</span>
+<a name="l00332"></a>00332   [NSDate swizzleMethodsForUnitTesting];
+<a name="l00333"></a>00333 }
+<a name="l00334"></a>00334 
+<a name="l00335"></a>00335 
+<a name="l00338"></a>00338 <span class="preprocessor">#pragma mark -</span>
+<a name="l00339"></a>00339 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Image In-Memory Cache</span>
+<a name="l00340"></a>00340 <span class="preprocessor"></span>
+<a name="l00341"></a>00341 
+<a name="l00343"></a>00343 <span class="comment">// Create an image of a given size. The contents are undefined.</span>
+<a name="l00344"></a>00344 - (UIImage *)emptyImageWithSize:(CGSize)size {
+<a name="l00345"></a>00345   UIGraphicsBeginImageContext(size);
+<a name="l00346"></a>00346   UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+<a name="l00347"></a>00347   UIGraphicsEndImageContext();
+<a name="l00348"></a>00348 
+<a name="l00349"></a>00349   <span class="keywordflow">return</span> image;
+<a name="l00350"></a>00350 }
+<a name="l00351"></a>00351 
+<a name="l00352"></a>00352 
+<a name="l00354"></a>00354 - (void)testImageCacheNoLimit {
+<a name="l00355"></a>00355   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> alloc] init] autorelease];
+<a name="l00356"></a>00356 
+<a name="l00357"></a>00357   UIImage* img1 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
+<a name="l00358"></a>00358   UIImage* img2 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
+<a name="l00359"></a>00359 
+<a name="l00360"></a>00360   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img1
+<a name="l00361"></a>00361             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj1&quot;];
+<a name="l00362"></a>00362   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img2
+<a name="l00363"></a>00363             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj2&quot;];
+<a name="l00364"></a>00364 
+<a name="l00365"></a>00365   STAssertEquals([cache count], (NSUInteger)2, <span class="stringliteral">@&quot;Cache should have two objects.&quot;</span>);
+<a name="l00366"></a>00366   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Image 1 should still be around.&quot;</span>);
+<a name="l00367"></a>00367   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj2&quot;</span>], <span class="stringliteral">@&quot;Image 2 should still be around.&quot;</span>);
+<a name="l00368"></a>00368 }
+<a name="l00369"></a>00369 
+<a name="l00370"></a>00370 
+<a name="l00372"></a>00372 - (void)testImageCacheNils {
+<a name="l00373"></a>00373   <span class="comment">// Disable NIDASSERTs from breaking the program execution.</span>
+<a name="l00374"></a>00374   <a class="code" href="group___debugging-_tools.html#ga9b5abee5150b99d8ccce041099d44706" title="Whether or not debug assertions should halt program execution like a breakpoint when they fail...">NIDebugAssertionsShouldBreak</a> = NO;
+<a name="l00375"></a>00375 
+<a name="l00376"></a>00376   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> alloc] init] autorelease];
+<a name="l00377"></a>00377 
+<a name="l00378"></a>00378   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: nil
+<a name="l00379"></a>00379             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj1&quot;];
+<a name="l00380"></a>00380   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
+<a name="l00381"></a>00381 
+<a name="l00382"></a>00382   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: nil
+<a name="l00383"></a>00383             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: nil];
+<a name="l00384"></a>00384   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
+<a name="l00385"></a>00385 
+<a name="l00386"></a>00386   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: [NSDictionary dictionary]
+<a name="l00387"></a>00387             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: nil];
+<a name="l00388"></a>00388   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
+<a name="l00389"></a>00389 
+<a name="l00390"></a>00390   [cache <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>: [NSDictionary dictionary]
+<a name="l00391"></a>00391             <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>: nil
+<a name="l00392"></a>00392         <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>: nil];
+<a name="l00393"></a>00393   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
+<a name="l00394"></a>00394 
+<a name="l00395"></a>00395   [cache <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>: [NSDictionary dictionary]
+<a name="l00396"></a>00396             <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>: nil
+<a name="l00397"></a>00397         <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>: [NSDate dateWithTimeIntervalSinceNow:1]];
+<a name="l00398"></a>00398   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
 <a name="l00399"></a>00399 
-<a name="l00400"></a>00400   UIImage* img1 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
-<a name="l00401"></a>00401   UIImage* img2 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
-<a name="l00402"></a>00402 
-<a name="l00403"></a>00403   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img1
-<a name="l00404"></a>00404             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj1&quot;];
-<a name="l00405"></a>00405 
-<a name="l00406"></a>00406   <span class="comment">// This second image will push out the first image.</span>
-<a name="l00407"></a>00407   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img2
-<a name="l00408"></a>00408             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj2&quot;];
+<a name="l00400"></a>00400   [cache <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>: nil
+<a name="l00401"></a>00401             <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>: @&quot;obj1&quot;
+<a name="l00402"></a>00402         <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>: nil];
+<a name="l00403"></a>00403   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
+<a name="l00404"></a>00404 
+<a name="l00405"></a>00405   [cache <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>: nil
+<a name="l00406"></a>00406             <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>: nil
+<a name="l00407"></a>00407         <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>: [NSDate dateWithTimeIntervalSinceNow:1]];
+<a name="l00408"></a>00408   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
 <a name="l00409"></a>00409 
-<a name="l00410"></a>00410   STAssertEquals([cache count], (NSUInteger)1, <span class="stringliteral">@&quot;Cache should have one object.&quot;</span>);
-<a name="l00411"></a>00411   STAssertNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Image 1 should not still be around.&quot;</span>);
-<a name="l00412"></a>00412   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj2&quot;</span>], <span class="stringliteral">@&quot;Image 2 should still be around.&quot;</span>);
-<a name="l00413"></a>00413 }
+<a name="l00410"></a>00410   [cache <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">storeObject</a>: nil
+<a name="l00411"></a>00411             <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">withName</a>: nil
+<a name="l00412"></a>00412         <a class="code" href="interface_n_i_memory_cache.html#acaa6af8abea20907cf230ce1191e7ad4" title="Stores an object in the cache with an expiration date.">expiresAfter</a>: nil];
+<a name="l00413"></a>00413   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
 <a name="l00414"></a>00414 
-<a name="l00415"></a>00415 
-<a name="l00417"></a>00417 - (void)testImageCacheReduceMemoryUsage {
-<a name="l00418"></a>00418   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> alloc] init] autorelease];
-<a name="l00419"></a>00419 
-<a name="l00420"></a>00420   <span class="keyword">static</span> <span class="keyword">const</span> NSUInteger numberOfPixelsInOneImage = 100 * 100;
-<a name="l00421"></a>00421   cache.<a class="code" href="interface_n_i_image_memory_cache.html#a30bd865b4e57ff8a73fd459114c22aed" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a> = numberOfPixelsInOneImage * 2;
-<a name="l00422"></a>00422   cache.<a class="code" href="interface_n_i_image_memory_cache.html#a100ad5b6dea102a5ae296dab5830ce50" title="The maximum number of pixels this cache may store after a call to reduceMemoryUsage.">maxNumberOfPixelsUnderStress</a> = numberOfPixelsInOneImage;
+<a name="l00415"></a>00415   STAssertNil([cache objectWithName:nil], <span class="stringliteral">@&quot;The result should be nil&quot;</span>);
+<a name="l00416"></a>00416   [cache <a class="code" href="interface_n_i_memory_cache.html#a5dab1798d4e3bcd2b686837f63f31d1c" title="Removes an object from the cache.">removeObjectWithName</a>:nil];
+<a name="l00417"></a>00417 
+<a name="l00418"></a>00418   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;No objects should have been stored in the cache.&quot;</span>);
+<a name="l00419"></a>00419   
+<a name="l00420"></a>00420   <a class="code" href="group___debugging-_tools.html#ga9b5abee5150b99d8ccce041099d44706" title="Whether or not debug assertions should halt program execution like a breakpoint when they fail...">NIDebugAssertionsShouldBreak</a> = YES;
+<a name="l00421"></a>00421 }
+<a name="l00422"></a>00422 
 <a name="l00423"></a>00423 
-<a name="l00424"></a>00424   UIImage* img1 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
-<a name="l00425"></a>00425   UIImage* img2 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
-<a name="l00426"></a>00426 
-<a name="l00427"></a>00427   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img1
-<a name="l00428"></a>00428             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj1&quot;];
-<a name="l00429"></a>00429 
-<a name="l00430"></a>00430   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img2
-<a name="l00431"></a>00431             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj2&quot;];
-<a name="l00432"></a>00432 
-<a name="l00433"></a>00433   STAssertEquals([cache count], (NSUInteger)2, <span class="stringliteral">@&quot;Cache should have two objects.&quot;</span>);
-<a name="l00434"></a>00434 
-<a name="l00435"></a>00435   <span class="comment">// Our &quot;low memory&quot; cache size will only fit one image. The first image should be the one</span>
-<a name="l00436"></a>00436   <span class="comment">// removed.</span>
-<a name="l00437"></a>00437   [cache <a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Removes all expired objects from the cache.">reduceMemoryUsage</a>];
-<a name="l00438"></a>00438 
-<a name="l00439"></a>00439   STAssertEquals([cache count], (NSUInteger)1, <span class="stringliteral">@&quot;Cache should have one object.&quot;</span>);
-<a name="l00440"></a>00440   STAssertNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Image 1 should not still be around.&quot;</span>);
-<a name="l00441"></a>00441   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj2&quot;</span>], <span class="stringliteral">@&quot;Image 2 should still be around.&quot;</span>);
-<a name="l00442"></a>00442 }
-<a name="l00443"></a>00443 
-<a name="l00444"></a>00444 
-<a name="l00446"></a>00446 - (void)testImageCacheReduceMemoryUsageWithAccess {
-<a name="l00447"></a>00447   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> alloc] init] autorelease];
-<a name="l00448"></a>00448 
-<a name="l00449"></a>00449   <span class="keyword">static</span> <span class="keyword">const</span> NSUInteger numberOfPixelsInOneImage = 100 * 100;
-<a name="l00450"></a>00450   cache.<a class="code" href="interface_n_i_image_memory_cache.html#a30bd865b4e57ff8a73fd459114c22aed" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a> = numberOfPixelsInOneImage * 2;
-<a name="l00451"></a>00451   cache.<a class="code" href="interface_n_i_image_memory_cache.html#a100ad5b6dea102a5ae296dab5830ce50" title="The maximum number of pixels this cache may store after a call to reduceMemoryUsage.">maxNumberOfPixelsUnderStress</a> = numberOfPixelsInOneImage;
-<a name="l00452"></a>00452 
-<a name="l00453"></a>00453   UIImage* img1 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
-<a name="l00454"></a>00454   UIImage* img2 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
-<a name="l00455"></a>00455 
-<a name="l00456"></a>00456   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img1
-<a name="l00457"></a>00457             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj1&quot;];
-<a name="l00458"></a>00458 
-<a name="l00459"></a>00459   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img2
-<a name="l00460"></a>00460             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj2&quot;];
-<a name="l00461"></a>00461 
-<a name="l00462"></a>00462   <span class="comment">// Update the access time for img1.</span>
-<a name="l00463"></a>00463   [cache <a class="code" href="interface_n_i_memory_cache.html#afdd7b533b55c5d8753078e207ec0a9d7" title="Retrieves an object from the cache.">objectWithName</a>:@&quot;obj1&quot;];
-<a name="l00464"></a>00464 
-<a name="l00465"></a>00465   STAssertEquals([cache count], (NSUInteger)2, <span class="stringliteral">@&quot;Cache should have two objects.&quot;</span>);
-<a name="l00466"></a>00466 
-<a name="l00467"></a>00467   <span class="comment">// Our &quot;low memory&quot; cache size will only fit one image.</span>
+<a name="l00425"></a>00425 - (void)testImageCacheStoreTooMuch {
+<a name="l00426"></a>00426   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> alloc] init] autorelease];
+<a name="l00427"></a>00427 
+<a name="l00428"></a>00428   <span class="keyword">static</span> <span class="keyword">const</span> NSUInteger numberOfPixelsInOneImage = 100 * 100;
+<a name="l00429"></a>00429   cache.<a class="code" href="interface_n_i_image_memory_cache.html#a30bd865b4e57ff8a73fd459114c22aed" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a> = numberOfPixelsInOneImage;
+<a name="l00430"></a>00430 
+<a name="l00431"></a>00431   UIImage* img1 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
+<a name="l00432"></a>00432   UIImage* img2 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
+<a name="l00433"></a>00433 
+<a name="l00434"></a>00434   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img1
+<a name="l00435"></a>00435             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj1&quot;];
+<a name="l00436"></a>00436 
+<a name="l00437"></a>00437   <span class="comment">// This second image will push out the first image.</span>
+<a name="l00438"></a>00438   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img2
+<a name="l00439"></a>00439             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj2&quot;];
+<a name="l00440"></a>00440 
+<a name="l00441"></a>00441   STAssertEquals([cache count], (NSUInteger)1, <span class="stringliteral">@&quot;Cache should have one object.&quot;</span>);
+<a name="l00442"></a>00442   STAssertNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Image 1 should not still be around.&quot;</span>);
+<a name="l00443"></a>00443   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj2&quot;</span>], <span class="stringliteral">@&quot;Image 2 should still be around.&quot;</span>);
+<a name="l00444"></a>00444 }
+<a name="l00445"></a>00445 
+<a name="l00446"></a>00446 
+<a name="l00448"></a>00448 - (void)testImageCacheReduceMemoryUsage {
+<a name="l00449"></a>00449   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> alloc] init] autorelease];
+<a name="l00450"></a>00450 
+<a name="l00451"></a>00451   <span class="keyword">static</span> <span class="keyword">const</span> NSUInteger numberOfPixelsInOneImage = 100 * 100;
+<a name="l00452"></a>00452   cache.<a class="code" href="interface_n_i_image_memory_cache.html#a30bd865b4e57ff8a73fd459114c22aed" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a> = numberOfPixelsInOneImage * 2;
+<a name="l00453"></a>00453   cache.<a class="code" href="interface_n_i_image_memory_cache.html#a100ad5b6dea102a5ae296dab5830ce50" title="The maximum number of pixels this cache may store after a call to reduceMemoryUsage.">maxNumberOfPixelsUnderStress</a> = numberOfPixelsInOneImage;
+<a name="l00454"></a>00454 
+<a name="l00455"></a>00455   UIImage* img1 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
+<a name="l00456"></a>00456   UIImage* img2 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
+<a name="l00457"></a>00457 
+<a name="l00458"></a>00458   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img1
+<a name="l00459"></a>00459             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj1&quot;];
+<a name="l00460"></a>00460 
+<a name="l00461"></a>00461   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img2
+<a name="l00462"></a>00462             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj2&quot;];
+<a name="l00463"></a>00463 
+<a name="l00464"></a>00464   STAssertEquals([cache count], (NSUInteger)2, <span class="stringliteral">@&quot;Cache should have two objects.&quot;</span>);
+<a name="l00465"></a>00465 
+<a name="l00466"></a>00466   <span class="comment">// Our &quot;low memory&quot; cache size will only fit one image. The first image should be the one</span>
+<a name="l00467"></a>00467   <span class="comment">// removed.</span>
 <a name="l00468"></a>00468   [cache <a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Removes all expired objects from the cache.">reduceMemoryUsage</a>];
 <a name="l00469"></a>00469 
 <a name="l00470"></a>00470   STAssertEquals([cache count], (NSUInteger)1, <span class="stringliteral">@&quot;Cache should have one object.&quot;</span>);
-<a name="l00471"></a>00471   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Image 1 should still be around.&quot;</span>);
-<a name="l00472"></a>00472   STAssertNil([cache objectWithName:<span class="stringliteral">@&quot;obj2&quot;</span>], <span class="stringliteral">@&quot;Image 2 should not still be around.&quot;</span>);
+<a name="l00471"></a>00471   STAssertNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Image 1 should not still be around.&quot;</span>);
+<a name="l00472"></a>00472   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj2&quot;</span>], <span class="stringliteral">@&quot;Image 2 should still be around.&quot;</span>);
 <a name="l00473"></a>00473 }
 <a name="l00474"></a>00474 
 <a name="l00475"></a>00475 
-<a name="l00477"></a>00477 - (void)testImageCacheReduceMemoryUsageWithThrashingAccess {
+<a name="l00477"></a>00477 - (void)testImageCacheReduceMemoryUsageWithAccess {
 <a name="l00478"></a>00478   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> alloc] init] autorelease];
 <a name="l00479"></a>00479 
 <a name="l00480"></a>00480   <span class="keyword">static</span> <span class="keyword">const</span> NSUInteger numberOfPixelsInOneImage = 100 * 100;
@@ -539,26 +539,26 @@
 <a name="l00490"></a>00490   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img2
 <a name="l00491"></a>00491             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj2&quot;];
 <a name="l00492"></a>00492 
-<a name="l00493"></a>00493   <span class="keywordflow">for</span> (NSInteger ix = 0; ix &lt; 10; ++ix) {
-<a name="l00494"></a>00494     [cache <a class="code" href="interface_n_i_memory_cache.html#afdd7b533b55c5d8753078e207ec0a9d7" title="Retrieves an object from the cache.">objectWithName</a>:@&quot;obj1&quot;];
-<a name="l00495"></a>00495     [cache <a class="code" href="interface_n_i_memory_cache.html#afdd7b533b55c5d8753078e207ec0a9d7" title="Retrieves an object from the cache.">objectWithName</a>:@&quot;obj2&quot;];
-<a name="l00496"></a>00496   }
+<a name="l00493"></a>00493   <span class="comment">// Update the access time for img1.</span>
+<a name="l00494"></a>00494   [cache <a class="code" href="interface_n_i_memory_cache.html#afdd7b533b55c5d8753078e207ec0a9d7" title="Retrieves an object from the cache.">objectWithName</a>:@&quot;obj1&quot;];
+<a name="l00495"></a>00495 
+<a name="l00496"></a>00496   STAssertEquals([cache count], (NSUInteger)2, <span class="stringliteral">@&quot;Cache should have two objects.&quot;</span>);
 <a name="l00497"></a>00497 
-<a name="l00498"></a>00498   STAssertEquals([cache count], (NSUInteger)2, <span class="stringliteral">@&quot;Cache should have two objects.&quot;</span>);
-<a name="l00499"></a>00499 
-<a name="l00500"></a>00500   <span class="comment">// Our &quot;low memory&quot; cache size will only fit one image.</span>
-<a name="l00501"></a>00501   [cache <a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Removes all expired objects from the cache.">reduceMemoryUsage</a>];
-<a name="l00502"></a>00502 
-<a name="l00503"></a>00503   STAssertEquals([cache count], (NSUInteger)1, <span class="stringliteral">@&quot;Cache should have one object.&quot;</span>);
-<a name="l00504"></a>00504   STAssertNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Image 1 should not still be around.&quot;</span>);
-<a name="l00505"></a>00505   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj2&quot;</span>], <span class="stringliteral">@&quot;Image 2 should still be around.&quot;</span>);
-<a name="l00506"></a>00506 }
-<a name="l00507"></a>00507 
-<a name="l00508"></a>00508 
-<a name="l00510"></a>00510 - (void)testImageCacheStoringWithTinyLimit {
-<a name="l00511"></a>00511   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> alloc] init] autorelease];
-<a name="l00512"></a>00512 
-<a name="l00513"></a>00513   cache.<a class="code" href="interface_n_i_image_memory_cache.html#a30bd865b4e57ff8a73fd459114c22aed" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a> = 1;
+<a name="l00498"></a>00498   <span class="comment">// Our &quot;low memory&quot; cache size will only fit one image.</span>
+<a name="l00499"></a>00499   [cache <a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Removes all expired objects from the cache.">reduceMemoryUsage</a>];
+<a name="l00500"></a>00500 
+<a name="l00501"></a>00501   STAssertEquals([cache count], (NSUInteger)1, <span class="stringliteral">@&quot;Cache should have one object.&quot;</span>);
+<a name="l00502"></a>00502   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Image 1 should still be around.&quot;</span>);
+<a name="l00503"></a>00503   STAssertNil([cache objectWithName:<span class="stringliteral">@&quot;obj2&quot;</span>], <span class="stringliteral">@&quot;Image 2 should not still be around.&quot;</span>);
+<a name="l00504"></a>00504 }
+<a name="l00505"></a>00505 
+<a name="l00506"></a>00506 
+<a name="l00508"></a>00508 - (void)testImageCacheReduceMemoryUsageWithThrashingAccess {
+<a name="l00509"></a>00509   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> alloc] init] autorelease];
+<a name="l00510"></a>00510 
+<a name="l00511"></a>00511   <span class="keyword">static</span> <span class="keyword">const</span> NSUInteger numberOfPixelsInOneImage = 100 * 100;
+<a name="l00512"></a>00512   cache.<a class="code" href="interface_n_i_image_memory_cache.html#a30bd865b4e57ff8a73fd459114c22aed" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a> = numberOfPixelsInOneImage * 2;
+<a name="l00513"></a>00513   cache.<a class="code" href="interface_n_i_image_memory_cache.html#a100ad5b6dea102a5ae296dab5830ce50" title="The maximum number of pixels this cache may store after a call to reduceMemoryUsage.">maxNumberOfPixelsUnderStress</a> = numberOfPixelsInOneImage;
 <a name="l00514"></a>00514 
 <a name="l00515"></a>00515   UIImage* img1 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
 <a name="l00516"></a>00516   UIImage* img2 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
@@ -566,21 +566,51 @@
 <a name="l00518"></a>00518   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img1
 <a name="l00519"></a>00519             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj1&quot;];
 <a name="l00520"></a>00520 
-<a name="l00521"></a>00521   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;Cache should have zero objects.&quot;</span>);
-<a name="l00522"></a>00522 
-<a name="l00523"></a>00523   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img2
-<a name="l00524"></a>00524             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj2&quot;];
-<a name="l00525"></a>00525 
-<a name="l00526"></a>00526   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;Cache should have zero objects.&quot;</span>);
-<a name="l00527"></a>00527 
-<a name="l00528"></a>00528   [cache <a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Removes all expired objects from the cache.">reduceMemoryUsage</a>];
-<a name="l00529"></a>00529 
-<a name="l00530"></a>00530   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;Cache should have zero objects.&quot;</span>);
-<a name="l00531"></a>00531 
-<a name="l00532"></a>00532 }
+<a name="l00521"></a>00521   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img2
+<a name="l00522"></a>00522             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj2&quot;];
+<a name="l00523"></a>00523 
+<a name="l00524"></a>00524   <span class="keywordflow">for</span> (NSInteger ix = 0; ix &lt; 10; ++ix) {
+<a name="l00525"></a>00525     [cache <a class="code" href="interface_n_i_memory_cache.html#afdd7b533b55c5d8753078e207ec0a9d7" title="Retrieves an object from the cache.">objectWithName</a>:@&quot;obj1&quot;];
+<a name="l00526"></a>00526     [cache <a class="code" href="interface_n_i_memory_cache.html#afdd7b533b55c5d8753078e207ec0a9d7" title="Retrieves an object from the cache.">objectWithName</a>:@&quot;obj2&quot;];
+<a name="l00527"></a>00527   }
+<a name="l00528"></a>00528 
+<a name="l00529"></a>00529   STAssertEquals([cache count], (NSUInteger)2, <span class="stringliteral">@&quot;Cache should have two objects.&quot;</span>);
+<a name="l00530"></a>00530 
+<a name="l00531"></a>00531   <span class="comment">// Our &quot;low memory&quot; cache size will only fit one image.</span>
+<a name="l00532"></a>00532   [cache <a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Removes all expired objects from the cache.">reduceMemoryUsage</a>];
 <a name="l00533"></a>00533 
-<a name="l00534"></a>00534 
-<a name="l00535"></a>00535 <span class="keyword">@end</span>
+<a name="l00534"></a>00534   STAssertEquals([cache count], (NSUInteger)1, <span class="stringliteral">@&quot;Cache should have one object.&quot;</span>);
+<a name="l00535"></a>00535   STAssertNil([cache objectWithName:<span class="stringliteral">@&quot;obj1&quot;</span>], <span class="stringliteral">@&quot;Image 1 should not still be around.&quot;</span>);
+<a name="l00536"></a>00536   STAssertNotNil([cache objectWithName:<span class="stringliteral">@&quot;obj2&quot;</span>], <span class="stringliteral">@&quot;Image 2 should still be around.&quot;</span>);
+<a name="l00537"></a>00537 }
+<a name="l00538"></a>00538 
+<a name="l00539"></a>00539 
+<a name="l00541"></a>00541 - (void)testImageCacheStoringWithTinyLimit {
+<a name="l00542"></a>00542   <a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a>* cache = [[[<a class="code" href="interface_n_i_image_memory_cache.html" title="An in-memory cache for storing images with caps on the total number of pixels.">NIImageMemoryCache</a> alloc] init] autorelease];
+<a name="l00543"></a>00543 
+<a name="l00544"></a>00544   cache.<a class="code" href="interface_n_i_image_memory_cache.html#a30bd865b4e57ff8a73fd459114c22aed" title="The maximum number of pixels this cache may ever store.">maxNumberOfPixels</a> = 1;
+<a name="l00545"></a>00545 
+<a name="l00546"></a>00546   UIImage* img1 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
+<a name="l00547"></a>00547   UIImage* img2 = [<span class="keyword">self</span> emptyImageWithSize:CGSizeMake(100, 100)];
+<a name="l00548"></a>00548 
+<a name="l00549"></a>00549   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img1
+<a name="l00550"></a>00550             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj1&quot;];
+<a name="l00551"></a>00551 
+<a name="l00552"></a>00552   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;Cache should have zero objects.&quot;</span>);
+<a name="l00553"></a>00553 
+<a name="l00554"></a>00554   [cache <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">storeObject</a>: img2
+<a name="l00555"></a>00555             <a class="code" href="interface_n_i_memory_cache.html#a7bc119332422cd4d36863a5f1d7751bd" title="Stores an object in the cache.">withName</a>: @&quot;obj2&quot;];
+<a name="l00556"></a>00556 
+<a name="l00557"></a>00557   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;Cache should have zero objects.&quot;</span>);
+<a name="l00558"></a>00558 
+<a name="l00559"></a>00559   [cache <a class="code" href="interface_n_i_memory_cache.html#a8164a276bcc012398b4025d45fe597d2" title="Removes all expired objects from the cache.">reduceMemoryUsage</a>];
+<a name="l00560"></a>00560 
+<a name="l00561"></a>00561   STAssertEquals([cache count], (NSUInteger)0, <span class="stringliteral">@&quot;Cache should have zero objects.&quot;</span>);
+<a name="l00562"></a>00562 
+<a name="l00563"></a>00563 }
+<a name="l00564"></a>00564 
+<a name="l00565"></a>00565 
+<a name="l00566"></a>00566 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

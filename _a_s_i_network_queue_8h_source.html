@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: /Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/src/ASINetworkQueue.h Source File</title>
+<title>Nimbus: src/ASIHTTPRequest/src/ASINetworkQueue.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,7 +73,7 @@
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">/Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/src/ASINetworkQueue.h</div>  </div>
+<div class="title">src/ASIHTTPRequest/src/ASINetworkQueue.h</div>  </div>
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
@@ -89,65 +89,65 @@
 <a name="l00011"></a>00011 <span class="preprocessor">#import &quot;ASIProgressDelegate.h&quot;</span>
 <a name="l00012"></a>00012 
 <a name="l00013"></a>00013 <span class="keyword">@interface </span>ASINetworkQueue : NSOperationQueue &lt;ASIProgressDelegate, ASIHTTPRequestDelegate, NSCopying&gt; {
-<a name="l00014"></a>00014         
-<a name="l00015"></a>00015         <span class="comment">// Delegate will get didFail + didFinish messages (if set)</span>
-<a name="l00016"></a>00016         <span class="keywordtype">id</span> delegate;
+<a name="l00014"></a>00014   
+<a name="l00015"></a>00015   <span class="comment">// Delegate will get didFail + didFinish messages (if set)</span>
+<a name="l00016"></a>00016   <span class="keywordtype">id</span> delegate;
 <a name="l00017"></a>00017 
-<a name="l00018"></a>00018         <span class="comment">// Will be called when a request starts with the request as the argument</span>
-<a name="l00019"></a>00019         <span class="keywordtype">SEL</span> requestDidStartSelector;
-<a name="l00020"></a>00020         
-<a name="l00021"></a>00021         <span class="comment">// Will be called when a request receives response headers</span>
-<a name="l00022"></a>00022         <span class="comment">// Should take the form request:didRecieveResponseHeaders:, where the first argument is the request, and the second the headers dictionary</span>
-<a name="l00023"></a>00023         <span class="keywordtype">SEL</span> requestDidReceiveResponseHeadersSelector;
-<a name="l00024"></a>00024         
-<a name="l00025"></a>00025         <span class="comment">// Will be called when a request is about to redirect</span>
-<a name="l00026"></a>00026         <span class="comment">// Should take the form request:willRedirectToURL:, where the first argument is the request, and the second the new url</span>
-<a name="l00027"></a>00027         <span class="keywordtype">SEL</span> requestWillRedirectSelector;
+<a name="l00018"></a>00018   <span class="comment">// Will be called when a request starts with the request as the argument</span>
+<a name="l00019"></a>00019   <span class="keywordtype">SEL</span> requestDidStartSelector;
+<a name="l00020"></a>00020   
+<a name="l00021"></a>00021   <span class="comment">// Will be called when a request receives response headers</span>
+<a name="l00022"></a>00022   <span class="comment">// Should take the form request:didRecieveResponseHeaders:, where the first argument is the request, and the second the headers dictionary</span>
+<a name="l00023"></a>00023   <span class="keywordtype">SEL</span> requestDidReceiveResponseHeadersSelector;
+<a name="l00024"></a>00024   
+<a name="l00025"></a>00025   <span class="comment">// Will be called when a request is about to redirect</span>
+<a name="l00026"></a>00026   <span class="comment">// Should take the form request:willRedirectToURL:, where the first argument is the request, and the second the new url</span>
+<a name="l00027"></a>00027   <span class="keywordtype">SEL</span> requestWillRedirectSelector;
 <a name="l00028"></a>00028 
-<a name="l00029"></a>00029         <span class="comment">// Will be called when a request completes with the request as the argument</span>
-<a name="l00030"></a>00030         <span class="keywordtype">SEL</span> requestDidFinishSelector;
-<a name="l00031"></a>00031         
-<a name="l00032"></a>00032         <span class="comment">// Will be called when a request fails with the request as the argument</span>
-<a name="l00033"></a>00033         <span class="keywordtype">SEL</span> requestDidFailSelector;
-<a name="l00034"></a>00034         
-<a name="l00035"></a>00035         <span class="comment">// Will be called when the queue finishes with the queue as the argument</span>
-<a name="l00036"></a>00036         <span class="keywordtype">SEL</span> queueDidFinishSelector;
-<a name="l00037"></a>00037         
-<a name="l00038"></a>00038         <span class="comment">// Upload progress indicator, probably an NSProgressIndicator or UIProgressView</span>
-<a name="l00039"></a>00039         <span class="keywordtype">id</span> uploadProgressDelegate;
-<a name="l00040"></a>00040         
-<a name="l00041"></a>00041         <span class="comment">// Total amount uploaded so far for all requests in this queue</span>
-<a name="l00042"></a>00042         <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> bytesUploadedSoFar;
-<a name="l00043"></a>00043         
-<a name="l00044"></a>00044         <span class="comment">// Total amount to be uploaded for all requests in this queue - requests add to this figure as they work out how much data they have to transmit</span>
-<a name="l00045"></a>00045         <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> totalBytesToUpload;
+<a name="l00029"></a>00029   <span class="comment">// Will be called when a request completes with the request as the argument</span>
+<a name="l00030"></a>00030   <span class="keywordtype">SEL</span> requestDidFinishSelector;
+<a name="l00031"></a>00031   
+<a name="l00032"></a>00032   <span class="comment">// Will be called when a request fails with the request as the argument</span>
+<a name="l00033"></a>00033   <span class="keywordtype">SEL</span> requestDidFailSelector;
+<a name="l00034"></a>00034   
+<a name="l00035"></a>00035   <span class="comment">// Will be called when the queue finishes with the queue as the argument</span>
+<a name="l00036"></a>00036   <span class="keywordtype">SEL</span> queueDidFinishSelector;
+<a name="l00037"></a>00037   
+<a name="l00038"></a>00038   <span class="comment">// Upload progress indicator, probably an NSProgressIndicator or UIProgressView</span>
+<a name="l00039"></a>00039   <span class="keywordtype">id</span> uploadProgressDelegate;
+<a name="l00040"></a>00040   
+<a name="l00041"></a>00041   <span class="comment">// Total amount uploaded so far for all requests in this queue</span>
+<a name="l00042"></a>00042   <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> bytesUploadedSoFar;
+<a name="l00043"></a>00043   
+<a name="l00044"></a>00044   <span class="comment">// Total amount to be uploaded for all requests in this queue - requests add to this figure as they work out how much data they have to transmit</span>
+<a name="l00045"></a>00045   <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> totalBytesToUpload;
 <a name="l00046"></a>00046 
-<a name="l00047"></a>00047         <span class="comment">// Download progress indicator, probably an NSProgressIndicator or UIProgressView</span>
-<a name="l00048"></a>00048         <span class="keywordtype">id</span> downloadProgressDelegate;
-<a name="l00049"></a>00049         
-<a name="l00050"></a>00050         <span class="comment">// Total amount downloaded so far for all requests in this queue</span>
-<a name="l00051"></a>00051         <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> bytesDownloadedSoFar;
-<a name="l00052"></a>00052         
-<a name="l00053"></a>00053         <span class="comment">// Total amount to be downloaded for all requests in this queue - requests add to this figure as they receive Content-Length headers</span>
-<a name="l00054"></a>00054         <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> totalBytesToDownload;
-<a name="l00055"></a>00055         
-<a name="l00056"></a>00056         <span class="comment">// When YES, the queue will cancel all requests when a request fails. Default is YES</span>
-<a name="l00057"></a>00057         BOOL shouldCancelAllRequestsOnFailure;
-<a name="l00058"></a>00058         
-<a name="l00059"></a>00059         <span class="comment">//Number of real requests (excludes HEAD requests created to manage showAccurateProgress)</span>
-<a name="l00060"></a>00060         <span class="keywordtype">int</span> requestsCount;
-<a name="l00061"></a>00061         
-<a name="l00062"></a>00062         <span class="comment">// When NO, this request will only update the progress indicator when it completes</span>
-<a name="l00063"></a>00063         <span class="comment">// When YES, this request will update the progress indicator according to how much data it has received so far</span>
-<a name="l00064"></a>00064         <span class="comment">// When YES, the queue will first perform HEAD requests for all GET requests in the queue, so it can calculate the total download size before it starts</span>
-<a name="l00065"></a>00065         <span class="comment">// NO means better performance, because it skips this step for GET requests, and it won&#39;t waste time updating the progress indicator until a request completes </span>
-<a name="l00066"></a>00066         <span class="comment">// Set to YES if the size of a requests in the queue varies greatly for much more accurate results</span>
-<a name="l00067"></a>00067         <span class="comment">// Default for requests in the queue is NO</span>
-<a name="l00068"></a>00068         BOOL showAccurateProgress;
+<a name="l00047"></a>00047   <span class="comment">// Download progress indicator, probably an NSProgressIndicator or UIProgressView</span>
+<a name="l00048"></a>00048   <span class="keywordtype">id</span> downloadProgressDelegate;
+<a name="l00049"></a>00049   
+<a name="l00050"></a>00050   <span class="comment">// Total amount downloaded so far for all requests in this queue</span>
+<a name="l00051"></a>00051   <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> bytesDownloadedSoFar;
+<a name="l00052"></a>00052   
+<a name="l00053"></a>00053   <span class="comment">// Total amount to be downloaded for all requests in this queue - requests add to this figure as they receive Content-Length headers</span>
+<a name="l00054"></a>00054   <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> totalBytesToDownload;
+<a name="l00055"></a>00055   
+<a name="l00056"></a>00056   <span class="comment">// When YES, the queue will cancel all requests when a request fails. Default is YES</span>
+<a name="l00057"></a>00057   BOOL shouldCancelAllRequestsOnFailure;
+<a name="l00058"></a>00058   
+<a name="l00059"></a>00059   <span class="comment">//Number of real requests (excludes HEAD requests created to manage showAccurateProgress)</span>
+<a name="l00060"></a>00060   <span class="keywordtype">int</span> requestsCount;
+<a name="l00061"></a>00061   
+<a name="l00062"></a>00062   <span class="comment">// When NO, this request will only update the progress indicator when it completes</span>
+<a name="l00063"></a>00063   <span class="comment">// When YES, this request will update the progress indicator according to how much data it has received so far</span>
+<a name="l00064"></a>00064   <span class="comment">// When YES, the queue will first perform HEAD requests for all GET requests in the queue, so it can calculate the total download size before it starts</span>
+<a name="l00065"></a>00065   <span class="comment">// NO means better performance, because it skips this step for GET requests, and it won&#39;t waste time updating the progress indicator until a request completes </span>
+<a name="l00066"></a>00066   <span class="comment">// Set to YES if the size of a requests in the queue varies greatly for much more accurate results</span>
+<a name="l00067"></a>00067   <span class="comment">// Default for requests in the queue is NO</span>
+<a name="l00068"></a>00068   BOOL showAccurateProgress;
 <a name="l00069"></a>00069 
-<a name="l00070"></a>00070         <span class="comment">// Storage container for additional queue information.</span>
-<a name="l00071"></a>00071         NSDictionary *userInfo;
-<a name="l00072"></a>00072         
+<a name="l00070"></a>00070   <span class="comment">// Storage container for additional queue information.</span>
+<a name="l00071"></a>00071   NSDictionary *userInfo;
+<a name="l00072"></a>00072   
 <a name="l00073"></a>00073 }
 <a name="l00074"></a>00074 
 <a name="l00075"></a>00075 <span class="comment">// Convenience constructor</span>

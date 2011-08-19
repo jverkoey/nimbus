@@ -80,6 +80,16 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NICellContentPadding</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>func</Type>
+    </TokenIdentifier>
+    <Path>group___common-_metrics.html</Path>
+    <Anchor>ga5224edb22eb775228169b74b11ecb8f6</Anchor>
+    <Abstract>The padding around a standard cell in a table view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Data-Structures</Name>
       <APILanguage>occ</APILanguage>
     </TokenIdentifier>
@@ -780,6 +790,14 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>Version-7-0</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___version-7-0.html</Path>
+    <Abstract>Version 0.7.0 of Nimbus was released on August 19, 2011.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Version-6-1</Name>
       <APILanguage>occ</APILanguage>
     </TokenIdentifier>
@@ -877,6 +895,38 @@
     </TokenIdentifier>
     <Path>group___launcher-_protocols.html</Path>
     <Abstract>The delegate and data source protocols that allow the user interface to be simple.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NimbusModels</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___nimbus_models.html</Path>
+    <Abstract>A model is an implementation of a data source protocol.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>TableViewModels</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___table_view_models.html</Path>
+    <Abstract>Nimbus table view models make building table views remarkably easy.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>TableCellFactory</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___table_cell_factory.html</Path>
+    <Abstract>A table cell factory automatically creates UITableViewCells from objects.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>TableCellCatalog</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___table_cell_catalog.html</Path>
+    <Abstract>This is a catalog of Nimbus&amp;#39; pre-built cells and objects for use in UITableViews.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1008,6 +1058,80 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NICell</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intf</Type>
+    </TokenIdentifier>
+    <Path>protocol_n_i_cell-p.html</Path>
+    <Abstract>The protocol for a cell created in the NICellFactory.</Abstract>
+    <DeclaredIn>NICellFactory.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>shouldUpdateCellWithObject:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NICell-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_cell-p.html</Path>
+    <Anchor>af12eab4c2d2d97f512a373a30d230a98</Anchor>
+    <Abstract>Called when a cell is created and reused.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NICellFactory</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_cell_factory.html</Path>
+    <Abstract>A simple factory for creating table view cells from objects.</Abstract>
+    <DeclaredIn>NICellFactory.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>tableViewModel:cellForTableView:atIndexPath:withObject:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NICellFactory</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_cell_factory.html</Path>
+    <Anchor>ae8badbc7ff1e42a28845c41eea426641</Anchor>
+    <Abstract>Creates a cell from a given object if and only if the object conforms to the NICellObject protocol...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NICellObject</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intf</Type>
+    </TokenIdentifier>
+    <Path>protocol_n_i_cell_object-p.html</Path>
+    <Abstract>The protocol for an object that can be used in the NICellFactory.</Abstract>
+    <DeclaredIn>NICellFactory.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>cellClass</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NICellObject-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_cell_object-p.html</Path>
+    <Anchor>a2c3581ed14d039eaa3301733699f7502</Anchor>
+    <Abstract>The class of cell to be created when this object is passed to the cell factory.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>cellStyle</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NICellObject-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_cell_object-p.html</Path>
+    <Anchor>a0652b01388a8e2fb1ca754b2c8dd422f</Anchor>
+    <Abstract>The style of UITableViewCell to be used when initializing the cell for the first time.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NIDeviceInfo</Name>
       <APILanguage>occ</APILanguage>
       <Type>cl</Type>
@@ -1103,6 +1227,59 @@
     <Path>interface_n_i_device_info.html</Path>
     <Anchor>a7ae5b7746fd3c4f6559a6aeb5b63b210</Anchor>
     <Abstract>Stop using the cache for the device info methods.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIFormElement</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_form_element.html</Path>
+    <Abstract>A single element of a form with an ID property.</Abstract>
+    <DeclaredIn>NIFormCellCatalog.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>cellClass</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NICellObject-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_cell_object-p.html</Path>
+    <Anchor>a2c3581ed14d039eaa3301733699f7502</Anchor>
+    <Abstract>The class of cell to be created when this object is passed to the cell factory.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>cellStyle</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NICellObject-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_cell_object-p.html</Path>
+    <Anchor>a0652b01388a8e2fb1ca754b2c8dd422f</Anchor>
+    <Abstract>The style of UITableViewCell to be used when initializing the cell for the first time.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIFormElementCell</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_form_element_cell.html</Path>
+    <Abstract>The base class for form element cells.</Abstract>
+    <DeclaredIn>NIFormCellCatalog.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>shouldUpdateCellWithObject:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NICell-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_cell-p.html</Path>
+    <Anchor>af12eab4c2d2d97f512a373a30d230a98</Anchor>
+    <Abstract>Called when a cell is created and reused.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1342,6 +1519,28 @@
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a6c016c9a322c58151bbfb30793e9d475</Anchor>
     <Abstract>Returns the date that the object with the given name was last accessed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>nameOfLeastRecentlyUsedObject</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a12a0a64af2942bd30afce442a83ca79b</Anchor>
+    <Abstract>Retrieve the name of the object that was least recently used.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>nameOfMostRecentlyUsedObject</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>ac9e3699e9bf6bc598e8ec7c72a5c06e7</Anchor>
+    <Abstract>Retrieve the key with the most fresh access.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2486,6 +2685,28 @@
     <Path>interface_n_i_memory_cache.html</Path>
     <Anchor>a6c016c9a322c58151bbfb30793e9d475</Anchor>
     <Abstract>Returns the date that the object with the given name was last accessed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>nameOfLeastRecentlyUsedObject</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>a12a0a64af2942bd30afce442a83ca79b</Anchor>
+    <Abstract>Retrieve the name of the object that was least recently used.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>nameOfMostRecentlyUsedObject</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIMemoryCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_memory_cache.html</Path>
+    <Anchor>ac9e3699e9bf6bc598e8ec7c72a5c06e7</Anchor>
+    <Abstract>Retrieve the key with the most fresh access.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -5075,6 +5296,263 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NISwitchFormElement</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_switch_form_element.html</Path>
+    <Abstract>A switch form element.</Abstract>
+    <DeclaredIn>NIFormCellCatalog.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>cellClass</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NICellObject-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_cell_object-p.html</Path>
+    <Anchor>a2c3581ed14d039eaa3301733699f7502</Anchor>
+    <Abstract>The class of cell to be created when this object is passed to the cell factory.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>cellStyle</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NICellObject-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_cell_object-p.html</Path>
+    <Anchor>a0652b01388a8e2fb1ca754b2c8dd422f</Anchor>
+    <Abstract>The style of UITableViewCell to be used when initializing the cell for the first time.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NISwitchFormElementCell</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_switch_form_element_cell.html</Path>
+    <Abstract>The cell sibling to NISwitchFormElement.</Abstract>
+    <DeclaredIn>NIFormCellCatalog.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>shouldUpdateCellWithObject:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NICell-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_cell-p.html</Path>
+    <Anchor>af12eab4c2d2d97f512a373a30d230a98</Anchor>
+    <Abstract>Called when a cell is created and reused.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NITableViewModel</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>class_n_i_table_view_model.html</Path>
+    <Abstract>A non-mutable table view model that complies to the UITableViewDataSource protocol.</Abstract>
+    <DeclaredIn>NITableViewModel.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>sectionIndexType</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NITableViewModel</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_table_view_model.html</Path>
+    <Anchor>adcc35e36d9bc1e47a9f084e504d8ebda</Anchor>
+    <Abstract>The section index type.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>sectionIndexShowsSearch</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NITableViewModel</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_table_view_model.html</Path>
+    <Anchor>ad1991fde667958dafc9158684795a6b9</Anchor>
+    <Abstract>Whether or not the search symbol will be shown in the section index.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>sectionIndexShowsSummary</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NITableViewModel</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_table_view_model.html</Path>
+    <Anchor>a48850ea92b2a9ffe69a153bcfe9416e0</Anchor>
+    <Abstract>Whether or not the summary symbol will be shown in the section index.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setSectionIndexType:showsSearch:showsSummary:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NITableViewModel</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_table_view_model.html</Path>
+    <Anchor>a4f3dee76487f50876b9d7e536eb0b15f</Anchor>
+    <Abstract>Configures the model&amp;#39;s section index properties.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>delegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NITableViewModel</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_table_view_model.html</Path>
+    <Anchor>a78c3eba3b94e5e0e25f3bb867fd23e47</Anchor>
+    <Abstract>A delegate used to fetch table view cells for the data source.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>createCellBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NITableViewModel</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_table_view_model.html</Path>
+    <Anchor>a1c47c87deb807cb1e9f557521c87394e</Anchor>
+    <Abstract>A block used to create a UITableViewCell for a given object.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithDelegate:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NITableViewModel</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_table_view_model.html</Path>
+    <Anchor>a56fb73175cd2c39b9a7143fef985ef98</Anchor>
+    <Abstract>Initializes a newly allocated static model with the given delegate and empty contents.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithListArray:delegate:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NITableViewModel</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_table_view_model.html</Path>
+    <Anchor>af6d1f01a2f02141750fcdc5fa497dbf0</Anchor>
+    <Abstract>Initializes a newly allocated static model with the contents of a list array.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithSectionedArray:delegate:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NITableViewModel</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_table_view_model.html</Path>
+    <Anchor>a5a21fcce8dc43a4f779712f8132b214b</Anchor>
+    <Abstract>Initializes a newly allocated static model with the contents of a sectioned array.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>objectAtIndexPath:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NITableViewModel</Scope>
+    </TokenIdentifier>
+    <Path>class_n_i_table_view_model.html</Path>
+    <Anchor>a477424b2610ee36d82ef09ecd1624b86</Anchor>
+    <Abstract>Returns the object at the given index path.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NITableViewModelDelegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intf</Type>
+    </TokenIdentifier>
+    <Path>protocol_n_i_table_view_model_delegate-p.html</Path>
+    <Abstract>A protocol for NITableViewModel to fetch rows to be displayed for the table view.</Abstract>
+    <DeclaredIn>NITableViewModel.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>tableViewModel:cellForTableView:atIndexPath:withObject:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NITableViewModelDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_table_view_model_delegate-p.html</Path>
+    <Anchor>ab7b56b472b200f4eced4ffc25df727dc</Anchor>
+    <Abstract>Fetches a table view cell at a given index path with a given object.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NITableViewModelFooter</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_table_view_model_footer.html</Path>
+    <Abstract>An object used in sectioned arrays to denote a section footer title.</Abstract>
+    <DeclaredIn>NITableViewModel.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NITextInputFormElement</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_text_input_form_element.html</Path>
+    <Abstract>A text input form element.</Abstract>
+    <DeclaredIn>NIFormCellCatalog.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>cellClass</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NICellObject-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_cell_object-p.html</Path>
+    <Anchor>a2c3581ed14d039eaa3301733699f7502</Anchor>
+    <Abstract>The class of cell to be created when this object is passed to the cell factory.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>cellStyle</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NICellObject-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_cell_object-p.html</Path>
+    <Anchor>a0652b01388a8e2fb1ca754b2c8dd422f</Anchor>
+    <Abstract>The style of UITableViewCell to be used when initializing the cell for the first time.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NITextInputFormElementCell</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_text_input_form_element_cell.html</Path>
+    <Abstract>The cell sibling to NITextInputFormElement.</Abstract>
+    <DeclaredIn>NIFormCellCatalog.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>shouldUpdateCellWithObject:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NICell-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_cell-p.html</Path>
+    <Anchor>af12eab4c2d2d97f512a373a30d230a98</Anchor>
+    <Abstract>Called when a cell is created and reused.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NIToolbarPhotoViewController</Name>
       <APILanguage>occ</APILanguage>
       <Type>cl</Type>
@@ -5312,6 +5790,17 @@
     <Path>interface_n_i_web_controller.html</Path>
     <Anchor>a3b99dd49315fd6fa7b971bc31a114dfe</Anchor>
     <Abstract>Sets the toolbar to the given color.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>shouldPresentActionSheet:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIWebController</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_web_controller.html</Path>
+    <Anchor>a9c92f8d0b90d0693b6215639f0ab5981</Anchor>
+    <Abstract>This message is send to the receiver in response to the user clicking the action toolbar button...</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>

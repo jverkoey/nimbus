@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -76,7 +76,7 @@
 <div class="title">ExampleRuntimeDebugging.m</div>  </div>
 </div>
 <div class="contents">
-<p>Runtime Debugging with Method Swizzling Modifying class methods at runtime can be a very powerful debugging tool. Consider the following example:</p>
+<p>Modifying class methods at runtime can be a very powerful debugging tool. Consider the following example:</p>
 <p>You are finding that you have a memory leak with one of your view controllers, but you're not sure where the extra retain is being made. If you swap the retain implementation on UIViewController with your own method then you can set a breakpoint in the method and look at the stack each time retain is called. This method is similar to setting a breakpoint in GDB on the UIViewController's retain method but allows programmatic control over when you want to hit the breakpoint.</p>
 <p>This example is part of <a class="el" href="group___runtime-_class-_modifications.html">Runtime Class Modifications</a>.</p>
 <div class="fragment"><pre class="fragment"><span class="comment">//</span>
@@ -111,12 +111,13 @@
 
 <span class="keyword">@end</span>
 
+
 - (BOOL)              application: (UIApplication *)application
     didFinishLaunchingWithOptions: (NSDictionary *)options {
 
   <span class="comment">// Swap the default retain implementation with our custom implementation with which we can</span>
   <span class="comment">// visually set a breakpoint.</span>
-  NISwapMethods([UIViewController <span class="keyword">class</span>], <span class="keyword">@selector</span>(retain), <span class="keyword">@selector</span>(_retain));
+  <a name="a0"></a><a class="code" href="group___runtime-_class-_modifications.html#gac41d32344f050e0adc00a6ccc7e67b4e" title="Swap two class instance method implementations.">NISwapInstanceMethods</a>([UIViewController <span class="keyword">class</span>], <span class="keyword">@selector</span>(retain), <span class="keyword">@selector</span>(_retain));
 
 }
 </pre></div> </div>

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -93,7 +93,7 @@
 <p>The following settings will change the toolbar tint color (in this case black)</p>
 <div class="fragment"><pre class="fragment">  [webController setToolbarTintColor:[UIColor blackColor]];
 </pre></div> 
-<p>Definition at line <a class="el" href="_n_i_web_controller_8h_source.html#l00059">59</a> of file <a class="el" href="_n_i_web_controller_8h_source.html">NIWebController.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_web_controller_8h_source.html#l00060">60</a> of file <a class="el" href="_n_i_web_controller_8h_source.html">NIWebController.h</a>.</p>
 </div>
 <p>Inherits UIViewController.</p>
 <table class="memberdecls">
@@ -105,6 +105,7 @@ Methods</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_web_controller.html#aa533d6e1345d438678112140bf231f8c">openRequest:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b99dd49315fd6fa7b971bc31a114dfe"></a><!-- doxytag: member="NIWebController::setToolbarTintColor:" ref="a3b99dd49315fd6fa7b971bc31a114dfe" args="(UIColor *color)" -->
 (void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_web_controller.html#a3b99dd49315fd6fa7b971bc31a114dfe">setToolbarTintColor:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_web_controller.html#a9c92f8d0b90d0693b6215639f0ab5981">shouldPresentActionSheet:</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
 <a class="anchor" id="ad0ae0b23fa476080ef1b1bcae053fb9d"></a><!-- doxytag: member="NIWebController::URL" ref="ad0ae0b23fa476080ef1b1bcae053fb9d" args="()" -->
@@ -124,7 +125,7 @@ Methods</h2></td></tr>
 <p>The current web view URL. </p>
 <p>If the web view is currently loading a URL then the loading URL is returned instead. </p>
 
-<p>Definition at line <a class="el" href="_n_i_web_controller_8m_source.html#l00348">348</a> of file <a class="el" href="_n_i_web_controller_8m_source.html">NIWebController.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_web_controller_8m_source.html#l00375">375</a> of file <a class="el" href="_n_i_web_controller_8m_source.html">NIWebController.m</a>.</p>
 
 </div>
 </div>
@@ -151,7 +152,36 @@ Methods</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_n_i_web_controller_8m_source.html#l00360">360</a> of file <a class="el" href="_n_i_web_controller_8m_source.html">NIWebController.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_web_controller_8m_source.html#l00387">387</a> of file <a class="el" href="_n_i_web_controller_8m_source.html">NIWebController.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9c92f8d0b90d0693b6215639f0ab5981"></a><!-- doxytag: member="NIWebController::shouldPresentActionSheet:" ref="a9c92f8d0b90d0693b6215639f0ab5981" args="(UIActionSheet *actionSheet)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) shouldPresentActionSheet: </td>
+          <td></td>
+          <td class="paramtype">(UIActionSheet *)&#160;</td>
+          <td class="paramname"><em>actionSheet</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This message is send to the receiver in response to the user clicking the action toolbar button. </p>
+<p>You can provide your own implementation in your subclass and customize the <code>actionSheet</code> that is shown to the user or even cancel the presentation of the <code>actionSheet</code> by returning <code>NO</code> from your implementation.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actionSheet</td><td>The UIActionSheet that will be presented to the user.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><code>YES</code> to present the <code>actionSheet</code>, <code>NO</code> if you want to perform a custom action. </dd></dl>
+
+<p>Definition at line <a class="el" href="_n_i_web_controller_8m_source.html#l00399">399</a> of file <a class="el" href="_n_i_web_controller_8m_source.html">NIWebController.m</a>.</p>
 
 </div>
 </div>

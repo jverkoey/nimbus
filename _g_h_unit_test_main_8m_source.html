@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: /Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/unittests/Tests/GHUnitTestMain.m Source File</title>
+<title>Nimbus: src/ASIHTTPRequest/unittests/Tests/GHUnitTestMain.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,7 +73,7 @@
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">/Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/unittests/Tests/GHUnitTestMain.m</div>  </div>
+<div class="title">src/ASIHTTPRequest/unittests/Tests/GHUnitTestMain.m</div>  </div>
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
@@ -113,36 +113,36 @@
 <a name="l00035"></a>00035 
 <a name="l00036"></a>00036 <span class="comment">// Default exception handler</span>
 <a name="l00037"></a>00037 <span class="keywordtype">void</span> exceptionHandler(NSException *exception) { 
-<a name="l00038"></a>00038         NSLog(<span class="stringliteral">@&quot;%@\n%@&quot;</span>, [exception reason], GHUStackTraceFromException(exception));
+<a name="l00038"></a>00038   NSLog(<span class="stringliteral">@&quot;%@\n%@&quot;</span>, [exception reason], GHUStackTraceFromException(exception));
 <a name="l00039"></a>00039 }
 <a name="l00040"></a>00040 
 <a name="l00041"></a>00041 <span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]) {
 <a name="l00042"></a>00042 
-<a name="l00064"></a>00064         NSSetUncaughtExceptionHandler(&amp;exceptionHandler);
-<a name="l00065"></a>00065         
-<a name="l00066"></a>00066         NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-<a name="l00067"></a>00067         
-<a name="l00068"></a>00068         <span class="comment">// Register any special test case classes</span>
-<a name="l00069"></a>00069         <span class="comment">//[[GHTesting sharedInstance] registerClassName:@&quot;GHSpecialTestCase&quot;];  </span>
-<a name="l00070"></a>00070         
-<a name="l00071"></a>00071         <span class="keywordtype">int</span> retVal = 0;
-<a name="l00072"></a>00072         <span class="comment">// If GHUNIT_CLI is set we are using the command line interface and run the tests</span>
-<a name="l00073"></a>00073         <span class="comment">// Otherwise load the GUI app</span>
-<a name="l00074"></a>00074         <span class="keywordflow">if</span> (getenv(<span class="stringliteral">&quot;GHUNIT_CLI&quot;</span>)) {             
-<a name="l00075"></a>00075                 retVal = [GHTestRunner run];
-<a name="l00076"></a>00076         } <span class="keywordflow">else</span> {
-<a name="l00077"></a>00077                 <span class="comment">// To run all tests (from ENV)</span>
-<a name="l00078"></a>00078                 GHTestApp *app = [[GHTestApp alloc] init];
-<a name="l00079"></a>00079                 <span class="comment">// To run a different test suite:</span>
-<a name="l00080"></a>00080                 <span class="comment">//GHTestSuite *suite = [GHTestSuite suiteWithTestFilter:@&quot;GHSlowTest,GHAsyncTestCaseTest&quot;];</span>
-<a name="l00081"></a>00081                 <span class="comment">//GHTestApp *app = [[GHTestApp alloc] initWithSuite:suite];</span>
-<a name="l00082"></a>00082                 <span class="comment">// Or set global:</span>
-<a name="l00083"></a>00083                 <span class="comment">//GHUnitTest = @&quot;GHSlowTest&quot;;</span>
-<a name="l00084"></a>00084                 [NSApp run];
-<a name="l00085"></a>00085                 [app release];          
-<a name="l00086"></a>00086         }
-<a name="l00087"></a>00087         [pool release];
-<a name="l00088"></a>00088         <span class="keywordflow">return</span> retVal;
+<a name="l00064"></a>00064   NSSetUncaughtExceptionHandler(&amp;exceptionHandler);
+<a name="l00065"></a>00065   
+<a name="l00066"></a>00066   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+<a name="l00067"></a>00067   
+<a name="l00068"></a>00068   <span class="comment">// Register any special test case classes</span>
+<a name="l00069"></a>00069   <span class="comment">//[[GHTesting sharedInstance] registerClassName:@&quot;GHSpecialTestCase&quot;];  </span>
+<a name="l00070"></a>00070   
+<a name="l00071"></a>00071   <span class="keywordtype">int</span> retVal = 0;
+<a name="l00072"></a>00072   <span class="comment">// If GHUNIT_CLI is set we are using the command line interface and run the tests</span>
+<a name="l00073"></a>00073   <span class="comment">// Otherwise load the GUI app</span>
+<a name="l00074"></a>00074   <span class="keywordflow">if</span> (getenv(<span class="stringliteral">&quot;GHUNIT_CLI&quot;</span>)) {   
+<a name="l00075"></a>00075     retVal = [GHTestRunner run];
+<a name="l00076"></a>00076   } <span class="keywordflow">else</span> {
+<a name="l00077"></a>00077     <span class="comment">// To run all tests (from ENV)</span>
+<a name="l00078"></a>00078     GHTestApp *app = [[GHTestApp alloc] init];
+<a name="l00079"></a>00079     <span class="comment">// To run a different test suite:</span>
+<a name="l00080"></a>00080     <span class="comment">//GHTestSuite *suite = [GHTestSuite suiteWithTestFilter:@&quot;GHSlowTest,GHAsyncTestCaseTest&quot;];</span>
+<a name="l00081"></a>00081     <span class="comment">//GHTestApp *app = [[GHTestApp alloc] initWithSuite:suite];</span>
+<a name="l00082"></a>00082     <span class="comment">// Or set global:</span>
+<a name="l00083"></a>00083     <span class="comment">//GHUnitTest = @&quot;GHSlowTest&quot;;</span>
+<a name="l00084"></a>00084     [NSApp run];
+<a name="l00085"></a>00085     [app release];    
+<a name="l00086"></a>00086   }
+<a name="l00087"></a>00087   [pool release];
+<a name="l00088"></a>00088   <span class="keywordflow">return</span> retVal;
 <a name="l00089"></a>00089 }
 </pre></div></div>
 </div>

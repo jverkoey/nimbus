@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: /Users/featherless/workbench/ios/nimbus/src/core/examples/ExampleRuntimeDebugging.m Source File</title>
+<title>Nimbus: src/core/examples/ExampleRuntimeDebugging.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,7 +73,7 @@
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">/Users/featherless/workbench/ios/nimbus/src/core/examples/ExampleRuntimeDebugging.m</div>  </div>
+<div class="title">src/core/examples/ExampleRuntimeDebugging.m</div>  </div>
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
@@ -108,14 +108,15 @@
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 <span class="keyword">@end</span>
 <a name="l00048"></a>00048 
-<a name="l00049"></a>00049 - (BOOL)              application: (UIApplication *)application
-<a name="l00050"></a>00050     didFinishLaunchingWithOptions: (NSDictionary *)options {
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052   <span class="comment">// Swap the default retain implementation with our custom implementation with which we can</span>
-<a name="l00053"></a>00053   <span class="comment">// visually set a breakpoint.</span>
-<a name="l00054"></a>00054   NISwapMethods([UIViewController <span class="keyword">class</span>], <span class="keyword">@selector</span>(retain), <span class="keyword">@selector</span>(_retain));
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 - (BOOL)              application: (UIApplication *)application
+<a name="l00051"></a>00051     didFinishLaunchingWithOptions: (NSDictionary *)options {
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053   <span class="comment">// Swap the default retain implementation with our custom implementation with which we can</span>
+<a name="l00054"></a>00054   <span class="comment">// visually set a breakpoint.</span>
+<a name="l00055"></a>00055   <a class="code" href="group___runtime-_class-_modifications.html#gac41d32344f050e0adc00a6ccc7e67b4e" title="Swap two class instance method implementations.">NISwapInstanceMethods</a>([UIViewController <span class="keyword">class</span>], <span class="keyword">@selector</span>(retain), <span class="keyword">@selector</span>(_retain));
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 }
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">

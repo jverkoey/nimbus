@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: /Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/unittests/Tests/ASINetworkQueueTests.h Source File</title>
+<title>Nimbus: src/ASIHTTPRequest/unittests/Tests/ASINetworkQueueTests.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,7 +73,7 @@
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">/Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/unittests/Tests/ASINetworkQueueTests.h</div>  </div>
+<div class="title">src/ASIHTTPRequest/unittests/Tests/ASINetworkQueueTests.h</div>  </div>
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
@@ -98,37 +98,37 @@
 <a name="l00020"></a>00020 <span class="keyword">@class</span> ASINetworkQueue;
 <a name="l00021"></a>00021 
 <a name="l00022"></a>00022 <span class="keyword">@interface </span>ASINetworkQueueTests : ASITestCase {
-<a name="l00023"></a>00023         ASIHTTPRequest *requestThatShouldFail;
-<a name="l00024"></a>00024         BOOL complete;
-<a name="l00025"></a>00025         BOOL request_didfail;
-<a name="l00026"></a>00026         BOOL request_succeeded;
-<a name="l00027"></a>00027         <span class="keywordtype">float</span> progress;
-<a name="l00028"></a>00028         <span class="keywordtype">int</span> addedRequests;
-<a name="l00029"></a>00029         
-<a name="l00030"></a>00030         
-<a name="l00031"></a>00031         NSOperationQueue *immediateCancelQueue;
-<a name="l00032"></a>00032         NSMutableArray *failedRequests;
-<a name="l00033"></a>00033         NSMutableArray *finishedRequests;
-<a name="l00034"></a>00034         
-<a name="l00035"></a>00035         ASINetworkQueue *releaseTestQueue;
-<a name="l00036"></a>00036         ASINetworkQueue *cancelQueue;
-<a name="l00037"></a>00037         
-<a name="l00038"></a>00038         <span class="keywordtype">int</span> authenticationPromptCount;
-<a name="l00039"></a>00039         
-<a name="l00040"></a>00040         ASINetworkQueue *postQueue;
-<a name="l00041"></a>00041         
-<a name="l00042"></a>00042         ASINetworkQueue *testNTLMQueue;
-<a name="l00043"></a>00043         
-<a name="l00044"></a>00044         ASINetworkQueue *addMoreRequestsQueue;
-<a name="l00045"></a>00045         <span class="keywordtype">int</span> requestsFinishedCount;
-<a name="l00046"></a>00046         
-<a name="l00047"></a>00047         BOOL started;
-<a name="l00048"></a>00048         BOOL finished;
-<a name="l00049"></a>00049         BOOL failed;
-<a name="l00050"></a>00050         BOOL headFailed;
-<a name="l00051"></a>00051         BOOL receivedResponseHeaders;
-<a name="l00052"></a>00052         
-<a name="l00053"></a>00053         <span class="keywordtype">int</span> queueFinishedCallCount;
+<a name="l00023"></a>00023   ASIHTTPRequest *requestThatShouldFail;
+<a name="l00024"></a>00024   BOOL complete;
+<a name="l00025"></a>00025   BOOL request_didfail;
+<a name="l00026"></a>00026   BOOL request_succeeded;
+<a name="l00027"></a>00027   <span class="keywordtype">float</span> progress;
+<a name="l00028"></a>00028   <span class="keywordtype">int</span> addedRequests;
+<a name="l00029"></a>00029   
+<a name="l00030"></a>00030   
+<a name="l00031"></a>00031   NSOperationQueue *immediateCancelQueue;
+<a name="l00032"></a>00032   NSMutableArray *failedRequests;
+<a name="l00033"></a>00033   NSMutableArray *finishedRequests;
+<a name="l00034"></a>00034   
+<a name="l00035"></a>00035   ASINetworkQueue *releaseTestQueue;
+<a name="l00036"></a>00036   ASINetworkQueue *cancelQueue;
+<a name="l00037"></a>00037   
+<a name="l00038"></a>00038   <span class="keywordtype">int</span> authenticationPromptCount;
+<a name="l00039"></a>00039   
+<a name="l00040"></a>00040   ASINetworkQueue *postQueue;
+<a name="l00041"></a>00041   
+<a name="l00042"></a>00042   ASINetworkQueue *testNTLMQueue;
+<a name="l00043"></a>00043   
+<a name="l00044"></a>00044   ASINetworkQueue *addMoreRequestsQueue;
+<a name="l00045"></a>00045   <span class="keywordtype">int</span> requestsFinishedCount;
+<a name="l00046"></a>00046   
+<a name="l00047"></a>00047   BOOL started;
+<a name="l00048"></a>00048   BOOL finished;
+<a name="l00049"></a>00049   BOOL failed;
+<a name="l00050"></a>00050   BOOL headFailed;
+<a name="l00051"></a>00051   BOOL receivedResponseHeaders;
+<a name="l00052"></a>00052   
+<a name="l00053"></a>00053   <span class="keywordtype">int</span> queueFinishedCallCount;
 <a name="l00054"></a>00054 }
 <a name="l00055"></a>00055 - (void)testFailure;
 <a name="l00056"></a>00056 - (void)testFailureCancelsOtherRequests;

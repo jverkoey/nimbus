@@ -3,13 +3,23 @@
   xml:lang="en">
   <id>http://jverkoey.github.com/nimbus</id>
   <title type="text">Nimbus Documentation</title>
-  <updated>2011-08-08T12:00:00Z</updated>
+  <updated>2011-08-19T12:00:00Z</updated>
   <author>
     <name>Jeff Verkoeyen</name>
     <uri>http://jverkoey.github.com/nimbus</uri>
   </author>
   <rights>Copyright (c) 2011, Jeff Verkoeyen</rights>
   <link rel="self" href="nimbusdocset.atom" />
+  <entry>
+    <id>http://jverkoey.github.com/nimbus/docsets/org.jeffverkoeyen.nimbus.0.7.0</id>
+    <title type="text">Nimbus Documentation</title>
+    <summary type="text">Includes reference for Nimbus</summary>
+    <updated>2011-08-19T12:00:00Z</updated>
+    <link rel="enclosure" type="application/octet-stream" href="/nimbus/docsets/org.jeffverkoeyen.nimbus.0.7.0.xar" />
+    <docset:identifier>org.jeffverkoeyen.nimbus</docset:identifier>
+    <docset:version>0.7.0</docset:version>
+    <docset:minimumXcodeVersion>3.0</docset:minimumXcodeVersion>
+  </entry>
   <entry>
     <id>http://jverkoey.github.com/nimbus/docsets/org.jeffverkoeyen.nimbus.0.6.1</id>
     <title type="text">Nimbus Documentation</title>

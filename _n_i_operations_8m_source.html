@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: /Users/featherless/workbench/ios/nimbus/src/core/src/NIOperations.m Source File</title>
+<title>Nimbus: src/core/src/NIOperations.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,7 +73,7 @@
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">/Users/featherless/workbench/ios/nimbus/src/core/src/NIOperations.m</div>  </div>
+<div class="title">src/core/src/NIOperations.m</div>  </div>
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
@@ -200,14 +200,14 @@
 <a name="l00142"></a>00142 <span class="preprocessor"></span>
 <a name="l00143"></a>00143 
 <a name="l00145"></a><a class="code" href="interface_n_i_operation.html#a8c484d9ee1a76ea72b0d3afc0782f8fc">00145</a> - (void)<a class="code" href="interface_n_i_operation.html#a8c484d9ee1a76ea72b0d3afc0782f8fc" title="On the main thread, notify the delegate that the operation has begun.">operationDidStart</a> {
-<a name="l00146"></a>00146         [<span class="keyword">self</span> performSelectorOnMainThread: @selector(onMainThreadOperationDidStart)
+<a name="l00146"></a>00146   [<span class="keyword">self</span> performSelectorOnMainThread: @selector(onMainThreadOperationDidStart)
 <a name="l00147"></a>00147                          withObject: nil
 <a name="l00148"></a>00148                       waitUntilDone: [NSThread isMainThread]];
 <a name="l00149"></a>00149 }
 <a name="l00150"></a>00150 
 <a name="l00151"></a>00151 
 <a name="l00153"></a><a class="code" href="interface_n_i_operation.html#aa348248e667a2f1021f6451cb7cbbc0f">00153</a> - (void)<a class="code" href="interface_n_i_operation.html#aa348248e667a2f1021f6451cb7cbbc0f" title="On the main thread, notify the delegate that the operation has finished.">operationDidFinish</a> {
-<a name="l00154"></a>00154         [<span class="keyword">self</span> performSelectorOnMainThread: @selector(onMainThreadOperationDidFinish)
+<a name="l00154"></a>00154   [<span class="keyword">self</span> performSelectorOnMainThread: @selector(onMainThreadOperationDidFinish)
 <a name="l00155"></a>00155                          withObject: nil
 <a name="l00156"></a>00156                       waitUntilDone: [NSThread isMainThread]];
 <a name="l00157"></a>00157 }
@@ -216,7 +216,7 @@
 <a name="l00161"></a><a class="code" href="interface_n_i_operation.html#abcac75178abd6f277fcac4332bad2976">00161</a> - (void)operationDidFailWithError:(NSError *)error {
 <a name="l00162"></a>00162   <span class="keyword">self</span>.lastError = error;
 <a name="l00163"></a>00163 
-<a name="l00164"></a>00164         [<span class="keyword">self</span> performSelectorOnMainThread: @selector(onMainThreadOperationDidFailWithError:)
+<a name="l00164"></a>00164   [<span class="keyword">self</span> performSelectorOnMainThread: @selector(onMainThreadOperationDidFailWithError:)
 <a name="l00165"></a>00165                          withObject: error
 <a name="l00166"></a>00166                       waitUntilDone: [NSThread isMainThread]];
 <a name="l00167"></a>00167 }

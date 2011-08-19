@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: /Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/unittests/Tests/ProxyTests.m Source File</title>
+<title>Nimbus: src/ASIHTTPRequest/unittests/Tests/ProxyTests.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,7 +73,7 @@
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">/Users/featherless/workbench/ios/nimbus/src/ASIHTTPRequest/unittests/Tests/ProxyTests.m</div>  </div>
+<div class="title">src/ASIHTTPRequest/unittests/Tests/ProxyTests.m</div>  </div>
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
@@ -105,174 +105,174 @@
 <a name="l00027"></a>00027 
 <a name="l00028"></a>00028 - (void)testProxyForHTTPS
 <a name="l00029"></a>00029 {
-<a name="l00030"></a>00030         <span class="comment">// Also test we are case-insensitive comparing our scheme</span>
-<a name="l00031"></a>00031         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;HTTPS://selfsigned.allseeing-i.com/&quot;]];
-<a name="l00032"></a>00032         [request setValidatesSecureCertificate:NO];
-<a name="l00033"></a>00033         [request startSynchronous];
-<a name="l00034"></a>00034         BOOL success = ([[request responseString] rangeOfString:@&quot;All-Seeing Interactive&quot;].location != NSNotFound);
-<a name="l00035"></a>00035         GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to connect to an HTTPS URL using a proxy&quot;</span>);
+<a name="l00030"></a>00030   <span class="comment">// Also test we are case-insensitive comparing our scheme</span>
+<a name="l00031"></a>00031   ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;HTTPS://selfsigned.allseeing-i.com/&quot;]];
+<a name="l00032"></a>00032   [request setValidatesSecureCertificate:NO];
+<a name="l00033"></a>00033   [request startSynchronous];
+<a name="l00034"></a>00034   BOOL success = ([[request responseString] rangeOfString:@&quot;All-Seeing Interactive&quot;].location != NSNotFound);
+<a name="l00035"></a>00035   GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to connect to an HTTPS URL using a proxy&quot;</span>);
 <a name="l00036"></a>00036 }
 <a name="l00037"></a>00037 
 <a name="l00038"></a>00038 - (void)testAutoConfigureWithPAC
 <a name="l00039"></a>00039 {
 <a name="l00040"></a>00040 
-<a name="l00041"></a>00041         <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *pacurl = <span class="stringliteral">@&quot;file:///non-existent.pac&quot;</span>;
-<a name="l00042"></a>00042         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com&quot;]];
-<a name="l00043"></a>00043         [request setPACurl:[NSURL URLWithString:pacurl]];
-<a name="l00044"></a>00044         [request startSynchronous];
-<a name="l00045"></a>00045         GHAssertNil([request proxyHost],<span class="stringliteral">@&quot;Shouldn&#39;t use a proxy here&quot;</span>);
-<a name="l00046"></a>00046         GHAssertNil([request error],<span class="stringliteral">@&quot;Request failed when unable to fetch PAC (should assume no proxy instead)&quot;</span>);
-<a name="l00047"></a>00047         
-<a name="l00048"></a>00048         <span class="comment">// To run this test, specify the location of the pac script that is available at http://developer.apple.com/samplecode/CFProxySupportTool/listing1.html</span>
-<a name="l00049"></a>00049         pacurl = <span class="stringliteral">@&quot;file:///Users/ben/Desktop/test.pac&quot;</span>;
-<a name="l00050"></a>00050         request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com&quot;]];
-<a name="l00051"></a>00051         [request setPACurl:[NSURL URLWithString:pacurl]];
-<a name="l00052"></a>00052         [request startSynchronous];
+<a name="l00041"></a>00041   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *pacurl = <span class="stringliteral">@&quot;file:///non-existent.pac&quot;</span>;
+<a name="l00042"></a>00042   ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com&quot;]];
+<a name="l00043"></a>00043   [request setPACurl:[NSURL URLWithString:pacurl]];
+<a name="l00044"></a>00044   [request startSynchronous];
+<a name="l00045"></a>00045   GHAssertNil([request proxyHost],<span class="stringliteral">@&quot;Shouldn&#39;t use a proxy here&quot;</span>);
+<a name="l00046"></a>00046   GHAssertNil([request error],<span class="stringliteral">@&quot;Request failed when unable to fetch PAC (should assume no proxy instead)&quot;</span>);
+<a name="l00047"></a>00047   
+<a name="l00048"></a>00048   <span class="comment">// To run this test, specify the location of the pac script that is available at http://developer.apple.com/samplecode/CFProxySupportTool/listing1.html</span>
+<a name="l00049"></a>00049   pacurl = <span class="stringliteral">@&quot;file:///Users/ben/Desktop/test.pac&quot;</span>;
+<a name="l00050"></a>00050   request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com&quot;]];
+<a name="l00051"></a>00051   [request setPACurl:[NSURL URLWithString:pacurl]];
+<a name="l00052"></a>00052   [request startSynchronous];
 <a name="l00053"></a>00053 
-<a name="l00054"></a>00054         BOOL success = [[request proxyHost] isEqualToString:@&quot;proxy1.apple.com&quot;];
-<a name="l00055"></a>00055         GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to use the correct proxy&quot;</span>);
-<a name="l00056"></a>00056         
-<a name="l00057"></a>00057         request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://www.apple.com&quot;]];
-<a name="l00058"></a>00058         [request setPACurl:[NSURL URLWithString:pacurl]];
-<a name="l00059"></a>00059         [request startSynchronous];
-<a name="l00060"></a>00060         GHAssertNil([request proxyHost],<span class="stringliteral">@&quot;Used a proxy when the script told us to go direct&quot;</span>);
+<a name="l00054"></a>00054   BOOL success = [[request proxyHost] isEqualToString:@&quot;proxy1.apple.com&quot;];
+<a name="l00055"></a>00055   GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to use the correct proxy&quot;</span>);
+<a name="l00056"></a>00056   
+<a name="l00057"></a>00057   request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://www.apple.com&quot;]];
+<a name="l00058"></a>00058   [request setPACurl:[NSURL URLWithString:pacurl]];
+<a name="l00059"></a>00059   [request startSynchronous];
+<a name="l00060"></a>00060   GHAssertNil([request proxyHost],<span class="stringliteral">@&quot;Used a proxy when the script told us to go direct&quot;</span>);
 <a name="l00061"></a>00061 }
 <a name="l00062"></a>00062 
 <a name="l00063"></a>00063 - (void)testAutoConfigureWithSystemPAC
 <a name="l00064"></a>00064 {
-<a name="l00065"></a>00065         <span class="comment">// To run this test, specify the pac script above in your network settings</span>
-<a name="l00066"></a>00066         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com&quot;]];
-<a name="l00067"></a>00067         [request startSynchronous];
+<a name="l00065"></a>00065   <span class="comment">// To run this test, specify the pac script above in your network settings</span>
+<a name="l00066"></a>00066   ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com&quot;]];
+<a name="l00067"></a>00067   [request startSynchronous];
 <a name="l00068"></a>00068 
-<a name="l00069"></a>00069         BOOL success = [[request proxyHost] isEqualToString:@&quot;proxy1.apple.com&quot;];
-<a name="l00070"></a>00070         GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to use the correct proxy&quot;</span>);
-<a name="l00071"></a>00071         
-<a name="l00072"></a>00072         request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://www.apple.com&quot;]];
-<a name="l00073"></a>00073         [request startSynchronous];
-<a name="l00074"></a>00074         GHAssertNil([request proxyHost],<span class="stringliteral">@&quot;Used a proxy when the script told us to go direct&quot;</span>);
+<a name="l00069"></a>00069   BOOL success = [[request proxyHost] isEqualToString:@&quot;proxy1.apple.com&quot;];
+<a name="l00070"></a>00070   GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to use the correct proxy&quot;</span>);
+<a name="l00071"></a>00071   
+<a name="l00072"></a>00072   request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://www.apple.com&quot;]];
+<a name="l00073"></a>00073   [request startSynchronous];
+<a name="l00074"></a>00074   GHAssertNil([request proxyHost],<span class="stringliteral">@&quot;Used a proxy when the script told us to go direct&quot;</span>);
 <a name="l00075"></a>00075 }
 <a name="l00076"></a>00076 
 <a name="l00077"></a>00077 - (void)testProxy
 <a name="l00078"></a>00078 {
-<a name="l00079"></a>00079         BOOL success = (![proxyHost isEqualToString:@&quot;&quot;] &amp;&amp; proxyPort &gt; 0);
-<a name="l00080"></a>00080         GHAssertTrue(success,<span class="stringliteral">@&quot;You need to supply the details of your proxy to run the proxy autodetect test&quot;</span>); 
-<a name="l00081"></a>00081         
-<a name="l00082"></a>00082         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com&quot;]];
-<a name="l00083"></a>00083         [request setProxyHost:proxyHost];
-<a name="l00084"></a>00084         [request setProxyPort:proxyPort];
-<a name="l00085"></a>00085         [request startSynchronous];
-<a name="l00086"></a>00086         
-<a name="l00087"></a>00087         <span class="comment">// Check data is as expected</span>
-<a name="l00088"></a>00088         NSRange notFound = NSMakeRange(NSNotFound, 0);
-<a name="l00089"></a>00089         success = !NSEqualRanges([[request responseString] rangeOfString:<span class="stringliteral">@&quot;All-Seeing Interactive&quot;</span>],notFound);
-<a name="l00090"></a>00090         GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to download the correct data, navigating the proxy&quot;</span>);
+<a name="l00079"></a>00079   BOOL success = (![proxyHost isEqualToString:@&quot;&quot;] &amp;&amp; proxyPort &gt; 0);
+<a name="l00080"></a>00080   GHAssertTrue(success,<span class="stringliteral">@&quot;You need to supply the details of your proxy to run the proxy autodetect test&quot;</span>); 
+<a name="l00081"></a>00081   
+<a name="l00082"></a>00082   ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com&quot;]];
+<a name="l00083"></a>00083   [request setProxyHost:proxyHost];
+<a name="l00084"></a>00084   [request setProxyPort:proxyPort];
+<a name="l00085"></a>00085   [request startSynchronous];
+<a name="l00086"></a>00086   
+<a name="l00087"></a>00087   <span class="comment">// Check data is as expected</span>
+<a name="l00088"></a>00088   NSRange notFound = NSMakeRange(NSNotFound, 0);
+<a name="l00089"></a>00089   success = !NSEqualRanges([[request responseString] rangeOfString:<span class="stringliteral">@&quot;All-Seeing Interactive&quot;</span>],notFound);
+<a name="l00090"></a>00090   GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to download the correct data, navigating the proxy&quot;</span>);
 <a name="l00091"></a>00091 }
 <a name="l00092"></a>00092 
 <a name="l00093"></a>00093 - (void)testProxyAutodetect
-<a name="l00094"></a>00094 {       
-<a name="l00095"></a>00095         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com&quot;]];
-<a name="l00096"></a>00096         [request startSynchronous];
-<a name="l00097"></a>00097         
-<a name="l00098"></a>00098         BOOL success = ([request proxyHost] &amp;&amp; [request proxyPort]);
-<a name="l00099"></a>00099         GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to detect the proxy&quot;</span>);            
+<a name="l00094"></a>00094 { 
+<a name="l00095"></a>00095   ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com&quot;]];
+<a name="l00096"></a>00096   [request startSynchronous];
+<a name="l00097"></a>00097   
+<a name="l00098"></a>00098   BOOL success = ([request proxyHost] &amp;&amp; [request proxyPort]);
+<a name="l00099"></a>00099   GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to detect the proxy&quot;</span>);    
 <a name="l00100"></a>00100 }
 <a name="l00101"></a>00101 
 <a name="l00102"></a>00102 
 <a name="l00103"></a>00103 - (void)testProxyWithSuppliedAuthenticationCredentials
 <a name="l00104"></a>00104 {
-<a name="l00105"></a>00105         BOOL success = (![proxyHost isEqualToString:@&quot;&quot;] &amp;&amp; proxyPort &gt; 0 &amp;&amp; ![proxyUsername isEqualToString:@&quot;&quot;] &amp;&amp; ![proxyPassword isEqualToString:@&quot;&quot;]);
-<a name="l00106"></a>00106         GHAssertTrue(success,<span class="stringliteral">@&quot;You need to supply the details of your authenticating proxy to run the proxy authentication test&quot;</span>);      
-<a name="l00107"></a>00107         
-<a name="l00108"></a>00108         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com&quot;]];
-<a name="l00109"></a>00109         [request setProxyHost:proxyHost];
-<a name="l00110"></a>00110         [request setProxyPort:proxyPort];
-<a name="l00111"></a>00111         [request setProxyUsername:proxyUsername];
-<a name="l00112"></a>00112         [request setProxyPassword:proxyPassword];
-<a name="l00113"></a>00113         [request startSynchronous];
-<a name="l00114"></a>00114         
-<a name="l00115"></a>00115         <span class="comment">// Check data is as expected</span>
-<a name="l00116"></a>00116         NSRange notFound = NSMakeRange(NSNotFound, 0);
-<a name="l00117"></a>00117         success = !NSEqualRanges([[request responseString] rangeOfString:<span class="stringliteral">@&quot;All-Seeing Interactive&quot;</span>],notFound);
-<a name="l00118"></a>00118         GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to download the correct data, navigating the proxy&quot;</span>);
+<a name="l00105"></a>00105   BOOL success = (![proxyHost isEqualToString:@&quot;&quot;] &amp;&amp; proxyPort &gt; 0 &amp;&amp; ![proxyUsername isEqualToString:@&quot;&quot;] &amp;&amp; ![proxyPassword isEqualToString:@&quot;&quot;]);
+<a name="l00106"></a>00106   GHAssertTrue(success,<span class="stringliteral">@&quot;You need to supply the details of your authenticating proxy to run the proxy authentication test&quot;</span>);  
+<a name="l00107"></a>00107   
+<a name="l00108"></a>00108   ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com&quot;]];
+<a name="l00109"></a>00109   [request setProxyHost:proxyHost];
+<a name="l00110"></a>00110   [request setProxyPort:proxyPort];
+<a name="l00111"></a>00111   [request setProxyUsername:proxyUsername];
+<a name="l00112"></a>00112   [request setProxyPassword:proxyPassword];
+<a name="l00113"></a>00113   [request startSynchronous];
+<a name="l00114"></a>00114   
+<a name="l00115"></a>00115   <span class="comment">// Check data is as expected</span>
+<a name="l00116"></a>00116   NSRange notFound = NSMakeRange(NSNotFound, 0);
+<a name="l00117"></a>00117   success = !NSEqualRanges([[request responseString] rangeOfString:<span class="stringliteral">@&quot;All-Seeing Interactive&quot;</span>],notFound);
+<a name="l00118"></a>00118   GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to download the correct data, navigating the proxy&quot;</span>);
 <a name="l00119"></a>00119 }
 <a name="l00120"></a>00120 
 <a name="l00121"></a>00121 - (void)testProxyWithDelegateSupplyingCredentials
 <a name="l00122"></a>00122 {
-<a name="l00123"></a>00123         [<span class="keyword">self</span> setComplete:NO];
-<a name="l00124"></a>00124         BOOL success = (![proxyHost isEqualToString:@&quot;&quot;] &amp;&amp; proxyPort &gt; 0 &amp;&amp; ![proxyUsername isEqualToString:@&quot;&quot;] &amp;&amp; ![proxyPassword isEqualToString:@&quot;&quot;]);
-<a name="l00125"></a>00125         GHAssertTrue(success,<span class="stringliteral">@&quot;You need to supply the details of your authenticating proxy to run the proxy authentication test&quot;</span>);      
-<a name="l00126"></a>00126         
-<a name="l00127"></a>00127         [[<span class="keyword">self</span> queue] cancelAllOperations];
-<a name="l00128"></a>00128         [<span class="keyword">self</span> setQueue:[ASINetworkQueue queue]];
-<a name="l00129"></a>00129         [[<span class="keyword">self</span> queue] setDelegate:self];
-<a name="l00130"></a>00130         [[<span class="keyword">self</span> queue] setRequestDidFinishSelector:@selector(requestFinished:)];
-<a name="l00131"></a>00131         [[<span class="keyword">self</span> queue] setRequestDidFailSelector:@selector(requestFailed:)];
-<a name="l00132"></a>00132         
-<a name="l00133"></a>00133         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com&quot;]];
-<a name="l00134"></a>00134         [[<span class="keyword">self</span> queue] addOperation:request];
-<a name="l00135"></a>00135         
-<a name="l00136"></a>00136         [queue go];
-<a name="l00137"></a>00137         
-<a name="l00138"></a>00138         <span class="keywordflow">while</span> (![<span class="keyword">self</span> complete]) {
-<a name="l00139"></a>00139                 [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.25]];
-<a name="l00140"></a>00140         }
+<a name="l00123"></a>00123   [<span class="keyword">self</span> setComplete:NO];
+<a name="l00124"></a>00124   BOOL success = (![proxyHost isEqualToString:@&quot;&quot;] &amp;&amp; proxyPort &gt; 0 &amp;&amp; ![proxyUsername isEqualToString:@&quot;&quot;] &amp;&amp; ![proxyPassword isEqualToString:@&quot;&quot;]);
+<a name="l00125"></a>00125   GHAssertTrue(success,<span class="stringliteral">@&quot;You need to supply the details of your authenticating proxy to run the proxy authentication test&quot;</span>);  
+<a name="l00126"></a>00126   
+<a name="l00127"></a>00127   [[<span class="keyword">self</span> queue] cancelAllOperations];
+<a name="l00128"></a>00128   [<span class="keyword">self</span> setQueue:[ASINetworkQueue queue]];
+<a name="l00129"></a>00129   [[<span class="keyword">self</span> queue] setDelegate:self];
+<a name="l00130"></a>00130   [[<span class="keyword">self</span> queue] setRequestDidFinishSelector:@selector(requestFinished:)];
+<a name="l00131"></a>00131   [[<span class="keyword">self</span> queue] setRequestDidFailSelector:@selector(requestFailed:)];
+<a name="l00132"></a>00132   
+<a name="l00133"></a>00133   ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com&quot;]];
+<a name="l00134"></a>00134   [[<span class="keyword">self</span> queue] addOperation:request];
+<a name="l00135"></a>00135   
+<a name="l00136"></a>00136   [queue go];
+<a name="l00137"></a>00137   
+<a name="l00138"></a>00138   <span class="keywordflow">while</span> (![<span class="keyword">self</span> complete]) {
+<a name="l00139"></a>00139     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.25]];
+<a name="l00140"></a>00140   }
 <a name="l00141"></a>00141 }
 <a name="l00142"></a>00142 
 <a name="l00143"></a>00143 - (void)requestFinished:(ASIHTTPRequest *)request
 <a name="l00144"></a>00144 {
-<a name="l00145"></a>00145         [<span class="keyword">self</span> setComplete:YES];
-<a name="l00146"></a>00146         <span class="comment">// Check data is as expected</span>
-<a name="l00147"></a>00147         NSRange notFound = NSMakeRange(NSNotFound, 0);
-<a name="l00148"></a>00148         BOOL success = !NSEqualRanges([[request responseString] rangeOfString:<span class="stringliteral">@&quot;All-Seeing Interactive&quot;</span>],notFound);
-<a name="l00149"></a>00149         GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to download the correct data, navigating the proxy&quot;</span>);     
+<a name="l00145"></a>00145   [<span class="keyword">self</span> setComplete:YES];
+<a name="l00146"></a>00146   <span class="comment">// Check data is as expected</span>
+<a name="l00147"></a>00147   NSRange notFound = NSMakeRange(NSNotFound, 0);
+<a name="l00148"></a>00148   BOOL success = !NSEqualRanges([[request responseString] rangeOfString:<span class="stringliteral">@&quot;All-Seeing Interactive&quot;</span>],notFound);
+<a name="l00149"></a>00149   GHAssertTrue(success,<span class="stringliteral">@&quot;Failed to download the correct data, navigating the proxy&quot;</span>); 
 <a name="l00150"></a>00150 }
 <a name="l00151"></a>00151 
 <a name="l00152"></a>00152 - (void)requestFailed:(ASIHTTPRequest *)request
 <a name="l00153"></a>00153 {
-<a name="l00154"></a>00154         [<span class="keyword">self</span> setComplete:YES];
-<a name="l00155"></a>00155         GHAssertTrue(0,<span class="stringliteral">@&quot;Request failed when it shouldn&#39;t have done so&quot;</span>);       
+<a name="l00154"></a>00154   [<span class="keyword">self</span> setComplete:YES];
+<a name="l00155"></a>00155   GHAssertTrue(0,<span class="stringliteral">@&quot;Request failed when it shouldn&#39;t have done so&quot;</span>); 
 <a name="l00156"></a>00156 }
 <a name="l00157"></a>00157 
 <a name="l00158"></a>00158 - (void)proxyAuthenticationNeededForRequest:(ASIHTTPRequest *)request
 <a name="l00159"></a>00159 {
-<a name="l00160"></a>00160         [request setProxyUsername:proxyUsername];
-<a name="l00161"></a>00161         [request setProxyPassword:proxyPassword];
-<a name="l00162"></a>00162         [request retryUsingSuppliedCredentials];
+<a name="l00160"></a>00160   [request setProxyUsername:proxyUsername];
+<a name="l00161"></a>00161   [request setProxyPassword:proxyPassword];
+<a name="l00162"></a>00162   [request retryUsingSuppliedCredentials];
 <a name="l00163"></a>00163 }
 <a name="l00164"></a>00164 
 <a name="l00165"></a>00165 
 <a name="l00166"></a>00166 - (void)testDoubleAuthentication
 <a name="l00167"></a>00167 {
-<a name="l00168"></a>00168         [<span class="keyword">self</span> setComplete:NO];
-<a name="l00169"></a>00169         BOOL success = (![proxyHost isEqualToString:@&quot;&quot;] &amp;&amp; proxyPort &gt; 0 &amp;&amp; ![proxyUsername isEqualToString:@&quot;&quot;] &amp;&amp; ![proxyPassword isEqualToString:@&quot;&quot;]);
-<a name="l00170"></a>00170         GHAssertTrue(success,<span class="stringliteral">@&quot;You need to supply the details of your authenticating proxy to run the proxy authentication test&quot;</span>);      
-<a name="l00171"></a>00171         
-<a name="l00172"></a>00172         [[<span class="keyword">self</span> queue] cancelAllOperations];
-<a name="l00173"></a>00173         [<span class="keyword">self</span> setQueue:[ASINetworkQueue queue]];
-<a name="l00174"></a>00174         [[<span class="keyword">self</span> queue] setDelegate:self];
-<a name="l00175"></a>00175         [[<span class="keyword">self</span> queue] setRequestDidFinishSelector:@selector(requestDone:)];
-<a name="l00176"></a>00176         [[<span class="keyword">self</span> queue] setRequestDidFailSelector:@selector(requestFailed:)];
-<a name="l00177"></a>00177         
-<a name="l00178"></a>00178         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com/ASIHTTPRequest/tests/basic-authentication&quot;]];
-<a name="l00179"></a>00179         [[<span class="keyword">self</span> queue] addOperation:request];
-<a name="l00180"></a>00180         
-<a name="l00181"></a>00181         [queue go];
-<a name="l00182"></a>00182         
-<a name="l00183"></a>00183         <span class="keywordflow">while</span> (![<span class="keyword">self</span> complete]) {
-<a name="l00184"></a>00184                 [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.25]];
-<a name="l00185"></a>00185         }
+<a name="l00168"></a>00168   [<span class="keyword">self</span> setComplete:NO];
+<a name="l00169"></a>00169   BOOL success = (![proxyHost isEqualToString:@&quot;&quot;] &amp;&amp; proxyPort &gt; 0 &amp;&amp; ![proxyUsername isEqualToString:@&quot;&quot;] &amp;&amp; ![proxyPassword isEqualToString:@&quot;&quot;]);
+<a name="l00170"></a>00170   GHAssertTrue(success,<span class="stringliteral">@&quot;You need to supply the details of your authenticating proxy to run the proxy authentication test&quot;</span>);  
+<a name="l00171"></a>00171   
+<a name="l00172"></a>00172   [[<span class="keyword">self</span> queue] cancelAllOperations];
+<a name="l00173"></a>00173   [<span class="keyword">self</span> setQueue:[ASINetworkQueue queue]];
+<a name="l00174"></a>00174   [[<span class="keyword">self</span> queue] setDelegate:self];
+<a name="l00175"></a>00175   [[<span class="keyword">self</span> queue] setRequestDidFinishSelector:@selector(requestDone:)];
+<a name="l00176"></a>00176   [[<span class="keyword">self</span> queue] setRequestDidFailSelector:@selector(requestFailed:)];
+<a name="l00177"></a>00177   
+<a name="l00178"></a>00178   ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@&quot;http://allseeing-i.com/ASIHTTPRequest/tests/basic-authentication&quot;]];
+<a name="l00179"></a>00179   [[<span class="keyword">self</span> queue] addOperation:request];
+<a name="l00180"></a>00180   
+<a name="l00181"></a>00181   [queue go];
+<a name="l00182"></a>00182   
+<a name="l00183"></a>00183   <span class="keywordflow">while</span> (![<span class="keyword">self</span> complete]) {
+<a name="l00184"></a>00184     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.25]];
+<a name="l00185"></a>00185   }
 <a name="l00186"></a>00186 }
 <a name="l00187"></a>00187 
 <a name="l00188"></a>00188 - (void)requestDone:(ASIHTTPRequest *)request
 <a name="l00189"></a>00189 {
-<a name="l00190"></a>00190         [<span class="keyword">self</span> setComplete:YES];
+<a name="l00190"></a>00190   [<span class="keyword">self</span> setComplete:YES];
 <a name="l00191"></a>00191 }
 <a name="l00192"></a>00192 
 <a name="l00193"></a>00193 - (void)authenticationNeededForRequest:(ASIHTTPRequest *)request
 <a name="l00194"></a>00194 {
-<a name="l00195"></a>00195         [request setUsername:@&quot;secret_username&quot;];
-<a name="l00196"></a>00196         [request setPassword:@&quot;secret_password&quot;];
-<a name="l00197"></a>00197         [request retryUsingSuppliedCredentials];
+<a name="l00195"></a>00195   [request setUsername:@&quot;secret_username&quot;];
+<a name="l00196"></a>00196   [request setPassword:@&quot;secret_password&quot;];
+<a name="l00197"></a>00197   [request retryUsingSuppliedCredentials];
 <a name="l00198"></a>00198 }
 <a name="l00199"></a>00199 
 <a name="l00200"></a>00200 

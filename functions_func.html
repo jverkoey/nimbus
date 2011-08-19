@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -166,6 +166,12 @@
 
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>cellClass
+: <a class="el" href="protocol_n_i_cell_object-p.html#a2c3581ed14d039eaa3301733699f7502">&lt;NICellObject&gt;</a>
+</li>
+<li>cellStyle
+: <a class="el" href="protocol_n_i_cell_object-p.html#a0652b01388a8e2fb1ca754b2c8dd422f">&lt;NICellObject&gt;</a>
+</li>
 <li>containsObject:
 : <a class="el" href="interface_n_i_linked_list.html#ac4364e4541406af80cd5654b062b12b8">NILinkedList</a>
 </li>
@@ -290,14 +296,23 @@
 <li>initWithCapacity:
 : <a class="el" href="interface_n_i_memory_cache.html#a879b58be06ace929185997a92f7bb35b">NIMemoryCache</a>
 </li>
+<li>initWithDelegate:
+: <a class="el" href="class_n_i_table_view_model.html#a56fb73175cd2c39b9a7143fef985ef98">NITableViewModel</a>
+</li>
 <li>initWithImage:
 : <a class="el" href="interface_n_i_network_image_view.html#ade5eba04aa860207d1fbd07a3f3a31ef">NINetworkImageView</a>
+</li>
+<li>initWithListArray:delegate:
+: <a class="el" href="class_n_i_table_view_model.html#af6d1f01a2f02141750fcdc5fa497dbf0">NITableViewModel</a>
 </li>
 <li>initWithLog:
 : <a class="el" href="interface_n_i_overview_console_log_entry.html#a3f442d14ff713dee83275d73fac22dc0">NIOverviewConsoleLogEntry</a>
 </li>
 <li>initWithPathToFile:
 : <a class="el" href="interface_n_i_read_file_from_disk_operation.html#a8700010910b9dad07f61cc040b163da7">NIReadFileFromDiskOperation</a>
+</li>
+<li>initWithSectionedArray:delegate:
+: <a class="el" href="class_n_i_table_view_model.html#a5a21fcce8dc43a4f779712f8132b214b">NITableViewModel</a>
 </li>
 <li>initWithTimestamp:
 : <a class="el" href="interface_n_i_overview_log_entry.html#af2f7896e2887d56cde6c6073c3af0f52">NIOverviewLogEntry</a>
@@ -377,6 +392,12 @@
 
 
 <h3><a class="anchor" id="index_n"></a>- n -</h3><ul>
+<li>nameOfLeastRecentlyUsedObject
+: <a class="el" href="interface_n_i_memory_cache.html#a12a0a64af2942bd30afce442a83ca79b">NIMemoryCache</a>
+</li>
+<li>nameOfMostRecentlyUsedObject
+: <a class="el" href="interface_n_i_memory_cache.html#ac9e3699e9bf6bc598e8ec7c72a5c06e7">NIMemoryCache</a>
+</li>
 <li>networkImageView:didLoadImage:
 : <a class="el" href="protocol_n_i_network_image_view_delegate-p.html#a96383c1312874a264d5065594c7bce43">&lt;NINetworkImageViewDelegate&gt;</a>
 </li>
@@ -423,6 +444,9 @@
 
 
 <h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
+<li>objectAtIndexPath:
+: <a class="el" href="class_n_i_table_view_model.html#a477424b2610ee36d82ef09ecd1624b86">NITableViewModel</a>
+</li>
 <li>objectAtLocation:
 : <a class="el" href="interface_n_i_linked_list.html#a459824a248ba4917d0434643f29fd5f4">NILinkedList</a>
 </li>
@@ -592,11 +616,20 @@
 <li>setPathToNetworkImage:forDisplaySize:contentMode:cropRect:
 : <a class="el" href="interface_n_i_network_image_view.html#af5d994d1815d398b875437523869971d">NINetworkImageView</a>
 </li>
+<li>setSectionIndexType:showsSearch:showsSummary:
+: <a class="el" href="class_n_i_table_view_model.html#a4f3dee76487f50876b9d7e536eb0b15f">NITableViewModel</a>
+</li>
 <li>setSelectedPhotoIndex:animated:
 : <a class="el" href="interface_n_i_photo_scrubber_view.html#a3cbc6d3db863f4c5e7a964a340ec8f96">NIPhotoScrubberView</a>
 </li>
 <li>setToolbarTintColor:
 : <a class="el" href="interface_n_i_web_controller.html#a3b99dd49315fd6fa7b971bc31a114dfe">NIWebController</a>
+</li>
+<li>shouldPresentActionSheet:
+: <a class="el" href="interface_n_i_web_controller.html#a9c92f8d0b90d0693b6215639f0ab5981">NIWebController</a>
+</li>
+<li>shouldUpdateCellWithObject:
+: <a class="el" href="protocol_n_i_cell-p.html#af12eab4c2d2d97f512a373a30d230a98">&lt;NICell&gt;</a>
 </li>
 <li>sms
 : <a class="el" href="interface_n_i_interapp.html#a5568688ec3523b068267803537bd3055">NIInterapp</a>
@@ -614,6 +647,10 @@
 
 
 <h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>tableViewModel:cellForTableView:atIndexPath:withObject:
+: <a class="el" href="interface_n_i_cell_factory.html#ae8badbc7ff1e42a28845c41eea426641">NICellFactory</a>
+, <a class="el" href="protocol_n_i_table_view_model_delegate-p.html#ab7b56b472b200f4eced4ffc25df727dc">&lt;NITableViewModelDelegate&gt;</a>
+</li>
 <li>twitter
 : <a class="el" href="interface_n_i_interapp.html#a16b8fb1f3e916b17445cee83ab028df5">NIInterapp</a>
 </li>

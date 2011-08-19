@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -81,8 +81,8 @@
 <hr/><a name="details" id="details"></a><h2>Overview</h2>
 <p>For common system metrics. </p>
 <p>If you ever need to work with system metrics in any way it can be a pain in the ass to try to figure out what the exact metrics are. Figuring out how long it takes the status bar to animate is not something you should be spending your time on. The metrics in this file are provided as a means of unifying a number of system metrics for use in your applications.</p>
-<h2>What Qualifies as a Core Metric</h2>
-<p>Core metrics are related to system components, such as the dimensions of a toolbar in a particular orientation or the duration of a standard animation. This is not the place to put feature-specific metrics, such as the height of a photo scrubber view.</p>
+<h2>What Qualifies as a Common Metric</h2>
+<p>Common metrics are related to system components, such as the dimensions of a toolbar in a particular orientation or the duration of a standard animation. This is not the place to put feature-specific metrics, such as the height of a photo scrubber view.</p>
 <h2>Examples</h2>
 <h3>Positioning a Toolbar</h3>
 <p>The following example updates the position and height of a toolbar when the device orientation is changing. This ensures that, in landscape mode on the iPhone, the toolbar is slightly shorter to accomodate the smaller height of the screen.</p>
@@ -106,6 +106,7 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga9526db6e49bdbeea5f4293d63dded111">NIStatusBarBoundsChangeAnimationDuration</a> (void)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">CGFloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga2e9bd96c79383760a4b81539339960fb">NIStatusBarHeight</a> (void)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga7d4ebd335b7563adf1b1e5fdcbb6d9d3">NIDeviceRotationDuration</a> (BOOL isFlippingUpsideDown)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">UIEdgeInsets&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___common-_metrics.html#ga5224edb22eb775228169b74b11ecb8f6">NICellContentPadding</a> (void)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="gae2ad00b094918f5b5929b3520007551b"></a><!-- doxytag: member="NICommonMetrics.h::NIToolbarHeightForOrientation" ref="gae2ad00b094918f5b5929b3520007551b" args="(UIInterfaceOrientation orientation)" -->
@@ -273,6 +274,28 @@ Functions</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="_n_i_common_metrics_8m_source.html#l00069">69</a> of file <a class="el" href="_n_i_common_metrics_8m_source.html">NICommonMetrics.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga5224edb22eb775228169b74b11ecb8f6"></a><!-- doxytag: member="NICommonMetrics.h::NICellContentPadding" ref="ga5224edb22eb775228169b74b11ecb8f6" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UIEdgeInsets NICellContentPadding </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The padding around a standard cell in a table view. </p>
+<p>Value: 10 pixels on all sides. </p>
+
+<p>Definition at line <a class="el" href="_n_i_common_metrics_8m_source.html#l00075">75</a> of file <a class="el" href="_n_i_common_metrics_8m_source.html">NICommonMetrics.m</a>.</p>
 
 </div>
 </div>

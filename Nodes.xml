@@ -158,6 +158,30 @@
           </Subnodes>
          </Node>
          <Node>
+          <Name>Nimbus Models</Name>
+          <Path>group___nimbus_models.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>Table Cell Catalog</Name>
+            <Path>group___table_cell_catalog.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Table Cell Factory</Name>
+            <Path>group___table_cell_factory.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Table View Models</Name>
+            <Path>group___table_view_models.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
           <Name>Nimbus Network Image</Name>
           <Path>group___nimbus_network_image.html</Path>
           <Subnodes>
@@ -311,6 +335,12 @@
              </Node>
             </Subnodes>
            </Node>
+           <Node>
+            <Name>Version 0.7.0 API Changes</Name>
+            <Path>group___version-7-0.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
           </Subnodes>
          </Node>
         </Subnodes>
@@ -320,8 +350,28 @@
         <Path>annotated.html</Path>
         <Subnodes>
          <Node>
+          <Name>&lt;NICell&gt;</Name>
+          <Path>protocol_n_i_cell-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NICellFactory</Name>
+          <Path>interface_n_i_cell_factory.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NICellObject&gt;</Name>
+          <Path>protocol_n_i_cell_object-p.html</Path>
+         </Node>
+         <Node>
           <Name>NIDeviceInfo</Name>
           <Path>interface_n_i_device_info.html</Path>
+         </Node>
+         <Node>
+          <Name>NIFormElement</Name>
+          <Path>interface_n_i_form_element.html</Path>
+         </Node>
+         <Node>
+          <Name>NIFormElementCell</Name>
+          <Path>interface_n_i_form_element_cell.html</Path>
          </Node>
          <Node>
           <Name>NIHTTPImageRequest</Name>
@@ -504,6 +554,34 @@
           <Path>interface_n_i_read_file_from_disk_operation.html</Path>
          </Node>
          <Node>
+          <Name>NISwitchFormElement</Name>
+          <Path>interface_n_i_switch_form_element.html</Path>
+         </Node>
+         <Node>
+          <Name>NISwitchFormElementCell</Name>
+          <Path>interface_n_i_switch_form_element_cell.html</Path>
+         </Node>
+         <Node>
+          <Name>NITableViewModel</Name>
+          <Path>class_n_i_table_view_model.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NITableViewModelDelegate&gt;</Name>
+          <Path>protocol_n_i_table_view_model_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NITableViewModelFooter</Name>
+          <Path>interface_n_i_table_view_model_footer.html</Path>
+         </Node>
+         <Node>
+          <Name>NITextInputFormElement</Name>
+          <Path>interface_n_i_text_input_form_element.html</Path>
+         </Node>
+         <Node>
+          <Name>NITextInputFormElementCell</Name>
+          <Path>interface_n_i_text_input_form_element_cell.html</Path>
+         </Node>
+         <Node>
           <Name>NIToolbarPhotoViewController</Name>
           <Path>interface_n_i_toolbar_photo_view_controller.html</Path>
          </Node>
@@ -529,6 +607,50 @@
         <Name>Class Hierarchy</Name>
         <Path>hierarchy.html</Path>
         <Subnodes>
+         <Node>
+          <Name>&lt;NICell&gt;</Name>
+          <Path>protocol_n_i_cell-p.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>NIFormElementCell</Name>
+            <Path>interface_n_i_form_element_cell.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>NISwitchFormElementCell</Name>
+              <Path>interface_n_i_switch_form_element_cell.html</Path>
+             </Node>
+             <Node>
+              <Name>NITextInputFormElementCell</Name>
+              <Path>interface_n_i_text_input_form_element_cell.html</Path>
+             </Node>
+            </Subnodes>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>NICellFactory</Name>
+          <Path>interface_n_i_cell_factory.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NICellObject&gt;</Name>
+          <Path>protocol_n_i_cell_object-p.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>NIFormElement</Name>
+            <Path>interface_n_i_form_element.html</Path>
+            <Subnodes>
+             <Node>
+              <Name>NISwitchFormElement</Name>
+              <Path>interface_n_i_switch_form_element.html</Path>
+             </Node>
+             <Node>
+              <Name>NITextInputFormElement</Name>
+              <Path>interface_n_i_text_input_form_element.html</Path>
+             </Node>
+            </Subnodes>
+           </Node>
+          </Subnodes>
+         </Node>
          <Node>
           <Name>NIDeviceInfo</Name>
           <Path>interface_n_i_device_info.html</Path>
@@ -756,6 +878,18 @@
           <Path>protocol_n_i_processor_delegate-p.html</Path>
          </Node>
          <Node>
+          <Name>NITableViewModel</Name>
+          <Path>class_n_i_table_view_model.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NITableViewModelDelegate&gt;</Name>
+          <Path>protocol_n_i_table_view_model_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NITableViewModelFooter</Name>
+          <Path>interface_n_i_table_view_model_footer.html</Path>
+         </Node>
+         <Node>
           <Name>NIWebController</Name>
           <Path>interface_n_i_web_controller.html</Path>
          </Node>
@@ -786,6 +920,10 @@
          <Node>
           <Name>ExampleRuntimeDebugging.m</Name>
           <Path>_example_runtime_debugging_8m-example.html</Path>
+         </Node>
+         <Node>
+          <Name>ExampleStaticTableModel.m</Name>
+          <Path>_example_static_table_model_8m-example.html</Path>
          </Node>
         </Subnodes>
        </Node>

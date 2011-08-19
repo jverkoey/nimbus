@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Nimbus: /Users/featherless/workbench/ios/nimbus/src/overview/src/NIDeviceInfo.m Source File</title>
+<title>Nimbus: src/overview/src/NIDeviceInfo.m Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.6.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -73,7 +73,7 @@
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">/Users/featherless/workbench/ios/nimbus/src/overview/src/NIDeviceInfo.m</div>  </div>
+<div class="title">src/overview/src/NIDeviceInfo.m</div>  </div>
 </div>
 <div class="contents">
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
@@ -159,12 +159,12 @@
 <a name="l00088"></a>00088 + (BOOL)updateFileSystemAttributes {
 <a name="l00089"></a>00089   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(sFileSystem);
 <a name="l00090"></a>00090 
-<a name="l00091"></a>00091         NSError* error = nil;
+<a name="l00091"></a>00091   NSError* error = nil;
 <a name="l00092"></a>00092   <span class="comment">// This path could be any path that is on the device&#39;s local disk.</span>
-<a name="l00093"></a>00093         NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+<a name="l00093"></a>00093   NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 <a name="l00094"></a>00094 
 <a name="l00095"></a>00095   <span class="comment">// Fetch the file system information based on the path given (the user&#39;s documents directory).</span>
-<a name="l00096"></a>00096         sFileSystem =
+<a name="l00096"></a>00096   sFileSystem =
 <a name="l00097"></a>00097   [[[NSFileManager defaultManager] attributesOfFileSystemForPath: [paths lastObject]
 <a name="l00098"></a>00098                                                            error: &amp;error] retain];
 <a name="l00099"></a>00099   <span class="keywordflow">return</span> (nil == error);
@@ -202,10 +202,10 @@
 <a name="l00136"></a>00136   <span class="keywordflow">if</span> (!sIsCaching &amp;&amp; ![<span class="keyword">self</span> updateFileSystemAttributes]) {
 <a name="l00137"></a>00137     <span class="keywordflow">return</span> 0;
 <a name="l00138"></a>00138   }
-<a name="l00139"></a>00139         <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> bytes = 0;
+<a name="l00139"></a>00139   <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> bytes = 0;
 <a name="l00140"></a>00140 
 <a name="l00141"></a>00141   NSNumber* number = [sFileSystem objectForKey:NSFileSystemFreeSize];
-<a name="l00142"></a>00142         bytes = [number unsignedLongLongValue];
+<a name="l00142"></a>00142   bytes = [number unsignedLongLongValue];
 <a name="l00143"></a>00143 
 <a name="l00144"></a>00144   <span class="keywordflow">return</span> bytes;
 <a name="l00145"></a>00145 }
@@ -215,7 +215,7 @@
 <a name="l00150"></a>00150   <span class="keywordflow">if</span> (!sIsCaching &amp;&amp; ![<span class="keyword">self</span> updateFileSystemAttributes]) {
 <a name="l00151"></a>00151     <span class="keywordflow">return</span> 0;
 <a name="l00152"></a>00152   }
-<a name="l00153"></a>00153         <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> bytes = 0;
+<a name="l00153"></a>00153   <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> bytes = 0;
 <a name="l00154"></a>00154   
 <a name="l00155"></a>00155   NSNumber* number = [sFileSystem objectForKey:NSFileSystemSize];
 <a name="l00156"></a>00156   bytes = [number unsignedLongLongValue];
