@@ -55,6 +55,12 @@ http://pledgie.com/campaigns/15519
 <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
 </div>
 
+<div class="contributor_profile"> 
+<img width="135px" height="135px" src="http://www.gravatar.com/avatar/22f25c7b3f0f15a6854fae62bbd3482f?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+<div class="name">Benedikt Meurer</div> 
+<div class="github"><a href="http://github.com/bmeurer">bmeurer</a></div> 
+</div>
+
 <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
 <img width="135px" height="135px" src="http://www.gravatar.com/avatar/8d33edcb6695ab66b1e48067e4e3723c?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
 <div class="name">Anderson Miller</div> 
