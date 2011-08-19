@@ -27,7 +27,7 @@
 - (void)dealloc {
   // The model is a retained object in this controller, so we must release it when the controller
   // is deallocated.
-  NI_RELEASE_SAFELY(_model);
+  [_model release]; _model = nil;
   
   [super dealloc];
 }

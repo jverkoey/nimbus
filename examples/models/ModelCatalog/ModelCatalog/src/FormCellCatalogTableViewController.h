@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CatalogViewController : UITableViewController {
+@interface FormCellCatalogTableViewController : UITableViewController <UITextFieldDelegate> {
 @private
   NITableViewModel* _model;
 }

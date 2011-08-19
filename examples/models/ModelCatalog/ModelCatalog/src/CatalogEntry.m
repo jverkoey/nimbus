@@ -14,48 +14,65 @@
 // limitations under the License.
 //
 
-#import "AppDelegate.h"
+#import "CatalogEntry.h"
 
-#import "CatalogViewController.h"
-
+@interface CatalogEntryCell : UITableViewCell <NICell>
+@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation AppDelegate
+@implementation CatalogEntry
 
-@synthesize window = _window;
+@synthesize title = _title;
+@synthesize controllerClass = _controllerClass;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  [_window release]; _window = nil;
-  [_rootController release]; _rootController = nil;
+  [_title release]; _title = nil;
 
   [super dealloc];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Application lifecycle
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)              application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-  
-  CatalogViewController* catalogController = [[CatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];
-  UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:catalogController];
-  _rootController = navController;
-  [self.window addSubview:_rootController.view];
-  
-  [self.window makeKeyAndVisible];
-
-  return YES;
++ (id)entryWithTitle:(NSString *)title controllerClass:(Class)controllerClass {
+  CatalogEntry* entry = [[[self alloc] init] autorelease];
+  entry.title = title;
+  entry.controllerClass = controllerClass;
+  return entry;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)cellClass {
+  return [CatalogEntryCell class];
+}
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation CatalogEntryCell
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+  if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldUpdateCellWithObject:(id)object {
+  CatalogEntry* entry = object;
+  self.textLabel.text = entry.title;
+  return YES;
+}
 
 @end

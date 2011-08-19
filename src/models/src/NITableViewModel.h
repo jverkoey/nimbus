@@ -15,6 +15,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #if NS_BLOCKS_AVAILABLE
 typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* tableView, NSIndexPath* indexPath, id object);
@@ -78,6 +79,7 @@ typedef enum {
 
 #pragma mark Configuration
 
+// Immediately compiles the section index.
 - (void)setSectionIndexType:(NITableViewModelSectionIndex)sectionIndexType showsSearch:(BOOL)showsSearch showsSummary:(BOOL)showsSummary;
 
 @property (nonatomic, readonly, assign) NITableViewModelSectionIndex sectionIndexType;

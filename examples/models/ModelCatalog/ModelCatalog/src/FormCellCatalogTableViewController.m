@@ -14,20 +14,13 @@
 // limitations under the License.
 //
 
-#import "CatalogViewController.h"
-
-#import "StaticListTableViewController.h"
-#import "StaticSectionedTableViewController.h"
-#import "StaticIndexedTableViewController.h"
 #import "FormCellCatalogTableViewController.h"
 
-#import "CatalogEntry.h"
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation CatalogViewController
+@implementation FormCellCatalogTableViewController
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,17 +36,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-    self.title = NSLocalizedString(@"Model Catalog", @"Controller Title: Model Catalog");
+    self.title = NSLocalizedString(@"Form Cells", @"Controller Title: Form Cells");
 
     NSArray* tableContents =
     [NSArray arrayWithObjects:
-     @"Table View Models",
-     [CatalogEntry entryWithTitle:@"List" controllerClass:[StaticListTableViewController class]],
-     [CatalogEntry entryWithTitle:@"Sectioned" controllerClass:[StaticSectionedTableViewController class]],
-     [CatalogEntry entryWithTitle:@"Indexed" controllerClass:[StaticIndexedTableViewController class]],
-     
-     @"Table Cell Factory",
-     [CatalogEntry entryWithTitle:@"Form Cells" controllerClass:[FormCellCatalogTableViewController class]],
+     @"NITextInputFormElement",
+     [NITextInputFormElement textInputElementWithID:0 placeholderText:@"Placeholder" value:nil],
+     [NITextInputFormElement textInputElementWithID:0 placeholderText:@"Placeholder" value:@"Initial value"],
+     [NITextInputFormElement textInputElementWithID:1 placeholderText:nil value:@"Disabled input field" delegate:self],
+     [NITextInputFormElement passwordInputElementWithID:0 placeholderText:@"Password" value:nil],
+     [NITextInputFormElement passwordInputElementWithID:0 placeholderText:@"Password" value:@"Password"],
      nil];
 
     // This controller creates the table view cells.
@@ -67,7 +59,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
+
   // Only assign the table view's data source after the view has loaded.
   // You must be careful when you call self.tableView in general because it will call loadView
   // if the view has not been loaded yet. You do not need to clear the data source when the
@@ -78,14 +70,46 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  // This is the stock UIKit didSelectRow method, provided here simply as an example of
-  // fetching an object from the model.
-  
-  CatalogEntry* entry = [_model objectAtIndexPath:indexPath];
-  Class cls = [entry controllerClass];
-  UIViewController* controller = [[[cls alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-  [self.navigationController pushViewController:controller animated:YES];
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+  return NIIsSupportedOrientation(toInterfaceOrientation);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UITextFieldDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+  if (textField.tag == 1) {
+    return NO;
+  }
+  return YES;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+  // Customize the presentation of certain types of cells.
+  if ([cell isKindOfClass:[NITextInputCell class]]) {
+    NITextInputCell* textInputCell = (NITextInputCell *)cell;
+    if (1 == cell.tag) {
+      // Make the disabled input field look slightly different.
+      textInputCell.textField.textColor = [UIColor colorWithRed:1 green:0.5 blue:0.5 alpha:1];
+
+    } else {
+      // We must always handle the else case because cells can be reused.
+      textInputCell.textField.textColor = nil;
+    }
+  }
 }
 
 

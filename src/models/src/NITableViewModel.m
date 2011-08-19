@@ -180,9 +180,9 @@
       currentSectionFooterTitle = nil;
     }
   }
-  
+
   // Commit any unfinished sections.
-  if (NIIsArrayWithObjects(currentSectionRows)) {
+  if ([currentSectionRows count] > 0) {
     NITableViewModelSection* section = [NITableViewModelSection section];
     section.headerTitle = currentSectionHeaderTitle;
     section.footerTitle = currentSectionFooterTitle;
@@ -218,11 +218,9 @@
   if (NITableViewModelSectionIndexDynamic == _sectionIndexType) {
     for (NITableViewModelSection* section in _sections) {
       NSString* headerTitle = section.headerTitle;
-      if (NIIsStringWithAnyText(headerTitle)) {
+      if ([headerTitle length] > 0) {
         NSString* prefix = [headerTitle substringToIndex:1];
-        if (NIIsStringWithAnyText(prefix)) {
-          [titles addObject:prefix];
-        }
+        [titles addObject:prefix];
       }
     }
 
@@ -254,12 +252,10 @@
     NSInteger sectionIndex = 0;
     for (NITableViewModelSection* section in _sections) {
       NSString* headerTitle = section.headerTitle;
-      if (NIIsStringWithAnyText(headerTitle)) {
+      if ([headerTitle length] > 0) {
         NSString* prefix = [headerTitle substringToIndex:1];
-        if (NIIsStringWithAnyText(prefix)) {
-          if (nil == [sectionPrefixToSectionIndex objectForKey:prefix]) {
-            [sectionPrefixToSectionIndex setObject:[NSNumber numberWithInt:sectionIndex] forKey:prefix];
-          }
+        if (nil == [sectionPrefixToSectionIndex objectForKey:prefix]) {
+          [sectionPrefixToSectionIndex setObject:[NSNumber numberWithInt:sectionIndex] forKey:prefix];
         }
       }
       ++sectionIndex;
