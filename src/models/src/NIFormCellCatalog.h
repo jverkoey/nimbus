@@ -27,10 +27,7 @@
  *
  *      @ingroup TableCellCatalog
  */
-@interface NIFormElement : NSObject <NICellObject> {
-@private
-  NSInteger _elementId;
-}
+@interface NIFormElement : NSObject <NICellObject>
 
 // Designated initializer
 + (id)elementWithID:(NSInteger)elementID;
@@ -50,13 +47,7 @@
  *
  *      @ingroup TableCellCatalog
  */
-@interface NITextInputFormElement : NIFormElement {
-@private
-  NSString* _placeholderText;
-  NSString* _value;
-  BOOL _isPassword;
-  id<UITextFieldDelegate> _delegate;
-}
+@interface NITextInputFormElement : NIFormElement
 
 // Designated initializer
 + (id)textInputElementWithID:(NSInteger)elementID placeholderText:(NSString *)placeholderText value:(NSString *)value delegate:(id<UITextFieldDelegate>)delegate;
@@ -82,13 +73,7 @@
  *
  *      @ingroup TableCellCatalog
  */
-@interface NISwitchFormElement : NIFormElement {
-@private
-  NSString* _labelText;
-  BOOL _value;
-  id _didChangeTarget;
-  SEL _didChangeSelector;
-}
+@interface NISwitchFormElement : NIFormElement
 
 // Designated initializer
 + (id)switchElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(BOOL)value didChangeTarget:(id)target didChangeSelector:(SEL)selector;
@@ -112,10 +97,7 @@
  *
  *      @ingroup TableCellCatalog
  */
-@interface NIFormElementCell : UITableViewCell <NICell> {
-@private
-  NIFormElement* _element;
-}
+@interface NIFormElementCell : UITableViewCell <NICell>
 @property (nonatomic, readonly, retain) NIFormElement* element;
 @end
 
@@ -128,10 +110,7 @@
  *
  *      @ingroup TableCellCatalog
  */
-@interface NITextInputFormElementCell : NIFormElementCell <UITextFieldDelegate> {
-@private
-  UITextField* _textField;
-}
+@interface NITextInputFormElementCell : NIFormElementCell <UITextFieldDelegate>
 @property (nonatomic, readonly, retain) UITextField* textField;
 @end
 
@@ -144,9 +123,6 @@
  *
  *      @ingroup TableCellCatalog
  */
-@interface NISwitchFormElementCell : NIFormElementCell <UITextFieldDelegate> {
-@private
-  UISwitch* _switchControl;
-}
+@interface NISwitchFormElementCell : NIFormElementCell <UITextFieldDelegate>
 @property (nonatomic, readonly, retain) UISwitch* switchControl;
 @end

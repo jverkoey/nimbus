@@ -306,12 +306,13 @@
 
   [_switchControl sizeToFit];
   CGRect frame = _switchControl.frame;
-  frame.origin.x = CGRectGetMaxX(contentFrame) - frame.size.width - 6;
-  frame.origin.y = 8;
+  frame.origin.y = ceilf((self.contentView.frame.size.height - frame.size.height) / 2);
+  frame.origin.x = self.contentView.frame.size.width - frame.size.width - frame.origin.y;
   _switchControl.frame = frame;
 
+  static const CGFloat kSwitchLeftMargin = 10;
   frame = self.textLabel.frame;
-  frame.size.width = contentFrame.size.width - _switchControl.frame.size.width;
+  frame.size.width = self.contentView.frame.size.width - contentFrame.origin.x - _switchControl.frame.size.width - _switchControl.frame.origin.y - kSwitchLeftMargin;
   self.textLabel.frame = frame;
 }
 

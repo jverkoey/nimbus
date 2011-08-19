@@ -46,7 +46,7 @@
      [NITextInputFormElement textInputElementWithID:1 placeholderText:nil value:@"Disabled input field" delegate:self],
      [NITextInputFormElement passwordInputElementWithID:0 placeholderText:@"Password" value:nil],
      [NITextInputFormElement passwordInputElementWithID:0 placeholderText:@"Password" value:@"Password"],
-     
+
      @"NISwitchFormElement",
      [NISwitchFormElement switchElementWithID:0 labelText:@"Switch" value:NO],
      [NISwitchFormElement switchElementWithID:0 labelText:@"Switch with a really long label that will be cut off" value:YES],

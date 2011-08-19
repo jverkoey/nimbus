@@ -17,6 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NITableViewModel.h"
+
 /**
  * A simple factory for creating table view cells from objects.
  *

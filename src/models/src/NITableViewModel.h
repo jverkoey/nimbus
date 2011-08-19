@@ -52,17 +52,6 @@ typedef enum {
   NSArray* _sections;  // Array of internal section objects
   NSArray* _sectionIndexTitles;
   NSDictionary* _sectionPrefixToSectionIndex;
-
-  NITableViewModelSectionIndex _sectionIndexType;
-  BOOL _sectionIndexShowsSearch;
-  BOOL _sectionIndexShowsSummary;
-
-  // Creating Table View Cells
-  id<NITableViewModelDelegate> _delegate;
-
-#if NS_BLOCKS_AVAILABLE
-  NITableViewModelCellForIndexPathBlock _createCellBlock;
-#endif // #if NS_BLOCKS_AVAILABLE
 }
 
 #pragma mark Creating Table View Models
@@ -128,10 +117,7 @@ typedef enum {
  *  [NITableViewModelFooter footerWithTitle:@"Footer"]
  * @endcode
  */
-@interface NITableViewModelFooter : NSObject {
-@private
-  NSString* _title;
-}
+@interface NITableViewModelFooter : NSObject
 
 + (id)footerWithTitle:(NSString *)title;
 - (id)initWithTitle:(NSString *)title;
