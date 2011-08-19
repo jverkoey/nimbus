@@ -104,9 +104,10 @@
 
 /**
  * This message is send to the receiver in response to the user clicking the action toolbar button.
- * You can provide your own implementation here and customize the @c actionSheet that is shown the
- * user, or even cancel the presentation of the @c actionSheet at all by returning @c NO from your
- * implementation.
+ *
+ * You can provide your own implementation in your subclass and customize the @c actionSheet
+ * that is shown to the user or even cancel the presentation of the @c actionSheet by
+ * returning @c NO from your implementation.
  *
  * @param actionSheet The UIActionSheet that will be presented to the user.
  *

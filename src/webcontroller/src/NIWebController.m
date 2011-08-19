@@ -354,8 +354,8 @@
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
   if (buttonIndex == 0) {
     [[UIApplication sharedApplication] openURL:_actionSheetURL];
-  }
-  else if (buttonIndex == 1) {
+
+  } else if (buttonIndex == 1) {
     [[UIPasteboard generalPasteboard] setURL:_actionSheetURL];
   }
 }
@@ -385,7 +385,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)openRequest:(NSURLRequest*)request {
-  [self view];
+  // The view must be loaded before you call this method.
+  NIDASSERT([self isViewLoaded]);
   [_webView loadRequest:request];
 }
 
