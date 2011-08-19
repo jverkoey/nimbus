@@ -126,3 +126,11 @@
 @interface NISwitchFormElementCell : NIFormElementCell <UITextFieldDelegate>
 @property (nonatomic, readonly, retain) UISwitch* switchControl;
 @end
+
+
+@interface NITableViewModel (NIFormElementSearch)
+
+// Finds an element in the static table view model with the given element id.
+- (id)elementWithID:(NSInteger)elementID;
+
+@end

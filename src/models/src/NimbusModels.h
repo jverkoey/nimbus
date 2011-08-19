@@ -333,6 +333,93 @@
  * efficient implementations than one-off, naive implementations that might otherwise
  * be copied from one controller to another.
  *
+ * <h2>Creating Generic Static Models</h2>
+ *
+ * In order to use the Nimbus table view model you simply need to create a model, assigning
+ * it to your table view's data source after the table view has been created, and implementing
+ * the model delegate to create the table view cells. You can also use the
+ * @link TableCellFactory Nimbus cell factory@endlink to avoid having to implement the model
+ * delegate.
+ *
+ * Below is an example of creating a basic list model:
+ *
+ * @code
+NSArray* tableContents =
+ [NSArray arrayWithObjects:
+  [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"],
+  [NSDictionary dictionaryWithObject:@"Row 2" forKey:@"title"],
+  [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
+  nil];
+
+_model = [[NITableViewModel alloc] initWithListArray:tableContents
+                                            delegate:self];
+ * @endcode
+ *
+ * Below is an example of creating a basic sectioned model:
+ *
+ * @code
+NSArray* tableContents =
+ [NSArray arrayWithObjects:
+  @"Section Title"
+  [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"],
+  [NSDictionary dictionaryWithObject:@"Row 2" forKey:@"title"],
+
+  @"Section Title"
+  [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
+  nil];
+
+_model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
+                                                 delegate:self];
+ * @endcode
+ *
+ * Both of the above examples would implement the model delegate like so:
+ *
+ * @code
+- (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel
+                   cellForTableView: (UITableView *)tableView
+                        atIndexPath: (NSIndexPath *)indexPath
+                         withObject: (id)object {
+  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
+
+  if (nil == cell) {
+    cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
+                                   reuseIdentifier: @"row"]
+            autorelease];
+  }
+
+  cell.textLabel.text = [object objectForKey:@"title"];
+
+  return cell;
+}
+ * @endcode
+ *
+ * <h2>Creating Forms</h2>
+ *
+ * Let's say you want to create a form for a user to enter their username and password. You
+ * can easily do this with Nimbus using the @link TableCellFactory Nimbus cell factory@endlink
+ * and the Nimbus form elements from the @link TableCellCatalog table cell catalog@endlink.
+ *
+ * @code
+
+NSArray* tableContents =
+[NSArray arrayWithObjects:
+ @"Sign In",
+ [NITextInputFormElement textInputElementWithID:kUsernameField placeholderText:@"Username" value:nil],
+ [NITextInputFormElement passwordInputElementWithID:kPasswordField placeholderText:@"Password" value:nil],
+ nil];
+
+_model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
+                                                 delegate:(id)[NICellFactory class]];
+ * @endcode
+ *
+ * When the user then hits the button to sign in, you can grab the values from the model by using
+ * the elementWithID: category method added to NITableViewModel by the form support.
+ *
+ * @code
+NSString* username = [[_model elementWithID:kUsernameField] value];
+NSString* password = [[_model elementWithID:kPasswordField] value];
+ * @endcode
+ *
  * See example: @link ExampleStaticTableModel.m Static Table Model Creation@endlink
  */
 
