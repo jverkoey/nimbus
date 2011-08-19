@@ -72,6 +72,6 @@ NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-UIEdgeInsets NICellContentPadding() {
+UIEdgeInsets NICellContentPadding(void) {
   return UIEdgeInsetsMake(10, 10, 10, 10);
 }

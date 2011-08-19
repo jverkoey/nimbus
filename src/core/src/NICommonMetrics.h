@@ -131,7 +131,7 @@ NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown);
  *
  * Value: 10 pixels on all sides.
  */
-UIEdgeInsets NICellContentPadding();
+UIEdgeInsets NICellContentPadding(void);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Common Metrics ///////////////////////////////////////////////////////////////////
