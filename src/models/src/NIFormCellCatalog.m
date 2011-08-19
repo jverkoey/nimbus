@@ -95,10 +95,60 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)cellClass {
-  return [NITextInputCell class];
+  return [NITextInputFormElementCell class];
 }
 
 @end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NISwitchFormElement
+
+@synthesize labelText = _labelText;
+@synthesize value = _value;
+@synthesize didChangeTarget = _didChangeTarget;
+@synthesize didChangeSelector = _didChangeSelector;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_labelText);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)switchElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(BOOL)value didChangeTarget:(id)target didChangeSelector:(SEL)selector {
+  NISwitchFormElement* element = [super elementWithID:elementID];
+  element.labelText = labelText;
+  element.value = value;
+  element.didChangeTarget = target;
+  element.didChangeSelector = selector;
+  return element;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)switchElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(BOOL)value {
+  return [self switchElementWithID:elementID labelText:labelText value:value didChangeTarget:nil didChangeSelector:nil];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)cellClass {
+  return [NISwitchFormElementCell class];
+}
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Form Element Cells
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -146,7 +196,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NITextInputCell
+@implementation NITextInputFormElementCell
 
 @synthesize textField = _textField;
 
@@ -213,6 +263,93 @@
 - (void)textFieldDidChangeValue {
   NITextInputFormElement* textInputElement = (NITextInputFormElement *)self.element;
   textInputElement.value = _textField.text;
+}
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NISwitchFormElementCell
+
+@synthesize switchControl = _switchControl;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_switchControl);
+  
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+  if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    _switchControl = [[UISwitch alloc] init];
+    [_switchControl addTarget:self action:@selector(switchDidChangeValue) forControlEvents:UIControlEventValueChanged];
+    [self.contentView addSubview:_switchControl];
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)layoutSubviews {
+  [super layoutSubviews];
+
+  UIEdgeInsets contentPadding = NICellContentPadding();
+  CGRect contentFrame = NIRectInset(self.contentView.frame, contentPadding);
+
+  [_switchControl sizeToFit];
+  CGRect frame = _switchControl.frame;
+  frame.origin.x = CGRectGetMaxX(contentFrame) - frame.size.width - 6;
+  frame.origin.y = 8;
+  _switchControl.frame = frame;
+
+  frame = self.textLabel.frame;
+  frame.size.width = contentFrame.size.width - _switchControl.frame.size.width;
+  self.textLabel.frame = frame;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)prepareForReuse {
+  [super prepareForReuse];
+
+  self.textLabel.text = nil;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldUpdateCellWithObject:(id)object {
+  if ([super shouldUpdateCellWithObject:object]) {
+    NISwitchFormElement* switchElement = (NISwitchFormElement *)self.element;
+    _switchControl.on = switchElement.value;
+    self.textLabel.text = switchElement.labelText;
+
+    _switchControl.tag = self.tag;
+
+    [self setNeedsLayout];
+    return YES;
+  }
+  return NO;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)switchDidChangeValue {
+  NISwitchFormElement* switchElement = (NISwitchFormElement *)self.element;
+  switchElement.value = _switchControl.on;
+
+  if (nil != switchElement.didChangeSelector && nil != switchElement.didChangeTarget
+      && [switchElement.didChangeTarget respondsToSelector:switchElement.didChangeSelector]) {
+    [switchElement.didChangeTarget performSelector: switchElement.didChangeSelector
+                                        withObject: _switchControl];
+  }
 }
 
 @end

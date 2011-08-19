@@ -46,7 +46,7 @@
  * control with optional placeholder text. You can assign a delegate to this object that will
  * be assigned to the text field, allowing you to receive text field delegate notifications.
  *
- * Bound to NITextInputCell when using the @link TableCellFactory Nimbus cell factory@endlink.
+ * Bound to NITextInputFormElementCell when using the @link TableCellFactory Nimbus cell factory@endlink.
  *
  *      @ingroup TableCellCatalog
  */
@@ -69,6 +69,35 @@
 @property (nonatomic, readwrite, copy) NSString* value;
 @property (nonatomic, readwrite, assign) BOOL isPassword;
 @property (nonatomic, readwrite, assign) id<UITextFieldDelegate> delegate;
+
+@end
+
+/**
+ * A switch form element.
+ *
+ * This element is similar to the Settings app's switch fields. It shows a label with a switch
+ * align to the right edge of the row.
+ *
+ * Bound to NISwitchFormElementCell when using the @link TableCellFactory Nimbus cell factory@endlink.
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NISwitchFormElement : NIFormElement {
+@private
+  NSString* _labelText;
+  BOOL _value;
+  id _didChangeTarget;
+  SEL _didChangeSelector;
+}
+
+// Designated initializer
++ (id)switchElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(BOOL)value didChangeTarget:(id)target didChangeSelector:(SEL)selector;
++ (id)switchElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(BOOL)value;
+
+@property (nonatomic, readwrite, copy) NSString* labelText;
+@property (nonatomic, readwrite, assign) BOOL value;
+@property (nonatomic, readwrite, assign) id didChangeTarget;
+@property (nonatomic, readwrite, assign) SEL didChangeSelector;
 
 @end
 
@@ -95,13 +124,29 @@
  *
  * Displays a simple text field that fills the entire content view.
  *
- * @image html NITextInputCellExample1.png "Example of an NITextInputCell."
+ * @image html NITextInputCellExample1.png "Example of a NITextInputFormElementCell."
  *
  *      @ingroup TableCellCatalog
  */
-@interface NITextInputCell : NIFormElementCell <UITextFieldDelegate> {
+@interface NITextInputFormElementCell : NIFormElementCell <UITextFieldDelegate> {
 @private
   UITextField* _textField;
 }
 @property (nonatomic, readonly, retain) UITextField* textField;
+@end
+
+/**
+ * The cell sibling to NISwitchFormElement.
+ *
+ * Displays a left-aligned label and a right-aligned switch.
+ *
+ * @image html NISwitchFormElementCellExample1.png "Example of a NISwitchFormElementCell."
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NISwitchFormElementCell : NIFormElementCell <UITextFieldDelegate> {
+@private
+  UISwitch* _switchControl;
+}
+@property (nonatomic, readonly, retain) UISwitch* switchControl;
 @end

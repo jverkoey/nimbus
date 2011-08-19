@@ -46,6 +46,10 @@
      [NITextInputFormElement textInputElementWithID:1 placeholderText:nil value:@"Disabled input field" delegate:self],
      [NITextInputFormElement passwordInputElementWithID:0 placeholderText:@"Password" value:nil],
      [NITextInputFormElement passwordInputElementWithID:0 placeholderText:@"Password" value:@"Password"],
+     
+     @"NISwitchFormElement",
+     [NISwitchFormElement switchElementWithID:0 labelText:@"Switch" value:NO],
+     [NISwitchFormElement switchElementWithID:0 labelText:@"Switch with a really long label that will be cut off" value:YES],
      nil];
 
     // This controller creates the table view cells.
@@ -99,8 +103,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
   // Customize the presentation of certain types of cells.
-  if ([cell isKindOfClass:[NITextInputCell class]]) {
-    NITextInputCell* textInputCell = (NITextInputCell *)cell;
+  if ([cell isKindOfClass:[NITextInputFormElementCell class]]) {
+    NITextInputFormElementCell* textInputCell = (NITextInputFormElementCell *)cell;
     if (1 == cell.tag) {
       // Make the disabled input field look slightly different.
       textInputCell.textField.textColor = [UIColor colorWithRed:1 green:0.5 blue:0.5 alpha:1];

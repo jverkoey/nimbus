@@ -521,7 +521,7 @@ _model.delegate = (id)[NICellFactory class];
  *
  * <h3>NITextInputFormElement</h3>
  *
- * @image html NITextInputCellExample1.png "NITextInputFormElement => NITextInputCell"
+ * @image html NITextInputCellExample1.png "NITextInputFormElement => NITextInputFormElementCell"
  *
  * Example use in a NITableViewModel:
  * @code
@@ -529,6 +529,15 @@ _model.delegate = (id)[NICellFactory class];
 [NITextInputFormElement textInputElementWithID:kUsernameField placeholderText:@"Username" value:nil],
 // Create a password input field
 [NITextInputFormElement passwordInputElementWithID:kPasswordField placeholderText:@"Password" value:nil],
+ * @endcode
+ *
+ * <h3>NISwitchFormElement</h3>
+ *
+ * @image html NISwitchFormElementCellExample1.png "NISwitchFormElement => NISwitchFormElementCell"
+ *
+ * Example use in a NITableViewModel:
+ * @code
+ [NISwitchFormElement switchElementWithID:kPushNotifications labelText:@"Push Notifications" value:NO],
  * @endcode
  *
  */
