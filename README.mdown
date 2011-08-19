@@ -56,6 +56,12 @@ http://pledgie.com/campaigns/15519
 </div>
 
 <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+<img width="135px" height="135px" src="http://www.gravatar.com/avatar/8d33edcb6695ab66b1e48067e4e3723c?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+<div class="name">Anderson Miller</div> 
+<div class="github"><a href="http://github.com/candersonmiller">candersonmiller</a></div> 
+</div>
+
+<div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
 <img width="135px" height="135px" src="http://www.gravatar.com/avatar/7adfa1038eb46b001fd5c85a47dffc13?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
 <div class="name">Peter Steinberger</div> 
 <div class="github"><a href="http://github.com/steipete">steipete</a></div> 
