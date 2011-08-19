@@ -69,3 +69,9 @@ CGFloat NIStatusBarHeight(void) {
 NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown) {
   return isFlippingUpsideDown ? 0.8 : 0.4;
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+UIEdgeInsets NICellContentPadding() {
+  return UIEdgeInsetsMake(10, 10, 10, 10);
+}
