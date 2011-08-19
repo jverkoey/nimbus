@@ -27,7 +27,7 @@
  * 
  * - Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
  * - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
- * - See the <a href="http://jverkoey.github.com/nimbus/group___version-6-1.html">latest API diffs</a>.
+ * - See the <a href="http://jverkoey.github.com/nimbus/group___version-7-0.html">latest API diffs</a>.
  * - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
  * 
  * <h2>Nimbus' Background</h2>
@@ -74,6 +74,12 @@
  * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
  * </div>
  * 
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/22f25c7b3f0f15a6854fae62bbd3482f?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Benedikt Meurer</div> 
+ * <div class="github"><a href="http://github.com/bmeurer">bmeurer</a></div> 
+ * </div>
+ *
  * <div class="contributor_profile"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/8d33edcb6695ab66b1e48067e4e3723c?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Anderson Miller</div> 
@@ -157,6 +163,14 @@
  * - <span class="apiDiffAdded">Added</span> <code>@link NIMemoryCache::nameOfLeastRecentlyUsedObject nameOfLeastRecentlyUsedObject@endlink</code> (thanks to <a href="http://github.com/candersonmiller">candersonmiller</a>.)
  * - <span class="apiDiffAdded">Added</span> <code>@link NIMemoryCache::nameOfMostRecentlyUsedObject nameOfMostRecentlyUsedObject@endlink</code> (thanks to <a href="http://github.com/candersonmiller">candersonmiller</a>.)
  *
+ * <h2>WebController</h2>
+ *
+ * <h3>NIWebController[.h]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIWebController::shouldPresentActionSheet: shouldPresentActionSheet:@endlink</code> (thanks to <a href="http://github.com/bmeurer">bmeurer</a>.)
+ * - <span class="apiDiffFeature">Feature</span> "Copy this URL" option added to the web controller's action sheet. (thanks to <a href="http://github.com/bmeurer">bmeurer</a>.)
+ * - <span class="apiDiffFeature">Feature</span> The current web page's URL is shown in the action sheet title. (thanks to <a href="http://github.com/bmeurer">bmeurer</a>.)
+ *
  *
  * <h2>Examples</h2>
  *
@@ -164,6 +178,12 @@
  *
  *
  * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/22f25c7b3f0f15a6854fae62bbd3482f?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Benedikt Meurer</div> 
+ * <div class="github"><a href="http://github.com/bmeurer">bmeurer</a></div> 
+ * </div>
  *
  * <div class="contributor_profile"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/8d33edcb6695ab66b1e48067e4e3723c?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
