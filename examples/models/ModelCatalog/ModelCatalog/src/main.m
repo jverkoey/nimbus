@@ -14,13 +14,11 @@
 // limitations under the License.
 //
 
-#ifdef __OBJC__
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-#import "NimbusCore.h"
-#import "NimbusPhotos.h"
-#import "NimbusProcessors.h"
-#import "NimbusModels.h"
-#import "NIJSONKitProcessorHTTPRequest.h"
-#endif
+
+int main(int argc, char *argv[]) {
+  NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+  int retVal = UIApplicationMain(argc, argv, nil, @"AppDelegate");
+  [pool release];
+  return retVal;
+}

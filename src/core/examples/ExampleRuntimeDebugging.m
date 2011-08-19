@@ -15,7 +15,7 @@
 //
 
 /**
- * @example ExampleRuntimeDebugging.m Runtime Debugging with Method Swizzling
+ * @example ExampleRuntimeDebugging.m
  *
  * Modifying class methods at runtime can be a very powerful debugging tool. Consider the
  * following example:
@@ -46,11 +46,12 @@
 
 @end
 
+
 - (BOOL)              application: (UIApplication *)application
     didFinishLaunchingWithOptions: (NSDictionary *)options {
 
   // Swap the default retain implementation with our custom implementation with which we can
   // visually set a breakpoint.
-  NISwapMethods([UIViewController class], @selector(retain), @selector(_retain));
+  NISwapInstanceMethods([UIViewController class], @selector(retain), @selector(_retain));
 
 }

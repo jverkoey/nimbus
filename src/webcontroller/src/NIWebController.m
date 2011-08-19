@@ -1,5 +1,6 @@
 //
 // Copyright 2011 Roger Chapman
+// Copyright 2011 Benedikt Meurer
 //
 // Forked from Three20 July 29, 2011 - Copyright 2009-2011 Facebook
 //
@@ -40,6 +41,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
+  NI_RELEASE_SAFELY(_actionSheetURL);
   NI_RELEASE_SAFELY(_loadingURL);
   [self releaseAllSubviews];
 
@@ -89,22 +91,38 @@
     // It shouldn't be possible to tap the share action button again on anything but the iPad.
     NIDASSERT(NIIsPad());
 
-    [_actionSheet dismissWithClickedButtonIndex:-1 animated:YES];
+    [_actionSheet dismissWithClickedButtonIndex:[_actionSheet cancelButtonIndex] animated:YES];
 
     // We remove the action sheet here just in case the delegate isn't properly implemented.
     NI_RELEASE_SAFELY(_actionSheet);
+    NI_RELEASE_SAFELY(_actionSheetURL);
 
     // Don't show the menu again.
     return;
   }
 
+  // Remember the URL at this point
+  [_actionSheetURL release];
+  _actionSheetURL = [self.URL copy];
+
   if (nil == _actionSheet) {
     _actionSheet =
-    [[UIActionSheet alloc] initWithTitle: nil
-                                delegate: self
-                       cancelButtonTitle: NSLocalizedString(@"Cancel", @"")
-                  destructiveButtonTitle: nil
-                       otherButtonTitles: NSLocalizedString(@"Open in Safari", @""), nil];
+    [[UIActionSheet alloc] initWithTitle:[_actionSheetURL absoluteString]
+                                delegate:self
+                       cancelButtonTitle:nil
+                  destructiveButtonTitle:nil
+                       otherButtonTitles:nil];
+    // Let -shouldPresentActionSheet: setup the action sheet
+    if (![self shouldPresentActionSheet:_actionSheet]) {
+      // A subclass decided to handle the action in another way
+      NI_RELEASE_SAFELY(_actionSheet);
+      NI_RELEASE_SAFELY(_actionSheetURL);
+      return;
+    }
+    // Add "Cancel" button except for iPads
+    if (!NIIsPad()) {
+      [_actionSheet setCancelButtonIndex:[_actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", @"")]];
+    }
   }
 
   if (NIIsPad()) {
@@ -268,7 +286,7 @@
  navigationType:(UIWebViewNavigationType)navigationType {
 
   [_loadingURL release];
-  _loadingURL = [request.URL retain];
+  _loadingURL = [request.mainDocumentURL copy];
   _backButton.enabled = [_webView canGoBack];
   _forwardButton.enabled = [_webView canGoForward];
   return YES;
@@ -335,18 +353,27 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
   if (buttonIndex == 0) {
-    [[UIApplication sharedApplication] openURL:self.URL];
+    [[UIApplication sharedApplication] openURL:_actionSheetURL];
+
+  } else if (buttonIndex == 1) {
+    [[UIPasteboard generalPasteboard] setURL:_actionSheetURL];
   }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
   NI_RELEASE_SAFELY(_actionSheet);
+  NI_RELEASE_SAFELY(_actionSheetURL);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Public
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSURL *)URL {
-  return _loadingURL ? _loadingURL : _webView.request.URL;
+  return _loadingURL ? _loadingURL : _webView.request.mainDocumentURL;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -358,13 +385,21 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)openRequest:(NSURLRequest*)request {
-  [self view];
+  // The view must be loaded before you call this method.
+  NIDASSERT([self isViewLoaded]);
   [_webView loadRequest:request];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setToolbarTintColor:(UIColor*)color {
   _toolbar.tintColor = color;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet {
+  [actionSheet addButtonWithTitle:NSLocalizedString(@"Open in Safari", @"")];
+  [actionSheet addButtonWithTitle:NSLocalizedString(@"Copy URL", @"")];
+  return YES;
 }
 
 @end

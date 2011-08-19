@@ -17,8 +17,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface CatalogTableViewController : UITableViewController {
+@interface CatalogTableViewController : UITableViewController <NITableViewModelDelegate> {
 @private
+  NITableViewModel* _model;
 }
 
 @end

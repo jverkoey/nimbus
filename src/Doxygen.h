@@ -27,7 +27,7 @@
  * 
  * - Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
  * - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
- * - See the <a href="http://jverkoey.github.com/nimbus/group___version-6-1.html">latest API diffs</a>.
+ * - See the <a href="http://jverkoey.github.com/nimbus/group___version-7-0.html">latest API diffs</a>.
  * - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
  * 
  * <h2>Nimbus' Background</h2>
@@ -74,6 +74,18 @@
  * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
  * </div>
  * 
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/22f25c7b3f0f15a6854fae62bbd3482f?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Benedikt Meurer</div> 
+ * <div class="github"><a href="http://github.com/bmeurer">bmeurer</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/8d33edcb6695ab66b1e48067e4e3723c?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Anderson Miller</div> 
+ * <div class="github"><a href="http://github.com/candersonmiller">candersonmiller</a></div> 
+ * </div>
+ *
  * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/7adfa1038eb46b001fd5c85a47dffc13?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Peter Steinberger</div> 
@@ -125,6 +137,84 @@
  * @defgroup Version-History Version History
  *
  * Presented here are the API diffs for each major release of Nimbus.
+ */
+
+/**
+ * @defgroup Version-7-0 Version 0.7.0 API Changes
+ * @ingroup Version-History
+ *
+ * Version 0.7.0 of Nimbus was released on August 19, 2011. This major version introduced the new
+ * Nimbus @link NimbusModels Models@endlink, a feature that makes building table views a breeze.
+ *
+ *
+ * <h2>Added Frameworks</h2>
+ *
+ * - @link NimbusModels Models@endlink
+ *
+ *
+ * <h2>Core</h2>
+ *
+ * <h3>NICommonMetrics[.h]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>NICellContentPadding()</code>
+ *
+ * <h3>NIInMemoryCache[.h]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIMemoryCache::nameOfLeastRecentlyUsedObject nameOfLeastRecentlyUsedObject@endlink</code> (thanks to <a href="http://github.com/candersonmiller">candersonmiller</a>.)
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIMemoryCache::nameOfMostRecentlyUsedObject nameOfMostRecentlyUsedObject@endlink</code> (thanks to <a href="http://github.com/candersonmiller">candersonmiller</a>.)
+ *
+ * <h2>WebController</h2>
+ *
+ * <h3>NIWebController[.h]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIWebController::shouldPresentActionSheet: shouldPresentActionSheet:@endlink</code> (thanks to <a href="http://github.com/bmeurer">bmeurer</a>.)
+ * - <span class="apiDiffFeature">Feature</span> "Copy this URL" option added to the web controller's action sheet. (thanks to <a href="http://github.com/bmeurer">bmeurer</a>.)
+ * - <span class="apiDiffFeature">Feature</span> The current web page's URL is shown in the action sheet title. (thanks to <a href="http://github.com/bmeurer">bmeurer</a>.)
+ *
+ *
+ * <h2>Examples</h2>
+ *
+ * <h3>Model Catalog [added]</h3>
+ *
+ *
+ * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/22f25c7b3f0f15a6854fae62bbd3482f?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Benedikt Meurer</div> 
+ * <div class="github"><a href="http://github.com/bmeurer">bmeurer</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/8d33edcb6695ab66b1e48067e4e3723c?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Anderson Miller</div> 
+ * <div class="github"><a href="http://github.com/candersonmiller">candersonmiller</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Jeff Verkoeyen</div> 
+ * <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ *
+ * <h3>Add Your Name to This List</h3>
+ *
+ * Contributions are highly encouraged! If you have a feature that you feel would fit within the
+ * Nimbus framework, feel free to fire off a pull request on GitHub. Bugs may be reported
+ * using the issue tracker on GitHub as well.
+ *
+ * Check out the <a href="https://github.com/jverkoey/nimbus/issues?sort=created&direction=desc&state=open&page=1&milestone=5">tasks grab bag</a>
+ * for opportunities to help out.
+ *
+ * <h2>Robots Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <div class="name"><a href="https://github.com/nimbusios/Doxygen">Nimbus Doxygen</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
  */
 
 /**

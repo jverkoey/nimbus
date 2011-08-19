@@ -14,13 +14,17 @@
 // limitations under the License.
 //
 
-#ifdef __OBJC__
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-#import "NimbusCore.h"
-#import "NimbusPhotos.h"
-#import "NimbusProcessors.h"
-#import "NimbusModels.h"
-#import "NIJSONKitProcessorHTTPRequest.h"
-#endif
+#import "NICellFactory.h"
+
+@interface CatalogEntry : NSObject <NICellObject> {
+@private
+  NSString* _title;
+  Class _controllerClass;
+}
+
++ (id)entryWithTitle:(NSString *)title controllerClass:(Class)controllerClass;
+
+@property (nonatomic, readwrite, copy)    NSString* title;
+@property (nonatomic, readwrite, assign)  Class controllerClass;
+
+@end

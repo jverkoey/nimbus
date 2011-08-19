@@ -62,6 +62,7 @@
 		66EA058813C011EC004FFE1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA058713C011EC004FFE1A /* main.m */; };
 		66EAC64D13D28D9A00BDFF34 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EAC64C13D28D9A00BDFF34 /* NICommonMetrics.m */; };
 		66EAC7DC13D2A77D00BDFF34 /* NimbusPhotos.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66EAC7DB13D2A77D00BDFF34 /* NimbusPhotos.bundle */; };
+		66FE7D7113FB8CD00061B987 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FE7D7013FB8CD00061B987 /* NITableViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,6 +180,9 @@
 		66EAC64B13D28D9A00BDFF34 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../../../src/core/src/NICommonMetrics.h; sourceTree = SOURCE_ROOT; };
 		66EAC64C13D28D9A00BDFF34 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../../../src/core/src/NICommonMetrics.m; sourceTree = SOURCE_ROOT; };
 		66EAC7DB13D2A77D00BDFF34 /* NimbusPhotos.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusPhotos.bundle; path = ../../../src/photos/resources/NimbusPhotos.bundle; sourceTree = SOURCE_ROOT; };
+		66FE7D6E13FB8CD00061B987 /* NimbusModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusModels.h; path = ../../../src/models/src/NimbusModels.h; sourceTree = "<group>"; };
+		66FE7D6F13FB8CD00061B987 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITableViewModel.h; path = ../../../src/models/src/NITableViewModel.h; sourceTree = "<group>"; };
+		66FE7D7013FB8CD00061B987 /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITableViewModel.m; path = ../../../src/models/src/NITableViewModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +268,16 @@
 				6631680C13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.m */,
 			);
 			name = Dribbble;
+			sourceTree = "<group>";
+		};
+		663F85C813F86D5D0042CDE3 /* Tables */ = {
+			isa = PBXGroup;
+			children = (
+				66FE7D6E13FB8CD00061B987 /* NimbusModels.h */,
+				66FE7D6F13FB8CD00061B987 /* NITableViewModel.h */,
+				66FE7D7013FB8CD00061B987 /* NITableViewModel.m */,
+			);
+			name = Tables;
 			sourceTree = "<group>";
 		};
 		665E0B9513CE814D008A1D21 /* Core */ = {
@@ -423,11 +437,12 @@
 		66EA058E13C0126F004FFE1A /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
-				665E0B9513CE814D008A1D21 /* Core */,
-				665E0BC613CE8161008A1D21 /* Photos */,
-				66C52CC313DAA79E00D6BA6F /* Overview */,
 				669815CB13D507F900417E8B /* ASIHTTPRequest */,
+				665E0B9513CE814D008A1D21 /* Core */,
+				66C52CC313DAA79E00D6BA6F /* Overview */,
+				665E0BC613CE8161008A1D21 /* Photos */,
 				669819D313D5739D00417E8B /* Processors */,
+				663F85C813F86D5D0042CDE3 /* Tables */,
 				669815CA13D507F200417E8B /* JSONKit */,
 			);
 			name = Nimbus;
@@ -553,6 +568,7 @@
 				66409FA413E25C5300E9BA5A /* NIOverviewPageView.m in Sources */,
 				66409FA513E25C5300E9BA5A /* NIOverviewSwizzling.m in Sources */,
 				66409FA613E25C5300E9BA5A /* NIOverviewView.m in Sources */,
+				66FE7D7113FB8CD00061B987 /* NITableViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

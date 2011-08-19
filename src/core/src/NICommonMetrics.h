@@ -26,9 +26,9 @@
  * are provided as a means of unifying a number of system metrics for use in your applications.
  *
  *
- * <h2>What Qualifies as a Core Metric</h2>
+ * <h2>What Qualifies as a Common Metric</h2>
  *
- * Core metrics are related to system components, such as the dimensions of a toolbar in
+ * Common metrics are related to system components, such as the dimensions of a toolbar in
  * a particular orientation or the duration of a standard animation. This is
  * not the place to put feature-specific metrics, such as the height of a photo scrubber
  * view.
@@ -125,6 +125,13 @@ CGFloat NIStatusBarHeight(void);
  *      @param isFlippingUpsideDown YES if the device is being flipped upside down.
  */
 NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown);
+
+/**
+ * The padding around a standard cell in a table view.
+ *
+ * Value: 10 pixels on all sides.
+ */
+UIEdgeInsets NICellContentPadding(void);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Common Metrics ///////////////////////////////////////////////////////////////////
