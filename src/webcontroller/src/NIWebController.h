@@ -27,13 +27,31 @@
  *
  * This view controller implements UIWebViewDelegate. If you want to
  * implement methods of this delegate then you should take care to call the super implementation
- * if necessary. The following methods have implementations in this class:
+ * if necessary. The following UIViewWebDelegate methods have implementations in this class:
  *
  * @code
  * - webView:shouldStartLoadWithRequest:navigationType:
  * - webViewDidStartLoad:
  * - webViewDidFinishLoad:
  * - webView:didFailLoadWithError:
+ * @endcode
+ *
+ * This view controller also implements UIActionSheetDelegate. If you want to implement methods of
+ * this delegate then you should take care to call the super implementation if necessary. The
+ * following UIActionSheetDelegate methods have implementations in this class:
+ *
+ * @code
+ * - actionSheet:clickedButtonAtIndex:
+ * - actionSheet:didDismissWithButtonIndex:
+ * @endcode
+ *
+ * In addition to the above methods of the UIActionSheetDelegate, this view controller also provides
+ * the following method, which is invoked prior to presenting the internal action sheet to the user
+ * and allows subclasses to customize the action sheet or even reject to display it (and provide their
+ * own handling instead):
+ *
+ * @code
+ * - shouldPresentActionSheet:
  * @endcode
  *
  *
