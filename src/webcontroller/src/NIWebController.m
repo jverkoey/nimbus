@@ -26,6 +26,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)releaseAllSubviews {
+  _actionSheet.delegate = nil;
   _webView.delegate = nil;
 
   NI_RELEASE_SAFELY(_actionSheet);
@@ -94,6 +95,7 @@
     [_actionSheet dismissWithClickedButtonIndex:[_actionSheet cancelButtonIndex] animated:YES];
 
     // We remove the action sheet here just in case the delegate isn't properly implemented.
+    _actionSheet.delegate = nil;
     NI_RELEASE_SAFELY(_actionSheet);
     NI_RELEASE_SAFELY(_actionSheetURL);
 
@@ -363,6 +365,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
   if (actionSheet == _actionSheet) {
+    _actionSheet.delegate = nil;
     NI_RELEASE_SAFELY(_actionSheet);
     NI_RELEASE_SAFELY(_actionSheetURL);
   }
