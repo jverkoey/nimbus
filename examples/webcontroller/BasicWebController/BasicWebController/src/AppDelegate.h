@@ -18,7 +18,7 @@
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
   UIWindow* _window;
-  NIWebController* _rootController;
+  UINavigationController* _rootController;
 }
 
 @property (nonatomic, readwrite, retain) UIWindow* window;
