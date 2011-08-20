@@ -26,6 +26,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)releaseAllSubviews {
+  _actionSheet.delegate = nil;
   _webView.delegate = nil;
 
   NI_RELEASE_SAFELY(_actionSheet);
@@ -94,6 +95,7 @@
     [_actionSheet dismissWithClickedButtonIndex:[_actionSheet cancelButtonIndex] animated:YES];
 
     // We remove the action sheet here just in case the delegate isn't properly implemented.
+    _actionSheet.delegate = nil;
     NI_RELEASE_SAFELY(_actionSheet);
     NI_RELEASE_SAFELY(_actionSheetURL);
 
@@ -127,7 +129,6 @@
 
   if (NIIsPad()) {
     [_actionSheet showFromBarButtonItem:_actionButton animated:YES];
-
   } else {
     [_actionSheet showInView:self.view];
   }
@@ -161,7 +162,7 @@
   CGRect toolbarFrame = CGRectMake(0, bounds.size.height - toolbarHeight,
                                    bounds.size.width, toolbarHeight);
 
-  _toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
+  _toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
   _toolbar.autoresizingMask =
   UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
 
@@ -352,18 +353,22 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-  if (buttonIndex == 0) {
-    [[UIApplication sharedApplication] openURL:_actionSheetURL];
-
-  } else if (buttonIndex == 1) {
-    [[UIPasteboard generalPasteboard] setURL:_actionSheetURL];
+  if (actionSheet == _actionSheet) {
+    if (buttonIndex == 0) {
+      [[UIApplication sharedApplication] openURL:_actionSheetURL];
+    } else if (buttonIndex == 1) {
+      [[UIPasteboard generalPasteboard] setURL:_actionSheetURL];
+    }
   }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-  NI_RELEASE_SAFELY(_actionSheet);
-  NI_RELEASE_SAFELY(_actionSheetURL);
+  if (actionSheet == _actionSheet) {
+    _actionSheet.delegate = nil;
+    NI_RELEASE_SAFELY(_actionSheet);
+    NI_RELEASE_SAFELY(_actionSheetURL);
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -397,8 +402,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet {
-  [actionSheet addButtonWithTitle:NSLocalizedString(@"Open in Safari", @"")];
-  [actionSheet addButtonWithTitle:NSLocalizedString(@"Copy URL", @"")];
+  if (actionSheet == _actionSheet) {
+    [_actionSheet addButtonWithTitle:NSLocalizedString(@"Open in Safari", @"")];
+    [_actionSheet addButtonWithTitle:NSLocalizedString(@"Copy URL", @"")];
+  }
   return YES;
 }
 
