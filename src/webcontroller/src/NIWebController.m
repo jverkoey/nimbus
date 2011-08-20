@@ -27,7 +27,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)releaseAllSubviews {
   _webView.delegate = nil;
-
+    
+  // stop loading before release
+  [_webView stopLoading];
+    
   NI_RELEASE_SAFELY(_actionSheet);
   NI_RELEASE_SAFELY(_webView);
   NI_RELEASE_SAFELY(_toolbar);
@@ -161,7 +164,7 @@
   CGRect toolbarFrame = CGRectMake(0, bounds.size.height - toolbarHeight,
                                    bounds.size.width, toolbarHeight);
 
-  _toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
+  _toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
   _toolbar.autoresizingMask =
   UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
 
