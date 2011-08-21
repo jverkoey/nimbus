@@ -328,9 +328,11 @@
                                                             : UIStatusBarAnimationNone)];
 
   } else {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED <= __IPHONE_3_0    
     // On 3.0 devices we use the boring fade animation.
     [[UIApplication sharedApplication] setStatusBarHidden: !isVisible
                                                  animated: animated];
+#endif
   }
 
   // Place the toolbar at its final location.
