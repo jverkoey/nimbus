@@ -45,20 +45,49 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-  
+    
+    self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+    
+    UIViewController *controller = [[[UIViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+
+    
+    _rootController = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+    RootViewController *webViewController = [[[RootViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+    
+    [_rootController pushViewController:webViewController animated:NO];
+    
+    /*
+    
   RootViewController* webController =
   [[[RootViewController alloc] initWithNibName:nil bundle:nil] autorelease];
   
   _rootController = [[UINavigationController alloc] initWithRootViewController:webController];
-  
-  [self.window addSubview:_rootController.view];
+  */
+    self.window.rootViewController = _rootController;
+    [self.window addSubview:_rootController.view];
+    [self.window makeKeyAndVisible];
 
-  
-  [self.window makeKeyAndVisible];
-
-  return YES;
+    return YES;
 }
 
+/*
+- (BOOL)              application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+    
+    RootViewController* webController =
+    [[[RootViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+    
+    _rootController = [[UINavigationController alloc] initWithRootViewController:webController];
+    
+    [self.window addSubview:_rootController.view];
+    
+    
+    [self.window makeKeyAndVisible];
+    
+    return YES;
+}
+*/
 
 @end

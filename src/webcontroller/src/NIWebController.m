@@ -30,7 +30,10 @@
 - (void)releaseAllSubviews {
   _actionSheet.delegate = nil;
   _webView.delegate = nil;
-
+    
+  // stop loading before release
+  [_webView stopLoading];
+    
   NI_RELEASE_SAFELY(_actionSheet);
   NI_RELEASE_SAFELY(_webView);
   NI_RELEASE_SAFELY(_toolbar);
