@@ -91,18 +91,23 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)assignDefaults {
+  self.sizeForDisplay = YES;
+  self.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
+  self.interpolationQuality = kCGInterpolationDefault;
+  
+  self.diskCacheLifetime = NINetworkImageViewDiskCacheLifetimePermanent;
+  
+  self.imageMemoryCache = [Nimbus imageMemoryCache];
+  self.networkOperationQueue = [Nimbus networkOperationQueue];
+  self.imageDiskCache = [ASIDownloadCache sharedCache];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithImage:(UIImage *)image {
   if ((self = [super initWithImage:image])) {
-    // Assign defaults.
-    self.sizeForDisplay = YES;
-    self.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
-    self.interpolationQuality = kCGInterpolationDefault;
-
-    self.diskCacheLifetime = NINetworkImageViewDiskCacheLifetimePermanent;
-
-    self.imageMemoryCache = [Nimbus imageMemoryCache];
-    self.networkOperationQueue = [Nimbus networkOperationQueue];
-    self.imageDiskCache = [ASIDownloadCache sharedCache];
+    [self assignDefaults];
 
     // Retain the initial image.
     self.initialImage = image;
@@ -115,6 +120,15 @@
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [self initWithImage:nil])) {
     self.frame = frame;
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  if ((self = [super initWithCoder:aDecoder])) {
+    [self assignDefaults];
   }
   return self;
 }
