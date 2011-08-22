@@ -69,27 +69,31 @@ NSRange NIMakeNSRangeFromCFRange(CFRange range) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat boundf(CGFloat value, CGFloat min, CGFloat max) {
-  if (value < min) {
-    return min;
-
-  } else if (value > max) {
-    return max;
-
-  } else {
-    return value;
+  if (max < min) {
+    max = min;
   }
+  CGFloat bounded = value;
+  if (bounded > max) {
+    bounded = max;
+  }
+  if (bounded < min) {
+    bounded = min;
+  }
+  return bounded;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NSInteger boundi(NSInteger value, NSInteger min, NSInteger max) {
-  if (value < min) {
-    return min;
-    
-  } else if (value > max) {
-    return max;
-    
-  } else {
-    return value;
+  if (max < min) {
+    max = min;
   }
+  NSInteger bounded = value;
+  if (bounded > max) {
+    bounded = max;
+  }
+  if (bounded < min) {
+    bounded = min;
+  }
+  return bounded;
 }

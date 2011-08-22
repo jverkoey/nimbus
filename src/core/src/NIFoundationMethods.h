@@ -112,12 +112,16 @@ NSRange NIMakeNSRangeFromCFRange(CFRange range);
 /**
  * Bounds a given value within the min and max values.
  *
+ * If max < min then value will be min.
+ *
  *      @returns min <= result <= max
  */
 CGFloat boundf(CGFloat value, CGFloat min, CGFloat max);
 
 /**
  * Bounds a given value within the min and max values.
+ *
+ * If max < min then value will be min.
  *
  *      @returns min <= result <= max
  */
