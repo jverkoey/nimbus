@@ -162,7 +162,7 @@
 
     // A section footer or title has been encountered,
     if (nil != nextSectionHeaderTitle || nil != currentSectionFooterTitle) {
-      if (nil != currentSectionFooterTitle
+      if (nil != currentSectionHeaderTitle
           || nil != currentSectionFooterTitle
           || nil != currentSectionRows) {
         NITableViewModelSection* section = [NITableViewModelSection section];
@@ -179,7 +179,7 @@
   }
 
   // Commit any unfinished sections.
-  if ([currentSectionRows count] > 0) {
+  if ([currentSectionRows count] > 0 || nil != currentSectionHeaderTitle) {
     NITableViewModelSection* section = [NITableViewModelSection section];
     section.headerTitle = currentSectionHeaderTitle;
     section.footerTitle = currentSectionFooterTitle;
