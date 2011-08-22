@@ -367,7 +367,6 @@
 		66325D6013EB1BFA008D6EAD /* NIJSONKitProcessorHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIJSONKitProcessorHTTPRequest.h; sourceTree = "<group>"; };
 		66325D6113EB1BFA008D6EAD /* NIJSONKitProcessorHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIJSONKitProcessorHTTPRequest.m; sourceTree = "<group>"; };
 		6661BAFF13F0AA6000D14F92 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = webcontroller/deps; sourceTree = "<group>"; };
-		6661BB0013F0AA7200D14F92 /* NimbusWebController_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NimbusWebController_Prefix.pch; sourceTree = "<group>"; };
 		6661BB0813F0B37000D14F92 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		6661BB0A13F0B38D00D14F92 /* NOTICE */ = {isa = PBXFileReference; lastKnownFileType = text; name = NOTICE; path = ../NOTICE; sourceTree = "<group>"; };
 		6661BBCC13F1A3BB00D14F92 /* libNimbusModels.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusModels.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -375,7 +374,6 @@
 		6675722913E765BF0076F555 /* libNimbusOverview.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusOverview.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675723613E765BF0076F555 /* NimbusOverviewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusOverviewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675724F13E765F70076F555 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = overview/deps; sourceTree = SOURCE_ROOT; };
-		6675725113E765F70076F555 /* NimbusOverview_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusOverview_Prefix.pch; sourceTree = "<group>"; };
 		6675725313E765F70076F555 /* NIDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIDeviceInfo.h; sourceTree = "<group>"; };
 		6675725413E765F70076F555 /* NIDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIDeviceInfo.m; sourceTree = "<group>"; };
 		6675725513E765F70076F555 /* NimbusOverview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusOverview.h; sourceTree = "<group>"; };
@@ -394,7 +392,6 @@
 		6675727313E766400076F555 /* NimbusOverviewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NimbusOverviewTests-Info.plist"; sourceTree = "<group>"; };
 		6675727A13E769150076F555 /* libNimbusPhotos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusPhotos.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675728713E769150076F555 /* NimbusPhotosTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusPhotosTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		667572A013E7692F0076F555 /* NimbusPhotos_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusPhotos_Prefix.pch; sourceTree = "<group>"; };
 		667572A213E7692F0076F555 /* NimbusPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusPhotos.h; sourceTree = "<group>"; };
 		667572A313E7692F0076F555 /* NIPhotoAlbumScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPhotoAlbumScrollView.h; sourceTree = "<group>"; };
 		667572A413E7692F0076F555 /* NIPhotoAlbumScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIPhotoAlbumScrollView.m; sourceTree = "<group>"; };
@@ -408,7 +405,6 @@
 		667572BD13E76F460076F555 /* libNimbusProcessors.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusProcessors.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		667572CA13E76F460076F555 /* NimbusProcessorsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusProcessorsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		667572E213E76F5E0076F555 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = processors/deps; sourceTree = SOURCE_ROOT; };
-		667572E413E76F5E0076F555 /* NimbusProcessors_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusProcessors_Prefix.pch; sourceTree = "<group>"; };
 		667572E613E76F5E0076F555 /* NimbusProcessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusProcessors.h; sourceTree = "<group>"; };
 		667572E713E76F5E0076F555 /* NIProcessorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIProcessorDelegate.h; sourceTree = "<group>"; };
 		667572E813E76F5E0076F555 /* NIProcessorHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIProcessorHTTPRequest.h; sourceTree = "<group>"; };
@@ -416,14 +412,12 @@
 		667572F013E76F9D0076F555 /* NimbusProcessorsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NimbusProcessorsTests-Info.plist"; sourceTree = "<group>"; };
 		667572F713E7705F0076F555 /* libJSONKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJSONKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675730213E7707B0076F555 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
-		6675730413E7707B0076F555 /* JSONKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit_Prefix.pch; sourceTree = "<group>"; };
 		6675730513E7707B0076F555 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		6675730713E7707B0076F555 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		6675730813E7707B0076F555 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		6675731213E771380076F555 /* libNimbusInterapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusInterapp.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675731F13E771380076F555 /* NimbusInterappTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusInterappTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675733713E7718B0076F555 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = interapp/deps; sourceTree = SOURCE_ROOT; };
-		6675733913E7718B0076F555 /* NimbusInterapp_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusInterapp_Prefix.pch; sourceTree = "<group>"; };
 		6675733B13E7718B0076F555 /* NIInterapp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIInterapp.h; sourceTree = "<group>"; };
 		6675733C13E7718B0076F555 /* NIInterapp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIInterapp.m; sourceTree = "<group>"; };
 		6675734313E772100076F555 /* NimbusInterappTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NimbusInterappTests-Info.plist"; sourceTree = "<group>"; };
@@ -439,7 +433,6 @@
 		66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		66A03C1C13E6E85E00B514F3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		66A03C3E13E6E8D100B514F3 /* NimbusCore_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusCore_Prefix.pch; sourceTree = "<group>"; };
 		66A03C4013E6E8D100B514F3 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIBlocks.h; sourceTree = "<group>"; };
 		66A03C4113E6E8D100B514F3 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICommonMetrics.h; sourceTree = "<group>"; };
 		66A03C4213E6E8D100B514F3 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICommonMetrics.m; sourceTree = "<group>"; };
@@ -493,7 +486,6 @@
 		66A03CBA13E6F03600B514F3 /* Doxygen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Doxygen.h; sourceTree = "<group>"; };
 		66A03CBF13E6F0ED00B514F3 /* libNimbusLauncher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusLauncher.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A03CCC13E6F0EE00B514F3 /* NimbusLauncherTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusLauncherTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		66A03CE513E6F10C00B514F3 /* NimbusLauncher_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusLauncher_Prefix.pch; sourceTree = "<group>"; };
 		66A03CE713E6F10C00B514F3 /* NILauncherButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NILauncherButton.m; sourceTree = "<group>"; };
 		66A03CE813E6F10C00B514F3 /* NILauncherItemDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NILauncherItemDetails.m; sourceTree = "<group>"; };
 		66A03CE913E6F10C00B514F3 /* NILauncherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NILauncherView.h; sourceTree = "<group>"; };
@@ -505,7 +497,6 @@
 		66A03D2713E6F97500B514F3 /* libNimbusNetworkImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusNetworkImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A03D3413E6F97500B514F3 /* NimbusNetworkImageTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusNetworkImageTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A03D4C13E6F99400B514F3 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = networkimage/deps; sourceTree = SOURCE_ROOT; };
-		66A03D4E13E6F99400B514F3 /* NimbusNetworkImage_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusNetworkImage_Prefix.pch; sourceTree = "<group>"; };
 		66A03D5013E6F99400B514F3 /* NIHTTPImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIHTTPImageRequest.h; sourceTree = "<group>"; };
 		66A03D5113E6F99400B514F3 /* NIHTTPImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIHTTPImageRequest.m; sourceTree = "<group>"; };
 		66A03D5213E6F99400B514F3 /* NimbusNetworkImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusNetworkImage.h; sourceTree = "<group>"; };
@@ -517,7 +508,6 @@
 		66A03D6813E6FA9700B514F3 /* libASIHTTPRequest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libASIHTTPRequest.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A03D7413E6FAC500B514F3 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deps; sourceTree = "<group>"; };
 		66A03D7513E6FAC500B514F3 /* DONORS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DONORS; sourceTree = "<group>"; };
-		66A03D7713E6FAC500B514F3 /* ASIHTTPRequest_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest_Prefix.pch; sourceTree = "<group>"; };
 		66A03D7813E6FAC500B514F3 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		66A03D7913E6FAC500B514F3 /* README.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.textile; sourceTree = "<group>"; };
 		66A03D7B13E6FAC500B514F3 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -553,7 +543,6 @@
 		66FE7D5613FB550A0061B987 /* ExampleRuntimeDebugging.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleRuntimeDebugging.m; sourceTree = "<group>"; };
 		66FE7D5E13FB83620061B987 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = models/deps; sourceTree = SOURCE_ROOT; };
 		66FE7D6013FB83620061B987 /* ExampleStaticTableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleStaticTableModel.m; sourceTree = "<group>"; };
-		66FE7D6213FB83620061B987 /* NimbusModels_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusModels_Prefix.pch; sourceTree = "<group>"; };
 		66FE7D6413FB83620061B987 /* NimbusModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusModels.h; sourceTree = "<group>"; };
 		66FE7D6513FB83620061B987 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITableViewModel.h; sourceTree = "<group>"; };
 		66FE7D6613FB83620061B987 /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewModel.m; sourceTree = "<group>"; };
@@ -781,7 +770,6 @@
 			children = (
 				66FE7D5E13FB83620061B987 /* deps */,
 				66FE7D5F13FB83620061B987 /* examples */,
-				66FE7D6113FB83620061B987 /* lib */,
 				66FE7D6313FB83620061B987 /* src */,
 				66FE7D6713FB83620061B987 /* unittests */,
 			);
@@ -793,21 +781,11 @@
 			isa = PBXGroup;
 			children = (
 				6675724F13E765F70076F555 /* deps */,
-				6675725013E765F70076F555 /* lib */,
 				6675725213E765F70076F555 /* src */,
 				6675727213E766400076F555 /* unittests */,
 			);
 			path = NimbusOverview;
 			sourceTree = "<group>";
-		};
-		6675725013E765F70076F555 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				6675725113E765F70076F555 /* NimbusOverview_Prefix.pch */,
-			);
-			name = lib;
-			path = overview/lib;
-			sourceTree = SOURCE_ROOT;
 		};
 		6675725213E765F70076F555 /* src */ = {
 			isa = PBXGroup;
@@ -844,21 +822,11 @@
 		6675727C13E769150076F555 /* NimbusPhotos */ = {
 			isa = PBXGroup;
 			children = (
-				6675729F13E7692F0076F555 /* lib */,
 				667572A113E7692F0076F555 /* src */,
 				667572AB13E7692F0076F555 /* unittests */,
 			);
 			path = NimbusPhotos;
 			sourceTree = "<group>";
-		};
-		6675729F13E7692F0076F555 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				667572A013E7692F0076F555 /* NimbusPhotos_Prefix.pch */,
-			);
-			name = lib;
-			path = photos/lib;
-			sourceTree = SOURCE_ROOT;
 		};
 		667572A113E7692F0076F555 /* src */ = {
 			isa = PBXGroup;
@@ -890,22 +858,12 @@
 			isa = PBXGroup;
 			children = (
 				667572E213E76F5E0076F555 /* deps */,
-				667572E313E76F5E0076F555 /* lib */,
 				667572E513E76F5E0076F555 /* src */,
 				66325D5F13EB1BFA008D6EAD /* src_JSONKit */,
 				667572EF13E76F9D0076F555 /* unittests */,
 			);
 			path = NimbusProcessors;
 			sourceTree = "<group>";
-		};
-		667572E313E76F5E0076F555 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				667572E413E76F5E0076F555 /* NimbusProcessors_Prefix.pch */,
-			);
-			name = lib;
-			path = processors/lib;
-			sourceTree = SOURCE_ROOT;
 		};
 		667572E513E76F5E0076F555 /* src */ = {
 			isa = PBXGroup;
@@ -933,18 +891,9 @@
 			children = (
 				6675730213E7707B0076F555 /* CHANGELOG.md */,
 				6675730513E7707B0076F555 /* README.md */,
-				6675730313E7707B0076F555 /* lib */,
 				6675730613E7707B0076F555 /* src */,
 			);
 			path = JSONKit;
-			sourceTree = "<group>";
-		};
-		6675730313E7707B0076F555 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				6675730413E7707B0076F555 /* JSONKit_Prefix.pch */,
-			);
-			path = lib;
 			sourceTree = "<group>";
 		};
 		6675730613E7707B0076F555 /* src */ = {
@@ -960,21 +909,11 @@
 			isa = PBXGroup;
 			children = (
 				6675733713E7718B0076F555 /* deps */,
-				6675733813E7718B0076F555 /* lib */,
 				6675733A13E7718B0076F555 /* src */,
 				6675734213E772100076F555 /* unittests */,
 			);
 			path = NimbusInterapp;
 			sourceTree = "<group>";
-		};
-		6675733813E7718B0076F555 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				6675733913E7718B0076F555 /* NimbusInterapp_Prefix.pch */,
-			);
-			name = lib;
-			path = interapp/lib;
-			sourceTree = SOURCE_ROOT;
 		};
 		6675733A13E7718B0076F555 /* src */ = {
 			isa = PBXGroup;
@@ -1068,22 +1007,12 @@
 			isa = PBXGroup;
 			children = (
 				66A03C9E13E6E8D900B514F3 /* deps */,
-				66A03C3D13E6E8D100B514F3 /* lib */,
 				66A03C3F13E6E8D100B514F3 /* src */,
 				66A03C9F13E6E90500B514F3 /* unittests */,
 				66FE7D5513FB550A0061B987 /* examples */,
 			);
 			path = NimbusCore;
 			sourceTree = "<group>";
-		};
-		66A03C3D13E6E8D100B514F3 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				66A03C3E13E6E8D100B514F3 /* NimbusCore_Prefix.pch */,
-			);
-			name = lib;
-			path = core/lib;
-			sourceTree = SOURCE_ROOT;
 		};
 		66A03C3F13E6E8D100B514F3 /* src */ = {
 			isa = PBXGroup;
@@ -1163,21 +1092,11 @@
 			isa = PBXGroup;
 			children = (
 				66A03CF613E6F13700B514F3 /* deps */,
-				66A03CE413E6F10C00B514F3 /* lib */,
 				66A03CE613E6F10C00B514F3 /* src */,
 				66A03D5C13E6F9B100B514F3 /* unittests */,
 			);
 			path = NimbusLauncher;
 			sourceTree = "<group>";
-		};
-		66A03CE413E6F10C00B514F3 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				66A03CE513E6F10C00B514F3 /* NimbusLauncher_Prefix.pch */,
-			);
-			name = lib;
-			path = launcher/lib;
-			sourceTree = SOURCE_ROOT;
 		};
 		66A03CE613E6F10C00B514F3 /* src */ = {
 			isa = PBXGroup;
@@ -1198,21 +1117,11 @@
 			isa = PBXGroup;
 			children = (
 				66A03D4C13E6F99400B514F3 /* deps */,
-				66A03D4D13E6F99400B514F3 /* lib */,
 				66A03D4F13E6F99400B514F3 /* src */,
 				66A03D5F13E6F9DF00B514F3 /* unittests */,
 			);
 			path = NimbusNetworkImage;
 			sourceTree = "<group>";
-		};
-		66A03D4D13E6F99400B514F3 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				66A03D4E13E6F99400B514F3 /* NimbusNetworkImage_Prefix.pch */,
-			);
-			name = lib;
-			path = networkimage/lib;
-			sourceTree = SOURCE_ROOT;
 		};
 		66A03D4F13E6F99400B514F3 /* src */ = {
 			isa = PBXGroup;
@@ -1267,7 +1176,6 @@
 				66A03D7513E6FAC500B514F3 /* DONORS */,
 				66A03D7813E6FAC500B514F3 /* LICENSE */,
 				66A03D7913E6FAC500B514F3 /* README.textile */,
-				66A03D7613E6FAC500B514F3 /* lib */,
 				66A03D7A13E6FAC500B514F3 /* src */,
 			);
 			path = ASIHTTPRequest;
@@ -1280,14 +1188,6 @@
 				667572F913E7705F0076F555 /* JSONKit */,
 			);
 			name = "Third Party";
-			sourceTree = "<group>";
-		};
-		66A03D7613E6FAC500B514F3 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				66A03D7713E6FAC500B514F3 /* ASIHTTPRequest_Prefix.pch */,
-			);
-			path = lib;
 			sourceTree = "<group>";
 		};
 		66A03D7A13E6FAC500B514F3 /* src */ = {
@@ -1347,15 +1247,6 @@
 			path = models/examples;
 			sourceTree = SOURCE_ROOT;
 		};
-		66FE7D6113FB83620061B987 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				66FE7D6213FB83620061B987 /* NimbusModels_Prefix.pch */,
-			);
-			name = lib;
-			path = models/lib;
-			sourceTree = SOURCE_ROOT;
-		};
 		66FE7D6313FB83620061B987 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -1384,20 +1275,10 @@
 			isa = PBXGroup;
 			children = (
 				6661BAFF13F0AA6000D14F92 /* deps */,
-				DB84BDA513EFDF5900DACCFE /* lib */,
 				DB84BDA713EFDF5900DACCFE /* src */,
 				DB84BDAF13EFDF6900DACCFE /* unittests */,
 			);
 			name = NimbusWebController;
-			sourceTree = "<group>";
-		};
-		DB84BDA513EFDF5900DACCFE /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				6661BB0013F0AA7200D14F92 /* NimbusWebController_Prefix.pch */,
-			);
-			name = lib;
-			path = webcontroller/lib;
 			sourceTree = "<group>";
 		};
 		DB84BDA713EFDF5900DACCFE /* src */ = {
@@ -2478,8 +2359,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = models/lib/NimbusModels_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2503,8 +2382,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusModels.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = models/lib/NimbusModels_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -2530,8 +2407,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusModels/NimbusModels-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2559,8 +2434,6 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusModels/NimbusModels-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "models/unittests/NimbusModelsTests-Info.plist";
@@ -2582,8 +2455,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = overview/lib/NimbusOverview_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2607,8 +2478,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusOverview.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = overview/lib/NimbusOverview_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -2633,8 +2502,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusOverview/NimbusOverview-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2661,8 +2528,6 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusOverview/NimbusOverview-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "overview/unittests/NimbusOverviewTests-Info.plist";
@@ -2684,8 +2549,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = photos/lib/NimbusPhotos_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2709,8 +2572,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusPhotos.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = photos/lib/NimbusPhotos_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -2735,8 +2596,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusPhotos/NimbusPhotos-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2763,8 +2622,6 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusPhotos/NimbusPhotos-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "photos/unittests/NimbusPhotosTests-Info.plist";
@@ -2786,8 +2643,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = processors/lib/NimbusProcessors_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2811,8 +2666,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusProcessors.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = processors/lib/NimbusProcessors_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -2837,8 +2690,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusProcessors/NimbusProcessors-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2865,8 +2716,6 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusProcessors/NimbusProcessors-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "processors/unittests/NimbusProcessorsTests-Info.plist";
@@ -2888,8 +2737,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = JSONKit/lib/JSONKit_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2913,8 +2760,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/JSONKit.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = JSONKit/lib/JSONKit_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -2936,8 +2781,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = interapp/lib/NimbusInterapp_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2961,8 +2804,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusInterapp.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = interapp/lib/NimbusInterapp_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -2987,8 +2828,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusInterapp/NimbusInterapp-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -3015,8 +2854,6 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusInterapp/NimbusInterapp-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "interapp/unittests/NimbusInterappTests-Info.plist";
@@ -3031,6 +2868,8 @@
 		66A03C0313E6E84800B514F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Nimbus_Prefix.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = YES;
@@ -3044,6 +2883,8 @@
 		66A03C0413E6E84800B514F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Nimbus_Prefix.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = YES;
@@ -3064,8 +2905,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = core/lib/NimbusCore_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -3091,8 +2930,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusCore.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = core/lib/NimbusCore_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3119,8 +2956,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = core/lib/NimbusCore_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -3150,8 +2985,6 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = core/lib/NimbusCore_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3176,8 +3009,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = launcher/lib/NimbusLauncher_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -3201,8 +3032,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusLauncher.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = launcher/lib/NimbusLauncher_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -3227,8 +3056,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusLauncher/NimbusLauncher-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -3255,8 +3082,6 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusLauncher/NimbusLauncher-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "launcher/unittests/NimbusLauncherTests-Info.plist";
@@ -3292,8 +3117,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = networkimage/lib/NimbusNetworkImage_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -3317,8 +3140,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusNetworkImage.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = networkimage/lib/NimbusNetworkImage_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -3343,8 +3164,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusNetworkImage/NimbusNetworkImage-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -3371,8 +3190,6 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusNetworkImage/NimbusNetworkImage-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "networkimage/unittests/NimbusNetworkImageTests-Info.plist";
@@ -3394,8 +3211,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ASIHTTPRequest/lib/ASIHTTPRequest_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -3419,8 +3234,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/ASIHTTPRequest.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ASIHTTPRequest/lib/ASIHTTPRequest_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -3442,8 +3255,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = webcontroller/lib/NimbusWebController_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -3467,8 +3278,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusWebController.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = webcontroller/lib/NimbusWebController_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -3493,8 +3302,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusWebController/NimbusWebController-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -3521,8 +3328,6 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NimbusWebController/NimbusWebController-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "NimbusWebControllerTests/NimbusWebControllerTests-Info.plist";

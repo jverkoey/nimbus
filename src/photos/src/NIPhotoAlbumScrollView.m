@@ -17,6 +17,7 @@
 #import "NIPhotoAlbumScrollView.h"
 
 #import "NIPhotoScrollView.h"
+#import "NimbusCore.h"
 
 const NSInteger NIPhotoAlbumScrollViewUnknownNumberOfPhotos = -1;
 const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;

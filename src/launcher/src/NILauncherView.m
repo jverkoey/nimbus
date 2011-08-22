@@ -18,6 +18,8 @@
 
 #import "NILauncherView.h"
 
+#import "NimbusCore.h"
+
 const NSInteger NILauncherViewDynamic = -1;
 
 static const CGFloat kDefaultButtonDimensions = 80;

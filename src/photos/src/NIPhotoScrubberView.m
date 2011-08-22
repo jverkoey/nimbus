@@ -16,6 +16,8 @@
 
 #import "NIPhotoScrubberView.h"
 
+#import "NimbusCore.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
