@@ -85,6 +85,11 @@
   self.attributedText = attibutedString;
 }
 
+-(void)awakeFromNib {
+  [super awakeFromNib];
+  [self resetFromLabel];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(NSAttributedString*) attributedText {
   
@@ -110,6 +115,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setTextAlignment:(UITextAlignment)textAlignment{
   [super setTextAlignment:textAlignment];
+  
+  // TEMP: we don't want to call resetFromLabel: here because we may have set attributedText already
   [self resetFromLabel];
 }
 
