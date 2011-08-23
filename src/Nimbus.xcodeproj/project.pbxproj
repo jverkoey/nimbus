@@ -192,6 +192,17 @@
 		66A03DCB13E6FAC500B514F3 /* NIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D9013E6FAC500B514F3 /* NIHTTPRequest.m */; };
 		66A03DCC13E6FAC500B514F3 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D9213E6FAC500B514F3 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A03DCD13E6FAC500B514F3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D9313E6FAC500B514F3 /* Reachability.m */; };
+		DB3A230A13FD4B8E00614220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
+		DB3A231713FD4B8E00614220 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
+		DB3A231813FD4B8E00614220 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
+		DB3A231913FD4B8E00614220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
+		DB3A231A13FD4B8E00614220 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */; };
+		DB3A231D13FD4B8E00614220 /* libNimbusAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB3A230913FD4B8E00614220 /* libNimbusAttributedLabel.a */; };
+		DB3A233513FD4BE500614220 /* NimbusAttributedLabel_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = DB3A233013FD4BE500614220 /* NimbusAttributedLabel_Prefix.pch */; };
+		DB3A233613FD4BE500614220 /* NIAttributedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3A233213FD4BE500614220 /* NIAttributedLabel.h */; };
+		DB3A233713FD4BE500614220 /* NIAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3A233313FD4BE500614220 /* NIAttributedLabel.m */; };
+		DB3A233813FD4BE500614220 /* NimbusAttributedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3A233413FD4BE500614220 /* NimbusAttributedLabel.h */; };
+		DB3A233B13FD4C2900614220 /* NimbusAttributedLabelTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB3A233A13FD4C2900614220 /* NimbusAttributedLabelTests-Info.plist */; };
 		DB84BD7513EFDDC900DACCFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		DB84BD8213EFDDCA00DACCFE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		DB84BD8313EFDDCA00DACCFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
@@ -316,6 +327,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 66A03D6713E6FA9700B514F3;
 			remoteInfo = ASIHTTPRequest;
+		};
+		DB3A231B13FD4B8E00614220 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB3A230813FD4B8E00614220;
+			remoteInfo = NimbusAttributedLabel;
 		};
 		DB84BD8613EFDDCA00DACCFE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -516,6 +534,14 @@
 		66A03DF913E6FD3000B514F3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		66A03DFB13E6FE1700B514F3 /* AUTHORS */ = {isa = PBXFileReference; lastKnownFileType = text; name = AUTHORS; path = ../AUTHORS; sourceTree = "<group>"; };
 		66A03DFC13E6FE1800B514F3 /* DONORS */ = {isa = PBXFileReference; lastKnownFileType = text; name = DONORS; path = ../DONORS; sourceTree = "<group>"; };
+		DB3A230913FD4B8E00614220 /* libNimbusAttributedLabel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusAttributedLabel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB3A231613FD4B8E00614220 /* NimbusAttributedLabelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusAttributedLabelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB3A233013FD4BE500614220 /* NimbusAttributedLabel_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusAttributedLabel_Prefix.pch; sourceTree = "<group>"; };
+		DB3A233213FD4BE500614220 /* NIAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIAttributedLabel.h; sourceTree = "<group>"; };
+		DB3A233313FD4BE500614220 /* NIAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIAttributedLabel.m; sourceTree = "<group>"; };
+		DB3A233413FD4BE500614220 /* NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusAttributedLabel.h; sourceTree = "<group>"; };
+		DB3A233A13FD4C2900614220 /* NimbusAttributedLabelTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NimbusAttributedLabelTests-Info.plist"; sourceTree = "<group>"; };
+		DB6A0474140255200020F7FD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
 		DB84BD7413EFDDC900DACCFE /* libNimbusWebController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusWebController.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB84BD8113EFDDCA00DACCFE /* NimbusWebControllerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusWebControllerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB84BDA813EFDF5900DACCFE /* NimbusWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusWebController.h; sourceTree = "<group>"; };
@@ -678,6 +704,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				66A03D6913E6FA9700B514F3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB3A230613FD4B8E00614220 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB3A230A13FD4B8E00614220 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB3A231213FD4B8E00614220 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB3A231713FD4B8E00614220 /* SenTestingKit.framework in Frameworks */,
+				DB3A231813FD4B8E00614220 /* UIKit.framework in Frameworks */,
+				DB3A231913FD4B8E00614220 /* Foundation.framework in Frameworks */,
+				DB3A231A13FD4B8E00614220 /* CoreGraphics.framework in Frameworks */,
+				DB3A231D13FD4B8E00614220 /* libNimbusAttributedLabel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,6 +970,7 @@
 		66A03BFC13E6E84800B514F3 = {
 			isa = PBXGroup;
 			children = (
+				DB6A0474140255200020F7FD /* CoreText.framework */,
 				66325D5713EB0302008D6EAD /* README.mdown */,
 				66325D5613EB0301008D6EAD /* HACKERS.mdown */,
 				66A03CBA13E6F03600B514F3 /* Doxygen.h */,
@@ -939,6 +986,7 @@
 				6675727C13E769150076F555 /* NimbusPhotos */,
 				667572BF13E76F460076F555 /* NimbusProcessors */,
 				DB84BD9A13EFDE3C00DACCFE /* NimbusWebController */,
+				DB3A230B13FD4B8E00614220 /* NimbusAttributedLabel */,
 				66A03D7313E6FAAC00B514F3 /* Third Party */,
 				66A03C0B13E6E85E00B514F3 /* Frameworks */,
 				66A03C0A13E6E85E00B514F3 /* Products */,
@@ -966,6 +1014,8 @@
 				6675731F13E771380076F555 /* NimbusInterappTests.octest */,
 				DB84BD7413EFDDC900DACCFE /* libNimbusWebController.a */,
 				DB84BD8113EFDDCA00DACCFE /* NimbusWebControllerTests.octest */,
+				DB3A230913FD4B8E00614220 /* libNimbusAttributedLabel.a */,
+				DB3A231613FD4B8E00614220 /* NimbusAttributedLabelTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1250,6 +1300,45 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		DB3A230B13FD4B8E00614220 /* NimbusAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				DB3A232F13FD4BE500614220 /* lib */,
+				DB3A233113FD4BE500614220 /* src */,
+				DB3A233913FD4C2900614220 /* unittests */,
+			);
+			path = NimbusAttributedLabel;
+			sourceTree = "<group>";
+		};
+		DB3A232F13FD4BE500614220 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				DB3A233013FD4BE500614220 /* NimbusAttributedLabel_Prefix.pch */,
+			);
+			name = lib;
+			path = attributedlabel/lib;
+			sourceTree = SOURCE_ROOT;
+		};
+		DB3A233113FD4BE500614220 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DB3A233413FD4BE500614220 /* NimbusAttributedLabel.h */,
+				DB3A233213FD4BE500614220 /* NIAttributedLabel.h */,
+				DB3A233313FD4BE500614220 /* NIAttributedLabel.m */,
+			);
+			name = src;
+			path = attributedlabel/src;
+			sourceTree = SOURCE_ROOT;
+		};
+		DB3A233913FD4C2900614220 /* unittests */ = {
+			isa = PBXGroup;
+			children = (
+				DB3A233A13FD4C2900614220 /* NimbusAttributedLabelTests-Info.plist */,
+			);
+			name = unittests;
+			path = attributedlabel/unittests;
+			sourceTree = SOURCE_ROOT;
+		};
 		DB84BD9A13EFDE3C00DACCFE /* NimbusWebController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1413,6 +1502,16 @@
 				66A03DC913E6FAC500B514F3 /* ASIProgressDelegate.h in Headers */,
 				66A03DCA13E6FAC500B514F3 /* NIHTTPRequest.h in Headers */,
 				66A03DCC13E6FAC500B514F3 /* Reachability.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB3A230713FD4B8E00614220 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB3A233513FD4BE500614220 /* NimbusAttributedLabel_Prefix.pch in Headers */,
+				DB3A233613FD4BE500614220 /* NIAttributedLabel.h in Headers */,
+				DB3A233813FD4BE500614220 /* NimbusAttributedLabel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1714,6 +1813,42 @@
 			productReference = 66A03D6813E6FA9700B514F3 /* libASIHTTPRequest.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		DB3A230813FD4B8E00614220 /* NimbusAttributedLabel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB3A232C13FD4B8F00614220 /* Build configuration list for PBXNativeTarget "NimbusAttributedLabel" */;
+			buildPhases = (
+				DB3A230513FD4B8E00614220 /* Sources */,
+				DB3A230613FD4B8E00614220 /* Frameworks */,
+				DB3A230713FD4B8E00614220 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NimbusAttributedLabel;
+			productName = NimbusAttributedLabel;
+			productReference = DB3A230913FD4B8E00614220 /* libNimbusAttributedLabel.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		DB3A231513FD4B8E00614220 /* NimbusAttributedLabelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB3A232D13FD4B8F00614220 /* Build configuration list for PBXNativeTarget "NimbusAttributedLabelTests" */;
+			buildPhases = (
+				DB3A231113FD4B8E00614220 /* Sources */,
+				DB3A231213FD4B8E00614220 /* Frameworks */,
+				DB3A231313FD4B8E00614220 /* Resources */,
+				DB3A231413FD4B8E00614220 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB3A231C13FD4B8E00614220 /* PBXTargetDependency */,
+			);
+			name = NimbusAttributedLabelTests;
+			productName = NimbusAttributedLabelTests;
+			productReference = DB3A231613FD4B8E00614220 /* NimbusAttributedLabelTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		DB84BD7313EFDDC900DACCFE /* NimbusWebController */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB84BD9713EFDDCA00DACCFE /* Build configuration list for PBXNativeTarget "NimbusWebController" */;
@@ -1788,6 +1923,8 @@
 				66A03D6713E6FA9700B514F3 /* ASIHTTPRequest */,
 				DB84BD7313EFDDC900DACCFE /* NimbusWebController */,
 				DB84BD8013EFDDCA00DACCFE /* NimbusWebControllerTests */,
+				DB3A230813FD4B8E00614220 /* NimbusAttributedLabel */,
+				DB3A231513FD4B8E00614220 /* NimbusAttributedLabelTests */,
 				66A03CF713E6F15300B514F3 /* Nimbus */,
 			);
 		};
@@ -1841,6 +1978,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB3A231313FD4B8E00614220 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB3A233B13FD4C2900614220 /* NimbusAttributedLabelTests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1934,6 +2079,19 @@
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		66A03D3213E6F97500B514F3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		DB3A231413FD4B8E00614220 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2131,6 +2289,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DB3A230513FD4B8E00614220 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB3A233713FD4BE500614220 /* NIAttributedLabel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB3A231113FD4B8E00614220 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DB84BD7013EFDDC900DACCFE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2228,6 +2401,11 @@
 			isa = PBXTargetDependency;
 			target = 66A03D6713E6FA9700B514F3 /* ASIHTTPRequest */;
 			targetProxy = 66A03DEB13E6FAD400B514F3 /* PBXContainerItemProxy */;
+		};
+		DB3A231C13FD4B8E00614220 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB3A230813FD4B8E00614220 /* NimbusAttributedLabel */;
+			targetProxy = DB3A231B13FD4B8E00614220 /* PBXContainerItemProxy */;
 		};
 		DB84BD8713EFDDCA00DACCFE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3102,6 +3280,108 @@
 			};
 			name = Release;
 		};
+		DB3A232813FD4B8E00614220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/NimbusAttributedLabel.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = attributedlabel/lib/NimbusAttributedLabel_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DB3A232913FD4B8E00614220 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/NimbusAttributedLabel.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = attributedlabel/lib/NimbusAttributedLabel_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB3A232A13FD4B8E00614220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NimbusAttributedLabel/NimbusAttributedLabel-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "NimbusAttributedLabelTests/NimbusAttributedLabelTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		DB3A232B13FD4B8E00614220 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NimbusAttributedLabel/NimbusAttributedLabel-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "NimbusAttributedLabelTests/NimbusAttributedLabelTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		DB84BD9313EFDDCA00DACCFE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3365,6 +3645,24 @@
 			buildConfigurations = (
 				66A03D7113E6FA9800B514F3 /* Debug */,
 				66A03D7213E6FA9800B514F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB3A232C13FD4B8F00614220 /* Build configuration list for PBXNativeTarget "NimbusAttributedLabel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB3A232813FD4B8E00614220 /* Debug */,
+				DB3A232913FD4B8E00614220 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB3A232D13FD4B8F00614220 /* Build configuration list for PBXNativeTarget "NimbusAttributedLabelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB3A232A13FD4B8E00614220 /* Debug */,
+				DB3A232B13FD4B8E00614220 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

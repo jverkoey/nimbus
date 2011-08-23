@@ -14,17 +14,10 @@
 // limitations under the License.
 //
 
-/**
- * @defgroup NimbusAttributedLabel Nimbus Attributed Label
- * @{
- *
- *
- *
- * @} */
-
+#ifdef __OBJC__
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
-
 #import "NimbusCore.h"
-#import "NIAttributedLabel.h"
+#import "NimbusAttributedLabel.h"
+#endif
