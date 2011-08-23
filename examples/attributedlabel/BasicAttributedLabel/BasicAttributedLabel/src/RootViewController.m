@@ -24,9 +24,7 @@
 }
 
 -(void)viewDidLoad {
-  label1.text = @"This Label should be green";
 
-  label2.text = @"This is a lot of text that should be justified which is only availible in CoreText";
   label2.textAlignment = UITextAlignmentJustify;
 }
 
