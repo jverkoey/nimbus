@@ -10,8 +10,10 @@
 
 @interface RootViewController : UIViewController {
   NIAttributedLabel *label1;
+  NIAttributedLabel *label2;
 }
 
 @property (nonatomic, retain) IBOutlet NIAttributedLabel *label1;
+@property (nonatomic, retain) IBOutlet NIAttributedLabel *label2;
 
 @end
