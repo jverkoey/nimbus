@@ -105,7 +105,12 @@
 -(void)setText:(NSString *)text {
   [super setText:text];
 	[self resetFromLabel];
+}
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setTextAlignment:(UITextAlignment)textAlignment{
+  [super setTextAlignment:textAlignment];
+  [self resetFromLabel];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,7 +160,7 @@
 			CGPathAddRect(path, NULL, _drawingRect);
       _textFrame = CTFramesetterCreateFrame(framesetter,CFRangeMake(0,0), path, NULL);
 			CGPathRelease(path);
-			//CFRelease(framesetter);
+			CFRelease(framesetter);
     }
     
     CTFrameDraw(_textFrame, ctx);

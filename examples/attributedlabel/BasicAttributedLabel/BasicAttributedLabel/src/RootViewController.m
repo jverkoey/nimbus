@@ -11,6 +11,7 @@
 
 @implementation RootViewController
 @synthesize label1;
+@synthesize label2;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
   return [super initWithNibName:@"RootView" bundle:nibBundleOrNil];
@@ -18,11 +19,15 @@
 
 - (void)dealloc {
   NI_RELEASE_SAFELY(label1);
+  NI_RELEASE_SAFELY(label2);
   [super dealloc];
 }
 
 -(void)viewDidLoad {
-  
   label1.text = @"This Label should be green";
+
+  label2.text = @"This is a lot of text that should be justified which is only availible in CoreText";
+  label2.textAlignment = UITextAlignmentJustify;
 }
+
 @end
