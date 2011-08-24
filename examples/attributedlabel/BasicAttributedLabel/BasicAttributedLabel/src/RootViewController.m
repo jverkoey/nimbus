@@ -20,6 +20,7 @@
 @implementation RootViewController
 @synthesize label1;
 @synthesize label2;
+@synthesize label3;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
   return [super initWithNibName:@"RootView" bundle:nibBundleOrNil];
@@ -28,6 +29,7 @@
 - (void)dealloc {
   NI_RELEASE_SAFELY(label1);
   NI_RELEASE_SAFELY(label2);
+  NI_RELEASE_SAFELY(label3);
   [super dealloc];
 }
 
@@ -36,6 +38,15 @@
   self.title = @"NIAttributedLabel";
 
   label2.textAlignment = UITextAlignmentJustify;
+}
+
+-(void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectLink:(NSURL *)url {
+  
+  UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Link Selected" message:url.relativeString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+  
+  [alert show];
+  NI_RELEASE_SAFELY(alert);
+  
 }
 
 @end
