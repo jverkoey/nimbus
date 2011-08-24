@@ -20,7 +20,19 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIAttributedLabel
+@synthesize autoDetectLinks = _autoDetectLinks;
 @synthesize delegate;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)dealloc {
+  
+  NI_RELEASE_SAFELY(_attributedText);
+  NI_RELEASE_SAFELY(_linkColor);
+  NI_RELEASE_SAFELY(_linkHighlightColor);
+  NI_RELEASE_SAFELY(_currentLink);
+  
+  [super dealloc];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(CTTextAlignment) alignmentFromUITextAlignment:(UITextAlignment)alignment {
@@ -171,6 +183,41 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setAutoDetectLinks:(BOOL)autoDetectLinks {
+  _autoDetectLinks = autoDetectLinks;
+  self.userInteractionEnabled = autoDetectLinks;
+  [self setNeedsDisplay];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(UIColor *)linkColor {
+  if (!_linkColor) {
+    _linkColor = [[UIColor blueColor] retain];
+  }
+  return _linkColor;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setLinkColor:(UIColor *)linkColor {
+  _linkColor = [linkColor retain];
+  [self setNeedsDisplay];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(UIColor *)linkHighlightColor {
+  if (!_linkHighlightColor) {
+    _linkHighlightColor = [[UIColor colorWithWhite:0.5 alpha:0.2] retain];
+  }
+  return _linkHighlightColor;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setLinkHighlightColor:(UIColor *)linkHighlightColor{
+  _linkHighlightColor = [linkHighlightColor retain];
+  [self setNeedsDisplay];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)resetTextFrame {
 	if (_textFrame) {
 		CFRelease(_textFrame);
@@ -203,7 +250,8 @@
 	if (!attributedString) return nil;
   
   NSError* error = nil;
-  NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
+  NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink
+                                                                 error:&error];
   [linkDetector enumerateMatchesInString:[attributedString string] 
                                  options:0 
                                    range:NSMakeRange(0,[[attributedString string] length])
@@ -211,7 +259,7 @@
                               {
                                 // TODO: Need to customize link text color
                                 [self attributedString:attributedString 
-                                          setTextColor:[UIColor blueColor] 
+                                          setTextColor:self.linkColor
                                                  range:[result range]];
                               }];
   return attributedString;
@@ -230,12 +278,17 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(NSTextCheckingResult*)linkAtIndex:(CFIndex)index {
-	
+  
+  if (!_autoDetectLinks) return nil;
+
   __block NSTextCheckingResult* foundResult = nil;
   
   NSError* error = nil;
-  NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
-  [linkDetector enumerateMatchesInString:[_attributedText string] options:0 range:NSMakeRange(0,[[_attributedText string] length])
+  NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink 
+                                                                 error:&error];
+  [linkDetector enumerateMatchesInString:[_attributedText string] 
+                                 options:0 
+                                   range:NSMakeRange(0,[[_attributedText string] length])
                               usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
                               {
                                 NSRange range = [result range];
@@ -334,7 +387,8 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 		CGContextSaveGState(ctx);
     
-    NSMutableAttributedString* attributedString = [self linksDetectedAttributedString];
+    NSMutableAttributedString* attributedString = _autoDetectLinks ? 
+      [self linksDetectedAttributedString] : [self.attributedText copy];
     
     // CoreText context coordinates are the opposite to UIKit so we flip the bounds
     CGContextConcatCTM(ctx,
@@ -354,9 +408,8 @@
     }
     
     if (_currentLink) {
-      // TODO: Need to customize highlight color
-      UIColor* highlightColor = [UIColor colorWithWhite:0.5 alpha:0.2];
-      [highlightColor setFill];
+      
+      [self.linkHighlightColor setFill];
       
       NSRange linkRange = _currentLink.range;
       
@@ -388,7 +441,6 @@
             continue;
           }
 
-          
           CGFloat ascent = 0;
           CGFloat descent = 0;
           CGFloat leading = 0;
@@ -415,7 +467,6 @@
           } else {
             rect = CGRectUnion(rect, linkRect);
           }
-          
         }
         
         if (!CGRectIsEmpty(rect)) {
@@ -435,12 +486,9 @@
           CGContextAddLineToPoint(ctx, rect.origin.x + radius, rect.origin.y);
           CGContextAddArc(ctx, rect.origin.x + radius, rect.origin.y + radius, radius, 
                           -M_PI / 2, M_PI, 1);
-          
           CGContextFillPath(ctx);
         }
-        
       }
-      
     }
     
     CTFrameDraw(_textFrame, ctx);

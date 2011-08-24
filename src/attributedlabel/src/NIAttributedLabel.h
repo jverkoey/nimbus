@@ -35,6 +35,9 @@
 
 @interface NIAttributedLabel : UILabel {
   NSMutableAttributedString*  _attributedText;
+  BOOL                        _autoDetectLinks;
+  UIColor*                    _linkColor;
+  UIColor*                    _linkHighlightColor;
   
   CTFrameRef                  _textFrame;
 	CGRect                      _drawingRect;
@@ -44,9 +47,36 @@
 /**
  * The attributted string to display
  *
- * Use this instead of the inherited text property on UILabel
+ * Use this instead of the inherited text property on UILabel.
+ * If text is used the text will inherit the UILabel properties and
+ * be convertied to NSAttributedString.
  */
 @property(nonatomic, copy) NSAttributedString* attributedText;
+
+/**
+ * Whether links are automatically detected in the text
+ *
+ * When set to true links will be detected and displayed as touchable.
+ * Detected links will also have a linkColor and linkHighlightedColor
+ */
+@property(nonatomic, assign) BOOL autoDetectLinks;
+
+/**
+ * The color of detected links
+ *
+ * If no color is set, the default is [UIColor blueColor]
+ */
+@property(nonatomic, retain) UIColor* linkColor;
+
+/**
+ * The color of the links background when touched/highlighted
+ *
+ * If no color is set, the default is [UIColor colorWithWhite:0.5 alpha:0.2]
+ * If you do not want to highlight links when touched, set this to [UIColor clearColor]
+ * or set it to the same color as your views background color (opaque colors have better
+ * performance).
+ */
+@property(nonatomic, retain) UIColor* linkHighlightColor;
 
 @property(nonatomic, assign) IBOutlet id<NIAttributedLabelDelegate> delegate;
 
