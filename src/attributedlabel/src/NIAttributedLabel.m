@@ -20,6 +20,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIAttributedLabel
+@synthesize delegate;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(CTTextAlignment) alignmentFromUITextAlignment:(UITextAlignment)alignment {
@@ -71,13 +72,20 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) attributedString:(NSMutableAttributedString*)attributedString
-            setTextColor:(UIColor*)color{
-  
-  NSRange range = NSMakeRange(0,[attributedString length]);
+            setTextColor:(UIColor*)color range:(NSRange)range{
+
   [attributedString removeAttribute:(NSString *)kCTForegroundColorAttributeName range:range]; 
 	[attributedString addAttribute:(NSString*)kCTForegroundColorAttributeName 
                            value:(id)color.CGColor 
                            range:range];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void) attributedString:(NSMutableAttributedString*)attributedString
+            setTextColor:(UIColor*)color{
+  [self attributedString:attributedString 
+            setTextColor:color 
+                   range:NSMakeRange(0,[attributedString length])];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -190,10 +198,32 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+-(NSMutableAttributedString*) linksDetectedAttributedString {
+  NSMutableAttributedString* attributedString = [self.attributedText mutableCopy];
+	if (!attributedString) return nil;
+  
+  NSError* error = nil;
+  NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
+  [linkDetector enumerateMatchesInString:[attributedString string] 
+                                 options:0 
+                                   range:NSMakeRange(0,[[attributedString string] length])
+                              usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+                              {
+                                [self attributedString:attributedString 
+                                          setTextColor:[UIColor blueColor] 
+                                                 range:[result range]];
+                              }];
+  return attributedString;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)drawTextInRect:(CGRect)rect {
   if (_attributedText) {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 		CGContextSaveGState(ctx);
+    
+    NSMutableAttributedString* attributedString = [self linksDetectedAttributedString];
     
     // CoreText context coordinates are the opposite to UIKit so we flip the bounds
     CGContextConcatCTM(ctx,
@@ -203,7 +233,7 @@
     
     if (_textFrame == nil) {
       CTFramesetterRef framesetter =
-        CTFramesetterCreateWithAttributedString((CFAttributedStringRef)_attributedText);
+        CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attributedString);
       _drawingRect = self.bounds;
       CGMutablePathRef path = CGPathCreateMutable();
 			CGPathAddRect(path, NULL, _drawingRect);
