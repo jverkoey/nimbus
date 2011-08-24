@@ -136,29 +136,33 @@
 <a name="l00068"></a>00068 <span class="preprocessor"></span>
 <a name="l00069"></a>00069 
 <a name="l00071"></a><a class="code" href="group___general-_purpose-_methods.html#ga983d44cb238c454d070504924bf4e7d5">00071</a> CGFloat <a class="code" href="group___general-_purpose-_methods.html#ga983d44cb238c454d070504924bf4e7d5" title="Bounds a given value within the min and max values.">boundf</a>(CGFloat value, CGFloat min, CGFloat max) {
-<a name="l00072"></a>00072   <span class="keywordflow">if</span> (value &lt; min) {
-<a name="l00073"></a>00073     <span class="keywordflow">return</span> min;
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (value &gt; max) {
-<a name="l00076"></a>00076     <span class="keywordflow">return</span> max;
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078   } <span class="keywordflow">else</span> {
-<a name="l00079"></a>00079     <span class="keywordflow">return</span> value;
-<a name="l00080"></a>00080   }
-<a name="l00081"></a>00081 }
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083 
-<a name="l00085"></a><a class="code" href="group___general-_purpose-_methods.html#gace7056b3790906a7496f61835889cb34">00085</a> NSInteger <a class="code" href="group___general-_purpose-_methods.html#gace7056b3790906a7496f61835889cb34" title="Bounds a given value within the min and max values.">boundi</a>(NSInteger value, NSInteger min, NSInteger max) {
-<a name="l00086"></a>00086   <span class="keywordflow">if</span> (value &lt; min) {
-<a name="l00087"></a>00087     <span class="keywordflow">return</span> min;
-<a name="l00088"></a>00088     
-<a name="l00089"></a>00089   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (value &gt; max) {
-<a name="l00090"></a>00090     <span class="keywordflow">return</span> max;
-<a name="l00091"></a>00091     
-<a name="l00092"></a>00092   } <span class="keywordflow">else</span> {
-<a name="l00093"></a>00093     <span class="keywordflow">return</span> value;
+<a name="l00072"></a>00072   <span class="keywordflow">if</span> (max &lt; min) {
+<a name="l00073"></a>00073     max = min;
+<a name="l00074"></a>00074   }
+<a name="l00075"></a>00075   CGFloat bounded = value;
+<a name="l00076"></a>00076   <span class="keywordflow">if</span> (bounded &gt; max) {
+<a name="l00077"></a>00077     bounded = max;
+<a name="l00078"></a>00078   }
+<a name="l00079"></a>00079   <span class="keywordflow">if</span> (bounded &lt; min) {
+<a name="l00080"></a>00080     bounded = min;
+<a name="l00081"></a>00081   }
+<a name="l00082"></a>00082   <span class="keywordflow">return</span> bounded;
+<a name="l00083"></a>00083 }
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 
+<a name="l00087"></a><a class="code" href="group___general-_purpose-_methods.html#gace7056b3790906a7496f61835889cb34">00087</a> NSInteger <a class="code" href="group___general-_purpose-_methods.html#gace7056b3790906a7496f61835889cb34" title="Bounds a given value within the min and max values.">boundi</a>(NSInteger value, NSInteger min, NSInteger max) {
+<a name="l00088"></a>00088   <span class="keywordflow">if</span> (max &lt; min) {
+<a name="l00089"></a>00089     max = min;
+<a name="l00090"></a>00090   }
+<a name="l00091"></a>00091   NSInteger bounded = value;
+<a name="l00092"></a>00092   <span class="keywordflow">if</span> (bounded &gt; max) {
+<a name="l00093"></a>00093     bounded = max;
 <a name="l00094"></a>00094   }
-<a name="l00095"></a>00095 }
+<a name="l00095"></a>00095   <span class="keywordflow">if</span> (bounded &lt; min) {
+<a name="l00096"></a>00096     bounded = min;
+<a name="l00097"></a>00097   }
+<a name="l00098"></a>00098   <span class="keywordflow">return</span> bounded;
+<a name="l00099"></a>00099 }
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

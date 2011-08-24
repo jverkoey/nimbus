@@ -95,41 +95,41 @@
 <a name="l00017"></a>00017 <span class="comment">// limitations under the License.</span>
 <a name="l00018"></a>00018 <span class="comment">//</span>
 <a name="l00019"></a>00019 
-<a name="l00057"></a>00057 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
-<a name="l00058"></a>00058 <span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span>
-<a name="l00059"></a>00059 
-<a name="l00060"></a><a class="code" href="interface_n_i_web_controller.html">00060</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_web_controller.html" title="A simple web view controller implementation with a toolbar.">NIWebController</a> : UIViewController &lt;
-<a name="l00061"></a>00061   UIWebViewDelegate,
-<a name="l00062"></a>00062   UIActionSheetDelegate &gt; {
-<a name="l00063"></a>00063 <span class="keyword">@protected</span>
-<a name="l00064"></a>00064   <span class="comment">// Views</span>
-<a name="l00065"></a>00065   UIWebView*        _webView;
-<a name="l00066"></a>00066   UIToolbar*        _toolbar;
-<a name="l00067"></a>00067   UIActionSheet*    _actionSheet;
-<a name="l00068"></a>00068   
-<a name="l00069"></a>00069   <span class="comment">// Toolbar buttons</span>
-<a name="l00070"></a>00070   UIBarButtonItem*  _backButton;
-<a name="l00071"></a>00071   UIBarButtonItem*  _forwardButton;
-<a name="l00072"></a>00072   UIBarButtonItem*  _refreshButton;
-<a name="l00073"></a>00073   UIBarButtonItem*  _stopButton;
-<a name="l00074"></a>00074   UIBarButtonItem*  _actionButton;
-<a name="l00075"></a>00075   UIBarButtonItem*  _activityItem;
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077   NSURL*            _actionSheetURL;
-<a name="l00078"></a>00078   NSURL*            _loadingURL;
-<a name="l00079"></a>00079 }
-<a name="l00080"></a>00080 
-<a name="l00086"></a>00086 - (NSURL *)URL;
-<a name="l00087"></a>00087 
-<a name="l00091"></a>00091 - (void)openURL:(NSURL*)URL;
-<a name="l00092"></a>00092 
-<a name="l00098"></a>00098 - (void)openRequest:(NSURLRequest*)request;
-<a name="l00099"></a>00099 
-<a name="l00103"></a>00103 - (void)setToolbarTintColor:(UIColor*)color;
-<a name="l00104"></a>00104 
-<a name="l00116"></a>00116 - (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet;
+<a name="l00075"></a>00075 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
+<a name="l00076"></a>00076 <span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span>
+<a name="l00077"></a>00077 
+<a name="l00078"></a><a class="code" href="interface_n_i_web_controller.html">00078</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_web_controller.html" title="A simple web view controller implementation with a toolbar.">NIWebController</a> : UIViewController &lt;
+<a name="l00079"></a>00079   UIWebViewDelegate,
+<a name="l00080"></a>00080   UIActionSheetDelegate &gt; {
+<a name="l00081"></a>00081 <span class="keyword">@protected</span>
+<a name="l00082"></a>00082   <span class="comment">// Views</span>
+<a name="l00083"></a>00083   UIWebView*        _webView;
+<a name="l00084"></a>00084   UIToolbar*        _toolbar;
+<a name="l00085"></a>00085   UIActionSheet*    _actionSheet;
+<a name="l00086"></a>00086   
+<a name="l00087"></a>00087   <span class="comment">// Toolbar buttons</span>
+<a name="l00088"></a>00088   UIBarButtonItem*  _backButton;
+<a name="l00089"></a>00089   UIBarButtonItem*  _forwardButton;
+<a name="l00090"></a>00090   UIBarButtonItem*  _refreshButton;
+<a name="l00091"></a>00091   UIBarButtonItem*  _stopButton;
+<a name="l00092"></a>00092   UIBarButtonItem*  _actionButton;
+<a name="l00093"></a>00093   UIBarButtonItem*  _activityItem;
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095   NSURL*            _actionSheetURL;
+<a name="l00096"></a>00096   NSURL*            _loadingURL;
+<a name="l00097"></a>00097 }
+<a name="l00098"></a>00098 
+<a name="l00104"></a>00104 - (NSURL *)URL;
+<a name="l00105"></a>00105 
+<a name="l00109"></a>00109 - (void)openURL:(NSURL*)URL;
+<a name="l00110"></a>00110 
+<a name="l00116"></a>00116 - (void)openRequest:(NSURLRequest*)request;
 <a name="l00117"></a>00117 
-<a name="l00118"></a>00118 <span class="keyword">@end</span>
+<a name="l00121"></a>00121 - (void)setToolbarTintColor:(UIColor*)color;
+<a name="l00122"></a>00122 
+<a name="l00134"></a>00134 - (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet;
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136 <span class="keyword">@end</span>
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

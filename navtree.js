@@ -374,6 +374,7 @@ var NAVTREE =
       [ "src/models/src/NimbusModels.h", null, null ],
       [ "src/models/src/NITableViewModel.h", null, null ],
       [ "src/models/src/NITableViewModel.m", null, null ],
+      [ "src/models/unittests/NITableViewModelTests.m", null, null ],
       [ "src/networkimage/src/NIHTTPImageRequest.h", null, null ],
       [ "src/networkimage/src/NIHTTPImageRequest.m", null, null ],
       [ "src/networkimage/src/NimbusNetworkImage.h", null, null ],

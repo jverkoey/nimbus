@@ -81,11 +81,16 @@
 <!-- doxytag: class="NIWebController" --><!-- doxytag: inherits="UIViewController" --><hr/><a name="details" id="details"></a><h2>Overview</h2>
 <div class="textblock"><p>A simple web view controller implementation with a toolbar. </p>
 <h2>Subclassing</h2>
-<p>This view controller implements UIWebViewDelegate. If you want to implement methods of this delegate then you should take care to call the super implementation if necessary. The following methods have implementations in this class:</p>
+<p>This view controller implements UIWebViewDelegate. If you want to implement methods of this delegate then you should take care to call the super implementation if necessary. The following UIViewWebDelegate methods have implementations in this class:</p>
 <div class="fragment"><pre class="fragment"> - webView:shouldStartLoadWithRequest:navigationType:
  - webViewDidStartLoad:
  - webViewDidFinishLoad:
  - webView:didFailLoadWithError:
+</pre></div><p>This view controller also implements UIActionSheetDelegate. If you want to implement methods of this delegate then you should take care to call the super implementation if necessary. The following UIActionSheetDelegate methods have implementations in this class:</p>
+<div class="fragment"><pre class="fragment"> - actionSheet:clickedButtonAtIndex:
+ - actionSheet:didDismissWithButtonIndex:
+</pre></div><p>In addition to the above methods of the UIActionSheetDelegate, this view controller also provides the following method, which is invoked prior to presenting the internal action sheet to the user and allows subclasses to customize the action sheet or even reject to display it (and provide their own handling instead):</p>
+<div class="fragment"><pre class="fragment"> - shouldPresentActionSheet:
 </pre></div><h2>Recommended Configurations</h2>
 <h3>Default</h3>
 <p>The default settings will create a toolbar with the default tint color, which is normally light blue on the iPhone and gray on the iPad.</p>
@@ -93,7 +98,7 @@
 <p>The following settings will change the toolbar tint color (in this case black)</p>
 <div class="fragment"><pre class="fragment">  [webController setToolbarTintColor:[UIColor blackColor]];
 </pre></div> 
-<p>Definition at line <a class="el" href="_n_i_web_controller_8h_source.html#l00060">60</a> of file <a class="el" href="_n_i_web_controller_8h_source.html">NIWebController.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_web_controller_8h_source.html#l00078">78</a> of file <a class="el" href="_n_i_web_controller_8h_source.html">NIWebController.h</a>.</p>
 </div>
 <p>Inherits UIViewController.</p>
 <table class="memberdecls">
@@ -125,7 +130,7 @@ Methods</h2></td></tr>
 <p>The current web view URL. </p>
 <p>If the web view is currently loading a URL then the loading URL is returned instead. </p>
 
-<p>Definition at line <a class="el" href="_n_i_web_controller_8m_source.html#l00375">375</a> of file <a class="el" href="_n_i_web_controller_8m_source.html">NIWebController.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_web_controller_8m_source.html#l00382">382</a> of file <a class="el" href="_n_i_web_controller_8m_source.html">NIWebController.m</a>.</p>
 
 </div>
 </div>
@@ -152,7 +157,7 @@ Methods</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_n_i_web_controller_8m_source.html#l00387">387</a> of file <a class="el" href="_n_i_web_controller_8m_source.html">NIWebController.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_web_controller_8m_source.html#l00394">394</a> of file <a class="el" href="_n_i_web_controller_8m_source.html">NIWebController.m</a>.</p>
 
 </div>
 </div>
@@ -181,7 +186,7 @@ Methods</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd><code>YES</code> to present the <code>actionSheet</code>, <code>NO</code> if you want to perform a custom action. </dd></dl>
 
-<p>Definition at line <a class="el" href="_n_i_web_controller_8m_source.html#l00399">399</a> of file <a class="el" href="_n_i_web_controller_8m_source.html">NIWebController.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_web_controller_8m_source.html#l00406">406</a> of file <a class="el" href="_n_i_web_controller_8m_source.html">NIWebController.m</a>.</p>
 
 </div>
 </div>

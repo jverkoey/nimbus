@@ -96,53 +96,55 @@
 <a name="l00018"></a>00018 
 <a name="l00019"></a>00019 <span class="preprocessor">#import &quot;NILauncherViewController.h&quot;</span>
 <a name="l00020"></a>00020 
-<a name="l00021"></a>00021 
-<a name="l00025"></a><a class="code" href="class_n_i_launcher_item_details.html">00025</a> <span class="keyword">@implementation </span><a class="code" href="class_n_i_launcher_item_details.html" title="A convenience class for managing the data used to create an NILauncherButton.">NILauncherItemDetails</a>
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027 <span class="keyword">@synthesize</span> <a class="code" href="class_n_i_launcher_item_details.html#abe184a56d23b572e49ddc3451f9e06ba" title="The title for the launcher button.">title</a>     = _title;
-<a name="l00028"></a>00028 <span class="keyword">@synthesize</span> <a class="code" href="class_n_i_launcher_item_details.html#a5d62475d047295f77e825833721ed6c9" title="The path to the launcher image.">imagePath</a> = _imagePath;
-<a name="l00029"></a>00029 
-<a name="l00030"></a>00030 
-<a name="l00032"></a>00032 - (void)dealloc {
-<a name="l00033"></a>00033   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_title);
-<a name="l00034"></a>00034   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_imagePath);
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036   [<span class="keyword">super</span> dealloc];
-<a name="l00037"></a>00037 }
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 
-<a name="l00041"></a><a class="code" href="class_n_i_launcher_item_details.html#afe62c8eb25254b87f227547cd0c7457b">00041</a> - (id)initWithTitle:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)title imagePath:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)imagePath {
-<a name="l00042"></a>00042   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super init])) {
-<a name="l00043"></a>00043     _title = [title copy];
-<a name="l00044"></a>00044     _imagePath = [imagePath copy];
-<a name="l00045"></a>00045   }
-<a name="l00046"></a>00046   <span class="keywordflow">return</span> <span class="keyword">self</span>;
-<a name="l00047"></a>00047 }
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049 
-<a name="l00051"></a><a class="code" href="class_n_i_launcher_item_details.html#a0fa897dde241f7de94d531ccc242befa">00051</a> + (id)itemDetailsWithTitle:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)title imagePath:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)imagePath {
-<a name="l00052"></a>00052   <span class="keywordflow">return</span> [[[<a class="code" href="class_n_i_launcher_item_details.html" title="A convenience class for managing the data used to create an NILauncherButton.">NILauncherItemDetails</a> alloc] initWithTitle: title
-<a name="l00053"></a>00053                                              imagePath: imagePath]
-<a name="l00054"></a>00054           autorelease];
-<a name="l00055"></a>00055 }
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057 
-<a name="l00059"></a>00059 - (id)initWithCoder:(NSCoder *)decoder {
-<a name="l00060"></a>00060   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [<span class="keyword">self</span> initWithTitle:nil imagePath:nil])) {
-<a name="l00061"></a>00061     <span class="keyword">self</span>.title = [decoder decodeObjectForKey:@&quot;title&quot;];
-<a name="l00062"></a>00062     <span class="keyword">self</span>.imagePath = [decoder decodeObjectForKey:@&quot;imagePath&quot;];
-<a name="l00063"></a>00063   }
-<a name="l00064"></a>00064   <span class="keywordflow">return</span> <span class="keyword">self</span>;
-<a name="l00065"></a>00065 }
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067 
-<a name="l00069"></a>00069 - (void)encodeWithCoder:(NSCoder *)encoder {
-<a name="l00070"></a>00070   [encoder encodeObject:self.title forKey:@&quot;title&quot;];
-<a name="l00071"></a>00071   [encoder encodeObject:self.imagePath forKey:@&quot;imagePath&quot;];
-<a name="l00072"></a>00072 }
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075 <span class="keyword">@end</span>
+<a name="l00021"></a>00021 <span class="preprocessor">#import &quot;NimbusCore.h&quot;</span>
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023 
+<a name="l00027"></a><a class="code" href="class_n_i_launcher_item_details.html">00027</a> <span class="keyword">@implementation </span><a class="code" href="class_n_i_launcher_item_details.html" title="A convenience class for managing the data used to create an NILauncherButton.">NILauncherItemDetails</a>
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029 <span class="keyword">@synthesize</span> <a class="code" href="class_n_i_launcher_item_details.html#abe184a56d23b572e49ddc3451f9e06ba" title="The title for the launcher button.">title</a>     = _title;
+<a name="l00030"></a>00030 <span class="keyword">@synthesize</span> <a class="code" href="class_n_i_launcher_item_details.html#a5d62475d047295f77e825833721ed6c9" title="The path to the launcher image.">imagePath</a> = _imagePath;
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032 
+<a name="l00034"></a>00034 - (void)dealloc {
+<a name="l00035"></a>00035   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_title);
+<a name="l00036"></a>00036   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_imagePath);
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038   [<span class="keyword">super</span> dealloc];
+<a name="l00039"></a>00039 }
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041 
+<a name="l00043"></a><a class="code" href="class_n_i_launcher_item_details.html#afe62c8eb25254b87f227547cd0c7457b">00043</a> - (id)initWithTitle:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)title imagePath:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)imagePath {
+<a name="l00044"></a>00044   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super init])) {
+<a name="l00045"></a>00045     _title = [title copy];
+<a name="l00046"></a>00046     _imagePath = [imagePath copy];
+<a name="l00047"></a>00047   }
+<a name="l00048"></a>00048   <span class="keywordflow">return</span> <span class="keyword">self</span>;
+<a name="l00049"></a>00049 }
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 
+<a name="l00053"></a><a class="code" href="class_n_i_launcher_item_details.html#a0fa897dde241f7de94d531ccc242befa">00053</a> + (id)itemDetailsWithTitle:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)title imagePath:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)imagePath {
+<a name="l00054"></a>00054   <span class="keywordflow">return</span> [[[<a class="code" href="class_n_i_launcher_item_details.html" title="A convenience class for managing the data used to create an NILauncherButton.">NILauncherItemDetails</a> alloc] initWithTitle: title
+<a name="l00055"></a>00055                                              imagePath: imagePath]
+<a name="l00056"></a>00056           autorelease];
+<a name="l00057"></a>00057 }
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 
+<a name="l00061"></a>00061 - (id)initWithCoder:(NSCoder *)decoder {
+<a name="l00062"></a>00062   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [<span class="keyword">self</span> initWithTitle:nil imagePath:nil])) {
+<a name="l00063"></a>00063     <span class="keyword">self</span>.title = [decoder decodeObjectForKey:@&quot;title&quot;];
+<a name="l00064"></a>00064     <span class="keyword">self</span>.imagePath = [decoder decodeObjectForKey:@&quot;imagePath&quot;];
+<a name="l00065"></a>00065   }
+<a name="l00066"></a>00066   <span class="keywordflow">return</span> <span class="keyword">self</span>;
+<a name="l00067"></a>00067 }
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 
+<a name="l00071"></a>00071 - (void)encodeWithCoder:(NSCoder *)encoder {
+<a name="l00072"></a>00072   [encoder encodeObject:self.title forKey:@&quot;title&quot;];
+<a name="l00073"></a>00073   [encoder encodeObject:self.imagePath forKey:@&quot;imagePath&quot;];
+<a name="l00074"></a>00074 }
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077 <span class="keyword">@end</span>
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">
