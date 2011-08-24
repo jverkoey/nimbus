@@ -22,7 +22,7 @@
 @class NIAttributedLabel;
 @protocol NIAttributedLabelDelegate <NSObject>
 @optional
--(void)attributedLabel:(NIAttributedLabel*) didSelectLink:(NSString*)url;
+-(void)attributedLabel:(NIAttributedLabel*)attributedLabel didSelectLink:(NSURL*)url;
 @end
 
 /**
@@ -38,6 +38,7 @@
   
   CTFrameRef                  _textFrame;
 	CGRect                      _drawingRect;
+  NSTextCheckingResult*       _currentLink;
 }
 
 /**
