@@ -19,6 +19,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class NIAttributedLabel;
+@protocol NIAttributedLabelDelegate <NSObject>
+@optional
+-(void)attributedLabel:(NIAttributedLabel*) didSelectLink:(NSString*)url;
+@end
+
 /**
  * A UILabel that utilizes NSAttributedString
  *
@@ -40,5 +46,7 @@
  * Use this instead of the inherited text property on UILabel
  */
 @property(nonatomic, copy) NSAttributedString* attributedText;
+
+@property(nonatomic, assign) IBOutlet id<NIAttributedLabelDelegate> delegate;
 
 @end
