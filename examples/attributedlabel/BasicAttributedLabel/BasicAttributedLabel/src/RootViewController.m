@@ -38,6 +38,10 @@
   self.title = @"NIAttributedLabel";
 
   label2.textAlignment = UITextAlignmentJustify;
+  
+  label3.autoDetectLinks = YES;
+  //label3.linkColor = [UIColor purpleColor];
+  //label3.linkHighlightColor = [UIColor orangeColor];
 }
 
 -(void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectLink:(NSURL *)url {
