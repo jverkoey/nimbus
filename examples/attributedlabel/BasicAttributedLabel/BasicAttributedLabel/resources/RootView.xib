@@ -42,13 +42,13 @@
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUILabel" id="946413962">
+					<object class="IBUILabel" id="401802851">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 20}, {280, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="220368882"/>
+						<reference key="NSNextKeyView" ref="830801863"/>
 						<string key="NSReuseIdentifierKey">_NS:311</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -64,7 +64,7 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUILabel" id="220368882">
+					<object class="IBUILabel" id="830801863">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 49}, {280, 65}}</string>
@@ -92,7 +92,7 @@
 				<string key="NSFrame">{{0, 64}, {320, 416}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="946413962"/>
+				<reference key="NSNextKeyView" ref="401802851"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -122,7 +122,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">label1</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="946413962"/>
+						<reference key="destination" ref="401802851"/>
 					</object>
 					<int key="connectionID">5</int>
 				</object>
@@ -130,7 +130,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">label2</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="220368882"/>
+						<reference key="destination" ref="830801863"/>
 					</object>
 					<int key="connectionID">7</int>
 				</object>
@@ -149,8 +149,8 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="946413962"/>
-							<reference ref="220368882"/>
+							<reference ref="401802851"/>
+							<reference ref="830801863"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -167,12 +167,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
-						<reference key="object" ref="946413962"/>
+						<reference key="object" ref="401802851"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">6</int>
-						<reference key="object" ref="220368882"/>
+						<reference key="object" ref="830801863"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
