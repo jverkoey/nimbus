@@ -51,6 +51,8 @@
   BOOL                        _autoDetectLinks;
   UIColor*                    _linkColor;
   UIColor*                    _linkHighlightColor;
+  CTUnderlineStyle            _underlineStyle;
+  CTUnderlineStyleModifiers   _underlineStyleModifier;
   
   CTFrameRef                  _textFrame;
 	CGRect                      _drawingRect;
@@ -58,7 +60,7 @@
 }
 
 /**
- * The attributted string to display
+ * The attributted string to display.
  *
  * Use this instead of the inherited text property on UILabel.
  * If text is used the text will inherit the UILabel properties and
@@ -67,22 +69,22 @@
 @property(nonatomic, copy) NSAttributedString* attributedText;
 
 /**
- * Whether links are automatically detected in the text
+ * Whether links are automatically detected in the text.
  *
  * When set to true links will be detected and displayed as touchable.
- * Detected links will also have a linkColor and linkHighlightedColor
+ * Detected links will also have a linkColor and linkHighlightedColor.
  */
 @property(nonatomic, assign) BOOL autoDetectLinks;
 
 /**
- * The color of detected links
+ * The color of detected links.
  *
- * If no color is set, the default is [UIColor blueColor]
+ * If no color is set, the default is [UIColor blueColor].
  */
 @property(nonatomic, retain) UIColor* linkColor;
 
 /**
- * The color of the links background when touched/highlighted
+ * The color of the links background when touched/highlighted.
  *
  * If no color is set, the default is [UIColor colorWithWhite:0.5 alpha:0.2]
  * If you do not want to highlight links when touched, set this to [UIColor clearColor]
@@ -92,7 +94,17 @@
 @property(nonatomic, retain) UIColor* linkHighlightColor;
 
 /**
- * Sets the text color for a given range
+ * The underline style for the whole text.
+ */
+@property(nonatomic, assign) CTUnderlineStyle underlineStyle;
+
+/**
+ * The underline style modifier for the whole text.
+ */
+@property(nonatomic, assign) CTUnderlineStyleModifiers underlineStyleModifier;
+
+/**
+ * Sets the text color for a given range.
  *
  * Note that this will not change the overall text Color value
  * and textColor will return the default text color.
@@ -107,6 +119,16 @@
  */
 -(void)setFont:(UIFont *)font range:(NSRange)range;
 
+/**
+ * Sets the underline style and modifier for a given range.
+ *
+ * Note that rthis will not change the default underline style.
+ */
+-(void)setUnderlineStyle:(CTUnderlineStyle)style modifier:(CTUnderlineStyleModifiers)modifier range:(NSRange)range;
+
+/**
+ * The attributed label notifies the delegate of any user interactions.
+ */
 @property(nonatomic, assign) IBOutlet id<NIAttributedLabelDelegate> delegate;
 
 @end

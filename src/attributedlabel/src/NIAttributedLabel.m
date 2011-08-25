@@ -20,7 +20,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIAttributedLabel
-@synthesize autoDetectLinks = _autoDetectLinks;
+@synthesize autoDetectLinks         = _autoDetectLinks,
+            underlineStyle          = _underlineStyle,
+            underlineStyleModifier  = _underlineStyleModifier;
 @synthesize delegate;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -118,6 +120,28 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void) attributedString:(NSMutableAttributedString*)attributedString
+       setUnderlineStyle:(CTUnderlineStyle)style
+                modifier:(CTUnderlineStyleModifiers)modifier
+                   range:(NSRange)range {
+  
+  [attributedString removeAttribute:(NSString*)kCTUnderlineColorAttributeName range:range]; 
+  [attributedString addAttribute:(NSString*)kCTUnderlineStyleAttributeName 
+                           value:[NSNumber numberWithInt:(style|modifier)] 
+                           range:range];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void) attributedString:(NSMutableAttributedString*)attributedString
+       setUnderlineStyle:(CTUnderlineStyle)style 
+                modifier:(CTUnderlineStyleModifiers)modifier {
+  [self attributedString:attributedString 
+       setUnderlineStyle:style 
+                modifier:modifier
+                   range:NSMakeRange(0,[attributedString length])];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) resetFromLabel {
   NSMutableAttributedString* attributedString = self.text ? 
   [[[NSMutableAttributedString alloc] initWithString:self.text] autorelease] : nil;
@@ -150,7 +174,7 @@
 -(void)setAttributedText:(NSAttributedString *)attributedText {
   NI_RELEASE_SAFELY(_attributedText);
   _attributedText = [attributedText mutableCopy];
-  self.text = _attributedText.string; // This will call setNeedsDisplay.
+  [self setNeedsLayout];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -194,6 +218,35 @@
 
 -(void)setFont:(UIFont *)font range:(NSRange)range {
   [self attributedString:_attributedText setFont:font range:range];
+  [self setNeedsLayout];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setUnderlineStyle:(CTUnderlineStyle)style {
+  _underlineStyle = style;
+  [self attributedString:_attributedText 
+       setUnderlineStyle:style 
+                modifier:self.underlineStyleModifier];
+  [self setNeedsLayout];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setUnderlineStyleModifier:(CTUnderlineStyleModifiers)modifier {
+  _underlineStyleModifier = modifier;
+  [self attributedString:_attributedText 
+       setUnderlineStyle:self.underlineStyle 
+                modifier:modifier];
+  [self setNeedsLayout];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setUnderlineStyle:(CTUnderlineStyle)style 
+                modifier:(CTUnderlineStyleModifiers)modifier 
+                   range:(NSRange)range {
+  [self attributedString:_attributedText 
+       setUnderlineStyle:style 
+                modifier:modifier
+                   range:range];
   [self setNeedsLayout];
 }
 

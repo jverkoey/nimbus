@@ -38,6 +38,9 @@
 -(void)viewDidLoad {
   
   self.title = @"Attributed Label Demo";
+  
+  label1.underlineStyle = kCTUnderlineStyleDouble;
+  //label1.underlineStyleModifier = kCTUnderlinePatternDot;
 
   label2.textAlignment = UITextAlignmentJustify;
   
@@ -49,6 +52,7 @@
   [label4 setTextColor:[UIColor orangeColor] 
                  range:[label4.text rangeOfString:@"Nimbus"]];
   [label4 setFont:[UIFont boldSystemFontOfSize:22] range:[label4.text rangeOfString:@"iOS"]];
+  [label4 setUnderlineStyle:kCTUnderlineStyleSingle modifier:kCTUnderlinePatternDash range:[label4.text rangeOfString:@"documentation"]];
 }
 
 -(void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectLink:(NSURL *)url {

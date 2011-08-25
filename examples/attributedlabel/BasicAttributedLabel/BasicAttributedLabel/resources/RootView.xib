@@ -55,7 +55,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">This label should be green</string>
+						<string key="IBUIText">This label should be underlined</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">2</int>
 							<bytes key="NSRGB">MC40MzkyMTU3MTk3IDAuNjAzOTIxNTkyMiAwLjI3MDU4ODI0OQA</bytes>
@@ -94,7 +94,7 @@
 						<string key="NSFrame">{{20, 122}, {280, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="33103978"/>
+						<reference key="NSNextKeyView" ref="962372828"/>
 						<string key="NSReuseIdentifierKey">_NS:311</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -107,7 +107,7 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUILabel" id="33103978">
+					<object class="IBUILabel" id="962372828">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 151}, {280, 190}}</string>
@@ -194,7 +194,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">label4</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="33103978"/>
+						<reference key="destination" ref="962372828"/>
 					</object>
 					<int key="connectionID">12</int>
 				</object>
@@ -216,7 +216,7 @@
 							<reference ref="978278913"/>
 							<reference ref="457351206"/>
 							<reference ref="378593587"/>
-							<reference ref="33103978"/>
+							<reference ref="962372828"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -248,7 +248,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
-						<reference key="object" ref="33103978"/>
+						<reference key="object" ref="962372828"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
