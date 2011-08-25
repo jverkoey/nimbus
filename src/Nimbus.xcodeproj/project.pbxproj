@@ -1284,6 +1284,46 @@
 			sourceTree = "<group>";
 		};
 		66FE7D5513FB550A0061B987 /* examples */ = {
+		DB3A230B13FD4B8E00614220 /* NimbusAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				DB3A232F13FD4BE500614220 /* lib */,
+				DB3A233113FD4BE500614220 /* src */,
+				DB3A233913FD4C2900614220 /* unittests */,
+			);
+			path = NimbusAttributedLabel;
+			sourceTree = "<group>";
+		};
+		DB3A232F13FD4BE500614220 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				DB3A233013FD4BE500614220 /* NimbusAttributedLabel_Prefix.pch */,
+			);
+			name = lib;
+			path = attributedlabel/lib;
+			sourceTree = SOURCE_ROOT;
+		};
+		DB3A233113FD4BE500614220 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DB3A233413FD4BE500614220 /* NimbusAttributedLabel.h */,
+				DB3A233213FD4BE500614220 /* NIAttributedLabel.h */,
+				DB3A233313FD4BE500614220 /* NIAttributedLabel.m */,
+			);
+			name = src;
+			path = attributedlabel/src;
+			sourceTree = SOURCE_ROOT;
+		};
+		DB3A233913FD4C2900614220 /* unittests */ = {
+			isa = PBXGroup;
+			children = (
+				DB3A233A13FD4C2900614220 /* NimbusAttributedLabelTests-Info.plist */,
+			);
+			name = unittests;
+			path = attributedlabel/unittests;
+			sourceTree = SOURCE_ROOT;
+		};
+		DB84BD9A13EFDE3C00DACCFE /* NimbusWebController */ = {
 			isa = PBXGroup;
 			children = (
 				66FE7D5613FB550A0061B987 /* ExampleRuntimeDebugging.m */,
@@ -3414,6 +3454,54 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/ASIHTTPRequest.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB3A232813FD4B8E00614220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/NimbusAttributedLabel.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = attributedlabel/lib/NimbusAttributedLabel_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DB3A232913FD4B8E00614220 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/NimbusAttributedLabel.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = attributedlabel/lib/NimbusAttributedLabel_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
