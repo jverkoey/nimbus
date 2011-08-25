@@ -102,14 +102,19 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) attributedString:(NSMutableAttributedString*)attributedString
-            setFont:(UIFont*)font{
+                 setFont:(UIFont*)font range:(NSRange)range{
   
-  NSRange range = NSMakeRange(0,[attributedString length]);
   CTFontRef fontRef = CTFontCreateWithName((CFStringRef)font.fontName, font.pointSize, nil);
   [attributedString removeAttribute:(NSString*)kCTFontAttributeName range:range]; 
 	[attributedString addAttribute:(NSString*)kCTFontAttributeName value:(id)fontRef range:range];
 	CFRelease(font);
   
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void) attributedString:(NSMutableAttributedString*)attributedString
+                 setFont:(UIFont*)font{
+  [self attributedString:attributedString setFont:font range:NSMakeRange(0,[attributedString length])];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -145,7 +150,7 @@
 -(void)setAttributedText:(NSAttributedString *)attributedText {
   NI_RELEASE_SAFELY(_attributedText);
   _attributedText = [attributedText mutableCopy];
-  [self setNeedsDisplay];
+  self.text = _attributedText.string; // This will call setNeedsDisplay.
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -176,10 +181,20 @@
   [super setTextColor:textColor];
 }
 
+-(void)setTextColor:(UIColor *)textColor range:(NSRange)range {
+  [self attributedString:_attributedText setTextColor:textColor range:range];
+  [self setNeedsLayout];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setFont:(UIFont *)font {
   [self attributedString:_attributedText setFont:font];
 	[super setFont:font];
+}
+
+-(void)setFont:(UIFont *)font range:(NSRange)range {
+  [self attributedString:_attributedText setFont:font range:range];
+  [self setNeedsLayout];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -257,7 +272,6 @@
                                    range:NSMakeRange(0,[[attributedString string] length])
                               usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
                               {
-                                // TODO: Need to customize link text color
                                 [self attributedString:attributedString 
                                           setTextColor:self.linkColor
                                                  range:[result range]];

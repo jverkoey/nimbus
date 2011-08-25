@@ -23,8 +23,18 @@
 #import "NimbusCore.h"
 
 @class NIAttributedLabel;
+/**
+ * The attributed label delegate used to inform of user interactions.
+ *
+ * @ingroup NimbusAttributedLabel-Protocol
+ */
 @protocol NIAttributedLabelDelegate <NSObject>
 @optional
+/**
+ * Called when the user taps and releases a detected link.
+ * 
+ * Returns the Attributed Label and the NSURL of the taped link.
+ */
 -(void)attributedLabel:(NIAttributedLabel*)attributedLabel didSelectLink:(NSURL*)url;
 @end
 
@@ -80,6 +90,22 @@
  * performance).
  */
 @property(nonatomic, retain) UIColor* linkHighlightColor;
+
+/**
+ * Sets the text color for a given range
+ *
+ * Note that this will not change the overall text Color value
+ * and textColor will return the default text color.
+ */
+-(void)setTextColor:(UIColor *)textColor range:(NSRange)range;
+
+/** 
+ * Sets the font for a given range
+ *
+ * Note that this will not change the default font value and font will
+ * return the default font.
+ */
+-(void)setFont:(UIFont *)font range:(NSRange)range;
 
 @property(nonatomic, assign) IBOutlet id<NIAttributedLabelDelegate> delegate;
 

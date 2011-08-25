@@ -18,7 +18,7 @@
  * @defgroup NimbusAttributedLabel Nimbus Attributed Label
  * @{
  *
- *
+ * @defgroup NimbusAttributedLabel-Protocol Protocol
  *
  * @} */
 

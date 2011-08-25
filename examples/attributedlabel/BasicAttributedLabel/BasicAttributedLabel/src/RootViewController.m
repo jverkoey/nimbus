@@ -21,6 +21,7 @@
 @synthesize label1;
 @synthesize label2;
 @synthesize label3;
+@synthesize label4;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
   return [super initWithNibName:@"RootView" bundle:nibBundleOrNil];
@@ -30,18 +31,24 @@
   NI_RELEASE_SAFELY(label1);
   NI_RELEASE_SAFELY(label2);
   NI_RELEASE_SAFELY(label3);
+  NI_RELEASE_SAFELY(label4);
   [super dealloc];
 }
 
 -(void)viewDidLoad {
   
-  self.title = @"NIAttributedLabel";
+  self.title = @"Attributed Label Demo";
 
   label2.textAlignment = UITextAlignmentJustify;
   
   label3.autoDetectLinks = YES;
   //label3.linkColor = [UIColor purpleColor];
   //label3.linkHighlightColor = [UIColor orangeColor];
+  
+  label4.textAlignment = UITextAlignmentJustify;
+  [label4 setTextColor:[UIColor orangeColor] 
+                 range:[label4.text rangeOfString:@"Nimbus"]];
+  [label4 setFont:[UIFont boldSystemFontOfSize:22] range:[label4.text rangeOfString:@"iOS"]];
 }
 
 -(void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectLink:(NSURL *)url {
@@ -52,5 +59,4 @@
   NI_RELEASE_SAFELY(alert);
   
 }
-
 @end
