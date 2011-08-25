@@ -206,7 +206,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(UIColor *)linkHighlightColor {
   if (!_linkHighlightColor) {
-    _linkHighlightColor = [[UIColor colorWithWhite:0.5 alpha:0.2] retain];
+    _linkHighlightColor = [[UIColor colorWithWhite:0.5f alpha:0.2f] retain];
   }
   return _linkHighlightColor;
 }
@@ -262,22 +262,22 @@
                                           setTextColor:self.linkColor
                                                  range:[result range]];
                               }];
-  return attributedString;
+  return [attributedString autorelease];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(CGRect)getLineBounds:(CTLineRef)line point:(CGPoint) point {
-  CGFloat ascent = 0;
-	CGFloat descent = 0;
-	CGFloat leading = 0;
-	CGFloat width = CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
+  CGFloat ascent = 0.0f;
+	CGFloat descent = 0.0f;
+	CGFloat leading = 0.0f;
+	CGFloat width = (CGFloat)CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
 	CGFloat height = ascent + descent;
 	
 	return CGRectMake(point.x, point.y - descent, width, height);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(NSTextCheckingResult*)linkAtIndex:(CFIndex)index {
+-(NSTextCheckingResult*)linkAtIndex:(CFIndex)i {
   
   if (!_autoDetectLinks) return nil;
 
@@ -292,7 +292,7 @@
                               usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
                               {
                                 NSRange range = [result range];
-                                if (NSLocationInRange(index, range)) {
+                                if (NSLocationInRange(i, range)) {
                                   foundResult = [[result retain] autorelease];
                                   *stop = YES;
                                 }
@@ -309,7 +309,7 @@
 	if (!lines) return nil;
 	CFIndex count = CFArrayGetCount(lines);
 	
-  NSTextCheckingResult* link = nil;
+  NSTextCheckingResult* foundLink = nil;
 	
 	CGPoint origins[count];
 	CTFrameGetLineOrigins(_textFrame, CFRangeMake(0,0), origins);
@@ -332,9 +332,9 @@
 		if (CGRectContainsPoint(rect, point)) {
 			CGPoint relativePoint = CGPointMake(point.x-CGRectGetMinX(rect),
                                           point.y-CGRectGetMinY(rect));
-			CFIndex index = CTLineGetStringIndexForPosition(line, relativePoint);
-			link = ([self linkAtIndex:index]);
-			if (link) return link;
+			CFIndex idx = CTLineGetStringIndexForPosition(line, relativePoint);
+			foundLink = ([self linkAtIndex:idx]);
+			if (link) return foundLink;
 		}
 	}
 	return nil;
@@ -388,7 +388,7 @@
 		CGContextSaveGState(ctx);
     
     NSMutableAttributedString* attributedString = _autoDetectLinks ? 
-      [self linksDetectedAttributedString] : [self.attributedText copy];
+      [self linksDetectedAttributedString] : [[self.attributedText copy] autorelease];
     
     // CoreText context coordinates are the opposite to UIKit so we flip the bounds
     CGContextConcatCTM(ctx,
@@ -428,23 +428,23 @@
           continue;
         }
         
-        CGRect rect = CGRectZero;
+        CGRect highlightRect = CGRectZero;
         CFArrayRef runs = CTLineGetGlyphRuns(line);
         CFIndex runCount = CFArrayGetCount(runs);
         for (CFIndex k = 0; k < runCount; k++) {
           CTRunRef run = CFArrayGetValueAtIndex(runs, k);
           
-          CFRange stringRange = CTRunGetStringRange(run);
-          NSRange lineRange = NSMakeRange(stringRange.location, stringRange.length);
-          NSRange intersectedRange = NSIntersectionRange(lineRange, linkRange);
-          if (intersectedRange.length == 0) {
+          CFRange stringRunRange = CTRunGetStringRange(run);
+          NSRange lineRunRange = NSMakeRange(stringRunRange.location, stringRunRange.length);
+          NSRange intersectedRunRange = NSIntersectionRange(lineRunRange, linkRange);
+          if (intersectedRunRange.length == 0) {
             continue;
           }
 
-          CGFloat ascent = 0;
-          CGFloat descent = 0;
-          CGFloat leading = 0;
-          CGFloat width = CTRunGetTypographicBounds(run, 
+          CGFloat ascent = 0.0f;
+          CGFloat descent = 0.0f;
+          CGFloat leading = 0.0f;
+          CGFloat width = (CGFloat)CTRunGetTypographicBounds(run, 
                                                     CFRangeMake(0, 0), 
                                                     &ascent, 
                                                     &descent, 
@@ -462,30 +462,32 @@
           
           linkRect = CGRectIntegral(linkRect);
           linkRect = CGRectInset(linkRect, -2, -1);
-          if (CGRectIsEmpty(rect)) {
-            rect = linkRect;
+          if (CGRectIsEmpty(highlightRect)) {
+            highlightRect = linkRect;
           } else {
-            rect = CGRectUnion(rect, linkRect);
+            highlightRect = CGRectUnion(rect, linkRect);
           }
         }
         
-        if (!CGRectIsEmpty(rect)) {
+        if (!CGRectIsEmpty(highlightRect)) {
+          
+          CGFloat pi = (CGFloat)M_PI;
           
           CGFloat radius = 5.0f;
-          CGContextMoveToPoint(ctx, rect.origin.x, rect.origin.y + radius);
-          CGContextAddLineToPoint(ctx, rect.origin.x, rect.origin.y + rect.size.height - radius);
-          CGContextAddArc(ctx, rect.origin.x + radius, rect.origin.y + rect.size.height - radius, 
-                          radius, M_PI, M_PI / 2, 1);
-          CGContextAddLineToPoint(ctx, rect.origin.x + rect.size.width - radius, 
-                                  rect.origin.y + rect.size.height);
-          CGContextAddArc(ctx, rect.origin.x + rect.size.width - radius, 
-                          rect.origin.y + rect.size.height - radius, radius, M_PI / 2, 0.0f, 1);
-          CGContextAddLineToPoint(ctx, rect.origin.x + rect.size.width, rect.origin.y + radius);
-          CGContextAddArc(ctx, rect.origin.x + rect.size.width - radius, rect.origin.y + radius, 
-                          radius, 0.0f, -M_PI / 2, 1);
-          CGContextAddLineToPoint(ctx, rect.origin.x + radius, rect.origin.y);
-          CGContextAddArc(ctx, rect.origin.x + radius, rect.origin.y + radius, radius, 
-                          -M_PI / 2, M_PI, 1);
+          CGContextMoveToPoint(ctx, highlightRect.origin.x, highlightRect.origin.y + radius);
+          CGContextAddLineToPoint(ctx, highlightRect.origin.x, highlightRect.origin.y + highlightRect.size.height - radius);
+          CGContextAddArc(ctx, highlightRect.origin.x + radius, highlightRect.origin.y + highlightRect.size.height - radius, 
+                          radius, pi, pi / 2.0f, 1.0f);
+          CGContextAddLineToPoint(ctx, highlightRect.origin.x + highlightRect.size.width - radius, 
+                                  highlightRect.origin.y + highlightRect.size.height);
+          CGContextAddArc(ctx, highlightRect.origin.x + highlightRect.size.width - radius, 
+                          highlightRect.origin.y + highlightRect.size.height - radius, radius, pi / 2, 0.0f, 1.0f);
+          CGContextAddLineToPoint(ctx, highlightRect.origin.x + highlightRect.size.width, highlightRect.origin.y + radius);
+          CGContextAddArc(ctx, highlightRect.origin.x + highlightRect.size.width - radius, highlightRect.origin.y + radius, 
+                          radius, 0.0f, -pi / 2.0f, 1.0f);
+          CGContextAddLineToPoint(ctx, highlightRect.origin.x + radius, highlightRect.origin.y);
+          CGContextAddArc(ctx, highlightRect.origin.x + radius, highlightRect.origin.y + radius, radius, 
+                          -pi / 2, pi, 1);
           CGContextFillPath(ctx);
         }
       }

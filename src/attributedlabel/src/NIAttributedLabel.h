@@ -18,6 +18,9 @@
 #define UITextAlignmentJustify ((UITextAlignment)kCTJustifiedTextAlignment)
 
 #import <UIKit/UIKit.h>
+#import <CoreText/CoreText.h>
+
+#import "NimbusCore.h"
 
 @class NIAttributedLabel;
 @protocol NIAttributedLabelDelegate <NSObject>
