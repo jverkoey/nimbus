@@ -14,17 +14,11 @@
 // limitations under the License.
 //
 
-/**
- * @defgroup NimbusAttributedLabel Nimbus Attributed Label
- * @{
- *
- *
- *
- * @} */
-
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <CoreText/CoreText.h>
 
-#import "NimbusCore.h"
-#import "NIAttributedLabel.h"
+int main(int argc, char *argv[]) {
+  NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+  int retVal = UIApplicationMain(argc, argv, nil, @"AppDelegate");
+  [pool release];
+  return retVal;
+}

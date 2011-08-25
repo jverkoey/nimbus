@@ -14,31 +14,14 @@
 // limitations under the License.
 //
 
-// In standard UI text alignment we do not have justify, however we can justify in CoreText
-#define UITextAlignmentJustify ((UITextAlignment)kCTJustifiedTextAlignment)
-
 #import <UIKit/UIKit.h>
 
-/**
- * A UILabel that utilizes NSAttributedString
- *
- *      @ingroup NimbusAttributedLabel
- *
- *
- */
-
-@interface NIAttributedLabel : UILabel {
-  NSMutableAttributedString*  _attributedText;
-  
-  CTFrameRef                  _textFrame;
-	CGRect                      _drawingRect;
+@interface AppDelegate : NSObject <UIApplicationDelegate> {
+  UIWindow* _window;
+  UIViewController* _rootController;
 }
 
-/**
- * The attributted string to display
- *
- * Use this instead of the inherited text property on UILabel
- */
-@property(nonatomic, copy) NSAttributedString* attributedText;
+@property (nonatomic, readwrite, retain) UIWindow* window;
 
 @end
+
