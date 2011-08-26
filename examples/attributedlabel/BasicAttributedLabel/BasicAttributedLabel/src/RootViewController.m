@@ -40,9 +40,10 @@
   self.title = @"Attributed Label Demo";
   
   label1.underlineStyle = kCTUnderlineStyleDouble;
-  //label1.underlineStyleModifier = kCTUnderlinePatternDot;
+  label1.underlineStyleModifier = kCTUnderlinePatternDot;
 
   label2.textAlignment = UITextAlignmentJustify;
+  label2.font = [UIFont fontWithName:@"SnellRoundhand-Bold" size:16];
   
   label3.autoDetectLinks = YES;
   //label3.linkColor = [UIColor purpleColor];
@@ -51,8 +52,12 @@
   label4.textAlignment = UITextAlignmentJustify;
   [label4 setTextColor:[UIColor orangeColor] 
                  range:[label4.text rangeOfString:@"Nimbus"]];
+  [label4 setTextColor:[UIColor redColor] 
+                 range:[label4.text rangeOfString:@"accelerates"]];
   [label4 setFont:[UIFont boldSystemFontOfSize:22] range:[label4.text rangeOfString:@"iOS"]];
   [label4 setUnderlineStyle:kCTUnderlineStyleSingle modifier:kCTUnderlinePatternDash range:[label4.text rangeOfString:@"documentation"]];
+  [label4 setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:17] range:[label4.text rangeOfString:@"Nimbus" options: NSBackwardsSearch]];
+  
 }
 
 -(void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectLink:(NSURL *)url {

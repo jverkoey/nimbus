@@ -62,96 +62,17 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(void) attributedString:(NSMutableAttributedString*)attributedString
-        setTextAlignment:(CTTextAlignment)textAlignment 
-           lineBreakMode:(CTLineBreakMode)lineBreakMode {
-  
-  NSRange range = NSMakeRange(0,[attributedString length]);
-  
-  CTParagraphStyleSetting paragraphStyles[2] = {
-		{.spec = kCTParagraphStyleSpecifierAlignment, 
-      .valueSize = sizeof(CTTextAlignment), 
-      .value = (const void*)&textAlignment},
-		{.spec = kCTParagraphStyleSpecifierLineBreakMode, 
-      .valueSize = sizeof(CTLineBreakMode), 
-      .value = (const void*)&lineBreakMode},
-	};
-	CTParagraphStyleRef style = CTParagraphStyleCreate(paragraphStyles, 2);
-  [attributedString addAttribute:(NSString*)kCTParagraphStyleAttributeName 
-                          value:(id)style 
-                          range:range];
-  CFRelease(style);
-
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
--(void) attributedString:(NSMutableAttributedString*)attributedString
-            setTextColor:(UIColor*)color range:(NSRange)range{
-
-  [attributedString removeAttribute:(NSString *)kCTForegroundColorAttributeName range:range]; 
-	[attributedString addAttribute:(NSString*)kCTForegroundColorAttributeName 
-                           value:(id)color.CGColor 
-                           range:range];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
--(void) attributedString:(NSMutableAttributedString*)attributedString
-            setTextColor:(UIColor*)color{
-  [self attributedString:attributedString 
-            setTextColor:color 
-                   range:NSMakeRange(0,[attributedString length])];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
--(void) attributedString:(NSMutableAttributedString*)attributedString
-                 setFont:(UIFont*)font range:(NSRange)range{
-  
-  CTFontRef fontRef = CTFontCreateWithName((CFStringRef)font.fontName, font.pointSize, nil);
-  [attributedString removeAttribute:(NSString*)kCTFontAttributeName range:range]; 
-	[attributedString addAttribute:(NSString*)kCTFontAttributeName value:(id)fontRef range:range];
-	CFRelease(font);
-  
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
--(void) attributedString:(NSMutableAttributedString*)attributedString
-                 setFont:(UIFont*)font{
-  [self attributedString:attributedString setFont:font range:NSMakeRange(0,[attributedString length])];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
--(void) attributedString:(NSMutableAttributedString*)attributedString
-       setUnderlineStyle:(CTUnderlineStyle)style
-                modifier:(CTUnderlineStyleModifiers)modifier
-                   range:(NSRange)range {
-  
-  [attributedString removeAttribute:(NSString*)kCTUnderlineColorAttributeName range:range]; 
-  [attributedString addAttribute:(NSString*)kCTUnderlineStyleAttributeName 
-                           value:[NSNumber numberWithInt:(style|modifier)] 
-                           range:range];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
--(void) attributedString:(NSMutableAttributedString*)attributedString
-       setUnderlineStyle:(CTUnderlineStyle)style 
-                modifier:(CTUnderlineStyleModifiers)modifier {
-  [self attributedString:attributedString 
-       setUnderlineStyle:style 
-                modifier:modifier
-                   range:NSMakeRange(0,[attributedString length])];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) resetFromLabel {
   NSMutableAttributedString* attributedString = self.text ? 
   [[[NSMutableAttributedString alloc] initWithString:self.text] autorelease] : nil;
   
-  [self attributedString:attributedString setFont:self.font];
-  [self attributedString:attributedString setTextColor:self.textColor];
+  [attributedString setFont:self.font];
+  [attributedString setTextColor:self.textColor];
   
   CTTextAlignment textAlignment = [self alignmentFromUITextAlignment:self.textAlignment];
   CTLineBreakMode lineBreak = [self lineBreakModeFromUILineBreakMode:self.lineBreakMode];
-  [self attributedString:attributedString setTextAlignment:textAlignment lineBreakMode:lineBreak]; 
+  
+  [attributedString setTextAlignment:textAlignment lineBreakMode:lineBreak]; 
   
   self.attributedText = attributedString;
 }
@@ -187,7 +108,7 @@
 -(void)setTextAlignment:(UITextAlignment)textAlignment {
   CTTextAlignment alignment = [self alignmentFromUITextAlignment:textAlignment];
   CTLineBreakMode lineBreak = [self lineBreakModeFromUILineBreakMode:self.lineBreakMode];
-  [self attributedString:_attributedText setTextAlignment:alignment lineBreakMode:lineBreak]; 
+  [_attributedText setTextAlignment:alignment lineBreakMode:lineBreak]; 
   [super setTextAlignment:textAlignment];
 }
 
@@ -195,47 +116,45 @@
 -(void)setLineBreakMode:(UILineBreakMode)lineBreakMode {
   CTTextAlignment alignment = [self alignmentFromUITextAlignment:self.textAlignment];
   CTLineBreakMode lineBreak = [self lineBreakModeFromUILineBreakMode:lineBreakMode];
-  [self attributedString:_attributedText setTextAlignment:alignment lineBreakMode:lineBreak]; 
+  [_attributedText setTextAlignment:alignment lineBreakMode:lineBreak]; 
   [super setLineBreakMode:lineBreakMode];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setTextColor:(UIColor *)textColor{
-  [self attributedString:_attributedText setTextColor:textColor];
+  [_attributedText setTextColor:textColor];
   [super setTextColor:textColor];
 }
 
 -(void)setTextColor:(UIColor *)textColor range:(NSRange)range {
-  [self attributedString:_attributedText setTextColor:textColor range:range];
+  [_attributedText setTextColor:textColor range:range];
   [self setNeedsLayout];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setFont:(UIFont *)font {
-  [self attributedString:_attributedText setFont:font];
+  [_attributedText setFont:font];
 	[super setFont:font];
 }
 
 -(void)setFont:(UIFont *)font range:(NSRange)range {
-  [self attributedString:_attributedText setFont:font range:range];
+  [_attributedText setFont:font range:range];
   [self setNeedsLayout];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setUnderlineStyle:(CTUnderlineStyle)style {
   _underlineStyle = style;
-  [self attributedString:_attributedText 
-       setUnderlineStyle:style 
-                modifier:self.underlineStyleModifier];
+  [_attributedText setUnderlineStyle:style 
+                            modifier:self.underlineStyleModifier];
   [self setNeedsLayout];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setUnderlineStyleModifier:(CTUnderlineStyleModifiers)modifier {
   _underlineStyleModifier = modifier;
-  [self attributedString:_attributedText 
-       setUnderlineStyle:self.underlineStyle 
-                modifier:modifier];
+  [_attributedText setUnderlineStyle:self.underlineStyle 
+                            modifier:modifier];
   [self setNeedsLayout];
 }
 
@@ -243,10 +162,9 @@
 -(void)setUnderlineStyle:(CTUnderlineStyle)style 
                 modifier:(CTUnderlineStyleModifiers)modifier 
                    range:(NSRange)range {
-  [self attributedString:_attributedText 
-       setUnderlineStyle:style 
-                modifier:modifier
-                   range:range];
+  [_attributedText setUnderlineStyle:style 
+                            modifier:modifier
+                               range:range];
   [self setNeedsLayout];
 }
 
@@ -325,9 +243,8 @@
                                    range:NSMakeRange(0,[[attributedString string] length])
                               usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
                               {
-                                [self attributedString:attributedString 
-                                          setTextColor:self.linkColor
-                                                 range:[result range]];
+                                [attributedString setTextColor:self.linkColor
+                                                         range:[result range]];
                               }];
   return [attributedString autorelease];
 }

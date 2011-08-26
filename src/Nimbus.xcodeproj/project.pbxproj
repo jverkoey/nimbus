@@ -218,6 +218,8 @@
 		DB3A233713FD4BE500614220 /* NIAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3A233313FD4BE500614220 /* NIAttributedLabel.m */; };
 		DB3A233813FD4BE500614220 /* NimbusAttributedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3A233413FD4BE500614220 /* NimbusAttributedLabel.h */; };
 		DB3A233B13FD4C2900614220 /* NimbusAttributedLabelTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB3A233A13FD4C2900614220 /* NimbusAttributedLabelTests-Info.plist */; };
+		DB6AADF61407A5FF0003CB63 /* NSAttributedString+NimbusAttributedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = DB6AADF41407A5FF0003CB63 /* NSAttributedString+NimbusAttributedLabel.h */; };
+		DB6AADF71407A5FF0003CB63 /* NSAttributedString+NimbusAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6AADF51407A5FF0003CB63 /* NSAttributedString+NimbusAttributedLabel.m */; };
 		DB84BD7513EFDDC900DACCFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		DB84BD8213EFDDCA00DACCFE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		DB84BD8313EFDDCA00DACCFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
@@ -573,6 +575,8 @@
 		DB3A233313FD4BE500614220 /* NIAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIAttributedLabel.m; sourceTree = "<group>"; };
 		DB3A233413FD4BE500614220 /* NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusAttributedLabel.h; sourceTree = "<group>"; };
 		DB3A233A13FD4C2900614220 /* NimbusAttributedLabelTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NimbusAttributedLabelTests-Info.plist"; sourceTree = "<group>"; };
+		DB6AADF41407A5FF0003CB63 /* NSAttributedString+NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+NimbusAttributedLabel.h"; sourceTree = "<group>"; };
+		DB6AADF51407A5FF0003CB63 /* NSAttributedString+NimbusAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+NimbusAttributedLabel.m"; sourceTree = "<group>"; };
 		DB84BD7413EFDDC900DACCFE /* libNimbusWebController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusWebController.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB84BD8113EFDDCA00DACCFE /* NimbusWebControllerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusWebControllerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB84BDA813EFDF5900DACCFE /* NimbusWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusWebController.h; sourceTree = "<group>"; };
@@ -1337,6 +1341,8 @@
 				DB3A233413FD4BE500614220 /* NimbusAttributedLabel.h */,
 				DB3A233213FD4BE500614220 /* NIAttributedLabel.h */,
 				DB3A233313FD4BE500614220 /* NIAttributedLabel.m */,
+				DB6AADF41407A5FF0003CB63 /* NSAttributedString+NimbusAttributedLabel.h */,
+				DB6AADF51407A5FF0003CB63 /* NSAttributedString+NimbusAttributedLabel.m */,
 			);
 			name = src;
 			path = attributedlabel/src;
@@ -1524,6 +1530,7 @@
 			files = (
 				DB3A233613FD4BE500614220 /* NIAttributedLabel.h in Headers */,
 				DB3A233813FD4BE500614220 /* NimbusAttributedLabel.h in Headers */,
+				DB6AADF61407A5FF0003CB63 /* NSAttributedString+NimbusAttributedLabel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2382,6 +2389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB3A233713FD4BE500614220 /* NIAttributedLabel.m in Sources */,
+				DB6AADF71407A5FF0003CB63 /* NSAttributedString+NimbusAttributedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

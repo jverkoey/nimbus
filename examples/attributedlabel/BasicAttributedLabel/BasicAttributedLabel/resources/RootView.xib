@@ -77,7 +77,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">This is a lot of text that should be justified which is only availible in CoreText</string>
+						<string key="IBUIText">This is a lot of text that should have a fancy font and be justified which is only availible in CoreText</string>
 						<object class="NSColor" key="IBUITextColor" id="333150768">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>

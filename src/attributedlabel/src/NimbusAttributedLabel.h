@@ -28,3 +28,4 @@
 
 #import "NimbusCore.h"
 #import "NIAttributedLabel.h"
+#import "NSAttributedString+NimbusAttributedLabel.h"

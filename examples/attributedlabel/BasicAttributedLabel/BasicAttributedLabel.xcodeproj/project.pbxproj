@@ -34,6 +34,7 @@
 		DB6A04DF1403F0BC0020F7FD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6A04DE1403F0BC0020F7FD /* CoreText.framework */; };
 		DB6A04E21403F1890020F7FD /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6A04E11403F1890020F7FD /* RootViewController.m */; };
 		DB6A04E61403F2780020F7FD /* RootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB6A04E51403F2780020F7FD /* RootView.xib */; };
+		DB6AADFA1407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6AADF91407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,8 @@
 		DB6A04E01403F1890020F7FD /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = src/RootViewController.h; sourceTree = "<group>"; };
 		DB6A04E11403F1890020F7FD /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = src/RootViewController.m; sourceTree = "<group>"; };
 		DB6A04E51403F2780020F7FD /* RootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RootView.xib; path = resources/RootView.xib; sourceTree = "<group>"; };
+		DB6AADF81407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+NimbusAttributedLabel.h"; path = "../../../src/attributedlabel/src/NSAttributedString+NimbusAttributedLabel.h"; sourceTree = "<group>"; };
+		DB6AADF91407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+NimbusAttributedLabel.m"; path = "../../../src/attributedlabel/src/NSAttributedString+NimbusAttributedLabel.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +227,8 @@
 		DB6A04A21403F0740020F7FD /* Attributed Label */ = {
 			isa = PBXGroup;
 			children = (
+				DB6AADF81407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.h */,
+				DB6AADF91407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.m */,
 				DB6A04DA1403F09E0020F7FD /* NIAttributedLabel.h */,
 				DB6A04DB1403F09E0020F7FD /* NIAttributedLabel.m */,
 				DB6A04DC1403F09E0020F7FD /* NimbusAttributedLabel.h */,
@@ -331,6 +336,7 @@
 				DB6A04D91403F08D0020F7FD /* NSString+NimbusCore.m in Sources */,
 				DB6A04DD1403F09E0020F7FD /* NIAttributedLabel.m in Sources */,
 				DB6A04E21403F1890020F7FD /* RootViewController.m in Sources */,
+				DB6AADFA1407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +424,7 @@
 				DB6A049B1403F02E0020F7FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

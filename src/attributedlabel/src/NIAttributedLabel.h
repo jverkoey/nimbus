@@ -21,6 +21,7 @@
 #import <CoreText/CoreText.h>
 
 #import "NimbusCore.h"
+#import "NSAttributedString+NimbusAttributedLabel.h"
 
 @class NIAttributedLabel;
 /**
@@ -95,11 +96,24 @@
 
 /**
  * The underline style for the whole text.
+ *
+ * Value:
+ * - kCTUnderlineStyleNone
+ * - kCTUnderlineStyleSingle
+ * - kCTUnderlineStyleThick
+ * - kCTUnderlineStyleDouble
  */
 @property(nonatomic, assign) CTUnderlineStyle underlineStyle;
 
 /**
  * The underline style modifier for the whole text.
+ *
+ * Value:
+ * - kCTUnderlinePatternSolid
+ * - kCTUnderlinePatternDot
+ * - kCTUnderlinePatternDash
+ * - kCTUnderlinePatternDashDot
+ * - kCTUnderlinePatternDashDotDot	
  */
 @property(nonatomic, assign) CTUnderlineStyleModifiers underlineStyleModifier;
 
@@ -122,7 +136,20 @@
 /**
  * Sets the underline style and modifier for a given range.
  *
- * Note that rthis will not change the default underline style.
+ * Note that this will not change the default underline style.
+ *
+ * Style Values:
+ * - kCTUnderlineStyleNone
+ * - kCTUnderlineStyleSingle
+ * - kCTUnderlineStyleThick
+ * - kCTUnderlineStyleDouble
+ *
+ * Modifier Values:
+ * - kCTUnderlinePatternSolid
+ * - kCTUnderlinePatternDot
+ * - kCTUnderlinePatternDash
+ * - kCTUnderlinePatternDashDot
+ * - kCTUnderlinePatternDashDotDot
  */
 -(void)setUnderlineStyle:(CTUnderlineStyle)style modifier:(CTUnderlineStyleModifiers)modifier range:(NSRange)range;
 
