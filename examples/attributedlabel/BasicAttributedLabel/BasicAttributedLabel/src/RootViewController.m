@@ -18,6 +18,7 @@
 
 
 @implementation RootViewController
+@synthesize nimbusTitle;
 @synthesize label1;
 @synthesize label2;
 @synthesize label3;
@@ -32,12 +33,16 @@
   NI_RELEASE_SAFELY(label2);
   NI_RELEASE_SAFELY(label3);
   NI_RELEASE_SAFELY(label4);
+  NI_RELEASE_SAFELY(nimbusTitle);
   [super dealloc];
 }
 
 -(void)viewDidLoad {
   
   self.title = @"Attributed Label Demo";
+  
+  nimbusTitle.strokeWidth = -3.0;
+  nimbusTitle.strokeColor = [UIColor blackColor];
   
   label1.underlineStyle = kCTUnderlineStyleDouble;
   label1.underlineStyleModifier = kCTUnderlinePatternDot;

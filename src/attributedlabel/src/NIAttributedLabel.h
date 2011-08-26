@@ -34,7 +34,7 @@
 /**
  * Called when the user taps and releases a detected link.
  * 
- * Returns the Attributed Label and the NSURL of the taped link.
+ * .
  */
 -(void)attributedLabel:(NIAttributedLabel*)attributedLabel didSelectLink:(NSURL*)url;
 @end
@@ -43,7 +43,6 @@
  * A UILabel that utilizes NSAttributedString
  *
  *      @ingroup NimbusAttributedLabel
- *
  *
  */
 
@@ -54,6 +53,8 @@
   UIColor*                    _linkHighlightColor;
   CTUnderlineStyle            _underlineStyle;
   CTUnderlineStyleModifiers   _underlineStyleModifier;
+  CGFloat                     _strokeWidth;
+  UIColor*                    _strokeColor;
   
   CTFrameRef                  _textFrame;
 	CGRect                      _drawingRect;
@@ -117,6 +118,18 @@
  */
 @property(nonatomic, assign) CTUnderlineStyleModifiers underlineStyleModifier;
 
+
+/**
+ * The stroke width for the whole text
+ *
+ * Positive numbers will render only the stroke, where as negivive numbers are for stroke
+ * and fill.
+ * A width of 3.0 is a good starting point.
+ */
+@property(nonatomic, assign) CGFloat strokeWidth;
+
+@property(nonatomic, retain) UIColor* strokeColor;
+
 /**
  * Sets the text color for a given range.
  *
@@ -152,6 +165,15 @@
  * - kCTUnderlinePatternDashDotDot
  */
 -(void)setUnderlineStyle:(CTUnderlineStyle)style modifier:(CTUnderlineStyleModifiers)modifier range:(NSRange)range;
+
+/**
+ * The stroke width for the given range
+ *
+ * A positive number will render only the stroke, whereas negivive a number are for stroke
+ * and fill.
+ * A width of 3.0 is a good starting point.
+ */
+-(void)setStrokeWidth:(CGFloat)width range:(NSRange)range;
 
 /**
  * The attributed label notifies the delegate of any user interactions.

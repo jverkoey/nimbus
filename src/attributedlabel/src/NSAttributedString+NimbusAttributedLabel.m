@@ -98,4 +98,30 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
                     range:NSMakeRange(0,[self length])];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setStrokeWidth:(CGFloat)width range:(NSRange)range {
+  [self removeAttribute:(NSString*)kCTStrokeWidthAttributeName range:range]; 
+  [self addAttribute:(NSString*)kCTStrokeWidthAttributeName 
+               value:[NSNumber numberWithFloat:width] 
+               range:range];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setStrokeWidth:(CGFloat)width {
+  [self setStrokeWidth:width range:NSMakeRange(0,[self length])];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setStrokeColor:(UIColor *)color range:(NSRange)range {
+  [self removeAttribute:(NSString*)kCTStrokeColorAttributeName range:range];
+  [self addAttribute:(NSString*)kCTStrokeColorAttributeName 
+               value:(id)color.CGColor 
+               range:range];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setStrokeColor:(UIColor *)color {
+  [self setStrokeColor:color range:NSMakeRange(0,[self length])];
+}
+
 @end

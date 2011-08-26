@@ -22,7 +22,9 @@
 @implementation NIAttributedLabel
 @synthesize autoDetectLinks         = _autoDetectLinks,
             underlineStyle          = _underlineStyle,
-            underlineStyleModifier  = _underlineStyleModifier;
+            underlineStyleModifier  = _underlineStyleModifier,
+            strokeWidth             = _strokeWidth,
+            strokeColor             = _strokeColor;
 @synthesize delegate;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,6 +34,7 @@
   NI_RELEASE_SAFELY(_linkColor);
   NI_RELEASE_SAFELY(_linkHighlightColor);
   NI_RELEASE_SAFELY(_currentLink);
+  NI_RELEASE_SAFELY(_strokeColor);
   
   [super dealloc];
 }
@@ -95,7 +98,7 @@
 -(void)setAttributedText:(NSAttributedString *)attributedText {
   NI_RELEASE_SAFELY(_attributedText);
   _attributedText = [attributedText mutableCopy];
-  [self setNeedsLayout];
+  [self setNeedsDisplay];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -128,7 +131,7 @@
 
 -(void)setTextColor:(UIColor *)textColor range:(NSRange)range {
   [_attributedText setTextColor:textColor range:range];
-  [self setNeedsLayout];
+  [self setNeedsDisplay];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -139,7 +142,7 @@
 
 -(void)setFont:(UIFont *)font range:(NSRange)range {
   [_attributedText setFont:font range:range];
-  [self setNeedsLayout];
+  [self setNeedsDisplay];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -147,7 +150,7 @@
   _underlineStyle = style;
   [_attributedText setUnderlineStyle:style 
                             modifier:self.underlineStyleModifier];
-  [self setNeedsLayout];
+  [self setNeedsDisplay];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,7 +158,7 @@
   _underlineStyleModifier = modifier;
   [_attributedText setUnderlineStyle:self.underlineStyle 
                             modifier:modifier];
-  [self setNeedsLayout];
+  [self setNeedsDisplay];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -165,7 +168,27 @@
   [_attributedText setUnderlineStyle:style 
                             modifier:modifier
                                range:range];
-  [self setNeedsLayout];
+  [self setNeedsDisplay];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setStrokeWidth:(CGFloat)strokeWidth {
+  _strokeWidth = strokeWidth;
+  [_attributedText setStrokeWidth:strokeWidth];
+  [self setNeedsDisplay];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setStrokeWidth:(CGFloat)width range:(NSRange)range {
+  [_attributedText setStrokeWidth:width range:range];
+  [self setNeedsDisplay];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setStrokeColor:(UIColor *)strokeColor {
+  _strokeColor = [strokeColor retain];
+  [_attributedText setStrokeColor:_strokeColor];
+  [self setNeedsDisplay];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

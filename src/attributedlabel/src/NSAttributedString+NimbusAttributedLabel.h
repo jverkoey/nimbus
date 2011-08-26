@@ -133,4 +133,24 @@
 -(void) setUnderlineStyle:(CTUnderlineStyle)style
                  modifier:(CTUnderlineStyleModifiers)modifier;
 
+/**
+ * Sets the stroke width for a given range
+ */
+-(void) setStrokeWidth:(CGFloat)width range:(NSRange)range;
+
+/**
+ * Sets the stroke width for the whole string
+ */
+-(void) setStrokeWidth:(CGFloat)width;
+
+/**
+ * Sets the stroke color for a given range
+ */
+-(void) setStrokeColor:(UIColor*)color range:(NSRange)range;
+
+/**
+ * Sets the stroke color for the whole string
+ */
+-(void) setStrokeColor:(UIColor*)color;
+
 @end

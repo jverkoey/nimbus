@@ -18,6 +18,20 @@
  * @defgroup NimbusAttributedLabel Nimbus Attributed Label
  * @{
  *
+ * The Nimbus Attributed Label is a regular UILabel that utilizes the great power of
+ * NSAttributtedString. In essence it transforms a simple label into a fully formattable
+ * label using the CoreText framework.
+ *
+ * <h2>Key Features</h2>
+ * 
+ * Some of the features that are possible with NIAttributedLabel that you can't achieve with
+ * a regular UILabel are:
+ *
+ * - Underlined text
+ * - Justified paragraph style
+ * - Link detection
+ * - Text stroke
+ *
  * @defgroup NimbusAttributedLabel-Protocol Protocol
  *
  * @} */
@@ -28,4 +42,3 @@
 
 #import "NimbusCore.h"
 #import "NIAttributedLabel.h"
-#import "NSAttributedString+NimbusAttributedLabel.h"
