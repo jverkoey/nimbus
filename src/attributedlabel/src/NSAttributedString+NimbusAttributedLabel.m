@@ -124,4 +124,17 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
   [self setStrokeColor:color range:NSMakeRange(0,[self length])];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setKern:(CGFloat)kern range:(NSRange)range {
+  [self removeAttribute:(NSString*)kCTKernAttributeName range:range]; 
+  [self addAttribute:(NSString*)kCTKernAttributeName 
+               value:[NSNumber numberWithFloat:kern] 
+               range:range];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setKern:(CGFloat)kern {
+  [self setKern:kern range:NSMakeRange(0,[self length])];
+}
+
 @end

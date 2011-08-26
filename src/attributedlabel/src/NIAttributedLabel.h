@@ -55,10 +55,13 @@
   CTUnderlineStyleModifiers   _underlineStyleModifier;
   CGFloat                     _strokeWidth;
   UIColor*                    _strokeColor;
+  CGFloat                     _textKern;
   
   CTFrameRef                  _textFrame;
 	CGRect                      _drawingRect;
   NSTextCheckingResult*       _currentLink;
+  
+  NSMutableArray*             _customLinks;
 }
 
 /**
@@ -128,7 +131,21 @@
  */
 @property(nonatomic, assign) CGFloat strokeWidth;
 
+/**
+ * The stroke color for the whole text
+ */
 @property(nonatomic, retain) UIColor* strokeColor;
+
+/**
+ * The text kern for the whole text
+ *
+ * The text kern indicates how many points the following character should be shifted from
+ * its default offset.
+ *
+ * A positive kern indicates a shift farther away from and a negative kern indicates a
+ * shift closer
+ */
+@property(nonatomic, assign) CGFloat textKern;
 
 /**
  * Sets the text color for a given range.
@@ -182,6 +199,25 @@
  * range for both
  */
 -(void)setStrokeColor:(UIColor*)color range:(NSRange)range;
+
+/**
+ * The text kern for a given range
+ *
+ * The text kern indicates how many points the following character should be shifted from
+ * its default offset.
+ *
+ * A positive kern indicates a shift farther away from and a negative kern indicates a
+ * shift closer
+ */
+-(void)setTextKern:(CGFloat)kern range:(NSRange)range;
+
+/**
+ * Adds a custom tappable link.
+ *
+ * Link will take on properties defined in linkColor and linkHighlightColor. Also, add a link
+ * will set en
+ */
+-(void)addLink:(NSURL*)urlLink range:(NSRange)range;
 
 /**
  * The attributed label notifies the delegate of any user interactions.

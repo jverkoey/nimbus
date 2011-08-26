@@ -24,7 +24,8 @@
             underlineStyle          = _underlineStyle,
             underlineStyleModifier  = _underlineStyleModifier,
             strokeWidth             = _strokeWidth,
-            strokeColor             = _strokeColor;
+            strokeColor             = _strokeColor,
+            textKern                = _textKern;
 @synthesize delegate;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +36,7 @@
   NI_RELEASE_SAFELY(_linkHighlightColor);
   NI_RELEASE_SAFELY(_currentLink);
   NI_RELEASE_SAFELY(_strokeColor);
+  NI_RELEASE_SAFELY(_customLinks);
   
   [super dealloc];
 }
@@ -198,9 +200,27 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setTextKern:(CGFloat)textKern {
+  _textKern = textKern;
+  [_attributedText setKern:_textKern];
+  [self setNeedsDisplay];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setTextKern:(CGFloat)kern range:(NSRange)range {
+  [_attributedText setKern:kern range:range];
+  [self setNeedsDisplay];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setAutoDetectLinks:(BOOL)autoDetectLinks {
   _autoDetectLinks = autoDetectLinks;
-  self.userInteractionEnabled = autoDetectLinks;
+  
+  // only toggle interation if we don't have custom links
+  if ([_customLinks count] == 0) {
+    self.userInteractionEnabled = autoDetectLinks;
+  }
+  
   [self setNeedsDisplay];
 }
 
@@ -229,6 +249,20 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setLinkHighlightColor:(UIColor *)linkHighlightColor{
   _linkHighlightColor = [linkHighlightColor retain];
+  [self setNeedsDisplay];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)addLink:(NSURL*)urlLink range:(NSRange)range {
+  if (!_customLinks) {
+    _customLinks = [[[NSMutableArray alloc] init] retain];
+  }
+  
+  [_customLinks addObject:[NSTextCheckingResult 
+                           linkCheckingResultWithRange:range URL:urlLink]];
+  
+  self.userInteractionEnabled = YES;
+  
   [self setNeedsDisplay];
 }
 
@@ -264,17 +298,26 @@
   NSMutableAttributedString* attributedString = [self.attributedText mutableCopy];
 	if (!attributedString) return nil;
   
-  NSError* error = nil;
-  NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink
-                                                                 error:&error];
-  [linkDetector enumerateMatchesInString:[attributedString string] 
-                                 options:0 
-                                   range:NSMakeRange(0,[[attributedString string] length])
-                              usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
-                              {
-                                [attributedString setTextColor:self.linkColor
-                                                         range:[result range]];
-                              }];
+  if (_autoDetectLinks) {
+    NSError* error = nil;
+    NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink
+                                                                   error:&error];
+    [linkDetector enumerateMatchesInString:[attributedString string] 
+                                   options:0 
+                                     range:NSMakeRange(0,[[attributedString string] length])
+                                usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+                                {
+                                  [attributedString setTextColor:self.linkColor
+                                                           range:[result range]];
+                                }];
+  }
+  
+  
+  for (NSTextCheckingResult* customLink in _customLinks) {
+    [attributedString setTextColor:self.linkColor
+                             range:customLink.range];
+  }
+  
   return [attributedString autorelease];
 }
 
@@ -291,25 +334,35 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(NSTextCheckingResult*)linkAtIndex:(CFIndex)i {
-  
-  if (!_autoDetectLinks) return nil;
 
   __block NSTextCheckingResult* foundResult = nil;
   
-  NSError* error = nil;
-  NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink 
-                                                                 error:&error];
-  [linkDetector enumerateMatchesInString:[_attributedText string] 
-                                 options:0 
-                                   range:NSMakeRange(0,[[_attributedText string] length])
-                              usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
-                              {
-                                NSRange range = [result range];
-                                if (NSLocationInRange(i, range)) {
-                                  foundResult = [[result retain] autorelease];
-                                  *stop = YES;
-                                }
-                              }];
+  if (_autoDetectLinks) {
+    
+    NSError* error = nil;
+    NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink 
+                                                                   error:&error];
+    [linkDetector enumerateMatchesInString:[_attributedText string] 
+                                   options:0 
+                                     range:NSMakeRange(0,[[_attributedText string] length])
+                                usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+                                {
+                                  NSRange range = [result range];
+                                  if (NSLocationInRange(i, range)) {
+                                    foundResult = [[result retain] autorelease];
+                                    *stop = YES;
+                                  }
+    }];
+      
+    if (foundResult) return foundResult;
+  }
+  
+  for (NSTextCheckingResult* customLink in _customLinks) {
+    if (NSLocationInRange(i, customLink.range)) {
+      return [[customLink retain] autorelease];
+    }
+  }
+  
 	return foundResult;
 }
 
@@ -400,7 +453,7 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 		CGContextSaveGState(ctx);
     
-    NSMutableAttributedString* attributedString = _autoDetectLinks ? 
+    NSMutableAttributedString* attributedString = _autoDetectLinks || [_customLinks count] > 0 ? 
       [self linksDetectedAttributedString] : [[self.attributedText copy] autorelease];
     
     // CoreText context coordinates are the opposite to UIKit so we flip the bounds

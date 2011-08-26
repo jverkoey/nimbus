@@ -31,6 +31,7 @@
  * - Justified paragraph style
  * - Link detection
  * - Text stroke
+ * - Text kerning
  *
  * @defgroup NimbusAttributedLabel-Protocol Protocol
  *

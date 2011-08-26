@@ -153,4 +153,14 @@
  */
 -(void) setStrokeColor:(UIColor*)color;
 
+/**
+ * Sets the text kern for a given range
+ */
+-(void) setKern:(CGFloat)kern range:(NSRange)range;
+
+/**
+ * Sets the text kern for the whole string
+ */
+-(void) setKern:(CGFloat)kern;
+
 @end

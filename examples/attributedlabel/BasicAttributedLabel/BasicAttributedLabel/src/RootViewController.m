@@ -43,6 +43,7 @@
   
   nimbusTitle.strokeWidth = -3.0;
   nimbusTitle.strokeColor = [UIColor blackColor];
+  nimbusTitle.textKern = 15.0;
   
   label1.underlineStyle = kCTUnderlineStyleDouble;
   label1.underlineStyleModifier = kCTUnderlinePatternDot;
@@ -62,6 +63,7 @@
   [label4 setFont:[UIFont boldSystemFontOfSize:22] range:[label4.text rangeOfString:@"iOS"]];
   [label4 setUnderlineStyle:kCTUnderlineStyleSingle modifier:kCTUnderlinePatternDash range:[label4.text rangeOfString:@"documentation"]];
   [label4 setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:17] range:[label4.text rangeOfString:@"Nimbus" options: NSBackwardsSearch]];
+  [label4 addLink:[NSURL URLWithString:@"nimbus://custom/url"] range:[label4.text rangeOfString:@"easy"]];
   
 }
 
