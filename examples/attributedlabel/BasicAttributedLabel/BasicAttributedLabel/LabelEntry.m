@@ -14,49 +14,65 @@
 // limitations under the License.
 //
 
-#import "AppDelegate.h"
+#import "LabelEntry.h"
 
-// View Controllers
-#import "RootViewController.h"
+@interface LabelEntryCell : UITableViewCell <NICell>
+@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation AppDelegate
+@implementation LabelEntry
 
-@synthesize window = _window;
+@synthesize title = _title;
+@synthesize controllerClass = _controllerClass;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  NI_RELEASE_SAFELY(_window);
-  NI_RELEASE_SAFELY(_rootController);
+  [_title release]; _title = nil;
+  
   [super dealloc];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Application lifecycle
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)              application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-  
-  RootViewController* mainController =
-  [[[RootViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-  
-  _rootController = [[UINavigationController alloc] initWithRootViewController:mainController];
-  
-  [self.window addSubview:_rootController.view];
-  
-  [self.window makeKeyAndVisible];
-
-  return YES;
++ (id)entryWithTitle:(NSString *)title controllerClass:(Class)controllerClass {
+  LabelEntry* entry = [[[self alloc] init] autorelease];
+  entry.title = title;
+  entry.controllerClass = controllerClass;
+  return entry;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)cellClass {
+  return [LabelEntryCell class];
+}
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation LabelEntryCell
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+  if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldUpdateCellWithObject:(id)object {
+  LabelEntry* entry = object;
+  self.textLabel.text = entry.title;
+  return YES;
+}
 
 @end

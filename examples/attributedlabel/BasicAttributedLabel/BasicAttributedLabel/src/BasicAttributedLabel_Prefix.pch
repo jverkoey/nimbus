@@ -19,5 +19,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
 #import "NimbusCore.h"
+#import "NimbusModels.h"
 #import "NimbusAttributedLabel.h"
 #endif

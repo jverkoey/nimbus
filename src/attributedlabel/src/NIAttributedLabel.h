@@ -102,7 +102,7 @@
  * The underline style for the whole text.
  *
  * Value:
- * - kCTUnderlineStyleNone
+ * - kCTUnderlineStyleNone (default)
  * - kCTUnderlineStyleSingle
  * - kCTUnderlineStyleThick
  * - kCTUnderlineStyleDouble
@@ -113,7 +113,7 @@
  * The underline style modifier for the whole text.
  *
  * Value:
- * - kCTUnderlinePatternSolid
+ * - kCTUnderlinePatternSolid (default)
  * - kCTUnderlinePatternDot
  * - kCTUnderlinePatternDash
  * - kCTUnderlinePatternDashDot
@@ -169,13 +169,13 @@
  * Note that this will not change the default underline style.
  *
  * Style Values:
- * - kCTUnderlineStyleNone
+ * - kCTUnderlineStyleNone (default)
  * - kCTUnderlineStyleSingle
  * - kCTUnderlineStyleThick
  * - kCTUnderlineStyleDouble
  *
  * Modifier Values:
- * - kCTUnderlinePatternSolid
+ * - kCTUnderlinePatternSolid (default)
  * - kCTUnderlinePatternDot
  * - kCTUnderlinePatternDash
  * - kCTUnderlinePatternDashDot

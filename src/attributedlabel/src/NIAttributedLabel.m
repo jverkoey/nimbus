@@ -31,6 +31,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)dealloc {
   
+  if (_textFrame) {
+		CFRelease(_textFrame);
+		_textFrame = nil;
+	}
+  
   NI_RELEASE_SAFELY(_attributedText);
   NI_RELEASE_SAFELY(_linkColor);
   NI_RELEASE_SAFELY(_linkHighlightColor);
@@ -98,7 +103,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setAttributedText:(NSAttributedString *)attributedText {
-  NI_RELEASE_SAFELY(_attributedText);
+  [_attributedText release];
   _attributedText = [attributedText mutableCopy];
   [self setNeedsDisplay];
 }

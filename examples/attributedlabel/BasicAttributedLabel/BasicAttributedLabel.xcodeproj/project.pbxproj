@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB18676E1407F02C002DEA82 /* NICellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DB1867681407F02C002DEA82 /* NICellFactory.m */; };
+		DB18676F1407F02C002DEA82 /* NIFormCellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = DB18676A1407F02C002DEA82 /* NIFormCellCatalog.m */; };
+		DB1867701407F02C002DEA82 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB18676D1407F02C002DEA82 /* NITableViewModel.m */; };
+		DB1867741407F0F7002DEA82 /* LabelEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = DB1867731407F0F7002DEA82 /* LabelEntry.m */; };
+		DB1867771407FB0A002DEA82 /* UnderlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB1867761407FB0A002DEA82 /* UnderlineViewController.m */; };
+		DB1867791407FB9F002DEA82 /* UnderlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB1867781407FB9F002DEA82 /* UnderlineView.xib */; };
+		DB530FDD1407EE7900BCB9E7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB530FDC1407EE7900BCB9E7 /* RootViewController.m */; };
 		DB6A04871403F02D0020F7FD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6A04861403F02D0020F7FD /* UIKit.framework */; };
 		DB6A04891403F02D0020F7FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6A04881403F02D0020F7FD /* Foundation.framework */; };
 		DB6A048B1403F02D0020F7FD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6A048A1403F02D0020F7FD /* CoreGraphics.framework */; };
@@ -32,12 +39,26 @@
 		DB6A04D91403F08D0020F7FD /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6A04C81403F08D0020F7FD /* NSString+NimbusCore.m */; };
 		DB6A04DD1403F09E0020F7FD /* NIAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6A04DB1403F09E0020F7FD /* NIAttributedLabel.m */; };
 		DB6A04DF1403F0BC0020F7FD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6A04DE1403F0BC0020F7FD /* CoreText.framework */; };
-		DB6A04E21403F1890020F7FD /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6A04E11403F1890020F7FD /* RootViewController.m */; };
-		DB6A04E61403F2780020F7FD /* RootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB6A04E51403F2780020F7FD /* RootView.xib */; };
+		DB6A04E21403F1890020F7FD /* MashupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6A04E11403F1890020F7FD /* MashupViewController.m */; };
+		DB6A04E61403F2780020F7FD /* MashupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB6A04E51403F2780020F7FD /* MashupView.xib */; };
 		DB6AADFA1407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6AADF91407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB1867671407F02C002DEA82 /* NICellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICellFactory.h; path = ../../../src/models/src/NICellFactory.h; sourceTree = "<group>"; };
+		DB1867681407F02C002DEA82 /* NICellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICellFactory.m; path = ../../../src/models/src/NICellFactory.m; sourceTree = "<group>"; };
+		DB1867691407F02C002DEA82 /* NIFormCellCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIFormCellCatalog.h; path = ../../../src/models/src/NIFormCellCatalog.h; sourceTree = "<group>"; };
+		DB18676A1407F02C002DEA82 /* NIFormCellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIFormCellCatalog.m; path = ../../../src/models/src/NIFormCellCatalog.m; sourceTree = "<group>"; };
+		DB18676B1407F02C002DEA82 /* NimbusModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusModels.h; path = ../../../src/models/src/NimbusModels.h; sourceTree = "<group>"; };
+		DB18676C1407F02C002DEA82 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITableViewModel.h; path = ../../../src/models/src/NITableViewModel.h; sourceTree = "<group>"; };
+		DB18676D1407F02C002DEA82 /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITableViewModel.m; path = ../../../src/models/src/NITableViewModel.m; sourceTree = "<group>"; };
+		DB1867721407F0F7002DEA82 /* LabelEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelEntry.h; sourceTree = "<group>"; };
+		DB1867731407F0F7002DEA82 /* LabelEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelEntry.m; sourceTree = "<group>"; };
+		DB1867751407FB0A002DEA82 /* UnderlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnderlineViewController.h; path = src/UnderlineViewController.h; sourceTree = "<group>"; };
+		DB1867761407FB0A002DEA82 /* UnderlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UnderlineViewController.m; path = src/UnderlineViewController.m; sourceTree = "<group>"; };
+		DB1867781407FB9F002DEA82 /* UnderlineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UnderlineView.xib; path = resources/UnderlineView.xib; sourceTree = "<group>"; };
+		DB530FDB1407EE7900BCB9E7 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = src/RootViewController.h; sourceTree = "<group>"; };
+		DB530FDC1407EE7900BCB9E7 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = src/RootViewController.m; sourceTree = "<group>"; };
 		DB6A04821403F02D0020F7FD /* BasicAttributedLabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicAttributedLabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6A04861403F02D0020F7FD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DB6A04881403F02D0020F7FD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -89,9 +110,9 @@
 		DB6A04DB1403F09E0020F7FD /* NIAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIAttributedLabel.m; path = ../../../src/attributedlabel/src/NIAttributedLabel.m; sourceTree = "<group>"; };
 		DB6A04DC1403F09E0020F7FD /* NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusAttributedLabel.h; path = ../../../src/attributedlabel/src/NimbusAttributedLabel.h; sourceTree = "<group>"; };
 		DB6A04DE1403F0BC0020F7FD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		DB6A04E01403F1890020F7FD /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = src/RootViewController.h; sourceTree = "<group>"; };
-		DB6A04E11403F1890020F7FD /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = src/RootViewController.m; sourceTree = "<group>"; };
-		DB6A04E51403F2780020F7FD /* RootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RootView.xib; path = resources/RootView.xib; sourceTree = "<group>"; };
+		DB6A04E01403F1890020F7FD /* MashupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MashupViewController.h; path = src/MashupViewController.h; sourceTree = "<group>"; };
+		DB6A04E11403F1890020F7FD /* MashupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MashupViewController.m; path = src/MashupViewController.m; sourceTree = "<group>"; };
+		DB6A04E51403F2780020F7FD /* MashupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MashupView.xib; path = resources/MashupView.xib; sourceTree = "<group>"; };
 		DB6AADF81407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+NimbusAttributedLabel.h"; path = "../../../src/attributedlabel/src/NSAttributedString+NimbusAttributedLabel.h"; sourceTree = "<group>"; };
 		DB6AADF91407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+NimbusAttributedLabel.m"; path = "../../../src/attributedlabel/src/NSAttributedString+NimbusAttributedLabel.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +132,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB1867661407F010002DEA82 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DB1867671407F02C002DEA82 /* NICellFactory.h */,
+				DB1867681407F02C002DEA82 /* NICellFactory.m */,
+				DB1867691407F02C002DEA82 /* NIFormCellCatalog.h */,
+				DB18676A1407F02C002DEA82 /* NIFormCellCatalog.m */,
+				DB18676B1407F02C002DEA82 /* NimbusModels.h */,
+				DB18676C1407F02C002DEA82 /* NITableViewModel.h */,
+				DB18676D1407F02C002DEA82 /* NITableViewModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		DB1867711407F0CB002DEA82 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DB1867721407F0F7002DEA82 /* LabelEntry.h */,
+				DB1867731407F0F7002DEA82 /* LabelEntry.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		DB6A04771403F02D0020F7FD = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +197,7 @@
 		DB6A048F1403F02D0020F7FD /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				DB1867711407F0CB002DEA82 /* Models */,
 				DB6A04E31403F1970020F7FD /* Controllers */,
 				DB6A04E41403F1A00020F7FD /* Views */,
 				DB6A04901403F02D0020F7FD /* AppDelegate.h */,
@@ -173,6 +218,7 @@
 		DB6A04A01403F0580020F7FD /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
+				DB1867661407F010002DEA82 /* Models */,
 				DB6A04A21403F0740020F7FD /* Attributed Label */,
 				DB6A04A11403F06D0020F7FD /* Core */,
 			);
@@ -239,8 +285,12 @@
 		DB6A04E31403F1970020F7FD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DB6A04E01403F1890020F7FD /* RootViewController.h */,
-				DB6A04E11403F1890020F7FD /* RootViewController.m */,
+				DB6A04E01403F1890020F7FD /* MashupViewController.h */,
+				DB6A04E11403F1890020F7FD /* MashupViewController.m */,
+				DB530FDB1407EE7900BCB9E7 /* RootViewController.h */,
+				DB530FDC1407EE7900BCB9E7 /* RootViewController.m */,
+				DB1867751407FB0A002DEA82 /* UnderlineViewController.h */,
+				DB1867761407FB0A002DEA82 /* UnderlineViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -248,7 +298,8 @@
 		DB6A04E41403F1A00020F7FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DB6A04E51403F2780020F7FD /* RootView.xib */,
+				DB6A04E51403F2780020F7FD /* MashupView.xib */,
+				DB1867781407FB9F002DEA82 /* UnderlineView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -304,7 +355,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB6A048E1403F02D0020F7FD /* BasicAttributedLabel_Prefix.pch in Resources */,
-				DB6A04E61403F2780020F7FD /* RootView.xib in Resources */,
+				DB6A04E61403F2780020F7FD /* MashupView.xib in Resources */,
+				DB1867791407FB9F002DEA82 /* UnderlineView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,8 +387,14 @@
 				DB6A04D81403F08D0020F7FD /* NSData+NimbusCore.m in Sources */,
 				DB6A04D91403F08D0020F7FD /* NSString+NimbusCore.m in Sources */,
 				DB6A04DD1403F09E0020F7FD /* NIAttributedLabel.m in Sources */,
-				DB6A04E21403F1890020F7FD /* RootViewController.m in Sources */,
+				DB6A04E21403F1890020F7FD /* MashupViewController.m in Sources */,
 				DB6AADFA1407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.m in Sources */,
+				DB530FDD1407EE7900BCB9E7 /* RootViewController.m in Sources */,
+				DB18676E1407F02C002DEA82 /* NICellFactory.m in Sources */,
+				DB18676F1407F02C002DEA82 /* NIFormCellCatalog.m in Sources */,
+				DB1867701407F02C002DEA82 /* NITableViewModel.m in Sources */,
+				DB1867741407F0F7002DEA82 /* LabelEntry.m in Sources */,
+				DB1867771407FB0A002DEA82 /* UnderlineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

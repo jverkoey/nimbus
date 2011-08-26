@@ -16,63 +16,51 @@
 
 #import "RootViewController.h"
 
+#import "LabelEntry.h"
+#import "MashupViewController.h"
+#import "UnderlineViewController.h"
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation RootViewController
-@synthesize nimbusTitle;
-@synthesize label1;
-@synthesize label2;
-@synthesize label3;
-@synthesize label4;
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-  return [super initWithNibName:@"RootView" bundle:nibBundleOrNil];
-}
-
-- (void)dealloc {
-  NI_RELEASE_SAFELY(label1);
-  NI_RELEASE_SAFELY(label2);
-  NI_RELEASE_SAFELY(label3);
-  NI_RELEASE_SAFELY(label4);
-  NI_RELEASE_SAFELY(nimbusTitle);
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)dealloc {
+  NI_RELEASE_SAFELY(_model);
   [super dealloc];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)viewDidLoad {
   
-  self.title = @"Attributed Label Demo";
+  self.title = @"NIAttributedLabel Demo";
+  self.navigationItem.backBarButtonItem = 
+  [[[UIBarButtonItem alloc] initWithTitle:@"Back" 
+                                    style:UIBarButtonItemStylePlain 
+                                   target:nil 
+                                   action:nil] autorelease];
   
-  nimbusTitle.strokeWidth = -3.0;
-  nimbusTitle.strokeColor = [UIColor blackColor];
-  nimbusTitle.textKern = 15.0;
+  NSArray* tableContents =
+  [NSArray arrayWithObjects:
+   @"",
+   [LabelEntry entryWithTitle:@"Mashup" controllerClass:[MashupViewController class]], 
+   @"",
+   [LabelEntry entryWithTitle:@"Underline" controllerClass:[UnderlineViewController class]], nil];
   
-  label1.underlineStyle = kCTUnderlineStyleDouble;
-  label1.underlineStyleModifier = kCTUnderlinePatternDot;
-
-  label2.textAlignment = UITextAlignmentJustify;
-  label2.font = [UIFont fontWithName:@"SnellRoundhand-Bold" size:16];
-  
-  label3.autoDetectLinks = YES;
-  //label3.linkColor = [UIColor purpleColor];
-  //label3.linkHighlightColor = [UIColor orangeColor];
-  
-  label4.textAlignment = UITextAlignmentJustify;
-  [label4 setTextColor:[UIColor orangeColor] 
-                 range:[label4.text rangeOfString:@"Nimbus"]];
-  [label4 setTextColor:[UIColor redColor] 
-                 range:[label4.text rangeOfString:@"accelerates"]];
-  [label4 setFont:[UIFont boldSystemFontOfSize:22] range:[label4.text rangeOfString:@"iOS"]];
-  [label4 setUnderlineStyle:kCTUnderlineStyleSingle modifier:kCTUnderlinePatternDash range:[label4.text rangeOfString:@"documentation"]];
-  [label4 setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:17] range:[label4.text rangeOfString:@"Nimbus" options: NSBackwardsSearch]];
-  [label4 addLink:[NSURL URLWithString:@"nimbus://custom/url"] range:[label4.text rangeOfString:@"easy"]];
+  _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
+                                                   delegate:(id)[NICellFactory class]];
+  self.tableView.dataSource = _model;
   
 }
 
--(void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectLink:(NSURL *)url {
-  
-  UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Link Selected" message:url.relativeString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-  
-  [alert show];
-  NI_RELEASE_SAFELY(alert);
-  
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {  
+  LabelEntry* entry = [_model objectAtIndexPath:indexPath];
+  Class cls = [entry controllerClass];
+  UIViewController* controller = [[[cls alloc] initWithNibName:nil bundle:nil] autorelease];
+  [self.navigationController pushViewController:controller animated:YES];
 }
+
+
 @end

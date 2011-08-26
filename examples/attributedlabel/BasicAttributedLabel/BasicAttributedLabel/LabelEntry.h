@@ -14,12 +14,18 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import "NICellFactory.h"
 
-@interface RootViewController : UITableViewController {
+@interface LabelEntry : NSObject <NICellObject> {
 
 @private
-NITableViewModel* _model;
+NSString* _title;
+Class _controllerClass;
 }
+
++ (id)entryWithTitle:(NSString *)title controllerClass:(Class)controllerClass;
+
+@property (nonatomic, readwrite, copy)    NSString* title;
+@property (nonatomic, readwrite, assign)  Class controllerClass;
 
 @end
