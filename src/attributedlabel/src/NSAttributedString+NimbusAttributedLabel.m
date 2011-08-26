@@ -70,7 +70,7 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
   CTFontRef fontRef = CTFontCreateWithName((CFStringRef)font.fontName, font.pointSize, nil);
   [self removeAttribute:(NSString*)kCTFontAttributeName range:range]; 
 	[self addAttribute:(NSString*)kCTFontAttributeName value:(id)fontRef range:range];
-	CFRelease(font);
+	CFRelease(fontRef);
   
 }
 
