@@ -176,6 +176,14 @@
 -(void)setStrokeWidth:(CGFloat)width range:(NSRange)range;
 
 /**
+ * The stroke color for the given range
+ *
+ * Normally you would use this in conjunction with setStrokeWidth:range: passing in the same
+ * range for both
+ */
+-(void)setStrokeColor:(UIColor*)color range:(NSRange)range;
+
+/**
  * The attributed label notifies the delegate of any user interactions.
  */
 @property(nonatomic, assign) IBOutlet id<NIAttributedLabelDelegate> delegate;

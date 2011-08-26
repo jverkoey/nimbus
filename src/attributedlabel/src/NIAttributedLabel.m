@@ -192,6 +192,12 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setStrokeColor:(UIColor*)color range:(NSRange)range {
+  [_attributedText setStrokeColor:_strokeColor range:range];
+  [self setNeedsDisplay];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setAutoDetectLinks:(BOOL)autoDetectLinks {
   _autoDetectLinks = autoDetectLinks;
   self.userInteractionEnabled = autoDetectLinks;
