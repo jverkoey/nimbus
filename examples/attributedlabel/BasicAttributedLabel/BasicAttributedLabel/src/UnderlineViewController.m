@@ -27,6 +27,7 @@
 @synthesize dash;
 @synthesize dashdot;
 @synthesize dashdotdot;
+@synthesize doubledashdotdot;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -42,6 +43,7 @@
   NI_RELEASE_SAFELY(dash);
   NI_RELEASE_SAFELY(dashdot);
   NI_RELEASE_SAFELY(dashdotdot);
+  NI_RELEASE_SAFELY(doubledashdotdot);
   [super dealloc];
 }
 
@@ -63,13 +65,8 @@
   dashdotdot.underlineStyle = kCTUnderlineStyleSingle;
   dashdotdot.underlineStyleModifier = kCTUnderlinePatternDashDotDot;
   
-}
-
-- (void)viewDidUnload {
-  [self setDot:nil];
-  [self setDash:nil];
-  [self setDashdot:nil];
-  [self setDashdotdot:nil];
-  [super viewDidUnload];
+  doubledashdotdot.underlineStyle = kCTUnderlineStyleDouble;
+  doubledashdotdot.underlineStyleModifier = kCTUnderlinePatternDashDotDot;
+  
 }
 @end

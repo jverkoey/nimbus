@@ -24,6 +24,7 @@
   NIAttributedLabel *dash;
   NIAttributedLabel *dashdot;
   NIAttributedLabel *dashdotdot;
+  NIAttributedLabel *doubledashdotdot;
 }
 
 @property (nonatomic, retain) IBOutlet NIAttributedLabel *single;
@@ -33,5 +34,6 @@
 @property (nonatomic, retain) IBOutlet NIAttributedLabel *dash;
 @property (nonatomic, retain) IBOutlet NIAttributedLabel *dashdot;
 @property (nonatomic, retain) IBOutlet NIAttributedLabel *dashdotdot;
+@property (nonatomic, retain) IBOutlet NIAttributedLabel *doubledashdotdot;
 
 @end
