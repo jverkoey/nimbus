@@ -231,17 +231,33 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
+  _originalStatusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
   [[UIApplication sharedApplication] setStatusBarStyle: (NIIsPad()
                                                          ? UIStatusBarStyleBlackOpaque
                                                          : UIStatusBarStyleBlackTranslucent)
                                               animated: animated];
 
   UINavigationBar* navBar = self.navigationController.navigationBar;
+  _originalNavBarStyle = navBar.barStyle;
   navBar.barStyle = UIBarStyleBlack;
+  _originalNavBarTranslucent = navBar.translucent;
   navBar.translucent = YES;
 
   _previousButton.enabled = [self.photoAlbumView hasPrevious];
   _nextButton.enabled = [self.photoAlbumView hasNext];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+
+  // Restore previous UI state
+  UINavigationBar* navBar = self.navigationController.navigationBar;
+  navBar.barStyle = _originalNavBarStyle;
+  navBar.translucent = _originalNavBarTranslucent;
+  [[UIApplication sharedApplication] setStatusBarStyle: _originalStatusBarStyle
+                                              animated: animated];
 }
 
 
