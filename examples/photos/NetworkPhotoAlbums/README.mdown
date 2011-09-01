@@ -1,9 +1,8 @@
-
 Network Photo Albums Sample Application
 =======================================
 
 This sample application demos the use of the multiple photo APIs to fetch photos from public
-photo album and display them in high-definition on the iPad and iPhone.
+photo albums and display them in high-definition on the iPad and iPhone.
 
 The following APIs are currently demoed:
 
