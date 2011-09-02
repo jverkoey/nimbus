@@ -69,3 +69,4 @@
 #import "NIRuntimeClassModifications.h"
 #import "NISDKAvailability.h"
 #import "NIState.h"
+#import "NINavigationAppearance.h"

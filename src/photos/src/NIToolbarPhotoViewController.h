@@ -89,9 +89,6 @@
 
   // State
   BOOL _isAnimatingChrome;
-  BOOL _originalNavBarTranslucent;
-  UIBarStyle _originalNavBarStyle;
-  UIStatusBarStyle _originalStatusBarStyle;
 
   // Configuration
   BOOL _showPhotoAlbumBeneathToolbar;
