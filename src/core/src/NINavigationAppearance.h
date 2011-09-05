@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011 Basil Shkara
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,8 +16,40 @@
 
 #import <Foundation/Foundation.h>
 
+@class NINavigationAppearanceSnapshot;
+
+
 /**
- * Convenience class for saving and restoring the navigation appearance state.
+ * Class for saving and restoring the navigation appearance state.
+ *
+ * You use this when you are about to mutate the navigation bar style and/or status
+ * bar style, and you want to be able to restore these bar styles sometime in the
+ * future.
+ *
+ * An example of usage for this pattern is in NIToolbarPhotoViewController which
+ * changes the navigation bar style to UIBarStyleBlack and the status bar style to
+ * UIStatusBarStyleBlack* in viewWillAppear:.
+ *
+ * @code
+ * [NINavigationAppearance pushAppearanceForNavigationController:self.navigationController]
+ *
+ * UINavigationBar* navBar = self.navigationController.navigationBar;
+ * navBar.barStyle = UIBarStyleBlack;
+ * navBar.translucent = YES;
+ * @endcode
+ *
+ * Note that the call to NINavigationAppearance must occur before mutating any bar
+ * states so that it is able to capture the original state correctly.
+ *
+ * Then when NIToolbarPhotoViewController is ready to restore the original navigation
+ * appearance state, (in viewWillDisappear:), it calls the following:
+ *
+ * @code
+ * [NINavigationAppearance popAppearanceForNavigationController:self.navigationController]
+ * @endcode
+ *
+ * which pops the last snapshot of the stack and applies it, restoring the original
+ * navigation appearance state.
  *
  *      @ingroup NimbusCore
  */
@@ -38,6 +70,7 @@
  */
 + (void)popAppearanceForNavigationController:(UINavigationController *)navigationController animated:(BOOL)animated;
 
+
 @end
 
 
@@ -54,6 +87,22 @@
   UIBarStyle _navBarStyle;
   UIStatusBarStyle _statusBarStyle;
 }
+
+/**
+ * Holds value of UINavigationBar's translucent property.
+ */
+@property (nonatomic, readwrite, assign) BOOL navBarTranslucent;
+
+/**
+ * Holds value of UINavigationBar's barStyle property.
+ */
+@property (nonatomic, readwrite, assign) UIBarStyle navBarStyle;
+
+/**
+ * Holds value of UIApplication's statusBarStyle property.
+ */
+@property (nonatomic, readwrite, assign) UIStatusBarStyle statusBarStyle;
+
 
 /**
  * Create a new snapshot.
