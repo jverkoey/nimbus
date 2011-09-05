@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011 Basil Shkara
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
 //
 
 #import "NINavigationAppearance.h"
+#import "NIDebuggingTools.h"
+#import "NISDKAvailability.h"
 
 static NSMutableArray* sAppearanceStack = nil;
 
@@ -36,6 +38,7 @@ static NSMutableArray* sAppearanceStack = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)popAppearanceForNavigationController:(UINavigationController *)navigationController animated:(BOOL)animated {
+  NIDASSERT([sAppearanceStack count] > 0);
   if ([sAppearanceStack count]) {
     NINavigationAppearanceSnapshot *snapshot = [sAppearanceStack objectAtIndex:0];
     [snapshot restoreForNavigationController:navigationController animated:animated];
@@ -53,6 +56,10 @@ static NSMutableArray* sAppearanceStack = nil;
 
 
 @implementation NINavigationAppearanceSnapshot
+
+@synthesize navBarTranslucent = _navBarTranslucent;
+@synthesize navBarStyle = _navBarStyle;
+@synthesize statusBarStyle = _statusBarStyle;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
