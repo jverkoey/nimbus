@@ -218,6 +218,9 @@
 		DB84BDAD13EFDF5900DACCFE /* NIWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB84BDA913EFDF5900DACCFE /* NIWebController.h */; };
 		DB84BDAE13EFDF5900DACCFE /* NIWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB84BDAA13EFDF5900DACCFE /* NIWebController.m */; };
 		DB84BDB113EFDF6900DACCFE /* NimbusWebControllerTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB84BDB013EFDF6900DACCFE /* NimbusWebControllerTests-Info.plist */; };
+		FD01BED814179AB60023D783 /* NINavigationAppearanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD01BED414179AAC0023D783 /* NINavigationAppearanceTests.m */; };
+		FD01BEDB14179D940023D783 /* NINavigationAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = FD01BED914179D940023D783 /* NINavigationAppearance.h */; };
+		FD01BEDC14179D940023D783 /* NINavigationAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = FD01BEDA14179D940023D783 /* NINavigationAppearance.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -556,6 +559,9 @@
 		DB84BDA913EFDF5900DACCFE /* NIWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIWebController.h; sourceTree = "<group>"; };
 		DB84BDAA13EFDF5900DACCFE /* NIWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIWebController.m; sourceTree = "<group>"; };
 		DB84BDB013EFDF6900DACCFE /* NimbusWebControllerTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NimbusWebControllerTests-Info.plist"; sourceTree = "<group>"; };
+		FD01BED414179AAC0023D783 /* NINavigationAppearanceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINavigationAppearanceTests.m; sourceTree = "<group>"; };
+		FD01BED914179D940023D783 /* NINavigationAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NINavigationAppearance.h; sourceTree = "<group>"; };
+		FD01BEDA14179D940023D783 /* NINavigationAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINavigationAppearance.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1055,6 +1061,8 @@
 				66A03C5F13E6E8D100B514F3 /* NISDKAvailability.m */,
 				66A03C6013E6E8D100B514F3 /* NIState.h */,
 				66A03C6113E6E8D100B514F3 /* NIState.m */,
+				FD01BED914179D940023D783 /* NINavigationAppearance.h */,
+				FD01BEDA14179D940023D783 /* NINavigationAppearance.m */,
 				66A03CB613E6EFAF00B514F3 /* NSData+NimbusCore.h */,
 				66A03C6213E6E8D100B514F3 /* NSData+NimbusCore.m */,
 				66A03CB713E6EFAF00B514F3 /* NSString+NimbusCore.h */,
@@ -1078,6 +1086,7 @@
 				66A03CA713E6E90500B514F3 /* NIRuntimeClassModificationsTests.m */,
 				66A03CA813E6E90500B514F3 /* NSDate+UnitTesting.h */,
 				66A03CA913E6E90500B514F3 /* NSDate+UnitTesting.m */,
+				FD01BED414179AAC0023D783 /* NINavigationAppearanceTests.m */,
 			);
 			name = unittests;
 			path = core/unittests;
@@ -1399,6 +1408,7 @@
 				66A03CB813E6EFB000B514F3 /* NSData+NimbusCore.h in Headers */,
 				66A03CB913E6EFB000B514F3 /* NSString+NimbusCore.h in Headers */,
 				66A03C9013E6E8D100B514F3 /* NIState.h in Headers */,
+				FD01BEDB14179D940023D783 /* NINavigationAppearance.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2164,6 +2174,7 @@
 				66A03C9113E6E8D100B514F3 /* NIState.m in Sources */,
 				66A03C9213E6E8D100B514F3 /* NSData+NimbusCore.m in Sources */,
 				66A03C9313E6E8D100B514F3 /* NSString+NimbusCore.m in Sources */,
+				FD01BEDC14179D940023D783 /* NINavigationAppearance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2180,6 +2191,7 @@
 				66A03CB013E6E90500B514F3 /* NIOperationsTests.m in Sources */,
 				66A03CB113E6E90500B514F3 /* NIRuntimeClassModificationsTests.m in Sources */,
 				66A03CB213E6E90500B514F3 /* NSDate+UnitTesting.m in Sources */,
+				FD01BED814179AB60023D783 /* NINavigationAppearanceTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

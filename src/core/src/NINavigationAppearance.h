@@ -71,6 +71,18 @@
 + (void)popAppearanceForNavigationController:(UINavigationController *)navigationController animated:(BOOL)animated;
 
 
+/**
+ * Number of items in the appearance stack.
+ */
++ (NSInteger)count;
+
+
+/**
+ * Remove all navigation appearance snapshots from the stack.
+ */
++ (void)clear;
+
+
 @end
 
 
