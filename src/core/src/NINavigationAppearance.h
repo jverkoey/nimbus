@@ -82,48 +82,4 @@
  */
 + (void)clear;
 
-
-@end
-
-
-/**
- * Model class which captures and stores navigation appearance.
- *
- * Used in conjunction with NINavigationAppearance.
- *
- *      @ingroup NimbusCore
- */
-@interface NINavigationAppearanceSnapshot : NSObject {
-@private
-  BOOL _navBarTranslucent;
-  UIBarStyle _navBarStyle;
-  UIStatusBarStyle _statusBarStyle;
-}
-
-/**
- * Holds value of UINavigationBar's translucent property.
- */
-@property (nonatomic, readwrite, assign) BOOL navBarTranslucent;
-
-/**
- * Holds value of UINavigationBar's barStyle property.
- */
-@property (nonatomic, readwrite, assign) UIBarStyle navBarStyle;
-
-/**
- * Holds value of UIApplication's statusBarStyle property.
- */
-@property (nonatomic, readwrite, assign) UIStatusBarStyle statusBarStyle;
-
-
-/**
- * Create a new snapshot.
- */
-- (id)initForNavigationController:(UINavigationController *)navigationController;
-
-/**
- * Apply the previously captured state.
- */
-- (void)restoreForNavigationController:(UINavigationController *)navigationController animated:(BOOL)animated;
-
 @end

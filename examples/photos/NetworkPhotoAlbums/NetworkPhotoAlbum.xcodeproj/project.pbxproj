@@ -21,6 +21,7 @@
 		66409FA513E25C5300E9BA5A /* NIOverviewSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9D13E25C5300E9BA5A /* NIOverviewSwizzling.m */; };
 		66409FA613E25C5300E9BA5A /* NIOverviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9F13E25C5300E9BA5A /* NIOverviewView.m */; };
 		66409FA813E25C5E00E9BA5A /* NimbusOverviewer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66409FA713E25C5E00E9BA5A /* NimbusOverviewer.bundle */; };
+		6656483A1418638700EB5960 /* NINavigationAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 665648391418638700EB5960 /* NINavigationAppearance.m */; };
 		665E0BB713CE815D008A1D21 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0B9913CE815D008A1D21 /* NIDataStructures.m */; };
 		665E0BB813CE815D008A1D21 /* NIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0B9B13CE815D008A1D21 /* NIDebuggingTools.m */; };
 		665E0BB913CE815D008A1D21 /* NIDeviceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0B9D13CE815D008A1D21 /* NIDeviceOrientation.m */; };
@@ -92,6 +93,8 @@
 		66409F9E13E25C5300E9BA5A /* NIOverviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOverviewView.h; path = ../../../src/overview/src/NIOverviewView.h; sourceTree = "<group>"; };
 		66409F9F13E25C5300E9BA5A /* NIOverviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOverviewView.m; path = ../../../src/overview/src/NIOverviewView.m; sourceTree = "<group>"; };
 		66409FA713E25C5E00E9BA5A /* NimbusOverviewer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusOverviewer.bundle; path = ../../../src/overview/resources/NimbusOverviewer.bundle; sourceTree = "<group>"; };
+		665648381418638700EB5960 /* NINavigationAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINavigationAppearance.h; path = ../../../src/core/src/NINavigationAppearance.h; sourceTree = "<group>"; };
+		665648391418638700EB5960 /* NINavigationAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINavigationAppearance.m; path = ../../../src/core/src/NINavigationAppearance.m; sourceTree = "<group>"; };
 		665E0B9713CE815D008A1D21 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = ../../../src/core/src/NIBlocks.h; sourceTree = SOURCE_ROOT; };
 		665E0B9813CE815D008A1D21 /* NIDataStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDataStructures.h; path = ../../../src/core/src/NIDataStructures.h; sourceTree = SOURCE_ROOT; };
 		665E0B9913CE815D008A1D21 /* NIDataStructures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDataStructures.m; path = ../../../src/core/src/NIDataStructures.m; sourceTree = SOURCE_ROOT; };
@@ -298,6 +301,8 @@
 				665E0BA113CE815D008A1D21 /* NIInMemoryCache.m */,
 				665E0BA213CE815D008A1D21 /* NimbusCore.h */,
 				665E0BA313CE815D008A1D21 /* NimbusCore+Additions.h */,
+				665648381418638700EB5960 /* NINavigationAppearance.h */,
+				665648391418638700EB5960 /* NINavigationAppearance.m */,
 				665E0BA413CE815D008A1D21 /* NINetworkActivity.h */,
 				665E0BA513CE815D008A1D21 /* NINetworkActivity.m */,
 				665E0BA613CE815D008A1D21 /* NINonEmptyCollectionTesting.h */,
@@ -569,6 +574,7 @@
 				66409FA513E25C5300E9BA5A /* NIOverviewSwizzling.m in Sources */,
 				66409FA613E25C5300E9BA5A /* NIOverviewView.m in Sources */,
 				66FE7D7113FB8CD00061B987 /* NITableViewModel.m in Sources */,
+				6656483A1418638700EB5960 /* NINavigationAppearance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
