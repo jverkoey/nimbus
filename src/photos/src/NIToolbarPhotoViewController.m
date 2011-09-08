@@ -231,6 +231,8 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
+  [NINavigationAppearance pushAppearanceForNavigationController:self.navigationController];
+
   [[UIApplication sharedApplication] setStatusBarStyle: (NIIsPad()
                                                          ? UIStatusBarStyleBlackOpaque
                                                          : UIStatusBarStyleBlackTranslucent)
@@ -242,6 +244,14 @@
 
   _previousButton.enabled = [self.photoAlbumView hasPrevious];
   _nextButton.enabled = [self.photoAlbumView hasNext];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+
+  [NINavigationAppearance popAppearanceForNavigationController:self.navigationController animated:YES];
 }
 
 

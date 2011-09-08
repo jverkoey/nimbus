@@ -60,6 +60,7 @@
 #import "NIError.h"
 #import "NIFoundationMethods.h"
 #import "NIInMemoryCache.h"
+#import "NINavigationAppearance.h"
 #import "NINetworkActivity.h"
 #import "NINonEmptyCollectionTesting.h"
 #import "NINonRetainingCollections.h"
