@@ -1,4 +1,3 @@
-
 So you wanna hack on Nimbus?
 ============================
 
@@ -35,12 +34,12 @@ If you would like to add a new feature to Nimbus take a moment to consider the f
 - Has the feature already been built and open-sourced by someone else?
   - Does it have all of the features you'd like to see?
   - Is it well documented?
-  - If the answers to the above are YES, then it's probably not a good feature to build it for
+  - If the answers to the above are YES, then it's probably not a good feature to build for
     Nimbus. Consider either writing a guide for integrating it with Nimbus or seeing whether it
     makes sense to add the feature as a third-party feature.
 - Are you ok with open sourcing your code?
   - If you work for a company, consult with your manager and/or legal team to ensure that it's ok
-    for you to contributing code to an open source project. Nimbus uses the Apache 2.0 license.
+    for you to contribute code to an open source project. Nimbus uses the Apache 2.0 license.
 
 
 ### Creating the Feature
@@ -49,7 +48,6 @@ All Nimbus features are contained within the src directory in separate directori
 following structure:
 
     src       - all of the feature's source code
-    lib       - code that is only used to build the feature as a static library
     unittests - all unit test code
     resources - any resources the feature might require (in bundles for simplicity, usually)
 
@@ -64,7 +62,7 @@ Nimbus documentation is generated using a tool called Doxygen. It's a powerful p
 that allows Nimbus to generate Xcode docsets and documentation that is accessible from the web.
 
 Out of the box, Doxygen does not provide as much support for generating Apple-esque documentation
-as would be desired, so Jeff has been hacking on Nimbus to get it to generate documentation
+as would be desired, so Jeff has been hacking on Doxygen to get it to generate documentation
 that resembles Apple's docs.
 
 You can download the custom build here:
@@ -77,16 +75,7 @@ https://github.com/nimbusios/Doxygen
 Generating the Documentation
 ----------------------------
 
-After you've installed Doxygen on your system, open Doxywizard.
+After you've installed Doxygen on your system, open Doxygen.
 
 Open the Doxyfile found in Nimbus' `docs` directory. Run Doxygen and the
 documentation will be output in `docs/output/html`.
-
-
-Generating the Xcode Docset
----------------------------
-
-To generate the Xcode Docset, open Doxyfile-docset and run Doxygen. You will then need to open
-Terminal to `docs/output-docset/html` and run make install. This will build the docset and
-install it locally. In order to get Xcode to read the new docset you will have to restart
-Xcode.
