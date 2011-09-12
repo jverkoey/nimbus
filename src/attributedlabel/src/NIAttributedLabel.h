@@ -36,7 +36,9 @@
  * 
  * .
  */
--(void)attributedLabel:(NIAttributedLabel*)attributedLabel didSelectLink:(NSURL*)url;
+-(void)attributedLabel:(NIAttributedLabel*)attributedLabel 
+         didSelectLink:(NSURL*)url 
+               atPoint:(CGPoint)point;
 @end
 
 /**

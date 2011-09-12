@@ -442,8 +442,8 @@
   NSTextCheckingResult *linkTouched = [self linkAtPoint:point];
   
   if (_currentLink.URL && [_currentLink.URL isEqual:linkTouched.URL]) {
-    if (delegate && [delegate respondsToSelector:@selector(attributedLabel:didSelectLink:)]) {
-      [delegate attributedLabel:self didSelectLink:linkTouched.URL];
+    if (delegate && [delegate respondsToSelector:@selector(attributedLabel:didSelectLink:atPoint:)]) {
+      [delegate attributedLabel:self didSelectLink:linkTouched.URL atPoint:point];
     }
   }
   
