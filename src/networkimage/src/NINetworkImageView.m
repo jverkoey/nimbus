@@ -242,7 +242,7 @@
   NSDate* expirationDate = [ASIHTTPRequest expiryDateForRequest:request maxAge:self.maxAge];
 
   [self _didFinishLoadingWithImage: request.imageCroppedAndSizedForDisplay
-                               URL: request.url
+                               URL: request.originalURL
                        displaySize: request.imageDisplaySize
                        contentMode: request.imageContentMode
                       scaleOptions: request.scaleOptions
