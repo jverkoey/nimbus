@@ -126,7 +126,7 @@
 
   NITableViewModelSection* section = [NITableViewModelSection section];
   section.rows = listArray;
-  _sections = [[NSArray arrayWithObject:section] retain];
+  _sections = [[NSArray alloc] initWithObjects:section, nil];
 }
 
 
