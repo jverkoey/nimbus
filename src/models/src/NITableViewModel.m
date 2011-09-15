@@ -38,6 +38,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NITableViewModel()
 
+@property (nonatomic, readwrite, copy) NSArray* sections;
+
 - (void)_resetCompiledData;
 - (void)_compileDataWithListArray:(NSArray *)listArray;
 - (void)_compileDataWithSectionedArray:(NSArray *)sectionedArray;
@@ -50,6 +52,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NITableViewModel
 
+@synthesize sections = _sections;
 @synthesize sectionIndexType = _sectionIndexType;
 @synthesize sectionIndexShowsSearch = _sectionIndexShowsSearch;
 @synthesize sectionIndexShowsSummary = _sectionIndexShowsSummary;
@@ -126,7 +129,9 @@
 
   NITableViewModelSection* section = [NITableViewModelSection section];
   section.rows = listArray;
-  _sections = [[NSArray alloc] initWithObjects:section, nil];
+  NSArray* sections = [[NSArray alloc] initWithObjects:section, nil];
+  self.sections = sections;
+  NI_RELEASE_SAFELY(sections);
 }
 
 
@@ -189,7 +194,7 @@
   NI_RELEASE_SAFELY(currentSectionRows);
 
   // Update the compiled information for this data source.
-  _sections = [sections copy];
+  self.sections = sections;
 }
 
 
