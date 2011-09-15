@@ -71,9 +71,9 @@ typedef enum {
 // Immediately compiles the section index.
 - (void)setSectionIndexType:(NITableViewModelSectionIndex)sectionIndexType showsSearch:(BOOL)showsSearch showsSummary:(BOOL)showsSummary;
 
-@property (nonatomic, readonly, assign) NITableViewModelSectionIndex sectionIndexType;
-@property (nonatomic, readonly, assign) BOOL sectionIndexShowsSearch;
-@property (nonatomic, readonly, assign) BOOL sectionIndexShowsSummary;
+@property (nonatomic, readonly, assign) NITableViewModelSectionIndex sectionIndexType; // Default: NITableViewModelSectionIndexNone
+@property (nonatomic, readonly, assign) BOOL sectionIndexShowsSearch; // Default: NO
+@property (nonatomic, readonly, assign) BOOL sectionIndexShowsSummary; // Default: NO
 
 #pragma mark Creating Table View Cells
 

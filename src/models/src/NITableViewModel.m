@@ -221,9 +221,9 @@
       }
     }
 
+  } else if (NITableViewModelSectionIndexAlphabetical == _sectionIndexType) {
     // Use the localized indexed collation to create the index. In English, this will always be
     // the entire alphabet.
-  } else if (NITableViewModelSectionIndexAlphabetical == _sectionIndexType) {
     NSArray* sectionIndexTitles = [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
 
     // The localized indexed collection sometimes includes a # for summaries, but we might

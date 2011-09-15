@@ -79,9 +79,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  // This is the stock UIKit didSelectRow method, provided here simply as an example of
-  // fetching an object from the model.
-  
   CatalogEntry* entry = [_model objectAtIndexPath:indexPath];
   Class cls = [entry controllerClass];
   UIViewController* controller = [[[cls alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
