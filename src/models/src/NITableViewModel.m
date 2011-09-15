@@ -388,6 +388,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath {
+  if (nil == indexPath) {
+    return nil;
+  }
+
   NSInteger section = [indexPath section];
   NSInteger row = [indexPath row];
 

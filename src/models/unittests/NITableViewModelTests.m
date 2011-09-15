@@ -95,6 +95,13 @@
   STAssertEquals([model objectAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]], object1, @"Object mismatch.");
   STAssertEquals([model objectAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]], object2, @"Object mismatch.");
   STAssertEquals([model objectAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]], object3, @"Object mismatch.");
+
+  STAssertNil([model objectAtIndexPath:nil], @"Should be nil.");
+
+  NIDebugAssertionsShouldBreak = NO;
+  STAssertNil([model objectAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:0]], @"Should be nil.");
+  STAssertNil([model objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]], @"Should be nil.");
+  NIDebugAssertionsShouldBreak = YES;
 }
 
 
