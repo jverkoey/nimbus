@@ -15,50 +15,25 @@
 //
 
 // In standard UI text alignment we do not have justify, however we can justify in CoreText
+#ifndef UITextAlignmentJustify
 #define UITextAlignmentJustify ((UITextAlignment)kCTJustifiedTextAlignment)
+#endif
 
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
 
-#import "NimbusCore.h"
-#import "NSAttributedString+NimbusAttributedLabel.h"
-
 @class NIAttributedLabel;
-/**
- * The attributed label delegate used to inform of user interactions.
- *
- * @ingroup NimbusAttributedLabel-Protocol
- */
-@protocol NIAttributedLabelDelegate <NSObject>
-@optional
-/**
- * Called when the user taps and releases a detected link.
- * 
- * .
- */
--(void)attributedLabel:(NIAttributedLabel*)attributedLabel 
-         didSelectLink:(NSURL*)url 
-               atPoint:(CGPoint)point;
-@end
+@protocol NIAttributedLabelDelegate;
 
 /**
- * A UILabel that utilizes NSAttributedString
+ * A UILabel that utilizes NSAttributedString to format its text.
  *
  *      @ingroup NimbusAttributedLabel
- *
  */
 
 @interface NIAttributedLabel : UILabel {
   NSMutableAttributedString*  _attributedText;
-  BOOL                        _autoDetectLinks;
-  UIColor*                    _linkColor;
-  UIColor*                    _linkHighlightColor;
-  CTUnderlineStyle            _underlineStyle;
-  CTUnderlineStyleModifiers   _underlineStyleModifier;
-  CGFloat                     _strokeWidth;
-  UIColor*                    _strokeColor;
-  CGFloat                     _textKern;
-  
+
   CTFrameRef                  _textFrame;
 	CGRect                      _drawingRect;
   NSTextCheckingResult*       _currentLink;
@@ -226,4 +201,20 @@
  */
 @property(nonatomic, assign) IBOutlet id<NIAttributedLabelDelegate> delegate;
 
+@end
+
+/**
+ * The attributed label delegate used to inform of user interactions.
+ *
+ * @ingroup NimbusAttributedLabel-Protocol
+ */
+@protocol NIAttributedLabelDelegate <NSObject>
+@optional
+
+/**
+ * Called when the user taps and releases a detected link.
+ */
+-(void)attributedLabel:(NIAttributedLabel*)attributedLabel 
+         didSelectLink:(NSURL*)url 
+               atPoint:(CGPoint)point;
 @end

@@ -17,19 +17,17 @@
 #import <Foundation/Foundation.h>
 #import <CoreText/CoreText.h>
 
-#import "NimbusCore.h"
-
 /**
- * For easier formatting of NSAttributedString
+ * For easier formatting of NSAttributedString.
  *
- * Most of these methods are called directly from NIAttributedLabel and therfore, you should 
- * not normally have to set these values directly on NSAttributedString. Have a look at
- * NIAttributedLabel first, as it is most likely what you are after. 
+ * Most of these methods are called directly from NIAttributedLabel. Normally you should
+ * not have to call these methods directly. Have a look at NIAttributedLabel first, it's most
+ * likely what you are after. 
  */
 @interface NSMutableAttributedString (NimbusAttributedLabel)
 
 /**
- * Sets the text alignment and the line break mode for a given range
+ * Sets the text alignment and the line break mode for a given range.
  *
  * TextAlignment Values:
  * - kCTLeftTextAlignment
@@ -52,7 +50,7 @@
 
 
 /**
- * Sets the text alignment and the line break mode for the whole string
+ * Sets the text alignment and the line break mode for the whole string.
  *
  * TextAlignment Values:
  * - kCTLeftTextAlignment
@@ -75,27 +73,27 @@
 
 
 /**
- * Sets the text color for a given range
+ * Sets the text color for a given range.
  */
 -(void) setTextColor:(UIColor*)color range:(NSRange)range;
 
 /**
- * Sets the text color for the whole string
+ * Sets the text color for the whole string.
  */
 -(void) setTextColor:(UIColor*)color;
 
 /**
- * Sets the font for a given range
+ * Sets the font for a given range.
  */
 -(void) setFont:(UIFont*)font range:(NSRange)range;
 
 /**
- * Sets the font for the whole string
+ * Sets the font for the whole string.
  */
 -(void) setFont:(UIFont*)font;
 
 /**
- * Sets the underline style and modifier for a given range
+ * Sets the underline style and modifier for a given range.
  *
  * Style Values:
  * - kCTUnderlineStyleNone
@@ -115,7 +113,7 @@
                     range:(NSRange)range;
 
 /**
- * Sets the underline style and modifier for the whole string
+ * Sets the underline style and modifier for the whole string.
  *
  * Style Values:
  * - kCTUnderlineStyleNone
@@ -134,32 +132,32 @@
                  modifier:(CTUnderlineStyleModifiers)modifier;
 
 /**
- * Sets the stroke width for a given range
+ * Sets the stroke width for a given range.
  */
 -(void) setStrokeWidth:(CGFloat)width range:(NSRange)range;
 
 /**
- * Sets the stroke width for the whole string
+ * Sets the stroke width for the whole string.
  */
 -(void) setStrokeWidth:(CGFloat)width;
 
 /**
- * Sets the stroke color for a given range
+ * Sets the stroke color for a given range.
  */
 -(void) setStrokeColor:(UIColor*)color range:(NSRange)range;
 
 /**
- * Sets the stroke color for the whole string
+ * Sets the stroke color for the whole string.
  */
 -(void) setStrokeColor:(UIColor*)color;
 
 /**
- * Sets the text kern for a given range
+ * Sets the text kern for a given range.
  */
 -(void) setKern:(CGFloat)kern range:(NSRange)range;
 
 /**
- * Sets the text kern for the whole string
+ * Sets the text kern for the whole string.
  */
 -(void) setKern:(CGFloat)kern;
 

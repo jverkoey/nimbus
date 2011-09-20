@@ -16,33 +16,37 @@
 
 #import "NIAttributedLabel.h"
 
+#import "NimbusCore.h"
+#import "NSAttributedString+NimbusAttributedLabel.h"
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIAttributedLabel
-@synthesize autoDetectLinks         = _autoDetectLinks,
-            underlineStyle          = _underlineStyle,
-            underlineStyleModifier  = _underlineStyleModifier,
-            strokeWidth             = _strokeWidth,
-            strokeColor             = _strokeColor,
-            textKern                = _textKern;
+@synthesize autoDetectLinks         = _autoDetectLinks;
+@synthesize underlineStyle          = _underlineStyle;
+@synthesize underlineStyleModifier  = _underlineStyleModifier;
+@synthesize strokeWidth             = _strokeWidth;
+@synthesize strokeColor             = _strokeColor;
+@synthesize textKern                = _textKern;
+@synthesize linkColor               = _linkColor;
+@synthesize linkHighlightColor      = _linkHighlightColor;
 @synthesize delegate;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)dealloc {
-  
-  if (_textFrame) {
+  if (nil != _textFrame) {
 		CFRelease(_textFrame);
 		_textFrame = nil;
 	}
-  
+
   NI_RELEASE_SAFELY(_attributedText);
   NI_RELEASE_SAFELY(_linkColor);
   NI_RELEASE_SAFELY(_linkHighlightColor);
   NI_RELEASE_SAFELY(_currentLink);
   NI_RELEASE_SAFELY(_strokeColor);
   NI_RELEASE_SAFELY(_customLinks);
-  
+
   [super dealloc];
 }
 
@@ -73,20 +77,23 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) resetFromLabel {
-  NSMutableAttributedString* attributedString = self.text ? 
-  [[[NSMutableAttributedString alloc] initWithString:self.text] autorelease] : nil;
-  
+  NSMutableAttributedString* attributedString =
+  ((nil != self.text)
+   ? [[[NSMutableAttributedString alloc] initWithString:self.text] autorelease]
+   : nil);
+
   [attributedString setFont:self.font];
   [attributedString setTextColor:self.textColor];
-  
+
   CTTextAlignment textAlignment = [self alignmentFromUITextAlignment:self.textAlignment];
   CTLineBreakMode lineBreak = [self lineBreakModeFromUILineBreakMode:self.lineBreakMode];
-  
+
   [attributedString setTextAlignment:textAlignment lineBreakMode:lineBreak]; 
-  
+
   self.attributedText = attributedString;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)awakeFromNib {
   [super awakeFromNib];
   [self resetFromLabel];
@@ -185,7 +192,6 @@
   [self setNeedsDisplay];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setStrokeWidth:(CGFloat)width range:(NSRange)range {
   [_attributedText setStrokeWidth:width range:range];
   [self setNeedsDisplay];
@@ -198,7 +204,6 @@
   [self setNeedsDisplay];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setStrokeColor:(UIColor*)color range:(NSRange)range {
   [_attributedText setStrokeColor:_strokeColor range:range];
   [self setNeedsDisplay];
@@ -211,7 +216,6 @@
   [self setNeedsDisplay];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setTextKern:(CGFloat)kern range:(NSRange)range {
   [_attributedText setKern:kern range:range];
   [self setNeedsDisplay];
@@ -302,7 +306,7 @@
 -(NSMutableAttributedString*) linksDetectedAttributedString {
   NSMutableAttributedString* attributedString = [self.attributedText mutableCopy];
 	if (!attributedString) return nil;
-  
+
   if (_autoDetectLinks) {
     NSError* error = nil;
     NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink
@@ -310,8 +314,7 @@
     [linkDetector enumerateMatchesInString:[attributedString string] 
                                    options:0 
                                      range:NSMakeRange(0,[[attributedString string] length])
-                                usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
-                                {
+                                usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
                                   [attributedString setTextColor:self.linkColor
                                                            range:[result range]];
                                 }];
@@ -343,7 +346,6 @@
   __block NSTextCheckingResult* foundResult = nil;
   
   if (_autoDetectLinks) {
-    
     NSError* error = nil;
     NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink 
                                                                    error:&error];
@@ -375,19 +377,19 @@
 -(NSTextCheckingResult*)linkAtPoint:(CGPoint)point {
   static const CGFloat kVMargin = 5.0f;
 	if (!CGRectContainsPoint(CGRectInset(_drawingRect, 0, -kVMargin), point)) return nil;
-  
+
   CFArrayRef lines = CTFrameGetLines(_textFrame);
 	if (!lines) return nil;
 	CFIndex count = CFArrayGetCount(lines);
-	
+
   NSTextCheckingResult* foundLink = nil;
-	
+
 	CGPoint origins[count];
 	CTFrameGetLineOrigins(_textFrame, CFRangeMake(0,0), origins);
-  
+
   for (int i = 0; i < count; i++) {
 		CGPoint linePoint = origins[i];
-		
+
 		CTLineRef line = CFArrayGetValueAtIndex(lines, i);
 		CGRect flippedRect = [self getLineBounds:line point:linePoint];
     CGRect bounds = CGRectMake(CGRectGetMinX(_drawingRect),
@@ -398,7 +400,7 @@
                              CGRectGetMaxY(bounds)-CGRectGetMaxY(flippedRect),
                              CGRectGetWidth(flippedRect),
                              CGRectGetHeight(flippedRect));                      
-		
+
 		rect = CGRectInset(rect, 0, -kVMargin);
 		if (CGRectContainsPoint(rect, point)) {
 			CGPoint relativePoint = CGPointMake(point.x-CGRectGetMinX(rect),
@@ -457,14 +459,13 @@
   if (_attributedText) {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 		CGContextSaveGState(ctx);
-    
+
     NSMutableAttributedString* attributedString = _autoDetectLinks || [_customLinks count] > 0 ? 
       [self linksDetectedAttributedString] : [[self.attributedText copy] autorelease];
-    
+
     // CoreText context coordinates are the opposite to UIKit so we flip the bounds
     CGContextConcatCTM(ctx,
-                       CGAffineTransformScale(
-                          CGAffineTransformMakeTranslation(0, self.bounds.size.height),
+                       CGAffineTransformScale(CGAffineTransformMakeTranslation(0, self.bounds.size.height),
                                               1.f, -1.f));
     
     if (_textFrame == nil) {

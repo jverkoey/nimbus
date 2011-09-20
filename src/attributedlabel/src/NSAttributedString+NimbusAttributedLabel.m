@@ -16,6 +16,8 @@
 
 #import "NSAttributedString+NimbusAttributedLabel.h"
 
+#import "NimbusCore.h"
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,19 +29,18 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
 -(void) setTextAlignment:(CTTextAlignment)textAlignment 
            lineBreakMode:(CTLineBreakMode)lineBreakMode 
                    range:(NSRange)range {
-  
   CTParagraphStyleSetting paragraphStyles[2] = {
-		{.spec = kCTParagraphStyleSpecifierAlignment, 
-      .valueSize = sizeof(CTTextAlignment), 
+		{.spec = kCTParagraphStyleSpecifierAlignment,
+      .valueSize = sizeof(CTTextAlignment),
       .value = (const void*)&textAlignment},
-		{.spec = kCTParagraphStyleSpecifierLineBreakMode, 
-      .valueSize = sizeof(CTLineBreakMode), 
+		{.spec = kCTParagraphStyleSpecifierLineBreakMode,
+      .valueSize = sizeof(CTLineBreakMode),
       .value = (const void*)&lineBreakMode},
 	};
 	CTParagraphStyleRef style = CTParagraphStyleCreate(paragraphStyles, 2);
-  [self addAttribute:(NSString*)kCTParagraphStyleAttributeName 
-                           value:(id)style 
-                           range:range];
+  [self addAttribute:(NSString*)kCTParagraphStyleAttributeName
+               value:(id)style 
+               range:range];
   CFRelease(style);
 }
 
@@ -48,42 +49,39 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
            lineBreakMode:(CTLineBreakMode)lineBreakMode {
   [self setTextAlignment:textAlignment 
            lineBreakMode:lineBreakMode 
-                   range:NSMakeRange(0,[self length])];
+                   range:NSMakeRange(0, [self length])];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) setTextColor:(UIColor*)color range:(NSRange)range {
-  
-  [self removeAttribute:(NSString *)kCTForegroundColorAttributeName range:range]; 
-	[self addAttribute:(NSString*)kCTForegroundColorAttributeName 
-                           value:(id)color.CGColor 
-                           range:range];
+  [self removeAttribute:(NSString *)kCTForegroundColorAttributeName range:range];
+	[self addAttribute:(NSString*)kCTForegroundColorAttributeName
+               value:(id)color.CGColor
+               range:range];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) setTextColor:(UIColor*)color {
-  [self setTextColor:color range:NSMakeRange(0,[self length])];
+  [self setTextColor:color range:NSMakeRange(0, [self length])];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) setFont:(UIFont*)font range:(NSRange)range {
   CTFontRef fontRef = CTFontCreateWithName((CFStringRef)font.fontName, font.pointSize, nil);
-  [self removeAttribute:(NSString*)kCTFontAttributeName range:range]; 
+  [self removeAttribute:(NSString*)kCTFontAttributeName range:range];
 	[self addAttribute:(NSString*)kCTFontAttributeName value:(id)fontRef range:range];
 	CFRelease(fontRef);
-  
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) setFont:(UIFont*)font {
-  [self setFont:font range:NSMakeRange(0,[self length])];
+  [self setFont:font range:NSMakeRange(0, [self length])];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) setUnderlineStyle:(CTUnderlineStyle)style
                 modifier:(CTUnderlineStyleModifiers)modifier
                    range:(NSRange)range {
-  
   [self removeAttribute:(NSString*)kCTUnderlineColorAttributeName range:range]; 
   [self addAttribute:(NSString*)kCTUnderlineStyleAttributeName 
                            value:[NSNumber numberWithInt:(style|modifier)] 
@@ -95,11 +93,11 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
                 modifier:(CTUnderlineStyleModifiers)modifier {
   [self setUnderlineStyle:style 
                  modifier:modifier
-                    range:NSMakeRange(0,[self length])];
+                    range:NSMakeRange(0, [self length])];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)setStrokeWidth:(CGFloat)width range:(NSRange)range {
+-(void) setStrokeWidth:(CGFloat)width range:(NSRange)range {
   [self removeAttribute:(NSString*)kCTStrokeWidthAttributeName range:range]; 
   [self addAttribute:(NSString*)kCTStrokeWidthAttributeName 
                value:[NSNumber numberWithFloat:width] 
@@ -107,12 +105,12 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)setStrokeWidth:(CGFloat)width {
-  [self setStrokeWidth:width range:NSMakeRange(0,[self length])];
+-(void) setStrokeWidth:(CGFloat)width {
+  [self setStrokeWidth:width range:NSMakeRange(0, [self length])];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)setStrokeColor:(UIColor *)color range:(NSRange)range {
+-(void) setStrokeColor:(UIColor *)color range:(NSRange)range {
   [self removeAttribute:(NSString*)kCTStrokeColorAttributeName range:range];
   [self addAttribute:(NSString*)kCTStrokeColorAttributeName 
                value:(id)color.CGColor 
@@ -120,12 +118,12 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)setStrokeColor:(UIColor *)color {
-  [self setStrokeColor:color range:NSMakeRange(0,[self length])];
+-(void) setStrokeColor:(UIColor *)color {
+  [self setStrokeColor:color range:NSMakeRange(0, [self length])];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)setKern:(CGFloat)kern range:(NSRange)range {
+-(void) setKern:(CGFloat)kern range:(NSRange)range {
   [self removeAttribute:(NSString*)kCTKernAttributeName range:range]; 
   [self addAttribute:(NSString*)kCTKernAttributeName 
                value:[NSNumber numberWithFloat:kern] 
@@ -133,8 +131,8 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)setKern:(CGFloat)kern {
-  [self setKern:kern range:NSMakeRange(0,[self length])];
+-(void) setKern:(CGFloat)kern {
+  [self setKern:kern range:NSMakeRange(0, [self length])];
 }
 
 @end
