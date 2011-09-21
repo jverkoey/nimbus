@@ -60,6 +60,8 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
   // Configurable Properties
   UIImage* _loadingImage;
   CGFloat _pageHorizontalMargin;
+  UIColor* _scrollViewBackgroundColor;
+  UIColor* _photoBackgroundColor;
   BOOL _zoomingIsEnabled;
   BOOL _zoomingAboveOriginalSizeIsEnabled;
 
@@ -155,6 +157,20 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  * By default this is NIPhotoAlbumScrollViewDefaultPageHorizontalMargin.
  */
 @property (nonatomic, readwrite, assign) CGFloat pageHorizontalMargin;
+
+/**
+ * The background color of the album scroll view.
+ *
+ * By default this is [UIColor blackColor].
+ */
+@property (nonatomic, readwrite, retain) UIColor* scrollViewBackgroundColor;
+
+/**
+ * The background color of each photo's scroll view.
+ *
+ * By default this is [UIColor blackColor].
+ */
+@property (nonatomic, readwrite, retain) UIColor* photoBackgroundColor;
 
 
 #pragma mark State /** @name State */

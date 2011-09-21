@@ -29,6 +29,8 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 @implementation NIPhotoAlbumScrollView
 
 @synthesize loadingImage = _loadingImage;
+@synthesize scrollViewBackgroundColor = _scrollViewBackgroundColor;
+@synthesize photoBackgroundColor = _photoBackgroundColor;
 @synthesize pageHorizontalMargin = _pageHorizontalMargin;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
 @synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
@@ -43,6 +45,8 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   _pagingScrollView = nil;
 
   NI_RELEASE_SAFELY(_loadingImage);
+  NI_RELEASE_SAFELY(_scrollViewBackgroundColor);
+  NI_RELEASE_SAFELY(_photoBackgroundColor);
 
   NI_RELEASE_SAFELY(_visiblePages);
   NI_RELEASE_SAFELY(_recycledPages);
@@ -73,7 +77,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
     _pagingScrollView.delegate = self;
 
     // Ensure that empty areas of the scroll view are draggable.
-    _pagingScrollView.backgroundColor = [UIColor blackColor];
+	_pagingScrollView.backgroundColor = [UIColor blackColor];
 
     _pagingScrollView.showsVerticalScrollIndicator = NO;
     _pagingScrollView.showsHorizontalScrollIndicator = NO;
@@ -282,6 +286,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
   if (nil == page) {
     page = [[[NIPhotoScrollView alloc] init] autorelease];
+	page.backgroundColor = self.photoBackgroundColor ? self.photoBackgroundColor : page.backgroundColor;
     page.photoScrollViewDelegate = self;
     page.zoomingAboveOriginalSizeIsEnabled = [self isZoomingAboveOriginalSizeEnabled];
   }
@@ -621,6 +626,14 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setCenterPhotoIndex:(NSInteger)centerPhotoIndex {
   [self setCenterPhotoIndex:centerPhotoIndex animated:NO];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setScrollViewBackgroundColor:(UIColor *)color {
+  NI_RELEASE_SAFELY(_scrollViewBackgroundColor);
+  _scrollViewBackgroundColor = [color retain];
+  _pagingScrollView.backgroundColor = color;
 }
 
 
