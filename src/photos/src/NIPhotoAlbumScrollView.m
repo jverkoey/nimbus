@@ -77,7 +77,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
     _pagingScrollView.delegate = self;
 
     // Ensure that empty areas of the scroll view are draggable.
-	_pagingScrollView.backgroundColor = [UIColor blackColor];
+    _pagingScrollView.backgroundColor = [UIColor blackColor];
 
     _pagingScrollView.showsVerticalScrollIndicator = NO;
     _pagingScrollView.showsHorizontalScrollIndicator = NO;
@@ -464,7 +464,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
       // Only replace the photo if it's of a higher quality than one we're already showing.
       if (photoSize > page.photoSize) {
         [page setImage:image photoSize:photoSize];
-        
+
         page.zoomingIsEnabled = ([self isZoomingEnabled]
                                  && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
 
