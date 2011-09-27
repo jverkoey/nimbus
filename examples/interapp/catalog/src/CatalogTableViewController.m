@@ -169,6 +169,21 @@ typedef BOOL (^BasicBlockReturnBool)(void);
             [NSDictionary dictionaryWithObjectsAndKeys: @"featherless", @"title",
              [^{ return [NIInterapp twitterProfileForUsername:@"featherless"];} autorelease], @"block", nil],
             
+
+            @"Custom Application",
+            [NSDictionary dictionaryWithObjectsAndKeys: @"Open custom app (RAWR:)", @"title",
+             [^{ return [NIInterapp applicationWithScheme:@"RAWR:"];} autorelease], @"block", nil],
+            [NSDictionary dictionaryWithObjectsAndKeys: @"Custom app or AppStore", @"title",
+             [^{ return [NIInterapp applicationWithScheme:@"RAWR:"
+                                            andAppStoreId:@"000000000"];} autorelease], @"block", nil],
+            [NSDictionary dictionaryWithObjectsAndKeys: @"Custom app with url", @"title",
+             [^{ return [NIInterapp applicationWithScheme:@"RAWR:" 
+                                                andPath:@"//friends/blah"];} autorelease], @"block", nil],
+            [NSDictionary dictionaryWithObjectsAndKeys: @"Custom app with url or AppStore", @"title",
+             [^{ return [NIInterapp applicationWithScheme:@"RAWR:" 
+                                               appStoreId:@"000000000" 
+                                                andPath:@"//friends/blah"];} autorelease], @"block", nil],
+            
             @"Instagram",
             [NSDictionary dictionaryWithObjectsAndKeys: @"Open the app", @"title",
              [^{ return [NIInterapp instagram];} autorelease], @"block", nil],

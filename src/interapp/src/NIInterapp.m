@@ -322,6 +322,72 @@ static NSString* const sTwitterScheme = @"twitter:";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
+#pragma mark Application
+
+//static NSString* const sTwitterScheme = @"twitter:";
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)applicationIsInstalledWithScheme:(NSString *)applicationScheme {
+    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:applicationScheme]];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)applicationWithScheme:(NSString *)applicationScheme {
+    return [self applicationWithScheme:applicationScheme
+                            appStoreId:nil
+                               andPath:nil];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)applicationWithScheme:(NSString *)applicationScheme
+                andAppStoreId:(NSString *)appStoreId {
+    return [self applicationWithScheme:applicationScheme
+                            appStoreId:appStoreId
+                               andPath:nil];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)applicationWithScheme:(NSString *)applicationScheme
+                      andPath:(NSString *)path {
+    return [self applicationWithScheme:applicationScheme
+                            appStoreId:nil
+                               andPath:path];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)applicationWithScheme:(NSString *)applicationScheme
+                   appStoreId:(NSString *)appStoreId
+                      andPath:(NSString *)path {
+    BOOL        didOpen = false;
+    NSString*   urlPath = applicationScheme;
+    
+    // Were we passed a path?
+    if (path != nil) {
+        // Generate the full application URL
+        urlPath = [urlPath stringByAppendingFormat:@"%@", path];
+    }
+    
+    // Try to open the application URL
+    didOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
+    
+    // Didn't open and we have an appStoreId
+    if (!didOpen && appStoreId != nil) {
+        // Open the app store instead
+        didOpen = [self appStoreWithAppId:appStoreId];
+    }
+    
+    return didOpen;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
 #pragma mark Instagram
 
 static NSString* const sInstagramScheme = @"instagram:";
