@@ -263,21 +263,21 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)addLink:(NSURL*)urlLink range:(NSRange)range {
-  if (!_customLinks) {
-    _customLinks = [[[NSMutableArray alloc] init] retain];
+  if (nil == _customLinks) {
+    _customLinks = [[NSMutableArray alloc] init];
   }
-  
+
   [_customLinks addObject:[NSTextCheckingResult 
                            linkCheckingResultWithRange:range URL:urlLink]];
-  
+
   self.userInteractionEnabled = YES;
-  
+
   [self setNeedsDisplay];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)resetTextFrame {
-	if (_textFrame) {
+	if (nil != _textFrame) {
 		CFRelease(_textFrame);
 		_textFrame = nil;
 	}
@@ -291,7 +291,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)sizeThatFits:(CGSize)size {
-	if (!_attributedText) return CGSizeZero;
+	if (nil == _attributedText) return CGSizeZero;
   
   CTFramesetterRef framesetter = 
     CTFramesetterCreateWithAttributedString((CFAttributedStringRef)_attributedText);
@@ -305,7 +305,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(NSMutableAttributedString*) linksDetectedAttributedString {
   NSMutableAttributedString* attributedString = [self.attributedText mutableCopy];
-	if (!attributedString) return nil;
+	if (nil == attributedString) return nil;
 
   if (_autoDetectLinks) {
     NSError* error = nil;
@@ -352,8 +352,7 @@
     [linkDetector enumerateMatchesInString:[_attributedText string] 
                                    options:0 
                                      range:NSMakeRange(0,[[_attributedText string] length])
-                                usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
-                                {
+                                usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
                                   NSRange range = [result range];
                                   if (NSLocationInRange(i, range)) {
                                     foundResult = [[result retain] autorelease];
