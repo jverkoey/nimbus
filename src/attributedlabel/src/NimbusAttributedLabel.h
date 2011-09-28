@@ -18,25 +18,86 @@
  * @defgroup NimbusAttributedLabel Nimbus Attributed Label
  * @{
  *
- * The Nimbus Attributed Label is a regular UILabel that utilizes the great power of
- * NSAttributtedString. In essence it transforms a simple label into a fully formattable
- * label using the CoreText framework.
+ * The Nimbus Attributed Label is a UILabel that uses NSAttributedString to provide
+ * custom text styling. NIAttributedLabel uses Apple's CoreText framework to handle the
+ * styling, resulting in a fast, iOS SDK-based solution for styled text.
  *
- * NIAttributedLabel will initially inherit the styles set on the original UILabel. You can 
+ * NIAttributedLabel will initially inherit the default styles set on the UILabel. You can 
  * use an attributed label within Interface Builder by creating a regualar UILabel and then
- * changing its class to NIAttributtedLabel. Any custom formatting must be done in code.
+ * changing its class to NIAttributedLabel. This will allow you to set styles that apply to
+ * the entire string, but if you want to style specific parts of the string then you will
+ * need to do this formatting in code.
  *
  * <h2>Key Features</h2>
  *
- * - Underline text
- * - Justify paragraph style
- * - Detect links
- * - Text stroking
- * - Text kerning
+ * - Link detection
  * - Custom links
  * - Setting custom styles for specific ranges
+ * - Underline text
+ * - Justify paragraph style
+ * - Text stroking
+ * - Text kerning
  *
  *  @image html NIAttributedLabelExample1.png "A mashup of possible label styles"
+ *
+ * <h2>Link Detection</h2>
+ *
+ * Link detection is achieved using NSDataDetector and therefore is only available in iOS 4.0
+ * and later. If pre-iOS 4.0 support is required then a regex solution will likely
+ * be used if NSDataDetector is not available, though this is not currently implemented.
+ *
+ * Link detection is off by default and must be enabled by setting autoDetectLinks to YES:
+ *
+ * @code
+ * - (void)viewDidLoad {
+ *    // Enables link detection on the label.
+ *    myLabel.autoDetectLinks = YES;
+ * }
+ * @endcode
+ *
+ * Enabling link detection will also enable user interation with the label view i.e. allow users 
+ * to tap the detected links.
+ *
+ * Detected links will inherit the linkColor and linkHighlight color (highlights on tap).
+ * These colors are both customizable:
+ *
+ * @code
+ * - (void)viewDidLoad {
+ *    // Sets all links to to be colored purple.
+ *    myLabel.linkColor = [UIColor purpleColor];
+ *    // Set the on tap highlight color to orange.
+ *    myLabel.linkHighlightColor = [UIColor orangeColor];
+ * } 
+ * @endcode
+ *
+ * In the mashup screenshot above you can see links in blue, which is the default color.
+ *
+ * linkColor and linkHighlightColor will also effect custom links (see below).
+ *
+ * Implementing NIAttributedLabelDelegate will alow you to take action when a link is tapped:
+ *
+ * @code
+ * - (void)viewDidLoad {
+ *    myLabel.delegate = self;
+ * } 
+ *
+ * - (void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectLink:(NSURL *)url {
+ *    // TODO: send user to selected url
+ * }
+ * @endcode
+ *
+ * <h2>Custom Links</h2>
+ *
+ * Custom links behave the same as detected links but allow you to set any range of text to 
+ * any URL. This is useful for internal links:
+ * 
+ * @code
+ * - (void)viewDidLoad {
+ *    // Add a custom link to the text 'nimbus'.
+ *    [myLabel addLink:[NSURL URLWithString:@"nimbus://custom/url"]
+ *               range:[myLabel.text rangeOfString:@"nimbus"]];
+ * }
+ * @endcode
  *
  * <h2>Underlined Text</h2>
  *
@@ -80,52 +141,6 @@
  * - (void)viewDidLoad {
  *    // Label will be justified to the label's frame width.
  *    myLabel.textAlignment = UITextAlignmentJustify;
- * }
- * @endcode
- *
- * <h2>Link Detection</h2>
- *
- * Link detection is achieved using NSDataDetector and therefore is only availible in OS 4.0
- * and later. In the future if pre iOS 4.0 support is required then a regex solution will likely
- * be used if NSDataDetector is not available, though this is not currently implemented.
- *
- * Link detection is off by default and must be enabled by calling:
- *
- * @code
- * - (void)viewDidLoad {
- *    // Enables link detection on the label.
- *    myLabel.autoDetectLinks = YES;
- * }
- * @endcode
- *
- * Enabling link detection will also enable user interation with the label view i.e. allow users 
- * to tap the detected links.
- *
- * Detected links will inherit the linkColor and linkHighlight color (highlights on tap).
- * These colors are both customizable:
- *
- * @code
- * - (void)viewDidLoad {
- *    // Sets all links to to be colored purple.
- *    myLabel.linkColor = [UIColor purpleColor];
- *    // Set the on tap highlight color to orange.
- *    myLabel.linkHighlightColor = [UIColor orangeColor];
- * } 
- * @endcode
- *
- * In the mashup screenshot above you can see links in blue, which is the default color.
- *
- * linkColor and linkHighlightColor will also effect custom links (see below).
- *
- * Implementing NIAttributedLabelDelegate will alow you to take action when a link is tapped:
- *
- * @code
- * - (void)viewDidLoad {
- *    myLabel.delegate = self;
- * } 
- *
- * - (void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectLink:(NSURL *)url {
- *    // TODO: send user to selected url
  * }
  * @endcode
  *
@@ -173,18 +188,6 @@
  * @endcode
  *
  * @image html NIAttributedLabelExample5.png "Text kern of -6.0"
- *
- * <h2>Custom Links</h2>
- *
- * Custom links behave the same as detected links but allow you to set any range of text to 
- * any URL. This is perticularly useful for internal links:
- * 
- * @code
- * - (void)viewDidLoad {
- *    // Add a custom link to the text 'nimbus'.
- *    [myLabel addLink:[NSURL URLWithString:@"nimbus://custom/url"] range:[myLabel.text rangeOfString:@"nimbus"]];
- * }
- * @endcode
  *
  * <h2>Range Format Styles</h2>
  *

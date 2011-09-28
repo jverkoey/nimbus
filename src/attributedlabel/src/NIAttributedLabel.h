@@ -53,8 +53,8 @@
 /**
  * Whether links are automatically detected in the text.
  *
- * When set to true links will be detected and displayed as touchable.
- * Detected links will also have a linkColor and linkHighlightedColor.
+ * When YES, links will be detected and touchable.
+ * Detected links will also be colored with linkColor and linkHighlightedColor.
  */
 @property(nonatomic, assign) BOOL autoDetectLinks;
 
@@ -70,8 +70,8 @@
  *
  * If no color is set, the default is [UIColor colorWithWhite:0.5 alpha:0.2]
  * If you do not want to highlight links when touched, set this to [UIColor clearColor]
- * or set it to the same color as your views background color (opaque colors have better
- * performance).
+ * or set it to the same color as your view's background color (opaque colors will perform
+ * better).
  */
 @property(nonatomic, retain) UIColor* linkHighlightColor;
 
@@ -100,21 +100,20 @@
 
 
 /**
- * The stroke width for the whole text
+ * The stroke width for the whole text.
  *
- * Positive numbers will render only the stroke, where as negivive numbers are for stroke
+ * Positive numbers will render only the stroke, where as negative numbers are for stroke
  * and fill.
- * A width of 3.0 is a good starting point.
  */
 @property(nonatomic, assign) CGFloat strokeWidth;
 
 /**
- * The stroke color for the whole text
+ * The stroke color for the whole text.
  */
 @property(nonatomic, retain) UIColor* strokeColor;
 
 /**
- * The text kern for the whole text
+ * The text kern for the whole text.
  *
  * The text kern indicates how many points the following character should be shifted from
  * its default offset.
@@ -133,7 +132,7 @@
 -(void)setTextColor:(UIColor *)textColor range:(NSRange)range;
 
 /** 
- * Sets the font for a given range
+ * Sets the font for a given range.
  *
  * Note that this will not change the default font value and font will
  * return the default font.
@@ -161,7 +160,7 @@
 -(void)setUnderlineStyle:(CTUnderlineStyle)style modifier:(CTUnderlineStyleModifiers)modifier range:(NSRange)range;
 
 /**
- * The stroke width for the given range
+ * Modifies the stroke width for a given range.
  *
  * A positive number will render only the stroke, whereas negivive a number are for stroke
  * and fill.
@@ -170,7 +169,7 @@
 -(void)setStrokeWidth:(CGFloat)width range:(NSRange)range;
 
 /**
- * The stroke color for the given range
+ * Modifies the stroke color for a given range.
  *
  * Normally you would use this in conjunction with setStrokeWidth:range: passing in the same
  * range for both
@@ -178,28 +177,27 @@
 -(void)setStrokeColor:(UIColor*)color range:(NSRange)range;
 
 /**
- * The text kern for a given range
+ * Modifies the text kern for a given range.
  *
  * The text kern indicates how many points the following character should be shifted from
  * its default offset.
  *
- * A positive kern indicates a shift farther away from and a negative kern indicates a
- * shift closer
+ * A positive kern indicates a shift farther away and a negative kern indicates a
+ * shift closer.
  */
 -(void)setTextKern:(CGFloat)kern range:(NSRange)range;
 
 /**
  * Adds a custom tappable link.
  *
- * Link will take on properties defined in linkColor and linkHighlightColor. Also, add a link
- * will set en
+ * Link will take on properties defined in linkColor and linkHighlightColor.
  */
 -(void)addLink:(NSURL*)urlLink range:(NSRange)range;
 
 /**
  * The attributed label notifies the delegate of any user interactions.
  */
-@property(nonatomic, assign) IBOutlet id<NIAttributedLabelDelegate> delegate;
+@property (nonatomic, assign) IBOutlet id<NIAttributedLabelDelegate> delegate;
 
 @end
 
@@ -217,4 +215,5 @@
 -(void)attributedLabel:(NIAttributedLabel*)attributedLabel 
          didSelectLink:(NSURL*)url 
                atPoint:(CGPoint)point;
+
 @end
