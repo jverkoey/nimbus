@@ -75,6 +75,18 @@
  * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
  * </div>
  * 
+ * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/a7acedfd4044ad79252e3b062aef25e7?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Glenn Grant</div> 
+ * <div class="github"><a href="http://github.com/alias1">alias1</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/ca1536c2ef2e263ed2aec69c1d147677?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Aviel Lazar</div> 
+ * <div class="github"><a href="http://github.com/aviell">aviell</a></div> 
+ * </div>
+ *
  * <div class="contributor_profile"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/22f25c7b3f0f15a6854fae62bbd3482f?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Benedikt Meurer</div> 
@@ -147,7 +159,140 @@
  */
 
 /**
- * @defgroup Version-7-0 Version 0.7.0 API Changes
+ * @defgroup Version-8-0 Version 0.8 API Changes
+ * @ingroup Version-History
+ *
+ * Version 0.8.0 of Nimbus was released on September 28, 2011. This major version introduced
+ * the new Nimbus @link NimbusAttributedLabel Attributed Label@endlink, an iOS SDK-based
+ * solution for styled text built by Roger Chapman (<a href="http://github.com/rogchap">rogchap</a>).
+ *
+ *  @image html NIAttributedLabelExample1.png "A mashup of possible label styles"
+ *
+ *
+ * <h2>Added Frameworks</h2>
+ *
+ * - @link NimbusAttributedLabel Attributed Label@endlink
+ *
+ *
+ * <h2>Core</h2>
+ *
+ * <h3>NIFoundationMethods[.h|m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Make boundf and boundi perform consistently for invalid bounds (e.g. max < min).
+ *
+ * <h3>NINavigationAppearance[.h|m] Added</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>@link NINavigationAppearance NINavigationAppearance@endlink</code> (thanks to <a href="http://github.com/baz">baz</a>.)
+ *
+ *
+ * <h2>Interapp</h2>
+ *
+ * <h3>NIInterapp[.h|m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIInterapp::applicationIsInstalledWithScheme: applicationIsInstalledWithScheme:@endlink</code> (thanks to <a href="http://github.com/alias1">alias1</a>.)
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIInterapp::applicationWithScheme: applicationWithScheme:@endlink</code> (thanks to <a href="http://github.com/alias1">alias1</a>.)
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIInterapp::applicationWithScheme:andAppStoreId: applicationWithScheme:andAppStoreId:@endlink</code> (thanks to <a href="http://github.com/alias1">alias1</a>.)
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIInterapp::applicationWithScheme:andPath: applicationWithScheme:andPath:@endlink</code> (thanks to <a href="http://github.com/alias1">alias1</a>.)
+ * - <span class="apiDiffAdded">Added</span> <code>@link NIInterapp::applicationWithScheme:appStoreId:andPath: applicationWithScheme:appStoreId:andPath:@endlink</code> (thanks to <a href="http://github.com/alias1">alias1</a>.)
+ *
+ *
+ * <h2>Models</h2>
+ *
+ * <h3>NITableViewModel[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed a minor bug related to using nil in Nimbus table view models.
+ *
+ * <h3>NITableViewModelTests[.m] Added</h3>
+ *
+ *
+ * <h2>Network Image</h2>
+ *
+ * <h3>NINetworkImageView[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed a bug with redirected image URLs not being cached properly (thanks to <a href="http://github.com/aviell">aviell</a>.)
+ *
+ * <h3>NITableViewModelTests[.m] Added</h3>
+ *
+ *
+ * <h2>Photos</h2>
+ *
+ * <h3>NIToolbarPhotoViewController[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed a crashing bug due to sending dealloc at the wrong time (thanks to <a href="http://github.com/baz">baz</a>.)
+ *
+ *
+ * <h2>Web Controller</h2>
+ *
+ * <h3>NIWebController[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed misc bugs related to web controller action sheets (thanks to <a href="http://github.com/bmeurer">bmeurer</a>.)
+ *
+ *
+ * <h2>Examples</h2>
+ *
+ * <h3>Basic Attributed Label [added]</h3>
+ *
+ *
+ * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Roger Chapman</div> 
+ * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/a7acedfd4044ad79252e3b062aef25e7?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Glenn Grant</div> 
+ * <div class="github"><a href="http://github.com/alias1">alias1</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/ca1536c2ef2e263ed2aec69c1d147677?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Aviel Lazar</div> 
+ * <div class="github"><a href="http://github.com/aviell">aviell</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/22f25c7b3f0f15a6854fae62bbd3482f?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Benedikt Meurer</div> 
+ * <div class="github"><a href="http://github.com/bmeurer">bmeurer</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/ec5d7ba9c004f79817c76146247e787e?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Basil Shkara</div> 
+ * <div class="github"><a href="http://github.com/baz">baz</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Jeff Verkoeyen</div> 
+ * <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ *
+ * <h3>Add Your Name to This List</h3>
+ *
+ * Contributions are highly encouraged! If you have a feature that you feel would fit within the
+ * Nimbus framework, feel free to fire off a pull request on GitHub. Bugs may be reported
+ * using the issue tracker on GitHub as well.
+ *
+ * Check out the <a href="https://github.com/jverkoey/nimbus/issues?sort=created&direction=desc&state=open&page=1&milestone=5">tasks grab bag</a>
+ * for opportunities to help out.
+ *
+ * <h2>Robots Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <div class="name"><a href="https://github.com/nimbusios/Doxygen">Nimbus Doxygen</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ */
+
+/**
+ * @defgroup Version-7-0 Version 0.7 API Changes
  * @ingroup Version-History
  *
  * Version 0.7.0 of Nimbus was released on August 19, 2011. This major version introduced the new
