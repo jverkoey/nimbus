@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -86,18 +86,65 @@
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacf9857f5788e5a989d0ce9b446a32ee"></a><!-- doxytag: member="NIMemoryCacheInfo::name" ref="aacf9857f5788e5a989d0ce9b446a32ee" args="" -->
-<a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_memory_cache_info.html#aacf9857f5788e5a989d0ce9b446a32ee">name</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed8c006ce8d5d959170b0c0b8c2c830d"></a><!-- doxytag: member="NIMemoryCacheInfo::object" ref="aed8c006ce8d5d959170b0c0b8c2c830d" args="" -->
-id&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_memory_cache_info.html#aed8c006ce8d5d959170b0c0b8c2c830d">object</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae1dd44b6572518d4386b24911407865"></a><!-- doxytag: member="NIMemoryCacheInfo::expirationDate" ref="aae1dd44b6572518d4386b24911407865" args="" -->
-NSDate *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_memory_cache_info.html#aae1dd44b6572518d4386b24911407865">expirationDate</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_memory_cache_info.html#aacf9857f5788e5a989d0ce9b446a32ee">name</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">id&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_memory_cache_info.html#aed8c006ce8d5d959170b0c0b8c2c830d">object</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSDate *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_memory_cache_info.html#aae1dd44b6572518d4386b24911407865">expirationDate</a> <span class="suffix">property</span></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSDate *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_memory_cache_info.html#a5df65400aecde4270f65396746022494">lastAccessTime</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ba696a78128653d7d2f5208416d6bb0"></a><!-- doxytag: member="NIMemoryCacheInfo::lruLocation" ref="a9ba696a78128653d7d2f5208416d6bb0" args="" -->
-NILinkedListLocation *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_memory_cache_info.html#a9ba696a78128653d7d2f5208416d6bb0">lruLocation</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NILinkedListLocation *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_memory_cache_info.html#a9ba696a78128653d7d2f5208416d6bb0">lruLocation</a> <span class="suffix">property</span></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_memory_cache_info.html#ae854ab244f76213c32704ead39bd3e2a">hasExpired</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
+<a class="anchor" id="aacf9857f5788e5a989d0ce9b446a32ee"></a><!-- doxytag: member="NIMemoryCacheInfo::name" ref="aacf9857f5788e5a989d0ce9b446a32ee" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="class_n_s_string.html">NSString</a>*) name<code> [read, write, copy]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The name used to store this object in the cache. </p>
+
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00050">50</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aed8c006ce8d5d959170b0c0b8c2c830d"></a><!-- doxytag: member="NIMemoryCacheInfo::object" ref="aed8c006ce8d5d959170b0c0b8c2c830d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (id) object<code> [read, write, retain]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The object stored in the cache. </p>
+
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00055">55</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aae1dd44b6572518d4386b24911407865"></a><!-- doxytag: member="NIMemoryCacheInfo::expirationDate" ref="aae1dd44b6572518d4386b24911407865" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSDate*) expirationDate<code> [read, write, retain]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The date after which the image is no longer valid and should be removed from the cache. </p>
+
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00060">60</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a5df65400aecde4270f65396746022494"></a><!-- doxytag: member="NIMemoryCacheInfo::lastAccessTime" ref="a5df65400aecde4270f65396746022494" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -113,6 +160,23 @@ NILinkedListLocation *&#160;</td><td class="memItemRight" valign="bottom"><a cla
 <p>This property is updated every time the image is fetched from or stored into the cache. It is used when the memory peak has been reached as a fast means of removing least-recently-used images. When the memory limit is reached, we sort the cache based on the last access times and then prune images until we're under the memory limit again. </p>
 
 <p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00070">70</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9ba696a78128653d7d2f5208416d6bb0"></a><!-- doxytag: member="NIMemoryCacheInfo::lruLocation" ref="a9ba696a78128653d7d2f5208416d6bb0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NILinkedListLocation*) lruLocation<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The location of this object in the least-recently used linked list. </p>
+
+<p>Definition at line <a class="el" href="_n_i_in_memory_cache_8m_source.html#l00075">75</a> of file <a class="el" href="_n_i_in_memory_cache_8m_source.html">NIInMemoryCache.m</a>.</p>
 
 </div>
 </div>

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -94,20 +94,67 @@ Screenshot of NIPhotoScrubberView on the iPad.</div></div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Data Source</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af905e00ec09db5d9b4793f41ceb0505f"></a><!-- doxytag: member="NIPhotoScrubberView::dataSource" ref="af905e00ec09db5d9b4793f41ceb0505f" args="" -->
-id&lt; <a class="el" href="protocol_n_i_photo_scrubber_view_data_source-p.html">NIPhotoScrubberViewDataSource</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scrubber_view.html#af905e00ec09db5d9b4793f41ceb0505f">dataSource</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">id&lt; <a class="el" href="protocol_n_i_photo_scrubber_view_data_source-p.html">NIPhotoScrubberViewDataSource</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scrubber_view.html#af905e00ec09db5d9b4793f41ceb0505f">dataSource</a> <span class="suffix">property</span></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_photo_scrubber_view.html#aaee2253bf84cdc2cb32f416ac1bc3559">reloadData</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_photo_scrubber_view.html#aafbd966a8145848f3d3a0cd8aab81486">didLoadThumbnail:atIndex:</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Delegate</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fbb84364c8be413ddf971d6710deb7e"></a><!-- doxytag: member="NIPhotoScrubberView::delegate" ref="a1fbb84364c8be413ddf971d6710deb7e" args="" -->
-id&lt; <a class="el" href="protocol_n_i_photo_scrubber_view_delegate-p.html">NIPhotoScrubberViewDelegate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scrubber_view.html#a1fbb84364c8be413ddf971d6710deb7e">delegate</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">id&lt; <a class="el" href="protocol_n_i_photo_scrubber_view_delegate-p.html">NIPhotoScrubberViewDelegate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scrubber_view.html#a1fbb84364c8be413ddf971d6710deb7e">delegate</a> <span class="suffix">property</span></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Accessing Selection</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4213f30776aeac5d2f6fb61c4b41eb4e"></a><!-- doxytag: member="NIPhotoScrubberView::selectedPhotoIndex" ref="a4213f30776aeac5d2f6fb61c4b41eb4e" args="" -->
-NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scrubber_view.html#a4213f30776aeac5d2f6fb61c4b41eb4e">selectedPhotoIndex</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3cbc6d3db863f4c5e7a964a340ec8f96"></a><!-- doxytag: member="NIPhotoScrubberView::setSelectedPhotoIndex:animated:" ref="a3cbc6d3db863f4c5e7a964a340ec8f96" args="(NSInteger photoIndex,[animated] BOOL animated)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_photo_scrubber_view.html#a3cbc6d3db863f4c5e7a964a340ec8f96">setSelectedPhotoIndex:animated:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_photo_scrubber_view.html#a4213f30776aeac5d2f6fb61c4b41eb4e">selectedPhotoIndex</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_photo_scrubber_view.html#a3cbc6d3db863f4c5e7a964a340ec8f96">setSelectedPhotoIndex:animated:</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
+<a class="anchor" id="af905e00ec09db5d9b4793f41ceb0505f"></a><!-- doxytag: member="NIPhotoScrubberView::dataSource" ref="af905e00ec09db5d9b4793f41ceb0505f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (id&lt;<a class="el" href="protocol_n_i_photo_scrubber_view_data_source-p.html">NIPhotoScrubberViewDataSource</a>&gt;) dataSource<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The data source for this scrubber view. </p>
+
+<p>Definition at line <a class="el" href="_n_i_photo_scrubber_view_8h_source.html#l00073">73</a> of file <a class="el" href="_n_i_photo_scrubber_view_8h_source.html">NIPhotoScrubberView.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1fbb84364c8be413ddf971d6710deb7e"></a><!-- doxytag: member="NIPhotoScrubberView::delegate" ref="a1fbb84364c8be413ddf971d6710deb7e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (id&lt;<a class="el" href="protocol_n_i_photo_scrubber_view_delegate-p.html">NIPhotoScrubberViewDelegate</a>&gt;) delegate<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The delegate for this scrubber view. </p>
+
+<p>Definition at line <a class="el" href="_n_i_photo_scrubber_view_8h_source.html#l00101">101</a> of file <a class="el" href="_n_i_photo_scrubber_view_8h_source.html">NIPhotoScrubberView.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4213f30776aeac5d2f6fb61c4b41eb4e"></a><!-- doxytag: member="NIPhotoScrubberView::selectedPhotoIndex" ref="a4213f30776aeac5d2f6fb61c4b41eb4e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSInteger) selectedPhotoIndex<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The selected photo index. </p>
+
+<p>Definition at line <a class="el" href="_n_i_photo_scrubber_view_8h_source.html#l00109">109</a> of file <a class="el" href="_n_i_photo_scrubber_view_8h_source.html">NIPhotoScrubberView.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aaee2253bf84cdc2cb32f416ac1bc3559"></a><!-- doxytag: member="NIPhotoScrubberView::reloadData" ref="aaee2253bf84cdc2cb32f416ac1bc3559" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -159,6 +206,37 @@ NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <p>This method is cheap, so do not be afraid to call it whenever a thumbnail loads. It will only modify visible thumbnails. </p>
 
 <p>Definition at line <a class="el" href="_n_i_photo_scrubber_view_8m_source.html#l00426">426</a> of file <a class="el" href="_n_i_photo_scrubber_view_8m_source.html">NIPhotoScrubberView.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3cbc6d3db863f4c5e7a964a340ec8f96"></a><!-- doxytag: member="NIPhotoScrubberView::setSelectedPhotoIndex:animated:" ref="a3cbc6d3db863f4c5e7a964a340ec8f96" args="(NSInteger photoIndex,[animated] BOOL animated)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) setSelectedPhotoIndex: </td>
+          <td></td>
+          <td class="paramtype">(NSInteger)&#160;</td>
+          <td class="paramname"><em>photoIndex</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">animated:</td>
+          <td></td>
+          <td class="paramtype">(BOOL)&#160;</td>
+          <td class="paramname"><em>animated</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set the selected photo with animation. </p>
+
+<p>Definition at line <a class="el" href="_n_i_photo_scrubber_view_8m_source.html#l00474">474</a> of file <a class="el" href="_n_i_photo_scrubber_view_8m_source.html">NIPhotoScrubberView.m</a>.</p>
 
 </div>
 </div>

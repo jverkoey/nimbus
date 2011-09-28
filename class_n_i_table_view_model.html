@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -94,10 +94,8 @@ Methods</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_n_i_table_view_model.html#a48850ea92b2a9ffe69a153bcfe9416e0">sectionIndexShowsSummary</a> <span class="suffix">property</span></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="class_n_i_table_view_model.html#a4f3dee76487f50876b9d7e536eb0b15f">setSectionIndexType:showsSearch:showsSummary:</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Creating Table View Cells</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78c3eba3b94e5e0e25f3bb867fd23e47"></a><!-- doxytag: member="NITableViewModel::delegate" ref="a78c3eba3b94e5e0e25f3bb867fd23e47" args="" -->
-id&lt; <a class="el" href="protocol_n_i_table_view_model_delegate-p.html">NITableViewModelDelegate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_n_i_table_view_model.html#a78c3eba3b94e5e0e25f3bb867fd23e47">delegate</a> <span class="suffix">property</span></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c47c87deb807cb1e9f557521c87394e"></a><!-- doxytag: member="NITableViewModel::createCellBlock" ref="a1c47c87deb807cb1e9f557521c87394e" args="" -->
-NITableViewModelCellForIndexPathBlock&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_n_i_table_view_model.html#a1c47c87deb807cb1e9f557521c87394e">createCellBlock</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">id&lt; <a class="el" href="protocol_n_i_table_view_model_delegate-p.html">NITableViewModelDelegate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_n_i_table_view_model.html#a78c3eba3b94e5e0e25f3bb867fd23e47">delegate</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NITableViewModelCellForIndexPathBlock&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_n_i_table_view_model.html#a1c47c87deb807cb1e9f557521c87394e">createCellBlock</a> <span class="suffix">property</span></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Creating Table View Models</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="class_n_i_table_view_model.html#a56fb73175cd2c39b9a7143fef985ef98">initWithDelegate:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="class_n_i_table_view_model.html#af6d1f01a2f02141750fcdc5fa497dbf0">initWithListArray:delegate:</a></td></tr>
@@ -161,6 +159,40 @@ NITableViewModelCellForIndexPathBlock&#160;</td><td class="memItemRight" valign=
 
 </div>
 </div>
+<a class="anchor" id="a78c3eba3b94e5e0e25f3bb867fd23e47"></a><!-- doxytag: member="NITableViewModel::delegate" ref="a78c3eba3b94e5e0e25f3bb867fd23e47" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- NITableViewModel:<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>A delegate used to fetch table view cells for the data source. </p>
+
+<p>Definition at line <a class="el" href="_n_i_table_view_model_8h_source.html#l00080">80</a> of file <a class="el" href="_n_i_table_view_model_8h_source.html">NITableViewModel.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1c47c87deb807cb1e9f557521c87394e"></a><!-- doxytag: member="NITableViewModel::createCellBlock" ref="a1c47c87deb807cb1e9f557521c87394e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- NITableViewModel:<code> [read, write, copy]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>A block used to create a UITableViewCell for a given object. </p>
+
+<p>Definition at line <a class="el" href="_n_i_table_view_model_8h_source.html#l00085">85</a> of file <a class="el" href="_n_i_table_view_model_8h_source.html">NITableViewModel.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a56fb73175cd2c39b9a7143fef985ef98"></a><!-- doxytag: member="NITableViewModel::initWithDelegate:" ref="a56fb73175cd2c39b9a7143fef985ef98" args="(id&lt; NITableViewModelDelegate &gt; delegate)" -->
 <div class="memitem">
 <div class="memproto">
@@ -179,7 +211,7 @@ NITableViewModelCellForIndexPathBlock&#160;</td><td class="memItemRight" valign=
 <p>Initializes a newly allocated static model with the given delegate and empty contents. </p>
 <p>This method can be used to create an empty model. </p>
 
-<p>Definition at line <a class="el" href="_n_i_table_view_model_8m_source.html#l00077">77</a> of file <a class="el" href="_n_i_table_view_model_8m_source.html">NITableViewModel.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_table_view_model_8m_source.html#l00080">80</a> of file <a class="el" href="_n_i_table_view_model_8m_source.html">NITableViewModel.m</a>.</p>
 
 </div>
 </div>
@@ -219,7 +251,7 @@ NITableViewModelCellForIndexPathBlock&#160;</td><td class="memItemRight" valign=
   nil];
  [[NIStaticTableViewModel alloc] initWithListArray:contents <a class="code" href="class_n_i_table_view_model.html#a78c3eba3b94e5e0e25f3bb867fd23e47" title="A delegate used to fetch table view cells for the data source.">delegate</a>:<span class="keyword">self</span>];
 </pre></div> 
-<p>Definition at line <a class="el" href="_n_i_table_view_model_8m_source.html#l00092">92</a> of file <a class="el" href="_n_i_table_view_model_8m_source.html">NITableViewModel.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_table_view_model_8m_source.html#l00095">95</a> of file <a class="el" href="_n_i_table_view_model_8m_source.html">NITableViewModel.m</a>.</p>
 
 </div>
 </div>
@@ -264,7 +296,7 @@ NITableViewModelCellForIndexPathBlock&#160;</td><td class="memItemRight" valign=
   nil];
  [[NIStaticTableViewModel alloc] initWithSectionedArray:contents <a class="code" href="class_n_i_table_view_model.html#a78c3eba3b94e5e0e25f3bb867fd23e47" title="A delegate used to fetch table view cells for the data source.">delegate</a>:<span class="keyword">self</span>];
 </pre></div> 
-<p>Definition at line <a class="el" href="_n_i_table_view_model_8m_source.html#l00101">101</a> of file <a class="el" href="_n_i_table_view_model_8m_source.html">NITableViewModel.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_table_view_model_8m_source.html#l00104">104</a> of file <a class="el" href="_n_i_table_view_model_8m_source.html">NITableViewModel.m</a>.</p>
 
 </div>
 </div>
@@ -286,7 +318,7 @@ NITableViewModelCellForIndexPathBlock&#160;</td><td class="memItemRight" valign=
 <p>Returns the object at the given index path. </p>
 <p>If no object exists at the given index path (an invalid index path, for example) then nil will be returned. </p>
 
-<p>Definition at line <a class="el" href="_n_i_table_view_model_8m_source.html#l00390">390</a> of file <a class="el" href="_n_i_table_view_model_8m_source.html">NITableViewModel.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_table_view_model_8m_source.html#l00395">395</a> of file <a class="el" href="_n_i_table_view_model_8m_source.html">NITableViewModel.m</a>.</p>
 
 </div>
 </div>
@@ -332,7 +364,7 @@ NITableViewModelCellForIndexPathBlock&#160;</td><td class="memItemRight" valign=
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_n_i_table_view_model_8m_source.html#l00411">411</a> of file <a class="el" href="_n_i_table_view_model_8m_source.html">NITableViewModel.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_table_view_model_8m_source.html#l00420">420</a> of file <a class="el" href="_n_i_table_view_model_8m_source.html">NITableViewModel.m</a>.</p>
 
 </div>
 </div>

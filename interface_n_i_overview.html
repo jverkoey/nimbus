@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -93,12 +93,9 @@ Methods</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_overview.html#af70180942bcd7b774d4311154a7181f7">applicationDidFinishLaunching</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_overview.html#a1bb1fd53f838e9630e68c77efd75d5e3">addOverviewToWindow:</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Accessing State Information</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae16e8cc5ef3a0bc2bd0fb212ded7b526"></a><!-- doxytag: member="NIOverview::height" ref="ae16e8cc5ef3a0bc2bd0fb212ded7b526" args="()" -->
-(CGFloat)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_overview.html#ae16e8cc5ef3a0bc2bd0fb212ded7b526">height</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc2d59e7ca18b42b762c605e391ba01c"></a><!-- doxytag: member="NIOverview::frame" ref="acc2d59e7ca18b42b762c605e391ba01c" args="()" -->
-(CGRect)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_overview.html#acc2d59e7ca18b42b762c605e391ba01c">frame</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52cf10f473a6d46224a2583ad5fc3cbe"></a><!-- doxytag: member="NIOverview::view" ref="a52cf10f473a6d46224a2583ad5fc3cbe" args="()" -->
-(<a class="el" href="interface_n_i_overview_view.html">NIOverviewView</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe">view</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(CGFloat)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_overview.html#ae16e8cc5ef3a0bc2bd0fb212ded7b526">height</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(CGRect)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_overview.html#acc2d59e7ca18b42b762c605e391ba01c">frame</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_n_i_overview_view.html">NIOverviewView</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_overview.html#a52cf10f473a6d46224a2583ad5fc3cbe">view</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_n_i_overview_logger.html">NIOverviewLogger</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_overview.html#acd1228a794482118056b0c5d7fb62683">logger</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
@@ -142,6 +139,66 @@ Methods</h2></td></tr>
 <p>The Overview will always be fixed at the top of the device's screen directly beneath the status bar (if it is visible). </p>
 
 <p>Definition at line <a class="el" href="_n_i_overview_8m_source.html#l00261">261</a> of file <a class="el" href="_n_i_overview_8m_source.html">NIOverview.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae16e8cc5ef3a0bc2bd0fb212ded7b526"></a><!-- doxytag: member="NIOverview::height" ref="ae16e8cc5ef3a0bc2bd0fb212ded7b526" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (CGFloat) height </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The height of the Overview. </p>
+
+<p>Definition at line <a class="el" href="_n_i_overview_8m_source.html#l00300">300</a> of file <a class="el" href="_n_i_overview_8m_source.html">NIOverview.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acc2d59e7ca18b42b762c605e391ba01c"></a><!-- doxytag: member="NIOverview::frame" ref="acc2d59e7ca18b42b762c605e391ba01c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (CGRect) frame </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The frame of the Overview. </p>
+
+<p>Definition at line <a class="el" href="_n_i_overview_8m_source.html#l00310">310</a> of file <a class="el" href="_n_i_overview_8m_source.html">NIOverview.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a52cf10f473a6d46224a2583ad5fc3cbe"></a><!-- doxytag: member="NIOverview::view" ref="a52cf10f473a6d46224a2583ad5fc3cbe" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (UIView *) view </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The Overview view. </p>
+
+<p>Definition at line <a class="el" href="_n_i_overview_8m_source.html#l00374">374</a> of file <a class="el" href="_n_i_overview_8m_source.html">NIOverview.m</a>.</p>
 
 </div>
 </div>

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -116,6 +116,9 @@
 <li>addEventLog:
 : <a class="el" href="interface_n_i_overview_logger.html#a93579c6a70c4533de12e66226435bdf9">NIOverviewLogger</a>
 </li>
+<li>addLink:range:
+: <a class="el" href="interface_n_i_attributed_label.html#af9f76992daa87b4e3e8f57b27f5d3f62">NIAttributedLabel</a>
+</li>
 <li>addObject:
 : <a class="el" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e">NILinkedList</a>
 </li>
@@ -131,8 +134,23 @@
 <li>applicationDidFinishLaunching
 : <a class="el" href="interface_n_i_overview.html#af70180942bcd7b774d4311154a7181f7">NIOverview</a>
 </li>
+<li>applicationIsInstalledWithScheme:
+: <a class="el" href="interface_n_i_interapp.html#a02a524071bf1915392ce428f90856500">NIInterapp</a>
+</li>
+<li>applicationWithScheme:andAppStoreId:
+: <a class="el" href="interface_n_i_interapp.html#a6506702a6c55b10a509858f4ca7c6738">NIInterapp</a>
+</li>
+<li>applicationWithScheme:andPath:
+: <a class="el" href="interface_n_i_interapp.html#a0aee0ecead138acfdf53052a051732c2">NIInterapp</a>
+</li>
+<li>applicationWithScheme:appStoreId:andPath:
+: <a class="el" href="interface_n_i_interapp.html#a14da5ca9db137c128c061c4af7162726">NIInterapp</a>
+</li>
 <li>appStoreWithAppId:
 : <a class="el" href="interface_n_i_interapp.html#a58ee555bc198bba2a78a5d16f6c798a8">NIInterapp</a>
+</li>
+<li>attributedLabel:didSelectLink:atPoint:
+: <a class="el" href="protocol_n_i_attributed_label_delegate-p.html#a8583ac9e32cfe1e0676ee3ad8b3604ec">&lt;NIAttributedLabelDelegate&gt;</a>
 </li>
 </ul>
 
@@ -172,6 +190,9 @@
 <li>cellStyle
 : <a class="el" href="protocol_n_i_cell_object-p.html#a0652b01388a8e2fb1ca754b2c8dd422f">&lt;NICellObject&gt;</a>
 </li>
+<li>clear
+: <a class="el" href="interface_n_i_navigation_appearance.html#a181624629e7771942b255639d340f95f">NINavigationAppearance</a>
+</li>
 <li>containsObject:
 : <a class="el" href="interface_n_i_linked_list.html#ac4364e4541406af80cd5654b062b12b8">NILinkedList</a>
 </li>
@@ -179,8 +200,9 @@
 : <a class="el" href="interface_n_i_memory_cache.html#aadf04db4cd1ef2087971ac58b416c590">NIMemoryCache</a>
 </li>
 <li>count
-: <a class="el" href="interface_n_i_linked_list.html#ab9b7ffb722b41ddbb38ddd0a365d4d50">NILinkedList</a>
+: <a class="el" href="interface_n_i_navigation_appearance.html#abe79248b75d244c86de514d5d6af23b6">NINavigationAppearance</a>
 , <a class="el" href="interface_n_i_memory_cache.html#a61996ab64791ed19840b5055b68c7c95">NIMemoryCache</a>
+, <a class="el" href="interface_n_i_linked_list.html#ab9b7ffb722b41ddbb38ddd0a365d4d50">NILinkedList</a>
 </li>
 </ul>
 
@@ -532,12 +554,18 @@
 <li>photoScrubberViewDidChangeSelection:
 : <a class="el" href="protocol_n_i_photo_scrubber_view_delegate-p.html#a57c268be8d7a941087d978e6307c59d6">&lt;NIPhotoScrubberViewDelegate&gt;</a>
 </li>
+<li>popAppearanceForNavigationController:animated:
+: <a class="el" href="interface_n_i_navigation_appearance.html#aeebe1720743b94a3248fb49db318e306">NINavigationAppearance</a>
+</li>
 <li>prepareForReuse
 : <a class="el" href="interface_n_i_network_image_view.html#a7cce26c40c058f1c8b7265b971b2abc5">NINetworkImageView</a>
 , <a class="el" href="interface_n_i_photo_scroll_view.html#ae810feafd0768dd63ef8437c1c69f316">NIPhotoScrollView</a>
 </li>
 <li>processor:processObject:error:
 : <a class="el" href="protocol_n_i_processor_delegate-p.html#af7822e57a67d47340861f06ca5420bc2">&lt;NIProcessorDelegate&gt;</a>
+</li>
+<li>pushAppearanceForNavigationController:
+: <a class="el" href="interface_n_i_navigation_appearance.html#a08c30a3e788421064f9db5da35566f29">NINavigationAppearance</a>
 </li>
 </ul>
 
@@ -586,6 +614,9 @@
 <li>setCenterPhotoIndex:animated:
 : <a class="el" href="interface_n_i_photo_album_scroll_view.html#a3f8d6526d57a471cbc2579b0cd097a8e">NIPhotoAlbumScrollView</a>
 </li>
+<li>setFont:range:
+: <a class="el" href="interface_n_i_attributed_label.html#a069b4473d0c51e9ca18d6cb39f07ec24">NIAttributedLabel</a>
+</li>
 <li>setFrameAndMaintainZoomAndCenter:
 : <a class="el" href="interface_n_i_photo_scroll_view.html#a022c6d9c29aa3f7e7b31387d5f05f9e0">NIPhotoScrollView</a>
 </li>
@@ -622,8 +653,23 @@
 <li>setSelectedPhotoIndex:animated:
 : <a class="el" href="interface_n_i_photo_scrubber_view.html#a3cbc6d3db863f4c5e7a964a340ec8f96">NIPhotoScrubberView</a>
 </li>
+<li>setStrokeColor:range:
+: <a class="el" href="interface_n_i_attributed_label.html#ab45c3737f1dd18f5f6f01832d4690ae8">NIAttributedLabel</a>
+</li>
+<li>setStrokeWidth:range:
+: <a class="el" href="interface_n_i_attributed_label.html#adfaf0ef7815f88410301e7d418fa2e8b">NIAttributedLabel</a>
+</li>
+<li>setTextColor:range:
+: <a class="el" href="interface_n_i_attributed_label.html#a70d2d2b7929fdb64ce2bef71cc2b1232">NIAttributedLabel</a>
+</li>
+<li>setTextKern:range:
+: <a class="el" href="interface_n_i_attributed_label.html#a5009d9a2529a54f79ad71f8b838e4793">NIAttributedLabel</a>
+</li>
 <li>setToolbarTintColor:
 : <a class="el" href="interface_n_i_web_controller.html#a3b99dd49315fd6fa7b971bc31a114dfe">NIWebController</a>
+</li>
+<li>setUnderlineStyle:modifier:range:
+: <a class="el" href="interface_n_i_attributed_label.html#aa3a5cb7e3cd7e010df1ef21930e1446f">NIAttributedLabel</a>
 </li>
 <li>shouldPresentActionSheet:
 : <a class="el" href="interface_n_i_web_controller.html#a9c92f8d0b90d0693b6215639f0ab5981">NIWebController</a>

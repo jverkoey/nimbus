@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -80,6 +80,7 @@
       <li><a href="#index_p"><span>p</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
       <li><a href="#index_t"><span>t</span></a></li>
+      <li><a href="#index_u"><span>u</span></a></li>
       <li><a href="#index_w"><span>w</span></a></li>
       <li><a href="#index_z"><span>z</span></a></li>
     </ul>
@@ -104,6 +105,12 @@
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
 <li>animateMovingToNextAndPreviousPhotos
 : <a class="el" href="interface_n_i_toolbar_photo_view_controller.html#aef2b9930b7397117509201a374c7f28f">NIToolbarPhotoViewController</a>
+</li>
+<li>attributedText
+: <a class="el" href="interface_n_i_attributed_label.html#a37c9b16878822791b11013c23e81501e">NIAttributedLabel</a>
+</li>
+<li>autoDetectLinks
+: <a class="el" href="interface_n_i_attributed_label.html#aaecce9ade8ed45dbf46d0bb8f279a182">NIAttributedLabel</a>
 </li>
 </ul>
 
@@ -157,12 +164,13 @@
 , <a class="el" href="interface_n_i_overview_graph_view.html#a57d53701beb92105342e973f758a438b">NIOverviewGraphView</a>
 </li>
 <li>delegate
-: <a class="el" href="class_n_i_table_view_model.html#a78c3eba3b94e5e0e25f3bb867fd23e47">NITableViewModel</a>
+: <a class="el" href="interface_n_i_launcher_view.html#a1da7308b8ff117197ba646d7ae53f29a">NILauncherView</a>
+, <a class="el" href="class_n_i_table_view_model.html#a78c3eba3b94e5e0e25f3bb867fd23e47">NITableViewModel</a>
 , <a class="el" href="interface_n_i_network_image_view.html#a763e5fdecb23fa0708f2fab957d1090c">NINetworkImageView</a>
 , <a class="el" href="interface_n_i_photo_album_scroll_view.html#a992a9408b06190db98f14da4071fe4f4">NIPhotoAlbumScrollView</a>
+, <a class="el" href="interface_n_i_attributed_label.html#a7dea324ba2377bfe15f4b397dca3fd73">NIAttributedLabel</a>
 , <a class="el" href="interface_n_i_photo_scrubber_view.html#a1fbb84364c8be413ddf971d6710deb7e">NIPhotoScrubberView</a>
 , <a class="el" href="interface_n_i_operation.html#af4051a42c46f1ddb9d308daf9596c40d">NIOperation</a>
-, <a class="el" href="interface_n_i_launcher_view.html#a1da7308b8ff117197ba646d7ae53f29a">NILauncherView</a>
 </li>
 <li>deviceLogs
 : <a class="el" href="interface_n_i_overview_logger.html#a0eea6bdec68e5c08672752cf7a6f91ad">NIOverviewLogger</a>
@@ -243,6 +251,12 @@
 </li>
 <li>lastPathToNetworkImage
 : <a class="el" href="interface_n_i_network_image_view.html#ad770af40e9cb2673b210c3f199f83210">NINetworkImageView</a>
+</li>
+<li>linkColor
+: <a class="el" href="interface_n_i_attributed_label.html#ac1a2410834b63f127490031320f14153">NIAttributedLabel</a>
+</li>
+<li>linkHighlightColor
+: <a class="el" href="interface_n_i_attributed_label.html#a47ee4604a275c4f8bb5dc0acbfd3d464">NIAttributedLabel</a>
 </li>
 <li>loadingImage
 : <a class="el" href="interface_n_i_photo_album_scroll_view.html#a5efc3ce3a183043fe3d6341ae82908cc">NIPhotoAlbumScrollView</a>
@@ -378,12 +392,21 @@
 <li>sizeForDisplay
 : <a class="el" href="interface_n_i_network_image_view.html#ae89362b1efb1347953529ddec044787f">NINetworkImageView</a>
 </li>
+<li>strokeColor
+: <a class="el" href="interface_n_i_attributed_label.html#a8c4f02e508b0a406c46cb0c88a79f96e">NIAttributedLabel</a>
+</li>
+<li>strokeWidth
+: <a class="el" href="interface_n_i_attributed_label.html#a0c2342b7853543314bc10746fc4873a4">NIAttributedLabel</a>
+</li>
 </ul>
 
 
 <h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
 <li>tag
 : <a class="el" href="interface_n_i_operation.html#a9229f5fb6b21513181aed08ba7592ba6">NIOperation</a>
+</li>
+<li>textKern
+: <a class="el" href="interface_n_i_attributed_label.html#a95ee24059d8d660ee82c93fe22d5f9d6">NIAttributedLabel</a>
 </li>
 <li>timestamp
 : <a class="el" href="interface_n_i_overview_log_entry.html#a62dce908251cfeaa50c1205fb3608d0e">NIOverviewLogEntry</a>
@@ -402,6 +425,16 @@
 </li>
 <li>type
 : <a class="el" href="interface_n_i_overview_event_log_entry.html#ae1d4d7b73806280eb959ed15d80a0db9">NIOverviewEventLogEntry</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
+<li>underlineStyle
+: <a class="el" href="interface_n_i_attributed_label.html#a992179869861dd5a768b3f580f6df915">NIAttributedLabel</a>
+</li>
+<li>underlineStyleModifier
+: <a class="el" href="interface_n_i_attributed_label.html#a655ca0b91193a93a03e7cf8d6e3f8d0e">NIAttributedLabel</a>
 </li>
 </ul>
 

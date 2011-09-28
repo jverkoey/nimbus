@@ -14,6 +14,18 @@
         <Path>modules.html</Path>
         <Subnodes>
          <Node>
+          <Name>Nimbus Attributed Label</Name>
+          <Path>group___nimbus_attributed_label.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>Protocol</Name>
+            <Path>group___nimbus_attributed_label-_protocol.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
           <Name>Nimbus Core</Name>
           <Path>group___nimbus_core.html</Path>
           <Subnodes>
@@ -336,8 +348,14 @@
             </Subnodes>
            </Node>
            <Node>
-            <Name>Version 0.7.0 API Changes</Name>
+            <Name>Version 0.7 API Changes</Name>
             <Path>group___version-7-0.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+           <Node>
+            <Name>Version 0.8 API Changes</Name>
+            <Path>group___version-8-0.html</Path>
             <Subnodes>
             </Subnodes>
            </Node>
@@ -349,6 +367,14 @@
         <Name>Class List</Name>
         <Path>annotated.html</Path>
         <Subnodes>
+         <Node>
+          <Name>NIAttributedLabel</Name>
+          <Path>interface_n_i_attributed_label.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIAttributedLabelDelegate&gt;</Name>
+          <Path>protocol_n_i_attributed_label_delegate-p.html</Path>
+         </Node>
          <Node>
           <Name>&lt;NICell&gt;</Name>
           <Path>protocol_n_i_cell-p.html</Path>
@@ -432,6 +458,10 @@
          <Node>
           <Name>NIMemoryCacheInfo</Name>
           <Path>interface_n_i_memory_cache_info.html</Path>
+         </Node>
+         <Node>
+          <Name>NINavigationAppearance</Name>
+          <Path>interface_n_i_navigation_appearance.html</Path>
          </Node>
          <Node>
           <Name>NINetworkImageView</Name>
@@ -608,6 +638,14 @@
         <Path>hierarchy.html</Path>
         <Subnodes>
          <Node>
+          <Name>NIAttributedLabel</Name>
+          <Path>interface_n_i_attributed_label.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIAttributedLabelDelegate&gt;</Name>
+          <Path>protocol_n_i_attributed_label_delegate-p.html</Path>
+         </Node>
+         <Node>
           <Name>&lt;NICell&gt;</Name>
           <Path>protocol_n_i_cell-p.html</Path>
           <Subnodes>
@@ -732,6 +770,10 @@
          <Node>
           <Name>NIMemoryCacheInfo</Name>
           <Path>interface_n_i_memory_cache_info.html</Path>
+         </Node>
+         <Node>
+          <Name>NINavigationAppearance</Name>
+          <Path>interface_n_i_navigation_appearance.html</Path>
          </Node>
          <Node>
           <Name>NINetworkImageView</Name>

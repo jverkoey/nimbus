@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -132,8 +132,7 @@ Methods</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">State</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_network_image_view.html#aa3207a010aa79b94a894e60105f4b7a6">isLoading</a> <span class="suffix">property</span></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Delegation</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a763e5fdecb23fa0708f2fab957d1090c"></a><!-- doxytag: member="NINetworkImageView::delegate" ref="a763e5fdecb23fa0708f2fab957d1090c" args="" -->
-id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINetworkImageViewDelegate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_network_image_view.html#a763e5fdecb23fa0708f2fab957d1090c">delegate</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINetworkImageViewDelegate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_network_image_view.html#a763e5fdecb23fa0708f2fab957d1090c">delegate</a> <span class="suffix">property</span></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Creating a Network Image View</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_network_image_view.html#ade5eba04aa860207d1fbd07a3f3a31ef">initWithImage:</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Requesting a Network Image</div></td></tr>
@@ -148,12 +147,9 @@ id&lt; <a class="el" href="protocol_n_i_network_image_view_delegate-p.html">NINe
 <tr><td colspan="2"><div class="groupHeader">Subclassing</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>The following methods are provided to aid in subclassing and are not meant to be used externally. </p>
 </div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aece340a22833f7a7ceeac8ffc8aa5cb4"></a><!-- doxytag: member="NINetworkImageView::networkImageViewDidStartLoading" ref="aece340a22833f7a7ceeac8ffc8aa5cb4" args="()" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_network_image_view.html#aece340a22833f7a7ceeac8ffc8aa5cb4">networkImageViewDidStartLoading</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fa24c4b0e7aeda332861b681c902c78"></a><!-- doxytag: member="NINetworkImageView::networkImageViewDidLoadImage:" ref="a5fa24c4b0e7aeda332861b681c902c78" args="(UIImage *image)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_network_image_view.html#a5fa24c4b0e7aeda332861b681c902c78">networkImageViewDidLoadImage:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6b87d3157c16038705df537e9624a89"></a><!-- doxytag: member="NINetworkImageView::networkImageViewDidFailToLoad:" ref="ac6b87d3157c16038705df537e9624a89" args="(NSError *error)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_network_image_view.html#ac6b87d3157c16038705df537e9624a89">networkImageViewDidFailToLoad:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_network_image_view.html#aece340a22833f7a7ceeac8ffc8aa5cb4">networkImageViewDidStartLoading</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_network_image_view.html#a5fa24c4b0e7aeda332861b681c902c78">networkImageViewDidLoadImage:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_network_image_view.html#ac6b87d3157c16038705df537e9624a89">networkImageViewDidFailToLoad:</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
 <a class="anchor" id="a3dc0b8d1ba6db1eb96a3645f06f99b6a"></a><!-- doxytag: member="NINetworkImageView::initialImage" ref="a3dc0b8d1ba6db1eb96a3645f06f99b6a" args="" -->
@@ -381,6 +377,23 @@ Nimbus::setGlobalNetworkOperationQueue: </dd></dl>
 <p>If there is currently an image being fetched then this will be YES. </p>
 
 <p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00112">112</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a763e5fdecb23fa0708f2fab957d1090c"></a><!-- doxytag: member="NINetworkImageView::delegate" ref="a763e5fdecb23fa0708f2fab957d1090c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- NINetworkImageView:<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Delegate for state change notifications. </p>
+
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8h_source.html#l00120">120</a> of file <a class="el" href="_n_i_network_image_view_8h_source.html">NINetworkImageView.h</a>.</p>
 
 </div>
 </div>
@@ -679,6 +692,68 @@ Nimbus::setGlobalNetworkOperationQueue: </dd></dl>
 <p>Prepares this view for reuse by cancelling any existing requests and displaying the initial image again. </p>
 
 <p>Definition at line <a class="el" href="_n_i_network_image_view_8m_source.html#l00443">443</a> of file <a class="el" href="_n_i_network_image_view_8m_source.html">NINetworkImageView.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aece340a22833f7a7ceeac8ffc8aa5cb4"></a><!-- doxytag: member="NINetworkImageView::networkImageViewDidStartLoading" ref="aece340a22833f7a7ceeac8ffc8aa5cb4" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) networkImageViewDidStartLoading </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>A network request has begun. </p>
+
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8m_source.html#l00286">286</a> of file <a class="el" href="_n_i_network_image_view_8m_source.html">NINetworkImageView.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5fa24c4b0e7aeda332861b681c902c78"></a><!-- doxytag: member="NINetworkImageView::networkImageViewDidLoadImage:" ref="a5fa24c4b0e7aeda332861b681c902c78" args="(UIImage *image)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) networkImageViewDidLoadImage: </td>
+          <td></td>
+          <td class="paramtype">(UIImage *)&#160;</td>
+          <td class="paramname"><em>image</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The image has been loaded, either from the network or in-memory. </p>
+
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8m_source.html#l00292">292</a> of file <a class="el" href="_n_i_network_image_view_8m_source.html">NINetworkImageView.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac6b87d3157c16038705df537e9624a89"></a><!-- doxytag: member="NINetworkImageView::networkImageViewDidFailToLoad:" ref="ac6b87d3157c16038705df537e9624a89" args="(NSError *error)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) networkImageViewDidFailToLoad: </td>
+          <td></td>
+          <td class="paramtype">(NSError *)&#160;</td>
+          <td class="paramname"><em>error</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>A network request failed to load. </p>
+
+<p>Definition at line <a class="el" href="_n_i_network_image_view_8m_source.html#l00298">298</a> of file <a class="el" href="_n_i_network_image_view_8m_source.html">NINetworkImageView.m</a>.</p>
 
 </div>
 </div>

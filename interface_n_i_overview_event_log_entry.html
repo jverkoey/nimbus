@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -93,18 +93,91 @@ Inheritance diagram for NIOverviewEventLogEntry:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Entry Information</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1d4d7b73806280eb959ed15d80a0db9"></a><!-- doxytag: member="NIOverviewEventLogEntry::type" ref="ae1d4d7b73806280eb959ed15d80a0db9" args="" -->
-NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_overview_event_log_entry.html#ae1d4d7b73806280eb959ed15d80a0db9">type</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_overview_event_log_entry.html#ae1d4d7b73806280eb959ed15d80a0db9">type</a> <span class="suffix">property</span></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Creating an Entry</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8750ee90afd66e414f8cfad0342606f"></a><!-- doxytag: member="NIOverviewEventLogEntry::initWithType:" ref="aa8750ee90afd66e414f8cfad0342606f" args="(NSInteger type)" -->
-(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_overview_event_log_entry.html#aa8750ee90afd66e414f8cfad0342606f">initWithType:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_overview_event_log_entry.html#aa8750ee90afd66e414f8cfad0342606f">initWithType:</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Entry Information</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62dce908251cfeaa50c1205fb3608d0e"></a><!-- doxytag: member="NIOverviewEventLogEntry::timestamp" ref="a62dce908251cfeaa50c1205fb3608d0e" args="" -->
-NSDate *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_overview_log_entry.html#a62dce908251cfeaa50c1205fb3608d0e">timestamp</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSDate *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_overview_log_entry.html#a62dce908251cfeaa50c1205fb3608d0e">timestamp</a> <span class="suffix">property</span></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Creating an Entry</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2f7896e2887d56cde6c6073c3af0f52"></a><!-- doxytag: member="NIOverviewEventLogEntry::initWithTimestamp:" ref="af2f7896e2887d56cde6c6073c3af0f52" args="(NSDate *timestamp)" -->
-(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_overview_log_entry.html#af2f7896e2887d56cde6c6073c3af0f52">initWithTimestamp:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_overview_log_entry.html#af2f7896e2887d56cde6c6073c3af0f52">initWithTimestamp:</a></td></tr>
 </table>
+<hr/><h2>Method Documentation</h2>
+<a class="anchor" id="ae1d4d7b73806280eb959ed15d80a0db9"></a><!-- doxytag: member="NIOverviewEventLogEntry::type" ref="ae1d4d7b73806280eb959ed15d80a0db9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSInteger) type<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The type of event. </p>
+
+<p>Definition at line <a class="el" href="_n_i_overview_logger_8h_source.html#l00243">243</a> of file <a class="el" href="_n_i_overview_logger_8h_source.html">NIOverviewLogger.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa8750ee90afd66e414f8cfad0342606f"></a><!-- doxytag: member="NIOverviewEventLogEntry::initWithType:" ref="aa8750ee90afd66e414f8cfad0342606f" args="(NSInteger type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (id) initWithType: </td>
+          <td></td>
+          <td class="paramtype">(NSInteger)&#160;</td>
+          <td class="paramname"><em>type</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Designated initializer. </p>
+
+<p>Definition at line <a class="el" href="_n_i_overview_logger_8m_source.html#l00177">177</a> of file <a class="el" href="_n_i_overview_logger_8m_source.html">NIOverviewLogger.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a62dce908251cfeaa50c1205fb3608d0e"></a><!-- doxytag: member="NIOverviewEventLogEntry::timestamp" ref="a62dce908251cfeaa50c1205fb3608d0e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSDate*) timestamp<code> [read, write, retain, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The timestamp for this log entry. </p>
+
+<p>Definition at line <a class="el" href="_n_i_overview_logger_8h_source.html#l00132">132</a> of file <a class="el" href="_n_i_overview_logger_8h_source.html">NIOverviewLogger.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af2f7896e2887d56cde6c6073c3af0f52"></a><!-- doxytag: member="NIOverviewEventLogEntry::initWithTimestamp:" ref="af2f7896e2887d56cde6c6073c3af0f52" args="(NSDate *timestamp)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (id) initWithTimestamp: </td>
+          <td></td>
+          <td class="paramtype">(NSDate *)&#160;</td>
+          <td class="paramname"><em>timestamp</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Designated initializer. </p>
+
+<p>Definition at line <a class="el" href="_n_i_overview_logger_8m_source.html#l00113">113</a> of file <a class="el" href="_n_i_overview_logger_8m_source.html">NIOverviewLogger.m</a>.</p>
+
+</div>
+</div>
 <div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

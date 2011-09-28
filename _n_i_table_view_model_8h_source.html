@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -138,9 +138,9 @@
 <a name="l00071"></a>00071 <span class="comment">// Immediately compiles the section index.</span>
 <a name="l00072"></a>00072 - (void)setSectionIndexType:(NITableViewModelSectionIndex)sectionIndexType showsSearch:(BOOL)showsSearch showsSummary:(BOOL)showsSummary;
 <a name="l00073"></a>00073 
-<a name="l00074"></a><a class="code" href="class_n_i_table_view_model.html#adcc35e36d9bc1e47a9f084e504d8ebda">00074</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) NITableViewModelSectionIndex sectionIndexType;
-<a name="l00075"></a><a class="code" href="class_n_i_table_view_model.html#ad1991fde667958dafc9158684795a6b9">00075</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) BOOL sectionIndexShowsSearch;
-<a name="l00076"></a><a class="code" href="class_n_i_table_view_model.html#a48850ea92b2a9ffe69a153bcfe9416e0">00076</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) BOOL sectionIndexShowsSummary;
+<a name="l00074"></a><a class="code" href="class_n_i_table_view_model.html#adcc35e36d9bc1e47a9f084e504d8ebda">00074</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) NITableViewModelSectionIndex sectionIndexType; <span class="comment">// Default: NITableViewModelSectionIndexNone</span>
+<a name="l00075"></a><a class="code" href="class_n_i_table_view_model.html#ad1991fde667958dafc9158684795a6b9">00075</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) BOOL sectionIndexShowsSearch; <span class="comment">// Default: NO</span>
+<a name="l00076"></a><a class="code" href="class_n_i_table_view_model.html#a48850ea92b2a9ffe69a153bcfe9416e0">00076</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) BOOL sectionIndexShowsSummary; <span class="comment">// Default: NO</span>
 <a name="l00077"></a>00077 
 <a name="l00078"></a>00078 <span class="preprocessor">#pragma mark Creating Table View Cells</span>
 <a name="l00079"></a>00079 <span class="preprocessor"></span>

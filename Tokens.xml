@@ -2,6 +2,21 @@
 <Tokens version="1.0">
   <Token>
     <TokenIdentifier>
+      <Name>NimbusAttributedLabel</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___nimbus_attributed_label.html</Path>
+    <Abstract>The Nimbus Attributed Label is a UILabel that uses NSAttributedString to provide custom text styling...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NimbusAttributedLabel-Protocol</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___nimbus_attributed_label-_protocol.html</Path>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Common-Metrics</Name>
       <APILanguage>occ</APILanguage>
     </TokenIdentifier>
@@ -790,6 +805,14 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>Version-8-0</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___version-8-0.html</Path>
+    <Abstract>Version 0.8.0 of Nimbus was released on September 28, 2011.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Version-7-0</Name>
       <APILanguage>occ</APILanguage>
     </TokenIdentifier>
@@ -1055,6 +1078,224 @@
     </TokenIdentifier>
     <Path>group___nimbus_web_controller.html</Path>
     <Abstract>This controller presents a UIWebView with a toolbar containing basic chrome for interacting with it...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIAttributedLabel</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Abstract>A UILabel that utilizes NSAttributedString to format its text.</Abstract>
+    <DeclaredIn>NIAttributedLabel.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>attributedText</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>a37c9b16878822791b11013c23e81501e</Anchor>
+    <Abstract>The attributted string to display.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>autoDetectLinks</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>aaecce9ade8ed45dbf46d0bb8f279a182</Anchor>
+    <Abstract>Whether links are automatically detected in the text.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>linkColor</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>ac1a2410834b63f127490031320f14153</Anchor>
+    <Abstract>The color of detected links.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>linkHighlightColor</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>a47ee4604a275c4f8bb5dc0acbfd3d464</Anchor>
+    <Abstract>The color of the links background when touched/highlighted.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>underlineStyle</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>a992179869861dd5a768b3f580f6df915</Anchor>
+    <Abstract>The underline style for the whole text.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>underlineStyleModifier</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>a655ca0b91193a93a03e7cf8d6e3f8d0e</Anchor>
+    <Abstract>The underline style modifier for the whole text.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>strokeWidth</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>a0c2342b7853543314bc10746fc4873a4</Anchor>
+    <Abstract>The stroke width for the whole text.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>strokeColor</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>a8c4f02e508b0a406c46cb0c88a79f96e</Anchor>
+    <Abstract>The stroke color for the whole text.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>textKern</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>a95ee24059d8d660ee82c93fe22d5f9d6</Anchor>
+    <Abstract>The text kern for the whole text.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>delegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>a7dea324ba2377bfe15f4b397dca3fd73</Anchor>
+    <Abstract>The attributed label notifies the delegate of any user interactions.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setTextColor:range:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>a70d2d2b7929fdb64ce2bef71cc2b1232</Anchor>
+    <Abstract>Sets the text color for a given range.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setFont:range:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>a069b4473d0c51e9ca18d6cb39f07ec24</Anchor>
+    <Abstract>Sets the font for a given range.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setUnderlineStyle:modifier:range:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>aa3a5cb7e3cd7e010df1ef21930e1446f</Anchor>
+    <Abstract>Sets the underline style and modifier for a given range.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setStrokeWidth:range:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>adfaf0ef7815f88410301e7d418fa2e8b</Anchor>
+    <Abstract>Modifies the stroke width for a given range.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setStrokeColor:range:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>ab45c3737f1dd18f5f6f01832d4690ae8</Anchor>
+    <Abstract>Modifies the stroke color for a given range.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>setTextKern:range:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>a5009d9a2529a54f79ad71f8b838e4793</Anchor>
+    <Abstract>Modifies the text kern for a given range.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>addLink:range:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>af9f76992daa87b4e3e8f57b27f5d3f62</Anchor>
+    <Abstract>Adds a custom tappable link.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIAttributedLabelDelegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intf</Type>
+    </TokenIdentifier>
+    <Path>protocol_n_i_attributed_label_delegate-p.html</Path>
+    <Abstract>The attributed label delegate used to inform of user interactions.</Abstract>
+    <DeclaredIn>NIAttributedLabel.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>attributedLabel:didSelectLink:atPoint:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIAttributedLabelDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_attributed_label_delegate-p.html</Path>
+    <Anchor>a8583ac9e32cfe1e0676ee3ad8b3604ec</Anchor>
+    <Abstract>Called when the user taps and releases a detected link.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1925,6 +2166,50 @@
     <Path>interface_n_i_interapp.html</Path>
     <Anchor>a710908f494eae1eeb0cfbee20f9c771d</Anchor>
     <Abstract>The Instagram App Store ID.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>applicationIsInstalledWithScheme:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a02a524071bf1915392ce428f90856500</Anchor>
+    <Abstract>Returns YES if the supplied application is installed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>applicationWithScheme:andAppStoreId:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a6506702a6c55b10a509858f4ca7c6738</Anchor>
+    <Abstract>Opens the supplied application.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>applicationWithScheme:andPath:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a0aee0ecead138acfdf53052a051732c2</Anchor>
+    <Abstract>Opens the supplied application.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>applicationWithScheme:appStoreId:andPath:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIInterapp</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_interapp.html</Path>
+    <Anchor>a14da5ca9db137c128c061c4af7162726</Anchor>
+    <Abstract>Opens the supplied application, to the specified path.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2826,6 +3111,60 @@
     <Path>interface_n_i_memory_cache_info.html</Path>
     <Anchor>ae854ab244f76213c32704ead39bd3e2a</Anchor>
     <Abstract>Determine whether this cache entry has past its expiration date.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NINavigationAppearance</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_navigation_appearance.html</Path>
+    <Abstract>Class for saving and restoring the navigation appearance state.</Abstract>
+    <DeclaredIn>NINavigationAppearance.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pushAppearanceForNavigationController:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NINavigationAppearance</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_navigation_appearance.html</Path>
+    <Anchor>a08c30a3e788421064f9db5da35566f29</Anchor>
+    <Abstract>Take a snapshot of the current navigation appearance.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>popAppearanceForNavigationController:animated:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NINavigationAppearance</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_navigation_appearance.html</Path>
+    <Anchor>aeebe1720743b94a3248fb49db318e306</Anchor>
+    <Abstract>Restore the last navigation appearance snapshot.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>count</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NINavigationAppearance</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_navigation_appearance.html</Path>
+    <Anchor>abe79248b75d244c86de514d5d6af23b6</Anchor>
+    <Abstract>Number of items in the appearance stack.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>clear</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NINavigationAppearance</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_navigation_appearance.html</Path>
+    <Anchor>a181624629e7771942b255639d340f95f</Anchor>
+    <Abstract>Remove all navigation appearance snapshots from the stack.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>

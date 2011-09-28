@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -85,13 +85,78 @@
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7bd8d13ada058216b947c25741631b43"></a><!-- doxytag: member="NINetworkImageViewDelegate&#45;p::networkImageViewDidStartLoad:" ref="a7bd8d13ada058216b947c25741631b43" args="(NINetworkImageView *imageView)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_network_image_view_delegate-p.html#a7bd8d13ada058216b947c25741631b43">networkImageViewDidStartLoad:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96383c1312874a264d5065594c7bce43"></a><!-- doxytag: member="NINetworkImageViewDelegate&#45;p::networkImageView:didLoadImage:" ref="a96383c1312874a264d5065594c7bce43" args="(NINetworkImageView *imageView,[didLoadImage] UIImage *image)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_network_image_view_delegate-p.html#a96383c1312874a264d5065594c7bce43">networkImageView:didLoadImage:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f091692ef4ed418c2c9e1e1b642b304"></a><!-- doxytag: member="NINetworkImageViewDelegate&#45;p::networkImageViewDidFailLoad:" ref="a9f091692ef4ed418c2c9e1e1b642b304" args="(NINetworkImageView *imageView)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_network_image_view_delegate-p.html#a9f091692ef4ed418c2c9e1e1b642b304">networkImageViewDidFailLoad:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_network_image_view_delegate-p.html#a7bd8d13ada058216b947c25741631b43">networkImageViewDidStartLoad:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_network_image_view_delegate-p.html#a96383c1312874a264d5065594c7bce43">networkImageView:didLoadImage:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_network_image_view_delegate-p.html#a9f091692ef4ed418c2c9e1e1b642b304">networkImageViewDidFailLoad:</a></td></tr>
 </table>
+<hr/><h2>Method Documentation</h2>
+<a class="anchor" id="a7bd8d13ada058216b947c25741631b43"></a><!-- doxytag: member="NINetworkImageViewDelegate&#45;p::networkImageViewDidStartLoad:" ref="a7bd8d13ada058216b947c25741631b43" args="(NINetworkImageView *imageView)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) networkImageViewDidStartLoad: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="interface_n_i_network_image_view.html">NINetworkImageView</a> *)&#160;</td>
+          <td class="paramname"><em>imageView</em></td>
+          <td><code> [optional]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The image has begun an asynchronous download of the image. </p>
+
+</div>
+</div>
+<a class="anchor" id="a96383c1312874a264d5065594c7bce43"></a><!-- doxytag: member="NINetworkImageViewDelegate&#45;p::networkImageView:didLoadImage:" ref="a96383c1312874a264d5065594c7bce43" args="(NINetworkImageView *imageView,[didLoadImage] UIImage *image)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) networkImageView: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="interface_n_i_network_image_view.html">NINetworkImageView</a> *)&#160;</td>
+          <td class="paramname"><em>imageView</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">didLoadImage:</td>
+          <td></td>
+          <td class="paramtype">(UIImage *)&#160;</td>
+          <td class="paramname"><em>image</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td><code> [optional]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The image has completed an asynchronous download of the image. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9f091692ef4ed418c2c9e1e1b642b304"></a><!-- doxytag: member="NINetworkImageViewDelegate&#45;p::networkImageViewDidFailLoad:" ref="a9f091692ef4ed418c2c9e1e1b642b304" args="(NINetworkImageView *imageView)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) networkImageViewDidFailLoad: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="interface_n_i_network_image_view.html">NINetworkImageView</a> *)&#160;</td>
+          <td class="paramname"><em>imageView</em></td>
+          <td><code> [optional]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The asynchronous download failed. </p>
+
+</div>
+</div>
 <div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -167,67 +167,74 @@
 <a name="l00095"></a>00095   STAssertEquals([model objectAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]], object1, <span class="stringliteral">@&quot;Object mismatch.&quot;</span>);
 <a name="l00096"></a>00096   STAssertEquals([model objectAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]], object2, <span class="stringliteral">@&quot;Object mismatch.&quot;</span>);
 <a name="l00097"></a>00097   STAssertEquals([model objectAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]], object3, <span class="stringliteral">@&quot;Object mismatch.&quot;</span>);
-<a name="l00098"></a>00098 }
-<a name="l00099"></a>00099 
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099   STAssertNil([model objectAtIndexPath:nil], <span class="stringliteral">@&quot;Should be nil.&quot;</span>);
 <a name="l00100"></a>00100 
-<a name="l00102"></a>00102 - (void)testSectionedTableViewModel {
-<a name="l00103"></a>00103   NSArray* contents = [NSArray arrayWithObjects:
-<a name="l00104"></a>00104                        @&quot;Section 1&quot;,
-<a name="l00105"></a>00105                        [NSDictionary dictionaryWithObject:@&quot;Row 1&quot; forKey:@&quot;title&quot;],
-<a name="l00106"></a>00106                        [NSDictionary dictionaryWithObject:@&quot;Row 2&quot; forKey:@&quot;title&quot;],
-<a name="l00107"></a>00107                        [NSDictionary dictionaryWithObject:@&quot;Row 3&quot; forKey:@&quot;title&quot;],
-<a name="l00108"></a>00108                        @&quot;Section 2&quot;,
-<a name="l00109"></a>00109                        [NSDictionary dictionaryWithObject:@&quot;Row 1&quot; forKey:@&quot;title&quot;],
-<a name="l00110"></a>00110                        [NSDictionary dictionaryWithObject:@&quot;Row 3&quot; forKey:@&quot;title&quot;],
-<a name="l00111"></a>00111                        @&quot;Section 3&quot;,
-<a name="l00112"></a>00112                        @&quot;Section 4&quot;,
-<a name="l00113"></a>00113                        @&quot;Section 5&quot;,
-<a name="l00114"></a>00114                        nil];
-<a name="l00115"></a>00115   <a class="code" href="class_n_i_table_view_model.html" title="A non-mutable table view model that complies to the UITableViewDataSource protocol.">NITableViewModel</a>* model = [[[<a class="code" href="class_n_i_table_view_model.html" title="A non-mutable table view model that complies to the UITableViewDataSource protocol.">NITableViewModel</a> alloc] initWithSectionedArray:contents delegate:nil] autorelease];
-<a name="l00116"></a>00116   
-<a name="l00117"></a>00117   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 3, <span class="stringliteral">@&quot;The first section should have 3 rows.&quot;</span>);
-<a name="l00118"></a>00118   STAssertEquals([model tableView:nil numberOfRowsInSection:1], 2, <span class="stringliteral">@&quot;The second section should have 2 rows.&quot;</span>);
-<a name="l00119"></a>00119   STAssertEquals([model tableView:nil numberOfRowsInSection:2], 0, <span class="stringliteral">@&quot;The third section should have 0 rows.&quot;</span>);
-<a name="l00120"></a>00120   STAssertEquals([model numberOfSectionsInTableView:nil], 5, <span class="stringliteral">@&quot;There should be 5 sections.&quot;</span>);
-<a name="l00121"></a>00121 }
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123 
-<a name="l00125"></a>00125 - (void)testSectionedTableViewModelWithFooters {
-<a name="l00126"></a>00126   NSArray* contents = [NSArray arrayWithObjects:
-<a name="l00127"></a>00127                        @&quot;Section 1&quot;,
-<a name="l00128"></a>00128                        [NSDictionary dictionaryWithObject:@&quot;Row 1&quot; forKey:@&quot;title&quot;],
-<a name="l00129"></a>00129                        [NSDictionary dictionaryWithObject:@&quot;Row 2&quot; forKey:@&quot;title&quot;],
-<a name="l00130"></a>00130                        [NSDictionary dictionaryWithObject:@&quot;Row 3&quot; forKey:@&quot;title&quot;],
-<a name="l00131"></a>00131                        [<a class="code" href="interface_n_i_table_view_model_footer.html" title="An object used in sectioned arrays to denote a section footer title.">NITableViewModelFooter</a> footerWithTitle:@&quot;Footer 1&quot;],
-<a name="l00132"></a>00132                        @&quot;Section 2&quot;,
-<a name="l00133"></a>00133                        [NSDictionary dictionaryWithObject:@&quot;Row 1&quot; forKey:@&quot;title&quot;],
-<a name="l00134"></a>00134                        [NSDictionary dictionaryWithObject:@&quot;Row 3&quot; forKey:@&quot;title&quot;],
-<a name="l00135"></a>00135                        [<a class="code" href="interface_n_i_table_view_model_footer.html" title="An object used in sectioned arrays to denote a section footer title.">NITableViewModelFooter</a> footerWithTitle:@&quot;Footer 2&quot;],
-<a name="l00136"></a>00136                        @&quot;Section 3&quot;,
-<a name="l00137"></a>00137                        [<a class="code" href="interface_n_i_table_view_model_footer.html" title="An object used in sectioned arrays to denote a section footer title.">NITableViewModelFooter</a> footerWithTitle:@&quot;Footer 3&quot;],
-<a name="l00138"></a>00138                        [<a class="code" href="interface_n_i_table_view_model_footer.html" title="An object used in sectioned arrays to denote a section footer title.">NITableViewModelFooter</a> footerWithTitle:@&quot;Footer 4&quot;],
-<a name="l00139"></a>00139                        [NSDictionary dictionaryWithObject:@&quot;Row 1&quot; forKey:@&quot;title&quot;],
-<a name="l00140"></a>00140                        [NSDictionary dictionaryWithObject:@&quot;Row 3&quot; forKey:@&quot;title&quot;],
-<a name="l00141"></a>00141                        [<a class="code" href="interface_n_i_table_view_model_footer.html" title="An object used in sectioned arrays to denote a section footer title.">NITableViewModelFooter</a> footerWithTitle:@&quot;Footer 5&quot;],
-<a name="l00142"></a>00142                        @&quot;Section 6&quot;,
-<a name="l00143"></a>00143                        @&quot;Section 7&quot;,
-<a name="l00144"></a>00144                        nil];
-<a name="l00145"></a>00145   <a class="code" href="class_n_i_table_view_model.html" title="A non-mutable table view model that complies to the UITableViewDataSource protocol.">NITableViewModel</a>* model = [[[<a class="code" href="class_n_i_table_view_model.html" title="A non-mutable table view model that complies to the UITableViewDataSource protocol.">NITableViewModel</a> alloc] initWithSectionedArray:contents delegate:nil] autorelease];
-<a name="l00146"></a>00146   
-<a name="l00147"></a>00147   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 3, <span class="stringliteral">@&quot;The first section should have 3 rows.&quot;</span>);
-<a name="l00148"></a>00148   STAssertEquals([model tableView:nil numberOfRowsInSection:1], 2, <span class="stringliteral">@&quot;The second section should have 2 rows.&quot;</span>);
-<a name="l00149"></a>00149   STAssertEquals([model tableView:nil numberOfRowsInSection:2], 0, <span class="stringliteral">@&quot;The third section should have 0 rows.&quot;</span>);
-<a name="l00150"></a>00150   STAssertEquals([model tableView:nil numberOfRowsInSection:3], 0, <span class="stringliteral">@&quot;The fourth section should have 0 rows.&quot;</span>);
-<a name="l00151"></a>00151   STAssertEquals([model numberOfSectionsInTableView:nil], 7, <span class="stringliteral">@&quot;There should be 7 sections.&quot;</span>);
-<a name="l00152"></a>00152   STAssertEquals([model tableView:nil titleForHeaderInSection:0], <span class="stringliteral">@&quot;Section 1&quot;</span>, <span class="stringliteral">@&quot;The titles should match.&quot;</span>);
-<a name="l00153"></a>00153   STAssertEquals([model tableView:nil titleForHeaderInSection:1], <span class="stringliteral">@&quot;Section 2&quot;</span>, <span class="stringliteral">@&quot;The titles should match.&quot;</span>);
-<a name="l00154"></a>00154   STAssertEquals([model tableView:nil titleForFooterInSection:0], <span class="stringliteral">@&quot;Footer 1&quot;</span>, <span class="stringliteral">@&quot;The titles should match.&quot;</span>);
-<a name="l00155"></a>00155   STAssertEquals([model tableView:nil titleForFooterInSection:1], <span class="stringliteral">@&quot;Footer 2&quot;</span>, <span class="stringliteral">@&quot;The titles should match.&quot;</span>);
-<a name="l00156"></a>00156   STAssertNil([model tableView:nil titleForFooterInSection:6], <span class="stringliteral">@&quot;There should not be a title.&quot;</span>);
-<a name="l00157"></a>00157 }
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159 
-<a name="l00160"></a>00160 <span class="keyword">@end</span>
+<a name="l00101"></a>00101   <a class="code" href="group___debugging-_tools.html#ga9b5abee5150b99d8ccce041099d44706" title="Whether or not debug assertions should halt program execution like a breakpoint when they fail...">NIDebugAssertionsShouldBreak</a> = NO;
+<a name="l00102"></a>00102   STAssertNil([model objectAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:0]], <span class="stringliteral">@&quot;Should be nil.&quot;</span>);
+<a name="l00103"></a>00103   STAssertNil([model objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]], <span class="stringliteral">@&quot;Should be nil.&quot;</span>);
+<a name="l00104"></a>00104   <a class="code" href="group___debugging-_tools.html#ga9b5abee5150b99d8ccce041099d44706" title="Whether or not debug assertions should halt program execution like a breakpoint when they fail...">NIDebugAssertionsShouldBreak</a> = YES;
+<a name="l00105"></a>00105 }
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107 
+<a name="l00109"></a>00109 - (void)testSectionedTableViewModel {
+<a name="l00110"></a>00110   NSArray* contents = [NSArray arrayWithObjects:
+<a name="l00111"></a>00111                        @&quot;Section 1&quot;,
+<a name="l00112"></a>00112                        [NSDictionary dictionaryWithObject:@&quot;Row 1&quot; forKey:@&quot;title&quot;],
+<a name="l00113"></a>00113                        [NSDictionary dictionaryWithObject:@&quot;Row 2&quot; forKey:@&quot;title&quot;],
+<a name="l00114"></a>00114                        [NSDictionary dictionaryWithObject:@&quot;Row 3&quot; forKey:@&quot;title&quot;],
+<a name="l00115"></a>00115                        @&quot;Section 2&quot;,
+<a name="l00116"></a>00116                        [NSDictionary dictionaryWithObject:@&quot;Row 1&quot; forKey:@&quot;title&quot;],
+<a name="l00117"></a>00117                        [NSDictionary dictionaryWithObject:@&quot;Row 3&quot; forKey:@&quot;title&quot;],
+<a name="l00118"></a>00118                        @&quot;Section 3&quot;,
+<a name="l00119"></a>00119                        @&quot;Section 4&quot;,
+<a name="l00120"></a>00120                        @&quot;Section 5&quot;,
+<a name="l00121"></a>00121                        nil];
+<a name="l00122"></a>00122   <a class="code" href="class_n_i_table_view_model.html" title="A non-mutable table view model that complies to the UITableViewDataSource protocol.">NITableViewModel</a>* model = [[[<a class="code" href="class_n_i_table_view_model.html" title="A non-mutable table view model that complies to the UITableViewDataSource protocol.">NITableViewModel</a> alloc] initWithSectionedArray:contents delegate:nil] autorelease];
+<a name="l00123"></a>00123   
+<a name="l00124"></a>00124   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 3, <span class="stringliteral">@&quot;The first section should have 3 rows.&quot;</span>);
+<a name="l00125"></a>00125   STAssertEquals([model tableView:nil numberOfRowsInSection:1], 2, <span class="stringliteral">@&quot;The second section should have 2 rows.&quot;</span>);
+<a name="l00126"></a>00126   STAssertEquals([model tableView:nil numberOfRowsInSection:2], 0, <span class="stringliteral">@&quot;The third section should have 0 rows.&quot;</span>);
+<a name="l00127"></a>00127   STAssertEquals([model numberOfSectionsInTableView:nil], 5, <span class="stringliteral">@&quot;There should be 5 sections.&quot;</span>);
+<a name="l00128"></a>00128 }
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130 
+<a name="l00132"></a>00132 - (void)testSectionedTableViewModelWithFooters {
+<a name="l00133"></a>00133   NSArray* contents = [NSArray arrayWithObjects:
+<a name="l00134"></a>00134                        @&quot;Section 1&quot;,
+<a name="l00135"></a>00135                        [NSDictionary dictionaryWithObject:@&quot;Row 1&quot; forKey:@&quot;title&quot;],
+<a name="l00136"></a>00136                        [NSDictionary dictionaryWithObject:@&quot;Row 2&quot; forKey:@&quot;title&quot;],
+<a name="l00137"></a>00137                        [NSDictionary dictionaryWithObject:@&quot;Row 3&quot; forKey:@&quot;title&quot;],
+<a name="l00138"></a>00138                        [<a class="code" href="interface_n_i_table_view_model_footer.html" title="An object used in sectioned arrays to denote a section footer title.">NITableViewModelFooter</a> footerWithTitle:@&quot;Footer 1&quot;],
+<a name="l00139"></a>00139                        @&quot;Section 2&quot;,
+<a name="l00140"></a>00140                        [NSDictionary dictionaryWithObject:@&quot;Row 1&quot; forKey:@&quot;title&quot;],
+<a name="l00141"></a>00141                        [NSDictionary dictionaryWithObject:@&quot;Row 3&quot; forKey:@&quot;title&quot;],
+<a name="l00142"></a>00142                        [<a class="code" href="interface_n_i_table_view_model_footer.html" title="An object used in sectioned arrays to denote a section footer title.">NITableViewModelFooter</a> footerWithTitle:@&quot;Footer 2&quot;],
+<a name="l00143"></a>00143                        @&quot;Section 3&quot;,
+<a name="l00144"></a>00144                        [<a class="code" href="interface_n_i_table_view_model_footer.html" title="An object used in sectioned arrays to denote a section footer title.">NITableViewModelFooter</a> footerWithTitle:@&quot;Footer 3&quot;],
+<a name="l00145"></a>00145                        [<a class="code" href="interface_n_i_table_view_model_footer.html" title="An object used in sectioned arrays to denote a section footer title.">NITableViewModelFooter</a> footerWithTitle:@&quot;Footer 4&quot;],
+<a name="l00146"></a>00146                        [NSDictionary dictionaryWithObject:@&quot;Row 1&quot; forKey:@&quot;title&quot;],
+<a name="l00147"></a>00147                        [NSDictionary dictionaryWithObject:@&quot;Row 3&quot; forKey:@&quot;title&quot;],
+<a name="l00148"></a>00148                        [<a class="code" href="interface_n_i_table_view_model_footer.html" title="An object used in sectioned arrays to denote a section footer title.">NITableViewModelFooter</a> footerWithTitle:@&quot;Footer 5&quot;],
+<a name="l00149"></a>00149                        @&quot;Section 6&quot;,
+<a name="l00150"></a>00150                        @&quot;Section 7&quot;,
+<a name="l00151"></a>00151                        nil];
+<a name="l00152"></a>00152   <a class="code" href="class_n_i_table_view_model.html" title="A non-mutable table view model that complies to the UITableViewDataSource protocol.">NITableViewModel</a>* model = [[[<a class="code" href="class_n_i_table_view_model.html" title="A non-mutable table view model that complies to the UITableViewDataSource protocol.">NITableViewModel</a> alloc] initWithSectionedArray:contents delegate:nil] autorelease];
+<a name="l00153"></a>00153   
+<a name="l00154"></a>00154   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 3, <span class="stringliteral">@&quot;The first section should have 3 rows.&quot;</span>);
+<a name="l00155"></a>00155   STAssertEquals([model tableView:nil numberOfRowsInSection:1], 2, <span class="stringliteral">@&quot;The second section should have 2 rows.&quot;</span>);
+<a name="l00156"></a>00156   STAssertEquals([model tableView:nil numberOfRowsInSection:2], 0, <span class="stringliteral">@&quot;The third section should have 0 rows.&quot;</span>);
+<a name="l00157"></a>00157   STAssertEquals([model tableView:nil numberOfRowsInSection:3], 0, <span class="stringliteral">@&quot;The fourth section should have 0 rows.&quot;</span>);
+<a name="l00158"></a>00158   STAssertEquals([model numberOfSectionsInTableView:nil], 7, <span class="stringliteral">@&quot;There should be 7 sections.&quot;</span>);
+<a name="l00159"></a>00159   STAssertEquals([model tableView:nil titleForHeaderInSection:0], <span class="stringliteral">@&quot;Section 1&quot;</span>, <span class="stringliteral">@&quot;The titles should match.&quot;</span>);
+<a name="l00160"></a>00160   STAssertEquals([model tableView:nil titleForHeaderInSection:1], <span class="stringliteral">@&quot;Section 2&quot;</span>, <span class="stringliteral">@&quot;The titles should match.&quot;</span>);
+<a name="l00161"></a>00161   STAssertEquals([model tableView:nil titleForFooterInSection:0], <span class="stringliteral">@&quot;Footer 1&quot;</span>, <span class="stringliteral">@&quot;The titles should match.&quot;</span>);
+<a name="l00162"></a>00162   STAssertEquals([model tableView:nil titleForFooterInSection:1], <span class="stringliteral">@&quot;Footer 2&quot;</span>, <span class="stringliteral">@&quot;The titles should match.&quot;</span>);
+<a name="l00163"></a>00163   STAssertNil([model tableView:nil titleForFooterInSection:6], <span class="stringliteral">@&quot;There should not be a title.&quot;</span>);
+<a name="l00164"></a>00164 }
+<a name="l00165"></a>00165 
+<a name="l00166"></a>00166 
+<a name="l00167"></a>00167 <span class="keyword">@end</span>
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

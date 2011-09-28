@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -90,17 +90,14 @@ Methods</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(unsigned long long)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_device_info.html#a8be91b6d997ac7bb82d8edcde4e76d04">bytesOfFreeMemory</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(unsigned long long)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_device_info.html#a982c32e482332f026680faa107d87791">bytesOfTotalMemory</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Disk Space</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37b58dc9d49ebd7801a7d905fb324e35"></a><!-- doxytag: member="NIDeviceInfo::bytesOfFreeDiskSpace" ref="a37b58dc9d49ebd7801a7d905fb324e35" args="()" -->
-(unsigned long long)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_device_info.html#a37b58dc9d49ebd7801a7d905fb324e35">bytesOfFreeDiskSpace</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a549f7270f58c07f547f444c59591af0d"></a><!-- doxytag: member="NIDeviceInfo::bytesOfTotalDiskSpace" ref="a549f7270f58c07f547f444c59591af0d" args="()" -->
-(unsigned long long)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_device_info.html#a549f7270f58c07f547f444c59591af0d">bytesOfTotalDiskSpace</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(unsigned long long)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_device_info.html#a37b58dc9d49ebd7801a7d905fb324e35">bytesOfFreeDiskSpace</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(unsigned long long)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_device_info.html#a549f7270f58c07f547f444c59591af0d">bytesOfTotalDiskSpace</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Battery</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(CGFloat)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_device_info.html#aac3e7de49c3387e6bc9cce52c98c4095">batteryLevel</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(UIDeviceBatteryState)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_device_info.html#a734cb59e6d82f2d061efde4c7c4fa5ba">batteryState</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Caching</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_device_info.html#a4b73fff9581e347814d98ad1e25d5319">beginCachedDeviceInfo</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ae5b7746fd3c4f6559a6aeb5b63b210"></a><!-- doxytag: member="NIDeviceInfo::endCachedDeviceInfo" ref="a7ae5b7746fd3c4f6559a6aeb5b63b210" args="()" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_device_info.html#a7ae5b7746fd3c4f6559a6aeb5b63b210">endCachedDeviceInfo</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_n_i_device_info.html#a7ae5b7746fd3c4f6559a6aeb5b63b210">endCachedDeviceInfo</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
 <a class="anchor" id="a8be91b6d997ac7bb82d8edcde4e76d04"></a><!-- doxytag: member="NIDeviceInfo::bytesOfFreeMemory" ref="a8be91b6d997ac7bb82d8edcde4e76d04" args="()" -->
@@ -143,6 +140,46 @@ Methods</h2></td></tr>
 <p>This value may change over time on the device due to the way iOS partitions available memory for applications. </p>
 
 <p>Definition at line <a class="el" href="_n_i_device_info_8m_source.html#l00121">121</a> of file <a class="el" href="_n_i_device_info_8m_source.html">NIDeviceInfo.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a37b58dc9d49ebd7801a7d905fb324e35"></a><!-- doxytag: member="NIDeviceInfo::bytesOfFreeDiskSpace" ref="a37b58dc9d49ebd7801a7d905fb324e35" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (unsigned long long) bytesOfFreeDiskSpace </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The number of bytes free on disk. </p>
+
+<p>Definition at line <a class="el" href="_n_i_device_info_8m_source.html#l00135">135</a> of file <a class="el" href="_n_i_device_info_8m_source.html">NIDeviceInfo.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a549f7270f58c07f547f444c59591af0d"></a><!-- doxytag: member="NIDeviceInfo::bytesOfTotalDiskSpace" ref="a549f7270f58c07f547f444c59591af0d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (unsigned long long) bytesOfTotalDiskSpace </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The total number of bytes of disk space. </p>
+
+<p>Definition at line <a class="el" href="_n_i_device_info_8m_source.html#l00149">149</a> of file <a class="el" href="_n_i_device_info_8m_source.html">NIDeviceInfo.m</a>.</p>
 
 </div>
 </div>
@@ -215,6 +252,26 @@ Methods</h2></td></tr>
   [<a class="code" href="interface_n_i_device_info.html" title="An interface for accessing device information.">NIDeviceInfo</a> <a class="code" href="interface_n_i_device_info.html#a7ae5b7746fd3c4f6559a6aeb5b63b210" title="Stop using the cache for the device info methods.">endCachedDeviceInfo</a>];
 </pre></div> 
 <p>Definition at line <a class="el" href="_n_i_device_info_8m_source.html#l00181">181</a> of file <a class="el" href="_n_i_device_info_8m_source.html">NIDeviceInfo.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7ae5b7746fd3c4f6559a6aeb5b63b210"></a><!-- doxytag: member="NIDeviceInfo::endCachedDeviceInfo" ref="a7ae5b7746fd3c4f6559a6aeb5b63b210" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (void) endCachedDeviceInfo </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Stop using the cache for the device info methods. </p>
+
+<p>Definition at line <a class="el" href="_n_i_device_info_8m_source.html#l00194">194</a> of file <a class="el" href="_n_i_device_info_8m_source.html">NIDeviceInfo.m</a>.</p>
 
 </div>
 </div>

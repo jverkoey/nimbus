@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -349,141 +349,200 @@
 <a name="l00320"></a>00320 
 <a name="l00321"></a>00321 
 <a name="l00324"></a>00324 <span class="preprocessor">#pragma mark -</span>
-<a name="l00325"></a>00325 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Instagram</span>
+<a name="l00325"></a>00325 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Application</span>
 <a name="l00326"></a>00326 <span class="preprocessor"></span>
-<a name="l00327"></a>00327 <span class="keyword">static</span> <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* <span class="keyword">const</span> sInstagramScheme = <span class="stringliteral">@&quot;instagram:&quot;</span>;
+<a name="l00327"></a>00327 <span class="comment">//static NSString* const sTwitterScheme = @&quot;twitter:&quot;;</span>
 <a name="l00328"></a>00328 
 <a name="l00329"></a>00329 
-<a name="l00331"></a><a class="code" href="interface_n_i_interapp.html#a0b9858ffebaedb3390158f09019005f3">00331</a> + (BOOL)<a class="code" href="interface_n_i_interapp.html#a0b9858ffebaedb3390158f09019005f3" title="Returns YES if the Instagram application is installed.">instagramIsInstalled</a> {
-<a name="l00332"></a>00332   <span class="keywordflow">return</span> [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:sInstagramScheme]];
+<a name="l00331"></a><a class="code" href="interface_n_i_interapp.html#a02a524071bf1915392ce428f90856500">00331</a> + (BOOL)applicationIsInstalledWithScheme:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)applicationScheme {
+<a name="l00332"></a>00332     <span class="keywordflow">return</span> [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:applicationScheme]];
 <a name="l00333"></a>00333 }
 <a name="l00334"></a>00334 
 <a name="l00335"></a>00335 
-<a name="l00337"></a><a class="code" href="interface_n_i_interapp.html#a1c086fd3ae3d12ca632ea2c0ca38ebe2">00337</a> + (BOOL)<a class="code" href="interface_n_i_interapp.html#a1c086fd3ae3d12ca632ea2c0ca38ebe2" title="Opens the Instagram application.">instagram</a> {
-<a name="l00338"></a>00338   BOOL didOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:sInstagramScheme]];
-<a name="l00339"></a>00339 
-<a name="l00340"></a>00340   <span class="keywordflow">if</span> (!didOpen) {
-<a name="l00341"></a>00341     didOpen = [<span class="keyword">self</span> <a class="code" href="interface_n_i_interapp.html#a58ee555bc198bba2a78a5d16f6c798a8" title="Opens the App Store page for the app with the given ID.">appStoreWithAppId</a>:[<span class="keyword">self</span> <a class="code" href="interface_n_i_interapp.html#a710908f494eae1eeb0cfbee20f9c771d" title="The Instagram App Store ID.">instagramAppStoreId</a>]];
-<a name="l00342"></a>00342   }
+<a name="l00337"></a>00337 + (BOOL)applicationWithScheme:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)applicationScheme {
+<a name="l00338"></a>00338     <span class="keywordflow">return</span> [<span class="keyword">self</span> applicationWithScheme:applicationScheme
+<a name="l00339"></a>00339                             appStoreId:nil
+<a name="l00340"></a>00340                                andPath:nil];
+<a name="l00341"></a>00341 }
+<a name="l00342"></a>00342 
 <a name="l00343"></a>00343 
-<a name="l00344"></a>00344   <span class="keywordflow">return</span> didOpen;
-<a name="l00345"></a>00345 }
-<a name="l00346"></a>00346 
-<a name="l00347"></a>00347 
-<a name="l00349"></a><a class="code" href="interface_n_i_interapp.html#a7a6fbfd8d2b54d43d797598f08800d98">00349</a> + (BOOL)<a class="code" href="interface_n_i_interapp.html#a7a6fbfd8d2b54d43d797598f08800d98" title="Opens the Instagram camera.">instagramCamera</a> {
-<a name="l00350"></a>00350   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* urlPath = [sInstagramScheme stringByAppendingString:@&quot;//camera&quot;];
-<a name="l00351"></a>00351   <span class="keywordflow">return</span> [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
-<a name="l00352"></a>00352 }
-<a name="l00353"></a>00353 
-<a name="l00354"></a>00354 
-<a name="l00356"></a><a class="code" href="interface_n_i_interapp.html#abc3fb242a941aa6a1d3b148e61fac892">00356</a> + (BOOL)instagramProfileForUsername:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)username {
-<a name="l00357"></a>00357   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* urlPath = [sInstagramScheme stringByAppendingFormat:@&quot;//user?username=%@&quot;,
-<a name="l00358"></a>00358                        [username stringByAddingPercentEscapesForURLParameter]];
-<a name="l00359"></a>00359   <span class="keywordflow">return</span> [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
-<a name="l00360"></a>00360 }
+<a name="l00345"></a><a class="code" href="interface_n_i_interapp.html#a6506702a6c55b10a509858f4ca7c6738">00345</a> + (BOOL)applicationWithScheme:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)applicationScheme
+<a name="l00346"></a>00346                 andAppStoreId:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)appStoreId {
+<a name="l00347"></a>00347     <span class="keywordflow">return</span> [<span class="keyword">self</span> <a class="code" href="interface_n_i_interapp.html#a14da5ca9db137c128c061c4af7162726" title="Opens the supplied application, to the specified path.">applicationWithScheme</a>:applicationScheme
+<a name="l00348"></a>00348                             <a class="code" href="interface_n_i_interapp.html#a14da5ca9db137c128c061c4af7162726" title="Opens the supplied application, to the specified path.">appStoreId</a>:appStoreId
+<a name="l00349"></a>00349                                <a class="code" href="interface_n_i_interapp.html#a14da5ca9db137c128c061c4af7162726" title="Opens the supplied application, to the specified path.">andPath</a>:nil];
+<a name="l00350"></a>00350 }
+<a name="l00351"></a>00351 
+<a name="l00352"></a>00352 
+<a name="l00354"></a><a class="code" href="interface_n_i_interapp.html#a0aee0ecead138acfdf53052a051732c2">00354</a> + (BOOL)applicationWithScheme:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)applicationScheme
+<a name="l00355"></a>00355                       andPath:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)path {
+<a name="l00356"></a>00356     <span class="keywordflow">return</span> [<span class="keyword">self</span> <a class="code" href="interface_n_i_interapp.html#a14da5ca9db137c128c061c4af7162726" title="Opens the supplied application, to the specified path.">applicationWithScheme</a>:applicationScheme
+<a name="l00357"></a>00357                             <a class="code" href="interface_n_i_interapp.html#a14da5ca9db137c128c061c4af7162726" title="Opens the supplied application, to the specified path.">appStoreId</a>:nil
+<a name="l00358"></a>00358                                <a class="code" href="interface_n_i_interapp.html#a14da5ca9db137c128c061c4af7162726" title="Opens the supplied application, to the specified path.">andPath</a>:path];
+<a name="l00359"></a>00359 }
+<a name="l00360"></a>00360 
 <a name="l00361"></a>00361 
-<a name="l00362"></a>00362 
-<a name="l00364"></a><a class="code" href="interface_n_i_interapp.html#ad4a834d5cb64789e00cf21ce11e121cb">00364</a> + (NSURL *)urlForInstagramImageAtFilePath:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)filePath error:(NSError **)error {
-<a name="l00365"></a>00365   UIImage* image = [[UIImage alloc] initWithContentsOfFile:filePath];
-<a name="l00366"></a>00366 
-<a name="l00367"></a>00367   <span class="comment">// Unable to read the image.</span>
-<a name="l00368"></a>00368   <span class="keywordflow">if</span> (nil == image) {
-<a name="l00369"></a>00369     <span class="keywordflow">if</span> (nil != error) {
-<a name="l00370"></a>00370       *error = [NSError errorWithDomain: NSCocoaErrorDomain
-<a name="l00371"></a>00371                                    code: NSFileReadUnknownError
-<a name="l00372"></a>00372                                userInfo: [NSDictionary dictionaryWithObject: filePath
-<a name="l00373"></a>00373                                                                      forKey: NSFilePathErrorKey]];
-<a name="l00374"></a>00374     }
-<a name="l00375"></a>00375     <span class="keywordflow">return</span> nil;
-<a name="l00376"></a>00376   }
-<a name="l00377"></a>00377 
-<a name="l00378"></a>00378   <span class="comment">// Instagram requires that images are at least 612x612 and preferably square.</span>
-<a name="l00379"></a>00379   <span class="keywordflow">if</span> (image.size.width &lt; 612
-<a name="l00380"></a>00380       || image.size.height &lt; 612) {
-<a name="l00381"></a>00381     <span class="keywordflow">if</span> (nil != error) {
-<a name="l00382"></a>00382       *error = [NSError errorWithDomain: NINimbusErrorDomain
-<a name="l00383"></a>00383                                    code: NIImageTooSmall
-<a name="l00384"></a>00384                                userInfo: [NSDictionary dictionaryWithObject: image
-<a name="l00385"></a>00385                                                                      forKey: NIImageErrorKey]];
-<a name="l00386"></a>00386     }
-<a name="l00387"></a>00387     <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(image);
-<a name="l00388"></a>00388     <span class="keywordflow">return</span> nil;
-<a name="l00389"></a>00389   }
-<a name="l00390"></a>00390 
-<a name="l00391"></a>00391   <span class="comment">// Immediately remove the image from memory.</span>
-<a name="l00392"></a>00392   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(image);
-<a name="l00393"></a>00393   
-<a name="l00394"></a>00394   NSFileManager* fm = [NSFileManager defaultManager];
-<a name="l00395"></a>00395   NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-<a name="l00396"></a>00396 
-<a name="l00397"></a>00397   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(<a class="code" href="group___non-_empty-_collection-_testing.html#ga567f748c399da8a4393884242f3da4ba" title="Tests if an object is a non-nil array which is not empty.">NIIsArrayWithObjects</a>(paths));
-<a name="l00398"></a>00398   <span class="keywordflow">if</span> (!<a class="code" href="group___non-_empty-_collection-_testing.html#ga567f748c399da8a4393884242f3da4ba" title="Tests if an object is a non-nil array which is not empty.">NIIsArrayWithObjects</a>(paths)) {
-<a name="l00399"></a>00399     <span class="keywordflow">return</span> nil;
-<a name="l00400"></a>00400   }
+<a name="l00363"></a><a class="code" href="interface_n_i_interapp.html#a14da5ca9db137c128c061c4af7162726">00363</a> + (BOOL)applicationWithScheme:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)applicationScheme
+<a name="l00364"></a>00364                    appStoreId:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)appStoreId
+<a name="l00365"></a>00365                       andPath:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)path {
+<a name="l00366"></a>00366     BOOL        didOpen = <span class="keyword">false</span>;
+<a name="l00367"></a>00367     <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>*   urlPath = applicationScheme;
+<a name="l00368"></a>00368     
+<a name="l00369"></a>00369     <span class="comment">// Were we passed a path?</span>
+<a name="l00370"></a>00370     <span class="keywordflow">if</span> (path != nil) {
+<a name="l00371"></a>00371         <span class="comment">// Generate the full application URL</span>
+<a name="l00372"></a>00372         urlPath = [urlPath stringByAppendingFormat:@&quot;%@&quot;, path];
+<a name="l00373"></a>00373     }
+<a name="l00374"></a>00374     
+<a name="l00375"></a>00375     <span class="comment">// Try to open the application URL</span>
+<a name="l00376"></a>00376     didOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
+<a name="l00377"></a>00377     
+<a name="l00378"></a>00378     <span class="comment">// Didn&#39;t open and we have an appStoreId</span>
+<a name="l00379"></a>00379     <span class="keywordflow">if</span> (!didOpen &amp;&amp; appStoreId != nil) {
+<a name="l00380"></a>00380         <span class="comment">// Open the app store instead</span>
+<a name="l00381"></a>00381         didOpen = [<span class="keyword">self</span> <a class="code" href="interface_n_i_interapp.html#a58ee555bc198bba2a78a5d16f6c798a8" title="Opens the App Store page for the app with the given ID.">appStoreWithAppId</a>:appStoreId];
+<a name="l00382"></a>00382     }
+<a name="l00383"></a>00383     
+<a name="l00384"></a>00384     <span class="keywordflow">return</span> didOpen;
+<a name="l00385"></a>00385 }
+<a name="l00386"></a>00386 
+<a name="l00387"></a>00387 
+<a name="l00390"></a>00390 <span class="preprocessor">#pragma mark -</span>
+<a name="l00391"></a>00391 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Instagram</span>
+<a name="l00392"></a>00392 <span class="preprocessor"></span>
+<a name="l00393"></a>00393 <span class="keyword">static</span> <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* <span class="keyword">const</span> sInstagramScheme = <span class="stringliteral">@&quot;instagram:&quot;</span>;
+<a name="l00394"></a>00394 
+<a name="l00395"></a>00395 
+<a name="l00397"></a><a class="code" href="interface_n_i_interapp.html#a0b9858ffebaedb3390158f09019005f3">00397</a> + (BOOL)<a class="code" href="interface_n_i_interapp.html#a0b9858ffebaedb3390158f09019005f3" title="Returns YES if the Instagram application is installed.">instagramIsInstalled</a> {
+<a name="l00398"></a>00398   <span class="keywordflow">return</span> [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:sInstagramScheme]];
+<a name="l00399"></a>00399 }
+<a name="l00400"></a>00400 
 <a name="l00401"></a>00401 
-<a name="l00402"></a>00402   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* documentsPath = [paths objectAtIndex:0];
-<a name="l00403"></a>00403   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* destinationPath = [documentsPath stringByAppendingPathComponent:
-<a name="l00404"></a>00404                                [<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> stringWithFormat:@&quot;nimbus-instagram-image-%.0f.ig&quot;,
-<a name="l00405"></a>00405                                 [NSDate timeIntervalSinceReferenceDate]]];
-<a name="l00406"></a>00406 
-<a name="l00407"></a>00407   [fm copyItemAtPath: filePath
-<a name="l00408"></a>00408               toPath: destinationPath
-<a name="l00409"></a>00409                error: error];
-<a name="l00410"></a>00410 
-<a name="l00411"></a>00411   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil == error || nil == *error);
-<a name="l00412"></a>00412   <span class="keywordflow">if</span> (nil == error || nil == *error) {
-<a name="l00413"></a>00413     <span class="keywordflow">return</span> [NSURL URLWithString:[@&quot;file:&quot; stringByAppendingString:destinationPath]];
-<a name="l00414"></a>00414 
-<a name="l00415"></a>00415   } <span class="keywordflow">else</span> {
-<a name="l00416"></a>00416     <span class="keywordflow">return</span> nil;
-<a name="l00417"></a>00417   }
+<a name="l00403"></a><a class="code" href="interface_n_i_interapp.html#a1c086fd3ae3d12ca632ea2c0ca38ebe2">00403</a> + (BOOL)<a class="code" href="interface_n_i_interapp.html#a1c086fd3ae3d12ca632ea2c0ca38ebe2" title="Opens the Instagram application.">instagram</a> {
+<a name="l00404"></a>00404   BOOL didOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:sInstagramScheme]];
+<a name="l00405"></a>00405 
+<a name="l00406"></a>00406   <span class="keywordflow">if</span> (!didOpen) {
+<a name="l00407"></a>00407     didOpen = [<span class="keyword">self</span> <a class="code" href="interface_n_i_interapp.html#a58ee555bc198bba2a78a5d16f6c798a8" title="Opens the App Store page for the app with the given ID.">appStoreWithAppId</a>:[<span class="keyword">self</span> <a class="code" href="interface_n_i_interapp.html#a710908f494eae1eeb0cfbee20f9c771d" title="The Instagram App Store ID.">instagramAppStoreId</a>]];
+<a name="l00408"></a>00408   }
+<a name="l00409"></a>00409 
+<a name="l00410"></a>00410   <span class="keywordflow">return</span> didOpen;
+<a name="l00411"></a>00411 }
+<a name="l00412"></a>00412 
+<a name="l00413"></a>00413 
+<a name="l00415"></a><a class="code" href="interface_n_i_interapp.html#a7a6fbfd8d2b54d43d797598f08800d98">00415</a> + (BOOL)<a class="code" href="interface_n_i_interapp.html#a7a6fbfd8d2b54d43d797598f08800d98" title="Opens the Instagram camera.">instagramCamera</a> {
+<a name="l00416"></a>00416   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* urlPath = [sInstagramScheme stringByAppendingString:@&quot;//camera&quot;];
+<a name="l00417"></a>00417   <span class="keywordflow">return</span> [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 <a name="l00418"></a>00418 }
 <a name="l00419"></a>00419 
 <a name="l00420"></a>00420 
-<a name="l00422"></a><a class="code" href="interface_n_i_interapp.html#a710908f494eae1eeb0cfbee20f9c771d">00422</a> + (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)<a class="code" href="interface_n_i_interapp.html#a710908f494eae1eeb0cfbee20f9c771d" title="The Instagram App Store ID.">instagramAppStoreId</a> {
-<a name="l00423"></a>00423   <span class="keywordflow">return</span> <span class="stringliteral">@&quot;389801252&quot;</span>;
-<a name="l00424"></a>00424 }
-<a name="l00425"></a>00425 
-<a name="l00426"></a>00426 
-<a name="l00429"></a>00429 <span class="preprocessor">#pragma mark -</span>
-<a name="l00430"></a>00430 <span class="preprocessor"></span><span class="preprocessor">#pragma mark App Store</span>
-<a name="l00431"></a>00431 <span class="preprocessor"></span>
+<a name="l00422"></a><a class="code" href="interface_n_i_interapp.html#abc3fb242a941aa6a1d3b148e61fac892">00422</a> + (BOOL)instagramProfileForUsername:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)username {
+<a name="l00423"></a>00423   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* urlPath = [sInstagramScheme stringByAppendingFormat:@&quot;//user?username=%@&quot;,
+<a name="l00424"></a>00424                        [username stringByAddingPercentEscapesForURLParameter]];
+<a name="l00425"></a>00425   <span class="keywordflow">return</span> [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
+<a name="l00426"></a>00426 }
+<a name="l00427"></a>00427 
+<a name="l00428"></a>00428 
+<a name="l00430"></a><a class="code" href="interface_n_i_interapp.html#ad4a834d5cb64789e00cf21ce11e121cb">00430</a> + (NSURL *)urlForInstagramImageAtFilePath:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)filePath error:(NSError **)error {
+<a name="l00431"></a>00431   UIImage* image = [[UIImage alloc] initWithContentsOfFile:filePath];
 <a name="l00432"></a>00432 
-<a name="l00434"></a><a class="code" href="interface_n_i_interapp.html#a58ee555bc198bba2a78a5d16f6c798a8">00434</a> + (BOOL)appStoreWithAppId:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)appId {
-<a name="l00435"></a>00435   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* urlPath = [@&quot;http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=&quot; stringByAppendingString:appId];
-<a name="l00436"></a>00436   <span class="keywordflow">return</span> [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
-<a name="l00437"></a>00437 }
-<a name="l00438"></a>00438 
-<a name="l00439"></a>00439 
-<a name="l00440"></a>00440 <span class="keyword">@end</span>
-<a name="l00441"></a>00441 
-<a name="l00442"></a>00442 
-<a name="l00446"></a>00446 <span class="keyword">@implementation </span>NIMailAppInvocation
-<a name="l00447"></a>00447 
-<a name="l00448"></a>00448 <span class="keyword">@synthesize</span> recipient = _recipient;
-<a name="l00449"></a>00449 <span class="keyword">@synthesize</span> cc = _cc;
-<a name="l00450"></a>00450 <span class="keyword">@synthesize</span> bcc = _bcc;
-<a name="l00451"></a>00451 <span class="keyword">@synthesize</span> subject = _subject;
-<a name="l00452"></a>00452 <span class="keyword">@synthesize</span> body = _body;
-<a name="l00453"></a>00453 
-<a name="l00454"></a>00454 
-<a name="l00456"></a>00456 - (void)dealloc {
-<a name="l00457"></a>00457   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_recipient);
-<a name="l00458"></a>00458   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_cc);
-<a name="l00459"></a>00459   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_bcc);
-<a name="l00460"></a>00460   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_subject);
-<a name="l00461"></a>00461   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_body);
+<a name="l00433"></a>00433   <span class="comment">// Unable to read the image.</span>
+<a name="l00434"></a>00434   <span class="keywordflow">if</span> (nil == image) {
+<a name="l00435"></a>00435     <span class="keywordflow">if</span> (nil != error) {
+<a name="l00436"></a>00436       *error = [NSError errorWithDomain: NSCocoaErrorDomain
+<a name="l00437"></a>00437                                    code: NSFileReadUnknownError
+<a name="l00438"></a>00438                                userInfo: [NSDictionary dictionaryWithObject: filePath
+<a name="l00439"></a>00439                                                                      forKey: NSFilePathErrorKey]];
+<a name="l00440"></a>00440     }
+<a name="l00441"></a>00441     <span class="keywordflow">return</span> nil;
+<a name="l00442"></a>00442   }
+<a name="l00443"></a>00443 
+<a name="l00444"></a>00444   <span class="comment">// Instagram requires that images are at least 612x612 and preferably square.</span>
+<a name="l00445"></a>00445   <span class="keywordflow">if</span> (image.size.width &lt; 612
+<a name="l00446"></a>00446       || image.size.height &lt; 612) {
+<a name="l00447"></a>00447     <span class="keywordflow">if</span> (nil != error) {
+<a name="l00448"></a>00448       *error = [NSError errorWithDomain: NINimbusErrorDomain
+<a name="l00449"></a>00449                                    code: NIImageTooSmall
+<a name="l00450"></a>00450                                userInfo: [NSDictionary dictionaryWithObject: image
+<a name="l00451"></a>00451                                                                      forKey: NIImageErrorKey]];
+<a name="l00452"></a>00452     }
+<a name="l00453"></a>00453     <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(image);
+<a name="l00454"></a>00454     <span class="keywordflow">return</span> nil;
+<a name="l00455"></a>00455   }
+<a name="l00456"></a>00456 
+<a name="l00457"></a>00457   <span class="comment">// Immediately remove the image from memory.</span>
+<a name="l00458"></a>00458   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(image);
+<a name="l00459"></a>00459   
+<a name="l00460"></a>00460   NSFileManager* fm = [NSFileManager defaultManager];
+<a name="l00461"></a>00461   NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 <a name="l00462"></a>00462 
-<a name="l00463"></a>00463   [<span class="keyword">super</span> dealloc];
-<a name="l00464"></a>00464 }
-<a name="l00465"></a>00465 
-<a name="l00466"></a>00466 
-<a name="l00468"></a>00468 + (id)invocation {
-<a name="l00469"></a>00469   <span class="keywordflow">return</span> [[[[<span class="keyword">self</span> class] alloc] init] autorelease];
-<a name="l00470"></a>00470 }
-<a name="l00471"></a>00471 
+<a name="l00463"></a>00463   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(<a class="code" href="group___non-_empty-_collection-_testing.html#ga567f748c399da8a4393884242f3da4ba" title="Tests if an object is a non-nil array which is not empty.">NIIsArrayWithObjects</a>(paths));
+<a name="l00464"></a>00464   <span class="keywordflow">if</span> (!<a class="code" href="group___non-_empty-_collection-_testing.html#ga567f748c399da8a4393884242f3da4ba" title="Tests if an object is a non-nil array which is not empty.">NIIsArrayWithObjects</a>(paths)) {
+<a name="l00465"></a>00465     <span class="keywordflow">return</span> nil;
+<a name="l00466"></a>00466   }
+<a name="l00467"></a>00467 
+<a name="l00468"></a>00468   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* documentsPath = [paths objectAtIndex:0];
+<a name="l00469"></a>00469   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* destinationPath = [documentsPath stringByAppendingPathComponent:
+<a name="l00470"></a>00470                                [<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> stringWithFormat:@&quot;nimbus-instagram-image-%.0f.ig&quot;,
+<a name="l00471"></a>00471                                 [NSDate timeIntervalSinceReferenceDate]]];
 <a name="l00472"></a>00472 
-<a name="l00473"></a>00473 <span class="keyword">@end</span>
+<a name="l00473"></a>00473   [fm copyItemAtPath: filePath
+<a name="l00474"></a>00474               toPath: destinationPath
+<a name="l00475"></a>00475                error: error];
+<a name="l00476"></a>00476 
+<a name="l00477"></a>00477   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil == error || nil == *error);
+<a name="l00478"></a>00478   <span class="keywordflow">if</span> (nil == error || nil == *error) {
+<a name="l00479"></a>00479     <span class="keywordflow">return</span> [NSURL URLWithString:[@&quot;file:&quot; stringByAppendingString:destinationPath]];
+<a name="l00480"></a>00480 
+<a name="l00481"></a>00481   } <span class="keywordflow">else</span> {
+<a name="l00482"></a>00482     <span class="keywordflow">return</span> nil;
+<a name="l00483"></a>00483   }
+<a name="l00484"></a>00484 }
+<a name="l00485"></a>00485 
+<a name="l00486"></a>00486 
+<a name="l00488"></a><a class="code" href="interface_n_i_interapp.html#a710908f494eae1eeb0cfbee20f9c771d">00488</a> + (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)<a class="code" href="interface_n_i_interapp.html#a710908f494eae1eeb0cfbee20f9c771d" title="The Instagram App Store ID.">instagramAppStoreId</a> {
+<a name="l00489"></a>00489   <span class="keywordflow">return</span> <span class="stringliteral">@&quot;389801252&quot;</span>;
+<a name="l00490"></a>00490 }
+<a name="l00491"></a>00491 
+<a name="l00492"></a>00492 
+<a name="l00495"></a>00495 <span class="preprocessor">#pragma mark -</span>
+<a name="l00496"></a>00496 <span class="preprocessor"></span><span class="preprocessor">#pragma mark App Store</span>
+<a name="l00497"></a>00497 <span class="preprocessor"></span>
+<a name="l00498"></a>00498 
+<a name="l00500"></a><a class="code" href="interface_n_i_interapp.html#a58ee555bc198bba2a78a5d16f6c798a8">00500</a> + (BOOL)appStoreWithAppId:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)appId {
+<a name="l00501"></a>00501   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* urlPath = [@&quot;http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=&quot; stringByAppendingString:appId];
+<a name="l00502"></a>00502   <span class="keywordflow">return</span> [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
+<a name="l00503"></a>00503 }
+<a name="l00504"></a>00504 
+<a name="l00505"></a>00505 
+<a name="l00506"></a>00506 <span class="keyword">@end</span>
+<a name="l00507"></a>00507 
+<a name="l00508"></a>00508 
+<a name="l00512"></a>00512 <span class="keyword">@implementation </span>NIMailAppInvocation
+<a name="l00513"></a>00513 
+<a name="l00514"></a>00514 <span class="keyword">@synthesize</span> recipient = _recipient;
+<a name="l00515"></a>00515 <span class="keyword">@synthesize</span> cc = _cc;
+<a name="l00516"></a>00516 <span class="keyword">@synthesize</span> bcc = _bcc;
+<a name="l00517"></a>00517 <span class="keyword">@synthesize</span> subject = _subject;
+<a name="l00518"></a>00518 <span class="keyword">@synthesize</span> body = _body;
+<a name="l00519"></a>00519 
+<a name="l00520"></a>00520 
+<a name="l00522"></a>00522 - (void)dealloc {
+<a name="l00523"></a>00523   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_recipient);
+<a name="l00524"></a>00524   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_cc);
+<a name="l00525"></a>00525   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_bcc);
+<a name="l00526"></a>00526   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_subject);
+<a name="l00527"></a>00527   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_body);
+<a name="l00528"></a>00528 
+<a name="l00529"></a>00529   [<span class="keyword">super</span> dealloc];
+<a name="l00530"></a>00530 }
+<a name="l00531"></a>00531 
+<a name="l00532"></a>00532 
+<a name="l00534"></a>00534 + (id)invocation {
+<a name="l00535"></a>00535   <span class="keywordflow">return</span> [[[[<span class="keyword">self</span> class] alloc] init] autorelease];
+<a name="l00536"></a>00536 }
+<a name="l00537"></a>00537 
+<a name="l00538"></a>00538 
+<a name="l00539"></a>00539 <span class="keyword">@end</span>
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

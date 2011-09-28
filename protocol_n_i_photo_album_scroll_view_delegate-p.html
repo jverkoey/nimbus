@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -94,19 +94,63 @@ Inheritance diagram for &lt;NIPhotoAlbumScrollViewDelegate&gt;:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">[NIPhotoAlbumScrollViewDelegate] Scrolling and Zooming</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fcd4c30753c07f9ea9410cd7fc560fd"></a><!-- doxytag: member="NIPhotoAlbumScrollViewDelegate&#45;p::photoAlbumScrollViewDidScroll:" ref="a5fcd4c30753c07f9ea9410cd7fc560fd" args="(NIPhotoAlbumScrollView *photoAlbumScrollView)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_album_scroll_view_delegate-p.html#a5fcd4c30753c07f9ea9410cd7fc560fd">photoAlbumScrollViewDidScroll:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0eef6e4fa181a3df8ab5d6909523d4ab"></a><!-- doxytag: member="NIPhotoAlbumScrollViewDelegate&#45;p::photoAlbumScrollView:didZoomIn:" ref="a0eef6e4fa181a3df8ab5d6909523d4ab" args="(NIPhotoAlbumScrollView *photoAlbumScrollView,[didZoomIn] BOOL didZoomIn)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_album_scroll_view_delegate-p.html#a0eef6e4fa181a3df8ab5d6909523d4ab">photoAlbumScrollView:didZoomIn:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_album_scroll_view_delegate-p.html#a5fcd4c30753c07f9ea9410cd7fc560fd">photoAlbumScrollViewDidScroll:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_album_scroll_view_delegate-p.html#a0eef6e4fa181a3df8ab5d6909523d4ab">photoAlbumScrollView:didZoomIn:</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">[NIPhotoAlbumScrollViewDelegate] Changing Pages</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_album_scroll_view_delegate-p.html#af4852dedcacd71213d41c3c063842882">photoAlbumScrollViewDidChangePages:</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">[NIPhotoAlbumScrollViewDelegate] Data Availability</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32117b185be7beba7883340439dea650"></a><!-- doxytag: member="NIPhotoAlbumScrollViewDelegate&#45;p::photoAlbumScrollViewDidLoadNextPhoto:" ref="a32117b185be7beba7883340439dea650" args="(NIPhotoAlbumScrollView *photoAlbumScrollView)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_album_scroll_view_delegate-p.html#a32117b185be7beba7883340439dea650">photoAlbumScrollViewDidLoadNextPhoto:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bb24277692638ee8c113b1a25a6705e"></a><!-- doxytag: member="NIPhotoAlbumScrollViewDelegate&#45;p::photoAlbumScrollViewDidLoadPreviousPhoto:" ref="a8bb24277692638ee8c113b1a25a6705e" args="(NIPhotoAlbumScrollView *photoAlbumScrollView)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_album_scroll_view_delegate-p.html#a8bb24277692638ee8c113b1a25a6705e">photoAlbumScrollViewDidLoadPreviousPhoto:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_album_scroll_view_delegate-p.html#a32117b185be7beba7883340439dea650">photoAlbumScrollViewDidLoadNextPhoto:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_photo_album_scroll_view_delegate-p.html#a8bb24277692638ee8c113b1a25a6705e">photoAlbumScrollViewDidLoadPreviousPhoto:</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
+<a class="anchor" id="a5fcd4c30753c07f9ea9410cd7fc560fd"></a><!-- doxytag: member="NIPhotoAlbumScrollViewDelegate&#45;p::photoAlbumScrollViewDidScroll:" ref="a5fcd4c30753c07f9ea9410cd7fc560fd" args="(NIPhotoAlbumScrollView *photoAlbumScrollView)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) photoAlbumScrollViewDidScroll: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="interface_n_i_photo_album_scroll_view.html">NIPhotoAlbumScrollView</a> *)&#160;</td>
+          <td class="paramname"><em>photoAlbumScrollView</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The user is scrolling between two photos. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0eef6e4fa181a3df8ab5d6909523d4ab"></a><!-- doxytag: member="NIPhotoAlbumScrollViewDelegate&#45;p::photoAlbumScrollView:didZoomIn:" ref="a0eef6e4fa181a3df8ab5d6909523d4ab" args="(NIPhotoAlbumScrollView *photoAlbumScrollView,[didZoomIn] BOOL didZoomIn)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) photoAlbumScrollView: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="interface_n_i_photo_album_scroll_view.html">NIPhotoAlbumScrollView</a> *)&#160;</td>
+          <td class="paramname"><em>photoAlbumScrollView</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">didZoomIn:</td>
+          <td></td>
+          <td class="paramtype">(BOOL)&#160;</td>
+          <td class="paramname"><em>didZoomIn</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The user double-tapped to zoom in or out. </p>
+
+</div>
+</div>
 <a class="anchor" id="af4852dedcacd71213d41c3c063842882"></a><!-- doxytag: member="NIPhotoAlbumScrollViewDelegate&#45;p::photoAlbumScrollViewDidChangePages:" ref="af4852dedcacd71213d41c3c063842882" args="(NIPhotoAlbumScrollView *photoAlbumScrollView)" -->
 <div class="memitem">
 <div class="memproto">
@@ -124,6 +168,44 @@ Methods</h2></td></tr>
 
 <p>The current page has changed. </p>
 <p>photoAlbumScrollView.currentCenterPhotoIndex will reflect the changed photo index. </p>
+
+</div>
+</div>
+<a class="anchor" id="a32117b185be7beba7883340439dea650"></a><!-- doxytag: member="NIPhotoAlbumScrollViewDelegate&#45;p::photoAlbumScrollViewDidLoadNextPhoto:" ref="a32117b185be7beba7883340439dea650" args="(NIPhotoAlbumScrollView *photoAlbumScrollView)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) photoAlbumScrollViewDidLoadNextPhoto: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="interface_n_i_photo_album_scroll_view.html">NIPhotoAlbumScrollView</a> *)&#160;</td>
+          <td class="paramname"><em>photoAlbumScrollView</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The next photo in the album has been loaded and is ready to be displayed. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8bb24277692638ee8c113b1a25a6705e"></a><!-- doxytag: member="NIPhotoAlbumScrollViewDelegate&#45;p::photoAlbumScrollViewDidLoadPreviousPhoto:" ref="a8bb24277692638ee8c113b1a25a6705e" args="(NIPhotoAlbumScrollView *photoAlbumScrollView)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) photoAlbumScrollViewDidLoadPreviousPhoto: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="interface_n_i_photo_album_scroll_view.html">NIPhotoAlbumScrollView</a> *)&#160;</td>
+          <td class="paramname"><em>photoAlbumScrollView</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The previous photo in the album has been loaded and is ready to be displayed. </p>
 
 </div>
 </div>

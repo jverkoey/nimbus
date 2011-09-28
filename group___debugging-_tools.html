@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.7.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -104,15 +104,11 @@
 Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f">NIDASSERT</a>(xx)&#160;&#160;&#160;{ if (!(xx)) { NIDPRINT(@&quot;NIDASSERT failed: %s&quot;, #xx); } } ((void)0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26">NIDPRINT</a>(xx,...)&#160;&#160;&#160;NSLog(@&quot;%s(%d): &quot; xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaa606f4ba1dd48de5e2fd679b7d8b22d8"></a><!-- doxytag: member="Debugging&#45;Tools::NIDPRINTMETHODNAME" ref="gaa606f4ba1dd48de5e2fd679b7d8b22d8" args="()" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8">NIDPRINTMETHODNAME</a>()&#160;&#160;&#160;NIDPRINT(@&quot;%s&quot;, __PRETTY_FUNCTION__)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8">NIDPRINTMETHODNAME</a>()&#160;&#160;&#160;NIDPRINT(@&quot;%s&quot;, __PRETTY_FUNCTION__)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga2d769dcaac3915eea5b9860a40bd179a">NIDCONDITIONLOG</a>(condition, xx,...)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gab5d8a773517976d97335706474ae1317"></a><!-- doxytag: member="Debugging&#45;Tools::NIDERROR" ref="gab5d8a773517976d97335706474ae1317" args="(xx,...)" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gab5d8a773517976d97335706474ae1317">NIDERROR</a>(xx,...)&#160;&#160;&#160;NIDCONDITIONLOG((NILOGLEVEL_ERROR &lt;= <a class="el" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505">NIMaxLogLevel</a>), xx, ##__VA_ARGS__)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gacc8f90bb05765e613bb0dbb16d372dfc"></a><!-- doxytag: member="Debugging&#45;Tools::NIDWARNING" ref="gacc8f90bb05765e613bb0dbb16d372dfc" args="(xx,...)" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gacc8f90bb05765e613bb0dbb16d372dfc">NIDWARNING</a>(xx,...)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaf0d5ca9cb5bd5c57cfaee0b9a565bb84"></a><!-- doxytag: member="Debugging&#45;Tools::NIDINFO" ref="gaf0d5ca9cb5bd5c57cfaee0b9a565bb84" args="(xx,...)" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84">NIDINFO</a>(xx,...)&#160;&#160;&#160;NIDCONDITIONLOG((NILOGLEVEL_INFO &lt;= <a class="el" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505">NIMaxLogLevel</a>), xx, ##__VA_ARGS__)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gab5d8a773517976d97335706474ae1317">NIDERROR</a>(xx,...)&#160;&#160;&#160;NIDCONDITIONLOG((NILOGLEVEL_ERROR &lt;= <a class="el" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505">NIMaxLogLevel</a>), xx, ##__VA_ARGS__)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gacc8f90bb05765e613bb0dbb16d372dfc">NIDWARNING</a>(xx,...)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84">NIDINFO</a>(xx,...)&#160;&#160;&#160;NIDCONDITIONLOG((NILOGLEVEL_INFO &lt;= <a class="el" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505">NIMaxLogLevel</a>), xx, ##__VA_ARGS__)</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505">NIMaxLogLevel</a></td></tr>
@@ -173,6 +169,26 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="gaa606f4ba1dd48de5e2fd679b7d8b22d8"></a><!-- doxytag: member="NIDebuggingTools.h::NIDPRINTMETHODNAME" ref="gaa606f4ba1dd48de5e2fd679b7d8b22d8" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NIDPRINTMETHODNAME</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;NIDPRINT(@&quot;%s&quot;, __PRETTY_FUNCTION__)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Write the containing method's name to the log using NIDPRINT. </p>
+
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00151">151</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ga2d769dcaac3915eea5b9860a40bd179a"></a><!-- doxytag: member="NIDebuggingTools.h::NIDCONDITIONLOG" ref="ga2d769dcaac3915eea5b9860a40bd179a" args="(condition, xx,...)" -->
 <div class="memitem">
 <div class="memproto">
@@ -210,6 +226,101 @@ Variables</h2></td></tr>
 <p>This macro powers the level-based loggers. It can also be used for conditionally enabling families of logs. </p>
 
 <p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00160">160</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gab5d8a773517976d97335706474ae1317"></a><!-- doxytag: member="NIDebuggingTools.h::NIDERROR" ref="gab5d8a773517976d97335706474ae1317" args="(xx,...)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NIDERROR</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">xx, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;NIDCONDITIONLOG((NILOGLEVEL_ERROR &lt;= <a class="el" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505">NIMaxLogLevel</a>), xx, ##__VA_ARGS__)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_ERROR. </p>
+
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00170">170</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gacc8f90bb05765e613bb0dbb16d372dfc"></a><!-- doxytag: member="NIDebuggingTools.h::NIDWARNING" ref="gacc8f90bb05765e613bb0dbb16d372dfc" args="(xx,...)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NIDWARNING</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">xx, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="group___debugging-_tools.html#ga2d769dcaac3915eea5b9860a40bd179a" title="Only writes to the log if condition is satisified.">NIDCONDITIONLOG</a>((NILOGLEVEL_WARNING &lt;= <a class="code" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505" title="The maximum log level to output for Nimbus debug logs.">NIMaxLogLevel</a>), \
+xx, ##__VA_ARGS__)
+</pre></div>
+<p>Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_WARNING. </p>
+
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00175">175</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaf0d5ca9cb5bd5c57cfaee0b9a565bb84"></a><!-- doxytag: member="NIDebuggingTools.h::NIDINFO" ref="gaf0d5ca9cb5bd5c57cfaee0b9a565bb84" args="(xx,...)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NIDINFO</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">xx, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;NIDCONDITIONLOG((NILOGLEVEL_INFO &lt;= <a class="el" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505">NIMaxLogLevel</a>), xx, ##__VA_ARGS__)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_INFO. </p>
+
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00181">181</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
 
 </div>
 </div>

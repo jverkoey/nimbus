@@ -3,6 +3,9 @@ var NAVTREE =
   [ "Nimbus", "index.html", [
     [ "Main Page", "index.html", null ],
     [ "Modules", "modules.html", [
+      [ "Nimbus Attributed Label", "group___nimbus_attributed_label.html", [
+        [ "Protocol", "group___nimbus_attributed_label-_protocol.html", null ]
+      ] ],
       [ "Nimbus Core", "group___nimbus_core.html", [
         [ "Common Metrics", "group___common-_metrics.html", null ],
         [ "Data Structures", "group___data-_structures.html", null ],
@@ -68,10 +71,13 @@ var NAVTREE =
         [ "Version 0.6 API Changes", "group___version-6-0.html", [
           [ "Version 0.6.1 API Changes", "group___version-6-1.html", null ]
         ] ],
-        [ "Version 0.7.0 API Changes", "group___version-7-0.html", null ]
+        [ "Version 0.7 API Changes", "group___version-7-0.html", null ],
+        [ "Version 0.8 API Changes", "group___version-8-0.html", null ]
       ] ]
     ] ],
     [ "Class List", "annotated.html", [
+      [ "NIAttributedLabel", "interface_n_i_attributed_label.html", null ],
+      [ "<NIAttributedLabelDelegate>", "protocol_n_i_attributed_label_delegate-p.html", null ],
       [ "<NICell>", "protocol_n_i_cell-p.html", null ],
       [ "NICellFactory", "interface_n_i_cell_factory.html", null ],
       [ "<NICellObject>", "protocol_n_i_cell_object-p.html", null ],
@@ -93,6 +99,7 @@ var NAVTREE =
       [ "Nimbus", "interface_nimbus.html", null ],
       [ "NIMemoryCache", "interface_n_i_memory_cache.html", null ],
       [ "NIMemoryCacheInfo", "interface_n_i_memory_cache_info.html", null ],
+      [ "NINavigationAppearance", "interface_n_i_navigation_appearance.html", null ],
       [ "NINetworkImageView", "interface_n_i_network_image_view.html", null ],
       [ "<NINetworkImageViewDelegate>", "protocol_n_i_network_image_view_delegate-p.html", null ],
       [ "NIOperation", "interface_n_i_operation.html", null ],
@@ -137,6 +144,8 @@ var NAVTREE =
     ] ],
     [ "Class Index", "classes.html", null ],
     [ "Class Hierarchy", "hierarchy.html", [
+      [ "NIAttributedLabel", "interface_n_i_attributed_label.html", null ],
+      [ "<NIAttributedLabelDelegate>", "protocol_n_i_attributed_label_delegate-p.html", null ],
       [ "<NICell>", "protocol_n_i_cell-p.html", [
         [ "NIFormElementCell", "interface_n_i_form_element_cell.html", [
           [ "NISwitchFormElementCell", "interface_n_i_switch_form_element_cell.html", null ],
@@ -173,6 +182,7 @@ var NAVTREE =
         [ "NIImageMemoryCache", "interface_n_i_image_memory_cache.html", null ]
       ] ],
       [ "NIMemoryCacheInfo", "interface_n_i_memory_cache_info.html", null ],
+      [ "NINavigationAppearance", "interface_n_i_navigation_appearance.html", null ],
       [ "NINetworkImageView", "interface_n_i_network_image_view.html", null ],
       [ "<NINetworkImageViewDelegate>", "protocol_n_i_network_image_view_delegate-p.html", null ],
       [ "NIOperation", "interface_n_i_operation.html", [
@@ -305,6 +315,11 @@ var NAVTREE =
       [ "src/ASIHTTPRequest/unittests/Tests/ProxyTests.m", null, null ],
       [ "src/ASIHTTPRequest/unittests/Tests/StressTests.h", null, null ],
       [ "src/ASIHTTPRequest/unittests/Tests/StressTests.m", null, null ],
+      [ "src/attributedlabel/src/NIAttributedLabel.h", null, null ],
+      [ "src/attributedlabel/src/NIAttributedLabel.m", null, null ],
+      [ "src/attributedlabel/src/NimbusAttributedLabel.h", null, null ],
+      [ "src/attributedlabel/src/NSAttributedString+NimbusAttributedLabel.h", null, null ],
+      [ "src/attributedlabel/src/NSAttributedString+NimbusAttributedLabel.m", null, null ],
       [ "src/core/examples/ExampleRuntimeDebugging.m", null, null ],
       [ "src/core/src/NIBlocks.h", null, null ],
       [ "src/core/src/NICommonMetrics.h", null, null ],
@@ -323,6 +338,8 @@ var NAVTREE =
       [ "src/core/src/NIInMemoryCache.m", null, null ],
       [ "src/core/src/NimbusCore+Additions.h", null, null ],
       [ "src/core/src/NimbusCore.h", null, null ],
+      [ "src/core/src/NINavigationAppearance.h", null, null ],
+      [ "src/core/src/NINavigationAppearance.m", null, null ],
       [ "src/core/src/NINetworkActivity.h", null, null ],
       [ "src/core/src/NINetworkActivity.m", null, null ],
       [ "src/core/src/NINonEmptyCollectionTesting.h", null, null ],
@@ -348,6 +365,7 @@ var NAVTREE =
       [ "src/core/unittests/NIDataStructureTests.m", null, null ],
       [ "src/core/unittests/NIFoundationMethodsTests.m", null, null ],
       [ "src/core/unittests/NIMemoryCacheTests.m", null, null ],
+      [ "src/core/unittests/NINavigationAppearanceTests.m", null, null ],
       [ "src/core/unittests/NINonEmptyCollectionTestingTests.m", null, null ],
       [ "src/core/unittests/NINonRetainingCollectionsTests.m", null, null ],
       [ "src/core/unittests/NIOperationsTests.m", null, null ],
