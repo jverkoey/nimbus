@@ -296,7 +296,7 @@
 /**
  * Returns YES if the supplied application is installed.
  *
- *      @fn NIInterapp::applicationIsInstalledWithScheme
+ *      @fn NIInterapp::applicationIsInstalledWithScheme:
  */
 
 /**
@@ -309,20 +309,20 @@
  * Opens the supplied application. If the supplied application is not installed, will open the
  * App Store to the specified ID download page.
  *
- *      @fn NIInterapp::applicationWithScheme:andAppStoreId
+ *      @fn NIInterapp::applicationWithScheme:andAppStoreId:
  */
 
 /**
  * Opens the supplied application.
  *
- *      @fn NIInterapp::applicationWithScheme:andPath
+ *      @fn NIInterapp::applicationWithScheme:andPath:
  */
 
 /**
  * Opens the supplied application, to the specified path. If the supplied application is not installed, will open the
  * App Store to the download page for the specified AppStoreId.
  *
- *      @fn NIInterapp::applicationWithScheme:appStoreId:andPath
+ *      @fn NIInterapp::applicationWithScheme:appStoreId:andPath:
  */
 
 /**
