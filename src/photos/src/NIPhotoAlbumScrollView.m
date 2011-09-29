@@ -637,4 +637,14 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setPhotoBackgroundColor:(UIColor *)color {
+  NI_RELEASE_SAFELY(_photoBackgroundColor);
+  _photoBackgroundColor = [color retain];
+  for (NIPhotoScrollView* page in _visiblePages) {
+    page.backgroundColor = color;
+  }
+}
+
+
 @end
