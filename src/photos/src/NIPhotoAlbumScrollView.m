@@ -251,8 +251,6 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
     [page setImage:self.loadingImage photoSize:NIPhotoScrollViewPhotoSizeUnknown];
 
   } else {
-    page.zoomingIsEnabled = ([self isZoomingEnabled]
-                             && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
     if (photoSize > page.photoSize) {
       [page setImage:image photoSize:photoSize];
 
@@ -260,6 +258,8 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
         [self notifyDelegatePhotoDidLoadAtIndex:pageIndex];
       }
     }
+    page.zoomingIsEnabled = ([self isZoomingEnabled]
+                             && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
   }
 }
 
