@@ -157,6 +157,11 @@
  */
 @property (nonatomic, readwrite, assign, getter=isScrubberEnabled) BOOL scrubberIsEnabled;
 
+/**
+ * The class to use for the toolbar.
+ */
+- (Class)toolbarClass;
+
 
 #pragma mark Views /** @name Views */
 

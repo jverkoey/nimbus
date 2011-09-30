@@ -190,7 +190,7 @@
   CGRect toolbarFrame = CGRectMake(0, bounds.size.height - toolbarHeight,
                                    bounds.size.width, toolbarHeight);
 
-  _toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
+  _toolbar = [[[[self toolbarClass] alloc] initWithFrame:toolbarFrame] autorelease];
   _toolbar.barStyle = UIBarStyleBlack;
   _toolbar.translucent = self.showPhotoAlbumBeneathToolbar;
   _toolbar.autoresizingMask = (UIViewAutoresizingFlexibleWidth
@@ -577,6 +577,12 @@
       [self updateToolbarItems];
     }
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)toolbarClass {
+  return [UIToolbar class];
 }
 
 
