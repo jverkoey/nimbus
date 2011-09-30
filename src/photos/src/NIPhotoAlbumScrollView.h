@@ -200,6 +200,11 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  */
 @property (nonatomic, readonly, assign) NSInteger numberOfPhotos;
 
+/**
+ * The currently centered photo scroll view.
+ */
+- (NIPhotoScrollView *)centeredPhotoScrollView;
+
 
 #pragma mark Changing the Visible Photo /** @name Changing the Visible Photo */
 
