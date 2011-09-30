@@ -630,6 +630,17 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NIPhotoScrollView *)centeredPhotoScrollView {
+  for (NIPhotoScrollView* page in _visiblePages) {
+    if (page.photoIndex == self.centerPhotoIndex) {
+      return page;
+    }
+  }
+  return nil;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setScrollViewBackgroundColor:(UIColor *)color {
   NI_RELEASE_SAFELY(_scrollViewBackgroundColor);
   _scrollViewBackgroundColor = [color retain];
