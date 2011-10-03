@@ -324,21 +324,21 @@
  * @defgroup TableViewModels Table View Models
  *
  * Nimbus table view models make building table views remarkably easy. Rather than implement
- * the data source methods in each table view controller, you can assign a model to
+ * the data source methods in each table view controller, you assign a model to
  * self.tableView.dataSource and only think about row creation.
  *
- * Nimbus table view models implement much of the standard functionality required for
- * table views, including section titles, grouped rows, and section indices. By
- * providing this functionality in one object Nimbus can also provide much more
- * efficient implementations than one-off, naive implementations that might otherwise
+ * Nimbus table view models implement many of the standard table view data source methods,
+ * including methods for section titles, grouped rows, and section indices. By
+ * providing this functionality in one object, Nimbus provides much more
+ * efficient implementations than one-off implementations that might otherwise
  * be copied from one controller to another.
  *
  * <h2>Creating Generic Static Models</h2>
  *
- * In order to use the Nimbus table view model you simply need to create a model, assigning
- * it to your table view's data source after the table view has been created, and implementing
- * the model delegate to create the table view cells. You can also use the
- * @link TableCellFactory Nimbus cell factory@endlink to avoid having to implement the model
+ * In order to use the Nimbus table view model you create a model, assign
+ * it to your table view's data source after the table view has been created, and implement
+ * the model delegate to create the table view cells. You can use the
+ * @link TableCellFactory Nimbus cell factory@endlink to avoid implementing the model
  * delegate.
  *
  * Below is an example of creating a basic list model:
