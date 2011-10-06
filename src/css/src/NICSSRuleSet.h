@@ -16,13 +16,14 @@
 
 #import <Foundation/Foundation.h>
 
-/**
- * Note about needing to add -ObjC for categories to work.
- */
+@interface NICSSRuleSet : NSObject {
+@private
+  NSDictionary* _ruleSet;
+}
 
-#import "NICSSRuleSet.h"
-#import "NICSSParser.h"
-#import "NIStyleable.h"
-#import "NIStylesheet.h"
+// Designated initializer.
+- (id)initWithDictionary:(NSDictionary *)ruleSet;
 
-#import "NimbusCore.h"
++ (id)ruleSetWithDictionary:(NSDictionary *)ruleSet;
+
+@end

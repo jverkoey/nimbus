@@ -16,13 +16,20 @@
 
 #import <Foundation/Foundation.h>
 
-/**
- * Note about needing to add -ObjC for categories to work.
- */
+@class NIStylesheet;
 
-#import "NICSSRuleSet.h"
-#import "NICSSParser.h"
-#import "NIStyleable.h"
-#import "NIStylesheet.h"
+@interface NIDOM : NSObject {
+@private
+  NIStylesheet* _stylesheet;
+  NSMutableSet* _registeredViews;
+}
 
-#import "NimbusCore.h"
+// Designated initializer.
+- (id)initWithStylesheet:(NIStylesheet *)stylesheet;
+
++ (id)domWithStylesheet:(NIStylesheet *)stylesheet;
++ (id)domWithStylesheetPaths:(NSString *)stylesheetPath, ...;
+
+- (void)registerView:(UIView *)view;
+
+@end

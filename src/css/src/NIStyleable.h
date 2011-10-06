@@ -16,13 +16,11 @@
 
 #import <Foundation/Foundation.h>
 
-/**
- * Note about needing to add -ObjC for categories to work.
- */
+@class NICSSRuleSet;
 
-#import "NICSSRuleSet.h"
-#import "NICSSParser.h"
-#import "NIStyleable.h"
-#import "NIStylesheet.h"
+@protocol NIStyleable <NSObject>
+@required
 
-#import "NimbusCore.h"
+- (void)styleWithRuleSet:(NICSSRuleSet *)ruleSet;
+
+@end

@@ -57,4 +57,16 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testApplyStyleToUILabel {
+  NIStylesheet* stylesheet = [[[NIStylesheet alloc] init] autorelease];
+  NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"UILabel.css");
+
+  STAssertTrue([stylesheet loadFromPath:pathToFile], @"The stylesheet should have been parsed.");
+
+  UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+  [stylesheet applyStyleToView:label];
+}
+
+
 @end

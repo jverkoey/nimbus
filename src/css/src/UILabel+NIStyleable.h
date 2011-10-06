@@ -15,14 +15,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-/**
- * Note about needing to add -ObjC for categories to work.
- */
-
-#import "NICSSRuleSet.h"
-#import "NICSSParser.h"
-#import "NIStyleable.h"
-#import "NIStylesheet.h"
-
-#import "NimbusCore.h"
+@interface UILabel (NIStyleable)
+@end

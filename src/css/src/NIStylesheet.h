@@ -19,12 +19,15 @@
 @interface NIStylesheet : NSObject {
 @private
   NSDictionary* _ruleSets;
+  NSDictionary* _classToRuleSetMap;
 }
 
-@property (nonatomic, readonly, retain) NSDictionary* ruleSets;
+@property (nonatomic, readonly, copy) NSDictionary* ruleSets;
+@property (nonatomic, readonly, copy) NSDictionary* classToRuleSetMap;
 
 - (BOOL)loadFromPath:(NSString *)path;
-
 - (void)addStylesheet:(NIStylesheet *)stylesheet;
+
+- (void)applyStyleToView:(UIView *)view;
 
 @end

@@ -17,6 +17,8 @@
 #import "NIStylesheet.h"
 
 #import "NICSSParser.h"
+#import "NICSSRuleSet.h"
+#import "NIStyleable.h"
 #import "NimbusCore.h"
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
@@ -33,6 +35,7 @@ static NSDictionary* sColorTable = nil;
 @implementation NIStylesheet
 
 @synthesize ruleSets = _ruleSets;
+@synthesize classToRuleSetMap = _classToRuleSetMap;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -56,6 +59,47 @@ static NSDictionary* sColorTable = nil;
   }
 
   return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Rule Sets
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)rebuildClassToRuleSetMap {
+  NSMutableDictionary* classToRuleSetMap =
+  [[NSMutableDictionary alloc] initWithCapacity:[_ruleSets count]];
+
+  for (NSString* selector in _ruleSets) {
+    NSArray* parts = [selector componentsSeparatedByString:@" "];
+    NSString* mostSignificantIdent = [parts lastObject];
+
+    // TODO (jverkoey Oct 6, 2011): We should respect CSS specificity. Right now this will
+    // give higher precedance to newer styles. Instead, we should prefer styles that have more
+    // selectors.
+    NSMutableArray* selectors = [classToRuleSetMap objectForKey:mostSignificantIdent];
+    if (nil == selectors) {
+      selectors = [[NSMutableArray alloc] initWithObjects:selector, nil];
+      [classToRuleSetMap setObject:selectors forKey:mostSignificantIdent];
+      NI_RELEASE_SAFELY(selectors);
+      
+    } else {
+      [selectors addObject:selector];
+    }
+  }
+  
+  [_classToRuleSetMap release];
+  _classToRuleSetMap = [classToRuleSetMap copy];
+  
+  NI_RELEASE_SAFELY(classToRuleSetMap);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)ruleSetsDidChange {
+  [self rebuildClassToRuleSetMap];
 }
 
 
@@ -96,8 +140,10 @@ static NSDictionary* sColorTable = nil;
       loadDidSucceed = YES;
     }
     NI_RELEASE_SAFELY(parser);
+
+    [self ruleSetsDidChange];
   }
-  
+
   return loadDidSucceed;
 }
 
@@ -111,12 +157,15 @@ static NSDictionary* sColorTable = nil;
 
   NSMutableDictionary* compositeRuleSets = [self.ruleSets mutableCopy];
 
+  BOOL ruleSetsDidChange = NO;
+
   for (NSString* selector in stylesheet.ruleSets) {
     NSDictionary* incomingRuleSet   = [stylesheet.ruleSets objectForKey:selector];
     NSDictionary* existingRuleSet = [self.ruleSets objectForKey:selector];
 
     // Don't bother adding empty rulesets.
     if ([incomingRuleSet count] > 0) {
+      ruleSetsDidChange = YES;
 
       if (nil == existingRuleSet) {
         // There is no rule set of this selector - simply add the new one.
@@ -132,11 +181,45 @@ static NSDictionary* sColorTable = nil;
       NI_RELEASE_SAFELY(compositeRuleSet);
     }
   }
-  
+
   NI_RELEASE_SAFELY(_ruleSets);
   _ruleSets = [compositeRuleSets copy];
   NI_RELEASE_SAFELY(compositeRuleSets);
+
+  if (ruleSetsDidChange) {
+    [self ruleSetsDidChange];
+  }
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applyRuleSet:(NICSSRuleSet *)ruleSet toView:(UIView *)view {
+  if ([view respondsToSelector:@selector(styleWithRuleSet:)]) {
+    [(id<NIStyleable>)view styleWithRuleSet:ruleSet];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applyStyleToView:(UIView *)view {
+  Class viewClass = [view class];
+  NSString* viewClassName = NSStringFromClass(viewClass);
+  NSArray* selectors = [_classToRuleSetMap objectForKey:viewClassName];
+  if ([selectors count] > 0) {
+    // Apply each of these styles to the view.
+    for (NSString* selector in selectors) {
+      NICSSRuleSet* ruleSet = [[NICSSRuleSet alloc] initWithDictionary:
+                               [_ruleSets objectForKey:selector]];
+      [self applyRuleSet:ruleSet toView:view];
+      NI_RELEASE_SAFELY(ruleSet);
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Color Tables
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
