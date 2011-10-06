@@ -1,0 +1,94 @@
+//
+// Copyright 2011 Jeff Verkoeyen
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+#import "NIStylesheet.h"
+
+#import "NICSSParser.h"
+#import "NimbusCore.h"
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NIStylesheet
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+  NI_RELEASE_SAFELY(_ruleSets);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)init {
+  if ((self = [super init])) {
+    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver: self
+           selector: @selector(didReceiveMemoryWarning:)
+               name: UIApplicationDidReceiveMemoryWarningNotification
+             object: nil];
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NSNotifications
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)reduceMemory {
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didReceiveMemoryWarning:(void*)object {
+  [self reduceMemory];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Public Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)loadFromPath:(NSString *)path {
+  BOOL loadDidSucceed = NO;
+
+  NI_RELEASE_SAFELY(_ruleSets);
+
+  if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+    NICSSParser* parser = [[NICSSParser alloc] init];
+
+    NSDictionary* results = [parser rulesetsForCSSFileAtPath:path];
+    if (nil != results && ![parser didFailToParse]) {
+      _ruleSets = [results retain];
+      loadDidSucceed = YES;
+    }
+    NI_RELEASE_SAFELY(parser);
+  }
+  
+  return loadDidSucceed;
+}
+
+@end

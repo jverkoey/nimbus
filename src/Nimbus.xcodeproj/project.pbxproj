@@ -117,6 +117,9 @@
 		66832CF1143E0AD9003E413C /* CSSTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CEE143E0AD9003E413C /* CSSTokenizer.m */; };
 		66832CF2143E0AD9003E413C /* CSSTokens.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CEF143E0AD9003E413C /* CSSTokens.h */; };
 		66832CF3143E0AD9003E413C /* CSSTokens.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CF0143E0AD9003E413C /* CSSTokens.m */; };
+		66832CF6143E0C35003E413C /* NIStylesheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CF4143E0C35003E413C /* NIStylesheet.h */; };
+		66832CF7143E0C35003E413C /* NIStylesheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CF5143E0C35003E413C /* NIStylesheet.m */; };
+		66832CF9143E1C0C003E413C /* NIStylesheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CF8143E1C0C003E413C /* NIStylesheetTests.m */; };
 		66A03C0D13E6E85E00B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66A03C1B13E6E85E00B514F3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66A03C1D13E6E85E00B514F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
@@ -504,6 +507,9 @@
 		66832CEE143E0AD9003E413C /* CSSTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSSTokenizer.m; path = css/src/CSSTokenizer.m; sourceTree = SOURCE_ROOT; };
 		66832CEF143E0AD9003E413C /* CSSTokens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSSTokens.h; path = css/src/CSSTokens.h; sourceTree = SOURCE_ROOT; };
 		66832CF0143E0AD9003E413C /* CSSTokens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSSTokens.m; path = css/src/CSSTokens.m; sourceTree = SOURCE_ROOT; };
+		66832CF4143E0C35003E413C /* NIStylesheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIStylesheet.h; path = css/src/NIStylesheet.h; sourceTree = SOURCE_ROOT; };
+		66832CF5143E0C35003E413C /* NIStylesheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIStylesheet.m; path = css/src/NIStylesheet.m; sourceTree = SOURCE_ROOT; };
+		66832CF8143E1C0C003E413C /* NIStylesheetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIStylesheetTests.m; path = css/unittests/NIStylesheetTests.m; sourceTree = SOURCE_ROOT; };
 		669E98AD13E9EA1F00D99140 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		66A03C0913E6E85E00B514F3 /* libNimbusCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A03C0C13E6E85E00B514F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1071,6 +1077,8 @@
 			isa = PBXGroup;
 			children = (
 				66832CB7143D681B003E413C /* NimbusCSS.h */,
+				66832CF4143E0C35003E413C /* NIStylesheet.h */,
+				66832CF5143E0C35003E413C /* NIStylesheet.m */,
 				66832CC2143D7898003E413C /* NICSSParser.h */,
 				66832CC3143D7898003E413C /* NICSSParser.m */,
 				66832CEE143E0AD9003E413C /* CSSTokenizer.m */,
@@ -1085,6 +1093,7 @@
 			children = (
 				66832CC8143D797B003E413C /* resources */,
 				66832CC0143D7883003E413C /* NICSSParserTests.m */,
+				66832CF8143E1C0C003E413C /* NIStylesheetTests.m */,
 			);
 			name = unittests;
 			sourceTree = "<group>";
@@ -1678,6 +1687,7 @@
 				66832CB9143D681B003E413C /* NimbusCSS.h in Headers */,
 				66832CC4143D7898003E413C /* NICSSParser.h in Headers */,
 				66832CF2143E0AD9003E413C /* CSSTokens.h in Headers */,
+				66832CF6143E0C35003E413C /* NIStylesheet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2634,6 +2644,7 @@
 				66832CC5143D7898003E413C /* NICSSParser.m in Sources */,
 				66832CF1143E0AD9003E413C /* CSSTokenizer.m in Sources */,
 				66832CF3143E0AD9003E413C /* CSSTokens.m in Sources */,
+				66832CF7143E0C35003E413C /* NIStylesheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2642,6 +2653,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66832CC1143D7883003E413C /* NICSSParserTests.m in Sources */,
+				66832CF9143E1C0C003E413C /* NIStylesheetTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

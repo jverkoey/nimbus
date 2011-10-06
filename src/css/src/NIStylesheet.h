@@ -16,7 +16,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NICSSParser.h"
-#import "NIStylesheet.h"
+@interface NIStylesheet : NSObject {
+@private
+  NSDictionary* _ruleSets;
+}
 
-#import "NimbusCore.h"
+- (BOOL)loadFromPath:(NSString *)path;
+
+@end
