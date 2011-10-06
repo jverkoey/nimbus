@@ -30,7 +30,12 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)styleWithRuleSet:(NICSSRuleSet *)ruleSet {
-
+  if ([ruleSet hasTextColor]) {
+    self.textColor = ruleSet.textColor;
+  }
+  if ([ruleSet hasTextAlignment]) {
+    self.textAlignment = ruleSet.textAlignment;
+  }
 }
 
 @end

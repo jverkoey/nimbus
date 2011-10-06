@@ -58,6 +58,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)assertColor:(UIColor *)color1 equalsColor:(UIColor *)color2 {
+  size_t nColors1 = CGColorGetNumberOfComponents(color1.CGColor);
+  size_t nColors2 = CGColorGetNumberOfComponents(color2.CGColor);
+  STAssertEquals(nColors1, nColors2, @"Should have the same number of components.");
+
+  const float* colors1 = CGColorGetComponents(color1.CGColor);
+  const float* colors2 = CGColorGetComponents(color2.CGColor);
+  for (NSInteger ix = 0; ix < nColors1; ++ix) {
+    STAssertEqualsWithAccuracy(colors1[ix], colors2[ix], 0.0001, @"Colors should match.");
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testApplyStyleToUILabel {
   NIStylesheet* stylesheet = [[[NIStylesheet alloc] init] autorelease];
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"UILabel.css");
@@ -66,6 +80,9 @@
 
   UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
   [stylesheet applyStyleToView:label];
+
+  [self assertColor:label.textColor equalsColor:[UIColor redColor]];
+  STAssertEquals(label.textAlignment, UITextAlignmentRight, @"Alignment should match.");
 }
 
 

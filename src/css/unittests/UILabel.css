@@ -13,11 +13,11 @@ UILabel {
 
 /** UILabel-specific */
 UILabel {
-  color: red;
+  color: red;  /* tested */
   font: 13 Helvetica;
   font-weight: bold;
   text-shadow: green 20 -30;
-  text-align: right;
+  text-align: right;  /* tested */
   -ios-line-break-mode: tail-truncate;
   -ios-number-of-lines: 5;
   -ios-minimum-font-size: 5;
