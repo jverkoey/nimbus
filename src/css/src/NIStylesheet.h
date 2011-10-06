@@ -21,6 +21,10 @@
   NSDictionary* _ruleSets;
 }
 
+@property (nonatomic, readonly, retain) NSDictionary* ruleSets;
+
 - (BOOL)loadFromPath:(NSString *)path;
+
+- (void)addStylesheet:(NIStylesheet *)stylesheet;
 
 @end
