@@ -16,8 +16,6 @@
 
 #import <Foundation/Foundation.h>
 
-/**
- */
 @interface NICSSParser : NSObject {
 @private
   NSMutableDictionary*  _ruleSets;

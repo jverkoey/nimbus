@@ -16,7 +16,7 @@
 
 #import "NICSSParser.h"
 
-#import "NICSSTokens.h"
+#import "CSSTokens.h"
 #import "NimbusCore.h"
 
 #import <pthread.h>

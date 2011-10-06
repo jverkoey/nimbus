@@ -103,9 +103,6 @@
 		667A74A013FE20BD009D277D /* NIFormCellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A749A13FE20BD009D277D /* NIFormCellCatalog.m */; };
 		667A74A113FE20BD009D277D /* NICellFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 667A749B13FE20BD009D277D /* NICellFactory.h */; };
 		667A74A213FE20BD009D277D /* NICellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A749C13FE20BD009D277D /* NICellFactory.m */; };
-		66832CB4143D66B6003E413C /* NICSSTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CB1143D66B6003E413C /* NICSSTokenizer.m */; };
-		66832CB5143D66B6003E413C /* NICSSTokens.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CB2143D66B6003E413C /* NICSSTokens.h */; };
-		66832CB6143D66B6003E413C /* NICSSTokens.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CB3143D66B6003E413C /* NICSSTokens.m */; };
 		66832CB9143D681B003E413C /* NimbusCSS.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CB7143D681B003E413C /* NimbusCSS.h */; };
 		66832CC1143D7883003E413C /* NICSSParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CC0143D7883003E413C /* NICSSParserTests.m */; };
 		66832CC4143D7898003E413C /* NICSSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CC2143D7898003E413C /* NICSSParser.h */; };
@@ -117,6 +114,9 @@
 		66832CD4143D8989003E413C /* rulesets.css in Resources */ = {isa = PBXBuildFile; fileRef = 66832CD3143D8989003E413C /* rulesets.css */; };
 		66832CD6143D8AB7003E413C /* rulesets-overrides.css in Resources */ = {isa = PBXBuildFile; fileRef = 66832CD5143D8AB7003E413C /* rulesets-overrides.css */; };
 		66832CD8143E062C003E413C /* malformed.css in Resources */ = {isa = PBXBuildFile; fileRef = 66832CD7143E062C003E413C /* malformed.css */; };
+		66832CF1143E0AD9003E413C /* CSSTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CEE143E0AD9003E413C /* CSSTokenizer.m */; };
+		66832CF2143E0AD9003E413C /* CSSTokens.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CEF143E0AD9003E413C /* CSSTokens.h */; };
+		66832CF3143E0AD9003E413C /* CSSTokens.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CF0143E0AD9003E413C /* CSSTokens.m */; };
 		66A03C0D13E6E85E00B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66A03C1B13E6E85E00B514F3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66A03C1D13E6E85E00B514F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
@@ -490,9 +490,6 @@
 		66832CA8143D6642003E413C /* CSSTokenizerPrefix */ = {isa = PBXFileReference; lastKnownFileType = text; name = CSSTokenizerPrefix; path = css/grammar/CSSTokenizerPrefix; sourceTree = SOURCE_ROOT; };
 		66832CA9143D6642003E413C /* CSSTokens.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CSSTokens.cpp; path = css/grammar/CSSTokens.cpp; sourceTree = SOURCE_ROOT; };
 		66832CAA143D6642003E413C /* CSSTokens.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CSSTokens.h; path = css/grammar/CSSTokens.h; sourceTree = SOURCE_ROOT; };
-		66832CB1143D66B6003E413C /* NICSSTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICSSTokenizer.m; path = css/src/NICSSTokenizer.m; sourceTree = SOURCE_ROOT; };
-		66832CB2143D66B6003E413C /* NICSSTokens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICSSTokens.h; path = css/src/NICSSTokens.h; sourceTree = SOURCE_ROOT; };
-		66832CB3143D66B6003E413C /* NICSSTokens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICSSTokens.m; path = css/src/NICSSTokens.m; sourceTree = SOURCE_ROOT; };
 		66832CB7143D681B003E413C /* NimbusCSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusCSS.h; path = css/src/NimbusCSS.h; sourceTree = SOURCE_ROOT; };
 		66832CC0143D7883003E413C /* NICSSParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICSSParserTests.m; path = css/unittests/NICSSParserTests.m; sourceTree = SOURCE_ROOT; };
 		66832CC2143D7898003E413C /* NICSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICSSParser.h; path = css/src/NICSSParser.h; sourceTree = SOURCE_ROOT; };
@@ -504,6 +501,9 @@
 		66832CD3143D8989003E413C /* rulesets.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = rulesets.css; path = css/unittests/rulesets.css; sourceTree = SOURCE_ROOT; };
 		66832CD5143D8AB7003E413C /* rulesets-overrides.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "rulesets-overrides.css"; path = "css/unittests/rulesets-overrides.css"; sourceTree = SOURCE_ROOT; };
 		66832CD7143E062C003E413C /* malformed.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = malformed.css; path = css/unittests/malformed.css; sourceTree = SOURCE_ROOT; };
+		66832CEE143E0AD9003E413C /* CSSTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSSTokenizer.m; path = css/src/CSSTokenizer.m; sourceTree = SOURCE_ROOT; };
+		66832CEF143E0AD9003E413C /* CSSTokens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSSTokens.h; path = css/src/CSSTokens.h; sourceTree = SOURCE_ROOT; };
+		66832CF0143E0AD9003E413C /* CSSTokens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSSTokens.m; path = css/src/CSSTokens.m; sourceTree = SOURCE_ROOT; };
 		669E98AD13E9EA1F00D99140 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		66A03C0913E6E85E00B514F3 /* libNimbusCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A03C0C13E6E85E00B514F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1073,9 +1073,9 @@
 				66832CB7143D681B003E413C /* NimbusCSS.h */,
 				66832CC2143D7898003E413C /* NICSSParser.h */,
 				66832CC3143D7898003E413C /* NICSSParser.m */,
-				66832CB1143D66B6003E413C /* NICSSTokenizer.m */,
-				66832CB2143D66B6003E413C /* NICSSTokens.h */,
-				66832CB3143D66B6003E413C /* NICSSTokens.m */,
+				66832CEE143E0AD9003E413C /* CSSTokenizer.m */,
+				66832CEF143E0AD9003E413C /* CSSTokens.h */,
+				66832CF0143E0AD9003E413C /* CSSTokens.m */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -1675,9 +1675,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66832CB5143D66B6003E413C /* NICSSTokens.h in Headers */,
 				66832CB9143D681B003E413C /* NimbusCSS.h in Headers */,
 				66832CC4143D7898003E413C /* NICSSParser.h in Headers */,
+				66832CF2143E0AD9003E413C /* CSSTokens.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2631,9 +2631,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66832CB4143D66B6003E413C /* NICSSTokenizer.m in Sources */,
-				66832CB6143D66B6003E413C /* NICSSTokens.m in Sources */,
 				66832CC5143D7898003E413C /* NICSSParser.m in Sources */,
+				66832CF1143E0AD9003E413C /* CSSTokenizer.m in Sources */,
+				66832CF3143E0AD9003E413C /* CSSTokens.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

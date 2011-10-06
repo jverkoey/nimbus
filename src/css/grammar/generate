@@ -13,6 +13,6 @@ cat lex.css.c >> CSSTokenizer.cpp
 
 rm lex.css.c
 
-mv CSSTokenizer.cpp ../src/NICSSTokenizer.m
-cp CSSTokens.cpp ../src/NICSSTokens.m
-cp CSSTokens.h ../src/NICSSTokens.h
+mv CSSTokenizer.cpp ../src/CSSTokenizer.m
+cp CSSTokens.cpp ../src/CSSTokens.m
+cp CSSTokens.h ../src/CSSTokens.h
