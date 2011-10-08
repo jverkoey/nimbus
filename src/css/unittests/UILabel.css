@@ -18,7 +18,7 @@ UILabel {
   font-style: italic; /* tested */
   font-weight: bold; /* tested */
   text-align: right; /* tested */
-  text-shadow: green 20 -30;
+  text-shadow: green 20 -30; /* tested */
   -ios-line-break-mode: tail-truncate;
   -ios-number-of-lines: 5;
   -ios-minimum-font-size: 5;

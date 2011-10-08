@@ -45,6 +45,9 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
   if ([ruleSet hasTextShadowOffset]) {
     self.shadowOffset = ruleSet.textShadowOffset;
   }
+  if ([ruleSet hasLineBreakMode]) {
+    self.lineBreakMode = ruleSet.lineBreakMode;
+  }
 }
 
 @end

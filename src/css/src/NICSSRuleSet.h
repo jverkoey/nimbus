@@ -25,6 +25,7 @@
   UIFont* _font;
   UIColor* _textShadowColor;
   CGSize _textShadowOffset;
+  UILineBreakMode _lineBreakMode;
 
   union {
     struct {
@@ -33,6 +34,7 @@
       int Font : 1;
       int TextShadowColor : 1;
       int TextShadowOffset : 1;
+      int LineBreakMode : 1;
     } cached;
     int _data;
   } _is;
@@ -54,5 +56,8 @@
 
 - (BOOL)hasTextShadowOffset;
 - (CGSize)textShadowOffset;
+
+- (BOOL)hasLineBreakMode;
+- (UILineBreakMode)lineBreakMode;
 
 @end

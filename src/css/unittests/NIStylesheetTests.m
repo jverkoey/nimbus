@@ -88,6 +88,7 @@
   STAssertEquals(label.textAlignment, UITextAlignmentRight, @"Alignment should match.");
   STAssertEquals(label.shadowOffset.width, 20.f, @"Shadow offset should match.");
   STAssertEquals(label.shadowOffset.height, -30.f, @"Shadow offset should match.");
+  STAssertEquals(label.lineBreakMode, UILineBreakModeTailTruncation, @"Should match.");
 }
 
 

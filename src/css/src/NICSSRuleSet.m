@@ -27,6 +27,7 @@ static NSString* const kFontStyleKey = @"font-style";
 static NSString* const kFontWeightKey = @"font-weight";
 static NSString* const kFontFamilyKey = @"font-family";
 static NSString* const kTextShadowKey = @"text-shadow";
+static NSString* const kLineBreakModeKey = @"-ios-line-break-mode";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -291,6 +292,38 @@ static NSDictionary* sColorTable = nil;
     _is.cached.TextShadowOffset = YES;
   }
   return _textShadowOffset;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasLineBreakMode {
+  return nil != [_ruleSet objectForKey:kLineBreakModeKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UILineBreakMode)lineBreakMode {
+  NIDASSERT([self hasLineBreakMode]);
+  if (!_is.cached.LineBreakMode) {
+    NSArray* values = [_ruleSet objectForKey:kLineBreakModeKey];
+    NIDASSERT([values count] == 1);
+    NSString* value = [values objectAtIndex:0];
+    if ([value isEqualToString:@"wrap"]) {
+      _lineBreakMode = UILineBreakModeWordWrap;
+    } else if ([value isEqualToString:@"character-wrap"]) {
+      _lineBreakMode = UILineBreakModeCharacterWrap;
+    } else if ([value isEqualToString:@"clip"]) {
+      _lineBreakMode = UILineBreakModeClip;
+    } else if ([value isEqualToString:@"head-truncate"]) {
+      _lineBreakMode = UILineBreakModeHeadTruncation;
+    } else if ([value isEqualToString:@"tail-truncate"]) {
+      _lineBreakMode = UILineBreakModeTailTruncation;
+    } else if ([value isEqualToString:@"middle-truncate"]) {
+      _lineBreakMode = UILineBreakModeMiddleTruncation;
+    }
+    _is.cached.LineBreakMode = YES;
+  }
+  return _lineBreakMode;
 }
 
 
