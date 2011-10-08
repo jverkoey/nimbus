@@ -48,6 +48,9 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
   if ([ruleSet hasLineBreakMode]) {
     self.lineBreakMode = ruleSet.lineBreakMode;
   }
+  if ([ruleSet hasNumberOfLines]) {
+    self.numberOfLines = ruleSet.numberOfLines;
+  }
 }
 
 @end

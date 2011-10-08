@@ -26,6 +26,7 @@
   UIColor* _textShadowColor;
   CGSize _textShadowOffset;
   UILineBreakMode _lineBreakMode;
+  NSInteger _numberOfLines;
 
   union {
     struct {
@@ -35,6 +36,7 @@
       int TextShadowColor : 1;
       int TextShadowOffset : 1;
       int LineBreakMode : 1;
+      int NumberOfLines : 1;
     } cached;
     int _data;
   } _is;
@@ -59,5 +61,8 @@
 
 - (BOOL)hasLineBreakMode;
 - (UILineBreakMode)lineBreakMode;
+
+- (BOOL)hasNumberOfLines;
+- (NSInteger)numberOfLines;
 
 @end

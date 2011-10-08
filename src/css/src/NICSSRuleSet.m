@@ -28,6 +28,7 @@ static NSString* const kFontWeightKey = @"font-weight";
 static NSString* const kFontFamilyKey = @"font-family";
 static NSString* const kTextShadowKey = @"text-shadow";
 static NSString* const kLineBreakModeKey = @"-ios-line-break-mode";
+static NSString* const kNumberOfLinesKey = @"-ios-number-of-lines";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -324,6 +325,25 @@ static NSDictionary* sColorTable = nil;
     _is.cached.LineBreakMode = YES;
   }
   return _lineBreakMode;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasNumberOfLines {
+  return nil != [_ruleSet objectForKey:kNumberOfLinesKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)numberOfLines {
+  NIDASSERT([self hasNumberOfLines]);
+  if (!_is.cached.NumberOfLines) {
+    NSArray* values = [_ruleSet objectForKey:kNumberOfLinesKey];
+    NIDASSERT([values count] == 1);
+    _numberOfLines = [[values objectAtIndex:0] intValue];
+    _is.cached.NumberOfLines = YES;
+  }
+  return _numberOfLines;
 }
 
 
