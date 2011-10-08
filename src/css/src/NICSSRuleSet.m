@@ -16,10 +16,16 @@
 
 #import "NICSSRuleSet.h"
 
+#import "NICSSParser.h"
 #import "NimbusCore.h"
 
-static NSString* const kTextColorName = @"color";
-static NSString* const kTextAlignmentName = @"text-align";
+static NSString* const kTextColorKey = @"color";
+static NSString* const kTextAlignmentKey = @"text-align";
+static NSString* const kFontKey = @"font";
+static NSString* const kFontSizeKey = @"font-size";
+static NSString* const kFontStyleKey = @"font-style";
+static NSString* const kFontWeightKey = @"font-weight";
+static NSString* const kFontFamilyKey = @"font-family";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -48,9 +54,9 @@ static NSDictionary* sColorTable = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithDictionary:(NSDictionary *)ruleSet {
+- (id)init {
   if ((self = [super init])) {
-    _ruleSet = [ruleSet copy];
+    _ruleSet = [[NSMutableDictionary alloc] init];
 
     NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
     [nc addObserver: self
@@ -63,25 +69,25 @@ static NSDictionary* sColorTable = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  return [self initWithDictionary:nil];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)ruleSetWithDictionary:(NSDictionary *)ruleSet {
-  return [[[self alloc] initWithDictionary:ruleSet] autorelease];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public Methods
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)addEntriesFromDictionary:(NSDictionary *)dictionary {
+  NSMutableArray* order = [[[_ruleSet objectForKey:kRuleSetOrderKey] retain] autorelease];
+  [_ruleSet addEntriesFromDictionary:dictionary];
+
+  if (nil != order) {
+    [order addObjectsFromArray:[dictionary objectForKey:kRuleSetOrderKey]];
+    [_ruleSet setObject:order forKey:kRuleSetOrderKey];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTextColor {
-  return nil != [_ruleSet objectForKey:kTextColorName];
+  return nil != [_ruleSet objectForKey:kTextColorKey];
 }
 
 
@@ -89,7 +95,7 @@ static NSDictionary* sColorTable = nil;
 - (UIColor *)textColor {
   NIDASSERT([self hasTextColor]);
   if (!_is.cached.TextColor) {
-    _textColor = [[[self class] colorFromCssValues:[_ruleSet objectForKey:kTextColorName]] retain];
+    _textColor = [[[self class] colorFromCssValues:[_ruleSet objectForKey:kTextColorKey]] retain];
     _is.cached.TextColor = YES;
   }
   return _textColor;
@@ -98,7 +104,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTextAlignment {
-  return nil != [_ruleSet objectForKey:kTextAlignmentName];
+  return nil != [_ruleSet objectForKey:kTextAlignmentKey];
 }
 
 
@@ -106,10 +112,118 @@ static NSDictionary* sColorTable = nil;
 - (UITextAlignment)textAlignment {
   NIDASSERT([self hasTextAlignment]);
   if (!_is.cached.TextAlignment) {
-    _textAlignment = [[self class] textAlignmentFromCssValues:[_ruleSet objectForKey:kTextAlignmentName]];
+    _textAlignment = [[self class] textAlignmentFromCssValues:[_ruleSet objectForKey:kTextAlignmentKey]];
     _is.cached.TextAlignment = YES;
   }
   return _textAlignment;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasFont {
+  return (nil != [_ruleSet objectForKey:kFontKey]
+          || nil != [_ruleSet objectForKey:kFontSizeKey]
+          || nil != [_ruleSet objectForKey:kFontWeightKey]
+          || nil != [_ruleSet objectForKey:kFontStyleKey]
+          || nil != [_ruleSet objectForKey:kFontFamilyKey]);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIFont *)font {
+  NIDASSERT([self hasFont]);
+  
+  if (_is.cached.Font) {
+    return _font;
+  }
+
+  NSString* fontName = nil;
+  CGFloat fontSize = [UIFont systemFontSize];
+  BOOL fontIsBold = NO;
+  BOOL fontIsItalic = NO;
+  
+  NSArray* values = [_ruleSet objectForKey:kFontWeightKey];
+  if (nil != values) {
+    NIDASSERT([values count] == 1);
+    fontIsBold = [[values objectAtIndex:0] isEqualToString:@"bold"];
+  }
+  
+  values = [_ruleSet objectForKey:kFontStyleKey];
+  if (nil != values) {
+    NIDASSERT([values count] == 1);
+    fontIsItalic = [[values objectAtIndex:0] isEqualToString:@"italic"];
+  }
+
+  // There are two ways to set font size and family: font and font-size/font-family.
+  // Newer definitions of these values should overwrite previous definitions so we must
+  // respect ordering here.
+  BOOL hasSetFontName = NO;
+  BOOL hasSetFontSize = NO;
+
+  NSArray* order = [_ruleSet objectForKey:kRuleSetOrderKey];
+  for (NSString* name in [order reverseObjectEnumerator]) {
+    if (!hasSetFontName && [name isEqualToString:kFontFamilyKey]) {
+      values = [_ruleSet objectForKey:name];
+      NIDASSERT([values count] == 1); if ([values count] < 1) { continue; }
+      fontName = [[values objectAtIndex:0] stringByTrimmingCharactersInSet:
+                  [NSCharacterSet characterSetWithCharactersInString:@"\""]];
+      hasSetFontName = YES;
+
+    } else if (!hasSetFontSize && [name isEqualToString:kFontSizeKey]) {
+      values = [_ruleSet objectForKey:name];
+      NIDASSERT([values count] == 1); if ([values count] < 1) { continue; }
+      fontSize = [[values objectAtIndex:0] floatValue];
+      hasSetFontSize = YES;
+
+    } else if (!hasSetFontSize && !hasSetFontName && [name isEqualToString:kFontKey]) {
+      values = [_ruleSet objectForKey:name];
+      NIDASSERT([values count] <= 2); if ([values count] < 1) { continue; }
+
+      if ([values count] >= 1) {
+        // Font size
+        fontSize = [[values objectAtIndex:0] floatValue];
+        hasSetFontSize = YES;
+      }
+      if ([values count] >= 2) {
+        // Font name
+        fontName = [[values objectAtIndex:1] stringByTrimmingCharactersInSet:
+                    [NSCharacterSet characterSetWithCharactersInString:@"\""]];
+        hasSetFontName = YES;
+      }
+    }
+
+    if (hasSetFontName && hasSetFontSize) {
+      // Once we've set all values then we can ignore any previous values.
+      break;
+    }
+  }
+  
+  UIFont* font = nil;
+  if (hasSetFontName) {
+    // If you wish to set the weight and style for a non-standard font family then you will need
+    // to set the font family to the given style manually.
+    NIDASSERT(!fontIsItalic && !fontIsBold);
+    font = [UIFont fontWithName:fontName size:fontSize];
+
+  } else if (fontIsItalic && fontIsBold) {
+    // There is no easy way to create a bold italic font using the exposed UIFont methods.
+    // Please consider using the exact font name instead. E.g. font-name: Helvetica-BoldObliquei
+    NIDASSERT(NO);
+    font = [UIFont systemFontOfSize:fontSize];
+
+  } else if (fontIsItalic) {
+    font = [UIFont italicSystemFontOfSize:fontSize];
+
+  } else if (fontIsBold) {
+    font = [UIFont boldSystemFontOfSize:fontSize];
+
+  } else {
+    font = [UIFont systemFontOfSize:fontSize];
+  }
+
+  _is.cached.Font = YES;
+
+  return font;
 }
 
 

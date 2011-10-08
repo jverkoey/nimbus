@@ -26,7 +26,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIStylesheet
 
-@synthesize ruleSets = _ruleSets;
+@synthesize rawRuleSets = _rawRuleSets;
 @synthesize classToRuleSetMap = _classToRuleSetMap;
 
 
@@ -34,7 +34,9 @@
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 
+  NI_RELEASE_SAFELY(_rawRuleSets);
   NI_RELEASE_SAFELY(_ruleSets);
+  NI_RELEASE_SAFELY(_classToRuleSetMap);
 
   [super dealloc];
 }
@@ -43,6 +45,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
   if ((self = [super init])) {
+    _ruleSets = [[NSMutableDictionary alloc] init];
+
     NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
     [nc addObserver: self
            selector: @selector(didReceiveMemoryWarning:)
@@ -62,9 +66,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)rebuildClassToRuleSetMap {
   NSMutableDictionary* classToRuleSetMap =
-  [[NSMutableDictionary alloc] initWithCapacity:[_ruleSets count]];
+  [[NSMutableDictionary alloc] initWithCapacity:[_rawRuleSets count]];
 
-  for (NSString* selector in _ruleSets) {
+  for (NSString* selector in _rawRuleSets) {
     NSArray* parts = [selector componentsSeparatedByString:@" "];
     NSString* mostSignificantIdent = [parts lastObject];
 
@@ -102,6 +106,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reduceMemory {
+  NI_RELEASE_SAFELY(_ruleSets);
+  _ruleSets = [[NSMutableDictionary alloc] init];
 }
 
 
@@ -120,14 +126,14 @@
 - (BOOL)loadFromPath:(NSString *)path {
   BOOL loadDidSucceed = NO;
 
-  NI_RELEASE_SAFELY(_ruleSets);
+  NI_RELEASE_SAFELY(_rawRuleSets);
 
   if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
     NICSSParser* parser = [[NICSSParser alloc] init];
 
     NSDictionary* results = [parser rulesetsForCSSFileAtPath:path];
     if (nil != results && ![parser didFailToParse]) {
-      _ruleSets = [results retain];
+      _rawRuleSets = [results retain];
       loadDidSucceed = YES;
     }
     NI_RELEASE_SAFELY(parser);
@@ -146,13 +152,13 @@
     return;
   }
 
-  NSMutableDictionary* compositeRuleSets = [self.ruleSets mutableCopy];
+  NSMutableDictionary* compositeRuleSets = [self.rawRuleSets mutableCopy];
 
   BOOL ruleSetsDidChange = NO;
 
-  for (NSString* selector in stylesheet.ruleSets) {
-    NSDictionary* incomingRuleSet   = [stylesheet.ruleSets objectForKey:selector];
-    NSDictionary* existingRuleSet = [self.ruleSets objectForKey:selector];
+  for (NSString* selector in stylesheet.rawRuleSets) {
+    NSDictionary* incomingRuleSet   = [stylesheet.rawRuleSets objectForKey:selector];
+    NSDictionary* existingRuleSet = [self.rawRuleSets objectForKey:selector];
 
     // Don't bother adding empty rulesets.
     if ([incomingRuleSet count] > 0) {
@@ -173,8 +179,8 @@
     }
   }
 
-  NI_RELEASE_SAFELY(_ruleSets);
-  _ruleSets = [compositeRuleSets copy];
+  NI_RELEASE_SAFELY(_rawRuleSets);
+  _rawRuleSets = [compositeRuleSets copy];
   NI_RELEASE_SAFELY(compositeRuleSets);
 
   if (ruleSetsDidChange) {
@@ -197,13 +203,23 @@
   NSString* viewClassName = NSStringFromClass(viewClass);
   NSArray* selectors = [_classToRuleSetMap objectForKey:viewClassName];
   if ([selectors count] > 0) {
-    // Apply each of these styles to the view.
-    for (NSString* selector in selectors) {
-      NICSSRuleSet* ruleSet = [[NICSSRuleSet alloc] initWithDictionary:
-                               [_ruleSets objectForKey:selector]];
-      [self applyRuleSet:ruleSet toView:view];
-      NI_RELEASE_SAFELY(ruleSet);
+    // Gather all of the rule sets for this view into a composite rule set.
+    NICSSRuleSet* ruleSet = [_ruleSets objectForKey:viewClassName];
+
+    if (nil == ruleSet) {
+      ruleSet = [[NICSSRuleSet alloc] init];
+
+      // Composite the rule sets into one.
+      for (NSString* selector in selectors) {
+        [ruleSet addEntriesFromDictionary:[_rawRuleSets objectForKey:selector]];
+      }
+
+      NIDASSERT(nil != _ruleSets);
+      [_ruleSets setObject:ruleSet forKey:viewClassName];
+      [ruleSet release]; // We can release the ruleSet because it's retained by the dictionary.
     }
+
+    [self applyRuleSet:ruleSet toView:view];
   }
 }
 

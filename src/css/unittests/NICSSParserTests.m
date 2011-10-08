@@ -108,7 +108,7 @@
   STAssertNotNil([rulesets objectForKey:@"UITextView"], @"Key should exist.");
 
   for (id key in rulesets) {
-    STAssertEquals([[rulesets objectForKey:key] count], (NSUInteger)0, @"All rulesets should be empty.");
+    STAssertEquals([[rulesets objectForKey:key] count], (NSUInteger)1, @"All rulesets should only have the rule set order.");
   }
 }
 

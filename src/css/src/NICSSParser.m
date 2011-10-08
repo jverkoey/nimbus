@@ -22,6 +22,7 @@
 #import <pthread.h>
 
 static pthread_mutex_t gMutex = PTHREAD_MUTEX_INITIALIZER;
+NSString* const kRuleSetOrderKey = @"__kRuleSetOrder__";
 
 // Damn you, flex. Due to the nature of flex we can only have one active parser at any given time.
 NICSSParser* gActiveParser = nil;
@@ -108,6 +109,9 @@ int cssConsume(char* text, int token) {
 
           // Properties are case insensitive.
           _activePropertyName = [lowercaseTextAsString retain];
+          
+          NSMutableArray* ruleSetOrder = [_activeRuleSet objectForKey:kRuleSetOrderKey];
+          [ruleSetOrder addObject:_activePropertyName];
 
           // Clear any existing values for the given property.
           NSMutableArray* values = [[NSMutableArray alloc] init];
@@ -198,6 +202,7 @@ int cssConsume(char* text, int token) {
 
             NI_RELEASE_SAFELY(_activeRuleSet);
             _activeRuleSet = [[NSMutableDictionary alloc] init];
+            [_activeRuleSet setObject:[NSMutableArray array] forKey:kRuleSetOrderKey];
 
           } else {
             [self setFailFlag];
@@ -218,12 +223,24 @@ int cssConsume(char* text, int token) {
             } else {
               // Properties already exist, so overwrite them.
               NSDictionary* iteratorProperties = [_activeRuleSet copy];
+
+              // Merge the orders.
+              {
+                NSMutableArray* order = [existingProperties objectForKey:kRuleSetOrderKey];
+                [order addObjectsFromArray:[_activeRuleSet objectForKey:kRuleSetOrderKey]];
+                [_activeRuleSet setObject:order forKey:kRuleSetOrderKey];
+              }
+
               for (NSString* key in _activeRuleSet) {
                 [existingProperties setObject:[_activeRuleSet objectForKey:key] forKey:key];
               }
+              // Add the order of the new properties.
+              [[existingProperties objectForKey:_activeRuleSet] addObjectsFromArray:
+               [_activeRuleSet objectForKey:kRuleSetOrderKey]];
               NI_RELEASE_SAFELY(iteratorProperties);
             }
           }
+
           NI_RELEASE_SAFELY(_activeRuleSet);
           [_activeCssSelectors removeAllObjects];
           _state.Flags.InsideRuleSet = NO;

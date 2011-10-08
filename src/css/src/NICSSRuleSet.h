@@ -18,28 +18,31 @@
 
 @interface NICSSRuleSet : NSObject {
 @private
-  NSDictionary* _ruleSet;
+  NSMutableDictionary* _ruleSet;
 
   UIColor* _textColor;
   UITextAlignment _textAlignment;
+  UIFont* _font;
 
   union {
     struct {
       int TextColor : 1;
       int TextAlignment : 1;
+      int Font : 1;
     } cached;
     int _data;
   } _is;
 }
 
-// Designated initializer.
-- (id)initWithDictionary:(NSDictionary *)ruleSet;
-+ (id)ruleSetWithDictionary:(NSDictionary *)ruleSet;
+- (void)addEntriesFromDictionary:(NSDictionary *)dictionary;
 
 - (BOOL)hasTextColor;
 - (UIColor *)textColor;
 
 - (BOOL)hasTextAlignment;
 - (UITextAlignment)textAlignment;
+
+- (BOOL)hasFont;
+- (UIFont *)font;
 
 @end

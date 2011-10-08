@@ -18,11 +18,12 @@
 
 @interface NIStylesheet : NSObject {
 @private
-  NSDictionary* _ruleSets;
+  NSDictionary* _rawRuleSets;
+  NSMutableDictionary* _ruleSets;
   NSDictionary* _classToRuleSetMap;
 }
 
-@property (nonatomic, readonly, copy) NSDictionary* ruleSets;
+@property (nonatomic, readonly, copy) NSDictionary* rawRuleSets;
 @property (nonatomic, readonly, copy) NSDictionary* classToRuleSetMap;
 
 - (BOOL)loadFromPath:(NSString *)path;

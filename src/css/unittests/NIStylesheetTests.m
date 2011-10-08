@@ -73,6 +73,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testApplyStyleToUILabel {
+//  return;
+
   NIStylesheet* stylesheet = [[[NIStylesheet alloc] init] autorelease];
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"UILabel.css");
 
@@ -83,6 +85,11 @@
 
   [self assertColor:label.textColor equalsColor:[UIColor redColor]];
   STAssertEquals(label.textAlignment, UITextAlignmentRight, @"Alignment should match.");
+
+  // This will assert because we are setting both the font style/weight and the font family.
+  NIDebugAssertionsShouldBreak = NO;
+  STAssertEquals(label.font.pointSize, 13.f, @"Font size should match.");
+  NIDebugAssertionsShouldBreak = YES;
 }
 
 

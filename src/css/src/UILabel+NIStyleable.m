@@ -36,6 +36,9 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
   if ([ruleSet hasTextAlignment]) {
     self.textAlignment = ruleSet.textAlignment;
   }
+  if ([ruleSet hasFont]) {
+    self.font = ruleSet.font;
+  }
 }
 
 @end

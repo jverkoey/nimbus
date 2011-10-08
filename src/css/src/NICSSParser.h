@@ -16,6 +16,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString* const kRuleSetOrderKey;
+
 @interface NICSSParser : NSObject {
 @private
   NSMutableDictionary*  _ruleSets;
