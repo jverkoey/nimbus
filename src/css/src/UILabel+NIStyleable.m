@@ -38,6 +38,7 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
   if ([ruleSet hasLineBreakMode]) { self.lineBreakMode = ruleSet.lineBreakMode; }
   if ([ruleSet hasNumberOfLines]) { self.numberOfLines = ruleSet.numberOfLines; }
   if ([ruleSet hasMinimumFontSize]) { self.minimumFontSize = ruleSet.minimumFontSize; }
+  if ([ruleSet hasAdjustsFontSize]) { self.adjustsFontSizeToFitWidth = ruleSet.adjustsFontSize; }
 }
 
 @end

@@ -28,6 +28,7 @@
   UILineBreakMode _lineBreakMode;
   NSInteger _numberOfLines;
   CGFloat _minimumFontSize;
+  BOOL _adjustsFontSize;
 
   union {
     struct {
@@ -39,6 +40,7 @@
       int LineBreakMode : 1;
       int NumberOfLines : 1;
       int MinimumFontSize : 1;
+      int AdjustsFontSize : 1;
     } cached;
     int _data;
   } _is;
@@ -69,5 +71,8 @@
 
 - (BOOL)hasMinimumFontSize;
 - (CGFloat)minimumFontSize;
+
+- (BOOL)hasAdjustsFontSize;
+- (BOOL)adjustsFontSize;
 
 @end

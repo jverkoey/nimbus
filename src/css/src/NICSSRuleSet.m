@@ -30,6 +30,7 @@ static NSString* const kTextShadowKey = @"text-shadow";
 static NSString* const kLineBreakModeKey = @"-ios-line-break-mode";
 static NSString* const kNumberOfLinesKey = @"-ios-number-of-lines";
 static NSString* const kMinimumFontSizeKey = @"-ios-minimum-font-size";
+static NSString* const kAdjustsFontSizeKey = @"-ios-adjusts-font-size";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -364,6 +365,25 @@ static NSDictionary* sColorTable = nil;
     _is.cached.MinimumFontSize = YES;
   }
   return _minimumFontSize;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasAdjustsFontSize {
+  return nil != [_ruleSet objectForKey:kAdjustsFontSizeKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)adjustsFontSize {
+  NIDASSERT([self hasAdjustsFontSize]);
+  if (!_is.cached.AdjustsFontSize) {
+    NSArray* values = [_ruleSet objectForKey:kAdjustsFontSizeKey];
+    NIDASSERT([values count] == 1);
+    _adjustsFontSize = [[values objectAtIndex:0] boolValue];
+    _is.cached.AdjustsFontSize = YES;
+  }
+  return _adjustsFontSize;
 }
 
 
