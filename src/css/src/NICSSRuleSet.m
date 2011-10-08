@@ -26,6 +26,7 @@ static NSString* const kFontSizeKey = @"font-size";
 static NSString* const kFontStyleKey = @"font-style";
 static NSString* const kFontWeightKey = @"font-weight";
 static NSString* const kFontFamilyKey = @"font-family";
+static NSString* const kTextShadowKey = @"text-shadow";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -33,7 +34,7 @@ static NSDictionary* sColorTable = nil;
 @interface NICSSRuleSet()
 // Instantiates the color table if it does not already exist.
 + (NSDictionary *)colorTable;
-+ (UIColor *)colorFromCssValues:(NSArray *)cssValues;
++ (UIColor *)colorFromCssValues:(NSArray *)cssValues numberOfConsumedTokens:(NSInteger *)pNumberOfConsumedTokens;
 + (UITextAlignment)textAlignmentFromCssValues:(NSArray *)cssValues;
 @end
 
@@ -45,9 +46,29 @@ static NSDictionary* sColorTable = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)clearCache {
+  NI_RELEASE_SAFELY(_textColor);
+  NI_RELEASE_SAFELY(_font);
+  NI_RELEASE_SAFELY(_textShadowColor);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)reduceMemory {
+  NI_RELEASE_SAFELY(sColorTable);
+
+  [self clearCache];
+
+  memset(&_is, 0, sizeof(_is));
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   NI_RELEASE_SAFELY(_ruleSet);
+
+  [self clearCache];
 
   [super dealloc];
 }
@@ -95,7 +116,8 @@ static NSDictionary* sColorTable = nil;
 - (UIColor *)textColor {
   NIDASSERT([self hasTextColor]);
   if (!_is.cached.TextColor) {
-    _textColor = [[[self class] colorFromCssValues:[_ruleSet objectForKey:kTextColorKey]] retain];
+    _textColor = [[[self class] colorFromCssValues:[_ruleSet objectForKey:kTextColorKey]
+                            numberOfConsumedTokens:nil] retain];
     _is.cached.TextColor = YES;
   }
   return _textColor;
@@ -228,18 +250,53 @@ static NSDictionary* sColorTable = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasTextShadowColor {
+  return nil != [_ruleSet objectForKey:kTextShadowKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor *)textShadowColor {
+  NIDASSERT([self hasTextShadowColor]);
+  if (!_is.cached.TextShadowColor) {
+    NSArray* values = [_ruleSet objectForKey:kTextShadowKey];
+    _textShadowColor = [[[self class] colorFromCssValues:values numberOfConsumedTokens:nil] retain];
+    _is.cached.TextShadowColor = YES;
+  }
+  return _textShadowColor;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasTextShadowOffset {
+  return nil != [_ruleSet objectForKey:kTextShadowKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGSize)textShadowOffset {
+  NIDASSERT([self hasTextShadowOffset]);
+  if (!_is.cached.TextShadowOffset) {
+    NSArray* values = [_ruleSet objectForKey:kTextShadowKey];
+    NSInteger skipTokens = 0;
+    [[self class] colorFromCssValues:values numberOfConsumedTokens:&skipTokens];
+
+    _textShadowOffset = CGSizeZero;
+    if ([values count] - skipTokens >= 1) {
+      _textShadowOffset.width = [[values objectAtIndex:skipTokens] floatValue];
+    }
+    if ([values count] - skipTokens >= 2) {
+      _textShadowOffset.height = [[values objectAtIndex:skipTokens + 1] floatValue];
+    }
+    _is.cached.TextShadowOffset = YES;
+  }
+  return _textShadowOffset;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSNotifications
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)reduceMemory {
-  NI_RELEASE_SAFELY(sColorTable);
-
-  NI_RELEASE_SAFELY(_textColor);
-
-  memset(&_is, 0, sizeof(_is));
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -440,7 +497,24 @@ static NSDictionary* sColorTable = nil;
                        forKey:@"underPageBackgroundColor"];
       }
     }
-    
+
+    // Replace the web colors with their system color equivalents.
+    [colorTable setObject:[UIColor blackColor] forKey:@"black"];
+    [colorTable setObject:[UIColor darkGrayColor] forKey:@"darkGray"];
+    [colorTable setObject:[UIColor lightGrayColor] forKey:@"lightGray"];
+    [colorTable setObject:[UIColor whiteColor] forKey:@"white"];
+    [colorTable setObject:[UIColor grayColor] forKey:@"gray"];
+    [colorTable setObject:[UIColor redColor] forKey:@"red"];
+    [colorTable setObject:[UIColor greenColor] forKey:@"green"];
+    [colorTable setObject:[UIColor blueColor] forKey:@"blue"];
+    [colorTable setObject:[UIColor cyanColor] forKey:@"cyan"];
+    [colorTable setObject:[UIColor yellowColor] forKey:@"yellow"];
+    [colorTable setObject:[UIColor magentaColor] forKey:@"magenta"];
+    [colorTable setObject:[UIColor orangeColor] forKey:@"orange"];
+    [colorTable setObject:[UIColor purpleColor] forKey:@"purple"];
+    [colorTable setObject:[UIColor brownColor] forKey:@"brown"];
+    [colorTable setObject:[UIColor clearColor] forKey:@"clear"];
+
     sColorTable = [colorTable copy];
     NI_RELEASE_SAFELY(colorTable);
   }
@@ -449,56 +523,56 @@ static NSDictionary* sColorTable = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (UIColor *)colorFromCssValues:(NSArray *)cssValues {
++ (UIColor *)colorFromCssValues:(NSArray *)cssValues numberOfConsumedTokens:(NSInteger *)pNumberOfConsumedTokens {
+  NSInteger bogus = 0;
+  if (nil == pNumberOfConsumedTokens) {
+    pNumberOfConsumedTokens = &bogus;
+  }
   UIColor* color = nil;
-  
-  NIDASSERT([cssValues count] == 1      // #AAAAAA|#AAA
-            || [cssValues count] == 5   // rgb( x x x )
-            || [cssValues count] == 6); // rgba( x x x x )
-  
-  if ([cssValues count] == 1) {
-    NSString* cssString = [cssValues objectAtIndex:0];
+
+  if ([cssValues count] >= 6 && [[cssValues objectAtIndex:0] isEqualToString:@"rgba("]) {
+    // rgba( x x x x )
+    color = RGBACOLOR([[cssValues objectAtIndex:1] floatValue],
+                      [[cssValues objectAtIndex:2] floatValue],
+                      [[cssValues objectAtIndex:3] floatValue],
+                      [[cssValues objectAtIndex:4] floatValue]);
+    *pNumberOfConsumedTokens = 6;
+
+  } else if ([cssValues count] >= 5 && [[cssValues objectAtIndex:0] isEqualToString:@"rgb("]) {
+    // rgb( x x x )
+    color = RGBCOLOR([[cssValues objectAtIndex:1] floatValue],
+                     [[cssValues objectAtIndex:2] floatValue],
+                     [[cssValues objectAtIndex:3] floatValue]);
+    *pNumberOfConsumedTokens = 5;
     
+  } else if ([cssValues count] >= 1) {
+    NSString* cssString = [cssValues objectAtIndex:0];
+
     if ([cssString characterAtIndex:0] == '#') {
       unsigned long colorValue = 0;
-      
+
       // #FFF
       if ([cssString length] == 4) {
         colorValue = strtol([cssString UTF8String] + 1, nil, 16);
         colorValue = ((colorValue & 0xF00) << 12) | ((colorValue & 0xF00) << 8)
         | ((colorValue & 0xF0) << 8) | ((colorValue & 0xF0) << 4)
         | ((colorValue & 0xF) << 4) | (colorValue & 0xF);
-        
-        // #FFFFFF
+
+      // #FFFFFF
       } else if ([cssString length] == 7) {
         colorValue = strtol([cssString UTF8String] + 1, nil, 16);
       }
-      
+
       color = RGBCOLOR(((colorValue & 0xFF0000) >> 16),
                        ((colorValue & 0xFF00) >> 8),
                        (colorValue & 0xFF));
-      
-    } else if ([cssString isEqualToString:@"none"]) {
-      color = nil;
-      
+
     } else {
       color = [[self colorTable] objectForKey:cssString];
     }
-    
-  } else if ([cssValues count] == 5 && [[cssValues objectAtIndex:0] isEqualToString:@"rgb("]) {
-    // rgb( x x x )
-    color = RGBCOLOR([[cssValues objectAtIndex:1] floatValue],
-                     [[cssValues objectAtIndex:2] floatValue],
-                     [[cssValues objectAtIndex:3] floatValue]);
-    
-  } else if ([cssValues count] == 6 && [[cssValues objectAtIndex:0] isEqualToString:@"rgba("]) {
-    // rgba( x x x x )
-    color = RGBACOLOR([[cssValues objectAtIndex:1] floatValue],
-                      [[cssValues objectAtIndex:2] floatValue],
-                      [[cssValues objectAtIndex:3] floatValue],
-                      [[cssValues objectAtIndex:4] floatValue]);
+
+    *pNumberOfConsumedTokens = 1;
   }
-  
   return color;
 }
 

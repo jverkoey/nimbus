@@ -39,6 +39,12 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
   if ([ruleSet hasFont]) {
     self.font = ruleSet.font;
   }
+  if ([ruleSet hasTextShadowColor]) {
+    self.shadowColor = ruleSet.textShadowColor;
+  }
+  if ([ruleSet hasTextShadowOffset]) {
+    self.shadowOffset = ruleSet.textShadowOffset;
+  }
 }
 
 @end

@@ -23,12 +23,16 @@
   UIColor* _textColor;
   UITextAlignment _textAlignment;
   UIFont* _font;
+  UIColor* _textShadowColor;
+  CGSize _textShadowOffset;
 
   union {
     struct {
       int TextColor : 1;
       int TextAlignment : 1;
       int Font : 1;
+      int TextShadowColor : 1;
+      int TextShadowOffset : 1;
     } cached;
     int _data;
   } _is;
@@ -44,5 +48,11 @@
 
 - (BOOL)hasFont;
 - (UIFont *)font;
+
+- (BOOL)hasTextShadowColor;
+- (UIColor *)textShadowColor;
+
+- (BOOL)hasTextShadowOffset;
+- (CGSize)textShadowOffset;
 
 @end

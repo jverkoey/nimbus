@@ -84,12 +84,10 @@
   [stylesheet applyStyleToView:label];
 
   [self assertColor:label.textColor equalsColor:[UIColor redColor]];
+  [self assertColor:label.shadowColor equalsColor:[UIColor greenColor]];
   STAssertEquals(label.textAlignment, UITextAlignmentRight, @"Alignment should match.");
-
-  // This will assert because we are setting both the font style/weight and the font family.
-  NIDebugAssertionsShouldBreak = NO;
-  STAssertEquals(label.font.pointSize, 13.f, @"Font size should match.");
-  NIDebugAssertionsShouldBreak = YES;
+  STAssertEquals(label.shadowOffset.width, 20.f, @"Shadow offset should match.");
+  STAssertEquals(label.shadowOffset.height, -30.f, @"Shadow offset should match.");
 }
 
 
