@@ -27,6 +27,7 @@
   CGSize _textShadowOffset;
   UILineBreakMode _lineBreakMode;
   NSInteger _numberOfLines;
+  CGFloat _minimumFontSize;
 
   union {
     struct {
@@ -37,6 +38,7 @@
       int TextShadowOffset : 1;
       int LineBreakMode : 1;
       int NumberOfLines : 1;
+      int MinimumFontSize : 1;
     } cached;
     int _data;
   } _is;
@@ -64,5 +66,8 @@
 
 - (BOOL)hasNumberOfLines;
 - (NSInteger)numberOfLines;
+
+- (BOOL)hasMinimumFontSize;
+- (CGFloat)minimumFontSize;
 
 @end

@@ -90,6 +90,7 @@
   STAssertEquals(label.shadowOffset.height, -30.f, @"Shadow offset should match.");
   STAssertEquals(label.lineBreakMode, UILineBreakModeTailTruncation, @"Should match.");
   STAssertEquals(label.numberOfLines, 5, @"Should match.");
+  STAssertEquals(label.minimumFontSize, 5.f, @"Should match.");
 }
 
 

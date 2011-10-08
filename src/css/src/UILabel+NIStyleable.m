@@ -30,27 +30,14 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)styleWithRuleSet:(NICSSRuleSet *)ruleSet {
-  if ([ruleSet hasTextColor]) {
-    self.textColor = ruleSet.textColor;
-  }
-  if ([ruleSet hasTextAlignment]) {
-    self.textAlignment = ruleSet.textAlignment;
-  }
-  if ([ruleSet hasFont]) {
-    self.font = ruleSet.font;
-  }
-  if ([ruleSet hasTextShadowColor]) {
-    self.shadowColor = ruleSet.textShadowColor;
-  }
-  if ([ruleSet hasTextShadowOffset]) {
-    self.shadowOffset = ruleSet.textShadowOffset;
-  }
-  if ([ruleSet hasLineBreakMode]) {
-    self.lineBreakMode = ruleSet.lineBreakMode;
-  }
-  if ([ruleSet hasNumberOfLines]) {
-    self.numberOfLines = ruleSet.numberOfLines;
-  }
+  if ([ruleSet hasTextColor]) { self.textColor = ruleSet.textColor; }
+  if ([ruleSet hasTextAlignment]) { self.textAlignment = ruleSet.textAlignment; }
+  if ([ruleSet hasFont]) { self.font = ruleSet.font; }
+  if ([ruleSet hasTextShadowColor]) { self.shadowColor = ruleSet.textShadowColor; }
+  if ([ruleSet hasTextShadowOffset]) { self.shadowOffset = ruleSet.textShadowOffset; }
+  if ([ruleSet hasLineBreakMode]) { self.lineBreakMode = ruleSet.lineBreakMode; }
+  if ([ruleSet hasNumberOfLines]) { self.numberOfLines = ruleSet.numberOfLines; }
+  if ([ruleSet hasMinimumFontSize]) { self.minimumFontSize = ruleSet.minimumFontSize; }
 }
 
 @end
