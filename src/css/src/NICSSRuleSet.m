@@ -31,6 +31,7 @@ static NSString* const kLineBreakModeKey = @"-ios-line-break-mode";
 static NSString* const kNumberOfLinesKey = @"-ios-number-of-lines";
 static NSString* const kMinimumFontSizeKey = @"-ios-minimum-font-size";
 static NSString* const kAdjustsFontSizeKey = @"-ios-adjusts-font-size";
+static NSString* const kBaselineAdjustmentKey = @"-ios-baseline-adjustment";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -323,6 +324,8 @@ static NSDictionary* sColorTable = nil;
       _lineBreakMode = UILineBreakModeTailTruncation;
     } else if ([value isEqualToString:@"middle-truncate"]) {
       _lineBreakMode = UILineBreakModeMiddleTruncation;
+    } else {
+      _lineBreakMode = UILineBreakModeWordWrap;
     }
     _is.cached.LineBreakMode = YES;
   }
@@ -384,6 +387,32 @@ static NSDictionary* sColorTable = nil;
     _is.cached.AdjustsFontSize = YES;
   }
   return _adjustsFontSize;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasBaselineAdjustment {
+  return nil != [_ruleSet objectForKey:kBaselineAdjustmentKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIBaselineAdjustment)baselineAdjustment {
+  NIDASSERT([self hasBaselineAdjustment]);
+  if (!_is.cached.BaselineAdjustment) {
+    NSArray* values = [_ruleSet objectForKey:kBaselineAdjustmentKey];
+    NIDASSERT([values count] == 1);
+    NSString* value = [values objectAtIndex:0];
+    if ([value isEqualToString:@"align-baselines"]) {
+      _baselineAdjustment = UIBaselineAdjustmentAlignBaselines;
+    } else if ([value isEqualToString:@"align-centers"]) {
+      _baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+    } else {
+      _baselineAdjustment = UIBaselineAdjustmentNone;
+    }
+    _is.cached.BaselineAdjustment = YES;
+  }
+  return _baselineAdjustment;
 }
 
 

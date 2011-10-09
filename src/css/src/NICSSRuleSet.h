@@ -29,6 +29,7 @@
   NSInteger _numberOfLines;
   CGFloat _minimumFontSize;
   BOOL _adjustsFontSize;
+  UIBaselineAdjustment _baselineAdjustment;
 
   union {
     struct {
@@ -41,6 +42,7 @@
       int NumberOfLines : 1;
       int MinimumFontSize : 1;
       int AdjustsFontSize : 1;
+      int BaselineAdjustment : 1;
     } cached;
     int _data;
   } _is;
@@ -74,5 +76,8 @@
 
 - (BOOL)hasAdjustsFontSize;
 - (BOOL)adjustsFontSize;
+
+- (BOOL)hasBaselineAdjustment;
+- (UIBaselineAdjustment)baselineAdjustment;
 
 @end
