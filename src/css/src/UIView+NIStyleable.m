@@ -14,40 +14,30 @@
 // limitations under the License.
 //
 
-#import "UILabel+NIStyleable.h"
-
 #import "UIView+NIStyleable.h"
+
 #import "NICSSRuleSet.h"
 #import "NimbusCore.h"
 
-NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
+NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation UILabel (NIStyleable)
+@implementation UIView (NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyLabelStyleWithRuleSet:(NICSSRuleSet *)ruleSet {
-  if ([ruleSet hasTextColor]) { self.textColor = ruleSet.textColor; }
-  if ([ruleSet hasTextAlignment]) { self.textAlignment = ruleSet.textAlignment; }
-  if ([ruleSet hasFont]) { self.font = ruleSet.font; }
-  if ([ruleSet hasTextShadowColor]) { self.shadowColor = ruleSet.textShadowColor; }
-  if ([ruleSet hasTextShadowOffset]) { self.shadowOffset = ruleSet.textShadowOffset; }
-  if ([ruleSet hasLineBreakMode]) { self.lineBreakMode = ruleSet.lineBreakMode; }
-  if ([ruleSet hasNumberOfLines]) { self.numberOfLines = ruleSet.numberOfLines; }
-  if ([ruleSet hasMinimumFontSize]) { self.minimumFontSize = ruleSet.minimumFontSize; }
-  if ([ruleSet hasAdjustsFontSize]) { self.adjustsFontSizeToFitWidth = ruleSet.adjustsFontSize; }
-  if ([ruleSet hasBaselineAdjustment]) { self.baselineAdjustment = ruleSet.baselineAdjustment; }
+- (void)applyViewStyleWithRuleSet:(NICSSRuleSet *)ruleSet {
+  if ([ruleSet hasOpacity]) { self.alpha = ruleSet.opacity; }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleSet *)ruleSet {
   [self applyViewStyleWithRuleSet:ruleSet];
-  [self applyLabelStyleWithRuleSet:ruleSet];
 }
+
 
 @end

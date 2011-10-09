@@ -14,8 +14,18 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class NICSSRuleSet;
+
 @interface UILabel (NIStyleable)
+
+/**
+ * Applies the given rule set to this label.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applyLabelStyleWithRuleSet:(NICSSRuleSet *)ruleSet;
+
 @end

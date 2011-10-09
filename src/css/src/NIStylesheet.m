@@ -191,8 +191,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyRuleSet:(NICSSRuleSet *)ruleSet toView:(UIView *)view {
-  if ([view respondsToSelector:@selector(styleWithRuleSet:)]) {
-    [(id<NIStyleable>)view styleWithRuleSet:ruleSet];
+  if ([view respondsToSelector:@selector(applyStyleWithRuleSet:)]) {
+    [(id<NIStyleable>)view applyStyleWithRuleSet:ruleSet];
   }
 }
 

@@ -23,7 +23,7 @@ UILabel {
   -ios-number-of-lines: 5; /* tested */
   -ios-minimum-font-size: 5; /* tested */
   -ios-adjusts-font-size: true; /* tested */
-  -ios-baseline-adjustment: align-centers;
+  -ios-baseline-adjustment: align-centers; /* tested */
 }
 
 /** For when the UILabel is in a UITableViewCell and is tapped. */

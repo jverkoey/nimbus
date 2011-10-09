@@ -14,13 +14,18 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class NICSSRuleSet;
 
-@protocol NIStyleable <NSObject>
-@required
+@interface UIView (NIStyleable)
 
-- (void)applyStyleWithRuleSet:(NICSSRuleSet *)ruleSet;
+/**
+ * Applies the given rule set to this view.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applyViewStyleWithRuleSet:(NICSSRuleSet *)ruleSet;
 
 @end

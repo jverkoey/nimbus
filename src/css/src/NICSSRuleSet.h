@@ -30,6 +30,7 @@
   CGFloat _minimumFontSize;
   BOOL _adjustsFontSize;
   UIBaselineAdjustment _baselineAdjustment;
+  CGFloat _opacity;
 
   union {
     struct {
@@ -43,6 +44,7 @@
       int MinimumFontSize : 1;
       int AdjustsFontSize : 1;
       int BaselineAdjustment : 1;
+      int Opacity : 1;
     } cached;
     int _data;
   } _is;
@@ -79,5 +81,8 @@
 
 - (BOOL)hasBaselineAdjustment;
 - (UIBaselineAdjustment)baselineAdjustment;
+
+- (BOOL)hasOpacity;
+- (CGFloat)opacity;
 
 @end

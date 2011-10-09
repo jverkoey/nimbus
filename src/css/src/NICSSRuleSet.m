@@ -32,6 +32,7 @@ static NSString* const kNumberOfLinesKey = @"-ios-number-of-lines";
 static NSString* const kMinimumFontSizeKey = @"-ios-minimum-font-size";
 static NSString* const kAdjustsFontSizeKey = @"-ios-adjusts-font-size";
 static NSString* const kBaselineAdjustmentKey = @"-ios-baseline-adjustment";
+static NSString* const kOpacityKey = @"opacity";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -413,6 +414,25 @@ static NSDictionary* sColorTable = nil;
     _is.cached.BaselineAdjustment = YES;
   }
   return _baselineAdjustment;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasOpacity {
+  return nil != [_ruleSet objectForKey:kOpacityKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)opacity {
+  NIDASSERT([self hasOpacity]);
+  if (!_is.cached.Opacity) {
+    NSArray* values = [_ruleSet objectForKey:kOpacityKey];
+    NIDASSERT([values count] == 1);
+    _opacity = [[values objectAtIndex:0] floatValue];
+    _is.cached.Opacity = YES;
+  }
+  return _opacity;
 }
 
 

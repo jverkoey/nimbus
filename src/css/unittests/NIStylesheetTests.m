@@ -93,6 +93,7 @@
   STAssertEquals(label.minimumFontSize, 5.f, @"Should match.");
   STAssertTrue(label.adjustsFontSizeToFitWidth, @"Should match.");
   STAssertEquals(label.baselineAdjustment, UIBaselineAdjustmentAlignCenters, @"Should match.");
+  STAssertEquals(label.alpha, 0.5f, @"Should match.");
 }
 
 
