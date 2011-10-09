@@ -35,6 +35,9 @@ static NSString* const kBaselineAdjustmentKey = @"-ios-baseline-adjustment";
 static NSString* const kOpacityKey = @"opacity";
 static NSString* const kBackgroundColorKey = @"background-color";
 static NSString* const kBorderRadiusKey = @"border-radius";
+static NSString* const kBorderKey = @"border";
+static NSString* const kBorderColorKey = @"border-color";
+static NSString* const kBorderWidthKey = @"border-width";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -59,6 +62,7 @@ static NSDictionary* sColorTable = nil;
   NI_RELEASE_SAFELY(_font);
   NI_RELEASE_SAFELY(_textShadowColor);
   NI_RELEASE_SAFELY(_backgroundColor);
+  NI_RELEASE_SAFELY(_borderColor);
 }
 
 
@@ -252,6 +256,8 @@ static NSDictionary* sColorTable = nil;
     font = [UIFont systemFontOfSize:fontSize];
   }
 
+  [_font release];
+  _font = [font retain];
   _is.cached.Font = YES;
 
   return font;
@@ -473,6 +479,92 @@ static NSDictionary* sColorTable = nil;
     _is.cached.BorderRadius = YES;
   }
   return _borderRadius;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasBorderColor {
+  return (nil != [_ruleSet objectForKey:kBorderColorKey]
+          || nil != [_ruleSet objectForKey:kBorderKey]);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)cacheBorderValues {
+  _borderWidth = 0;
+  NI_RELEASE_SAFELY(_borderColor);
+
+  NSArray* values = nil;
+
+  // There are two ways to set border color and width: border and border-color/border-width.
+  // Newer definitions of these values should overwrite previous definitions so we must
+  // respect ordering here.
+  BOOL hasSetBorderColor = NO;
+  BOOL hasSetBorderWidth = NO;
+
+  NSArray* order = [_ruleSet objectForKey:kRuleSetOrderKey];
+  for (NSString* name in [order reverseObjectEnumerator]) {
+    if (!hasSetBorderColor && [name isEqualToString:kBorderColorKey]) {
+      values = [_ruleSet objectForKey:name];
+      _borderColor = [[[self class] colorFromCssValues:values
+                                numberOfConsumedTokens:nil] retain];
+      hasSetBorderColor = YES;
+
+    } else if (!hasSetBorderWidth && [name isEqualToString:kBorderWidthKey]) {
+      values = [_ruleSet objectForKey:name];
+      NIDASSERT([values count] == 1); if ([values count] < 1) { continue; }
+      _borderWidth = [[values objectAtIndex:0] floatValue];
+      hasSetBorderWidth = YES;
+
+    } else if (!hasSetBorderColor && !hasSetBorderWidth && [name isEqualToString:kBorderKey]) {
+      values = [_ruleSet objectForKey:name];
+
+      if ([values count] >= 1) {
+        // Border width
+        _borderWidth = [[values objectAtIndex:0] floatValue];
+        hasSetBorderWidth = YES;
+      }
+      if ([values count] >= 3) {
+        // Border color
+        _borderColor = [[[self class] colorFromCssValues:[values subarrayWithRange:NSMakeRange(2, [values count] - 2)]
+                                  numberOfConsumedTokens:nil] retain];
+        hasSetBorderColor = YES;
+      }
+    }
+    
+    if (hasSetBorderColor && hasSetBorderWidth) {
+      // Once we've set all values then we can ignore any previous values.
+      break;
+    }
+  }
+  
+  _is.cached.BorderColor = hasSetBorderColor;
+  _is.cached.BorderWidth = hasSetBorderWidth;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor *)borderColor {
+  NIDASSERT([self hasBorderColor]);
+
+  [self cacheBorderValues];
+  return _borderColor;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasBorderWidth {
+  return (nil != [_ruleSet objectForKey:kBorderWidthKey]
+          || nil != [_ruleSet objectForKey:kBorderKey]);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)borderWidth {
+  NIDASSERT([self hasBorderWidth]);
+
+  [self cacheBorderValues];
+  return _borderWidth;
 }
 
 

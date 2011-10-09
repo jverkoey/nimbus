@@ -33,6 +33,8 @@
   CGFloat _opacity;
   UIColor* _backgroundColor;
   CGFloat _borderRadius;
+  UIColor *_borderColor;
+  CGFloat _borderWidth;
 
   union {
     struct {
@@ -49,6 +51,8 @@
       int Opacity : 1;
       int BackgroundColor : 1;
       int BorderRadius : 1;
+      int BorderColor : 1;
+      int BorderWidth : 1;
     } cached;
     int _data;
   } _is;
@@ -94,5 +98,11 @@
 
 - (BOOL)hasBorderRadius;
 - (CGFloat)borderRadius;
+
+- (BOOL)hasBorderColor;
+- (UIColor *)borderColor;
+
+- (BOOL)hasBorderWidth;
+- (CGFloat)borderWidth;
 
 @end

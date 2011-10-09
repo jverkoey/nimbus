@@ -5,9 +5,10 @@
 /** General UIView properties */
 UILabel {
   background-color: red; /* tested */
-  border-color: orange;
-  border-width: 5px;
-  border-radius: 10px;
+  border: 1px solid blue; /* tested */
+  border-color: orange; /* tested */
+  border-width: 5px; /* tested */
+  border-radius: 10px; /* tested */
   opacity: 0.5; /* tested */
 }
 
