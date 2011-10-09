@@ -32,6 +32,7 @@
   UIBaselineAdjustment _baselineAdjustment;
   CGFloat _opacity;
   UIColor* _backgroundColor;
+  CGFloat _borderRadius;
 
   union {
     struct {
@@ -46,7 +47,8 @@
       int AdjustsFontSize : 1;
       int BaselineAdjustment : 1;
       int Opacity : 1;
-      int BackgroundColor;
+      int BackgroundColor : 1;
+      int BorderRadius : 1;
     } cached;
     int _data;
   } _is;
@@ -89,5 +91,8 @@
 
 - (BOOL)hasBackgroundColor;
 - (UIColor *)backgroundColor;
+
+- (BOOL)hasBorderRadius;
+- (CGFloat)borderRadius;
 
 @end

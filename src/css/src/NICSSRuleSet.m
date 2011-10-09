@@ -34,6 +34,7 @@ static NSString* const kAdjustsFontSizeKey = @"-ios-adjusts-font-size";
 static NSString* const kBaselineAdjustmentKey = @"-ios-baseline-adjustment";
 static NSString* const kOpacityKey = @"opacity";
 static NSString* const kBackgroundColorKey = @"background-color";
+static NSString* const kBorderRadiusKey = @"border-radius";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -453,6 +454,25 @@ static NSDictionary* sColorTable = nil;
     _is.cached.BackgroundColor = YES;
   }
   return _backgroundColor;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasBorderRadius {
+  return nil != [_ruleSet objectForKey:kBorderRadiusKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)borderRadius {
+  NIDASSERT([self hasBorderRadius]);
+  if (!_is.cached.BorderRadius) {
+    NSArray* values = [_ruleSet objectForKey:kBorderRadiusKey];
+    NIDASSERT([values count] == 1);
+    _borderRadius = [[values objectAtIndex:0] floatValue];
+    _is.cached.BorderRadius = YES;
+  }
+  return _borderRadius;
 }
 
 

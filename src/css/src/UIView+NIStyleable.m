@@ -18,6 +18,7 @@
 
 #import "NICSSRuleSet.h"
 #import "NimbusCore.h"
+#import <QuartzCore/QuartzCore.h>
 
 NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
 
@@ -32,6 +33,7 @@ NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
 - (void)applyViewStyleWithRuleSet:(NICSSRuleSet *)ruleSet {
   if ([ruleSet hasBackgroundColor]) { self.backgroundColor = ruleSet.backgroundColor; }
   if ([ruleSet hasOpacity]) { self.alpha = ruleSet.opacity; }
+  if ([ruleSet hasBorderRadius]) { self.layer.cornerRadius = ruleSet.borderRadius; }
 }
 
 
