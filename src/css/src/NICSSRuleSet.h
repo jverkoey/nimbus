@@ -31,6 +31,7 @@
   BOOL _adjustsFontSize;
   UIBaselineAdjustment _baselineAdjustment;
   CGFloat _opacity;
+  UIColor* _backgroundColor;
 
   union {
     struct {
@@ -45,6 +46,7 @@
       int AdjustsFontSize : 1;
       int BaselineAdjustment : 1;
       int Opacity : 1;
+      int BackgroundColor;
     } cached;
     int _data;
   } _is;
@@ -84,5 +86,8 @@
 
 - (BOOL)hasOpacity;
 - (CGFloat)opacity;
+
+- (BOOL)hasBackgroundColor;
+- (UIColor *)backgroundColor;
 
 @end

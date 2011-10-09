@@ -33,6 +33,7 @@ static NSString* const kMinimumFontSizeKey = @"-ios-minimum-font-size";
 static NSString* const kAdjustsFontSizeKey = @"-ios-adjusts-font-size";
 static NSString* const kBaselineAdjustmentKey = @"-ios-baseline-adjustment";
 static NSString* const kOpacityKey = @"opacity";
+static NSString* const kBackgroundColorKey = @"background-color";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -56,6 +57,7 @@ static NSDictionary* sColorTable = nil;
   NI_RELEASE_SAFELY(_textColor);
   NI_RELEASE_SAFELY(_font);
   NI_RELEASE_SAFELY(_textShadowColor);
+  NI_RELEASE_SAFELY(_backgroundColor);
 }
 
 
@@ -433,6 +435,24 @@ static NSDictionary* sColorTable = nil;
     _is.cached.Opacity = YES;
   }
   return _opacity;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasBackgroundColor {
+  return nil != [_ruleSet objectForKey:kBackgroundColorKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor *)backgroundColor {
+  NIDASSERT([self hasBackgroundColor]);
+  if (!_is.cached.BackgroundColor) {
+    _backgroundColor = [[[self class] colorFromCssValues:[_ruleSet objectForKey:kBackgroundColorKey]
+                                  numberOfConsumedTokens:nil] retain];
+    _is.cached.BackgroundColor = YES;
+  }
+  return _backgroundColor;
 }
 
 

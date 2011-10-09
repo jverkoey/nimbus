@@ -4,11 +4,11 @@
 
 /** General UIView properties */
 UILabel {
-  background-color: red;
+  background-color: red; /* tested */
   border-color: orange;
   border-width: 5px;
   border-radius: 10px;
-  opacity: 0.5;
+  opacity: 0.5; /* tested */
 }
 
 /** UILabel-specific */

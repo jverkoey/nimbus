@@ -30,6 +30,7 @@ NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyViewStyleWithRuleSet:(NICSSRuleSet *)ruleSet {
+  if ([ruleSet hasBackgroundColor]) { self.backgroundColor = ruleSet.backgroundColor; }
   if ([ruleSet hasOpacity]) { self.alpha = ruleSet.opacity; }
 }
 
