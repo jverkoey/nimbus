@@ -35,6 +35,7 @@
   CGFloat _borderRadius;
   UIColor *_borderColor;
   CGFloat _borderWidth;
+  UIColor *_tintColor;
 
   union {
     struct {
@@ -53,6 +54,7 @@
       int BorderRadius : 1;
       int BorderColor : 1;
       int BorderWidth : 1;
+      int TintColor : 1;
     } cached;
     int _data;
   } _is;
@@ -104,5 +106,8 @@
 
 - (BOOL)hasBorderWidth;
 - (CGFloat)borderWidth;
+
+- (BOOL)hasTintColor;
+- (UIColor *)tintColor;
 
 @end

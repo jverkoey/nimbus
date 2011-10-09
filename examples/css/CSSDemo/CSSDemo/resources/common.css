@@ -1,0 +1,8 @@
+
+UIView {
+  background-color: blue;
+}
+
+UINavigationBar {
+  -ios-tint-color: orange;
+}

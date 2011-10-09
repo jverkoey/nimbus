@@ -38,6 +38,7 @@ static NSString* const kBorderRadiusKey = @"border-radius";
 static NSString* const kBorderKey = @"border";
 static NSString* const kBorderColorKey = @"border-color";
 static NSString* const kBorderWidthKey = @"border-width";
+static NSString* const kTintColorKey = @"-ios-tint-color";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -565,6 +566,24 @@ static NSDictionary* sColorTable = nil;
 
   [self cacheBorderValues];
   return _borderWidth;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasTintColor {
+  return nil != [_ruleSet objectForKey:kTintColorKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor *)tintColor {
+  NIDASSERT([self hasTintColor]);
+  if (!_is.cached.TintColor) {
+    _tintColor = [[[self class] colorFromCssValues:[_ruleSet objectForKey:kTintColorKey]
+                            numberOfConsumedTokens:nil] retain];
+    _is.cached.TintColor = YES;
+  }
+  return _tintColor;
 }
 
 

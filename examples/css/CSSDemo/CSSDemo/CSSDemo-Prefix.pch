@@ -14,24 +14,15 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import <Availability.h>
 
-@class NIStylesheet;
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
 
-@interface NIDOM : NSObject {
-@private
-  NIStylesheet* _stylesheet;
-  NSMutableSet* _registeredViews;
-}
-
-// Designated initializer.
-- (id)initWithStylesheet:(NIStylesheet *)stylesheet;
-
-+ (id)domWithStylesheet:(NIStylesheet *)stylesheet;
-+ (id)domWithStylesheetPaths:(NSString *)stylesheetPath, ...;
-
-- (void)registerView:(UIView *)view;
-- (void)unregisterView:(UIView *)view;
-- (void)refresh;
-
-@end
+#ifdef __OBJC__
+  #import <UIKit/UIKit.h>
+  #import <Foundation/Foundation.h>
+#import "NimbusCore.h"
+#import "NimbusCSS.h"
+#endif

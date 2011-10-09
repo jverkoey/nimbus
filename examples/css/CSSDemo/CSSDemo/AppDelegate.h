@@ -14,24 +14,14 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@class NIStylesheet;
-
-@interface NIDOM : NSObject {
-@private
-  NIStylesheet* _stylesheet;
-  NSMutableSet* _registeredViews;
+@interface AppDelegate : NSObject <UIApplicationDelegate> {
+  UIWindow* _window;
+  UIViewController* _rootController;
 }
 
-// Designated initializer.
-- (id)initWithStylesheet:(NIStylesheet *)stylesheet;
-
-+ (id)domWithStylesheet:(NIStylesheet *)stylesheet;
-+ (id)domWithStylesheetPaths:(NSString *)stylesheetPath, ...;
-
-- (void)registerView:(UIView *)view;
-- (void)unregisterView:(UIView *)view;
-- (void)refresh;
+@property (nonatomic, readwrite, retain) UIWindow* window;
 
 @end
+

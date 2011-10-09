@@ -22,6 +22,7 @@
 
 #import "NICSSRuleSet.h"
 #import "NICSSParser.h"
+#import "NIDOM.h"
 #import "NIStyleable.h"
 #import "NIStylesheet.h"
 

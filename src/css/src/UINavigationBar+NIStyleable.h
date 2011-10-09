@@ -14,24 +14,18 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@class NIStylesheet;
+@class NICSSRuleSet;
 
-@interface NIDOM : NSObject {
-@private
-  NIStylesheet* _stylesheet;
-  NSMutableSet* _registeredViews;
-}
+@interface UINavigationBar (NIStyleable)
 
-// Designated initializer.
-- (id)initWithStylesheet:(NIStylesheet *)stylesheet;
-
-+ (id)domWithStylesheet:(NIStylesheet *)stylesheet;
-+ (id)domWithStylesheetPaths:(NSString *)stylesheetPath, ...;
-
-- (void)registerView:(UIView *)view;
-- (void)unregisterView:(UIView *)view;
-- (void)refresh;
+/**
+ * Applies the given rule set to this navigation bar.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applyNavigationBarStyleWithRuleSet:(NICSSRuleSet *)ruleSet;
 
 @end
