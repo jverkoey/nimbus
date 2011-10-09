@@ -1,0 +1,24 @@
+
+Chameleon - Real-Time Styling iOS Applications
+==============================================
+
+## Getting Started
+
+Chameleon uses Node:
+
+Check out Node somewhere on your system and build/install it.
+
+> git clone https://github.com/joyent/node.git
+> cd node
+> ./configure
+> make
+> sudo make install
+
+
+Install the Node Package Manager. TODO THis might not be necessary.
+
+> git clone https://github.com/isaacs/npm.git
+> cd npm
+> make
+> sudo make install
+
