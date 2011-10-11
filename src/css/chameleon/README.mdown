@@ -22,3 +22,9 @@ Install the Node Package Manager. TODO THis might not be necessary.
 > make
 > sudo make install
 
+> npm install optimist
+
+Start the server.
+
+> node chameleon.js --watch /path/to/watch/directory
+

@@ -19,18 +19,21 @@
 // View Controllers
 #import "RootViewController.h"
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize chameleonObserver = _chameleonObserver;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_window);
   NI_RELEASE_SAFELY(_rootController);
+  NI_RELEASE_SAFELY(_chameleonObserver);
 
   [super dealloc];
 }
@@ -46,7 +49,11 @@
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-  
+
+  _chameleonObserver = [[NIChameleonObserver alloc] init];
+  [_chameleonObserver loadStylesheetWithFilename:@"common.css"];
+  [_chameleonObserver watchSkinChanges];
+
   RootViewController* mainController =
   [[[RootViewController alloc] initWithNibName:nil bundle:nil] autorelease];
   

@@ -16,15 +16,28 @@
 
 #import <Foundation/Foundation.h>
 
-/**
- * Note about needing to add -ObjC for categories to work.
- */
+extern NSString* const NIChameleonSkinDidChangeNotification;
 
-#import "NICSSRuleSet.h"
-#import "NICSSParser.h"
-#import "NIDOM.h"
-#import "NIStyleable.h"
-#import "NIStylesheet.h"
-#import "NIChameleonObserver.h"
+@class NIStylesheet;
 
-#import "NimbusCore.h"
+@class NISimpleDataRequest;
+
+@protocol NISimpleDataRequestDelegate <NSObject>
+@required
+
+- (void)requestDidFinish:(NISimpleDataRequest *)request withStringData:(NSString *)stringData;
+
+@end
+
+@interface NIChameleonObserver : NSObject <NISimpleDataRequestDelegate> {
+@private
+  NSMutableDictionary* _stylesheets;
+  NSMutableArray* _activeRequests;
+}
+
+- (BOOL)loadStylesheetWithFilename:(NSString *)filename;
+- (NIStylesheet *)stylesheetForFilename:(NSString *)filename;
+
+- (void)watchSkinChanges;
+
+@end

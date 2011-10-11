@@ -16,6 +16,8 @@
 
 #import "RootViewController.h"
 
+#import "AppDelegate.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,7 +28,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_dom);
-  
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+
   [super dealloc];
 }
 
@@ -34,12 +37,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-    NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
-    if (![stylesheet loadFromPath:NIPathForBundleResource(nil, @"common.css")]) {
-      NIDASSERT(NO);
-    }
+    NIChameleonObserver* chameleonObserver =
+    [(AppDelegate *)[UIApplication sharedApplication].delegate chameleonObserver];
+    NIStylesheet* stylesheet = [chameleonObserver stylesheetForFilename:@"common.css"];
     _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
-    NI_RELEASE_SAFELY(stylesheet);
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(chameleonSkinDidChange)
+                                                 name:NIChameleonSkinDidChangeNotification
+                                               object:stylesheet];
+    self.title = @"Nimbus CSS Demo";
   }
   return self;
 }
@@ -48,16 +54,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
   [super loadView];
-
+  
+  _testLabel = [[UILabel alloc] init];
+  _testLabel.text = @"Chameleon + Nimbus";
+  [_testLabel sizeToFit];
+  _testLabel.frame = CGRectMake(10, 10, self.view.bounds.size.width - 20, 100);
+  [self.view addSubview:_testLabel];
+  
   [_dom registerView:self.view];
   [_dom registerView:self.navigationController.navigationBar];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  [_dom refresh];
+  [_dom registerView:_testLabel];
 }
 
 
@@ -65,6 +71,13 @@
 - (void)viewDidUnload {
   [_dom unregisterView:self.view];
   [_dom unregisterView:self.navigationController.navigationBar];
+  [_dom unregisterView:_testLabel];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)chameleonSkinDidChange {
+  [_dom refresh];
 }
 
 @end

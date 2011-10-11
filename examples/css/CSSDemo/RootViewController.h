@@ -19,6 +19,7 @@
 @interface RootViewController : UIViewController {
 @private
   NIDOM* _dom;
+  UILabel* _testLabel;
 }
 
 @end

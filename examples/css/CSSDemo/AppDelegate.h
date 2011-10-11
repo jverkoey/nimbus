@@ -19,9 +19,11 @@
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
   UIWindow* _window;
   UIViewController* _rootController;
+  NIChameleonObserver* _chameleonObserver;
 }
 
 @property (nonatomic, readwrite, retain) UIWindow* window;
+@property (nonatomic, readonly, retain) NIChameleonObserver* chameleonObserver;
 
 @end
 

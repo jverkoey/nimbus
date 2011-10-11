@@ -127,6 +127,10 @@
   BOOL loadDidSucceed = NO;
 
   NI_RELEASE_SAFELY(_rawRuleSets);
+  NI_RELEASE_SAFELY(_ruleSets);
+  NI_RELEASE_SAFELY(_classToRuleSetMap);
+
+  _ruleSets = [[NSMutableDictionary alloc] init];
 
   if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
     NICSSParser* parser = [[NICSSParser alloc] init];
