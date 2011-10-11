@@ -1,5 +1,5 @@
 UIView {
-  background-color: darkblue;
+  background-color: black;
 }
 
 UINavigationBar {
@@ -8,9 +8,5 @@ UINavigationBar {
 
 UILabel {
   background-color: clear;
-  font-size: 30;
-  text-shadow: rgba(255, 255, 255, 0.5) 0 -1;
+  font-size: 20;
 }
-
-
-

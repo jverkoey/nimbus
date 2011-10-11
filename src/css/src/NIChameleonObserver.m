@@ -167,8 +167,6 @@ static NSString* const kWatchFilenameKey = @"___watch___";
         [fm removeItemAtPath:cachePath error:&error];
         [fm copyItemAtPath:[bundleRootPath stringByAppendingPathComponent:filename]
                     toPath:cachePath error:&error];
-
-        [self loadStylesheetWithFilename:filename];
       }
     }
   }
@@ -198,6 +196,9 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NIStylesheet *)stylesheetForFilename:(NSString *)filename {
+  if (nil == [_stylesheets objectForKey:filename]) {
+    [self loadStylesheetWithFilename:filename];
+  }
   return [_stylesheets objectForKey:filename];
 }
 
@@ -232,9 +233,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
   if ([[request.url absoluteString] hasSuffix:@"/watch"]) {
     NSArray* files = [stringData componentsSeparatedByString:@"\n"];
     for (NSString* filename in files) {
-      if (nil != [_stylesheets objectForKey:filename]) {
-        [self downloadStylesheetWithFilename:filename];
-      }
+      [self downloadStylesheetWithFilename:filename];
     }
 
     [self watchSkinChanges];
