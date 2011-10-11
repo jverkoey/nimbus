@@ -39,7 +39,7 @@
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     NIChameleonObserver* chameleonObserver =
     [(AppDelegate *)[UIApplication sharedApplication].delegate chameleonObserver];
-    NIStylesheet* stylesheet = [chameleonObserver stylesheetForFilename:@"common.css"];
+    NIStylesheet* stylesheet = [chameleonObserver stylesheetForFilename:@"root/root.css"];
     _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(chameleonSkinDidChange)
@@ -54,7 +54,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
   [super loadView];
-  
+
   _testLabel = [[UILabel alloc] init];
   _testLabel.text = @"Chameleon + Nimbus";
   [_testLabel sizeToFit];

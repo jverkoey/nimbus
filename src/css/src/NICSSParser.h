@@ -17,17 +17,26 @@
 #import <Foundation/Foundation.h>
 
 extern NSString* const kRuleSetOrderKey;
+extern NSString* const kDependenciesSelectorKey;
+
+@class NICSSParser;
+
+@protocol NICSSParserDelegate <NSObject>
+@required
+- (NSString *)cssParser:(NICSSParser *)parser filenameFromFilename:(NSString *)filename;
+@end
 
 @interface NICSSParser : NSObject {
 @private
-  NSMutableDictionary*  _ruleSets;
-  NSMutableArray*       _currentSelector;
-  NSMutableArray*       _activeCssSelectors;
-  NSMutableDictionary*  _activeRuleSet;
-  NSString*             _activePropertyName;
+  NSMutableDictionary* _ruleSets;
+  NSMutableArray* _currentSelector;
+  NSMutableArray* _activeCssSelectors;
+  NSMutableDictionary* _activeRuleSet;
+  NSString* _activePropertyName;
+  NSMutableArray* _importedFilenames;
 
-  NSString*             _lastTokenText;
-  int                   _lastToken;
+  NSString* _lastTokenText;
+  int _lastToken;
 
   BOOL _didFailToParse;
 
@@ -41,7 +50,12 @@ extern NSString* const kRuleSetOrderKey;
   } _state;
 }
 
-- (NSDictionary *)rulesetsForCSSFileAtPath:(NSString *)filename;
+- (NSDictionary *)rulesetsForCSSRelativeFilename:(NSString *)relFilename
+                                        rootPath:(NSString *)rootPath;
+
+- (NSDictionary *)rulesetsForCSSRelativeFilename:(NSString *)relFilename
+                                        rootPath:(NSString *)rootPath
+                                        delegate:(id<NICSSParserDelegate>)delegate;
 
 @property (nonatomic, readonly, assign) BOOL didFailToParse;
 

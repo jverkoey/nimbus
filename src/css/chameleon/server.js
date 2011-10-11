@@ -153,7 +153,10 @@ function start(watchPath) {
       var fullPath = results[i];
       var shortName = fullPath.substr(watchPath.length);
 
-      watchFileAtPath(fullPath, shortName);
+      // Only watch css files.
+      if (path.extname(shortName).toLowerCase() == '.css') {
+        watchFileAtPath(fullPath, shortName);
+      }
     }
   });
 

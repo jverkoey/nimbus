@@ -35,7 +35,7 @@ range     \?{1,6}|{h}(\?{0,5}|{h}(\?{0,4}|{h}(\?{0,3}|{h}(\?{0,2}|{h}(\??|{h})))
                               
 "#"{name}                             {cssConsume(yytext, CSSHASH);}
                               
-"@import"                       
+"@import"                       {cssConsume(yytext, CSSIMPORT);}
 "@page"                         
 "@media"                        
 "@font-face"                    

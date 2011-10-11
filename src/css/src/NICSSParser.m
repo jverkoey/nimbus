@@ -23,6 +23,7 @@
 
 static pthread_mutex_t gMutex = PTHREAD_MUTEX_INITIALIZER;
 NSString* const kRuleSetOrderKey = @"__kRuleSetOrder__";
+NSString* const kDependenciesSelectorKey = @"__kDependencies__";
 
 // Damn you, flex. Due to the nature of flex we can only have one active parser at any given time.
 NICSSParser* gActiveParser = nil;
@@ -55,6 +56,7 @@ int cssConsume(char* text, int token) {
   NI_RELEASE_SAFELY(_currentSelector);
   NI_RELEASE_SAFELY(_activeRuleSet);
   NI_RELEASE_SAFELY(_activePropertyName);
+  NI_RELEASE_SAFELY(_importedFilenames);
   NI_RELEASE_SAFELY(_lastTokenText);
 }
 
@@ -168,14 +170,23 @@ int cssConsume(char* text, int token) {
     case CSSPERCENTAGE:
     case CSSNUMBER:
     case CSSURI: {
-      NIDASSERT(nil != _activePropertyName);
-
-      if (nil != _activePropertyName) {
-        NSMutableArray* values = [_activeRuleSet objectForKey:_activePropertyName];
-        [values addObject:lowercaseTextAsString];
+      if (_lastToken == CSSIMPORT && token == CSSURI) {
+        NSInteger prefixLength = @"url(\"".length;
+        NSString* filename = [textAsString substringWithRange:NSMakeRange(prefixLength,
+                                                                          textAsString.length
+                                                                          - prefixLength - 2)];
+        [_importedFilenames addObject:filename];
 
       } else {
-        [self setFailFlag];
+        NIDASSERT(nil != _activePropertyName);
+
+        if (nil != _activePropertyName) {
+          NSMutableArray* values = [_activeRuleSet objectForKey:_activePropertyName];
+          [values addObject:lowercaseTextAsString];
+
+        } else {
+          [self setFailFlag];
+        }
       }
       break;
     }
@@ -270,9 +281,6 @@ int cssConsume(char* text, int token) {
           // Committing a property value.
           if (_state.Flags.InsideRuleSet) {
             _state.Flags.InsideProperty = NO;
-
-          } else {
-            [self setFailFlag];
           }
           break;
         }
@@ -289,6 +297,14 @@ int cssConsume(char* text, int token) {
 }
 
 
+- (void)setup {
+  _ruleSets = [[NSMutableDictionary alloc] init];
+  _activeCssSelectors = [[NSMutableArray alloc] init];
+  _currentSelector = [[NSMutableArray alloc] init];
+  _importedFilenames = [[NSMutableArray alloc] init];
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -296,29 +312,109 @@ int cssConsume(char* text, int token) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSDictionary *)rulesetsForCSSFileAtPath:(NSString *)filename {
-  if (0 == [filename length] || ![[NSFileManager defaultManager] fileExistsAtPath:filename]) {
-    return nil;
-  }
+- (NSDictionary *)rulesetsForCSSRelativeFilename:(NSString *)relFilename
+                                        rootPath:(NSString *)rootPath {
+  return [self rulesetsForCSSRelativeFilename:relFilename rootPath:rootPath delegate:nil];
+}
 
-  _ruleSets = [[NSMutableDictionary alloc] init];
-  _activeCssSelectors = [[NSMutableArray alloc] init];
-  _currentSelector = [[NSMutableArray alloc] init];
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSDictionary *)rulesetsForCSSRelativeFilename:(NSString *)relFilename
+                                        rootPath:(NSString *)rootPath
+                                        delegate:(id<NICSSParserDelegate>)delegate {
   _didFailToParse = NO;
 
-  pthread_mutex_lock(&gMutex); {
-    cssin = fopen([filename UTF8String], "r");
-    gActiveParser = self;
-    csslex();
-    fclose(cssin);
-  }
-  pthread_mutex_unlock(&gMutex);
+  NSMutableSet* processedFilenames = [[[NSMutableSet alloc] init] autorelease];
+  NSMutableArray* filenameQueue = [[[NSMutableArray alloc] initWithObjects:relFilename, nil]
+                                   autorelease];
+  NSMutableArray* allRuleSets = [[[NSMutableArray alloc] init] autorelease];
 
-  NSDictionary* result = [[_ruleSets copy] autorelease];
+  while ([filenameQueue count] > 0) {
+    NSString* activeFilename = [filenameQueue objectAtIndex:0];
+    [filenameQueue removeObjectAtIndex:0];
+
+    // Skip files that we've already processed to avoid infinite loops.
+    if ([processedFilenames containsObject:activeFilename]) {
+      continue;
+    }
+
+    [processedFilenames addObject:activeFilename];
+
+    if ([delegate respondsToSelector:@selector(cssParser:filenameFromFilename:)]) {
+      activeFilename = [delegate cssParser:self filenameFromFilename:activeFilename];
+    }
+
+    // Verify that the file exists.
+    NSString* filename = [rootPath stringByAppendingPathComponent:activeFilename];
+    if (0 == [filename length] || ![[NSFileManager defaultManager] fileExistsAtPath:filename]) {
+      [self shutdown];
+      return nil;
+    }
+
+    [self setup];
+    
+    NSLog(@"%@: %@", filename, [[[NSString alloc] initWithData:[NSData dataWithContentsOfFile:filename]
+                                          encoding:NSUTF8StringEncoding] autorelease]);
+
+    // flex is not thread-safe so we force it to be by creating a single-access lock here.
+    pthread_mutex_lock(&gMutex); {
+      cssin = fopen([filename UTF8String], "r");
+      gActiveParser = self;
+      csslex();
+      fclose(cssin);
+    }
+    pthread_mutex_unlock(&gMutex);
+
+    [filenameQueue addObjectsFromArray:_importedFilenames];
+    [_importedFilenames removeAllObjects];
+
+    [allRuleSets addObject:_ruleSets];
+    [self shutdown];
+  }
+
+  NSDictionary* result = nil;
+
+  if ([allRuleSets count] > 1) {
+    // Merge all of the rulesets into one.
+    NSMutableDictionary* mergedResult = [[[allRuleSets lastObject] retain] autorelease];
+
+    // Skip the last ruleset.
+    [allRuleSets removeLastObject];
+
+    for (NSDictionary* ruleSet in [allRuleSets reverseObjectEnumerator]) {
+      for (NSString* selector in ruleSet) {
+        if (![mergedResult objectForKey:selector]) {
+          [mergedResult setObject:[ruleSet objectForKey:selector] forKey:selector];
+
+        } else {
+          NSMutableDictionary* mergedSelectorValue = [mergedResult objectForKey:selector];
+          NSMutableDictionary* selectorValue = [ruleSet objectForKey:selector];
+          for (NSString* key in selectorValue) {
+            if (nil == [mergedSelectorValue objectForKey:key] || ![key isEqualToString:kRuleSetOrderKey]) {
+              // The merged rule set doesn't have this key yet so just add it.
+              [mergedSelectorValue setObject:[selectorValue objectForKey:key] forKey:key];
+
+            } else {
+              // Merge the rule set orders then.
+              [[mergedSelectorValue objectForKey:kRuleSetOrderKey] addObjectsFromArray:
+               [selectorValue objectForKey:kRuleSetOrderKey]];
+            }
+          }
+        }
+      }
+    }
+
+    [mergedResult setObject:processedFilenames forKey:kDependenciesSelectorKey];
+    result = [[mergedResult copy] autorelease];
+
+  } else {
+    [[allRuleSets objectAtIndex:0] setObject:processedFilenames forKey:kDependenciesSelectorKey];
+    result = [[[allRuleSets objectAtIndex:0] copy] autorelease];
+  }
+
+  [processedFilenames removeObject:relFilename];
 
   [self shutdown];
-
   return result;
 }
 

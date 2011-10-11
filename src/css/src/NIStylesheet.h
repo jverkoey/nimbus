@@ -16,6 +16,8 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol NICSSParserDelegate;
+
 @interface NIStylesheet : NSObject {
 @private
   NSDictionary* _rawRuleSets;
@@ -25,8 +27,12 @@
 
 @property (nonatomic, readonly, copy) NSDictionary* rawRuleSets;
 @property (nonatomic, readonly, copy) NSDictionary* classToRuleSetMap;
+@property (nonatomic, readonly, copy) NSSet* dependencies;
 
-- (BOOL)loadFromPath:(NSString *)path;
+- (BOOL)loadFilename:(NSString *)filename relativeToPath:(NSString *)path;
+- (BOOL)loadFilename:(NSString *)filename
+      relativeToPath:(NSString *)path
+            delegate:(id<NICSSParserDelegate>)delegate;
 - (void)addStylesheet:(NIStylesheet *)stylesheet;
 
 - (void)applyStyleToView:(UIView *)view;

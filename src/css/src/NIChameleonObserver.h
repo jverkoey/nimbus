@@ -15,6 +15,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NICSSParser.h"
 
 extern NSString* const NIChameleonSkinDidChangeNotification;
 
@@ -29,13 +30,16 @@ extern NSString* const NIChameleonSkinDidChangeNotification;
 
 @end
 
-@interface NIChameleonObserver : NSObject <NISimpleDataRequestDelegate> {
+@interface NIChameleonObserver : NSObject <NISimpleDataRequestDelegate, NICSSParserDelegate> {
 @private
   NSMutableDictionary* _stylesheets;
   NSMutableArray* _activeRequests;
+  NSString* _rootFolder;
 }
 
-- (BOOL)loadStylesheetWithFilename:(NSString *)filename;
+// Designated initializer.
+- (id)initWithRootFolder:(NSString *)rootFolder;
+
 - (NIStylesheet *)stylesheetForFilename:(NSString *)filename;
 
 - (void)watchSkinChanges;

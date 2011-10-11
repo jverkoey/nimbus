@@ -42,7 +42,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)domWithStylesheetPaths:(NSString *)stylesheetPath, ... {
++ (id)domWithStylesheetRootPath:(NSString *)rootPath filenames:(NSString *)stylesheetPath, ... {
   va_list ap;
   va_start(ap, stylesheetPath);
 
@@ -53,7 +53,7 @@
 
     if ([stylesheetPath isKindOfClass:[NSString class]]) {
       NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
-      if ([stylesheet loadFromPath:stylesheetPath]) {
+      if ([stylesheet loadFilename:stylesheetPath relativeToPath:rootPath]) {
         [compositeStylesheet addStylesheet:stylesheet];
       }
       NI_RELEASE_SAFELY(stylesheet);

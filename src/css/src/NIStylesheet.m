@@ -85,7 +85,7 @@
       [selectors addObject:selector];
     }
   }
-  
+
   [_classToRuleSetMap release];
   _classToRuleSetMap = [classToRuleSetMap copy];
   
@@ -123,7 +123,15 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)loadFromPath:(NSString *)path {
+- (BOOL)loadFilename:(NSString *)filename relativeToPath:(NSString *)path {
+  return [self loadFilename:filename relativeToPath:path delegate:nil];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)loadFilename:(NSString *)filename
+      relativeToPath:(NSString *)path
+            delegate:(id<NICSSParserDelegate>)delegate {
   BOOL loadDidSucceed = NO;
 
   NI_RELEASE_SAFELY(_rawRuleSets);
@@ -135,7 +143,9 @@
   if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
     NICSSParser* parser = [[NICSSParser alloc] init];
 
-    NSDictionary* results = [parser rulesetsForCSSFileAtPath:path];
+    NSDictionary* results = [parser rulesetsForCSSRelativeFilename:filename
+                                                          rootPath:path
+                                                          delegate:delegate];
     if (nil != results && ![parser didFailToParse]) {
       _rawRuleSets = [results retain];
       loadDidSucceed = YES;
@@ -225,6 +235,12 @@
 
     [self applyRuleSet:ruleSet toView:view];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSSet *)dependencies {
+  return [_rawRuleSets objectForKey:kDependenciesSelectorKey];
 }
 
 @end

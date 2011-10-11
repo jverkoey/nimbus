@@ -17,7 +17,7 @@
 #import "NIChameleonObserver.h"
 
 #import "NIStylesheet.h"
-#import "NimbusCore.h"
+#import "NimbusCore+Additions.h"
 
 NSString* const NIChameleonSkinDidChangeNotification = @"NIChameleonSkinDidChangeNotification";
 static NSString* const kWatchFilenameKey = @"___watch___";
@@ -122,6 +122,12 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 @end
 
 
+@interface NIChameleonObserver()
+
+- (BOOL)loadStylesheetWithFilename:(NSString *)filename;
+
+@end
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,16 +142,35 @@ static NSString* const kWatchFilenameKey = @"___watch___";
   }
   NI_RELEASE_SAFELY(_stylesheets);
   NI_RELEASE_SAFELY(_activeRequests);
+  NI_RELEASE_SAFELY(_rootFolder);
 
   [super dealloc];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
+- (id)initWithRootFolder:(NSString *)rootFolder {
   if ((self = [super init])) {
+    _rootFolder = [rootFolder copy];
     _stylesheets = [[NSMutableDictionary alloc] init];
     _activeRequests = [[NSMutableArray alloc] init];
+
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSString* bundleRootPath = NIPathForBundleResource(nil, rootFolder);
+    NSDirectoryEnumerator* de = [fm enumeratorAtPath:bundleRootPath];
+
+    NSString* filename;
+    while ((filename = [de nextObject])) {
+      if ([[filename pathExtension] isEqualToString:@"css"]) {
+        NSString* cachePath = NIPathForDocumentsResource([filename md5Hash]);
+        NSError* error = nil;
+        [fm removeItemAtPath:cachePath error:&error];
+        [fm copyItemAtPath:[bundleRootPath stringByAppendingPathComponent:filename]
+                    toPath:cachePath error:&error];
+
+        [self loadStylesheetWithFilename:filename];
+      }
+    }
   }
   return self;
 }
@@ -154,16 +179,19 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)loadStylesheetWithFilename:(NSString *)filename {
   NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
-  BOOL didSucceed = [stylesheet loadFromPath:NIPathForBundleResource(nil, filename)];
+  BOOL didSucceed = [stylesheet loadFilename:filename
+                              relativeToPath:NIPathForBundleResource(nil, _rootFolder)];
 
   if (didSucceed) {
     [_stylesheets setObject:stylesheet forKey:filename];
 
   } else {
+    NIDASSERT(NO);
     [_stylesheets removeObjectForKey:filename];
   }
 
   NI_RELEASE_SAFELY(stylesheet);
+
   return didSucceed;
 }
 
@@ -213,21 +241,43 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 
   } else {
     NSArray* path = [[request.url absoluteString] pathComponents];
-    NSString* cssFilename = [path lastObject];
-    NSString* diskPath = NIPathForDocumentsResource(cssFilename);
+    NSString* cssFilename = [[path subarrayWithRange:NSMakeRange(2, [path count] - 2)] componentsJoinedByString:@"/"];
+    NSString* rootPath = NIPathForDocumentsResource(nil);
+    NSString* filename = [cssFilename md5Hash];
     NSData* data = [stringData dataUsingEncoding:NSUTF8StringEncoding];
+    NSString* diskPath = [rootPath stringByAppendingPathComponent:filename];
     [data writeToFile:diskPath atomically:YES];
-    
+
     NIStylesheet* stylesheet = [_stylesheets objectForKey:cssFilename];
-    if ([stylesheet loadFromPath:diskPath]) {
+    if ([stylesheet loadFilename:cssFilename relativeToPath:rootPath delegate:self]) {
       [[NSNotificationCenter defaultCenter] postNotificationName:NIChameleonSkinDidChangeNotification
                                                           object:stylesheet
                                                         userInfo:nil];
     }
-    
-    NSError* error = nil;
-    [[NSFileManager defaultManager] removeItemAtPath:diskPath error:&error];
+    for (NSString* pathKey in _stylesheets) {
+      NIStylesheet* stylesheet = [_stylesheets objectForKey:pathKey];
+      if ([stylesheet.dependencies containsObject:cssFilename]) {
+        // This stylesheet has the changed stylesheet as a dependency so let's refresh it.
+        if ([stylesheet loadFilename:pathKey relativeToPath:rootPath delegate:self]) {
+          [[NSNotificationCenter defaultCenter] postNotificationName:NIChameleonSkinDidChangeNotification
+                                                              object:stylesheet
+                                                            userInfo:nil];
+        }
+      }
+    }
   }
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NICSSParserDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)cssParser:(NICSSParser *)parser filenameFromFilename:(NSString *)filename {
+  return [filename md5Hash];
+}
+
 
 @end

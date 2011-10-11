@@ -30,5 +30,6 @@ const char* cssnames[] = {
   "URI",
   "FUNCTION",
   "UNICODERANGE",
+  "CSSIMPORT",
   "UNKNOWN",
 };

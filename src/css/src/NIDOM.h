@@ -28,7 +28,7 @@
 - (id)initWithStylesheet:(NIStylesheet *)stylesheet;
 
 + (id)domWithStylesheet:(NIStylesheet *)stylesheet;
-+ (id)domWithStylesheetPaths:(NSString *)stylesheetPath, ...;
++ (id)domWithStylesheetRootPath:(NSString *)rootPath filenames:(NSString *)stylesheetPath, ...;
 
 - (void)registerView:(UIView *)view;
 - (void)unregisterView:(UIView *)view;

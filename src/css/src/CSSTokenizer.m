@@ -2416,7 +2416,7 @@ YY_RULE_SETUP
 case 10:
 YY_RULE_SETUP
 #line 38 "css.grammar"
-
+{cssConsume(csstext, CSSIMPORT);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP

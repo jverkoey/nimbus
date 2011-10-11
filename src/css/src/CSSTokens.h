@@ -33,6 +33,7 @@ typedef enum {
   CSSURI,
   CSSFUNCTION,
   CSSUNICODERANGE,
+  CSSIMPORT,
   CSSUNKNOWN,
 
 } CssParserCodes;
