@@ -30,6 +30,6 @@
  * The value returned in this method will be cached by the scroll view until reloadData
  * is called again.
  */
-- (NSInteger)numberOfPagesInPageScrollView:(NIPagingScrollView *)pageScrollView;
+- (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pageScrollView;
 
 @end

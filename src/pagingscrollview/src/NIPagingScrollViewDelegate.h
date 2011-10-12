@@ -21,6 +21,14 @@
 @protocol NIPagingScrollViewDelegate <UIScrollViewDelegate>
 @optional
 
+#pragma mark Scrolling and Zooming /** @name [NIPhotoAlbumScrollViewDelegate] Scrolling and Zooming */
+
+/**
+ * The user is scrolling between two photos.
+ */
+- (void)pagingScrollViewDidScroll:(NIPagingScrollView *)pagingScrollView;
+
+
 #pragma mark Changing Pages /** @name [NIPagingScrollViewDelegate] Changing Pages */
 
 /**
@@ -29,6 +37,5 @@
  * pagingScrollView.currentCenterPageIndex will reflect the changed page index.
  */
 - (void)pagingScrollViewDidChangePages:(NIPagingScrollView *)pagingScrollView;
-
 
 @end

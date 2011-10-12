@@ -19,9 +19,6 @@
 #import "NIPhotoScrollView.h"
 #import "NimbusCore.h"
 
-const NSInteger NIPhotoAlbumScrollViewUnknownNumberOfPhotos = -1;
-const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,23 +26,13 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 @implementation NIPhotoAlbumScrollView
 
 @synthesize loadingImage = _loadingImage;
-@synthesize pageHorizontalMargin = _pageHorizontalMargin;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
 @synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
-@synthesize dataSource = _dataSource;
-@synthesize delegate = _delegate;
-@synthesize centerPhotoIndex = _centerPhotoIndex;
-@synthesize numberOfPhotos = _numberOfPages;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  _pagingScrollView = nil;
-
   NI_RELEASE_SAFELY(_loadingImage);
-
-  NI_RELEASE_SAFELY(_visiblePages);
-  NI_RELEASE_SAFELY(_recycledPages);
 
   [super dealloc];
 }
@@ -55,30 +42,10 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     // Default state.
-    self.pageHorizontalMargin = NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
     self.zoomingIsEnabled = YES;
     self.zoomingAboveOriginalSizeIsEnabled = YES;
 
-    _firstVisiblePageIndexBeforeRotation = -1;
-    _percentScrolledIntoFirstVisiblePage = -1;
-    _centerPhotoIndex = -1;
-    _numberOfPages = NIPhotoAlbumScrollViewUnknownNumberOfPhotos;
-
-    _pagingScrollView = [[[UIScrollView alloc] initWithFrame:frame] autorelease];
-    _pagingScrollView.pagingEnabled = YES;
-
-    _pagingScrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
-                                          | UIViewAutoresizingFlexibleHeight);
-
-    _pagingScrollView.delegate = self;
-
-    // Ensure that empty areas of the scroll view are draggable.
-    _pagingScrollView.backgroundColor = [UIColor blackColor];
-
-    _pagingScrollView.showsVerticalScrollIndicator = NO;
-    _pagingScrollView.showsHorizontalScrollIndicator = NO;
-
-    [self addSubview:_pagingScrollView];
+    self.pageClass = [NIPhotoScrollView class];
   }
   return self;
 }
@@ -86,65 +53,14 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)notifyDelegatePhotoDidLoadAtIndex:(NSInteger)photoIndex {
-  if (photoIndex == (self.centerPhotoIndex + 1)
+  if (photoIndex == (self.centerPageIndex + 1)
       && [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidLoadNextPhoto:)]) {
     [self.delegate photoAlbumScrollViewDidLoadNextPhoto:self];
 
-  } else if (photoIndex == (self.centerPhotoIndex - 1)
+  } else if (photoIndex == (self.centerPageIndex - 1)
              && [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidLoadPreviousPhoto:)]) {
     [self.delegate photoAlbumScrollViewDidLoadPreviousPhoto:self];
   }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Page Layout
-
-
-// The following three methods are from Apple's ImageScrollView example application and have
-// been used here because they are well-documented and concise.
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGRect)frameForPagingScrollView {
-  CGRect frame = self.bounds;
-
-  // We make the paging scroll view a little bit wider on the side edges so that there
-  // there is space between the pages when flipping through them.
-  frame.origin.x -= self.pageHorizontalMargin;
-  frame.size.width += (2 * self.pageHorizontalMargin);
-
-  return frame;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGRect)frameForPageAtIndex:(NSInteger)pageIndex {
-  // We have to use our paging scroll view's bounds, not frame, to calculate the page
-  // placement. When the device is in landscape orientation, the frame will still be in
-  // portrait because the pagingScrollView is the root view controller's view, so its
-  // frame is in window coordinate space, which is never rotated. Its bounds, however,
-  // will be in landscape because it has a rotation transform applied.
-  CGRect bounds = _pagingScrollView.bounds;
-  CGRect pageFrame = bounds;
-
-  // We need to counter the extra spacing added to the paging scroll view in
-  // frameForPagingScrollView:
-  pageFrame.size.width -= self.pageHorizontalMargin * 2;
-  pageFrame.origin.x = (bounds.size.width * pageIndex) + self.pageHorizontalMargin;
-
-  return pageFrame;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGSize)contentSizeForPagingScrollView {
-  // We have to use the paging scroll view's bounds to calculate the contentSize, for the
-  // same reason outlined above.
-  CGRect bounds = _pagingScrollView.bounds;
-  return CGSizeMake(bounds.size.width * _numberOfPages, bounds.size.height);
 }
 
 
@@ -155,74 +71,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NIPhotoScrollView *)dequeueRecycledPage {
-  NIPhotoScrollView* page = [_recycledPages anyObject];
-
-  if (nil != page) {
-    // Ensure that this object sticks around for this runloop.
-    [[page retain] autorelease];
-
-    [_recycledPages removeObject:page];
-
-    // Reset this page to a blank slate state.
-    [page prepareForReuse];
-  }
-
-  return page;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)isDisplayingPageForIndex:(NSInteger)pageIndex {
-  BOOL foundPage = NO;
-
-  // There will never be more than 3 visible pages in this array, so this lookup is
-  // effectively O(C) constant time.
-  for (NIPhotoScrollView* page in _visiblePages) {
-    if (page.photoIndex == pageIndex) {
-      foundPage = YES;
-      break;
-    }
-  }
-
-  return foundPage;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)currentVisiblePageIndex {
-  CGPoint contentOffset = _pagingScrollView.contentOffset;
-  CGSize boundsSize = _pagingScrollView.bounds.size;
-
-  // Whatever image is currently displayed in the center of the screen is the currently
-  // visible image.
-  return boundi((NSInteger)(floorf((contentOffset.x + boundsSize.width / 2) / boundsSize.width)
-                            + 0.5f),
-                0, self.numberOfPhotos);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSRange)visiblePageRange {
-  if (0 >= _numberOfPages) {
-    return NSMakeRange(0, 0);
-  }
-
-  NSInteger currentVisiblePageIndex = [self currentVisiblePageIndex];
-
-  int firstVisiblePageIndex = boundi(currentVisiblePageIndex - 1, 0, _numberOfPages - 1);
-  int lastVisiblePageIndex  = boundi(currentVisiblePageIndex + 1, 0, _numberOfPages - 1);
-
-  return NSMakeRange(firstVisiblePageIndex, lastVisiblePageIndex - firstVisiblePageIndex + 1);
-}
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)configurePage:(NIPhotoScrollView *)page forIndex:(NSInteger)pageIndex {
-  page.photoIndex = pageIndex;
-  page.frame = [self frameForPageAtIndex:pageIndex];
-
+- (void)willConfigurePage:(NIPhotoScrollView *)page forIndex:(NSInteger)pageIndex {
   // When we ask the data source for the image we expect the following to happen:
   // 1) If the data source has any image at this index, it should return it and set the
   //    photoSize accordingly.
@@ -234,11 +83,11 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   NIPhotoScrollViewPhotoSize photoSize = NIPhotoScrollViewPhotoSizeUnknown;
   BOOL isLoading = NO;
   CGSize originalPhotoDimensions = CGSizeZero;
-  UIImage* image = [_dataSource photoAlbumScrollView: self
-                                        photoAtIndex: pageIndex
-                                           photoSize: &photoSize
-                                           isLoading: &isLoading
-                             originalPhotoDimensions: &originalPhotoDimensions];
+  UIImage* image = [self.dataSource photoAlbumScrollView: self
+                                            photoAtIndex: pageIndex
+                                               photoSize: &photoSize
+                                               isLoading: &isLoading
+                                 originalPhotoDimensions: &originalPhotoDimensions];
 
   page.photoDimensions = originalPhotoDimensions;
 
@@ -261,131 +110,21 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)resetPage:(NIPhotoScrollView *)page {
-  page.zoomScale = page.minimumZoomScale;
+- (void)didCreatePage:(NIPhotoScrollView *)page {
+  page.photoScrollViewDelegate = self;
+  page.zoomingAboveOriginalSizeIsEnabled = [self isZoomingAboveOriginalSizeEnabled];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)resetSurroundingPages {
-  for (NIPhotoScrollView* page in _visiblePages) {
-    if (page.photoIndex != self.centerPhotoIndex) {
-      [self resetPage:page];
-    }
+- (void)didRecyclePage:(id<NIPagingScrollViewPage>)page {
+  // Give the data source the opportunity to kill any asynchronous operations for this
+  // now-recycled page.
+  if ([self.dataSource respondsToSelector:
+       @selector(photoAlbumScrollView:stopLoadingPhotoAtIndex:)]) {
+    [self.dataSource photoAlbumScrollView: self
+                  stopLoadingPhotoAtIndex: page.pageIndex];
   }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)displayPageAtIndex:(NSInteger)pageIndex {
-  NIPhotoScrollView* page = [self dequeueRecycledPage];
-
-  if (nil == page) {
-    page = [[[NIPhotoScrollView alloc] init] autorelease];
-    page.photoScrollViewDelegate = self;
-    page.zoomingAboveOriginalSizeIsEnabled = [self isZoomingAboveOriginalSizeEnabled];
-  }
-
-  // This will only be called once each time the page is shown.
-  [self configurePage:page forIndex:pageIndex];
-
-  [_pagingScrollView addSubview:page];
-  [_visiblePages addObject:page];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)updateVisiblePages {
-  NSInteger oldCenterPhotoIndex = self.centerPhotoIndex;
-
-  NSRange visiblePageRange = [self visiblePageRange];
-
-  _centerPhotoIndex = [self currentVisiblePageIndex];
-
-  // Recycle no-longer-visible pages.
-  for (NIPhotoScrollView* page in _visiblePages) {
-    if (!NSLocationInRange(page.photoIndex, visiblePageRange)) {
-      [_recycledPages addObject:page];
-      [page removeFromSuperview];
-
-      // Give the data source the opportunity to kill any asynchronous operations for this
-      // now-recycled page.
-      if ([_dataSource respondsToSelector:
-           @selector(photoAlbumScrollView:stopLoadingPhotoAtIndex:)]) {
-        [_dataSource photoAlbumScrollView: self
-                  stopLoadingPhotoAtIndex: page.photoIndex];
-      }
-    }
-  }
-  [_visiblePages minusSet:_recycledPages];
-
-  // Prioritize displaying the currently visible page.
-  if (![self isDisplayingPageForIndex:_centerPhotoIndex]) {
-    [self displayPageAtIndex:_centerPhotoIndex];
-  }
-
-  // Add missing pages.
-  for (int pageIndex = visiblePageRange.location;
-       pageIndex < NSMaxRange(visiblePageRange); ++pageIndex) {
-    if (![self isDisplayingPageForIndex:pageIndex]) {
-      [self displayPageAtIndex:pageIndex];
-    }
-  }
-
-  if (oldCenterPhotoIndex != _centerPhotoIndex
-      && [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidChangePages:)]) {
-    [self.delegate photoAlbumScrollViewDidChangePages:self];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark UIScrollViewDelegate
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setFrame:(CGRect)frame {
-  // We have to modify this method because it eventually leads to changing the content offset
-  // programmatically. When this happens we end up getting a scrollViewDidScroll: message
-  // during which we do not want to modify the visible pages because this is handled elsewhere.
-
-
-  // Don't lose the previous modification state if an animation is occurring when the
-  // frame changes, like when the device changes orientation.
-  BOOL wasModifyingContentOffset = _isModifyingContentOffset;
-  _isModifyingContentOffset = YES;
-  [super setFrame:frame];
-  _isModifyingContentOffset = wasModifyingContentOffset;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-  if (!_isModifyingContentOffset) {
-    // This method is called repeatedly as the user scrolls so updateVisiblePages must be
-    // leight-weight enough not to noticeably impact performance.
-    [self updateVisiblePages];
-
-    if ([self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidScroll:)]) {
-      [self.delegate photoAlbumScrollViewDidScroll:self];
-    }
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-  if (!decelerate) {
-    [self resetSurroundingPages];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-  [self resetSurroundingPages];
 }
 
 
@@ -411,50 +150,11 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)reloadData {
-  NIDASSERT(nil != _dataSource);
-
-  // Remove any visible pages from the view before we release the sets.
-  for (NIPhotoScrollView* page in _visiblePages) {
-    [page removeFromSuperview];
-  }
-
-  NI_RELEASE_SAFELY(_visiblePages);
-  NI_RELEASE_SAFELY(_recycledPages);
-
-  // Reset the state of the scroll view.
-  _isModifyingContentOffset = YES;
-  _pagingScrollView.contentSize = self.bounds.size;
-  _pagingScrollView.contentOffset = CGPointZero;
-  _isModifyingContentOffset = NO;
-
-  // If there is no data source then we can't do anything particularly interesting.
-  if (nil == _dataSource) {
-    return;
-  }
-
-  _visiblePages = [[NSMutableSet alloc] init];
-  _recycledPages = [[NSMutableSet alloc] init];
-
-  // Cache the number of pages.
-  _numberOfPages = [_dataSource numberOfPhotosInPhotoScrollView:self];
-
-  _pagingScrollView.frame = [self frameForPagingScrollView];
-
-  // The content size is calculated based on the number of pages and the scroll view frame.
-  _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
-
-  // Begin requesting the photo information from the data source.
-  [self updateVisiblePages];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didLoadPhoto: (UIImage *)image
-             atIndex: (NSInteger)photoIndex
+             atIndex: (NSInteger)pageIndex
            photoSize: (NIPhotoScrollViewPhotoSize)photoSize {
-  for (NIPhotoScrollView* page in _visiblePages) {
-    if (page.photoIndex == photoIndex) {
+  for (NIPhotoScrollView* page in self.visiblePages) {
+    if (page.pageIndex == pageIndex) {
 
       // Only replace the photo if it's of a higher quality than one we're already showing.
       if (photoSize > page.photoSize) {
@@ -465,7 +165,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
         // Notify the delegate that the photo has been loaded.
         if (NIPhotoScrollViewPhotoSizeOriginal == photoSize) {
-          [self notifyDelegatePhotoDidLoadAtIndex:photoIndex];
+          [self notifyDelegatePhotoDidLoadAtIndex:pageIndex];
         }
       }
       break;
@@ -475,57 +175,10 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)willRotateToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
-                                duration: (NSTimeInterval)duration {
-  // Here, our pagingScrollView bounds have not yet been updated for the new interface
-  // orientation. This is a good place to calculate the content offset that we will
-  // need in the new orientation.
-  CGFloat offset = _pagingScrollView.contentOffset.x;
-  CGFloat pageWidth = _pagingScrollView.bounds.size.width;
-
-  if (offset >= 0) {
-    _firstVisiblePageIndexBeforeRotation = floorf(offset / pageWidth);
-    _percentScrolledIntoFirstVisiblePage = ((offset
-                                            - (_firstVisiblePageIndexBeforeRotation * pageWidth))
-                                           / pageWidth);
-
-  } else {
-    _firstVisiblePageIndexBeforeRotation = 0;
-    _percentScrolledIntoFirstVisiblePage = offset / pageWidth;
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
-                                         duration: (NSTimeInterval)duration {
-  BOOL wasModifyingContentOffset = _isModifyingContentOffset;
-
-  // Recalculate contentSize based on current orientation.
-  _isModifyingContentOffset = YES;
-  _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
-  _isModifyingContentOffset = wasModifyingContentOffset;
-
-  // adjust frames and configuration of each visible page.
-  for (NIPhotoScrollView* page in _visiblePages) {
-    [page setFrameAndMaintainZoomAndCenter:[self frameForPageAtIndex:page.photoIndex]];
-  }
-
-  // Adjust contentOffset to preserve page location based on values collected prior to location.
-  CGFloat pageWidth = _pagingScrollView.bounds.size.width;
-  CGFloat newOffset = ((_firstVisiblePageIndexBeforeRotation * pageWidth)
-                       + (_percentScrolledIntoFirstVisiblePage * pageWidth));
-  _isModifyingContentOffset = YES;
-  _pagingScrollView.contentOffset = CGPointMake(newOffset, 0);
-  _isModifyingContentOffset = wasModifyingContentOffset;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setZoomingAboveOriginalSizeIsEnabled:(BOOL)enabled {
   _zoomingAboveOriginalSizeIsEnabled = enabled;
 
-  for (NIPhotoScrollView* page in _visiblePages) {
+  for (NIPhotoScrollView* page in self.visiblePages) {
     page.zoomingAboveOriginalSizeIsEnabled = enabled;
   }
 }
@@ -533,94 +186,39 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasNext {
-  return (self.centerPhotoIndex < self.numberOfPhotos - 1);
+  return (self.centerPageIndex < self.numberOfPages - 1);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasPrevious {
-  return self.centerPhotoIndex > 0;
+  return self.centerPageIndex > 0;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didAnimateToPage:(NSNumber *)photoIndex {
-  _isAnimatingToPhoto = NO;
-
-  // Reset the content offset once the animation completes, just to be sure that the
-  // viewer sits on a page bounds even if we rotate the device while animating.
-  CGPoint offset = [self frameForPageAtIndex:[photoIndex intValue]].origin;
-  offset.x -= self.pageHorizontalMargin;
-
-  _isModifyingContentOffset = YES;
-  _pagingScrollView.contentOffset = offset;
-  _isModifyingContentOffset = NO;
-
-  [self updateVisiblePages];
+- (id<NIPhotoAlbumScrollViewDataSource>)dataSource {
+  NIDASSERT([[super dataSource] conformsToProtocol:@protocol(NIPhotoAlbumScrollViewDataSource)]);
+  return (id<NIPhotoAlbumScrollViewDataSource>)[super dataSource];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)moveToPageAtIndex:(NSInteger)photoIndex animated:(BOOL)animated {
-  if (_isAnimatingToPhoto) {
-    // Don't allow re-entry for sliding animations.
-    return;
-  }
-
-  CGPoint offset = [self frameForPageAtIndex:photoIndex].origin;
-  offset.x -= self.pageHorizontalMargin;
-
-  _isModifyingContentOffset = YES;
-  [_pagingScrollView setContentOffset:offset animated:animated];
-
-  NSNumber* photoIndexNumber = [NSNumber numberWithInt:photoIndex];
-  if (animated) {
-    _isAnimatingToPhoto = YES;
-    SEL selector = @selector(didAnimateToPage:);
-    [NSObject cancelPreviousPerformRequestsWithTarget: self];
-
-    // When the animation is finished we reset the content offset just in case the frame
-    // changes while we're animating (like when rotating the device). To do this we need
-    // to know the destination index for the animation.
-    [self performSelector: selector
-               withObject: photoIndexNumber
-               afterDelay: 0.4];
-
-  } else {
-    [self didAnimateToPage:photoIndexNumber];
-  }
+- (void)setDataSource:(id<NIPhotoAlbumScrollViewDataSource>)dataSource {
+  [super setDataSource:(id<NIPagingScrollViewDataSource>)dataSource];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)moveToNextAnimated:(BOOL)animated {
-  if ([self hasNext]) {
-    NSInteger pageIndex = self.centerPhotoIndex + 1;
-
-    [self moveToPageAtIndex:pageIndex animated:animated];
-  }
+- (id<NIPhotoAlbumScrollViewDelegate>)delegate {
+  NIDASSERT([[super delegate] conformsToProtocol:@protocol(NIPhotoAlbumScrollViewDelegate)]);
+  return (id<NIPhotoAlbumScrollViewDelegate>)[super delegate];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)moveToPreviousAnimated:(BOOL)animated {
-  if ([self hasPrevious]) {
-    NSInteger pageIndex = self.centerPhotoIndex - 1;
-
-    [self moveToPageAtIndex:pageIndex animated:animated];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setCenterPhotoIndex:(NSInteger)centerPhotoIndex animated:(BOOL)animated {
-  [self moveToPageAtIndex:centerPhotoIndex animated:animated];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setCenterPhotoIndex:(NSInteger)centerPhotoIndex {
-  [self setCenterPhotoIndex:centerPhotoIndex animated:NO];
+- (void)setDelegate:(id<NIPhotoAlbumScrollViewDelegate>)delegate {
+  [super setDelegate:(id<NIPhotoAlbumScrollViewDelegate>)delegate];
 }
 
 

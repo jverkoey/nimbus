@@ -36,12 +36,6 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
  */
 @interface NIPagingScrollView : UIView <UIScrollViewDelegate> {
 @private
-  UIScrollView* _pagingScrollView;
-
-  // Sets of UIViews
-  NSMutableSet* _visiblePages;
-  NSMutableSet* _recycledPages;
-
   // Configurable Properties
   CGFloat _pageHorizontalMargin;
 
@@ -179,5 +173,49 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 - (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
                                          duration: (NSTimeInterval)duration;
 
+
+#pragma mark Subclassing /** @name Subclassing */
+
+/**
+ * The internal scroll view.
+ *
+ * Meant to be used by subclasses only.
+ */
+@property (nonatomic, readonly, retain) UIScrollView* pagingScrollView;
+
+/**
+ * The set of currently visible pages.
+ *
+ * Meant to be used by subclasses only.
+ */
+@property (nonatomic, readonly, copy) NSMutableSet* visiblePages;
+
+/**
+ * The set of inactive pages that are ready to be reused.
+ *
+ * Meant to be used by subclasses only.
+ */
+@property (nonatomic, readonly, copy) NSMutableSet* recycledPages;
+
+/**
+ * Called before the page is about to be shown and after its frame has been set.
+ *
+ * Meant to be subclassed. By default this method does nothing.
+ */
+- (void)willConfigurePage:(id<NIPagingScrollViewPage>)page forIndex:(NSInteger)pageIndex;
+
+/**
+ * Called immediately after the page is allocated.
+ *
+ * Meant to be subclassed. By default this method does nothing.
+ */
+- (void)didCreatePage:(id<NIPagingScrollViewPage>)page;
+
+/**
+ * Called immediately after the page is removed from the paging scroll view.
+ *
+ * Meant to be subclassed. By default this method does nothing.
+ */
+- (void)didRecyclePage:(id<NIPagingScrollViewPage>)page;
 
 @end

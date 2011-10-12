@@ -126,7 +126,7 @@
                           flexibleSpace, scrubberItem, flexibleSpace,
                           nil];
 
-    [_photoScrubberView setSelectedPhotoIndex:self.photoAlbumView.centerPhotoIndex];
+    [_photoScrubberView setSelectedPhotoIndex:self.photoAlbumView.centerPageIndex];
     
   } else {
     NI_RELEASE_SAFELY(_photoScrubberView);
@@ -442,8 +442,8 @@
   self.nextButton.enabled = [self.photoAlbumView hasNext];
   
   self.title = [NSString stringWithFormat:@"%d of %d",
-                (self.photoAlbumView.centerPhotoIndex + 1),
-                self.photoAlbumView.numberOfPhotos];
+                (self.photoAlbumView.centerPageIndex + 1),
+                self.photoAlbumView.numberOfPages];
 }
 
 
@@ -454,7 +454,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)photoAlbumScrollViewDidScroll:(NIPhotoAlbumScrollView *)photoAlbumScrollView {
+- (void)pagingScrollViewDidScroll:(NIPagingScrollView *)pagingScrollView {
   if (self.hidesChromeWhenScrolling) {
     [self setChromeVisibility:NO animated:YES];
   }
@@ -473,11 +473,11 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)photoAlbumScrollViewDidChangePages:(NIPhotoAlbumScrollView *)photoAlbumScrollView {
+- (void)pagingScrollViewDidChangePages:(NIPagingScrollView *)pagingScrollView {
   // We animate the scrubber when the chrome won't disappear as a nice touch.
   // We don't bother animating if the chrome disappears when scrolling because the user
   // will barely see the animation happen.
-  [self.photoScrubberView setSelectedPhotoIndex: [photoAlbumScrollView centerPhotoIndex]
+  [self.photoScrubberView setSelectedPhotoIndex: [pagingScrollView centerPageIndex]
                                        animated: !self.hidesChromeWhenScrolling];
 
   [self refreshChromeState];
@@ -492,7 +492,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)photoScrubberViewDidChangeSelection:(NIPhotoScrubberView *)photoScrubberView {
-  [self.photoAlbumView setCenterPhotoIndex:photoScrubberView.selectedPhotoIndex animated:NO];
+  [self.photoAlbumView setCenterPageIndex:photoScrubberView.selectedPhotoIndex animated:NO];
 
   [self refreshChromeState];
 }

@@ -17,6 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NIPagingScrollViewPage.h"
+
 /**
  * Contextual information about the size of the photo.
  */
@@ -39,13 +41,11 @@ typedef enum {
  *      @ingroup Photos-Views
  */
 @interface NIPhotoScrollView : UIScrollView <
-  UIScrollViewDelegate> {
+  UIScrollViewDelegate,
+  NIPagingScrollViewPage> {
 @private
   // The photo view to be zoomed.
   UIImageView*  _imageView;
-
-  // Photo Album State
-  NSInteger _photoIndex;
 
   // Photo Information
   NIPhotoScrollViewPhotoSize  _photoSize;
@@ -108,7 +108,7 @@ typedef enum {
 /**
  * The index of this photo within a photo album.
  */
-@property (nonatomic, readwrite, assign) NSInteger photoIndex;
+@property (nonatomic, readwrite, assign) NSInteger pageIndex;
 
 /**
  * The current size of the photo.

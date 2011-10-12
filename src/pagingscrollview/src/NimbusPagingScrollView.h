@@ -24,3 +24,7 @@
 /**@}*/
 
 #import "NimbusCore.h"
+#import "NIPagingScrollView.h"
+#import "NIPagingScrollViewDataSource.h"
+#import "NIPagingScrollViewDelegate.h"
+#import "NIPagingScrollViewPage.h"

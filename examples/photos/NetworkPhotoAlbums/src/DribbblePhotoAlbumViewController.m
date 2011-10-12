@@ -217,7 +217,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)numberOfPhotosInPhotoScrollView:(NIPhotoAlbumScrollView *)photoScrollView {
+- (NSInteger)numberOfPagesInPagingScrollView:(NIPhotoAlbumScrollView *)photoScrollView {
   return [_photoInformation count];
 }
 
