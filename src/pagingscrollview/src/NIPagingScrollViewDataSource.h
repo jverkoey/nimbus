@@ -30,6 +30,15 @@
  * The value returned in this method will be cached by the scroll view until reloadData
  * is called again.
  */
-- (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pageScrollView;
+- (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView;
+
+@optional
+
+/**
+ * Fetches the class for page views.
+ *
+ * The class should be a subclass of UIView that implements the NIPagingScrollViewPage protocol.
+ */
+- (Class)pageClassForPagingScrollView:(NIPagingScrollView *)pagingScrollView;
 
 @end

@@ -392,6 +392,18 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)pageClass {
+  if (nil == _pageClass && [self.dataSource respondsToSelector:
+                            @selector(pageClassForPagingScrollView:)]) {
+    return [self.dataSource pageClassForPagingScrollView:self];
+    
+  } else {
+    return _pageClass;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reloadData {
   NIDASSERT(nil != _dataSource);
 

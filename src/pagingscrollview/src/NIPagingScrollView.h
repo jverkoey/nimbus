@@ -57,6 +57,9 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 
 /**
  * A UIView class that implements the NIPagingScrollViewPage protocol.
+ *
+ * By default this is nil. If it is nil when a page is required then the scroll view will ask
+ * the data source for the class.
  */
 @property (nonatomic, readwrite, assign) Class pageClass;
 

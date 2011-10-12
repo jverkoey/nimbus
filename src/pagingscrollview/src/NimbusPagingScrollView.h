@@ -19,6 +19,15 @@
 /**
  * @defgroup NimbusPagingScrollView Nimbus Paging Scroll View
  * @{
+ *
+ * The Nimbus paging scroll view is powered by a datasource that allows you to separate the
+ * data from the view. This makes it easy to efficiently recycle views and only create as many
+ * pages of content as may be visible at any given point in time. Nimbus' implementation also
+ * provides helpful features such as maintaining the active page when the device changes
+ * orientation.
+ *
+ * Paging scroll views are commonly used in many iOS applications. Nimbus' Photos feature uses
+ * this paging scroll view to power its NIPhotoAlbumScrollView.
  */
 
 /**@}*/
