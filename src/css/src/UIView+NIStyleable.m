@@ -31,11 +31,11 @@ NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyViewStyleWithRuleSet:(NICSSRuleSet *)ruleSet {
-  if ([ruleSet hasBackgroundColor]) { self.backgroundColor = ruleSet.backgroundColor; } else { self.backgroundColor = nil; }
-  if ([ruleSet hasOpacity]) { self.alpha = ruleSet.opacity; } else { self.alpha = 1; }
-  if ([ruleSet hasBorderRadius]) { self.layer.cornerRadius = ruleSet.borderRadius; } else { self.layer.cornerRadius = 0; }
-  if ([ruleSet hasBorderWidth]) { self.layer.borderWidth = ruleSet.borderWidth; } else { self.layer.borderWidth = 0; }
-  if ([ruleSet hasBorderColor]) { self.layer.borderColor = ruleSet.borderColor.CGColor; } else { self.layer.borderColor = nil; }
+  if ([ruleSet hasBackgroundColor]) { self.backgroundColor = ruleSet.backgroundColor; }
+  if ([ruleSet hasOpacity]) { self.alpha = ruleSet.opacity; }
+  if ([ruleSet hasBorderRadius]) { self.layer.cornerRadius = ruleSet.borderRadius; }
+  if ([ruleSet hasBorderWidth]) { self.layer.borderWidth = ruleSet.borderWidth; }
+  if ([ruleSet hasBorderColor]) { self.layer.borderColor = ruleSet.borderColor.CGColor; }
 }
 
 

@@ -2,8 +2,5 @@
 @import url("common.css");
 
 UILabel {
-  color: orange;
+  font-size: 1000;
 }
-
-
-

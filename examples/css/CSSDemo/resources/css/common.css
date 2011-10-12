@@ -1,12 +1,13 @@
+
+.myClass {
+  color: red;
+}
+
+
 UIView {
   background-color: black;
 }
 
 UINavigationBar {
-  -ios-tint-color: black;
-}
-
-UILabel {
-  background-color: clear;
-  font-size: 20;
+  -ios-tint-color: red;
 }

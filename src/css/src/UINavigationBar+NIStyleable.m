@@ -31,7 +31,7 @@ NI_FIX_CATEGORY_BUG(UINavigationBar_NIStyleable)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyNavigationBarStyleWithRuleSet:(NICSSRuleSet *)ruleSet {
-  if ([ruleSet hasTintColor]) { self.tintColor = ruleSet.tintColor; } else { self.tintColor = nil; }
+  if ([ruleSet hasTintColor]) { self.tintColor = ruleSet.tintColor; }
 }
 
 

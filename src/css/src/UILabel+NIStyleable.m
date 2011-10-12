@@ -31,16 +31,16 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyLabelStyleWithRuleSet:(NICSSRuleSet *)ruleSet {
-  if ([ruleSet hasTextColor]) { self.textColor = ruleSet.textColor; } else { self.textColor = nil; }
-  if ([ruleSet hasTextAlignment]) { self.textAlignment = ruleSet.textAlignment; } else {self.textAlignment = UITextAlignmentLeft; }
-  if ([ruleSet hasFont]) { self.font = ruleSet.font; } else { self.font = nil; }
-  if ([ruleSet hasTextShadowColor]) { self.shadowColor = ruleSet.textShadowColor; } else { self.shadowColor = nil; }
-  if ([ruleSet hasTextShadowOffset]) { self.shadowOffset = ruleSet.textShadowOffset; } else { self.shadowOffset = CGSizeZero; }
-  if ([ruleSet hasLineBreakMode]) { self.lineBreakMode = ruleSet.lineBreakMode; } else { self.lineBreakMode = UILineBreakModeWordWrap; }
-  if ([ruleSet hasNumberOfLines]) { self.numberOfLines = ruleSet.numberOfLines; } else { self.numberOfLines = 1; }
-  if ([ruleSet hasMinimumFontSize]) { self.minimumFontSize = ruleSet.minimumFontSize; } else { self.minimumFontSize = 0; }
-  if ([ruleSet hasAdjustsFontSize]) { self.adjustsFontSizeToFitWidth = ruleSet.adjustsFontSize; } else { self.adjustsFontSizeToFitWidth = NO; }
-  if ([ruleSet hasBaselineAdjustment]) { self.baselineAdjustment = ruleSet.baselineAdjustment; } else { self.baselineAdjustment = UIBaselineAdjustmentNone; }
+  if ([ruleSet hasTextColor]) { self.textColor = ruleSet.textColor; }
+  if ([ruleSet hasTextAlignment]) { self.textAlignment = ruleSet.textAlignment; }
+  if ([ruleSet hasFont]) { self.font = ruleSet.font; }
+  if ([ruleSet hasTextShadowColor]) { self.shadowColor = ruleSet.textShadowColor; }
+  if ([ruleSet hasTextShadowOffset]) { self.shadowOffset = ruleSet.textShadowOffset; }
+  if ([ruleSet hasLineBreakMode]) { self.lineBreakMode = ruleSet.lineBreakMode; }
+  if ([ruleSet hasNumberOfLines]) { self.numberOfLines = ruleSet.numberOfLines; }
+  if ([ruleSet hasMinimumFontSize]) { self.minimumFontSize = ruleSet.minimumFontSize; }
+  if ([ruleSet hasAdjustsFontSize]) { self.adjustsFontSizeToFitWidth = ruleSet.adjustsFontSize; }
+  if ([ruleSet hasBaselineAdjustment]) { self.baselineAdjustment = ruleSet.baselineAdjustment; }
 }
 
 

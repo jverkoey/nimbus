@@ -30,6 +30,7 @@
 - (void)dealloc {
   NI_RELEASE_SAFELY(_stylesheet);
   NI_RELEASE_SAFELY(_registeredViews);
+  NI_RELEASE_SAFELY(_viewToSelectorsMap);
 
   [super dealloc];
 }
@@ -71,6 +72,7 @@
   if ((self = [super init])) {
     _stylesheet = [stylesheet retain];
     _registeredViews = [[NSMutableSet alloc] init];
+    _viewToSelectorsMap = [[NSMutableDictionary alloc] init];
   }
   return self;
 }
@@ -82,8 +84,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)refreshStyleForView:(UIView *)view {
-  [_stylesheet applyStyleToView:view];
+- (void)refreshStyleForView:(UIView *)view withSelectorName:(NSString *)selectorName {
+  [_stylesheet applyStyleToView:view withSelectorName:selectorName];
 }
 
 
@@ -93,9 +95,41 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)keyForView:(UIView *)view {
+  return [NSNumber numberWithLong:(long)view];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)registerSelector:(NSString *)selector withView:(UIView *)view {
+  id key = [self keyForView:view];
+  NSMutableArray* selectors = [_viewToSelectorsMap objectForKey:key];
+  if (nil == selectors) {
+    selectors = [[[NSMutableArray alloc] init] autorelease];
+    [_viewToSelectorsMap setObject:selectors forKey:key];
+  }
+  [selectors addObject:selector];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)registerView:(UIView *)view {
+  NSString* selector = NSStringFromClass([view class]);
+  [self registerSelector:selector withView:view];
+
   [_registeredViews addObject:view];
-  [self refreshStyleForView:view];
+  [self refreshStyleForView:view withSelectorName:selector];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass {
+  [self registerView:view];
+
+  NSString* selector = [@"." stringByAppendingString:cssClass];
+  [self registerSelector:selector withView:view];
+
+  [self refreshStyleForView:view withSelectorName:selector];
 }
 
 
@@ -108,7 +142,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)refresh {
   for (UIView* view in _registeredViews) {
-    [self refreshStyleForView:view];
+    for (NSString* selector in [_viewToSelectorsMap objectForKey:[self keyForView:view]]) {
+      [self refreshStyleForView:view withSelectorName:selector];
+    }
   }
 }
 

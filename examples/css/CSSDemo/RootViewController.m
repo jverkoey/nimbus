@@ -60,10 +60,11 @@
   [_testLabel sizeToFit];
   _testLabel.frame = CGRectMake(10, 10, self.view.bounds.size.width - 20, 100);
   [self.view addSubview:_testLabel];
-  
+
   [_dom registerView:self.view];
   [_dom registerView:self.navigationController.navigationBar];
   [_dom registerView:_testLabel];
+  [_dom registerView:_testLabel withCSSClass:@"myClass"];
 }
 
 

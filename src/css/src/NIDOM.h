@@ -22,6 +22,7 @@
 @private
   NIStylesheet* _stylesheet;
   NSMutableSet* _registeredViews;
+  NSMutableDictionary* _viewToSelectorsMap;
 }
 
 // Designated initializer.
@@ -31,6 +32,7 @@
 + (id)domWithStylesheetRootPath:(NSString *)rootPath filenames:(NSString *)stylesheetPath, ...;
 
 - (void)registerView:(UIView *)view;
+- (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass;
 - (void)unregisterView:(UIView *)view;
 - (void)refresh;
 

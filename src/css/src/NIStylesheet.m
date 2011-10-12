@@ -212,13 +212,11 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleToView:(UIView *)view {
-  Class viewClass = [view class];
-  NSString* viewClassName = NSStringFromClass(viewClass);
-  NSArray* selectors = [_classToRuleSetMap objectForKey:viewClassName];
+- (void)applyStyleToView:(UIView *)view withSelectorName:(NSString *)selectorName {
+  NSArray* selectors = [_classToRuleSetMap objectForKey:selectorName];
   if ([selectors count] > 0) {
     // Gather all of the rule sets for this view into a composite rule set.
-    NICSSRuleSet* ruleSet = [_ruleSets objectForKey:viewClassName];
+    NICSSRuleSet* ruleSet = [_ruleSets objectForKey:selectorName];
 
     if (nil == ruleSet) {
       ruleSet = [[NICSSRuleSet alloc] init];
@@ -229,7 +227,7 @@
       }
 
       NIDASSERT(nil != _ruleSets);
-      [_ruleSets setObject:ruleSet forKey:viewClassName];
+      [_ruleSets setObject:ruleSet forKey:selectorName];
       [ruleSet release]; // We can release the ruleSet because it's retained by the dictionary.
     }
 
