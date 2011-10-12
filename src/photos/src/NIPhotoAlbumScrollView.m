@@ -44,8 +44,6 @@
     // Default state.
     self.zoomingIsEnabled = YES;
     self.zoomingAboveOriginalSizeIsEnabled = YES;
-
-    self.pageClass = [NIPhotoScrollView class];
   }
   return self;
 }
@@ -110,13 +108,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didCreatePage:(NIPhotoScrollView *)page {
-  page.photoScrollViewDelegate = self;
-  page.zoomingAboveOriginalSizeIsEnabled = [self isZoomingAboveOriginalSizeEnabled];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didRecyclePage:(id<NIPagingScrollViewPage>)page {
   // Give the data source the opportunity to kill any asynchronous operations for this
   // now-recycled page.
@@ -147,6 +138,25 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Public Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView
+                                  pageForIndex:(NSInteger)pageIndex {
+  id<NIPagingScrollViewPage> page = nil;
+  NSString* reuseIdentifier = @"photo";
+  page = [pagingScrollView dequeueReusablePageWithIdentifier:reuseIdentifier];
+  if (nil == page) {
+    page = [[[NIPhotoScrollView alloc] init] autorelease];
+    page.reuseIdentifier = reuseIdentifier;
+  }
+
+  NIPhotoScrollView* photoScrollView = (NIPhotoScrollView *)page;
+  photoScrollView.photoScrollViewDelegate = self;
+  photoScrollView.zoomingAboveOriginalSizeIsEnabled = [self isZoomingAboveOriginalSizeEnabled];
+
+  return page;
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

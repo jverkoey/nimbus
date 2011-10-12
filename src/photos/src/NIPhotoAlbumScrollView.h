@@ -58,6 +58,11 @@
  */
 @property (nonatomic, readwrite, assign) id<NIPhotoAlbumScrollViewDataSource> dataSource;
 
+/**
+ * Stock implementation of NIPagingScrollViewDatasource's method for creating a page.
+ */
+- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageForIndex:(NSInteger)pageIndex;
+
 
 #pragma mark Delegate /** @name Delegate */
 

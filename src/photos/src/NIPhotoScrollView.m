@@ -25,6 +25,7 @@
 @implementation NIPhotoScrollView
 
 @synthesize pageIndex  = _pageIndex;
+@synthesize reuseIdentifier = _reuseIdentifier;
 @synthesize photoSize   = _photoSize;
 @synthesize photoDimensions = _photoDimensions;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
@@ -35,6 +36,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_doubleTapGestureRecognizer);
+  NI_RELEASE_SAFELY(_reuseIdentifier);
 
   [super dealloc];
 }
@@ -373,11 +375,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prepareForReuse {
   _imageView.image = nil;
-
   self.photoSize = NIPhotoScrollViewPhotoSizeUnknown;
-
   self.zoomScale = 1;
-
   self.contentSize = self.bounds.size;
 }
 

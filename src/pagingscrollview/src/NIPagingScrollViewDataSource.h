@@ -32,13 +32,12 @@
  */
 - (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView;
 
-@optional
-
 /**
- * Fetches the class for page views.
+ * Fetches a page that will be displayed at the given page index.
  *
- * The class should be a subclass of UIView that implements the NIPagingScrollViewPage protocol.
+ * You should always try to reuse pages by calling dequeueReusablePageWithIdentifier: on the
+ * paging scroll view before allocating a new page.
  */
-- (Class)pageClassForPagingScrollView:(NIPagingScrollView *)pagingScrollView;
+- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageForIndex:(NSInteger)pageIndex;
 
 @end

@@ -21,6 +21,7 @@
 
 @property (nonatomic, readwrite, assign) CGRect frame;
 @property (nonatomic, readwrite, assign) NSInteger pageIndex;
+@property (nonatomic, readwrite, copy) NSString* reuseIdentifier;
 
 - (void)setFrameAndMaintainZoomAndCenter:(CGRect)frame;
 
