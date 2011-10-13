@@ -62,10 +62,10 @@ typedef enum {
 
 #pragma mark Configuring Functionality
 
-@property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled;
-@property (nonatomic, readwrite, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled;
-@property (nonatomic, readwrite, assign, getter=isDoubleTapToZoomEnabled) BOOL doubleTapToZoomIsEnabled;
-
+@property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled; // default: yes
+@property (nonatomic, readwrite, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled; // default: yes
+@property (nonatomic, readwrite, assign, getter=isDoubleTapToZoomEnabled) BOOL doubleTapToZoomIsEnabled; // default: yes
+@property (nonatomic, readwrite, assign) id<NIPhotoScrollViewDelegate> photoScrollViewDelegate;
 
 #pragma mark State
 
@@ -75,12 +75,6 @@ typedef enum {
 
 @property (nonatomic, readwrite, assign) NSInteger pageIndex;
 @property (nonatomic, readwrite, assign) CGSize photoDimensions;
-
-
-#pragma mark Photo Scroll View Delegate
-
-@property (nonatomic, readwrite, assign) id<NIPhotoScrollViewDelegate> photoScrollViewDelegate;
-
 
 @end
 
@@ -147,6 +141,12 @@ typedef enum {
  *      @fn NIPhotoScrollView::doubleTapToZoomIsEnabled
  */
 
+/**
+ * The photo scroll view delegate.
+ *
+ *      @fn NIPhotoScrollView::photoScrollViewDelegate
+ */
+
 
 /** @name State */
 
@@ -192,13 +192,4 @@ typedef enum {
  * CGSizeZero is used to signify an unknown final photo dimension.
  *
  *      @fn NIPhotoScrollView::photoDimensions
- */
-
-
-/** @name Photo Scroll View Delegate */
-
-/**
- * The photo scroll view delegate.
- *
- *      @fn NIPhotoScrollView::photoScrollViewDelegate
  */

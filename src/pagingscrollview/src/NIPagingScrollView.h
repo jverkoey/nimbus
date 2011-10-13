@@ -65,15 +65,10 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 
 - (void)reloadData;
 @property (nonatomic, readwrite, assign) id<NIPagingScrollViewDataSource> dataSource;
+@property (nonatomic, readwrite, assign) id<NIPagingScrollViewDelegate> delegate;
 
 // It is highly recommended that you use this method to manage view recycling.
 - (id<NIPagingScrollViewPage>)dequeueReusablePageWithIdentifier:(NSString *)identifier;
-
-
-#pragma mark Delegate
-
-@property (nonatomic, readwrite, assign) id<NIPagingScrollViewDelegate> delegate;
-
 
 #pragma mark State
 
@@ -82,11 +77,9 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 
 @property (nonatomic, readonly, assign) NSInteger numberOfPages;
 
-
 #pragma mark Configuring Presentation
 
 @property (nonatomic, readwrite, assign) CGFloat pageHorizontalMargin;
-
 
 #pragma mark Changing the Visible Page
 
@@ -95,14 +88,12 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 - (void)moveToNextAnimated:(BOOL)animated;
 - (void)moveToPreviousAnimated:(BOOL)animated;
 
-
 #pragma mark Rotating the Scroll View
 
 - (void)willRotateToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
                                 duration: (NSTimeInterval)duration;
 - (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
                                          duration: (NSTimeInterval)duration;
-
 
 #pragma mark Subclassing
 
@@ -145,9 +136,6 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
  *
  *      @fn NIPagingScrollView::dequeueReusablePageWithIdentifier:
  */
-
-
-/** @name Delegate */
 
 /**
  * The delegate for this paging view.
