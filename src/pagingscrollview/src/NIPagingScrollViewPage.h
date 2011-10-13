@@ -33,11 +33,12 @@
  */
 @property (nonatomic, readwrite, copy) NSString* reuseIdentifier;
 
+@optional
+
 /**
  * Called immediately after the page has been dequeued from the recycled pages pool.
  */
 - (void)prepareForReuse;
-
 
 #pragma mark State Changes
 

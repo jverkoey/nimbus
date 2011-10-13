@@ -17,6 +17,7 @@
 #import <Foundation/Foundation.h>
 
 @class NIPagingScrollView;
+@protocol NIPagingScrollViewPage;
 
 @protocol NIPagingScrollViewDataSource <NSObject>
 @required

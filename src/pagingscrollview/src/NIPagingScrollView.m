@@ -218,7 +218,9 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resetPage:(id<NIPagingScrollViewPage>)page {
-  [page pageDidDisappear];
+  if ([page respondsToSelector:@selector(pageDidDisappear)]) {
+    [page pageDidDisappear];
+  }
 }
 
 
@@ -242,7 +244,9 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   NSMutableSet* pages = [self.reuseIdentifiersToRecycledPages objectForKey:identifier];
   id<NIPagingScrollViewPage> page = [[[pages anyObject] retain] autorelease];
   [pages removeObject:page];
-  [page prepareForReuse];
+  if ([page respondsToSelector:@selector(prepareForReuse)]) {
+    [page prepareForReuse];
+  }
   return page;
 }
 
@@ -488,7 +492,13 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
   // adjust frames and configuration of each visible page.
   for (id<NIPagingScrollViewPage> page in _visiblePages) {
-    [page setFrameDuringRotation:[self frameForPageAtIndex:page.pageIndex]];
+    CGRect pageFrame = [self frameForPageAtIndex:page.pageIndex];
+    if ([page respondsToSelector:@selector(setFrameDuringRotation:)]) {
+      [page setFrameDuringRotation:pageFrame];
+
+    } else {
+      [(UIView *)page setFrame:pageFrame];
+    }
   }
 
   // Adjust contentOffset to preserve page location based on values collected prior to location.
