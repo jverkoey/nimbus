@@ -39,22 +39,22 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)shutdown {
+- (void)shutdown_NIToolbarPhotoViewController {
   _toolbar = nil;
   _photoAlbumView = nil;
-  
+
   NI_RELEASE_SAFELY(_nextButton);
   NI_RELEASE_SAFELY(_previousButton);
-  
+
   NI_RELEASE_SAFELY(_photoScrubberView);
-  
+
   NI_RELEASE_SAFELY(_tapGesture);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  [self shutdown];
+  [self shutdown_NIToolbarPhotoViewController];
 
   [super dealloc];
 }
@@ -221,7 +221,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
-  [self shutdown];
+  [self shutdown_NIToolbarPhotoViewController];
 
   [super viewDidUnload];
 }
