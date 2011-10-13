@@ -19,8 +19,6 @@
 @protocol NIPagingScrollViewPage <NSObject>
 @required
 
-#pragma mark Page Information
-
 /**
  * The index of this page view.
  */
@@ -29,7 +27,7 @@
 /**
  * The identifier used to categorize pages into buckets for reuse.
  *
- * Pages with will be candidates for reuse when a new page is requested with the same identifier.
+ * Pages will be reused when a new page is requested with a matching identifier.
  */
 @property (nonatomic, readwrite, copy) NSString* reuseIdentifier;
 
@@ -39,8 +37,6 @@
  * Called immediately after the page has been dequeued from the recycled pages pool.
  */
 - (void)prepareForReuse;
-
-#pragma mark State Changes
 
 /**
  * Called after the page has gone off-screen.
