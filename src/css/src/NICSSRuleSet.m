@@ -208,7 +208,13 @@ static NSDictionary* sColorTable = nil;
     } else if (!hasSetFontSize && [name isEqualToString:kFontSizeKey]) {
       values = [_ruleSet objectForKey:name];
       NIDASSERT([values count] == 1); if ([values count] < 1) { continue; }
-      fontSize = [[values objectAtIndex:0] floatValue];
+      NSString* value = [values objectAtIndex:0];
+      if ([value isEqualToString:@"default"]) {
+        fontSize = [UIFont systemFontSize];
+
+      } else {
+        fontSize = [value floatValue];
+      }
       hasSetFontSize = YES;
 
     } else if (!hasSetFontSize && !hasSetFontName && [name isEqualToString:kFontKey]) {
