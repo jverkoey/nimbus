@@ -212,7 +212,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   page.pageIndex = pageIndex;
   [(UIView *)page setFrame:[self frameForPageAtIndex:pageIndex]];
   
-  [self willConfigurePage:page forIndex:pageIndex];
+  [self configurePage:page];
 }
 
 
@@ -397,7 +397,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)willConfigurePage:(id<NIPagingScrollViewPage>)page forIndex:(NSInteger)pageIndex {
+- (void)configurePage:(id<NIPagingScrollViewPage>)page {
   // No-op.
 }
 

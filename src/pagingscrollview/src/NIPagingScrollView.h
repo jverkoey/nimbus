@@ -63,8 +63,8 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 
 #pragma mark Data Source
 
-@property (nonatomic, readwrite, assign) id<NIPagingScrollViewDataSource> dataSource;
 - (void)reloadData;
+@property (nonatomic, readwrite, assign) id<NIPagingScrollViewDataSource> dataSource;
 
 // It is highly recommended that you use this method to manage view recycling.
 - (id<NIPagingScrollViewPage>)dequeueReusablePageWithIdentifier:(NSString *)identifier;
@@ -75,17 +75,17 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 @property (nonatomic, readwrite, assign) id<NIPagingScrollViewDelegate> delegate;
 
 
-#pragma mark Configuring Presentation
-
-@property (nonatomic, readwrite, assign) CGFloat pageHorizontalMargin;
-
-
 #pragma mark State
 
 @property (nonatomic, readwrite, assign) NSInteger centerPageIndex; // Use setCenterPageIndex:animated: to animate to a given page.
 - (void)setCenterPageIndex:(NSInteger)centerPageIndex animated:(BOOL)animated;
 
 @property (nonatomic, readonly, assign) NSInteger numberOfPages;
+
+
+#pragma mark Configuring Presentation
+
+@property (nonatomic, readwrite, assign) CGFloat pageHorizontalMargin;
 
 
 #pragma mark Changing the Visible Page
@@ -109,7 +109,7 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 @property (nonatomic, readonly, retain) UIScrollView* pagingScrollView;
 @property (nonatomic, readonly, copy) NSMutableSet* visiblePages;
 
-- (void)willConfigurePage:(id<NIPagingScrollViewPage>)page forIndex:(NSInteger)pageIndex;
+- (void)configurePage:(id<NIPagingScrollViewPage>)page;
 - (void)didRecyclePage:(id<NIPagingScrollViewPage>)page;
 
 @end
@@ -270,7 +270,7 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
  *
  * Meant to be subclassed. By default this method does nothing.
  *
- *      @fn NIPagingScrollView::willConfigurePage:forIndex:
+ *      @fn NIPagingScrollView::configurePage:
  */
 
 /**

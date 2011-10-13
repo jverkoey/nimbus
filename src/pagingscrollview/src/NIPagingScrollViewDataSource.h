@@ -19,7 +19,6 @@
 @class NIPagingScrollView;
 
 @protocol NIPagingScrollViewDataSource <NSObject>
-
 @required
 
 #pragma mark Fetching Required Album Information /** @name [NIPagingScrollViewDataSource] Fetching Required Album Information */

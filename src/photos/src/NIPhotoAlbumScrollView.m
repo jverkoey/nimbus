@@ -69,7 +69,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)willConfigurePage:(NIPhotoScrollView *)page forIndex:(NSInteger)pageIndex {
+- (void)configurePage:(NIPhotoScrollView *)page {
   // When we ask the data source for the image we expect the following to happen:
   // 1) If the data source has any image at this index, it should return it and set the
   //    photoSize accordingly.
@@ -82,7 +82,7 @@
   BOOL isLoading = NO;
   CGSize originalPhotoDimensions = CGSizeZero;
   UIImage* image = [self.dataSource photoAlbumScrollView: self
-                                            photoAtIndex: pageIndex
+                                            photoAtIndex: page.pageIndex
                                                photoSize: &photoSize
                                                isLoading: &isLoading
                                  originalPhotoDimensions: &originalPhotoDimensions];
@@ -100,7 +100,7 @@
       [page setImage:image photoSize:photoSize];
 
       if (NIPhotoScrollViewPhotoSizeOriginal == photoSize) {
-        [self notifyDelegatePhotoDidLoadAtIndex:pageIndex];
+        [self notifyDelegatePhotoDidLoadAtIndex:page.pageIndex];
       }
     }
   }

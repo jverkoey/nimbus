@@ -286,9 +286,9 @@
 				663B527D1445130E00CC26DF /* NimbusPagingScrollView.h */,
 				663B527E1445130E00CC26DF /* NIPagingScrollView.h */,
 				663B527F1445130E00CC26DF /* NIPagingScrollView.m */,
-				663B52801445130E00CC26DF /* NIPagingScrollViewPage.h */,
-				663B52811445130E00CC26DF /* NIPagingScrollViewDelegate.h */,
 				663B52821445130E00CC26DF /* NIPagingScrollViewDataSource.h */,
+				663B52811445130E00CC26DF /* NIPagingScrollViewDelegate.h */,
+				663B52801445130E00CC26DF /* NIPagingScrollViewPage.h */,
 			);
 			name = "Paging Scroll View";
 			sourceTree = "<group>";
