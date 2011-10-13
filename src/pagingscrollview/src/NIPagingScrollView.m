@@ -98,6 +98,14 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didMoveToSuperview {
+  [super didMoveToSuperview];
+
+  self.pagingScrollView.backgroundColor = self.superview.backgroundColor;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Page Layout
@@ -202,7 +210,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)configurePage:(id<NIPagingScrollViewPage>)page forIndex:(NSInteger)pageIndex {
   page.pageIndex = pageIndex;
-  page.frame = [self frameForPageAtIndex:pageIndex];
+  [(UIView *)page setFrame:[self frameForPageAtIndex:pageIndex]];
   
   [self willConfigurePage:page forIndex:pageIndex];
 }
@@ -286,7 +294,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   for (id<NIPagingScrollViewPage> page in [[_visiblePages copy] autorelease]) {
     if (!NSLocationInRange(page.pageIndex, visiblePageRange)) {
       [self recyclePage:page];
-      [page removeFromSuperview];
+      [(UIView *)page removeFromSuperview];
 
       [self didRecyclePage:page];
 
@@ -412,7 +420,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
   // Remove any visible pages from the view before we release the sets.
   for (id<NIPagingScrollViewPage> page in _visiblePages) {
-    [page removeFromSuperview];
+    [(UIView *)page removeFromSuperview];
   }
 
   NI_RELEASE_SAFELY(_visiblePages);
@@ -480,7 +488,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
   // adjust frames and configuration of each visible page.
   for (id<NIPagingScrollViewPage> page in _visiblePages) {
-    [page setFrameAndMaintainZoomAndCenter:[self frameForPageAtIndex:page.pageIndex]];
+    [page setFrameDuringRotation:[self frameForPageAtIndex:page.pageIndex]];
   }
 
   // Adjust contentOffset to preserve page location based on values collected prior to location.

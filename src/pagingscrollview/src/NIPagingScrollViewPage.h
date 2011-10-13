@@ -19,16 +19,46 @@
 @protocol NIPagingScrollViewPage <NSObject>
 @required
 
-@property (nonatomic, readwrite, assign) CGRect frame;
+#pragma mark Page Information
+
+/**
+ * The index of this page view.
+ */
 @property (nonatomic, readwrite, assign) NSInteger pageIndex;
+
+/**
+ * The identifier used to categorize pages into buckets for reuse.
+ *
+ * Pages with will be candidates for reuse when a new page is requested with the same identifier.
+ */
 @property (nonatomic, readwrite, copy) NSString* reuseIdentifier;
 
-- (void)setFrameAndMaintainZoomAndCenter:(CGRect)frame;
-
+/**
+ * Called immediately after the page has been dequeued from the recycled pages pool.
+ */
 - (void)prepareForReuse;
 
-- (void)removeFromSuperview;
 
+#pragma mark State Changes
+
+/**
+ * Called after the page has gone off-screen.
+ *
+ * This method should be used to reset any state information after a page goes off-screen.
+ * For example, in the Nimbus photo viewer we reset the zoom scale so that if the photo
+ * was zoomed in it will fit on the screen again when the user flips back and forth between
+ * two pages.
+ */
 - (void)pageDidDisappear;
+
+/**
+ * Called during willAnimateRotationToInterfaceOrientation:duration:.
+ *
+ * Use this method to maintain any state that may be affected by the frame changing during a
+ * rotation. The Nimbus photo viewer uses this method to save and restore the zoom and center
+ * point. This makes the photo always appear to rotate around the center point of the screen
+ * rather than the center of the photo.
+ */
+- (void)setFrameDuringRotation:(CGRect)frame;
 
 @end

@@ -504,30 +504,12 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setFrameAndMaintainZoomAndCenter:(CGRect)frame {
+- (void)setFrameDuringRotation:(CGRect)frame {
   CGPoint restorePoint = [self pointToCenterAfterRotation];
   CGFloat restoreScale = [self scaleToRestoreAfterRotation];
   self.frame = frame;
   [self setMaxMinZoomScalesForCurrentBounds];
   [self restoreCenterPoint:restorePoint scale:restoreScale];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setFrame:(CGRect)frame {
-  [super setFrame:frame];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGRect)frame {
-  return [super frame];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)removeFromSuperview {
-  [super removeFromSuperview];
 }
 
 

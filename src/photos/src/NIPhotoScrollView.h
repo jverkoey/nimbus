@@ -148,14 +148,6 @@ typedef enum {
 - (void)setImage:(UIImage *)image photoSize:(NIPhotoScrollViewPhotoSize)photoSize;
 
 
-#pragma mark Saving/Restoring Offset and Scale /** @name Saving/Restoring Offset and Scale */
-
-/**
- * Set the frame of the view while maintaining the zoom and center of the scroll view.
- */
-- (void)setFrameAndMaintainZoomAndCenter:(CGRect)frame;
-
-
 #pragma mark Photo Scroll View Delegate /** @name Photo Scroll View Delegate */
 
 /**
