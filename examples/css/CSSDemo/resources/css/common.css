@@ -1,13 +1,16 @@
 
 .myClass {
-  color: red;
+  color: default;
+  font-size: default;
+  background-color: blue;
 }
 
 
 UIView {
-  background-color: black;
+  background-color: red;
 }
 
 UINavigationBar {
   -ios-tint-color: red;
+  font-size: default;
 }
