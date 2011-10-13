@@ -60,99 +60,25 @@ typedef enum {
   id<NIPhotoScrollViewDelegate> _photoScrollViewDelegate;
 }
 
-#pragma mark Configuring Functionality /** @name Configuring Functionality */
+#pragma mark Configuring Functionality
 
-/**
- * Whether the photo is allowed to be zoomed.
- *
- * By default this is YES.
- */
 @property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled;
-
-/**
- * Whether small photos can be zoomed at least until they fit the screen.
- *
- * If this is disabled, images smaller than the view size can not be zoomed in beyond
- * their original dimensions.
- *
- * If this is enabled, images smaller than the view size can be zoomed in only until
- * they fit the view bounds.
- *
- * The default behavior in Photos.app allows small photos to be zoomed in.
- *
- *      @attention This will allow photos to be zoomed in even if they don't have any more
- *                 pixels to show, causing the photo to blur. This can look ok for photographs,
- *                 but might not look ok for software design mockups.
- *
- * By default this is YES.
- */
 @property (nonatomic, readwrite, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled;
-
-/**
- * Whether double-tapping zooms in and out of the image.
- *
- * Available on iOS 3.2 and later.
- *
- * By default this is YES.
- */
 @property (nonatomic, readwrite, assign, getter=isDoubleTapToZoomEnabled) BOOL doubleTapToZoomIsEnabled;
 
 
-#pragma mark State /** @name State */
+#pragma mark State
 
-/**
- * The currently-displayed photo.
- */
 - (UIImage *)image;
+- (NIPhotoScrollViewPhotoSize)photoSize;
+- (void)setImage:(UIImage *)image photoSize:(NIPhotoScrollViewPhotoSize)photoSize;
 
-/**
- * The index of this photo within a photo album.
- */
 @property (nonatomic, readwrite, assign) NSInteger pageIndex;
-
-/**
- * The current size of the photo.
- *
- * This is used to replace the photo only with successively higher-quality versions.
- */
-@property (nonatomic, readwrite, assign) NIPhotoScrollViewPhotoSize photoSize;
-
-/**
- * The largest dimensions of the photo.
- *
- * This is used to show the thumbnail at the final image size in case the final image size
- * is smaller than the album's frame. Without this value we have to assume that the thumbnail
- * will take up the full screen. If the final image doesn't take up the full screen, then
- * the photo view will appear to "snap" to the smaller full-size image when the final image
- * does load.
- *
- * CGSizeZero is used to signify an unknown final photo dimension.
- */
 @property (nonatomic, readwrite, assign) CGSize photoDimensions;
 
 
-#pragma mark Modifying State /** @name Modifying State */
+#pragma mark Photo Scroll View Delegate
 
-/**
- * Remove image and reset the zoom scale.
- */
-- (void)prepareForReuse;
-
-/**
- * Set a new photo with a specific size.
- *
- * If image is nil then the photoSize will be overridden as NIPhotoScrollViewPhotoSizeUnknown.
- *
- * Resets the current zoom levels and zooms to fit the image.
- */
-- (void)setImage:(UIImage *)image photoSize:(NIPhotoScrollViewPhotoSize)photoSize;
-
-
-#pragma mark Photo Scroll View Delegate /** @name Photo Scroll View Delegate */
-
-/**
- * The photo scroll view delegate.
- */
 @property (nonatomic, readwrite, assign) id<NIPhotoScrollViewDelegate> photoScrollViewDelegate;
 
 
@@ -180,3 +106,99 @@ typedef enum {
                                 didZoomIn: (BOOL)didZoomIn;
 
 @end
+
+/** @name Configuring Functionality */
+
+/**
+ * Whether the photo is allowed to be zoomed.
+ *
+ * By default this is YES.
+ *
+ *      @fn NIPhotoScrollView::zoomingIsEnabled
+ */
+
+/**
+ * Whether small photos can be zoomed at least until they fit the screen.
+ *
+ * If this is disabled, images smaller than the view size can not be zoomed in beyond
+ * their original dimensions.
+ *
+ * If this is enabled, images smaller than the view size can be zoomed in only until
+ * they fit the view bounds.
+ *
+ * The default behavior in Photos.app allows small photos to be zoomed in.
+ *
+ *      @attention This will allow photos to be zoomed in even if they don't have any more
+ *                 pixels to show, causing the photo to blur. This can look ok for photographs,
+ *                 but might not look ok for software design mockups.
+ *
+ * By default this is YES.
+ *
+ *      @fn NIPhotoScrollView::zoomingAboveOriginalSizeIsEnabled
+ */
+
+/**
+ * Whether double-tapping zooms in and out of the image.
+ *
+ * Available on iOS 3.2 and later.
+ *
+ * By default this is YES.
+ *
+ *      @fn NIPhotoScrollView::doubleTapToZoomIsEnabled
+ */
+
+
+/** @name State */
+
+/**
+ * The currently-displayed photo.
+ *
+ *      @fn NIPhotoScrollView::image
+ */
+
+/**
+ * Set a new photo with a specific size.
+ *
+ * If image is nil then the photoSize will be overridden as NIPhotoScrollViewPhotoSizeUnknown.
+ *
+ * Resets the current zoom levels and zooms to fit the image.
+ *
+ *      @fn NIPhotoScrollView::setImage:photoSize:
+ */
+
+/**
+ * The index of this photo within a photo album.
+ *
+ *      @fn NIPhotoScrollView::pageIndex
+ */
+
+/**
+ * The current size of the photo.
+ *
+ * This is used to replace the photo only with successively higher-quality versions.
+ *
+ *      @fn NIPhotoScrollView::photoSize
+ */
+
+/**
+ * The largest dimensions of the photo.
+ *
+ * This is used to show the thumbnail at the final image size in case the final image size
+ * is smaller than the album's frame. Without this value we have to assume that the thumbnail
+ * will take up the full screen. If the final image doesn't take up the full screen, then
+ * the photo view will appear to "snap" to the smaller full-size image when the final image
+ * does load.
+ *
+ * CGSizeZero is used to signify an unknown final photo dimension.
+ *
+ *      @fn NIPhotoScrollView::photoDimensions
+ */
+
+
+/** @name Photo Scroll View Delegate */
+
+/**
+ * The photo scroll view delegate.
+ *
+ *      @fn NIPhotoScrollView::photoScrollViewDelegate
+ */
