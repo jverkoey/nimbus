@@ -162,6 +162,11 @@
  */
 - (Class)toolbarClass;
 
+/**
+ * The class to use for the photo scrubber view.
+ */
+- (Class)photoScrubberViewClass;
+
 
 #pragma mark Views /** @name Views */
 

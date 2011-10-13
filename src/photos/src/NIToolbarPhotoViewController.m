@@ -114,7 +114,7 @@
       CGRect scrubberFrame = CGRectMake(0, 0,
                                         self.toolbar.bounds.size.width,
                                         self.toolbar.bounds.size.height);
-      _photoScrubberView = [[NIPhotoScrubberView alloc] initWithFrame:scrubberFrame];
+      _photoScrubberView = [[[self photoScrubberViewClass] alloc] initWithFrame:scrubberFrame];
       _photoScrubberView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                              | UIViewAutoresizingFlexibleHeight);
       _photoScrubberView.delegate = self;
@@ -583,6 +583,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)toolbarClass {
   return [UIToolbar class];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)photoScrubberViewClass {
+  return [NIPhotoScrubberView class];
 }
 
 
