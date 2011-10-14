@@ -195,7 +195,7 @@
 -(void)addLink:(NSURL*)urlLink range:(NSRange)range;
 
 /**
- * Remove all custo tappable links.
+ * Removes all links from the label.
  */
 -(void)removeAllLinks;
 

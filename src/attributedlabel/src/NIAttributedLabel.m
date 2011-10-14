@@ -277,8 +277,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)removeAllLinks {
-  [_customLinks release];
-  _customLinks = nil;
+  NI_RELEASE_SAFELY(_customLinks);
   self.userInteractionEnabled = _autoDetectLinks;
   [self setNeedsDisplay];
 }
