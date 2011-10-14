@@ -406,7 +406,7 @@
                                           point.y-CGRectGetMinY(rect));
 			CFIndex idx = CTLineGetStringIndexForPosition(line, relativePoint);
 			foundLink = ([self linkAtIndex:idx]);
-			if (link) return foundLink;
+			if (foundLink) return foundLink;
 		}
 	}
 	return nil;
