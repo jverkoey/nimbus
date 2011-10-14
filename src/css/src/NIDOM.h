@@ -34,6 +34,7 @@
 - (void)registerView:(UIView *)view;
 - (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass;
 - (void)unregisterView:(UIView *)view;
+- (void)unregisterAllViews;
 - (void)refresh;
 
 @end

@@ -197,7 +197,9 @@ int cssConsume(char* text, int token) {
 
         // Commit the current selector and start a new one.
         case ',': {
-          [self commitCurrentSelector];
+          if (!_state.Flags.InsideRuleSet) {
+            [self commitCurrentSelector];
+          }
           break;
         }
 
@@ -233,8 +235,6 @@ int cssConsume(char* text, int token) {
 
             } else {
               // Properties already exist, so overwrite them.
-              NSDictionary* iteratorProperties = [_activeRuleSet copy];
-
               // Merge the orders.
               {
                 NSMutableArray* order = [existingProperties objectForKey:kRuleSetOrderKey];
@@ -246,9 +246,8 @@ int cssConsume(char* text, int token) {
                 [existingProperties setObject:[_activeRuleSet objectForKey:key] forKey:key];
               }
               // Add the order of the new properties.
-              [[existingProperties objectForKey:_activeRuleSet] addObjectsFromArray:
+              [[existingProperties objectForKey:kRuleSetOrderKey] addObjectsFromArray:
                [_activeRuleSet objectForKey:kRuleSetOrderKey]];
-              NI_RELEASE_SAFELY(iteratorProperties);
             }
           }
 

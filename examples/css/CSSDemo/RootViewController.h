@@ -19,6 +19,8 @@
 @interface RootViewController : UIViewController {
 @private
   NIDOM* _dom;
+  UIView* _backgroundView;
+  UIActivityIndicatorView* _activityIndicator;
   UILabel* _testLabel;
 }
 

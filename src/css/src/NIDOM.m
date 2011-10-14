@@ -136,6 +136,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)unregisterView:(UIView *)view {
   [_registeredViews removeObject:view];
+  [_viewToSelectorsMap removeObjectForKey:[self keyForView:view]];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)unregisterAllViews {
+  [_registeredViews removeAllObjects];
+  [_viewToSelectorsMap removeAllObjects];
 }
 
 

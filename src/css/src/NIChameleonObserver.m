@@ -205,7 +205,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)watchSkinChanges {
-  NSURL* watchURL = [NSURL URLWithString:@"http://localhost:8888/watch"];
+  NSURL* watchURL = [NSURL URLWithString:@"http://192.168.29.249:8888/watch"];
   NISimpleDataRequest* request = [NISimpleDataRequest requestWithURL:watchURL];
   request.delegate = self;
   [_activeRequests addObject:request];
@@ -215,7 +215,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)downloadStylesheetWithFilename:(NSString *)filename {
-  NSURL* fileURL = [NSURL URLWithString:[@"http://localhost:8888/" stringByAppendingString:filename]];
+  NSURL* fileURL = [NSURL URLWithString:[@"http://192.168.29.249:8888/" stringByAppendingString:filename]];
   NISimpleDataRequest* request = [NISimpleDataRequest requestWithURL:fileURL];
   request.delegate = self;
   [_activeRequests addObject:request];
