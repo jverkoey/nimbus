@@ -27,4 +27,10 @@
 #import "NIStylesheet.h"
 #import "NIChameleonObserver.h"
 
+// Styled views
+#import "UILabel+NIStyleable.h"
+#import "UIView+NIStyleable.h"
+#import "UINavigationBar+NIStyleable.h"
+
+// Dependencies
 #import "NimbusCore.h"

@@ -143,17 +143,24 @@ static NSString* const kWatchFilenameKey = @"___watch___";
   NI_RELEASE_SAFELY(_stylesheets);
   NI_RELEASE_SAFELY(_activeRequests);
   NI_RELEASE_SAFELY(_rootFolder);
+  NI_RELEASE_SAFELY(_host);
 
   [super dealloc];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithRootFolder:(NSString *)rootFolder {
+- (id)initWithRootFolder:(NSString *)rootFolder host:(NSString *)host {
   if ((self = [super init])) {
     _rootFolder = [rootFolder copy];
     _stylesheets = [[NSMutableDictionary alloc] init];
     _activeRequests = [[NSMutableArray alloc] init];
+    if ([host hasSuffix:@"/"]) {
+      _host = [host copy];
+
+    } else {
+      _host = [host stringByAppendingString:@"/"];
+    }
 
     NSFileManager* fm = [NSFileManager defaultManager];
     NSString* bundleRootPath = NIPathForBundleResource(nil, rootFolder);
@@ -205,7 +212,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)watchSkinChanges {
-  NSURL* watchURL = [NSURL URLWithString:@"http://192.168.29.249:8888/watch"];
+  NSURL* watchURL = [NSURL URLWithString:[_host stringByAppendingString:@"watch"]];
   NISimpleDataRequest* request = [NISimpleDataRequest requestWithURL:watchURL];
   request.delegate = self;
   [_activeRequests addObject:request];
@@ -215,7 +222,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)downloadStylesheetWithFilename:(NSString *)filename {
-  NSURL* fileURL = [NSURL URLWithString:[@"http://192.168.29.249:8888/" stringByAppendingString:filename]];
+  NSURL* fileURL = [NSURL URLWithString:[_host stringByAppendingString:filename]];
   NISimpleDataRequest* request = [NISimpleDataRequest requestWithURL:fileURL];
   request.delegate = self;
   [_activeRequests addObject:request];

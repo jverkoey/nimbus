@@ -50,7 +50,8 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
 
-  _chameleonObserver = [[NIChameleonObserver alloc] initWithRootFolder:@"css"];
+  _chameleonObserver = [[NIChameleonObserver alloc] initWithRootFolder:@"css"
+                                                                  host:@"http://localhost:8888"];
   [_chameleonObserver watchSkinChanges];
 
   RootViewController* mainController =

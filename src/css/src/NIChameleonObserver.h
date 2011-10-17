@@ -35,10 +35,11 @@ extern NSString* const NIChameleonSkinDidChangeNotification;
   NSMutableDictionary* _stylesheets;
   NSMutableArray* _activeRequests;
   NSString* _rootFolder;
+  NSString* _host;
 }
 
 // Designated initializer.
-- (id)initWithRootFolder:(NSString *)rootFolder;
+- (id)initWithRootFolder:(NSString *)rootFolder host:(NSString *)host;
 
 - (NIStylesheet *)stylesheetForFilename:(NSString *)filename;
 
