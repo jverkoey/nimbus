@@ -43,7 +43,7 @@
  *                        |     [1]      |         |       |     [2]
  *  ---------------------------------------------------------------------</pre>
  *
- * - [1] Note that being able to instantly remove and access objects in an NILinkedList
+ * - [1] Note that being able to instantly remove and access objects in a NILinkedList
  *       requires additional overhead of maintaining NILinkedListLocation objects in your
  *       code. If this is your only requirement, then it's likely simpler to use an NSSet.
  *       A linked list <i>is</i> worth using if you also need consistent ordering, seeing
@@ -103,14 +103,14 @@ typedef void NILinkedListLocation;
  * for adding arbitrary objects to and removing arbitrary objects from a collection that
  * also enforces consistent ordering.
  *
- * Linked lists are used in NIMemoryCache to implement
- * efficient least-recently used collections for in-memory caches. It is important
- * that these caches use a collection with guaranteed constant-time properties because
- * in-memory caches must operate as fast as possible in order to avoid locking up the UI.
- * Specifically, in-memory caches could potentially have thousands of objects. Every time
- * we access one of these objects we move its lru placement to the end of the lru list. If
- * we were to use an NSArray for this data structure we could easily run into an
- * O(N^2) exponential-time operation which is absolutely unacceptable.
+ * Linked lists are used in NIMemoryCache to implement an efficient, least-recently used
+ * collection for in-memory caches. It is important that these caches use a collection with
+ * guaranteed constant-time properties because in-memory caches must operate as fast as
+ * possible in order to avoid locking up the UI. Specifically, in-memory caches could
+ * potentially have thousands of objects. Every time we access one of these objects we move
+ * its lru placement to the end of the lru list. If we were to use an NSArray for this data
+ * structure we could easily run into an O(N^2) exponential-time operation which is
+ * absolutely unacceptable.
  */
 @interface NILinkedList : NSObject <NSCopying, NSCoding, NSFastEnumeration> {
 @private
@@ -153,6 +153,7 @@ typedef void NILinkedListLocation;
 // TODO (jverkoey August 3, 2011): Consider creating an NIMutableLinkedList implementation.
 
 - (NILinkedListLocation *)addObject:(id)object;
+- (void)addObjectsFromArray:(NSArray *)array;
 
 - (void)removeAllObjects;
 - (void)removeObject:(id)object;
@@ -315,7 +316,7 @@ typedef void NILinkedListLocation;
 /** @name Creating a Linked List */
 
 /**
- * Convenience method for creating an autoreleased linked list.
+ * Returns a newly allocated and autoreleased linked list.
  *
  * Identical to [[[NILinkedList alloc] init] autorelease];
  *
@@ -323,7 +324,7 @@ typedef void NILinkedListLocation;
  */
 
 /**
- * Convenience method for creating an autoreleased linked list with an array.
+ * Returns a newly allocated and autoreleased linked list filled with the objects from an array.
  *
  * Identical to [[[NILinkedList alloc] initWithArray:array] autorelease];
  *
@@ -402,7 +403,7 @@ typedef void NILinkedListLocation;
 /** @name Adding Objects */
 
 /**
- * Append an object to the linked list.
+ * Appends an object to the linked list.
  *
  *      Run-time: O(1) constant
  *
@@ -410,11 +411,18 @@ typedef void NILinkedListLocation;
  *      @returns A location within the linked list.
  */
 
+/**
+ * Appends an array of objects to the linked list.
+ *
+ *      Run-time: O(l) linear with the length of the given array
+ *
+ *      @fn NILinkedList::addObjectsFromArray:
+ */
 
 /** @name Removing Objects */
 
 /**
- * Remove all objects from the linked list.
+ * Removes all objects from the linked list.
  *
  *      Run-time: Theta(count) linear
  *
@@ -422,7 +430,7 @@ typedef void NILinkedListLocation;
  */
 
 /**
- * Remove an object from the linked list.
+ * Removes an object from the linked list.
  *
  *      Run-time: O(count) linear
  *
@@ -430,7 +438,7 @@ typedef void NILinkedListLocation;
  */
 
 /**
- * Remove the first object from the linked list.
+ * Removes the first object from the linked list.
  *
  *      Run-time: O(1) constant
  *
@@ -438,7 +446,7 @@ typedef void NILinkedListLocation;
  */
 
 /**
- * Remove the last object from the linked list.
+ * Removes the last object from the linked list.
  *
  *      Run-time: O(1) constant
  *
@@ -449,7 +457,7 @@ typedef void NILinkedListLocation;
 /** @name Constant-Time Access */
 
 /**
- * Search for an object in the linked list.
+ * Searches for an object in the linked list.
  *
  * The NILinkedListLocation object will remain valid as long as the object is still in the
  * linked list. Once the object is removed from the linked list, however, the location object
@@ -465,7 +473,7 @@ typedef void NILinkedListLocation;
  */
 
 /**
- * Retrieve the object at a specific location.
+ * Retrieves the object at a specific location.
  *
  *      Run-time: O(1) constant
  *
@@ -473,7 +481,7 @@ typedef void NILinkedListLocation;
  */
 
 /**
- * Remove an object at a predetermined location.
+ * Removes an object at a predetermined location.
  *
  * It is assumed that this location still exists in the linked list. If the object this
  * location refers to has since been removed then this method will have undefined results.
