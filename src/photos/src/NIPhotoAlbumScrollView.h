@@ -201,6 +201,11 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
 @property (nonatomic, readonly, assign) NSInteger numberOfPhotos;
 
 /**
+ * The current cache of photo scroll views used to display photos on-screen.
+ */
+@property (nonatomic, readonly) NSSet* visiblePages;
+
+/**
  * The currently centered photo scroll view.
  */
 - (NIPhotoScrollView *)centeredPhotoScrollView;

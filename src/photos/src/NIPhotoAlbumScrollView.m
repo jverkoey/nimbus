@@ -38,6 +38,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 @synthesize delegate = _delegate;
 @synthesize centerPhotoIndex = _centerPhotoIndex;
 @synthesize numberOfPhotos = _numberOfPages;
+@synthesize visiblePages = _visiblePages;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
