@@ -204,7 +204,7 @@
   if (!self.showPhotoAlbumBeneathToolbar) {
     photoAlbumFrame = NIRectContract(bounds, 0, toolbarHeight);
   }
-  _photoAlbumView = [[[NIPhotoAlbumScrollView alloc] initWithFrame:photoAlbumFrame] autorelease];
+  _photoAlbumView = [[[[self photoAlbumScrollViewClass] alloc] initWithFrame:photoAlbumFrame] autorelease];
   _photoAlbumView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                       | UIViewAutoresizingFlexibleHeight);
   _photoAlbumView.delegate = self;
@@ -589,6 +589,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)photoScrubberViewClass {
   return [NIPhotoScrubberView class];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)photoAlbumScrollViewClass {
+  return [NIPhotoAlbumScrollView class];
 }
 
 

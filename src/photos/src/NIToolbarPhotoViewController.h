@@ -167,6 +167,11 @@
  */
 - (Class)photoScrubberViewClass;
 
+/**
+ * The class to use for the photo album scroll view.
+ */
+- (Class)photoAlbumScrollViewClass;
+
 
 #pragma mark Views /** @name Views */
 
