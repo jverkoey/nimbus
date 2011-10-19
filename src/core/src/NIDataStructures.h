@@ -68,7 +68,7 @@
 
 // This is not to be used externally.
 struct NILinkedListNode {
-  id    object;
+  __unsafe_unretained id object;
   struct NILinkedListNode* prev;
   struct NILinkedListNode* next;
 };
