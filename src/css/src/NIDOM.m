@@ -85,7 +85,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)refreshStyleForView:(UIView *)view withSelectorName:(NSString *)selectorName {
-  [_stylesheet applyStyleToView:view withSelectorName:selectorName];
+  [_stylesheet applyStyleToView:view withSelectorClass:selectorName];
 }
 
 

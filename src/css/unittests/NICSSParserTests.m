@@ -51,9 +51,10 @@
 - (void)testFailures {
   NICSSParser* parser = [[[NICSSParser alloc] init] autorelease];
 
-  STAssertNil([parser rulesetsForCSSFileAtPath:nil], @"Parsing nil path should result in nil.");
-  STAssertNil([parser rulesetsForCSSFileAtPath:@""], @"Parsing empty path should result in nil.");
-  STAssertNil([parser rulesetsForCSSFileAtPath:@"nonexistent_file"], @"Parsing invalid file should result in nil.");
+  STAssertNil([parser dictionaryForPath:nil pathPrefix:nil], @"Parsing nil path should result in nil.");
+  STAssertNil([parser dictionaryForPath:@"" pathPrefix:nil], @"Parsing empty path should result in nil.");
+  STAssertNil([parser dictionaryForPath:nil pathPrefix:@""], @"Parsing empty path should result in nil.");
+  STAssertNil([parser dictionaryForPath:@"nonexistent_file" pathPrefix:@""], @"Parsing nonexistent file should result in nil.");
 }
 
 

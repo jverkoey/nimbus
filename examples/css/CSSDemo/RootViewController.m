@@ -104,9 +104,6 @@ static CGFloat squareSize = 200;
   _testLabel.autoresizingMask = flexibleMargins;
   _backgroundView.autoresizingMask = flexibleMargins;
   _activityIndicator.autoresizingMask = flexibleMargins;
-  
-  _testLabel.backgroundColor = [UIColor blackColor];
-  _testLabel.textColor = [UIColor redColor];
 
   [self.view addSubview:_backgroundView];
   [_backgroundView addSubview:_activityIndicator];

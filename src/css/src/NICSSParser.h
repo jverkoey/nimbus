@@ -16,49 +16,68 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString* const kRuleSetOrderKey;
+extern NSString* const kRulesetOrderKey;
 extern NSString* const kDependenciesSelectorKey;
 
-@class NICSSParser;
+@protocol NICSSParserDelegate;
 
-@protocol NICSSParserDelegate <NSObject>
-@required
-- (NSString *)cssParser:(NICSSParser *)parser filenameFromFilename:(NSString *)filename;
-@end
-
+/**
+ *
+ * This object is not thread-safe.
+ */
 @interface NICSSParser : NSObject {
 @private
-  NSMutableDictionary* _ruleSets;
-  NSMutableArray* _currentSelector;
-  NSMutableArray* _activeCssSelectors;
-  NSMutableDictionary* _activeRuleSet;
-  NSString* _activePropertyName;
+  // CSS state
+  NSMutableDictionary* _mutatingRuleset;
+  NSMutableDictionary* _rulesets;
+  NSMutableArray* _mutatingScope;
+  NSMutableArray* _scopesForActiveRuleset;
+  NSString* _currentPropertyName;
   NSMutableArray* _importedFilenames;
-
-  NSString* _lastTokenText;
-  int _lastToken;
-
-  BOOL _didFailToParse;
 
   union {
     struct {
-      int InsideRuleSet : 1; // Within `ruleset {...}`
+      int InsideRuleset : 1; // Within `ruleset {...}`
       int InsideProperty : 1; // Defining a `property: ...`
       int InsideFunction : 1; // Within a `function(...)`
     } Flags;
     int _data;
   } _state;
+
+  // Parser state
+  NSString* _lastTokenText;
+  int _lastToken;
+
+  // Result state
+  BOOL _didFailToParse;
 }
 
-- (NSDictionary *)rulesetsForCSSRelativeFilename:(NSString *)relFilename
-                                        rootPath:(NSString *)rootPath;
-
-- (NSDictionary *)rulesetsForCSSRelativeFilename:(NSString *)relFilename
-                                        rootPath:(NSString *)rootPath
-                                        delegate:(id<NICSSParserDelegate>)delegate;
+- (NSDictionary *)dictionaryForPath:(NSString *)path;
+- (NSDictionary *)dictionaryForPath:(NSString *)path pathPrefix:(NSString *)rootPath;
+- (NSDictionary *)dictionaryForPath:(NSString *)path
+                         pathPrefix:(NSString *)pathPrefix
+                           delegate:(id<NICSSParserDelegate>)delegate;
 
 @property (nonatomic, readonly, assign) BOOL didFailToParse;
 
 @end
 
+/**
+ * The delegate protocol for NICSSParser.
+ */
+@protocol NICSSParserDelegate <NSObject>
+@required
 
+/**
+ * The implementor may use this method to change the filename that will be used to load
+ * the CSS file from disk.
+ *
+ * If nil is returned then the given filename will be used.
+ *
+ * Example:
+ * This is used by the Chameleon observer to hash filenames with md5, effectively flattening
+ * the path structure so that the files can be accessed without creating subdirectories.
+ */
+- (NSString *)cssParser:(NICSSParser *)parser filenameFromFilename:(NSString *)filename;
+
+@end

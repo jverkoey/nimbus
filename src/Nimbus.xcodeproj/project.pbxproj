@@ -222,6 +222,10 @@
 		66A03DCB13E6FAC500B514F3 /* NIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D9013E6FAC500B514F3 /* NIHTTPRequest.m */; };
 		66A03DCC13E6FAC500B514F3 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D9213E6FAC500B514F3 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A03DCD13E6FAC500B514F3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D9313E6FAC500B514F3 /* Reachability.m */; };
+		66B10900144C931F004576D1 /* UIButton+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */; };
+		66B10901144C931F004576D1 /* UIButton+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */; };
+		66B1090C144D53C3004576D1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
+		66B1090D144D53CC004576D1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D02143E38F0003E413C /* CoreGraphics.framework */; };
 		66C3A6A2143D61130048542F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66C3A6AF143D61140048542F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66C3A6B1143D61140048542F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
@@ -633,6 +637,9 @@
 		66A03DF913E6FD3000B514F3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		66A03DFB13E6FE1700B514F3 /* AUTHORS */ = {isa = PBXFileReference; lastKnownFileType = text; name = AUTHORS; path = ../AUTHORS; sourceTree = "<group>"; };
 		66A03DFC13E6FE1800B514F3 /* DONORS */ = {isa = PBXFileReference; lastKnownFileType = text; name = DONORS; path = ../DONORS; sourceTree = "<group>"; };
+		66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+NIStyleable.h"; path = "css/src/UIButton+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
+		66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+NIStyleable.m"; path = "css/src/UIButton+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
+		66B10906144D4C15004576D1 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = css/deps; sourceTree = SOURCE_ROOT; };
 		66C3A6A1143D61130048542F /* libNimbusCss.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCss.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C3A6AE143D61140048542F /* NimbusCssTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCssTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FE7D5613FB550A0061B987 /* ExampleRuntimeDebugging.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleRuntimeDebugging.m; sourceTree = "<group>"; };
@@ -773,6 +780,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66B1090D144D53CC004576D1 /* CoreGraphics.framework in Frameworks */,
+				66B1090C144D53C3004576D1 /* UIKit.framework in Frameworks */,
 				66A03C1B13E6E85E00B514F3 /* SenTestingKit.framework in Frameworks */,
 				66A03C1E13E6E85E00B514F3 /* Foundation.framework in Frameworks */,
 				66A03C2313E6E85E00B514F3 /* libNimbusCore.a in Frameworks */,
@@ -1139,6 +1148,8 @@
 				66832D1214416368003E413C /* UIView+NIStyleable.m */,
 				66832DA014421B4A003E413C /* UINavigationBar+NIStyleable.h */,
 				66832DA114421B4A003E413C /* UINavigationBar+NIStyleable.m */,
+				66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */,
+				66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */,
 			);
 			name = "Styleable Components";
 			sourceTree = "<group>";
@@ -1458,6 +1469,7 @@
 		66C3A6A3143D61130048542F /* NimbusCss */ = {
 			isa = PBXGroup;
 			children = (
+				66B10906144D4C15004576D1 /* deps */,
 				66832C9C143D63F0003E413C /* README.mdown */,
 				66832C93143D63B4003E413C /* src */,
 				66832C95143D63BF003E413C /* unittests */,
@@ -1723,6 +1735,7 @@
 				66832D1314416368003E413C /* UIView+NIStyleable.h in Headers */,
 				66832DA214421B4A003E413C /* UINavigationBar+NIStyleable.h in Headers */,
 				66832E0614435071003E413C /* NIChameleonObserver.h in Headers */,
+				66B10900144C931F004576D1 /* UIButton+NIStyleable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2687,6 +2700,7 @@
 				66832D1414416368003E413C /* UIView+NIStyleable.m in Sources */,
 				66832DA314421B4A003E413C /* UINavigationBar+NIStyleable.m in Sources */,
 				66832E0714435071003E413C /* NIChameleonObserver.m in Sources */,
+				66B10901144C931F004576D1 /* UIButton+NIStyleable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

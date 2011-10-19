@@ -35,6 +35,6 @@
             delegate:(id<NICSSParserDelegate>)delegate;
 - (void)addStylesheet:(NIStylesheet *)stylesheet;
 
-- (void)applyStyleToView:(UIView *)view withSelectorName:(NSString *)selectorName;
+- (void)applyStyleToView:(UIView *)view withSelectorClass:(NSString *)selectorClass;
 
 @end

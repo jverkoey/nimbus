@@ -159,7 +159,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
       _host = [host copy];
 
     } else {
-      _host = [host stringByAppendingString:@"/"];
+      _host = [[host stringByAppendingString:@"/"] copy];
     }
 
     NSFileManager* fm = [NSFileManager defaultManager];
@@ -261,7 +261,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
                                                         userInfo:nil];
     }
     for (NSString* pathKey in _stylesheets) {
-      NIStylesheet* stylesheet = [_stylesheets objectForKey:pathKey];
+      stylesheet = [_stylesheets objectForKey:pathKey];
       if ([stylesheet.dependencies containsObject:cssFilename]) {
         // This stylesheet has the changed stylesheet as a dependency so let's refresh it.
         if ([stylesheet loadFilename:pathKey relativeToPath:rootPath delegate:self]) {

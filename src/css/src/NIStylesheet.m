@@ -143,8 +143,8 @@
   if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
     NICSSParser* parser = [[NICSSParser alloc] init];
 
-    NSDictionary* results = [parser rulesetsForCSSRelativeFilename:filename
-                                                          rootPath:path
+    NSDictionary* results = [parser dictionaryForPath:filename
+                                                          pathPrefix:path
                                                           delegate:delegate];
     if (nil != results && ![parser didFailToParse]) {
       _rawRuleSets = [results retain];
@@ -212,11 +212,11 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleToView:(UIView *)view withSelectorName:(NSString *)selectorName {
-  NSArray* selectors = [_classToRuleSetMap objectForKey:selectorName];
+- (void)applyStyleToView:(UIView *)view withSelectorClass:(NSString *)selectorClass {
+  NSArray* selectors = [_classToRuleSetMap objectForKey:selectorClass];
   if ([selectors count] > 0) {
     // Gather all of the rule sets for this view into a composite rule set.
-    NICSSRuleSet* ruleSet = [_ruleSets objectForKey:selectorName];
+    NICSSRuleSet* ruleSet = [_ruleSets objectForKey:selectorClass];
 
     if (nil == ruleSet) {
       ruleSet = [[NICSSRuleSet alloc] init];
@@ -227,7 +227,7 @@
       }
 
       NIDASSERT(nil != _ruleSets);
-      [_ruleSets setObject:ruleSet forKey:selectorName];
+      [_ruleSets setObject:ruleSet forKey:selectorClass];
       [ruleSet release]; // We can release the ruleSet because it's retained by the dictionary.
     }
 
