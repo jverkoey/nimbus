@@ -58,21 +58,24 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)main {
 
-  [self operationDidStart];
+  @autoreleasepool {
 
-  NSError* error = nil;
-
-  self.data = [NSData dataWithContentsOfFile: self.pathToFile
-                                     options: 0
-                                       error: &error];
-
-
-  if (nil != error) {
-    [self operationDidFailWithError:error];
-
-  } else {
-    [self operationWillFinish];
-    [self operationDidFinish];
+    [self operationDidStart];
+    
+    NSError* error = nil;
+    
+    self.data = [NSData dataWithContentsOfFile: self.pathToFile
+                                       options: 0
+                                         error: &error];
+    
+    
+    if (nil != error) {
+      [self operationDidFailWithError:error];
+      
+    } else {
+      [self operationWillFinish];
+      [self operationDidFinish];
+    }
   }
 }
 
