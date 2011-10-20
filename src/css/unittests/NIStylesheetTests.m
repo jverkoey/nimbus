@@ -52,6 +52,8 @@
   NIStylesheet* stylesheet = [[[NIStylesheet alloc] init] autorelease];
 
   STAssertFalse([stylesheet loadFromPath:nil], @"Parsing nil path should fail.");
+  STAssertFalse([stylesheet loadFromPath:nil pathPrefix:nil], @"Parsing nil path should fail.");
+  STAssertFalse([stylesheet loadFromPath:nil pathPrefix:nil delegate:nil], @"Parsing nil path should fail.");
   STAssertFalse([stylesheet loadFromPath:@""], @"Parsing empty path should fail.");
   STAssertFalse([stylesheet loadFromPath:@"nonexistent_file"], @"Parsing invalid file should fail.");
 }
@@ -73,7 +75,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testApplyStyleToUILabel {
-//  return;
+  // Sadly nearly all of these tests don't work with SenTest. The error we get when we run these
+  // tests is:
+  // ERROR: System image table has not been initialized. Do not ask for images or set up UI before UIApplicationMain() has been called.
+  return;
 
   NIStylesheet* stylesheet = [[[NIStylesheet alloc] init] autorelease];
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"UILabel.css");
@@ -81,7 +86,7 @@
   STAssertTrue([stylesheet loadFromPath:pathToFile], @"The stylesheet should have been parsed.");
 
   UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-  [stylesheet applyStyleToView:label];
+  [stylesheet applyStyleToView:label withSelectorClass:NSStringFromClass([label class])];
 
   [self assertColor:label.textColor equalsColor:[UIColor redColor]];
   [self assertColor:label.shadowColor equalsColor:[UIColor greenColor]];

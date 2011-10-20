@@ -54,7 +54,7 @@
 
     if ([stylesheetPath isKindOfClass:[NSString class]]) {
       NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
-      if ([stylesheet loadFilename:stylesheetPath relativeToPath:rootPath]) {
+      if ([stylesheet loadFromPath:stylesheetPath pathPrefix:rootPath]) {
         [compositeStylesheet addStylesheet:stylesheet];
       }
       NI_RELEASE_SAFELY(stylesheet);

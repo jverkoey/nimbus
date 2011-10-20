@@ -184,8 +184,8 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)loadStylesheetWithFilename:(NSString *)filename {
   NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
-  BOOL didSucceed = [stylesheet loadFilename:filename
-                              relativeToPath:NIPathForBundleResource(nil, _rootFolder)];
+  BOOL didSucceed = [stylesheet loadFromPath:filename
+                              pathPrefix:NIPathForBundleResource(nil, _rootFolder)];
 
   if (didSucceed) {
     [_stylesheets setObject:stylesheet forKey:filename];
@@ -255,7 +255,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
     [data writeToFile:diskPath atomically:YES];
 
     NIStylesheet* stylesheet = [_stylesheets objectForKey:cssFilename];
-    if ([stylesheet loadFilename:cssFilename relativeToPath:rootPath delegate:self]) {
+    if ([stylesheet loadFromPath:cssFilename pathPrefix:rootPath delegate:self]) {
       [[NSNotificationCenter defaultCenter] postNotificationName:NIChameleonSkinDidChangeNotification
                                                           object:stylesheet
                                                         userInfo:nil];
@@ -264,7 +264,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
       stylesheet = [_stylesheets objectForKey:pathKey];
       if ([stylesheet.dependencies containsObject:cssFilename]) {
         // This stylesheet has the changed stylesheet as a dependency so let's refresh it.
-        if ([stylesheet loadFilename:pathKey relativeToPath:rootPath delegate:self]) {
+        if ([stylesheet loadFromPath:pathKey pathPrefix:rootPath delegate:self]) {
           [[NSNotificationCenter defaultCenter] postNotificationName:NIChameleonSkinDidChangeNotification
                                                               object:stylesheet
                                                             userInfo:nil];

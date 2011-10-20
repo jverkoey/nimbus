@@ -29,10 +29,11 @@
 @property (nonatomic, readonly, copy) NSDictionary* classToRuleSetMap;
 @property (nonatomic, readonly, copy) NSSet* dependencies;
 
-- (BOOL)loadFilename:(NSString *)filename relativeToPath:(NSString *)path;
-- (BOOL)loadFilename:(NSString *)filename
-      relativeToPath:(NSString *)path
+- (BOOL)loadFromPath:(NSString *)filename
+          pathPrefix:(NSString *)path
             delegate:(id<NICSSParserDelegate>)delegate;
+- (BOOL)loadFromPath:(NSString *)filename pathPrefix:(NSString *)path;
+- (BOOL)loadFromPath:(NSString *)filename;
 - (void)addStylesheet:(NIStylesheet *)stylesheet;
 
 - (void)applyStyleToView:(UIView *)view withSelectorClass:(NSString *)selectorClass;

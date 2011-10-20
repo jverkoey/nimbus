@@ -50,8 +50,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testFailures {
   NICSSParser* parser = [[[NICSSParser alloc] init] autorelease];
-
+  
+  STAssertNil([parser dictionaryForPath:nil], @"Parsing nil path should result in nil.");
   STAssertNil([parser dictionaryForPath:nil pathPrefix:nil], @"Parsing nil path should result in nil.");
+  STAssertNil([parser dictionaryForPath:nil pathPrefix:nil delegate:nil], @"Parsing nil path should result in nil.");
   STAssertNil([parser dictionaryForPath:@"" pathPrefix:nil], @"Parsing empty path should result in nil.");
   STAssertNil([parser dictionaryForPath:nil pathPrefix:@""], @"Parsing empty path should result in nil.");
   STAssertNil([parser dictionaryForPath:@"nonexistent_file" pathPrefix:@""], @"Parsing nonexistent file should result in nil.");
@@ -64,7 +66,7 @@
   
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"empty.css");
 
-  NSDictionary* rulesets = [parser rulesetsForCSSFileAtPath:pathToFile];
+  NSDictionary* rulesets = [parser dictionaryForPath:pathToFile];
   STAssertEquals([rulesets count], (NSUInteger)0, @"There should be no rule sets for an empty file.");
 }
 
@@ -75,7 +77,7 @@
   
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"comments.css");
   
-  NSDictionary* rulesets = [parser rulesetsForCSSFileAtPath:pathToFile];
+  NSDictionary* rulesets = [parser dictionaryForPath:pathToFile];
   STAssertEquals([rulesets count], (NSUInteger)0, @"There should be no rule sets.");
 }
 
@@ -86,7 +88,7 @@
 
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"malformed.css");
 
-  NSDictionary* rulesets = [parser rulesetsForCSSFileAtPath:pathToFile];
+  NSDictionary* rulesets = [parser dictionaryForPath:pathToFile];
   STAssertNil(rulesets, @"The file should have failed to process.");
   STAssertTrue(parser.didFailToParse, @"The parser should have failed.");
 }
@@ -98,7 +100,7 @@
 
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"empty-rulesets.css");
 
-  NSDictionary* rulesets = [parser rulesetsForCSSFileAtPath:pathToFile];
+  NSDictionary* rulesets = [parser dictionaryForPath:pathToFile];
   STAssertEquals([rulesets count], (NSUInteger)7, @"There should be seven rule sets.");
   STAssertNotNil([rulesets objectForKey:@"#topLevelView"], @"Key should exist.");
   STAssertNotNil([rulesets objectForKey:@"#topLevelView UILabel"], @"Key should exist.");
@@ -120,7 +122,7 @@
 
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"rulesets.css");
 
-  NSDictionary* rulesets = [parser rulesetsForCSSFileAtPath:pathToFile];
+  NSDictionary* rulesets = [parser dictionaryForPath:pathToFile];
   STAssertEquals([rulesets count], (NSUInteger)4, @"There should be four rule sets.");
 
   STAssertTrue([[[[rulesets objectForKey:@".className"] objectForKey:@"background-color"] objectAtIndex:0] isEqualToString:@"orange"], @"Value should match.");
@@ -131,13 +133,14 @@
   STAssertTrue([[[[rulesets objectForKey:@"UILabel"] objectForKey:@"font-size"] objectAtIndex:0] isEqualToString:@"23"], @"Value should match.");
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testRulesetOverrides {
   NICSSParser* parser = [[[NICSSParser alloc] init] autorelease];
 
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"rulesets-overrides.css");
 
-  NSDictionary* rulesets = [parser rulesetsForCSSFileAtPath:pathToFile];
+  NSDictionary* rulesets = [parser dictionaryForPath:pathToFile];
   STAssertEquals([rulesets count], (NSUInteger)3, @"There should be three rule sets.");
 
   STAssertTrue([[[[rulesets objectForKey:@".className"] objectForKey:@"background-color"] objectAtIndex:0] isEqualToString:@"green"], @"Value should match.");
@@ -145,6 +148,23 @@
   STAssertTrue([[[[rulesets objectForKey:@"UIButton"] objectForKey:@"height"] objectAtIndex:0] isEqualToString:@"20px"], @"Value should match.");
   STAssertTrue([[[[rulesets objectForKey:@"UIButton"] objectForKey:@"width"] objectAtIndex:0] isEqualToString:@"100%"], @"Value should match.");
   STAssertTrue([[[[rulesets objectForKey:@"UILabel"] objectForKey:@"font-size"] objectAtIndex:0] isEqualToString:@"50"], @"Value should match.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testImports {
+  NICSSParser* parser = [[[NICSSParser alloc] init] autorelease];
+
+  NSString* pathPrefix = NIPathForBundleResource(_unitTestBundle, nil);
+
+  NSDictionary* rulesets = [parser dictionaryForPath:@"includer.css" pathPrefix:pathPrefix];
+  STAssertEquals([rulesets count], (NSUInteger)2, @"There should be two values.");
+  NSSet* dependencies = [rulesets objectForKey:kDependenciesSelectorKey];
+  STAssertEquals(dependencies.count, (NSUInteger)1, @"Should be exactly one dependency.");
+  STAssertTrue([[dependencies anyObject] isEqualToString:@"includee.css"], @"Should be equal.");
+
+  STAssertTrue([[[[rulesets objectForKey:@"UIButton"] objectForKey:@"width"] objectAtIndex:0] isEqualToString:@"50%"], @"Value should match.");
+  STAssertTrue([[[[rulesets objectForKey:@"UIButton"] objectForKey:@"height"] objectAtIndex:0] isEqualToString:@"20px"], @"Value should match.");
 }
 
 @end

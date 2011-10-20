@@ -123,14 +123,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)loadFilename:(NSString *)filename relativeToPath:(NSString *)path {
-  return [self loadFilename:filename relativeToPath:path delegate:nil];
+- (BOOL)loadFromPath:(NSString *)filename {
+  return [self loadFromPath:filename pathPrefix:nil delegate:nil];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)loadFilename:(NSString *)filename
-      relativeToPath:(NSString *)path
+- (BOOL)loadFromPath:(NSString *)filename pathPrefix:(NSString *)path {
+  return [self loadFromPath:filename pathPrefix:path delegate:nil];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)loadFromPath:(NSString *)filename
+          pathPrefix:(NSString *)aPath
             delegate:(id<NICSSParserDelegate>)delegate {
   BOOL loadDidSucceed = NO;
 
@@ -140,12 +146,17 @@
 
   _ruleSets = [[NSMutableDictionary alloc] init];
 
+  NSString* path = filename;
+  if (aPath.length > 0) {
+    path = [aPath stringByAppendingPathComponent:filename];
+  }
+
   if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
     NICSSParser* parser = [[NICSSParser alloc] init];
 
     NSDictionary* results = [parser dictionaryForPath:filename
-                                                          pathPrefix:path
-                                                          delegate:delegate];
+                                           pathPrefix:aPath
+                                             delegate:delegate];
     if (nil != results && ![parser didFailToParse]) {
       _rawRuleSets = [results retain];
       loadDidSucceed = YES;

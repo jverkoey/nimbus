@@ -230,6 +230,8 @@
 		66C3A6AF143D61140048542F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66C3A6B1143D61140048542F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66C3A6B4143D61140048542F /* libNimbusCss.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C3A6A1143D61130048542F /* libNimbusCss.a */; };
+		66FCC634144FB42E0029F1A6 /* includee.css in Resources */ = {isa = PBXBuildFile; fileRef = 66FCC632144FB42E0029F1A6 /* includee.css */; };
+		66FCC635144FB42E0029F1A6 /* includer.css in Resources */ = {isa = PBXBuildFile; fileRef = 66FCC633144FB42E0029F1A6 /* includer.css */; };
 		66FE7D6B13FB83620061B987 /* NimbusModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6413FB83620061B987 /* NimbusModels.h */; };
 		66FE7D6C13FB83620061B987 /* NITableViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6513FB83620061B987 /* NITableViewModel.h */; };
 		66FE7D6D13FB83620061B987 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FE7D6613FB83620061B987 /* NITableViewModel.m */; };
@@ -642,6 +644,8 @@
 		66B10906144D4C15004576D1 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = css/deps; sourceTree = SOURCE_ROOT; };
 		66C3A6A1143D61130048542F /* libNimbusCss.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCss.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C3A6AE143D61140048542F /* NimbusCssTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCssTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66FCC632144FB42E0029F1A6 /* includee.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = includee.css; path = css/unittests/includee.css; sourceTree = SOURCE_ROOT; };
+		66FCC633144FB42E0029F1A6 /* includer.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = includer.css; path = css/unittests/includer.css; sourceTree = SOURCE_ROOT; };
 		66FE7D5613FB550A0061B987 /* ExampleRuntimeDebugging.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleRuntimeDebugging.m; sourceTree = "<group>"; };
 		66FE7D5E13FB83620061B987 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = models/deps; sourceTree = SOURCE_ROOT; };
 		66FE7D6013FB83620061B987 /* ExampleStaticTableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleStaticTableModel.m; sourceTree = "<group>"; };
@@ -1124,6 +1128,8 @@
 				66832CD7143E062C003E413C /* malformed.css */,
 				66832CD3143D8989003E413C /* rulesets.css */,
 				66832CD5143D8AB7003E413C /* rulesets-overrides.css */,
+				66FCC632144FB42E0029F1A6 /* includee.css */,
+				66FCC633144FB42E0029F1A6 /* includer.css */,
 				66832CC9143D7994003E413C /* NimbusCSSTests-Info.plist */,
 			);
 			name = resources;
@@ -2329,6 +2335,8 @@
 				66832CD6143D8AB7003E413C /* rulesets-overrides.css in Resources */,
 				66832CD8143E062C003E413C /* malformed.css in Resources */,
 				66832CFF143E3294003E413C /* UILabel.css in Resources */,
+				66FCC634144FB42E0029F1A6 /* includee.css in Resources */,
+				66FCC635144FB42E0029F1A6 /* includer.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

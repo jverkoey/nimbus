@@ -330,8 +330,10 @@ int cssConsume(char* text, int token) {
   NSDictionary* result = nil;
 
   if ([compositeRulesets count] == 1) {
-    [[compositeRulesets objectAtIndex:0] setObject:dependencyFilenames
-                                            forKey:kDependenciesSelectorKey];
+    if ([dependencyFilenames count] > 0) {
+      [[compositeRulesets objectAtIndex:0] setObject:dependencyFilenames
+                                              forKey:kDependenciesSelectorKey];
+    }
     result = [[[compositeRulesets objectAtIndex:0] copy] autorelease];
 
   } else {
@@ -367,8 +369,10 @@ int cssConsume(char* text, int token) {
         }
       }
     }
-
-    [mergedResult setObject:dependencyFilenames forKey:kDependenciesSelectorKey];
+    
+    if ([dependencyFilenames count] > 0) {
+      [mergedResult setObject:dependencyFilenames forKey:kDependenciesSelectorKey];
+    }
     result = [[mergedResult copy] autorelease];
   }
 
@@ -449,6 +453,9 @@ int cssConsume(char* text, int token) {
 
     [self setup];
     [self parseFileAtPath:path];
+    if (self.didFailToParse) {
+      break;
+    }
 
     [filenameQueue addObjectsFromArray:_importedFilenames];
     [_importedFilenames removeAllObjects];
@@ -457,13 +464,19 @@ int cssConsume(char* text, int token) {
     [self shutdown];
   }
 
-  // processedFilenames will be the set of dependencies, so remove the initial path.
-  [processedFilenames removeObject:aPath];
+  NSDictionary* result = nil;
 
-  NSDictionary* result = [self mergeCompositeRulesets:compositeRulesets
-                                dependencyFilenames:processedFilenames];
+  if (!self.didFailToParse) {
+    // processedFilenames will be the set of dependencies, so remove the initial path.
+    [processedFilenames removeObject:aPath];
+
+    result = [self mergeCompositeRulesets:compositeRulesets
+                      dependencyFilenames:processedFilenames];
+
+  }
 
   [self shutdown];
+
   return result;
 }
 
