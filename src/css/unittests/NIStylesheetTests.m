@@ -86,7 +86,7 @@
   STAssertTrue([stylesheet loadFromPath:pathToFile], @"The stylesheet should have been parsed.");
 
   UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-  [stylesheet applyStyleToView:label withSelectorClass:NSStringFromClass([label class])];
+  [stylesheet applyStyleToView:label withClassName:NSStringFromClass([label class])];
 
   [self assertColor:label.textColor equalsColor:[UIColor redColor]];
   [self assertColor:label.shadowColor equalsColor:[UIColor greenColor]];

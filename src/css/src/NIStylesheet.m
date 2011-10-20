@@ -21,22 +21,27 @@
 #import "NIStyleable.h"
 #import "NimbusCore.h"
 
+@interface NIStylesheet()
+@property (nonatomic, readonly, copy) NSDictionary* rawRulesets;
+@property (nonatomic, readonly, copy) NSDictionary* significantScopeToScopes;
+@end
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIStylesheet
 
-@synthesize rawRuleSets = _rawRuleSets;
-@synthesize classToRuleSetMap = _classToRuleSetMap;
+@synthesize rawRulesets = _rawRulesets;
+@synthesize significantScopeToScopes = _significantScopeToScopes;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 
-  NI_RELEASE_SAFELY(_rawRuleSets);
+  NI_RELEASE_SAFELY(_rawRulesets);
   NI_RELEASE_SAFELY(_ruleSets);
-  NI_RELEASE_SAFELY(_classToRuleSetMap);
+  NI_RELEASE_SAFELY(_significantScopeToScopes);
 
   [super dealloc];
 }
@@ -64,38 +69,56 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)rebuildClassToRuleSetMap {
-  NSMutableDictionary* classToRuleSetMap =
-  [[NSMutableDictionary alloc] initWithCapacity:[_rawRuleSets count]];
+// Builds a map of significant scopes to full scopes.
+//
+// For example, consider the following rulesets:
+//
+// .root UIButton {
+// }
+// .apple UIButton {
+// }
+// UIButton UIView {
+// }
+// UIView {
+// }
+//
+// The generated scope map will look like:
+//
+// UIButton => (.root UIButton, .apple UIButton)
+// UIView => (UIButton UIView, UIView)
+//
+- (void)rebuildSignificantScopeToScopes {
+  NSMutableDictionary* significantScopeToScopes =
+  [[NSMutableDictionary alloc] initWithCapacity:[_rawRulesets count]];
 
-  for (NSString* selector in _rawRuleSets) {
-    NSArray* parts = [selector componentsSeparatedByString:@" "];
-    NSString* mostSignificantIdent = [parts lastObject];
+  for (NSString* scope in _rawRulesets) {
+    NSArray* parts = [scope componentsSeparatedByString:@" "];
+    NSString* mostSignificantScopePart = [parts lastObject];
 
     // TODO (jverkoey Oct 6, 2011): We should respect CSS specificity. Right now this will
     // give higher precedance to newer styles. Instead, we should prefer styles that have more
     // selectors.
-    NSMutableArray* selectors = [classToRuleSetMap objectForKey:mostSignificantIdent];
-    if (nil == selectors) {
-      selectors = [[NSMutableArray alloc] initWithObjects:selector, nil];
-      [classToRuleSetMap setObject:selectors forKey:mostSignificantIdent];
-      NI_RELEASE_SAFELY(selectors);
+    NSMutableArray* scopes = [significantScopeToScopes objectForKey:mostSignificantScopePart];
+    if (nil == scopes) {
+      scopes = [[NSMutableArray alloc] initWithObjects:scope, nil];
+      [significantScopeToScopes setObject:scopes forKey:mostSignificantScopePart];
+      NI_RELEASE_SAFELY(scopes);
       
     } else {
-      [selectors addObject:selector];
+      [scopes addObject:scope];
     }
   }
 
-  [_classToRuleSetMap release];
-  _classToRuleSetMap = [classToRuleSetMap copy];
+  [_significantScopeToScopes release];
+  _significantScopeToScopes = [significantScopeToScopes copy];
   
-  NI_RELEASE_SAFELY(classToRuleSetMap);
+  NI_RELEASE_SAFELY(significantScopeToScopes);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)ruleSetsDidChange {
-  [self rebuildClassToRuleSetMap];
+  [self rebuildSignificantScopeToScopes];
 }
 
 
@@ -123,42 +146,42 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)loadFromPath:(NSString *)filename {
-  return [self loadFromPath:filename pathPrefix:nil delegate:nil];
+- (BOOL)loadFromPath:(NSString *)path {
+  return [self loadFromPath:path pathPrefix:nil delegate:nil];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)loadFromPath:(NSString *)filename pathPrefix:(NSString *)path {
-  return [self loadFromPath:filename pathPrefix:path delegate:nil];
+- (BOOL)loadFromPath:(NSString *)path pathPrefix:(NSString *)pathPrefix {
+  return [self loadFromPath:path pathPrefix:pathPrefix delegate:nil];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)loadFromPath:(NSString *)filename
-          pathPrefix:(NSString *)aPath
+- (BOOL)loadFromPath:(NSString *)aPath
+          pathPrefix:(NSString *)pathPrefix
             delegate:(id<NICSSParserDelegate>)delegate {
   BOOL loadDidSucceed = NO;
 
-  NI_RELEASE_SAFELY(_rawRuleSets);
+  NI_RELEASE_SAFELY(_rawRulesets);
   NI_RELEASE_SAFELY(_ruleSets);
-  NI_RELEASE_SAFELY(_classToRuleSetMap);
+  NI_RELEASE_SAFELY(_significantScopeToScopes);
 
   _ruleSets = [[NSMutableDictionary alloc] init];
 
-  NSString* path = filename;
-  if (aPath.length > 0) {
-    path = [aPath stringByAppendingPathComponent:filename];
+  NSString* path = aPath;
+  if (pathPrefix.length > 0) {
+    path = [pathPrefix stringByAppendingPathComponent:aPath];
   }
 
   if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
     NICSSParser* parser = [[NICSSParser alloc] init];
 
-    NSDictionary* results = [parser dictionaryForPath:filename
-                                           pathPrefix:aPath
+    NSDictionary* results = [parser dictionaryForPath:aPath
+                                           pathPrefix:pathPrefix
                                              delegate:delegate];
     if (nil != results && ![parser didFailToParse]) {
-      _rawRuleSets = [results retain];
+      _rawRulesets = [results retain];
       loadDidSucceed = YES;
     }
     NI_RELEASE_SAFELY(parser);
@@ -177,13 +200,13 @@
     return;
   }
 
-  NSMutableDictionary* compositeRuleSets = [self.rawRuleSets mutableCopy];
+  NSMutableDictionary* compositeRuleSets = [self.rawRulesets mutableCopy];
 
   BOOL ruleSetsDidChange = NO;
 
-  for (NSString* selector in stylesheet.rawRuleSets) {
-    NSDictionary* incomingRuleSet   = [stylesheet.rawRuleSets objectForKey:selector];
-    NSDictionary* existingRuleSet = [self.rawRuleSets objectForKey:selector];
+  for (NSString* selector in stylesheet.rawRulesets) {
+    NSDictionary* incomingRuleSet   = [stylesheet.rawRulesets objectForKey:selector];
+    NSDictionary* existingRuleSet = [self.rawRulesets objectForKey:selector];
 
     // Don't bother adding empty rulesets.
     if ([incomingRuleSet count] > 0) {
@@ -204,14 +227,19 @@
     }
   }
 
-  NI_RELEASE_SAFELY(_rawRuleSets);
-  _rawRuleSets = [compositeRuleSets copy];
+  NI_RELEASE_SAFELY(_rawRulesets);
+  _rawRulesets = [compositeRuleSets copy];
   NI_RELEASE_SAFELY(compositeRuleSets);
 
   if (ruleSetsDidChange) {
     [self ruleSetsDidChange];
   }
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Applying Styles to Views
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -223,22 +251,22 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleToView:(UIView *)view withSelectorClass:(NSString *)selectorClass {
-  NSArray* selectors = [_classToRuleSetMap objectForKey:selectorClass];
+- (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className {
+  NSArray* selectors = [_significantScopeToScopes objectForKey:className];
   if ([selectors count] > 0) {
     // Gather all of the rule sets for this view into a composite rule set.
-    NICSSRuleSet* ruleSet = [_ruleSets objectForKey:selectorClass];
+    NICSSRuleSet* ruleSet = [_ruleSets objectForKey:className];
 
     if (nil == ruleSet) {
       ruleSet = [[NICSSRuleSet alloc] init];
 
       // Composite the rule sets into one.
       for (NSString* selector in selectors) {
-        [ruleSet addEntriesFromDictionary:[_rawRuleSets objectForKey:selector]];
+        [ruleSet addEntriesFromDictionary:[_rawRulesets objectForKey:selector]];
       }
 
       NIDASSERT(nil != _ruleSets);
-      [_ruleSets setObject:ruleSet forKey:selectorClass];
+      [_ruleSets setObject:ruleSet forKey:className];
       [ruleSet release]; // We can release the ruleSet because it's retained by the dictionary.
     }
 
@@ -249,7 +277,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSSet *)dependencies {
-  return [_rawRuleSets objectForKey:kDependenciesSelectorKey];
+  return [_rawRulesets objectForKey:kDependenciesSelectorKey];
 }
 
 @end

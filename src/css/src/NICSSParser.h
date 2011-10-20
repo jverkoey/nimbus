@@ -28,6 +28,9 @@ extern NSString* const kDependenciesSelectorKey;
  *
  * It is recommended that you do NOT use this object directly. Use NIStylesheet instead.
  *
+ * Terminology note: CSS selectors are referred to as "scopes" to avoid confusion with
+ * Objective-C selectors.
+ *
  * This object is not thread-safe.
  */
 @interface NICSSParser : NSObject {
@@ -57,38 +60,13 @@ extern NSString* const kDependenciesSelectorKey;
   BOOL _didFailToParse;
 }
 
-/**
- * Reads a CSS file from a given path and returns a dictionary of raw CSS rule sets.
- *
- * If a pathPrefix is provided then all paths will be prefixed with this value.
- *
- * For example, if a path prefix of "/bundle/css" is given and a CSS file has the
- * statement "@import url('user/profile.css')", the loaded file will be
- * "/bundle/css/user/profile.css".
- *
- *      @param path         The path of the file to be read.
- *      @param pathPrefix   [optional] A prefix path that will be prepended to the given path
- *                          as well as any imported files.
- *      @param delegate     [optional] A delegate that can reprocess paths.
- *      @returns A dictionary mapping CSS scopes to dictionaries of property names to values.
- */
 - (NSDictionary *)dictionaryForPath:(NSString *)path
                          pathPrefix:(NSString *)pathPrefix
                            delegate:(id<NICSSParserDelegate>)delegate;
 
-/**
- * @sa NICSSParser::dictionaryForPath:pathPrefix:delegate:
- */
 - (NSDictionary *)dictionaryForPath:(NSString *)path pathPrefix:(NSString *)rootPath;
-
-/**
- * @sa NICSSParser::dictionaryForPath:pathPrefix:delegate:
- */
 - (NSDictionary *)dictionaryForPath:(NSString *)path;
 
-/**
- * Will be YES after retrieving a dictionary if the parser failed to parse the file in any way.
- */
 @property (nonatomic, readonly, assign) BOOL didFailToParse;
 
 @end
@@ -112,3 +90,36 @@ extern NSString* const kDependenciesSelectorKey;
 - (NSString *)cssParser:(NICSSParser *)parser pathFromPath:(NSString *)path;
 
 @end
+
+/**
+ * Reads a CSS file from a given path and returns a dictionary of raw CSS rule sets.
+ *
+ * If a pathPrefix is provided then all paths will be prefixed with this value.
+ *
+ * For example, if a path prefix of "/bundle/css" is given and a CSS file has the
+ * statement "@import url('user/profile.css')", the loaded file will be
+ * "/bundle/css/user/profile.css".
+ *
+ *      @fn NICSSParser::dictionaryForPath:pathPrefix:delegate:
+ *      @param path         The path of the file to be read.
+ *      @param pathPrefix   [optional] A prefix path that will be prepended to the given path
+ *                          as well as any imported files.
+ *      @param delegate     [optional] A delegate that can reprocess paths.
+ *      @returns A dictionary mapping CSS scopes to dictionaries of property names to values.
+ */
+
+/**
+ *      @fn NICSSParser::dictionaryForPath:pathPrefix:
+ *      @sa NICSSParser::dictionaryForPath:pathPrefix:delegate:
+ */
+
+/**
+ *      @fn NICSSParser::dictionaryForPath:
+ *      @sa NICSSParser::dictionaryForPath:pathPrefix:delegate:
+ */
+
+/**
+ * Will be YES after retrieving a dictionary if the parser failed to parse the file in any way.
+ *
+ *      @fn NICSSParser::didFailToParse
+ */
