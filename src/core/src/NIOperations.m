@@ -41,16 +41,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_pathToFile);
-  NI_RELEASE_SAFELY(_data);
-  NI_RELEASE_SAFELY(_processedObject);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithPathToFile:(NSString *)pathToFile {
   if ((self = [super init])) {
     self.pathToFile = pathToFile;
@@ -67,7 +57,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)main {
-  NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
   [self operationDidStart];
 
@@ -85,8 +74,6 @@
     [self operationWillFinish];
     [self operationDidFinish];
   }
-
-  NI_RELEASE_SAFELY(pool);
 }
 
 
@@ -118,22 +105,6 @@
 @synthesize didFailWithErrorBlock = _didFailWithErrorBlock;
 @synthesize willFinishBlock       = _willFinishBlock;
 #endif // #if NS_BLOCKS_AVAILABLE
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_lastError);
-
-#if NS_BLOCKS_AVAILABLE
-  NI_RELEASE_SAFELY(_didStartBlock);
-  NI_RELEASE_SAFELY(_didFinishBlock);
-  NI_RELEASE_SAFELY(_didFailWithErrorBlock);
-  NI_RELEASE_SAFELY(_willFinishBlock);
-#endif // #if NS_BLOCKS_AVAILABLE
-
-  [super dealloc];
-}
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////

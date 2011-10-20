@@ -28,7 +28,7 @@ NSMutableArray* NICreateNonRetainingMutableArray(void) {
   CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
   callbacks.retain = NIRetainNoOp;
   callbacks.release = NIReleaseNoOp;
-  return (NSMutableArray *)CFArrayCreateMutable(nil, 0, &callbacks);
+  return (__bridge NSMutableArray *)CFArrayCreateMutable(nil, 0, &callbacks);
 }
 
 
@@ -38,7 +38,7 @@ NSMutableDictionary* NICreateNonRetainingMutableDictionary(void) {
   CFDictionaryValueCallBacks callbacks = kCFTypeDictionaryValueCallBacks;
   callbacks.retain = NIRetainNoOp;
   callbacks.release = NIReleaseNoOp;
-  return (NSMutableDictionary *)CFDictionaryCreateMutable(nil, 0, &keyCallbacks, &callbacks);
+  return (__bridge NSMutableDictionary *)CFDictionaryCreateMutable(nil, 0, &keyCallbacks, &callbacks);
 }
 
 
@@ -47,5 +47,5 @@ NSMutableSet* NICreateNonRetainingMutableSet(void) {
   CFSetCallBacks callbacks = kCFTypeSetCallBacks;
   callbacks.retain = NIRetainNoOp;
   callbacks.release = NIReleaseNoOp;
-  return (NSMutableSet *)CFSetCreateMutable(nil, 0, &callbacks);
+  return (__bridge NSMutableSet *)CFSetCreateMutable(nil, 0, &callbacks);
 }

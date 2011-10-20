@@ -46,7 +46,7 @@
  */
 @interface NIOperation : NSOperation {
 @private
-  id<NIOperationDelegate> _delegate;
+  __unsafe_unretained id<NIOperationDelegate> _delegate;
 
   NSInteger _tag;
 

@@ -33,7 +33,7 @@ NSString* NIPathForDocumentsResource(NSString* relativePath) {
     NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                         NSUserDomainMask,
                                                         YES);
-    documentsPath = [[dirs objectAtIndex:0] retain];
+    documentsPath = [dirs objectAtIndex:0];
   }
   return [documentsPath stringByAppendingPathComponent:relativePath];
 }
