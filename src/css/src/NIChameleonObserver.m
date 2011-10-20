@@ -281,8 +281,8 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)cssParser:(NICSSParser *)parser filenameFromFilename:(NSString *)filename {
-  return [filename md5Hash];
+- (NSString *)cssParser:(NICSSParser *)parser pathFromPath:(NSString *)path {
+  return [path md5Hash];
 }
 
 

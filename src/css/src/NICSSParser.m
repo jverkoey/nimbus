@@ -22,7 +22,7 @@
 #import <pthread.h>
 
 static pthread_mutex_t gMutex = PTHREAD_MUTEX_INITIALIZER;
-NSString* const kRulesetOrderKey = @"__kRuleSetOrder__";
+NSString* const kPropertyOrderKey = @"__kRuleSetOrder__";
 NSString* const kDependenciesSelectorKey = @"__kDependencies__";
 
 // Damn you, flex. Due to the nature of flex we can only have one active parser at any given time.
@@ -112,7 +112,7 @@ int cssConsume(char* text, int token) {
           // Properties are case insensitive.
           _currentPropertyName = [lowercaseTextAsString retain];
           
-          NSMutableArray* ruleSetOrder = [_mutatingRuleset objectForKey:kRulesetOrderKey];
+          NSMutableArray* ruleSetOrder = [_mutatingRuleset objectForKey:kPropertyOrderKey];
           [ruleSetOrder addObject:_currentPropertyName];
 
           // Clear any existing values for the given property.
@@ -215,7 +215,7 @@ int cssConsume(char* text, int token) {
 
             NI_RELEASE_SAFELY(_mutatingRuleset);
             _mutatingRuleset = [[NSMutableDictionary alloc] init];
-            [_mutatingRuleset setObject:[NSMutableArray array] forKey:kRulesetOrderKey];
+            [_mutatingRuleset setObject:[NSMutableArray array] forKey:kPropertyOrderKey];
 
           } else {
             [self setFailFlag];
@@ -237,17 +237,17 @@ int cssConsume(char* text, int token) {
               // Properties already exist, so overwrite them.
               // Merge the orders.
               {
-                NSMutableArray* order = [existingProperties objectForKey:kRulesetOrderKey];
-                [order addObjectsFromArray:[_mutatingRuleset objectForKey:kRulesetOrderKey]];
-                [_mutatingRuleset setObject:order forKey:kRulesetOrderKey];
+                NSMutableArray* order = [existingProperties objectForKey:kPropertyOrderKey];
+                [order addObjectsFromArray:[_mutatingRuleset objectForKey:kPropertyOrderKey]];
+                [_mutatingRuleset setObject:order forKey:kPropertyOrderKey];
               }
 
               for (NSString* key in _mutatingRuleset) {
                 [existingProperties setObject:[_mutatingRuleset objectForKey:key] forKey:key];
               }
               // Add the order of the new properties.
-              [[existingProperties objectForKey:kRulesetOrderKey] addObjectsFromArray:
-               [_mutatingRuleset objectForKey:kRulesetOrderKey]];
+              [[existingProperties objectForKey:kPropertyOrderKey] addObjectsFromArray:
+               [_mutatingRuleset objectForKey:kPropertyOrderKey]];
             }
           }
 
@@ -321,13 +321,23 @@ int cssConsume(char* text, int token) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSDictionary *)mergeCompositeRulesets:(NSMutableArray *)compositeRulesets dependencyFilenameSet:(NSSet *)dependencyFilenameSet {
+- (NSDictionary *)mergeCompositeRulesets:(NSMutableArray *)compositeRulesets dependencyFilenames:(NSSet *)dependencyFilenames {
+  NIDASSERT([compositeRulesets count] > 0);
+  if ([compositeRulesets count] == 0) {
+    return nil;
+  }
+
   NSDictionary* result = nil;
 
-  if ([compositeRulesets count] > 1) {
+  if ([compositeRulesets count] == 1) {
+    [[compositeRulesets objectAtIndex:0] setObject:dependencyFilenames
+                                            forKey:kDependenciesSelectorKey];
+    result = [[[compositeRulesets objectAtIndex:0] copy] autorelease];
+
+  } else {
     NSMutableDictionary* mergedResult = [[[compositeRulesets lastObject] retain] autorelease];
     [compositeRulesets removeLastObject];
-    
+
     // Merge all of the rulesets into one.
     for (NSDictionary* ruleSet in [compositeRulesets reverseObjectEnumerator]) {
       for (NSString* scope in ruleSet) {
@@ -342,30 +352,24 @@ int cssConsume(char* text, int token) {
 
           for (NSString* propertyName in properties) {
 
-            if (nil == [mergedScopeProperties objectForKey:propertyName]
-                || ![propertyName isEqualToString:kRulesetOrderKey]) {
-
-              // The merged rule set doesn't have this key yet so just add it.
+            if (!(nil != [mergedScopeProperties objectForKey:propertyName]
+                  && [propertyName isEqualToString:kPropertyOrderKey])) {
+              // Overwrite the existing property's value.
               [mergedScopeProperties setObject:[properties objectForKey:propertyName]
                                         forKey:propertyName];
 
             } else {
-              // Merge the rule set orders then.
-              [[mergedScopeProperties objectForKey:propertyName] addObjectsFromArray:
-               [properties objectForKey:propertyName]];
+              // Append the property order.
+              [[mergedScopeProperties objectForKey:kPropertyOrderKey] addObjectsFromArray:
+               [properties objectForKey:kPropertyOrderKey]];
             }
           }
         }
       }
     }
 
-    [mergedResult setObject:dependencyFilenameSet forKey:kDependenciesSelectorKey];
+    [mergedResult setObject:dependencyFilenames forKey:kDependenciesSelectorKey];
     result = [[mergedResult copy] autorelease];
-
-  } else {
-    [[compositeRulesets objectAtIndex:0] setObject:dependencyFilenameSet
-                                            forKey:kDependenciesSelectorKey];
-    result = [[[compositeRulesets objectAtIndex:0] copy] autorelease];
   }
 
   return result;
@@ -425,8 +429,8 @@ int cssConsume(char* text, int token) {
     [processedFilenames addObject:path];
 
     // Allow the delegate to rename the file.
-    if ([delegate respondsToSelector:@selector(cssParser:filenameFromFilename:)]) {
-      NSString* reprocessedFilename = [delegate cssParser:self filenameFromFilename:path];
+    if ([delegate respondsToSelector:@selector(cssParser:pathFromPath:)]) {
+      NSString* reprocessedFilename = [delegate cssParser:self pathFromPath:path];
       if (nil != reprocessedFilename) {
         path = reprocessedFilename;
       }
@@ -457,7 +461,7 @@ int cssConsume(char* text, int token) {
   [processedFilenames removeObject:aPath];
 
   NSDictionary* result = [self mergeCompositeRulesets:compositeRulesets
-                                dependencyFilenameSet:processedFilenames];
+                                dependencyFilenames:processedFilenames];
 
   [self shutdown];
   return result;

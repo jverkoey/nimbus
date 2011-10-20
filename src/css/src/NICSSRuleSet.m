@@ -110,12 +110,12 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addEntriesFromDictionary:(NSDictionary *)dictionary {
-  NSMutableArray* order = [[[_ruleSet objectForKey:kRulesetOrderKey] retain] autorelease];
+  NSMutableArray* order = [[[_ruleSet objectForKey:kPropertyOrderKey] retain] autorelease];
   [_ruleSet addEntriesFromDictionary:dictionary];
 
   if (nil != order) {
-    [order addObjectsFromArray:[dictionary objectForKey:kRulesetOrderKey]];
-    [_ruleSet setObject:order forKey:kRulesetOrderKey];
+    [order addObjectsFromArray:[dictionary objectForKey:kPropertyOrderKey]];
+    [_ruleSet setObject:order forKey:kPropertyOrderKey];
   }
 }
 
@@ -196,7 +196,7 @@ static NSDictionary* sColorTable = nil;
   BOOL hasSetFontName = NO;
   BOOL hasSetFontSize = NO;
 
-  NSArray* order = [_ruleSet objectForKey:kRulesetOrderKey];
+  NSArray* order = [_ruleSet objectForKey:kPropertyOrderKey];
   for (NSString* name in [order reverseObjectEnumerator]) {
     if (!hasSetFontName && [name isEqualToString:kFontFamilyKey]) {
       values = [_ruleSet objectForKey:name];
@@ -509,7 +509,7 @@ static NSDictionary* sColorTable = nil;
   BOOL hasSetBorderColor = NO;
   BOOL hasSetBorderWidth = NO;
 
-  NSArray* order = [_ruleSet objectForKey:kRulesetOrderKey];
+  NSArray* order = [_ruleSet objectForKey:kPropertyOrderKey];
   for (NSString* name in [order reverseObjectEnumerator]) {
     if (!hasSetBorderColor && [name isEqualToString:kBorderColorKey]) {
       values = [_ruleSet objectForKey:name];

@@ -1083,8 +1083,10 @@
 				66832CFB143E2C0D003E413C /* NIDOM.m */,
 				66832CF4143E0C35003E413C /* NIStylesheet.h */,
 				66832CF5143E0C35003E413C /* NIStylesheet.m */,
+				66832CC2143D7898003E413C /* NICSSParser.h */,
+				66832CC3143D7898003E413C /* NICSSParser.m */,
 				66832D0C143E3C1C003E413C /* Styleable Components */,
-				66832D0B143E3C0E003E413C /* Internals */,
+				66832D0B143E3C0E003E413C /* Tokenizer */,
 				66832E0314435020003E413C /* Chameleon */,
 			);
 			name = src;
@@ -1127,16 +1129,14 @@
 			name = resources;
 			sourceTree = "<group>";
 		};
-		66832D0B143E3C0E003E413C /* Internals */ = {
+		66832D0B143E3C0E003E413C /* Tokenizer */ = {
 			isa = PBXGroup;
 			children = (
-				66832CC2143D7898003E413C /* NICSSParser.h */,
-				66832CC3143D7898003E413C /* NICSSParser.m */,
 				66832CEE143E0AD9003E413C /* CSSTokenizer.m */,
 				66832CEF143E0AD9003E413C /* CSSTokens.h */,
 				66832CF0143E0AD9003E413C /* CSSTokens.m */,
 			);
-			name = Internals;
+			name = Tokenizer;
 			sourceTree = "<group>";
 		};
 		66832D0C143E3C1C003E413C /* Styleable Components */ = {

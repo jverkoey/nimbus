@@ -16,12 +16,17 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString* const kRulesetOrderKey;
+extern NSString* const kPropertyOrderKey;
 extern NSString* const kDependenciesSelectorKey;
 
 @protocol NICSSParserDelegate;
 
 /**
+ * An Objective-C wrapper for the flex CSS parser.
+ *
+ * Generates a dictionary of raw CSS rules from a given CSS file.
+ *
+ * It is recommended that you do NOT use this object directly. Use NIStylesheet instead.
  *
  * This object is not thread-safe.
  */
@@ -52,12 +57,38 @@ extern NSString* const kDependenciesSelectorKey;
   BOOL _didFailToParse;
 }
 
-- (NSDictionary *)dictionaryForPath:(NSString *)path;
-- (NSDictionary *)dictionaryForPath:(NSString *)path pathPrefix:(NSString *)rootPath;
+/**
+ * Reads a CSS file from a given path and returns a dictionary of raw CSS rule sets.
+ *
+ * If a pathPrefix is provided then all paths will be prefixed with this value.
+ *
+ * For example, if a path prefix of "/bundle/css" is given and a CSS file has the
+ * statement "@import url('user/profile.css')", the loaded file will be
+ * "/bundle/css/user/profile.css".
+ *
+ *      @param path         The path of the file to be read.
+ *      @param pathPrefix   [optional] A prefix path that will be prepended to the given path
+ *                          as well as any imported files.
+ *      @param delegate     [optional] A delegate that can reprocess paths.
+ *      @returns A dictionary mapping CSS scopes to dictionaries of property names to values.
+ */
 - (NSDictionary *)dictionaryForPath:(NSString *)path
                          pathPrefix:(NSString *)pathPrefix
                            delegate:(id<NICSSParserDelegate>)delegate;
 
+/**
+ * @sa NICSSParser::dictionaryForPath:pathPrefix:delegate:
+ */
+- (NSDictionary *)dictionaryForPath:(NSString *)path pathPrefix:(NSString *)rootPath;
+
+/**
+ * @sa NICSSParser::dictionaryForPath:pathPrefix:delegate:
+ */
+- (NSDictionary *)dictionaryForPath:(NSString *)path;
+
+/**
+ * Will be YES after retrieving a dictionary if the parser failed to parse the file in any way.
+ */
 @property (nonatomic, readonly, assign) BOOL didFailToParse;
 
 @end
@@ -78,6 +109,6 @@ extern NSString* const kDependenciesSelectorKey;
  * This is used by the Chameleon observer to hash filenames with md5, effectively flattening
  * the path structure so that the files can be accessed without creating subdirectories.
  */
-- (NSString *)cssParser:(NICSSParser *)parser filenameFromFilename:(NSString *)filename;
+- (NSString *)cssParser:(NICSSParser *)parser pathFromPath:(NSString *)path;
 
 @end
