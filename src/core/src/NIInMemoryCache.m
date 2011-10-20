@@ -98,11 +98,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-  NI_RELEASE_SAFELY(_cacheMap);
-  NI_RELEASE_SAFELY(_lruCacheObjects);
-
-  [super dealloc];
 }
 
 
@@ -241,7 +236,7 @@
 
   // Create a new cache entry.
   if (nil == info) {
-    info = [[[NIMemoryCacheInfo alloc] init] autorelease];
+    info = [[NIMemoryCacheInfo alloc] init];
     info.name = name;
   }
 
@@ -274,7 +269,7 @@
     }
   }
 
-  return [[object retain] autorelease];
+  return object;
 }
 
 
@@ -338,7 +333,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeAllObjects {
-  NI_RELEASE_SAFELY(_cacheMap);
+  _cacheMap = nil;
   _cacheMap = [[NSMutableDictionary alloc] init];
 }
 
@@ -356,7 +351,7 @@
       [self removeCacheInfoForName:name];
     }
   }
-  NI_RELEASE_SAFELY(cacheMap);
+  cacheMap = nil;
 }
 
 
@@ -383,13 +378,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  NI_RELEASE_SAFELY(_name);
-  NI_RELEASE_SAFELY(_object);
-  NI_RELEASE_SAFELY(_expirationDate);
-  NI_RELEASE_SAFELY(_lastAccessTime);
-  _lruLocation = nil;
 
-  [super dealloc];
+  _lruLocation = nil;
 }
 
 
