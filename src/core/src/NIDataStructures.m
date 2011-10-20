@@ -68,17 +68,14 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  NI_RELEASE_SAFELY(_ll);
   _iterator = nil;
-
-  [super dealloc];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithLinkedList:(NILinkedList *)ll {
-  if ((self = [super init])) {
-    _ll = [ll retain];
+  if (self = [super init]) {
+    _ll = ll;
     _iterator = ll.head;
   }
   return self;
@@ -98,7 +95,7 @@
   } else {
     // As per the guidelines in the Objective-C docs for enumerators, we release the linked
     // list when we are finished enumerating.
-    NI_RELEASE_SAFELY(_ll);
+    _ll = nil;
     
     // We don't have to set _iterator to nil here because is already is.
   }
@@ -123,8 +120,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [self removeAllObjects];
-
-  [super dealloc];
 }
 
 
@@ -135,13 +130,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NILinkedList *)linkedList {
-  return [[[[self class] alloc] init] autorelease];
+  return [[[self class] alloc] init];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NILinkedList *)linkedListWithArray:(NSArray *)array {
-  return [[[[self class] alloc] initWithArray:array] autorelease];
+  return [[[self class] alloc] initWithArray:array];
 }
 
 
@@ -163,7 +158,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_eraseNode:(struct NILinkedListNode *)node {
-  [node->object release];
+  node->object = nil;
   free(node);
 }
 
@@ -253,7 +248,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSUInteger)countByEnumeratingWithState: (NSFastEnumerationState *)state
-                                  objects: (id *)stackbuf
+                                  objects: (__unsafe_unretained id *)stackbuf
                                     count: (NSUInteger)len {
   // Initialization condition.
   if (0 == state->state) {
@@ -335,8 +330,8 @@
   }
   
   NSArray* arrayOfObjects = [mutableArrayOfObjects copy];
-  NI_RELEASE_SAFELY(mutableArrayOfObjects);
-  return [arrayOfObjects autorelease];
+
+  return arrayOfObjects;
 }
 
 
@@ -368,7 +363,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSEnumerator *)objectEnumerator {
-  return [[[NILinkedListEnumerator alloc] initWithLinkedList:self] autorelease];
+  return [[NILinkedListEnumerator alloc] initWithLinkedList:self];
 }
 
 
@@ -425,7 +420,7 @@
   struct NILinkedListNode* node = malloc(sizeof(struct NILinkedListNode));
   memset(node, 0, sizeof(struct NILinkedListNode));
   
-  node->object = [object retain];
+  node->object = object;
   
   // Empty condition.
   if (nil == _tail) {

@@ -75,7 +75,6 @@ static NSMutableArray* sAppearanceStack = nil;
 
   NINavigationAppearanceSnapshot *snapshot = [[NINavigationAppearanceSnapshot alloc] initForNavigationController:navigationController];
   [sAppearanceStack addObject:snapshot];
-  [snapshot release];
 }
 
 
@@ -89,7 +88,6 @@ static NSMutableArray* sAppearanceStack = nil;
   }
 
   if (![sAppearanceStack count]) {
-    [sAppearanceStack release];
     sAppearanceStack = nil;
   }
 }
@@ -104,7 +102,6 @@ static NSMutableArray* sAppearanceStack = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)clear {
   [sAppearanceStack removeAllObjects];
-  [sAppearanceStack release];
   sAppearanceStack = nil;
 }
 
