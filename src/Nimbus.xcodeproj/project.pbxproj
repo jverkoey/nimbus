@@ -115,8 +115,8 @@
 		66832CFF143E3294003E413C /* UILabel.css in Resources */ = {isa = PBXBuildFile; fileRef = 66832CFE143E3294003E413C /* UILabel.css */; };
 		66832D03143E38F0003E413C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D02143E38F0003E413C /* CoreGraphics.framework */; };
 		66832D04143E39DF003E413C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
-		66832D07143E3A30003E413C /* NICSSRuleSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832D05143E3A30003E413C /* NICSSRuleSet.h */; };
-		66832D08143E3A30003E413C /* NICSSRuleSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832D06143E3A30003E413C /* NICSSRuleSet.m */; };
+		66832D07143E3A30003E413C /* NICSSRuleset.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832D05143E3A30003E413C /* NICSSRuleset.h */; };
+		66832D08143E3A30003E413C /* NICSSRuleset.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832D06143E3A30003E413C /* NICSSRuleset.m */; };
 		66832D0A143E3B55003E413C /* NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832D09143E3B55003E413C /* NIStyleable.h */; };
 		66832D0F143E3C32003E413C /* UILabel+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832D0D143E3C32003E413C /* UILabel+NIStyleable.h */; };
 		66832D10143E3C32003E413C /* UILabel+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832D0E143E3C32003E413C /* UILabel+NIStyleable.m */; };
@@ -516,8 +516,8 @@
 		66832CFE143E3294003E413C /* UILabel.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = UILabel.css; path = css/unittests/UILabel.css; sourceTree = SOURCE_ROOT; };
 		66832D00143E38E6003E413C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		66832D02143E38F0003E413C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		66832D05143E3A30003E413C /* NICSSRuleSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICSSRuleSet.h; path = css/src/NICSSRuleSet.h; sourceTree = SOURCE_ROOT; };
-		66832D06143E3A30003E413C /* NICSSRuleSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICSSRuleSet.m; path = css/src/NICSSRuleSet.m; sourceTree = SOURCE_ROOT; };
+		66832D05143E3A30003E413C /* NICSSRuleset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICSSRuleset.h; path = css/src/NICSSRuleset.h; sourceTree = SOURCE_ROOT; };
+		66832D06143E3A30003E413C /* NICSSRuleset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICSSRuleset.m; path = css/src/NICSSRuleset.m; sourceTree = SOURCE_ROOT; };
 		66832D09143E3B55003E413C /* NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIStyleable.h; path = css/src/NIStyleable.h; sourceTree = SOURCE_ROOT; };
 		66832D0D143E3C32003E413C /* UILabel+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+NIStyleable.h"; path = "css/src/UILabel+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
 		66832D0E143E3C32003E413C /* UILabel+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+NIStyleable.m"; path = "css/src/UILabel+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
@@ -1080,13 +1080,13 @@
 			isa = PBXGroup;
 			children = (
 				66832CB7143D681B003E413C /* NimbusCSS.h */,
-				66832D09143E3B55003E413C /* NIStyleable.h */,
-				66832D05143E3A30003E413C /* NICSSRuleSet.h */,
-				66832D06143E3A30003E413C /* NICSSRuleSet.m */,
 				66832CFA143E2C0D003E413C /* NIDOM.h */,
 				66832CFB143E2C0D003E413C /* NIDOM.m */,
+				66832D09143E3B55003E413C /* NIStyleable.h */,
 				66832CF4143E0C35003E413C /* NIStylesheet.h */,
 				66832CF5143E0C35003E413C /* NIStylesheet.m */,
+				66832D05143E3A30003E413C /* NICSSRuleset.h */,
+				66832D06143E3A30003E413C /* NICSSRuleset.m */,
 				66832CC2143D7898003E413C /* NICSSParser.h */,
 				66832CC3143D7898003E413C /* NICSSParser.m */,
 				66832D0C143E3C1C003E413C /* Styleable Components */,
@@ -1735,7 +1735,7 @@
 				66832CF2143E0AD9003E413C /* CSSTokens.h in Headers */,
 				66832CF6143E0C35003E413C /* NIStylesheet.h in Headers */,
 				66832CFC143E2C0D003E413C /* NIDOM.h in Headers */,
-				66832D07143E3A30003E413C /* NICSSRuleSet.h in Headers */,
+				66832D07143E3A30003E413C /* NICSSRuleset.h in Headers */,
 				66832D0A143E3B55003E413C /* NIStyleable.h in Headers */,
 				66832D0F143E3C32003E413C /* UILabel+NIStyleable.h in Headers */,
 				66832D1314416368003E413C /* UIView+NIStyleable.h in Headers */,
@@ -2703,7 +2703,7 @@
 				66832CF3143E0AD9003E413C /* CSSTokens.m in Sources */,
 				66832CF7143E0C35003E413C /* NIStylesheet.m in Sources */,
 				66832CFD143E2C0D003E413C /* NIDOM.m in Sources */,
-				66832D08143E3A30003E413C /* NICSSRuleSet.m in Sources */,
+				66832D08143E3A30003E413C /* NICSSRuleset.m in Sources */,
 				66832D10143E3C32003E413C /* UILabel+NIStyleable.m in Sources */,
 				66832D1414416368003E413C /* UIView+NIStyleable.m in Sources */,
 				66832DA314421B4A003E413C /* UINavigationBar+NIStyleable.m in Sources */,

@@ -17,7 +17,7 @@
 #import "NIStylesheet.h"
 
 #import "NICSSParser.h"
-#import "NICSSRuleSet.h"
+#import "NICSSRuleset.h"
 #import "NIStyleable.h"
 #import "NimbusCore.h"
 
@@ -243,7 +243,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyRuleSet:(NICSSRuleSet *)ruleSet toView:(UIView *)view {
+- (void)applyRuleSet:(NICSSRuleset *)ruleSet toView:(UIView *)view {
   if ([view respondsToSelector:@selector(applyStyleWithRuleSet:)]) {
     [(id<NIStyleable>)view applyStyleWithRuleSet:ruleSet];
   }
@@ -255,10 +255,10 @@
   NSArray* selectors = [_significantScopeToScopes objectForKey:className];
   if ([selectors count] > 0) {
     // Gather all of the rule sets for this view into a composite rule set.
-    NICSSRuleSet* ruleSet = [_ruleSets objectForKey:className];
+    NICSSRuleset* ruleSet = [_ruleSets objectForKey:className];
 
     if (nil == ruleSet) {
-      ruleSet = [[NICSSRuleSet alloc] init];
+      ruleSet = [[NICSSRuleset alloc] init];
 
       // Composite the rule sets into one.
       for (NSString* selector in selectors) {

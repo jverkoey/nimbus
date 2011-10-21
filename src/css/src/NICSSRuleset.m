@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "NICSSRuleSet.h"
+#import "NICSSRuleset.h"
 
 #import "NICSSParser.h"
 #import "NimbusCore.h"
@@ -43,7 +43,7 @@ static NSString* const kTintColorKey = @"-ios-tint-color";
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
 
-@interface NICSSRuleSet()
+@interface NICSSRuleset()
 // Instantiates the color table if it does not already exist.
 + (NSDictionary *)colorTable;
 + (UIColor *)colorFromCssValues:(NSArray *)cssValues numberOfConsumedTokens:(NSInteger *)pNumberOfConsumedTokens;
@@ -54,7 +54,7 @@ static NSDictionary* sColorTable = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NICSSRuleSet
+@implementation NICSSRuleset
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,19 +68,9 @@ static NSDictionary* sColorTable = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)reduceMemory {
-  NI_RELEASE_SAFELY(sColorTable);
-
-  [self clearCache];
-
-  memset(&_is, 0, sizeof(_is));
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  NI_RELEASE_SAFELY(_ruleSet);
+  NI_RELEASE_SAFELY(_ruleset);
 
   [self clearCache];
 
@@ -91,7 +81,7 @@ static NSDictionary* sColorTable = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
   if ((self = [super init])) {
-    _ruleSet = [[NSMutableDictionary alloc] init];
+    _ruleset = [[NSMutableDictionary alloc] init];
 
     NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
     [nc addObserver: self
@@ -110,19 +100,19 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addEntriesFromDictionary:(NSDictionary *)dictionary {
-  NSMutableArray* order = [[[_ruleSet objectForKey:kPropertyOrderKey] retain] autorelease];
-  [_ruleSet addEntriesFromDictionary:dictionary];
+  NSMutableArray* order = [[[_ruleset objectForKey:kPropertyOrderKey] retain] autorelease];
+  [_ruleset addEntriesFromDictionary:dictionary];
 
   if (nil != order) {
     [order addObjectsFromArray:[dictionary objectForKey:kPropertyOrderKey]];
-    [_ruleSet setObject:order forKey:kPropertyOrderKey];
+    [_ruleset setObject:order forKey:kPropertyOrderKey];
   }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTextColor {
-  return nil != [_ruleSet objectForKey:kTextColorKey];
+  return nil != [_ruleset objectForKey:kTextColorKey];
 }
 
 
@@ -130,7 +120,7 @@ static NSDictionary* sColorTable = nil;
 - (UIColor *)textColor {
   NIDASSERT([self hasTextColor]);
   if (!_is.cached.TextColor) {
-    _textColor = [[[self class] colorFromCssValues:[_ruleSet objectForKey:kTextColorKey]
+    _textColor = [[[self class] colorFromCssValues:[_ruleset objectForKey:kTextColorKey]
                             numberOfConsumedTokens:nil] retain];
     _is.cached.TextColor = YES;
   }
@@ -140,7 +130,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTextAlignment {
-  return nil != [_ruleSet objectForKey:kTextAlignmentKey];
+  return nil != [_ruleset objectForKey:kTextAlignmentKey];
 }
 
 
@@ -148,7 +138,7 @@ static NSDictionary* sColorTable = nil;
 - (UITextAlignment)textAlignment {
   NIDASSERT([self hasTextAlignment]);
   if (!_is.cached.TextAlignment) {
-    _textAlignment = [[self class] textAlignmentFromCssValues:[_ruleSet objectForKey:kTextAlignmentKey]];
+    _textAlignment = [[self class] textAlignmentFromCssValues:[_ruleset objectForKey:kTextAlignmentKey]];
     _is.cached.TextAlignment = YES;
   }
   return _textAlignment;
@@ -157,11 +147,11 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasFont {
-  return (nil != [_ruleSet objectForKey:kFontKey]
-          || nil != [_ruleSet objectForKey:kFontSizeKey]
-          || nil != [_ruleSet objectForKey:kFontWeightKey]
-          || nil != [_ruleSet objectForKey:kFontStyleKey]
-          || nil != [_ruleSet objectForKey:kFontFamilyKey]);
+  return (nil != [_ruleset objectForKey:kFontKey]
+          || nil != [_ruleset objectForKey:kFontSizeKey]
+          || nil != [_ruleset objectForKey:kFontWeightKey]
+          || nil != [_ruleset objectForKey:kFontStyleKey]
+          || nil != [_ruleset objectForKey:kFontFamilyKey]);
 }
 
 
@@ -178,13 +168,13 @@ static NSDictionary* sColorTable = nil;
   BOOL fontIsBold = NO;
   BOOL fontIsItalic = NO;
   
-  NSArray* values = [_ruleSet objectForKey:kFontWeightKey];
+  NSArray* values = [_ruleset objectForKey:kFontWeightKey];
   if (nil != values) {
     NIDASSERT([values count] == 1);
     fontIsBold = [[values objectAtIndex:0] isEqualToString:@"bold"];
   }
   
-  values = [_ruleSet objectForKey:kFontStyleKey];
+  values = [_ruleset objectForKey:kFontStyleKey];
   if (nil != values) {
     NIDASSERT([values count] == 1);
     fontIsItalic = [[values objectAtIndex:0] isEqualToString:@"italic"];
@@ -196,17 +186,17 @@ static NSDictionary* sColorTable = nil;
   BOOL hasSetFontName = NO;
   BOOL hasSetFontSize = NO;
 
-  NSArray* order = [_ruleSet objectForKey:kPropertyOrderKey];
+  NSArray* order = [_ruleset objectForKey:kPropertyOrderKey];
   for (NSString* name in [order reverseObjectEnumerator]) {
     if (!hasSetFontName && [name isEqualToString:kFontFamilyKey]) {
-      values = [_ruleSet objectForKey:name];
+      values = [_ruleset objectForKey:name];
       NIDASSERT([values count] == 1); if ([values count] < 1) { continue; }
       fontName = [[values objectAtIndex:0] stringByTrimmingCharactersInSet:
                   [NSCharacterSet characterSetWithCharactersInString:@"\""]];
       hasSetFontName = YES;
 
     } else if (!hasSetFontSize && [name isEqualToString:kFontSizeKey]) {
-      values = [_ruleSet objectForKey:name];
+      values = [_ruleset objectForKey:name];
       NIDASSERT([values count] == 1); if ([values count] < 1) { continue; }
       NSString* value = [values objectAtIndex:0];
       if ([value isEqualToString:@"default"]) {
@@ -218,7 +208,7 @@ static NSDictionary* sColorTable = nil;
       hasSetFontSize = YES;
 
     } else if (!hasSetFontSize && !hasSetFontName && [name isEqualToString:kFontKey]) {
-      values = [_ruleSet objectForKey:name];
+      values = [_ruleset objectForKey:name];
       NIDASSERT([values count] <= 2); if ([values count] < 1) { continue; }
 
       if ([values count] >= 1) {
@@ -273,7 +263,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTextShadowColor {
-  return nil != [_ruleSet objectForKey:kTextShadowKey];
+  return nil != [_ruleset objectForKey:kTextShadowKey];
 }
 
 
@@ -281,7 +271,7 @@ static NSDictionary* sColorTable = nil;
 - (UIColor *)textShadowColor {
   NIDASSERT([self hasTextShadowColor]);
   if (!_is.cached.TextShadowColor) {
-    NSArray* values = [_ruleSet objectForKey:kTextShadowKey];
+    NSArray* values = [_ruleset objectForKey:kTextShadowKey];
     _textShadowColor = [[[self class] colorFromCssValues:values numberOfConsumedTokens:nil] retain];
     _is.cached.TextShadowColor = YES;
   }
@@ -291,7 +281,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTextShadowOffset {
-  return nil != [_ruleSet objectForKey:kTextShadowKey];
+  return nil != [_ruleset objectForKey:kTextShadowKey];
 }
 
 
@@ -299,7 +289,7 @@ static NSDictionary* sColorTable = nil;
 - (CGSize)textShadowOffset {
   NIDASSERT([self hasTextShadowOffset]);
   if (!_is.cached.TextShadowOffset) {
-    NSArray* values = [_ruleSet objectForKey:kTextShadowKey];
+    NSArray* values = [_ruleset objectForKey:kTextShadowKey];
     NSInteger skipTokens = 0;
     [[self class] colorFromCssValues:values numberOfConsumedTokens:&skipTokens];
 
@@ -318,7 +308,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasLineBreakMode {
-  return nil != [_ruleSet objectForKey:kLineBreakModeKey];
+  return nil != [_ruleset objectForKey:kLineBreakModeKey];
 }
 
 
@@ -326,7 +316,7 @@ static NSDictionary* sColorTable = nil;
 - (UILineBreakMode)lineBreakMode {
   NIDASSERT([self hasLineBreakMode]);
   if (!_is.cached.LineBreakMode) {
-    NSArray* values = [_ruleSet objectForKey:kLineBreakModeKey];
+    NSArray* values = [_ruleset objectForKey:kLineBreakModeKey];
     NIDASSERT([values count] == 1);
     NSString* value = [values objectAtIndex:0];
     if ([value isEqualToString:@"wrap"]) {
@@ -352,7 +342,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasNumberOfLines {
-  return nil != [_ruleSet objectForKey:kNumberOfLinesKey];
+  return nil != [_ruleset objectForKey:kNumberOfLinesKey];
 }
 
 
@@ -360,7 +350,7 @@ static NSDictionary* sColorTable = nil;
 - (NSInteger)numberOfLines {
   NIDASSERT([self hasNumberOfLines]);
   if (!_is.cached.NumberOfLines) {
-    NSArray* values = [_ruleSet objectForKey:kNumberOfLinesKey];
+    NSArray* values = [_ruleset objectForKey:kNumberOfLinesKey];
     NIDASSERT([values count] == 1);
     _numberOfLines = [[values objectAtIndex:0] intValue];
     _is.cached.NumberOfLines = YES;
@@ -371,7 +361,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasMinimumFontSize {
-  return nil != [_ruleSet objectForKey:kMinimumFontSizeKey];
+  return nil != [_ruleset objectForKey:kMinimumFontSizeKey];
 }
 
 
@@ -379,7 +369,7 @@ static NSDictionary* sColorTable = nil;
 - (CGFloat)minimumFontSize {
   NIDASSERT([self hasMinimumFontSize]);
   if (!_is.cached.MinimumFontSize) {
-    NSArray* values = [_ruleSet objectForKey:kMinimumFontSizeKey];
+    NSArray* values = [_ruleset objectForKey:kMinimumFontSizeKey];
     NIDASSERT([values count] == 1);
     _minimumFontSize = [[values objectAtIndex:0] floatValue];
     _is.cached.MinimumFontSize = YES;
@@ -390,7 +380,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasAdjustsFontSize {
-  return nil != [_ruleSet objectForKey:kAdjustsFontSizeKey];
+  return nil != [_ruleset objectForKey:kAdjustsFontSizeKey];
 }
 
 
@@ -398,7 +388,7 @@ static NSDictionary* sColorTable = nil;
 - (BOOL)adjustsFontSize {
   NIDASSERT([self hasAdjustsFontSize]);
   if (!_is.cached.AdjustsFontSize) {
-    NSArray* values = [_ruleSet objectForKey:kAdjustsFontSizeKey];
+    NSArray* values = [_ruleset objectForKey:kAdjustsFontSizeKey];
     NIDASSERT([values count] == 1);
     _adjustsFontSize = [[values objectAtIndex:0] boolValue];
     _is.cached.AdjustsFontSize = YES;
@@ -409,7 +399,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasBaselineAdjustment {
-  return nil != [_ruleSet objectForKey:kBaselineAdjustmentKey];
+  return nil != [_ruleset objectForKey:kBaselineAdjustmentKey];
 }
 
 
@@ -417,7 +407,7 @@ static NSDictionary* sColorTable = nil;
 - (UIBaselineAdjustment)baselineAdjustment {
   NIDASSERT([self hasBaselineAdjustment]);
   if (!_is.cached.BaselineAdjustment) {
-    NSArray* values = [_ruleSet objectForKey:kBaselineAdjustmentKey];
+    NSArray* values = [_ruleset objectForKey:kBaselineAdjustmentKey];
     NIDASSERT([values count] == 1);
     NSString* value = [values objectAtIndex:0];
     if ([value isEqualToString:@"align-baselines"]) {
@@ -435,7 +425,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasOpacity {
-  return nil != [_ruleSet objectForKey:kOpacityKey];
+  return nil != [_ruleset objectForKey:kOpacityKey];
 }
 
 
@@ -443,7 +433,7 @@ static NSDictionary* sColorTable = nil;
 - (CGFloat)opacity {
   NIDASSERT([self hasOpacity]);
   if (!_is.cached.Opacity) {
-    NSArray* values = [_ruleSet objectForKey:kOpacityKey];
+    NSArray* values = [_ruleset objectForKey:kOpacityKey];
     NIDASSERT([values count] == 1);
     _opacity = [[values objectAtIndex:0] floatValue];
     _is.cached.Opacity = YES;
@@ -454,7 +444,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasBackgroundColor {
-  return nil != [_ruleSet objectForKey:kBackgroundColorKey];
+  return nil != [_ruleset objectForKey:kBackgroundColorKey];
 }
 
 
@@ -462,7 +452,7 @@ static NSDictionary* sColorTable = nil;
 - (UIColor *)backgroundColor {
   NIDASSERT([self hasBackgroundColor]);
   if (!_is.cached.BackgroundColor) {
-    _backgroundColor = [[[self class] colorFromCssValues:[_ruleSet objectForKey:kBackgroundColorKey]
+    _backgroundColor = [[[self class] colorFromCssValues:[_ruleset objectForKey:kBackgroundColorKey]
                                   numberOfConsumedTokens:nil] retain];
     _is.cached.BackgroundColor = YES;
   }
@@ -472,7 +462,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasBorderRadius {
-  return nil != [_ruleSet objectForKey:kBorderRadiusKey];
+  return nil != [_ruleset objectForKey:kBorderRadiusKey];
 }
 
 
@@ -480,7 +470,7 @@ static NSDictionary* sColorTable = nil;
 - (CGFloat)borderRadius {
   NIDASSERT([self hasBorderRadius]);
   if (!_is.cached.BorderRadius) {
-    NSArray* values = [_ruleSet objectForKey:kBorderRadiusKey];
+    NSArray* values = [_ruleset objectForKey:kBorderRadiusKey];
     NIDASSERT([values count] == 1);
     _borderRadius = [[values objectAtIndex:0] floatValue];
     _is.cached.BorderRadius = YES;
@@ -491,8 +481,8 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasBorderColor {
-  return (nil != [_ruleSet objectForKey:kBorderColorKey]
-          || nil != [_ruleSet objectForKey:kBorderKey]);
+  return (nil != [_ruleset objectForKey:kBorderColorKey]
+          || nil != [_ruleset objectForKey:kBorderKey]);
 }
 
 
@@ -509,22 +499,22 @@ static NSDictionary* sColorTable = nil;
   BOOL hasSetBorderColor = NO;
   BOOL hasSetBorderWidth = NO;
 
-  NSArray* order = [_ruleSet objectForKey:kPropertyOrderKey];
+  NSArray* order = [_ruleset objectForKey:kPropertyOrderKey];
   for (NSString* name in [order reverseObjectEnumerator]) {
     if (!hasSetBorderColor && [name isEqualToString:kBorderColorKey]) {
-      values = [_ruleSet objectForKey:name];
+      values = [_ruleset objectForKey:name];
       _borderColor = [[[self class] colorFromCssValues:values
                                 numberOfConsumedTokens:nil] retain];
       hasSetBorderColor = YES;
 
     } else if (!hasSetBorderWidth && [name isEqualToString:kBorderWidthKey]) {
-      values = [_ruleSet objectForKey:name];
+      values = [_ruleset objectForKey:name];
       NIDASSERT([values count] == 1); if ([values count] < 1) { continue; }
       _borderWidth = [[values objectAtIndex:0] floatValue];
       hasSetBorderWidth = YES;
 
     } else if (!hasSetBorderColor && !hasSetBorderWidth && [name isEqualToString:kBorderKey]) {
-      values = [_ruleSet objectForKey:name];
+      values = [_ruleset objectForKey:name];
 
       if ([values count] >= 1) {
         // Border width
@@ -561,8 +551,8 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasBorderWidth {
-  return (nil != [_ruleSet objectForKey:kBorderWidthKey]
-          || nil != [_ruleSet objectForKey:kBorderKey]);
+  return (nil != [_ruleset objectForKey:kBorderWidthKey]
+          || nil != [_ruleset objectForKey:kBorderKey]);
 }
 
 
@@ -577,7 +567,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTintColor {
-  return nil != [_ruleSet objectForKey:kTintColorKey];
+  return nil != [_ruleset objectForKey:kTintColorKey];
 }
 
 
@@ -585,7 +575,7 @@ static NSDictionary* sColorTable = nil;
 - (UIColor *)tintColor {
   NIDASSERT([self hasTintColor]);
   if (!_is.cached.TintColor) {
-    _tintColor = [[[self class] colorFromCssValues:[_ruleSet objectForKey:kTintColorKey]
+    _tintColor = [[[self class] colorFromCssValues:[_ruleset objectForKey:kTintColorKey]
                             numberOfConsumedTokens:nil] retain];
     _is.cached.TintColor = YES;
   }
@@ -596,6 +586,16 @@ static NSDictionary* sColorTable = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSNotifications
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)reduceMemory {
+  NI_RELEASE_SAFELY(sColorTable);
+  
+  [self clearCache];
+  
+  memset(&_is, 0, sizeof(_is));
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -879,14 +879,15 @@ static NSDictionary* sColorTable = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (UITextAlignment)textAlignmentFromCssValues:(NSArray *)cssValues {
   NIDASSERT([cssValues count] == 1);
+  if ([cssValues count] < 1) {
+    return UITextAlignmentLeft;
+  }
+
   NSString* value = [cssValues objectAtIndex:0];
 
   UITextAlignment textAlignment = UITextAlignmentLeft;
   
-  if ([value isEqualToString:@"left"]) {
-    textAlignment = UITextAlignmentLeft;
-
-  } else if ([value isEqualToString:@"center"]) {
+  if ([value isEqualToString:@"center"]) {
     textAlignment = UITextAlignmentCenter;
 
   } else if ([value isEqualToString:@"right"]) {

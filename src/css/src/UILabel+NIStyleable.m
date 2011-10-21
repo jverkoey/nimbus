@@ -17,7 +17,7 @@
 #import "UILabel+NIStyleable.h"
 
 #import "UIView+NIStyleable.h"
-#import "NICSSRuleSet.h"
+#import "NICSSRuleset.h"
 #import "NimbusCore.h"
 
 NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
@@ -30,7 +30,7 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyLabelStyleWithRuleSet:(NICSSRuleSet *)ruleSet {
+- (void)applyLabelStyleWithRuleSet:(NICSSRuleset *)ruleSet {
   if ([ruleSet hasTextColor]) { self.textColor = ruleSet.textColor; }
   if ([ruleSet hasTextAlignment]) { self.textAlignment = ruleSet.textAlignment; }
   if ([ruleSet hasFont]) { self.font = ruleSet.font; }
@@ -45,7 +45,7 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleWithRuleSet:(NICSSRuleSet *)ruleSet {
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
   [self applyViewStyleWithRuleSet:ruleSet];
   [self applyLabelStyleWithRuleSet:ruleSet];
 }

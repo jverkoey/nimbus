@@ -17,7 +17,7 @@
 #import "UIButton+NIStyleable.h"
 
 #import "UIView+NIStyleable.h"
-#import "NICSSRuleSet.h"
+#import "NICSSRuleset.h"
 #import "NimbusCore.h"
 
 NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
@@ -30,14 +30,14 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyButtonStyleWithRuleSet:(NICSSRuleSet *)ruleSet {
+- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet {
   if ([ruleSet hasTextColor]) { [self setTitleColor:ruleSet.textColor forState:UIControlStateNormal]; } else { [self setTitleColor:nil forState:UIControlStateNormal]; }
   if ([ruleSet hasTextShadowColor]) { [self setTitleShadowColor:ruleSet.textShadowColor forState:UIControlStateNormal]; } else { [self setTitleShadowColor:nil forState:UIControlStateNormal]; }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleWithRuleSet:(NICSSRuleSet *)ruleSet {
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
   [self applyViewStyleWithRuleSet:ruleSet];
   [self applyButtonStyleWithRuleSet:ruleSet];
 }

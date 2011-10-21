@@ -17,7 +17,7 @@
 #import "UINavigationBar+NIStyleable.h"
 
 #import "UIView+NIStyleable.h"
-#import "NICSSRuleSet.h"
+#import "NICSSRuleset.h"
 #import "NimbusCore.h"
 
 NI_FIX_CATEGORY_BUG(UINavigationBar_NIStyleable)
@@ -30,13 +30,13 @@ NI_FIX_CATEGORY_BUG(UINavigationBar_NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyNavigationBarStyleWithRuleSet:(NICSSRuleSet *)ruleSet {
+- (void)applyNavigationBarStyleWithRuleSet:(NICSSRuleset *)ruleSet {
   if ([ruleSet hasTintColor]) { self.tintColor = ruleSet.tintColor; }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleWithRuleSet:(NICSSRuleSet *)ruleSet {
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
   [self applyViewStyleWithRuleSet:ruleSet];
   [self applyNavigationBarStyleWithRuleSet:ruleSet];
 }

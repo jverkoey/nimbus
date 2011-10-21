@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class NICSSRuleSet;
+@class NICSSRuleset;
 
 @interface UILabel (NIStyleable)
 
@@ -26,6 +26,6 @@
  * This method is exposed primarily for subclasses to use when implementing the
  * applyStyleWithRuleSet: method from NIStyleable.
  */
-- (void)applyLabelStyleWithRuleSet:(NICSSRuleSet *)ruleSet;
+- (void)applyLabelStyleWithRuleSet:(NICSSRuleset *)ruleSet;
 
 @end

@@ -16,18 +16,22 @@
 
 #import <Foundation/Foundation.h>
 
-@class NICSSRuleSet;
+@class NICSSRuleset;
 
 /**
  * The protocol used by the NIStylesheet to apply NICSSRuleSets to views.
  *
  * If you implement this protocol in a category it is recommended that you implement the
  * logic as a separate method and call that method from applyStyleWithRuleSet: so as to allow
- * subclasses to call super implementations. See UILabel+NIStyleable for an example.
+ * subclasses to call super implementations. See UILabel+NIStyleable.h/m for an example.
  */
 @protocol NIStyleable <NSObject>
 @required
 
-- (void)applyStyleWithRuleSet:(NICSSRuleSet *)ruleSet;
+/**
+ * The given ruleset should be applied to the view. The ruleset represents a composite of all
+ * rulesets in the applicable stylesheet.
+ */
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet;
 
 @end

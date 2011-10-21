@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class NICSSRuleSet;
+@class NICSSRuleset;
 
 @interface UINavigationBar (NIStyleable)
 
@@ -26,6 +26,6 @@
  * This method is exposed primarily for subclasses to use when implementing the
  * applyStyleWithRuleSet: method from NIStyleable.
  */
-- (void)applyNavigationBarStyleWithRuleSet:(NICSSRuleSet *)ruleSet;
+- (void)applyNavigationBarStyleWithRuleSet:(NICSSRuleset *)ruleSet;
 
 @end
