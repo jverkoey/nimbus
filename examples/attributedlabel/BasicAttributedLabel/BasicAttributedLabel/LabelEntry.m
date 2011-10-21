@@ -27,18 +27,9 @@
 @synthesize title = _title;
 @synthesize controllerClass = _controllerClass;
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_title release]; _title = nil;
-  
-  [super dealloc];
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)entryWithTitle:(NSString *)title controllerClass:(Class)controllerClass {
-  LabelEntry* entry = [[[self alloc] init] autorelease];
+  LabelEntry* entry = [[self alloc] init];
   entry.title = title;
   entry.controllerClass = controllerClass;
   return entry;

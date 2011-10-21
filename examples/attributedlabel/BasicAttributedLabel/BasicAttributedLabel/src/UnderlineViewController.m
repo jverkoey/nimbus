@@ -35,19 +35,6 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(single);
-  NI_RELEASE_SAFELY(thick);
-  NI_RELEASE_SAFELY(ddouble);
-  NI_RELEASE_SAFELY(dot);
-  NI_RELEASE_SAFELY(dash);
-  NI_RELEASE_SAFELY(dashdot);
-  NI_RELEASE_SAFELY(dashdotdot);
-  NI_RELEASE_SAFELY(doubledashdotdot);
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)viewDidLoad {
   
   self.title = @"Underlined Text";
