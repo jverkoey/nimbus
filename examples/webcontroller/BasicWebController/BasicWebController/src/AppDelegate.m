@@ -29,14 +29,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_window);
-  NI_RELEASE_SAFELY(_rootController);
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Application lifecycle
@@ -45,10 +37,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   
   RootViewController* webController =
-  [[[RootViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+  [[RootViewController alloc] initWithNibName:nil bundle:nil];
   
   _rootController = [[UINavigationController alloc] initWithRootViewController:webController];
   
