@@ -39,15 +39,6 @@
 		CFRelease(_textFrame);
 		_textFrame = nil;
 	}
-
-  NI_RELEASE_SAFELY(_attributedText);
-  NI_RELEASE_SAFELY(_linkColor);
-  NI_RELEASE_SAFELY(_linkHighlightColor);
-  NI_RELEASE_SAFELY(_currentLink);
-  NI_RELEASE_SAFELY(_strokeColor);
-  NI_RELEASE_SAFELY(_customLinks);
-
-  [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -79,7 +70,7 @@
 -(void) resetFromLabel {
   NSMutableAttributedString* attributedString =
   ((nil != self.text)
-   ? [[[NSMutableAttributedString alloc] initWithString:self.text] autorelease]
+   ? [[NSMutableAttributedString alloc] initWithString:self.text]
    : nil);
 
   [attributedString setFont:self.font];
@@ -105,12 +96,12 @@
   if (!_attributedText) {
     [self resetFromLabel];
   }
-  return [[_attributedText copy] autorelease];
+  return [_attributedText copy];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setAttributedText:(NSAttributedString *)attributedText {
-  [_attributedText release];
+  _attributedText = nil;
   _attributedText = [attributedText mutableCopy];
   [self setNeedsDisplay];
 }
@@ -199,7 +190,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setStrokeColor:(UIColor *)strokeColor {
-  _strokeColor = [strokeColor retain];
+  _strokeColor = strokeColor;
   [_attributedText setStrokeColor:_strokeColor];
   [self setNeedsDisplay];
 }
@@ -236,28 +227,28 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(UIColor *)linkColor {
   if (!_linkColor) {
-    _linkColor = [[UIColor blueColor] retain];
+    _linkColor = [UIColor blueColor];
   }
   return _linkColor;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setLinkColor:(UIColor *)linkColor {
-  _linkColor = [linkColor retain];
+  _linkColor = linkColor;
   [self setNeedsDisplay];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(UIColor *)linkHighlightColor {
   if (!_linkHighlightColor) {
-    _linkHighlightColor = [[UIColor colorWithWhite:0.5f alpha:0.2f] retain];
+    _linkHighlightColor = [UIColor colorWithWhite:0.5f alpha:0.2f];
   }
   return _linkHighlightColor;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setLinkHighlightColor:(UIColor *)linkHighlightColor{
-  _linkHighlightColor = [linkHighlightColor retain];
+  _linkHighlightColor = linkHighlightColor;
   [self setNeedsDisplay];
 }
 
@@ -277,7 +268,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)removeAllLinks {
-  NI_RELEASE_SAFELY(_customLinks);
+  _customLinks = nil;
   self.userInteractionEnabled = _autoDetectLinks;
   [self setNeedsDisplay];
 }
@@ -301,7 +292,7 @@
 	if (nil == _attributedText) return CGSizeZero;
   
   CTFramesetterRef framesetter = 
-    CTFramesetterCreateWithAttributedString((CFAttributedStringRef)_attributedText);
+    CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)_attributedText);
 	CFRange fitCFRange = CFRangeMake(0,0);
 	CGSize newSize = 
     CTFramesetterSuggestFrameSizeWithConstraints(framesetter,CFRangeMake(0,0),NULL,size,&fitCFRange);
@@ -333,7 +324,7 @@
                              range:customLink.range];
   }
   
-  return [attributedString autorelease];
+  return attributedString;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -362,7 +353,7 @@
                                 usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
                                   NSRange range = [result range];
                                   if (NSLocationInRange(i, range)) {
-                                    foundResult = [[result retain] autorelease];
+                                    foundResult = result;
                                     *stop = YES;
                                   }
     }];
@@ -372,7 +363,7 @@
   
   for (NSTextCheckingResult* customLink in _customLinks) {
     if (NSLocationInRange(i, customLink.range)) {
-      return [[customLink retain] autorelease];
+      return customLink;
     }
   }
   
@@ -436,8 +427,8 @@
   UITouch* touch = [touches anyObject];
 	CGPoint point = [touch locationInView:self];
   
-  NI_RELEASE_SAFELY(_currentLink);
-  _currentLink = [[self linkAtPoint:point] retain];
+  _currentLink = nil;
+  _currentLink = [self linkAtPoint:point];
   
   [self setNeedsDisplay];
 }
@@ -455,7 +446,7 @@
     }
   }
   
-  NI_RELEASE_SAFELY(_currentLink);
+  _currentLink = nil;
   [self setNeedsDisplay];
 }
 
@@ -467,7 +458,7 @@
 		CGContextSaveGState(ctx);
 
     NSMutableAttributedString* attributedString = _autoDetectLinks || [_customLinks count] > 0 ? 
-      [self linksDetectedAttributedString] : [[self.attributedText copy] autorelease];
+      [self linksDetectedAttributedString] : [self.attributedText copy];
 
     // CoreText context coordinates are the opposite to UIKit so we flip the bounds
     CGContextConcatCTM(ctx,
@@ -476,7 +467,7 @@
     
     if (_textFrame == nil) {
       CTFramesetterRef framesetter =
-        CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attributedString);
+        CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)attributedString);
       _drawingRect = self.bounds;
       CGMutablePathRef path = CGPathCreateMutable();
 			CGPathAddRect(path, NULL, _drawingRect);
