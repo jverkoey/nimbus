@@ -22,17 +22,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation StaticIndexedTableViewController
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  // The model is a retained object in this controller, so we must release it when the controller
-  // is deallocated.
-  [_model release]; _model = nil;
-
-  [super dealloc];
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -104,7 +93,7 @@
   self.tableView.dataSource = _model;
 
   // Create a dummy search display controller just to show the use of a search bar.
-  UISearchBar* searchBar = [[[UISearchBar alloc] init] autorelease];
+  UISearchBar* searchBar = [[UISearchBar alloc] init];
   [searchBar sizeToFit];
   _searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
   self.tableView.tableHeaderView = _searchController.searchBar;
@@ -123,9 +112,8 @@
   UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
 
   if (nil == cell) {
-    cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-                                   reuseIdentifier: @"row"]
-            autorelease];
+    cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
+                                   reuseIdentifier: @"row"];
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
   }

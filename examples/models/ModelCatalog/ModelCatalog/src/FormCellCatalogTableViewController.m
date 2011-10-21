@@ -22,17 +22,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation FormCellCatalogTableViewController
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  // The model is a retained object in this controller, so we must release it when the controller
-  // is deallocated.
-  [_model release]; _model = nil;
-  
-  [super dealloc];
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
