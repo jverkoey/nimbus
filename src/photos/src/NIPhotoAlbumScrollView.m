@@ -39,19 +39,6 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  _pagingScrollView = nil;
-
-  NI_RELEASE_SAFELY(_loadingImage);
-
-  NI_RELEASE_SAFELY(_visiblePages);
-  NI_RELEASE_SAFELY(_recycledPages);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     // Default state.
@@ -64,7 +51,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
     _centerPhotoIndex = -1;
     _numberOfPages = NIPhotoAlbumScrollViewUnknownNumberOfPhotos;
 
-    _pagingScrollView = [[[UIScrollView alloc] initWithFrame:frame] autorelease];
+    _pagingScrollView = [[UIScrollView alloc] initWithFrame:frame];
     _pagingScrollView.pagingEnabled = YES;
 
     _pagingScrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
@@ -159,9 +146,6 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   NIPhotoScrollView* page = [_recycledPages anyObject];
 
   if (nil != page) {
-    // Ensure that this object sticks around for this runloop.
-    [[page retain] autorelease];
-
     [_recycledPages removeObject:page];
 
     // Reset this page to a blank slate state.
@@ -281,7 +265,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   NIPhotoScrollView* page = [self dequeueRecycledPage];
 
   if (nil == page) {
-    page = [[[NIPhotoScrollView alloc] init] autorelease];
+    page = [[NIPhotoScrollView alloc] init];
     page.photoScrollViewDelegate = self;
     page.zoomingAboveOriginalSizeIsEnabled = [self isZoomingAboveOriginalSizeEnabled];
   }
@@ -418,9 +402,6 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   for (NIPhotoScrollView* page in _visiblePages) {
     [page removeFromSuperview];
   }
-
-  NI_RELEASE_SAFELY(_visiblePages);
-  NI_RELEASE_SAFELY(_recycledPages);
 
   // Reset the state of the scroll view.
   _isModifyingContentOffset = YES;
