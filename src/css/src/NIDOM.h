@@ -18,6 +18,12 @@
 
 @class NIStylesheet;
 
+/**
+ * A leight-weight DOM-like object with which you can attach views and stylesheets.
+ *
+ * This is not a full HTML DOM, to be clear, but its intent is the same. By attaching views
+ * and stylesheets to a DOM object you can 
+ */
 @interface NIDOM : NSObject {
 @private
   NIStylesheet* _stylesheet;
