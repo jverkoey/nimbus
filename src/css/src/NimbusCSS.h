@@ -31,9 +31,30 @@
  *   the application's UI when the app state changes. A good example of this is the Rdio app
  *   when you go into offline mode and the app's online components gray out.
  *
+ *
  * <h2>Creating a Stylesheet</h2>
  *
- * 
+ * Start by creating a .css file and adding it to your project, ensuring that you include it in
+ * the copy resources phase. It is recommended to place all of your CSS files in a subdirectory
+ * by creating a folder reference.
+ *
+ * You then load the CSS in an NIStylesheet object like so:
+ *
+@code
+NSString* cssPath = NIPathForBundleResource(nil, @"resources/css");
+NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
+if ([stylesheet loadFromPath:"common.css"
+                  pathPrefix:cssPath]) {
+  // Successfully loaded <bundlePath>/resources/css/common.css
+}
+@endcode
+ *
+ *
+ * <h2>Using a Stylesheet</h2>
+ *
+ * The easiest way to use a stylesheet is with NIDOM. You can attach a stylesheet to an NIDOM
+ * object and then any views you attach will have the stylesheet styles applied automatically.
+ *
  *
  * <h2>Linking to Other Stylesheets</h2>
  *
@@ -45,7 +66,10 @@
  *
  * @import url('common.css')
  *
- * <h3>Notes about CSS Imports</h3>
+ * Files are imported relative to the pathPrefix given to the stylesheet when you load the css
+ * file.
+ *
+ * <h3>CSS Import Ordering Gotcha</h3>
  *
  * One might expect that placing an @import in the middle of a CSS file would import
  * the file at that exact location. This is not currently the case, i.e. the parser does not

@@ -185,7 +185,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 - (BOOL)loadStylesheetWithFilename:(NSString *)filename {
   NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
   BOOL didSucceed = [stylesheet loadFromPath:filename
-                              pathPrefix:NIPathForBundleResource(nil, _rootFolder)];
+                                  pathPrefix:NIPathForBundleResource(nil, _rootFolder)];
 
   if (didSucceed) {
     [_stylesheets setObject:stylesheet forKey:filename];
