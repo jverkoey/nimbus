@@ -21,8 +21,9 @@
 /**
  * A leight-weight DOM-like object with which you can attach views and stylesheets.
  *
- * This is not a full HTML DOM, to be clear, but its intent is the same. By attaching views
- * and stylesheets to a DOM object you can 
+ * This is not a full HTML DOM, to be clear, but its intent is the same. NIDOM is designed
+ * to simplify the view <=> stylesheet relationship. Add a view to the DOM and it will
+ * automatically apply any applicable styles from the attached stylesheet.
  */
 @interface NIDOM : NSObject {
 @private
@@ -32,10 +33,11 @@
 }
 
 // Designated initializer.
+
 - (id)initWithStylesheet:(NIStylesheet *)stylesheet;
 
 + (id)domWithStylesheet:(NIStylesheet *)stylesheet;
-+ (id)domWithStylesheetRootPath:(NSString *)rootPath filenames:(NSString *)stylesheetPath, ...;
++ (id)domWithStylesheetWithPathPrefix:(NSString *)pathPrefix paths:(NSString *)path, ...;
 
 - (void)registerView:(UIView *)view;
 - (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass;
@@ -44,3 +46,38 @@
 - (void)refresh;
 
 @end
+
+/**
+ * Initializes a newly allocated DOM with the given stylesheet.
+ *
+ *      @fn NIDOM::initWithStylesheet:
+ */
+
+/**
+ * Returns an autoreleased DOM initialized with the given stylesheet.
+ *
+ *      @fn NIDOM::domWithStylesheet:
+ */
+
+/**
+ * Returns an autoreleased DOM initialized with a nil-terminated list of file paths.
+ *
+ *      @fn NIDOM::domWithStylesheetWithPathPrefix:paths:
+ */
+
+/**
+ * Registers the given view with the DOM.
+ *
+ * The view's class will be used as the CSS selector when applying styles from the stylesheet.
+ *
+ *      @fn NIDOM::registerView:
+ */
+
+/**
+ * Registers the given view with the DOM.
+ *
+ * The view's class as well as the given CSS class string will be used as the CSS selectors
+ * when applying styles from the stylesheet.
+ *
+ *      @fn NIDOM::registerView:withCSSClass:
+ */

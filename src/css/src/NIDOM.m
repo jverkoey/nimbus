@@ -43,23 +43,23 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)domWithStylesheetRootPath:(NSString *)rootPath filenames:(NSString *)stylesheetPath, ... {
++ (id)domWithStylesheetWithPathPrefix:(NSString *)pathPrefix paths:(NSString *)path, ... {
   va_list ap;
-  va_start(ap, stylesheetPath);
+  va_start(ap, path);
 
   NIStylesheet* compositeStylesheet = [[[NIStylesheet alloc] init] autorelease];
 
-  while (nil != stylesheetPath) {
-    NIDASSERT([stylesheetPath isKindOfClass:[NSString class]]);
+  while (nil != path) {
+    NIDASSERT([path isKindOfClass:[NSString class]]);
 
-    if ([stylesheetPath isKindOfClass:[NSString class]]) {
+    if ([path isKindOfClass:[NSString class]]) {
       NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
-      if ([stylesheet loadFromPath:stylesheetPath pathPrefix:rootPath]) {
+      if ([stylesheet loadFromPath:path pathPrefix:pathPrefix]) {
         [compositeStylesheet addStylesheet:stylesheet];
       }
       NI_RELEASE_SAFELY(stylesheet);
     }
-    stylesheetPath = va_arg(ap, NSString*);
+    path = va_arg(ap, NSString*);
   }
   va_end(ap);
 
