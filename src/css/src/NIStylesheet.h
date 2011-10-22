@@ -25,6 +25,8 @@
  * to views. Rulesets are cached on demand and cleared when a memory warning is received.
  *
  * Stylesheets can be merged using the addStylesheet: method.
+ *
+ * Cached rulesets are released when a memory warning is received.
  */
 @interface NIStylesheet : NSObject {
 @private

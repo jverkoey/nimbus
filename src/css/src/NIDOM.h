@@ -21,9 +21,10 @@
 /**
  * A leight-weight DOM-like object with which you can attach views and stylesheets.
  *
- * This is not a full HTML DOM, to be clear, but its intent is the same. NIDOM is designed
+ * To be clear: this is not an HTML DOM, but its intent is the same. NIDOM is designed
  * to simplify the view <=> stylesheet relationship. Add a view to the DOM and it will
- * automatically apply any applicable styles from the attached stylesheet.
+ * automatically apply any applicable styles from the attached stylesheet. If the stylesheet
+ * changes you can refresh the DOM and all registered views will be updated accordingly.
  */
 @interface NIDOM : NSObject {
 @private
@@ -80,4 +81,26 @@
  * when applying styles from the stylesheet.
  *
  *      @fn NIDOM::registerView:withCSSClass:
+ */
+
+/**
+ * Removes the given view from from the DOM.
+ *
+ * Once a view has been removed from the DOM it will not be restyled when the DOM is refreshed.
+ *
+ *      @fn NIDOM::unregisterView:
+ */
+
+/**
+ * Removes all views from from the DOM.
+ *
+ *      @fn NIDOM::unregisterAllViews
+ */
+
+/**
+ * Reapplies the stylesheet to all views.
+ *
+ * This only needs to be called if the stylesheet has changed.
+ *
+ *      @fn NIDOM::refresh
  */
