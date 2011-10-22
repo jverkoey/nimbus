@@ -37,7 +37,7 @@
 @private
   id _processedObject;
 
-  id<NIProcessorDelegate> _processorDelegate;
+  __unsafe_unretained id<NIProcessorDelegate> _processorDelegate;
 
 #if NS_BLOCKS_AVAILABLE
   NIProcessorBlock _processDataBlock;

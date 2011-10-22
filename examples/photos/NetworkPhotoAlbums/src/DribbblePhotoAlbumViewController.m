@@ -103,7 +103,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
-  NI_RELEASE_SAFELY(_photoInformation);
+  _photoInformation = nil;
 
   [super viewDidUnload];
 }
@@ -117,7 +117,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)requestFinished:(NIProcessorHTTPRequest *)request {
-  _photoInformation = [request.processedObject retain];
+  _photoInformation = request.processedObject;
 
   [self.photoAlbumView reloadData];
 

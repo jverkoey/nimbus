@@ -36,20 +36,12 @@
     request.delegate = nil;
   }
   [_queue cancelAllOperations];
-  
-  NI_RELEASE_SAFELY(_activeRequests);
-
-  NI_RELEASE_SAFELY(_highQualityImageCache);
-  NI_RELEASE_SAFELY(_thumbnailImageCache);
-  NI_RELEASE_SAFELY(_queue);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [self shutdown];
-
-  [super dealloc];
 }
 
 
@@ -74,8 +66,8 @@
 
   NSURL* url = [NSURL URLWithString:source];
 
-  // We must use __block here to avoid creating a retain cycle with the readOp.
-  __block NIHTTPRequest* readOp = [NIHTTPRequest requestWithURL: url
+  // We must use __unsafe_unretained here to avoid creating a retain cycle with the readOp.
+  __unsafe_unretained NIHTTPRequest* readOp = [NIHTTPRequest requestWithURL: url
                                                      usingCache: [ASIDownloadCache sharedCache]];
   readOp.timeOutSeconds = 30;
 
