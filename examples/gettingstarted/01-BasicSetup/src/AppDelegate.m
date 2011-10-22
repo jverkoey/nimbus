@@ -26,14 +26,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_window);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Application lifecycle
@@ -42,9 +34,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
-  UIViewController* vc = [[[UIViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+  UIViewController* vc = [[UIViewController alloc] initWithNibName:nil bundle:nil];
   vc.view.backgroundColor = [UIColor blueColor];
   [self.window addSubview:vc.view];
 

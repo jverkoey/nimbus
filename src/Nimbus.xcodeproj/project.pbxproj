@@ -89,7 +89,7 @@
 		667572EE13E76F5E0076F555 /* NIProcessorHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 667572E913E76F5E0076F555 /* NIProcessorHTTPRequest.m */; };
 		667572F813E7705F0076F555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		6675730A13E7707B0076F555 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6675730713E7707B0076F555 /* JSONKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6675730B13E7707B0076F555 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675730813E7707B0076F555 /* JSONKit.m */; };
+		6675730B13E7707B0076F555 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675730813E7707B0076F555 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6675731313E771380076F555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		6675732013E771380076F555 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		6675732113E771380076F555 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
@@ -182,29 +182,29 @@
 		66A03D5A13E6F99400B514F3 /* NINetworkImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D5413E6F99400B514F3 /* NINetworkImageView.m */; };
 		66A03D6913E6FA9700B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66A03DB613E6FAC500B514F3 /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D7B13E6FAC500B514F3 /* ASIAuthenticationDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03DB713E6FAC500B514F3 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D7C13E6FAC500B514F3 /* ASIAuthenticationDialog.m */; };
+		66A03DB713E6FAC500B514F3 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D7C13E6FAC500B514F3 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66A03DB813E6FAC500B514F3 /* ASICacheDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D7D13E6FAC500B514F3 /* ASICacheDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A03DB913E6FAC500B514F3 /* ASIDataCompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D7E13E6FAC500B514F3 /* ASIDataCompressor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03DBA13E6FAC500B514F3 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D7F13E6FAC500B514F3 /* ASIDataCompressor.m */; };
+		66A03DBA13E6FAC500B514F3 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D7F13E6FAC500B514F3 /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66A03DBB13E6FAC500B514F3 /* ASIDataDecompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D8013E6FAC500B514F3 /* ASIDataDecompressor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03DBC13E6FAC500B514F3 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D8113E6FAC500B514F3 /* ASIDataDecompressor.m */; };
+		66A03DBC13E6FAC500B514F3 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D8113E6FAC500B514F3 /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66A03DBD13E6FAC500B514F3 /* ASIDownloadCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D8213E6FAC500B514F3 /* ASIDownloadCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03DBE13E6FAC500B514F3 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D8313E6FAC500B514F3 /* ASIDownloadCache.m */; };
+		66A03DBE13E6FAC500B514F3 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D8313E6FAC500B514F3 /* ASIDownloadCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66A03DBF13E6FAC500B514F3 /* ASIFormDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D8413E6FAC500B514F3 /* ASIFormDataRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03DC013E6FAC500B514F3 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D8513E6FAC500B514F3 /* ASIFormDataRequest.m */; };
+		66A03DC013E6FAC500B514F3 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D8513E6FAC500B514F3 /* ASIFormDataRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66A03DC113E6FAC500B514F3 /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D8613E6FAC500B514F3 /* ASIHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03DC213E6FAC500B514F3 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D8713E6FAC500B514F3 /* ASIHTTPRequest.m */; };
+		66A03DC213E6FAC500B514F3 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D8713E6FAC500B514F3 /* ASIHTTPRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66A03DC313E6FAC500B514F3 /* ASIHTTPRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D8813E6FAC500B514F3 /* ASIHTTPRequestConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A03DC413E6FAC500B514F3 /* ASIHTTPRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D8913E6FAC500B514F3 /* ASIHTTPRequestDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A03DC513E6FAC500B514F3 /* ASIInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D8A13E6FAC500B514F3 /* ASIInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03DC613E6FAC500B514F3 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D8B13E6FAC500B514F3 /* ASIInputStream.m */; };
+		66A03DC613E6FAC500B514F3 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D8B13E6FAC500B514F3 /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66A03DC713E6FAC500B514F3 /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D8C13E6FAC500B514F3 /* ASINetworkQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03DC813E6FAC500B514F3 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D8D13E6FAC500B514F3 /* ASINetworkQueue.m */; };
+		66A03DC813E6FAC500B514F3 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D8D13E6FAC500B514F3 /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66A03DC913E6FAC500B514F3 /* ASIProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D8E13E6FAC500B514F3 /* ASIProgressDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A03DCA13E6FAC500B514F3 /* NIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D8F13E6FAC500B514F3 /* NIHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03DCB13E6FAC500B514F3 /* NIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D9013E6FAC500B514F3 /* NIHTTPRequest.m */; };
+		66A03DCB13E6FAC500B514F3 /* NIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D9013E6FAC500B514F3 /* NIHTTPRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66A03DCC13E6FAC500B514F3 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D9213E6FAC500B514F3 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03DCD13E6FAC500B514F3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D9313E6FAC500B514F3 /* Reachability.m */; };
+		66A03DCD13E6FAC500B514F3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D9313E6FAC500B514F3 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66FE7D6B13FB83620061B987 /* NimbusModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6413FB83620061B987 /* NimbusModels.h */; };
 		66FE7D6C13FB83620061B987 /* NITableViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6513FB83620061B987 /* NITableViewModel.h */; };
 		66FE7D6D13FB83620061B987 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FE7D6613FB83620061B987 /* NITableViewModel.m */; };
@@ -3066,6 +3066,7 @@
 		66A03C0313E6E84800B514F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Nimbus_Prefix.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -3081,6 +3082,7 @@
 		66A03C0413E6E84800B514F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Nimbus_Prefix.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
