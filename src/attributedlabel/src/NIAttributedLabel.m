@@ -101,7 +101,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setAttributedText:(NSAttributedString *)attributedText {
-  _attributedText = nil;
   _attributedText = [attributedText mutableCopy];
   [self setNeedsDisplay];
 }
@@ -427,7 +426,6 @@
   UITouch* touch = [touches anyObject];
 	CGPoint point = [touch locationInView:self];
   
-  _currentLink = nil;
   _currentLink = [self linkAtPoint:point];
   
   [self setNeedsDisplay];

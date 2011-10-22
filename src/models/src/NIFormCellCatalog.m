@@ -155,7 +155,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldUpdateCellWithObject:(id)object {
   if (_element != object) {
-    _element = nil;
     _element = object;
 
     self.tag = _element.elementID;
