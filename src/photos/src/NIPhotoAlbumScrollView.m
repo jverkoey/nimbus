@@ -29,6 +29,8 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 @implementation NIPhotoAlbumScrollView
 
 @synthesize loadingImage = _loadingImage;
+@synthesize scrollViewBackgroundColor = _scrollViewBackgroundColor;
+@synthesize photoBackgroundColor = _photoBackgroundColor;
 @synthesize pageHorizontalMargin = _pageHorizontalMargin;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
 @synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
@@ -36,6 +38,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 @synthesize delegate = _delegate;
 @synthesize centerPhotoIndex = _centerPhotoIndex;
 @synthesize numberOfPhotos = _numberOfPages;
+@synthesize visiblePages = _visiblePages;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,6 +46,8 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
   _pagingScrollView = nil;
 
   NI_RELEASE_SAFELY(_loadingImage);
+  NI_RELEASE_SAFELY(_scrollViewBackgroundColor);
+  NI_RELEASE_SAFELY(_photoBackgroundColor);
 
   NI_RELEASE_SAFELY(_visiblePages);
   NI_RELEASE_SAFELY(_recycledPages);
@@ -247,8 +252,6 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
     [page setImage:self.loadingImage photoSize:NIPhotoScrollViewPhotoSizeUnknown];
 
   } else {
-    page.zoomingIsEnabled = ([self isZoomingEnabled]
-                             && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
     if (photoSize > page.photoSize) {
       [page setImage:image photoSize:photoSize];
 
@@ -256,6 +259,8 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
         [self notifyDelegatePhotoDidLoadAtIndex:pageIndex];
       }
     }
+    page.zoomingIsEnabled = ([self isZoomingEnabled]
+                             && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
   }
 }
 
@@ -282,6 +287,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 
   if (nil == page) {
     page = [[[NIPhotoScrollView alloc] init] autorelease];
+	page.backgroundColor = self.photoBackgroundColor ? self.photoBackgroundColor : page.backgroundColor;
     page.photoScrollViewDelegate = self;
     page.zoomingAboveOriginalSizeIsEnabled = [self isZoomingAboveOriginalSizeEnabled];
   }
@@ -459,7 +465,7 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
       // Only replace the photo if it's of a higher quality than one we're already showing.
       if (photoSize > page.photoSize) {
         [page setImage:image photoSize:photoSize];
-        
+
         page.zoomingIsEnabled = ([self isZoomingEnabled]
                                  && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
 
@@ -621,6 +627,35 @@ const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setCenterPhotoIndex:(NSInteger)centerPhotoIndex {
   [self setCenterPhotoIndex:centerPhotoIndex animated:NO];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NIPhotoScrollView *)centeredPhotoScrollView {
+  for (NIPhotoScrollView* page in _visiblePages) {
+    if (page.photoIndex == self.centerPhotoIndex) {
+      return page;
+    }
+  }
+  return nil;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setScrollViewBackgroundColor:(UIColor *)color {
+  NI_RELEASE_SAFELY(_scrollViewBackgroundColor);
+  _scrollViewBackgroundColor = [color retain];
+  _pagingScrollView.backgroundColor = color;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setPhotoBackgroundColor:(UIColor *)color {
+  NI_RELEASE_SAFELY(_photoBackgroundColor);
+  _photoBackgroundColor = [color retain];
+  for (NIPhotoScrollView* page in _visiblePages) {
+    page.backgroundColor = color;
+  }
 }
 
 

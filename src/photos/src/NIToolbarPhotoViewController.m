@@ -114,7 +114,7 @@
       CGRect scrubberFrame = CGRectMake(0, 0,
                                         self.toolbar.bounds.size.width,
                                         self.toolbar.bounds.size.height);
-      _photoScrubberView = [[NIPhotoScrubberView alloc] initWithFrame:scrubberFrame];
+      _photoScrubberView = [[[self photoScrubberViewClass] alloc] initWithFrame:scrubberFrame];
       _photoScrubberView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                              | UIViewAutoresizingFlexibleHeight);
       _photoScrubberView.delegate = self;
@@ -190,7 +190,7 @@
   CGRect toolbarFrame = CGRectMake(0, bounds.size.height - toolbarHeight,
                                    bounds.size.width, toolbarHeight);
 
-  _toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
+  _toolbar = [[[[self toolbarClass] alloc] initWithFrame:toolbarFrame] autorelease];
   _toolbar.barStyle = UIBarStyleBlack;
   _toolbar.translucent = self.showPhotoAlbumBeneathToolbar;
   _toolbar.autoresizingMask = (UIViewAutoresizingFlexibleWidth
@@ -204,7 +204,7 @@
   if (!self.showPhotoAlbumBeneathToolbar) {
     photoAlbumFrame = NIRectContract(bounds, 0, toolbarHeight);
   }
-  _photoAlbumView = [[[NIPhotoAlbumScrollView alloc] initWithFrame:photoAlbumFrame] autorelease];
+  _photoAlbumView = [[[[self photoAlbumScrollViewClass] alloc] initWithFrame:photoAlbumFrame] autorelease];
   _photoAlbumView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                       | UIViewAutoresizingFlexibleHeight);
   _photoAlbumView.delegate = self;
@@ -577,6 +577,24 @@
       [self updateToolbarItems];
     }
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)toolbarClass {
+  return [UIToolbar class];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)photoScrubberViewClass {
+  return [NIPhotoScrubberView class];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)photoAlbumScrollViewClass {
+  return [NIPhotoAlbumScrollView class];
 }
 
 

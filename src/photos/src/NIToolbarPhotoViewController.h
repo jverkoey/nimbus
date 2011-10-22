@@ -157,6 +157,21 @@
  */
 @property (nonatomic, readwrite, assign, getter=isScrubberEnabled) BOOL scrubberIsEnabled;
 
+/**
+ * The class to use for the toolbar.
+ */
+- (Class)toolbarClass;
+
+/**
+ * The class to use for the photo scrubber view.
+ */
+- (Class)photoScrubberViewClass;
+
+/**
+ * The class to use for the photo album scroll view.
+ */
+- (Class)photoAlbumScrollViewClass;
+
 
 #pragma mark Views /** @name Views */
 
