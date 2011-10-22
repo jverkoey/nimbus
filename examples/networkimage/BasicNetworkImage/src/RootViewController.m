@@ -36,8 +36,7 @@ static const CGFloat kImageSpacing = 10;
   UIImage* initialImage = [UIImage imageWithContentsOfFile:
                            NIPathForBundleResource(nil, @"nimbus64x64.png")];
 
-  NINetworkImageView* networkImageView = [[[NINetworkImageView alloc] initWithImage:initialImage]
-                                          autorelease];
+  NINetworkImageView* networkImageView = [[NINetworkImageView alloc] initWithImage:initialImage];
   networkImageView.delegate = self;
   networkImageView.contentMode = UIViewContentModeCenter;
 
@@ -126,13 +125,12 @@ static const CGFloat kImageSpacing = 10;
   [self.view addSubview:_memoryUsageLabel];
 
 
-  UIView* bottomBorder = [[[UIView alloc] initWithFrame:
+  UIView* bottomBorder = [[UIView alloc] initWithFrame:
                            CGRectMake(0,
                                       CGRectGetMaxY(_memoryUsageLabel.frame)
                                       + kTextBottomMargin - 1,
                                       self.view.frame.size.width,
-                                      1)]
-                          autorelease];
+                                      1)];
   bottomBorder.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                    | UIViewAutoresizingFlexibleBottomMargin);
   bottomBorder.backgroundColor = [UIColor whiteColor];
@@ -142,10 +140,9 @@ static const CGFloat kImageSpacing = 10;
 
   _networkImageViews = [[NSMutableArray alloc] init];
 
-  _scrollView = [[[UIScrollView alloc] initWithFrame:
+  _scrollView = [[UIScrollView alloc] initWithFrame:
                   NIRectShift(self.view.bounds,
-                              0, CGRectGetMaxY(_memoryUsageLabel.frame) + kTextBottomMargin)]
-                 autorelease];
+                              0, CGRectGetMaxY(_memoryUsageLabel.frame) + kTextBottomMargin)];
   _scrollView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1];
   _scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
   _scrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
@@ -178,7 +175,7 @@ static const CGFloat kImageSpacing = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
-  NI_RELEASE_SAFELY(_networkImageViews);
+  _networkImageViews = nil;
   _scrollView = nil;
 
   [super viewDidUnload];
