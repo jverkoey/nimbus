@@ -73,8 +73,8 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
   // Cached Data Source Information
   NSInteger _numberOfPages;
 
-  id<NIPhotoAlbumScrollViewDataSource> _dataSource;
-  id<NIPhotoAlbumScrollViewDelegate> _delegate;
+  __unsafe_unretained id<NIPhotoAlbumScrollViewDataSource> _dataSource;
+  __unsafe_unretained id<NIPhotoAlbumScrollViewDelegate> _delegate;
 }
 
 

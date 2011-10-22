@@ -61,8 +61,8 @@
   // Cached display values
   CGFloat _numberOfVisiblePhotos;
   
-  id<NIPhotoScrubberViewDataSource> _dataSource;
-  id<NIPhotoScrubberViewDelegate> _delegate;
+  __unsafe_unretained id<NIPhotoScrubberViewDataSource> _dataSource;
+  __unsafe_unretained id<NIPhotoScrubberViewDelegate> _delegate;
 }
 
 #pragma mark Data Source /** @name Data Source */

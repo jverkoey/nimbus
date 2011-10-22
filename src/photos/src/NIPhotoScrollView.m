@@ -29,15 +29,9 @@
 @synthesize photoDimensions = _photoDimensions;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
 @synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
+@synthesize doubleTapToZoomIsEnabled = _doubleTapToZoomIsEnabled;
 @synthesize photoScrollViewDelegate = _photoScrollViewDelegate;
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_doubleTapGestureRecognizer);
-
-  [super dealloc];
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -65,7 +59,7 @@
 
 
     // Autorelease so that we don't have to worry about releasing it in dealloc.
-    _imageView = [[[UIImageView alloc] initWithFrame:CGRectZero] autorelease];
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
 
     // Increases the retain count to 1. The image view will be released when this view
     // is released.

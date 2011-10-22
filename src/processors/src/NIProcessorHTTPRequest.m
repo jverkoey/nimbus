@@ -32,19 +32,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_processedObject);
-#if NS_BLOCKS_AVAILABLE
-  NI_RELEASE_SAFELY(_processDataBlock);
-#endif
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)requestStarted {
-  NI_RELEASE_SAFELY(_processedObject);
+  _processedObject = nil;
 
   [super requestStarted];
 }
@@ -64,7 +53,7 @@
 
   // First, let the subclass process the data.
   NSError* processingError = nil;
-  _processedObject = [[self objectFromResponseData:responseData error:&processingError] retain];
+  _processedObject = [self objectFromResponseData:responseData error:&processingError];
 
   // Release the raw response data immediately.
   [self setRawResponseData:nil];
@@ -73,18 +62,16 @@
 #if NS_BLOCKS_AVAILABLE
   // Second, let the block further chew on the data.
   if (nil != self.processDataBlock) {
-    _processedObject = [self.processDataBlock(_processedObject, &processingError) retain];
+    _processedObject = self.processDataBlock(_processedObject, &processingError);
   }
 #endif
 
   // Third, let the delegate process the data last.
   if ([_processorDelegate respondsToSelector:@selector(processor:processObject:error:)]) {
     id oldObject = _processedObject;
-    _processedObject = [[_processorDelegate processor: self
+    _processedObject = [_processorDelegate processor: self
                                         processObject: oldObject
-                                                error: &processingError]
-                        retain];
-    NI_RELEASE_SAFELY(oldObject);
+                                                error: &processingError];
   }
 
   [super requestFinished];
