@@ -27,16 +27,6 @@
 
 @synthesize facebookAlbumId = _facebookAlbumId;
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_photoInformation);
-  NI_RELEASE_SAFELY(_facebookAlbumId);
-
-  [super dealloc];
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWith:(id)object {
   if ((self = [self initWithNibName:nil bundle:nil])) {
@@ -44,7 +34,6 @@
   }
   return self;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadThumbnails {
@@ -115,7 +104,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
-  NI_RELEASE_SAFELY(_photoInformation);
+  _photoInformation = nil;
 
   [super viewDidUnload];
 }
@@ -129,7 +118,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)requestFinished:(NIProcessorHTTPRequest *)request {
-  _photoInformation = [request.processedObject retain];
+  _photoInformation = request.processedObject;
 
   [self.photoAlbumView reloadData];
 
@@ -164,7 +153,7 @@
       NSArray* sortedImages =
       [images sortedArrayUsingDescriptors:
        [NSArray arrayWithObject:
-        [[[NSSortDescriptor alloc] initWithKey:@"width" ascending:NO] autorelease]]];
+        [[NSSortDescriptor alloc] initWithKey:@"width" ascending:NO]]];
 
       // Gather the high-quality photo information.
       NSDictionary* originalImage = [sortedImages objectAtIndex:0];
