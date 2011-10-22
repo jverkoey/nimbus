@@ -21,10 +21,8 @@
 #import "NIPreprocessorMacros.h"
 
 @interface NIMemoryCache()
-
 @property (nonatomic, readwrite, retain) NSMutableDictionary* cacheMap;
-@property (nonatomic, readwrite, retain) NILinkedList*        lruCacheObjects;
-
+@property (nonatomic, readwrite, retain) NILinkedList* lruCacheObjects;
 @end
 
 

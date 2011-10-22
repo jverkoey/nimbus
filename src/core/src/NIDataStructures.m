@@ -40,7 +40,7 @@
 @interface NILinkedListLocation()
 + (id)locationWithNode:(NILinkedListNode *)node;
 - (id)initWithNode:(NILinkedListNode *)node;
-@property (nonatomic, readwrite, retain) NILinkedListNode* node;
+@property (nonatomic, readwrite, assign) NILinkedListNode* node;
 @end
 
 @implementation NILinkedListLocation
@@ -60,21 +60,11 @@
 }
 @end
 
-
 @interface NILinkedList()
-
-/**
- * @internal
- *
- * Exposed so that the linked list enumerator can iterate over the nodes directly.
- */
+// Exposed so that the linked list enumerator can iterate over the nodes directly.
 @property (nonatomic, readonly, retain) NILinkedListNode* head;
-
+@property (nonatomic, readonly, retain) NILinkedListNode* tail;
 @end
-
-
-#pragma mark -
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -157,6 +147,7 @@
 @implementation NILinkedList
 
 @synthesize head = _head;
+@synthesize tail = _tail;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -221,17 +212,17 @@
   if (nil == node) {
     return;
   }
-  
-  if (0 != node.prev) {
+
+  if (nil != node.prev) {
     node.prev.next = node.next;
-    
+
   } else {
     _head = node.next;
   }
-  
-  if (0 != node.next) {
+
+  if (nil != node.next) {
     node.next.prev = node.prev;
-    
+
   } else {
     _tail = node.prev;
   }
@@ -387,14 +378,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)allObjects {
   NSMutableArray* mutableArrayOfObjects = [[NSMutableArray alloc] initWithCapacity:self.count];
-  
+
   for (id object in self) {
     [mutableArrayOfObjects addObject:object];
   }
-  
-  NSArray* arrayOfObjects = [mutableArrayOfObjects copy];
 
-  return arrayOfObjects;
+  return [mutableArrayOfObjects copy];
 }
 
 
