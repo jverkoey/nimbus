@@ -58,8 +58,8 @@ extern const NSInteger NILauncherViewDynamic;
   NSMutableArray* _pagesOfScrollViews;  // NSArray< UIScrollView *>
 
   // Protocols
-  id<NILauncherDelegate>    _delegate;
-  id<NILauncherDataSource>  _dataSource;
+  __unsafe_unretained id<NILauncherDelegate>    _delegate;
+  __unsafe_unretained id<NILauncherDataSource>  _dataSource;
 }
 
 #pragma mark Configurable Properties

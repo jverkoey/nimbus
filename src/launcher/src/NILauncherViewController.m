@@ -31,19 +31,10 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_pages);
-  // _launcherView is retained by self.view and is released in viewDidUnload
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  _launcherView = [[[NILauncherView alloc] initWithFrame:self.view.bounds] autorelease];
+  _launcherView = [[NILauncherView alloc] initWithFrame:self.view.bounds];
   _launcherView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                     | UIViewAutoresizingFlexibleHeight);
   _launcherView.dataSource = self;
@@ -110,7 +101,7 @@
 - (UIButton *)launcherView: (NILauncherView *)launcherView
              buttonForPage: (NSInteger)page
                    atIndex: (NSInteger)buttonIndex {
-  UIButton* button = [[[[self launcherButtonClass] alloc] init] autorelease];
+  UIButton* button = [[[self launcherButtonClass] alloc] init];
 
   // launcherButtonClass must return a class that is a subclass of UIButton.
   NIDASSERT([button isKindOfClass:[UIButton class]]);
@@ -147,12 +138,11 @@
   //     NILauncherItemDetails* item = [[_pages objectAtIndex:page] objectAtIndex:index];
 
   UIAlertView* alert =
-  [[[UIAlertView alloc] initWithTitle: @"Launcher button tapped"
+  [[UIAlertView alloc] initWithTitle: @"Launcher button tapped"
                               message: [button titleForState:UIControlStateNormal]
                              delegate: nil
                     cancelButtonTitle: nil
-                    otherButtonTitles: @"OK", nil]
-   autorelease];
+                    otherButtonTitles: @"OK", nil];
   [alert show];
 }
 
@@ -178,7 +168,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setPages:(NSArray *)pages {
   if (_pages != pages) {
-    [_pages release];
     _pages = [pages mutableCopy];
 
     // If the view hasn't been loaded yet (entirely possible) then this will no-op and the
