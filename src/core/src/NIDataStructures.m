@@ -19,6 +19,48 @@
 #import "NIDebuggingTools.h"
 #import "NIPreprocessorMacros.h"
 
+// The internal representation of a single node.
+@interface NILinkedListNode : NSObject {
+@private
+  id _object;
+  NILinkedListNode* _prev;
+  NILinkedListNode* _next;
+}
+@property (nonatomic, readwrite, retain) id object;
+@property (nonatomic, readwrite, retain) NILinkedListNode* prev;
+@property (nonatomic, readwrite, retain) NILinkedListNode* next;
+@end
+
+@implementation NILinkedListNode
+@synthesize object = _object;
+@synthesize prev = _prev;
+@synthesize next = _next;
+@end
+
+@interface NILinkedListLocation()
++ (id)locationWithNode:(NILinkedListNode *)node;
+- (id)initWithNode:(NILinkedListNode *)node;
+@property (nonatomic, readwrite, retain) NILinkedListNode* node;
+@end
+
+@implementation NILinkedListLocation
+@synthesize node = _node;
++ (id)locationWithNode:(NILinkedListNode *)node {
+  return [[self alloc] initWithNode:node];
+}
+- (id)initWithNode:(NILinkedListNode *)node {
+  if (self = [super init]) {
+    _node = node;
+  }
+  return self;
+}
+- (BOOL)isEqual:(id)object {
+  return ([object isKindOfClass:[NILinkedListLocation class]]
+          && [object node] == self.node);
+}
+@end
+
+
 @interface NILinkedList()
 
 /**
@@ -26,7 +68,7 @@
  *
  * Exposed so that the linked list enumerator can iterate over the nodes directly.
  */
-@property (nonatomic, readonly, assign) struct NILinkedListNode* head;
+@property (nonatomic, readonly, retain) NILinkedListNode* head;
 
 @end
 
@@ -49,7 +91,7 @@
 @interface NILinkedListEnumerator : NSEnumerator {
 @private
   NILinkedList* _ll;
-  struct NILinkedListNode* _iterator;
+  NILinkedListNode* _iterator;
 }
 
 /**
@@ -88,8 +130,8 @@
 
   // Iteration step.
   if (nil != _iterator) {
-    object = _iterator->object;
-    _iterator = _iterator->next;
+    object = _iterator.object;
+    _iterator = _iterator.next;
 
   // Completion step.
   } else {
@@ -157,20 +199,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)_eraseNode:(struct NILinkedListNode *)node {
-  node->object = nil;
-  free(node);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)_setHead:(struct NILinkedListNode *)head {
+- (void)_setHead:(NILinkedListNode *)head {
   _head = head;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)_setTail:(struct NILinkedListNode *)tail {
+- (void)_setTail:(NILinkedListNode *)tail {
   _tail = tail;
 }
 
@@ -178,6 +213,34 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_setCount:(NSUInteger)count {
   _count = count;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_removeNode:(NILinkedListNode *)node {
+  if (nil == node) {
+    return;
+  }
+  
+  if (0 != node.prev) {
+    node.prev.next = node.next;
+    
+  } else {
+    _head = node.next;
+  }
+  
+  if (0 != node.next) {
+    node.next.prev = node.prev;
+    
+  } else {
+    _tail = node.prev;
+  }
+
+  node.next = nil;
+  node.prev = nil;
+
+  --_count;
+  ++_modificationNumber;
 }
 
 
@@ -190,11 +253,11 @@
 - (id)copyWithZone:(NSZone *)zone {
   NILinkedList* copy = [[[self class] allocWithZone:zone] init];
 
-  struct NILinkedListNode* node = _head;
+  NILinkedListNode* node = _head;
 
   while (0 != node) {
-    [copy addObject:node->object];
-    node = node->next;
+    [copy addObject:node.object];
+    node = node.next;
   }
 
   [copy _setCount:_count];
@@ -212,10 +275,10 @@
 - (void)encodeWithCoder:(NSCoder *)coder {
   [coder encodeValueOfObjCType:@encode(NSUInteger) at:&_count];
 
-  struct NILinkedListNode* node = _head;
+  NILinkedListNode* node = _head;
   while (0 != node) {
-    [coder encodeObject:node->object];
-    node = node->next;
+    [coder encodeObject:node.object];
+    node = node.next;
   }
 }
 
@@ -260,22 +323,22 @@
   NSUInteger numberOfItemsReturned = 0;
 
   // If there is no _tail (i.e. this is an empty list) then this will end immediately.
-  if ((struct NILinkedListNode *)state->state != _tail) {
+  if ((void *)state->state != (__bridge void *)_tail) {
     state->itemsPtr = stackbuf;
 
     if (0 == state->state) {
-      // Initialize the state here instead of above when we check 0 == state->state because
+      // Initialize the state here instead of above when we check 0 == state.state because
       // for single item linked lists head == tail. If we initialized it in the initialization
-      // condition, state->state != _tail check would fail and we wouldn't return the single
+      // condition, state.state != _tail check would fail and we wouldn't return the single
       // object.
       state->state = (unsigned long)_head;
     }
 
     // Return *at most* the number of request objects.
     while ((0 != state->state) && (numberOfItemsReturned < len)) {
-      struct NILinkedListNode* node = (struct NILinkedListNode *)state->state;
-      stackbuf[numberOfItemsReturned] = node->object;
-      state->state = (unsigned long)node->next;
+      NILinkedListNode* node = (__bridge NILinkedListNode *)(void *)state->state;
+      stackbuf[numberOfItemsReturned] = node.object;
+      state->state = (unsigned long)node.next;
       ++numberOfItemsReturned;
     }
 
@@ -300,13 +363,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)firstObject {
-  return (nil != _head) ? _head->object : nil;
+  return (nil != _head) ? _head.object : nil;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)lastObject {
-  return (nil != _tail) ? _tail->object : nil;
+  return (nil != _tail) ? _tail.object : nil;
 }
 
 
@@ -357,7 +420,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)objectAtLocation:(NILinkedListLocation *)location {
-  return ((struct NILinkedListNode *)location)->object;
+  return location.node.object;
 }
 
 
@@ -369,12 +432,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NILinkedListLocation *)locationOfObject:(id)object {
-  struct NILinkedListNode* node = _head;
+  NILinkedListNode* node = _head;
   while (0 != node) {
-    if (node->object == object) {
-      return (NILinkedListLocation *)node;
+    if (node.object == object) {
+      return [NILinkedListLocation locationWithNode:node];
     }
-    node = node->next;
+    node = node.next;
   }
   return 0;
 }
@@ -382,30 +445,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeObjectAtLocation:(NILinkedListLocation *)location {
-  if (0 == location) {
+  if (nil == location) {
     return;
   }
-  
-  struct NILinkedListNode* node = (struct NILinkedListNode *)location;
-  
-  if (0 != node->prev) {
-    node->prev->next = node->next;
-    
-  } else {
-    _head = node->next;
-  }
-  
-  if (0 != node->next) {
-    node->next->prev = node->prev;
-    
-  } else {
-    _tail = node->prev;
-  }
-  
-  [self _eraseNode:node];
-  
-  --_count;
-  ++_modificationNumber;
+
+  [self _removeNode:location.node];
 }
 
 
@@ -416,28 +460,26 @@
   if (nil == object) {
     return nil;
   }
-  
-  struct NILinkedListNode* node = malloc(sizeof(struct NILinkedListNode));
-  memset(node, 0, sizeof(struct NILinkedListNode));
-  
-  node->object = object;
-  
+
+  NILinkedListNode* node = [[NILinkedListNode alloc] init];
+  node.object = object;
+
   // Empty condition.
   if (nil == _tail) {
     _head = node;
     _tail = node;
-    
+
   } else {
     // Non-empty condition.
-    _tail->next = (struct NILinkedListNode*)node;
-    node->prev = (struct NILinkedListNode*)_tail;
+    _tail.next = node;
+    node.prev = _tail;
     _tail = node;
   }
-  
+
   ++_count;
   ++_modificationNumber;
-  
-  return (NILinkedListLocation *)node;
+
+  return [NILinkedListLocation locationWithNode:node];
 }
 
 
@@ -456,13 +498,14 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeAllObjects {
-  struct NILinkedListNode* node = _head;
+  NILinkedListNode* node = _head;
   while (nil != node) {
-    struct NILinkedListNode* next = (struct NILinkedListNode *)node->next;
-    [self _eraseNode:node];
+    NILinkedListNode* next = node.next;
+    node.prev = nil;
+    node.next = nil;
     node = next;
   }
-  
+
   _head = nil;
   _tail = nil;
   
@@ -482,13 +525,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeFirstObject {
-  [self removeObjectAtLocation:_head];
+  [self _removeNode:_head];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeLastObject {
-  [self removeObjectAtLocation:_tail];
+  [self _removeNode:_tail];
 }
 
 @end

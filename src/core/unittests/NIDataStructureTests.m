@@ -329,8 +329,7 @@
   [ll addObject:object1];
   NILinkedListLocation* location = [ll addObject:object2];
   [ll addObject:object3];
-  STAssertEquals(location, [ll locationOfObject:object2],
-                 @"The locations should match up");
+  STAssertTrue([location isEqual:[ll locationOfObject:object2]], @"The locations should match up");
 }
 
 

@@ -72,7 +72,7 @@
 /**
  * @brief The location of this object in the least-recently used linked list.
  */
-@property (nonatomic, readwrite, assign) NILinkedListLocation* lruLocation;
+@property (nonatomic, readwrite, retain) NILinkedListLocation* lruLocation;
 
 /**
  * @brief Determine whether this cache entry has past its expiration date.
