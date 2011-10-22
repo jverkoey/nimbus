@@ -68,7 +68,10 @@
 
 // This is not to be used externally.
 struct NILinkedListNode {
-  __unsafe_unretained id   object;
+#ifdef __IPHONE_5_0 // Pre-iOS 5 SDKs don't have __unsafe_unretained.
+  __unsafe_unretained
+#endif
+  id object;
   struct NILinkedListNode* prev;
   struct NILinkedListNode* next;
 };
