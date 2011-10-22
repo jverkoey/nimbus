@@ -22,106 +22,6 @@
 NSString* const NIChameleonSkinDidChangeNotification = @"NIChameleonSkinDidChangeNotification";
 static NSString* const kWatchFilenameKey = @"___watch___";
 
-@interface NISimpleDataRequest : NSObject <NSURLConnectionDataDelegate> {
-@private
-  NSURLConnection* _connection;
-  NSMutableData* _data;
-  NSURL* _url;
-  id<NISimpleDataRequestDelegate> _delegate;
-}
-+ (id)requestWithURL:(NSURL *)url;
-- (id)initWithURL:(NSURL *)url;
-- (void)send;
-- (void)cancel;
-
-@property (nonatomic, readwrite, retain) NSURL* url;
-@property (nonatomic, readwrite, assign) id<NISimpleDataRequestDelegate> delegate;
-@end
-
-@implementation NISimpleDataRequest
-
-@synthesize url = _url;
-@synthesize delegate = _delegate;
-
-- (void)dealloc {
-  [_connection cancel];
-  NI_RELEASE_SAFELY(_connection);
-  NI_RELEASE_SAFELY(_data);
-  NI_RELEASE_SAFELY(_url);
-
-  [super dealloc];
-}
-
-+ (id)requestWithURL:(NSURL *)url {
-  return [[[self alloc] initWithURL:url] autorelease];
-}
-
-- (id)initWithURL:(NSURL *)url {
-  if ((self = [super init])) {
-    _url = [url retain];
-
-    NSURLRequest* request = [NSURLRequest requestWithURL: url
-                                             cachePolicy: NSURLRequestUseProtocolCachePolicy
-                                         timeoutInterval: 1000];
-    
-    _connection = [[NSURLConnection alloc] initWithRequest:request
-                                                  delegate:self
-                                          startImmediately:NO];
-    
-    _data = [[NSMutableData alloc] init];
-  }
-  return self;
-}
-
-- (void)send {
-  [_connection start];
-}
-
-- (void)cancel {
-  [_connection cancel];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - NSURLConnectionDataDelegate
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-  [_data setLength:0];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-  [_data appendData:data];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-  NI_RELEASE_SAFELY(_data);
-  NI_RELEASE_SAFELY(_connection);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-  if ([self.delegate respondsToSelector:@selector(requestDidFinish:withStringData:)]) {
-    NSString* result = [[NSString alloc] initWithData:_data
-                                             encoding:NSUTF8StringEncoding];
-
-    [self.delegate requestDidFinish:self withStringData:result];
-
-    NI_RELEASE_SAFELY(result);
-  }
-  NI_RELEASE_SAFELY(_data);
-  NI_RELEASE_SAFELY(_connection);
-}
-
-@end
-
-
 @interface NIChameleonObserver()
 
 - (BOOL)loadStylesheetWithFilename:(NSString *)filename;
@@ -136,7 +36,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  for (NISimpleDataRequest* request in _activeRequests) {
+  for (NISimpleRequest* request in _activeRequests) {
     [request cancel];
     request.delegate = nil;
   }
@@ -213,7 +113,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)watchSkinChanges {
   NSURL* watchURL = [NSURL URLWithString:[_host stringByAppendingString:@"watch"]];
-  NISimpleDataRequest* request = [NISimpleDataRequest requestWithURL:watchURL];
+  NISimpleRequest* request = [NISimpleRequest requestWithURL:watchURL];
   request.delegate = self;
   [_activeRequests addObject:request];
   [request send];
@@ -223,7 +123,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)downloadStylesheetWithFilename:(NSString *)filename {
   NSURL* fileURL = [NSURL URLWithString:[_host stringByAppendingString:filename]];
-  NISimpleDataRequest* request = [NISimpleDataRequest requestWithURL:fileURL];
+  NISimpleRequest* request = [NISimpleRequest requestWithURL:fileURL];
   request.delegate = self;
   [_activeRequests addObject:request];
   [request send];
@@ -236,7 +136,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestDidFinish:(NISimpleDataRequest *)request withStringData:(NSString *)stringData {
+- (void)requestDidFinish:(NISimpleRequest *)request withStringData:(NSString *)stringData {
   if ([[request.url absoluteString] hasSuffix:@"/watch"]) {
     NSArray* files = [stringData componentsSeparatedByString:@"\n"];
     for (NSString* filename in files) {

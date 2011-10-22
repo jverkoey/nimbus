@@ -15,22 +15,15 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#import "NISimpleRequest.h"
 #import "NICSSParser.h"
 
 extern NSString* const NIChameleonSkinDidChangeNotification;
 
 @class NIStylesheet;
 
-@class NISimpleDataRequest;
-
-@protocol NISimpleDataRequestDelegate <NSObject>
-@required
-
-- (void)requestDidFinish:(NISimpleDataRequest *)request withStringData:(NSString *)stringData;
-
-@end
-
-@interface NIChameleonObserver : NSObject <NISimpleDataRequestDelegate, NICSSParserDelegate> {
+@interface NIChameleonObserver : NSObject <NISimpleRequestDelegate, NICSSParserDelegate> {
 @private
   NSMutableDictionary* _stylesheets;
   NSMutableArray* _activeRequests;
