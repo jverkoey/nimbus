@@ -104,7 +104,6 @@
   }
 
   // Remember the URL at this point
-  _actionSheetURL = nil;
   _actionSheetURL = [self.URL copy];
 
   if (nil == _actionSheet) {
