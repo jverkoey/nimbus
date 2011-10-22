@@ -31,15 +31,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_title);
-  NI_RELEASE_SAFELY(_imagePath);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString *)title imagePath:(NSString *)imagePath {
   if ((self = [super init])) {
     _title = [title copy];
@@ -51,9 +42,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)itemDetailsWithTitle:(NSString *)title imagePath:(NSString *)imagePath {
-  return [[[NILauncherItemDetails alloc] initWithTitle: title
-                                             imagePath: imagePath]
-          autorelease];
+  return [[NILauncherItemDetails alloc] initWithTitle: title
+                                             imagePath: imagePath];
 }
 
 
