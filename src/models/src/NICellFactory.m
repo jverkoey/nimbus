@@ -42,7 +42,7 @@
       if ([object respondsToSelector:@selector(cellStyle)]) {
         style = [object cellStyle];
       }
-      cell = [[[cellClass alloc] initWithStyle:style reuseIdentifier:identifier] autorelease];
+      cell = [[cellClass alloc] initWithStyle:style reuseIdentifier:identifier];
     }
 
     // Allow the cell to configure itself with the object's information.
