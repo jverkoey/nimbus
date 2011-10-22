@@ -56,14 +56,6 @@
 #define NI_FIX_CATEGORY_BUG(name) @interface NI_FIX_CATEGORY_BUG_##name @end \
 @implementation NI_FIX_CATEGORY_BUG_##name @end
 
-/**
- * Release and assign nil to an object.
- *
- * This macro is preferred to simply releasing an object to avoid accidentally using the
- * object later on in a method.
- */
-#define NI_RELEASE_SAFELY(__POINTER) { [__POINTER release]; __POINTER = nil; }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Preprocessor Macros //////////////////////////////////////////////////////////////
