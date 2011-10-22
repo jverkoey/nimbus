@@ -174,18 +174,18 @@
     path = [pathPrefix stringByAppendingPathComponent:aPath];
   }
 
-  if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-    NICSSParser* parser = [[NICSSParser alloc] init];
+  NICSSParser* parser = [[NICSSParser alloc] init];
 
-    NSDictionary* results = [parser dictionaryForPath:aPath
-                                           pathPrefix:pathPrefix
-                                             delegate:delegate];
-    if (nil != results && ![parser didFailToParse]) {
-      _rawRulesets = [results retain];
-      loadDidSucceed = YES;
-    }
-    NI_RELEASE_SAFELY(parser);
+  NSDictionary* results = [parser dictionaryForPath:aPath
+                                         pathPrefix:pathPrefix
+                                           delegate:delegate];
+  if (nil != results && ![parser didFailToParse]) {
+    _rawRulesets = [results retain];
+    loadDidSucceed = YES;
+  }
+  NI_RELEASE_SAFELY(parser);
 
+  if (loadDidSucceed) {
     [self ruleSetsDidChange];
   }
 

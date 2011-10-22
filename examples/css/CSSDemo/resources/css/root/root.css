@@ -1,6 +1,6 @@
 
 .background {
-  background-color: red;
+  background-color: white;
 }
 
 .noticeBox {
@@ -15,5 +15,5 @@ UILabel {
   color: white;
   text-shadow: rgba(0, 0, 0, 0.5) 0 -1;
   text-align: center;
-  font-size: 25;
+  font-size: default;
 }

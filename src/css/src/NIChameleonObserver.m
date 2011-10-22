@@ -21,11 +21,11 @@
 
 NSString* const NIChameleonSkinDidChangeNotification = @"NIChameleonSkinDidChangeNotification";
 static NSString* const kWatchFilenameKey = @"___watch___";
+static const NSTimeInterval kTimeoutInterval = 1000;
+static const NSInteger kMaxNumberOfRetries = 3;
 
 @interface NIChameleonObserver()
-
 - (BOOL)loadStylesheetWithFilename:(NSString *)filename;
-
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +42,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
   }
   NI_RELEASE_SAFELY(_stylesheets);
   NI_RELEASE_SAFELY(_activeRequests);
-  NI_RELEASE_SAFELY(_rootFolder);
+  NI_RELEASE_SAFELY(_pathPrefix);
   NI_RELEASE_SAFELY(_host);
 
   [super dealloc];
@@ -50,11 +50,12 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithRootFolder:(NSString *)rootFolder host:(NSString *)host {
+- (id)initWithPathPrefix:(NSString *)pathPrefix host:(NSString *)host {
   if ((self = [super init])) {
-    _rootFolder = [rootFolder copy];
+    _pathPrefix = [pathPrefix copy];
     _stylesheets = [[NSMutableDictionary alloc] init];
     _activeRequests = [[NSMutableArray alloc] init];
+
     if ([host hasSuffix:@"/"]) {
       _host = [host copy];
 
@@ -63,17 +64,20 @@ static NSString* const kWatchFilenameKey = @"___watch___";
     }
 
     NSFileManager* fm = [NSFileManager defaultManager];
-    NSString* bundleRootPath = NIPathForBundleResource(nil, rootFolder);
-    NSDirectoryEnumerator* de = [fm enumeratorAtPath:bundleRootPath];
+    NSDirectoryEnumerator* de = [fm enumeratorAtPath:pathPrefix];
 
     NSString* filename;
     while ((filename = [de nextObject])) {
-      if ([[filename pathExtension] isEqualToString:@"css"]) {
+      BOOL isFolder = NO;
+      NSString* path = [pathPrefix stringByAppendingPathComponent:filename];
+      if ([fm fileExistsAtPath:path isDirectory:&isFolder]
+          && !isFolder
+          && [[filename pathExtension] isEqualToString:@"css"]) {
         NSString* cachePath = NIPathForDocumentsResource([filename md5Hash]);
         NSError* error = nil;
         [fm removeItemAtPath:cachePath error:&error];
-        [fm copyItemAtPath:[bundleRootPath stringByAppendingPathComponent:filename]
-                    toPath:cachePath error:&error];
+        [fm copyItemAtPath:path toPath:cachePath error:&error];
+        NIDASSERT(nil == error);
       }
     }
   }
@@ -85,7 +89,7 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 - (BOOL)loadStylesheetWithFilename:(NSString *)filename {
   NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
   BOOL didSucceed = [stylesheet loadFromPath:filename
-                                  pathPrefix:NIPathForBundleResource(nil, _rootFolder)];
+                                  pathPrefix:_pathPrefix];
 
   if (didSucceed) {
     [_stylesheets setObject:stylesheet forKey:filename];
@@ -113,7 +117,8 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)watchSkinChanges {
   NSURL* watchURL = [NSURL URLWithString:[_host stringByAppendingString:@"watch"]];
-  NISimpleRequest* request = [NISimpleRequest requestWithURL:watchURL];
+  NISimpleRequest* request = [NISimpleRequest requestWithURL:watchURL
+                                             timeoutInterval:kTimeoutInterval];
   request.delegate = self;
   [_activeRequests addObject:request];
   [request send];
@@ -123,7 +128,8 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)downloadStylesheetWithFilename:(NSString *)filename {
   NSURL* fileURL = [NSURL URLWithString:[_host stringByAppendingString:filename]];
-  NISimpleRequest* request = [NISimpleRequest requestWithURL:fileURL];
+  NISimpleRequest* request = [NISimpleRequest requestWithURL:fileURL
+                                             timeoutInterval:kTimeoutInterval];
   request.delegate = self;
   [_activeRequests addObject:request];
   [request send];
@@ -132,46 +138,64 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - NISimpleDataRequestDelegate
+#pragma mark - NISimpleRequestDelegate
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestDidFinish:(NISimpleRequest *)request withStringData:(NSString *)stringData {
-  if ([[request.url absoluteString] hasSuffix:@"/watch"]) {
+- (void)requestDidFail:(NISimpleRequest *)request withError:(NSError *)error {
+  if (_retryCount < kMaxNumberOfRetries) {
+    ++_retryCount;
+
+    [self watchSkinChanges];
+  }
+
+  [_activeRequests removeObject:request];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)requestDidFinish:(NISimpleRequest *)request withData:(NSData *)data {
+  NSString* stringData = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]
+                          autorelease];
+  if ([request.url.path isEqualToString:@"/watch"]) {
     NSArray* files = [stringData componentsSeparatedByString:@"\n"];
     for (NSString* filename in files) {
       [self downloadStylesheetWithFilename:filename];
     }
 
+    // Immediately start watching for more skin changes.
     [self watchSkinChanges];
 
   } else {
     NSArray* path = [[request.url absoluteString] pathComponents];
-    NSString* cssFilename = [[path subarrayWithRange:NSMakeRange(2, [path count] - 2)] componentsJoinedByString:@"/"];
+    NSString* cssFilename = [[path subarrayWithRange:NSMakeRange(2, [path count] - 2)]
+                             componentsJoinedByString:@"/"];
     NSString* rootPath = NIPathForDocumentsResource(nil);
     NSString* filename = [cssFilename md5Hash];
-    NSData* data = [stringData dataUsingEncoding:NSUTF8StringEncoding];
     NSString* diskPath = [rootPath stringByAppendingPathComponent:filename];
     [data writeToFile:diskPath atomically:YES];
 
+    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
     NIStylesheet* stylesheet = [_stylesheets objectForKey:cssFilename];
     if ([stylesheet loadFromPath:cssFilename pathPrefix:rootPath delegate:self]) {
-      [[NSNotificationCenter defaultCenter] postNotificationName:NIChameleonSkinDidChangeNotification
-                                                          object:stylesheet
-                                                        userInfo:nil];
+      [nc postNotificationName:NIChameleonSkinDidChangeNotification
+                        object:stylesheet
+                      userInfo:nil];
     }
     for (NSString* pathKey in _stylesheets) {
       stylesheet = [_stylesheets objectForKey:pathKey];
       if ([stylesheet.dependencies containsObject:cssFilename]) {
         // This stylesheet has the changed stylesheet as a dependency so let's refresh it.
         if ([stylesheet loadFromPath:pathKey pathPrefix:rootPath delegate:self]) {
-          [[NSNotificationCenter defaultCenter] postNotificationName:NIChameleonSkinDidChangeNotification
-                                                              object:stylesheet
-                                                            userInfo:nil];
+          [nc postNotificationName:NIChameleonSkinDidChangeNotification
+                            object:stylesheet
+                          userInfo:nil];
         }
       }
     }
   }
+
+  [_activeRequests removeObject:request];
 }
 
 

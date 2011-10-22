@@ -27,12 +27,13 @@ extern NSString* const NIChameleonSkinDidChangeNotification;
 @private
   NSMutableDictionary* _stylesheets;
   NSMutableArray* _activeRequests;
-  NSString* _rootFolder;
+  NSString* _pathPrefix;
   NSString* _host;
+  NSInteger _retryCount;
 }
 
 // Designated initializer.
-- (id)initWithRootFolder:(NSString *)rootFolder host:(NSString *)host;
+- (id)initWithPathPrefix:(NSString *)pathPrefix host:(NSString *)host;
 
 - (NIStylesheet *)stylesheetForFilename:(NSString *)filename;
 

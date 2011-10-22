@@ -50,8 +50,10 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
 
-  _chameleonObserver = [[NIChameleonObserver alloc] initWithRootFolder:@"css"
-                                                                  host:@"http://192.168.29.128:8888"];
+  NSString* pathPrefix = NIPathForBundleResource(nil, @"css");
+  NSString* host = @"http://localhost:8888/";
+  _chameleonObserver = [[NIChameleonObserver alloc] initWithPathPrefix:pathPrefix
+                                                                  host:host];
   [_chameleonObserver watchSkinChanges];
 
   RootViewController* mainController =
