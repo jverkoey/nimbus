@@ -29,17 +29,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_window release];
-  _window = nil;
-  
-  NI_RELEASE_SAFELY(_rootViewController);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Application lifecycle
@@ -48,10 +37,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
   CatalogTableViewController* catalogVC =
-  [[[CatalogTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+  [[CatalogTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
 
   _rootViewController = [[UINavigationController alloc] initWithRootViewController:catalogVC];
 
