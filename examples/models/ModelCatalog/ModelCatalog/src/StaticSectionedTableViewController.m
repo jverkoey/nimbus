@@ -22,17 +22,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation StaticSectionedTableViewController
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  // The model is a retained object in this controller, so we must release it when the controller
-  // is deallocated.
-  [_model release]; _model = nil;
-  
-  [super dealloc];
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -104,9 +93,8 @@
   UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
   
   if (nil == cell) {
-    cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-                                   reuseIdentifier: @"row"]
-            autorelease];
+    cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
+                                   reuseIdentifier: @"row"];
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
   }

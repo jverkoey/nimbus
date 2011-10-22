@@ -31,16 +31,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  // The model is a retained object in this controller, so we must release it when the controller
-  // is deallocated.
-  [_model release]; _model = nil;
-  
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     self.title = NSLocalizedString(@"Model Catalog", @"Controller Title: Model Catalog");
@@ -81,7 +71,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   CatalogEntry* entry = [_model objectAtIndexPath:indexPath];
   Class cls = [entry controllerClass];
-  UIViewController* controller = [[[cls alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+  UIViewController* controller = [[cls alloc] initWithStyle:UITableViewStyleGrouped];
   [self.navigationController pushViewController:controller animated:YES];
 }
 

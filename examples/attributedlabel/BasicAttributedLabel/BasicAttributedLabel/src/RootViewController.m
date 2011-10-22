@@ -26,20 +26,14 @@
 @implementation RootViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)dealloc {
-  NI_RELEASE_SAFELY(_model);
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)viewDidLoad {
   
   self.title = @"NIAttributedLabel Demo";
   self.navigationItem.backBarButtonItem = 
-  [[[UIBarButtonItem alloc] initWithTitle:@"Back" 
-                                    style:UIBarButtonItemStylePlain 
-                                   target:nil 
-                                   action:nil] autorelease];
+  [[UIBarButtonItem alloc] initWithTitle:@"Back" 
+                                   style:UIBarButtonItemStylePlain 
+                                  target:nil 
+                                  action:nil];
   
   NSArray* tableContents =
   [NSArray arrayWithObjects:
@@ -58,7 +52,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {  
   LabelEntry* entry = [_model objectAtIndexPath:indexPath];
   Class cls = [entry controllerClass];
-  UIViewController* controller = [[[cls alloc] initWithNibName:nil bundle:nil] autorelease];
+  UIViewController* controller = [[cls alloc] initWithNibName:nil bundle:nil];
   [self.navigationController pushViewController:controller animated:YES];
 }
 
