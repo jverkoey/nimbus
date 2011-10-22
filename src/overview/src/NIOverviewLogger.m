@@ -31,16 +31,6 @@ NSString* const NIOverviewLoggerDidAddConsoleLog = @"NIOverviewLoggerDidAddConso
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_deviceLogs);
-  NI_RELEASE_SAFELY(_consoleLogs);
-  NI_RELEASE_SAFELY(_eventLogs);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
   if ((self = [super init])) {
     _deviceLogs = [[NILinkedList alloc] init];
@@ -102,17 +92,9 @@ NSString* const NIOverviewLoggerDidAddConsoleLog = @"NIOverviewLoggerDidAddConso
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_timestamp);
-  
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTimestamp:(NSDate *)timestamp {
   if ((self = [super init])) {
-    _timestamp = [timestamp retain];
+    _timestamp = timestamp;
   }
   return self;
 }
@@ -142,14 +124,6 @@ NSString* const NIOverviewLoggerDidAddConsoleLog = @"NIOverviewLoggerDidAddConso
 @implementation NIOverviewConsoleLogEntry
 
 @synthesize log = _log;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_log);
-
-  [super dealloc];
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

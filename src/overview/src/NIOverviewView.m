@@ -39,26 +39,15 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_backgroundImage);
-  NI_RELEASE_SAFELY(_pageViews);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     _pageViews = [[NSMutableArray alloc] init];
 
-    _backgroundImage = [[UIImage imageWithContentsOfFile:
-                         NIPathForBundleResource(nil, @"blueprint.gif")]
-                        retain];
+    _backgroundImage = [UIImage imageWithContentsOfFile:
+                         NIPathForBundleResource(nil, @"blueprint.gif")];
     self.backgroundColor = [UIColor colorWithPatternImage:_backgroundImage];
 
-    _pagingScrollView = [[[UIScrollView alloc] initWithFrame:[self frameForPagingScrollView]]
-                         autorelease];
+    _pagingScrollView = [[UIScrollView alloc] initWithFrame:[self frameForPagingScrollView]];
     _pagingScrollView.pagingEnabled = YES;
     _pagingScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, self.pageHorizontalMargin,
                                                                0, self.pageHorizontalMargin);

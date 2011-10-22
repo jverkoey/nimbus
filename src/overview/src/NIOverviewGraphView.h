@@ -25,7 +25,7 @@
  */
 @interface NIOverviewGraphView : UIView {
 @private
-  id<NIOverviewGraphViewDataSource> _dataSource;
+  __unsafe_unretained id<NIOverviewGraphViewDataSource> _dataSource;
 }
 
 /**
