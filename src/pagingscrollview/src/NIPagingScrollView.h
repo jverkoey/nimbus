@@ -122,8 +122,9 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
  * This must be called at least once after dataSource has been set in order for the view
  * to gather any presentable information.
  *
- * This method is expensive. It will reset the state of the view and remove all existing
- * pages before requesting the new information from the data source.
+ * This method is cheap because we only fetch new information about the currently displayed
+ * pages. If the number of pages shrinks then the current center page index will be decreased
+ * accordingly.
  *
  *      @fn NIPagingScrollView::reloadData
  */
