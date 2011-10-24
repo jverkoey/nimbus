@@ -89,6 +89,11 @@
 		6675733E13E7718B0076F555 /* NIInterapp.h in Headers */ = {isa = PBXBuildFile; fileRef = 6675733B13E7718B0076F555 /* NIInterapp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6675733F13E7718B0076F555 /* NIInterapp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675733C13E7718B0076F555 /* NIInterapp.m */; };
 		6675734513E773AA0076F555 /* NimbusInterapp.h in Headers */ = {isa = PBXBuildFile; fileRef = 6675734413E773AA0076F555 /* NimbusInterapp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6675E4B31455FCC5007D172F /* NIViewRecycler.h in Headers */ = {isa = PBXBuildFile; fileRef = 6675E4B11455FCC5007D172F /* NIViewRecycler.h */; };
+		6675E4B41455FCC5007D172F /* NIViewRecycler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675E4B21455FCC5007D172F /* NIViewRecycler.m */; };
+		6675E4B614560359007D172F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
+		6675E4B714560372007D172F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D02143E38F0003E413C /* CoreGraphics.framework */; };
+		6675E4BC145603DA007D172F /* NIViewRecyclerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675E4B914560397007D172F /* NIViewRecyclerTests.m */; };
 		667A749F13FE20BD009D277D /* NIFormCellCatalog.h in Headers */ = {isa = PBXBuildFile; fileRef = 667A749913FE20BD009D277D /* NIFormCellCatalog.h */; };
 		667A74A013FE20BD009D277D /* NIFormCellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A749A13FE20BD009D277D /* NIFormCellCatalog.m */; };
 		667A74A113FE20BD009D277D /* NICellFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 667A749B13FE20BD009D277D /* NICellFactory.h */; };
@@ -487,6 +492,9 @@
 		6675733C13E7718B0076F555 /* NIInterapp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIInterapp.m; sourceTree = "<group>"; };
 		6675734313E772100076F555 /* NimbusInterappTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NimbusInterappTests-Info.plist"; sourceTree = "<group>"; };
 		6675734413E773AA0076F555 /* NimbusInterapp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusInterapp.h; sourceTree = "<group>"; };
+		6675E4B11455FCC5007D172F /* NIViewRecycler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIViewRecycler.h; sourceTree = "<group>"; };
+		6675E4B21455FCC5007D172F /* NIViewRecycler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIViewRecycler.m; sourceTree = "<group>"; };
+		6675E4B914560397007D172F /* NIViewRecyclerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIViewRecyclerTests.m; sourceTree = "<group>"; };
 		667A749913FE20BD009D277D /* NIFormCellCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIFormCellCatalog.h; sourceTree = "<group>"; };
 		667A749A13FE20BD009D277D /* NIFormCellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIFormCellCatalog.m; sourceTree = "<group>"; };
 		667A749B13FE20BD009D277D /* NICellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICellFactory.h; sourceTree = "<group>"; };
@@ -789,8 +797,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66B1090D144D53CC004576D1 /* CoreGraphics.framework in Frameworks */,
-				66B1090C144D53C3004576D1 /* UIKit.framework in Frameworks */,
+				6675E4B714560372007D172F /* CoreGraphics.framework in Frameworks */,
+				6675E4B614560359007D172F /* UIKit.framework in Frameworks */,
 				66A03C1B13E6E85E00B514F3 /* SenTestingKit.framework in Frameworks */,
 				66A03C1E13E6E85E00B514F3 /* Foundation.framework in Frameworks */,
 				66A03C2313E6E85E00B514F3 /* libNimbusCore.a in Frameworks */,
@@ -1302,6 +1310,8 @@
 				66A03C5F13E6E8D100B514F3 /* NISDKAvailability.m */,
 				66A03C6013E6E8D100B514F3 /* NIState.h */,
 				66A03C6113E6E8D100B514F3 /* NIState.m */,
+				6675E4B11455FCC5007D172F /* NIViewRecycler.h */,
+				6675E4B21455FCC5007D172F /* NIViewRecycler.m */,
 				66A03CB613E6EFAF00B514F3 /* NSData+NimbusCore.h */,
 				66A03C6213E6E8D100B514F3 /* NSData+NimbusCore.m */,
 				66A03CB713E6EFAF00B514F3 /* NSString+NimbusCore.h */,
@@ -1319,13 +1329,14 @@
 				66A03CA113E6E90500B514F3 /* NIDataStructureTests.m */,
 				66A03CA213E6E90500B514F3 /* NIFoundationMethodsTests.m */,
 				66A03CA313E6E90500B514F3 /* NIMemoryCacheTests.m */,
+				FD01BED414179AAC0023D783 /* NINavigationAppearanceTests.m */,
 				66A03CA413E6E90500B514F3 /* NINonEmptyCollectionTestingTests.m */,
 				66A03CA513E6E90500B514F3 /* NINonRetainingCollectionsTests.m */,
 				66A03CA613E6E90500B514F3 /* NIOperationsTests.m */,
 				66A03CA713E6E90500B514F3 /* NIRuntimeClassModificationsTests.m */,
+				6675E4B914560397007D172F /* NIViewRecyclerTests.m */,
 				66A03CA813E6E90500B514F3 /* NSDate+UnitTesting.h */,
 				66A03CA913E6E90500B514F3 /* NSDate+UnitTesting.m */,
-				FD01BED414179AAC0023D783 /* NINavigationAppearanceTests.m */,
 			);
 			name = unittests;
 			path = core/unittests;
@@ -1690,6 +1701,7 @@
 				66A03CB913E6EFB000B514F3 /* NSString+NimbusCore.h in Headers */,
 				66A03C9013E6E8D100B514F3 /* NIState.h in Headers */,
 				FD01BEDB14179D940023D783 /* NINavigationAppearance.h in Headers */,
+				6675E4B31455FCC5007D172F /* NIViewRecycler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2632,6 +2644,7 @@
 				66A03C9213E6E8D100B514F3 /* NSData+NimbusCore.m in Sources */,
 				66A03C9313E6E8D100B514F3 /* NSString+NimbusCore.m in Sources */,
 				FD01BEDC14179D940023D783 /* NINavigationAppearance.m in Sources */,
+				6675E4B41455FCC5007D172F /* NIViewRecycler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2649,6 +2662,7 @@
 				66A03CB113E6E90500B514F3 /* NIRuntimeClassModificationsTests.m in Sources */,
 				66A03CB213E6E90500B514F3 /* NSDate+UnitTesting.m in Sources */,
 				FD01BED814179AB60023D783 /* NINavigationAppearanceTests.m in Sources */,
+				6675E4BC145603DA007D172F /* NIViewRecyclerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
