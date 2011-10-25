@@ -8,7 +8,7 @@ to understand.
 
 - Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
 - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
-- See the <a href="http://jverkoey.github.com/nimbus/group___version-8-0.html">latest API diffs</a>.
+- See the <a href="http://jverkoey.github.com/nimbus/group___version-9-0.html">latest API diffs</a>.
 - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
 - Ask questions and get updates via the <a href="http://groups.google.com/group/nimbusios">Nimbus mailing list</a>.
 
@@ -49,6 +49,11 @@ appreciated and helps keep Nimbus running.
 http://pledgie.com/campaigns/15519
 
 <h3>Source Code Contributors (alphabetical by last name)</h3>
+
+<div class="contributor_profile"> 
+<div class="name">bubnov</div> 
+<div class="github"><a href="http://github.com/bubnov">bubnov</a></div> 
+</div>
 
 <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
 <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 

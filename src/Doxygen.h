@@ -27,7 +27,7 @@
  * 
  * - Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
  * - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
- * - See the <a href="http://jverkoey.github.com/nimbus/group___version-7-0.html">latest API diffs</a>.
+ * - See the <a href="http://jverkoey.github.com/nimbus/group___version-9-0.html">latest API diffs</a>.
  * - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
  * - Ask questions and get updates via the <a href="http://groups.google.com/group/nimbusios">Nimbus mailing list</a>.
  * 
@@ -69,6 +69,11 @@
  * 
  * <h3>Source Code Contributors (alphabetical by last name)</h3>
  * 
+ * <div class="contributor_profile"> 
+ * <div class="name">bubnov</div> 
+ * <div class="github"><a href="http://github.com/bubnov">bubnov</a></div> 
+ * </div>
+ *
  * <div class="contributor_profile"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Roger Chapman</div> 
@@ -178,6 +183,10 @@
  * the new Nimbus @link NimbusCSS CSS@endlink and Chameleon, a new way to rapidly prototype
  * styling your iOS applications using CSS.
  *
+ * Watch the Chameleon Youtube video: http://www.youtube.com/watch?v=i_5LbQ8e9BU
+ *
+ * Read the Chameleon blog post: http://blog.jeffverkoeyen.com/nimbus-chameleon
+ *
  *
  * <h2>Added Frameworks</h2>
  *
@@ -188,7 +197,7 @@
  *
  * <h3>NIAttributedLabel[.h|m]</h3>
  *
- * - <span class="apiDiffAdded">Added</span> <code>@link NIAttributedLabel::removeAllLinks NIAttributedLabel@endlink</code> (thanks to <a href="http://github.com/hboon">hboon</a>.)
+ * - <span class="apiDiffAdded">Added</span> <code>[NIAttributedLabel @link NIAttributedLabel::removeAllLinks removeAllLinks@endlink]</code> (thanks to <a href="http://github.com/hboon">hboon</a>.)
  *
  *
  * <h2>Core</h2>
@@ -211,10 +220,21 @@
  *
  * <h2>Examples</h2>
  *
- * <h3>Basic Attributed Label [added]</h3>
+ * <h3>CSSDemo [added]</h3>
  *
  *
  * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ * <div class="name">bubnov</div> 
+ * <div class="github"><a href="http://github.com/bubnov">bubnov</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Roger Chapman</div> 
+ * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
+ * </div>
  *
  * <div class="contributor_profile"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/87c842e2d3f2b9e87e339cbc86463e8d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
