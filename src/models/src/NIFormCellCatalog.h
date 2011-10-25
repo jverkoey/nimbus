@@ -101,7 +101,6 @@
 
 // Designated initializer
 + (id)buttonElementWithID:(NSInteger)elementID labelText:(NSString *)labelText tappedTarget:(id)target tappedSelector:(SEL)selector;
-+ (id)buttonElementWithID:(NSInteger)elementID labelText:(NSString *)labelText;
 
 @property (nonatomic, readwrite, copy) NSString* labelText;
 @property (nonatomic, readwrite, assign) id tappedTarget;

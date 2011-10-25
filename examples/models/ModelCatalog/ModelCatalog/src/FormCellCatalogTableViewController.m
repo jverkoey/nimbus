@@ -52,7 +52,6 @@
      [NISwitchFormElement switchElementWithID:0 labelText:@"Switch with a really long label that will be cut off" value:YES],
 
      @"NIButtonFormElement",
-     [NIButtonFormElement buttonElementWithID:0 labelText:@"Button"],
      [NIButtonFormElement buttonElementWithID:0
                                     labelText:@"Button with alert"
                                  tappedTarget:self
