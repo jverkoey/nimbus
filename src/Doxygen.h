@@ -1292,23 +1292,25 @@
  *
  * Presented here are tutorials to guide you through the basics of Nimbus.
  *
- * - <a href="http://jverkoey.github.com/nimbus/group___adding-_nimbus.html">Adding Nimbus to your project</a>
+ * - @link Add-Nimbus Add Nimbus to your project@endlink
  *
  */
 
 /**
- * @defgroup Adding-Nimbus Adding Nimbus to your project
+ * @defgroup Add-Nimbus Add Nimbus to your project
  * @ingroup Tutorials
+ *
  *
  * <h2>Overview</h2>
  *
- * This tutorial will show you how to add the Nimbus framework to your project. No previous knowledge
- * of Nimbus presumed, but basic Xcode knoledge will be required.
+ * This tutorial will show you how to add the Nimbus framework to your project. No previous
+ * knowledge of Nimbus is required. Basic Xcode knowledge is assumed.
+ *
  *
  * <h2>Downloading Nimbus</h2>
  * 
- * The easiest way to download Nimbus is via <code>git</code>. Open the terminal app and enter the 
- * following:
+ * The easiest way to download Nimbus is via <code>git</code>. Open Terminal and enter the 
+ * following to check out the Nimbus repo:
  *
  * @code
  * $ cd ~/path/to/dev/folder
@@ -1317,27 +1319,35 @@
  *
  * This will download the Nimbus source into your selected dev folder.
  *
+ *
  * <h2>Prepare your Xcode project</h2>
  *
- * Create a new iOS Xcode project or open an existing project. Within the project navigator on the left
- * hand side, right click on the project root and select <strong>New Group</strong>:
+ * Create a new iOS Xcode project or open an existing project. Within the project navigator
+ * on the left hand side, right click on the project root and select <strong>New Group</strong>:
  * 
  *  @image html AddingNimbus1.png "Right click -> New Group"
  * 
- * Name this new group <strong>Nimbus</strong>; this will be the root for the Nimbus framework
+ * Name this new group <strong>Nimbus</strong>; this will be the root group for the
+ * Nimbus framework.
  *
- * Under the Nimbus root group add another group named <strong>Core</strong>. Also add groups for any other
- * Nimbus modules you intend to use. In this tutorial we are going to add the NimbusWebController module.
+ * Under the Nimbus root group, add another group named <strong>Core</strong>. Add
+ * groups for any other Nimbus modules you intend to use. In this tutorial we are going
+ * to add the NimbusWebController module.
  *
  * You should end up with a group structure similar to the following:
  *
  *  @image html AddingNimbus2.png "Nimbus group structure"
  *
- * <h2 id="addfiles">And Nimbus source files</h2>
- * Right click the <strong>Core</strong> group and select <strong>Add Files to "YourProject"...</strong>
+ *
+ * <h2 id="addfiles">Add Nimbus source files</h2>
+ *
+ * Right click the <strong>Core</strong> group and select
+ * <strong>Add Files to "YourProject"...</strong>
+ *
  *  @image html AddingNimbus3.png "Adding Nimbus files"
  *
- * Navigate to where you previously downloaded the Nimbus source and continue to navigate to the core source files...
+ * Navigate to where you previously checked out Nimbus and open the <code>src/core/src</code>
+ * directory.
  *
  * @code
  * ~/path/to/nimbus/src/core/src/
@@ -1347,17 +1357,19 @@
  *
  * @image html AddingNimbus4.png "Selecting Nimbus Core source files"
  *
- * Make sure the <strong>Copy items to destination group's folder</strong> checkbox is left <em>un-ticked</em> and
- * then <strong>Add</strong> the files.
+ * Make sure the <strong>Copy items to destination group's folder</strong> checkbox
+ * is left <em>un-ticked</em> and then <strong>Add</strong> the files.
  *
- * Do the same for the other Nimbus modules you wish to add and you should be left with something like this:
+ * Do the same for the other Nimbus modules you wish to add and you should be left
+ * with something like this:
  *
  * @image html AddingNimbus5.png "Nimbus files added to a project"
  *
+ *
  * <h2>Ready to use Nimbus</h2>
  * 
- * You can now use Nimbus in your project. If you are using Nimbus throughout your project it is usefull to import
- * the header files into your Prefix Header file:
+ * You can now use Nimbus in your project. If you are using Nimbus throughout
+ * your project it is useful to import the header files in your Prefix Header file:
  *
  * @code
  * // YourProject_Prefix.pch
@@ -1372,6 +1384,7 @@
  *
  * @endcode
  *
+ *
  * <h2>Updating Nimbus</h2>
  *
  * If you want to update to a newer version of Nimbus, pull the changes from github:
@@ -1381,10 +1394,11 @@
  * $ git pull
  * @endcode
  *
- * This will update all the Nimbus source files that you have added to your project using the above method. If there
- * are new source files added to the module you updated you will have to add these files using the same method as 
- * <a href="#addfiles">above</a>. 
- *
+ * This will update the Nimbus source files that you have added to your project
+ * using the above method. If there are new source files added to the module you updated
+ * you will have to add these files using the same method as <a href="#addfiles">above</a>. 
+ * It's easy to keep track of newly added or removed files by following the
+ * @link Version-History API diffs@endlink published with every release.
  *
  */
 
