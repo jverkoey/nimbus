@@ -68,5 +68,6 @@
 #import "NIPaths.h"
 #import "NIPreprocessorMacros.h"
 #import "NIRuntimeClassModifications.h"
+#import "NISimpleRequest.h"
 #import "NISDKAvailability.h"
 #import "NIState.h"
