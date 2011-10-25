@@ -19,12 +19,44 @@
 @class NIStylesheet;
 
 /**
- * A leight-weight DOM-like object with which you can attach views and stylesheets.
+ * A leight-weight DOM-like object to which you attach views and stylesheets.
+ *
+ *      @ingroup CSS-Stylesheets
  *
  * To be clear: this is not an HTML DOM, but its intent is the same. NIDOM is designed
  * to simplify the view <=> stylesheet relationship. Add a view to the DOM and it will
  * automatically apply any applicable styles from the attached stylesheet. If the stylesheet
  * changes you can refresh the DOM and all registered views will be updated accordingly.
+ *
+ *
+ * <h2>Example Use</h2>
+ *
+ * NIDOM is most useful when you create a single NIDOM per view controller.
+ *
+@code
+NIStylesheet* stylesheet = [stylesheetCache stylesheetWithPath:@"root/root.css"];
+// Create a NIDOM object in your view controller.
+_dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
+@endcode
+ *
+ * You then register views in the DOM during loadView or viewDidLoad.
+ *
+@code
+// Registers a view by itself such that only "UILabel" rulesets will apply.
+[_dom registerView:_label];
+
+// Register a view with a specific CSS class. Any rulesets with the ".background" scope will
+// apply to this view.
+[_dom registerView:self.view withCSSClass:@"background"];
+@endcode
+ *
+ * Once the view controller unloads its view you must unregister all of the views from your DOM.
+ *
+@code
+- (void)viewDidUnload {
+  [_dom unregisterAllViews];
+}
+@endcode
  */
 @interface NIDOM : NSObject {
 @private
@@ -48,6 +80,8 @@
 
 @end
 
+/** @name Creating NIDOMs */
+
 /**
  * Initializes a newly allocated DOM with the given stylesheet.
  *
@@ -65,6 +99,9 @@
  *
  *      @fn NIDOM::domWithStylesheetWithPathPrefix:paths:
  */
+
+
+/** @name Registering Views */
 
 /**
  * Registers the given view with the DOM.
@@ -96,6 +133,9 @@
  *
  *      @fn NIDOM::unregisterAllViews
  */
+
+
+/** @name Re-Applying All Styles */
 
 /**
  * Reapplies the stylesheet to all views.

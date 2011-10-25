@@ -20,10 +20,11 @@
   UIWindow* _window;
   UIViewController* _rootController;
   NIChameleonObserver* _chameleonObserver;
+  NIStylesheetCache* _stylesheetCache;
 }
 
 @property (nonatomic, readwrite, retain) UIWindow* window;
-@property (nonatomic, readonly, retain) NIChameleonObserver* chameleonObserver;
+@property (nonatomic, readonly, retain) NIStylesheetCache* stylesheetCache;
 
 @end
 

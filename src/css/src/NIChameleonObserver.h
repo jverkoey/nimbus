@@ -19,24 +19,54 @@
 #import "NISimpleRequest.h"
 #import "NICSSParser.h"
 
-extern NSString* const NIChameleonSkinDidChangeNotification;
-
 @class NIStylesheet;
+@class NIStylesheetCache;
 
+/**
+ * An observer for the Chameleon server.
+ *
+ *      @ingroup CSS-Stylesheets
+ *
+ * This observer connects to a Chameleon server and waits for changes in stylesheets. Once
+ * a stylesheet change has been detected, the new stylesheet is retrieved from the server
+ * and a notification is fired via NIStylesheetDidChangeNotification after the stylesheet
+ * has been reloaded.
+ */
 @interface NIChameleonObserver : NSObject <NISimpleRequestDelegate, NICSSParserDelegate> {
 @private
-  NSMutableDictionary* _stylesheets;
+  NIStylesheetCache* _stylesheetCache;
+  NSMutableArray* _stylesheetPaths;
   NSMutableArray* _activeRequests;
-  NSString* _pathPrefix;
   NSString* _host;
   NSInteger _retryCount;
 }
 
 // Designated initializer.
-- (id)initWithPathPrefix:(NSString *)pathPrefix host:(NSString *)host;
+- (id)initWithStylesheetCache:(NIStylesheetCache *)stylesheetCache host:(NSString *)host;
 
-- (NIStylesheet *)stylesheetForFilename:(NSString *)filename;
+- (NIStylesheet *)stylesheetForPath:(NSString *)path;
 
 - (void)watchSkinChanges;
 
 @end
+
+/**
+ * Initializes a newly allocated Chameleon observer with a given stylesheet cache and host.
+ *
+ *      @fn NIChameleonObserver::initWithStylesheetCache:host:
+ */
+
+/**
+ * Returns a loaded stylesheet from the given path.
+ *
+ *      @fn NIChameleonObserver::stylesheetForPath:
+ */
+
+/**
+ * Begins listening to the Chameleon server for changes.
+ *
+ * When changes are detected the Chameleon observer downloads the new CSS files, reloads them,
+ * and then fires the appropriate notifications.
+ *
+ *      @fn NIChameleonObserver::watchSkinChanges
+ */

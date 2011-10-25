@@ -39,13 +39,13 @@ static CGFloat squareSize = 200;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-    NIChameleonObserver* chameleonObserver =
-    [(AppDelegate *)[UIApplication sharedApplication].delegate chameleonObserver];
-    NIStylesheet* stylesheet = [chameleonObserver stylesheetForFilename:@"root/root.css"];
+    NIStylesheetCache* stylesheetCache =
+    [(AppDelegate *)[UIApplication sharedApplication].delegate stylesheetCache];
+    NIStylesheet* stylesheet = [stylesheetCache stylesheetWithPath:@"root/root.css"];
     _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(chameleonSkinDidChange)
-                                                 name:NIChameleonSkinDidChangeNotification
+                                             selector:@selector(stylesheetDidChange)
+                                                 name:NIStylesheetDidChangeNotification
                                                object:stylesheet];
     self.title = @"Nimbus CSS Demo";
   }
@@ -125,7 +125,7 @@ static CGFloat squareSize = 200;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)chameleonSkinDidChange {
+- (void)stylesheetDidChange {
   [_dom refresh];
   [self layoutSubviews];
 }

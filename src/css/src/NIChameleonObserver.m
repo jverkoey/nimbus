@@ -17,15 +17,15 @@
 #import "NIChameleonObserver.h"
 
 #import "NIStylesheet.h"
+#import "NIStylesheetCache.h"
 #import "NimbusCore+Additions.h"
 
-NSString* const NIChameleonSkinDidChangeNotification = @"NIChameleonSkinDidChangeNotification";
 static NSString* const kWatchFilenameKey = @"___watch___";
 static const NSTimeInterval kTimeoutInterval = 1000;
 static const NSInteger kMaxNumberOfRetries = 3;
 
 @interface NIChameleonObserver()
-- (BOOL)loadStylesheetWithFilename:(NSString *)filename;
+- (NSString *)pathFromPath:(NSString *)path;
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,9 +40,9 @@ static const NSInteger kMaxNumberOfRetries = 3;
     [request cancel];
     request.delegate = nil;
   }
-  NI_RELEASE_SAFELY(_stylesheets);
+  NI_RELEASE_SAFELY(_stylesheetCache);
+  NI_RELEASE_SAFELY(_stylesheetPaths);
   NI_RELEASE_SAFELY(_activeRequests);
-  NI_RELEASE_SAFELY(_pathPrefix);
   NI_RELEASE_SAFELY(_host);
 
   [super dealloc];
@@ -50,10 +50,12 @@ static const NSInteger kMaxNumberOfRetries = 3;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithPathPrefix:(NSString *)pathPrefix host:(NSString *)host {
+- (id)initWithStylesheetCache:(NIStylesheetCache *)stylesheetCache host:(NSString *)host {
   if ((self = [super init])) {
-    _pathPrefix = [pathPrefix copy];
-    _stylesheets = [[NSMutableDictionary alloc] init];
+    // You must provide a stylesheet cache.
+    NIDASSERT(nil != stylesheetCache);
+    _stylesheetCache = [stylesheetCache retain];
+    _stylesheetPaths = [[NSMutableArray alloc] init];
     _activeRequests = [[NSMutableArray alloc] init];
 
     if ([host hasSuffix:@"/"]) {
@@ -64,16 +66,17 @@ static const NSInteger kMaxNumberOfRetries = 3;
     }
 
     NSFileManager* fm = [NSFileManager defaultManager];
-    NSDirectoryEnumerator* de = [fm enumeratorAtPath:pathPrefix];
+    NSDirectoryEnumerator* de = [fm enumeratorAtPath:_stylesheetCache.pathPrefix];
 
     NSString* filename;
     while ((filename = [de nextObject])) {
       BOOL isFolder = NO;
-      NSString* path = [pathPrefix stringByAppendingPathComponent:filename];
+      NSString* path = [_stylesheetCache.pathPrefix stringByAppendingPathComponent:filename];
       if ([fm fileExistsAtPath:path isDirectory:&isFolder]
           && !isFolder
           && [[filename pathExtension] isEqualToString:@"css"]) {
-        NSString* cachePath = NIPathForDocumentsResource([filename md5Hash]);
+        [_stylesheetPaths addObject:filename];
+        NSString* cachePath = NIPathForDocumentsResource([self pathFromPath:filename]);
         NSError* error = nil;
         [fm removeItemAtPath:cachePath error:&error];
         [fm copyItemAtPath:path toPath:cachePath error:&error];
@@ -86,53 +89,19 @@ static const NSInteger kMaxNumberOfRetries = 3;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)loadStylesheetWithFilename:(NSString *)filename {
-  NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
-  BOOL didSucceed = [stylesheet loadFromPath:filename
-                                  pathPrefix:_pathPrefix];
-
-  if (didSucceed) {
-    [_stylesheets setObject:stylesheet forKey:filename];
-
-  } else {
-    NIDASSERT(NO);
-    [_stylesheets removeObjectForKey:filename];
-  }
-
-  NI_RELEASE_SAFELY(stylesheet);
-
-  return didSucceed;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NIStylesheet *)stylesheetForFilename:(NSString *)filename {
-  if (nil == [_stylesheets objectForKey:filename]) {
-    [self loadStylesheetWithFilename:filename];
-  }
-  return [_stylesheets objectForKey:filename];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)watchSkinChanges {
-  NSURL* watchURL = [NSURL URLWithString:[_host stringByAppendingString:@"watch"]];
-  NISimpleRequest* request = [NISimpleRequest requestWithURL:watchURL
-                                             timeoutInterval:kTimeoutInterval];
-  request.delegate = self;
-  [_activeRequests addObject:request];
-  [request send];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)downloadStylesheetWithFilename:(NSString *)filename {
-  NSURL* fileURL = [NSURL URLWithString:[_host stringByAppendingString:filename]];
+- (void)downloadStylesheetWithFilename:(NSString *)path {
+  NSURL* fileURL = [NSURL URLWithString:[_host stringByAppendingString:path]];
   NISimpleRequest* request = [NISimpleRequest requestWithURL:fileURL
                                              timeoutInterval:kTimeoutInterval];
   request.delegate = self;
   [_activeRequests addObject:request];
   [request send];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)pathFromPath:(NSString *)path {
+  return [path md5Hash];
 }
 
 
@@ -167,27 +136,27 @@ static const NSInteger kMaxNumberOfRetries = 3;
     [self watchSkinChanges];
 
   } else {
-    NSArray* path = [[request.url absoluteString] pathComponents];
-    NSString* cssFilename = [[path subarrayWithRange:NSMakeRange(2, [path count] - 2)]
-                             componentsJoinedByString:@"/"];
+    NSArray* pathParts = [[request.url absoluteString] pathComponents];
+    NSString* path = [[pathParts subarrayWithRange:NSMakeRange(2, [pathParts count] - 2)]
+                      componentsJoinedByString:@"/"];
     NSString* rootPath = NIPathForDocumentsResource(nil);
-    NSString* filename = [cssFilename md5Hash];
-    NSString* diskPath = [rootPath stringByAppendingPathComponent:filename];
+    NSString* hashedPath = [self pathFromPath:path];
+    NSString* diskPath = [rootPath stringByAppendingPathComponent:hashedPath];
     [data writeToFile:diskPath atomically:YES];
 
     NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-    NIStylesheet* stylesheet = [_stylesheets objectForKey:cssFilename];
-    if ([stylesheet loadFromPath:cssFilename pathPrefix:rootPath delegate:self]) {
-      [nc postNotificationName:NIChameleonSkinDidChangeNotification
+    NIStylesheet* stylesheet = [_stylesheetCache stylesheetWithPath:path loadFromDisk:NO];
+    if ([stylesheet loadFromPath:path pathPrefix:rootPath delegate:self]) {
+      [nc postNotificationName:NIStylesheetDidChangeNotification
                         object:stylesheet
                       userInfo:nil];
     }
-    for (NSString* pathKey in _stylesheets) {
-      stylesheet = [_stylesheets objectForKey:pathKey];
-      if ([stylesheet.dependencies containsObject:cssFilename]) {
+    for (NSString* iteratingPath in _stylesheetPaths) {
+      stylesheet = [_stylesheetCache stylesheetWithPath:iteratingPath loadFromDisk:NO];
+      if ([stylesheet.dependencies containsObject:path]) {
         // This stylesheet has the changed stylesheet as a dependency so let's refresh it.
-        if ([stylesheet loadFromPath:pathKey pathPrefix:rootPath delegate:self]) {
-          [nc postNotificationName:NIChameleonSkinDidChangeNotification
+        if ([stylesheet loadFromPath:iteratingPath pathPrefix:rootPath delegate:self]) {
+          [nc postNotificationName:NIStylesheetDidChangeNotification
                             object:stylesheet
                           userInfo:nil];
         }
@@ -206,7 +175,29 @@ static const NSInteger kMaxNumberOfRetries = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)cssParser:(NICSSParser *)parser pathFromPath:(NSString *)path {
-  return [path md5Hash];
+  return [self pathFromPath:path];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Public Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NIStylesheet *)stylesheetForPath:(NSString *)path {
+  return [_stylesheetCache stylesheetWithPath:path];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)watchSkinChanges {
+  NSURL* watchURL = [NSURL URLWithString:[_host stringByAppendingString:@"watch"]];
+  NISimpleRequest* request = [NISimpleRequest requestWithURL:watchURL
+                                             timeoutInterval:kTimeoutInterval];
+  request.delegate = self;
+  [_activeRequests addObject:request];
+  [request send];
 }
 
 

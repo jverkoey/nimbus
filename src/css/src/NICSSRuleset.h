@@ -19,6 +19,8 @@
 /**
  * A simple translator from raw CSS rulesets to Objective-C values.
  *
+ *      @ingroup CSS-Stylesheets
+ *
  * Objective-C values are created on-demand and cached. These ruleset objects are cached
  * by NIStylesheet for a given CSS scope. When a memory warning is received, all ruleset objects
  * are removed from every stylesheet.

@@ -19,7 +19,21 @@
 @protocol NICSSParserDelegate;
 
 /**
+ * The notification key for when a stylesheet has changed.
+ *
+ *      @ingroup CSS-Stylesheets
+ *
+ * This notification will be sent with the stylesheet as the object. Listeners should add
+ * themselves using the stylesheet object that they are interested in.
+ *
+ * The NSNotification userInfo object will be nil.
+ */
+extern NSString* const NIStylesheetDidChangeNotification;
+
+/**
  * Loads and caches information regarding a specific stylesheet.
+ *
+ *      @ingroup CSS-Stylesheets
  *
  * Use this object to load and parse a CSS stylesheet from disk and then apply the stylesheet
  * to views. Rulesets are cached on demand and cleared when a memory warning is received.
@@ -49,11 +63,17 @@
 
 @end
 
+
+/** @name Properties */
+
 /**
  * A set of filenames for the dependencies of this stylesheet.
  *
  *      @fn NIStylesheet::dependencies
  */
+
+
+/** @name Loading Stylesheets */
 
 /**
  * Loads and parses a CSS file from disk.
@@ -76,6 +96,8 @@
  *      @sa NIStylesheet::loadFromPath:pathPrefix:delegate:
  */
 
+/** @name Compositing Stylesheets */
+
 /**
  * Merge another stylesheet with this one.
  *
@@ -84,6 +106,9 @@
  *
  *      @fn NIStylesheet::addStylesheet:
  */
+
+
+/** @name Applying Stylesheets to Views */
 
 /**
  * Apply any rulesets that match the className to the given view.

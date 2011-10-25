@@ -21,6 +21,8 @@
 #import "NIStyleable.h"
 #import "NimbusCore.h"
 
+NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotification";
+
 @interface NIStylesheet()
 @property (nonatomic, readonly, copy) NSDictionary* rawRulesets;
 @property (nonatomic, readonly, copy) NSDictionary* significantScopeToScopes;
@@ -158,7 +160,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)loadFromPath:(NSString *)aPath
+- (BOOL)loadFromPath:(NSString *)path
           pathPrefix:(NSString *)pathPrefix
             delegate:(id<NICSSParserDelegate>)delegate {
   BOOL loadDidSucceed = NO;
@@ -169,14 +171,9 @@
 
   _ruleSets = [[NSMutableDictionary alloc] init];
 
-  NSString* path = aPath;
-  if (pathPrefix.length > 0) {
-    path = [pathPrefix stringByAppendingPathComponent:aPath];
-  }
-
   NICSSParser* parser = [[NICSSParser alloc] init];
 
-  NSDictionary* results = [parser dictionaryForPath:aPath
+  NSDictionary* results = [parser dictionaryForPath:path
                                          pathPrefix:pathPrefix
                                            delegate:delegate];
   if (nil != results && ![parser didFailToParse]) {

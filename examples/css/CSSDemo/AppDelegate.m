@@ -26,7 +26,7 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize chameleonObserver = _chameleonObserver;
+@synthesize stylesheetCache = _stylesheetCache;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,6 +34,7 @@
   NI_RELEASE_SAFELY(_window);
   NI_RELEASE_SAFELY(_rootController);
   NI_RELEASE_SAFELY(_chameleonObserver);
+  NI_RELEASE_SAFELY(_stylesheetCache);
 
   [super dealloc];
 }
@@ -52,8 +53,11 @@
 
   NSString* pathPrefix = NIPathForBundleResource(nil, @"css");
   NSString* host = @"http://localhost:8888/";
-  _chameleonObserver = [[NIChameleonObserver alloc] initWithPathPrefix:pathPrefix
-                                                                  host:host];
+  
+  _stylesheetCache = [[NIStylesheetCache alloc] initWithPathPrefix:pathPrefix];
+  
+  _chameleonObserver = [[NIChameleonObserver alloc] initWithStylesheetCache:_stylesheetCache
+                                                                       host:host];
   [_chameleonObserver watchSkinChanges];
 
   RootViewController* mainController =

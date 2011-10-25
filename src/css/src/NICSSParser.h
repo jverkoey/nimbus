@@ -24,6 +24,8 @@ extern NSString* const kDependenciesSelectorKey;
 /**
  * An Objective-C wrapper for the flex CSS parser.
  *
+ *      @ingroup CSS-Stylesheets
+ *
  * Generates a dictionary of raw CSS rules from a given CSS file.
  *
  * It is recommended that you do NOT use this object directly. Use NIStylesheet instead.
