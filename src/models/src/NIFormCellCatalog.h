@@ -87,6 +87,28 @@
 @end
 
 
+/**
+ * A button form element.
+ *
+ * This element is a button that can be embedded in a form, usually in order to bring up another
+ * controller such as a table view controller with check marks.
+ *
+ * Bound to NIButtonFormElementCell when using the @link TableCellFactory Nimbus cell factory@endlink.
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NIButtonFormElement : NIFormElement
+
+// Designated initializer
++ (id)buttonElementWithID:(NSInteger)elementID labelText:(NSString *)labelText tappedTarget:(id)target tappedSelector:(SEL)selector;
++ (id)buttonElementWithID:(NSInteger)elementID labelText:(NSString *)labelText;
+
+@property (nonatomic, readwrite, copy) NSString* labelText;
+@property (nonatomic, readwrite, assign) id tappedTarget;
+@property (nonatomic, readwrite, assign) SEL tappedSelector;
+
+@end
+
 #pragma mark -
 #pragma mark Form Element Cells
 
@@ -127,6 +149,21 @@
 @property (nonatomic, readonly, retain) UISwitch* switchControl;
 @end
 
+/**
+ * The cell sibling to NIButtonFormElement.
+ *
+ * Displays a button occupying all of the cell's width.
+ *
+ * @image html NIButtonFormElementCellExample1.png "Example of a NIButtonFormElementCell."
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NIButtonFormElementCell : NIFormElementCell
+
+// Called when this button cell is tapped.
+- (void)buttonWasTapped:(id)sender;
+
+@end
 
 @interface NITableViewModel (NIFormElementSearch)
 
