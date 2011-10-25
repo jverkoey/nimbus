@@ -1,0 +1,28 @@
+UIButton {
+  width: 100%;
+  height: 20px;
+}
+
+UIButton {
+  color: red;
+}
+
+UILabel {
+  font-size: 23;
+}
+
+.className {
+  background-COLOR: orange;
+}
+
+UIButton {
+  color: black;
+}
+
+UILabel {
+  font-size: 50;
+}
+
+.className {
+  background-color: green;
+}

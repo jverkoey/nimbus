@@ -8,7 +8,7 @@ to understand.
 
 - Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
 - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
-- See the <a href="http://jverkoey.github.com/nimbus/group___version-8-0.html">latest API diffs</a>.
+- See the <a href="http://jverkoey.github.com/nimbus/group___version-9-0.html">latest API diffs</a>.
 - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
 - Ask questions and get updates via the <a href="http://groups.google.com/group/nimbusios">Nimbus mailing list</a>.
 
@@ -50,25 +50,36 @@ http://pledgie.com/campaigns/15519
 
 <h3>Source Code Contributors (alphabetical by last name)</h3>
 
+<div class="contributor_profile"> 
+<div class="name">bubnov</div> 
+<div class="github"><a href="http://github.com/bubnov">bubnov</a></div> 
+</div>
+
 <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
 <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
 <div class="name">Roger Chapman</div> 
 <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
 </div>
 
-<div class="contributor_profile"> 
+<div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+<img width="135px" height="135px" src="http://www.gravatar.com/avatar/87c842e2d3f2b9e87e339cbc86463e8d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+<div class="name">Manu Cornet</div> 
+<div class="github"><a href="http://github.com/lmanul">lmanul</a></div> 
+</div>
+
+<div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
 <img width="135px" height="135px" src="http://www.gravatar.com/avatar/a7acedfd4044ad79252e3b062aef25e7?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
 <div class="name">Glenn Grant</div> 
 <div class="github"><a href="http://github.com/alias1">alias1</a></div> 
 </div>
 
-<div class="contributor_profile">
+<div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;">
 <img width="135px" height="135px" src="http://www.gravatar.com/avatar/ca1536c2ef2e263ed2aec69c1d147677?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
 <div class="name">Aviel Lazar</div> 
 <div class="github"><a href="http://github.com/aviell">aviell</a></div> 
 </div>
 
-<div class="contributor_profile"> 
+<div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
 <img width="135px" height="135px" src="http://www.gravatar.com/avatar/22f25c7b3f0f15a6854fae62bbd3482f?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
 <div class="name">Benedikt Meurer</div> 
 <div class="github"><a href="http://github.com/bmeurer">bmeurer</a></div> 
@@ -96,6 +107,12 @@ http://pledgie.com/campaigns/15519
 <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
 <div class="name">Jeff Verkoeyen</div> 
 <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+</div>
+
+<div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;">
+<img width="135px" height="135px" src="http://www.gravatar.com/avatar/b0190e056d8b13400d4ae6eba8a7018d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+<div class="name">Hwee-Boon Yar</div> 
+<div class="github"><a href="http://github.com/hboon">hboon</a></div> 
 </div>
 
 <div style="clear:both"></div>

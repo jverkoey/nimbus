@@ -27,7 +27,7 @@
  * 
  * - Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
  * - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
- * - See the <a href="http://jverkoey.github.com/nimbus/group___version-7-0.html">latest API diffs</a>.
+ * - See the <a href="http://jverkoey.github.com/nimbus/group___version-9-0.html">latest API diffs</a>.
  * - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
  * - Ask questions and get updates via the <a href="http://groups.google.com/group/nimbusios">Nimbus mailing list</a>.
  * 
@@ -69,19 +69,30 @@
  * 
  * <h3>Source Code Contributors (alphabetical by last name)</h3>
  * 
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile"> 
+ * <div class="name">bubnov</div> 
+ * <div class="github"><a href="http://github.com/bubnov">bubnov</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Roger Chapman</div> 
  * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
  * </div>
  * 
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/87c842e2d3f2b9e87e339cbc86463e8d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Manu Cornet</div> 
+ * <div class="github"><a href="http://github.com/lmanul">lmanul</a></div> 
+ * </div>
+ * 
+ * <div class="contributor_profile"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/a7acedfd4044ad79252e3b062aef25e7?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Glenn Grant</div> 
  * <div class="github"><a href="http://github.com/alias1">alias1</a></div> 
  * </div>
  *
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile">
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/ca1536c2ef2e263ed2aec69c1d147677?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Aviel Lazar</div> 
  * <div class="github"><a href="http://github.com/aviell">aviell</a></div> 
@@ -99,24 +110,30 @@
  * <div class="github"><a href="http://github.com/candersonmiller">candersonmiller</a></div> 
  * </div>
  *
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile">
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/ec5d7ba9c004f79817c76146247e787e?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Basil Shkara</div> 
  * <div class="github"><a href="http://github.com/baz">baz</a></div> 
  * </div>
  *
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile">
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/7adfa1038eb46b001fd5c85a47dffc13?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Peter Steinberger</div> 
  * <div class="github"><a href="http://github.com/steipete">steipete</a></div> 
  * </div>
  * 
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile">
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Jeff Verkoeyen</div> 
  * <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
  * </div>
  * 
+ * <div class="contributor_profile">
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/b0190e056d8b13400d4ae6eba8a7018d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Hwee-Boon Yar</div> 
+ * <div class="github"><a href="http://github.com/hboon">hboon</a></div> 
+ * </div>
+ *
  * <div style="clear:both"></div>
  * 
  * <h3>Generous Donations Have Been Made By the Following People</h3>
@@ -156,6 +173,105 @@
  * @defgroup Version-History Version History
  *
  * Presented here are the API diffs for each major release of Nimbus.
+ */
+
+/**
+ * @defgroup Version-9-0 Version 0.9 API Changes
+ * @ingroup Version-History
+ *
+ * Version 0.9.0 of Nimbus was released on October 24, 2011. This major version introduced
+ * the new Nimbus @link NimbusCSS CSS@endlink and Chameleon, a new way to rapidly prototype
+ * styling your iOS applications using CSS.
+ *
+ * Watch the Chameleon Youtube video: http://www.youtube.com/watch?v=i_5LbQ8e9BU
+ *
+ * Read the Chameleon blog post: http://blog.jeffverkoeyen.com/nimbus-chameleon
+ *
+ *
+ * <h2>Added Frameworks</h2>
+ *
+ * - @link NimbusCSS CSS@endlink
+ *
+ *
+ * <h2>Attributed Label</h2>
+ *
+ * <h3>NIAttributedLabel[.h|m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>[NIAttributedLabel @link NIAttributedLabel::removeAllLinks removeAllLinks@endlink]</code> (thanks to <a href="http://github.com/hboon">hboon</a>.)
+ *
+ *
+ * <h2>Core</h2>
+ *
+ * <h3>NIDataStructures[.h|m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>[NILinkedList @link NILinkedList::addObjectsFromArray: addObjectsFromArray:@endlink]</code>
+ *
+ * <h3>NIPreprocessorMacros.h</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>RGBCOLOR</code> and <code>RGBACOLOR</code>
+ *
+ *
+ * <h2>Models</h2>
+ *
+ * <h3>ModelCatalog</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed a crashing bug due to setting textField.textColor to nil (thanks to <a href="http://github.com/lmanul">lmanul</a>.)
+ *
+ *
+ * <h2>Examples</h2>
+ *
+ * <h3>CSSDemo [added]</h3>
+ *
+ *
+ * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ * <div class="name">bubnov</div> 
+ * <div class="github"><a href="http://github.com/bubnov">bubnov</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Roger Chapman</div> 
+ * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/87c842e2d3f2b9e87e339cbc86463e8d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Manu Cornet</div> 
+ * <div class="github"><a href="http://github.com/lmanul">lmanul</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile">
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Jeff Verkoeyen</div> 
+ * <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+ * </div>
+ * 
+ * <div class="contributor_profile">
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/b0190e056d8b13400d4ae6eba8a7018d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Hwee-Boon Yar</div> 
+ * <div class="github"><a href="http://github.com/hboon">hboon</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ *
+ * <h3>Add Your Name to This List</h3>
+ *
+ * Contributions are highly encouraged! If you have a feature that you feel would fit within the
+ * Nimbus framework, feel free to fire off a pull request on GitHub. Bugs may be reported
+ * using the issue tracker on GitHub as well.
+ *
+ * Check out the <a href="https://github.com/jverkoey/nimbus/issues?sort=created&direction=desc&state=open&page=1&milestone=5">tasks grab bag</a>
+ * for opportunities to help out.
+ *
+ * <h2>Robots Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <div class="name"><a href="https://github.com/nimbusios/Doxygen">Nimbus Doxygen</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
  */
 
 /**
