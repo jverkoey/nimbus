@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -130,7 +130,7 @@
 <a name="l00058"></a>00058   NSDate* cutoffDate = [NSDate dateWithTimeIntervalSinceNow:-_oldestLogAge];
 <a name="l00059"></a>00059   <span class="keywordflow">while</span> ([[((<a class="code" href="interface_n_i_overview_log_entry.html" title="The basic requirements for a log entry.">NIOverviewLogEntry</a> *)[ll firstObject])
 <a name="l00060"></a>00060            timestamp] compare:cutoffDate] == NSOrderedAscending) {
-<a name="l00061"></a>00061     [ll <a class="code" href="interface_n_i_linked_list.html#acf58608c591cd3350d92a51520ec5c56" title="Remove the first object from the linked list.">removeFirstObject</a>];
+<a name="l00061"></a>00061     [ll <a class="code" href="interface_n_i_linked_list.html#acf58608c591cd3350d92a51520ec5c56" title="Removes the first object from the linked list.">removeFirstObject</a>];
 <a name="l00062"></a>00062   }
 <a name="l00063"></a>00063 }
 <a name="l00064"></a>00064 
@@ -138,12 +138,12 @@
 <a name="l00067"></a><a class="code" href="interface_n_i_overview_logger.html#ab63e68f85ea1105bb7636329d492d8ae">00067</a> - (void)addDeviceLog:(<a class="code" href="interface_n_i_overview_device_log_entry.html" title="A device log entry.">NIOverviewDeviceLogEntry</a> *)logEntry {
 <a name="l00068"></a>00068   [<span class="keyword">self</span> pruneEntriesFromLinkedList:_deviceLogs];
 <a name="l00069"></a>00069 
-<a name="l00070"></a>00070   [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">_deviceLogs</a> <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:logEntry];
+<a name="l00070"></a>00070   [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">_deviceLogs</a> <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Appends an object to the linked list.">addObject</a>:logEntry];
 <a name="l00071"></a>00071 }
 <a name="l00072"></a>00072 
 <a name="l00073"></a>00073 
 <a name="l00075"></a><a class="code" href="interface_n_i_overview_logger.html#a2f7a0f3cbabb4e81987f7dd95bc54678">00075</a> - (void)addConsoleLog:(<a class="code" href="interface_n_i_overview_console_log_entry.html" title="A console log entry.">NIOverviewConsoleLogEntry</a> *)logEntry {
-<a name="l00076"></a>00076   [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">_consoleLogs</a> <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:logEntry];
+<a name="l00076"></a>00076   [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">_consoleLogs</a> <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Appends an object to the linked list.">addObject</a>:logEntry];
 <a name="l00077"></a>00077   
 <a name="l00078"></a>00078   [[NSNotificationCenter defaultCenter] postNotificationName: NIOverviewLoggerDidAddConsoleLog
 <a name="l00079"></a>00079                                                       object: nil
@@ -155,7 +155,7 @@
 <a name="l00086"></a><a class="code" href="interface_n_i_overview_logger.html#a93579c6a70c4533de12e66226435bdf9">00086</a> - (void)addEventLog:(<a class="code" href="interface_n_i_overview_event_log_entry.html" title="An event log entry.">NIOverviewEventLogEntry</a> *)logEntry {
 <a name="l00087"></a>00087   [<span class="keyword">self</span> pruneEntriesFromLinkedList:_eventLogs];
 <a name="l00088"></a>00088 
-<a name="l00089"></a>00089   [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">_eventLogs</a> <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:logEntry];
+<a name="l00089"></a>00089   [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">_eventLogs</a> <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Appends an object to the linked list.">addObject</a>:logEntry];
 <a name="l00090"></a>00090 }
 <a name="l00091"></a>00091 
 <a name="l00092"></a>00092 

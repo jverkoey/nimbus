@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -326,294 +326,300 @@
 <a name="l00275"></a>00275   [<span class="keyword">self</span> setNeedsDisplay];
 <a name="l00276"></a>00276 }
 <a name="l00277"></a>00277 
-<a name="l00279"></a>00279 -(void)resetTextFrame {
-<a name="l00280"></a>00280   <span class="keywordflow">if</span> (nil != _textFrame) {
-<a name="l00281"></a>00281     CFRelease(_textFrame);
-<a name="l00282"></a>00282     _textFrame = nil;
-<a name="l00283"></a>00283   }
-<a name="l00284"></a>00284 }
-<a name="l00285"></a>00285 
-<a name="l00287"></a>00287 -(void)setNeedsDisplay {
-<a name="l00288"></a>00288   [<span class="keyword">self</span> resetTextFrame];
-<a name="l00289"></a>00289   [<span class="keyword">super</span> setNeedsDisplay];
-<a name="l00290"></a>00290 }
-<a name="l00291"></a>00291 
-<a name="l00293"></a>00293 - (CGSize)sizeThatFits:(CGSize)size {
-<a name="l00294"></a>00294   <span class="keywordflow">if</span> (nil == _attributedText) <span class="keywordflow">return</span> CGSizeZero;
-<a name="l00295"></a>00295   
-<a name="l00296"></a>00296   CTFramesetterRef framesetter = 
-<a name="l00297"></a>00297     CTFramesetterCreateWithAttributedString((CFAttributedStringRef)_attributedText);
-<a name="l00298"></a>00298   CFRange fitCFRange = CFRangeMake(0,0);
-<a name="l00299"></a>00299   CGSize newSize = 
-<a name="l00300"></a>00300     CTFramesetterSuggestFrameSizeWithConstraints(framesetter,CFRangeMake(0,0),NULL,size,&amp;fitCFRange);
-<a name="l00301"></a>00301   <span class="keywordflow">if</span> (framesetter) CFRelease(framesetter);
-<a name="l00302"></a>00302   <span class="keywordflow">return</span> CGSizeMake( floorf(newSize.width+1) , floorf(newSize.height+1) );
-<a name="l00303"></a>00303 }
-<a name="l00304"></a>00304 
-<a name="l00306"></a>00306 -(NSMutableAttributedString*) linksDetectedAttributedString {
-<a name="l00307"></a>00307   NSMutableAttributedString* attributedString = [<span class="keyword">self</span>.attributedText mutableCopy];
-<a name="l00308"></a>00308   <span class="keywordflow">if</span> (nil == attributedString) <span class="keywordflow">return</span> nil;
-<a name="l00309"></a>00309 
-<a name="l00310"></a>00310   <span class="keywordflow">if</span> (_autoDetectLinks) {
-<a name="l00311"></a>00311     NSError* error = nil;
-<a name="l00312"></a>00312     NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink
-<a name="l00313"></a>00313                                                                    error:&amp;error];
-<a name="l00314"></a>00314     [linkDetector enumerateMatchesInString:[attributedString string] 
-<a name="l00315"></a>00315                                    options:0 
-<a name="l00316"></a>00316                                      range:NSMakeRange(0,[[attributedString string] length])
-<a name="l00317"></a>00317                                 usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-<a name="l00318"></a>00318                                   [attributedString setTextColor:self.linkColor
-<a name="l00319"></a>00319                                                            range:[result range]];
-<a name="l00320"></a>00320                                 }];
-<a name="l00321"></a>00321   }
-<a name="l00322"></a>00322   
-<a name="l00323"></a>00323   
-<a name="l00324"></a>00324   <span class="keywordflow">for</span> (NSTextCheckingResult* customLink in _customLinks) {
-<a name="l00325"></a>00325     [attributedString setTextColor:self.linkColor
-<a name="l00326"></a>00326                              range:customLink.range];
-<a name="l00327"></a>00327   }
-<a name="l00328"></a>00328   
-<a name="l00329"></a>00329   <span class="keywordflow">return</span> [attributedString autorelease];
-<a name="l00330"></a>00330 }
-<a name="l00331"></a>00331 
-<a name="l00333"></a>00333 -(CGRect)getLineBounds:(CTLineRef)line point:(CGPoint) point {
-<a name="l00334"></a>00334   CGFloat ascent = 0.0f;
-<a name="l00335"></a>00335   CGFloat descent = 0.0f;
-<a name="l00336"></a>00336   CGFloat leading = 0.0f;
-<a name="l00337"></a>00337   CGFloat width = (CGFloat)CTLineGetTypographicBounds(line, &amp;ascent, &amp;descent, &amp;leading);
-<a name="l00338"></a>00338   CGFloat height = ascent + descent;
-<a name="l00339"></a>00339   
-<a name="l00340"></a>00340   <span class="keywordflow">return</span> CGRectMake(point.x, point.y - descent, width, height);
-<a name="l00341"></a>00341 }
-<a name="l00342"></a>00342 
-<a name="l00344"></a>00344 -(NSTextCheckingResult*)linkAtIndex:(CFIndex)i {
-<a name="l00345"></a>00345 
-<a name="l00346"></a>00346   __block NSTextCheckingResult* foundResult = nil;
-<a name="l00347"></a>00347   
-<a name="l00348"></a>00348   <span class="keywordflow">if</span> (_autoDetectLinks) {
-<a name="l00349"></a>00349     NSError* error = nil;
-<a name="l00350"></a>00350     NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink 
-<a name="l00351"></a>00351                                                                    error:&amp;error];
-<a name="l00352"></a>00352     [linkDetector enumerateMatchesInString:[_attributedText string] 
-<a name="l00353"></a>00353                                    options:0 
-<a name="l00354"></a>00354                                      range:NSMakeRange(0,[[_attributedText string] length])
-<a name="l00355"></a>00355                                 usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-<a name="l00356"></a>00356                                   NSRange range = [result range];
-<a name="l00357"></a>00357                                   if (NSLocationInRange(i, range)) {
-<a name="l00358"></a>00358                                     foundResult = [[result retain] autorelease];
-<a name="l00359"></a>00359                                     *stop = YES;
-<a name="l00360"></a>00360                                   }
-<a name="l00361"></a>00361     }];
-<a name="l00362"></a>00362       
-<a name="l00363"></a>00363     <span class="keywordflow">if</span> (foundResult) <span class="keywordflow">return</span> foundResult;
-<a name="l00364"></a>00364   }
-<a name="l00365"></a>00365   
-<a name="l00366"></a>00366   <span class="keywordflow">for</span> (NSTextCheckingResult* customLink in _customLinks) {
-<a name="l00367"></a>00367     <span class="keywordflow">if</span> (NSLocationInRange(i, customLink.range)) {
-<a name="l00368"></a>00368       <span class="keywordflow">return</span> [[customLink retain] autorelease];
-<a name="l00369"></a>00369     }
-<a name="l00370"></a>00370   }
-<a name="l00371"></a>00371   
-<a name="l00372"></a>00372   <span class="keywordflow">return</span> foundResult;
-<a name="l00373"></a>00373 }
-<a name="l00374"></a>00374 
-<a name="l00376"></a>00376 -(NSTextCheckingResult*)linkAtPoint:(CGPoint)point {
-<a name="l00377"></a>00377   <span class="keyword">static</span> <span class="keyword">const</span> CGFloat kVMargin = 5.0f;
-<a name="l00378"></a>00378   <span class="keywordflow">if</span> (!CGRectContainsPoint(CGRectInset(_drawingRect, 0, -kVMargin), point)) <span class="keywordflow">return</span> nil;
-<a name="l00379"></a>00379 
-<a name="l00380"></a>00380   CFArrayRef lines = CTFrameGetLines(_textFrame);
-<a name="l00381"></a>00381   <span class="keywordflow">if</span> (!lines) <span class="keywordflow">return</span> nil;
-<a name="l00382"></a>00382   CFIndex count = CFArrayGetCount(lines);
-<a name="l00383"></a>00383 
-<a name="l00384"></a>00384   NSTextCheckingResult* foundLink = nil;
-<a name="l00385"></a>00385 
-<a name="l00386"></a>00386   CGPoint origins[count];
-<a name="l00387"></a>00387   CTFrameGetLineOrigins(_textFrame, CFRangeMake(0,0), origins);
-<a name="l00388"></a>00388 
-<a name="l00389"></a>00389   <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; count; i++) {
-<a name="l00390"></a>00390     CGPoint linePoint = origins[i];
-<a name="l00391"></a>00391 
-<a name="l00392"></a>00392     CTLineRef line = CFArrayGetValueAtIndex(lines, i);
-<a name="l00393"></a>00393     CGRect flippedRect = [<span class="keyword">self</span> getLineBounds:line point:linePoint];
-<a name="l00394"></a>00394     CGRect bounds = CGRectMake(CGRectGetMinX(_drawingRect),
-<a name="l00395"></a>00395                                CGRectGetMaxY(<span class="keyword">self</span>.bounds)-CGRectGetMaxY(_drawingRect),
-<a name="l00396"></a>00396                                CGRectGetWidth(_drawingRect),
-<a name="l00397"></a>00397                                CGRectGetHeight(_drawingRect));
-<a name="l00398"></a>00398     CGRect rect = CGRectMake(CGRectGetMinX(flippedRect),
-<a name="l00399"></a>00399                              CGRectGetMaxY(bounds)-CGRectGetMaxY(flippedRect),
-<a name="l00400"></a>00400                              CGRectGetWidth(flippedRect),
-<a name="l00401"></a>00401                              CGRectGetHeight(flippedRect));                      
-<a name="l00402"></a>00402 
-<a name="l00403"></a>00403     rect = CGRectInset(rect, 0, -kVMargin);
-<a name="l00404"></a>00404     <span class="keywordflow">if</span> (CGRectContainsPoint(rect, point)) {
-<a name="l00405"></a>00405       CGPoint relativePoint = CGPointMake(point.x-CGRectGetMinX(rect),
-<a name="l00406"></a>00406                                           point.y-CGRectGetMinY(rect));
-<a name="l00407"></a>00407       CFIndex idx = CTLineGetStringIndexForPosition(line, relativePoint);
-<a name="l00408"></a>00408       foundLink = ([<span class="keyword">self</span> linkAtIndex:idx]);
-<a name="l00409"></a>00409       <span class="keywordflow">if</span> (link) <span class="keywordflow">return</span> foundLink;
-<a name="l00410"></a>00410     }
-<a name="l00411"></a>00411   }
-<a name="l00412"></a>00412   <span class="keywordflow">return</span> nil;
-<a name="l00413"></a>00413 }
-<a name="l00414"></a>00414 
-<a name="l00416"></a>00416 -(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-<a name="l00417"></a>00417   UIView *view = [<span class="keyword">super</span> hitTest:point withEvent:event];
-<a name="l00418"></a>00418   <span class="keywordflow">if</span> (view != <span class="keyword">self</span>) {
-<a name="l00419"></a>00419     <span class="keywordflow">return</span> view;
-<a name="l00420"></a>00420   }
-<a name="l00421"></a>00421   <span class="keywordflow">if</span> ([<span class="keyword">self</span> linkAtPoint:point] == nil) {
-<a name="l00422"></a>00422       <span class="keywordflow">return</span> nil;
-<a name="l00423"></a>00423   }
-<a name="l00424"></a>00424   <span class="keywordflow">return</span> view;
-<a name="l00425"></a>00425 }
-<a name="l00426"></a>00426 
-<a name="l00428"></a>00428 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-<a name="l00429"></a>00429   UITouch* touch = [touches anyObject];
-<a name="l00430"></a>00430   CGPoint point = [touch locationInView:self];
-<a name="l00431"></a>00431   
-<a name="l00432"></a>00432   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_currentLink);
-<a name="l00433"></a>00433   _currentLink = [[<span class="keyword">self</span> linkAtPoint:point] retain];
-<a name="l00434"></a>00434   
-<a name="l00435"></a>00435   [<span class="keyword">self</span> setNeedsDisplay];
-<a name="l00436"></a>00436 }
-<a name="l00437"></a>00437 
-<a name="l00439"></a>00439 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-<a name="l00440"></a>00440   UITouch* touch = [touches anyObject];
-<a name="l00441"></a>00441   CGPoint point = [touch locationInView:self];
-<a name="l00442"></a>00442   
-<a name="l00443"></a>00443   NSTextCheckingResult *linkTouched = [<span class="keyword">self</span> linkAtPoint:point];
-<a name="l00444"></a>00444   
-<a name="l00445"></a>00445   <span class="keywordflow">if</span> (_currentLink.URL &amp;&amp; [_currentLink.URL isEqual:linkTouched.URL]) {
-<a name="l00446"></a>00446     <span class="keywordflow">if</span> (<a class="code" href="interface_n_i_attributed_label.html#a7dea324ba2377bfe15f4b397dca3fd73" title="The attributed label notifies the delegate of any user interactions.">delegate</a> &amp;&amp; [<a class="code" href="interface_n_i_attributed_label.html#a7dea324ba2377bfe15f4b397dca3fd73" title="The attributed label notifies the delegate of any user interactions.">delegate</a> respondsToSelector:<span class="keyword">@selector</span>(attributedLabel:didSelectLink:atPoint:)]) {
-<a name="l00447"></a>00447       [delegate attributedLabel:self didSelectLink:linkTouched.URL atPoint:point];
-<a name="l00448"></a>00448     }
-<a name="l00449"></a>00449   }
-<a name="l00450"></a>00450   
-<a name="l00451"></a>00451   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_currentLink);
-<a name="l00452"></a>00452   [<span class="keyword">self</span> setNeedsDisplay];
-<a name="l00453"></a>00453 }
-<a name="l00454"></a>00454 
-<a name="l00455"></a>00455 
-<a name="l00457"></a>00457 -(void)drawTextInRect:(CGRect)rect {
-<a name="l00458"></a>00458   <span class="keywordflow">if</span> (_attributedText) {
-<a name="l00459"></a>00459     CGContextRef ctx = UIGraphicsGetCurrentContext();
-<a name="l00460"></a>00460     CGContextSaveGState(ctx);
+<a name="l00279"></a><a class="code" href="interface_n_i_attributed_label.html#aa1066b4ab4f497cf2e9e5b8b12d19afc">00279</a> -(void)<a class="code" href="interface_n_i_attributed_label.html#aa1066b4ab4f497cf2e9e5b8b12d19afc" title="Removes all links from the label.">removeAllLinks</a> {
+<a name="l00280"></a>00280   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_customLinks);
+<a name="l00281"></a>00281   <span class="keyword">self</span>.userInteractionEnabled = _autoDetectLinks;
+<a name="l00282"></a>00282   [<span class="keyword">self</span> setNeedsDisplay];
+<a name="l00283"></a>00283 }
+<a name="l00284"></a>00284 
+<a name="l00286"></a>00286 -(void)resetTextFrame {
+<a name="l00287"></a>00287   <span class="keywordflow">if</span> (nil != _textFrame) {
+<a name="l00288"></a>00288     CFRelease(_textFrame);
+<a name="l00289"></a>00289     _textFrame = nil;
+<a name="l00290"></a>00290   }
+<a name="l00291"></a>00291 }
+<a name="l00292"></a>00292 
+<a name="l00294"></a>00294 -(void)setNeedsDisplay {
+<a name="l00295"></a>00295   [<span class="keyword">self</span> resetTextFrame];
+<a name="l00296"></a>00296   [<span class="keyword">super</span> setNeedsDisplay];
+<a name="l00297"></a>00297 }
+<a name="l00298"></a>00298 
+<a name="l00300"></a>00300 - (CGSize)sizeThatFits:(CGSize)size {
+<a name="l00301"></a>00301   <span class="keywordflow">if</span> (nil == _attributedText) <span class="keywordflow">return</span> CGSizeZero;
+<a name="l00302"></a>00302   
+<a name="l00303"></a>00303   CTFramesetterRef framesetter = 
+<a name="l00304"></a>00304     CTFramesetterCreateWithAttributedString((CFAttributedStringRef)_attributedText);
+<a name="l00305"></a>00305   CFRange fitCFRange = CFRangeMake(0,0);
+<a name="l00306"></a>00306   CGSize newSize = 
+<a name="l00307"></a>00307     CTFramesetterSuggestFrameSizeWithConstraints(framesetter,CFRangeMake(0,0),NULL,size,&amp;fitCFRange);
+<a name="l00308"></a>00308   <span class="keywordflow">if</span> (framesetter) CFRelease(framesetter);
+<a name="l00309"></a>00309   <span class="keywordflow">return</span> CGSizeMake( floorf(newSize.width+1) , floorf(newSize.height+1) );
+<a name="l00310"></a>00310 }
+<a name="l00311"></a>00311 
+<a name="l00313"></a>00313 -(NSMutableAttributedString*) linksDetectedAttributedString {
+<a name="l00314"></a>00314   NSMutableAttributedString* attributedString = [<span class="keyword">self</span>.attributedText mutableCopy];
+<a name="l00315"></a>00315   <span class="keywordflow">if</span> (nil == attributedString) <span class="keywordflow">return</span> nil;
+<a name="l00316"></a>00316 
+<a name="l00317"></a>00317   <span class="keywordflow">if</span> (_autoDetectLinks) {
+<a name="l00318"></a>00318     NSError* error = nil;
+<a name="l00319"></a>00319     NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink
+<a name="l00320"></a>00320                                                                    error:&amp;error];
+<a name="l00321"></a>00321     [linkDetector enumerateMatchesInString:[attributedString string] 
+<a name="l00322"></a>00322                                    options:0 
+<a name="l00323"></a>00323                                      range:NSMakeRange(0,[[attributedString string] length])
+<a name="l00324"></a>00324                                 usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+<a name="l00325"></a>00325                                   [attributedString setTextColor:self.linkColor
+<a name="l00326"></a>00326                                                            range:[result range]];
+<a name="l00327"></a>00327                                 }];
+<a name="l00328"></a>00328   }
+<a name="l00329"></a>00329   
+<a name="l00330"></a>00330   
+<a name="l00331"></a>00331   <span class="keywordflow">for</span> (NSTextCheckingResult* customLink in _customLinks) {
+<a name="l00332"></a>00332     [attributedString setTextColor:self.linkColor
+<a name="l00333"></a>00333                              range:customLink.range];
+<a name="l00334"></a>00334   }
+<a name="l00335"></a>00335   
+<a name="l00336"></a>00336   <span class="keywordflow">return</span> [attributedString autorelease];
+<a name="l00337"></a>00337 }
+<a name="l00338"></a>00338 
+<a name="l00340"></a>00340 -(CGRect)getLineBounds:(CTLineRef)line point:(CGPoint) point {
+<a name="l00341"></a>00341   CGFloat ascent = 0.0f;
+<a name="l00342"></a>00342   CGFloat descent = 0.0f;
+<a name="l00343"></a>00343   CGFloat leading = 0.0f;
+<a name="l00344"></a>00344   CGFloat width = (CGFloat)CTLineGetTypographicBounds(line, &amp;ascent, &amp;descent, &amp;leading);
+<a name="l00345"></a>00345   CGFloat height = ascent + descent;
+<a name="l00346"></a>00346   
+<a name="l00347"></a>00347   <span class="keywordflow">return</span> CGRectMake(point.x, point.y - descent, width, height);
+<a name="l00348"></a>00348 }
+<a name="l00349"></a>00349 
+<a name="l00351"></a>00351 -(NSTextCheckingResult*)linkAtIndex:(CFIndex)i {
+<a name="l00352"></a>00352 
+<a name="l00353"></a>00353   __block NSTextCheckingResult* foundResult = nil;
+<a name="l00354"></a>00354   
+<a name="l00355"></a>00355   <span class="keywordflow">if</span> (_autoDetectLinks) {
+<a name="l00356"></a>00356     NSError* error = nil;
+<a name="l00357"></a>00357     NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink 
+<a name="l00358"></a>00358                                                                    error:&amp;error];
+<a name="l00359"></a>00359     [linkDetector enumerateMatchesInString:[_attributedText string] 
+<a name="l00360"></a>00360                                    options:0 
+<a name="l00361"></a>00361                                      range:NSMakeRange(0,[[_attributedText string] length])
+<a name="l00362"></a>00362                                 usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+<a name="l00363"></a>00363                                   NSRange range = [result range];
+<a name="l00364"></a>00364                                   if (NSLocationInRange(i, range)) {
+<a name="l00365"></a>00365                                     foundResult = [[result retain] autorelease];
+<a name="l00366"></a>00366                                     *stop = YES;
+<a name="l00367"></a>00367                                   }
+<a name="l00368"></a>00368     }];
+<a name="l00369"></a>00369       
+<a name="l00370"></a>00370     <span class="keywordflow">if</span> (foundResult) <span class="keywordflow">return</span> foundResult;
+<a name="l00371"></a>00371   }
+<a name="l00372"></a>00372   
+<a name="l00373"></a>00373   <span class="keywordflow">for</span> (NSTextCheckingResult* customLink in _customLinks) {
+<a name="l00374"></a>00374     <span class="keywordflow">if</span> (NSLocationInRange(i, customLink.range)) {
+<a name="l00375"></a>00375       <span class="keywordflow">return</span> [[customLink retain] autorelease];
+<a name="l00376"></a>00376     }
+<a name="l00377"></a>00377   }
+<a name="l00378"></a>00378   
+<a name="l00379"></a>00379   <span class="keywordflow">return</span> foundResult;
+<a name="l00380"></a>00380 }
+<a name="l00381"></a>00381 
+<a name="l00383"></a>00383 -(NSTextCheckingResult*)linkAtPoint:(CGPoint)point {
+<a name="l00384"></a>00384   <span class="keyword">static</span> <span class="keyword">const</span> CGFloat kVMargin = 5.0f;
+<a name="l00385"></a>00385   <span class="keywordflow">if</span> (!CGRectContainsPoint(CGRectInset(_drawingRect, 0, -kVMargin), point)) <span class="keywordflow">return</span> nil;
+<a name="l00386"></a>00386 
+<a name="l00387"></a>00387   CFArrayRef lines = CTFrameGetLines(_textFrame);
+<a name="l00388"></a>00388   <span class="keywordflow">if</span> (!lines) <span class="keywordflow">return</span> nil;
+<a name="l00389"></a>00389   CFIndex count = CFArrayGetCount(lines);
+<a name="l00390"></a>00390 
+<a name="l00391"></a>00391   NSTextCheckingResult* foundLink = nil;
+<a name="l00392"></a>00392 
+<a name="l00393"></a>00393   CGPoint origins[count];
+<a name="l00394"></a>00394   CTFrameGetLineOrigins(_textFrame, CFRangeMake(0,0), origins);
+<a name="l00395"></a>00395 
+<a name="l00396"></a>00396   <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; count; i++) {
+<a name="l00397"></a>00397     CGPoint linePoint = origins[i];
+<a name="l00398"></a>00398 
+<a name="l00399"></a>00399     CTLineRef line = CFArrayGetValueAtIndex(lines, i);
+<a name="l00400"></a>00400     CGRect flippedRect = [<span class="keyword">self</span> getLineBounds:line point:linePoint];
+<a name="l00401"></a>00401     CGRect bounds = CGRectMake(CGRectGetMinX(_drawingRect),
+<a name="l00402"></a>00402                                CGRectGetMaxY(<span class="keyword">self</span>.bounds)-CGRectGetMaxY(_drawingRect),
+<a name="l00403"></a>00403                                CGRectGetWidth(_drawingRect),
+<a name="l00404"></a>00404                                CGRectGetHeight(_drawingRect));
+<a name="l00405"></a>00405     CGRect rect = CGRectMake(CGRectGetMinX(flippedRect),
+<a name="l00406"></a>00406                              CGRectGetMaxY(bounds)-CGRectGetMaxY(flippedRect),
+<a name="l00407"></a>00407                              CGRectGetWidth(flippedRect),
+<a name="l00408"></a>00408                              CGRectGetHeight(flippedRect));                      
+<a name="l00409"></a>00409 
+<a name="l00410"></a>00410     rect = CGRectInset(rect, 0, -kVMargin);
+<a name="l00411"></a>00411     <span class="keywordflow">if</span> (CGRectContainsPoint(rect, point)) {
+<a name="l00412"></a>00412       CGPoint relativePoint = CGPointMake(point.x-CGRectGetMinX(rect),
+<a name="l00413"></a>00413                                           point.y-CGRectGetMinY(rect));
+<a name="l00414"></a>00414       CFIndex idx = CTLineGetStringIndexForPosition(line, relativePoint);
+<a name="l00415"></a>00415       foundLink = ([<span class="keyword">self</span> linkAtIndex:idx]);
+<a name="l00416"></a>00416       <span class="keywordflow">if</span> (foundLink) <span class="keywordflow">return</span> foundLink;
+<a name="l00417"></a>00417     }
+<a name="l00418"></a>00418   }
+<a name="l00419"></a>00419   <span class="keywordflow">return</span> nil;
+<a name="l00420"></a>00420 }
+<a name="l00421"></a>00421 
+<a name="l00423"></a>00423 -(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+<a name="l00424"></a>00424   UIView *view = [<span class="keyword">super</span> hitTest:point withEvent:event];
+<a name="l00425"></a>00425   <span class="keywordflow">if</span> (view != <span class="keyword">self</span>) {
+<a name="l00426"></a>00426     <span class="keywordflow">return</span> view;
+<a name="l00427"></a>00427   }
+<a name="l00428"></a>00428   <span class="keywordflow">if</span> ([<span class="keyword">self</span> linkAtPoint:point] == nil) {
+<a name="l00429"></a>00429       <span class="keywordflow">return</span> nil;
+<a name="l00430"></a>00430   }
+<a name="l00431"></a>00431   <span class="keywordflow">return</span> view;
+<a name="l00432"></a>00432 }
+<a name="l00433"></a>00433 
+<a name="l00435"></a>00435 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+<a name="l00436"></a>00436   UITouch* touch = [touches anyObject];
+<a name="l00437"></a>00437   CGPoint point = [touch locationInView:self];
+<a name="l00438"></a>00438   
+<a name="l00439"></a>00439   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_currentLink);
+<a name="l00440"></a>00440   _currentLink = [[<span class="keyword">self</span> linkAtPoint:point] retain];
+<a name="l00441"></a>00441   
+<a name="l00442"></a>00442   [<span class="keyword">self</span> setNeedsDisplay];
+<a name="l00443"></a>00443 }
+<a name="l00444"></a>00444 
+<a name="l00446"></a>00446 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+<a name="l00447"></a>00447   UITouch* touch = [touches anyObject];
+<a name="l00448"></a>00448   CGPoint point = [touch locationInView:self];
+<a name="l00449"></a>00449   
+<a name="l00450"></a>00450   NSTextCheckingResult *linkTouched = [<span class="keyword">self</span> linkAtPoint:point];
+<a name="l00451"></a>00451   
+<a name="l00452"></a>00452   <span class="keywordflow">if</span> (_currentLink.URL &amp;&amp; [_currentLink.URL isEqual:linkTouched.URL]) {
+<a name="l00453"></a>00453     <span class="keywordflow">if</span> (<a class="code" href="interface_n_i_attributed_label.html#a7dea324ba2377bfe15f4b397dca3fd73" title="The attributed label notifies the delegate of any user interactions.">delegate</a> &amp;&amp; [<a class="code" href="interface_n_i_attributed_label.html#a7dea324ba2377bfe15f4b397dca3fd73" title="The attributed label notifies the delegate of any user interactions.">delegate</a> respondsToSelector:<span class="keyword">@selector</span>(attributedLabel:didSelectLink:atPoint:)]) {
+<a name="l00454"></a>00454       [delegate attributedLabel:self didSelectLink:linkTouched.URL atPoint:point];
+<a name="l00455"></a>00455     }
+<a name="l00456"></a>00456   }
+<a name="l00457"></a>00457   
+<a name="l00458"></a>00458   <a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db" title="Release and assign nil to an object.">NI_RELEASE_SAFELY</a>(_currentLink);
+<a name="l00459"></a>00459   [<span class="keyword">self</span> setNeedsDisplay];
+<a name="l00460"></a>00460 }
 <a name="l00461"></a>00461 
-<a name="l00462"></a>00462     NSMutableAttributedString* attributedString = _autoDetectLinks || [_customLinks count] &gt; 0 ? 
-<a name="l00463"></a>00463       [<span class="keyword">self</span> linksDetectedAttributedString] : [[<span class="keyword">self</span>.attributedText copy] autorelease];
-<a name="l00464"></a>00464 
-<a name="l00465"></a>00465     <span class="comment">// CoreText context coordinates are the opposite to UIKit so we flip the bounds</span>
-<a name="l00466"></a>00466     CGContextConcatCTM(ctx,
-<a name="l00467"></a>00467                        CGAffineTransformScale(CGAffineTransformMakeTranslation(0, <span class="keyword">self</span>.bounds.size.height),
-<a name="l00468"></a>00468                                               1.f, -1.f));
-<a name="l00469"></a>00469     
-<a name="l00470"></a>00470     <span class="keywordflow">if</span> (_textFrame == nil) {
-<a name="l00471"></a>00471       CTFramesetterRef framesetter =
-<a name="l00472"></a>00472         CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attributedString);
-<a name="l00473"></a>00473       _drawingRect = <span class="keyword">self</span>.bounds;
-<a name="l00474"></a>00474       CGMutablePathRef path = CGPathCreateMutable();
-<a name="l00475"></a>00475       CGPathAddRect(path, NULL, _drawingRect);
-<a name="l00476"></a>00476       _textFrame = CTFramesetterCreateFrame(framesetter,CFRangeMake(0,0), path, NULL);
-<a name="l00477"></a>00477       CGPathRelease(path);
-<a name="l00478"></a>00478       CFRelease(framesetter);
-<a name="l00479"></a>00479     }
-<a name="l00480"></a>00480     
-<a name="l00481"></a>00481     <span class="keywordflow">if</span> (_currentLink) {
-<a name="l00482"></a>00482       
-<a name="l00483"></a>00483       [<span class="keyword">self</span>.linkHighlightColor setFill];
-<a name="l00484"></a>00484       
-<a name="l00485"></a>00485       NSRange linkRange = _currentLink.range;
-<a name="l00486"></a>00486       
-<a name="l00487"></a>00487       CFArrayRef lines = CTFrameGetLines(_textFrame);
-<a name="l00488"></a>00488       CFIndex count = CFArrayGetCount(lines);
-<a name="l00489"></a>00489       CGPoint lineOrigins[count];
-<a name="l00490"></a>00490       CTFrameGetLineOrigins(_textFrame, CFRangeMake(0, 0), lineOrigins);
+<a name="l00462"></a>00462 
+<a name="l00464"></a>00464 -(void)drawTextInRect:(CGRect)rect {
+<a name="l00465"></a>00465   <span class="keywordflow">if</span> (_attributedText) {
+<a name="l00466"></a>00466     CGContextRef ctx = UIGraphicsGetCurrentContext();
+<a name="l00467"></a>00467     CGContextSaveGState(ctx);
+<a name="l00468"></a>00468 
+<a name="l00469"></a>00469     NSMutableAttributedString* attributedString = _autoDetectLinks || [_customLinks count] &gt; 0 ? 
+<a name="l00470"></a>00470       [<span class="keyword">self</span> linksDetectedAttributedString] : [[<span class="keyword">self</span>.attributedText copy] autorelease];
+<a name="l00471"></a>00471 
+<a name="l00472"></a>00472     <span class="comment">// CoreText context coordinates are the opposite to UIKit so we flip the bounds</span>
+<a name="l00473"></a>00473     CGContextConcatCTM(ctx,
+<a name="l00474"></a>00474                        CGAffineTransformScale(CGAffineTransformMakeTranslation(0, <span class="keyword">self</span>.bounds.size.height),
+<a name="l00475"></a>00475                                               1.f, -1.f));
+<a name="l00476"></a>00476     
+<a name="l00477"></a>00477     <span class="keywordflow">if</span> (_textFrame == nil) {
+<a name="l00478"></a>00478       CTFramesetterRef framesetter =
+<a name="l00479"></a>00479         CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attributedString);
+<a name="l00480"></a>00480       _drawingRect = <span class="keyword">self</span>.bounds;
+<a name="l00481"></a>00481       CGMutablePathRef path = CGPathCreateMutable();
+<a name="l00482"></a>00482       CGPathAddRect(path, NULL, _drawingRect);
+<a name="l00483"></a>00483       _textFrame = CTFramesetterCreateFrame(framesetter,CFRangeMake(0,0), path, NULL);
+<a name="l00484"></a>00484       CGPathRelease(path);
+<a name="l00485"></a>00485       CFRelease(framesetter);
+<a name="l00486"></a>00486     }
+<a name="l00487"></a>00487     
+<a name="l00488"></a>00488     <span class="keywordflow">if</span> (_currentLink) {
+<a name="l00489"></a>00489       
+<a name="l00490"></a>00490       [<span class="keyword">self</span>.linkHighlightColor setFill];
 <a name="l00491"></a>00491       
-<a name="l00492"></a>00492       <span class="keywordflow">for</span> (CFIndex i = 0; i &lt; count; i++) {
-<a name="l00493"></a>00493         CTLineRef line = CFArrayGetValueAtIndex(lines, i);
-<a name="l00494"></a>00494         
-<a name="l00495"></a>00495         CFRange stringRange = CTLineGetStringRange(line);
-<a name="l00496"></a>00496         NSRange lineRange = NSMakeRange(stringRange.location, stringRange.length);
-<a name="l00497"></a>00497         NSRange intersectedRange = NSIntersectionRange(lineRange, linkRange);
-<a name="l00498"></a>00498         <span class="keywordflow">if</span> (intersectedRange.length == 0) {
-<a name="l00499"></a>00499           <span class="keywordflow">continue</span>;
-<a name="l00500"></a>00500         }
+<a name="l00492"></a>00492       NSRange linkRange = _currentLink.range;
+<a name="l00493"></a>00493       
+<a name="l00494"></a>00494       CFArrayRef lines = CTFrameGetLines(_textFrame);
+<a name="l00495"></a>00495       CFIndex count = CFArrayGetCount(lines);
+<a name="l00496"></a>00496       CGPoint lineOrigins[count];
+<a name="l00497"></a>00497       CTFrameGetLineOrigins(_textFrame, CFRangeMake(0, 0), lineOrigins);
+<a name="l00498"></a>00498       
+<a name="l00499"></a>00499       <span class="keywordflow">for</span> (CFIndex i = 0; i &lt; count; i++) {
+<a name="l00500"></a>00500         CTLineRef line = CFArrayGetValueAtIndex(lines, i);
 <a name="l00501"></a>00501         
-<a name="l00502"></a>00502         CGRect highlightRect = CGRectZero;
-<a name="l00503"></a>00503         CFArrayRef runs = CTLineGetGlyphRuns(line);
-<a name="l00504"></a>00504         CFIndex runCount = CFArrayGetCount(runs);
-<a name="l00505"></a>00505         <span class="keywordflow">for</span> (CFIndex k = 0; k &lt; runCount; k++) {
-<a name="l00506"></a>00506           CTRunRef run = CFArrayGetValueAtIndex(runs, k);
-<a name="l00507"></a>00507           
-<a name="l00508"></a>00508           CFRange stringRunRange = CTRunGetStringRange(run);
-<a name="l00509"></a>00509           NSRange lineRunRange = NSMakeRange(stringRunRange.location, stringRunRange.length);
-<a name="l00510"></a>00510           NSRange intersectedRunRange = NSIntersectionRange(lineRunRange, linkRange);
-<a name="l00511"></a>00511           <span class="keywordflow">if</span> (intersectedRunRange.length == 0) {
-<a name="l00512"></a>00512             <span class="keywordflow">continue</span>;
-<a name="l00513"></a>00513           }
-<a name="l00514"></a>00514 
-<a name="l00515"></a>00515           CGFloat ascent = 0.0f;
-<a name="l00516"></a>00516           CGFloat descent = 0.0f;
-<a name="l00517"></a>00517           CGFloat leading = 0.0f;
-<a name="l00518"></a>00518           CGFloat width = (CGFloat)CTRunGetTypographicBounds(run, 
-<a name="l00519"></a>00519                                                     CFRangeMake(0, 0), 
-<a name="l00520"></a>00520                                                     &amp;ascent, 
-<a name="l00521"></a>00521                                                     &amp;descent, 
-<a name="l00522"></a>00522                                                     &amp;leading);
-<a name="l00523"></a>00523           CGFloat height = ascent + descent;
-<a name="l00524"></a>00524           
-<a name="l00525"></a>00525           CGFloat xOffset = CTLineGetOffsetForStringIndex(line, 
-<a name="l00526"></a>00526                                                           CTRunGetStringRange(run).location, 
-<a name="l00527"></a>00527                                                           nil);
-<a name="l00528"></a>00528           
-<a name="l00529"></a>00529           CGRect linkRect = CGRectMake(lineOrigins[i].x + xOffset - leading,
-<a name="l00530"></a>00530                             lineOrigins[i].y - descent,
-<a name="l00531"></a>00531                             width + leading,
-<a name="l00532"></a>00532                             height);
-<a name="l00533"></a>00533           
-<a name="l00534"></a>00534           linkRect = CGRectIntegral(linkRect);
-<a name="l00535"></a>00535           linkRect = CGRectInset(linkRect, -2, -1);
-<a name="l00536"></a>00536           <span class="keywordflow">if</span> (CGRectIsEmpty(highlightRect)) {
-<a name="l00537"></a>00537             highlightRect = linkRect;
-<a name="l00538"></a>00538           } <span class="keywordflow">else</span> {
-<a name="l00539"></a>00539             highlightRect = CGRectUnion(rect, linkRect);
-<a name="l00540"></a>00540           }
-<a name="l00541"></a>00541         }
-<a name="l00542"></a>00542         
-<a name="l00543"></a>00543         <span class="keywordflow">if</span> (!CGRectIsEmpty(highlightRect)) {
-<a name="l00544"></a>00544           
-<a name="l00545"></a>00545           CGFloat pi = (CGFloat)M_PI;
-<a name="l00546"></a>00546           
-<a name="l00547"></a>00547           CGFloat radius = 5.0f;
-<a name="l00548"></a>00548           CGContextMoveToPoint(ctx, highlightRect.origin.x, highlightRect.origin.y + radius);
-<a name="l00549"></a>00549           CGContextAddLineToPoint(ctx, highlightRect.origin.x, highlightRect.origin.y + highlightRect.size.height - radius);
-<a name="l00550"></a>00550           CGContextAddArc(ctx, highlightRect.origin.x + radius, highlightRect.origin.y + highlightRect.size.height - radius, 
-<a name="l00551"></a>00551                           radius, pi, pi / 2.0f, 1.0f);
-<a name="l00552"></a>00552           CGContextAddLineToPoint(ctx, highlightRect.origin.x + highlightRect.size.width - radius, 
-<a name="l00553"></a>00553                                   highlightRect.origin.y + highlightRect.size.height);
-<a name="l00554"></a>00554           CGContextAddArc(ctx, highlightRect.origin.x + highlightRect.size.width - radius, 
-<a name="l00555"></a>00555                           highlightRect.origin.y + highlightRect.size.height - radius, radius, pi / 2, 0.0f, 1.0f);
-<a name="l00556"></a>00556           CGContextAddLineToPoint(ctx, highlightRect.origin.x + highlightRect.size.width, highlightRect.origin.y + radius);
-<a name="l00557"></a>00557           CGContextAddArc(ctx, highlightRect.origin.x + highlightRect.size.width - radius, highlightRect.origin.y + radius, 
-<a name="l00558"></a>00558                           radius, 0.0f, -pi / 2.0f, 1.0f);
-<a name="l00559"></a>00559           CGContextAddLineToPoint(ctx, highlightRect.origin.x + radius, highlightRect.origin.y);
-<a name="l00560"></a>00560           CGContextAddArc(ctx, highlightRect.origin.x + radius, highlightRect.origin.y + radius, radius, 
-<a name="l00561"></a>00561                           -pi / 2, pi, 1);
-<a name="l00562"></a>00562           CGContextFillPath(ctx);
-<a name="l00563"></a>00563         }
-<a name="l00564"></a>00564       }
-<a name="l00565"></a>00565     }
-<a name="l00566"></a>00566     
-<a name="l00567"></a>00567     CTFrameDraw(_textFrame, ctx);
-<a name="l00568"></a>00568     CGContextRestoreGState(ctx);
-<a name="l00569"></a>00569     
-<a name="l00570"></a>00570   } <span class="keywordflow">else</span> {
-<a name="l00571"></a>00571     [<span class="keyword">super</span> drawTextInRect:rect];
-<a name="l00572"></a>00572   }
-<a name="l00573"></a>00573 }
-<a name="l00574"></a>00574 
-<a name="l00575"></a>00575 
-<a name="l00576"></a>00576 <span class="keyword">@end</span>
+<a name="l00502"></a>00502         CFRange stringRange = CTLineGetStringRange(line);
+<a name="l00503"></a>00503         NSRange lineRange = NSMakeRange(stringRange.location, stringRange.length);
+<a name="l00504"></a>00504         NSRange intersectedRange = NSIntersectionRange(lineRange, linkRange);
+<a name="l00505"></a>00505         <span class="keywordflow">if</span> (intersectedRange.length == 0) {
+<a name="l00506"></a>00506           <span class="keywordflow">continue</span>;
+<a name="l00507"></a>00507         }
+<a name="l00508"></a>00508         
+<a name="l00509"></a>00509         CGRect highlightRect = CGRectZero;
+<a name="l00510"></a>00510         CFArrayRef runs = CTLineGetGlyphRuns(line);
+<a name="l00511"></a>00511         CFIndex runCount = CFArrayGetCount(runs);
+<a name="l00512"></a>00512         <span class="keywordflow">for</span> (CFIndex k = 0; k &lt; runCount; k++) {
+<a name="l00513"></a>00513           CTRunRef run = CFArrayGetValueAtIndex(runs, k);
+<a name="l00514"></a>00514           
+<a name="l00515"></a>00515           CFRange stringRunRange = CTRunGetStringRange(run);
+<a name="l00516"></a>00516           NSRange lineRunRange = NSMakeRange(stringRunRange.location, stringRunRange.length);
+<a name="l00517"></a>00517           NSRange intersectedRunRange = NSIntersectionRange(lineRunRange, linkRange);
+<a name="l00518"></a>00518           <span class="keywordflow">if</span> (intersectedRunRange.length == 0) {
+<a name="l00519"></a>00519             <span class="keywordflow">continue</span>;
+<a name="l00520"></a>00520           }
+<a name="l00521"></a>00521 
+<a name="l00522"></a>00522           CGFloat ascent = 0.0f;
+<a name="l00523"></a>00523           CGFloat descent = 0.0f;
+<a name="l00524"></a>00524           CGFloat leading = 0.0f;
+<a name="l00525"></a>00525           CGFloat width = (CGFloat)CTRunGetTypographicBounds(run, 
+<a name="l00526"></a>00526                                                     CFRangeMake(0, 0), 
+<a name="l00527"></a>00527                                                     &amp;ascent, 
+<a name="l00528"></a>00528                                                     &amp;descent, 
+<a name="l00529"></a>00529                                                     &amp;leading);
+<a name="l00530"></a>00530           CGFloat height = ascent + descent;
+<a name="l00531"></a>00531           
+<a name="l00532"></a>00532           CGFloat xOffset = CTLineGetOffsetForStringIndex(line, 
+<a name="l00533"></a>00533                                                           CTRunGetStringRange(run).location, 
+<a name="l00534"></a>00534                                                           nil);
+<a name="l00535"></a>00535           
+<a name="l00536"></a>00536           CGRect linkRect = CGRectMake(lineOrigins[i].x + xOffset - leading,
+<a name="l00537"></a>00537                             lineOrigins[i].y - descent,
+<a name="l00538"></a>00538                             width + leading,
+<a name="l00539"></a>00539                             height);
+<a name="l00540"></a>00540           
+<a name="l00541"></a>00541           linkRect = CGRectIntegral(linkRect);
+<a name="l00542"></a>00542           linkRect = CGRectInset(linkRect, -2, -1);
+<a name="l00543"></a>00543           <span class="keywordflow">if</span> (CGRectIsEmpty(highlightRect)) {
+<a name="l00544"></a>00544             highlightRect = linkRect;
+<a name="l00545"></a>00545           } <span class="keywordflow">else</span> {
+<a name="l00546"></a>00546             highlightRect = CGRectUnion(rect, linkRect);
+<a name="l00547"></a>00547           }
+<a name="l00548"></a>00548         }
+<a name="l00549"></a>00549         
+<a name="l00550"></a>00550         <span class="keywordflow">if</span> (!CGRectIsEmpty(highlightRect)) {
+<a name="l00551"></a>00551           
+<a name="l00552"></a>00552           CGFloat pi = (CGFloat)M_PI;
+<a name="l00553"></a>00553           
+<a name="l00554"></a>00554           CGFloat radius = 5.0f;
+<a name="l00555"></a>00555           CGContextMoveToPoint(ctx, highlightRect.origin.x, highlightRect.origin.y + radius);
+<a name="l00556"></a>00556           CGContextAddLineToPoint(ctx, highlightRect.origin.x, highlightRect.origin.y + highlightRect.size.height - radius);
+<a name="l00557"></a>00557           CGContextAddArc(ctx, highlightRect.origin.x + radius, highlightRect.origin.y + highlightRect.size.height - radius, 
+<a name="l00558"></a>00558                           radius, pi, pi / 2.0f, 1.0f);
+<a name="l00559"></a>00559           CGContextAddLineToPoint(ctx, highlightRect.origin.x + highlightRect.size.width - radius, 
+<a name="l00560"></a>00560                                   highlightRect.origin.y + highlightRect.size.height);
+<a name="l00561"></a>00561           CGContextAddArc(ctx, highlightRect.origin.x + highlightRect.size.width - radius, 
+<a name="l00562"></a>00562                           highlightRect.origin.y + highlightRect.size.height - radius, radius, pi / 2, 0.0f, 1.0f);
+<a name="l00563"></a>00563           CGContextAddLineToPoint(ctx, highlightRect.origin.x + highlightRect.size.width, highlightRect.origin.y + radius);
+<a name="l00564"></a>00564           CGContextAddArc(ctx, highlightRect.origin.x + highlightRect.size.width - radius, highlightRect.origin.y + radius, 
+<a name="l00565"></a>00565                           radius, 0.0f, -pi / 2.0f, 1.0f);
+<a name="l00566"></a>00566           CGContextAddLineToPoint(ctx, highlightRect.origin.x + radius, highlightRect.origin.y);
+<a name="l00567"></a>00567           CGContextAddArc(ctx, highlightRect.origin.x + radius, highlightRect.origin.y + radius, radius, 
+<a name="l00568"></a>00568                           -pi / 2, pi, 1);
+<a name="l00569"></a>00569           CGContextFillPath(ctx);
+<a name="l00570"></a>00570         }
+<a name="l00571"></a>00571       }
+<a name="l00572"></a>00572     }
+<a name="l00573"></a>00573     
+<a name="l00574"></a>00574     CTFrameDraw(_textFrame, ctx);
+<a name="l00575"></a>00575     CGContextRestoreGState(ctx);
+<a name="l00576"></a>00576     
+<a name="l00577"></a>00577   } <span class="keywordflow">else</span> {
+<a name="l00578"></a>00578     [<span class="keyword">super</span> drawTextInRect:rect];
+<a name="l00579"></a>00579   }
+<a name="l00580"></a>00580 }
+<a name="l00581"></a>00581 
+<a name="l00582"></a>00582 
+<a name="l00583"></a>00583 <span class="keyword">@end</span>
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

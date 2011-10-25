@@ -26,6 +26,18 @@
           </Subnodes>
          </Node>
          <Node>
+          <Name>Nimbus CSS</Name>
+          <Path>group___nimbus_c_s_s.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>CSS Stylesheets</Name>
+            <Path>group___c_s_s-_stylesheets.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
           <Name>Nimbus Core</Name>
           <Path>group___nimbus_core.html</Path>
           <Subnodes>
@@ -359,6 +371,12 @@
             <Subnodes>
             </Subnodes>
            </Node>
+           <Node>
+            <Name>Version 0.9 API Changes</Name>
+            <Path>group___version-9-0.html</Path>
+            <Subnodes>
+            </Subnodes>
+           </Node>
           </Subnodes>
          </Node>
         </Subnodes>
@@ -388,8 +406,28 @@
           <Path>protocol_n_i_cell_object-p.html</Path>
          </Node>
          <Node>
+          <Name>NIChameleonObserver</Name>
+          <Path>interface_n_i_chameleon_observer.html</Path>
+         </Node>
+         <Node>
+          <Name>NICSSParser</Name>
+          <Path>interface_n_i_c_s_s_parser.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NICSSParserDelegate&gt;</Name>
+          <Path>protocol_n_i_c_s_s_parser_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NICSSRuleset</Name>
+          <Path>interface_n_i_c_s_s_ruleset.html</Path>
+         </Node>
+         <Node>
           <Name>NIDeviceInfo</Name>
           <Path>interface_n_i_device_info.html</Path>
+         </Node>
+         <Node>
+          <Name>NIDOM</Name>
+          <Path>interface_n_i_d_o_m.html</Path>
          </Node>
          <Node>
           <Name>NIFormElement</Name>
@@ -470,6 +508,10 @@
          <Node>
           <Name>&lt;NINetworkImageViewDelegate&gt;</Name>
           <Path>protocol_n_i_network_image_view_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NINetworkRequestOperation</Name>
+          <Path>interface_n_i_network_request_operation.html</Path>
          </Node>
          <Node>
           <Name>NIOperation</Name>
@@ -584,6 +626,18 @@
           <Path>interface_n_i_read_file_from_disk_operation.html</Path>
          </Node>
          <Node>
+          <Name>&lt;NIStyleable&gt;</Name>
+          <Path>protocol_n_i_styleable-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NIStylesheet</Name>
+          <Path>interface_n_i_stylesheet.html</Path>
+         </Node>
+         <Node>
+          <Name>NIStylesheetCache</Name>
+          <Path>interface_n_i_stylesheet_cache.html</Path>
+         </Node>
+         <Node>
           <Name>NISwitchFormElement</Name>
           <Path>interface_n_i_switch_form_element.html</Path>
          </Node>
@@ -690,8 +744,30 @@
           </Subnodes>
          </Node>
          <Node>
+          <Name>NICSSParser</Name>
+          <Path>interface_n_i_c_s_s_parser.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NICSSParserDelegate&gt;</Name>
+          <Path>protocol_n_i_c_s_s_parser_delegate-p.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>NIChameleonObserver</Name>
+            <Path>interface_n_i_chameleon_observer.html</Path>
+           </Node>
+          </Subnodes>
+         </Node>
+         <Node>
+          <Name>NICSSRuleset</Name>
+          <Path>interface_n_i_c_s_s_ruleset.html</Path>
+         </Node>
+         <Node>
           <Name>NIDeviceInfo</Name>
           <Path>interface_n_i_device_info.html</Path>
+         </Node>
+         <Node>
+          <Name>NIDOM</Name>
+          <Path>interface_n_i_d_o_m.html</Path>
          </Node>
          <Node>
           <Name>NIHTTPRequest</Name>
@@ -788,6 +864,10 @@
           <Path>interface_n_i_operation.html</Path>
           <Subnodes>
            <Node>
+            <Name>NINetworkRequestOperation</Name>
+            <Path>interface_n_i_network_request_operation.html</Path>
+           </Node>
+           <Node>
             <Name>NIReadFileFromDiskOperation</Name>
             <Path>interface_n_i_read_file_from_disk_operation.html</Path>
            </Node>
@@ -796,6 +876,12 @@
          <Node>
           <Name>&lt;NIOperationDelegate&gt;</Name>
           <Path>protocol_n_i_operation_delegate-p.html</Path>
+          <Subnodes>
+           <Node>
+            <Name>NIChameleonObserver</Name>
+            <Path>interface_n_i_chameleon_observer.html</Path>
+           </Node>
+          </Subnodes>
          </Node>
          <Node>
           <Name>NIOverview</Name>
@@ -918,6 +1004,18 @@
          <Node>
           <Name>&lt;NIProcessorDelegate&gt;</Name>
           <Path>protocol_n_i_processor_delegate-p.html</Path>
+         </Node>
+         <Node>
+          <Name>&lt;NIStyleable&gt;</Name>
+          <Path>protocol_n_i_styleable-p.html</Path>
+         </Node>
+         <Node>
+          <Name>NIStylesheet</Name>
+          <Path>interface_n_i_stylesheet.html</Path>
+         </Node>
+         <Node>
+          <Name>NIStylesheetCache</Name>
+          <Path>interface_n_i_stylesheet_cache.html</Path>
          </Node>
          <Node>
           <Name>NITableViewModel</Name>

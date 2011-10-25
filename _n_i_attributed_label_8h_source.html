@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -146,18 +146,20 @@
 <a name="l00189"></a>00189 
 <a name="l00195"></a>00195 -(void)addLink:(NSURL*)urlLink range:(NSRange)range;
 <a name="l00196"></a>00196 
-<a name="l00200"></a><a class="code" href="interface_n_i_attributed_label.html#a7dea324ba2377bfe15f4b397dca3fd73">00200</a> <span class="keyword">@property</span> (nonatomic, assign) IBOutlet id&lt;NIAttributedLabelDelegate&gt; delegate;
+<a name="l00200"></a>00200 -(void)removeAllLinks;
 <a name="l00201"></a>00201 
-<a name="l00202"></a>00202 <span class="keyword">@end</span>
-<a name="l00203"></a>00203 
-<a name="l00209"></a><a class="code" href="protocol_n_i_attributed_label_delegate-p.html">00209</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_attributed_label_delegate-p.html" title="The attributed label delegate used to inform of user interactions.">NIAttributedLabelDelegate</a> &lt;NSObject&gt;
-<a name="l00210"></a>00210 <span class="keyword">@optional</span>
-<a name="l00211"></a>00211 
-<a name="l00215"></a>00215 -(void)attributedLabel:(<a class="code" href="interface_n_i_attributed_label.html" title="A UILabel that utilizes NSAttributedString to format its text.">NIAttributedLabel</a>*)attributedLabel 
-<a name="l00216"></a>00216          didSelectLink:(NSURL*)url 
-<a name="l00217"></a>00217                atPoint:(CGPoint)point;
-<a name="l00218"></a>00218 
-<a name="l00219"></a>00219 <span class="keyword">@end</span>
+<a name="l00205"></a><a class="code" href="interface_n_i_attributed_label.html#a7dea324ba2377bfe15f4b397dca3fd73">00205</a> <span class="keyword">@property</span> (nonatomic, assign) IBOutlet id&lt;NIAttributedLabelDelegate&gt; delegate;
+<a name="l00206"></a>00206 
+<a name="l00207"></a>00207 <span class="keyword">@end</span>
+<a name="l00208"></a>00208 
+<a name="l00214"></a><a class="code" href="protocol_n_i_attributed_label_delegate-p.html">00214</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_attributed_label_delegate-p.html" title="The attributed label delegate used to inform of user interactions.">NIAttributedLabelDelegate</a> &lt;NSObject&gt;
+<a name="l00215"></a>00215 <span class="keyword">@optional</span>
+<a name="l00216"></a>00216 
+<a name="l00220"></a>00220 -(void)attributedLabel:(<a class="code" href="interface_n_i_attributed_label.html" title="A UILabel that utilizes NSAttributedString to format its text.">NIAttributedLabel</a>*)attributedLabel 
+<a name="l00221"></a>00221          didSelectLink:(NSURL*)url 
+<a name="l00222"></a>00222                atPoint:(CGPoint)point;
+<a name="l00223"></a>00223 
+<a name="l00224"></a>00224 <span class="keyword">@end</span>
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -83,7 +83,7 @@
 <p>This collection implements NSFastEnumeration which allows you to use foreach-style iteration on the linked list. If you would like more control over the iteration of the linked list you can use <code>-[<a class="el" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> <a class="el" href="interface_n_i_linked_list.html#af645be2ad2a961bf8edf10530dfa7266">objectEnumerator</a>]</code></p>
 <h2>When You Should Use a Linked List</h2>
 <p>Linked lists should be used when you need guaranteed constant-time performance characteristics for adding arbitrary objects to and removing arbitrary objects from a collection that also enforces consistent ordering.</p>
-<p>Linked lists are used in <a class="el" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a> to implement efficient least-recently used collections for in-memory caches. It is important that these caches use a collection with guaranteed constant-time properties because in-memory caches must operate as fast as possible in order to avoid locking up the UI. Specifically, in-memory caches could potentially have thousands of objects. Every time we access one of these objects we move its lru placement to the end of the lru list. If we were to use an NSArray for this data structure we could easily run into an O(N^2) exponential-time operation which is absolutely unacceptable.</p>
+<p>Linked lists are used in <a class="el" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a> to implement an efficient, least-recently used collection for in-memory caches. It is important that these caches use a collection with guaranteed constant-time properties because in-memory caches must operate as fast as possible in order to avoid locking up the UI. Specifically, in-memory caches could potentially have thousands of objects. Every time we access one of these objects we move its lru placement to the end of the lru list. If we were to use an NSArray for this data structure we could easily run into an O(N^2) exponential-time operation which is absolutely unacceptable.</p>
 <h2>Modifying a linked list</h2>
 <p>To add an object to a linked list, you may use <a class="el" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e">addObject:</a>.</p>
 <div class="fragment"><pre class="fragment">  [ll addObject:object];
@@ -105,18 +105,18 @@
     <span class="keywordtype">id</span> <span class="keywordtype">object</span> = [ll <a class="code" href="interface_n_i_linked_list.html#a989a790899210a08e919780742be0fab" title="Returns the first object in the linked list.">firstObject</a>];
 
     <span class="comment">// Remove the head of the linked list in constant time.</span>
-    [ll <a class="code" href="interface_n_i_linked_list.html#acf58608c591cd3350d92a51520ec5c56" title="Remove the first object from the linked list.">removeFirstObject</a>];
+    [ll <a class="code" href="interface_n_i_linked_list.html#acf58608c591cd3350d92a51520ec5c56" title="Removes the first object from the linked list.">removeFirstObject</a>];
   }
 </pre></div><h3>Traversing Backward by Removing Objects from the List</h3>
 <div class="fragment"><pre class="fragment">  <span class="keywordflow">while</span> (nil != ll.lastObject) {
     <span class="keywordtype">id</span> <span class="keywordtype">object</span> = [ll <a class="code" href="interface_n_i_linked_list.html#a1aa16240ab9b1fa49b08850f71da3466" title="Returns the last object in the linked list.">lastObject</a>];
 
     <span class="comment">// Remove the tail of the linked list in constant time.</span>
-    [ll <a class="code" href="interface_n_i_linked_list.html#ac6e78ad1db0893fb12421c309f2b6c09" title="Remove the last object from the linked list.">removeLastObject</a>];
+    [ll <a class="code" href="interface_n_i_linked_list.html#ac6e78ad1db0893fb12421c309f2b6c09" title="Removes the last object from the linked list.">removeLastObject</a>];
   }
 </pre></div><h2>Examples</h2>
 <h3>Building a first-in-first-out list of operations</h3>
-<div class="fragment"><pre class="fragment">  <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll = [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> <a class="code" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea" title="Convenience method for creating an autoreleased linked list.">linkedList</a>];
+<div class="fragment"><pre class="fragment">  <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll = [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> <a class="code" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea" title="Returns a newly allocated and autoreleased linked list.">linkedList</a>];
 
   <span class="comment">// Add the operations to the linked list like you would an array.</span>
   [ll addObject:operation1];
@@ -129,10 +129,10 @@
     <span class="comment">// Process the operation...</span>
 
     <span class="comment">// Remove the head of the linked list in constant time.</span>
-    [ll <a class="code" href="interface_n_i_linked_list.html#acf58608c591cd3350d92a51520ec5c56" title="Remove the first object from the linked list.">removeFirstObject</a>];
+    [ll <a class="code" href="interface_n_i_linked_list.html#acf58608c591cd3350d92a51520ec5c56" title="Removes the first object from the linked list.">removeFirstObject</a>];
   }
 </pre></div><h3>Removing an item from the middle of the list</h3>
-<div class="fragment"><pre class="fragment">  <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll = [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> <a class="code" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea" title="Convenience method for creating an autoreleased linked list.">linkedList</a>];
+<div class="fragment"><pre class="fragment">  <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll = [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> <a class="code" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea" title="Returns a newly allocated and autoreleased linked list.">linkedList</a>];
 
   [ll addObject:obj1];
   [ll addObject:obj2];
@@ -156,7 +156,7 @@
   <span class="comment">// NIMemoryCache for an example of this in action.</span>
 </pre></div><dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="interface_n_i_memory_cache.html" title="An in-memory cache for storing objects with expiration support.">NIMemoryCache</a></dd></dl>
 <h3>Using the location object for constant time operations</h3>
-<div class="fragment"><pre class="fragment">  <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll = [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> <a class="code" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea" title="Convenience method for creating an autoreleased linked list.">linkedList</a>];
+<div class="fragment"><pre class="fragment">  <a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a>* ll = [<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> <a class="code" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea" title="Returns a newly allocated and autoreleased linked list.">linkedList</a>];
 
   [ll addObject:obj1];
   NILinkedListLocation* location = [ll addObject:obj2];
@@ -169,7 +169,7 @@
   <span class="comment">// Location is no longer valid at this point.</span>
   location = nil;
 </pre></div> 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8h_source.html#l00115">115</a> of file <a class="el" href="_n_i_data_structures_8h_source.html">NIDataStructures.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8h_source.html#l00118">118</a> of file <a class="el" href="_n_i_data_structures_8h_source.html">NIDataStructures.h</a>.</p>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
@@ -191,6 +191,7 @@ Methods</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a34f62252fbfc6df20e115e7c4d17031f">removeObjectAtLocation:</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Adding Objects</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NILinkedListLocation *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e">addObject:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a8cb984d5b874450338341a3a604c7ea6">addObjectsFromArray:</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Removing Objects</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#add49cd92d036f3fa6bce44cbb12287e7">removeAllObjects</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_linked_list.html#a8662894eef060157e9f25af267d0242f">removeObject:</a></td></tr>
@@ -275,7 +276,7 @@ Methods</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Convenience method for creating an autoreleased linked list. </p>
+<p>Returns a newly allocated and autoreleased linked list. </p>
 <p>Identical to [[[<a class="el" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> alloc] init] autorelease]; </p>
 
 <p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00137">137</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
@@ -297,7 +298,7 @@ Methods</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Convenience method for creating an autoreleased linked list with an array. </p>
+<p>Returns a newly allocated and autoreleased linked list filled with the objects from an array. </p>
 <p>Identical to [[[<a class="el" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> alloc] initWithArray:array] autorelease]; </p>
 
 <p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00143">143</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
@@ -434,7 +435,7 @@ Methods</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Search for an object in the linked list. </p>
+<p>Searches for an object in the linked list. </p>
 <p>The NILinkedListLocation object will remain valid as long as the object is still in the linked list. Once the object is removed from the linked list, however, the location object is released from memory and should no longer be used.</p>
 <p>TODO (jverkoey July 1, 2011): Consider creating a wrapper object for the location so that we can deal with incorrect usage more safely.</p>
 <p>Run-time: O(count) linear</p>
@@ -459,7 +460,7 @@ Methods</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Retrieve the object at a specific location. </p>
+<p>Retrieves the object at a specific location. </p>
 <p>Run-time: O(1) constant </p>
 
 <p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00364">364</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
@@ -481,7 +482,7 @@ Methods</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Remove an object at a predetermined location. </p>
+<p>Removes an object at a predetermined location. </p>
 <p>It is assumed that this location still exists in the linked list. If the object this location refers to has since been removed then this method will have undefined results.</p>
 <p>This is provided as an optimization over the O(n) removal method but should be used with care.</p>
 <p>Run-time: O(1) constant </p>
@@ -505,11 +506,33 @@ Methods</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Append an object to the linked list. </p>
+<p>Appends an object to the linked list. </p>
 <p>Run-time: O(1) constant</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A location within the linked list. </dd></dl>
 
 <p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00418">418</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8cb984d5b874450338341a3a604c7ea6"></a><!-- doxytag: member="NILinkedList::addObjectsFromArray:" ref="a8cb984d5b874450338341a3a604c7ea6" args="(NSArray *array)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) addObjectsFromArray: </td>
+          <td></td>
+          <td class="paramtype">(NSArray *)&#160;</td>
+          <td class="paramname"><em>array</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Appends an array of objects to the linked list. </p>
+<p>Run-time: O(l) linear with the length of the given array </p>
+
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00450">450</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -527,10 +550,10 @@ Methods</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Remove all objects from the linked list. </p>
+<p>Removes all objects from the linked list. </p>
 <p>Run-time: Theta(count) linear </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00455">455</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00463">463</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -549,10 +572,10 @@ Methods</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Remove an object from the linked list. </p>
+<p>Removes an object from the linked list. </p>
 <p>Run-time: O(count) linear </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00472">472</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00480">480</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -570,10 +593,10 @@ Methods</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Remove the first object from the linked list. </p>
+<p>Removes the first object from the linked list. </p>
 <p>Run-time: O(1) constant </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00481">481</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00489">489</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>
@@ -591,10 +614,10 @@ Methods</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Remove the last object from the linked list. </p>
+<p>Removes the last object from the linked list. </p>
 <p>Run-time: O(1) constant </p>
 
-<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00487">487</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_data_structures_8m_source.html#l00495">495</a> of file <a class="el" href="_n_i_data_structures_8m_source.html">NIDataStructures.m</a>.</p>
 
 </div>
 </div>

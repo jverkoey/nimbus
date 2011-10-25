@@ -593,6 +593,26 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>RGBCOLOR</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___preprocessor-_macros.html</Path>
+    <Anchor>ga8c95497c3ba480b658024236df4e5dc9</Anchor>
+    <Abstract>Creates an opaque UIColor object from a byte-value color definition.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>RGBACOLOR</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>macro</Type>
+    </TokenIdentifier>
+    <Path>group___preprocessor-_macros.html</Path>
+    <Anchor>ga4daacba7f109faac091a582ab498d188</Anchor>
+    <Abstract>Creates a UIColor object from a byte-value color definition and alpha transparency.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Runtime-Class-Modifications</Name>
       <APILanguage>occ</APILanguage>
     </TokenIdentifier>
@@ -797,11 +817,45 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>NimbusCSS</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___nimbus_c_s_s.html</Path>
+    <Abstract>Nimbus CSS allows you to use cascading stylesheets to theme your native iOS application.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>CSS-Stylesheets</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___c_s_s-_stylesheets.html</Path>
+    <Abstract>NIStylesheet is the backbone of the Nimbus CSS feature.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIStylesheetDidChangeNotification</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>data</Type>
+    </TokenIdentifier>
+    <Path>group___c_s_s-_stylesheets.html</Path>
+    <Anchor>ga9be59ce3e581475f2ae8e9888bc9f239</Anchor>
+    <Abstract>The notification key for when a stylesheet has changed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>Version-History</Name>
       <APILanguage>occ</APILanguage>
     </TokenIdentifier>
     <Path>group___version-_history.html</Path>
     <Abstract>Presented here are the API diffs for each major release of Nimbus.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>Version-9-0</Name>
+      <APILanguage>occ</APILanguage>
+    </TokenIdentifier>
+    <Path>group___version-9-0.html</Path>
+    <Abstract>Version 0.9.0 of Nimbus was released on October 24, 2011.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1278,6 +1332,17 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>removeAllLinks</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIAttributedLabel</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_attributed_label.html</Path>
+    <Anchor>aa1066b4ab4f497cf2e9e5b8b12d19afc</Anchor>
+    <Abstract>Removes all links from the label.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>NIAttributedLabelDelegate</Name>
       <APILanguage>occ</APILanguage>
       <Type>intf</Type>
@@ -1370,6 +1435,550 @@
     <Path>protocol_n_i_cell_object-p.html</Path>
     <Anchor>a0652b01388a8e2fb1ca754b2c8dd422f</Anchor>
     <Abstract>The style of UITableViewCell to be used when initializing the cell for the first time.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIChameleonObserver</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_chameleon_observer.html</Path>
+    <Abstract>An observer for the Chameleon server.</Abstract>
+    <DeclaredIn>NIChameleonObserver.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithStylesheetCache:host:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIChameleonObserver</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_chameleon_observer.html</Path>
+    <Anchor>aef2448bb149ab3f0aa3a69549060cec7</Anchor>
+    <Abstract>Initializes a newly allocated Chameleon observer with a given stylesheet cache and host...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>stylesheetForPath:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIChameleonObserver</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_chameleon_observer.html</Path>
+    <Anchor>a4cdaf659801044847a3f59bd4d5c6314</Anchor>
+    <Abstract>Returns a loaded stylesheet from the given path.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>watchSkinChanges</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIChameleonObserver</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_chameleon_observer.html</Path>
+    <Anchor>a7da450dd1f5b2317ed5d3a69abef1926</Anchor>
+    <Abstract>Begins listening to the Chameleon server for changes.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>cssParser:pathFromPath:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NICSSParserDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_c_s_s_parser_delegate-p.html</Path>
+    <Anchor>aef5ca32b0a958b6a1c8f07db5eb7f0fe</Anchor>
+    <Abstract>The implementor may use this method to change the filename that will be used to load the CSS file fro...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidStart:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOperationDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_operation_delegate-p.html</Path>
+    <Anchor>a67316e75bd418453d0ee0626b86f0480</Anchor>
+    <Abstract>The operation has started executing.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationWillFinish:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOperationDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_operation_delegate-p.html</Path>
+    <Anchor>ab611d7a71a08106becd2f66114b15d8f</Anchor>
+    <Abstract>The operation is about to complete successfully.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidFinish:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOperationDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_operation_delegate-p.html</Path>
+    <Anchor>ac3bf1a396bbc1c4f78f8569ca5df4455</Anchor>
+    <Abstract>The operation has completed successfully.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidFail:withError:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIOperationDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_operation_delegate-p.html</Path>
+    <Anchor>a03cc8cc14147e2ad8f2c3e84f9eb11e2</Anchor>
+    <Abstract>The operation failed in some way and has completed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NICSSParser</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_parser.html</Path>
+    <Abstract>An Objective-C wrapper for the flex CSS parser.</Abstract>
+    <DeclaredIn>NICSSParser.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didFailToParse</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NICSSParser</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_parser.html</Path>
+    <Anchor>afc0a61a087b5f4af11318ad6a1c80f70</Anchor>
+    <Abstract>Will be YES after retrieving a dictionary if the parser failed to parse the file in any way...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>dictionaryForPath:pathPrefix:delegate:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSParser</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_parser.html</Path>
+    <Anchor>a18ca0240e27097c49922e2dc1db2f2be</Anchor>
+    <Abstract>Reads a CSS file from a given path and returns a dictionary of raw CSS rule sets.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>dictionaryForPath:pathPrefix:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSParser</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_parser.html</Path>
+    <Anchor>a66d2182257a35b99282fd9c1a28f4f6c</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>dictionaryForPath:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSParser</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_parser.html</Path>
+    <Anchor>a60a7a3e56e362020f6d5c01129b44e43</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NICSSParserDelegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intf</Type>
+    </TokenIdentifier>
+    <Path>protocol_n_i_c_s_s_parser_delegate-p.html</Path>
+    <Abstract>The delegate protocol for NICSSParser.</Abstract>
+    <DeclaredIn>NICSSParser.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>cssParser:pathFromPath:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NICSSParserDelegate-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_c_s_s_parser_delegate-p.html</Path>
+    <Anchor>aef5ca32b0a958b6a1c8f07db5eb7f0fe</Anchor>
+    <Abstract>The implementor may use this method to change the filename that will be used to load the CSS file fro...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NICSSRuleset</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Abstract>A simple translator from raw CSS rulesets to Objective-C values.</Abstract>
+    <DeclaredIn>NICSSRuleset.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>addEntriesFromDictionary:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a7918f250ef12324a3e227cb02bbfedf4</Anchor>
+    <Abstract>Adds a raw CSS ruleset to this ruleset object.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasTextColor</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a8bcb78257ff8311b9cf858aec5ed49c2</Anchor>
+    <Abstract>Returns YES if the ruleset has a &amp;#39;color&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>textColor</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a864739605c7f5ba72ae1a762e7283435</Anchor>
+    <Abstract>Returns the text color.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasTextAlignment</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>afc44d46c26cfed01a55a2be897c246eb</Anchor>
+    <Abstract>Returns YES if the ruleset has a &amp;#39;text-align&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>textAlignment</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>ae1e73ede4e4642d665d4375f2ffa83d5</Anchor>
+    <Abstract>Returns the text alignment.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasFont</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a43026e9c8cf7c1f420c653b74f3943ad</Anchor>
+    <Abstract>Returns YES if the ruleset has a value for any of the following properties: font, font-family...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>font</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a570711f9469eb88afcedae759343c725</Anchor>
+    <Abstract>Returns the font.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasTextShadowColor</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>aa0ad64569faeb2fa33319a29c3cb888a</Anchor>
+    <Abstract>Returns YES if the ruleset has a &amp;#39;text-shadow&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>textShadowColor</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a4ce8be8541d63448321c66d6f866cf45</Anchor>
+    <Abstract>Returns the text shadow color.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasTextShadowOffset</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a27b66da6ec37a5a3a88197578c5e26df</Anchor>
+    <Abstract>Returns YES if the ruleset has a &amp;#39;text-shadow&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>textShadowOffset</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a4baeb4750b0e408a2c8ba0fefa2c3486</Anchor>
+    <Abstract>Returns the text shadow offset.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasLineBreakMode</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>ac3982526c97290d6194d3ab7931f8c1b</Anchor>
+    <Abstract>Returns YES if the ruleset has an &amp;#39;-ios-line-break-mode&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lineBreakMode</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>ae0053e834f39b6692bbc18c8308aa872</Anchor>
+    <Abstract>Returns the line break mode.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasNumberOfLines</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a27cb07ab01f2b53100b9261c9754225c</Anchor>
+    <Abstract>Returns YES if the ruleset has an &amp;#39;-ios-number-of-lines&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>numberOfLines</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a3e9e9fd12ec496613d4bbb89699d8e96</Anchor>
+    <Abstract>Returns the number of lines.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasMinimumFontSize</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a462acac7a119dad12e9c1ce1d7bb88a7</Anchor>
+    <Abstract>Returns YES if the ruleset has an &amp;#39;-ios-minimum-font-size&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>minimumFontSize</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a37f7fefeaf1d6a8c6346d7fbfe97a04a</Anchor>
+    <Abstract>Returns the minimum font size.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasAdjustsFontSize</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>afdf16b770182574bd6ee8f9078c0e9d6</Anchor>
+    <Abstract>Returns YES if the ruleset has an &amp;#39;-ios-adjusts-font-size&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>adjustsFontSize</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a511c96e6daef29d03648045faaabc0cd</Anchor>
+    <Abstract>Returns the adjustsFontSize value.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasBaselineAdjustment</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a780b5a89f31bdd85c5d744f96155d851</Anchor>
+    <Abstract>Returns YES if the ruleset has an &amp;#39;-ios-baseline-adjustment&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>baselineAdjustment</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a1dfe156ec179cb27fbfecbc44e92edf7</Anchor>
+    <Abstract>Returns the baseline adjustment.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasOpacity</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a6de14c0db21e22cedc2411b27fee9af5</Anchor>
+    <Abstract>Returns YES if the ruleset has an &amp;#39;opacity&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>opacity</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>ad94bb6b47a8a5d3cb799a10f619c2d8e</Anchor>
+    <Abstract>Returns the opacity.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasBackgroundColor</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>ac54580800f721c3ba0a92f577c6bf545</Anchor>
+    <Abstract>Returns YES if the ruleset has a &amp;#39;background-color&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>backgroundColor</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a95cea880df1b62f0edccd102eba7eb98</Anchor>
+    <Abstract>Returns the background color.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasBorderRadius</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>aa5b2757a8a2d5ed3204d64aeb58a75df</Anchor>
+    <Abstract>Returns YES if the ruleset has a &amp;#39;border-radius&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>borderRadius</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>ad9c050d14f2083da8dafe32ca993bccb</Anchor>
+    <Abstract>Returns the border radius.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasBorderColor</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a37a794d327087c3bf08fa08be1ae29ba</Anchor>
+    <Abstract>Returns YES if the ruleset has a &amp;#39;border&amp;#39; or &amp;#39;border-color&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>borderColor</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a1f96bf068e1c1667557d2b566d204019</Anchor>
+    <Abstract>Returns the border color.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasBorderWidth</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a98c9354965c0d3bcc0ff97d943d654ff</Anchor>
+    <Abstract>Returns YES if the ruleset has a &amp;#39;border&amp;#39; or &amp;#39;border-width&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>borderWidth</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a433528c5d69f9fa29773cb15d49ed624</Anchor>
+    <Abstract>Returns the border width.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>hasTintColor</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a56f7e80728e458c6bbc1fea899f309a0</Anchor>
+    <Abstract>Returns YES if the ruleset has an &amp;#39;-ios-tint-color&amp;#39; property.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>tintColor</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NICSSRuleset</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_c_s_s_ruleset.html</Path>
+    <Anchor>a2d134869cff8b392d41d9e93c8554aa2</Anchor>
+    <Abstract>Returns the tint color.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -1468,6 +2077,104 @@
     <Path>interface_n_i_device_info.html</Path>
     <Anchor>a7ae5b7746fd3c4f6559a6aeb5b63b210</Anchor>
     <Abstract>Stop using the cache for the device info methods.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIDOM</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_d_o_m.html</Path>
+    <Abstract>A leight-weight DOM-like object to which you attach views and stylesheets.</Abstract>
+    <DeclaredIn>NIDOM.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithStylesheet:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIDOM</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_d_o_m.html</Path>
+    <Anchor>a64952bebf6a284d03b27aa71a0ec0ab8</Anchor>
+    <Abstract>Initializes a newly allocated DOM with the given stylesheet.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>domWithStylesheet:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIDOM</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_d_o_m.html</Path>
+    <Anchor>aa90c6d56d0e87a46c1f1c367134150a8</Anchor>
+    <Abstract>Returns an autoreleased DOM initialized with the given stylesheet.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>domWithStylesheetWithPathPrefix:paths:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>clm</Type>
+      <Scope>NIDOM</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_d_o_m.html</Path>
+    <Anchor>a66ae26fdc424ae1fb84216e8273f8925</Anchor>
+    <Abstract>Returns an autoreleased DOM initialized with a nil-terminated list of file paths.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>registerView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIDOM</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_d_o_m.html</Path>
+    <Anchor>a46984bfea01d4d0f25be1fdd679b9056</Anchor>
+    <Abstract>Registers the given view with the DOM.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>registerView:withCSSClass:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIDOM</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_d_o_m.html</Path>
+    <Anchor>a75860b9d77c2a4465d506f66165bede5</Anchor>
+    <Abstract>Registers the given view with the DOM.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>unregisterView:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIDOM</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_d_o_m.html</Path>
+    <Anchor>afc5ced7edb2bf08426429bda483ee0fe</Anchor>
+    <Abstract>Removes the given view from from the DOM.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>unregisterAllViews</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIDOM</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_d_o_m.html</Path>
+    <Anchor>a4b5883d9c25e931fd4d8d82bd280bb00</Anchor>
+    <Abstract>Removes all views from from the DOM.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>refresh</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIDOM</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_d_o_m.html</Path>
+    <Anchor>a48bd46f10aa031716f00f125306ee0f6</Anchor>
+    <Abstract>Reapplies the stylesheet to all views.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2696,7 +3403,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>a33b030b2a3c23c237735d347e7bfbeea</Anchor>
-    <Abstract>Convenience method for creating an autoreleased linked list.</Abstract>
+    <Abstract>Returns a newly allocated and autoreleased linked list.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2707,7 +3414,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>a864c1485a3d2e39cbee7b74c90471f96</Anchor>
-    <Abstract>Convenience method for creating an autoreleased linked list with an array.</Abstract>
+    <Abstract>Returns a newly allocated and autoreleased linked list filled with the objects from an array...</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2729,7 +3436,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>a2446ec1db7456c41e3b27bf234b3dc62</Anchor>
-    <Abstract>Search for an object in the linked list.</Abstract>
+    <Abstract>Searches for an object in the linked list.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2740,7 +3447,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>a459824a248ba4917d0434643f29fd5f4</Anchor>
-    <Abstract>Retrieve the object at a specific location.</Abstract>
+    <Abstract>Retrieves the object at a specific location.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2751,7 +3458,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>a34f62252fbfc6df20e115e7c4d17031f</Anchor>
-    <Abstract>Remove an object at a predetermined location.</Abstract>
+    <Abstract>Removes an object at a predetermined location.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2762,7 +3469,18 @@
     </TokenIdentifier>
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>a424313c1e697b5ba6a136be7a7d8dd3e</Anchor>
-    <Abstract>Append an object to the linked list.</Abstract>
+    <Abstract>Appends an object to the linked list.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>addObjectsFromArray:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NILinkedList</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_linked_list.html</Path>
+    <Anchor>a8cb984d5b874450338341a3a604c7ea6</Anchor>
+    <Abstract>Appends an array of objects to the linked list.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2773,7 +3491,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>add49cd92d036f3fa6bce44cbb12287e7</Anchor>
-    <Abstract>Remove all objects from the linked list.</Abstract>
+    <Abstract>Removes all objects from the linked list.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2784,7 +3502,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>a8662894eef060157e9f25af267d0242f</Anchor>
-    <Abstract>Remove an object from the linked list.</Abstract>
+    <Abstract>Removes an object from the linked list.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2795,7 +3513,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>acf58608c591cd3350d92a51520ec5c56</Anchor>
-    <Abstract>Remove the first object from the linked list.</Abstract>
+    <Abstract>Removes the first object from the linked list.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -2806,7 +3524,7 @@
     </TokenIdentifier>
     <Path>interface_n_i_linked_list.html</Path>
     <Anchor>ac6e78ad1db0893fb12421c309f2b6c09</Anchor>
-    <Abstract>Remove the last object from the linked list.</Abstract>
+    <Abstract>Removes the last object from the linked list.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -3471,6 +4189,137 @@
     <Path>protocol_n_i_network_image_view_delegate-p.html</Path>
     <Anchor>a9f091692ef4ed418c2c9e1e1b642b304</Anchor>
     <Abstract>The asynchronous download failed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NINetworkRequestOperation</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_network_request_operation.html</Path>
+    <Abstract>An operation that makes a network request.</Abstract>
+    <DeclaredIn>NIOperations.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>delegate</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>af4051a42c46f1ddb9d308daf9596c40d</Anchor>
+    <Abstract>The delegate through which changes are notified for this operation.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>lastError</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>ab16ac8d4ce97062b0d4545df15226c27</Anchor>
+    <Abstract>The error last passed to the didFailWithError notification.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>tag</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a9229f5fb6b21513181aed08ba7592ba6</Anchor>
+    <Abstract>A simple tagging mechanism for identifying operations.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didStartBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>aed06f75966016ce2da29d77740ce4ac5</Anchor>
+    <Abstract>The operation has started executing.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didFinishBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>af5538a8120694393733756e11b5752e5</Anchor>
+    <Abstract>The operation has completed successfully.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>didFailWithErrorBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a1b39afe4f59c082cf04189a8763e6964</Anchor>
+    <Abstract>The operation failed in some way and has completed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>willFinishBlock</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a14bfd44503230b2e7c9e57ea83f16fcf</Anchor>
+    <Abstract>The operation is about to complete successfully.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidStart</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>a8c484d9ee1a76ea72b0d3afc0782f8fc</Anchor>
+    <Abstract>On the main thread, notify the delegate that the operation has begun.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidFinish</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>aa348248e667a2f1021f6451cb7cbbc0f</Anchor>
+    <Abstract>On the main thread, notify the delegate that the operation has finished.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationDidFailWithError:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>abcac75178abd6f277fcac4332bad2976</Anchor>
+    <Abstract>On the main thread, notify the delegate that the operation has failed.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>operationWillFinish</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIOperation</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_operation.html</Path>
+    <Anchor>ac7e636b6ec59af66fc5964c7b30a2930</Anchor>
+    <Abstract>In the operation&amp;#39;s thread, notify the delegate that the operation will finish successfully.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -5632,6 +6481,145 @@
     <Path>interface_n_i_operation.html</Path>
     <Anchor>ac7e636b6ec59af66fc5964c7b30a2930</Anchor>
     <Abstract>In the operation&amp;#39;s thread, notify the delegate that the operation will finish successfully.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIStyleable</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intf</Type>
+    </TokenIdentifier>
+    <Path>protocol_n_i_styleable-p.html</Path>
+    <Abstract>The protocol used by the NIStylesheet to apply NICSSRuleSets to views.</Abstract>
+    <DeclaredIn>NIStyleable.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>applyStyleWithRuleSet:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>intfm</Type>
+      <Scope>NIStyleable-p</Scope>
+    </TokenIdentifier>
+    <Path>protocol_n_i_styleable-p.html</Path>
+    <Anchor>ae840fe54f6835f20bb50104a76d85530</Anchor>
+    <Abstract>The given ruleset should be applied to the view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIStylesheet</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_stylesheet.html</Path>
+    <Abstract>Loads and caches information regarding a specific stylesheet.</Abstract>
+    <DeclaredIn>NIStylesheet.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>dependencies</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIStylesheet</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_stylesheet.html</Path>
+    <Anchor>a8b4cf64369996018bd95328f78aba762</Anchor>
+    <Abstract>A set of filenames for the dependencies of this stylesheet.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>loadFromPath:pathPrefix:delegate:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIStylesheet</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_stylesheet.html</Path>
+    <Anchor>af95a88b29e53a7695d03fc77e057f131</Anchor>
+    <Abstract>Loads and parses a CSS file from disk.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>loadFromPath:pathPrefix:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIStylesheet</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_stylesheet.html</Path>
+    <Anchor>ad35501aa073cb676534dc597133ad4ab</Anchor>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>addStylesheet:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIStylesheet</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_stylesheet.html</Path>
+    <Anchor>adc4556a3250618a7d33d7468e5d3d82b</Anchor>
+    <Abstract>Merge another stylesheet with this one.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>applyStyleToView:withClassName:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIStylesheet</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_stylesheet.html</Path>
+    <Anchor>a62b3736dd285a2eb2e60c4c446605c24</Anchor>
+    <Abstract>Apply any rulesets that match the className to the given view.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>NIStylesheetCache</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>cl</Type>
+    </TokenIdentifier>
+    <Path>interface_n_i_stylesheet_cache.html</Path>
+    <Abstract>A simple in-memory cache for stylesheets.</Abstract>
+    <DeclaredIn>NIStylesheetCache.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>pathPrefix</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instp</Type>
+      <Scope>NIStylesheetCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_stylesheet_cache.html</Path>
+    <Anchor>ac7d90b19bcec3f7a4c101f27a2415b84</Anchor>
+    <Abstract>The path prefix that will be used to load stylesheets.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>initWithPathPrefix:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIStylesheetCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_stylesheet_cache.html</Path>
+    <Anchor>a820f38961359f8a55e86940fd821a79f</Anchor>
+    <Abstract>Initializes a newly allocated stylesheet cache with a given path prefix.</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>stylesheetWithPath:loadFromDisk:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIStylesheetCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_stylesheet_cache.html</Path>
+    <Anchor>a92904a096961838ea490bda515f560d5</Anchor>
+    <Abstract>Fetches a stylesheet from the in-memory cache if it exists or loads the stylesheet from disk if loadF...</Abstract>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>stylesheetWithPath:</Name>
+      <APILanguage>occ</APILanguage>
+      <Type>instm</Type>
+      <Scope>NIStylesheetCache</Scope>
+    </TokenIdentifier>
+    <Path>interface_n_i_stylesheet_cache.html</Path>
+    <Anchor>a15bfb9f6f16d8776e7755e793360f31e</Anchor>
+    <Abstract>Fetches a stylesheet from the in-memory cache if it exists or loads the stylesheet from disk...</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>

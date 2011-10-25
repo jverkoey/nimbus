@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -78,11 +78,13 @@
 <div class="title">NIAttributedLabel Class Reference<div class="ingroups"><a class="el" href="group___nimbus_attributed_label.html">Nimbus Attributed Label</a></div></div>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="NIAttributedLabel" --><hr/><a name="details" id="details"></a><h2>Overview</h2>
+<!-- doxytag: class="NIAttributedLabel" --><!-- doxytag: inherits="UILabel" --><hr/><a name="details" id="details"></a><h2>Overview</h2>
 <div class="textblock"><p>A UILabel that utilizes NSAttributedString to format its text. </p>
 
 <p>Definition at line <a class="el" href="_n_i_attributed_label_8h_source.html#l00034">34</a> of file <a class="el" href="_n_i_attributed_label_8h_source.html">NIAttributedLabel.h</a>.</p>
-</div><table class="memberdecls">
+</div>
+<p>Inherits UILabel.</p>
+<table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSAttributedString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_attributed_label.html#a37c9b16878822791b11013c23e81501e">attributedText</a> <span class="suffix">property</span></td></tr>
@@ -103,6 +105,7 @@ Methods</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_attributed_label.html#ab45c3737f1dd18f5f6f01832d4690ae8">setStrokeColor:range:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_attributed_label.html#a5009d9a2529a54f79ad71f8b838e4793">setTextKern:range:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_attributed_label.html#af9f76992daa87b4e3e8f57b27f5d3f62">addLink:range:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_attributed_label.html#aa1066b4ab4f497cf2e9e5b8b12d19afc">removeAllLinks</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
 <a class="anchor" id="a37c9b16878822791b11013c23e81501e"></a><!-- doxytag: member="NIAttributedLabel::attributedText" ref="a37c9b16878822791b11013c23e81501e" args="" -->
@@ -293,7 +296,7 @@ Methods</h2></td></tr>
 
 <p>The attributed label notifies the delegate of any user interactions. </p>
 
-<p>Definition at line <a class="el" href="_n_i_attributed_label_8h_source.html#l00200">200</a> of file <a class="el" href="_n_i_attributed_label_8h_source.html">NIAttributedLabel.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_attributed_label_8h_source.html#l00205">205</a> of file <a class="el" href="_n_i_attributed_label_8h_source.html">NIAttributedLabel.h</a>.</p>
 
 </div>
 </div>
@@ -540,6 +543,26 @@ Methods</h2></td></tr>
 <p>Link will take on properties defined in linkColor and linkHighlightColor. </p>
 
 <p>Definition at line <a class="el" href="_n_i_attributed_label_8m_source.html#l00265">265</a> of file <a class="el" href="_n_i_attributed_label_8m_source.html">NIAttributedLabel.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa1066b4ab4f497cf2e9e5b8b12d19afc"></a><!-- doxytag: member="NIAttributedLabel::removeAllLinks" ref="aa1066b4ab4f497cf2e9e5b8b12d19afc" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) removeAllLinks </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Removes all links from the label. </p>
+
+<p>Definition at line <a class="el" href="_n_i_attributed_label_8m_source.html#l00279">279</a> of file <a class="el" href="_n_i_attributed_label_8m_source.html">NIAttributedLabel.m</a>.</p>
 
 </div>
 </div>

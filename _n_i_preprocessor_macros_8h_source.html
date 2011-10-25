@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -107,8 +107,12 @@
 <a name="l00058"></a>00058 <span class="preprocessor"></span>
 <a name="l00065"></a><a class="code" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db">00065</a> <span class="preprocessor">#define NI_RELEASE_SAFELY(__POINTER) { [__POINTER release]; __POINTER = nil; }</span>
 <a name="l00066"></a>00066 <span class="preprocessor"></span>
-<a name="l00067"></a>00067 
-<a name="l00069"></a>00069 <span class="comment">// End of Preprocessor Macros //////////////////////////////////////////////////////////////</span>
+<a name="l00070"></a><a class="code" href="group___preprocessor-_macros.html#ga8c95497c3ba480b658024236df4e5dc9">00070</a> <span class="preprocessor">#define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]</span>
+<a name="l00071"></a>00071 <span class="preprocessor"></span>
+<a name="l00075"></a><a class="code" href="group___preprocessor-_macros.html#ga4daacba7f109faac091a582ab498d188">00075</a> <span class="preprocessor">#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]</span>
+<a name="l00076"></a>00076 <span class="preprocessor"></span>
+<a name="l00077"></a>00077 
+<a name="l00079"></a>00079 <span class="comment">// End of Preprocessor Macros //////////////////////////////////////////////////////////////</span>
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

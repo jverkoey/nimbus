@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -86,6 +86,8 @@ Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___preprocessor-_macros.html#ga8705189f505d9a1934dc181ccc7326f4">__NI_DEPRECATED_METHOD</a>&#160;&#160;&#160;__attribute__((deprecated))</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___preprocessor-_macros.html#ga55ff03b06ecaecaf3c88463ebd81b9a6">NI_FIX_CATEGORY_BUG</a>(name)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___preprocessor-_macros.html#ga5d2e99251aeb3ddb687e27f72336e5db">NI_RELEASE_SAFELY</a>(__POINTER)&#160;&#160;&#160;{ [__POINTER release]; __POINTER = nil; }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___preprocessor-_macros.html#ga8c95497c3ba480b658024236df4e5dc9">RGBCOLOR</a>(r, g, b)&#160;&#160;&#160;[UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___preprocessor-_macros.html#ga4daacba7f109faac091a582ab498d188">RGBACOLOR</a>(r, g, b, a)&#160;&#160;&#160;[UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]</td></tr>
 </table>
 <hr/><h2>Define Documentation</h2>
 <a class="anchor" id="ga8705189f505d9a1934dc181ccc7326f4"></a><!-- doxytag: member="NIPreprocessorMacros.h::__NI_DEPRECATED_METHOD" ref="ga8705189f505d9a1934dc181ccc7326f4" args="" -->
@@ -155,6 +157,86 @@ Defines</h2></td></tr>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="_example_static_table_model_8m-example.html#a2">ExampleStaticTableModel.m</a>.</dd>
 </dl>
 <p>Definition at line <a class="el" href="_n_i_preprocessor_macros_8h_source.html#l00065">65</a> of file <a class="el" href="_n_i_preprocessor_macros_8h_source.html">NIPreprocessorMacros.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga8c95497c3ba480b658024236df4e5dc9"></a><!-- doxytag: member="NIPreprocessorMacros.h::RGBCOLOR" ref="ga8c95497c3ba480b658024236df4e5dc9" args="(r, g, b)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RGBCOLOR</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">r, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">g, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;[UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Creates an opaque UIColor object from a byte-value color definition. </p>
+
+<p>Definition at line <a class="el" href="_n_i_preprocessor_macros_8h_source.html#l00070">70</a> of file <a class="el" href="_n_i_preprocessor_macros_8h_source.html">NIPreprocessorMacros.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga4daacba7f109faac091a582ab498d188"></a><!-- doxytag: member="NIPreprocessorMacros.h::RGBACOLOR" ref="ga4daacba7f109faac091a582ab498d188" args="(r, g, b, a)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RGBACOLOR</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">r, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">g, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">a&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;[UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Creates a UIColor object from a byte-value color definition and alpha transparency. </p>
+
+<p>Definition at line <a class="el" href="_n_i_preprocessor_macros_8h_source.html#l00075">75</a> of file <a class="el" href="_n_i_preprocessor_macros_8h_source.html">NIPreprocessorMacros.h</a>.</p>
 
 </div>
 </div>

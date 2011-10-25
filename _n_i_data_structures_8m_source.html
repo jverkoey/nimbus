@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.8.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.0 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -180,7 +180,7 @@
 <a name="l00133"></a>00133 <span class="preprocessor">#pragma mark Linked List Creation</span>
 <a name="l00134"></a>00134 <span class="preprocessor"></span>
 <a name="l00135"></a>00135 
-<a name="l00137"></a><a class="code" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea">00137</a> + (<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> *)<a class="code" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea" title="Convenience method for creating an autoreleased linked list.">linkedList</a> {
+<a name="l00137"></a><a class="code" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea">00137</a> + (<a class="code" href="interface_n_i_linked_list.html" title="A singly linked list implementation.">NILinkedList</a> *)<a class="code" href="interface_n_i_linked_list.html#a33b030b2a3c23c237735d347e7bfbeea" title="Returns a newly allocated and autoreleased linked list.">linkedList</a> {
 <a name="l00138"></a>00138   <span class="keywordflow">return</span> [[[[<span class="keyword">self</span> class] alloc] init] autorelease];
 <a name="l00139"></a>00139 }
 <a name="l00140"></a>00140 
@@ -193,7 +193,7 @@
 <a name="l00149"></a><a class="code" href="interface_n_i_linked_list.html#a8d50d5a46ef86d8b7e6097e657a22184">00149</a> - (id)initWithArray:(NSArray *)anArray {
 <a name="l00150"></a>00150   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [<span class="keyword">self</span> init])) {
 <a name="l00151"></a>00151     <span class="keywordflow">for</span> (<span class="keywordtype">id</span> <span class="keywordtype">object</span> in anArray) {
-<a name="l00152"></a>00152       [<span class="keyword">self</span> <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:object];
+<a name="l00152"></a>00152       [<span class="keyword">self</span> <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Appends an object to the linked list.">addObject</a>:object];
 <a name="l00153"></a>00153     }
 <a name="l00154"></a>00154   }
 <a name="l00155"></a>00155   <span class="keywordflow">return</span> <span class="keyword">self</span>;
@@ -233,7 +233,7 @@
 <a name="l00198"></a>00198   <span class="keyword">struct </span>NILinkedListNode* node = _head;
 <a name="l00199"></a>00199 
 <a name="l00200"></a>00200   <span class="keywordflow">while</span> (0 != node) {
-<a name="l00201"></a>00201     [copy <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Append an object to the linked list.">addObject</a>:node-&gt;object];
+<a name="l00201"></a>00201     [copy <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Appends an object to the linked list.">addObject</a>:node-&gt;object];
 <a name="l00202"></a>00202     node = node-&gt;next;
 <a name="l00203"></a>00203   }
 <a name="l00204"></a>00204 
@@ -459,43 +459,50 @@
 <a name="l00446"></a>00446 }
 <a name="l00447"></a>00447 
 <a name="l00448"></a>00448 
-<a name="l00451"></a>00451 <span class="preprocessor">#pragma mark Mutable Methods</span>
-<a name="l00452"></a>00452 <span class="preprocessor"></span>
-<a name="l00453"></a>00453 
-<a name="l00455"></a><a class="code" href="interface_n_i_linked_list.html#add49cd92d036f3fa6bce44cbb12287e7">00455</a> - (void)removeAllObjects {
-<a name="l00456"></a>00456   <span class="keyword">struct </span>NILinkedListNode* node = _head;
-<a name="l00457"></a>00457   <span class="keywordflow">while</span> (nil != node) {
-<a name="l00458"></a>00458     <span class="keyword">struct </span>NILinkedListNode* next = (<span class="keyword">struct </span>NILinkedListNode *)node-&gt;next;
-<a name="l00459"></a>00459     [<span class="keyword">self</span> _eraseNode:node];
-<a name="l00460"></a>00460     node = next;
-<a name="l00461"></a>00461   }
-<a name="l00462"></a>00462   
-<a name="l00463"></a>00463   _head = nil;
-<a name="l00464"></a>00464   _tail = nil;
-<a name="l00465"></a>00465   
-<a name="l00466"></a>00466   _count = 0;
-<a name="l00467"></a>00467   ++_modificationNumber;
-<a name="l00468"></a>00468 }
-<a name="l00469"></a>00469 
-<a name="l00470"></a>00470 
-<a name="l00472"></a><a class="code" href="interface_n_i_linked_list.html#a8662894eef060157e9f25af267d0242f">00472</a> - (void)removeObject:(<span class="keywordtype">id</span>)object {
-<a name="l00473"></a>00473   NILinkedListLocation* location = [<span class="keyword">self</span> <a class="code" href="interface_n_i_linked_list.html#a2446ec1db7456c41e3b27bf234b3dc62" title="Search for an object in the linked list.">locationOfObject</a>:object];
-<a name="l00474"></a>00474   <span class="keywordflow">if</span> (0 != location) {
-<a name="l00475"></a>00475     [<span class="keyword">self</span> <a class="code" href="interface_n_i_linked_list.html#a34f62252fbfc6df20e115e7c4d17031f" title="Remove an object at a predetermined location.">removeObjectAtLocation</a>:location];
-<a name="l00476"></a>00476   }
-<a name="l00477"></a>00477 }
+<a name="l00450"></a><a class="code" href="interface_n_i_linked_list.html#a8cb984d5b874450338341a3a604c7ea6">00450</a> - (void)addObjectsFromArray:(NSArray *)array {
+<a name="l00451"></a>00451   <span class="keywordflow">for</span> (<span class="keywordtype">id</span> <span class="keywordtype">object</span> in array) {
+<a name="l00452"></a>00452     [<span class="keyword">self</span> <a class="code" href="interface_n_i_linked_list.html#a424313c1e697b5ba6a136be7a7d8dd3e" title="Appends an object to the linked list.">addObject</a>:object];
+<a name="l00453"></a>00453   }
+<a name="l00454"></a>00454 }
+<a name="l00455"></a>00455 
+<a name="l00456"></a>00456 
+<a name="l00459"></a>00459 <span class="preprocessor">#pragma mark Mutable Methods</span>
+<a name="l00460"></a>00460 <span class="preprocessor"></span>
+<a name="l00461"></a>00461 
+<a name="l00463"></a><a class="code" href="interface_n_i_linked_list.html#add49cd92d036f3fa6bce44cbb12287e7">00463</a> - (void)removeAllObjects {
+<a name="l00464"></a>00464   <span class="keyword">struct </span>NILinkedListNode* node = _head;
+<a name="l00465"></a>00465   <span class="keywordflow">while</span> (nil != node) {
+<a name="l00466"></a>00466     <span class="keyword">struct </span>NILinkedListNode* next = (<span class="keyword">struct </span>NILinkedListNode *)node-&gt;next;
+<a name="l00467"></a>00467     [<span class="keyword">self</span> _eraseNode:node];
+<a name="l00468"></a>00468     node = next;
+<a name="l00469"></a>00469   }
+<a name="l00470"></a>00470   
+<a name="l00471"></a>00471   _head = nil;
+<a name="l00472"></a>00472   _tail = nil;
+<a name="l00473"></a>00473   
+<a name="l00474"></a>00474   _count = 0;
+<a name="l00475"></a>00475   ++_modificationNumber;
+<a name="l00476"></a>00476 }
+<a name="l00477"></a>00477 
 <a name="l00478"></a>00478 
-<a name="l00479"></a>00479 
-<a name="l00481"></a><a class="code" href="interface_n_i_linked_list.html#acf58608c591cd3350d92a51520ec5c56">00481</a> - (void)removeFirstObject {
-<a name="l00482"></a>00482   [<span class="keyword">self</span> <a class="code" href="interface_n_i_linked_list.html#a34f62252fbfc6df20e115e7c4d17031f" title="Remove an object at a predetermined location.">removeObjectAtLocation</a>:_head];
-<a name="l00483"></a>00483 }
-<a name="l00484"></a>00484 
-<a name="l00485"></a>00485 
-<a name="l00487"></a><a class="code" href="interface_n_i_linked_list.html#ac6e78ad1db0893fb12421c309f2b6c09">00487</a> - (void)removeLastObject {
-<a name="l00488"></a>00488   [<span class="keyword">self</span> <a class="code" href="interface_n_i_linked_list.html#a34f62252fbfc6df20e115e7c4d17031f" title="Remove an object at a predetermined location.">removeObjectAtLocation</a>:_tail];
-<a name="l00489"></a>00489 }
-<a name="l00490"></a>00490 
-<a name="l00491"></a>00491 <span class="keyword">@end</span>
+<a name="l00480"></a><a class="code" href="interface_n_i_linked_list.html#a8662894eef060157e9f25af267d0242f">00480</a> - (void)removeObject:(<span class="keywordtype">id</span>)object {
+<a name="l00481"></a>00481   NILinkedListLocation* location = [<span class="keyword">self</span> <a class="code" href="interface_n_i_linked_list.html#a2446ec1db7456c41e3b27bf234b3dc62" title="Searches for an object in the linked list.">locationOfObject</a>:object];
+<a name="l00482"></a>00482   <span class="keywordflow">if</span> (0 != location) {
+<a name="l00483"></a>00483     [<span class="keyword">self</span> <a class="code" href="interface_n_i_linked_list.html#a34f62252fbfc6df20e115e7c4d17031f" title="Removes an object at a predetermined location.">removeObjectAtLocation</a>:location];
+<a name="l00484"></a>00484   }
+<a name="l00485"></a>00485 }
+<a name="l00486"></a>00486 
+<a name="l00487"></a>00487 
+<a name="l00489"></a><a class="code" href="interface_n_i_linked_list.html#acf58608c591cd3350d92a51520ec5c56">00489</a> - (void)removeFirstObject {
+<a name="l00490"></a>00490   [<span class="keyword">self</span> <a class="code" href="interface_n_i_linked_list.html#a34f62252fbfc6df20e115e7c4d17031f" title="Removes an object at a predetermined location.">removeObjectAtLocation</a>:_head];
+<a name="l00491"></a>00491 }
+<a name="l00492"></a>00492 
+<a name="l00493"></a>00493 
+<a name="l00495"></a><a class="code" href="interface_n_i_linked_list.html#ac6e78ad1db0893fb12421c309f2b6c09">00495</a> - (void)removeLastObject {
+<a name="l00496"></a>00496   [<span class="keyword">self</span> <a class="code" href="interface_n_i_linked_list.html#a34f62252fbfc6df20e115e7c4d17031f" title="Removes an object at a predetermined location.">removeObjectAtLocation</a>:_tail];
+<a name="l00497"></a>00497 }
+<a name="l00498"></a>00498 
+<a name="l00499"></a>00499 <span class="keyword">@end</span>
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">
