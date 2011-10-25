@@ -1286,3 +1286,104 @@
  * of UIViewController. This makes it is remarkably easy to add the web controller to any
  * project with minimal overhead.
  */
+
+/**
+ * @defgroup Tutorials Tutorials
+ *
+ * Presented here are tutorials to guide you through the basics of Nimbus.
+ *
+ * - <a href="http://jverkoey.github.com/nimbus/group___adding-_nimbus.html">Adding Nimbus to your project</a>
+ *
+ */
+
+/**
+ * @defgroup Adding-Nimbus Adding Nimbus to your project
+ * @ingroup Tutorials
+ *
+ * <h2>Overview</h2>
+ *
+ * This tutorial will show you how to add the Nimbus framework to your project. No previous knowledge
+ * of Nimbus presumed, but basic Xcode knoledge will be required.
+ *
+ * <h2>Downloading Nimbus</h2>
+ * 
+ * The easiest way to download Nimbus is via <code>git</code>. Open the terminal app and enter the 
+ * following:
+ *
+ * @code
+ * $ cd ~/path/to/dev/folder
+ * $ git clone https://github.com/jverkoey/nimbus.git
+ * @endcode
+ *
+ * This will download the Nimbus source into your selected dev folder.
+ *
+ * <h2>Prepare your Xcode project</h2>
+ *
+ * Create a new iOS Xcode project or open an existing project. Within the project navigator on the left
+ * hand side, right click on the project root and select <strong>New Group</strong>:
+ * 
+ *  @image html AddingNimbus1.png "Right click -> New Group"
+ * 
+ * Name this new group <strong>Nimbus</strong>; this will be the root for the Nimbus framework
+ *
+ * Under the Nimbus root group add another group named <strong>Core</strong>. Also add groups for any other
+ * Nimbus modules you intend to use. In this tutorial we are going to add the NimbusWebController module.
+ *
+ * You should end up with a group structure similar to the following:
+ *
+ *  @image html AddingNimbus2.png "Nimbus group structure"
+ *
+ * <h2 id="addfiles">And Nimbus source files</h2>
+ * Right click the <strong>Core</strong> group and select <strong>Add Files to "YourProject"...</strong>
+ *  @image html AddingNimbus3.png "Adding Nimbus files"
+ *
+ * Navigate to where you previously downloaded the Nimbus source and continue to navigate to the core source files...
+ *
+ * @code
+ * ~/path/to/nimbus/src/core/src/
+ * @endcode
+ * 
+ * ...and select all the source files (<code>cmd-A</code>).
+ *
+ * @image html AddingNimbus4.png "Selecting Nimbus Core source files"
+ *
+ * Make sure the <strong>Copy items to destination group's folder</strong> checkbox is left <em>un-ticked</em> and
+ * then <strong>Add</strong> the files.
+ *
+ * Do the same for the other Nimbus modules you wish to add and you should be left with something like this:
+ *
+ * @image html AddingNimbus5.png "Nimbus files added to a project"
+ *
+ * <h2>Ready to use Nimbus</h2>
+ * 
+ * You can now use Nimbus in your project. If you are using Nimbus throughout your project it is usefull to import
+ * the header files into your Prefix Header file:
+ *
+ * @code
+ * // YourProject_Prefix.pch
+ *
+ * #ifdef __OBJC__
+ *    #import <Foundation/Foundation.h>
+ *    #import <UIKit/UIKit.h>
+ *    #import <QuartzCore/QuartzCore.h>
+ *    #import "NimbusCore.h"
+ *    #import "NimbusWebController.h"
+ * #endif
+ *
+ * @endcode
+ *
+ * <h2>Updating Nimbus</h2>
+ *
+ * If you want to update to a newer version of Nimbus, pull the changes from github:
+ *
+ * @code
+ * $ cd ~/path/to/nimbus/
+ * $ git pull
+ * @endcode
+ *
+ * This will update all the Nimbus source files that you have added to your project using the above method. If there
+ * are new source files added to the module you updated you will have to add these files using the same method as 
+ * <a href="#addfiles">above</a>. 
+ *
+ *
+ */
