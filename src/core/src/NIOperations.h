@@ -117,6 +117,35 @@
 
 
 /**
+ * An operation that makes a network request.
+ *
+ * Provides asynchronous network request support when added to an NSOperationQueue.
+ *
+ *      @ingroup Operations
+ */
+@interface NINetworkRequestOperation : NIOperation {
+@private
+  // [in]
+  NSURL* _url;
+  NSTimeInterval _timeout;
+  
+  // [out]
+  NSData* _data;
+  id _processedObject;
+}
+
+// Designated initializer.
+- (id)initWithURL:(NSURL *)url;
+
+@property (readwrite, copy) NSURL* url;
+@property (readwrite, assign) NSTimeInterval timeout;
+@property (readonly, retain) NSData* data;
+@property (readwrite, retain) id processedObject;
+
+@end
+
+
+/**
  * The delegate protocol for an NSOperation.
  *
  *      @ingroup Operations

@@ -56,6 +56,15 @@
 #define NI_FIX_CATEGORY_BUG(name) @interface NI_FIX_CATEGORY_BUG_##name @end \
 @implementation NI_FIX_CATEGORY_BUG_##name @end
 
+/**
+ * Creates an opaque UIColor object from a byte-value color definition.
+ */
+#define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
+
+/**
+ * Creates a UIColor object from a byte-value color definition and alpha transparency.
+ */
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Preprocessor Macros //////////////////////////////////////////////////////////////

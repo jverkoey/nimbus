@@ -27,7 +27,7 @@
  * 
  * - Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
  * - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
- * - See the <a href="http://jverkoey.github.com/nimbus/group___version-7-0.html">latest API diffs</a>.
+ * - See the <a href="http://jverkoey.github.com/nimbus/group___version-9-0.html">latest API diffs</a>.
  * - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
  * - Ask questions and get updates via the <a href="http://groups.google.com/group/nimbusios">Nimbus mailing list</a>.
  * 
@@ -69,19 +69,30 @@
  * 
  * <h3>Source Code Contributors (alphabetical by last name)</h3>
  * 
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile"> 
+ * <div class="name">bubnov</div> 
+ * <div class="github"><a href="http://github.com/bubnov">bubnov</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Roger Chapman</div> 
  * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
  * </div>
  * 
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/87c842e2d3f2b9e87e339cbc86463e8d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Manu Cornet</div> 
+ * <div class="github"><a href="http://github.com/lmanul">lmanul</a></div> 
+ * </div>
+ * 
+ * <div class="contributor_profile"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/a7acedfd4044ad79252e3b062aef25e7?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Glenn Grant</div> 
  * <div class="github"><a href="http://github.com/alias1">alias1</a></div> 
  * </div>
  *
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile">
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/ca1536c2ef2e263ed2aec69c1d147677?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Aviel Lazar</div> 
  * <div class="github"><a href="http://github.com/aviell">aviell</a></div> 
@@ -99,24 +110,30 @@
  * <div class="github"><a href="http://github.com/candersonmiller">candersonmiller</a></div> 
  * </div>
  *
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile">
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/ec5d7ba9c004f79817c76146247e787e?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Basil Shkara</div> 
  * <div class="github"><a href="http://github.com/baz">baz</a></div> 
  * </div>
  *
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile">
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/7adfa1038eb46b001fd5c85a47dffc13?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Peter Steinberger</div> 
  * <div class="github"><a href="http://github.com/steipete">steipete</a></div> 
  * </div>
  * 
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile">
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Jeff Verkoeyen</div> 
  * <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
  * </div>
  * 
+ * <div class="contributor_profile">
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/b0190e056d8b13400d4ae6eba8a7018d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Hwee-Boon Yar</div> 
+ * <div class="github"><a href="http://github.com/hboon">hboon</a></div> 
+ * </div>
+ *
  * <div style="clear:both"></div>
  * 
  * <h3>Generous Donations Have Been Made By the Following People</h3>
@@ -156,6 +173,105 @@
  * @defgroup Version-History Version History
  *
  * Presented here are the API diffs for each major release of Nimbus.
+ */
+
+/**
+ * @defgroup Version-9-0 Version 0.9 API Changes
+ * @ingroup Version-History
+ *
+ * Version 0.9.0 of Nimbus was released on October 24, 2011. This major version introduced
+ * the new Nimbus @link NimbusCSS CSS@endlink and Chameleon, a new way to rapidly prototype
+ * styling your iOS applications using CSS.
+ *
+ * Watch the Chameleon Youtube video: http://www.youtube.com/watch?v=i_5LbQ8e9BU
+ *
+ * Read the Chameleon blog post: http://blog.jeffverkoeyen.com/nimbus-chameleon
+ *
+ *
+ * <h2>Added Frameworks</h2>
+ *
+ * - @link NimbusCSS CSS@endlink
+ *
+ *
+ * <h2>Attributed Label</h2>
+ *
+ * <h3>NIAttributedLabel[.h|m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>[NIAttributedLabel @link NIAttributedLabel::removeAllLinks removeAllLinks@endlink]</code> (thanks to <a href="http://github.com/hboon">hboon</a>.)
+ *
+ *
+ * <h2>Core</h2>
+ *
+ * <h3>NIDataStructures[.h|m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>[NILinkedList @link NILinkedList::addObjectsFromArray: addObjectsFromArray:@endlink]</code>
+ *
+ * <h3>NIPreprocessorMacros.h</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>RGBCOLOR</code> and <code>RGBACOLOR</code>
+ *
+ *
+ * <h2>Models</h2>
+ *
+ * <h3>ModelCatalog</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed a crashing bug due to setting textField.textColor to nil (thanks to <a href="http://github.com/lmanul">lmanul</a>.)
+ *
+ *
+ * <h2>Examples</h2>
+ *
+ * <h3>CSSDemo [added]</h3>
+ *
+ *
+ * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ * <div class="name">bubnov</div> 
+ * <div class="github"><a href="http://github.com/bubnov">bubnov</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Roger Chapman</div> 
+ * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/87c842e2d3f2b9e87e339cbc86463e8d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Manu Cornet</div> 
+ * <div class="github"><a href="http://github.com/lmanul">lmanul</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile">
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Jeff Verkoeyen</div> 
+ * <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+ * </div>
+ * 
+ * <div class="contributor_profile">
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/b0190e056d8b13400d4ae6eba8a7018d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Hwee-Boon Yar</div> 
+ * <div class="github"><a href="http://github.com/hboon">hboon</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ *
+ * <h3>Add Your Name to This List</h3>
+ *
+ * Contributions are highly encouraged! If you have a feature that you feel would fit within the
+ * Nimbus framework, feel free to fire off a pull request on GitHub. Bugs may be reported
+ * using the issue tracker on GitHub as well.
+ *
+ * Check out the <a href="https://github.com/jverkoey/nimbus/issues?sort=created&direction=desc&state=open&page=1&milestone=5">tasks grab bag</a>
+ * for opportunities to help out.
+ *
+ * <h2>Robots Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <div class="name"><a href="https://github.com/nimbusios/Doxygen">Nimbus Doxygen</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
  */
 
 /**
@@ -1170,3 +1286,119 @@
  * of UIViewController. This makes it is remarkably easy to add the web controller to any
  * project with minimal overhead.
  */
+
+/**
+ * @defgroup Tutorials Tutorials
+ *
+ * Presented here are tutorials to guide you through the basics of Nimbus.
+ *
+ * - @link Add-Nimbus Add Nimbus to your project@endlink
+ *
+ */
+
+/**
+ * @defgroup Add-Nimbus Add Nimbus to your project
+ * @ingroup Tutorials
+ *
+ *
+ * <h2>Overview</h2>
+ *
+ * This tutorial will show you how to add the Nimbus framework to your project. No previous
+ * knowledge of Nimbus is required. Basic Xcode knowledge is assumed.
+ *
+ *
+ * <h2>Downloading Nimbus</h2>
+ * 
+ * The easiest way to download Nimbus is via <code>git</code>. Open Terminal and enter the 
+ * following to check out the Nimbus repo:
+ *
+ * @code
+ * $ cd ~/path/to/dev/folder
+ * $ git clone https://github.com/jverkoey/nimbus.git
+ * @endcode
+ *
+ * This will download the Nimbus source into your selected dev folder.
+ *
+ *
+ * <h2>Prepare your Xcode project</h2>
+ *
+ * Create a new iOS Xcode project or open an existing project. Within the project navigator
+ * on the left hand side, right click on the project root and select <strong>New Group</strong>:
+ * 
+ *  @image html AddingNimbus1.png "Right click -> New Group"
+ * 
+ * Name this new group <strong>Nimbus</strong>; this will be the root group for the
+ * Nimbus framework.
+ *
+ * Under the Nimbus root group, add another group named <strong>Core</strong>. Add
+ * groups for any other Nimbus modules you intend to use. In this tutorial we are going
+ * to add the NimbusWebController module.
+ *
+ * You should end up with a group structure similar to the following:
+ *
+ *  @image html AddingNimbus2.png "Nimbus group structure"
+ *
+ *
+ * <h2 id="addfiles">Add Nimbus source files</h2>
+ *
+ * Right click the <strong>Core</strong> group and select
+ * <strong>Add Files to "YourProject"...</strong>
+ *
+ *  @image html AddingNimbus3.png "Adding Nimbus files"
+ *
+ * Navigate to where you previously checked out Nimbus and open the <code>src/core/src</code>
+ * directory.
+ *
+ * @code
+ * ~/path/to/nimbus/src/core/src/
+ * @endcode
+ * 
+ * ...and select all the source files (<code>cmd-A</code>).
+ *
+ * @image html AddingNimbus4.png "Selecting Nimbus Core source files"
+ *
+ * Make sure the <strong>Copy items to destination group's folder</strong> checkbox
+ * is left <em>un-ticked</em> and then <strong>Add</strong> the files.
+ *
+ * Do the same for the other Nimbus modules you wish to add and you should be left
+ * with something like this:
+ *
+ * @image html AddingNimbus5.png "Nimbus files added to a project"
+ *
+ *
+ * <h2>Ready to use Nimbus</h2>
+ * 
+ * You can now use Nimbus in your project. If you are using Nimbus throughout
+ * your project it is useful to import the header files in your Prefix Header file:
+ *
+ * @code
+ * // YourProject_Prefix.pch
+ *
+ * #ifdef __OBJC__
+ *    #import <Foundation/Foundation.h>
+ *    #import <UIKit/UIKit.h>
+ *    #import <QuartzCore/QuartzCore.h>
+ *    #import "NimbusCore.h"
+ *    #import "NimbusWebController.h"
+ * #endif
+ *
+ * @endcode
+ *
+ *
+ * <h2>Updating Nimbus</h2>
+ *
+ * If you want to update to a newer version of Nimbus, pull the changes from github:
+ *
+ * @code
+ * $ cd ~/path/to/nimbus/
+ * $ git pull
+ * @endcode
+ *
+ * This will update the Nimbus source files that you have added to your project
+ * using the above method. If there are new source files added to the module you updated
+ * you will have to add these files using the same method as <a href="#addfiles">above</a>. 
+ * It's easy to keep track of newly added or removed files by following the
+ * @link Version-History API diffs@endlink published with every release.
+ *
+ */
+

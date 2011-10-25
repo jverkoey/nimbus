@@ -37,15 +37,11 @@
 		66325D6313EB1BFA008D6EAD /* NIJSONKitProcessorHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66325D6113EB1BFA008D6EAD /* NIJSONKitProcessorHTTPRequest.m */; };
 		6661BBCD13F1A3BB00D14F92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		6661BBDA13F1A3BB00D14F92 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
-		6661BBDB13F1A3BB00D14F92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
 		6661BBDC13F1A3BB00D14F92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
-		6661BBDD13F1A3BB00D14F92 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */; };
 		6661BBE013F1A3BB00D14F92 /* libNimbusModels.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6661BBCC13F1A3BB00D14F92 /* libNimbusModels.a */; };
 		6675722A13E765BF0076F555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		6675723713E765BF0076F555 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
-		6675723813E765BF0076F555 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
 		6675723913E765BF0076F555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
-		6675723A13E765BF0076F555 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */; };
 		6675723D13E765BF0076F555 /* libNimbusOverview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6675722913E765BF0076F555 /* libNimbusOverview.a */; };
 		6675726313E765F70076F555 /* NIDeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6675725313E765F70076F555 /* NIDeviceInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6675726413E765F70076F555 /* NIDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675725413E765F70076F555 /* NIDeviceInfo.m */; };
@@ -64,9 +60,7 @@
 		6675727113E765F70076F555 /* NIOverviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675726113E765F70076F555 /* NIOverviewView.m */; };
 		6675727B13E769150076F555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		6675728813E769150076F555 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
-		6675728913E769150076F555 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
 		6675728A13E769150076F555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
-		6675728B13E769150076F555 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */; };
 		6675728E13E769150076F555 /* libNimbusPhotos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6675727A13E769150076F555 /* libNimbusPhotos.a */; };
 		667572AE13E7692F0076F555 /* NimbusPhotos.h in Headers */ = {isa = PBXBuildFile; fileRef = 667572A213E7692F0076F555 /* NimbusPhotos.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		667572AF13E7692F0076F555 /* NIPhotoAlbumScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 667572A313E7692F0076F555 /* NIPhotoAlbumScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -79,9 +73,7 @@
 		667572B613E7692F0076F555 /* NIToolbarPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 667572AA13E7692F0076F555 /* NIToolbarPhotoViewController.m */; };
 		667572BE13E76F460076F555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		667572CB13E76F460076F555 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
-		667572CC13E76F460076F555 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
 		667572CD13E76F460076F555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
-		667572CE13E76F460076F555 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */; };
 		667572D113E76F460076F555 /* libNimbusProcessors.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 667572BD13E76F460076F555 /* libNimbusProcessors.a */; };
 		667572EB13E76F5E0076F555 /* NimbusProcessors.h in Headers */ = {isa = PBXBuildFile; fileRef = 667572E613E76F5E0076F555 /* NimbusProcessors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		667572EC13E76F5E0076F555 /* NIProcessorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 667572E713E76F5E0076F555 /* NIProcessorDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -92,9 +84,7 @@
 		6675730B13E7707B0076F555 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675730813E7707B0076F555 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6675731313E771380076F555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		6675732013E771380076F555 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
-		6675732113E771380076F555 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
 		6675732213E771380076F555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
-		6675732313E771380076F555 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */; };
 		6675732613E771380076F555 /* libNimbusInterapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6675731213E771380076F555 /* libNimbusInterapp.a */; };
 		6675733E13E7718B0076F555 /* NIInterapp.h in Headers */ = {isa = PBXBuildFile; fileRef = 6675733B13E7718B0076F555 /* NIInterapp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6675733F13E7718B0076F555 /* NIInterapp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675733C13E7718B0076F555 /* NIInterapp.m */; };
@@ -103,11 +93,44 @@
 		667A74A013FE20BD009D277D /* NIFormCellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A749A13FE20BD009D277D /* NIFormCellCatalog.m */; };
 		667A74A113FE20BD009D277D /* NICellFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 667A749B13FE20BD009D277D /* NICellFactory.h */; };
 		667A74A213FE20BD009D277D /* NICellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A749C13FE20BD009D277D /* NICellFactory.m */; };
+		66832CB9143D681B003E413C /* NimbusCSS.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CB7143D681B003E413C /* NimbusCSS.h */; };
+		66832CC1143D7883003E413C /* NICSSParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CC0143D7883003E413C /* NICSSParserTests.m */; };
+		66832CC4143D7898003E413C /* NICSSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CC2143D7898003E413C /* NICSSParser.h */; };
+		66832CC5143D7898003E413C /* NICSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CC3143D7898003E413C /* NICSSParser.m */; };
+		66832CCC143D7AA4003E413C /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0913E6E85E00B514F3 /* libNimbusCore.a */; };
+		66832CCE143D7B2C003E413C /* empty-rulesets.css in Resources */ = {isa = PBXBuildFile; fileRef = 66832CCD143D7B2C003E413C /* empty-rulesets.css */; };
+		66832CD0143D7B38003E413C /* empty.css in Resources */ = {isa = PBXBuildFile; fileRef = 66832CCF143D7B38003E413C /* empty.css */; };
+		66832CD2143D833B003E413C /* comments.css in Resources */ = {isa = PBXBuildFile; fileRef = 66832CD1143D833B003E413C /* comments.css */; };
+		66832CD4143D8989003E413C /* rulesets.css in Resources */ = {isa = PBXBuildFile; fileRef = 66832CD3143D8989003E413C /* rulesets.css */; };
+		66832CD6143D8AB7003E413C /* rulesets-overrides.css in Resources */ = {isa = PBXBuildFile; fileRef = 66832CD5143D8AB7003E413C /* rulesets-overrides.css */; };
+		66832CD8143E062C003E413C /* malformed.css in Resources */ = {isa = PBXBuildFile; fileRef = 66832CD7143E062C003E413C /* malformed.css */; };
+		66832CF1143E0AD9003E413C /* CSSTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CEE143E0AD9003E413C /* CSSTokenizer.m */; };
+		66832CF2143E0AD9003E413C /* CSSTokens.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CEF143E0AD9003E413C /* CSSTokens.h */; };
+		66832CF3143E0AD9003E413C /* CSSTokens.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CF0143E0AD9003E413C /* CSSTokens.m */; };
+		66832CF6143E0C35003E413C /* NIStylesheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CF4143E0C35003E413C /* NIStylesheet.h */; };
+		66832CF7143E0C35003E413C /* NIStylesheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CF5143E0C35003E413C /* NIStylesheet.m */; };
+		66832CF9143E1C0C003E413C /* NIStylesheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CF8143E1C0C003E413C /* NIStylesheetTests.m */; };
+		66832CFC143E2C0D003E413C /* NIDOM.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CFA143E2C0D003E413C /* NIDOM.h */; };
+		66832CFD143E2C0D003E413C /* NIDOM.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CFB143E2C0D003E413C /* NIDOM.m */; };
+		66832CFF143E3294003E413C /* UILabel.css in Resources */ = {isa = PBXBuildFile; fileRef = 66832CFE143E3294003E413C /* UILabel.css */; };
+		66832D03143E38F0003E413C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D02143E38F0003E413C /* CoreGraphics.framework */; };
+		66832D04143E39DF003E413C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
+		66832D07143E3A30003E413C /* NICSSRuleset.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832D05143E3A30003E413C /* NICSSRuleset.h */; };
+		66832D08143E3A30003E413C /* NICSSRuleset.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832D06143E3A30003E413C /* NICSSRuleset.m */; };
+		66832D0A143E3B55003E413C /* NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832D09143E3B55003E413C /* NIStyleable.h */; };
+		66832D0F143E3C32003E413C /* UILabel+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832D0D143E3C32003E413C /* UILabel+NIStyleable.h */; };
+		66832D10143E3C32003E413C /* UILabel+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832D0E143E3C32003E413C /* UILabel+NIStyleable.m */; };
+		66832D1314416368003E413C /* UIView+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832D1114416368003E413C /* UIView+NIStyleable.h */; };
+		66832D1414416368003E413C /* UIView+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832D1214416368003E413C /* UIView+NIStyleable.m */; };
+		66832DA214421B4A003E413C /* UINavigationBar+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832DA014421B4A003E413C /* UINavigationBar+NIStyleable.h */; };
+		66832DA314421B4A003E413C /* UINavigationBar+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832DA114421B4A003E413C /* UINavigationBar+NIStyleable.m */; };
+		66832E0614435071003E413C /* NIChameleonObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832E0414435071003E413C /* NIChameleonObserver.h */; };
+		66832E0714435071003E413C /* NIChameleonObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832E0514435071003E413C /* NIChameleonObserver.m */; };
+		668ECDC71455C17200455266 /* NIStylesheetCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 668ECDC51455C17100455266 /* NIStylesheetCache.h */; };
+		668ECDC81455C17200455266 /* NIStylesheetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 668ECDC61455C17100455266 /* NIStylesheetCache.m */; };
 		66A03C0D13E6E85E00B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66A03C1B13E6E85E00B514F3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
-		66A03C1D13E6E85E00B514F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
 		66A03C1E13E6E85E00B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
-		66A03C2013E6E85E00B514F3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */; };
 		66A03C2313E6E85E00B514F3 /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0913E6E85E00B514F3 /* libNimbusCore.a */; };
 		66A03C7013E6E8D100B514F3 /* NIBlocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4013E6E8D100B514F3 /* NIBlocks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A03C7113E6E8D100B514F3 /* NICommonMetrics.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4113E6E8D100B514F3 /* NICommonMetrics.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -158,9 +181,7 @@
 		66A03CB913E6EFB000B514F3 /* NSString+NimbusCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03CB713E6EFAF00B514F3 /* NSString+NimbusCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A03CC013E6F0ED00B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66A03CCD13E6F0EE00B514F3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
-		66A03CCE13E6F0EE00B514F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
 		66A03CCF13E6F0EE00B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
-		66A03CD013E6F0EE00B514F3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */; };
 		66A03CD313E6F0EE00B514F3 /* libNimbusLauncher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03CBF13E6F0ED00B514F3 /* libNimbusLauncher.a */; };
 		66A03CEF13E6F10C00B514F3 /* NILauncherButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03CE713E6F10C00B514F3 /* NILauncherButton.m */; };
 		66A03CF013E6F10C00B514F3 /* NILauncherItemDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03CE813E6F10C00B514F3 /* NILauncherItemDetails.m */; };
@@ -171,9 +192,7 @@
 		66A03CF513E6F10C00B514F3 /* NimbusLauncher.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03CED13E6F10C00B514F3 /* NimbusLauncher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A03D2813E6F97500B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66A03D3513E6F97500B514F3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
-		66A03D3613E6F97500B514F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
 		66A03D3713E6F97500B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
-		66A03D3813E6F97500B514F3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */; };
 		66A03D3B13E6F97500B514F3 /* libNimbusNetworkImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03D2713E6F97500B514F3 /* libNimbusNetworkImage.a */; };
 		66A03D5613E6F99400B514F3 /* NIHTTPImageRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D5013E6F99400B514F3 /* NIHTTPImageRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A03D5713E6F99400B514F3 /* NIHTTPImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D5113E6F99400B514F3 /* NIHTTPImageRequest.m */; };
@@ -204,15 +223,23 @@
 		66A03DCA13E6FAC500B514F3 /* NIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D8F13E6FAC500B514F3 /* NIHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A03DCB13E6FAC500B514F3 /* NIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D9013E6FAC500B514F3 /* NIHTTPRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66A03DCC13E6FAC500B514F3 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D9213E6FAC500B514F3 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03DCD13E6FAC500B514F3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D9313E6FAC500B514F3 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		66A03DCD13E6FAC500B514F3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D9313E6FAC500B514F3 /* Reachability.m */; };
+		66B10900144C931F004576D1 /* UIButton+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */; };
+		66B10901144C931F004576D1 /* UIButton+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */; };
+		66B1090C144D53C3004576D1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
+		66B1090D144D53CC004576D1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D02143E38F0003E413C /* CoreGraphics.framework */; };
+		66C3A6A2143D61130048542F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
+		66C3A6AF143D61140048542F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
+		66C3A6B1143D61140048542F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
+		66C3A6B4143D61140048542F /* libNimbusCss.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C3A6A1143D61130048542F /* libNimbusCss.a */; };
+		66FCC634144FB42E0029F1A6 /* includee.css in Resources */ = {isa = PBXBuildFile; fileRef = 66FCC632144FB42E0029F1A6 /* includee.css */; };
+		66FCC635144FB42E0029F1A6 /* includer.css in Resources */ = {isa = PBXBuildFile; fileRef = 66FCC633144FB42E0029F1A6 /* includer.css */; };
 		66FE7D6B13FB83620061B987 /* NimbusModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6413FB83620061B987 /* NimbusModels.h */; };
 		66FE7D6C13FB83620061B987 /* NITableViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6513FB83620061B987 /* NITableViewModel.h */; };
 		66FE7D6D13FB83620061B987 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FE7D6613FB83620061B987 /* NITableViewModel.m */; };
 		DB3A230A13FD4B8E00614220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		DB3A231713FD4B8E00614220 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
-		DB3A231813FD4B8E00614220 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
 		DB3A231913FD4B8E00614220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
-		DB3A231A13FD4B8E00614220 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */; };
 		DB3A231D13FD4B8E00614220 /* libNimbusAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB3A230913FD4B8E00614220 /* libNimbusAttributedLabel.a */; };
 		DB3A233613FD4BE500614220 /* NIAttributedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = DB3A233213FD4BE500614220 /* NIAttributedLabel.h */; };
 		DB3A233713FD4BE500614220 /* NIAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3A233313FD4BE500614220 /* NIAttributedLabel.m */; };
@@ -222,9 +249,7 @@
 		DB6AADF71407A5FF0003CB63 /* NSAttributedString+NimbusAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6AADF51407A5FF0003CB63 /* NSAttributedString+NimbusAttributedLabel.m */; };
 		DB84BD7513EFDDC900DACCFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		DB84BD8213EFDDCA00DACCFE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
-		DB84BD8313EFDDCA00DACCFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1C13E6E85E00B514F3 /* UIKit.framework */; };
 		DB84BD8413EFDDCA00DACCFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
-		DB84BD8513EFDDCA00DACCFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */; };
 		DB84BD8813EFDDCA00DACCFE /* libNimbusWebController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB84BD7413EFDDC900DACCFE /* libNimbusWebController.a */; };
 		DB84BDAC13EFDF5900DACCFE /* NimbusWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB84BDA813EFDF5900DACCFE /* NimbusWebController.h */; };
 		DB84BDAD13EFDF5900DACCFE /* NIWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB84BDA913EFDF5900DACCFE /* NIWebController.h */; };
@@ -313,6 +338,13 @@
 			remoteGlobalIDString = 6675731113E771380076F555;
 			remoteInfo = NimbusInterapp;
 		};
+		66832CCA143D7A92003E413C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66A03C0813E6E85E00B514F3;
+			remoteInfo = NimbusCore;
+		};
 		66A03C2113E6E85E00B514F3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
@@ -361,6 +393,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 66A03D6713E6FA9700B514F3;
 			remoteInfo = ASIHTTPRequest;
+		};
+		66C3A6B2143D61140048542F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66C3A6A0143D61130048542F;
+			remoteInfo = NimbusCss;
 		};
 		DB3A231B13FD4B8E00614220 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -451,13 +490,52 @@
 		667A749A13FE20BD009D277D /* NIFormCellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIFormCellCatalog.m; sourceTree = "<group>"; };
 		667A749B13FE20BD009D277D /* NICellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICellFactory.h; sourceTree = "<group>"; };
 		667A749C13FE20BD009D277D /* NICellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICellFactory.m; sourceTree = "<group>"; };
+		66832C98143D63D2003E413C /* css.grammar */ = {isa = PBXFileReference; lastKnownFileType = text; name = css.grammar; path = css/grammar/css.grammar; sourceTree = SOURCE_ROOT; };
+		66832CA1143D64CF003E413C /* generate */ = {isa = PBXFileReference; lastKnownFileType = text; name = generate; path = css/grammar/generate; sourceTree = SOURCE_ROOT; };
+		66832CA8143D6642003E413C /* CSSTokenizerPrefix */ = {isa = PBXFileReference; lastKnownFileType = text; name = CSSTokenizerPrefix; path = css/grammar/CSSTokenizerPrefix; sourceTree = SOURCE_ROOT; };
+		66832CA9143D6642003E413C /* CSSTokens.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CSSTokens.cpp; path = css/grammar/CSSTokens.cpp; sourceTree = SOURCE_ROOT; };
+		66832CAA143D6642003E413C /* CSSTokens.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CSSTokens.h; path = css/grammar/CSSTokens.h; sourceTree = SOURCE_ROOT; };
+		66832CB7143D681B003E413C /* NimbusCSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusCSS.h; path = css/src/NimbusCSS.h; sourceTree = SOURCE_ROOT; };
+		66832CC0143D7883003E413C /* NICSSParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICSSParserTests.m; path = css/unittests/NICSSParserTests.m; sourceTree = SOURCE_ROOT; };
+		66832CC2143D7898003E413C /* NICSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICSSParser.h; path = css/src/NICSSParser.h; sourceTree = SOURCE_ROOT; };
+		66832CC3143D7898003E413C /* NICSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICSSParser.m; path = css/src/NICSSParser.m; sourceTree = SOURCE_ROOT; };
+		66832CC9143D7994003E413C /* NimbusCSSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NimbusCSSTests-Info.plist"; path = "css/unittests/NimbusCSSTests-Info.plist"; sourceTree = SOURCE_ROOT; };
+		66832CCD143D7B2C003E413C /* empty-rulesets.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "empty-rulesets.css"; path = "css/unittests/empty-rulesets.css"; sourceTree = SOURCE_ROOT; };
+		66832CCF143D7B38003E413C /* empty.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = empty.css; path = css/unittests/empty.css; sourceTree = SOURCE_ROOT; };
+		66832CD1143D833B003E413C /* comments.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = comments.css; path = css/unittests/comments.css; sourceTree = SOURCE_ROOT; };
+		66832CD3143D8989003E413C /* rulesets.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = rulesets.css; path = css/unittests/rulesets.css; sourceTree = SOURCE_ROOT; };
+		66832CD5143D8AB7003E413C /* rulesets-overrides.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "rulesets-overrides.css"; path = "css/unittests/rulesets-overrides.css"; sourceTree = SOURCE_ROOT; };
+		66832CD7143E062C003E413C /* malformed.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = malformed.css; path = css/unittests/malformed.css; sourceTree = SOURCE_ROOT; };
+		66832CEE143E0AD9003E413C /* CSSTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSSTokenizer.m; path = css/src/CSSTokenizer.m; sourceTree = SOURCE_ROOT; };
+		66832CEF143E0AD9003E413C /* CSSTokens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSSTokens.h; path = css/src/CSSTokens.h; sourceTree = SOURCE_ROOT; };
+		66832CF0143E0AD9003E413C /* CSSTokens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSSTokens.m; path = css/src/CSSTokens.m; sourceTree = SOURCE_ROOT; };
+		66832CF4143E0C35003E413C /* NIStylesheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIStylesheet.h; path = css/src/NIStylesheet.h; sourceTree = SOURCE_ROOT; };
+		66832CF5143E0C35003E413C /* NIStylesheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIStylesheet.m; path = css/src/NIStylesheet.m; sourceTree = SOURCE_ROOT; };
+		66832CF8143E1C0C003E413C /* NIStylesheetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIStylesheetTests.m; path = css/unittests/NIStylesheetTests.m; sourceTree = SOURCE_ROOT; };
+		66832CFA143E2C0D003E413C /* NIDOM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDOM.h; path = css/src/NIDOM.h; sourceTree = SOURCE_ROOT; };
+		66832CFB143E2C0D003E413C /* NIDOM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDOM.m; path = css/src/NIDOM.m; sourceTree = SOURCE_ROOT; };
+		66832CFE143E3294003E413C /* UILabel.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = UILabel.css; path = css/unittests/UILabel.css; sourceTree = SOURCE_ROOT; };
+		66832D00143E38E6003E413C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		66832D02143E38F0003E413C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		66832D05143E3A30003E413C /* NICSSRuleset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICSSRuleset.h; path = css/src/NICSSRuleset.h; sourceTree = SOURCE_ROOT; };
+		66832D06143E3A30003E413C /* NICSSRuleset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICSSRuleset.m; path = css/src/NICSSRuleset.m; sourceTree = SOURCE_ROOT; };
+		66832D09143E3B55003E413C /* NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIStyleable.h; path = css/src/NIStyleable.h; sourceTree = SOURCE_ROOT; };
+		66832D0D143E3C32003E413C /* UILabel+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+NIStyleable.h"; path = "css/src/UILabel+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
+		66832D0E143E3C32003E413C /* UILabel+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+NIStyleable.m"; path = "css/src/UILabel+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
+		66832D1114416368003E413C /* UIView+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+NIStyleable.h"; path = "css/src/UIView+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
+		66832D1214416368003E413C /* UIView+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+NIStyleable.m"; path = "css/src/UIView+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
+		66832DA014421B4A003E413C /* UINavigationBar+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationBar+NIStyleable.h"; path = "css/src/UINavigationBar+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
+		66832DA114421B4A003E413C /* UINavigationBar+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationBar+NIStyleable.m"; path = "css/src/UINavigationBar+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
+		66832E0414435071003E413C /* NIChameleonObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIChameleonObserver.h; path = css/src/NIChameleonObserver.h; sourceTree = SOURCE_ROOT; };
+		66832E0514435071003E413C /* NIChameleonObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIChameleonObserver.m; path = css/src/NIChameleonObserver.m; sourceTree = SOURCE_ROOT; };
+		668ECDC51455C17100455266 /* NIStylesheetCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIStylesheetCache.h; path = css/src/NIStylesheetCache.h; sourceTree = SOURCE_ROOT; };
+		668ECDC61455C17100455266 /* NIStylesheetCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIStylesheetCache.m; path = css/src/NIStylesheetCache.m; sourceTree = SOURCE_ROOT; };
+		668ECDCF14565AB200455266 /* README.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.mdown; path = css/chameleon/README.mdown; sourceTree = SOURCE_ROOT; };
 		669E98AD13E9EA1F00D99140 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		66A03C0913E6E85E00B514F3 /* libNimbusCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A03C0C13E6E85E00B514F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		66A03C1913E6E85E00B514F3 /* NimbusCoreTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCoreTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		66A03C1C13E6E85E00B514F3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		66A03C4013E6E8D100B514F3 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIBlocks.h; sourceTree = "<group>"; };
 		66A03C4113E6E8D100B514F3 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICommonMetrics.h; sourceTree = "<group>"; };
 		66A03C4213E6E8D100B514F3 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICommonMetrics.m; sourceTree = "<group>"; };
@@ -565,6 +643,13 @@
 		66A03DF913E6FD3000B514F3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		66A03DFB13E6FE1700B514F3 /* AUTHORS */ = {isa = PBXFileReference; lastKnownFileType = text; name = AUTHORS; path = ../AUTHORS; sourceTree = "<group>"; };
 		66A03DFC13E6FE1800B514F3 /* DONORS */ = {isa = PBXFileReference; lastKnownFileType = text; name = DONORS; path = ../DONORS; sourceTree = "<group>"; };
+		66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+NIStyleable.h"; path = "css/src/UIButton+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
+		66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+NIStyleable.m"; path = "css/src/UIButton+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
+		66B10906144D4C15004576D1 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = css/deps; sourceTree = SOURCE_ROOT; };
+		66C3A6A1143D61130048542F /* libNimbusCss.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCss.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		66C3A6AE143D61140048542F /* NimbusCssTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCssTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66FCC632144FB42E0029F1A6 /* includee.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = includee.css; path = css/unittests/includee.css; sourceTree = SOURCE_ROOT; };
+		66FCC633144FB42E0029F1A6 /* includer.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = includer.css; path = css/unittests/includer.css; sourceTree = SOURCE_ROOT; };
 		66FE7D5613FB550A0061B987 /* ExampleRuntimeDebugging.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleRuntimeDebugging.m; sourceTree = "<group>"; };
 		66FE7D5E13FB83620061B987 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = models/deps; sourceTree = SOURCE_ROOT; };
 		66FE7D6013FB83620061B987 /* ExampleStaticTableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleStaticTableModel.m; sourceTree = "<group>"; };
@@ -606,9 +691,7 @@
 			files = (
 				6623EB721402EDB100E0E61A /* libNimbusCore.a in Frameworks */,
 				6661BBDA13F1A3BB00D14F92 /* SenTestingKit.framework in Frameworks */,
-				6661BBDB13F1A3BB00D14F92 /* UIKit.framework in Frameworks */,
 				6661BBDC13F1A3BB00D14F92 /* Foundation.framework in Frameworks */,
-				6661BBDD13F1A3BB00D14F92 /* CoreGraphics.framework in Frameworks */,
 				6661BBE013F1A3BB00D14F92 /* libNimbusModels.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -626,9 +709,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6675723713E765BF0076F555 /* SenTestingKit.framework in Frameworks */,
-				6675723813E765BF0076F555 /* UIKit.framework in Frameworks */,
 				6675723913E765BF0076F555 /* Foundation.framework in Frameworks */,
-				6675723A13E765BF0076F555 /* CoreGraphics.framework in Frameworks */,
 				6675723D13E765BF0076F555 /* libNimbusOverview.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,9 +727,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6675728813E769150076F555 /* SenTestingKit.framework in Frameworks */,
-				6675728913E769150076F555 /* UIKit.framework in Frameworks */,
 				6675728A13E769150076F555 /* Foundation.framework in Frameworks */,
-				6675728B13E769150076F555 /* CoreGraphics.framework in Frameworks */,
 				6675728E13E769150076F555 /* libNimbusPhotos.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -666,9 +745,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				667572CB13E76F460076F555 /* SenTestingKit.framework in Frameworks */,
-				667572CC13E76F460076F555 /* UIKit.framework in Frameworks */,
 				667572CD13E76F460076F555 /* Foundation.framework in Frameworks */,
-				667572CE13E76F460076F555 /* CoreGraphics.framework in Frameworks */,
 				667572D113E76F460076F555 /* libNimbusProcessors.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -694,9 +771,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6675732013E771380076F555 /* SenTestingKit.framework in Frameworks */,
-				6675732113E771380076F555 /* UIKit.framework in Frameworks */,
 				6675732213E771380076F555 /* Foundation.framework in Frameworks */,
-				6675732313E771380076F555 /* CoreGraphics.framework in Frameworks */,
 				6675732613E771380076F555 /* libNimbusInterapp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -713,10 +788,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66B1090D144D53CC004576D1 /* CoreGraphics.framework in Frameworks */,
+				66B1090C144D53C3004576D1 /* UIKit.framework in Frameworks */,
 				66A03C1B13E6E85E00B514F3 /* SenTestingKit.framework in Frameworks */,
-				66A03C1D13E6E85E00B514F3 /* UIKit.framework in Frameworks */,
 				66A03C1E13E6E85E00B514F3 /* Foundation.framework in Frameworks */,
-				66A03C2013E6E85E00B514F3 /* CoreGraphics.framework in Frameworks */,
 				66A03C2313E6E85E00B514F3 /* libNimbusCore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -734,9 +809,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66A03CCD13E6F0EE00B514F3 /* SenTestingKit.framework in Frameworks */,
-				66A03CCE13E6F0EE00B514F3 /* UIKit.framework in Frameworks */,
 				66A03CCF13E6F0EE00B514F3 /* Foundation.framework in Frameworks */,
-				66A03CD013E6F0EE00B514F3 /* CoreGraphics.framework in Frameworks */,
 				66A03CD313E6F0EE00B514F3 /* libNimbusLauncher.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -754,9 +827,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66A03D3513E6F97500B514F3 /* SenTestingKit.framework in Frameworks */,
-				66A03D3613E6F97500B514F3 /* UIKit.framework in Frameworks */,
 				66A03D3713E6F97500B514F3 /* Foundation.framework in Frameworks */,
-				66A03D3813E6F97500B514F3 /* CoreGraphics.framework in Frameworks */,
 				66A03D3B13E6F97500B514F3 /* libNimbusNetworkImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -766,6 +837,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				66A03D6913E6FA9700B514F3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66C3A69E143D61130048542F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C3A6A2143D61130048542F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66C3A6AA143D61140048542F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66832D04143E39DF003E413C /* UIKit.framework in Frameworks */,
+				66832D03143E38F0003E413C /* CoreGraphics.framework in Frameworks */,
+				66832CCC143D7AA4003E413C /* libNimbusCore.a in Frameworks */,
+				66C3A6AF143D61140048542F /* SenTestingKit.framework in Frameworks */,
+				66C3A6B1143D61140048542F /* Foundation.framework in Frameworks */,
+				66C3A6B4143D61140048542F /* libNimbusCss.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -782,9 +874,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB3A231713FD4B8E00614220 /* SenTestingKit.framework in Frameworks */,
-				DB3A231813FD4B8E00614220 /* UIKit.framework in Frameworks */,
 				DB3A231913FD4B8E00614220 /* Foundation.framework in Frameworks */,
-				DB3A231A13FD4B8E00614220 /* CoreGraphics.framework in Frameworks */,
 				DB3A231D13FD4B8E00614220 /* libNimbusAttributedLabel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -802,9 +892,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB84BD8213EFDDCA00DACCFE /* SenTestingKit.framework in Frameworks */,
-				DB84BD8313EFDDCA00DACCFE /* UIKit.framework in Frameworks */,
 				DB84BD8413EFDDCA00DACCFE /* Foundation.framework in Frameworks */,
-				DB84BD8513EFDDCA00DACCFE /* CoreGraphics.framework in Frameworks */,
 				DB84BD8813EFDDCA00DACCFE /* libNimbusWebController.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -992,6 +1080,102 @@
 			path = interapp/unittests;
 			sourceTree = SOURCE_ROOT;
 		};
+		66832C93143D63B4003E413C /* src */ = {
+			isa = PBXGroup;
+			children = (
+				66832CB7143D681B003E413C /* NimbusCSS.h */,
+				66832CC2143D7898003E413C /* NICSSParser.h */,
+				66832CC3143D7898003E413C /* NICSSParser.m */,
+				66832D05143E3A30003E413C /* NICSSRuleset.h */,
+				66832D06143E3A30003E413C /* NICSSRuleset.m */,
+				66832CFA143E2C0D003E413C /* NIDOM.h */,
+				66832CFB143E2C0D003E413C /* NIDOM.m */,
+				66832D09143E3B55003E413C /* NIStyleable.h */,
+				66832CF4143E0C35003E413C /* NIStylesheet.h */,
+				66832CF5143E0C35003E413C /* NIStylesheet.m */,
+				668ECDC51455C17100455266 /* NIStylesheetCache.h */,
+				668ECDC61455C17100455266 /* NIStylesheetCache.m */,
+				668ECDD014565AB800455266 /* Chameleon */,
+				66832D0C143E3C1C003E413C /* Styleable UIKit Views */,
+				66832D0B143E3C0E003E413C /* Tokenizer */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		66832C95143D63BF003E413C /* unittests */ = {
+			isa = PBXGroup;
+			children = (
+				66832CC8143D797B003E413C /* resources */,
+				66832CC0143D7883003E413C /* NICSSParserTests.m */,
+				66832CF8143E1C0C003E413C /* NIStylesheetTests.m */,
+			);
+			name = unittests;
+			sourceTree = "<group>";
+		};
+		66832C96143D63C6003E413C /* grammar */ = {
+			isa = PBXGroup;
+			children = (
+				66832CA1143D64CF003E413C /* generate */,
+				66832CA8143D6642003E413C /* CSSTokenizerPrefix */,
+				66832CA9143D6642003E413C /* CSSTokens.cpp */,
+				66832CAA143D6642003E413C /* CSSTokens.h */,
+				66832C98143D63D2003E413C /* css.grammar */,
+			);
+			name = grammar;
+			sourceTree = "<group>";
+		};
+		66832CC8143D797B003E413C /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				66832CFE143E3294003E413C /* UILabel.css */,
+				66832CD1143D833B003E413C /* comments.css */,
+				66832CCF143D7B38003E413C /* empty.css */,
+				66832CCD143D7B2C003E413C /* empty-rulesets.css */,
+				66832CD7143E062C003E413C /* malformed.css */,
+				66832CD3143D8989003E413C /* rulesets.css */,
+				66832CD5143D8AB7003E413C /* rulesets-overrides.css */,
+				66FCC632144FB42E0029F1A6 /* includee.css */,
+				66FCC633144FB42E0029F1A6 /* includer.css */,
+				66832CC9143D7994003E413C /* NimbusCSSTests-Info.plist */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
+		66832D0B143E3C0E003E413C /* Tokenizer */ = {
+			isa = PBXGroup;
+			children = (
+				66832CEE143E0AD9003E413C /* CSSTokenizer.m */,
+				66832CEF143E0AD9003E413C /* CSSTokens.h */,
+				66832CF0143E0AD9003E413C /* CSSTokens.m */,
+			);
+			name = Tokenizer;
+			sourceTree = "<group>";
+		};
+		66832D0C143E3C1C003E413C /* Styleable UIKit Views */ = {
+			isa = PBXGroup;
+			children = (
+				66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */,
+				66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */,
+				66832DA014421B4A003E413C /* UINavigationBar+NIStyleable.h */,
+				66832DA114421B4A003E413C /* UINavigationBar+NIStyleable.m */,
+				66832D0D143E3C32003E413C /* UILabel+NIStyleable.h */,
+				66832D0E143E3C32003E413C /* UILabel+NIStyleable.m */,
+				66832D1114416368003E413C /* UIView+NIStyleable.h */,
+				66832D1214416368003E413C /* UIView+NIStyleable.m */,
+			);
+			name = "Styleable UIKit Views";
+			sourceTree = "<group>";
+		};
+		668ECDD014565AB800455266 /* Chameleon */ = {
+			isa = PBXGroup;
+			children = (
+				668ECDCF14565AB200455266 /* README.mdown */,
+				66832E0414435071003E413C /* NIChameleonObserver.h */,
+				66832E0514435071003E413C /* NIChameleonObserver.m */,
+			);
+			name = Chameleon;
+			sourceTree = "<group>";
+		};
 		66A03BFC13E6E84800B514F3 = {
 			isa = PBXGroup;
 			children = (
@@ -1003,6 +1187,7 @@
 				6661BB0813F0B37000D14F92 /* LICENSE */,
 				6661BB0A13F0B38D00D14F92 /* NOTICE */,
 				66A03C0E13E6E85E00B514F3 /* NimbusCore */,
+				66C3A6A3143D61130048542F /* NimbusCss */,
 				6675731413E771380076F555 /* NimbusInterapp */,
 				66A03CC113E6F0ED00B514F3 /* NimbusLauncher */,
 				66A03D2913E6F97500B514F3 /* NimbusNetworkImage */,
@@ -1043,6 +1228,8 @@
 				6661BBD913F1A3BB00D14F92 /* NimbusModelsTests.octest */,
 				DB3A230913FD4B8E00614220 /* libNimbusAttributedLabel.a */,
 				DB3A231613FD4B8E00614220 /* NimbusAttributedLabelTests.octest */,
+				66C3A6A1143D61130048542F /* libNimbusCss.a */,
+				66C3A6AE143D61140048542F /* NimbusCssTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1050,6 +1237,8 @@
 		66A03C0B13E6E85E00B514F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66832D02143E38F0003E413C /* CoreGraphics.framework */,
+				66832D00143E38E6003E413C /* UIKit.framework */,
 				669E98AD13E9EA1F00D99140 /* libz.dylib */,
 				66A03DF913E6FD3000B514F3 /* SystemConfiguration.framework */,
 				66A03DF713E6FD2700B514F3 /* CFNetwork.framework */,
@@ -1057,8 +1246,6 @@
 				66A03DF313E6FD0E00B514F3 /* libz.dylib */,
 				66A03C0C13E6E85E00B514F3 /* Foundation.framework */,
 				66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */,
-				66A03C1C13E6E85E00B514F3 /* UIKit.framework */,
-				66A03C1F13E6E85E00B514F3 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1290,6 +1477,17 @@
 				66A03D9313E6FAC500B514F3 /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		66C3A6A3143D61130048542F /* NimbusCss */ = {
+			isa = PBXGroup;
+			children = (
+				66B10906144D4C15004576D1 /* deps */,
+				66832C93143D63B4003E413C /* src */,
+				66832C95143D63BF003E413C /* unittests */,
+				66832C96143D63C6003E413C /* grammar */,
+			);
+			path = NimbusCss;
 			sourceTree = "<group>";
 		};
 		66FE7D5513FB550A0061B987 /* examples */ = {
@@ -1534,6 +1732,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66C3A69F143D61130048542F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66832CB9143D681B003E413C /* NimbusCSS.h in Headers */,
+				66832CC4143D7898003E413C /* NICSSParser.h in Headers */,
+				66832CF2143E0AD9003E413C /* CSSTokens.h in Headers */,
+				66832CF6143E0C35003E413C /* NIStylesheet.h in Headers */,
+				66832CFC143E2C0D003E413C /* NIDOM.h in Headers */,
+				66832D07143E3A30003E413C /* NICSSRuleset.h in Headers */,
+				66832D0A143E3B55003E413C /* NIStyleable.h in Headers */,
+				66832D0F143E3C32003E413C /* UILabel+NIStyleable.h in Headers */,
+				66832D1314416368003E413C /* UIView+NIStyleable.h in Headers */,
+				66832DA214421B4A003E413C /* UINavigationBar+NIStyleable.h in Headers */,
+				66832E0614435071003E413C /* NIChameleonObserver.h in Headers */,
+				66B10900144C931F004576D1 /* UIButton+NIStyleable.h in Headers */,
+				668ECDC71455C17200455266 /* NIStylesheetCache.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DB3A230713FD4B8E00614220 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1554,6 +1772,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
+
+/* Begin PBXLegacyTarget section */
+		66832C9D143D649D003E413C /* Nimbus CSS Grammar */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 66832C9E143D649D003E413C /* Build configuration list for PBXLegacyTarget "Nimbus CSS Grammar" */;
+			buildPhases = (
+			);
+			buildToolPath = ./generate;
+			buildWorkingDirectory = css/grammar;
+			dependencies = (
+			);
+			name = "Nimbus CSS Grammar";
+			passBuildSettingsInEnvironment = 1;
+			productName = "Nimbus CSS Grammar";
+		};
+/* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
 		6661BBCB13F1A3BB00D14F92 /* NimbusModels */ = {
@@ -1878,6 +2113,43 @@
 			productReference = 66A03D6813E6FA9700B514F3 /* libASIHTTPRequest.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		66C3A6A0143D61130048542F /* NimbusCss */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66C3A6BE143D61140048542F /* Build configuration list for PBXNativeTarget "NimbusCss" */;
+			buildPhases = (
+				66C3A69D143D61130048542F /* Sources */,
+				66C3A69E143D61130048542F /* Frameworks */,
+				66C3A69F143D61130048542F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NimbusCss;
+			productName = NimbusCss;
+			productReference = 66C3A6A1143D61130048542F /* libNimbusCss.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		66C3A6AD143D61140048542F /* NimbusCssTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66C3A6C1143D61140048542F /* Build configuration list for PBXNativeTarget "NimbusCssTests" */;
+			buildPhases = (
+				66C3A6A9143D61140048542F /* Sources */,
+				66C3A6AA143D61140048542F /* Frameworks */,
+				66C3A6AB143D61140048542F /* Resources */,
+				66C3A6AC143D61140048542F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66832CCB143D7A92003E413C /* PBXTargetDependency */,
+				66C3A6B3143D61140048542F /* PBXTargetDependency */,
+			);
+			name = NimbusCssTests;
+			productName = NimbusCssTests;
+			productReference = 66C3A6AE143D61140048542F /* NimbusCssTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		DB3A230813FD4B8E00614220 /* NimbusAttributedLabel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB3A232C13FD4B8F00614220 /* Build configuration list for PBXNativeTarget "NimbusAttributedLabel" */;
@@ -1973,6 +2245,9 @@
 			targets = (
 				66A03C0813E6E85E00B514F3 /* NimbusCore */,
 				66A03C1813E6E85E00B514F3 /* NimbusCoreTests */,
+				66C3A6A0143D61130048542F /* NimbusCss */,
+				66C3A6AD143D61140048542F /* NimbusCssTests */,
+				66832C9D143D649D003E413C /* Nimbus CSS Grammar */,
 				6675731113E771380076F555 /* NimbusInterapp */,
 				6675731E13E771380076F555 /* NimbusInterappTests */,
 				66A03CBE13E6F0ED00B514F3 /* NimbusLauncher */,
@@ -2053,6 +2328,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66C3A6AB143D61140048542F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66832CCE143D7B2C003E413C /* empty-rulesets.css in Resources */,
+				66832CD0143D7B38003E413C /* empty.css in Resources */,
+				66832CD2143D833B003E413C /* comments.css in Resources */,
+				66832CD4143D8989003E413C /* rulesets.css in Resources */,
+				66832CD6143D8AB7003E413C /* rulesets-overrides.css in Resources */,
+				66832CD8143E062C003E413C /* malformed.css in Resources */,
+				66832CFF143E3294003E413C /* UILabel.css in Resources */,
+				66FCC634144FB42E0029F1A6 /* includee.css in Resources */,
+				66FCC635144FB42E0029F1A6 /* includer.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2167,6 +2458,19 @@
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		66A03D3213E6F97500B514F3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		66C3A6AC143D61140048542F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2397,6 +2701,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66C3A69D143D61130048542F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66832CC5143D7898003E413C /* NICSSParser.m in Sources */,
+				66832CF1143E0AD9003E413C /* CSSTokenizer.m in Sources */,
+				66832CF3143E0AD9003E413C /* CSSTokens.m in Sources */,
+				66832CF7143E0C35003E413C /* NIStylesheet.m in Sources */,
+				66832CFD143E2C0D003E413C /* NIDOM.m in Sources */,
+				66832D08143E3A30003E413C /* NICSSRuleset.m in Sources */,
+				66832D10143E3C32003E413C /* UILabel+NIStyleable.m in Sources */,
+				66832D1414416368003E413C /* UIView+NIStyleable.m in Sources */,
+				66832DA314421B4A003E413C /* UINavigationBar+NIStyleable.m in Sources */,
+				66832E0714435071003E413C /* NIChameleonObserver.m in Sources */,
+				66B10901144C931F004576D1 /* UIButton+NIStyleable.m in Sources */,
+				668ECDC81455C17200455266 /* NIStylesheetCache.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66C3A6A9143D61140048542F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66832CC1143D7883003E413C /* NICSSParserTests.m in Sources */,
+				66832CF9143E1C0C003E413C /* NIStylesheetTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DB3A230513FD4B8E00614220 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2486,6 +2818,11 @@
 			target = 6675731113E771380076F555 /* NimbusInterapp */;
 			targetProxy = 6675734013E771D90076F555 /* PBXContainerItemProxy */;
 		};
+		66832CCB143D7A92003E413C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66A03C0813E6E85E00B514F3 /* NimbusCore */;
+			targetProxy = 66832CCA143D7A92003E413C /* PBXContainerItemProxy */;
+		};
 		66A03C2213E6E85E00B514F3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 66A03C0813E6E85E00B514F3 /* NimbusCore */;
@@ -2520,6 +2857,11 @@
 			isa = PBXTargetDependency;
 			target = 66A03D6713E6FA9700B514F3 /* ASIHTTPRequest */;
 			targetProxy = 66A03DEB13E6FAD400B514F3 /* PBXContainerItemProxy */;
+		};
+		66C3A6B3143D61140048542F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66C3A6A0143D61130048542F /* NimbusCss */;
+			targetProxy = 66C3A6B2143D61140048542F /* PBXContainerItemProxy */;
 		};
 		DB3A231C13FD4B8E00614220 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3063,6 +3405,53 @@
 			};
 			name = Release;
 		};
+		66832C9F143D649D003E413C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		66832CA0143D649D003E413C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		66A03C0313E6E84800B514F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3451,6 +3840,104 @@
 			};
 			name = Release;
 		};
+		66C3A6BF143D61140048542F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/NimbusCss.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		66C3A6C0143D61140048542F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/NimbusCss.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		66C3A6C2143D61140048542F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "css/unittests/NimbusCSSTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		66C3A6C3143D61140048542F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "css/unittests/NimbusCSSTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		DB3A232813FD4B8E00614220 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3751,6 +4238,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		66832C9E143D649D003E413C /* Build configuration list for PBXLegacyTarget "Nimbus CSS Grammar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66832C9F143D649D003E413C /* Debug */,
+				66832CA0143D649D003E413C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		66A03C0113E6E84800B514F3 /* Build configuration list for PBXProject "Nimbus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -3828,6 +4324,24 @@
 			buildConfigurations = (
 				66A03D7113E6FA9800B514F3 /* Debug */,
 				66A03D7213E6FA9800B514F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66C3A6BE143D61140048542F /* Build configuration list for PBXNativeTarget "NimbusCss" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66C3A6BF143D61140048542F /* Debug */,
+				66C3A6C0143D61140048542F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66C3A6C1143D61140048542F /* Build configuration list for PBXNativeTarget "NimbusCssTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66C3A6C2143D61140048542F /* Debug */,
+				66C3A6C3143D61140048542F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

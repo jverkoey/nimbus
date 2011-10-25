@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# Build a CSS grammar for Nimbus using flex.
+# http://flex.sourceforge.net/
+#
+# Written by Jeff Verkoeyen for the Nimbus project.
+# http://jverkoey.github.com/nimbus/
+
+flex --prefix=css --nounput css.grammar
+
+cat CSSTokenizerPrefix > CSSTokenizer.cpp
+cat lex.css.c >> CSSTokenizer.cpp
+
+rm lex.css.c
+
+mv CSSTokenizer.cpp ../src/CSSTokenizer.m
+cp CSSTokens.cpp ../src/CSSTokens.m
+cp CSSTokens.h ../src/CSSTokens.h

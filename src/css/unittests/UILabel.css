@@ -1,0 +1,33 @@
+/**
+ * This file styles a UILabel view as much as it possibly can.
+ */
+
+/** General UIView properties */
+UILabel {
+  background-color: red; /* tested */
+  border: 1px solid blue; /* tested */
+  border-color: orange; /* tested */
+  border-width: 5px; /* tested */
+  border-radius: 10px; /* tested */
+  opacity: 0.5; /* tested */
+}
+
+/** UILabel-specific */
+UILabel {
+  color: red; /* tested */
+  font: 13 Helvetica; /* tested */
+  font-style: italic; /* tested */
+  font-weight: bold; /* tested */
+  text-align: right; /* tested */
+  text-shadow: green 20 -30; /* tested */
+  -ios-line-break-mode: tail-truncate; /* tested */
+  -ios-number-of-lines: 5; /* tested */
+  -ios-minimum-font-size: 5; /* tested */
+  -ios-adjusts-font-size: true; /* tested */
+  -ios-baseline-adjustment: align-centers; /* tested */
+}
+
+/** For when the UILabel is in a UITableViewCell and is tapped. */
+UILabel:active {
+  color: blue;
+}
