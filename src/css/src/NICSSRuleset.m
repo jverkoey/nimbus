@@ -58,23 +58,8 @@ static NSDictionary* sColorTable = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)clearCache {
-  NI_RELEASE_SAFELY(_textColor);
-  NI_RELEASE_SAFELY(_font);
-  NI_RELEASE_SAFELY(_textShadowColor);
-  NI_RELEASE_SAFELY(_backgroundColor);
-  NI_RELEASE_SAFELY(_borderColor);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  NI_RELEASE_SAFELY(_ruleset);
-
-  [self clearCache];
-
-  [super dealloc];
 }
 
 
@@ -100,7 +85,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addEntriesFromDictionary:(NSDictionary *)dictionary {
-  NSMutableArray* order = [[[_ruleset objectForKey:kPropertyOrderKey] retain] autorelease];
+  NSMutableArray* order = [_ruleset objectForKey:kPropertyOrderKey];
   [_ruleset addEntriesFromDictionary:dictionary];
 
   if (nil != order) {
@@ -120,8 +105,8 @@ static NSDictionary* sColorTable = nil;
 - (UIColor *)textColor {
   NIDASSERT([self hasTextColor]);
   if (!_is.cached.TextColor) {
-    _textColor = [[[self class] colorFromCssValues:[_ruleset objectForKey:kTextColorKey]
-                            numberOfConsumedTokens:nil] retain];
+    _textColor = [[self class] colorFromCssValues:[_ruleset objectForKey:kTextColorKey]
+                           numberOfConsumedTokens:nil];
     _is.cached.TextColor = YES;
   }
   return _textColor;
@@ -253,8 +238,7 @@ static NSDictionary* sColorTable = nil;
     font = [UIFont systemFontOfSize:fontSize];
   }
 
-  [_font release];
-  _font = [font retain];
+  _font = font;
   _is.cached.Font = YES;
 
   return font;
@@ -272,7 +256,7 @@ static NSDictionary* sColorTable = nil;
   NIDASSERT([self hasTextShadowColor]);
   if (!_is.cached.TextShadowColor) {
     NSArray* values = [_ruleset objectForKey:kTextShadowKey];
-    _textShadowColor = [[[self class] colorFromCssValues:values numberOfConsumedTokens:nil] retain];
+    _textShadowColor = [[self class] colorFromCssValues:values numberOfConsumedTokens:nil];
     _is.cached.TextShadowColor = YES;
   }
   return _textShadowColor;
@@ -452,8 +436,8 @@ static NSDictionary* sColorTable = nil;
 - (UIColor *)backgroundColor {
   NIDASSERT([self hasBackgroundColor]);
   if (!_is.cached.BackgroundColor) {
-    _backgroundColor = [[[self class] colorFromCssValues:[_ruleset objectForKey:kBackgroundColorKey]
-                                  numberOfConsumedTokens:nil] retain];
+    _backgroundColor = [[self class] colorFromCssValues:[_ruleset objectForKey:kBackgroundColorKey]
+                                 numberOfConsumedTokens:nil];
     _is.cached.BackgroundColor = YES;
   }
   return _backgroundColor;
@@ -489,7 +473,7 @@ static NSDictionary* sColorTable = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cacheBorderValues {
   _borderWidth = 0;
-  NI_RELEASE_SAFELY(_borderColor);
+  _borderColor = nil;
 
   NSArray* values = nil;
 
@@ -503,8 +487,8 @@ static NSDictionary* sColorTable = nil;
   for (NSString* name in [order reverseObjectEnumerator]) {
     if (!hasSetBorderColor && [name isEqualToString:kBorderColorKey]) {
       values = [_ruleset objectForKey:name];
-      _borderColor = [[[self class] colorFromCssValues:values
-                                numberOfConsumedTokens:nil] retain];
+      _borderColor = [[self class] colorFromCssValues:values
+                               numberOfConsumedTokens:nil];
       hasSetBorderColor = YES;
 
     } else if (!hasSetBorderWidth && [name isEqualToString:kBorderWidthKey]) {
@@ -523,8 +507,8 @@ static NSDictionary* sColorTable = nil;
       }
       if ([values count] >= 3) {
         // Border color
-        _borderColor = [[[self class] colorFromCssValues:[values subarrayWithRange:NSMakeRange(2, [values count] - 2)]
-                                  numberOfConsumedTokens:nil] retain];
+        _borderColor = [[self class] colorFromCssValues:[values subarrayWithRange:NSMakeRange(2, [values count] - 2)]
+                                 numberOfConsumedTokens:nil];
         hasSetBorderColor = YES;
       }
     }
@@ -575,8 +559,8 @@ static NSDictionary* sColorTable = nil;
 - (UIColor *)tintColor {
   NIDASSERT([self hasTintColor]);
   if (!_is.cached.TintColor) {
-    _tintColor = [[[self class] colorFromCssValues:[_ruleset objectForKey:kTintColorKey]
-                            numberOfConsumedTokens:nil] retain];
+    _tintColor = [[self class] colorFromCssValues:[_ruleset objectForKey:kTintColorKey]
+                           numberOfConsumedTokens:nil];
     _is.cached.TintColor = YES;
   }
   return _tintColor;
@@ -588,12 +572,18 @@ static NSDictionary* sColorTable = nil;
 #pragma mark - NSNotifications
 
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reduceMemory {
-  NI_RELEASE_SAFELY(sColorTable);
-  
-  [self clearCache];
-  
+  sColorTable = nil;
+
+  _textColor = nil;
+  _font = nil;
+  _textShadowColor = nil;
+  _backgroundColor = nil;
+  _borderColor = nil;
+  _tintColor = nil;
+
   memset(&_is, 0, sizeof(_is));
 }
 
@@ -815,7 +805,6 @@ static NSDictionary* sColorTable = nil;
     [colorTable setObject:[UIColor clearColor] forKey:@"clear"];
 
     sColorTable = [colorTable copy];
-    NI_RELEASE_SAFELY(colorTable);
   }
   return sColorTable;
 }
