@@ -99,8 +99,6 @@ int cssConsume(char* text, int token) {
 
         // Treat CSSIDENT as a new property if we're not already defining one.
         if (CSSIDENT == token && !_state.Flags.InsideProperty) {
-          _currentPropertyName = nil;
-
           // Properties are case insensitive.
           _currentPropertyName = lowercaseTextAsString;
           
@@ -204,7 +202,6 @@ int cssConsume(char* text, int token) {
             _state.Flags.InsideRuleset = YES;
             _state.Flags.InsideFunction = NO;
 
-            _mutatingRuleset = nil;
             _mutatingRuleset = [[NSMutableDictionary alloc] init];
             [_mutatingRuleset setObject:[NSMutableArray array] forKey:kPropertyOrderKey];
 
