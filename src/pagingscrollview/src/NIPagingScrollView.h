@@ -32,7 +32,9 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 @protocol NIPagingScrollViewPage;
 
 /**
- * A paged scroll view that shows a collection of pages.
+ * A paged scroll view that shows a series of pages.
+ *
+ *      @ingroup NimbusPagingScrollView
  */
 @interface NIPagingScrollView : UIView <UIScrollViewDelegate> {
 @private

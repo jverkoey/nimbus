@@ -445,16 +445,20 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
   // Cache the number of pages.
   _numberOfPages = [_dataSource numberOfPagesInPagingScrollView:self];
-  _centerPageIndex = boundi(_centerPageIndex, 0, _numberOfPages - 1);
-
   self.pagingScrollView.frame = [self frameForPagingScrollView];
-
-  // The content size is calculated based on the number of pages and the scroll view frame.
-  _isModifyingContentOffset = YES;
   self.pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
-  CGPoint offset = [self frameForPageAtIndex:_centerPageIndex].origin;
-  self.pagingScrollView.contentOffset = offset;
-  _isModifyingContentOffset = NO;
+
+  NSInteger oldCenterPageIndex = _centerPageIndex;
+  if (oldCenterPageIndex >= 0) {
+    _centerPageIndex = boundi(_centerPageIndex, 0, _numberOfPages - 1);
+
+    // The content size is calculated based on the number of pages and the scroll view frame.
+    _isModifyingContentOffset = YES;
+    CGPoint offset = [self frameForPageAtIndex:_centerPageIndex].origin;
+    offset.x -= self.pageHorizontalMargin;
+    self.pagingScrollView.contentOffset = offset;
+    _isModifyingContentOffset = NO;
+  }
 
   // Begin requesting the page information from the data source.
   [self updateVisiblePages];

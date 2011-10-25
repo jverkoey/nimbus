@@ -19,6 +19,11 @@
 @class NIPagingScrollView;
 @protocol NIPagingScrollViewPage;
 
+/**
+ * The data source for NIPagingScrollView.
+ *
+ *      @ingroup NimbusPagingScrollView
+ */
 @protocol NIPagingScrollViewDataSource <NSObject>
 @required
 

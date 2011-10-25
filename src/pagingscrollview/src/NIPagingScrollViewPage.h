@@ -16,6 +16,14 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ * The protocol that a paging scroll view page should implement.
+ *
+ * By providing a protocol instead of a UIView base class we allow more flexibility when
+ * building pages.
+ *
+ *      @ingroup NimbusPagingScrollView
+ */
 @protocol NIPagingScrollViewPage <NSObject>
 @required
 

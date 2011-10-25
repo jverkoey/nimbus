@@ -18,6 +18,11 @@
 
 @class NIPagingScrollView;
 
+/**
+ * The delegate for NIPagingScrollView.
+ *
+ *      @ingroup NimbusPagingScrollView
+ */
 @protocol NIPagingScrollViewDelegate <UIScrollViewDelegate>
 @optional
 
@@ -27,7 +32,6 @@
  * The user is scrolling between two photos.
  */
 - (void)pagingScrollViewDidScroll:(NIPagingScrollView *)pagingScrollView;
-
 
 #pragma mark Changing Pages /** @name [NIPagingScrollViewDelegate] Changing Pages */
 
