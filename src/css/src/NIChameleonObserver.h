@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NISimpleRequest.h"
+#import "NimbusCore.h"
 #import "NICSSParser.h"
 
 @class NIStylesheet;
@@ -31,12 +31,16 @@
  * a stylesheet change has been detected, the new stylesheet is retrieved from the server
  * and a notification is fired via NIStylesheetDidChangeNotification after the stylesheet
  * has been reloaded.
+ *
+ * Thanks to the use of NIOperations, the stylesheet loading and processing is accomplished
+ * on a separate thread. This means that the UI will only be notified of stylesheet changes
+ * once the request thread has successfully loaded and processed the changed stylesheet.
  */
-@interface NIChameleonObserver : NSObject <NISimpleRequestDelegate, NICSSParserDelegate> {
+@interface NIChameleonObserver : NSObject <NIOperationDelegate, NICSSParserDelegate> {
 @private
   NIStylesheetCache* _stylesheetCache;
   NSMutableArray* _stylesheetPaths;
-  NSMutableArray* _activeRequests;
+  NSOperationQueue* _operations;
   NSString* _host;
   NSInteger _retryCount;
 }

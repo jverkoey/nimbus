@@ -36,13 +36,10 @@ static const NSInteger kMaxNumberOfRetries = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  for (NISimpleRequest* request in _activeRequests) {
-    [request cancel];
-    request.delegate = nil;
-  }
+  [_operations cancelAllOperations];
   NI_RELEASE_SAFELY(_stylesheetCache);
   NI_RELEASE_SAFELY(_stylesheetPaths);
-  NI_RELEASE_SAFELY(_activeRequests);
+  NI_RELEASE_SAFELY(_operations);
   NI_RELEASE_SAFELY(_host);
 
   [super dealloc];
@@ -56,7 +53,7 @@ static const NSInteger kMaxNumberOfRetries = 3;
     NIDASSERT(nil != stylesheetCache);
     _stylesheetCache = [stylesheetCache retain];
     _stylesheetPaths = [[NSMutableArray alloc] init];
-    _activeRequests = [[NSMutableArray alloc] init];
+    _operations = [[NSOperationQueue alloc] init];
 
     if ([host hasSuffix:@"/"]) {
       _host = [host copy];
@@ -90,12 +87,10 @@ static const NSInteger kMaxNumberOfRetries = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)downloadStylesheetWithFilename:(NSString *)path {
-  NSURL* fileURL = [NSURL URLWithString:[_host stringByAppendingString:path]];
-  NISimpleRequest* request = [NISimpleRequest requestWithURL:fileURL
-                                             timeoutInterval:kTimeoutInterval];
-  request.delegate = self;
-  [_activeRequests addObject:request];
-  [request send];
+  NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:path]];
+  NINetworkRequestOperation* op = [[[NINetworkRequestOperation alloc] initWithURL:url] autorelease];
+  op.delegate = self;
+  [_operations addOperation:op];
 }
 
 
@@ -107,26 +102,57 @@ static const NSInteger kMaxNumberOfRetries = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - NISimpleRequestDelegate
+#pragma mark - NIOperationDelegate
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestDidFail:(NISimpleRequest *)request withError:(NSError *)error {
+- (void)operationDidFail:(NSOperation *)operation withError:(NSError *)error {
   if (_retryCount < kMaxNumberOfRetries) {
     ++_retryCount;
 
     [self watchSkinChanges];
   }
-
-  [_activeRequests removeObject:request];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestDidFinish:(NISimpleRequest *)request withData:(NSData *)data {
-  NSString* stringData = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]
-                          autorelease];
-  if ([request.url.path isEqualToString:@"/watch"]) {
+- (void)operationWillFinish:(NINetworkRequestOperation *)operation {
+  if (![operation.url.path isEqualToString:@"/watch"]) {
+    NSMutableArray* changedStylesheets = [NSMutableArray array];
+    NSArray* pathParts = [[operation.url absoluteString] pathComponents];
+    NSString* path = [[pathParts subarrayWithRange:NSMakeRange(2, [pathParts count] - 2)]
+                      componentsJoinedByString:@"/"];
+    NSString* rootPath = NIPathForDocumentsResource(nil);
+    NSString* hashedPath = [self pathFromPath:path];
+    NSString* diskPath = [rootPath stringByAppendingPathComponent:hashedPath];
+    [operation.data writeToFile:diskPath atomically:YES];
+
+    NIStylesheet* stylesheet = [_stylesheetCache stylesheetWithPath:path loadFromDisk:NO];
+    if ([stylesheet loadFromPath:path pathPrefix:rootPath delegate:self]) {
+      [changedStylesheets addObject:stylesheet];
+    }
+    
+    for (NSString* iteratingPath in _stylesheetPaths) {
+      stylesheet = [_stylesheetCache stylesheetWithPath:iteratingPath loadFromDisk:NO];
+      if ([stylesheet.dependencies containsObject:path]) {
+        // This stylesheet has the changed stylesheet as a dependency so let's refresh it.
+        if ([stylesheet loadFromPath:iteratingPath pathPrefix:rootPath delegate:self]) {
+          [changedStylesheets addObject:stylesheet];
+        }
+      }
+    }
+
+    operation.processedObject = changedStylesheets;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)operationDidFinish:(NINetworkRequestOperation *)operation {
+  if ([operation.url.path isEqualToString:@"/watch"]) {
+    NSString* stringData = [[[NSString alloc] initWithData:operation.data
+                                                  encoding:NSUTF8StringEncoding] autorelease];
+
     NSArray* files = [stringData componentsSeparatedByString:@"\n"];
     for (NSString* filename in files) {
       [self downloadStylesheetWithFilename:filename];
@@ -136,35 +162,13 @@ static const NSInteger kMaxNumberOfRetries = 3;
     [self watchSkinChanges];
 
   } else {
-    NSArray* pathParts = [[request.url absoluteString] pathComponents];
-    NSString* path = [[pathParts subarrayWithRange:NSMakeRange(2, [pathParts count] - 2)]
-                      componentsJoinedByString:@"/"];
-    NSString* rootPath = NIPathForDocumentsResource(nil);
-    NSString* hashedPath = [self pathFromPath:path];
-    NSString* diskPath = [rootPath stringByAppendingPathComponent:hashedPath];
-    [data writeToFile:diskPath atomically:YES];
-
     NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-    NIStylesheet* stylesheet = [_stylesheetCache stylesheetWithPath:path loadFromDisk:NO];
-    if ([stylesheet loadFromPath:path pathPrefix:rootPath delegate:self]) {
+    for (NIStylesheet* stylesheet in operation.processedObject) {
       [nc postNotificationName:NIStylesheetDidChangeNotification
                         object:stylesheet
                       userInfo:nil];
     }
-    for (NSString* iteratingPath in _stylesheetPaths) {
-      stylesheet = [_stylesheetCache stylesheetWithPath:iteratingPath loadFromDisk:NO];
-      if ([stylesheet.dependencies containsObject:path]) {
-        // This stylesheet has the changed stylesheet as a dependency so let's refresh it.
-        if ([stylesheet loadFromPath:iteratingPath pathPrefix:rootPath delegate:self]) {
-          [nc postNotificationName:NIStylesheetDidChangeNotification
-                            object:stylesheet
-                          userInfo:nil];
-        }
-      }
-    }
   }
-
-  [_activeRequests removeObject:request];
 }
 
 
@@ -192,12 +196,11 @@ static const NSInteger kMaxNumberOfRetries = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)watchSkinChanges {
-  NSURL* watchURL = [NSURL URLWithString:[_host stringByAppendingString:@"watch"]];
-  NISimpleRequest* request = [NISimpleRequest requestWithURL:watchURL
-                                             timeoutInterval:kTimeoutInterval];
-  request.delegate = self;
-  [_activeRequests addObject:request];
-  [request send];
+  NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:@"watch"]];
+  NINetworkRequestOperation* op = [[[NINetworkRequestOperation alloc] initWithURL:url] autorelease];
+  op.delegate = self;
+  op.timeout = kTimeoutInterval;
+  [_operations addOperation:op];
 }
 
 

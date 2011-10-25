@@ -165,25 +165,27 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
             delegate:(id<NICSSParserDelegate>)delegate {
   BOOL loadDidSucceed = NO;
 
-  NI_RELEASE_SAFELY(_rawRulesets);
-  NI_RELEASE_SAFELY(_ruleSets);
-  NI_RELEASE_SAFELY(_significantScopeToScopes);
+  @synchronized(self) {
+    NI_RELEASE_SAFELY(_rawRulesets);
+    NI_RELEASE_SAFELY(_ruleSets);
+    NI_RELEASE_SAFELY(_significantScopeToScopes);
 
-  _ruleSets = [[NSMutableDictionary alloc] init];
+    _ruleSets = [[NSMutableDictionary alloc] init];
 
-  NICSSParser* parser = [[NICSSParser alloc] init];
+    NICSSParser* parser = [[NICSSParser alloc] init];
 
-  NSDictionary* results = [parser dictionaryForPath:path
-                                         pathPrefix:pathPrefix
-                                           delegate:delegate];
-  if (nil != results && ![parser didFailToParse]) {
-    _rawRulesets = [results retain];
-    loadDidSucceed = YES;
-  }
-  NI_RELEASE_SAFELY(parser);
+    NSDictionary* results = [parser dictionaryForPath:path
+                                           pathPrefix:pathPrefix
+                                             delegate:delegate];
+    if (nil != results && ![parser didFailToParse]) {
+      _rawRulesets = [results retain];
+      loadDidSucceed = YES;
+    }
+    NI_RELEASE_SAFELY(parser);
 
-  if (loadDidSucceed) {
-    [self ruleSetsDidChange];
+    if (loadDidSucceed) {
+      [self ruleSetsDidChange];
+    }
   }
 
   return loadDidSucceed;
@@ -197,39 +199,41 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
     return;
   }
 
-  NSMutableDictionary* compositeRuleSets = [self.rawRulesets mutableCopy];
+  @synchronized(self) {
+    NSMutableDictionary* compositeRuleSets = [self.rawRulesets mutableCopy];
 
-  BOOL ruleSetsDidChange = NO;
+    BOOL ruleSetsDidChange = NO;
 
-  for (NSString* selector in stylesheet.rawRulesets) {
-    NSDictionary* incomingRuleSet   = [stylesheet.rawRulesets objectForKey:selector];
-    NSDictionary* existingRuleSet = [self.rawRulesets objectForKey:selector];
+    for (NSString* selector in stylesheet.rawRulesets) {
+      NSDictionary* incomingRuleSet   = [stylesheet.rawRulesets objectForKey:selector];
+      NSDictionary* existingRuleSet = [self.rawRulesets objectForKey:selector];
 
-    // Don't bother adding empty rulesets.
-    if ([incomingRuleSet count] > 0) {
-      ruleSetsDidChange = YES;
+      // Don't bother adding empty rulesets.
+      if ([incomingRuleSet count] > 0) {
+        ruleSetsDidChange = YES;
 
-      if (nil == existingRuleSet) {
-        // There is no rule set of this selector - simply add the new one.
-        [compositeRuleSets setObject:incomingRuleSet forKey:selector];
-        continue;
+        if (nil == existingRuleSet) {
+          // There is no rule set of this selector - simply add the new one.
+          [compositeRuleSets setObject:incomingRuleSet forKey:selector];
+          continue;
+        }
+
+        NSMutableDictionary* compositeRuleSet = [existingRuleSet mutableCopy];
+        // Add the incoming rule set entries, overwriting any existing ones.
+        [compositeRuleSet addEntriesFromDictionary:incomingRuleSet];
+
+        [compositeRuleSets setObject:compositeRuleSet forKey:selector];
+        NI_RELEASE_SAFELY(compositeRuleSet);
       }
-
-      NSMutableDictionary* compositeRuleSet = [existingRuleSet mutableCopy];
-      // Add the incoming rule set entries, overwriting any existing ones.
-      [compositeRuleSet addEntriesFromDictionary:incomingRuleSet];
-
-      [compositeRuleSets setObject:compositeRuleSet forKey:selector];
-      NI_RELEASE_SAFELY(compositeRuleSet);
     }
-  }
 
-  NI_RELEASE_SAFELY(_rawRulesets);
-  _rawRulesets = [compositeRuleSets copy];
-  NI_RELEASE_SAFELY(compositeRuleSets);
+    NI_RELEASE_SAFELY(_rawRulesets);
+    _rawRulesets = [compositeRuleSets copy];
+    NI_RELEASE_SAFELY(compositeRuleSets);
 
-  if (ruleSetsDidChange) {
-    [self ruleSetsDidChange];
+    if (ruleSetsDidChange) {
+      [self ruleSetsDidChange];
+    }
   }
 }
 
