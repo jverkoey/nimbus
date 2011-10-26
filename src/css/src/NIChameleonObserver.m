@@ -37,12 +37,6 @@ static const NSInteger kMaxNumberOfRetries = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [_operations cancelAllOperations];
-  NI_RELEASE_SAFELY(_stylesheetCache);
-  NI_RELEASE_SAFELY(_stylesheetPaths);
-  NI_RELEASE_SAFELY(_operations);
-  NI_RELEASE_SAFELY(_host);
-
-  [super dealloc];
 }
 
 
@@ -51,7 +45,7 @@ static const NSInteger kMaxNumberOfRetries = 3;
   if ((self = [super init])) {
     // You must provide a stylesheet cache.
     NIDASSERT(nil != stylesheetCache);
-    _stylesheetCache = [stylesheetCache retain];
+    _stylesheetCache = stylesheetCache;
     _stylesheetPaths = [[NSMutableArray alloc] init];
     _operations = [[NSOperationQueue alloc] init];
 
@@ -88,7 +82,7 @@ static const NSInteger kMaxNumberOfRetries = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)downloadStylesheetWithFilename:(NSString *)path {
   NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:path]];
-  NINetworkRequestOperation* op = [[[NINetworkRequestOperation alloc] initWithURL:url] autorelease];
+  NINetworkRequestOperation* op = [[NINetworkRequestOperation alloc] initWithURL:url];
   op.delegate = self;
   [_operations addOperation:op];
 }
@@ -150,8 +144,8 @@ static const NSInteger kMaxNumberOfRetries = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)operationDidFinish:(NINetworkRequestOperation *)operation {
   if ([operation.url.path isEqualToString:@"/watch"]) {
-    NSString* stringData = [[[NSString alloc] initWithData:operation.data
-                                                  encoding:NSUTF8StringEncoding] autorelease];
+    NSString* stringData = [[NSString alloc] initWithData:operation.data
+                                                 encoding:NSUTF8StringEncoding];
 
     NSArray* files = [stringData componentsSeparatedByString:@"\n"];
     for (NSString* filename in files) {
@@ -197,7 +191,7 @@ static const NSInteger kMaxNumberOfRetries = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)watchSkinChanges {
   NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:@"watch"]];
-  NINetworkRequestOperation* op = [[[NINetworkRequestOperation alloc] initWithURL:url] autorelease];
+  NINetworkRequestOperation* op = [[NINetworkRequestOperation alloc] initWithURL:url];
   op.delegate = self;
   op.timeout = kTimeoutInterval;
   [_operations addOperation:op];

@@ -29,10 +29,7 @@ static CGFloat squareSize = 200;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  NI_RELEASE_SAFELY(_dom);
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-  [super dealloc];
 }
 
 

@@ -36,20 +36,20 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setUp {
-  _unitTestBundle = [[NSBundle bundleWithIdentifier:@"com.nimbus.css.unittests"] retain];
+  _unitTestBundle = [NSBundle bundleWithIdentifier:@"com.nimbus.css.unittests"];
   STAssertNotNil(_unitTestBundle, @"Unable to find the bundle %@", [NSBundle allBundles]);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)tearDown {
-  NI_RELEASE_SAFELY(_unitTestBundle);
+  _unitTestBundle = nil;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testFailures {
-  NIStylesheet* stylesheet = [[[NIStylesheet alloc] init] autorelease];
+  NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
 
   STAssertFalse([stylesheet loadFromPath:nil], @"Parsing nil path should fail.");
   STAssertFalse([stylesheet loadFromPath:nil pathPrefix:nil], @"Parsing nil path should fail.");
@@ -80,12 +80,12 @@
   // ERROR: System image table has not been initialized. Do not ask for images or set up UI before UIApplicationMain() has been called.
   return;
 
-  NIStylesheet* stylesheet = [[[NIStylesheet alloc] init] autorelease];
+  NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"UILabel.css");
 
   STAssertTrue([stylesheet loadFromPath:pathToFile], @"The stylesheet should have been parsed.");
 
-  UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+  UILabel* label = [[UILabel alloc] initWithFrame:CGRectZero];
   [stylesheet applyStyleToView:label withClassName:NSStringFromClass([label class])];
 
   [self assertColor:label.textColor equalsColor:[UIColor redColor]];

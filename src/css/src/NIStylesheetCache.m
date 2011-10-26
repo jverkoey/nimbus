@@ -29,15 +29,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_pathToStylesheet);
-  NI_RELEASE_SAFELY(_pathPrefix);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithPathPrefix:(NSString *)pathPrefix {
   if ((self = [super init])) {
     _pathToStylesheet = [[NSMutableDictionary alloc] init];
@@ -60,7 +51,7 @@
   NIStylesheet* stylesheet = [_pathToStylesheet objectForKey:path];
 
   if (nil == stylesheet) {
-    stylesheet = [[[NIStylesheet alloc] init] autorelease];
+    stylesheet = [[NIStylesheet alloc] init];
     if (loadFromDisk) {
       BOOL didSucceed = [stylesheet loadFromPath:path
                                       pathPrefix:_pathPrefix];
