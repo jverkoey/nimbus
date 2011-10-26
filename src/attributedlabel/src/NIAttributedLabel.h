@@ -195,6 +195,11 @@
 -(void)addLink:(NSURL*)urlLink range:(NSRange)range;
 
 /**
+ * Removes all links from the label.
+ */
+-(void)removeAllLinks;
+
+/**
  * The attributed label notifies the delegate of any user interactions.
  */
 @property (nonatomic, assign) IBOutlet id<NIAttributedLabelDelegate> delegate;

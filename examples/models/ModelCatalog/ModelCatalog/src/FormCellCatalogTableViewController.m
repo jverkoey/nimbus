@@ -111,7 +111,7 @@
 
     } else {
       // We must always handle the else case because cells can be reused.
-      textInputCell.textField.textColor = nil;
+      textInputCell.textField.textColor = [UIColor blackColor];
     }
   }
 }

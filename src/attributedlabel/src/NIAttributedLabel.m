@@ -276,6 +276,13 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)removeAllLinks {
+  NI_RELEASE_SAFELY(_customLinks);
+  self.userInteractionEnabled = _autoDetectLinks;
+  [self setNeedsDisplay];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)resetTextFrame {
 	if (nil != _textFrame) {
 		CFRelease(_textFrame);
@@ -406,7 +413,7 @@
                                           point.y-CGRectGetMinY(rect));
 			CFIndex idx = CTLineGetStringIndexForPosition(line, relativePoint);
 			foundLink = ([self linkAtIndex:idx]);
-			if (link) return foundLink;
+			if (foundLink) return foundLink;
 		}
 	}
 	return nil;

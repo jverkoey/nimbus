@@ -1,0 +1,43 @@
+
+Chameleon - Real-Time CSS Styling for iOS Applications
+======================================================
+
+## Getting Started
+
+Chameleon uses Node.js. Check out Node.js somewhere on your system and build/install it.
+
+> git clone https://github.com/joyent/node.git
+> cd node
+> ./configure
+> make
+> sudo make install
+
+You then need to install the Node Package Manager.
+
+> git clone https://github.com/isaacs/npm.git
+> cd npm
+> make
+> sudo make install
+
+Within the chameleon directory install the optimist package.
+
+> cd nimbus/src/chameleon/
+> npm install optimist
+
+Start the server from within the chameleon directory.
+
+> cd nimbus/src/chameleon/
+> node chameleon.js --watch /path/to/watch/directory
+
+Test it by hitting localhost:8888/watch and modifying a file within the watch directory.
+The request should complete immediately after you modify the file.
+
+
+## Notes about the Chameleon server
+
+The Chameleon server is currently designed for single-watcher situations only. Do not deploy
+it on a production machine with expectations of hundreds of devices being able to update in
+any sensible way.
+
+Perhaps someday it may be worth making the server scale better if someone so desires. Until
+that day we will likely leave the Chameleon server as is.
