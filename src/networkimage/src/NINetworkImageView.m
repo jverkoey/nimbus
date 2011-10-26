@@ -190,8 +190,9 @@
                        contentMode: (UIViewContentMode)contentMode
                       scaleOptions: (NINetworkImageViewScaleOptions)scaleOptions
                     expirationDate: (NSDate *)expirationDate {
+    
   // Store the result image in the memory cache.
-  if (nil != self.imageMemoryCache) {
+  if (nil != self.imageMemoryCache && nil != url) {
     NSString* cacheKey = [self cacheKeyForURL: url
                                     imageSize: displaySize
                                   contentMode: contentMode
