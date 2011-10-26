@@ -17,7 +17,6 @@
 #import "NIFormCellCatalog.h"
 
 #import "NimbusCore.h"
-#import <objc/message.h>
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,7 +29,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)elementWithID:(NSInteger)elementID {
-  NIFormElement* element = [[self alloc] init];
+  NIFormElement* element = [[[self alloc] init] autorelease];
   element.elementID = elementID;
   return element;
 }
@@ -55,6 +54,15 @@
 @synthesize value = _value;
 @synthesize isPassword = _isPassword;
 @synthesize delegate = _delegate;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_placeholderText);
+  NI_RELEASE_SAFELY(_value);
+
+  [super dealloc];
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -107,6 +115,14 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_labelText);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)switchElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(BOOL)value didChangeTarget:(id)target didChangeSelector:(SEL)selector {
   NISwitchFormElement* element = [super elementWithID:elementID];
   element.labelText = labelText;
@@ -133,6 +149,42 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NIButtonFormElement
+
+@synthesize labelText = _labelText;
+@synthesize tappedTarget = _tappedTarget;
+@synthesize tappedSelector = _tappedSelector;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_labelText);
+  
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)buttonElementWithID:(NSInteger)elementID labelText:(NSString *)labelText tappedTarget:(id)target tappedSelector:(SEL)selector {
+  NIButtonFormElement* element = [super elementWithID:elementID];
+  element.labelText = labelText;
+  element.tappedTarget = target;
+  element.tappedSelector = selector;
+  return element;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)cellClass {
+  return [NIButtonFormElementCell class];
+}
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Form Element Cells
 
@@ -144,18 +196,28 @@
 
 @synthesize element = _element;
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_element);
+
+  [super dealloc];
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prepareForReuse {
   [super prepareForReuse];
   
-  _element = nil;
+  NI_RELEASE_SAFELY(_element);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldUpdateCellWithObject:(id)object {
   if (_element != object) {
-    _element = object;
+    [_element release];
+    _element = [object retain];
 
     self.tag = _element.elementID;
 
@@ -175,6 +237,15 @@
 @implementation NITextInputFormElementCell
 
 @synthesize textField = _textField;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_textField);
+
+  [super dealloc];
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -242,6 +313,15 @@
 
 @synthesize switchControl = _switchControl;
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_switchControl);
+  
+  [super dealloc];
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
@@ -306,15 +386,8 @@
 
   if (nil != switchElement.didChangeSelector && nil != switchElement.didChangeTarget
       && [switchElement.didChangeTarget respondsToSelector:switchElement.didChangeSelector]) {
-    
-    // This throws a warning a seclectors that the compiler do not know about cannot be
-    // memory managed by ARC
-    //[switchElement.didChangeTarget performSelector: switchElement.didChangeSelector
-    //                                    withObject: _switchControl];
-    
-    // The following is a workarround to supress the warning and requires <objc/message.h>
-    objc_msgSend(switchElement.didChangeTarget, 
-                 switchElement.didChangeSelector, _switchControl);
+    [switchElement.didChangeTarget performSelector: switchElement.didChangeSelector
+                                        withObject: _switchControl];
   }
 }
 
@@ -326,8 +399,56 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NITableViewModel (NIFormElementSearch)
+@implementation NIButtonFormElementCell
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+  if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+    self.selectionStyle = UITableViewCellSelectionStyleBlue;
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)prepareForReuse {
+  [super prepareForReuse];
+
+  self.textLabel.text = @"";
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldUpdateCellWithObject:(id)object {
+  if ([super shouldUpdateCellWithObject:object]) {
+    NIButtonFormElement* buttonElement = (NIButtonFormElement *)self.element;
+    self.textLabel.text = buttonElement.labelText;
+
+    [self setNeedsLayout];
+    return YES;
+  }
+  return NO;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)buttonWasTapped:(id)sender {
+  NIButtonFormElement* buttonElement = (NIButtonFormElement *)self.element;
+  
+  if (nil != buttonElement.tappedSelector && nil != buttonElement.tappedTarget
+      && [buttonElement.tappedTarget respondsToSelector:buttonElement.tappedSelector]) {
+    [buttonElement.tappedTarget performSelector:buttonElement.tappedSelector];
+  }
+}
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NITableViewModel (NIFormElementSearch)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)elementWithID:(NSInteger)elementID {
