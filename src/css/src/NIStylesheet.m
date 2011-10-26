@@ -156,7 +156,6 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
 
   @synchronized(self) {
     _rawRulesets = nil;
-    _ruleSets = nil;
     _significantScopeToScopes = nil;
 
     _ruleSets = [[NSMutableDictionary alloc] init];
