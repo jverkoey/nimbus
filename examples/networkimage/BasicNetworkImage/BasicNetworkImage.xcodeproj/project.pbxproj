@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1261142514585C460006FFEB /* NIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1261142414585C460006FFEB /* NIHTTPRequest.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -43,12 +44,13 @@
 		66EA0C8C13C05DCF004FFE1A /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA0C7A13C05DCF004FFE1A /* ASIHTTPRequest.m */; };
 		66EA0C8D13C05DCF004FFE1A /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA0C7E13C05DCF004FFE1A /* ASIInputStream.m */; };
 		66EA0C8E13C05DCF004FFE1A /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA0C8013C05DCF004FFE1A /* ASINetworkQueue.m */; };
-		66EA0C8F13C05DCF004FFE1A /* NIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA0C8313C05DCF004FFE1A /* NIHTTPRequest.m */; };
 		66EA0C9013C05DCF004FFE1A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA0C8613C05DCF004FFE1A /* Reachability.m */; };
 		66EA0F1E13C20BFD004FFE1A /* README.mdown in Resources */ = {isa = PBXBuildFile; fileRef = 66EA0F1D13C20BFD004FFE1A /* README.mdown */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1261142314585C460006FFEB /* NIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIHTTPRequest.h; path = ../../../src/http/src/NIHTTPRequest.h; sourceTree = "<group>"; };
+		1261142414585C460006FFEB /* NIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIHTTPRequest.m; path = ../../../src/http/src/NIHTTPRequest.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* BasicNetworkImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicNetworkImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -122,8 +124,6 @@
 		66EA0C7F13C05DCF004FFE1A /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASINetworkQueue.h; path = ../../../src/ASIHTTPRequest/src/ASINetworkQueue.h; sourceTree = SOURCE_ROOT; };
 		66EA0C8013C05DCF004FFE1A /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASINetworkQueue.m; path = ../../../src/ASIHTTPRequest/src/ASINetworkQueue.m; sourceTree = SOURCE_ROOT; };
 		66EA0C8113C05DCF004FFE1A /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIProgressDelegate.h; path = ../../../src/ASIHTTPRequest/src/ASIProgressDelegate.h; sourceTree = SOURCE_ROOT; };
-		66EA0C8213C05DCF004FFE1A /* NIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIHTTPRequest.h; path = ../../../src/ASIHTTPRequest/src/NIHTTPRequest.h; sourceTree = SOURCE_ROOT; };
-		66EA0C8313C05DCF004FFE1A /* NIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIHTTPRequest.m; path = ../../../src/ASIHTTPRequest/src/NIHTTPRequest.m; sourceTree = SOURCE_ROOT; };
 		66EA0C8513C05DCF004FFE1A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		66EA0C8613C05DCF004FFE1A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		66EA0F1D13C20BFD004FFE1A /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
@@ -147,6 +147,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1261142114585C2C0006FFEB /* NIHTTPRequest */ = {
+			isa = PBXGroup;
+			children = (
+				1261142314585C460006FFEB /* NIHTTPRequest.h */,
+				1261142414585C460006FFEB /* NIHTTPRequest.m */,
+			);
+			name = NIHTTPRequest;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +245,7 @@
 		66EA058E13C0126F004FFE1A /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
+				1261142114585C2C0006FFEB /* NIHTTPRequest */,
 				665E077113C6BD2D008A1D21 /* Core */,
 				66EA061813C01C6D004FFE1A /* ASIHTTPRequest */,
 				66EA06A013C01CFD004FFE1A /* Network Image */,
@@ -284,8 +294,6 @@
 				66EA0C7F13C05DCF004FFE1A /* ASINetworkQueue.h */,
 				66EA0C8013C05DCF004FFE1A /* ASINetworkQueue.m */,
 				66EA0C8113C05DCF004FFE1A /* ASIProgressDelegate.h */,
-				66EA0C8213C05DCF004FFE1A /* NIHTTPRequest.h */,
-				66EA0C8313C05DCF004FFE1A /* NIHTTPRequest.m */,
 				66EA0C8413C05DCF004FFE1A /* Reachability */,
 			);
 			name = ASIHTTPRequest;
@@ -387,7 +395,6 @@
 				66EA0C8C13C05DCF004FFE1A /* ASIHTTPRequest.m in Sources */,
 				66EA0C8D13C05DCF004FFE1A /* ASIInputStream.m in Sources */,
 				66EA0C8E13C05DCF004FFE1A /* ASINetworkQueue.m in Sources */,
-				66EA0C8F13C05DCF004FFE1A /* NIHTTPRequest.m in Sources */,
 				66EA0C9013C05DCF004FFE1A /* Reachability.m in Sources */,
 				665E079E13C6BD47008A1D21 /* NIDataStructures.m in Sources */,
 				665E079F13C6BD47008A1D21 /* NIDebuggingTools.m in Sources */,
@@ -404,6 +411,7 @@
 				665E07AA13C6BD47008A1D21 /* NIState.m in Sources */,
 				665E07AB13C6BD47008A1D21 /* NSData+NimbusCore.m in Sources */,
 				665E07AC13C6BD47008A1D21 /* NSString+NimbusCore.m in Sources */,
+				1261142514585C460006FFEB /* NIHTTPRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
