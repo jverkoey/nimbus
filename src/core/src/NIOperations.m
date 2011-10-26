@@ -104,16 +104,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_url);
-  NI_RELEASE_SAFELY(_data);
-  NI_RELEASE_SAFELY(_processedObject);
-  
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURL:(NSURL *)url {
   if ((self = [super init])) {
     self.url = url;
@@ -131,30 +121,28 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)main {
-  NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+  @autoreleasepool {
+    self.data = [[NSMutableData alloc] init];
 
-  self.data = [[[NSMutableData alloc] init] autorelease];
+    [self operationDidStart];
 
-  [self operationDidStart];
+    NSURLRequest* request = [NSURLRequest requestWithURL:self.url
+                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                         timeoutInterval:self.timeout];
 
-  NSURLRequest* request = [NSURLRequest requestWithURL:self.url
-                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                       timeoutInterval:self.timeout];
+    NSError* error = nil;
+    NSURLResponse* response = nil;
+    self.data = [NSURLConnection sendSynchronousRequest:request
+                                      returningResponse:&response
+                                                  error:&error];
 
-  NSError* error = nil;
-  NSURLResponse* response = nil;
-  self.data = [NSURLConnection sendSynchronousRequest:request
-                                    returningResponse:&response
-                                                error:&error];
-
-  if (nil != error) {
-    [self operationDidFailWithError:error];
-  } else {
-    [self operationWillFinish];
-    [self operationDidFinish];
+    if (nil != error) {
+      [self operationDidFailWithError:error];
+    } else {
+      [self operationWillFinish];
+      [self operationDidFinish];
+    }
   }
-
-  NI_RELEASE_SAFELY(pool);
 }
 
 @end

@@ -30,17 +30,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_window);
-  NI_RELEASE_SAFELY(_rootController);
-  NI_RELEASE_SAFELY(_chameleonObserver);
-  NI_RELEASE_SAFELY(_stylesheetCache);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Application lifecycle
@@ -49,7 +38,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
   NSString* pathPrefix = NIPathForBundleResource(nil, @"css");
   NSString* host = @"http://localhost:8888/";
@@ -60,8 +49,7 @@
                                                                        host:host];
   [_chameleonObserver watchSkinChanges];
 
-  RootViewController* mainController =
-  [[[RootViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+  RootViewController* mainController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
   
   _rootController = [[UINavigationController alloc] initWithRootViewController:mainController];
   
