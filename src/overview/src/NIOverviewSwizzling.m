@@ -51,6 +51,9 @@ void NIOverviewSwizzleMethods(void) {
                         @selector(statusBarFrame),
                         @selector(_statusBarFrame));
   NISwapInstanceMethods([UIApplication class],
+                        @selector(statusBarHeightForOrientation:),
+                        @selector(_statusBarHeightForOrientation:));
+  NISwapInstanceMethods([UIApplication class],
                         @selector(setStatusBarHidden:withAnimation:),
                         @selector(_setStatusBarHidden:withAnimation:));
   NISwapInstanceMethods([UIApplication class],
@@ -96,6 +99,18 @@ void NIOverviewSwizzleMethods(void) {
 - (CGRect)_statusBarFrame {
   return CGRectMake(0, 0,
                     CGFLOAT_MAX, NIOverviewStatusBarHeight() + [NIOverview height]);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Swizzled implementation of - (void)statusBarHeightForOrientation:
+ *
+ * This allows us to make the status bar larger for view controllers that aren't in
+ * navigation controllers.
+ */
+- (float)_statusBarHeightForOrientation:(int)arg1 {
+  return NIOverviewStatusBarHeight() + [NIOverview height];
 }
 
 

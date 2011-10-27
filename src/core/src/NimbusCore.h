@@ -70,3 +70,4 @@
 #import "NIRuntimeClassModifications.h"
 #import "NISDKAvailability.h"
 #import "NIState.h"
+#import "NIViewRecycler.h"
