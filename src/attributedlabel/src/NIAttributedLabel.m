@@ -164,7 +164,6 @@
   NSTextCheckingResult* result = [NSTextCheckingResult linkCheckingResultWithRange:range
                                                                                URL:urlLink];
   [_explicitLinkLocations addObject:result];
-  [_attributedString setTextColor:self.linkColor range:result.range];
 
   [self setNeedsDisplay];
 }
@@ -173,7 +172,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeAllExplicitLinks {
   NI_RELEASE_SAFELY(_explicitLinkLocations);
-  
+
   [self setNeedsDisplay];
 }
 
@@ -362,6 +361,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Use an NSDataDetector to find any implicit links in the text. The results are cached until
+// the text changes.
 - (void)detectLinks {
   if (self.autoDetectLinks && !_linksHaveBeenDetected) {
     NSError* error = nil;
@@ -373,14 +374,8 @@
     [_detectedlinkLocations release];
     _detectedlinkLocations = [[linkDetector matchesInString:string options:0 range:range] retain];
 
-    for (NSTextCheckingResult* result in _detectedlinkLocations) {
-      [_attributedString setTextColor:self.linkColor
-                                range:result.range];
-    }
-
     _linksHaveBeenDetected = YES;
   }
-
 }
 
 
@@ -401,7 +396,7 @@
   NSTextCheckingResult* foundResult = nil;
 
   if (self.autoDetectLinks) {
-    NIDASSERT(_linksHaveBeenDetected);
+    [self detectLinks];
 
     for (NSTextCheckingResult* result in _detectedlinkLocations) {
       if (NSLocationInRange(i, result.range)) {
@@ -474,7 +469,7 @@
 		return view;
 	}
   if ([self linkAtPoint:point] == nil) {
-      return nil;
+    return nil;
   }
   return view;
 }
@@ -520,15 +515,40 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// We apply the link styles immediately before we render the attributed string. This
+// composites the link styles with the existing styles without losing any information. This
+// makes it possible to turn off links or remove them altogether without losing the existing
+// style information.
+- (NSMutableAttributedString *)mutableAttributedStringWithLinkStylesApplied {
+  NSMutableAttributedString* attributedString = [[self.attributedString mutableCopy] autorelease];
+  if (self.autoDetectLinks) {
+    for (NSTextCheckingResult* result in _detectedlinkLocations) {
+      [attributedString setTextColor:self.linkColor
+                               range:result.range];
+    }
+  }
+
+  for (NSTextCheckingResult* result in _explicitLinkLocations) {
+    [attributedString setTextColor:self.linkColor
+                             range:result.range];
+  }
+
+  return attributedString;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawTextInRect:(CGRect)rect {
   if (self.autoDetectLinks) {
     [self detectLinks];
   }
 
+  NSMutableAttributedString* attributedStringWithLinks =
+    [self mutableAttributedStringWithLinkStylesApplied];
   self.userInteractionEnabled = (_detectedlinkLocations.count > 0
                                  || _explicitLinkLocations.count > 0);
 
-  if (_attributedString) {
+  if (nil != attributedStringWithLinks) {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 		CGContextSaveGState(ctx);
 
@@ -537,7 +557,7 @@
                                                    1.f, -1.f));
 
     if (nil == _textFrame) {
-      CFAttributedStringRef attributedString = (CFAttributedStringRef)self.attributedString;
+      CFAttributedStringRef attributedString = (CFAttributedStringRef)attributedStringWithLinks;
       CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attributedString);
 
       CGMutablePathRef path = CGPathCreateMutable();
@@ -546,7 +566,7 @@
 			CGPathRelease(path);
 			CFRelease(framesetter);
     }
-    
+
     if (nil != _touchedLink) {
       // Draw the link's background first.
       [self.linkHighlightColor setFill];
@@ -637,10 +657,10 @@
         }
       }
     }
-    
+
     CTFrameDraw(_textFrame, ctx);
 		CGContextRestoreGState(ctx);
-    
+
   } else {
     [super drawTextInRect:rect];
   }

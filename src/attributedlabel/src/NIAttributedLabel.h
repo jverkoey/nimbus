@@ -59,7 +59,8 @@
  *
  * If you would like to adopt the existing UILabel style then use setText:. The
  * attributedString will be created with the UILabel's style. You can then create a
- * mutable copy, modify it, and then assign the new attributed string back to this label.
+ * mutable copy of the attributed string, modify it, and then assign the new attributed
+ * string back to this label.
  */
 @property (nonatomic, copy) NSAttributedString* attributedString;
 
