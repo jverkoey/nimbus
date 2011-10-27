@@ -344,7 +344,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor *)linkHighlightColor {
   if (!_linkHighlightColor) {
-    _linkHighlightColor = [[UIColor colorWithWhite:0.5f alpha:0.2f] retain];
+    _linkHighlightColor = [[UIColor colorWithWhite:0.5f alpha:0.5f] retain];
   }
   return _linkHighlightColor;
 }
