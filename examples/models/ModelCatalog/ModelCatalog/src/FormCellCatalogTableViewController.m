@@ -58,11 +58,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showAlert:(id)button {
   UIAlertView* alertView =
-      [[[UIAlertView alloc] initWithTitle:@"This is an alert!"
+      [[UIAlertView alloc] initWithTitle:@"This is an alert!"
                                  message:@"Don't panic."
                                 delegate:nil
                        cancelButtonTitle:@"Neat!"
-                       otherButtonTitles:nil] autorelease];
+                       otherButtonTitles:nil];
   [alertView show];
 }
 

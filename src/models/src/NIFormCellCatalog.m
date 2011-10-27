@@ -142,14 +142,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_labelText);
-  
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)buttonElementWithID:(NSInteger)elementID labelText:(NSString *)labelText tappedTarget:(id)target tappedSelector:(SEL)selector {
   NIButtonFormElement* element = [super elementWithID:elementID];
   element.labelText = labelText;
@@ -401,7 +393,8 @@
   
   if (nil != buttonElement.tappedSelector && nil != buttonElement.tappedTarget
       && [buttonElement.tappedTarget respondsToSelector:buttonElement.tappedSelector]) {
-    [buttonElement.tappedTarget performSelector:buttonElement.tappedSelector];
+    //[buttonElement.tappedTarget performSelector:buttonElement.tappedSelector];
+    objc_msgSend(buttonElement.tappedTarget, buttonElement.tappedSelector, nil);
   }
 }
 
