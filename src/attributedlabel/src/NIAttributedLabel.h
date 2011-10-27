@@ -22,7 +22,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
 
-@class NIAttributedLabel;
 @protocol NIAttributedLabelDelegate;
 
 /**
@@ -32,48 +31,78 @@
  */
 
 @interface NIAttributedLabel : UILabel {
-  NSMutableAttributedString*  _attributedText;
-
-  CTFrameRef                  _textFrame;
-	CGRect                      _drawingRect;
-  NSTextCheckingResult*       _currentLink;
+  NSMutableAttributedString* _attributedString;
   
-  NSMutableArray*             _customLinks;
+  CTFrameRef _textFrame;
+
+  BOOL _linksHaveBeenDetected;
+  NSArray* _detectedlinkLocations;
+  NSMutableArray* _explicitLinkLocations;
+  NSTextCheckingResult* _touchedLink;
+
+  BOOL _autoDetectLinks;
+  UIColor* _linkColor;
+  UIColor* _linkHighlightColor;
+  CGFloat _strokeWidth;
+  UIColor* _strokeColor;
+  CGFloat _textKern;
+  CTUnderlineStyle _underlineStyle;
+  CTUnderlineStyleModifiers _underlineStyleModifier;
+
+  id<NIAttributedLabelDelegate> _delegate;
 }
 
 /**
- * The attributted string to display.
+ * The attributed string that will be displayed.
  *
- * Use this instead of the inherited text property on UILabel.
- * If text is used the text will inherit the UILabel properties and
- * be convertied to NSAttributedString.
+ * Setting this property explicitly will ignore the UILabel's existing style.
+ *
+ * If you would like to adopt the existing UILabel style then use setText:. The
+ * attributedString will be created with the UILabel's style. You can then create a
+ * mutable copy of the attributed string, modify it, and then assign the new attributed
+ * string back to this label.
  */
-@property(nonatomic, copy) NSAttributedString* attributedText;
+@property (nonatomic, copy) NSAttributedString* attributedString;
 
 /**
- * Whether links are automatically detected in the text.
+ * Whether to automatically detect links in the string.
  *
- * When YES, links will be detected and touchable.
- * Detected links will also be colored with linkColor and linkHighlightedColor.
+ * Link detection is deferred until the label is displayed for the first time. If the text changes
+ * then all of the links will be cleared and re-detected when the label displays again.
  */
-@property(nonatomic, assign) BOOL autoDetectLinks;
+@property (nonatomic, assign) BOOL autoDetectLinks;
+
+/**
+ * Adds a link at a given range.
+ *
+ * Adding any links will immediately enable user interaction on this label. Explicitly added
+ * links are removed whenever the text changes.
+ */
+- (void)addLink:(NSURL *)urlLink range:(NSRange)range;
+
+/**
+ * Removes all explicit links from the label.
+ *
+ * If you wish to remove automatically-detected links, set autoDetectLinks to NO.
+ */
+- (void)removeAllExplicitLinks;
 
 /**
  * The color of detected links.
  *
  * If no color is set, the default is [UIColor blueColor].
  */
-@property(nonatomic, retain) UIColor* linkColor;
+@property (nonatomic, retain) UIColor* linkColor;
 
 /**
- * The color of the links background when touched/highlighted.
+ * The color of the link's background when touched/highlighted.
  *
  * If no color is set, the default is [UIColor colorWithWhite:0.5 alpha:0.2]
  * If you do not want to highlight links when touched, set this to [UIColor clearColor]
  * or set it to the same color as your view's background color (opaque colors will perform
  * better).
  */
-@property(nonatomic, retain) UIColor* linkHighlightColor;
+@property (nonatomic, retain) UIColor* linkHighlightColor;
 
 /**
  * The underline style for the whole text.
@@ -84,7 +113,7 @@
  * - kCTUnderlineStyleThick
  * - kCTUnderlineStyleDouble
  */
-@property(nonatomic, assign) CTUnderlineStyle underlineStyle;
+@property (nonatomic, assign) CTUnderlineStyle underlineStyle;
 
 /**
  * The underline style modifier for the whole text.
@@ -96,7 +125,7 @@
  * - kCTUnderlinePatternDashDot
  * - kCTUnderlinePatternDashDotDot	
  */
-@property(nonatomic, assign) CTUnderlineStyleModifiers underlineStyleModifier;
+@property (nonatomic, assign) CTUnderlineStyleModifiers underlineStyleModifier;
 
 
 /**
@@ -105,12 +134,12 @@
  * Positive numbers will render only the stroke, where as negative numbers are for stroke
  * and fill.
  */
-@property(nonatomic, assign) CGFloat strokeWidth;
+@property (nonatomic, assign) CGFloat strokeWidth;
 
 /**
  * The stroke color for the whole text.
  */
-@property(nonatomic, retain) UIColor* strokeColor;
+@property (nonatomic, retain) UIColor* strokeColor;
 
 /**
  * The text kern for the whole text.
@@ -121,7 +150,7 @@
  * A positive kern indicates a shift farther away from and a negative kern indicates a
  * shift closer
  */
-@property(nonatomic, assign) CGFloat textKern;
+@property (nonatomic, assign) CGFloat textKern;
 
 /**
  * Sets the text color for a given range.
@@ -186,18 +215,6 @@
  * shift closer.
  */
 -(void)setTextKern:(CGFloat)kern range:(NSRange)range;
-
-/**
- * Adds a custom tappable link.
- *
- * Link will take on properties defined in linkColor and linkHighlightColor.
- */
--(void)addLink:(NSURL*)urlLink range:(NSRange)range;
-
-/**
- * Removes all links from the label.
- */
--(void)removeAllLinks;
 
 /**
  * The attributed label notifies the delegate of any user interactions.
