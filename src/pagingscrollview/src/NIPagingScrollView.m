@@ -344,6 +344,12 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   BOOL wasModifyingContentOffset = _isModifyingContentOffset;
   _isModifyingContentOffset = YES;
   [super setFrame:frame];
+
+  self.pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
+  for (id<NIPagingScrollViewPage> page in _visiblePages) {
+    [(UIView *)page setFrame:[self frameForPageAtIndex:page.pageIndex]];
+  }
+
   _isModifyingContentOffset = wasModifyingContentOffset;
 }
 
