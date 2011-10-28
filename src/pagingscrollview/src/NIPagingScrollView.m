@@ -424,11 +424,11 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
   // Remove any visible pages from the view before we release the sets.
   for (id<NIPagingScrollViewPage> page in _visiblePages) {
+    [self recyclePage:page];
     [(UIView *)page removeFromSuperview];
   }
 
   NI_RELEASE_SAFELY(_visiblePages);
-  NI_RELEASE_SAFELY(_reuseIdentifiersToRecycledPages);
 
   // If there is no data source then we can't do anything particularly interesting.
   if (nil == _dataSource) {
@@ -437,11 +437,13 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
     self.pagingScrollView.contentOffset = CGPointZero;
     _isModifyingContentOffset = NO;
 
+    // May as well just get rid of all the views then.
+    NI_RELEASE_SAFELY(_reuseIdentifiersToRecycledPages);
+
     return;
   }
 
   _visiblePages = [[NSMutableSet alloc] init];
-  self.reuseIdentifiersToRecycledPages = [[[NSMutableDictionary alloc] init] autorelease];
 
   // Cache the number of pages.
   _numberOfPages = [_dataSource numberOfPagesInPagingScrollView:self];
