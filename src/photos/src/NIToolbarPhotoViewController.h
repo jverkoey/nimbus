@@ -89,6 +89,7 @@
 
   // State
   BOOL _isAnimatingChrome;
+  BOOL _isChromeHidden;
 
   // Configuration
   BOOL _showPhotoAlbumBeneathToolbar;

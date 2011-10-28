@@ -295,21 +295,27 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didHideChrome {
   _isAnimatingChrome = NO;
-  self.toolbar.hidden = YES;
+  if (self.showPhotoAlbumBeneathToolbar) {
+    self.toolbar.hidden = YES;
+  }
+
+  _isChromeHidden = YES;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didShowChrome {
   _isAnimatingChrome = NO;
+
+  _isChromeHidden = NO;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setChromeVisibility:(BOOL)isVisible animated:(BOOL)animated {
   if (_isAnimatingChrome
-      || (!isVisible && self.toolbar.hidden)
-      || (isVisible && !self.toolbar.hidden)
+      || (!isVisible && _isChromeHidden)
+      || (isVisible && !_isChromeHidden)
       || !self.chromeCanBeHidden) {
     // Nothing to do here.
     return;
@@ -318,17 +324,19 @@
   CGRect toolbarFrame = self.toolbar.frame;
   CGRect bounds = self.view.bounds;
 
-  // Reset the toolbar's initial position.
-  if (!isVisible) {
-    toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
+  if (self.showPhotoAlbumBeneathToolbar) {
+    // Reset the toolbar's initial position.
+    if (!isVisible) {
+      toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
 
-  } else {
-    // Ensure that the toolbar is visible through the animation.
-    self.toolbar.hidden = NO;
+    } else {
+      // Ensure that the toolbar is visible through the animation.
+      self.toolbar.hidden = NO;
 
-    toolbarFrame.origin.y = bounds.size.height;
+      toolbarFrame.origin.y = bounds.size.height;
+    }
+    self.toolbar.frame = toolbarFrame;
   }
-  self.toolbar.frame = toolbarFrame;
 
   // Show/hide the system chrome.
   if ([[UIApplication sharedApplication] respondsToSelector:
@@ -347,14 +355,16 @@
 #endif
   }
 
-  // Place the toolbar at its final location.
-  if (isVisible) {
-    // Slide up.
-    toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
+  if (self.showPhotoAlbumBeneathToolbar) {
+    // Place the toolbar at its final location.
+    if (isVisible) {
+      // Slide up.
+      toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
 
-  } else {
-    // Slide down.
-    toolbarFrame.origin.y = bounds.size.height;
+    } else {
+      // Slide down.
+      toolbarFrame.origin.y = bounds.size.height;
+    }
   }
 
   // If there is a navigation bar, place it at its final location.
@@ -384,7 +394,9 @@
     [UIView setAnimationCurve:NIStatusBarAnimationCurve()];
   }
 
-  self.toolbar.frame = toolbarFrame;
+  if (self.showPhotoAlbumBeneathToolbar) {
+    self.toolbar.frame = toolbarFrame;
+  }
   if (nil != self.navigationController.navigationBar) {
     self.navigationController.navigationBar.frame = navigationBarFrame;
     self.navigationController.navigationBar.alpha = (isVisible ? 1 : 0);
@@ -405,7 +417,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)toggleChromeVisibility {
-  [self setChromeVisibility:(self.toolbar.hidden || _isAnimatingChrome) animated:YES];
+  [self setChromeVisibility:(_isChromeHidden || _isAnimatingChrome) animated:YES];
 }
 
 
