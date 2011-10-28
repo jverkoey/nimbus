@@ -53,7 +53,7 @@
  * be hidden whenever the user starts interacting with the photos.
  *
  * @code
- *  showPhotoAlbumBeneathToolbar = YES;
+ *  toolbarIsTranslucent = YES;
  *  hidesChromeWhenScrolling = YES;
  *  chromeCanBeHidden = YES;
  * @endcode
@@ -64,7 +64,7 @@
  * visible at all times without zooming enabled.
  *
  * @code
- *  showPhotoAlbumBeneathToolbar = NO;
+ *  toolbarIsTranslucent = NO;
  *  chromeCanBeHidden = NO;
  *  photoAlbumView.zoomingIsEnabled = NO;
  * @endcode
@@ -76,7 +76,7 @@
   // Views
   UIToolbar*              _toolbar;
   NIPhotoAlbumScrollView* _photoAlbumView;
-  
+
   // Scrubber View
   NIPhotoScrubberView* _photoScrubberView;
 
@@ -92,7 +92,7 @@
   BOOL _isChromeHidden;
 
   // Configuration
-  BOOL _showPhotoAlbumBeneathToolbar;
+  BOOL _toolbarIsTranslucent;
   BOOL _hidesChromeWhenScrolling;
   BOOL _chromeCanBeHidden;
   BOOL _animateMovingToNextAndPreviousPhotos;
@@ -101,7 +101,7 @@
 
 #pragma mark Configuring Functionality
 
-@property (nonatomic, readwrite, assign) BOOL showPhotoAlbumBeneathToolbar; // default: yes
+@property (nonatomic, readwrite, assign, getter=isToolbarTranslucent) BOOL toolbarIsTranslucent; // default: yes
 @property (nonatomic, readwrite, assign) BOOL hidesChromeWhenScrolling; // default: yes
 @property (nonatomic, readwrite, assign) BOOL chromeCanBeHidden; // default: yes
 @property (nonatomic, readwrite, assign) BOOL animateMovingToNextAndPreviousPhotos; // default: no
@@ -125,17 +125,19 @@
 /** @name Configuring Functionality */
 
 /**
- * Whether to show the photo album view beneath the toolbar or not.
+ * Whether the toolbar is translucent and shows photos beneath it or not.
  *
  * If this is enabled, the toolbar will be translucent and the photo view will
- * take up the entire view controller's bounds with the toolbar shown on top.
+ * take up the entire view controller's bounds.
  *
  * If this is disabled, the photo will only occupy the remaining space above the
- * toolbar.
+ * toolbar. The toolbar will also not be hidden when the chrome is dismissed. This is by design
+ * because dismissing the toolbar when photos can't be displayed beneath it would leave
+ * an empty space below the album.
  *
  * By default this is YES.
  *
- *      @fn NIToolbarPhotoViewController::showPhotoAlbumBeneathToolbar
+ *      @fn NIToolbarPhotoViewController::toolbarIsTranslucent
  */
 
 /**
