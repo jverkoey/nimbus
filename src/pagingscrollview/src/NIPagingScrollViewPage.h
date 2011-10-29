@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#import "NimbusCore.h"
+
 #import <Foundation/Foundation.h>
 
 /**
@@ -24,7 +26,7 @@
  *
  *      @ingroup NimbusPagingScrollView
  */
-@protocol NIPagingScrollViewPage <NSObject>
+@protocol NIPagingScrollViewPage <NIRecyclableView>
 @required
 
 /**
@@ -32,19 +34,7 @@
  */
 @property (nonatomic, readwrite, assign) NSInteger pageIndex;
 
-/**
- * The identifier used to categorize pages into buckets for reuse.
- *
- * Pages will be reused when a new page is requested with a matching identifier.
- */
-@property (nonatomic, readwrite, copy) NSString* reuseIdentifier;
-
 @optional
-
-/**
- * Called immediately after the page has been dequeued from the recycled pages pool.
- */
-- (void)prepareForReuse;
 
 /**
  * Called after the page has gone off-screen.

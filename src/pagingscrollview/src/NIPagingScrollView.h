@@ -30,6 +30,7 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 @protocol NIPagingScrollViewDataSource;
 @protocol NIPagingScrollViewDelegate;
 @protocol NIPagingScrollViewPage;
+@class NIViewRecycler;
 
 /**
  * A paged scroll view that shows a series of pages.
@@ -43,7 +44,7 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 
   // Pages
   NSMutableSet* _visiblePages;
-  NSMutableDictionary* _reuseIdentifiersToRecycledPages;
+  NIViewRecycler* _viewRecycler;
 
   // Configurable Properties
   CGFloat _pageHorizontalMargin;
@@ -70,7 +71,7 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 @property (nonatomic, readwrite, assign) id<NIPagingScrollViewDelegate> delegate;
 
 // It is highly recommended that you use this method to manage view recycling.
-- (id<NIPagingScrollViewPage>)dequeueReusablePageWithIdentifier:(NSString *)identifier;
+- (UIView<NIPagingScrollViewPage> *)dequeueReusablePageWithIdentifier:(NSString *)identifier;
 
 #pragma mark State
 

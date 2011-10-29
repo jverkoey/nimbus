@@ -28,15 +28,6 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 @property (nonatomic, readwrite, retain) UIScrollView* pagingScrollView;
 
-/**
- * @internal
- * The set of inactive pages that are ready to be reused.
- *
- * Meant to be used by subclasses only.
- */
-@property (nonatomic, readwrite, retain) NSMutableDictionary* reuseIdentifiersToRecycledPages;
-
-
 @end
 
 
@@ -46,7 +37,6 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 @implementation NIPagingScrollView
 
 @synthesize visiblePages = _visiblePages;
-@synthesize reuseIdentifiersToRecycledPages = _reuseIdentifiersToRecycledPages;
 @synthesize pagingScrollView = _pagingScrollView;
 @synthesize pageHorizontalMargin = _pageHorizontalMargin;
 @synthesize dataSource = _dataSource;
@@ -60,7 +50,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   NI_RELEASE_SAFELY(_pagingScrollView);
 
   NI_RELEASE_SAFELY(_visiblePages);
-  NI_RELEASE_SAFELY(_reuseIdentifiersToRecycledPages);
+  NI_RELEASE_SAFELY(_viewRecycler);
 
   [super dealloc];
 }
@@ -76,6 +66,8 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
     _percentScrolledIntoFirstVisiblePage = -1;
     _centerPageIndex = -1;
     _numberOfPages = NIPagingScrollViewUnknownNumberOfPages;
+    
+    _viewRecycler = [[NIViewRecycler alloc] init];
 
     self.pagingScrollView = [[[UIScrollView alloc] initWithFrame:frame] autorelease];
     self.pagingScrollView.pagingEnabled = YES;
@@ -235,19 +227,13 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id<NIPagingScrollViewPage>)dequeueReusablePageWithIdentifier:(NSString *)identifier {
+- (UIView<NIPagingScrollViewPage> *)dequeueReusablePageWithIdentifier:(NSString *)identifier {
   NIDASSERT(nil != identifier);
   if (nil == identifier) {
     return nil;
   }
 
-  NSMutableSet* pages = [self.reuseIdentifiersToRecycledPages objectForKey:identifier];
-  id<NIPagingScrollViewPage> page = [[[pages anyObject] retain] autorelease];
-  [pages removeObject:page];
-  if ([page respondsToSelector:@selector(prepareForReuse)]) {
-    [page prepareForReuse];
-  }
-  return page;
+  return (UIView<NIPagingScrollViewPage> *)[_viewRecycler dequeueReusableViewWithIdentifier:identifier];
 }
 
 
@@ -272,20 +258,6 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)recyclePage:(id<NIPagingScrollViewPage>)page {
-  NSString* reuseIdentifier = page.reuseIdentifier;
-  NIDASSERT(nil != reuseIdentifier);
-
-  NSMutableSet* pages = [self.reuseIdentifiersToRecycledPages objectForKey:reuseIdentifier];
-  if (nil == pages) {
-    pages = [[[NSMutableSet alloc] init] autorelease];
-    [self.reuseIdentifiersToRecycledPages setObject:pages forKey:reuseIdentifier];
-  }
-  [pages addObject:page];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateVisiblePages {
   NSInteger oldCenterPageIndex = self.centerPageIndex;
 
@@ -295,9 +267,9 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
   // Recycle no-longer-visible pages. We copy _visiblePages because we may modify it while we're
   // iterating over it.
-  for (id<NIPagingScrollViewPage> page in [[_visiblePages copy] autorelease]) {
+  for (UIView<NIPagingScrollViewPage>* page in [[_visiblePages copy] autorelease]) {
     if (!NSLocationInRange(page.pageIndex, visiblePageRange)) {
-      [self recyclePage:page];
+      [_viewRecycler recycleView:page];
       [(UIView *)page removeFromSuperview];
 
       [self didRecyclePage:page];
@@ -429,8 +401,8 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   NIDASSERT(nil != _dataSource);
 
   // Remove any visible pages from the view before we release the sets.
-  for (id<NIPagingScrollViewPage> page in _visiblePages) {
-    [self recyclePage:page];
+  for (UIView<NIPagingScrollViewPage>* page in _visiblePages) {
+    [_viewRecycler recycleView:page];
     [(UIView *)page removeFromSuperview];
   }
 
@@ -444,7 +416,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
     _isModifyingContentOffset = NO;
 
     // May as well just get rid of all the views then.
-    NI_RELEASE_SAFELY(_reuseIdentifiersToRecycledPages);
+    [_viewRecycler removeAllViews];
 
     return;
   }
