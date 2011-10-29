@@ -58,8 +58,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reduceMemoryUsage {
-  NI_RELEASE_SAFELY(_reuseIdentifiersToRecycledViews);
-  _reuseIdentifiersToRecycledViews = [[NSMutableDictionary alloc] init];
+  [self removeAllViews];
 }
 
 
@@ -106,6 +105,12 @@
     [_reuseIdentifiersToRecycledViews setObject:views forKey:reuseIdentifier];
   }
   [views addObject:view];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)removeAllViews {
+  [_reuseIdentifiersToRecycledViews removeAllObjects];
 }
 
 

@@ -137,6 +137,20 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testRemoveAllViews {
+  NIViewRecycler* recycler = [[[NIViewRecycler alloc] init] autorelease];
+  NSString* reuseIdentifier = NSStringFromClass([RecyclableView class]);
+  {
+    RecyclableView* view = [[[RecyclableView alloc] init] autorelease];
+    view.reuseIdentifier = reuseIdentifier;
+    [recycler recycleView:view];
+  }
+  [recycler removeAllViews];
+  STAssertNil([recycler dequeueReusableViewWithIdentifier:reuseIdentifier], @"Should be no views left.");
+}
+
+
 @end
 
 

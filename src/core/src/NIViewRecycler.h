@@ -46,6 +46,8 @@
 
 - (void)recycleView:(UIView<NIRecyclableView> *)view;
 
+- (void)removeAllViews;
+
 @end
 
 /**
@@ -74,16 +76,22 @@
 /**@}*/ // End of View Recyling
 
 /**
- * Dequeues a reusable view from the recycled pages pool if one exists, otherwise returns nil.
+ * Dequeues a reusable view from the recycled views pool if one exists, otherwise returns nil.
  *
  *      @fn NIViewRecycler::dequeueReusableViewWithIdentifier:
  *      @param reuseIdentifier  Often the name of the class of view you wish to fetch.
  */
 
 /**
- * Adds a given view to the recycle pages pool.
+ * Adds a given view to the recycled views pool.
  *
  *      @fn NIViewRecycler::recycleView:
  *      @param view   The view to recycle. The reuse identifier will be retrieved from the view
  *                    via the NIRecyclableView protocol.
+ */
+
+/**
+ * Removes all of the views from the recycled views pool.
+ *
+ *      @fn NIViewRecycler::removeAllViews
  */
