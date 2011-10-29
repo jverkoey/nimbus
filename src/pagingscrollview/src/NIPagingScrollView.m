@@ -239,8 +239,8 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)displayPageAtIndex:(NSInteger)pageIndex {
-  id<NIPagingScrollViewPage> page = [self.dataSource pagingScrollView:self pageForIndex:pageIndex];
-  NIDASSERT(nil != page);
+  UIView<NIPagingScrollViewPage>* page = [self.dataSource pagingScrollView:self
+                                                              pageForIndex:pageIndex];
   NIDASSERT([page isKindOfClass:[UIView class]]);
   NIDASSERT([page conformsToProtocol:@protocol(NIPagingScrollViewPage)]);
   if (nil == page || ![page isKindOfClass:[UIView class]]
@@ -270,7 +270,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   for (UIView<NIPagingScrollViewPage>* page in [[_visiblePages copy] autorelease]) {
     if (!NSLocationInRange(page.pageIndex, visiblePageRange)) {
       [_viewRecycler recycleView:page];
-      [(UIView *)page removeFromSuperview];
+      [page removeFromSuperview];
 
       [self didRecyclePage:page];
 

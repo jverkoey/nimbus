@@ -43,6 +43,6 @@
  * You should always try to reuse pages by calling dequeueReusablePageWithIdentifier: on the
  * paging scroll view before allocating a new page.
  */
-- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageForIndex:(NSInteger)pageIndex;
+- (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageForIndex:(NSInteger)pageIndex;
 
 @end
