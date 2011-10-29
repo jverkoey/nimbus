@@ -250,6 +250,8 @@
 		66C3A6AF143D61140048542F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66C3A6B1143D61140048542F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66C3A6B4143D61140048542F /* libNimbusCss.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C3A6A1143D61130048542F /* libNimbusCss.a */; };
+		66F27D55145B7A5F00AFCA08 /* NIPageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F27D53145B7A5F00AFCA08 /* NIPageView.h */; };
+		66F27D56145B7A5F00AFCA08 /* NIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F27D54145B7A5F00AFCA08 /* NIPageView.m */; };
 		66FCC634144FB42E0029F1A6 /* includee.css in Resources */ = {isa = PBXBuildFile; fileRef = 66FCC632144FB42E0029F1A6 /* includee.css */; };
 		66FCC635144FB42E0029F1A6 /* includer.css in Resources */ = {isa = PBXBuildFile; fileRef = 66FCC633144FB42E0029F1A6 /* includer.css */; };
 		66FE7D6B13FB83620061B987 /* NimbusModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6413FB83620061B987 /* NimbusModels.h */; };
@@ -473,12 +475,12 @@
 		663B524C1445052800CC26DF /* NimbusPagingScrollViewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusPagingScrollViewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		663B52641445059C00CC26DF /* NimbusPagingScrollViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NimbusPagingScrollViewTests-Info.plist"; path = "pagingscrollview/unittests/NimbusPagingScrollViewTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		663B52651445060000CC26DF /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = pagingscrollview/deps; sourceTree = SOURCE_ROOT; };
-		663B52661445061B00CC26DF /* NimbusPagingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusPagingScrollView.h; path = pagingscrollview/src/NimbusPagingScrollView.h; sourceTree = SOURCE_ROOT; };
-		663B52681445070100CC26DF /* NIPagingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollView.h; path = pagingscrollview/src/NIPagingScrollView.h; sourceTree = SOURCE_ROOT; };
-		663B52691445070100CC26DF /* NIPagingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPagingScrollView.m; path = pagingscrollview/src/NIPagingScrollView.m; sourceTree = SOURCE_ROOT; };
-		663B527014450CC100CC26DF /* NIPagingScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewPage.h; path = pagingscrollview/src/NIPagingScrollViewPage.h; sourceTree = SOURCE_ROOT; };
-		663B527214450CEF00CC26DF /* NIPagingScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewDelegate.h; path = pagingscrollview/src/NIPagingScrollViewDelegate.h; sourceTree = SOURCE_ROOT; };
-		663B527414450D1C00CC26DF /* NIPagingScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewDataSource.h; path = pagingscrollview/src/NIPagingScrollViewDataSource.h; sourceTree = SOURCE_ROOT; };
+		663B52661445061B00CC26DF /* NimbusPagingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusPagingScrollView.h; sourceTree = "<group>"; };
+		663B52681445070100CC26DF /* NIPagingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPagingScrollView.h; sourceTree = "<group>"; };
+		663B52691445070100CC26DF /* NIPagingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIPagingScrollView.m; sourceTree = "<group>"; };
+		663B527014450CC100CC26DF /* NIPagingScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPagingScrollViewPage.h; sourceTree = "<group>"; };
+		663B527214450CEF00CC26DF /* NIPagingScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPagingScrollViewDelegate.h; sourceTree = "<group>"; };
+		663B527414450D1C00CC26DF /* NIPagingScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPagingScrollViewDataSource.h; sourceTree = "<group>"; };
 		663B52761445129400CC26DF /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = photos/deps; sourceTree = SOURCE_ROOT; };
 		663B52E7144675BF00CC26DF /* NimbusOverviewer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusOverviewer.bundle; path = ../resources/NimbusOverviewer.bundle; sourceTree = "<group>"; };
 		6661BAFF13F0AA6000D14F92 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = webcontroller/deps; sourceTree = "<group>"; };
@@ -704,6 +706,8 @@
 		66C1139E147CADCC003C9AC6 /* NIPhotoAlbumScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPhotoAlbumScrollViewDelegate.h; sourceTree = "<group>"; };
 		66C3A6A1143D61130048542F /* libNimbusCss.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCss.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C3A6AE143D61140048542F /* NimbusCssTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCssTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66F27D53145B7A5F00AFCA08 /* NIPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPageView.h; sourceTree = "<group>"; };
+		66F27D54145B7A5F00AFCA08 /* NIPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIPageView.m; sourceTree = "<group>"; };
 		66FCC632144FB42E0029F1A6 /* includee.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = includee.css; path = css/unittests/includee.css; sourceTree = SOURCE_ROOT; };
 		66FCC633144FB42E0029F1A6 /* includer.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = includer.css; path = css/unittests/includer.css; sourceTree = SOURCE_ROOT; };
 		66FE7D5613FB550A0061B987 /* ExampleRuntimeDebugging.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleRuntimeDebugging.m; sourceTree = "<group>"; };
@@ -992,7 +996,8 @@
 				663B52631445054900CC26DF /* src */,
 				663B52621445054300CC26DF /* unittests */,
 			);
-			path = NimbusPagingScrollView;
+			name = NimbusPagingScrollView;
+			path = pagingscrollview;
 			sourceTree = "<group>";
 		};
 		663B52621445054300CC26DF /* unittests */ = {
@@ -1000,7 +1005,7 @@
 			children = (
 				663B52641445059C00CC26DF /* NimbusPagingScrollViewTests-Info.plist */,
 			);
-			name = unittests;
+			path = unittests;
 			sourceTree = "<group>";
 		};
 		663B52631445054900CC26DF /* src */ = {
@@ -1012,8 +1017,10 @@
 				663B527014450CC100CC26DF /* NIPagingScrollViewPage.h */,
 				663B527214450CEF00CC26DF /* NIPagingScrollViewDelegate.h */,
 				663B527414450D1C00CC26DF /* NIPagingScrollViewDataSource.h */,
+				66F27D53145B7A5F00AFCA08 /* NIPageView.h */,
+				66F27D54145B7A5F00AFCA08 /* NIPageView.m */,
 			);
-			name = src;
+			path = src;
 			sourceTree = "<group>";
 		};
 		6661BBCE13F1A3BB00D14F92 /* NimbusModels */ = {
@@ -1722,6 +1729,7 @@
 				663B527114450CC100CC26DF /* NIPagingScrollViewPage.h in Headers */,
 				663B527314450CEF00CC26DF /* NIPagingScrollViewDelegate.h in Headers */,
 				663B527514450D1C00CC26DF /* NIPagingScrollViewDataSource.h in Headers */,
+				66F27D55145B7A5F00AFCA08 /* NIPageView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2706,6 +2714,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				663B526B1445070100CC26DF /* NIPagingScrollView.m in Sources */,
+				66F27D56145B7A5F00AFCA08 /* NIPageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
