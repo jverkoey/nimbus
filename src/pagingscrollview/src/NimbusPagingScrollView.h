@@ -30,13 +30,17 @@
  * orientation.
  *
  * Paging scroll views are commonly used in many iOS applications. For example, Nimbus' Photos
- * feature uses this paging scroll view to power its NIPhotoAlbumScrollView.
+ * feature uses a paging scroll view to power its NIPhotoAlbumScrollView.
  *
  * <h2>Building a Component with NIPagingScrollView</h2>
  *
  * NIPagingScrollView works much like a UITableView in that you must implement a data source
- * that provides the views for the scroll view on demand. The page views that you create must
- * conform to the NIPagingScrollViewPage protocol and be a subclass of UIView.
+ * and optionally a delegate. The data source fetches information about the contents of the
+ * paging scroll view, such as the total number of pages and the view for a given page when it
+ * is required. The views that you return for pages must conform to the NIPagingScrollViewPage
+ * protocol. This is similar to UITableViewCell, but rather than subclass a view you can simply
+ * implement a protocol. If you would prefer not to implement the protocol, you can subclass
+ * NIPageView which simply implements the required methods of NIPagingScrollViewPage.
  */
 
 /**@}*/
