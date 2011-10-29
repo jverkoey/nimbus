@@ -14,24 +14,11 @@
 // limitations under the License.
 //
 
+#import "NIPagingScrollViewPage.h"
+#import "NIPhotoScrollViewPhotoSize.h"
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
-#import "NIPagingScrollViewPage.h"
-
-/**
- * Contextual information about the size of the photo.
- */
-typedef enum {
-  // Unknown photo size.
-  NIPhotoScrollViewPhotoSizeUnknown,
-
-  // A smaller version of the image.
-  NIPhotoScrollViewPhotoSizeThumbnail,
-
-  // The full-size image.
-  NIPhotoScrollViewPhotoSizeOriginal,
-} NIPhotoScrollViewPhotoSize;
 
 @protocol NIPhotoScrollViewDelegate;
 
@@ -40,16 +27,18 @@ typedef enum {
  *
  *      @ingroup Photos-Views
  */
-@interface NIPhotoScrollView : UIScrollView <
+@interface NIPhotoScrollView : UIView <
   UIScrollViewDelegate,
   NIPagingScrollViewPage> {
 @private
   // The photo view to be zoomed.
-  UIImageView*  _imageView;
+  UIImageView* _imageView;
+  // The scroll view.
+  UIScrollView* _scrollView;
 
   // Photo Information
-  NIPhotoScrollViewPhotoSize  _photoSize;
-  CGSize                      _photoDimensions;
+  NIPhotoScrollViewPhotoSize _photoSize;
+  CGSize _photoDimensions;
 
   // Configurable State
   BOOL _zoomingIsEnabled;
@@ -75,29 +64,6 @@ typedef enum {
 
 @property (nonatomic, readwrite, assign) NSInteger pageIndex;
 @property (nonatomic, readwrite, assign) CGSize photoDimensions;
-
-@end
-
-
-/**
- * The photo scroll view delegate.
- *
- *      @ingroup Photos-Protocols
- */
-@protocol NIPhotoScrollViewDelegate <NSObject>
-
-@optional
-
-#pragma mark Zooming /** @name [NIPhotoScrollViewDelegate] Zooming */
-
-/**
- * The user has double-tapped the photo to zoom either in or out.
- *
- *      @param photoScrollView  The photo scroll view that was tapped.
- *      @param didZoomIn        YES if the photo was zoomed in. NO if the photo was zoomed out.
- */
-- (void)photoScrollViewDidDoubleTapToZoom: (NIPhotoScrollView *)photoScrollView
-                                didZoomIn: (BOOL)didZoomIn;
 
 @end
 

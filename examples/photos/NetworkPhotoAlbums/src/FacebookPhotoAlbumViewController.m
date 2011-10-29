@@ -301,8 +301,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageForIndex:(NSInteger)pageIndex {
-  return [self.photoAlbumView pagingScrollView:pagingScrollView pageForIndex:pageIndex];
+- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
+  return [self.photoAlbumView pagingScrollView:pagingScrollView pageViewForIndex:pageIndex];
 }
 
 

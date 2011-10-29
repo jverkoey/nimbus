@@ -75,10 +75,10 @@
   // 1) If the data source has any image at this index, it should return it and set the
   //    photoSize accordingly.
   // 2) If the returned photo is not the highest quality available, the data source should
-  //    start loading it and set isLoading to YES.
+  //    start loading the high quality photo and set isLoading to YES.
   // 3) If no photo was available, then the data source should start loading the photo
-  //    at its highest quality and nil should be returned. loadingImage will be used in
-  //    this case.
+  //    at its highest available quality and nil should be returned. The loadingImage property
+  //    will be displayed until the image is loaded. isLoading should be set to YES.
   NIPhotoScrollViewPhotoSize photoSize = NIPhotoScrollViewPhotoSizeUnknown;
   BOOL isLoading = NO;
   CGSize originalPhotoDimensions = CGSizeZero;
@@ -142,21 +142,21 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView
-                                  pageForIndex:(NSInteger)pageIndex {
-  id<NIPagingScrollViewPage> page = nil;
+- (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView
+                                    pageViewForIndex:(NSInteger)pageIndex {
+  UIView<NIPagingScrollViewPage>* pageView = nil;
   NSString* reuseIdentifier = @"photo";
-  page = [pagingScrollView dequeueReusablePageWithIdentifier:reuseIdentifier];
-  if (nil == page) {
-    page = [[[NIPhotoScrollView alloc] init] autorelease];
-    page.reuseIdentifier = reuseIdentifier;
+  pageView = [pagingScrollView dequeueReusablePageWithIdentifier:reuseIdentifier];
+  if (nil == pageView) {
+    pageView = [[[NIPhotoScrollView alloc] init] autorelease];
+    pageView.reuseIdentifier = reuseIdentifier;
   }
 
-  NIPhotoScrollView* photoScrollView = (NIPhotoScrollView *)page;
+  NIPhotoScrollView* photoScrollView = (NIPhotoScrollView *)pageView;
   photoScrollView.photoScrollViewDelegate = self;
   photoScrollView.zoomingAboveOriginalSizeIsEnabled = [self isZoomingAboveOriginalSizeEnabled];
 
-  return page;
+  return pageView;
 }
 
 

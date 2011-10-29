@@ -14,10 +14,11 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "NIPhotoScrollViewPhotoSize.h"
 
 #import "NimbusPagingScrollView.h"
+
+#import <Foundation/Foundation.h>
 
 @class NIPhotoAlbumScrollView;
 

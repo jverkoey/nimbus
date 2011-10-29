@@ -240,7 +240,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)displayPageAtIndex:(NSInteger)pageIndex {
   UIView<NIPagingScrollViewPage>* page = [self.dataSource pagingScrollView:self
-                                                              pageForIndex:pageIndex];
+                                                          pageViewForIndex:pageIndex];
   NIDASSERT([page isKindOfClass:[UIView class]]);
   NIDASSERT([page conformsToProtocol:@protocol(NIPagingScrollViewPage)]);
   if (nil == page || ![page isKindOfClass:[UIView class]]

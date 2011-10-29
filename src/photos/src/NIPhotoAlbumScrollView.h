@@ -14,14 +14,14 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-#import "NIPhotoScrollView.h"
+#import "NIPhotoScrollViewDelegate.h"
 #import "NIPhotoAlbumScrollViewDataSource.h"
 #import "NIPhotoAlbumScrollViewDelegate.h"
 
 #import "NimbusPagingScrollView.h"
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * A paged scroll view that shows a collection of photos.
@@ -49,7 +49,8 @@
 #pragma mark Data Source
 
 // For use in your pagingScrollView:pageForIndex: data source implementation.
-- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageForIndex:(NSInteger)pageIndex;
+- (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex;
+
 @property (nonatomic, readwrite, assign) id<NIPhotoAlbumScrollViewDataSource> dataSource;
 @property (nonatomic, readwrite, assign) id<NIPhotoAlbumScrollViewDelegate> delegate;
 
@@ -69,6 +70,7 @@
            photoSize: (NIPhotoScrollViewPhotoSize)photoSize;
 
 @end
+
 
 /** @name Data Source */
 

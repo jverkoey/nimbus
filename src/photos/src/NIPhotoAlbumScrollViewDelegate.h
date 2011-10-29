@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NimbusPagingScrollView.h"
+#import "NIPagingScrollViewDelegate.h"
 
 @class NIPhotoAlbumScrollView;
 
@@ -51,5 +51,5 @@
  */
 - (void)photoAlbumScrollViewDidLoadPreviousPhoto:(NIPhotoAlbumScrollView *)photoAlbumScrollView;
 
-
 @end
+

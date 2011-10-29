@@ -63,7 +63,6 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
   id<NIPagingScrollViewDelegate> _delegate;
 }
 
-
 #pragma mark Data Source
 
 - (void)reloadData;
