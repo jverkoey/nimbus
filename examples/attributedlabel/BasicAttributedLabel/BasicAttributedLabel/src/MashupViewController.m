@@ -29,7 +29,6 @@
 }
 
 -(void)viewDidLoad {
-  
   self.title = @"Mashup";
   
   nimbusTitle.strokeWidth = -3.0;
