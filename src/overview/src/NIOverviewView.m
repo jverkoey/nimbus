@@ -43,9 +43,8 @@
   if ((self = [super initWithFrame:frame])) {
     _pageViews = [[NSMutableArray alloc] init];
 
-    _backgroundImage = [[UIImage imageWithContentsOfFile:
-                         NIPathForBundleResource(nil, @"NimbusOverviewer.bundle/gfx/blueprint.gif")]
-                        retain];
+    _backgroundImage = [UIImage imageWithContentsOfFile:
+                        NIPathForBundleResource(nil, @"NimbusOverviewer.bundle/gfx/blueprint.gif")];
     self.backgroundColor = [UIColor colorWithPatternImage:_backgroundImage];
 
     _pagingScrollView = [[UIScrollView alloc] initWithFrame:[self frameForPagingScrollView]];
