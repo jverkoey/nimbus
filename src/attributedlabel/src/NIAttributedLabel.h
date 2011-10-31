@@ -49,7 +49,7 @@
   CTUnderlineStyle _underlineStyle;
   CTUnderlineStyleModifiers _underlineStyleModifier;
 
-  id<NIAttributedLabelDelegate> _delegate;
+  __unsafe_unretained id<NIAttributedLabelDelegate> _delegate;
 }
 
 /**
