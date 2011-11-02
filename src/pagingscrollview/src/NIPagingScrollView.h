@@ -24,6 +24,8 @@ extern const NSInteger NIPagingScrollViewUnknownNumberOfPages;
 
 /**
  * The default number of pixels on the side of each page.
+ *
+ * Value: 10
  */
 extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 
@@ -92,18 +94,16 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 
 #pragma mark Rotating the Scroll View
 
-- (void)willRotateToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
-                                duration: (NSTimeInterval)duration;
-- (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
-                                         duration: (NSTimeInterval)duration;
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 
 #pragma mark Subclassing
 
 @property (nonatomic, readonly, retain) UIScrollView* pagingScrollView;
 @property (nonatomic, readonly, copy) NSMutableSet* visiblePages;
 
-- (void)configurePage:(id<NIPagingScrollViewPage>)page;
-- (void)didRecyclePage:(id<NIPagingScrollViewPage>)page;
+- (void)willDisplayPage:(UIView<NIPagingScrollViewPage> *)pageView;
+- (void)didRecyclePage:(UIView<NIPagingScrollViewPage> *)pageView;
 
 @end
 
@@ -261,7 +261,7 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
  *
  * Meant to be subclassed. By default this method does nothing.
  *
- *      @fn NIPagingScrollView::configurePage:
+ *      @fn NIPagingScrollView::willDisplayPage:
  */
 
 /**

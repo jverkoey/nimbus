@@ -200,11 +200,11 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)configurePage:(id<NIPagingScrollViewPage>)page forIndex:(NSInteger)pageIndex {
-  page.pageIndex = pageIndex;
-  [(UIView *)page setFrame:[self frameForPageAtIndex:pageIndex]];
+- (void)willDisplayPage:(UIView<NIPagingScrollViewPage> *)pageView atIndex:(NSInteger)pageIndex {
+  pageView.pageIndex = pageIndex;
+  [pageView setFrame:[self frameForPageAtIndex:pageIndex]];
   
-  [self configurePage:page];
+  [self willDisplayPage:pageView];
 }
 
 
@@ -250,7 +250,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   }
 
   // This will only be called once before the page is shown.
-  [self configurePage:page forIndex:pageIndex];
+  [self willDisplayPage:page atIndex:pageIndex];
 
   [self.pagingScrollView addSubview:(UIView *)page];
   [_visiblePages addObject:page];
@@ -379,13 +379,13 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)configurePage:(id<NIPagingScrollViewPage>)page {
+- (void)willDisplayPage:(UIView<NIPagingScrollViewPage> *)pageView {
   // No-op.
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didRecyclePage:(id<NIPagingScrollViewPage>)page {
+- (void)didRecyclePage:(UIView<NIPagingScrollViewPage> *)pageView {
   // No-op
 }
 

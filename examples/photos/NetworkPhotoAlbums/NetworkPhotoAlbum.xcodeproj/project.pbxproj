@@ -10,6 +10,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		66243CC1146112B300B78F5D /* NIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66243CC0146112B300B78F5D /* NIPageView.m */; };
 		6631671713D680A500FF0CBE /* NetworkPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631671613D680A500FF0CBE /* NetworkPhotoAlbumViewController.m */; };
 		6631673613D6825800FF0CBE /* CatalogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631673513D6825800FF0CBE /* CatalogTableViewController.m */; };
 		6631680D13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631680C13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.m */; };
@@ -73,6 +74,8 @@
 		1D6058910D05DD3D006BFB54 /* NetworkPhotoAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkPhotoAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		66243CBF146112B300B78F5D /* NIPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPageView.h; path = ../../../src/pagingscrollview/src/NIPageView.h; sourceTree = "<group>"; };
+		66243CC0146112B300B78F5D /* NIPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPageView.m; path = ../../../src/pagingscrollview/src/NIPageView.m; sourceTree = "<group>"; };
 		6631671513D680A500FF0CBE /* NetworkPhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkPhotoAlbumViewController.h; path = src/NetworkPhotoAlbumViewController.h; sourceTree = "<group>"; };
 		6631671613D680A500FF0CBE /* NetworkPhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkPhotoAlbumViewController.m; path = src/NetworkPhotoAlbumViewController.m; sourceTree = "<group>"; };
 		6631673413D6825800FF0CBE /* CatalogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatalogTableViewController.h; path = src/CatalogTableViewController.h; sourceTree = "<group>"; };
@@ -292,6 +295,8 @@
 				663B52821445130E00CC26DF /* NIPagingScrollViewDataSource.h */,
 				663B52811445130E00CC26DF /* NIPagingScrollViewDelegate.h */,
 				663B52801445130E00CC26DF /* NIPagingScrollViewPage.h */,
+				66243CBF146112B300B78F5D /* NIPageView.h */,
+				66243CC0146112B300B78F5D /* NIPageView.m */,
 			);
 			name = "Paging Scroll View";
 			sourceTree = "<group>";
@@ -603,6 +608,7 @@
 				6656483A1418638700EB5960 /* NINavigationAppearance.m in Sources */,
 				663B52831445130E00CC26DF /* NIPagingScrollView.m in Sources */,
 				66F27D5D145B7DF500AFCA08 /* NIViewRecycler.m in Sources */,
+				66243CC1146112B300B78F5D /* NIPageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

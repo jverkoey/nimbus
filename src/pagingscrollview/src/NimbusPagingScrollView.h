@@ -32,7 +32,6 @@
  * Paging scroll views are commonly used in many iOS applications. For example, Nimbus' Photos
  * feature uses a paging scroll view to power its NIPhotoAlbumScrollView.
  *
- *
  * <h2>Building a Component with NIPagingScrollView</h2>
  *
  * NIPagingScrollView works much like a UITableView in that you must implement a data source
@@ -46,8 +45,10 @@
 
 /**@}*/
 
-#import "NimbusCore.h"
 #import "NIPagingScrollView.h"
 #import "NIPagingScrollViewDataSource.h"
 #import "NIPagingScrollViewDelegate.h"
 #import "NIPagingScrollViewPage.h"
+#import "NIPageView.h"
+
+#import "NimbusCore.h"

@@ -70,7 +70,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)configurePage:(NIPhotoScrollView *)page {
+- (void)willDisplayPage:(NIPhotoScrollView *)page {
   // When we ask the data source for the image we expect the following to happen:
   // 1) If the data source has any image at this index, it should return it and set the
   //    photoSize accordingly.
