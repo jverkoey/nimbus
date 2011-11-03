@@ -35,12 +35,6 @@ function start(watchPath) {
    */
   function onServeFile(request, response, pathname) {
     var localFile = path.join(watchPath, pathname);
-		var stylusFilename = path.dirname(localFile) + '/' +path.basename(localFile, '.css') +'.styl';
-
-		if (path.existsSync(stylusFilename)) {
-				localFile = stylusFilename;
-		}
-
 
     if (!path.existsSync(localFile)) {
       response.writeHead(404);
@@ -61,16 +55,15 @@ function start(watchPath) {
 								response.writeHead(500);
 								response.end();
 						}
-						console.log(css);
 						result = css;
 				});
   		  // Chameleon is currently only designed to support css.
   			response.writeHead(200, { 'Content-Type': 'text/css' });
   			response.end(result, 'utf-8');
-		} else {
+      } else {
   			response.writeHead(200, { 'Content-Type': 'text/css' });
   			response.end(content, 'utf-8');
-		}
+      }
   	});
   }
 
