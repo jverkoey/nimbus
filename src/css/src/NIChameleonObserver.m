@@ -71,7 +71,8 @@ static const NSInteger kMaxNumberOfRetries = 3;
       NSString* path = [_stylesheetCache.pathPrefix stringByAppendingPathComponent:filename];
       if ([fm fileExistsAtPath:path isDirectory:&isFolder]
           && !isFolder
-          && [[filename pathExtension] isEqualToString:@"css"]) {
+          && ([[filename pathExtension] isEqualToString:@"css"] ||
+              [[filename pathExtension] isEqualToString:@"styl"])) {
         [_stylesheetPaths addObject:filename];
         NSString* cachePath = NIPathForDocumentsResource([self pathFromPath:filename]);
         NSError* error = nil;

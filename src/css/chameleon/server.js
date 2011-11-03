@@ -35,6 +35,12 @@ function start(watchPath) {
    */
   function onServeFile(request, response, pathname) {
     var localFile = path.join(watchPath, pathname);
+		var stylusFilename = path.dirname(localFile) + '/' +path.basename(localFile, '.css') +'.styl';
+
+		if (path.existsSync(stylusFilename)) {
+				localFile = stylusFilename;
+		}
+
 
     if (!path.existsSync(localFile)) {
       response.writeHead(404);
@@ -42,16 +48,29 @@ function start(watchPath) {
       return;
     }
 
-    fs.readFile(localFile, function(error, content) {
+    fs.readFile(localFile, 'utf8', function(error, content) {
   		if (error) {
   			response.writeHead(500);
   			response.end();
-
-  		} else {
+  		} else if (path.extname(localFile).toLowerCase() == '.styl') {
+				console.log ('Processing stylus file');
+				var stylus = require('stylus');
+				var result = '';
+				stylus.render(content, { filename: path.basename(localFile) }, function(err, css){
+						if (err) {
+								response.writeHead(500);
+								response.end();
+						}
+						console.log(css);
+						result = css;
+				});
   		  // Chameleon is currently only designed to support css.
   			response.writeHead(200, { 'Content-Type': 'text/css' });
+  			response.end(result, 'utf-8');
+		} else {
+  			response.writeHead(200, { 'Content-Type': 'text/css' });
   			response.end(content, 'utf-8');
-  		}
+		}
   	});
   }
 
@@ -154,7 +173,8 @@ function start(watchPath) {
       var shortName = fullPath.substr(watchPath.length);
 
       // Only watch css files.
-      if (path.extname(shortName).toLowerCase() == '.css') {
+      if (path.extname(shortName).toLowerCase() == '.css' ||
+				  path.extname(shortName).toLowerCase() == '.styl') {
         watchFileAtPath(fullPath, shortName);
       }
     }

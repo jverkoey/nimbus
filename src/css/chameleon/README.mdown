@@ -24,6 +24,10 @@ Within the chameleon directory install the optimist package.
 > cd nimbus/src/chameleon/
 > npm install optimist
 
+If you are going to use [Stylus](http://learnboost.github.com/stylus/), it must install the respective package
+
+> npm install stylus
+
 Start the server from within the chameleon directory.
 
 > cd nimbus/src/chameleon/
