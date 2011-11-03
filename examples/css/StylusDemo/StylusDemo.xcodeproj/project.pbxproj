@@ -1,0 +1,503 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D0AB02AC1461EE9A00BF46A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0AB02AB1461EE9A00BF46A5 /* UIKit.framework */; };
+		D0AB02AE1461EE9A00BF46A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0AB02AD1461EE9A00BF46A5 /* Foundation.framework */; };
+		D0AB02B01461EE9A00BF46A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0AB02AF1461EE9A00BF46A5 /* CoreGraphics.framework */; };
+		D0AB02B61461EE9A00BF46A5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0AB02B41461EE9A00BF46A5 /* InfoPlist.strings */; };
+		D0AB02B81461EE9A00BF46A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02B71461EE9A00BF46A5 /* main.m */; };
+		D0AB02BC1461EE9A00BF46A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02BB1461EE9A00BF46A5 /* AppDelegate.m */; };
+		D0AB02BF1461EE9A00BF46A5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02BE1461EE9A00BF46A5 /* ViewController.m */; };
+		D0AB02F71461EF2500BF46A5 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02CF1461EF2500BF46A5 /* NICommonMetrics.m */; };
+		D0AB02F81461EF2500BF46A5 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02D11461EF2500BF46A5 /* NIDataStructures.m */; };
+		D0AB02F91461EF2500BF46A5 /* NIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02D31461EF2500BF46A5 /* NIDebuggingTools.m */; };
+		D0AB02FA1461EF2500BF46A5 /* NIDeviceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02D51461EF2500BF46A5 /* NIDeviceOrientation.m */; };
+		D0AB02FB1461EF2500BF46A5 /* NIError.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02D71461EF2500BF46A5 /* NIError.m */; };
+		D0AB02FC1461EF2500BF46A5 /* NIFoundationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02D91461EF2500BF46A5 /* NIFoundationMethods.m */; };
+		D0AB02FD1461EF2500BF46A5 /* NIInMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02DB1461EF2500BF46A5 /* NIInMemoryCache.m */; };
+		D0AB02FE1461EF2600BF46A5 /* NINavigationAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02DF1461EF2500BF46A5 /* NINavigationAppearance.m */; };
+		D0AB02FF1461EF2600BF46A5 /* NINetworkActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02E11461EF2500BF46A5 /* NINetworkActivity.m */; };
+		D0AB03001461EF2600BF46A5 /* NINonEmptyCollectionTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02E31461EF2500BF46A5 /* NINonEmptyCollectionTesting.m */; };
+		D0AB03011461EF2600BF46A5 /* NINonRetainingCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02E51461EF2500BF46A5 /* NINonRetainingCollections.m */; };
+		D0AB03021461EF2600BF46A5 /* NIOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02E71461EF2500BF46A5 /* NIOperations.m */; };
+		D0AB03031461EF2600BF46A5 /* NIPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02E91461EF2500BF46A5 /* NIPaths.m */; };
+		D0AB03041461EF2600BF46A5 /* NIRuntimeClassModifications.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02EC1461EF2500BF46A5 /* NIRuntimeClassModifications.m */; };
+		D0AB03051461EF2600BF46A5 /* NISDKAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02EE1461EF2500BF46A5 /* NISDKAvailability.m */; };
+		D0AB03061461EF2600BF46A5 /* NIState.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02F01461EF2500BF46A5 /* NIState.m */; };
+		D0AB03071461EF2600BF46A5 /* NIViewRecycler.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02F21461EF2500BF46A5 /* NIViewRecycler.m */; };
+		D0AB03081461EF2600BF46A5 /* NSData+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02F41461EF2500BF46A5 /* NSData+NimbusCore.m */; };
+		D0AB03091461EF2600BF46A5 /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB02F61461EF2500BF46A5 /* NSString+NimbusCore.m */; };
+		D0AB03241461EF4E00BF46A5 /* CSSTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB030B1461EF4E00BF46A5 /* CSSTokenizer.m */; };
+		D0AB03251461EF4E00BF46A5 /* CSSTokens.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB030D1461EF4E00BF46A5 /* CSSTokens.m */; };
+		D0AB03261461EF4E00BF46A5 /* NIChameleonObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB030F1461EF4E00BF46A5 /* NIChameleonObserver.m */; };
+		D0AB03271461EF4E00BF46A5 /* NICSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB03111461EF4E00BF46A5 /* NICSSParser.m */; };
+		D0AB03281461EF4E00BF46A5 /* NICSSRuleset.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB03131461EF4E00BF46A5 /* NICSSRuleset.m */; };
+		D0AB03291461EF4E00BF46A5 /* NIDOM.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB03151461EF4E00BF46A5 /* NIDOM.m */; };
+		D0AB032A1461EF4E00BF46A5 /* NIStylesheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB03191461EF4E00BF46A5 /* NIStylesheet.m */; };
+		D0AB032B1461EF4E00BF46A5 /* NIStylesheetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB031B1461EF4E00BF46A5 /* NIStylesheetCache.m */; };
+		D0AB032C1461EF4E00BF46A5 /* UIButton+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB031D1461EF4E00BF46A5 /* UIButton+NIStyleable.m */; };
+		D0AB032D1461EF4E00BF46A5 /* UILabel+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB031F1461EF4E00BF46A5 /* UILabel+NIStyleable.m */; };
+		D0AB032E1461EF4E00BF46A5 /* UINavigationBar+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB03211461EF4E00BF46A5 /* UINavigationBar+NIStyleable.m */; };
+		D0AB032F1461EF4E00BF46A5 /* UIView+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB03231461EF4E00BF46A5 /* UIView+NIStyleable.m */; };
+		D0AB03341461F04B00BF46A5 /* css in Resources */ = {isa = PBXBuildFile; fileRef = D0AB03331461F04B00BF46A5 /* css */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D0AB02A71461EE9A00BF46A5 /* StylusDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StylusDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0AB02AB1461EE9A00BF46A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D0AB02AD1461EE9A00BF46A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D0AB02AF1461EE9A00BF46A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D0AB02B31461EE9A00BF46A5 /* StylusDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StylusDemo-Info.plist"; sourceTree = "<group>"; };
+		D0AB02B51461EE9A00BF46A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D0AB02B71461EE9A00BF46A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D0AB02B91461EE9A00BF46A5 /* StylusDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StylusDemo-Prefix.pch"; sourceTree = "<group>"; };
+		D0AB02BA1461EE9A00BF46A5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D0AB02BB1461EE9A00BF46A5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D0AB02BD1461EE9A00BF46A5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D0AB02BE1461EE9A00BF46A5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D0AB02CD1461EF2500BF46A5 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIBlocks.h; sourceTree = "<group>"; };
+		D0AB02CE1461EF2500BF46A5 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICommonMetrics.h; sourceTree = "<group>"; };
+		D0AB02CF1461EF2500BF46A5 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICommonMetrics.m; sourceTree = "<group>"; };
+		D0AB02D01461EF2500BF46A5 /* NIDataStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIDataStructures.h; sourceTree = "<group>"; };
+		D0AB02D11461EF2500BF46A5 /* NIDataStructures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIDataStructures.m; sourceTree = "<group>"; };
+		D0AB02D21461EF2500BF46A5 /* NIDebuggingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIDebuggingTools.h; sourceTree = "<group>"; };
+		D0AB02D31461EF2500BF46A5 /* NIDebuggingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIDebuggingTools.m; sourceTree = "<group>"; };
+		D0AB02D41461EF2500BF46A5 /* NIDeviceOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIDeviceOrientation.h; sourceTree = "<group>"; };
+		D0AB02D51461EF2500BF46A5 /* NIDeviceOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIDeviceOrientation.m; sourceTree = "<group>"; };
+		D0AB02D61461EF2500BF46A5 /* NIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIError.h; sourceTree = "<group>"; };
+		D0AB02D71461EF2500BF46A5 /* NIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIError.m; sourceTree = "<group>"; };
+		D0AB02D81461EF2500BF46A5 /* NIFoundationMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIFoundationMethods.h; sourceTree = "<group>"; };
+		D0AB02D91461EF2500BF46A5 /* NIFoundationMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIFoundationMethods.m; sourceTree = "<group>"; };
+		D0AB02DA1461EF2500BF46A5 /* NIInMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIInMemoryCache.h; sourceTree = "<group>"; };
+		D0AB02DB1461EF2500BF46A5 /* NIInMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIInMemoryCache.m; sourceTree = "<group>"; };
+		D0AB02DC1461EF2500BF46A5 /* NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusCore.h; sourceTree = "<group>"; };
+		D0AB02DD1461EF2500BF46A5 /* NimbusCore+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusCore+Additions.h"; sourceTree = "<group>"; };
+		D0AB02DE1461EF2500BF46A5 /* NINavigationAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NINavigationAppearance.h; sourceTree = "<group>"; };
+		D0AB02DF1461EF2500BF46A5 /* NINavigationAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINavigationAppearance.m; sourceTree = "<group>"; };
+		D0AB02E01461EF2500BF46A5 /* NINetworkActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NINetworkActivity.h; sourceTree = "<group>"; };
+		D0AB02E11461EF2500BF46A5 /* NINetworkActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINetworkActivity.m; sourceTree = "<group>"; };
+		D0AB02E21461EF2500BF46A5 /* NINonEmptyCollectionTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NINonEmptyCollectionTesting.h; sourceTree = "<group>"; };
+		D0AB02E31461EF2500BF46A5 /* NINonEmptyCollectionTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINonEmptyCollectionTesting.m; sourceTree = "<group>"; };
+		D0AB02E41461EF2500BF46A5 /* NINonRetainingCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NINonRetainingCollections.h; sourceTree = "<group>"; };
+		D0AB02E51461EF2500BF46A5 /* NINonRetainingCollections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINonRetainingCollections.m; sourceTree = "<group>"; };
+		D0AB02E61461EF2500BF46A5 /* NIOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOperations.h; sourceTree = "<group>"; };
+		D0AB02E71461EF2500BF46A5 /* NIOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOperations.m; sourceTree = "<group>"; };
+		D0AB02E81461EF2500BF46A5 /* NIPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPaths.h; sourceTree = "<group>"; };
+		D0AB02E91461EF2500BF46A5 /* NIPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIPaths.m; sourceTree = "<group>"; };
+		D0AB02EA1461EF2500BF46A5 /* NIPreprocessorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPreprocessorMacros.h; sourceTree = "<group>"; };
+		D0AB02EB1461EF2500BF46A5 /* NIRuntimeClassModifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIRuntimeClassModifications.h; sourceTree = "<group>"; };
+		D0AB02EC1461EF2500BF46A5 /* NIRuntimeClassModifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIRuntimeClassModifications.m; sourceTree = "<group>"; };
+		D0AB02ED1461EF2500BF46A5 /* NISDKAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NISDKAvailability.h; sourceTree = "<group>"; };
+		D0AB02EE1461EF2500BF46A5 /* NISDKAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NISDKAvailability.m; sourceTree = "<group>"; };
+		D0AB02EF1461EF2500BF46A5 /* NIState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIState.h; sourceTree = "<group>"; };
+		D0AB02F01461EF2500BF46A5 /* NIState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIState.m; sourceTree = "<group>"; };
+		D0AB02F11461EF2500BF46A5 /* NIViewRecycler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIViewRecycler.h; sourceTree = "<group>"; };
+		D0AB02F21461EF2500BF46A5 /* NIViewRecycler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIViewRecycler.m; sourceTree = "<group>"; };
+		D0AB02F31461EF2500BF46A5 /* NSData+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NimbusCore.h"; sourceTree = "<group>"; };
+		D0AB02F41461EF2500BF46A5 /* NSData+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NimbusCore.m"; sourceTree = "<group>"; };
+		D0AB02F51461EF2500BF46A5 /* NSString+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NimbusCore.h"; sourceTree = "<group>"; };
+		D0AB02F61461EF2500BF46A5 /* NSString+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NimbusCore.m"; sourceTree = "<group>"; };
+		D0AB030B1461EF4E00BF46A5 /* CSSTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSSTokenizer.m; path = ../../../src/css/src/CSSTokenizer.m; sourceTree = "<group>"; };
+		D0AB030C1461EF4E00BF46A5 /* CSSTokens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSSTokens.h; path = ../../../src/css/src/CSSTokens.h; sourceTree = "<group>"; };
+		D0AB030D1461EF4E00BF46A5 /* CSSTokens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSSTokens.m; path = ../../../src/css/src/CSSTokens.m; sourceTree = "<group>"; };
+		D0AB030E1461EF4E00BF46A5 /* NIChameleonObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIChameleonObserver.h; path = ../../../src/css/src/NIChameleonObserver.h; sourceTree = "<group>"; };
+		D0AB030F1461EF4E00BF46A5 /* NIChameleonObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIChameleonObserver.m; path = ../../../src/css/src/NIChameleonObserver.m; sourceTree = "<group>"; };
+		D0AB03101461EF4E00BF46A5 /* NICSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICSSParser.h; path = ../../../src/css/src/NICSSParser.h; sourceTree = "<group>"; };
+		D0AB03111461EF4E00BF46A5 /* NICSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICSSParser.m; path = ../../../src/css/src/NICSSParser.m; sourceTree = "<group>"; };
+		D0AB03121461EF4E00BF46A5 /* NICSSRuleset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICSSRuleset.h; path = ../../../src/css/src/NICSSRuleset.h; sourceTree = "<group>"; };
+		D0AB03131461EF4E00BF46A5 /* NICSSRuleset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICSSRuleset.m; path = ../../../src/css/src/NICSSRuleset.m; sourceTree = "<group>"; };
+		D0AB03141461EF4E00BF46A5 /* NIDOM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDOM.h; path = ../../../src/css/src/NIDOM.h; sourceTree = "<group>"; };
+		D0AB03151461EF4E00BF46A5 /* NIDOM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDOM.m; path = ../../../src/css/src/NIDOM.m; sourceTree = "<group>"; };
+		D0AB03161461EF4E00BF46A5 /* NimbusCSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusCSS.h; path = ../../../src/css/src/NimbusCSS.h; sourceTree = "<group>"; };
+		D0AB03171461EF4E00BF46A5 /* NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIStyleable.h; path = ../../../src/css/src/NIStyleable.h; sourceTree = "<group>"; };
+		D0AB03181461EF4E00BF46A5 /* NIStylesheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIStylesheet.h; path = ../../../src/css/src/NIStylesheet.h; sourceTree = "<group>"; };
+		D0AB03191461EF4E00BF46A5 /* NIStylesheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIStylesheet.m; path = ../../../src/css/src/NIStylesheet.m; sourceTree = "<group>"; };
+		D0AB031A1461EF4E00BF46A5 /* NIStylesheetCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIStylesheetCache.h; path = ../../../src/css/src/NIStylesheetCache.h; sourceTree = "<group>"; };
+		D0AB031B1461EF4E00BF46A5 /* NIStylesheetCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIStylesheetCache.m; path = ../../../src/css/src/NIStylesheetCache.m; sourceTree = "<group>"; };
+		D0AB031C1461EF4E00BF46A5 /* UIButton+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+NIStyleable.h"; path = "../../../src/css/src/UIButton+NIStyleable.h"; sourceTree = "<group>"; };
+		D0AB031D1461EF4E00BF46A5 /* UIButton+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+NIStyleable.m"; path = "../../../src/css/src/UIButton+NIStyleable.m"; sourceTree = "<group>"; };
+		D0AB031E1461EF4E00BF46A5 /* UILabel+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+NIStyleable.h"; path = "../../../src/css/src/UILabel+NIStyleable.h"; sourceTree = "<group>"; };
+		D0AB031F1461EF4E00BF46A5 /* UILabel+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+NIStyleable.m"; path = "../../../src/css/src/UILabel+NIStyleable.m"; sourceTree = "<group>"; };
+		D0AB03201461EF4E00BF46A5 /* UINavigationBar+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationBar+NIStyleable.h"; path = "../../../src/css/src/UINavigationBar+NIStyleable.h"; sourceTree = "<group>"; };
+		D0AB03211461EF4E00BF46A5 /* UINavigationBar+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationBar+NIStyleable.m"; path = "../../../src/css/src/UINavigationBar+NIStyleable.m"; sourceTree = "<group>"; };
+		D0AB03221461EF4E00BF46A5 /* UIView+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+NIStyleable.h"; path = "../../../src/css/src/UIView+NIStyleable.h"; sourceTree = "<group>"; };
+		D0AB03231461EF4E00BF46A5 /* UIView+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+NIStyleable.m"; path = "../../../src/css/src/UIView+NIStyleable.m"; sourceTree = "<group>"; };
+		D0AB03331461F04B00BF46A5 /* css */ = {isa = PBXFileReference; lastKnownFileType = folder; name = css; path = StylusDemo/resources/css; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D0AB02A41461EE9A00BF46A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0AB02AC1461EE9A00BF46A5 /* UIKit.framework in Frameworks */,
+				D0AB02AE1461EE9A00BF46A5 /* Foundation.framework in Frameworks */,
+				D0AB02B01461EE9A00BF46A5 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D0AB029C1461EE9A00BF46A5 = {
+			isa = PBXGroup;
+			children = (
+				D0AB03301461EF6700BF46A5 /* Resources */,
+				D0AB02CB1461EECE00BF46A5 /* Nimbus */,
+				D0AB02B11461EE9A00BF46A5 /* StylusDemo */,
+				D0AB02AA1461EE9A00BF46A5 /* Frameworks */,
+				D0AB02A81461EE9A00BF46A5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0AB02A81461EE9A00BF46A5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0AB02A71461EE9A00BF46A5 /* StylusDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0AB02AA1461EE9A00BF46A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0AB02AB1461EE9A00BF46A5 /* UIKit.framework */,
+				D0AB02AD1461EE9A00BF46A5 /* Foundation.framework */,
+				D0AB02AF1461EE9A00BF46A5 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0AB02B11461EE9A00BF46A5 /* StylusDemo */ = {
+			isa = PBXGroup;
+			children = (
+				D0AB02BA1461EE9A00BF46A5 /* AppDelegate.h */,
+				D0AB02BB1461EE9A00BF46A5 /* AppDelegate.m */,
+				D0AB02BD1461EE9A00BF46A5 /* ViewController.h */,
+				D0AB02BE1461EE9A00BF46A5 /* ViewController.m */,
+				D0AB02B21461EE9A00BF46A5 /* Supporting Files */,
+			);
+			path = StylusDemo;
+			sourceTree = "<group>";
+		};
+		D0AB02B21461EE9A00BF46A5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0AB02B31461EE9A00BF46A5 /* StylusDemo-Info.plist */,
+				D0AB02B41461EE9A00BF46A5 /* InfoPlist.strings */,
+				D0AB02B71461EE9A00BF46A5 /* main.m */,
+				D0AB02B91461EE9A00BF46A5 /* StylusDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D0AB02CB1461EECE00BF46A5 /* Nimbus */ = {
+			isa = PBXGroup;
+			children = (
+				D0AB030A1461EF3300BF46A5 /* CSS */,
+				D0AB02CC1461EED700BF46A5 /* Core */,
+			);
+			name = Nimbus;
+			sourceTree = "<group>";
+		};
+		D0AB02CC1461EED700BF46A5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D0AB02CD1461EF2500BF46A5 /* NIBlocks.h */,
+				D0AB02CE1461EF2500BF46A5 /* NICommonMetrics.h */,
+				D0AB02CF1461EF2500BF46A5 /* NICommonMetrics.m */,
+				D0AB02D01461EF2500BF46A5 /* NIDataStructures.h */,
+				D0AB02D11461EF2500BF46A5 /* NIDataStructures.m */,
+				D0AB02D21461EF2500BF46A5 /* NIDebuggingTools.h */,
+				D0AB02D31461EF2500BF46A5 /* NIDebuggingTools.m */,
+				D0AB02D41461EF2500BF46A5 /* NIDeviceOrientation.h */,
+				D0AB02D51461EF2500BF46A5 /* NIDeviceOrientation.m */,
+				D0AB02D61461EF2500BF46A5 /* NIError.h */,
+				D0AB02D71461EF2500BF46A5 /* NIError.m */,
+				D0AB02D81461EF2500BF46A5 /* NIFoundationMethods.h */,
+				D0AB02D91461EF2500BF46A5 /* NIFoundationMethods.m */,
+				D0AB02DA1461EF2500BF46A5 /* NIInMemoryCache.h */,
+				D0AB02DB1461EF2500BF46A5 /* NIInMemoryCache.m */,
+				D0AB02DC1461EF2500BF46A5 /* NimbusCore.h */,
+				D0AB02DD1461EF2500BF46A5 /* NimbusCore+Additions.h */,
+				D0AB02DE1461EF2500BF46A5 /* NINavigationAppearance.h */,
+				D0AB02DF1461EF2500BF46A5 /* NINavigationAppearance.m */,
+				D0AB02E01461EF2500BF46A5 /* NINetworkActivity.h */,
+				D0AB02E11461EF2500BF46A5 /* NINetworkActivity.m */,
+				D0AB02E21461EF2500BF46A5 /* NINonEmptyCollectionTesting.h */,
+				D0AB02E31461EF2500BF46A5 /* NINonEmptyCollectionTesting.m */,
+				D0AB02E41461EF2500BF46A5 /* NINonRetainingCollections.h */,
+				D0AB02E51461EF2500BF46A5 /* NINonRetainingCollections.m */,
+				D0AB02E61461EF2500BF46A5 /* NIOperations.h */,
+				D0AB02E71461EF2500BF46A5 /* NIOperations.m */,
+				D0AB02E81461EF2500BF46A5 /* NIPaths.h */,
+				D0AB02E91461EF2500BF46A5 /* NIPaths.m */,
+				D0AB02EA1461EF2500BF46A5 /* NIPreprocessorMacros.h */,
+				D0AB02EB1461EF2500BF46A5 /* NIRuntimeClassModifications.h */,
+				D0AB02EC1461EF2500BF46A5 /* NIRuntimeClassModifications.m */,
+				D0AB02ED1461EF2500BF46A5 /* NISDKAvailability.h */,
+				D0AB02EE1461EF2500BF46A5 /* NISDKAvailability.m */,
+				D0AB02EF1461EF2500BF46A5 /* NIState.h */,
+				D0AB02F01461EF2500BF46A5 /* NIState.m */,
+				D0AB02F11461EF2500BF46A5 /* NIViewRecycler.h */,
+				D0AB02F21461EF2500BF46A5 /* NIViewRecycler.m */,
+				D0AB02F31461EF2500BF46A5 /* NSData+NimbusCore.h */,
+				D0AB02F41461EF2500BF46A5 /* NSData+NimbusCore.m */,
+				D0AB02F51461EF2500BF46A5 /* NSString+NimbusCore.h */,
+				D0AB02F61461EF2500BF46A5 /* NSString+NimbusCore.m */,
+			);
+			name = Core;
+			path = ../../../src/core/src;
+			sourceTree = "<group>";
+		};
+		D0AB030A1461EF3300BF46A5 /* CSS */ = {
+			isa = PBXGroup;
+			children = (
+				D0AB030B1461EF4E00BF46A5 /* CSSTokenizer.m */,
+				D0AB030C1461EF4E00BF46A5 /* CSSTokens.h */,
+				D0AB030D1461EF4E00BF46A5 /* CSSTokens.m */,
+				D0AB030E1461EF4E00BF46A5 /* NIChameleonObserver.h */,
+				D0AB030F1461EF4E00BF46A5 /* NIChameleonObserver.m */,
+				D0AB03101461EF4E00BF46A5 /* NICSSParser.h */,
+				D0AB03111461EF4E00BF46A5 /* NICSSParser.m */,
+				D0AB03121461EF4E00BF46A5 /* NICSSRuleset.h */,
+				D0AB03131461EF4E00BF46A5 /* NICSSRuleset.m */,
+				D0AB03141461EF4E00BF46A5 /* NIDOM.h */,
+				D0AB03151461EF4E00BF46A5 /* NIDOM.m */,
+				D0AB03161461EF4E00BF46A5 /* NimbusCSS.h */,
+				D0AB03171461EF4E00BF46A5 /* NIStyleable.h */,
+				D0AB03181461EF4E00BF46A5 /* NIStylesheet.h */,
+				D0AB03191461EF4E00BF46A5 /* NIStylesheet.m */,
+				D0AB031A1461EF4E00BF46A5 /* NIStylesheetCache.h */,
+				D0AB031B1461EF4E00BF46A5 /* NIStylesheetCache.m */,
+				D0AB031C1461EF4E00BF46A5 /* UIButton+NIStyleable.h */,
+				D0AB031D1461EF4E00BF46A5 /* UIButton+NIStyleable.m */,
+				D0AB031E1461EF4E00BF46A5 /* UILabel+NIStyleable.h */,
+				D0AB031F1461EF4E00BF46A5 /* UILabel+NIStyleable.m */,
+				D0AB03201461EF4E00BF46A5 /* UINavigationBar+NIStyleable.h */,
+				D0AB03211461EF4E00BF46A5 /* UINavigationBar+NIStyleable.m */,
+				D0AB03221461EF4E00BF46A5 /* UIView+NIStyleable.h */,
+				D0AB03231461EF4E00BF46A5 /* UIView+NIStyleable.m */,
+			);
+			name = CSS;
+			sourceTree = "<group>";
+		};
+		D0AB03301461EF6700BF46A5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D0AB03331461F04B00BF46A5 /* css */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D0AB02A61461EE9A00BF46A5 /* StylusDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0AB02C81461EE9A00BF46A5 /* Build configuration list for PBXNativeTarget "StylusDemo" */;
+			buildPhases = (
+				D0AB02A31461EE9A00BF46A5 /* Sources */,
+				D0AB02A41461EE9A00BF46A5 /* Frameworks */,
+				D0AB02A51461EE9A00BF46A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StylusDemo;
+			productName = StylusDemo;
+			productReference = D0AB02A71461EE9A00BF46A5 /* StylusDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D0AB029E1461EE9A00BF46A5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = None;
+			};
+			buildConfigurationList = D0AB02A11461EE9A00BF46A5 /* Build configuration list for PBXProject "StylusDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D0AB029C1461EE9A00BF46A5;
+			productRefGroup = D0AB02A81461EE9A00BF46A5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0AB02A61461EE9A00BF46A5 /* StylusDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D0AB02A51461EE9A00BF46A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0AB02B61461EE9A00BF46A5 /* InfoPlist.strings in Resources */,
+				D0AB03341461F04B00BF46A5 /* css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D0AB02A31461EE9A00BF46A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0AB02B81461EE9A00BF46A5 /* main.m in Sources */,
+				D0AB02BC1461EE9A00BF46A5 /* AppDelegate.m in Sources */,
+				D0AB02BF1461EE9A00BF46A5 /* ViewController.m in Sources */,
+				D0AB02F71461EF2500BF46A5 /* NICommonMetrics.m in Sources */,
+				D0AB02F81461EF2500BF46A5 /* NIDataStructures.m in Sources */,
+				D0AB02F91461EF2500BF46A5 /* NIDebuggingTools.m in Sources */,
+				D0AB02FA1461EF2500BF46A5 /* NIDeviceOrientation.m in Sources */,
+				D0AB02FB1461EF2500BF46A5 /* NIError.m in Sources */,
+				D0AB02FC1461EF2500BF46A5 /* NIFoundationMethods.m in Sources */,
+				D0AB02FD1461EF2500BF46A5 /* NIInMemoryCache.m in Sources */,
+				D0AB02FE1461EF2600BF46A5 /* NINavigationAppearance.m in Sources */,
+				D0AB02FF1461EF2600BF46A5 /* NINetworkActivity.m in Sources */,
+				D0AB03001461EF2600BF46A5 /* NINonEmptyCollectionTesting.m in Sources */,
+				D0AB03011461EF2600BF46A5 /* NINonRetainingCollections.m in Sources */,
+				D0AB03021461EF2600BF46A5 /* NIOperations.m in Sources */,
+				D0AB03031461EF2600BF46A5 /* NIPaths.m in Sources */,
+				D0AB03041461EF2600BF46A5 /* NIRuntimeClassModifications.m in Sources */,
+				D0AB03051461EF2600BF46A5 /* NISDKAvailability.m in Sources */,
+				D0AB03061461EF2600BF46A5 /* NIState.m in Sources */,
+				D0AB03071461EF2600BF46A5 /* NIViewRecycler.m in Sources */,
+				D0AB03081461EF2600BF46A5 /* NSData+NimbusCore.m in Sources */,
+				D0AB03091461EF2600BF46A5 /* NSString+NimbusCore.m in Sources */,
+				D0AB03241461EF4E00BF46A5 /* CSSTokenizer.m in Sources */,
+				D0AB03251461EF4E00BF46A5 /* CSSTokens.m in Sources */,
+				D0AB03261461EF4E00BF46A5 /* NIChameleonObserver.m in Sources */,
+				D0AB03271461EF4E00BF46A5 /* NICSSParser.m in Sources */,
+				D0AB03281461EF4E00BF46A5 /* NICSSRuleset.m in Sources */,
+				D0AB03291461EF4E00BF46A5 /* NIDOM.m in Sources */,
+				D0AB032A1461EF4E00BF46A5 /* NIStylesheet.m in Sources */,
+				D0AB032B1461EF4E00BF46A5 /* NIStylesheetCache.m in Sources */,
+				D0AB032C1461EF4E00BF46A5 /* UIButton+NIStyleable.m in Sources */,
+				D0AB032D1461EF4E00BF46A5 /* UILabel+NIStyleable.m in Sources */,
+				D0AB032E1461EF4E00BF46A5 /* UINavigationBar+NIStyleable.m in Sources */,
+				D0AB032F1461EF4E00BF46A5 /* UIView+NIStyleable.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D0AB02B41461EE9A00BF46A5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0AB02B51461EE9A00BF46A5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D0AB02C61461EE9A00BF46A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D0AB02C71461EE9A00BF46A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D0AB02C91461EE9A00BF46A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StylusDemo/StylusDemo-Prefix.pch";
+				INFOPLIST_FILE = "StylusDemo/StylusDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D0AB02CA1461EE9A00BF46A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StylusDemo/StylusDemo-Prefix.pch";
+				INFOPLIST_FILE = "StylusDemo/StylusDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D0AB02A11461EE9A00BF46A5 /* Build configuration list for PBXProject "StylusDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0AB02C61461EE9A00BF46A5 /* Debug */,
+				D0AB02C71461EE9A00BF46A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0AB02C81461EE9A00BF46A5 /* Build configuration list for PBXNativeTarget "StylusDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0AB02C91461EE9A00BF46A5 /* Debug */,
+				D0AB02CA1461EE9A00BF46A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D0AB029E1461EE9A00BF46A5 /* Project object */;
+}
