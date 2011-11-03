@@ -15,6 +15,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * Formats a number of bytes in a human-readable format.

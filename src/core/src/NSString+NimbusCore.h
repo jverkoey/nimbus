@@ -18,6 +18,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <UIKit/UIKit.h>
+
 // Documentation for these additions is found in the .m file.
 @interface NSString (NimbusCore)
 
