@@ -215,6 +215,35 @@ _chameleonObserver = [[NIChameleonObserver alloc] initWithStylesheetCache:_style
  * that you are interested in. You will get a notification when the stylesheet has been modified,
  * at which point if you're using NIDOM you can tell the NIDOM object to refresh itself;
  * this will reapply the stylesheet to all of its attached views.
+ *
+ * <h3>CSS Extensions Support</h3>
+ * Besides monitoring the modified files and notifying your application, Chamaleon also provides 
+ * for CSS extensions support. Currently Chameleon supports the Stylus extension.
+ *
+ * To describe the files using CSS extensions, you must create a directory called 'ext' in the 
+ * same level as your CSS directory. Add this project to your project just like you did for the CSS directory.
+ * 
+ * @note One recommended additional step is not to copy this directory to the application resources. 
+ * You can do that by navigating to Target Settings -> Build Phases -> Copy Bundles Resources and 
+ * excluding the ext directory
+ *
+ * Chameleon reads the contents of the 'ext' directory, looking for CSS extensions files. It will 
+ * start watching these extensions files, so they can be compiled whenever a change happens.
+ *
+ * Once Chameleon compiles the CSS file, it will be placed into the directory that you specied 
+ * Chameleon to watch. The same directory hierarchy from the extensions directory will be kept. 
+ * The filename will be translated the <original_basename>_<extension>.css. For example: a file called
+ * ext/test/root.styl will be placed in css/test/root_stylus.css
+ *
+ * If you are using an extension, you will need to add the final compiled filename to your project 
+ * stylesheets, not the extension name. Considering you have an extension file called common.styl, 
+ * an example would be like:
+ * @code
+ * NIStylesheetCache* stylesheetCache =
+ * [(AppDelegate *)[UIApplication sharedApplication].delegate stylesheetCache];
+ * NIStylesheet* stylesheet = [stylesheetCache stylesheetWithPath:@"common_stylus.css"];
+ * @endcode
+ *
  */
 
 /**@}*/

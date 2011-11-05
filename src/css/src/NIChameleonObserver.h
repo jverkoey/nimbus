@@ -52,8 +52,6 @@
 
 - (void)watchSkinChanges;
 
-- (void)downloadStylesheetWithFilename:(NSString *)path;
-
 @end
 
 /**

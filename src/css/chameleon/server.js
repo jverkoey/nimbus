@@ -29,6 +29,7 @@ var watchInterval = 500; // 500 ms makes it effectively instant.
  * Starts the Chameleon HTTP server and file watcher on the given path.
  */
 function start(watchPath) {
+	var extPath = watchPath.replace(/\w+\/?$/, 'ext');
 
   /**
    * Load a file from disk and pipe it down.
@@ -46,20 +47,6 @@ function start(watchPath) {
   		if (error) {
   			response.writeHead(500);
   			response.end();
-  		} else if (path.extname(localFile).toLowerCase() == '.styl') {
-				console.log ('Processing stylus file');
-				var stylus = require('stylus');
-				var result = '';
-				stylus.render(content, { filename: path.basename(localFile) }, function(err, css){
-						if (err) {
-								response.writeHead(500);
-								response.end();
-						}
-						result = css;
-				});
-  		  // Chameleon is currently only designed to support css.
-  			response.writeHead(200, { 'Content-Type': 'text/css' });
-  			response.end(result, 'utf-8');
       } else {
   			response.writeHead(200, { 'Content-Type': 'text/css' });
   			response.end(content, 'utf-8');
@@ -133,6 +120,101 @@ function start(watchPath) {
     });
   }
 
+  /**
+	 * Start watching the CSS extension files and compiles the CSS every time that
+	 * that the extension file is modified
+	 */
+  function watchExtFileAtPath(filePath, shortName) {
+    fs.watchFile(filePath, { persistent: true, interval: watchInterval }, function (curr, prev) {
+      if (curr.mtime.getTime() != prev.mtime.getTime()) {
+        writeExtFile(filePath, shortName);
+      }
+    });
+  }
+
+  /**
+	 * Verified the CSS extension that should be used to compile the CSS
+	 * Currently, only .still (Stylus) files are supported
+	 */
+  var writeExtFile = function(filePath, shortName) {
+    if (path.extname(filePath).toLowerCase() == '.styl') {
+      writeStylusFile(filePath, shortName);
+    }
+    //Add here support for Sass and Less
+  }
+
+  /**
+	 * Compiles the CSS file. This function read the input file and compiles the
+	 * css to the target destination. The output directory maintains the directory
+	 * hierarchy from the extensions directory.
+	 * The file name will be composed of the 'originalfilename_<format>.css'. 
+	 * For example, a file located in ext/test/root.styl will be written to
+	 * css/test/root_stylus.css
+	 *
+	 * A watch will be put on target css file, if it is the first time that it is
+	 * being written
+	 */
+  var writeStylusFile = function(filePath, shortName){
+    var shortOutputName = path.dirname(shortName) + '/' + path.basename(filePath, '.styl') + '_stylus.css';
+    var outputFile = watchPath + shortOutputName;
+
+    var content = fs.readFileSync(filePath, 'utf8');
+    var result = '';
+    var stylus = require('stylus');
+    stylus.render(content, { filename: path.basename(filePath) }, function(err, css){
+      if (err) {
+        console.log('An error happened ' + err);
+      } else {
+			  mkdir_p(path.dirname(outputFile), 0755, function(err) {
+				  if (err) throw err;
+          if (!path.existsSync(outputFile)) {
+            fs.writeFileSync(outputFile, css);
+            watchFileAtPath(outputFile, shortOutputName);
+          } else {
+            fs.writeFileSync(outputFile, css);
+          }
+        }, 0);
+      }
+    });
+  }
+
+	/**
+	 * This function was taken from http://unfoldingtheweb.com/2010/12/15/recursive-directory-nodejs
+	 * It creates directories recursively
+	 */
+  function mkdir_p(dirPath, mode, callback, position) {
+    mode = mode || 0777;
+    position = position || 0;
+    parts = require('path').normalize(dirPath).split('/');
+
+    if (position >= parts.length) {
+        if (callback) {
+            return callback();
+        } else {
+            return true;
+        }
+    }
+
+    var directory = parts.slice(0, position + 1).join('/');
+    fs.stat(directory, function(err) {
+        if (err === null) {
+            mkdir_p(dirPath, mode, callback, position + 1);
+        } else {
+            fs.mkdir(directory, mode, function (err) {
+                if (err) {
+                    if (callback) {
+                        return callback(err);
+                    } else {
+                        throw err;
+                    }
+                } else {
+                    mkdir_p(dirPath, mode, callback, position + 1);
+                }
+            })
+        }
+     });
+   }
+
   // W00t to chjj for saving me time on this one.
   // http://stackoverflow.com/questions/5827612/node-js-fs-readdir-recursive-directory-search
   var walk = function(dir, done) {
@@ -159,17 +241,35 @@ function start(watchPath) {
   };
 
   // Watch all of the files in the watch path recursively.
-  walk(watchPath, function(err, results) {
-    if (err) throw err;
-    for (var i = 0; i < results.length; ++i) {
-      var fullPath = results[i];
-      var shortName = fullPath.substr(watchPath.length);
+  // When an extension file is found, it compiles the CSS
+  var watchFiles = function(basePath, files) {
+    for (var i = 0; i < files.length; ++i) {
+      var fullPath = files[i];
+      var shortName = fullPath.substr(basePath.length);
+
+      if (path.extname(shortName).toLowerCase() == '.styl') {
+        writeExtFile(fullPath, shortName);
+        watchExtFileAtPath(fullPath, shortName);
+      }
 
       // Only watch css files.
-      if (path.extname(shortName).toLowerCase() == '.css' ||
-				  path.extname(shortName).toLowerCase() == '.styl') {
+      if (path.extname(shortName).toLowerCase() == '.css') {
         watchFileAtPath(fullPath, shortName);
       }
+    }
+  }
+
+  // We are first traversing the css files directory
+	// Then we traverse the extensions directory. 
+  walk(watchPath, function(err, cssFiles) {
+    if (err) throw err;
+    watchFiles(watchPath, cssFiles);
+    //Walk the extensions directory
+    if (path.existsSync(extPath)) {
+      walk(extPath, function(err, extFiles) {
+        if (err) throw err;
+        watchFiles(extPath, extFiles);
+      });
     }
   });
 
