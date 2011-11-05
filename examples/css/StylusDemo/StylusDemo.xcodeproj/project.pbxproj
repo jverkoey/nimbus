@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D02652921465B61E00539D5E /* css in Resources */ = {isa = PBXBuildFile; fileRef = D02652911465B61E00539D5E /* css */; };
 		D0AB02AC1461EE9A00BF46A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0AB02AB1461EE9A00BF46A5 /* UIKit.framework */; };
 		D0AB02AE1461EE9A00BF46A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0AB02AD1461EE9A00BF46A5 /* Foundation.framework */; };
 		D0AB02B01461EE9A00BF46A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0AB02AF1461EE9A00BF46A5 /* CoreGraphics.framework */; };
@@ -45,10 +46,11 @@
 		D0AB032D1461EF4E00BF46A5 /* UILabel+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB031F1461EF4E00BF46A5 /* UILabel+NIStyleable.m */; };
 		D0AB032E1461EF4E00BF46A5 /* UINavigationBar+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB03211461EF4E00BF46A5 /* UINavigationBar+NIStyleable.m */; };
 		D0AB032F1461EF4E00BF46A5 /* UIView+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB03231461EF4E00BF46A5 /* UIView+NIStyleable.m */; };
-		D0AB03341461F04B00BF46A5 /* css in Resources */ = {isa = PBXBuildFile; fileRef = D0AB03331461F04B00BF46A5 /* css */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D02652911465B61E00539D5E /* css */ = {isa = PBXFileReference; lastKnownFileType = folder; name = css; path = StylusDemo/resources/css; sourceTree = "<group>"; };
+		D02652931465B82000539D5E /* ext */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ext; path = StylusDemo/resources/ext; sourceTree = "<group>"; };
 		D0AB02A71461EE9A00BF46A5 /* StylusDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StylusDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AB02AB1461EE9A00BF46A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D0AB02AD1461EE9A00BF46A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -128,7 +130,6 @@
 		D0AB03211461EF4E00BF46A5 /* UINavigationBar+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationBar+NIStyleable.m"; path = "../../../src/css/src/UINavigationBar+NIStyleable.m"; sourceTree = "<group>"; };
 		D0AB03221461EF4E00BF46A5 /* UIView+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+NIStyleable.h"; path = "../../../src/css/src/UIView+NIStyleable.h"; sourceTree = "<group>"; };
 		D0AB03231461EF4E00BF46A5 /* UIView+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+NIStyleable.m"; path = "../../../src/css/src/UIView+NIStyleable.m"; sourceTree = "<group>"; };
-		D0AB03331461F04B00BF46A5 /* css */ = {isa = PBXFileReference; lastKnownFileType = folder; name = css; path = StylusDemo/resources/css; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,7 +292,8 @@
 		D0AB03301461EF6700BF46A5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D0AB03331461F04B00BF46A5 /* css */,
+				D02652931465B82000539D5E /* ext */,
+				D02652911465B61E00539D5E /* css */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -348,7 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0AB02B61461EE9A00BF46A5 /* InfoPlist.strings in Resources */,
-				D0AB03341461F04B00BF46A5 /* css in Resources */,
+				D02652921465B61E00539D5E /* css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +498,7 @@
 				D0AB02CA1461EE9A00BF46A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

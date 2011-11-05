@@ -29,11 +29,8 @@ static CGFloat squareSize = 200;
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         NIStylesheetCache* stylesheetCache =
         [(AppDelegate *)[UIApplication sharedApplication].delegate stylesheetCache];
-        NIStylesheet* stylesheet = [stylesheetCache stylesheetWithPath:@"root/root.styl" loadFromDisk:NO];
+        NIStylesheet* stylesheet = [stylesheetCache stylesheetWithPath:@"root/root_stylus.css"];
         _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
-        
-        NIChameleonObserver *chameleon = [(AppDelegate *)[UIApplication sharedApplication].delegate chameleonObserver];
-        [chameleon downloadStylesheetWithFilename:@"root/root.styl"];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(stylesheetDidChange)
                                                      name:NIStylesheetDidChangeNotification

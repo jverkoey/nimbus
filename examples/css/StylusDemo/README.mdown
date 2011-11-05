@@ -1,0 +1,6 @@
+Nimbus CSS Stylus Extension example
+===================================
+
+This project requires the Chameleon server to be running. For instructions on
+setting the Chameleon server, please that a look at nimbus/src/css/chameleon/
+file
