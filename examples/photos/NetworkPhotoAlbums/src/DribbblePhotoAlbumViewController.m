@@ -217,7 +217,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)numberOfPhotosInPhotoScrollView:(NIPhotoAlbumScrollView *)photoScrollView {
+- (NSInteger)numberOfPagesInPagingScrollView:(NIPhotoAlbumScrollView *)photoScrollView {
   return [_photoInformation count];
 }
 
@@ -276,6 +276,12 @@
       [op cancel];
     }
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageForIndex:(NSInteger)pageIndex {
+  return [self.photoAlbumView pagingScrollView:pagingScrollView pageForIndex:pageIndex];
 }
 
 

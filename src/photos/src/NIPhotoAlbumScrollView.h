@@ -17,17 +17,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NIPagingScrollView.h"
+#import "NIPagingScrollViewDataSource.h"
+#import "NIPagingScrollViewDelegate.h"
 #import "NIPhotoScrollView.h"
-
-/**
- * numberOfPhotos will be this value until reloadData is called.
- */
-extern const NSInteger NIPhotoAlbumScrollViewUnknownNumberOfPhotos;
-
-/**
- * The default number of pixels on the side of each photo.
- */
-extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
 
 @protocol NIPhotoAlbumScrollViewDataSource;
 @protocol NIPhotoAlbumScrollViewDelegate;
@@ -47,201 +40,35 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  *
  *      @see NIToolbarPhotoViewController
  */
-@interface NIPhotoAlbumScrollView : UIView <
-  UIScrollViewDelegate,
-  NIPhotoScrollViewDelegate> {
+@interface NIPhotoAlbumScrollView : NIPagingScrollView <NIPhotoScrollViewDelegate> {
 @private
-  UIScrollView* _pagingScrollView;
-
-  // Sets of NIPhotoScrollViews
-  NSMutableSet* _visiblePages;
-  NSMutableSet* _recycledPages;
-
   // Configurable Properties
   UIImage* _loadingImage;
-  CGFloat _pageHorizontalMargin;
   BOOL _zoomingIsEnabled;
   BOOL _zoomingAboveOriginalSizeIsEnabled;
-
-  // State Information
-  NSInteger _firstVisiblePageIndexBeforeRotation;
-  CGFloat   _percentScrolledIntoFirstVisiblePage;
-  BOOL      _isModifyingContentOffset;
-  BOOL      _isAnimatingToPhoto;
-  NSInteger _centerPhotoIndex;
-
-  // Cached Data Source Information
-  NSInteger _numberOfPages;
-
-  id<NIPhotoAlbumScrollViewDataSource> _dataSource;
-  id<NIPhotoAlbumScrollViewDelegate> _delegate;
 }
 
+#pragma mark Data Source
 
-#pragma mark Configuring Functionality /** @name Configuring Functionality */
-
-/**
- * Whether zooming is enabled or not.
- *
- * Regardless of whether this is enabled, only original-sized images will be zoomable.
- * This is because we often don't know how large the final image is so we can't
- * calculate min and max zoom amounts correctly.
- *
- * By default this is YES.
- */
-@property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled;
-
-/**
- * Whether small photos can be zoomed at least until they fit the screen.
- *
- *      @see NIPhotoScrollView::zoomingAboveOriginalSizeIsEnabled
- *
- * By default this is YES.
- */
-@property (nonatomic, readwrite, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled;
-
-
-#pragma mark Data Source /** @name Data Source */
-
-/**
- * The data source for this photo album view.
- *
- * This is the only means by which this photo album view acquires any information about the
- * album to be displayed.
- */
+// For use in your pagingScrollView:pageForIndex: data source implementation.
+- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageForIndex:(NSInteger)pageIndex;
 @property (nonatomic, readwrite, assign) id<NIPhotoAlbumScrollViewDataSource> dataSource;
-
-/**
- * Force the view to reload its data by asking the data source for information.
- *
- * This must be called at least once after dataSource has been set in order for the view
- * to gather any presentable information.
- *
- * This method is expensive. It will reset the state of the view and remove all existing
- * pages before requesting the new information from the data source.
- */
-- (void)reloadData;
-
-
-#pragma mark Delegate /** @name Delegate */
-
-/**
- * The delegate for this photo album view.
- *
- * Any user interactions or state changes are sent to the delegate through this property.
- */
 @property (nonatomic, readwrite, assign) id<NIPhotoAlbumScrollViewDelegate> delegate;
 
+#pragma mark Configuring Functionality
 
-#pragma mark Configuring Presentation /** @name Configuring Presentation */
+@property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled;
+@property (nonatomic, readwrite, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled;
 
-/**
- * An image that is displayed while the photo is loading.
- *
- * This photo will be presented if no image is returned in the data source's implementation
- * of photoAlbumScrollView:photoAtIndex:photoSize:isLoading:.
- *
- * Zooming is disabled when showing a loading image, regardless of the state of zoomingIsEnabled.
- *
- * By default this is nil.
- */
+#pragma mark Configuring Presentation
+
 @property (nonatomic, readwrite, retain) UIImage* loadingImage;
 
-/**
- * The number of pixels on either side of each photo page.
- *
- * The space between each photo will be 2x this value.
- *
- * By default this is NIPhotoAlbumScrollViewDefaultPageHorizontalMargin.
- */
-@property (nonatomic, readwrite, assign) CGFloat pageHorizontalMargin;
+#pragma mark Notifying the View of Loaded Photos
 
-
-#pragma mark State /** @name State */
-
-/**
- * The current center photo index.
- *
- * This is a zero-based value. If you intend to use this in a label such as "photo ## of n" be
- * sure to add one to this value.
- *
- * Setting this value directly will do so without animation.
- */
-@property (nonatomic, readwrite, assign) NSInteger centerPhotoIndex;
-
-/**
- * Change the center photo index with optional animation.
- */
-- (void)setCenterPhotoIndex:(NSInteger)centerPhotoIndex animated:(BOOL)animated;
-
-/**
- * The total number of photos in this photo album view, as gathered from the data source.
- *
- * This value is cached after reloadData has been called.
- *
- * Until reloadData is called the first time, numberOfPhotos will be
- * NIPhotoAlbumScrollViewUnknownNumberOfPhotos.
- */
-@property (nonatomic, readonly, assign) NSInteger numberOfPhotos;
-
-
-#pragma mark Changing the Visible Photo /** @name Changing the Visible Photo */
-
-/**
- * Returns YES if there is a next photo.
- */
-- (BOOL)hasNext;
-
-/**
- * Returns YES if there is a previous photo.
- */
-- (BOOL)hasPrevious;
-
-/**
- * Move to the next photo if there is one.
- */
-- (void)moveToNextAnimated:(BOOL)animated;
-
-/**
- * Move to the previous photo if there is one.
- */
-- (void)moveToPreviousAnimated:(BOOL)animated;
-
-
-#pragma mark Notifying the View of Loaded Photos /** @name Notifying the View of Loaded Photos */
-
-/**
- * Notify the scroll view that a photo has been loaded at a given index.
- *
- * You should notify the completed loading of thumbnails as well. Calling this method
- * is fairly lightweight and will only update the images of the visible pages. Err on the
- * side of calling this method too much rather than too little.
- *
- * The photo at the given index will only be replaced with the given image if photoSize
- * is of a higher quality than the currently-displayed photo's size.
- */
 - (void)didLoadPhoto: (UIImage *)image
              atIndex: (NSInteger)photoIndex
            photoSize: (NIPhotoScrollViewPhotoSize)photoSize;
-
-
-#pragma mark Rotating the Scroll View /** @name Rotating the Scroll View */
-
-/**
- * Stores the current state of the scroll view in preparation for rotation.
- *
- * This must be called in conjunction with willAnimateRotationToInterfaceOrientation:duration:
- * in the methods by the same name from the view controller containing this view.
- */
-- (void)willRotateToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
-                                duration: (NSTimeInterval)duration;
-
-/**
- * Updates the frame of the scroll view while maintaining the current visible page's state.
- */
-- (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
-                                         duration: (NSTimeInterval)duration;
-
 
 @end
 
@@ -256,20 +83,11 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  *
  *      @see NIPhotoAlbumScrollView
  */
-@protocol NIPhotoAlbumScrollViewDataSource <NSObject>
+@protocol NIPhotoAlbumScrollViewDataSource <NIPagingScrollViewDataSource>
 
 @required
 
-
 #pragma mark Fetching Required Album Information /** @name [NIPhotoAlbumScrollViewDataSource] Fetching Required Album Information */
-
-/**
- * Fetches the total number of photos in the scroll view.
- *
- * The value returned in this method will be cached by the scroll view until reloadData
- * is called again.
- */
-- (NSInteger)numberOfPhotosInPhotoScrollView:(NIPhotoAlbumScrollView *)photoScrollView;
 
 /**
  * Fetches the highest-quality image available for the photo at the given index.
@@ -306,9 +124,7 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
                         isLoading: (BOOL *)isLoading
           originalPhotoDimensions: (CGSize *)originalPhotoDimensions;
 
-
 @optional
-
 
 #pragma mark Optimizing Data Retrieval /** @name [NIPhotoAlbumScrollViewDataSource] Optimizing Data Retrieval */
 
@@ -324,7 +140,6 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
 - (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
      stopLoadingPhotoAtIndex: (NSInteger)photoIndex;
 
-
 @end
 
 
@@ -334,32 +149,17 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
  *      @ingroup Photos-Protocols
  *      @see NIPhotoAlbumScrollView
  */
-@protocol NIPhotoAlbumScrollViewDelegate <NSObject>
+@protocol NIPhotoAlbumScrollViewDelegate <NIPagingScrollViewDelegate>
 
 @optional
 
 #pragma mark Scrolling and Zooming /** @name [NIPhotoAlbumScrollViewDelegate] Scrolling and Zooming */
 
 /**
- * The user is scrolling between two photos.
- */
-- (void)photoAlbumScrollViewDidScroll:(NIPhotoAlbumScrollView *)photoAlbumScrollView;
-
-/**
  * The user double-tapped to zoom in or out.
  */
 - (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
                    didZoomIn: (BOOL)didZoomIn;
-
-
-#pragma mark Changing Pages /** @name [NIPhotoAlbumScrollViewDelegate] Changing Pages */
-
-/**
- * The current page has changed.
- *
- * photoAlbumScrollView.currentCenterPhotoIndex will reflect the changed photo index.
- */
-- (void)photoAlbumScrollViewDidChangePages:(NIPhotoAlbumScrollView *)photoAlbumScrollView;
 
 
 #pragma mark Data Availability /** @name [NIPhotoAlbumScrollViewDelegate] Data Availability */
@@ -376,3 +176,97 @@ extern const CGFloat NIPhotoAlbumScrollViewDefaultPageHorizontalMargin;
 
 
 @end
+
+/** @name Data Source */
+
+/**
+ * The data source for this photo album view.
+ *
+ * This is the only means by which this photo album view acquires any information about the
+ * album to be displayed.
+ *
+ *      @fn NIPhotoAlbumScrollView::dataSource
+ */
+
+/**
+ * Use this method in your implementation of NIPhotoAlbumScrollViewDataSource's
+ * pagingScrollView:pageForIndex:.
+ *
+ * Example:
+ *
+@code
+- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageForIndex:(NSInteger)pageIndex {
+  return [self.photoAlbumView pagingScrollView:pagingScrollView pageForIndex:pageIndex];
+}
+@endcode
+ *
+ * Automatically uses the paging scroll view's page recycling methods and creates
+ * NIPhotoScrollViews as needed.
+ *
+ *      @fn NIPhotoAlbumScrollView::pagingScrollView:pageForIndex:
+ */
+
+/**
+ * The delegate for this photo album view.
+ *
+ * Any user interactions or state changes are sent to the delegate through this property.
+ *
+ *      @fn NIPhotoAlbumScrollView::delegate
+ */
+
+
+/** @name Configuring Functionality */
+
+/**
+ * Whether zooming is enabled or not.
+ *
+ * Regardless of whether this is enabled, only original-sized images will be zoomable.
+ * This is because we often don't know how large the final image is so we can't
+ * calculate min and max zoom amounts correctly.
+ *
+ * By default this is YES.
+ *
+ *      @fn NIPhotoAlbumScrollView::zoomingIsEnabled
+ */
+
+/**
+ * Whether small photos can be zoomed at least until they fit the screen.
+ *
+ *      @see NIPhotoScrollView::zoomingAboveOriginalSizeIsEnabled
+ *
+ * By default this is YES.
+ *
+ *      @fn NIPhotoAlbumScrollView::zoomingAboveOriginalSizeIsEnabled
+ */
+
+
+/** @name Configuring Presentation */
+
+/**
+ * An image that is displayed while the photo is loading.
+ *
+ * This photo will be presented if no image is returned in the data source's implementation
+ * of photoAlbumScrollView:photoAtIndex:photoSize:isLoading:.
+ *
+ * Zooming is disabled when showing a loading image, regardless of the state of zoomingIsEnabled.
+ *
+ * By default this is nil.
+ *
+ *      @fn NIPhotoAlbumScrollView::loadingImage
+ */
+
+
+/** @name Notifying the View of Loaded Photos */
+
+/**
+ * Notify the scroll view that a photo has been loaded at a given index.
+ *
+ * You should notify the completed loading of thumbnails as well. Calling this method
+ * is fairly lightweight and will only update the images of the visible pages. Err on the
+ * side of calling this method too much rather than too little.
+ *
+ * The photo at the given index will only be replaced with the given image if photoSize
+ * is of a higher quality than the currently-displayed photo's size.
+ *
+ *      @fn NIPhotoAlbumScrollView::didLoadPhoto:atIndex:photoSize:
+ */

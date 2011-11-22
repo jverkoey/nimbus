@@ -53,7 +53,7 @@
  * be hidden whenever the user starts interacting with the photos.
  *
  * @code
- *  showPhotoAlbumBeneathToolbar = YES;
+ *  toolbarIsTranslucent = YES;
  *  hidesChromeWhenScrolling = YES;
  *  chromeCanBeHidden = YES;
  * @endcode
@@ -64,7 +64,7 @@
  * visible at all times without zooming enabled.
  *
  * @code
- *  showPhotoAlbumBeneathToolbar = NO;
+ *  toolbarIsTranslucent = NO;
  *  chromeCanBeHidden = NO;
  *  photoAlbumView.zoomingIsEnabled = NO;
  * @endcode
@@ -77,41 +77,68 @@
   UIToolbar*              _toolbar;
   NIPhotoAlbumScrollView* _photoAlbumView;
 
+  // Scrubber View
+  NIPhotoScrubberView* _photoScrubberView;
+
   // Toolbar Buttons
   UIBarButtonItem* _nextButton;
   UIBarButtonItem* _previousButton;
-
-  // Scrubber View
-  NIPhotoScrubberView* _photoScrubberView;
 
   // Gestures
   UITapGestureRecognizer* _tapGesture;
 
   // State
   BOOL _isAnimatingChrome;
+  BOOL _isChromeHidden;
 
   // Configuration
-  BOOL _showPhotoAlbumBeneathToolbar;
+  BOOL _toolbarIsTranslucent;
   BOOL _hidesChromeWhenScrolling;
   BOOL _chromeCanBeHidden;
   BOOL _animateMovingToNextAndPreviousPhotos;
   BOOL _scrubberIsEnabled;
 }
 
-#pragma mark Configuring Functionality /** @name Configuring Functionality */
+#pragma mark Configuring Functionality
+
+@property (nonatomic, readwrite, assign, getter=isToolbarTranslucent) BOOL toolbarIsTranslucent; // default: yes
+@property (nonatomic, readwrite, assign) BOOL hidesChromeWhenScrolling; // default: yes
+@property (nonatomic, readwrite, assign) BOOL chromeCanBeHidden; // default: yes
+@property (nonatomic, readwrite, assign) BOOL animateMovingToNextAndPreviousPhotos; // default: no
+@property (nonatomic, readwrite, assign, getter=isScrubberEnabled) BOOL scrubberIsEnabled; // default: ipad yes - iphone no
+
+
+#pragma mark Views
+
+@property (nonatomic, readonly, retain) UIToolbar* toolbar;
+@property (nonatomic, readonly, retain) NIPhotoAlbumScrollView* photoAlbumView;
+@property (nonatomic, readonly, retain) NIPhotoScrubberView* photoScrubberView;
+
+
+#pragma mark Toolbar Buttons
+
+@property (nonatomic, readonly, retain) UIBarButtonItem* nextButton;
+@property (nonatomic, readonly, retain) UIBarButtonItem* previousButton;
+
+@end
+
+/** @name Configuring Functionality */
 
 /**
- * Whether to show the photo album view beneath the toolbar or not.
+ * Whether the toolbar is translucent and shows photos beneath it or not.
  *
  * If this is enabled, the toolbar will be translucent and the photo view will
- * take up the entire view controller's bounds with the toolbar shown on top.
+ * take up the entire view controller's bounds.
  *
  * If this is disabled, the photo will only occupy the remaining space above the
- * toolbar.
+ * toolbar. The toolbar will also not be hidden when the chrome is dismissed. This is by design
+ * because dismissing the toolbar when photos can't be displayed beneath it would leave
+ * an empty space below the album.
  *
  * By default this is YES.
+ *
+ *      @fn NIToolbarPhotoViewController::toolbarIsTranslucent
  */
-@property (nonatomic, readwrite, assign) BOOL showPhotoAlbumBeneathToolbar;
 
 /**
  * Whether or not to hide the chrome when the user begins interacting with the photo.
@@ -124,8 +151,9 @@
  * By default this is YES.
  *
  *      @attention This will be set to NO if toolbarCanBeHidden is set to NO.
+ *
+ *      @fn NIToolbarPhotoViewController::hidesChromeWhenScrolling
  */
-@property (nonatomic, readwrite, assign) BOOL hidesChromeWhenScrolling;
 
 /**
  * Whether or not to allow hiding the chrome.
@@ -140,53 +168,58 @@
  * By default this is YES.
  *
  *      @attention Setting this to NO will also disable hidesToolbarWhenScrolling.
+ *
+ *      @fn NIToolbarPhotoViewController::chromeCanBeHidden
  */
-@property (nonatomic, readwrite, assign) BOOL chromeCanBeHidden;
 
 /**
  * Whether to animate moving to a next or previous photo when the user taps the button.
  *
  * By default this is NO.
+ *
+ *      @fn NIToolbarPhotoViewController::animateMovingToNextAndPreviousPhotos
  */
-@property (nonatomic, readwrite, assign) BOOL animateMovingToNextAndPreviousPhotos;
 
 /**
  * Whether to show a scrubber in the toolbar instead of next/previous buttons.
  *
  * By default this is YES on the iPad and NO on the iPhone.
+ *
+ *      @fn NIToolbarPhotoViewController::scrubberIsEnabled
  */
-@property (nonatomic, readwrite, assign, getter=isScrubberEnabled) BOOL scrubberIsEnabled;
 
 
-#pragma mark Views /** @name Views */
+/** @name Views */
 
 /**
  * The toolbar view.
+ *
+ *      @fn NIToolbarPhotoViewController::toolbar
  */
-@property (nonatomic, readonly, retain) UIToolbar* toolbar;
 
 /**
  * The photo album view.
+ *
+ *      @fn NIToolbarPhotoViewController::photoAlbumView
  */
-@property (nonatomic, readonly, retain) NIPhotoAlbumScrollView* photoAlbumView;
 
 /**
  * The photo scrubber view.
+ *
+ *      @fn NIToolbarPhotoViewController::photoScrubberView
  */
-@property (nonatomic, readonly, retain) NIPhotoScrubberView* photoScrubberView;
 
 
-#pragma mark Toolbar Buttons /** @name Toolbar Buttons */
+/** @name Toolbar Buttons */
 
 /**
  * The 'next' button.
+ *
+ *      @fn NIToolbarPhotoViewController::nextButton
  */
-@property (nonatomic, readonly, retain) UIBarButtonItem* nextButton;
 
 /**
  * The 'previous' button.
+ *
+ *      @fn NIToolbarPhotoViewController::previousButton
  */
-@property (nonatomic, readonly, retain) UIBarButtonItem* previousButton;
-
-
-@end
