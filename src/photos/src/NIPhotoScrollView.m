@@ -99,15 +99,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_doubleTapGestureRecognizer);
-  NI_RELEASE_SAFELY(_reuseIdentifier);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     // Default configuration.
@@ -116,7 +107,7 @@
     self.doubleTapToZoomIsEnabled = YES;
 
     // Autorelease so that we don't have to worry about releasing the subviews in dealloc.
-    _scrollView = [[[NICenteringScrollView alloc] initWithFrame:self.bounds] autorelease];
+    _scrollView = [[NICenteringScrollView alloc] initWithFrame:self.bounds];
     _scrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                     | UIViewAutoresizingFlexibleHeight);
 
@@ -135,7 +126,7 @@
     self.backgroundColor = [UIColor blackColor];
     _scrollView.backgroundColor = self.backgroundColor;
 
-    _imageView = [[[UIImageView alloc] initWithFrame:CGRectZero] autorelease];
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
 
     [_scrollView addSubview:_imageView];
     [self addSubview:_scrollView];

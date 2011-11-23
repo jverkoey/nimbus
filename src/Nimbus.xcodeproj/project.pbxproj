@@ -24,8 +24,6 @@
 				667572F213E76FB90076F555 /* PBXTargetDependency */,
 				667572B813E7698E0076F555 /* PBXTargetDependency */,
 				DB84BDB313EFDF8F00DACCFE /* PBXTargetDependency */,
-				66A03DEC13E6FAD400B514F3 /* PBXTargetDependency */,
-				6675730D13E770870076F555 /* PBXTargetDependency */,
 			);
 			name = Nimbus;
 			productName = Nimbus;
@@ -244,8 +242,6 @@
 		66A03DCD13E6FAC500B514F3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D9313E6FAC500B514F3 /* Reachability.m */; };
 		66B10900144C931F004576D1 /* UIButton+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */; };
 		66B10901144C931F004576D1 /* UIButton+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */; };
-		66C1139C147CAC45003C9AC6 /* NIPhotoAlbumScrollViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 66C1139B147CAC45003C9AC6 /* NIPhotoAlbumScrollViewDataSource.h */; };
-		66C1139F147CADCC003C9AC6 /* NIPhotoAlbumScrollViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66C1139E147CADCC003C9AC6 /* NIPhotoAlbumScrollViewDelegate.h */; };
 		66C3A6A2143D61130048542F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66C3A6AF143D61140048542F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66C3A6B1143D61140048542F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
@@ -362,13 +358,6 @@
 			remoteGlobalIDString = 667572BC13E76F460076F555;
 			remoteInfo = NimbusProcessors;
 		};
-		6675730C13E770870076F555 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 667572F613E7705F0076F555;
-			remoteInfo = JSONKit;
-		};
 		6675732413E771380076F555 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
@@ -431,13 +420,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 66A03D2613E6F97500B514F3;
 			remoteInfo = NimbusNetworkImage;
-		};
-		66A03DEB13E6FAD400B514F3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 66A03D6713E6FA9700B514F3;
-			remoteInfo = ASIHTTPRequest;
 		};
 		66C3A6B2143D61140048542F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -706,8 +688,6 @@
 		66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+NIStyleable.h"; path = "css/src/UIButton+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
 		66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+NIStyleable.m"; path = "css/src/UIButton+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		66B10906144D4C15004576D1 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = css/deps; sourceTree = SOURCE_ROOT; };
-		66C1139B147CAC45003C9AC6 /* NIPhotoAlbumScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPhotoAlbumScrollViewDataSource.h; sourceTree = "<group>"; };
-		66C1139E147CADCC003C9AC6 /* NIPhotoAlbumScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPhotoAlbumScrollViewDelegate.h; sourceTree = "<group>"; };
 		66C3A6A1143D61130048542F /* libNimbusCss.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCss.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C3A6AE143D61140048542F /* NimbusCssTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCssTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F27D53145B7A5F00AFCA08 /* NIPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPageView.h; sourceTree = "<group>"; };
@@ -3045,11 +3025,6 @@
 			target = 667572BC13E76F460076F555 /* NimbusProcessors */;
 			targetProxy = 667572F113E76FB90076F555 /* PBXContainerItemProxy */;
 		};
-		6675730D13E770870076F555 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 667572F613E7705F0076F555 /* JSONKit */;
-			targetProxy = 6675730C13E770870076F555 /* PBXContainerItemProxy */;
-		};
 		6675732513E771380076F555 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6675731113E771380076F555 /* NimbusInterapp */;
@@ -3094,11 +3069,6 @@
 			isa = PBXTargetDependency;
 			target = 66A03D2613E6F97500B514F3 /* NimbusNetworkImage */;
 			targetProxy = 66A03D6213E6FA4B00B514F3 /* PBXContainerItemProxy */;
-		};
-		66A03DEC13E6FAD400B514F3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 66A03D6713E6FA9700B514F3 /* ASIHTTPRequest */;
-			targetProxy = 66A03DEB13E6FAD400B514F3 /* PBXContainerItemProxy */;
 		};
 		66C3A6B3143D61140048542F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

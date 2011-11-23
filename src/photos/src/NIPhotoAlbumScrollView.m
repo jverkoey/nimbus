@@ -140,7 +140,7 @@
   NSString* reuseIdentifier = @"photo";
   pageView = [pagingScrollView dequeueReusablePageWithIdentifier:reuseIdentifier];
   if (nil == pageView) {
-    pageView = [[[NIPhotoScrollView alloc] init] autorelease];
+    pageView = [[NIPhotoScrollView alloc] init];
     pageView.reuseIdentifier = reuseIdentifier;
   }
 

@@ -78,13 +78,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)objectWithCellClass:(Class)cellClass userInfo:(id)userInfo {
-  return [[[self alloc] initWithCellClass:cellClass userInfo:userInfo] autorelease];
+  return [[self alloc] initWithCellClass:cellClass userInfo:userInfo];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)objectWithCellClass:(Class)cellClass {
-  return [[[self alloc] initWithCellClass:cellClass userInfo:nil] autorelease];
+  return [[self alloc] initWithCellClass:cellClass userInfo:nil];
 }
 
 
