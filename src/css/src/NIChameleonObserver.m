@@ -76,6 +76,7 @@ static const NSInteger kMaxNumberOfRetries = 3;
         NSString* cachePath = NIPathForDocumentsResource([self pathFromPath:filename]);
         NSError* error = nil;
         [fm removeItemAtPath:cachePath error:&error];
+        error = nil;
         [fm copyItemAtPath:path toPath:cachePath error:&error];
         NIDASSERT(nil == error);
       }
