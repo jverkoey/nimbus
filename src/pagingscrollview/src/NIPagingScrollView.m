@@ -180,7 +180,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   // visible image.
   return boundi((NSInteger)(floorf((contentOffset.x + boundsSize.width / 2) / boundsSize.width)
                             + 0.5f),
-                0, self.numberOfPages);
+                0, self.numberOfPages - 1);
 }
 
 
