@@ -54,7 +54,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reduceMemoryUsage {
-  _reuseIdentifiersToRecycledViews = [[NSMutableDictionary alloc] init];
+  [self removeAllViews];
 }
 
 
@@ -100,6 +100,12 @@
     [_reuseIdentifiersToRecycledViews setObject:views forKey:reuseIdentifier];
   }
   [views addObject:view];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)removeAllViews {
+  [_reuseIdentifiersToRecycledViews removeAllObjects];
 }
 
 

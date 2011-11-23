@@ -223,7 +223,7 @@
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  _textField.frame = NIRectInset(self.contentView.bounds, NICellContentPadding());
+  _textField.frame = UIEdgeInsetsInsetRect(self.contentView.bounds, NICellContentPadding());
 }
 
 
@@ -288,7 +288,7 @@
   [super layoutSubviews];
 
   UIEdgeInsets contentPadding = NICellContentPadding();
-  CGRect contentFrame = NIRectInset(self.contentView.frame, contentPadding);
+  CGRect contentFrame = UIEdgeInsetsInsetRect(self.contentView.frame, contentPadding);
 
   [_switchControl sizeToFit];
   CGRect frame = _switchControl.frame;

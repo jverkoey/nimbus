@@ -31,7 +31,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)shutdown {
+- (void)shutdown_NetworkPhotoAlbumViewController {
   for (ASIHTTPRequest* request in _queue.operations) {
     request.delegate = nil;
   }
@@ -41,7 +41,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  [self shutdown];
+  [self shutdown_NetworkPhotoAlbumViewController];
 }
 
 
@@ -104,7 +104,7 @@
 
     [_activeRequests removeObject:identifierKey];
   }];
-  
+
   // When this request is canceled (like when we're quickly flipping through an album)
   // the request will fail, so we must be careful to remove the request from the active set.
   [readOp setFailedBlock:^{
@@ -124,7 +124,7 @@
 
 
   // Start the operation.
-  
+
   [_activeRequests addObject:identifierKey];
 
   [_queue addOperation:readOp];
@@ -140,7 +140,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
   [super loadView];
-  
+
   _activeRequests = [[NSMutableSet alloc] init];
 
   _highQualityImageCache = [[NIImageMemoryCache alloc] init];
@@ -159,7 +159,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
-  [self shutdown];
+  [self shutdown_NetworkPhotoAlbumViewController];
 
   [super viewDidUnload];
 }

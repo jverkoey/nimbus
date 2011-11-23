@@ -14,21 +14,36 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import "NIPagingScrollViewPage.h"
+
 #import <UIKit/UIKit.h>
 
 /**
- * Returns the true status bar height when the Overview is active.
+ * A skeleton implementation of a page view.
  *
- *      @ingroup Overview-Tools
+ * This view simply implements the required properties of NIPagingScrollViewPage.
  *
- * The Overview swizzles the methods used by NIStatusBarHeight.
+ *      @ingroup NimbusPagingScrollView
  */
-CGFloat NIOverviewStatusBarHeight();
+@interface NIPageView : UIView <NIPagingScrollViewPage> {
+@private
+  NSInteger _pageIndex;
+  NSString* _reuseIdentifier;
+}
+
+@property (nonatomic, readwrite, assign) NSInteger pageIndex;
+@property (nonatomic, readwrite, copy) NSString* reuseIdentifier;
+
+@end
 
 /**
- * Swizzles all the necessary methods to get the Overview working.
+ * The page index.
  *
- *      @ingroup Overview-Tools
+ *      @fn NIPageView::pageIndex
  */
-void NIOverviewSwizzleMethods();
+
+/**
+ * The reuse identifier.
+ *
+ *      @fn NIPageView::reuseIdentifier
+ */

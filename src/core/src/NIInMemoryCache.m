@@ -20,6 +20,8 @@
 #import "NIDebuggingTools.h"
 #import "NIPreprocessorMacros.h"
 
+#import <UIKit/UIKit.h>
+
 @interface NIMemoryCache()
 @property (nonatomic, readwrite, retain) NSMutableDictionary* cacheMap;
 @property (nonatomic, readwrite, retain) NILinkedList* lruCacheObjects;

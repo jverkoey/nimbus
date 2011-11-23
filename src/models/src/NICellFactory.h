@@ -108,3 +108,36 @@ _model.delegate = (id)[NICellFactory class];
  */
 - (BOOL)shouldUpdateCellWithObject:(id)object;
 @end
+
+/**
+ * A light-weight implementation of the NICellObject protocol.
+ *
+ * Use this object in cases where you can't set up a hard binding between an object and a cell,
+ * or when you simply don't want to.
+ *
+ * For example, let's say that you want to show a cell that shows a loading indicator.
+ * Rather than create a new interface, LoadMoreObject, simply for the cell and binding it
+ * to the cell view, you can create an NICellObject and pass the class name of the cell.
+ *
+@code
+[tableContents addObject:[NICellObject objectWithCellClass:[LoadMoreCell class]]];
+@endcode
+ */
+@interface NICellObject : NSObject <NICellObject>
+
+// Designated initializer.
+- (id)initWithCellClass:(Class)cellClass userInfo:(id)userInfo;
+- (id)initWithCellClass:(Class)cellClass;
+
++ (id)objectWithCellClass:(Class)cellClass;
++ (id)objectWithCellClass:(Class)cellClass userInfo:(id)userInfo;
+
+@property (nonatomic, readonly, retain) id userInfo;
+
+@end
+
+/**
+ * An object that can be used to populate information in the cell.
+ *
+ *      @fn NICellObject::userInfo
+ */

@@ -15,20 +15,27 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+
+@class NIPhotoScrollView;
 
 /**
- * Returns the true status bar height when the Overview is active.
+ * The photo scroll view delegate.
  *
- *      @ingroup Overview-Tools
- *
- * The Overview swizzles the methods used by NIStatusBarHeight.
+ *      @ingroup Photos-Protocols
  */
-CGFloat NIOverviewStatusBarHeight();
+@protocol NIPhotoScrollViewDelegate <NSObject>
+
+@optional
+
+#pragma mark Zooming /** @name [NIPhotoScrollViewDelegate] Zooming */
 
 /**
- * Swizzles all the necessary methods to get the Overview working.
+ * The user has double-tapped the photo to zoom either in or out.
  *
- *      @ingroup Overview-Tools
+ *      @param photoScrollView  The photo scroll view that was tapped.
+ *      @param didZoomIn        YES if the photo was zoomed in. NO if the photo was zoomed out.
  */
-void NIOverviewSwizzleMethods();
+- (void)photoScrollViewDidDoubleTapToZoom: (NIPhotoScrollView *)photoScrollView
+                                didZoomIn: (BOOL)didZoomIn;
+
+@end

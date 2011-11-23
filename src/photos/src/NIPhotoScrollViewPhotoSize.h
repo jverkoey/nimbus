@@ -15,20 +15,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 /**
- * Returns the true status bar height when the Overview is active.
- *
- *      @ingroup Overview-Tools
- *
- * The Overview swizzles the methods used by NIStatusBarHeight.
+ * Contextual information about the size of the photo.
  */
-CGFloat NIOverviewStatusBarHeight();
-
-/**
- * Swizzles all the necessary methods to get the Overview working.
- *
- *      @ingroup Overview-Tools
- */
-void NIOverviewSwizzleMethods();
+typedef enum {
+  // Unknown photo size.
+  NIPhotoScrollViewPhotoSizeUnknown,
+  
+  // A smaller version of the image.
+  NIPhotoScrollViewPhotoSizeThumbnail,
+  
+  // The full-size image.
+  NIPhotoScrollViewPhotoSizeOriginal,
+} NIPhotoScrollViewPhotoSize;
