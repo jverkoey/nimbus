@@ -81,10 +81,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setNeedsDisplay {
-  [super setNeedsDisplay];
-
+- (void)attributedTextDidChange {
   [self resetTextFrame];
+  [self setNeedsDisplay];
 }
 
 
@@ -142,7 +141,7 @@
     _linksHaveBeenDetected = NO;
     [self removeAllExplicitLinks];
 
-    [self setNeedsDisplay];
+    [self attributedTextDidChange];
   }
 }
 
@@ -151,7 +150,7 @@
 - (void)setAutoDetectLinks:(BOOL)autoDetectLinks {
   _autoDetectLinks = autoDetectLinks;
 
-  [self setNeedsDisplay];
+  [self attributedTextDidChange];
 }
 
 
@@ -165,7 +164,7 @@
                                                                                URL:urlLink];
   [_explicitLinkLocations addObject:result];
 
-  [self setNeedsDisplay];
+  [self attributedTextDidChange];
 }
 
 
@@ -173,7 +172,7 @@
 - (void)removeAllExplicitLinks {
   NI_RELEASE_SAFELY(_explicitLinkLocations);
 
-  [self setNeedsDisplay];
+  [self attributedTextDidChange];
 }
 
 
@@ -213,9 +212,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTextColor:(UIColor *)textColor range:(NSRange)range {
-  [self setNeedsDisplay];
-
   [_attributedString setTextColor:textColor range:range];
+
+  [self attributedTextDidChange];
 }
 
 
@@ -231,7 +230,7 @@
 - (void)setFont:(UIFont *)font range:(NSRange)range {
   [_attributedString setFont:font range:range];
 
-  [self setNeedsDisplay];
+  [self attributedTextDidChange];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -240,7 +239,7 @@
     _underlineStyle = style;
     [_attributedString setUnderlineStyle:style modifier:self.underlineStyleModifier];
 
-    [self setNeedsDisplay];
+    [self attributedTextDidChange];
   }
 }
 
@@ -250,7 +249,7 @@
     _underlineStyleModifier = modifier;
     [_attributedString setUnderlineStyle:self.underlineStyle  modifier:modifier];
 
-    [self setNeedsDisplay];
+    [self attributedTextDidChange];
   }
 }
 
@@ -258,7 +257,7 @@
 - (void)setUnderlineStyle:(CTUnderlineStyle)style modifier:(CTUnderlineStyleModifiers)modifier range:(NSRange)range {
   [_attributedString setUnderlineStyle:style modifier:modifier range:range];
 
-  [self setNeedsDisplay];
+  [self attributedTextDidChange];
 }
 
 
@@ -268,7 +267,7 @@
     _strokeWidth = strokeWidth;
     [_attributedString setStrokeWidth:strokeWidth];
 
-    [self setNeedsDisplay];
+    [self attributedTextDidChange];
   }
 }
 
@@ -277,7 +276,7 @@
 - (void)setStrokeWidth:(CGFloat)width range:(NSRange)range {
   [_attributedString setStrokeWidth:width range:range];
 
-  [self setNeedsDisplay];
+  [self attributedTextDidChange];
 }
 
 
@@ -288,7 +287,7 @@
     _strokeColor = [strokeColor retain];
     [_attributedString setStrokeColor:_strokeColor];
 
-    [self setNeedsDisplay];
+    [self attributedTextDidChange];
   }
 }
 
@@ -297,7 +296,7 @@
 - (void)setStrokeColor:(UIColor*)color range:(NSRange)range {
   [_attributedString setStrokeColor:_strokeColor range:range];
 
-  [self setNeedsDisplay];
+  [self attributedTextDidChange];
 }
 
 
@@ -307,7 +306,7 @@
     _textKern = textKern;
     [_attributedString setKern:_textKern];
 
-    [self setNeedsDisplay];
+    [self attributedTextDidChange];
   }
 }
 
@@ -316,7 +315,7 @@
 - (void)setTextKern:(CGFloat)kern range:(NSRange)range {
   [_attributedString setKern:kern range:range];
 
-  [self setNeedsDisplay];
+  [self attributedTextDidChange];
 }
 
 
@@ -335,7 +334,7 @@
     [_linkColor release];
     _linkColor = [linkColor retain];
 
-    [self setNeedsDisplay];
+    [self attributedTextDidChange];
   }
 }
 
@@ -355,7 +354,7 @@
     [_linkHighlightColor release];
     _linkHighlightColor = [linkHighlightColor retain];
 
-    [self setNeedsDisplay];
+    [self attributedTextDidChange];
   }
 }
 
@@ -479,10 +478,10 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   UITouch* touch = [touches anyObject];
 	CGPoint point = [touch locationInView:self];
-  
+
   [_touchedLink release];
   _touchedLink = [[self linkAtPoint:point] retain];
-  
+
   [self setNeedsDisplay];
 }
 
