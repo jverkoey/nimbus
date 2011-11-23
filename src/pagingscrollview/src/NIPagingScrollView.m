@@ -299,6 +299,20 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)layoutVisiblePages {
+  for (UIView<NIPagingScrollViewPage>* page in _visiblePages) {
+    CGRect pageFrame = [self frameForPageAtIndex:page.pageIndex];
+    if ([page respondsToSelector:@selector(setFrameAndMaintainState:)]) {
+      [page setFrameAndMaintainState:pageFrame];
+      
+    } else {
+      [page setFrame:pageFrame];
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark UIView
@@ -309,8 +323,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   // We have to modify this method because it eventually leads to changing the content offset
   // programmatically. When this happens we end up getting a scrollViewDidScroll: message
   // during which we do not want to modify the visible pages because this is handled elsewhere.
-  
-  
+
   // Don't lose the previous modification state if an animation is occurring when the
   // frame changes, like when the device changes orientation.
   BOOL wasModifyingContentOffset = _isModifyingContentOffset;
@@ -318,9 +331,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   [super setFrame:frame];
 
   self.pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
-  for (id<NIPagingScrollViewPage> page in _visiblePages) {
-    [(UIView *)page setFrame:[self frameForPageAtIndex:page.pageIndex]];
-  }
+  [self layoutVisiblePages];
 
   _isModifyingContentOffset = wasModifyingContentOffset;
 }
@@ -477,16 +488,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   self.pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
   _isModifyingContentOffset = wasModifyingContentOffset;
 
-  // adjust frames and configuration of each visible page.
-  for (id<NIPagingScrollViewPage> page in _visiblePages) {
-    CGRect pageFrame = [self frameForPageAtIndex:page.pageIndex];
-    if ([page respondsToSelector:@selector(setFrameDuringRotation:)]) {
-      [page setFrameDuringRotation:pageFrame];
-
-    } else {
-      [(UIView *)page setFrame:pageFrame];
-    }
-  }
+  [self layoutVisiblePages];
 
   // Adjust contentOffset to preserve page location based on values collected prior to location.
   CGFloat pageWidth = self.pagingScrollView.bounds.size.width;

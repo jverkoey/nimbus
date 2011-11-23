@@ -47,13 +47,13 @@
 - (void)pageDidDisappear;
 
 /**
- * Called during willAnimateRotationToInterfaceOrientation:duration:.
+ * Called when the frame of the page is going to change.
  *
- * Use this method to maintain any state that may be affected by the frame changing during a
- * rotation. The Nimbus photo viewer uses this method to save and restore the zoom and center
+ * Use this method to maintain any state that may be affected by the frame changing.
+ * The Nimbus photo viewer uses this method to save and restore the zoom and center
  * point. This makes the photo always appear to rotate around the center point of the screen
  * rather than the center of the photo.
  */
-- (void)setFrameDuringRotation:(CGRect)frame;
+- (void)setFrameAndMaintainState:(CGRect)frame;
 
 @end

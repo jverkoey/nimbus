@@ -20,14 +20,66 @@
 
 #import "NimbusCore.h"
 
+/**
+ * A UIScrollView that centers the zooming view's frame as the user zooms.
+ *
+ * We must update the zooming view's frame within the scroll view's layoutSubviews,
+ * thus why we've subclassed UIScrollView.
+ */
+@interface NICenteringScrollView : UIScrollView
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NICenteringScrollView
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIView
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)layoutSubviews {
+  [super layoutSubviews];
+
+  // Center the image as it becomes smaller than the size of the screen.
+
+  UIView* zoomingSubview = [self.delegate viewForZoomingInScrollView:self];
+  CGSize boundsSize = self.bounds.size;
+  CGRect frameToCenter = zoomingSubview.frame;
+  
+  // Center horizontally.
+  if (frameToCenter.size.width < boundsSize.width) {
+    frameToCenter.origin.x = floorf((boundsSize.width - frameToCenter.size.width) / 2);
+
+  } else {
+    frameToCenter.origin.x = 0;
+  }
+
+  // Center vertically.
+  if (frameToCenter.size.height < boundsSize.height) {
+    frameToCenter.origin.y = floorf((boundsSize.height - frameToCenter.size.height) / 2);
+
+  } else {
+    frameToCenter.origin.y = 0;
+  }
+
+  zoomingSubview.frame = frameToCenter;
+}
+
+@end
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NIPhotoScrollView()
-
 @property (nonatomic, readwrite, assign) NIPhotoScrollViewPhotoSize photoSize;
-
+- (void)setMaxMinZoomScalesForCurrentBounds;
 @end
 
 
@@ -58,12 +110,18 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
+    // Default configuration.
+    self.zoomingIsEnabled = YES;
+    self.zoomingAboveOriginalSizeIsEnabled = YES;
+    self.doubleTapToZoomIsEnabled = YES;
+
     // Autorelease so that we don't have to worry about releasing the subviews in dealloc.
-    _scrollView = [[[UIScrollView alloc] initWithFrame:self.bounds] autorelease];
-    _imageView = [[[UIImageView alloc] initWithFrame:CGRectZero] autorelease];
-    
+    _scrollView = [[[NICenteringScrollView alloc] initWithFrame:self.bounds] autorelease];
     _scrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                     | UIViewAutoresizingFlexibleHeight);
+
+    // We implement viewForZoomingInScrollView: and return the image view for zooming.
+    _scrollView.delegate = self;
 
     // Disable the scroll indicators.
     _scrollView.showsVerticalScrollIndicator = NO;
@@ -75,183 +133,14 @@
 
     // Ensure that empty areas of the scroll view are draggable.
     self.backgroundColor = [UIColor blackColor];
+    _scrollView.backgroundColor = self.backgroundColor;
 
-    // We implement viewForZoomingInScrollView: and return the image view for zooming.
-    _scrollView.delegate = self;
-
-    // Default configuration.
-    self.zoomingIsEnabled = YES;
-    self.zoomingAboveOriginalSizeIsEnabled = YES;
-    self.doubleTapToZoomIsEnabled = YES;
+    _imageView = [[[UIImageView alloc] initWithFrame:CGRectZero] autorelease];
 
     [_scrollView addSubview:_imageView];
     [self addSubview:_scrollView];
   }
   return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)scaleForSize:(CGSize)size boundsSize:(CGSize)boundsSize useMinimalScale:(BOOL)minimalScale {
-  CGFloat xScale = boundsSize.width / size.width;   // The scale needed to perfectly fit the image width-wise.
-  CGFloat yScale = boundsSize.height / size.height; // The scale needed to perfectly fit the image height-wise.
-  CGFloat minScale = minimalScale ? MIN(xScale, yScale) : MAX(xScale, yScale); // Use the minimum of these to allow the image to become fully visible, or the maximum to get fullscreen size
-
-  return minScale;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Calculate the min and max scale for the given dimensions and photo size.
- *
- * minScale will fit the photo to the bounds, unless it is too small in which case it will
- * show the image at a 1-to-1 resolution.
- *
- * maxScale will be whatever value shows the image at a 1-to-1 resolution, UNLESS
- * isZoomingAboveOriginalSizeEnabled is enabled, in which case maxScale will be calculated
- * such that the image completely fills the bounds.
- *
- * Exception:  If the photo size is unknown (this is a loading image, for example) then
- * the minimum scale will be set without considering the screen scale. This allows the
- * loading image to draw with its own image scale if it's a high-res @2x image.
- */
-- (void)minAndMaxScaleForDimensions: (CGSize)dimensions
-                         boundsSize: (CGSize)boundsSize
-                          photoSize: (NIPhotoScrollViewPhotoSize)photoSize
-                           minScale: (CGFloat *)pMinScale
-                           maxScale: (CGFloat *)pMaxScale {
-  NIDASSERT(nil != pMinScale);
-  NIDASSERT(nil != pMaxScale);
-  if (nil == pMinScale
-      || nil == pMaxScale) {
-    return;
-  }
-
-  CGFloat minScale = [self scaleForSize: dimensions
-                             boundsSize: boundsSize
-                        useMinimalScale: YES];
-
-  // On high resolution screens we have double the pixel density, so we will be seeing
-  // every pixel if we limit the maximum zoom scale to 0.5.
-  // If the photo size is unknown, it's likely that we're showing the loading image and
-  // don't want to shrink it down with the zoom because it should be a scaled image.
-  CGFloat maxScale = ((NIPhotoScrollViewPhotoSizeUnknown == photoSize)
-                      ? 1
-                      : (1.0f / NIScreenScale()));
-
-  if (NIPhotoScrollViewPhotoSizeThumbnail != photoSize) {
-    // Don't let minScale exceed maxScale. (If the image is smaller than the screen, we
-    // don't want to force it to be zoomed.)
-    minScale = MIN(minScale, maxScale);
-  }
-
-  // At this point if the image is small, then minScale and maxScale will be the same because
-  // we don't want to allow the photo to be zoomed.
-
-  // If zooming above the original size IS enabled, however, expand the max zoom to
-  // whatever value would make the image fit the view perfectly.
-  if ([self isZoomingAboveOriginalSizeEnabled]) {
-    CGFloat idealMaxScale = [self scaleForSize: dimensions
-                                    boundsSize: boundsSize
-                               useMinimalScale: NO];
-    maxScale = MAX(maxScale, idealMaxScale);
-  }
-
-  *pMinScale = minScale;
-  *pMaxScale = maxScale;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setMaxMinZoomScalesForCurrentBounds {
-  CGSize imageSize = _imageView.bounds.size;
-
-  // Avoid crashing if the image has no dimensions.
-  NIDASSERT(imageSize.width > 0 && imageSize.height > 0);
-  if (imageSize.width <= 0 || imageSize.height <= 0) {
-    _scrollView.maximumZoomScale = 1;
-    _scrollView.minimumZoomScale = 1;
-    return;
-  }
-
-  // The following code is from Apple's ImageScrollView example application and has been used
-  // here because it is well-documented and concise.
-
-  CGSize boundsSize = self.bounds.size;
-
-  CGFloat minScale = 0;
-  CGFloat maxScale = 0;
-
-  // Calculate the min/max scale for the image to be presented.
-  [self minAndMaxScaleForDimensions: imageSize
-                         boundsSize: boundsSize
-                          photoSize: self.photoSize
-                           minScale: &minScale
-                           maxScale: &maxScale];
-
-  // When we show thumbnails for images that are too small for the bounds, we try to use
-  // the known photo dimensions to scale the minimum scale to match what the final image
-  // would be. This avoids any "snapping" effects from stretching the thumbnail too large.
-  if ((NIPhotoScrollViewPhotoSizeThumbnail == self.photoSize)
-      && !CGSizeEqualToSize(self.photoDimensions, CGSizeZero)) {
-    CGFloat scaleToFitOriginal = 0;
-    CGFloat originalMaxScale = 0;
-    // Calculate the original-sized image's min/max scale.
-    [self minAndMaxScaleForDimensions: self.photoDimensions
-                           boundsSize: boundsSize
-                            photoSize: NIPhotoScrollViewPhotoSizeOriginal
-                             minScale: &scaleToFitOriginal
-                             maxScale: &originalMaxScale];
-
-    if (scaleToFitOriginal + FLT_EPSILON >= (1.0 / NIScreenScale())) {
-      // If the final image will be smaller than the view then we want to use that
-      // scale as the "true" scale and adjust it relatively to the thumbnail's dimensions.
-      // This ensures that the thumbnail will always be the same visual size as the original
-      // image, giving us that sexy "crisping" effect when the thumbnail is loaded.
-      CGFloat relativeSize = self.photoDimensions.width / imageSize.width;
-      minScale = scaleToFitOriginal * relativeSize;
-    }
-  }
-
-  // If zooming is disabled then we flatten the range for zooming to only allow the min zoom.
-  _scrollView.maximumZoomScale = [self isZoomingEnabled] ? maxScale : minScale;
-  _scrollView.minimumZoomScale = minScale;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark UIView
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)layoutSubviews {
-  [super layoutSubviews];
-
-  // Center the image as it becomes smaller than the size of the screen.
-
-  CGSize boundsSize = self.bounds.size;
-  CGRect frameToCenter = _imageView.frame;
-
-  // Center horizontally.
-  if (frameToCenter.size.width < boundsSize.width) {
-    frameToCenter.origin.x = floorf((boundsSize.width - frameToCenter.size.width) / 2);
-
-  } else {
-    frameToCenter.origin.x = 0;
-  }
-
-  // Center vertically.
-  if (frameToCenter.size.height < boundsSize.height) {
-    frameToCenter.origin.y = floorf((boundsSize.height - frameToCenter.size.height) / 2);
-
-  } else {
-    frameToCenter.origin.y = 0;
-  }
-
-  _imageView.frame = frameToCenter;
 }
 
 
@@ -380,12 +269,17 @@
   // zoom will be small enough to fit the image on the screen perfectly.
   if (nil != image) {
     _scrollView.contentSize = image.size;
+
+  } else {
+    _scrollView.contentSize = self.bounds.size;
   }
 
   [self setMaxMinZoomScalesForCurrentBounds];
 
   // Start off with the image fully-visible on the screen.
   _scrollView.zoomScale = _scrollView.minimumZoomScale;
+
+  [self setNeedsLayout];
 }
 
 
@@ -449,17 +343,147 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)scaleForSize:(CGSize)size boundsSize:(CGSize)boundsSize useMinimalScale:(BOOL)minimalScale {
+  CGFloat xScale = boundsSize.width / size.width;   // The scale needed to perfectly fit the image width-wise.
+  CGFloat yScale = boundsSize.height / size.height; // The scale needed to perfectly fit the image height-wise.
+  CGFloat minScale = minimalScale ? MIN(xScale, yScale) : MAX(xScale, yScale); // Use the minimum of these to allow the image to become fully visible, or the maximum to get fullscreen size
+  
+  return minScale;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Calculate the min and max scale for the given dimensions and photo size.
+ *
+ * minScale will fit the photo to the bounds, unless it is too small in which case it will
+ * show the image at a 1-to-1 resolution.
+ *
+ * maxScale will be whatever value shows the image at a 1-to-1 resolution, UNLESS
+ * isZoomingAboveOriginalSizeEnabled is enabled, in which case maxScale will be calculated
+ * such that the image completely fills the bounds.
+ *
+ * Exception:  If the photo size is unknown (this is a loading image, for example) then
+ * the minimum scale will be set without considering the screen scale. This allows the
+ * loading image to draw with its own image scale if it's a high-res @2x image.
+ */
+- (void)minAndMaxScaleForDimensions: (CGSize)dimensions
+                         boundsSize: (CGSize)boundsSize
+                          photoSize: (NIPhotoScrollViewPhotoSize)photoSize
+                           minScale: (CGFloat *)pMinScale
+                           maxScale: (CGFloat *)pMaxScale {
+  NIDASSERT(nil != pMinScale);
+  NIDASSERT(nil != pMaxScale);
+  if (nil == pMinScale
+      || nil == pMaxScale) {
+    return;
+  }
+
+  CGFloat minScale = [self scaleForSize: dimensions
+                             boundsSize: boundsSize
+                        useMinimalScale: YES];
+
+  // On high resolution screens we have double the pixel density, so we will be seeing
+  // every pixel if we limit the maximum zoom scale to 0.5.
+  // If the photo size is unknown, it's likely that we're showing the loading image and
+  // don't want to shrink it down with the zoom because it should be a scaled image.
+  CGFloat maxScale = ((NIPhotoScrollViewPhotoSizeUnknown == photoSize)
+                      ? 1
+                      : (1.0f / NIScreenScale()));
+
+  if (NIPhotoScrollViewPhotoSizeThumbnail != photoSize) {
+    // Don't let minScale exceed maxScale. (If the image is smaller than the screen, we
+    // don't want to force it to be zoomed.)
+    minScale = MIN(minScale, maxScale);
+  }
+
+  // At this point if the image is small, then minScale and maxScale will be the same because
+  // we don't want to allow the photo to be zoomed.
+
+  // If zooming above the original size IS enabled, however, expand the max zoom to
+  // whatever value would make the image fit the view perfectly.
+  if ([self isZoomingAboveOriginalSizeEnabled]) {
+    CGFloat idealMaxScale = [self scaleForSize: dimensions
+                                    boundsSize: boundsSize
+                               useMinimalScale: NO];
+    maxScale = MAX(maxScale, idealMaxScale);
+  }
+
+  *pMinScale = minScale;
+  *pMaxScale = maxScale;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setMaxMinZoomScalesForCurrentBounds {
+  CGSize imageSize = _imageView.bounds.size;
+  
+  // Avoid crashing if the image has no dimensions.
+  NIDASSERT(imageSize.width > 0 && imageSize.height > 0);
+  if (imageSize.width <= 0 || imageSize.height <= 0) {
+    _scrollView.maximumZoomScale = 1;
+    _scrollView.minimumZoomScale = 1;
+    return;
+  }
+  
+  // The following code is from Apple's ImageScrollView example application and has been used
+  // here because it is well-documented and concise.
+  
+  CGSize boundsSize = _scrollView.bounds.size;
+  
+  CGFloat minScale = 0;
+  CGFloat maxScale = 0;
+  
+  // Calculate the min/max scale for the image to be presented.
+  [self minAndMaxScaleForDimensions: imageSize
+                         boundsSize: boundsSize
+                          photoSize: self.photoSize
+                           minScale: &minScale
+                           maxScale: &maxScale];
+  
+  // When we show thumbnails for images that are too small for the bounds, we try to use
+  // the known photo dimensions to scale the minimum scale to match what the final image
+  // would be. This avoids any "snapping" effects from stretching the thumbnail too large.
+  if ((NIPhotoScrollViewPhotoSizeThumbnail == self.photoSize)
+      && !CGSizeEqualToSize(self.photoDimensions, CGSizeZero)) {
+    CGFloat scaleToFitOriginal = 0;
+    CGFloat originalMaxScale = 0;
+    // Calculate the original-sized image's min/max scale.
+    [self minAndMaxScaleForDimensions: self.photoDimensions
+                           boundsSize: boundsSize
+                            photoSize: NIPhotoScrollViewPhotoSizeOriginal
+                             minScale: &scaleToFitOriginal
+                             maxScale: &originalMaxScale];
+    
+    if (scaleToFitOriginal + FLT_EPSILON >= (1.0 / NIScreenScale())) {
+      // If the final image will be smaller than the view then we want to use that
+      // scale as the "true" scale and adjust it relatively to the thumbnail's dimensions.
+      // This ensures that the thumbnail will always be the same visual size as the original
+      // image, giving us that sexy "crisping" effect when the thumbnail is loaded.
+      CGFloat relativeSize = self.photoDimensions.width / imageSize.width;
+      minScale = scaleToFitOriginal * relativeSize;
+    }
+  }
+  
+  // If zooming is disabled then we flatten the range for zooming to only allow the min zoom.
+  _scrollView.maximumZoomScale = [self isZoomingEnabled] ? maxScale : minScale;
+  _scrollView.minimumZoomScale = minScale;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Saving/Restoring Offset and Scale
 
-// The following code is from Apple's ImageScrollView example application and has been used
-// here because it is well-documented and concise.
+// Parts of the following code are from Apple's ImageScrollView example application and
+// have been used here because they are well-documented and concise.
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Fetch the visual center point of this view in the image view's coordinate space.
 - (CGPoint)pointToCenterAfterRotation {
-  CGPoint boundsCenter = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+  CGRect bounds = _scrollView.bounds;
+  CGPoint boundsCenter = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
   return [self convertPoint:boundsCenter toView:_imageView];
 }
 
@@ -467,13 +491,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)scaleToRestoreAfterRotation {
   CGFloat contentScale = _scrollView.zoomScale;
-
+  
   // If we're at the minimum zoom scale, preserve that by returning 0, which
   // will be converted to the minimum allowable scale when the scale is restored.
   if (contentScale <= _scrollView.minimumZoomScale + FLT_EPSILON) {
     contentScale = 0;
   }
-
+  
   return contentScale;
 }
 
@@ -481,7 +505,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGPoint)maximumContentOffset {
   CGSize contentSize = _scrollView.contentSize;
-  CGSize boundsSize = self.bounds.size;
+  CGSize boundsSize = _scrollView.bounds.size;
   return CGPointMake(contentSize.width - boundsSize.width,
                      contentSize.height - boundsSize.height);
 }
@@ -506,8 +530,8 @@
   CGPoint boundsCenter = [self convertPoint:oldCenter fromView:_imageView];
 
   // 2b: calculate the content offset that would yield that center point
-  CGPoint offset = CGPointMake(boundsCenter.x - self.bounds.size.width / 2.0f,
-                               boundsCenter.y - self.bounds.size.height / 2.0f);
+  CGPoint offset = CGPointMake(boundsCenter.x - _scrollView.bounds.size.width / 2.0f,
+                               boundsCenter.y - _scrollView.bounds.size.height / 2.0f);
 
   // 2c: restore offset, adjusted to be within the allowable range
   CGPoint maxOffset = [self maximumContentOffset];
@@ -519,12 +543,19 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setFrameDuringRotation:(CGRect)frame {
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Saving/Restoring Offset and Scale
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setFrameAndMaintainState:(CGRect)frame {
   CGPoint restorePoint = [self pointToCenterAfterRotation];
   CGFloat restoreScale = [self scaleToRestoreAfterRotation];
   self.frame = frame;
   [self setMaxMinZoomScalesForCurrentBounds];
   [self restoreCenterPoint:restorePoint scale:restoreScale];
+
+  [_scrollView setNeedsLayout];
 }
 
 

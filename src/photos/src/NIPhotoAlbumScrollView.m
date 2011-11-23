@@ -109,7 +109,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didRecyclePage:(id<NIPagingScrollViewPage>)page {
+- (void)didRecyclePage:(UIView<NIPagingScrollViewPage> *)page {
   // Give the data source the opportunity to kill any asynchronous operations for this
   // now-recycled page.
   if ([self.dataSource respondsToSelector:

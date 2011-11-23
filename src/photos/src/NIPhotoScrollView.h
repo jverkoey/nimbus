@@ -21,6 +21,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol NIPhotoScrollViewDelegate;
+@class NICenteringScrollView;
 
 /**
  * A single photo view that supports zooming and rotation.
@@ -34,7 +35,7 @@
   // The photo view to be zoomed.
   UIImageView* _imageView;
   // The scroll view.
-  UIScrollView* _scrollView;
+  NICenteringScrollView* _scrollView;
 
   // Photo Information
   NIPhotoScrollViewPhotoSize _photoSize;

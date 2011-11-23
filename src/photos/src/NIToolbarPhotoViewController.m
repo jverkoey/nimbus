@@ -273,6 +273,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
                                          duration: (NSTimeInterval)duration {
+  [self.photoAlbumView willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
+                                                        duration: duration];
+
   [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation
                                           duration:duration];
 
@@ -286,9 +289,6 @@
     photoAlbumFrame.size.height = self.view.bounds.size.height - toolbarFrame.size.height;
     self.photoAlbumView.frame = photoAlbumFrame;
   }
-
-  [self.photoAlbumView willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
-                                                        duration: duration];
 }
 
 
