@@ -17,6 +17,7 @@
 #import "NIPhotoAlbumScrollView.h"
 
 #import "NIPhotoScrollView.h"
+#import "NIPhotoAlbumScrollViewDataSource.h"
 #import "NimbusCore.h"
 
 
