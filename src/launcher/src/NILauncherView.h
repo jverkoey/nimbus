@@ -57,6 +57,10 @@ extern const NSInteger NILauncherViewDynamic;
   NSMutableArray* _pagesOfButtons;      // NSArray< NSArray< UIButton *> >
   NSMutableArray* _pagesOfScrollViews;  // NSArray< UIScrollView *>
 
+  // Edit Information
+  BOOL            _editing;
+  UIButton*       _buttonBeingEdited;
+  
   // Protocols
   id<NILauncherDelegate>    _delegate;
   id<NILauncherDataSource>  _dataSource;
@@ -75,7 +79,43 @@ extern const NSInteger NILauncherViewDynamic;
 
 @property (nonatomic, readwrite, assign) id<NILauncherDataSource> dataSource;
 
+/**
+ * Returns true when the launcher is in it's editing state
+ */
+@property (nonatomic, readonly) BOOL editing;
+
+/**
+ * Reload the launcher data.
+ *
+ * This will release all of the launcher's buttons and call all necessary data source methods
+ * again.
+ *
+ * Unlike the UITableView's reloadData, this is not a cheap method to call.
+ */
 - (void)reloadData;
+
+/**
+ * Changes the launcher to edit mode
+ */
+- (void)beginEditing;
+
+/**
+ * Ends launcher edit mode
+ */
+- (void)endEditing;
+
+/**
+ * Lays out the subviews for this launcher view.
+ *
+ * If you subclass this view and implement setFrame, you should either replicate the
+ * functionality found within or call [super setFrame:].
+ *
+ *      @note Subviews are laid out in this method instead of layoutSubviews due to the fact
+ *            that the scroll view offset and content size are modified within this method.
+ *            If we modify these values in layoutSubviews then we will end up breaking the
+ *            scroll view because whenever the user drags their finger to scroll the scroll
+ *            view, layoutSubviews is called on the launcher view.
+ */
 
 #pragma mark Subclassing
 
@@ -101,6 +141,33 @@ extern const NSInteger NILauncherViewDynamic;
               onPage: (NSInteger)page
              atIndex: (NSInteger)index;
 
+/**
+ * Called when the launcher enters edit mode.
+ */
+- (void)launcherViewDidBeginEditing:(NILauncherView *)launcher;
+
+/**
+ * Called when the launcher exits edit mode.
+ */
+- (void)launcherViewDidEndEditing:(NILauncherView *)launcher;
+
+/**
+ * Called when the user taps and holds on a launcher button for 1 second (This will cause the
+ * the view to enter edit mode if enabled and will call launcherViewDidBeginEditing:) 
+ * or taps a launcher button in edit mode.
+ */
+- (void) launcherView: (NILauncherView *)launcher
+didStartEditingButton: (UIButton *)button
+               onPage: (NSInteger)page
+              atIndex: (NSInteger)index;
+
+/**
+ * Called when a user releases a previous tap on a launcher button when in edit mode.
+ */
+- (void)  launcherView: (NILauncherView *)launcher
+didFinishEditingButton: (UIButton *)button
+                onPage: (NSInteger)page
+               atIndex: (NSInteger)index;
 @end
 
 

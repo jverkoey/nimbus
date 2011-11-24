@@ -17,6 +17,7 @@
 //
 
 #import "NILauncherView.h"
+#include <stdlib.h>
 
 #import "NimbusCore.h"
 
@@ -25,6 +26,10 @@ const NSInteger NILauncherViewDynamic = -1;
 static const CGFloat kDefaultButtonDimensions = 80;
 static const CGFloat kDefaultPadding          = 10;
 static const NSTimeInterval kAnimateToPageDuration = 0.2;
+
+static const CFTimeInterval kPressHoldTimeInterval = 1;
+static const NSTimeInterval kButtonAnimateTime = 0.08;
+static const CGFloat kButtonAnimatRadians = 2.5;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,6 +51,8 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
 @synthesize delegate    = _delegate;
 @synthesize dataSource  = _dataSource;
+
+@synthesize editing     = _editing;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -301,6 +308,66 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Private Methods
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) animateButtons {
+  
+  if (_editing) {
+    static BOOL shouldAnimateLeft = NO;
+    
+    CGFloat rotation = (kButtonAnimatRadians * M_PI) / 180.0;
+    CGAffineTransform animateLeft = CGAffineTransformMakeRotation(rotation);
+    CGAffineTransform animateRight = CGAffineTransformMakeRotation(-rotation);
+    
+    
+    [UIView beginAnimations:nil context:nil];
+    // setAnimationDuration: must be called straight away otherwise it won't take effect.
+    [UIView setAnimationDuration:kButtonAnimateTime];
+    NSInteger animatingButtons = 0;
+    
+    for (NSInteger ixPage = 0; ixPage < [_pagesOfButtons count]; ++ixPage) {
+      NSArray* page = [_pagesOfButtons objectAtIndex:ixPage];
+      for (NSInteger ixButton = 0; ixButton < [page count]; ++ixButton) {
+        UIButton* button = [page objectAtIndex:ixButton];
+        
+        if (button != _buttonBeingEdited) {
+          CGFloat rx = (random() % 2) * (shouldAnimateLeft ? 1 : -1);
+          CGFloat ry = (random() % 2) * (shouldAnimateLeft ? -1 : 1);
+          
+          CGAffineTransform animateMove = CGAffineTransformMakeTranslation(rx, ry);
+          
+          CGAffineTransform finalTransform;
+          if (ixButton % 2) {
+            finalTransform = 
+            CGAffineTransformConcat(animateMove, shouldAnimateLeft ? animateRight : animateLeft);
+          } else {
+            finalTransform = 
+            CGAffineTransformConcat(animateMove, shouldAnimateLeft ? animateLeft : animateRight); 
+          }
+          button.transform = finalTransform;
+          animatingButtons++;
+
+        }
+      }
+    }
+    
+    if (animatingButtons >= 1) {
+      [UIView setAnimationDelegate:self];
+      [UIView setAnimationDidStopSelector:@selector(animateButtons)];
+      shouldAnimateLeft = !shouldAnimateLeft;
+      
+    } else {
+      [NSObject cancelPreviousPerformRequestsWithTarget:self];
+      [self performSelector:@selector(animateButtons) withObject:nil afterDelay:kButtonAnimateTime];
+    }
+    
+    [UIView commitAnimations];
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -391,39 +458,116 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
       }
     }
   }
-
   return NO;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTapButton:(UIButton *)tappedButton {
+
   NSInteger page = -1;
-  NSInteger buttonIndex = 0;
+  NSInteger index = 0;
+  
   if ([self pageAndIndexOfButton:tappedButton
                             page:&page
-                           index:&buttonIndex]) {
+                           index:&index]) {
+    
+    if (_editing) {
+      _buttonBeingEdited = nil;
+      tappedButton.transform = CGAffineTransformIdentity;
+      
+      if ([self.delegate respondsToSelector:
+           @selector(launcherView:didFinishEditingButton:onPage:atIndex:)]) {
+        [self.delegate launcherView: self
+             didFinishEditingButton: tappedButton
+                             onPage: page
+                            atIndex: index];
+      }
+    } else {
 
-    if ([self.delegate respondsToSelector:
-         @selector(launcherView:didSelectButton:onPage:atIndex:)]) {
-      [self.delegate launcherView: self
-                  didSelectButton: tappedButton
-                           onPage: page
-                          atIndex: buttonIndex];
+      if ([self.delegate respondsToSelector:
+           @selector(launcherView:didSelectButton:onPage:atIndex:)]) {
+        [self.delegate launcherView: self
+                    didSelectButton: tappedButton
+                             onPage: page
+                            atIndex: index];
+      }
     }
-
   } else {
     // How exactly did we tap a button that wasn't a part of the launcher view?
     NIDASSERT(NO);
   }
+
 }
 
+- (void) startEditingButton:(UIButton*)button {
+  
+  if (_editing) {
+    button.transform = CGAffineTransformIdentity;
+    _buttonBeingEdited = button;
+    
+    // This is normally where we would show a close button, allow dragging etc, however we want to
+    // to keep the lancher view "dumb" from the datasource. Instead we fire a delegate.
+
+    NSInteger page = -1;
+    NSInteger index = 0;
+    if ([self pageAndIndexOfButton:button
+                              page:&page
+                             index:&index]) {
+      
+      if ([self.delegate respondsToSelector:
+           @selector(launcherView:didStartEditingButton:onPage:atIndex:)]) {
+        [self.delegate launcherView: self
+              didStartEditingButton: button
+                             onPage: page
+                            atIndex: index];
+      }
+      
+    } else {
+      // How exactly did we tap a button that wasn't a part of the launcher view?
+      NIDASSERT(NO);
+    }
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) pressAndHold:(UILongPressGestureRecognizer*)gesture {
+  if (gesture.state == UIGestureRecognizerStateBegan && !_editing) {
+    [self beginEditing];
+    [self startEditingButton:(UIButton*)gesture.view];
+  }
+}
+
+- (void) didReleaseButton:(UIButton*)releasedButton {
+  if (_editing) {
+    _buttonBeingEdited = nil;
+    releasedButton.transform = CGAffineTransformIdentity;
+    
+    NSInteger page = -1;
+    NSInteger index = 0;
+    if ([self pageAndIndexOfButton:releasedButton
+                              page:&page
+                             index:&index]) {
+      
+      if ([self.delegate respondsToSelector:
+           @selector(launcherView:didFinishEditingButton:onPage:atIndex:)]) {
+        [self.delegate launcherView: self
+             didFinishEditingButton: releasedButton
+                             onPage: page
+                            atIndex: index];
+      }
+      
+    } else {
+      // How exactly did we tap a button that wasn't a part of the launcher view?
+      NIDASSERT(NO);
+    }
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Public Methods
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reloadData {
@@ -470,8 +614,26 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
                                        buttonForPage: ixPage
                                              atIndex: ixItem];
       [item       addTarget: self
+                     action: @selector(startEditingButton:)
+           forControlEvents: UIControlEventTouchDown];
+      [item       addTarget: self
                      action: @selector(didTapButton:)
            forControlEvents: UIControlEventTouchUpInside];
+      [item       addTarget: self
+                     action: @selector(didReleaseButton:)
+           forControlEvents: UIControlEventTouchUpOutside];
+
+      Class longPressGestureClass = NIUILongPressGestureRecognizerClass();
+      if (longPressGestureClass != nil) {
+        UILongPressGestureRecognizer* longPress = 
+        [[longPressGestureClass alloc] initWithTarget:self 
+                                               action:@selector(pressAndHold:)];
+        longPress.minimumPressDuration = kPressHoldTimeInterval;
+        longPress.cancelsTouchesInView = NO;
+        
+        [item addGestureRecognizer:longPress];
+      }
+
       [page addObject:item];
       [pageScrollView addSubview:item];
     }
@@ -485,5 +647,39 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
   [self layoutPages];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) beginEditing {
+  _editing = YES;
+  
+  [self animateButtons];
+  
+  if ([_delegate respondsToSelector:@selector(launcherViewDidBeginEditing:)]) {
+    [_delegate launcherViewDidBeginEditing:self];
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) endEditing {
+  _editing = NO;
+  
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:kButtonAnimateTime];
+  [UIView setAnimationDelegate:self];
+  
+  for (NSInteger ixPage = 0; ixPage < [_pagesOfButtons count]; ++ixPage) {
+    NSArray* page = [_pagesOfButtons objectAtIndex:ixPage];
+    for (NSInteger ixButton = 0; ixButton < [page count]; ++ixButton) {
+      UIButton* button = [page objectAtIndex:ixButton];
+      button.transform = CGAffineTransformIdentity;
+    }
+  }
+  [UIView commitAnimations];
+  
+  [self layoutPages];
+  
+  if ([_delegate respondsToSelector:@selector(launcherViewDidEndEditing:)]) {
+    [_delegate launcherViewDidEndEditing:self];
+  }
+}
 
 @end
