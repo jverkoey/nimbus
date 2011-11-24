@@ -128,6 +128,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder *)aDecoder {
   if ((self = [super initWithCoder:aDecoder])) {
+    if (nil != self.image) {
+      self.initialImage = self.image;
+    }
     [self assignDefaults];
   }
   return self;
