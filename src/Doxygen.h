@@ -23,7 +23,7 @@
  * that accelerates the development process of any application by being easy to use and simple
  * to understand.
  *
- * Test push #3.
+ * Test github.com update.
  * 
  * <h2>Getting Started</h2>
  * 
