@@ -128,9 +128,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder *)aDecoder {
   if ((self = [super initWithCoder:aDecoder])) {
-	// if we were loaded from a nib and we had an image set use it as the initalImage
-	if (self.image)
-		self.initialImage = self.image;
+    if (nil != self.image) {
+      self.initialImage = self.image;
+    }
     [self assignDefaults];
   }
   return self;
