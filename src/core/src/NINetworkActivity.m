@@ -23,6 +23,7 @@
 #endif
 
 #import <pthread.h>
+#import <UIKit/UIKit.h>
 
 static int              gNetworkTaskCount = 0;
 static pthread_mutex_t  gMutex = PTHREAD_MUTEX_INITIALIZER;
