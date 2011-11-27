@@ -16,8 +16,9 @@
 
 #import "FacebookPhotoAlbumViewController.h"
 
-#import "NIHTTPRequest.h"
 #import "ASIDownloadCache.h"
+#import "CaptionedPhotoView.h"
+#import "NIHTTPRequest.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -189,10 +190,12 @@
         thumbnailImageSource = [[sortedImages objectAtIndex:thumbnailIndex] objectForKey:@"source"];
       }
 
+      NSString* caption = [photo objectForKey:@"name"];
       NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
                                        originalImageSource, @"originalSource",
                                        thumbnailImageSource, @"thumbnailSource",
                                        [NSValue valueWithCGSize:dimensions], @"dimensions",
+                                       caption, @"caption",
                                        nil];
       [photoInformation addObject:prunedPhotoInfo];
     }
@@ -301,8 +304,24 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
-  return [self.photoAlbumView pagingScrollView:pagingScrollView pageViewForIndex:pageIndex];
+- (UIView<NIPagingScrollViewPage>*)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
+  // TODO (jverkoey Nov 27, 2011): We should make this sort of custom logic easier to build.
+  UIView<NIPagingScrollViewPage>* pageView = nil;
+  NSString* reuseIdentifier = NSStringFromClass([CaptionedPhotoView class]);
+  pageView = [pagingScrollView dequeueReusablePageWithIdentifier:reuseIdentifier];
+  if (nil == pageView) {
+    pageView = [[[CaptionedPhotoView alloc] init] autorelease];
+    pageView.reuseIdentifier = reuseIdentifier;
+  }
+
+  NIPhotoScrollView* photoScrollView = (NIPhotoScrollView *)pageView;
+  photoScrollView.photoScrollViewDelegate = self.photoAlbumView;
+  photoScrollView.zoomingAboveOriginalSizeIsEnabled = [self.photoAlbumView isZoomingAboveOriginalSizeEnabled];
+
+  CaptionedPhotoView* captionedView = (CaptionedPhotoView *)pageView;
+  captionedView.caption = [[_photoInformation objectAtIndex:pageIndex] objectForKey:@"caption"];
+  
+  return pageView;
 }
 
 

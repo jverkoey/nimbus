@@ -44,6 +44,7 @@
 		665E0BD113CE816E008A1D21 /* NIToolbarPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BCE13CE816E008A1D21 /* NIToolbarPhotoViewController.m */; };
 		665E0C0813CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0C0713CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m */; };
 		667DC2BE13D89FD100C1B0ED /* NIPhotoScrubberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DC2BD13D89FD100C1B0ED /* NIPhotoScrubberView.m */; };
+		668FD7AD1482C1A600BA7009 /* CaptionedPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 668FD7AC1482C1A600BA7009 /* CaptionedPhotoView.m */; };
 		669815C913D507F000417E8B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 669815C813D507F000417E8B /* JSONKit.m */; };
 		669815E913D5080500417E8B /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 669815D113D5080500417E8B /* ASIAuthenticationDialog.m */; };
 		669815EA13D5080500417E8B /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 669815D413D5080500417E8B /* ASIDataCompressor.m */; };
@@ -149,6 +150,8 @@
 		665E0C0713CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FacebookPhotoAlbumViewController.m; path = src/FacebookPhotoAlbumViewController.m; sourceTree = "<group>"; };
 		667DC2BC13D89FD100C1B0ED /* NIPhotoScrubberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPhotoScrubberView.h; path = ../../../src/photos/src/NIPhotoScrubberView.h; sourceTree = "<group>"; };
 		667DC2BD13D89FD100C1B0ED /* NIPhotoScrubberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPhotoScrubberView.m; path = ../../../src/photos/src/NIPhotoScrubberView.m; sourceTree = "<group>"; };
+		668FD7AB1482C1A600BA7009 /* CaptionedPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptionedPhotoView.h; path = src/CaptionedPhotoView.h; sourceTree = "<group>"; };
+		668FD7AC1482C1A600BA7009 /* CaptionedPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptionedPhotoView.m; path = src/CaptionedPhotoView.m; sourceTree = "<group>"; };
 		669815C713D507F000417E8B /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = ../../../src/JSONKit/src/JSONKit.h; sourceTree = SOURCE_ROOT; };
 		669815C813D507F000417E8B /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = ../../../src/JSONKit/src/JSONKit.m; sourceTree = SOURCE_ROOT; };
 		669815D013D5080500417E8B /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = ../../../src/ASIHTTPRequest/src/ASIAuthenticationDialog.h; sourceTree = SOURCE_ROOT; };
@@ -273,6 +276,8 @@
 			children = (
 				665E0C0613CE82A1008A1D21 /* FacebookPhotoAlbumViewController.h */,
 				665E0C0713CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m */,
+				668FD7AB1482C1A600BA7009 /* CaptionedPhotoView.h */,
+				668FD7AC1482C1A600BA7009 /* CaptionedPhotoView.m */,
 			);
 			name = Facebook;
 			sourceTree = "<group>";
@@ -609,6 +614,7 @@
 				663B52831445130E00CC26DF /* NIPagingScrollView.m in Sources */,
 				66F27D5D145B7DF500AFCA08 /* NIViewRecycler.m in Sources */,
 				66243CC1146112B300B78F5D /* NIPageView.m in Sources */,
+				668FD7AD1482C1A600BA7009 /* CaptionedPhotoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
