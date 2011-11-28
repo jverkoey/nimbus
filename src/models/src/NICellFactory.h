@@ -143,8 +143,8 @@ _model.delegate = (id)[NICellFactory class];
 - (id)initWithCellClass:(Class)cellClass userInfo:(id)userInfo;
 - (id)initWithCellClass:(Class)cellClass;
 
-+ (id)objectWithCellClass:(Class)cellClass;
 + (id)objectWithCellClass:(Class)cellClass userInfo:(id)userInfo;
++ (id)objectWithCellClass:(Class)cellClass;
 
 @property (nonatomic, readonly, retain) id userInfo;
 
