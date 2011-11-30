@@ -128,7 +128,7 @@
   // [in]
   NSURL* _url;
   NSTimeInterval _timeout;
-  
+
   // [out]
   NSData* _data;
   id _processedObject;
