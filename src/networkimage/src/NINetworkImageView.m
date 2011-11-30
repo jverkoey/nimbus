@@ -19,8 +19,6 @@
 #import "NINetworkImageView.h"
 
 #import "NimbusCore.h"
-#import "ASIHTTPRequest.h"
-#import "ASIDownloadCache.h"
 
 #import "NIHTTPImageRequest.h"
 
@@ -48,10 +46,8 @@
 @synthesize scaleOptions            = _scaleOptions;
 @synthesize interpolationQuality    = _interpolationQuality;
 @synthesize imageMemoryCache        = _imageMemoryCache;
-@synthesize imageDiskCache          = _imageDiskCache;
 @synthesize networkOperationQueue   = _networkOperationQueue;
 @synthesize maxAge                  = _maxAge;
-@synthesize diskCacheLifetime       = _diskCacheLifetime;
 @synthesize initialImage            = _initialImage;
 @synthesize memoryCachePrefix       = _memoryCachePrefix;
 @synthesize lastPathToNetworkImage  = _lastPathToNetworkImage;
@@ -60,8 +56,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cancelOperation {
-  if ([self.operation isKindOfClass:[ASIHTTPRequest class]]) {
-    ASIHTTPRequest* request = (ASIHTTPRequest *)self.operation;
+  if ([self.operation isKindOfClass:[NIOperation class]]) {
+    NIOperation* request = (NIOperation *)self.operation;
     // Clear the delegate so that we don't receive a didFail notification when we cancel the
     // operation.
     request.delegate = nil;
@@ -79,7 +75,6 @@
   NI_RELEASE_SAFELY(_initialImage);
 
   NI_RELEASE_SAFELY(_imageMemoryCache);
-  NI_RELEASE_SAFELY(_imageDiskCache);
   NI_RELEASE_SAFELY(_networkOperationQueue);
 
   NI_RELEASE_SAFELY(_memoryCachePrefix);
@@ -95,12 +90,9 @@
   self.sizeForDisplay = YES;
   self.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
   self.interpolationQuality = kCGInterpolationDefault;
-  
-  self.diskCacheLifetime = NINetworkImageViewDiskCacheLifetimePermanent;
-  
+
   self.imageMemoryCache = [Nimbus imageMemoryCache];
   self.networkOperationQueue = [Nimbus networkOperationQueue];
-  self.imageDiskCache = [ASIDownloadCache sharedCache];
 }
 
 
@@ -230,52 +222,29 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark ASIHTTPRequestDelegate
+#pragma mark NIOperationDelegate
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestStarted:(NIHTTPImageRequest *)request {
+- (void)operationDidStart:(NSOperation *)operation {
   [self _didStartLoading];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestDidFinish:(NIHTTPImageRequest *)request {
-  // Get the expiration date from the response headers for the request.
-  NSDate* expirationDate = [ASIHTTPRequest expiryDateForRequest:request maxAge:self.maxAge];
-
-  [self _didFinishLoadingWithImage: request.imageCroppedAndSizedForDisplay
-                               URL: request.originalURL
-                       displaySize: request.imageDisplaySize
-                       contentMode: request.imageContentMode
-                      scaleOptions: request.scaleOptions
-                    expirationDate: expirationDate];
+- (void)operationDidFinish:(NIHTTPImageRequest *)operation {
+  [self _didFinishLoadingWithImage: operation.imageCroppedAndSizedForDisplay
+                               URL: operation.url
+                       displaySize: operation.imageDisplaySize
+                       contentMode: operation.imageContentMode
+                      scaleOptions: operation.scaleOptions
+                    expirationDate: nil];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestDidFail:(NIHTTPImageRequest *)request {
-  [self _didFailToLoadWithError:request.error];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Utility Methods
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (ASICacheStoragePolicy)cacheStoragePolicy {
-  switch (self.diskCacheLifetime) {
-    case NINetworkImageViewDiskCacheLifetimeSession: {
-      return ASICacheForSessionDurationCacheStoragePolicy;
-    }
-    default:
-    case NINetworkImageViewDiskCacheLifetimePermanent: {
-      return ASICachePermanentlyCacheStoragePolicy;
-    }
-  }
+- (void)operationDidFail:(NSOperation *)operation withError:(NSError *)error {
+  [self _didFailToLoadWithError:error];
 }
 
 
@@ -416,22 +385,15 @@
       // off the necessary delegate notifications. No network objects are created in the
       // image request thread when this happens.
 
-      NIHTTPImageRequest* request =
-      [NIHTTPImageRequest requestWithURL: url
-                              usingCache: self.imageDiskCache];
+      NIHTTPImageRequest* request = [[[NIHTTPImageRequest alloc] initWithURL:url] autorelease];
+      request.delegate = self;
 
-      [request setDelegate:self];
-      [request setDidFinishSelector:@selector(requestDidFinish:)];
-      [request setDidFailSelector:@selector(requestDidFail:)];
-
-      [request setCacheStoragePolicy:self.cacheStoragePolicy];
-
-      [request setImageCropRect:cropRect];
-      [request setScaleOptions:self.scaleOptions];
-      [request setInterpolationQuality:self.interpolationQuality];
+      request.imageCropRect = cropRect;
+      request.scaleOptions = self.scaleOptions;
+      request.interpolationQuality = self.interpolationQuality;
       if (self.sizeForDisplay) {
-        [request setImageDisplaySize:displaySize];
-        [request setImageContentMode:contentMode];
+        request.imageDisplaySize = displaySize;
+        request.imageContentMode = contentMode;
       }
 
       self.operation = request;

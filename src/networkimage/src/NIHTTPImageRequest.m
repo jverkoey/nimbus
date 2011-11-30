@@ -16,6 +16,7 @@
 
 #import "NIHTTPImageRequest.h"
 
+#import "NIOperations+Subclassing.h"
 #import "NimbusCore.h"
 
 
@@ -24,12 +25,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIHTTPImageRequest
 
-@synthesize imageCropRect       = _imageCropRect;
-@synthesize imageDisplaySize    = _imageDisplaySize;
-@synthesize scaleOptions        = _scaleOptions;
+@synthesize imageCropRect = _imageCropRect;
+@synthesize imageDisplaySize = _imageDisplaySize;
+@synthesize scaleOptions = _scaleOptions;
 @synthesize interpolationQuality = _interpolationQuality;
-@synthesize imageContentMode    = _imageContentMode;
-
+@synthesize imageContentMode = _imageContentMode;
 @synthesize imageCroppedAndSizedForDisplay = _imageCroppedAndSizedForDisplay;
 
 
@@ -49,26 +49,8 @@
     self.interpolationQuality = kCGInterpolationDefault;
     self.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
     self.imageContentMode = UIViewContentModeScaleToFill;
-
-    // Store the image permanently, by default.
-    self.cacheStoragePolicy = ASICachePermanentlyCacheStoragePolicy;
   }
   return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)copyWithZone:(NSZone *)zone {
-  NIHTTPImageRequest* copy = [super copyWithZone:zone];
-
-  [copy setImageCropRect:[self imageCropRect]];
-  [copy setImageDisplaySize:[self imageDisplaySize]];
-  [copy setScaleOptions:[self scaleOptions]];
-  [copy setInterpolationQuality:[self interpolationQuality]];
-  [copy setImageContentMode:[self imageContentMode]];
-  [copy setImageCroppedAndSizedForDisplay:[self imageCroppedAndSizedForDisplay]];
-
-  return copy;
 }
 
 
@@ -77,11 +59,9 @@
   if ([self.url isFileURL]) {
     // Special case: load the image from disk without hitting the network.
 
-    // Most of the following code is borrowed from ASIHTTPRequest to get the bare minimum
-    // functionality working such that the delegates are properly notified.
-    [self performSelectorOnMainThread: @selector(requestStarted)
-                           withObject: nil
-                        waitUntilDone: [NSThread isMainThread]];
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+    [self operationDidStart];
 
     NSError* dataReadError = nil;
 
@@ -94,45 +74,43 @@
     if (nil != dataReadError) {
       // This generally happens when the file path points to a file that doesn't exist.
       // dataReadError has the complete details.
-      [self failWithError:dataReadError];
+      [self operationDidFailWithError:dataReadError];
 
     } else {
-      [self setRawResponseData:data];
+      self.data = data;
 
       // Notifies the delegates of the request completion.
-      [self requestFinished];
+      [self operationWillFinish];
+      [self operationDidFinish];
     }
 
-    [self markAsFinished];
+    NI_RELEASE_SAFELY(pool);
 
   } else {
-    // If we're not loading an image from disk then just let ASI handle the network magic
-    // for us.
+    // Load the image from the network then.
     [super main];
   }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestFinished {
-  NSData* responseData = [self responseData];
+- (void)operationWillFinish {
+  NSData* responseData = self.data;
   UIImage* image = [[UIImage alloc] initWithData:responseData];
 
-  // Clear out the data as quickly as we can. We never use the response data in the
-  // NINetworkImageView object, so this avoids doubling our memory on every thread.
-  [self setRawResponseData:nil];
+  self.data = nil;
 
   // Slice it, dice it!
-  [self setImageCroppedAndSizedForDisplay:[[self class] imageFromSource: image
-                                                        withContentMode: self.imageContentMode
-                                                               cropRect: self.imageCropRect
-                                                            displaySize: self.imageDisplaySize
-                                                           scaleOptions: self.scaleOptions
-                                                   interpolationQuality: self.interpolationQuality]];
+  [self setImageCroppedAndSizedForDisplay:[[self class] imageFromSource:image
+                                                        withContentMode:self.imageContentMode
+                                                               cropRect:self.imageCropRect
+                                                            displaySize:self.imageDisplaySize
+                                                           scaleOptions:self.scaleOptions
+                                                   interpolationQuality:self.interpolationQuality]];
 
   NI_RELEASE_SAFELY(image);
 
-  [super requestFinished];
+  [super operationWillFinish];
 }
 
 

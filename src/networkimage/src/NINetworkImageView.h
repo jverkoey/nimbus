@@ -18,6 +18,7 @@
 #import <UIKit/UIKit.h>
 
 #import "NIInMemoryCache.h"
+#import "NimbusCore.h"
 
 @protocol NINetworkImageViewDelegate;
 @protocol ASICacheDelegate;
@@ -51,25 +52,23 @@ typedef enum {
  *
  *      @ingroup Network-Image-User-Interface
  */
-@interface NINetworkImageView : UIImageView {
+@interface NINetworkImageView : UIImageView <NIOperationDelegate> {
 @private
   // The active operation for the image
   NSOperation* _operation;
 
   // Configurable Presentation Properties
-  UIImage*                        _initialImage;
-  BOOL                            _sizeForDisplay;
-  NINetworkImageViewScaleOptions  _scaleOptions;
-  CGInterpolationQuality          _interpolationQuality;
+  UIImage* _initialImage;
+  BOOL _sizeForDisplay;
+  NINetworkImageViewScaleOptions _scaleOptions;
+  CGInterpolationQuality _interpolationQuality;
   
   // Configurable Properties
   NSString* _memoryCachePrefix;
   NSString* _lastPathToNetworkImage;
-  NSTimeInterval                      _maxAge;
-  NINetworkImageViewDiskCacheLifetime _diskCacheLifetime;
-  NIImageMemoryCache*   _imageMemoryCache;
-  id<ASICacheDelegate>  _imageDiskCache;
-  NSOperationQueue*     _networkOperationQueue;
+  NSTimeInterval _maxAge;
+  NIImageMemoryCache* _imageMemoryCache;
+  NSOperationQueue* _networkOperationQueue;
 
   // Delegation
   id<NINetworkImageViewDelegate> _delegate;
@@ -89,11 +88,9 @@ typedef enum {
 #pragma mark Configurable Properties
 
 @property (nonatomic, readwrite, retain) NIImageMemoryCache* imageMemoryCache;    // Default: [Nimbus imageMemoryCache]
-@property (nonatomic, readwrite, retain) id<ASICacheDelegate> imageDiskCache;     // Default: [ASIDownloadCache sharedCache]
 @property (nonatomic, readwrite, retain) NSOperationQueue* networkOperationQueue; // Default: [Nimbus networkOperationQueue]
 
 @property (nonatomic, readwrite, assign) NSTimeInterval maxAge;     // Default: 0
-@property (nonatomic, readwrite, assign) NINetworkImageViewDiskCacheLifetime diskCacheLifetime; // Default: NINetworkImageViewDiskCacheLifetimePermanent
 
 @property (nonatomic, readwrite, copy) NSString* memoryCachePrefix; // Default: nil
 @property (nonatomic, readonly, copy) NSString* lastPathToNetworkImage;
@@ -109,7 +106,7 @@ typedef enum {
 
 #pragma mark State
 
-@property (nonatomic, readonly, assign) BOOL isLoading;
+@property (nonatomic, readonly, assign, getter=isLoading) BOOL loading;
 
 #pragma mark Reusable View
 

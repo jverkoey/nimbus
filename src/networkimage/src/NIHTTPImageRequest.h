@@ -17,8 +17,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NIHTTPRequest.h"
 #import "NINetworkImageView.h"  // For NINetworkImageViewScaleOptions
+
+#import "NimbusCore.h"
 
 /**
  * A threaded network request for an image that chops up and resizes the image before returning
@@ -26,7 +27,7 @@
  *
  *      @ingroup Network-Image-Requests
  */
-@interface NIHTTPImageRequest : NIHTTPRequest {
+@interface NIHTTPImageRequest : NINetworkRequestOperation {
 @private
   CGRect _imageCropRect;
   CGSize _imageDisplaySize;
