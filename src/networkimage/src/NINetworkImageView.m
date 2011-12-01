@@ -20,7 +20,7 @@
 
 #import "NimbusCore.h"
 
-#import "NIHTTPImageRequest.h"
+#import "NINetworkImageRequest.h"
 
 
 
@@ -136,11 +136,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)cacheKeyForURL: (NSURL *)URL
-                   imageSize: (CGSize)imageSize
-                 contentMode: (UIViewContentMode)contentMode
-                scaleOptions: (NINetworkImageViewScaleOptions)scaleOptions {
-  NSString* cacheKey = [URL absoluteString];
+- (NSString *)cacheKeyForCacheIdentifier:(NSString *)cacheIdentifier
+                               imageSize:(CGSize)imageSize
+                             contentMode:(UIViewContentMode)contentMode
+                            scaleOptions:(NINetworkImageViewScaleOptions)scaleOptions {
+  NIDASSERT(NIIsStringWithAnyText(cacheIdentifier));
+
+  NSString* cacheKey = cacheIdentifier;
 
   // Prefix cache key to create a namespace.
   if (nil != self.memoryCachePrefix) {
@@ -180,17 +182,17 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_didFinishLoadingWithImage: (UIImage *)image
-                               URL: (NSURL *)url
+                   cacheIdentifier: (NSString *)cacheIdentifier
                        displaySize: (CGSize)displaySize
                        contentMode: (UIViewContentMode)contentMode
                       scaleOptions: (NINetworkImageViewScaleOptions)scaleOptions
                     expirationDate: (NSDate *)expirationDate {
   // Store the result image in the memory cache.
   if (nil != self.imageMemoryCache) {
-    NSString* cacheKey = [self cacheKeyForURL: url
-                                    imageSize: displaySize
-                                  contentMode: contentMode
-                                 scaleOptions: scaleOptions];
+    NSString* cacheKey = [self cacheKeyForCacheIdentifier:cacheIdentifier
+                                                imageSize:displaySize
+                                              contentMode:contentMode
+                                             scaleOptions:scaleOptions];
 
     // Store the image in the memory cache, possibly with an expiration date.
     [self.imageMemoryCache storeObject: image
@@ -232,13 +234,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFinish:(NIHTTPImageRequest *)operation {
-  [self _didFinishLoadingWithImage: operation.imageCroppedAndSizedForDisplay
-                               URL: operation.url
-                       displaySize: operation.imageDisplaySize
-                       contentMode: operation.imageContentMode
-                      scaleOptions: operation.scaleOptions
-                    expirationDate: nil];
+- (void)operationDidFinish:(NINetworkImageRequest *)operation {
+  [self _didFinishLoadingWithImage:operation.imageCroppedAndSizedForDisplay
+                   cacheIdentifier:operation.cacheIdentifier
+                       displaySize:operation.imageDisplaySize
+                       contentMode:operation.imageContentMode
+                      scaleOptions:operation.scaleOptions
+                    expirationDate:nil];
 }
 
 
@@ -330,17 +332,6 @@
   if (NIIsStringWithAnyText(pathToNetworkImage)) {
     self.lastPathToNetworkImage = pathToNetworkImage;
 
-    // We explicitly do not allow negative display sizes. Check the call stack to figure
-    // out who is providing a negative display size. It's possible that displaySize is an
-    // uninitialized CGSize structure.
-    NIDASSERT(displaySize.width >= 0);
-    NIDASSERT(displaySize.height >= 0);
-
-    // If an invalid display size is provided, use the image view's frame instead.
-    if (0 >= displaySize.width || 0 >= displaySize.height) {
-      displaySize = self.frame.size;
-    }
-
     NSURL* url = nil;
 
     // Check for file URLs.
@@ -357,15 +348,37 @@
     if (nil == url) {
       return;
     }
+    
+    NINetworkImageRequest* request = [[[NINetworkImageRequest alloc] initWithURL:url] autorelease];
+    [self setNetworkImageOperation:request forDisplaySize:displaySize contentMode:contentMode cropRect:cropRect];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setNetworkImageOperation:(NIOperation<NINetworkImageOperation> *)operation forDisplaySize:(CGSize)displaySize contentMode:(UIViewContentMode)contentMode cropRect:(CGRect)cropRect {
+  [self cancelOperation];
+
+  if (nil != operation) {
+    // We explicitly do not allow negative display sizes. Check the call stack to figure
+    // out who is providing a negative display size. It's possible that displaySize is an
+    // uninitialized CGSize structure.
+    NIDASSERT(displaySize.width >= 0);
+    NIDASSERT(displaySize.height >= 0);
+
+    // If an invalid display size is provided, use the image view's frame instead.
+    if (0 >= displaySize.width || 0 >= displaySize.height) {
+      displaySize = self.frame.size;
+    }
 
     UIImage* image = nil;
 
     // Attempt to load the image from memory first.
     if (nil != self.imageMemoryCache) {
-      NSString* cacheKey = [self cacheKeyForURL: url
-                                      imageSize: displaySize
-                                    contentMode: contentMode
-                                   scaleOptions: self.scaleOptions];
+      NSString* cacheKey = [self cacheKeyForCacheIdentifier:operation.cacheIdentifier
+                                                  imageSize:displaySize
+                                                contentMode:contentMode
+                                               scaleOptions:self.scaleOptions];
       image = [self.imageMemoryCache objectWithName:cacheKey];
     }
 
@@ -378,25 +391,18 @@
       }
 
     } else {
-      // Unable to load the image from memory, fire off the load request (which will load
-      // the image from the disk if possible and fall back to loading from the network).
+      // Unable to load the image from memory, so let's fire off the operation now.
+      operation.delegate = self;
 
-      // NIHTTPImageRequest handles file urls by simply loading the image from the disk and firing
-      // off the necessary delegate notifications. No network objects are created in the
-      // image request thread when this happens.
-
-      NIHTTPImageRequest* request = [[[NIHTTPImageRequest alloc] initWithURL:url] autorelease];
-      request.delegate = self;
-
-      request.imageCropRect = cropRect;
-      request.scaleOptions = self.scaleOptions;
-      request.interpolationQuality = self.interpolationQuality;
+      operation.imageCropRect = cropRect;
+      operation.scaleOptions = self.scaleOptions;
+      operation.interpolationQuality = self.interpolationQuality;
       if (self.sizeForDisplay) {
-        request.imageDisplaySize = displaySize;
-        request.imageContentMode = contentMode;
+        operation.imageDisplaySize = displaySize;
+        operation.imageContentMode = contentMode;
       }
 
-      self.operation = request;
+      self.operation = operation;
 
       [self.networkOperationQueue addOperation:self.operation];
     }

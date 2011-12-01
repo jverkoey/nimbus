@@ -45,6 +45,21 @@ typedef enum {
 } NINetworkImageViewScaleOptions;
 
 /**
+ * A protocol defining the set of characteristics for an operation to be used with
+ * NINetworkImageView.
+ */
+@protocol NINetworkImageOperation <NSObject>
+@required
+@property (readonly, copy) NSString* cacheIdentifier;
+@property (readwrite, assign) CGRect imageCropRect;
+@property (readwrite, assign) CGSize imageDisplaySize;
+@property (readwrite, assign) NINetworkImageViewScaleOptions scaleOptions;
+@property (readwrite, assign) CGInterpolationQuality interpolationQuality;
+@property (readwrite, assign) UIViewContentMode imageContentMode;
+@property (readwrite, retain) UIImage* imageCroppedAndSizedForDisplay;
+@end
+
+/**
  * A network-enabled image view that consumes minimal amounts of memory.
  *
  * Intelligently crops and resizes images for optimal memory use and uses threads to avoid
@@ -55,7 +70,7 @@ typedef enum {
 @interface NINetworkImageView : UIImageView <NIOperationDelegate> {
 @private
   // The active operation for the image
-  NSOperation* _operation;
+  NIOperation<NINetworkImageOperation>* _operation;
 
   // Configurable Presentation Properties
   UIImage* _initialImage;
@@ -103,6 +118,8 @@ typedef enum {
 - (void)setPathToNetworkImage:(NSString *)pathToNetworkImage forDisplaySize:(CGSize)displaySize contentMode:(UIViewContentMode)contentMode cropRect:(CGRect)cropRect;
 - (void)setPathToNetworkImage:(NSString *)pathToNetworkImage cropRect:(CGRect)cropRect;
 - (void)setPathToNetworkImage:(NSString *)pathToNetworkImage contentMode:(UIViewContentMode)contentMode;
+
+- (void)setNetworkImageOperation:(NIOperation<NINetworkImageOperation> *)operation forDisplaySize:(CGSize)displaySize contentMode:(UIViewContentMode)contentMode cropRect:(CGRect)cropRect;
 
 #pragma mark State
 

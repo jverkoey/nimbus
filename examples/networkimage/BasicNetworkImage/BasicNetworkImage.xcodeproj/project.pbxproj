@@ -28,7 +28,7 @@
 		66EA058313C011D6004FFE1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA058113C011D6004FFE1A /* AppDelegate.m */; };
 		66EA058813C011EC004FFE1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA058713C011EC004FFE1A /* main.m */; };
 		66EA05DF13C01BE6004FFE1A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA05DE13C01BE6004FFE1A /* RootViewController.m */; };
-		66EA06A713C01D10004FFE1A /* NIHTTPImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA06A313C01D10004FFE1A /* NIHTTPImageRequest.m */; };
+		66EA06A713C01D10004FFE1A /* NINetworkImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA06A313C01D10004FFE1A /* NINetworkImageRequest.m */; };
 		66EA06A813C01D10004FFE1A /* NINetworkImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EA06A613C01D10004FFE1A /* NINetworkImageView.m */; };
 		66EA06B313C01D4F004FFE1A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EA06B213C01D4F004FFE1A /* libz.dylib */; };
 		66EA06C313C01D86004FFE1A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EA06C213C01D86004FFE1A /* CFNetwork.framework */; };
@@ -83,8 +83,8 @@
 		66EA05A213C01297004FFE1A /* BasicNetworkImage-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "BasicNetworkImage-Info.plist"; path = "resources/BasicNetworkImage-Info.plist"; sourceTree = "<group>"; };
 		66EA05DD13C01BE6004FFE1A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = src/RootViewController.h; sourceTree = "<group>"; };
 		66EA05DE13C01BE6004FFE1A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = src/RootViewController.m; sourceTree = "<group>"; };
-		66EA06A213C01D10004FFE1A /* NIHTTPImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIHTTPImageRequest.h; path = ../../../src/networkimage/src/NIHTTPImageRequest.h; sourceTree = SOURCE_ROOT; };
-		66EA06A313C01D10004FFE1A /* NIHTTPImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIHTTPImageRequest.m; path = ../../../src/networkimage/src/NIHTTPImageRequest.m; sourceTree = SOURCE_ROOT; };
+		66EA06A213C01D10004FFE1A /* NINetworkImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; name = NINetworkImageRequest.h; path = ../../../src/networkimage/src/NINetworkImageRequest.h; sourceTree = SOURCE_ROOT; };
+		66EA06A313C01D10004FFE1A /* NINetworkImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkImageRequest.m; path = ../../../src/networkimage/src/NINetworkImageRequest.m; sourceTree = SOURCE_ROOT; };
 		66EA06A413C01D10004FFE1A /* NimbusNetworkImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusNetworkImage.h; path = ../../../src/networkimage/src/NimbusNetworkImage.h; sourceTree = SOURCE_ROOT; };
 		66EA06A513C01D10004FFE1A /* NINetworkImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkImageView.h; path = ../../../src/networkimage/src/NINetworkImageView.h; sourceTree = SOURCE_ROOT; };
 		66EA06A613C01D10004FFE1A /* NINetworkImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkImageView.m; path = ../../../src/networkimage/src/NINetworkImageView.m; sourceTree = SOURCE_ROOT; };
@@ -231,8 +231,8 @@
 		66EA06A013C01CFD004FFE1A /* Network Image */ = {
 			isa = PBXGroup;
 			children = (
-				66EA06A213C01D10004FFE1A /* NIHTTPImageRequest.h */,
-				66EA06A313C01D10004FFE1A /* NIHTTPImageRequest.m */,
+				66EA06A213C01D10004FFE1A /* NINetworkImageRequest.h */,
+				66EA06A313C01D10004FFE1A /* NINetworkImageRequest.m */,
 				66EA06A413C01D10004FFE1A /* NimbusNetworkImage.h */,
 				66EA06A513C01D10004FFE1A /* NINetworkImageView.h */,
 				66EA06A613C01D10004FFE1A /* NINetworkImageView.m */,
@@ -304,7 +304,7 @@
 				66EA058313C011D6004FFE1A /* AppDelegate.m in Sources */,
 				66EA058813C011EC004FFE1A /* main.m in Sources */,
 				66EA05DF13C01BE6004FFE1A /* RootViewController.m in Sources */,
-				66EA06A713C01D10004FFE1A /* NIHTTPImageRequest.m in Sources */,
+				66EA06A713C01D10004FFE1A /* NINetworkImageRequest.m in Sources */,
 				66EA06A813C01D10004FFE1A /* NINetworkImageView.m in Sources */,
 				665E079E13C6BD47008A1D21 /* NIDataStructures.m in Sources */,
 				665E079F13C6BD47008A1D21 /* NIDebuggingTools.m in Sources */,

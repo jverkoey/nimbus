@@ -27,7 +27,7 @@
  *
  *      @ingroup Network-Image-Requests
  */
-@interface NIHTTPImageRequest : NINetworkRequestOperation {
+@interface NINetworkImageRequest : NINetworkRequestOperation <NINetworkImageOperation> {
 @private
   CGRect _imageCropRect;
   CGSize _imageDisplaySize;
@@ -42,11 +42,11 @@
 
 #pragma mark Configurable Properties
 
-@property (assign) CGRect imageCropRect;                          // Default: CGRectZero
-@property (assign) CGSize imageDisplaySize;                       // Default: CGSizeZero
-@property (assign) NINetworkImageViewScaleOptions scaleOptions;   // Default: NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess
-@property (assign) CGInterpolationQuality interpolationQuality;   // Default: kCGInterpolationDefault
-@property (assign) UIViewContentMode imageContentMode;            // Default: UIViewContentModeScaleToFill
+@property (assign) CGRect imageCropRect; // Default: CGRectZero
+@property (assign) CGSize imageDisplaySize; // Default: CGSizeZero
+@property (assign) NINetworkImageViewScaleOptions scaleOptions; // Default: NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess
+@property (assign) CGInterpolationQuality interpolationQuality; // Default: kCGInterpolationDefault
+@property (assign) UIViewContentMode imageContentMode; // Default: UIViewContentModeScaleToFill
 
 #pragma mark Results
 
@@ -55,7 +55,7 @@
 @end
 
 
-@interface NIHTTPImageRequest (ImageModifications)
+@interface NINetworkImageRequest (ImageModifications)
 
 /** @name Image Modifications */
 
@@ -102,7 +102,7 @@
  *
  * The default value is CGRectZero.
  *
- *      @fn NIHTTPImageRequest::imageCropRect
+ *      @fn NINetworkImageRequest::imageCropRect
  */
 
 /**
@@ -113,7 +113,7 @@
  *
  * The default value is CGSizeZero.
  *
- *      @fn NIHTTPImageRequest::imageDisplaySize
+ *      @fn NINetworkImageRequest::imageDisplaySize
  */
 
 /**
@@ -122,7 +122,7 @@
  * The default value is NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess.
  *
  *      @see NINetworkImageViewScaleOptions
- *      @fn NIHTTPImageRequest::scaleOptions
+ *      @fn NINetworkImageRequest::scaleOptions
  */
 
 /**
@@ -130,7 +130,7 @@
  *
  * The default value is kCGInterpolationDefault.
  *
- *      @fn NIHTTPImageRequest::interpolationQuality
+ *      @fn NINetworkImageRequest::interpolationQuality
  */
 
 /**
@@ -143,7 +143,7 @@
  *
  * The default value is UIViewContentModeScaleToFill.
  *
- *      @fn NIHTTPImageRequest::imageContentMode
+ *      @fn NINetworkImageRequest::imageContentMode
  */
 
 
@@ -153,5 +153,5 @@
  * Upon completion of the request, this is the chopped and sized result image that should be
  * used for display.
  *
- *      @fn NIHTTPImageRequest::imageCroppedAndSizedForDisplay
+ *      @fn NINetworkImageRequest::imageCroppedAndSizedForDisplay
  */
