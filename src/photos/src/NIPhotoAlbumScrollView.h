@@ -42,6 +42,8 @@
 @private
   // Configurable Properties
   UIImage* _loadingImage;
+  UIColor* _scrollViewBackgroundColor;
+  UIColor* _photoBackgroundColor;
   BOOL _zoomingIsEnabled;
   BOOL _zoomingAboveOriginalSizeIsEnabled;
 }
@@ -133,6 +135,20 @@
  *
  *      @fn NIPhotoAlbumScrollView::zoomingAboveOriginalSizeIsEnabled
  */
+
+/**
+ * The background color of the album scroll view.
+ *
+ * By default this is [UIColor blackColor].
+ */
+@property (nonatomic, readwrite, retain) UIColor* scrollViewBackgroundColor;
+
+/**
+ * The background color of each photo's scroll view.
+ *
+ * By default this is [UIColor blackColor].
+ */
+@property (nonatomic, readwrite, retain) UIColor* photoBackgroundColor;
 
 
 /** @name Configuring Presentation */

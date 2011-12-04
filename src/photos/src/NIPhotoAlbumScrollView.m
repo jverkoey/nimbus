@@ -27,6 +27,8 @@
 @implementation NIPhotoAlbumScrollView
 
 @synthesize loadingImage = _loadingImage;
+@synthesize scrollViewBackgroundColor = _scrollViewBackgroundColor;
+@synthesize photoBackgroundColor = _photoBackgroundColor;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
 @synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
 
@@ -34,6 +36,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_loadingImage);
+  NI_RELEASE_SAFELY(_scrollViewBackgroundColor);
+  NI_RELEASE_SAFELY(_photoBackgroundColor);
 
   [super dealloc];
 }
@@ -170,7 +174,7 @@
       // Only replace the photo if it's of a higher quality than one we're already showing.
       if (photoSize > page.photoSize) {
         [page setImage:image photoSize:photoSize];
-        
+
         page.zoomingIsEnabled = ([self isZoomingEnabled]
                                  && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
 
@@ -230,6 +234,24 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setDelegate:(id<NIPhotoAlbumScrollViewDelegate>)delegate {
   [super setDelegate:(id<NIPhotoAlbumScrollViewDelegate>)delegate];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setScrollViewBackgroundColor:(UIColor *)color {
+  NI_RELEASE_SAFELY(_scrollViewBackgroundColor);
+  _scrollViewBackgroundColor = [color retain];
+  _pagingScrollView.backgroundColor = color;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setPhotoBackgroundColor:(UIColor *)color {
+  NI_RELEASE_SAFELY(_photoBackgroundColor);
+  _photoBackgroundColor = [color retain];
+  for (NIPhotoScrollView* page in _visiblePages) {
+    page.backgroundColor = color;
+  }
 }
 
 
