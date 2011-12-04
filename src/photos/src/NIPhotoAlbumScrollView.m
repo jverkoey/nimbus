@@ -27,8 +27,7 @@
 @implementation NIPhotoAlbumScrollView
 
 @synthesize loadingImage = _loadingImage;
-@synthesize scrollViewBackgroundColor = _scrollViewBackgroundColor;
-@synthesize photoBackgroundColor = _photoBackgroundColor;
+@synthesize photoViewBackgroundColor = _photoViewBackgroundColor;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
 @synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
 
@@ -36,8 +35,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_loadingImage);
-  NI_RELEASE_SAFELY(_scrollViewBackgroundColor);
-  NI_RELEASE_SAFELY(_photoBackgroundColor);
+  NI_RELEASE_SAFELY(_photoViewBackgroundColor);
 
   [super dealloc];
 }
@@ -51,6 +49,14 @@
     self.zoomingAboveOriginalSizeIsEnabled = YES;
   }
   return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+  [super setBackgroundColor:backgroundColor];
+
+  self.pagingScrollView.backgroundColor = backgroundColor;
 }
 
 
@@ -154,6 +160,7 @@
   if (nil == pageView) {
     pageView = [[[NIPhotoScrollView alloc] init] autorelease];
     pageView.reuseIdentifier = reuseIdentifier;
+    pageView.backgroundColor = self.photoViewBackgroundColor;
   }
 
   NIPhotoScrollView* photoScrollView = (NIPhotoScrollView *)pageView;
@@ -200,6 +207,19 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setPhotoViewBackgroundColor:(UIColor *)photoViewBackgroundColor {
+  if (_photoViewBackgroundColor != photoViewBackgroundColor) {
+    [_photoViewBackgroundColor release];
+    _photoViewBackgroundColor = [photoViewBackgroundColor retain];
+    
+    for (UIView<NIPagingScrollViewPage>* page in self.visiblePages) {
+      page.backgroundColor = photoViewBackgroundColor;
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasNext {
   return (self.centerPageIndex < self.numberOfPages - 1);
 }
@@ -234,24 +254,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setDelegate:(id<NIPhotoAlbumScrollViewDelegate>)delegate {
   [super setDelegate:(id<NIPhotoAlbumScrollViewDelegate>)delegate];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setScrollViewBackgroundColor:(UIColor *)color {
-  NI_RELEASE_SAFELY(_scrollViewBackgroundColor);
-  _scrollViewBackgroundColor = [color retain];
-  _pagingScrollView.backgroundColor = color;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setPhotoBackgroundColor:(UIColor *)color {
-  NI_RELEASE_SAFELY(_photoBackgroundColor);
-  _photoBackgroundColor = [color retain];
-  for (NIPhotoScrollView* page in _visiblePages) {
-    page.backgroundColor = color;
-  }
 }
 
 
