@@ -16,6 +16,7 @@
 
 #import "NINetworkJSONRequest.h"
 
+#import "NIOperations+Subclassing.h"
 #import "JSONKit.h"
 
 //
@@ -34,8 +35,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)operationWillFinish {
+  NSError* error = nil;
   self.processedObject = [[JSONDecoder decoder] objectWithData:self.data
-                                                         error:&self.lastError];
+                                                         error:&error];
+
+  self.lastError = error;
 
   [super operationWillFinish];
 }
