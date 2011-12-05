@@ -295,6 +295,10 @@
  *
  * <h2>Photos</h2>
  *
+ * <h3>NIPhotoAlbumScrollView[.m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>NIPhotoAlbumScrollView.@link NIPhotoAlbumScrollView::photoViewBackgroundColor photoViewBackgroundColor@endlink</code> (added by <a href="https://github.com/baz">baz</a>).
+ *
  * <h3>NIPhotoScrubberView[.m]</h3>
  *
  * - <span class="apiDiffBugfix">Bugfix</span> The initial scrubber thumbnail is now loaded correctly.
