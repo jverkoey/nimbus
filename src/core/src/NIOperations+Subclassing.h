@@ -14,6 +14,10 @@
 // limitations under the License.
 //
 
+@interface NIOperation()
+@property (readwrite, retain) NSError* lastError;
+@end
+
 @interface NINetworkRequestOperation()
 @property (readwrite, retain) NSData* data;
 @end
