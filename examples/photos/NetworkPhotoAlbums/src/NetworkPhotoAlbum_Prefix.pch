@@ -20,7 +20,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "NimbusCore.h"
 #import "NimbusPhotos.h"
-#import "NimbusProcessors.h"
+#import "NimbusOperations.h"
 #import "NimbusModels.h"
 #import "NINetworkJSONRequest.h"
 #endif
