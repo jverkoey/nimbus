@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+     <key>CFBundleName</key>
+     <string>Nimbus</string>
+     <key>CFBundleIdentifier</key>
+     <string>org.jeffverkoeyen.nimbus</string>
+     <key>CFBundleVersion</key>
+     <string>0.9.1</string>
+     <key>DocSetFeedURL</key>
+     <string>http://jverkoey.github.com/nimbus/nimbusdocset.atom</string>
+     <key>DocSetFeedName</key>
+     <string>Nimbus Documentation</string>
+     <key>DocSetPublisherIdentifier</key>
+     <string>org.jeffverkoeyen.nimbus</string>
+     <key>DocSetPublisherName</key>
+     <string>Nimbus</string>
+</dict>
+</plist>
