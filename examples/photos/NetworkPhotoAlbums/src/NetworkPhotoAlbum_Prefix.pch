@@ -22,5 +22,5 @@
 #import "NimbusPhotos.h"
 #import "NimbusProcessors.h"
 #import "NimbusModels.h"
-#import "NIJSONKitProcessorHTTPRequest.h"
+#import "NINetworkJSONRequest.h"
 #endif

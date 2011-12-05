@@ -16,9 +16,6 @@
 
 #import "NetworkPhotoAlbumViewController.h"
 
-#import "NIHTTPRequest.h"
-#import "ASIDownloadCache.h"
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +29,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)shutdown_NetworkPhotoAlbumViewController {
-  for (ASIHTTPRequest* request in _queue.operations) {
+  for (NINetworkRequestOperation* request in _queue.operations) {
     request.delegate = nil;
   }
   [_queue cancelAllOperations];
@@ -75,9 +72,8 @@
   NSURL* url = [NSURL URLWithString:source];
 
   // We must use __block here to avoid creating a retain cycle with the readOp.
-  __block NIHTTPRequest* readOp = [NIHTTPRequest requestWithURL: url
-                                                     usingCache: [ASIDownloadCache sharedCache]];
-  readOp.timeOutSeconds = 30;
+  __block NINetworkRequestOperation* readOp = [[[NINetworkRequestOperation alloc] initWithURL:url] autorelease];
+  readOp.timeout = 30;
 
   // Set an negative index for thumbnail requests so that they don't get cancelled by
   // photoAlbumScrollView:stopLoadingPhotoAtIndex:
@@ -87,8 +83,8 @@
 
   // The completion block will be executed on the main thread, so we must be careful not
   // to do anything computationally expensive here.
-  [readOp setCompletionBlock:^{
-    UIImage* image = [UIImage imageWithData:[readOp responseData]];
+  [readOp setDidFinishBlock:^{
+    UIImage* image = [UIImage imageWithData:readOp.data];
 
     // Store the image in the correct image cache.
     if (isThumbnail) {
@@ -115,7 +111,7 @@
 
   // When this request is canceled (like when we're quickly flipping through an album)
   // the request will fail, so we must be careful to remove the request from the active set.
-  [readOp setFailedBlock:^{
+  [readOp setDidFailWithErrorBlock:^(NSError *error) {
     [_activeRequests removeObject:identifierKey];
   }];
 
