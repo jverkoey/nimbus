@@ -33,8 +33,6 @@
 /* Begin PBXBuildFile section */
 		6623EB6D1402ECE400E0E61A /* NITableViewModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6623EB6C1402ECE400E0E61A /* NITableViewModelTests.m */; };
 		6623EB721402EDB100E0E61A /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0913E6E85E00B514F3 /* libNimbusCore.a */; };
-		66325D6213EB1BFA008D6EAD /* NINetworkJSONRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 66325D6013EB1BFA008D6EAD /* NINetworkJSONRequest.h */; };
-		66325D6313EB1BFA008D6EAD /* NINetworkJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66325D6113EB1BFA008D6EAD /* NINetworkJSONRequest.m */; };
 		663B52401445052700CC26DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		663B524D1445052800CC26DF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		663B524E1445052800CC26DF /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -86,7 +84,6 @@
 		667572CB13E76F460076F555 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		667572CD13E76F460076F555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		667572D113E76F460076F555 /* libNimbusProcessors.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 667572BD13E76F460076F555 /* libNimbusProcessors.a */; };
-		667572EB13E76F5E0076F555 /* NimbusProcessors.h in Headers */ = {isa = PBXBuildFile; fileRef = 667572E613E76F5E0076F555 /* NimbusProcessors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6675731313E771380076F555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		6675732013E771380076F555 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		6675732213E771380076F555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
@@ -103,8 +100,11 @@
 		667A74A013FE20BD009D277D /* NIFormCellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A749A13FE20BD009D277D /* NIFormCellCatalog.m */; };
 		667A74A113FE20BD009D277D /* NICellFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 667A749B13FE20BD009D277D /* NICellFactory.h */; };
 		667A74A213FE20BD009D277D /* NICellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A749C13FE20BD009D277D /* NICellFactory.m */; };
-		667A8A04148C6984000779BD /* NINetworkJSONRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 667A8A02148C6983000779BD /* NINetworkJSONRequest.h */; };
-		667A8A05148C6984000779BD /* NINetworkJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A8A03148C6983000779BD /* NINetworkJSONRequest.m */; };
+		667A8A0A148CA164000779BD /* NimbusOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 667A8A09148CA164000779BD /* NimbusOperations.h */; };
+		667A8A0D148CA16F000779BD /* NINetworkJSONRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 667A8A0B148CA16F000779BD /* NINetworkJSONRequest.h */; };
+		667A8A0E148CA16F000779BD /* NINetworkJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A8A0C148CA16F000779BD /* NINetworkJSONRequest.m */; };
+		667A8A11148CA178000779BD /* NINetworkJSONRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 667A8A0F148CA178000779BD /* NINetworkJSONRequest.h */; };
+		667A8A12148CA178000779BD /* NINetworkJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A8A10148CA178000779BD /* NINetworkJSONRequest.m */; };
 		66832CB9143D681B003E413C /* NimbusCSS.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CB7143D681B003E413C /* NimbusCSS.h */; };
 		66832CC1143D7883003E413C /* NICSSParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CC0143D7883003E413C /* NICSSParserTests.m */; };
 		66832CC4143D7898003E413C /* NICSSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CC2143D7898003E413C /* NICSSParser.h */; };
@@ -428,8 +428,6 @@
 		6623EB6C1402ECE400E0E61A /* NITableViewModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewModelTests.m; sourceTree = "<group>"; };
 		66325D5613EB0301008D6EAD /* HACKERS.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = HACKERS.mdown; path = ../HACKERS.mdown; sourceTree = "<group>"; };
 		66325D5713EB0302008D6EAD /* README.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.mdown; path = ../README.mdown; sourceTree = "<group>"; };
-		66325D6013EB1BFA008D6EAD /* NINetworkJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NINetworkJSONRequest.h; sourceTree = "<group>"; };
-		66325D6113EB1BFA008D6EAD /* NINetworkJSONRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINetworkJSONRequest.m; sourceTree = "<group>"; };
 		663B523F1445052700CC26DF /* libNimbusPagingScrollView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusPagingScrollView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		663B524C1445052800CC26DF /* NimbusPagingScrollViewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusPagingScrollViewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		663B52641445059C00CC26DF /* NimbusPagingScrollViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NimbusPagingScrollViewTests-Info.plist"; path = "pagingscrollview/unittests/NimbusPagingScrollViewTests-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -480,9 +478,6 @@
 		667572AC13E7692F0076F555 /* NimbusPhotosTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NimbusPhotosTests-Info.plist"; sourceTree = "<group>"; };
 		667572BD13E76F460076F555 /* libNimbusProcessors.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusProcessors.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		667572CA13E76F460076F555 /* NimbusProcessorsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusProcessorsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		667572E213E76F5E0076F555 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = processors/deps; sourceTree = SOURCE_ROOT; };
-		667572E613E76F5E0076F555 /* NimbusProcessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusProcessors.h; sourceTree = "<group>"; };
-		667572F013E76F9D0076F555 /* NimbusProcessorsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NimbusProcessorsTests-Info.plist"; sourceTree = "<group>"; };
 		6675731213E771380076F555 /* libNimbusInterapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusInterapp.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675731F13E771380076F555 /* NimbusInterappTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusInterappTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675733713E7718B0076F555 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = interapp/deps; sourceTree = SOURCE_ROOT; };
@@ -497,8 +492,13 @@
 		667A749A13FE20BD009D277D /* NIFormCellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIFormCellCatalog.m; sourceTree = "<group>"; };
 		667A749B13FE20BD009D277D /* NICellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICellFactory.h; sourceTree = "<group>"; };
 		667A749C13FE20BD009D277D /* NICellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICellFactory.m; sourceTree = "<group>"; };
-		667A8A02148C6983000779BD /* NINetworkJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkJSONRequest.h; path = processors/src_NSJSON/NINetworkJSONRequest.h; sourceTree = SOURCE_ROOT; };
-		667A8A03148C6983000779BD /* NINetworkJSONRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkJSONRequest.m; path = processors/src_NSJSON/NINetworkJSONRequest.m; sourceTree = SOURCE_ROOT; };
+		667A8A08148CA15B000779BD /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = operations/deps; sourceTree = SOURCE_ROOT; };
+		667A8A09148CA164000779BD /* NimbusOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusOperations.h; path = operations/src/NimbusOperations.h; sourceTree = SOURCE_ROOT; };
+		667A8A0B148CA16F000779BD /* NINetworkJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkJSONRequest.h; path = operations/src_JSONKit/NINetworkJSONRequest.h; sourceTree = SOURCE_ROOT; };
+		667A8A0C148CA16F000779BD /* NINetworkJSONRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkJSONRequest.m; path = operations/src_JSONKit/NINetworkJSONRequest.m; sourceTree = SOURCE_ROOT; };
+		667A8A0F148CA178000779BD /* NINetworkJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkJSONRequest.h; path = operations/src_NSJSON/NINetworkJSONRequest.h; sourceTree = SOURCE_ROOT; };
+		667A8A10148CA178000779BD /* NINetworkJSONRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkJSONRequest.m; path = operations/src_NSJSON/NINetworkJSONRequest.m; sourceTree = SOURCE_ROOT; };
+		667A8A13148CA181000779BD /* NimbusProcessorsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NimbusProcessorsTests-Info.plist"; path = "operations/unittests/NimbusProcessorsTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		66832C98143D63D2003E413C /* css.grammar */ = {isa = PBXFileReference; lastKnownFileType = text; name = css.grammar; path = css/grammar/css.grammar; sourceTree = SOURCE_ROOT; };
 		66832CA1143D64CF003E413C /* generate */ = {isa = PBXFileReference; lastKnownFileType = text; name = generate; path = css/grammar/generate; sourceTree = SOURCE_ROOT; };
 		66832CA8143D6642003E413C /* CSSTokenizerPrefix */ = {isa = PBXFileReference; lastKnownFileType = text; name = CSSTokenizerPrefix; path = css/grammar/CSSTokenizerPrefix; sourceTree = SOURCE_ROOT; };
@@ -894,8 +894,8 @@
 		66325D5F13EB1BFA008D6EAD /* src_JSONKit */ = {
 			isa = PBXGroup;
 			children = (
-				66325D6013EB1BFA008D6EAD /* NINetworkJSONRequest.h */,
-				66325D6113EB1BFA008D6EAD /* NINetworkJSONRequest.m */,
+				667A8A0B148CA16F000779BD /* NINetworkJSONRequest.h */,
+				667A8A0C148CA16F000779BD /* NINetworkJSONRequest.m */,
 			);
 			name = src_JSONKit;
 			path = processors/src_JSONKit;
@@ -1030,22 +1030,23 @@
 			path = photos/unittests;
 			sourceTree = SOURCE_ROOT;
 		};
-		667572BF13E76F460076F555 /* NimbusProcessors */ = {
+		667572BF13E76F460076F555 /* NimbusOperations */ = {
 			isa = PBXGroup;
 			children = (
-				667572E213E76F5E0076F555 /* deps */,
+				667A8A08148CA15B000779BD /* deps */,
 				667572E513E76F5E0076F555 /* src */,
 				66325D5F13EB1BFA008D6EAD /* src_JSONKit */,
 				667A8A07148C6992000779BD /* src_NSJSON */,
 				667572EF13E76F9D0076F555 /* unittests */,
 			);
+			name = NimbusOperations;
 			path = NimbusProcessors;
 			sourceTree = "<group>";
 		};
 		667572E513E76F5E0076F555 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				667572E613E76F5E0076F555 /* NimbusProcessors.h */,
+				667A8A09148CA164000779BD /* NimbusOperations.h */,
 			);
 			name = src;
 			path = processors/src;
@@ -1054,7 +1055,7 @@
 		667572EF13E76F9D0076F555 /* unittests */ = {
 			isa = PBXGroup;
 			children = (
-				667572F013E76F9D0076F555 /* NimbusProcessorsTests-Info.plist */,
+				667A8A13148CA181000779BD /* NimbusProcessorsTests-Info.plist */,
 			);
 			name = unittests;
 			path = processors/unittests;
@@ -1093,8 +1094,8 @@
 		667A8A07148C6992000779BD /* src_NSJSON */ = {
 			isa = PBXGroup;
 			children = (
-				667A8A02148C6983000779BD /* NINetworkJSONRequest.h */,
-				667A8A03148C6983000779BD /* NINetworkJSONRequest.m */,
+				667A8A0F148CA178000779BD /* NINetworkJSONRequest.h */,
+				667A8A10148CA178000779BD /* NINetworkJSONRequest.m */,
 			);
 			name = src_NSJSON;
 			sourceTree = "<group>";
@@ -1212,10 +1213,10 @@
 				66A03CC113E6F0ED00B514F3 /* NimbusLauncher */,
 				6661BBCE13F1A3BB00D14F92 /* NimbusModels */,
 				66A03D2913E6F97500B514F3 /* NimbusNetworkImage */,
+				667572BF13E76F460076F555 /* NimbusOperations */,
 				6675722B13E765BF0076F555 /* NimbusOverview */,
 				663B52411445052800CC26DF /* NimbusPagingScrollView */,
 				6675727C13E769150076F555 /* NimbusPhotos */,
-				667572BF13E76F460076F555 /* NimbusProcessors */,
 				DB84BD9A13EFDE3C00DACCFE /* NimbusWebController */,
 				66A03C0B13E6E85E00B514F3 /* Frameworks */,
 				66A03C0A13E6E85E00B514F3 /* Products */,
@@ -1619,9 +1620,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				667572EB13E76F5E0076F555 /* NimbusProcessors.h in Headers */,
-				66325D6213EB1BFA008D6EAD /* NINetworkJSONRequest.h in Headers */,
-				667A8A04148C6984000779BD /* NINetworkJSONRequest.h in Headers */,
+				667A8A0A148CA164000779BD /* NimbusOperations.h in Headers */,
+				667A8A0D148CA16F000779BD /* NINetworkJSONRequest.h in Headers */,
+				667A8A11148CA178000779BD /* NINetworkJSONRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2563,8 +2564,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66325D6313EB1BFA008D6EAD /* NINetworkJSONRequest.m in Sources */,
-				667A8A05148C6984000779BD /* NINetworkJSONRequest.m in Sources */,
+				667A8A0E148CA16F000779BD /* NINetworkJSONRequest.m in Sources */,
+				667A8A12148CA178000779BD /* NINetworkJSONRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

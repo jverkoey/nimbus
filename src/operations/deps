@@ -1,0 +1,4 @@
+core
+
+[optional]
+JSONKit (src_JSONKit/NINetworkJSONRequest.h)
