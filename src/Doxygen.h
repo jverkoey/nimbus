@@ -259,7 +259,7 @@
  *
  * <h3>NICellFactory[.h|m]</h3>
  *
- * - <span class="apiDiffAdded">Added</span> NICellFactory now implements NITableViewModelDelegate so that you can create a NICellFactory object and set up explicit bindings between objects and cells using <code>[NICellFactory @link NICellFactory::mapObjectClass:toCellClass: mapObjectClass:toCellClass:]</code>.
+ * - <span class="apiDiffAdded">Added</span> NICellFactory now implements NITableViewModelDelegate so that you can create a NICellFactory object and set up explicit bindings between objects and cells using <code>[NICellFactory @link NICellFactory::mapObjectClass:toCellClass: mapObjectClass:toCellClass:@endlink]</code>.
  * - <span class="apiDiffAdded">Added</span> NICellObject may be used to create mappings within the model.
  *
  * <h3>NIFormCellCatalog[.h|m]</h3>
