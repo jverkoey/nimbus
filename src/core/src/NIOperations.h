@@ -35,7 +35,6 @@
 /**
  * A base implementation of an NSOperation that supports traditional delegation and blocks.
  *
- *
  * <h2>Subclassing</h2>
  *
  * A subclass should call the operationDid* methods to notify the delegate on the main thread
@@ -81,37 +80,6 @@
 - (void)operationDidFinish;
 - (void)operationDidFailWithError:(NSError *)error;
 - (void)operationWillFinish;
-
-@end
-
-
-/**
- * An operation that reads a file from disk.
- *
- * Provides asynchronous file reading support when added to an NSOperationQueue.
- *
- * It is recommended to add this operation to a serial NSOperationQueue to avoid overlapping
- * disk read attempts. This will noticeably improve performance when loading many files
- * from disk at once.
- *
- *      @ingroup Operations
- */
-@interface NIReadFileFromDiskOperation : NIOperation {
-@private
-  // [in]
-  NSString* _pathToFile;
-
-  // [out]
-  NSData*   _data;
-  id        _processedObject;
-}
-
-// Designated initializer.
-- (id)initWithPathToFile:(NSString *)pathToFile;
-
-@property (readwrite, copy) NSString* pathToFile;
-@property (readonly, retain) NSData* data;
-@property (readwrite, retain) id processedObject;
 
 @end
 

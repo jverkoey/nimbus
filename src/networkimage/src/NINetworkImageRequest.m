@@ -55,45 +55,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)main {
-  if ([self.url isFileURL]) {
-    // Special case: load the image from disk without hitting the network.
-
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-
-    [self operationDidStart];
-
-    NSError* dataReadError = nil;
-
-    // The meat of the load-from-disk operation.
-    NSString* filePath = [self.url path];
-    NSMutableData* data = [NSMutableData dataWithContentsOfFile: filePath
-                                                        options: 0
-                                                          error: &dataReadError];
-
-    if (nil != dataReadError) {
-      // This generally happens when the file path points to a file that doesn't exist.
-      // dataReadError has the complete details.
-      [self operationDidFailWithError:dataReadError];
-
-    } else {
-      self.data = data;
-
-      // Notifies the delegates of the request completion.
-      [self operationWillFinish];
-      [self operationDidFinish];
-    }
-
-    NI_RELEASE_SAFELY(pool);
-
-  } else {
-    // Load the image from the network then.
-    [super main];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)operationWillFinish {
   NSData* responseData = self.data;
   UIImage* image = [[UIImage alloc] initWithData:responseData];

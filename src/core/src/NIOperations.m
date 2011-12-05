@@ -24,78 +24,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@interface NIReadFileFromDiskOperation()
-
-@property (readwrite, retain) NSData* data;
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIReadFileFromDiskOperation
-
-@synthesize pathToFile  = _pathToFile;
-@synthesize data        = _data;
-@synthesize processedObject = _processedObject;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_pathToFile);
-  NI_RELEASE_SAFELY(_data);
-  NI_RELEASE_SAFELY(_processedObject);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithPathToFile:(NSString *)pathToFile {
-  if ((self = [super init])) {
-    self.pathToFile = pathToFile;
-  }
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NSOperation
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)main {
-  NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-
-  [self operationDidStart];
-
-  NSError* error = nil;
-
-  self.data = [NSData dataWithContentsOfFile: self.pathToFile
-                                     options: 0
-                                       error: &error];
-
-
-  if (nil != error) {
-    [self operationDidFailWithError:error];
-
-  } else {
-    [self operationWillFinish];
-    [self operationDidFinish];
-  }
-
-  NI_RELEASE_SAFELY(pool);
-}
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NINetworkRequestOperation
 
 @synthesize url = _url;
@@ -133,26 +61,56 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)main {
   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+  
+  if ([self.url isFileURL]) {
+    // Special case: load the image from disk without hitting the network.
 
-  self.data = [[[NSMutableData alloc] init] autorelease];
+    [self operationDidStart];
 
-  [self operationDidStart];
+    NSError* dataReadError = nil;
 
-  NSURLRequest* request = [NSURLRequest requestWithURL:self.url
-                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                       timeoutInterval:self.timeout];
+    // The meat of the load-from-disk operation.
+    NSString* filePath = [self.url path];
+    NSMutableData* data = [NSMutableData dataWithContentsOfFile:filePath
+                                                        options:0
+                                                          error:&dataReadError];
 
-  NSError* error = nil;
-  NSURLResponse* response = nil;
-  self.data = [NSURLConnection sendSynchronousRequest:request
-                                    returningResponse:&response
-                                                error:&error];
+    if (nil != dataReadError) {
+      // This generally happens when the file path points to a file that doesn't exist.
+      // dataReadError has the complete details.
+      [self operationDidFailWithError:dataReadError];
 
-  if (nil != error) {
-    [self operationDidFailWithError:error];
+    } else {
+      self.data = data;
+
+      // Notifies the delegates of the request completion.
+      [self operationWillFinish];
+      [self operationDidFinish];
+    }
+
   } else {
-    [self operationWillFinish];
-    [self operationDidFinish];
+    // Load the image from the network then.
+    [self operationDidStart];
+
+    NSURLRequest* request = [NSURLRequest requestWithURL:self.url
+                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                         timeoutInterval:self.timeout];
+
+    NSError* networkError = nil;
+    NSURLResponse* response = nil;
+    NSData* data  = [NSURLConnection sendSynchronousRequest:request
+                                          returningResponse:&response
+                                                      error:&networkError];
+
+    if (nil != networkError) {
+      [self operationDidFailWithError:networkError];
+
+    } else {
+      self.data = data;
+
+      [self operationWillFinish];
+      [self operationDidFinish];
+    }
   }
 
   NI_RELEASE_SAFELY(pool);
