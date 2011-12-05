@@ -88,7 +88,7 @@
  */
 
 /**
- * @defgroup Network-Processors Network Processors
+ * @defgroup Network-Operations Network Operations
  *
  * Operations designed specifically for network data processing. These operations process the data
  * after it has been successfully downloaded, but before the request returns the data to the main
