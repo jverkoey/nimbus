@@ -92,6 +92,12 @@
  * <div class="github"><a href="http://github.com/alias1">alias1</a></div> 
  * </div>
  *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/56d524aa457bb26be5347c9070e92e97?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Samuel Grau</div> 
+ * <div class="github"><a href="http://github.com/Vaseltior">Vaseltior</a></div> 
+ * </div>
+ *
  * <div class="contributor_profile">
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/ca1536c2ef2e263ed2aec69c1d147677?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Aviel Lazar</div> 
@@ -99,9 +105,21 @@
  * </div>
  *
  * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/2d7becdc5b983d5be55a0a2d28a361c2?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Anthony Lobay</div> 
+ * <div class="github"><a href="http://github.com/TheMadGamer">TheMadGamer</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/22f25c7b3f0f15a6854fae62bbd3482f?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Benedikt Meurer</div> 
  * <div class="github"><a href="http://github.com/bmeurer">bmeurer</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/afbdf3579731eb934cd946451b53e0bc?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Mike</div> 
+ * <div class="github"><a href="http://github.com/prime31">prime31</a></div> 
  * </div>
  *
  * <div class="contributor_profile"> 
@@ -173,6 +191,194 @@
  * @defgroup Version-History Version History
  *
  * Presented here are the API diffs for each major release of Nimbus.
+ */
+
+/**
+ * @defgroup Version-9-1 Version 0.9.1 API Changes
+ * @ingroup Version-9-0
+ *
+ * Version 0.9.1 of Nimbus was released on December 5, 2011. This minor version removed ASI and JSONKit from
+ * Nimbus as strict dependencies. It is now easier to use other networking features for the networked image
+ * view. This release adds the new pagingscrollview feature which the photos feature now uses as a dependency.
+ * The processors feature has been renamed to operations and greatly simplified to only provide special-case
+ * implementations of operations.
+ *
+ *
+ * <h2>Misc Changes</h2>
+ *
+ * - Non-PCH audit to ensure that Nimbus compiles when not using a pre-compiled header.
+ *
+ *
+ * <h2>Added Frameworks</h2>
+ *
+ * - @link NimbusPagingScrollView Paging Scroll View@endlink
+ *
+ *
+ * <h2>Renamed Frameworks</h2>
+ *
+ * - Processors renamed to @link NimbusOperations Operations@endlink
+ *
+ *
+ * <h2>Attributed Label</h2>
+ *
+ * <h3>NIAttributedLabel[.h|m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Cleaned up the label implementation and optimized when the text frame is recalculated.
+ *
+ *
+ * <h2>Core</h2>
+ *
+ * <h3>NIFoundationMethods[.h]</h3>
+ *
+ * - <span class="apiDiffModified">Deprecated</span> <code>NIRectInset</code> deprecated in favor of <code>UIEdgeInsetsInsetRect</code>.
+ *
+ * <h3>NIInMemoryCache[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Memory leak in <code>NIMemoryCache</code> when removeAllObjects was called (bug reported by <a href="http://github.com/lada">lada</a>).
+ * - <span class="apiDiffBugfix">Bugfix</span> numberOfPixels is now reset in <code>NIImageMemoryCache</code> when removeAllObjects is called (bug reported by <a href="http://github.com/lada">lada</a>).
+ *
+ * <h3>Added NIOperations+Subclassing[.h]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> Anonymous category for subclassing NIOperation objects.
+ *
+ * <h3>NIOperations[.h|m]</h3>
+ *
+ * - <span class="apiDiffRemoved">Removed</span> <code>NIReadFileFromDiskOperation</code> because NINetworkRequestOperation now implements the same functionality.
+ *
+ * <h3>Added NIViewRecycler[.h|m]</h3>
+ *
+ *
+ * <h2>CSS</h2>
+ *
+ * <h3>NIChameleonObserver[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fix assertion bug when using the Chameleon observer the first time.
+ *
+ *
+ * <h2>Models</h2>
+ *
+ * <h3>NICellFactory[.h|m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> NICellFactory now implements NITableViewModelDelegate so that you can create a NICellFactory object and set up explicit bindings between objects and cells using <code>[NICellFactory @link NICellFactory::mapObjectClass:toCellClass: mapObjectClass:toCellClass:]</code>.
+ * - <span class="apiDiffAdded">Added</span> NICellObject may be used to create mappings within the model.
+ *
+ * <h3>NIFormCellCatalog[.h|m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> NIButtonFormElement may be used to create a button cell in a table view.
+ *
+ *
+ * <h2>Network Image View</h2>
+ *
+ * <h3>Added NINetworkImageRequest[.h|m]</h3>
+ *
+ * <h3>NINetworkImageView[.h|m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> NINetworkImageOperation protocol for creating operations that can be used with the network image view.
+ * - <span class="apiDiffAdded">Added</span> <code>[NINetworkImageView @link NINetworkImageView::setNetworkImageOperation:forDisplaySize:contentMode:cropRect: setNetworkImageOperation:forDisplaySize:contentMode:cropRect:@endlink]</code>.
+ * - <span class="apiDiffRemoved">Removed</span> <code>NINetworkImageView.@link NINetworkImageView::imageDiskCache imageDiskCache@endlink</code>.
+ * - <span class="apiDiffRemoved">Removed</span> <code>NINetworkImageView.@link NINetworkImageView::diskCacheLifetime diskCacheLifetime@endlink</code>.
+ * - <span class="apiDiffModified">Modified</span> <code>NINetworkImageView.@link NINetworkImageView::loading loading@endlink</code>
+ * @htmlonly<table class="modificationtable"><tr><th></th><th>Getter Name</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">@property (nonatomic, readonly, assign) BOOL isLoading</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>@property (nonatomic, readonly, assign, getter=isLoading) BOOL loading</tt></td></tr></table>@endhtmlonly
+ *
+ *
+ * <h2>Renamed Processors to Operations</h2>
+ *
+ *
+ * <h2>Overview</h2>
+ *
+ * <h3>NIOverviewSwizzling[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Correctly intercept status bar calls for applications that don't use a navigation controller.
+ *
+ *
+ * <h2>Photos</h2>
+ *
+ * <h3>NIPhotoScrubberView[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> The initial scrubber thumbnail is now loaded correctly.
+ *
+ * <h3>NIToolbarPhotoViewController[.h|m]</h3>
+ *
+ * - <span class="apiDiffModified">Modified</span> <code>NIToolbarPhotoViewController.@link NIToolbarPhotoViewController::toolbarIsTranslucent toolbarIsTranslucent@endlink</code>
+ * @htmlonly<table class="modificationtable"><tr><th></th><th>Method Name</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">@property (nonatomic, readwrite, assign) BOOL showPhotoAlbumBeneathToolbar</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>@property (nonatomic, readwrite, assign, getter=isToolbarTranslucent) BOOL toolbarIsTranslucent</tt></td></tr></table>@endhtmlonly
+ *
+ *
+ * <h2>Examples</h2>
+ *
+ * <h3>[NetworkPhotoAlbums] Added an example of showing a caption beneath Facebook photos.</h3>
+ *
+ *
+ * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ * <div class="name">bubnov</div> 
+ * <div class="github"><a href="http://github.com/bubnov">bubnov</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Roger Chapman</div> 
+ * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/87c842e2d3f2b9e87e339cbc86463e8d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Manu Cornet</div> 
+ * <div class="github"><a href="http://github.com/lmanul">lmanul</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/56d524aa457bb26be5347c9070e92e97?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Samuel Grau</div> 
+ * <div class="github"><a href="http://github.com/Vaseltior">Vaseltior</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/2d7becdc5b983d5be55a0a2d28a361c2?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Anthony Lobay</div> 
+ * <div class="github"><a href="http://github.com/TheMadGamer">TheMadGamer</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/afbdf3579731eb934cd946451b53e0bc?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Mike</div> 
+ * <div class="github"><a href="http://github.com/prime31">prime31</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/ec5d7ba9c004f79817c76146247e787e?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Basil Shkara</div> 
+ * <div class="github"><a href="http://github.com/baz">baz</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile">
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Jeff Verkoeyen</div> 
+ * <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ *
+ * <h3>Add Your Name to This List</h3>
+ *
+ * Contributions are highly encouraged! If you have a feature that you feel would fit within the
+ * Nimbus framework, feel free to fire off a pull request on GitHub. Bugs may be reported
+ * using the issue tracker on GitHub as well.
+ *
+ * Check out the <a href="https://github.com/jverkoey/nimbus/issues?sort=created&direction=desc&state=open&page=1&milestone=5">tasks grab bag</a>
+ * for opportunities to help out.
+ *
+ * <h2>Robots Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <div class="name"><a href="https://github.com/nimbusios/Doxygen">Nimbus Doxygen</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
  */
 
 /**
