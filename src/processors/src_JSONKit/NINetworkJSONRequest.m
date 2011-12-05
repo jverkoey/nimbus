@@ -20,7 +20,7 @@
 #import "JSONKit.h"
 
 //
-// Compiler errors?
+// Compiler errors? JSONKit.h file not found?
 // Get JSONKit from https://github.com/johnezang/JSONKit
 // git checkout https://github.com/johnezang/JSONKit.git
 // Drag JSONKit.h and JSONKit.m to your project.
