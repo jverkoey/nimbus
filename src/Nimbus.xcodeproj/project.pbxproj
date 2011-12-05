@@ -103,6 +103,8 @@
 		667A74A013FE20BD009D277D /* NIFormCellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A749A13FE20BD009D277D /* NIFormCellCatalog.m */; };
 		667A74A113FE20BD009D277D /* NICellFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 667A749B13FE20BD009D277D /* NICellFactory.h */; };
 		667A74A213FE20BD009D277D /* NICellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A749C13FE20BD009D277D /* NICellFactory.m */; };
+		667A8A04148C6984000779BD /* NINetworkJSONRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 667A8A02148C6983000779BD /* NINetworkJSONRequest.h */; };
+		667A8A05148C6984000779BD /* NINetworkJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A8A03148C6983000779BD /* NINetworkJSONRequest.m */; };
 		66832CB9143D681B003E413C /* NimbusCSS.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CB7143D681B003E413C /* NimbusCSS.h */; };
 		66832CC1143D7883003E413C /* NICSSParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CC0143D7883003E413C /* NICSSParserTests.m */; };
 		66832CC4143D7898003E413C /* NICSSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CC2143D7898003E413C /* NICSSParser.h */; };
@@ -495,6 +497,8 @@
 		667A749A13FE20BD009D277D /* NIFormCellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIFormCellCatalog.m; sourceTree = "<group>"; };
 		667A749B13FE20BD009D277D /* NICellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICellFactory.h; sourceTree = "<group>"; };
 		667A749C13FE20BD009D277D /* NICellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICellFactory.m; sourceTree = "<group>"; };
+		667A8A02148C6983000779BD /* NINetworkJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkJSONRequest.h; path = processors/src_NSJSON/NINetworkJSONRequest.h; sourceTree = SOURCE_ROOT; };
+		667A8A03148C6983000779BD /* NINetworkJSONRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkJSONRequest.m; path = processors/src_NSJSON/NINetworkJSONRequest.m; sourceTree = SOURCE_ROOT; };
 		66832C98143D63D2003E413C /* css.grammar */ = {isa = PBXFileReference; lastKnownFileType = text; name = css.grammar; path = css/grammar/css.grammar; sourceTree = SOURCE_ROOT; };
 		66832CA1143D64CF003E413C /* generate */ = {isa = PBXFileReference; lastKnownFileType = text; name = generate; path = css/grammar/generate; sourceTree = SOURCE_ROOT; };
 		66832CA8143D6642003E413C /* CSSTokenizerPrefix */ = {isa = PBXFileReference; lastKnownFileType = text; name = CSSTokenizerPrefix; path = css/grammar/CSSTokenizerPrefix; sourceTree = SOURCE_ROOT; };
@@ -1032,6 +1036,7 @@
 				667572E213E76F5E0076F555 /* deps */,
 				667572E513E76F5E0076F555 /* src */,
 				66325D5F13EB1BFA008D6EAD /* src_JSONKit */,
+				667A8A07148C6992000779BD /* src_NSJSON */,
 				667572EF13E76F9D0076F555 /* unittests */,
 			);
 			path = NimbusProcessors;
@@ -1084,6 +1089,15 @@
 			name = unittests;
 			path = interapp/unittests;
 			sourceTree = SOURCE_ROOT;
+		};
+		667A8A07148C6992000779BD /* src_NSJSON */ = {
+			isa = PBXGroup;
+			children = (
+				667A8A02148C6983000779BD /* NINetworkJSONRequest.h */,
+				667A8A03148C6983000779BD /* NINetworkJSONRequest.m */,
+			);
+			name = src_NSJSON;
+			sourceTree = "<group>";
 		};
 		66832C93143D63B4003E413C /* src */ = {
 			isa = PBXGroup;
@@ -1607,6 +1621,7 @@
 			files = (
 				667572EB13E76F5E0076F555 /* NimbusProcessors.h in Headers */,
 				66325D6213EB1BFA008D6EAD /* NINetworkJSONRequest.h in Headers */,
+				667A8A04148C6984000779BD /* NINetworkJSONRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2549,6 +2564,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66325D6313EB1BFA008D6EAD /* NINetworkJSONRequest.m in Sources */,
+				667A8A05148C6984000779BD /* NINetworkJSONRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
