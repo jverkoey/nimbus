@@ -14,20 +14,30 @@
 // limitations under the License.
 //
 
-#import "NIJSONKitProcessorHTTPRequest.h"
+#import "NINetworkJSONRequest.h"
 
 #import "JSONKit.h"
 
+//
+// Compiler errors?
+// Get JSONKit from https://github.com/johnezang/JSONKit
+// git checkout https://github.com/johnezang/JSONKit.git
+// Drag JSONKit.h and JSONKit.m to your project.
+//
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIJSONKitProcessorHTTPRequest
+@implementation NINetworkJSONRequest
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)objectFromResponseData:(NSData *)data error:(NSError **)processingError {
-  return [[JSONDecoder decoder] objectWithData:data error:processingError];
+- (void)operationWillFinish {
+  self.processedObject = [[JSONDecoder decoder] objectWithData:self.data
+                                                         error:&self.lastError];
+
+  [super operationWillFinish];
 }
 
 

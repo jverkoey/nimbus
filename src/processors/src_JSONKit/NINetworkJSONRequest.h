@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NIProcessorHTTPRequest.h"
+#import "NimbusCore.h"
 
 /**
  * A processor that uses JSONKit to turn the JSON response into objects.
@@ -26,5 +26,5 @@
  *
  *      @ingroup Network-Processors
  */
-@interface NIJSONKitProcessorHTTPRequest : NIProcessorHTTPRequest
+@interface NINetworkJSONRequest : NINetworkRequestOperation
 @end

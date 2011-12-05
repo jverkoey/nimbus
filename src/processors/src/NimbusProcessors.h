@@ -65,7 +65,7 @@
  *  NSString* urlPath = @"https://graph.facebook.com/186162441444201";
  *
  *  // Create a JSONKit processor that will turn the response data into Objective-C objects.
- *  NIProcessorHTTPRequest* request = [[[NIJSONKitProcessorHTTPRequest alloc] initWithURL:
+ *  NIProcessorHTTPRequest* request = [[[NINetworkJSONRequest alloc] initWithURL:
  *                                      [NSURL URLWithString:urlPath]] autorelease];
  *
  *  // The following block will be processed on the processor request's thread and is
@@ -111,8 +111,5 @@
  * the data to the main thread. This allows data to be processed after it has been downloaded
  * but before the UI has to deal with it.
  */
-
-#import "NIProcessorHTTPRequest.h"
-#import "NIProcessorDelegate.h"
 
 /**@}*/
