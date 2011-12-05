@@ -281,7 +281,7 @@
  * @htmlonly<table class="modificationtable"><tr><th></th><th>Getter Name</th></tr> 
  * <tr><th>From</th><td class='Declaration' scope="row">@property (nonatomic, readonly, assign) BOOL isLoading</td></tr> 
  * <tr><th>To</th><td class='Declaration' scope="row"><tt>@property (nonatomic, readonly, assign, getter=isLoading) BOOL loading</tt></td></tr></table>@endhtmlonly
- *
+ * - Read the article on adding disk caching to your network requests: <a href="http://wiki.nimbuskit.info/Network-Disk-Caching">Network Disk Caching</a>.
  *
  * <h2>Renamed Processors to Operations</h2>
  *
