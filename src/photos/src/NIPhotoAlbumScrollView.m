@@ -27,6 +27,7 @@
 @implementation NIPhotoAlbumScrollView
 
 @synthesize loadingImage = _loadingImage;
+@synthesize photoViewBackgroundColor = _photoViewBackgroundColor;
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
 @synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
 
@@ -39,6 +40,14 @@
     self.zoomingAboveOriginalSizeIsEnabled = YES;
   }
   return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+  [super setBackgroundColor:backgroundColor];
+
+  self.pagingScrollView.backgroundColor = backgroundColor;
 }
 
 
@@ -142,6 +151,7 @@
   if (nil == pageView) {
     pageView = [[NIPhotoScrollView alloc] init];
     pageView.reuseIdentifier = reuseIdentifier;
+    pageView.backgroundColor = self.photoViewBackgroundColor;
   }
 
   NIPhotoScrollView* photoScrollView = (NIPhotoScrollView *)pageView;
@@ -162,7 +172,7 @@
       // Only replace the photo if it's of a higher quality than one we're already showing.
       if (photoSize > page.photoSize) {
         [page setImage:image photoSize:photoSize];
-        
+
         page.zoomingIsEnabled = ([self isZoomingEnabled]
                                  && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
 
@@ -183,6 +193,19 @@
 
   for (NIPhotoScrollView* page in self.visiblePages) {
     page.zoomingAboveOriginalSizeIsEnabled = enabled;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setPhotoViewBackgroundColor:(UIColor *)photoViewBackgroundColor {
+  if (_photoViewBackgroundColor != photoViewBackgroundColor) {
+    [_photoViewBackgroundColor release];
+    _photoViewBackgroundColor = [photoViewBackgroundColor retain];
+    
+    for (UIView<NIPagingScrollViewPage>* page in self.visiblePages) {
+      page.backgroundColor = photoViewBackgroundColor;
+    }
   }
 }
 

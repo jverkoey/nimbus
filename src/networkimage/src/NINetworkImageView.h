@@ -18,6 +18,7 @@
 #import <UIKit/UIKit.h>
 
 #import "NIInMemoryCache.h"
+#import "NimbusCore.h"
 
 @protocol NINetworkImageViewDelegate;
 @protocol ASICacheDelegate;
@@ -44,6 +45,21 @@ typedef enum {
 } NINetworkImageViewScaleOptions;
 
 /**
+ * A protocol defining the set of characteristics for an operation to be used with
+ * NINetworkImageView.
+ */
+@protocol NINetworkImageOperation <NSObject>
+@required
+@property (readonly, copy) NSString* cacheIdentifier;
+@property (readwrite, assign) CGRect imageCropRect;
+@property (readwrite, assign) CGSize imageDisplaySize;
+@property (readwrite, assign) NINetworkImageViewScaleOptions scaleOptions;
+@property (readwrite, assign) CGInterpolationQuality interpolationQuality;
+@property (readwrite, assign) UIViewContentMode imageContentMode;
+@property (readwrite, retain) UIImage* imageCroppedAndSizedForDisplay;
+@end
+
+/**
  * A network-enabled image view that consumes minimal amounts of memory.
  *
  * Intelligently crops and resizes images for optimal memory use and uses threads to avoid
@@ -51,25 +67,23 @@ typedef enum {
  *
  *      @ingroup Network-Image-User-Interface
  */
-@interface NINetworkImageView : UIImageView {
+@interface NINetworkImageView : UIImageView <NIOperationDelegate> {
 @private
   // The active operation for the image
-  NSOperation* _operation;
+  NIOperation<NINetworkImageOperation>* _operation;
 
   // Configurable Presentation Properties
-  UIImage*                        _initialImage;
-  BOOL                            _sizeForDisplay;
-  NINetworkImageViewScaleOptions  _scaleOptions;
-  CGInterpolationQuality          _interpolationQuality;
+  UIImage* _initialImage;
+  BOOL _sizeForDisplay;
+  NINetworkImageViewScaleOptions _scaleOptions;
+  CGInterpolationQuality _interpolationQuality;
   
   // Configurable Properties
   NSString* _memoryCachePrefix;
   NSString* _lastPathToNetworkImage;
-  NSTimeInterval                      _maxAge;
-  NINetworkImageViewDiskCacheLifetime _diskCacheLifetime;
-  NIImageMemoryCache*   _imageMemoryCache;
-  id<ASICacheDelegate>  _imageDiskCache;
-  NSOperationQueue*     _networkOperationQueue;
+  NSTimeInterval _maxAge;
+  NIImageMemoryCache* _imageMemoryCache;
+  NSOperationQueue* _networkOperationQueue;
 
   // Delegation
   __unsafe_unretained id<NINetworkImageViewDelegate> _delegate;
@@ -89,11 +103,9 @@ typedef enum {
 #pragma mark Configurable Properties
 
 @property (nonatomic, readwrite, retain) NIImageMemoryCache* imageMemoryCache;    // Default: [Nimbus imageMemoryCache]
-@property (nonatomic, readwrite, retain) id<ASICacheDelegate> imageDiskCache;     // Default: [ASIDownloadCache sharedCache]
 @property (nonatomic, readwrite, retain) NSOperationQueue* networkOperationQueue; // Default: [Nimbus networkOperationQueue]
 
 @property (nonatomic, readwrite, assign) NSTimeInterval maxAge;     // Default: 0
-@property (nonatomic, readwrite, assign) NINetworkImageViewDiskCacheLifetime diskCacheLifetime; // Default: NINetworkImageViewDiskCacheLifetimePermanent
 
 @property (nonatomic, readwrite, copy) NSString* memoryCachePrefix; // Default: nil
 @property (nonatomic, readonly, copy) NSString* lastPathToNetworkImage;
@@ -107,9 +119,11 @@ typedef enum {
 - (void)setPathToNetworkImage:(NSString *)pathToNetworkImage cropRect:(CGRect)cropRect;
 - (void)setPathToNetworkImage:(NSString *)pathToNetworkImage contentMode:(UIViewContentMode)contentMode;
 
+- (void)setNetworkImageOperation:(NIOperation<NINetworkImageOperation> *)operation forDisplaySize:(CGSize)displaySize contentMode:(UIViewContentMode)contentMode cropRect:(CGRect)cropRect;
+
 #pragma mark State
 
-@property (nonatomic, readonly, assign) BOOL isLoading;
+@property (nonatomic, readonly, assign, getter=isLoading) BOOL loading;
 
 #pragma mark Reusable View
 

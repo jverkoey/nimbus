@@ -18,78 +18,7 @@
 
 #import "NIDebuggingTools.h"
 #import "NIPreprocessorMacros.h"
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@interface NIReadFileFromDiskOperation()
-
-@property (readwrite, retain) NSData* data;
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIReadFileFromDiskOperation
-
-@synthesize pathToFile  = _pathToFile;
-@synthesize data        = _data;
-@synthesize processedObject = _processedObject;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithPathToFile:(NSString *)pathToFile {
-  if ((self = [super init])) {
-    self.pathToFile = pathToFile;
-  }
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NSOperation
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)main {
-
-  @autoreleasepool {
-
-    [self operationDidStart];
-    
-    NSError* error = nil;
-    
-    self.data = [NSData dataWithContentsOfFile: self.pathToFile
-                                       options: 0
-                                         error: &error];
-    
-    
-    if (nil != error) {
-      [self operationDidFailWithError:error];
-      
-    } else {
-      [self operationWillFinish];
-      [self operationDidFinish];
-    }
-  }
-}
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@interface NINetworkRequestOperation()
-
-@property (readwrite, retain) NSData* data;
-
-@end
+#import "NIOperations+Subclassing.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -122,38 +51,58 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)main {
   @autoreleasepool {
-    self.data = [[NSMutableData alloc] init];
+  if ([self.url isFileURL]) {
+    // Special case: load the image from disk without hitting the network.
 
+    [self operationDidStart];
+
+    NSError* dataReadError = nil;
+
+    // The meat of the load-from-disk operation.
+    NSString* filePath = [self.url path];
+    NSMutableData* data = [NSMutableData dataWithContentsOfFile:filePath
+                                                        options:0
+                                                          error:&dataReadError];
+
+    if (nil != dataReadError) {
+      // This generally happens when the file path points to a file that doesn't exist.
+      // dataReadError has the complete details.
+      [self operationDidFailWithError:dataReadError];
+
+    } else {
+      self.data = data;
+
+      // Notifies the delegates of the request completion.
+      [self operationWillFinish];
+      [self operationDidFinish];
+    }
+
+  } else {
+    // Load the image from the network then.
     [self operationDidStart];
 
     NSURLRequest* request = [NSURLRequest requestWithURL:self.url
                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
                                          timeoutInterval:self.timeout];
 
-    NSError* error = nil;
+    NSError* networkError = nil;
     NSURLResponse* response = nil;
-    self.data = [NSURLConnection sendSynchronousRequest:request
-                                      returningResponse:&response
-                                                  error:&error];
+    NSData* data  = [NSURLConnection sendSynchronousRequest:request
+                                          returningResponse:&response
+                                                      error:&networkError];
 
-    if (nil != error) {
-      [self operationDidFailWithError:error];
+    if (nil != networkError) {
+      [self operationDidFailWithError:networkError];
+
     } else {
+      self.data = data;
+
       [self operationWillFinish];
       [self operationDidFinish];
     }
   }
+  }
 }
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@interface NIOperation()
-
-@property (readwrite, retain) NSError* lastError;
 
 @end
 

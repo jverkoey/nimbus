@@ -28,7 +28,7 @@
 @interface FacebookPhotoAlbumViewController : NetworkPhotoAlbumViewController <
   NIPhotoAlbumScrollViewDataSource,
   NIPhotoScrubberViewDataSource,
-  ASIHTTPRequestDelegate
+  NIOperationDelegate
 > {
 @private
   NSString* _facebookAlbumId;

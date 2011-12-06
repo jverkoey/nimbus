@@ -19,8 +19,6 @@
 // View Controllers
 #import "RootViewController.h"
 
-#import "ASIDownloadCache.h"
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,12 +55,6 @@
   // Try experimenting with this value to see how the total number of pixels is affected.
 
   //[[Nimbus globalImageMemoryCache] setMaxNumberOfPixels:94*94];
-
-
-  // Forcefully clear the permanent cache. This can be useful when you are logging the user
-  // out, for example.
-  //[[ASIDownloadCache sharedCache] clearCachedResponsesForStoragePolicy:
-  // ASICachePermanentlyCacheStoragePolicy];
 
   _rootController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
   [self.window addSubview:_rootController.view];

@@ -123,6 +123,10 @@
 #define kCFCoreFoundationVersionNumber_iOS_4_0 550.32
 #endif
 
+#if __cplusplus
+extern "C" {
+#endif
+
 /**
  * Checks whether the device the app is currently running on is an iPad or not.
  *
@@ -179,6 +183,10 @@ Class NIUIPopoverControllerClass(void);
  *                 Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices.
  */
 Class NIUITapGestureRecognizerClass(void);
+
+#if __cplusplus
+} // extern "C"
+#endif
 
 
 #pragma mark Building with Old SDKs

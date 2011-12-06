@@ -50,10 +50,6 @@
   STAssertTrue(CGRectEqualToRect(CGRectMake(10, 10, 90, 90),
                                  NIRectShift(rect, 10, 10)),
                @"Shifting a rect should only modify the left and top edges.");
-
-  STAssertTrue(CGRectEqualToRect(CGRectMake(10, 10, 80, 80),
-                                 NIRectInset(rect, UIEdgeInsetsMake(10, 10, 10, 10))),
-               @"Insetting a rect should modify all edges.");
 }
 
 

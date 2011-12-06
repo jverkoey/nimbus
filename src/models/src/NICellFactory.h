@@ -29,14 +29,18 @@
  * @link NICell::shouldUpdateCellWithObject: shouldUpdateCellWithObject:@endlink before the
  * factory method returns.
  *
- *
  * This factory is designed to be used with NITableViewModels, though one could easily use
  * it with other table view data source implementations simply by providing nil for the table
  * view model.
  *
+ * If you instantiate an NICellFactory then you can provide explicit mappings from objects
+ * to cells. This is helpful if the effort required to implement the NICell protocol on
+ * an object outweighs the benefit of using the factory, i.e. when you want to map
+ * simple types such as NSString to cells.
+ *
  *      @ingroup TableCellFactory
  */
-@interface NICellFactory : NSObject
+@interface NICellFactory : NSObject <NITableViewModelDelegate>
 
 /**
  * Creates a cell from a given object if and only if the object conforms to the NICellObject
@@ -74,6 +78,16 @@ _model.delegate = (id)[NICellFactory class];
                    cellForTableView: (UITableView *)tableView
                         atIndexPath: (NSIndexPath *)indexPath
                          withObject: (id)object;
+
+/**
+ * Map an object's class to a cell's class.
+ *
+ * If an object implements the NICell protocol AND is found in this factory
+ * mapping, the factory mapping will take precedence. This allows you to
+ * explicitly override the mapping on a case-by-case basis.
+ */
+- (void)mapObjectClass:(Class)objectClass toCellClass:(Class)cellClass;
+
 @end
 
 /**
@@ -129,8 +143,8 @@ _model.delegate = (id)[NICellFactory class];
 - (id)initWithCellClass:(Class)cellClass userInfo:(id)userInfo;
 - (id)initWithCellClass:(Class)cellClass;
 
-+ (id)objectWithCellClass:(Class)cellClass;
 + (id)objectWithCellClass:(Class)cellClass userInfo:(id)userInfo;
++ (id)objectWithCellClass:(Class)cellClass;
 
 @property (nonatomic, readonly, retain) id userInfo;
 

@@ -326,7 +326,12 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
     if (photoView.tag != photoIndex) {
       photoView.tag = photoIndex;
 
-      photoView.image = [self.dataSource photoScrubberView:self thumbnailAtIndex:photoIndex];
+      UIImage* image = [self.dataSource photoScrubberView:self thumbnailAtIndex:photoIndex];
+      photoView.image = image;
+
+      if (_selectedPhotoIndex == photoIndex) {
+        _selectionView.image = image;
+      }
     }
 
     photoView.frame = [self frameForThumbAtIndex:ix];

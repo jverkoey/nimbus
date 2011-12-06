@@ -16,8 +16,7 @@
 
 #import "FacebookPhotoAlbumViewController.h"
 
-#import "NIHTTPRequest.h"
-#import "ASIDownloadCache.h"
+#import "CaptionedPhotoView.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,20 +62,14 @@
   // returning the object to the main thread. This is useful here because we perform sorting
   // operations and pruning on the results.
   NSURL* url = [NSURL URLWithString:albumURLPath];
-  NIProcessorHTTPRequest* albumRequest =
-  [NIJSONKitProcessorHTTPRequest requestWithURL: url
-                                     usingCache: [ASIDownloadCache sharedCache]];
+  NINetworkJSONRequest* albumRequest = [[[NINetworkJSONRequest alloc] initWithURL:url] autorelease];
+
   // Facebook albums are painfully slow to load if they have a lot of comments. Even more
   // frustrating is that you can't ask *not* to receive the comments from the graph API.
-  albumRequest.timeOutSeconds = 200;
+  albumRequest.timeout = 200;
 
   // When the request fully completes we'll be notified via this delegate on the main thread.
   albumRequest.delegate = self;
-
-  // When the request downloads the JSON we plan to process it in the thread. We use
-  // [self class] here to emphasize that we should not be accessing any instance properties
-  // from a separate thread.
-  albumRequest.processorDelegate = (id)[self class];
 
   [self.queue addOperation:albumRequest];
 }
@@ -113,35 +106,18 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark ASIHTTPRequestDelegate
+#pragma mark NIOperationDelegate
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestFinished:(NIProcessorHTTPRequest *)request {
-  _photoInformation = request.processedObject;
-
-  [self.photoAlbumView reloadData];
-
-  [self loadThumbnails];
-
-  [self.photoScrubberView reloadData];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NIProcessorDelegate
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)processor:(id)processor processObject:(id)object error:(NSError **)processingError {
+- (void)operationWillFinish:(NINetworkRequestOperation *)operation {
   // This is called from the processing thread in order to allow us to turn the root object
   // into something more interesting.
-  if (![object isKindOfClass:[NSDictionary class]]) {
-    return nil;
+  if (![operation.processedObject isKindOfClass:[NSDictionary class]]) {
+    return;
   }
 
+  id object = operation.processedObject;
   NSArray* data = [object objectForKey:@"data"];
 
   NSMutableArray* photoInformation = [NSMutableArray arrayWithCapacity:[data count]];
@@ -178,15 +154,29 @@
         thumbnailImageSource = [[sortedImages objectAtIndex:thumbnailIndex] objectForKey:@"source"];
       }
 
+      NSString* caption = [photo objectForKey:@"name"];
       NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
                                        originalImageSource, @"originalSource",
                                        thumbnailImageSource, @"thumbnailSource",
                                        [NSValue valueWithCGSize:dimensions], @"dimensions",
+                                       caption, @"caption",
                                        nil];
       [photoInformation addObject:prunedPhotoInfo];
     }
   }
-  return photoInformation;
+  operation.processedObject = photoInformation;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)operationDidFinish:(NINetworkRequestOperation *)operation {
+  _photoInformation = [operation.processedObject retain];
+
+  [self.photoAlbumView reloadData];
+
+  [self loadThumbnails];
+
+  [self.photoScrubberView reloadData];
 }
 
 
@@ -281,7 +271,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
      stopLoadingPhotoAtIndex: (NSInteger)photoIndex {
-  for (ASIHTTPRequest* op in [self.queue operations]) {
+  for (NIOperation* op in [self.queue operations]) {
     if (op.tag == photoIndex) {
       [op cancel];
     }
@@ -290,8 +280,24 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
-  return [self.photoAlbumView pagingScrollView:pagingScrollView pageViewForIndex:pageIndex];
+- (UIView<NIPagingScrollViewPage>*)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
+  // TODO (jverkoey Nov 27, 2011): We should make this sort of custom logic easier to build.
+  UIView<NIPagingScrollViewPage>* pageView = nil;
+  NSString* reuseIdentifier = NSStringFromClass([CaptionedPhotoView class]);
+  pageView = [pagingScrollView dequeueReusablePageWithIdentifier:reuseIdentifier];
+  if (nil == pageView) {
+    pageView = [[[CaptionedPhotoView alloc] init] autorelease];
+    pageView.reuseIdentifier = reuseIdentifier;
+  }
+
+  NIPhotoScrollView* photoScrollView = (NIPhotoScrollView *)pageView;
+  photoScrollView.photoScrollViewDelegate = self.photoAlbumView;
+  photoScrollView.zoomingAboveOriginalSizeIsEnabled = [self.photoAlbumView isZoomingAboveOriginalSizeEnabled];
+
+  CaptionedPhotoView* captionedView = (CaptionedPhotoView *)pageView;
+  captionedView.caption = [[_photoInformation objectAtIndex:pageIndex] objectForKey:@"caption"];
+  
+  return pageView;
 }
 
 

@@ -1,5 +1,0 @@
-core
-ASIHTTPRequest
-
-[optional]
-JSONKit (NIJSONKitProcessorHTTPRequest.h)

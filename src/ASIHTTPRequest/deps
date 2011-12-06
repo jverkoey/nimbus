@@ -1,7 +1,0 @@
-core
-
-[Frameworks]
-libz.dylib
-MobileCoreServices.framework
-SystemConfiguration.framework
-CFNetwork.framework

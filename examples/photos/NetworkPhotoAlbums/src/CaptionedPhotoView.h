@@ -14,13 +14,16 @@
 // limitations under the License.
 //
 
-#ifdef __OBJC__
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-#import "NimbusCore.h"
-#import "NimbusPhotos.h"
-#import "NimbusOperations.h"
-#import "NimbusModels.h"
-#import "NINetworkJSONRequest.h"
-#endif
+
+/**
+ * A subclass of NIPhotoScrollView that shows a caption beneath the picture.
+ *
+ * This class is purposefully lightweight and simply presents the caption without providing
+ * any means of configuring the caption. This is left as an exercise to the developer.
+ */
+@interface CaptionedPhotoView : NIPhotoScrollView
+
+@property (nonatomic, readwrite, copy) NSString* caption;
+
+@end

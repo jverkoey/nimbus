@@ -58,6 +58,7 @@
 
 @property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled;
 @property (nonatomic, readwrite, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled;
+@property (nonatomic, readwrite, retain) UIColor* photoViewBackgroundColor;
 
 #pragma mark Configuring Presentation
 
@@ -132,6 +133,14 @@
  * By default this is YES.
  *
  *      @fn NIPhotoAlbumScrollView::zoomingAboveOriginalSizeIsEnabled
+ */
+
+/**
+ * The background color of each photo's view.
+ *
+ * By default this is [UIColor blackColor].
+ *
+ *      @fn NIPhotoAlbumScrollView::photoViewBackgroundColor
  */
 
 

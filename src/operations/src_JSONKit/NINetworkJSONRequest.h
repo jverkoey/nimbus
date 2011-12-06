@@ -17,33 +17,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NetworkPhotoAlbumViewController.h"
+#import "NimbusCore.h"
 
 /**
- * Shows a Dribbble shot list.
+ * A processor that uses JSONKit to turn the JSON response into objects.
  *
- *      Minimum iOS SDK Version: 4.0
- *      SDK Requirements: Blocks (4.0)
- */
-@interface DribbblePhotoAlbumViewController : NetworkPhotoAlbumViewController <
-  NIPhotoAlbumScrollViewDataSource,
-  NIPhotoScrubberViewDataSource,
-  NIOperationDelegate
-> {
-@private
-  NSString* _apiPath;
-
-  NSArray* _photoInformation;
-}
-
-/**
- * The generic entry point used by the catalog view controller to initialize this controller.
+ *      @attention Depends on the JSONKit source being included in the app.
  *
- * Expects a value to be appended to http://api.dribbble.com that will return a list of shots.
+ *      @ingroup Network-Processors
  */
-- (id)initWith:(id)object;
-
-@property (nonatomic, readwrite, copy) NSString* apiPath;
-
-
+@interface NINetworkJSONRequest : NINetworkRequestOperation
 @end

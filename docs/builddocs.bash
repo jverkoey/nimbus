@@ -10,7 +10,9 @@ rm -rf ../../nimbusdocs/Makefile
 
 ######################
 # Build the web version of the docs
-/Applications/Doxygen.app/Contents/Resources/doxygen Doxyfile > /dev/null
+cd ../
+/Applications/Doxygen.app/Contents/Resources/doxygen docs/Doxyfile > /dev/null
+cd docs/
 
 # Move the docs to the nimbus docs folder.
 cp -r output/html/* ../../nimbusdocs/
