@@ -16,12 +16,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NINetworkTableViewController : UIViewController
+/**
+ * A table view controller that has a loading state.
+ *
+ * This table controller mimics UITableViewController in its implementation.
+ */
+@interface NINetworkTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 // Designated initializer.
 - (id)initWithTableViewStyle:(UITableViewStyle)tableViewStyle activityIndicatorStyle:(UIActivityIndicatorViewStyle)activityIndicatorStyle;
 
 @property (nonatomic, readwrite, retain) UITableView* tableView;
 @property (nonatomic, readwrite, assign) BOOL clearsSelectionOnViewWillAppear; // Default: YES
+
+- (void)setIsLoading:(BOOL)isLoading;
 
 @end

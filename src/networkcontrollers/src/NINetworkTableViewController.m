@@ -71,6 +71,8 @@
   self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds
                                                  style:self.tableViewStyle] autorelease];
   self.tableView.autoresizingMask = UIViewAutoresizingFlexibleAllDimensions;
+  self.tableView.delegate = self;
+  self.tableView.dataSource = self;
   [self.view addSubview:self.tableView];
 
   self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorStyle] autorelease];
@@ -96,6 +98,41 @@
   if (self.clearsSelectionOnViewWillAppear) {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow
                                   animated:animated];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UITableViewDataSource
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  return 0;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return nil;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Public Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setIsLoading:(BOOL)isLoading {
+  self.tableView.hidden = isLoading;
+
+  if (isLoading) {
+    [self.activityIndicator startAnimating];
+
+  } else {
+    [self.activityIndicator stopAnimating];
   }
 }
 
