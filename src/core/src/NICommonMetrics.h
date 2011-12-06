@@ -60,6 +60,18 @@
  *      @{
  */
 
+#ifndef UIViewAutoresizingFlexibleAllMargins
+#define UIViewAutoresizingFlexibleAllMargins (UIViewAutoresizingFlexibleLeftMargin \
+                                              | UIViewAutoresizingFlexibleTopMargin \
+                                              | UIViewAutoresizingFlexibleRightMargin \
+                                              | UIViewAutoresizingFlexibleBottomMargin)
+#endif
+
+#ifndef UIViewAutoresizingFlexibleAllDimensions
+#define UIViewAutoresizingFlexibleAllDimensions (UIViewAutoresizingFlexibleWidth \
+                                                 | UIViewAutoresizingFlexibleHeight)
+#endif
+
 /**
  * Fetch the height of a toolbar in a given orientation.
  *
