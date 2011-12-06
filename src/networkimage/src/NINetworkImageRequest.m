@@ -61,8 +61,6 @@
                                                            scaleOptions:self.scaleOptions
                                                    interpolationQuality:self.interpolationQuality]];
 
-  NI_RELEASE_SAFELY(image);
-
   [super operationWillFinish];
 }
 

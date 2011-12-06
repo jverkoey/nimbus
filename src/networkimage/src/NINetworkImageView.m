@@ -336,7 +336,7 @@
       return;
     }
     
-    NINetworkImageRequest* request = [[[NINetworkImageRequest alloc] initWithURL:url] autorelease];
+    NINetworkImageRequest* request = [[NINetworkImageRequest alloc] initWithURL:url];
     [self setNetworkImageOperation:request forDisplaySize:displaySize contentMode:contentMode cropRect:cropRect];
   }
 }

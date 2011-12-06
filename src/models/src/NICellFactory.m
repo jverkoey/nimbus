@@ -32,14 +32,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_objectToCellMap);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
   if ((self = [super init])) {
     _objectToCellMap = [[NSMutableDictionary alloc] init];
@@ -63,7 +55,7 @@
     if ([object respondsToSelector:@selector(cellStyle)]) {
       style = [object cellStyle];
     }
-    cell = [[[cellClass alloc] initWithStyle:style reuseIdentifier:identifier] autorelease];
+    cell = [[cellClass alloc] initWithStyle:style reuseIdentifier:identifier];
   }
 
   // Allow the cell to configure itself with the object's information.
@@ -147,7 +139,7 @@
 - (id)initWithCellClass:(Class)cellClass userInfo:(id)userInfo {
   if ((self = [super init])) {
     _cellClass = cellClass;
-    _userInfo = [userInfo retain];
+    _userInfo = userInfo;
   }
   return self;
 }
@@ -161,13 +153,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)objectWithCellClass:(Class)cellClass userInfo:(id)userInfo {
-  return [[[self alloc] initWithCellClass:cellClass userInfo:userInfo] autorelease];
+  return [[self alloc] initWithCellClass:cellClass userInfo:userInfo];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)objectWithCellClass:(Class)cellClass {
-  return [[[self alloc] initWithCellClass:cellClass userInfo:nil] autorelease];
+  return [[self alloc] initWithCellClass:cellClass userInfo:nil];
 }
 
 
