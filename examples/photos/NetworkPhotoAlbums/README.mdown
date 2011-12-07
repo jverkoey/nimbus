@@ -9,6 +9,11 @@ The following APIs are currently demoed:
 - Facebook Graph API
 - Dribbble Shots
 
+Please run the following to check the JSONKit submodule out:
+
+> git submodule init
+> git submodule update
+
 
 Product Information
 -------------------

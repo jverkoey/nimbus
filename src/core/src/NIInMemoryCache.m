@@ -20,6 +20,8 @@
 #import "NIDebuggingTools.h"
 #import "NIPreprocessorMacros.h"
 
+#import <UIKit/UIKit.h>
+
 @interface NIMemoryCache()
 
 @property (nonatomic, readwrite, retain) NSMutableDictionary* cacheMap;
@@ -339,7 +341,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeAllObjects {
   NI_RELEASE_SAFELY(_cacheMap);
+  NI_RELEASE_SAFELY(_lruCacheObjects);
   _cacheMap = [[NSMutableDictionary alloc] init];
+  _lruCacheObjects = [[NILinkedList alloc] init];
 }
 
 
@@ -435,6 +439,14 @@
     numberOfPixels *= [image scale];
   }
   return numberOfPixels;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)removeAllObjects {
+  [super removeAllObjects];
+
+  self.numberOfPixels = 0;
 }
 
 

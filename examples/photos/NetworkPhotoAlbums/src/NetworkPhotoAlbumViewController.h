@@ -17,9 +17,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "ASIHTTPRequestDelegate.h"
-#import "NIProcessorHTTPRequest.h"
-
 /**
  * A network-based photo album view controller.
  *
@@ -45,9 +42,7 @@
  * By default the thumbnail cache has no limit to its size, though it may be advantageous to
  * cap the cache at something reasonable.
  */
-@interface NetworkPhotoAlbumViewController : NIToolbarPhotoViewController <
-  ASIHTTPRequestDelegate
-> {
+@interface NetworkPhotoAlbumViewController : NIToolbarPhotoViewController {
 @private
   NSOperationQueue* _queue;
   

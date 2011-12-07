@@ -50,6 +50,12 @@
      @"NISwitchFormElement",
      [NISwitchFormElement switchElementWithID:0 labelText:@"Switch" value:NO],
      [NISwitchFormElement switchElementWithID:0 labelText:@"Switch with a really long label that will be cut off" value:YES],
+
+     @"NIButtonFormElement",
+     [NIButtonFormElement buttonElementWithID:0
+                                    labelText:@"Button with alert"
+                                 tappedTarget:self
+                               tappedSelector:@selector(showAlert:)],
      nil];
 
     // We let the Nimbus cell factory create the cells.
@@ -59,6 +65,17 @@
   return self;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showAlert:(id)button {
+  UIAlertView* alertView =
+      [[[UIAlertView alloc] initWithTitle:@"This is an alert!"
+                                 message:@"Don't panic."
+                                delegate:nil
+                       cancelButtonTitle:@"Neat!"
+                       otherButtonTitles:nil] autorelease];
+  [alertView show];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
@@ -111,10 +128,27 @@
 
     } else {
       // We must always handle the else case because cells can be reused.
-      textInputCell.textField.textColor = nil;
+      textInputCell.textField.textColor = [UIColor blackColor];
     }
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+  UITableViewCell* selectedCell = [self.tableView.dataSource tableView:tableView cellForRowAtIndexPath:indexPath];
+  if ([selectedCell isKindOfClass:[NIButtonFormElementCell class]]) {
+    NIButtonFormElementCell* buttonCell = (NIButtonFormElementCell*)selectedCell;
+    [buttonCell buttonWasTapped:selectedCell];
+  }
+  // Clear the selection state when we're done.
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 @end

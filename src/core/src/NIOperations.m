@@ -18,42 +18,35 @@
 
 #import "NIDebuggingTools.h"
 #import "NIPreprocessorMacros.h"
+#import "NIOperations+Subclassing.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@interface NIReadFileFromDiskOperation()
+@implementation NINetworkRequestOperation
 
-@property (readwrite, retain) NSData* data;
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIReadFileFromDiskOperation
-
-@synthesize pathToFile  = _pathToFile;
-@synthesize data        = _data;
+@synthesize url = _url;
+@synthesize timeout = _timeout;
+@synthesize data = _data;
 @synthesize processedObject = _processedObject;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  NI_RELEASE_SAFELY(_pathToFile);
+  NI_RELEASE_SAFELY(_url);
   NI_RELEASE_SAFELY(_data);
   NI_RELEASE_SAFELY(_processedObject);
-
+  
   [super dealloc];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithPathToFile:(NSString *)pathToFile {
+- (id)initWithURL:(NSURL *)url {
   if ((self = [super init])) {
-    self.pathToFile = pathToFile;
+    self.url = url;
+    self.timeout = 60;
   }
   return self;
 }
@@ -68,37 +61,60 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)main {
   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+  
+  if ([self.url isFileURL]) {
+    // Special case: load the image from disk without hitting the network.
 
-  [self operationDidStart];
+    [self operationDidStart];
 
-  NSError* error = nil;
+    NSError* dataReadError = nil;
 
-  self.data = [NSData dataWithContentsOfFile: self.pathToFile
-                                     options: 0
-                                       error: &error];
+    // The meat of the load-from-disk operation.
+    NSString* filePath = [self.url path];
+    NSMutableData* data = [NSMutableData dataWithContentsOfFile:filePath
+                                                        options:0
+                                                          error:&dataReadError];
 
+    if (nil != dataReadError) {
+      // This generally happens when the file path points to a file that doesn't exist.
+      // dataReadError has the complete details.
+      [self operationDidFailWithError:dataReadError];
 
-  if (nil != error) {
-    [self operationDidFailWithError:error];
+    } else {
+      self.data = data;
+
+      // Notifies the delegates of the request completion.
+      [self operationWillFinish];
+      [self operationDidFinish];
+    }
 
   } else {
-    [self operationWillFinish];
-    [self operationDidFinish];
+    // Load the image from the network then.
+    [self operationDidStart];
+
+    NSURLRequest* request = [NSURLRequest requestWithURL:self.url
+                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                         timeoutInterval:self.timeout];
+
+    NSError* networkError = nil;
+    NSURLResponse* response = nil;
+    NSData* data  = [NSURLConnection sendSynchronousRequest:request
+                                          returningResponse:&response
+                                                      error:&networkError];
+
+    if (nil != networkError) {
+      [self operationDidFailWithError:networkError];
+
+    } else {
+      self.data = data;
+
+      [self operationWillFinish];
+      [self operationDidFinish];
+    }
   }
 
   NI_RELEASE_SAFELY(pool);
 }
-
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@interface NIOperation()
-
-@property (readwrite, retain) NSError* lastError;
 
 @end
 

@@ -28,7 +28,7 @@
 @interface DribbblePhotoAlbumViewController : NetworkPhotoAlbumViewController <
   NIPhotoAlbumScrollViewDataSource,
   NIPhotoScrubberViewDataSource,
-  ASIHTTPRequestDelegate
+  NIOperationDelegate
 > {
 @private
   NSString* _apiPath;

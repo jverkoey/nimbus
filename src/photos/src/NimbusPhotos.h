@@ -127,8 +127,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NimbusCore.h"
-#import "NIToolbarPhotoViewController.h"
 #import "NIPhotoAlbumScrollView.h"
+#import "NIPhotoAlbumScrollViewDataSource.h"
+#import "NIPhotoAlbumScrollViewDelegate.h"
 #import "NIPhotoScrollView.h"
+#import "NIPhotoScrollViewDelegate.h"
+#import "NIPhotoScrollViewPhotoSize.h"
 #import "NIPhotoScrubberView.h"
+#import "NIToolbarPhotoViewController.h"
+
+#import "NimbusPagingScrollView.h"
+#import "NimbusCore.h"

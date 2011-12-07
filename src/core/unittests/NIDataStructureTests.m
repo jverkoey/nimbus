@@ -120,6 +120,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testLinkedListAddArrayOfItems {
+  NILinkedList* ll = [[[NILinkedList alloc] init] autorelease];
+  
+  id object1 = [NSArray array];
+  id object2 = [NSDictionary dictionary];
+  id object3 = [NSSet set];
+  [ll addObjectsFromArray:[NSArray arrayWithObjects:object1, object2, object3, nil]];
+  STAssertEquals(ll.count, (NSUInteger)3, @"There should be exactly three objects.");
+  STAssertEquals(ll.firstObject, object1, @"Head should be the first object.");
+  STAssertEquals(ll.lastObject, object3, @"Tail should be the third object.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListCount {
   NILinkedList* ll = [[[NILinkedList alloc] init] autorelease];
   

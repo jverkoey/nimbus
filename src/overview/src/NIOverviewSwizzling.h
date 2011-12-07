@@ -15,6 +15,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * Returns the true status bar height when the Overview is active.

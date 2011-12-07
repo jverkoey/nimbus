@@ -33,7 +33,7 @@
  * -# Once you have created your network image view and assigned the initial image, the next step
  *    is to load the network image. Call any of the @link NINetworkImageView::setPathToNetworkImage: setPathToNetworkImage@endlink methods to fire
  *    off a network request for the image on a separate thread.
- * -# A new NIHTTPImageRequest thread will spin off and initiate the request to the network.
+ * -# A new NINetworkImageRequest thread will spin off and initiate the request to the network.
  * -# Once the image has been retrieved from the net, the thread crops and resizes the image
  *    depending on the presentation configurations specified by the image view. In this example,
  *    @link NINetworkImageView::sizeForDisplay sizeForDisplay@endlink and

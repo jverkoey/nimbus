@@ -6,9 +6,10 @@ to understand.
 
 <h2>Getting Started</h2>
 
-- Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
+- Visit the Nimbus website at <a href="http://nimbuskit.info">nimbuskit.info</a>.
+- <a href="http://wiki.nimbuskit.info/Add-Nimbus-to-your-project">Add Nimbus to your project</a>.
 - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
-- See the <a href="http://jverkoey.github.com/nimbus/group___version-8-0.html">latest API diffs</a>.
+- See the <a href="http://jverkoey.github.com/nimbus/group___version-9-1.html">latest API diffs</a>.
 - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
 - Ask questions and get updates via the <a href="http://groups.google.com/group/nimbusios">Nimbus mailing list</a>.
 
@@ -38,97 +39,3 @@ Most of the discussion revolving around Nimbus' roadmap is in the Github issue t
 particular, check out the grab bag of tasks that are actively being worked on here:
 
 https://github.com/jverkoey/nimbus/issues?milestone=5&sort=created&direction=desc&state=open
-
-
-<h2>Nimbus Contributors</h2>
-
-Contributing to Nimbus is a great way to feel all warm and fuzzy inside. Either by adding your
-banner to the cause and writing code or donating money to the pledgie link, every bit is greatly
-appreciated and helps keep Nimbus running.
-
-http://pledgie.com/campaigns/15519
-
-<h3>Source Code Contributors (alphabetical by last name)</h3>
-
-<div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
-<img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
-<div class="name">Roger Chapman</div> 
-<div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
-</div>
-
-<div class="contributor_profile"> 
-<img width="135px" height="135px" src="http://www.gravatar.com/avatar/a7acedfd4044ad79252e3b062aef25e7?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
-<div class="name">Glenn Grant</div> 
-<div class="github"><a href="http://github.com/alias1">alias1</a></div> 
-</div>
-
-<div class="contributor_profile">
-<img width="135px" height="135px" src="http://www.gravatar.com/avatar/ca1536c2ef2e263ed2aec69c1d147677?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
-<div class="name">Aviel Lazar</div> 
-<div class="github"><a href="http://github.com/aviell">aviell</a></div> 
-</div>
-
-<div class="contributor_profile"> 
-<img width="135px" height="135px" src="http://www.gravatar.com/avatar/22f25c7b3f0f15a6854fae62bbd3482f?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
-<div class="name">Benedikt Meurer</div> 
-<div class="github"><a href="http://github.com/bmeurer">bmeurer</a></div> 
-</div>
-
-<div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
-<img width="135px" height="135px" src="http://www.gravatar.com/avatar/8d33edcb6695ab66b1e48067e4e3723c?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
-<div class="name">Anderson Miller</div> 
-<div class="github"><a href="http://github.com/candersonmiller">candersonmiller</a></div> 
-</div>
-
-<div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
-<img width="135px" height="135px" src="http://www.gravatar.com/avatar/ec5d7ba9c004f79817c76146247e787e?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
-<div class="name">Basil Shkara</div> 
-<div class="github"><a href="http://github.com/baz">baz</a></div> 
-</div>
-
-<div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
-<img width="135px" height="135px" src="http://www.gravatar.com/avatar/7adfa1038eb46b001fd5c85a47dffc13?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
-<div class="name">Peter Steinberger</div> 
-<div class="github"><a href="http://github.com/steipete">steipete</a></div> 
-</div>
-
-<div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
-<img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
-<div class="name">Jeff Verkoeyen</div> 
-<div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
-</div>
-
-<div style="clear:both"></div>
-
-<h3>Generous Donations Have Been Made By the Following People</h3>
-
-- Matt Coneybeare
-- Craig Gilchrist
-- Atsushi Nagase
-- Peter Nelson
-- Jindrich Sarson
-
-<h2>The Nimbus Backstory</h2>
-
-Nimbus was started by me (Jeff Verkoeyen) in June of 2011. My background includes over 10 years
-of software development and experience at Google and Facebook designing software and
-building user interfaces. I took over the Three20 project in 2009 after its original creator,
-Joe Hewitt, moved on to other projects. Over the proceeding 6 months much time was invested in
-splitting the framework apart and attempting to clobber its spaghetti dependencies while
-improving the project's documentation.
-
-In early May of 2010, my life was completely shaken up: my mother suddenly passed
-away at age 42 due to a pulmonary embolism. This is relevant because for the following year
-I checked out of life and, as a direct result, little progress was made with Three20. Over the
-last year I've found that shedding baggage is not only an emotionally satisfying process, but
-also a necessary one. So I am shedding Three20's baggage and out of the remaining bits building
-Nimbus. I learned a great deal from working with an open source project and community and
-sincerely hope to carry much of this knowledge over to Nimbus.
-
-
-<h2>What's happening to Three20?</h2>
-
-My goal with Nimbus is to eventually provide a feature set that overlaps Three20's. I
-sincerely hope to make it easy for anyone using Three20 to transition to Nimbus. In the
-meantime, Three20 will likely stay in a bug-fixing state. The library is stable as it stands
-so I have every bit of confidence in the community to tackle any bugs as necessary.

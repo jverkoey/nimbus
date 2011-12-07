@@ -35,7 +35,6 @@
 /**
  * A base implementation of an NSOperation that supports traditional delegation and blocks.
  *
- *
  * <h2>Subclassing</h2>
  *
  * A subclass should call the operationDid* methods to notify the delegate on the main thread
@@ -84,37 +83,35 @@
 
 @end
 
-
 /**
- * An operation that reads a file from disk.
+ * An operation that makes a network request.
  *
- * Provides asynchronous file reading support when added to an NSOperationQueue.
+ * Provides asynchronous network request support when added to an NSOperationQueue.
  *
- * It is recommended to add this operation to a serial NSOperationQueue to avoid overlapping
- * disk read attempts. This will noticeably improve performance when loading many files
- * from disk at once.
+ * If the url provided is a file url, then the file will be loaded from disk instead.
  *
  *      @ingroup Operations
  */
-@interface NIReadFileFromDiskOperation : NIOperation {
+@interface NINetworkRequestOperation : NIOperation {
 @private
   // [in]
-  NSString* _pathToFile;
+  NSURL* _url;
+  NSTimeInterval _timeout;
 
   // [out]
-  NSData*   _data;
-  id        _processedObject;
+  NSData* _data;
+  id _processedObject;
 }
 
 // Designated initializer.
-- (id)initWithPathToFile:(NSString *)pathToFile;
+- (id)initWithURL:(NSURL *)url;
 
-@property (readwrite, copy) NSString* pathToFile;
+@property (readwrite, copy) NSURL* url;
+@property (readwrite, assign) NSTimeInterval timeout;
 @property (readonly, retain) NSData* data;
 @property (readwrite, retain) id processedObject;
 
 @end
-
 
 /**
  * The delegate protocol for an NSOperation.
@@ -262,43 +259,42 @@
  */
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// NIReadFileFromDiskOperation
+// NINetworkRequestOperation
 
 /** @name Creating an Operation */
 
 /**
- * Initializes a newly allocated "read from disk" operation with a given path to a file to be read.
+ * Initializes a newly allocated network operation with a given url.
  *
- *      @fn NIReadFileFromDiskOperation::initWithPathToFile:
+ *      @fn NINetworkRequestOperation::initWithURL:
  */
 
 
 /** @name Configuring the Operation */
 
 /**
- * The path to the file that should be read from disk.
+ * The url that will be loaded in the network operation.
  *
- *      @fn NIReadFileFromDiskOperation::pathToFile
+ *      @fn NINetworkRequestOperation::url
  */
 
 
 /** @name Operation Results */
 
 /**
- * The data that was read from disk.
+ * The data received from the request.
  *
- * Will be nil if the data couldn't be read.
+ * Will be nil if the request failed.
  *
  *      @sa NIOperation::lastError
- *      @fn NIReadFileFromDiskOperation::data
+ *      @fn NINetworkRequestOperation::data
  */
 
 /**
- * An object created from the data that was read from disk.
+ * An object created from the data that was fetched.
  *
- * Will be nil if the data couldn't be read.
+ * Will be nil if the request failed.
  *
  *      @sa NIOperation::lastError
- *      @fn NIReadFileFromDiskOperation::processedObject
+ *      @fn NINetworkRequestOperation::processedObject
  */

@@ -25,9 +25,9 @@
  * 
  * <h2>Getting Started</h2>
  * 
- * - Start by exploring the "Getting Started" <a href="https://github.com/jverkoey/nimbus/tree/master/examples/gettingstarted">example applications</a>.
+ * - <a href="http://wiki.nimbuskit.info/Add-Nimbus-to-your-project">Add Nimbus to your project</a>.
  * - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
- * - See the <a href="http://jverkoey.github.com/nimbus/group___version-7-0.html">latest API diffs</a>.
+ * - See the <a href="http://jverkoey.github.com/nimbus/group___version-9-1.html">latest API diffs</a>.
  * - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
  * - Ask questions and get updates via the <a href="http://groups.google.com/group/nimbusios">Nimbus mailing list</a>.
  * 
@@ -69,22 +69,45 @@
  * 
  * <h3>Source Code Contributors (alphabetical by last name)</h3>
  * 
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile"> 
+ * <div class="name">bubnov</div> 
+ * <div class="github"><a href="http://github.com/bubnov">bubnov</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Roger Chapman</div> 
  * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
  * </div>
  * 
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/87c842e2d3f2b9e87e339cbc86463e8d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Manu Cornet</div> 
+ * <div class="github"><a href="http://github.com/lmanul">lmanul</a></div> 
+ * </div>
+ * 
+ * <div class="contributor_profile"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/a7acedfd4044ad79252e3b062aef25e7?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Glenn Grant</div> 
  * <div class="github"><a href="http://github.com/alias1">alias1</a></div> 
  * </div>
  *
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/56d524aa457bb26be5347c9070e92e97?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Samuel Grau</div> 
+ * <div class="github"><a href="http://github.com/Vaseltior">Vaseltior</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile">
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/ca1536c2ef2e263ed2aec69c1d147677?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Aviel Lazar</div> 
  * <div class="github"><a href="http://github.com/aviell">aviell</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/2d7becdc5b983d5be55a0a2d28a361c2?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Anthony Lobay</div> 
+ * <div class="github"><a href="http://github.com/TheMadGamer">TheMadGamer</a></div> 
  * </div>
  *
  * <div class="contributor_profile"> 
@@ -94,29 +117,41 @@
  * </div>
  *
  * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/afbdf3579731eb934cd946451b53e0bc?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Mike</div> 
+ * <div class="github"><a href="http://github.com/prime31">prime31</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/8d33edcb6695ab66b1e48067e4e3723c?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Anderson Miller</div> 
  * <div class="github"><a href="http://github.com/candersonmiller">candersonmiller</a></div> 
  * </div>
  *
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile">
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/ec5d7ba9c004f79817c76146247e787e?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Basil Shkara</div> 
  * <div class="github"><a href="http://github.com/baz">baz</a></div> 
  * </div>
  *
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile">
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/7adfa1038eb46b001fd5c85a47dffc13?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Peter Steinberger</div> 
  * <div class="github"><a href="http://github.com/steipete">steipete</a></div> 
  * </div>
  * 
- * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <div class="contributor_profile">
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Jeff Verkoeyen</div> 
  * <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
  * </div>
  * 
+ * <div class="contributor_profile">
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/b0190e056d8b13400d4ae6eba8a7018d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Hwee-Boon Yar</div> 
+ * <div class="github"><a href="http://github.com/hboon">hboon</a></div> 
+ * </div>
+ *
  * <div style="clear:both"></div>
  * 
  * <h3>Generous Donations Have Been Made By the Following People</h3>
@@ -156,6 +191,297 @@
  * @defgroup Version-History Version History
  *
  * Presented here are the API diffs for each major release of Nimbus.
+ */
+
+/**
+ * @defgroup Version-9-1 Version 0.9.1 API Changes
+ * @ingroup Version-9-0
+ *
+ * Version 0.9.1 of Nimbus was released on December 5, 2011. This minor version removed ASI and JSONKit from
+ * Nimbus as strict dependencies. It is now easier to use other networking features for the networked image
+ * view. This release adds the new pagingscrollview feature which the photos feature now uses as a dependency.
+ * The processors feature has been renamed to operations and greatly simplified to only provide special-case
+ * implementations of operations.
+ *
+ *
+ * <h2>Misc Changes</h2>
+ *
+ * - Non-PCH audit to ensure that Nimbus compiles when not using a pre-compiled header.
+ *
+ *
+ * <h2>Added Frameworks</h2>
+ *
+ * - @link NimbusPagingScrollView Paging Scroll View@endlink
+ *
+ *
+ * <h2>Renamed Frameworks</h2>
+ *
+ * - Processors renamed to @link NimbusOperations Operations@endlink
+ *
+ *
+ * <h2>Attributed Label</h2>
+ *
+ * <h3>NIAttributedLabel[.h|m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Cleaned up the label implementation and optimized when the text frame is recalculated.
+ *
+ *
+ * <h2>Core</h2>
+ *
+ * <h3>NIFoundationMethods[.h]</h3>
+ *
+ * - <span class="apiDiffModified">Deprecated</span> <code>NIRectInset</code> deprecated in favor of <code>UIEdgeInsetsInsetRect</code>.
+ *
+ * <h3>NIInMemoryCache[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Memory leak in <code>NIMemoryCache</code> when removeAllObjects was called (bug reported by <a href="http://github.com/lada">lada</a>).
+ * - <span class="apiDiffBugfix">Bugfix</span> numberOfPixels is now reset in <code>NIImageMemoryCache</code> when removeAllObjects is called (bug reported by <a href="http://github.com/lada">lada</a>).
+ *
+ * <h3>Added NIOperations+Subclassing[.h]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> Anonymous category for subclassing NIOperation objects.
+ *
+ * <h3>NIOperations[.h|m]</h3>
+ *
+ * - <span class="apiDiffRemoved">Removed</span> <code>NIReadFileFromDiskOperation</code> because NINetworkRequestOperation now implements the same functionality.
+ *
+ * <h3>Added NIViewRecycler[.h|m]</h3>
+ *
+ *
+ * <h2>CSS</h2>
+ *
+ * <h3>NIChameleonObserver[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fix assertion bug when using the Chameleon observer the first time.
+ *
+ *
+ * <h2>Models</h2>
+ *
+ * <h3>NICellFactory[.h|m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> NICellFactory now implements NITableViewModelDelegate so that you can create a NICellFactory object and set up explicit bindings between objects and cells using <code>[NICellFactory @link NICellFactory::mapObjectClass:toCellClass: mapObjectClass:toCellClass:@endlink]</code>.
+ * - <span class="apiDiffAdded">Added</span> NICellObject may be used to create mappings within the model.
+ *
+ * <h3>NIFormCellCatalog[.h|m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> NIButtonFormElement may be used to create a button cell in a table view.
+ *
+ *
+ * <h2>Network Image View</h2>
+ *
+ * <h3>Added NINetworkImageRequest[.h|m]</h3>
+ *
+ * <h3>NINetworkImageView[.h|m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> NINetworkImageOperation protocol for creating operations that can be used with the network image view.
+ * - <span class="apiDiffAdded">Added</span> <code>[NINetworkImageView @link NINetworkImageView::setNetworkImageOperation:forDisplaySize:contentMode:cropRect: setNetworkImageOperation:forDisplaySize:contentMode:cropRect:@endlink]</code>.
+ * - <span class="apiDiffRemoved">Removed</span> <code>NINetworkImageView.@link NINetworkImageView::imageDiskCache imageDiskCache@endlink</code>.
+ * - <span class="apiDiffRemoved">Removed</span> <code>NINetworkImageView.@link NINetworkImageView::diskCacheLifetime diskCacheLifetime@endlink</code>.
+ * - <span class="apiDiffModified">Modified</span> <code>NINetworkImageView.@link NINetworkImageView::loading loading@endlink</code>
+ * @htmlonly<table class="modificationtable"><tr><th></th><th>Getter Name</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">@property (nonatomic, readonly, assign) BOOL isLoading</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>@property (nonatomic, readonly, assign, getter=isLoading) BOOL loading</tt></td></tr></table>@endhtmlonly
+ * - Read the article on adding disk caching to your network requests: <a href="http://wiki.nimbuskit.info/Network-Disk-Caching">Network Disk Caching</a>.
+ *
+ * <h2>Renamed Processors to Operations</h2>
+ *
+ *
+ * <h2>Overview</h2>
+ *
+ * <h3>NIOverviewSwizzling[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Correctly intercept status bar calls for applications that don't use a navigation controller.
+ *
+ *
+ * <h2>Photos</h2>
+ *
+ * <h3>NIPhotoAlbumScrollView[.m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>NIPhotoAlbumScrollView.@link NIPhotoAlbumScrollView::photoViewBackgroundColor photoViewBackgroundColor@endlink</code> (added by <a href="https://github.com/baz">baz</a>).
+ *
+ * <h3>NIPhotoScrubberView[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> The initial scrubber thumbnail is now loaded correctly.
+ *
+ * <h3>NIToolbarPhotoViewController[.h|m]</h3>
+ *
+ * - <span class="apiDiffModified">Modified</span> <code>NIToolbarPhotoViewController.@link NIToolbarPhotoViewController::toolbarIsTranslucent toolbarIsTranslucent@endlink</code>
+ * @htmlonly<table class="modificationtable"><tr><th></th><th>Method Name</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row">@property (nonatomic, readwrite, assign) BOOL showPhotoAlbumBeneathToolbar</td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>@property (nonatomic, readwrite, assign, getter=isToolbarTranslucent) BOOL toolbarIsTranslucent</tt></td></tr></table>@endhtmlonly
+ *
+ *
+ * <h2>Examples</h2>
+ *
+ * <h3>[NetworkPhotoAlbums] Added an example of showing a caption beneath Facebook photos.</h3>
+ *
+ *
+ * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ * <div class="name">bubnov</div> 
+ * <div class="github"><a href="http://github.com/bubnov">bubnov</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Roger Chapman</div> 
+ * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/87c842e2d3f2b9e87e339cbc86463e8d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Manu Cornet</div> 
+ * <div class="github"><a href="http://github.com/lmanul">lmanul</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/56d524aa457bb26be5347c9070e92e97?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Samuel Grau</div> 
+ * <div class="github"><a href="http://github.com/Vaseltior">Vaseltior</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/2d7becdc5b983d5be55a0a2d28a361c2?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Anthony Lobay</div> 
+ * <div class="github"><a href="http://github.com/TheMadGamer">TheMadGamer</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/afbdf3579731eb934cd946451b53e0bc?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Mike</div> 
+ * <div class="github"><a href="http://github.com/prime31">prime31</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile" style="padding: 5px;margin: 0 5px;margin-bottom: 20px;border: 1px solid #DDD;background-color: white;float: left;"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/ec5d7ba9c004f79817c76146247e787e?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Basil Shkara</div> 
+ * <div class="github"><a href="http://github.com/baz">baz</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile">
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Jeff Verkoeyen</div> 
+ * <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ *
+ * <h3>Add Your Name to This List</h3>
+ *
+ * Contributions are highly encouraged! If you have a feature that you feel would fit within the
+ * Nimbus framework, feel free to fire off a pull request on GitHub. Bugs may be reported
+ * using the issue tracker on GitHub as well.
+ *
+ * Check out the <a href="https://github.com/jverkoey/nimbus/issues?sort=created&direction=desc&state=open&page=1&milestone=5">tasks grab bag</a>
+ * for opportunities to help out.
+ *
+ * <h2>Robots Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <div class="name"><a href="https://github.com/nimbusios/Doxygen">Nimbus Doxygen</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ */
+
+/**
+ * @defgroup Version-9-0 Version 0.9 API Changes
+ * @ingroup Version-History
+ *
+ * Version 0.9.0 of Nimbus was released on October 24, 2011. This major version introduced
+ * the new Nimbus @link NimbusCSS CSS@endlink and Chameleon, a new way to rapidly prototype
+ * styling your iOS applications using CSS.
+ *
+ * Watch the Chameleon Youtube video: http://www.youtube.com/watch?v=i_5LbQ8e9BU
+ *
+ * Read the Chameleon blog post: http://blog.jeffverkoeyen.com/nimbus-chameleon
+ *
+ *
+ * <h2>Added Frameworks</h2>
+ *
+ * - @link NimbusCSS CSS@endlink
+ *
+ *
+ * <h2>Attributed Label</h2>
+ *
+ * <h3>NIAttributedLabel[.h|m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>[NIAttributedLabel @link NIAttributedLabel::removeAllLinks removeAllLinks@endlink]</code> (thanks to <a href="http://github.com/hboon">hboon</a>.)
+ *
+ *
+ * <h2>Core</h2>
+ *
+ * <h3>NIDataStructures[.h|m]</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>[NILinkedList @link NILinkedList::addObjectsFromArray: addObjectsFromArray:@endlink]</code>
+ *
+ * <h3>NIPreprocessorMacros.h</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> <code>RGBCOLOR</code> and <code>RGBACOLOR</code>
+ *
+ *
+ * <h2>Models</h2>
+ *
+ * <h3>ModelCatalog</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed a crashing bug due to setting textField.textColor to nil (thanks to <a href="http://github.com/lmanul">lmanul</a>.)
+ *
+ *
+ * <h2>Examples</h2>
+ *
+ * <h3>CSSDemo [added]</h3>
+ *
+ *
+ * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ * <div class="name">bubnov</div> 
+ * <div class="github"><a href="http://github.com/bubnov">bubnov</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Roger Chapman</div> 
+ * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/87c842e2d3f2b9e87e339cbc86463e8d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Manu Cornet</div> 
+ * <div class="github"><a href="http://github.com/lmanul">lmanul</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile">
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Jeff Verkoeyen</div> 
+ * <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+ * </div>
+ * 
+ * <div class="contributor_profile">
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/b0190e056d8b13400d4ae6eba8a7018d?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Hwee-Boon Yar</div> 
+ * <div class="github"><a href="http://github.com/hboon">hboon</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ *
+ * <h3>Add Your Name to This List</h3>
+ *
+ * Contributions are highly encouraged! If you have a feature that you feel would fit within the
+ * Nimbus framework, feel free to fire off a pull request on GitHub. Bugs may be reported
+ * using the issue tracker on GitHub as well.
+ *
+ * Check out the <a href="https://github.com/jverkoey/nimbus/issues?sort=created&direction=desc&state=open&page=1&milestone=5">tasks grab bag</a>
+ * for opportunities to help out.
+ *
+ * <h2>Robots Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <div class="name"><a href="https://github.com/nimbusios/Doxygen">Nimbus Doxygen</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
  */
 
 /**
@@ -999,174 +1325,14 @@
 /**
  * @defgroup Three20-Migration-Guide Three20 Migration Guide
  *
- * <h2>Getting Started</h2>
- *
- * If you've added Three20 to one of your projects then you're undoubtedly familiar with the
- * incredible overhead of the framework's size and work involved in tweaking project
- * settings. While the concept of shared static libraries has its benefits, the reality is
- * that most applications are standalone entities and it is rare that you would be switching
- * between applications rapidly enough to justify the shared build times.
- *
- * Nimbus reduces build times by throwing this model out the window altogether and being
- * truly modular. When you add Nimbus to your project, you only add the code for the features
- * you <i>want</i> to use, and you add this code directly to your project. With Nimbus, you only
- * need to manage one project's settings, one target for your application, and zero dependent
- * static libraries (unless you're using a non-Nimbus library of course). This also means that
- * if there is a feature within Nimbus that you've already built or included in your app
- * (ASIHTTPRequest), for example, then you can simply use that code and modify it as you wish.
- *
- * <h3>The Nimbus Namespace</h3>
- *
- * The Nimbus namespace is an <code>NI</code> prefix to all types and functions. Three20's
- * is <code>TT</code>. Quite often Three20 features will exist in Nimbus as well. When this
- * is the case, you simply have to replace the <code>TT</code> prefix with <code>NI</code>.
- *
- * <h3>Using Nimbus Alongside Three20</h3>
- *
- * It is possible for both frameworks to exist in one application because the two frameworks
- * use different prefices. This has the obvious downside of only increasing the size of your
- * application, but as Nimbus develops the benefit of replacing certain features with Nimbus
- * equivalents may prove worth the cost. In the future it is hoped that Nimbus will reach
- * feature parity with Three20, at which point you would be able to remove Three20 from your
- * project altogether.
- *
- * <h2>Features That Map One-to-One</h2>
- *
- * Certain features map from Three20 to Nimbus directly. You can begin using these features
- * by doing a global find and replace in your application's code.
- *
- * <h3>Debugging Tools</h3>
- *
- * <pre>
- *  Three20                         Nimbus
- *  -----------------------------   --------------------------------------
- *  TTDASSERT()                     NIDASSERT()
- *  TTDCONDITIONLOG()               NIDCONDITIONLOG()
- *  TTDPRINT()                      NIDPRINT()
- *  TTDPRINTMETHODNAME()            NIDPRINTMETHODNAME()
- *  TTDINFO()                       NIDINFO()
- *  TTDERROR()                      NIDERROR()
- *  TTDWARNING()                    NIDWARNING()
- * </pre>
- *
- * <h3>Device Orientation</h3>
- *
- * <pre>
- *  Three20                         Nimbus
- *  -----------------------------   --------------------------------------
- *  TTIsSupportedOrientation()      NIIsSupportedOrientation()
- * </pre>
- *
- * <h3>Network Activity</h3>
- *
- * <pre>
- *  Three20                         Nimbus
- *  -----------------------------   --------------------------------------
- *  TTNetworkRequestStarted()       NINetworkActivityTaskDidStart()
- *  TTNetworkRequestStopped()       NINetworkActivityTaskDidFinish()
- * </pre>
- *
- * <h3>Preprocessor Macros</h3>
- *
- * <pre>
- *  Three20                         Nimbus
- *  -----------------------------   --------------------------------------
- *  __TT_DEPRECATED_METHOD          __NI_DEPRECATED_METHOD
- *  TT_FIX_CATEGORY_BUG()           NI_FIX_CATEGORY_BUG()
- *  TT_RELEASE_SAFELY()             NI_RELEASE_SAFELY()
- * </pre>
- *
- * <h2>Three20 Features Deprecated by Nimbus Features</h2>
- *
- * Some features built for Nimbus completely deprecate closely related Three20 features. To
- * switch from using the Three20 feature to the Nimbus equivalent may require some extra work
- * beyond a simply find-and-replace. Where possible the architectural differences are noted
- * below to aid in the transition process.
- *
- * <h3>In-Memory Caching With TTURLCache</h3>
- *
- * Nimbus provides NIMemoryCache for caching objects in memory. It is designed only for
- * storing objects in memory and does not provide disk caching. This is by design: touching
- * the disk should be an explicit activity so that the performance implications are obvious.
- * TTURLCache was not clear on how it accessed the disk cache.
- *
- * Due to this design choice, one of the primary differences between NIMemoryCache and
- * TTURLCache is the fact that NIMemoryCache does not provide a disk cache. You can't
- * use an NIMemoryCache to store or load images from disk.
- *
- * TTURLCache is primarily used for caching images. It uses a fake,
- * least-recently-used cache removal algorithm where images are removed in the same order that
- * they were added to the cache. This can lead to unexpected cache misses when the cache is
- * used heavily and images start being removed even though they were recently used.
- *
- * NIImageMemoryCache solves this problem by taking advantage of the true least-recently-used
- * cache removal algorithm built into NIMemoryCache. Whenever an image is accessed it moves
- * to the end of a linked list. When the cache limit is reached or a memory warning is received,
- * images are removed from the front of the linked list until the memory constraints are
- * satisfied.
- *
- * <h3>Global Singletons</h3>
- *
- * Three20 implements singletons directly in the class that provides the singleton
- * implementation. This places too much emphasis on the fact that the object is meant to
- * be used as a singleton, so Nimbus avoids this practice.
- *
- * Instead, Nimbus provides access to singletons via the global Nimbus state object. You'll
- * notice that Nimbus is highlighted as a link throughout the documentation, this is because
- * Nimbus is a class within the Nimbus framework. To access singletons, you call class
- * methods on Nimbus.
- *
- * For example, to access Nimbus' equivalent to TTURLCache, you use
- * <code>[Nimbus imageMemoryCache]</code>.
- *
- * <h3>Network Images with TTImageView</h3>
- *
- * Three20's network image view is completely deprecated by Nimbus' NINetworkImageView.
- * Three20's network image view is an overly complicated TTView object with too many
- * non-critical features built in. NINetworkImageView, on the other hand, is a simple
- * UIImageView view.
- *
- * NINetworkImageView is incredibly efficient when it comes to using memory. Where TTImageView
- * would download an image and them simply crop and resize the image whenever the view was
- * drawn, NINetworkImageView crops and resizes the image on a separate thread and then draws
- * the image without any scaling required. The image stored in the memory cache is also much
- * smaller as result. Performance is noticeably improved when many image views are on
- * the screen at once. A good example would be flipping through a friend list on the iPad with
- * large, high-resolution images laid out in a grid.
- *
- * NINetworkImageView also handles retina displays more intelligently than TTImageView by
- * creating scaled UIImages.
- *
- * <h3>Photo Albums with TTPhotoViewController</h3>
- *
- * Three20's photo album viewer was built around the time iOS 3.0 was first coming out. Take
- * a second to let that sink in, because that was a hell of a long time ago by the iOS SDK's
- * standards.
- *
- * Around that time the scroll view implementations were certainly lacking some of the nice
- * features required by a photo viewer. As a result, Three20 included a from-the-ground-up
- * implementation of TTScrollView. This is no longer necessary and the new
- * Nimbus photo viewer rejoices in the use of native UIScrollViews.
- *
- * Three20's photo viewer was also incredibly entrenched in the Three20 network model battleground
- * with no hope of salvation. Nimbus' photo viewer is built using a light-weight, completely
- * independent data source/delegate design that is similar in principle to UITableView.
- *
- * Instead of using a TTPhotoViewController, you can now use an NIToolbarPhotoViewController.
- * All you are required to do is implement the data source methods. Examples of such
- * implementations can be found in the network photo album sample app.
- *
- * Nimbus photo viewer is faster, performs better under low-memory conditions, uses native
- * scroll views and has an overall lower memory footprint. It also encourages processing data
- * on separate threads instead of in the main UI thread like Three20's network stack does.
- *
- * <h3>Web Views with TTWebController</h3>
- *
- * Three20's web controller is one of the most popular controllers used in the Three20 framework.
- * It is tied to the UI, UINavigator, UICommon, Style, Network and Core libraries though which
- * meant that you had to pull in the entire Three20 framework just to use the web controller.
- *
- * NIWebController's only dependency is the Nimbus Core and it a direct subclass
- * of UIViewController. This makes it is remarkably easy to add the web controller to any
- * project with minimal overhead.
+ * This article has moved to
+ * <a href="http://wiki.nimbuskit.info/Three20-Migration-Guide">wiki.nimbuskit.info/Three20-Migration-Guide</a>.
  */
+
+/**
+ * @defgroup Add-Nimbus Add Nimbus to your project
+ *
+ * This article has moved to
+ * <a href="http://wiki.nimbuskit.info/Add-Nimbus-to-your-project">wiki.nimbuskit.info/Add-Nimbus-to-your-project</a>.
+ */
+

@@ -165,8 +165,8 @@
                                    bounds.size.width, toolbarHeight);
 
   _toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
-  _toolbar.autoresizingMask =
-  UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+  _toolbar.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin
+                               | UIViewAutoresizingFlexibleWidth);
 
   UIActivityIndicatorView* spinner =
   [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
@@ -238,8 +238,8 @@
 
   _webView = [[UIWebView alloc] initWithFrame:webViewFrame];
   _webView.delegate = self;
-  _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth
-  | UIViewAutoresizingFlexibleHeight;
+  _webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                               | UIViewAutoresizingFlexibleHeight);
   _webView.scalesPageToFit = YES;
   [self.view addSubview:_webView];
 }
@@ -396,6 +396,19 @@
   NIDASSERT([self isViewLoaded]);
   [_webView loadRequest:request];
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setToolbarHidden:(BOOL)hidden {
+  _toolbar.hidden = hidden;
+  if (hidden) {
+    _webView.frame = self.view.bounds;
+
+  } else {
+    _webView.frame = NIRectContract(self.view.bounds, 0, _toolbar.frame.size.height);
+  }
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setToolbarTintColor:(UIColor*)color {

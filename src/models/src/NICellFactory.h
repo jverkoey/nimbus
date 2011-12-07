@@ -29,14 +29,18 @@
  * @link NICell::shouldUpdateCellWithObject: shouldUpdateCellWithObject:@endlink before the
  * factory method returns.
  *
- *
  * This factory is designed to be used with NITableViewModels, though one could easily use
  * it with other table view data source implementations simply by providing nil for the table
  * view model.
  *
+ * If you instantiate an NICellFactory then you can provide explicit mappings from objects
+ * to cells. This is helpful if the effort required to implement the NICell protocol on
+ * an object outweighs the benefit of using the factory, i.e. when you want to map
+ * simple types such as NSString to cells.
+ *
  *      @ingroup TableCellFactory
  */
-@interface NICellFactory : NSObject
+@interface NICellFactory : NSObject <NITableViewModelDelegate>
 
 /**
  * Creates a cell from a given object if and only if the object conforms to the NICellObject
@@ -74,6 +78,16 @@ _model.delegate = (id)[NICellFactory class];
                    cellForTableView: (UITableView *)tableView
                         atIndexPath: (NSIndexPath *)indexPath
                          withObject: (id)object;
+
+/**
+ * Map an object's class to a cell's class.
+ *
+ * If an object implements the NICell protocol AND is found in this factory
+ * mapping, the factory mapping will take precedence. This allows you to
+ * explicitly override the mapping on a case-by-case basis.
+ */
+- (void)mapObjectClass:(Class)objectClass toCellClass:(Class)cellClass;
+
 @end
 
 /**
@@ -108,3 +122,36 @@ _model.delegate = (id)[NICellFactory class];
  */
 - (BOOL)shouldUpdateCellWithObject:(id)object;
 @end
+
+/**
+ * A light-weight implementation of the NICellObject protocol.
+ *
+ * Use this object in cases where you can't set up a hard binding between an object and a cell,
+ * or when you simply don't want to.
+ *
+ * For example, let's say that you want to show a cell that shows a loading indicator.
+ * Rather than create a new interface, LoadMoreObject, simply for the cell and binding it
+ * to the cell view, you can create an NICellObject and pass the class name of the cell.
+ *
+@code
+[tableContents addObject:[NICellObject objectWithCellClass:[LoadMoreCell class]]];
+@endcode
+ */
+@interface NICellObject : NSObject <NICellObject>
+
+// Designated initializer.
+- (id)initWithCellClass:(Class)cellClass userInfo:(id)userInfo;
+- (id)initWithCellClass:(Class)cellClass;
+
++ (id)objectWithCellClass:(Class)cellClass userInfo:(id)userInfo;
++ (id)objectWithCellClass:(Class)cellClass;
+
+@property (nonatomic, readonly, retain) id userInfo;
+
+@end
+
+/**
+ * An object that can be used to populate information in the cell.
+ *
+ *      @fn NICellObject::userInfo
+ */

@@ -74,9 +74,11 @@
  *  // the status bar.
  *  [NIOverview applicationDidFinishLaunching];
  *
- *  // Create the UIWindow for your application.
+ *  // After you create the UIWindow for your application and add the root view controller,
+ *  // i.e.:
+ *  [self.window addSubview:_rootViewController.view];
  *
- *  // Line #2 - Adds the Overview view to the window.
+ *  // then you add the Overview view to the window.
  *  [NIOverview addOverviewToWindow:self.window];
  * @endcode
  *

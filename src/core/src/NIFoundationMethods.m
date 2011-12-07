@@ -39,9 +39,7 @@ CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGRect NIRectInset(CGRect rect, UIEdgeInsets insets) {
-  return CGRectMake(rect.origin.x + insets.left, rect.origin.y + insets.top,
-                    rect.size.width - (insets.left + insets.right),
-                    rect.size.height - (insets.top + insets.bottom));
+  return UIEdgeInsetsInsetRect(rect, insets);
 }
 
 

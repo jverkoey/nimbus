@@ -53,7 +53,7 @@
     _pageViews = [[NSMutableArray alloc] init];
 
     _backgroundImage = [[UIImage imageWithContentsOfFile:
-                         NIPathForBundleResource(nil, @"blueprint.gif")]
+                         NIPathForBundleResource(nil, @"NimbusOverviewer.bundle/gfx/blueprint.gif")]
                         retain];
     self.backgroundColor = [UIColor colorWithPatternImage:_backgroundImage];
 
