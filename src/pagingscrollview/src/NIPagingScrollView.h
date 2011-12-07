@@ -77,7 +77,6 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 #pragma mark State
 
 @property (nonatomic, readwrite, assign) NSInteger centerPageIndex; // Use setCenterPageIndex:animated: to animate to a given page.
-- (void)setCenterPageIndex:(NSInteger)centerPageIndex animated:(BOOL)animated;
 
 @property (nonatomic, readonly, assign) NSInteger numberOfPages;
 
@@ -91,6 +90,7 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 - (BOOL)hasPrevious;
 - (void)moveToNextAnimated:(BOOL)animated;
 - (void)moveToPreviousAnimated:(BOOL)animated;
+- (void)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated;
 
 #pragma mark Rotating the Scroll View
 
@@ -176,12 +176,6 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
  */
 
 /**
- * Change the center page index with optional animation.
- *
- *      @fn NIPagingScrollView::setCenterPageIndex:animated:
- */
-
-/**
  * The total number of pages in this paging view, as gathered from the data source.
  *
  * This value is cached after reloadData has been called.
@@ -217,6 +211,12 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
  * Move to the previous page if there is one.
  *
  *      @fn NIPagingScrollView::moveToPreviousAnimated:
+ */
+
+/**
+ * Move to the given page index with optional animation.
+ *
+ *      @fn NIPagingScrollView::moveToPageAtIndex:animated:
  */
 
 
