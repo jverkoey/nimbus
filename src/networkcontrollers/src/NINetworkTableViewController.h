@@ -27,6 +27,7 @@
 - (id)initWithTableViewStyle:(UITableViewStyle)tableViewStyle activityIndicatorStyle:(UIActivityIndicatorViewStyle)activityIndicatorStyle;
 
 @property (nonatomic, readwrite, retain) UITableView* tableView;
+@property (nonatomic, readwrite, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, readwrite, assign) BOOL clearsSelectionOnViewWillAppear; // Default: YES
 
 - (void)setIsLoading:(BOOL)isLoading;
