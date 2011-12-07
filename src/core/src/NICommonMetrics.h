@@ -60,16 +60,16 @@
  *      @{
  */
 
-#ifndef UIViewAutoresizingFlexibleAllMargins
-#define UIViewAutoresizingFlexibleAllMargins (UIViewAutoresizingFlexibleLeftMargin \
-                                              | UIViewAutoresizingFlexibleTopMargin \
-                                              | UIViewAutoresizingFlexibleRightMargin \
-                                              | UIViewAutoresizingFlexibleBottomMargin)
+#ifndef UIViewAutoresizingFlexibleMargins
+#define UIViewAutoresizingFlexibleMargins (UIViewAutoresizingFlexibleLeftMargin \
+                                           | UIViewAutoresizingFlexibleTopMargin \
+                                           | UIViewAutoresizingFlexibleRightMargin \
+                                           | UIViewAutoresizingFlexibleBottomMargin)
 #endif
 
-#ifndef UIViewAutoresizingFlexibleAllDimensions
-#define UIViewAutoresizingFlexibleAllDimensions (UIViewAutoresizingFlexibleWidth \
-                                                 | UIViewAutoresizingFlexibleHeight)
+#ifndef UIViewAutoresizingFlexibleDimensions
+#define UIViewAutoresizingFlexibleDimensions (UIViewAutoresizingFlexibleWidth \
+                                              | UIViewAutoresizingFlexibleHeight)
 #endif
 
 /**
