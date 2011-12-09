@@ -65,6 +65,7 @@
 @property (readwrite, assign) id<NIOperationDelegate> delegate;
 @property (readonly, retain) NSError* lastError;
 @property (readwrite, assign) NSInteger tag;
+@property (nonatomic, retain) NSDictionary* responseHeaders;
 
 
 #if NS_BLOCKS_AVAILABLE

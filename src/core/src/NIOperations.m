@@ -30,7 +30,7 @@
 @synthesize timeout = _timeout;
 @synthesize data = _data;
 @synthesize processedObject = _processedObject;
-
+@synthesize responseHeaders;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
@@ -101,7 +101,8 @@
     NSData* data  = [NSURLConnection sendSynchronousRequest:request
                                           returningResponse:&response
                                                       error:&networkError];
-
+    [self setResponseHeaders:[response allHeaderFields]];
+      
     if (nil != networkError) {
       [self operationDidFailWithError:networkError];
 
