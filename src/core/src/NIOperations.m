@@ -97,7 +97,7 @@
                                          timeoutInterval:self.timeout];
 
     NSError* networkError = nil;
-    NSURLResponse* response = nil;
+    NSHTTPURLResponse* response = nil;
     NSData* data  = [NSURLConnection sendSynchronousRequest:request
                                           returningResponse:&response
                                                       error:&networkError];
