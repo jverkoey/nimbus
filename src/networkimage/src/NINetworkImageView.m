@@ -235,12 +235,19 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)operationDidFinish:(NINetworkImageRequest *)operation {
-  [self _didFinishLoadingWithImage:operation.imageCroppedAndSizedForDisplay
+    if([[operation.responseHeaders objectForKey:@"Content-Type"] isEqualToString:@"image/png"] || [[operation.responseHeaders objectForKey:@"Content-Type"] isEqualToString:@"image/jpg"] || [[operation.responseHeaders objectForKey:@"Content-Type"] isEqualToString:@"image/jpeg"])
+    {
+        [self _didFinishLoadingWithImage:operation.imageCroppedAndSizedForDisplay
                    cacheIdentifier:operation.cacheIdentifier
                        displaySize:operation.imageDisplaySize
                        contentMode:operation.imageContentMode
                       scaleOptions:operation.scaleOptions
                     expirationDate:nil];
+    }
+    else
+    {
+        [self operationDidFail:operation withError:[NSError errorWithDomain:@"Nimbus" code:0 userInfo:[NSDictionary dictionaryWithObject:@"data was not image" forKey:@"data"]]];
+    }
 }
 
 
@@ -270,7 +277,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)networkImageViewDidFailToLoad:(NSError *)error {
-  // No-op. Meant to be overridden.
+    if ([self.delegate respondsToSelector:@selector(networkImageViewDidFailLoad:)]) {
+        [self.delegate networkImageViewDidFailLoad:self];
+    }
 }
 
 
