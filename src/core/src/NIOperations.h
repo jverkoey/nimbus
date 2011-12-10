@@ -65,7 +65,6 @@
 @property (readwrite, assign) id<NIOperationDelegate> delegate;
 @property (readonly, retain) NSError* lastError;
 @property (readwrite, assign) NSInteger tag;
-@property (nonatomic, retain) NSDictionary* responseHeaders;
 
 
 #if NS_BLOCKS_AVAILABLE
@@ -111,6 +110,7 @@
 @property (readwrite, assign) NSTimeInterval timeout;
 @property (readonly, retain) NSData* data;
 @property (readwrite, retain) id processedObject;
+@property (readonly, retain) NSDictionary* responseHeaders;
 
 @end
 
