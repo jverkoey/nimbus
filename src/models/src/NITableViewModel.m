@@ -25,8 +25,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NITableViewModel()
 
-@property (nonatomic, readwrite, copy) NSArray* sections;
-
 - (void)_resetCompiledData;
 - (void)_compileDataWithListArray:(NSArray *)listArray;
 - (void)_compileDataWithSectionedArray:(NSArray *)sectionedArray;

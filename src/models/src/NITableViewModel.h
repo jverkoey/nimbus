@@ -68,6 +68,7 @@ typedef enum {
   NSArray* _sectionIndexTitles;
   NSDictionary* _sectionPrefixToSectionIndex;
 }
+@property (nonatomic, retain) NSArray *sections;
 
 #pragma mark Creating Table View Models
 
