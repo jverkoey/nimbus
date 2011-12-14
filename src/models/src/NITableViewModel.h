@@ -26,6 +26,21 @@ typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* t
 
 #pragma mark Sectioned Array Objects
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@interface NITableViewModelSection : NSObject
+
++ (id)section;
+
+@property (nonatomic, readwrite, copy) NSString* headerTitle;
+@property (nonatomic, readwrite, copy) NSString* footerTitle;
+@property (nonatomic, readwrite, copy) NSArray* rows;
+
+@end
+
+
 // Classes used when creating NITableViewModels.
 @class NITableViewModelFooter;  // Provides the information for a footer.
 
@@ -53,6 +68,7 @@ typedef enum {
   NSArray* _sectionIndexTitles;
   NSDictionary* _sectionPrefixToSectionIndex;
 }
+@property (nonatomic, retain) NSArray *sections;
 
 #pragma mark Creating Table View Models
 
