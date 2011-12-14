@@ -46,13 +46,7 @@ typedef enum {
  *
  *      @ingroup TableViewModels
  */
-@interface NITableViewModel : NSObject <UITableViewDataSource> {
-@private
-  // Compiled Information
-  NSArray* _sections;  // Array of internal section objects
-  NSArray* _sectionIndexTitles;
-  NSDictionary* _sectionPrefixToSectionIndex;
-}
+@interface NITableViewModel : NSObject <UITableViewDataSource>
 
 #pragma mark Creating Table View Models
 

@@ -33,6 +33,7 @@
 /* Begin PBXBuildFile section */
 		6623EB6D1402ECE400E0E61A /* NITableViewModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6623EB6C1402ECE400E0E61A /* NITableViewModelTests.m */; };
 		6623EB721402EDB100E0E61A /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0913E6E85E00B514F3 /* libNimbusCore.a */; };
+		6626330C14995C4600B99898 /* NITableViewModel+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 6626330B14995C4600B99898 /* NITableViewModel+Private.h */; };
 		663B52401445052700CC26DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		663B524D1445052800CC26DF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		663B524E1445052800CC26DF /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -429,6 +430,7 @@
 
 /* Begin PBXFileReference section */
 		6623EB6C1402ECE400E0E61A /* NITableViewModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewModelTests.m; sourceTree = "<group>"; };
+		6626330B14995C4600B99898 /* NITableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NITableViewModel+Private.h"; sourceTree = "<group>"; };
 		66325D5613EB0301008D6EAD /* HACKERS.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = HACKERS.mdown; path = ../HACKERS.mdown; sourceTree = "<group>"; };
 		66325D5713EB0302008D6EAD /* README.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.mdown; path = ../README.mdown; sourceTree = "<group>"; };
 		663B523F1445052700CC26DF /* libNimbusPagingScrollView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusPagingScrollView.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1501,6 +1503,7 @@
 				66FE7D6413FB83620061B987 /* NimbusModels.h */,
 				66FE7D6513FB83620061B987 /* NITableViewModel.h */,
 				66FE7D6613FB83620061B987 /* NITableViewModel.m */,
+				6626330B14995C4600B99898 /* NITableViewModel+Private.h */,
 				667A749913FE20BD009D277D /* NIFormCellCatalog.h */,
 				667A749A13FE20BD009D277D /* NIFormCellCatalog.m */,
 				667A749B13FE20BD009D277D /* NICellFactory.h */,
@@ -1605,6 +1608,7 @@
 				66FE7D6C13FB83620061B987 /* NITableViewModel.h in Headers */,
 				667A749F13FE20BD009D277D /* NIFormCellCatalog.h in Headers */,
 				667A74A113FE20BD009D277D /* NICellFactory.h in Headers */,
+				6626330C14995C4600B99898 /* NITableViewModel+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
