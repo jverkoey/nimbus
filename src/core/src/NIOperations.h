@@ -107,14 +107,15 @@
 - (id)initWithURL:(NSURL *)url;
 
 @property (readwrite, copy) NSURL* url;
-@property (readwrite, assign) NSTimeInterval timeout;
+@property (readwrite, assign) NSTimeInterval timeout; // Default: 60
+@property (readwrite, assign) NSURLRequestCachePolicy cachePolicy; // Default: NSURLRequestUseProtocolCachePolicy
 @property (readonly, retain) NSData* data;
 @property (readwrite, retain) id processedObject;
 
 @end
 
 /**
- * The delegate protocol for an NSOperation.
+ * The delegate protocol for an NIOperation.
  *
  *      @ingroup Operations
  */
@@ -276,6 +277,18 @@
  * The url that will be loaded in the network operation.
  *
  *      @fn NINetworkRequestOperation::url
+ */
+
+/**
+ * The number of seconds that may pass before a request gives up and fails.
+ *
+ *      @fn NINetworkRequestOperation::timeout
+ */
+
+/**
+ * The request cache policy to use.
+ *
+ *      @fn NINetworkRequestOperation::cachePolicy
  */
 
 
