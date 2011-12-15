@@ -127,13 +127,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder *)aDecoder {
-  if ((self = [super initWithCoder:aDecoder])) {
-    if (nil != self.image) {
-      self.initialImage = self.image;
+    if ((self = [super initWithCoder:aDecoder])) {
+        if (nil != self.image) {
+            self.initialImage = self.image;
+        }
+        [self assignDefaults];
     }
-    [self assignDefaults];
-  }
-  return self;
+    return self;
 }
 
 
@@ -193,22 +193,25 @@
                        contentMode: (UIViewContentMode)contentMode
                       scaleOptions: (NINetworkImageViewScaleOptions)scaleOptions
                     expirationDate: (NSDate *)expirationDate {
-  // Store the result image in the memory cache.
-  if (nil != self.imageMemoryCache) {
-    NSString* cacheKey = [self cacheKeyForURL: url
-                                    imageSize: displaySize
-                                  contentMode: contentMode
-                                 scaleOptions: scaleOptions];
+  // Store and display only if a valid image is returned
+  if (image) {
+    // Store the result image in the memory cache.
+    if (nil != self.imageMemoryCache) {
+      NSString* cacheKey = [self cacheKeyForURL: url
+                                      imageSize: displaySize
+                                    contentMode: contentMode
+                                   scaleOptions: scaleOptions];
 
-    // Store the image in the memory cache, possibly with an expiration date.
-    [self.imageMemoryCache storeObject: image
-                              withName: cacheKey
-                          expiresAfter: expirationDate];
+      // Store the image in the memory cache, possibly with an expiration date.
+      [self.imageMemoryCache storeObject: image
+                                withName: cacheKey
+                            expiresAfter: expirationDate];
+    }
+
+    // Display the new image.
+    [self setImage:image];
   }
-
-  // Display the new image.
-  [self setImage:image];
-
+    
   self.operation = nil;
 
   if ([self.delegate respondsToSelector:@selector(networkImageView:didLoadImage:)]) {

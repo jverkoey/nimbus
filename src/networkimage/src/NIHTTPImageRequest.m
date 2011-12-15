@@ -116,22 +116,24 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)requestFinished {
   NSData* responseData = [self responseData];
+    
   UIImage* image = [[UIImage alloc] initWithData:responseData];
 
   // Clear out the data as quickly as we can. We never use the response data in the
   // NINetworkImageView object, so this avoids doubling our memory on every thread.
   [self setRawResponseData:nil];
 
-  // Slice it, dice it!
-  [self setImageCroppedAndSizedForDisplay:[[self class] imageFromSource: image
-                                                        withContentMode: self.imageContentMode
-                                                               cropRect: self.imageCropRect
-                                                            displaySize: self.imageDisplaySize
-                                                           scaleOptions: self.scaleOptions
-                                                   interpolationQuality: self.interpolationQuality]];
+  // Slice it, dice it! (only with a valid image!)
+  if (image) {
+    [self setImageCroppedAndSizedForDisplay:[[self class] imageFromSource: image
+                                                          withContentMode: self.imageContentMode
+                                                                 cropRect: self.imageCropRect
+                                                              displaySize: self.imageDisplaySize
+                                                             scaleOptions: self.scaleOptions
+                                                     interpolationQuality: self.interpolationQuality]];
 
+  }
   NI_RELEASE_SAFELY(image);
-
   [super requestFinished];
 }
 
