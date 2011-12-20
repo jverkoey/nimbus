@@ -45,6 +45,14 @@ NSString* NIPathForBundleResource(NSBundle* bundle, NSString* relativePath);
 NSString* NIPathForDocumentsResource(NSString* relativePath);
 
 
+/**
+ * Create a path with the caches directory and the relative path appended.
+ *
+ *      @returns The caches path concatenated with the given relative path.
+ */
+NSString* NIPathForCachesResource(NSString* relativePath);
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Paths ////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
