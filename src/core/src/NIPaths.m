@@ -40,8 +40,7 @@ NSString* NIPathForDocumentsResource(NSString* relativePath) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSString* NIPathForCachesResource(NSString* relativePath)
-{
+NSString* NIPathForCachesResource(NSString* relativePath) {
   static NSString* cachesPath = nil;
   if (nil == cachesPath) {
     NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
