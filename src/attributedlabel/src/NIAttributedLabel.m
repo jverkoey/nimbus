@@ -629,7 +629,7 @@
             highlightRect = linkRect;
 
           } else {
-            highlightRect = CGRectUnion(rect, linkRect);
+            highlightRect = CGRectUnion(highlightRect, linkRect);
           }
         }
 
