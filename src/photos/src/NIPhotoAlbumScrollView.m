@@ -200,8 +200,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setPhotoViewBackgroundColor:(UIColor *)photoViewBackgroundColor {
   if (_photoViewBackgroundColor != photoViewBackgroundColor) {
-    [_photoViewBackgroundColor release];
-    _photoViewBackgroundColor = [photoViewBackgroundColor retain];
+      self.photoViewBackgroundColor = nil;
+      self.photoViewBackgroundColor = photoViewBackgroundColor;
     
     for (UIView<NIPagingScrollViewPage>* page in self.visiblePages) {
       page.backgroundColor = photoViewBackgroundColor;
