@@ -16,6 +16,8 @@
 
 #import "NIFormCellCatalog.h"
 
+#import "NITableViewModel+Private.h"
+
 #import "NimbusCore.h"
 
 
@@ -450,11 +452,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NITableViewModel (NIFormElementSearch)
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)elementWithID:(NSInteger)elementID {
-  for (NITableViewModelSection* section in _sections) {
-    NSArray* rows = [section performSelector:@selector(rows)];
-    for (NIFormElement* element in rows) {
+  for (NITableViewModelSection* section in self.sections) {
+    for (NIFormElement* element in section.rows) {
       if (![element isKindOfClass:[NIFormElement class]]) {
         continue;
       }
