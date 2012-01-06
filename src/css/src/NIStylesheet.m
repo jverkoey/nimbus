@@ -253,10 +253,21 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className {
+  NICSSRuleset *ruleset = [self rulesetForClassName:className];
+  if (nil != ruleset) {
+    [self applyRuleSet:ruleset toView:view];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NICSSRuleset *)rulesetForClassName:(NSString *)className {
+  NICSSRuleset* ruleSet = nil;
+
   NSArray* selectors = [_significantScopeToScopes objectForKey:className];
   if ([selectors count] > 0) {
     // Gather all of the rule sets for this view into a composite rule set.
-    NICSSRuleset* ruleSet = [_ruleSets objectForKey:className];
+    ruleSet = [_ruleSets objectForKey:className];
 
     if (nil == ruleSet) {
       ruleSet = [[NICSSRuleset alloc] init];
@@ -268,11 +279,11 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
 
       NIDASSERT(nil != _ruleSets);
       [_ruleSets setObject:ruleSet forKey:className];
-      [ruleSet release]; // We can release the ruleSet because it's retained by the dictionary.
+      [ruleSet autorelease]; // We can release the ruleSet because it's retained by the dictionary.
     }
-
-    [self applyRuleSet:ruleSet toView:view];
   }
+
+  return ruleSet;
 }
 
 
