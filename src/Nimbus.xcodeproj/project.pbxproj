@@ -472,7 +472,7 @@
 		666F73B014BBFF6300D1A32F /* NimbusPagingScrollView+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusPagingScrollView+Namespace.h"; sourceTree = "<group>"; };
 		666F73B214BBFFAA00D1A32F /* NimbusPhotos+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusPhotos+Namespace.h"; sourceTree = "<group>"; };
 		666F73B414BBFFC100D1A32F /* NimbusWebController+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusWebController+Namespace.h"; sourceTree = "<group>"; };
-		666F73B614BBFFD600D1A32F /* generate_framework_header */ = {isa = PBXFileReference; lastKnownFileType = text; name = generate_framework_header; path = ../scripts/generate_framework_header; sourceTree = "<group>"; };
+		666F73B614BBFFD600D1A32F /* generate_namespace_header */ = {isa = PBXFileReference; name = generate_namespace_header; path = ../scripts/generate_namespace_header; sourceTree = "<group>"; };
 		6675722913E765BF0076F555 /* libNimbusOverview.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusOverview.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675723613E765BF0076F555 /* NimbusOverviewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusOverviewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675724F13E765F70076F555 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = overview/deps; sourceTree = SOURCE_ROOT; };
@@ -1245,7 +1245,7 @@
 				66A03DFC13E6FE1800B514F3 /* DONORS */,
 				6661BB0813F0B37000D14F92 /* LICENSE */,
 				6661BB0A13F0B38D00D14F92 /* NOTICE */,
-				666F73B614BBFFD600D1A32F /* generate_framework_header */,
+				666F73B614BBFFD600D1A32F /* generate_namespace_header */,
 				DB3A230B13FD4B8E00614220 /* NimbusAttributedLabel */,
 				66A03C0E13E6E85E00B514F3 /* NimbusCore */,
 				66C3A6A3143D61130048542F /* NimbusCss */,
@@ -2438,7 +2438,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/generate_framework_header";
+			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
 		666F739214BBFD3D00D1A32F /* ShellScript */ = {
@@ -2451,7 +2451,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/generate_framework_header";
+			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
 		666F739414BBFD4800D1A32F /* ShellScript */ = {
@@ -2464,7 +2464,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/generate_framework_header";
+			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
 		666F739514BBFD4F00D1A32F /* ShellScript */ = {
@@ -2477,7 +2477,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/generate_framework_header";
+			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
 		666F739614BBFD5500D1A32F /* ShellScript */ = {
@@ -2490,7 +2490,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/generate_framework_header";
+			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
 		666F739714BBFD5A00D1A32F /* ShellScript */ = {
@@ -2503,7 +2503,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/generate_framework_header";
+			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
 		666F739814BBFD5F00D1A32F /* ShellScript */ = {
@@ -2516,7 +2516,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/generate_framework_header";
+			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
 		666F739914BBFD6400D1A32F /* ShellScript */ = {
@@ -2529,7 +2529,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/generate_framework_header";
+			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
 		666F739A14BBFD6900D1A32F /* ShellScript */ = {
@@ -2542,7 +2542,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/generate_framework_header";
+			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
 		666F739B14BBFD6E00D1A32F /* ShellScript */ = {
@@ -2555,7 +2555,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/generate_framework_header";
+			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
 		666F739C14BBFD7400D1A32F /* ShellScript */ = {
@@ -2568,7 +2568,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/generate_framework_header";
+			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
 		666F739D14BBFD7B00D1A32F /* ShellScript */ = {
@@ -2581,7 +2581,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/generate_framework_header";
+			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
 		6675723413E765BF0076F555 /* ShellScript */ = {
