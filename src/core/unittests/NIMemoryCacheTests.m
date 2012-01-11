@@ -43,7 +43,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testInitialization {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   STAssertEquals([cache count], (NSUInteger)0, @"Cache should be empty after initialization.");
 }
@@ -51,7 +51,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testSingleObjectNoExpiration {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   id cacheObject1 = [NSArray array];
   [cache storeObject:cacheObject1 withName:@"obj1"];
@@ -63,7 +63,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testMultipleObjectsNoExpiration {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   id cacheObject1 = [NSArray array];
   [cache storeObject:cacheObject1 withName:@"obj1"];
@@ -79,7 +79,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testRemovingSingleObject {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   id cacheObject1 = [NSArray array];
   [cache storeObject:cacheObject1 withName:@"obj1"];
@@ -92,7 +92,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testRemovingAllObjects {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   id cacheObject1 = [NSArray array];
   [cache storeObject:cacheObject1 withName:@"obj1"];
@@ -108,7 +108,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testSingleObjectWithFutureExpiration {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   id cacheObject1 = [NSArray array];
   [cache storeObject: cacheObject1
@@ -121,7 +121,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testMultipleObjectsWithFutureExpiration {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   id cacheObject1 = [NSArray array];
   [cache storeObject: cacheObject1
@@ -139,7 +139,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testSingleObjectWithPastExpiration {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   id cacheObject1 = [NSArray array];
   [cache storeObject: cacheObject1
@@ -152,7 +152,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testMultipleObjectsWithPastExpiration {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   id cacheObject1 = [NSArray array];
   [cache storeObject: cacheObject1
@@ -170,7 +170,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testSingleObjectWithExpiredUpdate {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   id cacheObject1 = [NSArray array];
   [cache storeObject: cacheObject1
@@ -186,7 +186,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testSingleObjectWithNonExpiredUpdate {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   id cacheObject1 = [NSArray array];
   [cache storeObject: cacheObject1
@@ -202,7 +202,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testSingleObjectWithExpiration {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   id cacheObject1 = [NSArray array];
   [cache storeObject: cacheObject1
@@ -230,7 +230,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testHasObject {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   id cacheObject1 = [NSArray array];
   [cache storeObject:cacheObject1 withName:@"obj1"];
@@ -243,7 +243,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testAccessTimeModifications {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   id cacheObject1 = [NSArray array];
   [cache storeObject:cacheObject1 withName:@"obj1"];
@@ -266,7 +266,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLeastAndMostRecentlyUsedObjects {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   STAssertNil([cache nameOfLeastRecentlyUsedObject],
               @"There should not be a least-recently-used object.");
@@ -297,7 +297,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testReduceMemoryUsage {
-  NIMemoryCache* cache = [[[NIMemoryCache alloc] init] autorelease];
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
   id cacheObject1 = [NSArray array];
   [cache storeObject: cacheObject1
@@ -350,7 +350,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testImageCacheNoLimit {
-  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+  NIImageMemoryCache* cache = [[NIImageMemoryCache alloc] init];
 
   UIImage* img1 = [self emptyImageWithSize:CGSizeMake(100, 100)];
   UIImage* img2 = [self emptyImageWithSize:CGSizeMake(100, 100)];
@@ -370,8 +370,8 @@
 - (void)testImageCacheNils {
   // Disable NIDASSERTs from breaking the program execution.
   NIDebugAssertionsShouldBreak = NO;
-
-  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+  
+  NIImageMemoryCache* cache = [[NIImageMemoryCache alloc] init];
 
   [cache storeObject: nil
             withName: @"obj1"];
@@ -421,7 +421,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testImageCacheStoreTooMuch {
-  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+  NIImageMemoryCache* cache = [[NIImageMemoryCache alloc] init];
 
   static const NSUInteger numberOfPixelsInOneImage = 100 * 100;
   cache.maxNumberOfPixels = numberOfPixelsInOneImage;
@@ -444,7 +444,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testImageCacheReduceMemoryUsage {
-  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+  NIImageMemoryCache* cache = [[NIImageMemoryCache alloc] init];
 
   static const NSUInteger numberOfPixelsInOneImage = 100 * 100;
   cache.maxNumberOfPixels = numberOfPixelsInOneImage * 2;
@@ -473,7 +473,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testImageCacheReduceMemoryUsageWithAccess {
-  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+  NIImageMemoryCache* cache = [[NIImageMemoryCache alloc] init];
 
   static const NSUInteger numberOfPixelsInOneImage = 100 * 100;
   cache.maxNumberOfPixels = numberOfPixelsInOneImage * 2;
@@ -504,7 +504,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testImageCacheReduceMemoryUsageWithThrashingAccess {
-  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+  NIImageMemoryCache* cache = [[NIImageMemoryCache alloc] init];
 
   static const NSUInteger numberOfPixelsInOneImage = 100 * 100;
   cache.maxNumberOfPixels = numberOfPixelsInOneImage * 2;
@@ -537,7 +537,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testImageCacheStoringWithTinyLimit {
-  NIImageMemoryCache* cache = [[[NIImageMemoryCache alloc] init] autorelease];
+  NIImageMemoryCache* cache = [[NIImageMemoryCache alloc] init];
 
   cache.maxNumberOfPixels = 1;
 

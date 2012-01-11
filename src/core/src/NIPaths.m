@@ -46,7 +46,7 @@ NSString* NIPathForCachesResource(NSString* relativePath) {
     NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
                                                         NSUserDomainMask,
                                                         YES);
-    cachesPath = [[dirs objectAtIndex:0] retain];
+    cachesPath = [dirs objectAtIndex:0];
   }
   return [cachesPath stringByAppendingPathComponent:relativePath];
 }

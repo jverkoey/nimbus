@@ -28,6 +28,12 @@
 #ifndef NILinkedListEnumerator
 #define NILinkedListEnumerator __NIMBUS_NAMESPACE_PREFIX_##NILinkedListEnumerator
 #endif
+#ifndef NILinkedListLocation
+#define NILinkedListLocation __NIMBUS_NAMESPACE_PREFIX_##NILinkedListLocation
+#endif
+#ifndef NILinkedListNode
+#define NILinkedListNode __NIMBUS_NAMESPACE_PREFIX_##NILinkedListNode
+#endif
 #ifndef NIMemoryCache
 #define NIMemoryCache __NIMBUS_NAMESPACE_PREFIX_##NIMemoryCache
 #endif
@@ -107,23 +113,17 @@
 #ifndef NIStatusBarAnimationDuration
 #define NIStatusBarAnimationDuration __NIMBUS_NAMESPACE_PREFIX_##NIStatusBarAnimationDuration
 #endif
-#ifndef NIPathForDocumentsResource
-#define NIPathForDocumentsResource __NIMBUS_NAMESPACE_PREFIX_##NIPathForDocumentsResource
-#endif
-#ifndef NIIsSetWithObjects
-#define NIIsSetWithObjects __NIMBUS_NAMESPACE_PREFIX_##NIIsSetWithObjects
-#endif
-#ifndef NINetworkActivityTaskDidFinish
-#define NINetworkActivityTaskDidFinish __NIMBUS_NAMESPACE_PREFIX_##NINetworkActivityTaskDidFinish
-#endif
 #ifndef NIStatusBarBoundsChangeAnimationCurve
 #define NIStatusBarBoundsChangeAnimationCurve __NIMBUS_NAMESPACE_PREFIX_##NIStatusBarBoundsChangeAnimationCurve
 #endif
 #ifndef NIStatusBarBoundsChangeAnimationDuration
 #define NIStatusBarBoundsChangeAnimationDuration __NIMBUS_NAMESPACE_PREFIX_##NIStatusBarBoundsChangeAnimationDuration
 #endif
-#ifndef NIDeviceOSVersionIsAtLeast
-#define NIDeviceOSVersionIsAtLeast __NIMBUS_NAMESPACE_PREFIX_##NIDeviceOSVersionIsAtLeast
+#ifndef NINetworkActivityTaskDidFinish
+#define NINetworkActivityTaskDidFinish __NIMBUS_NAMESPACE_PREFIX_##NINetworkActivityTaskDidFinish
+#endif
+#ifndef NIIsSetWithObjects
+#define NIIsSetWithObjects __NIMBUS_NAMESPACE_PREFIX_##NIIsSetWithObjects
 #endif
 #ifndef NIRectShift
 #define NIRectShift __NIMBUS_NAMESPACE_PREFIX_##NIRectShift
@@ -131,50 +131,56 @@
 #ifndef NIStatusBarHeight
 #define NIStatusBarHeight __NIMBUS_NAMESPACE_PREFIX_##NIStatusBarHeight
 #endif
-#ifndef NIScreenScale
-#define NIScreenScale __NIMBUS_NAMESPACE_PREFIX_##NIScreenScale
+#ifndef NIDeviceOSVersionIsAtLeast
+#define NIDeviceOSVersionIsAtLeast __NIMBUS_NAMESPACE_PREFIX_##NIDeviceOSVersionIsAtLeast
+#endif
+#ifndef NIPathForDocumentsResource
+#define NIPathForDocumentsResource __NIMBUS_NAMESPACE_PREFIX_##NIPathForDocumentsResource
 #endif
 #ifndef NIRotateTransformForOrientation
 #define NIRotateTransformForOrientation __NIMBUS_NAMESPACE_PREFIX_##NIRotateTransformForOrientation
 #endif
-#ifndef NIIsStringWithAnyText
-#define NIIsStringWithAnyText __NIMBUS_NAMESPACE_PREFIX_##NIIsStringWithAnyText
-#endif
-#ifndef NIPathForCachesResource
-#define NIPathForCachesResource __NIMBUS_NAMESPACE_PREFIX_##NIPathForCachesResource
+#ifndef NIScreenScale
+#define NIScreenScale __NIMBUS_NAMESPACE_PREFIX_##NIScreenScale
 #endif
 #ifndef NIRectInset
 #define NIRectInset __NIMBUS_NAMESPACE_PREFIX_##NIRectInset
 #endif
+#ifndef NIIsStringWithAnyText
+#define NIIsStringWithAnyText __NIMBUS_NAMESPACE_PREFIX_##NIIsStringWithAnyText
+#endif
 #ifndef NIDeviceRotationDuration
 #define NIDeviceRotationDuration __NIMBUS_NAMESPACE_PREFIX_##NIDeviceRotationDuration
-#endif
-#ifndef NIUIPopoverControllerClass
-#define NIUIPopoverControllerClass __NIMBUS_NAMESPACE_PREFIX_##NIUIPopoverControllerClass
 #endif
 #ifndef NICellContentPadding
 #define NICellContentPadding __NIMBUS_NAMESPACE_PREFIX_##NICellContentPadding
 #endif
-#ifndef NIUITapGestureRecognizerClass
-#define NIUITapGestureRecognizerClass __NIMBUS_NAMESPACE_PREFIX_##NIUITapGestureRecognizerClass
+#ifndef NIPathForCachesResource
+#define NIPathForCachesResource __NIMBUS_NAMESPACE_PREFIX_##NIPathForCachesResource
+#endif
+#ifndef NIUIPopoverControllerClass
+#define NIUIPopoverControllerClass __NIMBUS_NAMESPACE_PREFIX_##NIUIPopoverControllerClass
 #endif
 #ifndef NIMakeNSRangeFromCFRange
 #define NIMakeNSRangeFromCFRange __NIMBUS_NAMESPACE_PREFIX_##NIMakeNSRangeFromCFRange
 #endif
-#ifndef NISwizzleMethodsForNetworkActivityDebugging
-#define NISwizzleMethodsForNetworkActivityDebugging __NIMBUS_NAMESPACE_PREFIX_##NISwizzleMethodsForNetworkActivityDebugging
+#ifndef NIUITapGestureRecognizerClass
+#define NIUITapGestureRecognizerClass __NIMBUS_NAMESPACE_PREFIX_##NIUITapGestureRecognizerClass
 #endif
 #ifndef boundf
 #define boundf __NIMBUS_NAMESPACE_PREFIX_##boundf
 #endif
+#ifndef NISwizzleMethodsForNetworkActivityDebugging
+#define NISwizzleMethodsForNetworkActivityDebugging __NIMBUS_NAMESPACE_PREFIX_##NISwizzleMethodsForNetworkActivityDebugging
+#endif
 #ifndef NIEnableNetworkActivityDebugging
 #define NIEnableNetworkActivityDebugging __NIMBUS_NAMESPACE_PREFIX_##NIEnableNetworkActivityDebugging
 #endif
-#ifndef NIDisableNetworkActivityDebugging
-#define NIDisableNetworkActivityDebugging __NIMBUS_NAMESPACE_PREFIX_##NIDisableNetworkActivityDebugging
-#endif
 #ifndef boundi
 #define boundi __NIMBUS_NAMESPACE_PREFIX_##boundi
+#endif
+#ifndef NIDisableNetworkActivityDebugging
+#define NIDisableNetworkActivityDebugging __NIMBUS_NAMESPACE_PREFIX_##NIDisableNetworkActivityDebugging
 #endif
 // Externs
 #ifndef NIMaxLogLevel
