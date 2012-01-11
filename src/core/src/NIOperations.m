@@ -28,6 +28,7 @@
 
 @synthesize url = _url;
 @synthesize timeout = _timeout;
+@synthesize cachePolicy = _cachePolicy;
 @synthesize data = _data;
 @synthesize processedObject = _processedObject;
 
@@ -37,6 +38,7 @@
   if ((self = [super init])) {
     self.url = url;
     self.timeout = 60;
+    self.cachePolicy = NSURLRequestUseProtocolCachePolicy;
   }
   return self;
 }
@@ -82,7 +84,7 @@
     [self operationDidStart];
 
     NSURLRequest* request = [NSURLRequest requestWithURL:self.url
-                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                             cachePolicy:self.cachePolicy
                                          timeoutInterval:self.timeout];
 
     NSError* networkError = nil;

@@ -17,6 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NimbusCore.h"
+
 /**
  * numberOfPages will be this value until reloadData is called.
  */
@@ -76,8 +78,8 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 
 #pragma mark State
 
-@property (nonatomic, readwrite, assign) NSInteger centerPageIndex; // Use setCenterPageIndex:animated: to animate to a given page.
-- (void)setCenterPageIndex:(NSInteger)centerPageIndex animated:(BOOL)animated;
+@property (nonatomic, readwrite, assign) NSInteger centerPageIndex; // Use moveToPageAtIndex:animated: to animate to a given page.
+- (void)setCenterPageIndex:(NSInteger)centerPageIndex animated:(BOOL)animated __NI_DEPRECATED_METHOD;
 
 @property (nonatomic, readonly, assign) NSInteger numberOfPages;
 
@@ -91,6 +93,7 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 - (BOOL)hasPrevious;
 - (void)moveToNextAnimated:(BOOL)animated;
 - (void)moveToPreviousAnimated:(BOOL)animated;
+- (void)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated;
 
 #pragma mark Rotating the Scroll View
 
@@ -178,6 +181,9 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 /**
  * Change the center page index with optional animation.
  *
+ * This method is deprecated in favor of
+ * @link NIPagingScrollView::moveToPageAtIndex:animated: moveToPageAtIndex:animated:@endlink
+ *
  *      @fn NIPagingScrollView::setCenterPageIndex:animated:
  */
 
@@ -217,6 +223,12 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
  * Move to the previous page if there is one.
  *
  *      @fn NIPagingScrollView::moveToPreviousAnimated:
+ */
+
+/**
+ * Move to the given page index with optional animation.
+ *
+ *      @fn NIPagingScrollView::moveToPageAtIndex:animated:
  */
 
 

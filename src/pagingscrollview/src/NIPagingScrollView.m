@@ -571,14 +571,14 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setCenterPageIndex:(NSInteger)centerPageIndex animated:(BOOL)animated {
-  [self moveToPageAtIndex:centerPageIndex animated:animated];
+- (void)setCenterPageIndex:(NSInteger)centerPageIndex {
+  [self moveToPageAtIndex:centerPageIndex animated:NO];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setCenterPageIndex:(NSInteger)centerPageIndex {
-  [self setCenterPageIndex:centerPageIndex animated:NO];
+- (void)setCenterPageIndex:(NSInteger)centerPageIndex animated:(BOOL)animated {
+  [self moveToPageAtIndex:centerPageIndex animated:animated];
 }
 
 

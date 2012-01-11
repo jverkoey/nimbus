@@ -116,6 +116,13 @@
 - (void)openRequest:(NSURLRequest*)request;
 
 /**
+ * Sets the visibility of the toolbar.
+ *
+ * If the toolbar is hidden then the web view will take up the controller's entire view.
+ */
+- (void)setToolbarHidden:(BOOL)hidden;
+
+/**
  * Sets the toolbar to the given color.
  */
 - (void)setToolbarTintColor:(UIColor*)color;

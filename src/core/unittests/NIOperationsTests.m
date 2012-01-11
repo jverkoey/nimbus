@@ -62,20 +62,21 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testReadFileFromDiskInitialization {
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"nimbus64x64.png");
-  NIReadFileFromDiskOperation* op = [[[NIReadFileFromDiskOperation alloc] initWithPathToFile:
-                                      pathToFile]
-                                     autorelease];
+  NINetworkRequestOperation* op = [[[NINetworkRequestOperation alloc] initWithURL:
+                                    [NSURL fileURLWithPath:pathToFile
+                                               isDirectory:NO]]
+                                   autorelease];
 
-  STAssertEquals(op.pathToFile, pathToFile, @"Path to the file should have been assigned.");
   STAssertNil(op.data, @"Data should be nil to start.");
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testReadFileFromDisk {
-  NIReadFileFromDiskOperation* op = [[[NIReadFileFromDiskOperation alloc] initWithPathToFile:
-                                      NIPathForBundleResource(_unitTestBundle, @"nimbus64x64.png")]
-                                     autorelease];
+  NINetworkRequestOperation* op = [[[NINetworkRequestOperation alloc] initWithURL:
+                                    [NSURL fileURLWithPath:NIPathForBundleResource(_unitTestBundle, @"nimbus64x64.png")
+                                               isDirectory:NO]]
+                                   autorelease];
 
   NSOperationQueue* queue = [[[NSOperationQueue alloc] init] autorelease];
 
@@ -94,9 +95,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testReadFileFromDiskFailure {
-  NIReadFileFromDiskOperation* op = [[[NIReadFileFromDiskOperation alloc] initWithPathToFile:
-                                      NIPathForBundleResource(_unitTestBundle, @"bogusfile.abc")]
-                                     autorelease];
+  NINetworkRequestOperation* op = [[[NINetworkRequestOperation alloc] initWithURL:
+                                    [NSURL fileURLWithPath:NIPathForBundleResource(_unitTestBundle, @"bogusfile.abc")
+                                               isDirectory:NO]]
+                                   autorelease];
 
   NSOperationQueue* queue = [[[NSOperationQueue alloc] init] autorelease];
 
@@ -113,9 +115,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testReadFileFromDiskWithDelegateSuccess {
-  NIReadFileFromDiskOperation* op = [[[NIReadFileFromDiskOperation alloc] initWithPathToFile:
-                                      NIPathForBundleResource(_unitTestBundle, @"nimbus64x64.png")]
-                                     autorelease];
+  NINetworkRequestOperation* op = [[[NINetworkRequestOperation alloc] initWithURL:
+                                    [NSURL fileURLWithPath:NIPathForBundleResource(_unitTestBundle, @"nimbus64x64.png")
+                                               isDirectory:NO]]
+                                   autorelease];
 
   op.delegate = self;
 
@@ -135,9 +138,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testReadFileFromDiskWithDelegateFailure {
-  NIReadFileFromDiskOperation* op = [[[NIReadFileFromDiskOperation alloc] initWithPathToFile:
-                                      NIPathForBundleResource(_unitTestBundle, @"bogusfile.abc")]
-                                     autorelease];
+  NINetworkRequestOperation* op = [[[NINetworkRequestOperation alloc] initWithURL:
+                                    [NSURL fileURLWithPath:NIPathForBundleResource(_unitTestBundle, @"bogusfile.abc")
+                                               isDirectory:NO]]
+                                   autorelease];
 
   op.delegate = self;
 
@@ -166,9 +170,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testReadFileFromDiskWithBlocksSuccess {
-  NIReadFileFromDiskOperation* op = [[[NIReadFileFromDiskOperation alloc] initWithPathToFile:
-                                      NIPathForBundleResource(_unitTestBundle, @"nimbus64x64.png")]
-                                     autorelease];
+  NINetworkRequestOperation* op = [[[NINetworkRequestOperation alloc] initWithURL:
+                                    [NSURL fileURLWithPath:NIPathForBundleResource(_unitTestBundle, @"nimbus64x64.png")
+                                               isDirectory:NO]]
+                                   autorelease];
 
   __block BOOL didStart = NO;
   __block BOOL didFinish = NO;
@@ -191,9 +196,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testReadFileFromDiskWithBlocksFailure {
-  NIReadFileFromDiskOperation* op = [[[NIReadFileFromDiskOperation alloc] initWithPathToFile:
-                                      NIPathForBundleResource(_unitTestBundle, @"bogusfile.abc")]
-                                     autorelease];
+  NINetworkRequestOperation* op = [[[NINetworkRequestOperation alloc] initWithURL:
+                                    [NSURL fileURLWithPath:NIPathForBundleResource(_unitTestBundle, @"bogusfile.abc")
+                                               isDirectory:NO]]
+                                   autorelease];
 
   __block BOOL didStart = NO;
   __block BOOL didFail = NO;

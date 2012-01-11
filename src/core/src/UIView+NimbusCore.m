@@ -1,7 +1,7 @@
 //
 // Copyright 2011 Jeff Verkoeyen
 //
-// Forked from Three20 June 9, 2011 - Copyright 2009-2011 Facebook
+// Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,23 +16,22 @@
 // limitations under the License.
 //
 
-#import "NINonRetainingCollections.h"
+#import "UIView+NimbusCore.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSMutableArray* NICreateNonRetainingMutableArray(void) {
-  return (__bridge NSMutableArray *)CFArrayCreateMutable(nil, 0, nil);
-}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation UIView (NimbusCore)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSMutableDictionary* NICreateNonRetainingMutableDictionary(void) {
-  return (__bridge NSMutableDictionary *)CFDictionaryCreateMutable(nil, 0, nil, nil);
+- (void)centerWithin:(UIView *)otherView {
+  CGSize otherSize = otherView.frame.size;
+  CGSize size = self.frame.size;
+  self.frame = CGRectMake(floorf((otherSize.width - size.width) / 2.f),
+                          floorf((otherSize.height - size.height) / 2.f),
+                          size.width, size.height);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-NSMutableSet* NICreateNonRetainingMutableSet(void) {
-  return (__bridge NSMutableSet *)CFSetCreateMutable(nil, 0, nil);
-}
-
+@end

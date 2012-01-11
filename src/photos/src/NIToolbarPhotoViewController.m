@@ -493,7 +493,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)photoScrubberViewDidChangeSelection:(NIPhotoScrubberView *)photoScrubberView {
-  [self.photoAlbumView setCenterPageIndex:photoScrubberView.selectedPhotoIndex animated:NO];
+  [self.photoAlbumView moveToPageAtIndex:photoScrubberView.selectedPhotoIndex animated:NO];
 
   [self refreshChromeState];
 }

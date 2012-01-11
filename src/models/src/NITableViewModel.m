@@ -16,21 +16,9 @@
 
 #import "NITableViewModel.h"
 
+#import "NITableViewModel+Private.h"
+
 #import "NimbusCore.h"
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@interface NITableViewModel()
-
-@property (nonatomic, readwrite, copy) NSArray* sections;
-
-- (void)_resetCompiledData;
-- (void)_compileDataWithListArray:(NSArray *)listArray;
-- (void)_compileDataWithSectionedArray:(NSArray *)sectionedArray;
-
-@end
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,6 +27,8 @@
 @implementation NITableViewModel
 
 @synthesize sections = _sections;
+@synthesize sectionIndexTitles = _sectionIndexTitles;
+@synthesize sectionPrefixToSectionIndex = _sectionPrefixToSectionIndex;
 @synthesize sectionIndexType = _sectionIndexType;
 @synthesize sectionIndexShowsSearch = _sectionIndexShowsSearch;
 @synthesize sectionIndexShowsSummary = _sectionIndexShowsSummary;
@@ -82,6 +72,12 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)init {
+  return [self initWithDelegate:nil];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Compiling Data
@@ -89,9 +85,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_resetCompiledData {
-  _sections = nil;
-  _sectionIndexTitles = nil;
-  _sectionPrefixToSectionIndex = nil;
+  self.sections = nil;
+  self.sectionIndexTitles = nil;
+  self.sectionPrefixToSectionIndex = nil;
 }
 
 
@@ -101,8 +97,7 @@
 
   NITableViewModelSection* section = [NITableViewModelSection section];
   section.rows = listArray;
-  NSArray* sections = [[NSArray alloc] initWithObjects:section, nil];
-  self.sections = sections;
+  self.sections = [NSArray arrayWithObject:section];
 }
 
 
@@ -247,8 +242,8 @@
     }
   }
 
-  _sectionIndexTitles = [titles copy];
-  _sectionPrefixToSectionIndex = [sectionPrefixToSectionIndex copy];
+  self.sectionIndexTitles = titles;
+  self.sectionPrefixToSectionIndex = sectionPrefixToSectionIndex;
 }
 
 
@@ -260,15 +255,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return MAX(1, [_sections count]);
+  return MAX(1, self.sections.count);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-  NIDASSERT(section < [_sections count] || 0 == [_sections count]);
-  if (section < [_sections count]) {
-    return [[_sections objectAtIndex:section] headerTitle];
+  NIDASSERT(section < self.sections.count || 0 == self.sections.count);
+  if (section < self.sections.count) {
+    return [[self.sections objectAtIndex:section] headerTitle];
 
   } else {
     return nil;
@@ -278,9 +273,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-  NIDASSERT(section < [_sections count] || 0 == [_sections count]);
-  if (section < [_sections count]) {
-    return [[_sections objectAtIndex:section] footerTitle];
+  NIDASSERT(section < self.sections.count || 0 == self.sections.count);
+  if (section < self.sections.count) {
+    return [[self.sections objectAtIndex:section] footerTitle];
     
   } else {
     return nil;
@@ -297,15 +292,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-  return _sectionIndexTitles;
+  return self.sectionIndexTitles;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
   if (tableView.tableHeaderView) {
-    if (index == 0 && [_sectionIndexTitles count] > 0
-        && [_sectionIndexTitles objectAtIndex:0] == UITableViewIndexSearch)  {
+    if (index == 0 && [self.sectionIndexTitles count] > 0
+        && [self.sectionIndexTitles objectAtIndex:0] == UITableViewIndexSearch)  {
       // This is a hack to get the table header to appear when the user touches the
       // first row in the section index.  By default, it shows the first row, which is
       // not usually what you want.
@@ -315,16 +310,16 @@
   }
 
   NSString* letter = [title substringToIndex:1];
-  NSNumber* sectionIndex = [_sectionPrefixToSectionIndex objectForKey:letter];
+  NSNumber* sectionIndex = [self.sectionPrefixToSectionIndex objectForKey:letter];
   return (nil != sectionIndex) ? [sectionIndex intValue] : -1;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  NIDASSERT(section < [_sections count] || 0 == [_sections count]);
-  if (section < [_sections count]) {
-    return [[[_sections objectAtIndex:section] rows] count];
+  NIDASSERT(section < self.sections.count || 0 == self.sections.count);
+  if (section < self.sections.count) {
+    return [[[self.sections objectAtIndex:section] rows] count];
 
   } else {
     return 0;
@@ -346,10 +341,10 @@
 #endif
 
   if (nil == cell) {
-    cell = [self.delegate tableViewModel: self
-                        cellForTableView: tableView
-                             atIndexPath: indexPath
-                              withObject: object];
+    cell = [self.delegate tableViewModel:self
+                        cellForTableView:tableView
+                             atIndexPath:indexPath
+                              withObject:object];
   }
 
   return cell;
@@ -373,9 +368,9 @@
 
   id object = nil;
 
-  NIDASSERT(section < [_sections count]);
-  if (section < [_sections count]) {
-    NSArray* rows = [[_sections objectAtIndex:section] rows];
+  NIDASSERT(section < self.sections.count);
+  if (section < self.sections.count) {
+    NSArray* rows = [[self.sections objectAtIndex:section] rows];
 
     NIDASSERT(row < [rows count]);
     if (row < [rows count]) {

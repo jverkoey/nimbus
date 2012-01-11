@@ -17,6 +17,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol NICSSParserDelegate;
+@class NICSSRuleset;
 
 /**
  * The notification key for when a stylesheet has changed.
@@ -61,13 +62,15 @@ extern NSString* const NIStylesheetDidChangeNotification;
 
 - (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className;
 
+- (NICSSRuleset *)rulesetForClassName:(NSString *)className;
+
 @end
 
 
 /** @name Properties */
 
 /**
- * A set of filenames for the dependencies of this stylesheet.
+ * A set of NSString filenames for the @imports in this stylesheet.
  *
  *      @fn NIStylesheet::dependencies
  */
@@ -92,7 +95,7 @@ extern NSString* const NIStylesheetDidChangeNotification;
  */
 
 /**
- *      @fn NIStylesheet::loadFromPath:pathPrefix:
+ *      @fn NIStylesheet::loadFromPath:
  *      @sa NIStylesheet::loadFromPath:pathPrefix:delegate:
  */
 
@@ -115,6 +118,14 @@ extern NSString* const NIStylesheetDidChangeNotification;
  *
  *      @fn NIStylesheet::applyStyleToView:withClassName:
  *      @param view       The view for which styles should be applied.
+ *      @param className  Either the view's class as a string using NSStringFromClass([view class]);
+ *                        or a CSS class selector such as ".myClassSelector".
+ */
+
+/**
+ * Returns an autoreleased ruleset for the given class name.
+ *
+ *      @fn NIStylesheet::rulesetForClassName:
  *      @param className  Either the view's class as a string using NSStringFromClass([view class]);
  *                        or a CSS class selector such as ".myClassSelector".
  */
