@@ -21,6 +21,18 @@
  * @defgroup NimbusNetworkControllers Nimbus Network Controllers
  * @{
  *
+ * Whether you are loading data from the disk or from the network, it is important to present
+ * the fact that information is loading to your user. This ensures that your application feels
+ * responsive and also comforts the user by letting them know that your application is working
+ * on something.
+ *
+ * The Nimbus network controllers are designed to provide functionality for the most common states
+ * used when loading resources asynchronously. These states include:
+ *
+ * - Fresh load: when no data exists and we are loading new data.
+ * - Refresh load: when data exists and we are reloading new data.
+ * - Error: the previous request failed.
+ *
  */
 
 #import <Foundation/Foundation.h>

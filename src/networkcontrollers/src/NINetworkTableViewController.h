@@ -19,12 +19,13 @@
 /**
  * A table view controller that has a loading state.
  *
- * This table controller mimics UITableViewController in its implementation.
+ * This table controller mimics UITableViewController in its implementation and can be used as a
+ * drop-in replacement where necessary.
  */
 @interface NINetworkTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 // Designated initializer.
-- (id)initWithTableViewStyle:(UITableViewStyle)tableViewStyle activityIndicatorStyle:(UIActivityIndicatorViewStyle)activityIndicatorStyle;
+- (id)initWithStyle:(UITableViewStyle)style activityIndicatorStyle:(UIActivityIndicatorViewStyle)activityIndicatorStyle;
 
 @property (nonatomic, readwrite, retain) UITableView* tableView;
 @property (nonatomic, readwrite, retain) UIActivityIndicatorView *activityIndicator;
@@ -33,3 +34,12 @@
 - (void)setIsLoading:(BOOL)isLoading;
 
 @end
+
+/**
+ * Sets the loading state of the view controller.
+ *
+ *      @param isLoading When YES, the table view will be hidden and an activity indicator will be
+ *                       shown centered in the view controller's view.
+ *                       When NO, the table view will be shown and the activity indicator hidden.
+ *      @fn NINetworkTableViewController::setIsLoading:
+ */

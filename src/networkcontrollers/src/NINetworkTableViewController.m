@@ -46,10 +46,10 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithTableViewStyle:(UITableViewStyle)tableViewStyle activityIndicatorStyle:(UIActivityIndicatorViewStyle)activityIndicatorStyle {
+- (id)initWithStyle:(UITableViewStyle)style activityIndicatorStyle:(UIActivityIndicatorViewStyle)activityIndicatorStyle {
   if ((self = [super initWithNibName:nil bundle:nil])) {
+    self.tableViewStyle = style;
     self.activityIndicatorStyle = activityIndicatorStyle;
-    self.tableViewStyle = tableViewStyle;
     self.clearsSelectionOnViewWillAppear = YES;
   }
   return self;
@@ -58,8 +58,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  return [self initWithTableViewStyle:UITableViewStylePlain
-               activityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+  return [self initWithStyle:UITableViewStylePlain
+      activityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 }
 
 
@@ -85,6 +85,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
   self.tableView = nil;
+  self.activityIndicator = nil;
 
   [super viewDidUnload];
 }

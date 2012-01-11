@@ -219,6 +219,15 @@
 		66A03D5813E6F99400B514F3 /* NimbusNetworkImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D5213E6F99400B514F3 /* NimbusNetworkImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A03D5913E6F99400B514F3 /* NINetworkImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03D5313E6F99400B514F3 /* NINetworkImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A03D5A13E6F99400B514F3 /* NINetworkImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03D5413E6F99400B514F3 /* NINetworkImageView.m */; };
+		66A0B09A14BD1069003FA413 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
+		66A0B0A714BD1069003FA413 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
+		66A0B0A814BD1069003FA413 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
+		66A0B0A914BD1069003FA413 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
+		66A0B0AC14BD1069003FA413 /* libNimbusNetworkControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A0B09914BD1069003FA413 /* libNimbusNetworkControllers.a */; };
+		66A0B0B214BD1069003FA413 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 66A0B0B014BD1069003FA413 /* InfoPlist.strings */; };
+		66A0B0C214BD1116003FA413 /* NimbusNetworkControllers.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A0B0BF14BD1116003FA413 /* NimbusNetworkControllers.h */; };
+		66A0B0C314BD1116003FA413 /* NINetworkTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A0B0C014BD1116003FA413 /* NINetworkTableViewController.h */; };
+		66A0B0C414BD1116003FA413 /* NINetworkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A0B0C114BD1116003FA413 /* NINetworkTableViewController.m */; };
 		66B10900144C931F004576D1 /* UIButton+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */; };
 		66B10901144C931F004576D1 /* UIButton+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */; };
 		66C113E5147DD0F1003C9AC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
@@ -406,6 +415,13 @@
 			remoteGlobalIDString = 66A03D2613E6F97500B514F3;
 			remoteInfo = NimbusNetworkImage;
 		};
+		66A0B0AA14BD1069003FA413 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66A0B09814BD1069003FA413;
+			remoteInfo = NetworkControllers;
+		};
 		66C3A6B2143D61140048542F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
@@ -472,7 +488,7 @@
 		666F73B014BBFF6300D1A32F /* NimbusPagingScrollView+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusPagingScrollView+Namespace.h"; sourceTree = "<group>"; };
 		666F73B214BBFFAA00D1A32F /* NimbusPhotos+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusPhotos+Namespace.h"; sourceTree = "<group>"; };
 		666F73B414BBFFC100D1A32F /* NimbusWebController+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusWebController+Namespace.h"; sourceTree = "<group>"; };
-		666F73B614BBFFD600D1A32F /* generate_namespace_header */ = {isa = PBXFileReference; name = generate_namespace_header; path = ../scripts/generate_namespace_header; sourceTree = "<group>"; };
+		666F73B614BBFFD600D1A32F /* generate_namespace_header */ = {isa = PBXFileReference; lastKnownFileType = text; name = generate_namespace_header; path = ../scripts/generate_namespace_header; sourceTree = "<group>"; };
 		6675722913E765BF0076F555 /* libNimbusOverview.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusOverview.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675723613E765BF0076F555 /* NimbusOverviewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusOverviewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675724F13E765F70076F555 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = overview/deps; sourceTree = SOURCE_ROOT; };
@@ -505,7 +521,7 @@
 		667572AA13E7692F0076F555 /* NIToolbarPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIToolbarPhotoViewController.m; sourceTree = "<group>"; };
 		667572AC13E7692F0076F555 /* NimbusPhotosTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NimbusPhotosTests-Info.plist"; sourceTree = "<group>"; };
 		667572BD13E76F460076F555 /* libNimbusOperations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusOperations.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		667572CA13E76F460076F555 /* NimbusProcessorsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusProcessorsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		667572CA13E76F460076F555 /* NimbusProcessorsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = NimbusProcessorsTests.octest; path = NimbusOperationsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675731213E771380076F555 /* libNimbusInterapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusInterapp.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675731F13E771380076F555 /* NimbusInterappTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusInterappTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6675733713E7718B0076F555 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = interapp/deps; sourceTree = SOURCE_ROOT; };
@@ -651,6 +667,14 @@
 		66A03DF913E6FD3000B514F3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		66A03DFB13E6FE1700B514F3 /* AUTHORS */ = {isa = PBXFileReference; lastKnownFileType = text; name = AUTHORS; path = ../AUTHORS; sourceTree = "<group>"; };
 		66A03DFC13E6FE1800B514F3 /* DONORS */ = {isa = PBXFileReference; lastKnownFileType = text; name = DONORS; path = ../DONORS; sourceTree = "<group>"; };
+		66A0B09914BD1069003FA413 /* libNimbusNetworkControllers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusNetworkControllers.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		66A0B0A614BD1069003FA413 /* NimbusNetworkControllersTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusNetworkControllersTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66A0B0AF14BD1069003FA413 /* NetworkControllersTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NetworkControllersTests-Info.plist"; path = "NetworkControllersTests/NetworkControllersTests-Info.plist"; sourceTree = SOURCE_ROOT; };
+		66A0B0B114BD1069003FA413 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		66A0B0BF14BD1116003FA413 /* NimbusNetworkControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusNetworkControllers.h; path = networkcontrollers/src/NimbusNetworkControllers.h; sourceTree = SOURCE_ROOT; };
+		66A0B0C014BD1116003FA413 /* NINetworkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkTableViewController.h; path = networkcontrollers/src/NINetworkTableViewController.h; sourceTree = SOURCE_ROOT; };
+		66A0B0C114BD1116003FA413 /* NINetworkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkTableViewController.m; path = networkcontrollers/src/NINetworkTableViewController.m; sourceTree = SOURCE_ROOT; };
+		66A0B0C814BD1586003FA413 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = networkcontrollers/deps; sourceTree = SOURCE_ROOT; };
 		66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+NIStyleable.h"; path = "css/src/UIButton+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
 		66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+NIStyleable.m"; path = "css/src/UIButton+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		66B10906144D4C15004576D1 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = css/deps; sourceTree = SOURCE_ROOT; };
@@ -847,6 +871,25 @@
 				66A03D3513E6F97500B514F3 /* SenTestingKit.framework in Frameworks */,
 				66A03D3713E6F97500B514F3 /* Foundation.framework in Frameworks */,
 				66A03D3B13E6F97500B514F3 /* libNimbusNetworkImage.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66A0B09614BD1069003FA413 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66A0B09A14BD1069003FA413 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66A0B0A214BD1069003FA413 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66A0B0A714BD1069003FA413 /* SenTestingKit.framework in Frameworks */,
+				66A0B0A814BD1069003FA413 /* UIKit.framework in Frameworks */,
+				66A0B0A914BD1069003FA413 /* Foundation.framework in Frameworks */,
+				66A0B0AC14BD1069003FA413 /* libNimbusNetworkControllers.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1252,6 +1295,7 @@
 				6675731413E771380076F555 /* NimbusInterapp */,
 				66A03CC113E6F0ED00B514F3 /* NimbusLauncher */,
 				6661BBCE13F1A3BB00D14F92 /* NimbusModels */,
+				66A0B09B14BD1069003FA413 /* NimbusNetworkControllers */,
 				66A03D2913E6F97500B514F3 /* NimbusNetworkImage */,
 				667572BF13E76F460076F555 /* NimbusOperations */,
 				6675722B13E765BF0076F555 /* NimbusOverview */,
@@ -1291,6 +1335,8 @@
 				66C3A6AE143D61140048542F /* NimbusCssTests.octest */,
 				663B523F1445052700CC26DF /* libNimbusPagingScrollView.a */,
 				663B524C1445052800CC26DF /* NimbusPagingScrollViewTests.octest */,
+				66A0B09914BD1069003FA413 /* libNimbusNetworkControllers.a */,
+				66A0B0A614BD1069003FA413 /* NimbusNetworkControllersTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1485,6 +1531,36 @@
 				66A03D6013E6F9DF00B514F3 /* NimbusNetworkImageTests-Info.plist */,
 			);
 			name = resources;
+			sourceTree = "<group>";
+		};
+		66A0B09B14BD1069003FA413 /* NimbusNetworkControllers */ = {
+			isa = PBXGroup;
+			children = (
+				66A0B0C814BD1586003FA413 /* deps */,
+				66A0B0BD14BD1083003FA413 /* src */,
+				66A0B0BE14BD1087003FA413 /* unittests */,
+			);
+			name = NimbusNetworkControllers;
+			path = NetworkControllers;
+			sourceTree = "<group>";
+		};
+		66A0B0BD14BD1083003FA413 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				66A0B0BF14BD1116003FA413 /* NimbusNetworkControllers.h */,
+				66A0B0C014BD1116003FA413 /* NINetworkTableViewController.h */,
+				66A0B0C114BD1116003FA413 /* NINetworkTableViewController.m */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		66A0B0BE14BD1087003FA413 /* unittests */ = {
+			isa = PBXGroup;
+			children = (
+				66A0B0AF14BD1069003FA413 /* NetworkControllersTests-Info.plist */,
+				66A0B0B014BD1069003FA413 /* InfoPlist.strings */,
+			);
+			name = unittests;
 			sourceTree = "<group>";
 		};
 		66C3A6A3143D61130048542F /* NimbusCss */ = {
@@ -1741,6 +1817,15 @@
 				66A03D5813E6F99400B514F3 /* NimbusNetworkImage.h in Headers */,
 				66A03D5913E6F99400B514F3 /* NINetworkImageView.h in Headers */,
 				666F73AB14BBFEF400D1A32F /* NimbusNetworkImage+Namespace.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66A0B09714BD1069003FA413 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66A0B0C214BD1116003FA413 /* NimbusNetworkControllers.h in Headers */,
+				66A0B0C314BD1116003FA413 /* NINetworkTableViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2139,6 +2224,42 @@
 			productReference = 66A03D3413E6F97500B514F3 /* NimbusNetworkImageTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		66A0B09814BD1069003FA413 /* NimbusNetworkControllers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66A0B0BA14BD106A003FA413 /* Build configuration list for PBXNativeTarget "NimbusNetworkControllers" */;
+			buildPhases = (
+				66A0B09514BD1069003FA413 /* Sources */,
+				66A0B09614BD1069003FA413 /* Frameworks */,
+				66A0B09714BD1069003FA413 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NimbusNetworkControllers;
+			productName = NetworkControllers;
+			productReference = 66A0B09914BD1069003FA413 /* libNimbusNetworkControllers.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		66A0B0A514BD1069003FA413 /* NimbusNetworkControllersTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66A0B0BB14BD106A003FA413 /* Build configuration list for PBXNativeTarget "NimbusNetworkControllersTests" */;
+			buildPhases = (
+				66A0B0A114BD1069003FA413 /* Sources */,
+				66A0B0A214BD1069003FA413 /* Frameworks */,
+				66A0B0A314BD1069003FA413 /* Resources */,
+				66A0B0A414BD1069003FA413 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66A0B0AB14BD1069003FA413 /* PBXTargetDependency */,
+			);
+			name = NimbusNetworkControllersTests;
+			productName = NetworkControllersTests;
+			productReference = 66A0B0A614BD1069003FA413 /* NimbusNetworkControllersTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		66C3A6A0143D61130048542F /* NimbusCss */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66C3A6BE143D61140048542F /* Build configuration list for PBXNativeTarget "NimbusCss" */;
@@ -2283,6 +2404,8 @@
 				6675731E13E771380076F555 /* NimbusInterappTests */,
 				66A03CBE13E6F0ED00B514F3 /* NimbusLauncher */,
 				66A03CCB13E6F0EE00B514F3 /* NimbusLauncherTests */,
+				66A0B09814BD1069003FA413 /* NimbusNetworkControllers */,
+				66A0B0A514BD1069003FA413 /* NimbusNetworkControllersTests */,
 				66A03D2613E6F97500B514F3 /* NimbusNetworkImage */,
 				66A03D3313E6F97500B514F3 /* NimbusNetworkImageTests */,
 				6675722813E765BF0076F555 /* NimbusOverview */,
@@ -2364,6 +2487,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66A0B0A314BD1069003FA413 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66A0B0B214BD1069003FA413 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2675,6 +2806,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		66A0B0A414BD1069003FA413 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		66C3A6AC143D61140048542F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2901,6 +3045,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66A0B09514BD1069003FA413 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66A0B0C414BD1116003FA413 /* NINetworkTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66A0B0A114BD1069003FA413 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66C3A69D143D61130048542F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3068,6 +3227,11 @@
 			target = 66A03D2613E6F97500B514F3 /* NimbusNetworkImage */;
 			targetProxy = 66A03D6213E6FA4B00B514F3 /* PBXContainerItemProxy */;
 		};
+		66A0B0AB14BD1069003FA413 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66A0B09814BD1069003FA413 /* NimbusNetworkControllers */;
+			targetProxy = 66A0B0AA14BD1069003FA413 /* PBXContainerItemProxy */;
+		};
 		66C3A6B3143D61140048542F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 66C3A6A0143D61130048542F /* NimbusCss */;
@@ -3089,6 +3253,18 @@
 			targetProxy = DB84BDB213EFDF8F00DACCFE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		66A0B0B014BD1069003FA413 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				66A0B0B114BD1069003FA413 /* en */,
+			);
+			name = InfoPlist.strings;
+			path = NetworkControllersTests;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		663B525D1445052800CC26DF /* Debug */ = {
@@ -3994,6 +4170,90 @@
 			};
 			name = Release;
 		};
+		66A0B0B614BD1069003FA413 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/NimbusNetworkControllers.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				NIMBUS_FEATURE_NAME = networkcontrollers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		66A0B0B714BD1069003FA413 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/NimbusNetworkControllers.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				NIMBUS_FEATURE_NAME = networkcontrollers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		66A0B0B814BD1069003FA413 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "NetworkControllersTests/NetworkControllersTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		66A0B0B914BD1069003FA413 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "NetworkControllersTests/NetworkControllersTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		66C3A6BF143D61140048542F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4456,6 +4716,24 @@
 			buildConfigurations = (
 				66A03D4A13E6F97600B514F3 /* Debug */,
 				66A03D4B13E6F97600B514F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66A0B0BA14BD106A003FA413 /* Build configuration list for PBXNativeTarget "NimbusNetworkControllers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66A0B0B614BD1069003FA413 /* Debug */,
+				66A0B0B714BD1069003FA413 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66A0B0BB14BD106A003FA413 /* Build configuration list for PBXNativeTarget "NimbusNetworkControllersTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66A0B0B814BD1069003FA413 /* Debug */,
+				66A0B0B914BD1069003FA413 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
