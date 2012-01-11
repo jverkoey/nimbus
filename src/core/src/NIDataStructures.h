@@ -68,7 +68,7 @@
 
 // This is not to be used externally.
 struct NILinkedListNode {
-#ifdef __IPHONE_5_0 // Pre-iOS 5 SDKs don't have __unsafe_unretained.
+#if __has_feature(objc_arc) // __unsafe_unretained is only available if building with ARC.
   __unsafe_unretained
 #endif
   id object;

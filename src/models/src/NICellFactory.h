@@ -121,6 +121,10 @@ _model.delegate = (id)[NICellFactory class];
  * Implement this method to customize the cell's properties for display using the given object.
  */
 - (BOOL)shouldUpdateCellWithObject:(id)object;
+
+@optional
+/** Used in tableView:heightForRowAtIndexPath: to calculate dynamic cell heights. */
++ (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView;
 @end
 
 /**
