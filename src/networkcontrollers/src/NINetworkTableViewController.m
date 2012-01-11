@@ -69,13 +69,13 @@
 
   self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds
                                                  style:self.tableViewStyle] autorelease];
-  self.tableView.autoresizingMask = UIViewAutoresizingFlexibleAllDimensions;
+  self.tableView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   [self.view addSubview:self.tableView];
 
   self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorStyle] autorelease];
-  self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleAllMargins;
+  self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleMargins;
   [self.activityIndicator sizeToFit];
   [self.activityIndicator centerWithin:self.view];
   [self.view addSubview:self.activityIndicator];

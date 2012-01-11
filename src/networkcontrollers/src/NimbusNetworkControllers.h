@@ -32,10 +32,11 @@
  * - Fresh load: when no data exists and we are loading new data.
  * - Refresh load: when data exists and we are reloading new data.
  * - Error: the previous request failed.
- *
  */
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
+#import "NINetworkTableViewController.h"
 
 /**@}*/

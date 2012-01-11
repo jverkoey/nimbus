@@ -228,6 +228,9 @@
 		66A0B0C214BD1116003FA413 /* NimbusNetworkControllers.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A0B0BF14BD1116003FA413 /* NimbusNetworkControllers.h */; };
 		66A0B0C314BD1116003FA413 /* NINetworkTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A0B0C014BD1116003FA413 /* NINetworkTableViewController.h */; };
 		66A0B0C414BD1116003FA413 /* NINetworkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A0B0C114BD1116003FA413 /* NINetworkTableViewController.m */; };
+		66A0B0CC14BD15CA003FA413 /* UIView+NimbusCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A0B0CA14BD15CA003FA413 /* UIView+NimbusCore.h */; };
+		66A0B0CD14BD15CA003FA413 /* UIView+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A0B0CB14BD15CA003FA413 /* UIView+NimbusCore.m */; };
+		66A0B0D014BD1635003FA413 /* NimbusNetworkControllers+Namespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A0B0CF14BD1635003FA413 /* NimbusNetworkControllers+Namespace.h */; };
 		66B10900144C931F004576D1 /* UIButton+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */; };
 		66B10901144C931F004576D1 /* UIButton+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */; };
 		66C113E5147DD0F1003C9AC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
@@ -675,6 +678,9 @@
 		66A0B0C014BD1116003FA413 /* NINetworkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkTableViewController.h; path = networkcontrollers/src/NINetworkTableViewController.h; sourceTree = SOURCE_ROOT; };
 		66A0B0C114BD1116003FA413 /* NINetworkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkTableViewController.m; path = networkcontrollers/src/NINetworkTableViewController.m; sourceTree = SOURCE_ROOT; };
 		66A0B0C814BD1586003FA413 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = networkcontrollers/deps; sourceTree = SOURCE_ROOT; };
+		66A0B0CA14BD15CA003FA413 /* UIView+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NimbusCore.h"; sourceTree = "<group>"; };
+		66A0B0CB14BD15CA003FA413 /* UIView+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NimbusCore.m"; sourceTree = "<group>"; };
+		66A0B0CF14BD1635003FA413 /* NimbusNetworkControllers+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusNetworkControllers+Namespace.h"; path = "networkcontrollers/src/NimbusNetworkControllers+Namespace.h"; sourceTree = SOURCE_ROOT; };
 		66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+NIStyleable.h"; path = "css/src/UIButton+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
 		66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+NIStyleable.m"; path = "css/src/UIButton+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		66B10906144D4C15004576D1 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = css/deps; sourceTree = SOURCE_ROOT; };
@@ -1415,6 +1421,8 @@
 				66A03C6213E6E8D100B514F3 /* NSData+NimbusCore.m */,
 				66A03CB713E6EFAF00B514F3 /* NSString+NimbusCore.h */,
 				66A03C6313E6E8D100B514F3 /* NSString+NimbusCore.m */,
+				66A0B0CA14BD15CA003FA413 /* UIView+NimbusCore.h */,
+				66A0B0CB14BD15CA003FA413 /* UIView+NimbusCore.m */,
 			);
 			name = src;
 			path = core/src;
@@ -1548,6 +1556,7 @@
 			isa = PBXGroup;
 			children = (
 				66A0B0BF14BD1116003FA413 /* NimbusNetworkControllers.h */,
+				66A0B0CF14BD1635003FA413 /* NimbusNetworkControllers+Namespace.h */,
 				66A0B0C014BD1116003FA413 /* NINetworkTableViewController.h */,
 				66A0B0C114BD1116003FA413 /* NINetworkTableViewController.m */,
 			);
@@ -1795,6 +1804,7 @@
 				6675E4B31455FCC5007D172F /* NIViewRecycler.h in Headers */,
 				66C115411486ACE3003C9AC6 /* NIOperations+Subclassing.h in Headers */,
 				666F738014BBC65A00D1A32F /* NimbusCore+Namespace.h in Headers */,
+				66A0B0CC14BD15CA003FA413 /* UIView+NimbusCore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1826,6 +1836,7 @@
 			files = (
 				66A0B0C214BD1116003FA413 /* NimbusNetworkControllers.h in Headers */,
 				66A0B0C314BD1116003FA413 /* NINetworkTableViewController.h in Headers */,
+				66A0B0D014BD1635003FA413 /* NimbusNetworkControllers+Namespace.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2231,6 +2242,7 @@
 				66A0B09514BD1069003FA413 /* Sources */,
 				66A0B09614BD1069003FA413 /* Frameworks */,
 				66A0B09714BD1069003FA413 /* Headers */,
+				66A0B0CE14BD1625003FA413 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2819,6 +2831,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		66A0B0CE14BD1625003FA413 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh ../scripts/generate_namespace_header";
+			shellScript = "";
+		};
 		66C3A6AC143D61140048542F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2990,6 +3015,7 @@
 				66A03C9313E6E8D100B514F3 /* NSString+NimbusCore.m in Sources */,
 				FD01BEDC14179D940023D783 /* NINavigationAppearance.m in Sources */,
 				6675E4B41455FCC5007D172F /* NIViewRecycler.m in Sources */,
+				66A0B0CD14BD15CA003FA413 /* UIView+NimbusCore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
