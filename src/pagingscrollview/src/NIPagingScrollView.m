@@ -57,33 +57,48 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)commonInit {
+  // Default state.
+  self.pageHorizontalMargin = NIPagingScrollViewDefaultPageHorizontalMargin;
+
+  _firstVisiblePageIndexBeforeRotation = -1;
+  _percentScrolledIntoFirstVisiblePage = -1;
+  _centerPageIndex = -1;
+  _numberOfPages = NIPagingScrollViewUnknownNumberOfPages;
+
+  _viewRecycler = [[NIViewRecycler alloc] init];
+
+  self.pagingScrollView = [[[UIScrollView alloc] initWithFrame:self.bounds] autorelease];
+  self.pagingScrollView.pagingEnabled = YES;
+
+  self.pagingScrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                            | UIViewAutoresizingFlexibleHeight);
+
+  self.pagingScrollView.delegate = self;
+
+  // Ensure that empty areas of the scroll view are draggable.
+  self.pagingScrollView.backgroundColor = [UIColor blackColor];
+
+  self.pagingScrollView.showsVerticalScrollIndicator = NO;
+  self.pagingScrollView.showsHorizontalScrollIndicator = NO;
+
+  [self addSubview:self.pagingScrollView];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
-    // Default state.
-    self.pageHorizontalMargin = NIPagingScrollViewDefaultPageHorizontalMargin;
+    [self commonInit];
+  }
+  return self;
+}
 
-    _firstVisiblePageIndexBeforeRotation = -1;
-    _percentScrolledIntoFirstVisiblePage = -1;
-    _centerPageIndex = -1;
-    _numberOfPages = NIPagingScrollViewUnknownNumberOfPages;
-    
-    _viewRecycler = [[NIViewRecycler alloc] init];
 
-    self.pagingScrollView = [[[UIScrollView alloc] initWithFrame:frame] autorelease];
-    self.pagingScrollView.pagingEnabled = YES;
-
-    self.pagingScrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
-                                              | UIViewAutoresizingFlexibleHeight);
-
-    self.pagingScrollView.delegate = self;
-
-    // Ensure that empty areas of the scroll view are draggable.
-    self.pagingScrollView.backgroundColor = [UIColor blackColor];
-
-    self.pagingScrollView.showsVerticalScrollIndicator = NO;
-    self.pagingScrollView.showsHorizontalScrollIndicator = NO;
-
-    [self addSubview:self.pagingScrollView];
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  if ((self = [super initWithCoder:aDecoder])) {
+    [self commonInit];
   }
   return self;
 }
