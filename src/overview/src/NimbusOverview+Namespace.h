@@ -81,4 +81,7 @@
 #define NIOverviewSwizzleMethods __NIMBUS_NAMESPACE_PREFIX_##NIOverviewSwizzleMethods
 #endif
 // Externs
+#ifndef NIOverviewLoggerDidAddConsoleLog
+#define NIOverviewLoggerDidAddConsoleLog __NIMBUS_NAMESPACE_PREFIX_##NIOverviewLoggerDidAddConsoleLog
+#endif
 #endif

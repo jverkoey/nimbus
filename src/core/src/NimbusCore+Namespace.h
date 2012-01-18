@@ -183,4 +183,10 @@
 #ifndef NIDebugAssertionsShouldBreak
 #define NIDebugAssertionsShouldBreak __NIMBUS_NAMESPACE_PREFIX_##NIDebugAssertionsShouldBreak
 #endif
+#ifndef NINimbusErrorDomain
+#define NINimbusErrorDomain __NIMBUS_NAMESPACE_PREFIX_##NINimbusErrorDomain
+#endif
+#ifndef NIImageErrorKey
+#define NIImageErrorKey __NIMBUS_NAMESPACE_PREFIX_##NIImageErrorKey
+#endif
 #endif

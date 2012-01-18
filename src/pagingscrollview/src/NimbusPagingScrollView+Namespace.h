@@ -30,4 +30,10 @@
 #endif
 // Functions
 // Externs
+#ifndef NIPagingScrollViewUnknownNumberOfPages
+#define NIPagingScrollViewUnknownNumberOfPages __NIMBUS_NAMESPACE_PREFIX_##NIPagingScrollViewUnknownNumberOfPages
+#endif
+#ifndef NIPagingScrollViewDefaultPageHorizontalMargin
+#define NIPagingScrollViewDefaultPageHorizontalMargin __NIMBUS_NAMESPACE_PREFIX_##NIPagingScrollViewDefaultPageHorizontalMargin
+#endif
 #endif

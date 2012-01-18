@@ -59,5 +59,7 @@ echo "// Externs" >> $header
 
 nm $CODESIGNING_FOLDER_PATH | sort | uniq | grep " D " | cut -d' ' -f3 | grep -v "\$_NS" | grep -v "\$_UI" | sed -e 's/_\(.*\)/#ifndef \1\'$'\n''#define \1 __NIMBUS_NAMESPACE_PREFIX_##\1\'$'\n''#endif/g' >> $header
 
+nm $CODESIGNING_FOLDER_PATH | sort | uniq | grep " S " | cut -d' ' -f3 | grep -v "\$_NS" | grep -v ".eh" | grep -v "\$_UI" | grep -v "OBJC_" | sed -e 's/_\(.*\)/#ifndef \1\'$'\n''#define \1 __NIMBUS_NAMESPACE_PREFIX_##\1\'$'\n''#endif/g' >> $header
+
 echo "#endif" >> $header
 

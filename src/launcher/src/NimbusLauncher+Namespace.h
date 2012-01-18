@@ -33,4 +33,7 @@
 #endif
 // Functions
 // Externs
+#ifndef NILauncherViewDynamic
+#define NILauncherViewDynamic __NIMBUS_NAMESPACE_PREFIX_##NILauncherViewDynamic
+#endif
 #endif

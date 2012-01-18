@@ -144,4 +144,25 @@
 #ifndef csslineno
 #define csslineno __NIMBUS_NAMESPACE_PREFIX_##csslineno
 #endif
+#ifndef kPropertyOrderKey
+#define kPropertyOrderKey __NIMBUS_NAMESPACE_PREFIX_##kPropertyOrderKey
+#endif
+#ifndef kDependenciesSelectorKey
+#define kDependenciesSelectorKey __NIMBUS_NAMESPACE_PREFIX_##kDependenciesSelectorKey
+#endif
+#ifndef gActiveParser
+#define gActiveParser __NIMBUS_NAMESPACE_PREFIX_##gActiveParser
+#endif
+#ifndef NIStylesheetDidChangeNotification
+#define NIStylesheetDidChangeNotification __NIMBUS_NAMESPACE_PREFIX_##NIStylesheetDidChangeNotification
+#endif
+#ifndef cssin
+#define cssin __NIMBUS_NAMESPACE_PREFIX_##cssin
+#endif
+#ifndef cssout
+#define cssout __NIMBUS_NAMESPACE_PREFIX_##cssout
+#endif
+#ifndef css_flex_debug
+#define css_flex_debug __NIMBUS_NAMESPACE_PREFIX_##css_flex_debug
+#endif
 #endif
