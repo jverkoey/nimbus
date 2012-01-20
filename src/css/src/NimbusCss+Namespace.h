@@ -18,151 +18,160 @@
 #ifndef __NIMBUS_NAMESPACE_PREFIX_
 #error You must define __NIMBUS_NAMESPACE_PREFIX_ in your project settings in order to use a Nimbus namespace.
 #else
+
+#ifndef __NIMBUS_NS_SYMBOL
+// We need to have multiple levels of macros here so that __NIMBUS_NAMESPACE_PREFIX_ is
+// properly replaced by the time we concatenate the namespace prefix.
+#define __NIMBUS_NS_REWRITE(ns, symbol) ns ## _ ## symbol
+#define __NIMBUS_NS_BRIDGE(ns, symbol) __NIMBUS_NS_REWRITE(ns, symbol)
+#define __NIMBUS_NS_SYMBOL(symbol) __NIMBUS_NS_BRIDGE(__NIMBUS_NAMESPACE_PREFIX_, symbol)
+#endif
+
 // Classes
 #ifndef NICSSParser
-#define NICSSParser __NIMBUS_NAMESPACE_PREFIX_##NICSSParser
+#define NICSSParser __NIMBUS_NS_SYMBOL(NICSSParser)
 #endif
 #ifndef NICSSRuleset
-#define NICSSRuleset __NIMBUS_NAMESPACE_PREFIX_##NICSSRuleset
+#define NICSSRuleset __NIMBUS_NS_SYMBOL(NICSSRuleset)
 #endif
 #ifndef NIChameleonObserver
-#define NIChameleonObserver __NIMBUS_NAMESPACE_PREFIX_##NIChameleonObserver
+#define NIChameleonObserver __NIMBUS_NS_SYMBOL(NIChameleonObserver)
 #endif
 #ifndef NIDOM
-#define NIDOM __NIMBUS_NAMESPACE_PREFIX_##NIDOM
+#define NIDOM __NIMBUS_NS_SYMBOL(NIDOM)
 #endif
 #ifndef NILinkedList
-#define NILinkedList __NIMBUS_NAMESPACE_PREFIX_##NILinkedList
+#define NILinkedList __NIMBUS_NS_SYMBOL(NILinkedList)
 #endif
 #ifndef NINetworkRequestOperation
-#define NINetworkRequestOperation __NIMBUS_NAMESPACE_PREFIX_##NINetworkRequestOperation
+#define NINetworkRequestOperation __NIMBUS_NS_SYMBOL(NINetworkRequestOperation)
 #endif
 #ifndef NIStylesheet
-#define NIStylesheet __NIMBUS_NAMESPACE_PREFIX_##NIStylesheet
+#define NIStylesheet __NIMBUS_NS_SYMBOL(NIStylesheet)
 #endif
 #ifndef NIStylesheetCache
-#define NIStylesheetCache __NIMBUS_NAMESPACE_PREFIX_##NIStylesheetCache
+#define NIStylesheetCache __NIMBUS_NS_SYMBOL(NIStylesheetCache)
 #endif
 #ifndef NI_FIX_CATEGORY_BUG_UIButton_NIStyleable
-#define NI_FIX_CATEGORY_BUG_UIButton_NIStyleable __NIMBUS_NAMESPACE_PREFIX_##NI_FIX_CATEGORY_BUG_UIButton_NIStyleable
+#define NI_FIX_CATEGORY_BUG_UIButton_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UIButton_NIStyleable)
 #endif
 #ifndef NI_FIX_CATEGORY_BUG_UILabel_NIStyleable
-#define NI_FIX_CATEGORY_BUG_UILabel_NIStyleable __NIMBUS_NAMESPACE_PREFIX_##NI_FIX_CATEGORY_BUG_UILabel_NIStyleable
+#define NI_FIX_CATEGORY_BUG_UILabel_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UILabel_NIStyleable)
 #endif
 #ifndef NI_FIX_CATEGORY_BUG_UINavigationBar_NIStyleable
-#define NI_FIX_CATEGORY_BUG_UINavigationBar_NIStyleable __NIMBUS_NAMESPACE_PREFIX_##NI_FIX_CATEGORY_BUG_UINavigationBar_NIStyleable
+#define NI_FIX_CATEGORY_BUG_UINavigationBar_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UINavigationBar_NIStyleable)
 #endif
 #ifndef NI_FIX_CATEGORY_BUG_UIView_NIStyleable
-#define NI_FIX_CATEGORY_BUG_UIView_NIStyleable __NIMBUS_NAMESPACE_PREFIX_##NI_FIX_CATEGORY_BUG_UIView_NIStyleable
+#define NI_FIX_CATEGORY_BUG_UIView_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UIView_NIStyleable)
 #endif
 // Functions
 #ifndef cssConsume
-#define cssConsume __NIMBUS_NAMESPACE_PREFIX_##cssConsume
+#define cssConsume __NIMBUS_NS_SYMBOL(cssConsume)
 #endif
 #ifndef csslex
-#define csslex __NIMBUS_NAMESPACE_PREFIX_##csslex
+#define csslex __NIMBUS_NS_SYMBOL(csslex)
 #endif
 #ifndef css_create_buffer
-#define css_create_buffer __NIMBUS_NAMESPACE_PREFIX_##css_create_buffer
+#define css_create_buffer __NIMBUS_NS_SYMBOL(css_create_buffer)
 #endif
 #ifndef csswrap
-#define csswrap __NIMBUS_NAMESPACE_PREFIX_##csswrap
+#define csswrap __NIMBUS_NS_SYMBOL(csswrap)
 #endif
 #ifndef cssrestart
-#define cssrestart __NIMBUS_NAMESPACE_PREFIX_##cssrestart
+#define cssrestart __NIMBUS_NS_SYMBOL(cssrestart)
 #endif
 #ifndef css_switch_to_buffer
-#define css_switch_to_buffer __NIMBUS_NAMESPACE_PREFIX_##css_switch_to_buffer
+#define css_switch_to_buffer __NIMBUS_NS_SYMBOL(css_switch_to_buffer)
 #endif
 #ifndef cssalloc
-#define cssalloc __NIMBUS_NAMESPACE_PREFIX_##cssalloc
+#define cssalloc __NIMBUS_NS_SYMBOL(cssalloc)
 #endif
 #ifndef css_delete_buffer
-#define css_delete_buffer __NIMBUS_NAMESPACE_PREFIX_##css_delete_buffer
+#define css_delete_buffer __NIMBUS_NS_SYMBOL(css_delete_buffer)
 #endif
 #ifndef cssfree
-#define cssfree __NIMBUS_NAMESPACE_PREFIX_##cssfree
+#define cssfree __NIMBUS_NS_SYMBOL(cssfree)
 #endif
 #ifndef css_flush_buffer
-#define css_flush_buffer __NIMBUS_NAMESPACE_PREFIX_##css_flush_buffer
+#define css_flush_buffer __NIMBUS_NS_SYMBOL(css_flush_buffer)
 #endif
 #ifndef csspush_buffer_state
-#define csspush_buffer_state __NIMBUS_NAMESPACE_PREFIX_##csspush_buffer_state
+#define csspush_buffer_state __NIMBUS_NS_SYMBOL(csspush_buffer_state)
 #endif
 #ifndef csspop_buffer_state
-#define csspop_buffer_state __NIMBUS_NAMESPACE_PREFIX_##csspop_buffer_state
+#define csspop_buffer_state __NIMBUS_NS_SYMBOL(csspop_buffer_state)
 #endif
 #ifndef css_scan_buffer
-#define css_scan_buffer __NIMBUS_NAMESPACE_PREFIX_##css_scan_buffer
+#define css_scan_buffer __NIMBUS_NS_SYMBOL(css_scan_buffer)
 #endif
 #ifndef css_scan_string
-#define css_scan_string __NIMBUS_NAMESPACE_PREFIX_##css_scan_string
+#define css_scan_string __NIMBUS_NS_SYMBOL(css_scan_string)
 #endif
 #ifndef css_scan_bytes
-#define css_scan_bytes __NIMBUS_NAMESPACE_PREFIX_##css_scan_bytes
+#define css_scan_bytes __NIMBUS_NS_SYMBOL(css_scan_bytes)
 #endif
 #ifndef cssget_lineno
-#define cssget_lineno __NIMBUS_NAMESPACE_PREFIX_##cssget_lineno
+#define cssget_lineno __NIMBUS_NS_SYMBOL(cssget_lineno)
 #endif
 #ifndef cssget_in
-#define cssget_in __NIMBUS_NAMESPACE_PREFIX_##cssget_in
+#define cssget_in __NIMBUS_NS_SYMBOL(cssget_in)
 #endif
 #ifndef cssget_out
-#define cssget_out __NIMBUS_NAMESPACE_PREFIX_##cssget_out
+#define cssget_out __NIMBUS_NS_SYMBOL(cssget_out)
 #endif
 #ifndef cssget_leng
-#define cssget_leng __NIMBUS_NAMESPACE_PREFIX_##cssget_leng
+#define cssget_leng __NIMBUS_NS_SYMBOL(cssget_leng)
 #endif
 #ifndef cssget_text
-#define cssget_text __NIMBUS_NAMESPACE_PREFIX_##cssget_text
+#define cssget_text __NIMBUS_NS_SYMBOL(cssget_text)
 #endif
 #ifndef cssset_lineno
-#define cssset_lineno __NIMBUS_NAMESPACE_PREFIX_##cssset_lineno
+#define cssset_lineno __NIMBUS_NS_SYMBOL(cssset_lineno)
 #endif
 #ifndef cssset_in
-#define cssset_in __NIMBUS_NAMESPACE_PREFIX_##cssset_in
+#define cssset_in __NIMBUS_NS_SYMBOL(cssset_in)
 #endif
 #ifndef cssset_out
-#define cssset_out __NIMBUS_NAMESPACE_PREFIX_##cssset_out
+#define cssset_out __NIMBUS_NS_SYMBOL(cssset_out)
 #endif
 #ifndef cssget_debug
-#define cssget_debug __NIMBUS_NAMESPACE_PREFIX_##cssget_debug
+#define cssget_debug __NIMBUS_NS_SYMBOL(cssget_debug)
 #endif
 #ifndef cssset_debug
-#define cssset_debug __NIMBUS_NAMESPACE_PREFIX_##cssset_debug
+#define cssset_debug __NIMBUS_NS_SYMBOL(cssset_debug)
 #endif
 #ifndef csslex_destroy
-#define csslex_destroy __NIMBUS_NAMESPACE_PREFIX_##csslex_destroy
+#define csslex_destroy __NIMBUS_NS_SYMBOL(csslex_destroy)
 #endif
 #ifndef cssrealloc
-#define cssrealloc __NIMBUS_NAMESPACE_PREFIX_##cssrealloc
+#define cssrealloc __NIMBUS_NS_SYMBOL(cssrealloc)
 #endif
 // Externs
 #ifndef cssnames
-#define cssnames __NIMBUS_NAMESPACE_PREFIX_##cssnames
+#define cssnames __NIMBUS_NS_SYMBOL(cssnames)
 #endif
 #ifndef csslineno
-#define csslineno __NIMBUS_NAMESPACE_PREFIX_##csslineno
+#define csslineno __NIMBUS_NS_SYMBOL(csslineno)
 #endif
 #ifndef kPropertyOrderKey
-#define kPropertyOrderKey __NIMBUS_NAMESPACE_PREFIX_##kPropertyOrderKey
+#define kPropertyOrderKey __NIMBUS_NS_SYMBOL(kPropertyOrderKey)
 #endif
 #ifndef kDependenciesSelectorKey
-#define kDependenciesSelectorKey __NIMBUS_NAMESPACE_PREFIX_##kDependenciesSelectorKey
+#define kDependenciesSelectorKey __NIMBUS_NS_SYMBOL(kDependenciesSelectorKey)
 #endif
 #ifndef gActiveParser
-#define gActiveParser __NIMBUS_NAMESPACE_PREFIX_##gActiveParser
+#define gActiveParser __NIMBUS_NS_SYMBOL(gActiveParser)
 #endif
 #ifndef NIStylesheetDidChangeNotification
-#define NIStylesheetDidChangeNotification __NIMBUS_NAMESPACE_PREFIX_##NIStylesheetDidChangeNotification
+#define NIStylesheetDidChangeNotification __NIMBUS_NS_SYMBOL(NIStylesheetDidChangeNotification)
 #endif
 #ifndef cssin
-#define cssin __NIMBUS_NAMESPACE_PREFIX_##cssin
+#define cssin __NIMBUS_NS_SYMBOL(cssin)
 #endif
 #ifndef cssout
-#define cssout __NIMBUS_NAMESPACE_PREFIX_##cssout
+#define cssout __NIMBUS_NS_SYMBOL(cssout)
 #endif
 #ifndef css_flex_debug
-#define css_flex_debug __NIMBUS_NAMESPACE_PREFIX_##css_flex_debug
+#define css_flex_debug __NIMBUS_NS_SYMBOL(css_flex_debug)
 #endif
 #endif

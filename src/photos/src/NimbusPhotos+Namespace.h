@@ -18,27 +18,36 @@
 #ifndef __NIMBUS_NAMESPACE_PREFIX_
 #error You must define __NIMBUS_NAMESPACE_PREFIX_ in your project settings in order to use a Nimbus namespace.
 #else
+
+#ifndef __NIMBUS_NS_SYMBOL
+// We need to have multiple levels of macros here so that __NIMBUS_NAMESPACE_PREFIX_ is
+// properly replaced by the time we concatenate the namespace prefix.
+#define __NIMBUS_NS_REWRITE(ns, symbol) ns ## _ ## symbol
+#define __NIMBUS_NS_BRIDGE(ns, symbol) __NIMBUS_NS_REWRITE(ns, symbol)
+#define __NIMBUS_NS_SYMBOL(symbol) __NIMBUS_NS_BRIDGE(__NIMBUS_NAMESPACE_PREFIX_, symbol)
+#endif
+
 // Classes
 #ifndef NICenteringScrollView
-#define NICenteringScrollView __NIMBUS_NAMESPACE_PREFIX_##NICenteringScrollView
+#define NICenteringScrollView __NIMBUS_NS_SYMBOL(NICenteringScrollView)
 #endif
 #ifndef NINavigationAppearance
-#define NINavigationAppearance __NIMBUS_NAMESPACE_PREFIX_##NINavigationAppearance
+#define NINavigationAppearance __NIMBUS_NS_SYMBOL(NINavigationAppearance)
 #endif
 #ifndef NIPagingScrollView
-#define NIPagingScrollView __NIMBUS_NAMESPACE_PREFIX_##NIPagingScrollView
+#define NIPagingScrollView __NIMBUS_NS_SYMBOL(NIPagingScrollView)
 #endif
 #ifndef NIPhotoAlbumScrollView
-#define NIPhotoAlbumScrollView __NIMBUS_NAMESPACE_PREFIX_##NIPhotoAlbumScrollView
+#define NIPhotoAlbumScrollView __NIMBUS_NS_SYMBOL(NIPhotoAlbumScrollView)
 #endif
 #ifndef NIPhotoScrollView
-#define NIPhotoScrollView __NIMBUS_NAMESPACE_PREFIX_##NIPhotoScrollView
+#define NIPhotoScrollView __NIMBUS_NS_SYMBOL(NIPhotoScrollView)
 #endif
 #ifndef NIPhotoScrubberView
-#define NIPhotoScrubberView __NIMBUS_NAMESPACE_PREFIX_##NIPhotoScrubberView
+#define NIPhotoScrubberView __NIMBUS_NS_SYMBOL(NIPhotoScrubberView)
 #endif
 #ifndef NIToolbarPhotoViewController
-#define NIToolbarPhotoViewController __NIMBUS_NAMESPACE_PREFIX_##NIToolbarPhotoViewController
+#define NIToolbarPhotoViewController __NIMBUS_NS_SYMBOL(NIToolbarPhotoViewController)
 #endif
 // Functions
 // Externs

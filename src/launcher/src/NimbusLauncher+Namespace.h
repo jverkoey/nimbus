@@ -18,22 +18,31 @@
 #ifndef __NIMBUS_NAMESPACE_PREFIX_
 #error You must define __NIMBUS_NAMESPACE_PREFIX_ in your project settings in order to use a Nimbus namespace.
 #else
+
+#ifndef __NIMBUS_NS_SYMBOL
+// We need to have multiple levels of macros here so that __NIMBUS_NAMESPACE_PREFIX_ is
+// properly replaced by the time we concatenate the namespace prefix.
+#define __NIMBUS_NS_REWRITE(ns, symbol) ns ## _ ## symbol
+#define __NIMBUS_NS_BRIDGE(ns, symbol) __NIMBUS_NS_REWRITE(ns, symbol)
+#define __NIMBUS_NS_SYMBOL(symbol) __NIMBUS_NS_BRIDGE(__NIMBUS_NAMESPACE_PREFIX_, symbol)
+#endif
+
 // Classes
 #ifndef NILauncherButton
-#define NILauncherButton __NIMBUS_NAMESPACE_PREFIX_##NILauncherButton
+#define NILauncherButton __NIMBUS_NS_SYMBOL(NILauncherButton)
 #endif
 #ifndef NILauncherItemDetails
-#define NILauncherItemDetails __NIMBUS_NAMESPACE_PREFIX_##NILauncherItemDetails
+#define NILauncherItemDetails __NIMBUS_NS_SYMBOL(NILauncherItemDetails)
 #endif
 #ifndef NILauncherView
-#define NILauncherView __NIMBUS_NAMESPACE_PREFIX_##NILauncherView
+#define NILauncherView __NIMBUS_NS_SYMBOL(NILauncherView)
 #endif
 #ifndef NILauncherViewController
-#define NILauncherViewController __NIMBUS_NAMESPACE_PREFIX_##NILauncherViewController
+#define NILauncherViewController __NIMBUS_NS_SYMBOL(NILauncherViewController)
 #endif
 // Functions
 // Externs
 #ifndef NILauncherViewDynamic
-#define NILauncherViewDynamic __NIMBUS_NAMESPACE_PREFIX_##NILauncherViewDynamic
+#define NILauncherViewDynamic __NIMBUS_NS_SYMBOL(NILauncherViewDynamic)
 #endif
 #endif

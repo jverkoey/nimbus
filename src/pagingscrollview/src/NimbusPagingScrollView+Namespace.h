@@ -18,22 +18,31 @@
 #ifndef __NIMBUS_NAMESPACE_PREFIX_
 #error You must define __NIMBUS_NAMESPACE_PREFIX_ in your project settings in order to use a Nimbus namespace.
 #else
+
+#ifndef __NIMBUS_NS_SYMBOL
+// We need to have multiple levels of macros here so that __NIMBUS_NAMESPACE_PREFIX_ is
+// properly replaced by the time we concatenate the namespace prefix.
+#define __NIMBUS_NS_REWRITE(ns, symbol) ns ## _ ## symbol
+#define __NIMBUS_NS_BRIDGE(ns, symbol) __NIMBUS_NS_REWRITE(ns, symbol)
+#define __NIMBUS_NS_SYMBOL(symbol) __NIMBUS_NS_BRIDGE(__NIMBUS_NAMESPACE_PREFIX_, symbol)
+#endif
+
 // Classes
 #ifndef NIPageView
-#define NIPageView __NIMBUS_NAMESPACE_PREFIX_##NIPageView
+#define NIPageView __NIMBUS_NS_SYMBOL(NIPageView)
 #endif
 #ifndef NIPagingScrollView
-#define NIPagingScrollView __NIMBUS_NAMESPACE_PREFIX_##NIPagingScrollView
+#define NIPagingScrollView __NIMBUS_NS_SYMBOL(NIPagingScrollView)
 #endif
 #ifndef NIViewRecycler
-#define NIViewRecycler __NIMBUS_NAMESPACE_PREFIX_##NIViewRecycler
+#define NIViewRecycler __NIMBUS_NS_SYMBOL(NIViewRecycler)
 #endif
 // Functions
 // Externs
 #ifndef NIPagingScrollViewUnknownNumberOfPages
-#define NIPagingScrollViewUnknownNumberOfPages __NIMBUS_NAMESPACE_PREFIX_##NIPagingScrollViewUnknownNumberOfPages
+#define NIPagingScrollViewUnknownNumberOfPages __NIMBUS_NS_SYMBOL(NIPagingScrollViewUnknownNumberOfPages)
 #endif
 #ifndef NIPagingScrollViewDefaultPageHorizontalMargin
-#define NIPagingScrollViewDefaultPageHorizontalMargin __NIMBUS_NAMESPACE_PREFIX_##NIPagingScrollViewDefaultPageHorizontalMargin
+#define NIPagingScrollViewDefaultPageHorizontalMargin __NIMBUS_NS_SYMBOL(NIPagingScrollViewDefaultPageHorizontalMargin)
 #endif
 #endif
