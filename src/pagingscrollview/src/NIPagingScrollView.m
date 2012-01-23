@@ -263,11 +263,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateVisiblePages {
-  NSInteger oldCenterPageIndex = self.centerPageIndex;
-
   NSRange visiblePageRange = [self visiblePageRange];
-
-  _centerPageIndex = [self currentVisiblePageIndex];
 
   // Recycle no-longer-visible pages. We copy _visiblePages because we may modify it while we're
   // iterating over it.
@@ -282,17 +278,25 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
     }
   }
 
-  // Prioritize displaying the currently visible page.
-  if (![self isDisplayingPageForIndex:_centerPageIndex]) {
-    [self displayPageAtIndex:_centerPageIndex];
-  }
-
-  // Add missing pages.
-  for (int pageIndex = visiblePageRange.location;
-       pageIndex < NSMaxRange(visiblePageRange); ++pageIndex) {
-    if (![self isDisplayingPageForIndex:pageIndex]) {
-      [self displayPageAtIndex:pageIndex];
+  NSInteger oldCenterPageIndex = self.centerPageIndex;
+    
+  if (_numberOfPages > 0) {
+    _centerPageIndex = [self currentVisiblePageIndex];
+      
+    // Prioritize displaying the currently visible page.
+    if (![self isDisplayingPageForIndex:_centerPageIndex]) {
+      [self displayPageAtIndex:_centerPageIndex];
     }
+      
+    // Add missing pages.
+    for (int pageIndex = visiblePageRange.location;
+         pageIndex < NSMaxRange(visiblePageRange); ++pageIndex) {
+      if (![self isDisplayingPageForIndex:pageIndex]) {
+        [self displayPageAtIndex:pageIndex];
+      }
+    }
+  } else {
+    _centerPageIndex = -1;
   }
 
   if (oldCenterPageIndex != _centerPageIndex
