@@ -53,8 +53,7 @@
 
 
   // Try experimenting with this value to see how the total number of pixels is affected.
-
-  //[[Nimbus globalImageMemoryCache] setMaxNumberOfPixels:94*94];
+  //[[Nimbus imageMemoryCache] setMaxNumberOfPixels:94*94];
 
   _rootController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
   [self.window addSubview:_rootController.view];

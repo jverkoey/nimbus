@@ -179,7 +179,7 @@
 
 #if NS_BLOCKS_AVAILABLE
   if (nil != self.willFinishBlock) {
-    self.willFinishBlock();
+    self.willFinishBlock(self);
   }
 #endif // #if NS_BLOCKS_AVAILABLE
 }
@@ -202,7 +202,7 @@
 
 #if NS_BLOCKS_AVAILABLE
   if (nil != self.didStartBlock) {
-    self.didStartBlock();
+    self.didStartBlock(self);
   }
 #endif // #if NS_BLOCKS_AVAILABLE
 }
@@ -219,7 +219,7 @@
 
 #if NS_BLOCKS_AVAILABLE
   if (nil != self.didFinishBlock) {
-    self.didFinishBlock();
+    self.didFinishBlock(self);
   }
 #endif // #if NS_BLOCKS_AVAILABLE
 }
@@ -236,7 +236,7 @@
 
 #if NS_BLOCKS_AVAILABLE
   if (nil != self.didFailWithErrorBlock) {
-    self.didFailWithErrorBlock(error);
+    self.didFailWithErrorBlock(self, error);
   }
 #endif // #if NS_BLOCKS_AVAILABLE
 }

@@ -18,45 +18,54 @@
 #ifndef __NIMBUS_NAMESPACE_PREFIX_
 #error You must define __NIMBUS_NAMESPACE_PREFIX_ in your project settings in order to use a Nimbus namespace.
 #else
+
+#ifndef __NIMBUS_NS_SYMBOL
+// We need to have multiple levels of macros here so that __NIMBUS_NAMESPACE_PREFIX_ is
+// properly replaced by the time we concatenate the namespace prefix.
+#define __NIMBUS_NS_REWRITE(ns, symbol) ns ## _ ## symbol
+#define __NIMBUS_NS_BRIDGE(ns, symbol) __NIMBUS_NS_REWRITE(ns, symbol)
+#define __NIMBUS_NS_SYMBOL(symbol) __NIMBUS_NS_BRIDGE(__NIMBUS_NAMESPACE_PREFIX_, symbol)
+#endif
+
 // Classes
 #ifndef NIButtonFormElement
-#define NIButtonFormElement __NIMBUS_NAMESPACE_PREFIX_##NIButtonFormElement
+#define NIButtonFormElement __NIMBUS_NS_SYMBOL(NIButtonFormElement)
 #endif
 #ifndef NIButtonFormElementCell
-#define NIButtonFormElementCell __NIMBUS_NAMESPACE_PREFIX_##NIButtonFormElementCell
+#define NIButtonFormElementCell __NIMBUS_NS_SYMBOL(NIButtonFormElementCell)
 #endif
 #ifndef NICellFactory
-#define NICellFactory __NIMBUS_NAMESPACE_PREFIX_##NICellFactory
+#define NICellFactory __NIMBUS_NS_SYMBOL(NICellFactory)
 #endif
 #ifndef NICellObject
-#define NICellObject __NIMBUS_NAMESPACE_PREFIX_##NICellObject
+#define NICellObject __NIMBUS_NS_SYMBOL(NICellObject)
 #endif
 #ifndef NIFormElement
-#define NIFormElement __NIMBUS_NAMESPACE_PREFIX_##NIFormElement
+#define NIFormElement __NIMBUS_NS_SYMBOL(NIFormElement)
 #endif
 #ifndef NIFormElementCell
-#define NIFormElementCell __NIMBUS_NAMESPACE_PREFIX_##NIFormElementCell
+#define NIFormElementCell __NIMBUS_NS_SYMBOL(NIFormElementCell)
 #endif
 #ifndef NISwitchFormElement
-#define NISwitchFormElement __NIMBUS_NAMESPACE_PREFIX_##NISwitchFormElement
+#define NISwitchFormElement __NIMBUS_NS_SYMBOL(NISwitchFormElement)
 #endif
 #ifndef NISwitchFormElementCell
-#define NISwitchFormElementCell __NIMBUS_NAMESPACE_PREFIX_##NISwitchFormElementCell
+#define NISwitchFormElementCell __NIMBUS_NS_SYMBOL(NISwitchFormElementCell)
 #endif
 #ifndef NITableViewModel
-#define NITableViewModel __NIMBUS_NAMESPACE_PREFIX_##NITableViewModel
+#define NITableViewModel __NIMBUS_NS_SYMBOL(NITableViewModel)
 #endif
 #ifndef NITableViewModelFooter
-#define NITableViewModelFooter __NIMBUS_NAMESPACE_PREFIX_##NITableViewModelFooter
+#define NITableViewModelFooter __NIMBUS_NS_SYMBOL(NITableViewModelFooter)
 #endif
 #ifndef NITableViewModelSection
-#define NITableViewModelSection __NIMBUS_NAMESPACE_PREFIX_##NITableViewModelSection
+#define NITableViewModelSection __NIMBUS_NS_SYMBOL(NITableViewModelSection)
 #endif
 #ifndef NITextInputFormElement
-#define NITextInputFormElement __NIMBUS_NAMESPACE_PREFIX_##NITextInputFormElement
+#define NITextInputFormElement __NIMBUS_NS_SYMBOL(NITextInputFormElement)
 #endif
 #ifndef NITextInputFormElementCell
-#define NITextInputFormElementCell __NIMBUS_NAMESPACE_PREFIX_##NITextInputFormElementCell
+#define NITextInputFormElementCell __NIMBUS_NS_SYMBOL(NITextInputFormElementCell)
 #endif
 // Functions
 // Externs

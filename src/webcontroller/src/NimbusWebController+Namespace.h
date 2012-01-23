@@ -18,9 +18,18 @@
 #ifndef __NIMBUS_NAMESPACE_PREFIX_
 #error You must define __NIMBUS_NAMESPACE_PREFIX_ in your project settings in order to use a Nimbus namespace.
 #else
+
+#ifndef __NIMBUS_NS_SYMBOL
+// We need to have multiple levels of macros here so that __NIMBUS_NAMESPACE_PREFIX_ is
+// properly replaced by the time we concatenate the namespace prefix.
+#define __NIMBUS_NS_REWRITE(ns, symbol) ns ## _ ## symbol
+#define __NIMBUS_NS_BRIDGE(ns, symbol) __NIMBUS_NS_REWRITE(ns, symbol)
+#define __NIMBUS_NS_SYMBOL(symbol) __NIMBUS_NS_BRIDGE(__NIMBUS_NAMESPACE_PREFIX_, symbol)
+#endif
+
 // Classes
 #ifndef NIWebController
-#define NIWebController __NIMBUS_NAMESPACE_PREFIX_##NIWebController
+#define NIWebController __NIMBUS_NS_SYMBOL(NIWebController)
 #endif
 // Functions
 // Externs

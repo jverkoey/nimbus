@@ -18,21 +18,30 @@
 #ifndef __NIMBUS_NAMESPACE_PREFIX_
 #error You must define __NIMBUS_NAMESPACE_PREFIX_ in your project settings in order to use a Nimbus namespace.
 #else
+
+#ifndef __NIMBUS_NS_SYMBOL
+// We need to have multiple levels of macros here so that __NIMBUS_NAMESPACE_PREFIX_ is
+// properly replaced by the time we concatenate the namespace prefix.
+#define __NIMBUS_NS_REWRITE(ns, symbol) ns ## _ ## symbol
+#define __NIMBUS_NS_BRIDGE(ns, symbol) __NIMBUS_NS_REWRITE(ns, symbol)
+#define __NIMBUS_NS_SYMBOL(symbol) __NIMBUS_NS_BRIDGE(__NIMBUS_NAMESPACE_PREFIX_, symbol)
+#endif
+
 // Classes
 #ifndef NINetworkImageRequest
-#define NINetworkImageRequest __NIMBUS_NAMESPACE_PREFIX_##NINetworkImageRequest
+#define NINetworkImageRequest __NIMBUS_NS_SYMBOL(NINetworkImageRequest)
 #endif
 #ifndef NINetworkImageView
-#define NINetworkImageView __NIMBUS_NAMESPACE_PREFIX_##NINetworkImageView
+#define NINetworkImageView __NIMBUS_NS_SYMBOL(NINetworkImageView)
 #endif
 #ifndef NINetworkRequestOperation
-#define NINetworkRequestOperation __NIMBUS_NAMESPACE_PREFIX_##NINetworkRequestOperation
+#define NINetworkRequestOperation __NIMBUS_NS_SYMBOL(NINetworkRequestOperation)
 #endif
 #ifndef NIOperation
-#define NIOperation __NIMBUS_NAMESPACE_PREFIX_##NIOperation
+#define NIOperation __NIMBUS_NS_SYMBOL(NIOperation)
 #endif
 #ifndef Nimbus
-#define Nimbus __NIMBUS_NAMESPACE_PREFIX_##Nimbus
+#define Nimbus __NIMBUS_NS_SYMBOL(Nimbus)
 #endif
 // Functions
 // Externs
