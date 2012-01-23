@@ -169,11 +169,11 @@
   __block BOOL didStart = NO;
   __block BOOL didFinish = NO;
 
-  op.didStartBlock = ^{
+  op.didStartBlock = ^(NIOperation* blockOp) {
     didStart = YES;
   };
 
-  op.didFinishBlock = ^{
+  op.didFinishBlock = ^(NIOperation* blockOp) {
     didFinish = YES;
   };
 
@@ -195,11 +195,11 @@
   __block BOOL didFail = NO;
   __block NSError* failureError = nil;
 
-  op.didStartBlock = ^{
+  op.didStartBlock = ^(NIOperation* blockOp) {
     didStart = YES;
   };
 
-  op.didFailWithErrorBlock = ^(NSError* error) {
+  op.didFailWithErrorBlock = ^(NIOperation* blockOp, NSError* error) {
     didFail = YES;
     failureError = [error copy];
   };
