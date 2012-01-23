@@ -123,18 +123,21 @@
 @synthesize didFinishBlock        = _didFinishBlock;
 @synthesize didFailWithErrorBlock = _didFailWithErrorBlock;
 @synthesize willFinishBlock       = _willFinishBlock;
-#endif // #if NS_BLOCKS_AVAILABLE
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#if NS_BLOCKS_AVAILABLE
+#if __has_feature(objc_arc)
 - (void)dealloc {
-    // need to set these to nil to release them
-    _didStartBlock = nil;
-    _didFinishBlock = nil;
-    _didFailWithErrorBlock = nil;
-    _willFinishBlock = nil;
+  // For an unknown reason these block objects are not released when the NIOperation is deallocated
+  // with ARC enabled.
+  _didStartBlock = nil;
+  _didFinishBlock = nil;
+  _didFailWithErrorBlock = nil;
+  _willFinishBlock = nil;
 }
+#endif // #if __has_feature(objc_arc)
 #endif // #if NS_BLOCKS_AVAILABLE
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
