@@ -18,7 +18,9 @@
 
 #if NS_BLOCKS_AVAILABLE
 
-typedef void (^NIBasicBlock)(void);
-typedef void (^NIErrorBlock)(NSError* error);
+@class NIOperation;
+
+typedef void (^NIBasicBlock)(NIOperation *operation);
+typedef void (^NIErrorBlock)(NIOperation *operation, NSError* error);
 
 #endif // #if NS_BLOCKS_AVAILABLE
