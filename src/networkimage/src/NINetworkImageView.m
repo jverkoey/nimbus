@@ -378,6 +378,7 @@
       }
 
       [self networkImageViewDidLoadImage:image];
+
     } else {
       // Unable to load the image from memory, so let's fire off the operation now.
       operation.delegate = self;
