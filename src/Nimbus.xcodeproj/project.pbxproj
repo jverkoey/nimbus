@@ -47,7 +47,6 @@
 		663B527514450D1C00CC26DF /* NIPagingScrollViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 663B527414450D1C00CC26DF /* NIPagingScrollViewDataSource.h */; };
 		664D443214993010008B4C42 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 664D443014993010008B4C42 /* JSONKit.h */; };
 		664D443314993010008B4C42 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 664D443114993010008B4C42 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		664D443414993010008B4C42 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 664D443114993010008B4C42 /* JSONKit.m */; };
 		6661BBDA13F1A3BB00D14F92 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		6661BBDC13F1A3BB00D14F92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		6661BBE013F1A3BB00D14F92 /* libNimbusModels.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6661BBCC13F1A3BB00D14F92 /* libNimbusModels.a */; };
@@ -2969,7 +2968,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				664D443414993010008B4C42 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

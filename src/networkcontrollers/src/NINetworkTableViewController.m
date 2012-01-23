@@ -37,15 +37,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_tableView);
-  NI_RELEASE_SAFELY(_activityIndicator);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style activityIndicatorStyle:(UIActivityIndicatorViewStyle)activityIndicatorStyle {
   if ((self = [super initWithNibName:nil bundle:nil])) {
     self.tableViewStyle = style;
@@ -67,14 +58,13 @@
 - (void)loadView {
   [super loadView];
 
-  self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds
-                                                 style:self.tableViewStyle] autorelease];
+  self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.tableViewStyle];
   self.tableView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   [self.view addSubview:self.tableView];
 
-  self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorStyle] autorelease];
+  self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorStyle];
   self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleMargins;
   [self.activityIndicator sizeToFit];
   [self.activityIndicator centerWithin:self.view];
