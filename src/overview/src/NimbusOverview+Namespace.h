@@ -18,67 +18,79 @@
 #ifndef __NIMBUS_NAMESPACE_PREFIX_
 #error You must define __NIMBUS_NAMESPACE_PREFIX_ in your project settings in order to use a Nimbus namespace.
 #else
+
+#ifndef __NIMBUS_NS_SYMBOL
+// We need to have multiple levels of macros here so that __NIMBUS_NAMESPACE_PREFIX_ is
+// properly replaced by the time we concatenate the namespace prefix.
+#define __NIMBUS_NS_REWRITE(ns, symbol) ns ## _ ## symbol
+#define __NIMBUS_NS_BRIDGE(ns, symbol) __NIMBUS_NS_REWRITE(ns, symbol)
+#define __NIMBUS_NS_SYMBOL(symbol) __NIMBUS_NS_BRIDGE(__NIMBUS_NAMESPACE_PREFIX_, symbol)
+#endif
+
 // Classes
 #ifndef NIDeviceInfo
-#define NIDeviceInfo __NIMBUS_NAMESPACE_PREFIX_##NIDeviceInfo
+#define NIDeviceInfo __NIMBUS_NS_SYMBOL(NIDeviceInfo)
 #endif
 #ifndef NILinkedList
-#define NILinkedList __NIMBUS_NAMESPACE_PREFIX_##NILinkedList
+#define NILinkedList __NIMBUS_NS_SYMBOL(NILinkedList)
 #endif
 #ifndef NIOverview
-#define NIOverview __NIMBUS_NAMESPACE_PREFIX_##NIOverview
+#define NIOverview __NIMBUS_NS_SYMBOL(NIOverview)
 #endif
 #ifndef NIOverviewConsoleLogEntry
-#define NIOverviewConsoleLogEntry __NIMBUS_NAMESPACE_PREFIX_##NIOverviewConsoleLogEntry
+#define NIOverviewConsoleLogEntry __NIMBUS_NS_SYMBOL(NIOverviewConsoleLogEntry)
 #endif
 #ifndef NIOverviewConsoleLogPageView
-#define NIOverviewConsoleLogPageView __NIMBUS_NAMESPACE_PREFIX_##NIOverviewConsoleLogPageView
+#define NIOverviewConsoleLogPageView __NIMBUS_NS_SYMBOL(NIOverviewConsoleLogPageView)
 #endif
 #ifndef NIOverviewDeviceLogEntry
-#define NIOverviewDeviceLogEntry __NIMBUS_NAMESPACE_PREFIX_##NIOverviewDeviceLogEntry
+#define NIOverviewDeviceLogEntry __NIMBUS_NS_SYMBOL(NIOverviewDeviceLogEntry)
 #endif
 #ifndef NIOverviewDiskPageView
-#define NIOverviewDiskPageView __NIMBUS_NAMESPACE_PREFIX_##NIOverviewDiskPageView
+#define NIOverviewDiskPageView __NIMBUS_NS_SYMBOL(NIOverviewDiskPageView)
 #endif
 #ifndef NIOverviewEventLogEntry
-#define NIOverviewEventLogEntry __NIMBUS_NAMESPACE_PREFIX_##NIOverviewEventLogEntry
+#define NIOverviewEventLogEntry __NIMBUS_NS_SYMBOL(NIOverviewEventLogEntry)
 #endif
 #ifndef NIOverviewGraphPageView
-#define NIOverviewGraphPageView __NIMBUS_NAMESPACE_PREFIX_##NIOverviewGraphPageView
+#define NIOverviewGraphPageView __NIMBUS_NS_SYMBOL(NIOverviewGraphPageView)
 #endif
 #ifndef NIOverviewGraphView
-#define NIOverviewGraphView __NIMBUS_NAMESPACE_PREFIX_##NIOverviewGraphView
+#define NIOverviewGraphView __NIMBUS_NS_SYMBOL(NIOverviewGraphView)
 #endif
 #ifndef NIOverviewLogEntry
-#define NIOverviewLogEntry __NIMBUS_NAMESPACE_PREFIX_##NIOverviewLogEntry
+#define NIOverviewLogEntry __NIMBUS_NS_SYMBOL(NIOverviewLogEntry)
 #endif
 #ifndef NIOverviewLogger
-#define NIOverviewLogger __NIMBUS_NAMESPACE_PREFIX_##NIOverviewLogger
+#define NIOverviewLogger __NIMBUS_NS_SYMBOL(NIOverviewLogger)
 #endif
 #ifndef NIOverviewMaxLogLevelPageView
-#define NIOverviewMaxLogLevelPageView __NIMBUS_NAMESPACE_PREFIX_##NIOverviewMaxLogLevelPageView
+#define NIOverviewMaxLogLevelPageView __NIMBUS_NS_SYMBOL(NIOverviewMaxLogLevelPageView)
 #endif
 #ifndef NIOverviewMemoryPageView
-#define NIOverviewMemoryPageView __NIMBUS_NAMESPACE_PREFIX_##NIOverviewMemoryPageView
+#define NIOverviewMemoryPageView __NIMBUS_NS_SYMBOL(NIOverviewMemoryPageView)
 #endif
 #ifndef NIOverviewPageView
-#define NIOverviewPageView __NIMBUS_NAMESPACE_PREFIX_##NIOverviewPageView
+#define NIOverviewPageView __NIMBUS_NS_SYMBOL(NIOverviewPageView)
 #endif
 #ifndef NIOverviewView
-#define NIOverviewView __NIMBUS_NAMESPACE_PREFIX_##NIOverviewView
+#define NIOverviewView __NIMBUS_NS_SYMBOL(NIOverviewView)
 #endif
 // Functions
 #ifndef NIOverviewLogMethod
-#define NIOverviewLogMethod __NIMBUS_NAMESPACE_PREFIX_##NIOverviewLogMethod
+#define NIOverviewLogMethod __NIMBUS_NS_SYMBOL(NIOverviewLogMethod)
 #endif
 #ifndef NIOverviewStatusBarHeight
-#define NIOverviewStatusBarHeight __NIMBUS_NAMESPACE_PREFIX_##NIOverviewStatusBarHeight
+#define NIOverviewStatusBarHeight __NIMBUS_NS_SYMBOL(NIOverviewStatusBarHeight)
 #endif
 #ifndef NIStringFromBytes
-#define NIStringFromBytes __NIMBUS_NAMESPACE_PREFIX_##NIStringFromBytes
+#define NIStringFromBytes __NIMBUS_NS_SYMBOL(NIStringFromBytes)
 #endif
 #ifndef NIOverviewSwizzleMethods
-#define NIOverviewSwizzleMethods __NIMBUS_NAMESPACE_PREFIX_##NIOverviewSwizzleMethods
+#define NIOverviewSwizzleMethods __NIMBUS_NS_SYMBOL(NIOverviewSwizzleMethods)
 #endif
 // Externs
+#ifndef NIOverviewLoggerDidAddConsoleLog
+#define NIOverviewLoggerDidAddConsoleLog __NIMBUS_NS_SYMBOL(NIOverviewLoggerDidAddConsoleLog)
+#endif
 #endif

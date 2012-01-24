@@ -18,169 +18,184 @@
 #ifndef __NIMBUS_NAMESPACE_PREFIX_
 #error You must define __NIMBUS_NAMESPACE_PREFIX_ in your project settings in order to use a Nimbus namespace.
 #else
+
+#ifndef __NIMBUS_NS_SYMBOL
+// We need to have multiple levels of macros here so that __NIMBUS_NAMESPACE_PREFIX_ is
+// properly replaced by the time we concatenate the namespace prefix.
+#define __NIMBUS_NS_REWRITE(ns, symbol) ns ## _ ## symbol
+#define __NIMBUS_NS_BRIDGE(ns, symbol) __NIMBUS_NS_REWRITE(ns, symbol)
+#define __NIMBUS_NS_SYMBOL(symbol) __NIMBUS_NS_BRIDGE(__NIMBUS_NAMESPACE_PREFIX_, symbol)
+#endif
+
 // Classes
 #ifndef NIImageMemoryCache
-#define NIImageMemoryCache __NIMBUS_NAMESPACE_PREFIX_##NIImageMemoryCache
+#define NIImageMemoryCache __NIMBUS_NS_SYMBOL(NIImageMemoryCache)
 #endif
 #ifndef NILinkedList
-#define NILinkedList __NIMBUS_NAMESPACE_PREFIX_##NILinkedList
+#define NILinkedList __NIMBUS_NS_SYMBOL(NILinkedList)
 #endif
 #ifndef NILinkedListEnumerator
-#define NILinkedListEnumerator __NIMBUS_NAMESPACE_PREFIX_##NILinkedListEnumerator
+#define NILinkedListEnumerator __NIMBUS_NS_SYMBOL(NILinkedListEnumerator)
 #endif
 #ifndef NIMemoryCache
-#define NIMemoryCache __NIMBUS_NAMESPACE_PREFIX_##NIMemoryCache
+#define NIMemoryCache __NIMBUS_NS_SYMBOL(NIMemoryCache)
 #endif
 #ifndef NIMemoryCacheInfo
-#define NIMemoryCacheInfo __NIMBUS_NAMESPACE_PREFIX_##NIMemoryCacheInfo
+#define NIMemoryCacheInfo __NIMBUS_NS_SYMBOL(NIMemoryCacheInfo)
 #endif
 #ifndef NINavigationAppearance
-#define NINavigationAppearance __NIMBUS_NAMESPACE_PREFIX_##NINavigationAppearance
+#define NINavigationAppearance __NIMBUS_NS_SYMBOL(NINavigationAppearance)
 #endif
 #ifndef NINavigationAppearanceSnapshot
-#define NINavigationAppearanceSnapshot __NIMBUS_NAMESPACE_PREFIX_##NINavigationAppearanceSnapshot
+#define NINavigationAppearanceSnapshot __NIMBUS_NS_SYMBOL(NINavigationAppearanceSnapshot)
 #endif
 #ifndef NINetworkRequestOperation
-#define NINetworkRequestOperation __NIMBUS_NAMESPACE_PREFIX_##NINetworkRequestOperation
+#define NINetworkRequestOperation __NIMBUS_NS_SYMBOL(NINetworkRequestOperation)
 #endif
 #ifndef NIOperation
-#define NIOperation __NIMBUS_NAMESPACE_PREFIX_##NIOperation
+#define NIOperation __NIMBUS_NS_SYMBOL(NIOperation)
 #endif
 #ifndef NIViewRecycler
-#define NIViewRecycler __NIMBUS_NAMESPACE_PREFIX_##NIViewRecycler
+#define NIViewRecycler __NIMBUS_NS_SYMBOL(NIViewRecycler)
 #endif
 #ifndef NI_FIX_CATEGORY_BUG_NSDataNimbusCore
-#define NI_FIX_CATEGORY_BUG_NSDataNimbusCore __NIMBUS_NAMESPACE_PREFIX_##NI_FIX_CATEGORY_BUG_NSDataNimbusCore
+#define NI_FIX_CATEGORY_BUG_NSDataNimbusCore __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_NSDataNimbusCore)
 #endif
 #ifndef NI_FIX_CATEGORY_BUG_NSStringNimbusCore
-#define NI_FIX_CATEGORY_BUG_NSStringNimbusCore __NIMBUS_NAMESPACE_PREFIX_##NI_FIX_CATEGORY_BUG_NSStringNimbusCore
+#define NI_FIX_CATEGORY_BUG_NSStringNimbusCore __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_NSStringNimbusCore)
 #endif
 #ifndef Nimbus
-#define Nimbus __NIMBUS_NAMESPACE_PREFIX_##Nimbus
+#define Nimbus __NIMBUS_NS_SYMBOL(Nimbus)
 #endif
 // Functions
 #ifndef NICreateNonRetainingMutableArray
-#define NICreateNonRetainingMutableArray __NIMBUS_NAMESPACE_PREFIX_##NICreateNonRetainingMutableArray
+#define NICreateNonRetainingMutableArray __NIMBUS_NS_SYMBOL(NICreateNonRetainingMutableArray)
 #endif
 #ifndef NIIsArrayWithObjects
-#define NIIsArrayWithObjects __NIMBUS_NAMESPACE_PREFIX_##NIIsArrayWithObjects
+#define NIIsArrayWithObjects __NIMBUS_NS_SYMBOL(NIIsArrayWithObjects)
 #endif
 #ifndef NIIsInDebugger
-#define NIIsInDebugger __NIMBUS_NAMESPACE_PREFIX_##NIIsInDebugger
+#define NIIsInDebugger __NIMBUS_NS_SYMBOL(NIIsInDebugger)
 #endif
 #ifndef NIIsPad
-#define NIIsPad __NIMBUS_NAMESPACE_PREFIX_##NIIsPad
+#define NIIsPad __NIMBUS_NS_SYMBOL(NIIsPad)
 #endif
 #ifndef NIIsSupportedOrientation
-#define NIIsSupportedOrientation __NIMBUS_NAMESPACE_PREFIX_##NIIsSupportedOrientation
+#define NIIsSupportedOrientation __NIMBUS_NS_SYMBOL(NIIsSupportedOrientation)
 #endif
 #ifndef NINetworkActivityTaskDidStart
-#define NINetworkActivityTaskDidStart __NIMBUS_NAMESPACE_PREFIX_##NINetworkActivityTaskDidStart
+#define NINetworkActivityTaskDidStart __NIMBUS_NS_SYMBOL(NINetworkActivityTaskDidStart)
 #endif
 #ifndef NIPathForBundleResource
-#define NIPathForBundleResource __NIMBUS_NAMESPACE_PREFIX_##NIPathForBundleResource
+#define NIPathForBundleResource __NIMBUS_NS_SYMBOL(NIPathForBundleResource)
 #endif
 #ifndef NIRectContract
-#define NIRectContract __NIMBUS_NAMESPACE_PREFIX_##NIRectContract
+#define NIRectContract __NIMBUS_NS_SYMBOL(NIRectContract)
 #endif
 #ifndef NISwapInstanceMethods
-#define NISwapInstanceMethods __NIMBUS_NAMESPACE_PREFIX_##NISwapInstanceMethods
+#define NISwapInstanceMethods __NIMBUS_NS_SYMBOL(NISwapInstanceMethods)
 #endif
 #ifndef NIToolbarHeightForOrientation
-#define NIToolbarHeightForOrientation __NIMBUS_NAMESPACE_PREFIX_##NIToolbarHeightForOrientation
+#define NIToolbarHeightForOrientation __NIMBUS_NS_SYMBOL(NIToolbarHeightForOrientation)
 #endif
 #ifndef NICreateNonRetainingMutableDictionary
-#define NICreateNonRetainingMutableDictionary __NIMBUS_NAMESPACE_PREFIX_##NICreateNonRetainingMutableDictionary
+#define NICreateNonRetainingMutableDictionary __NIMBUS_NS_SYMBOL(NICreateNonRetainingMutableDictionary)
 #endif
 #ifndef NISwapClassMethods
-#define NISwapClassMethods __NIMBUS_NAMESPACE_PREFIX_##NISwapClassMethods
+#define NISwapClassMethods __NIMBUS_NS_SYMBOL(NISwapClassMethods)
 #endif
 #ifndef NICreateNonRetainingMutableSet
-#define NICreateNonRetainingMutableSet __NIMBUS_NAMESPACE_PREFIX_##NICreateNonRetainingMutableSet
+#define NICreateNonRetainingMutableSet __NIMBUS_NS_SYMBOL(NICreateNonRetainingMutableSet)
 #endif
 #ifndef NIInterfaceOrientation
-#define NIInterfaceOrientation __NIMBUS_NAMESPACE_PREFIX_##NIInterfaceOrientation
+#define NIInterfaceOrientation __NIMBUS_NS_SYMBOL(NIInterfaceOrientation)
 #endif
 #ifndef NIStatusBarAnimationCurve
-#define NIStatusBarAnimationCurve __NIMBUS_NAMESPACE_PREFIX_##NIStatusBarAnimationCurve
+#define NIStatusBarAnimationCurve __NIMBUS_NS_SYMBOL(NIStatusBarAnimationCurve)
 #endif
 #ifndef NIStatusBarAnimationDuration
-#define NIStatusBarAnimationDuration __NIMBUS_NAMESPACE_PREFIX_##NIStatusBarAnimationDuration
+#define NIStatusBarAnimationDuration __NIMBUS_NS_SYMBOL(NIStatusBarAnimationDuration)
 #endif
 #ifndef NIPathForDocumentsResource
-#define NIPathForDocumentsResource __NIMBUS_NAMESPACE_PREFIX_##NIPathForDocumentsResource
+#define NIPathForDocumentsResource __NIMBUS_NS_SYMBOL(NIPathForDocumentsResource)
 #endif
 #ifndef NIIsSetWithObjects
-#define NIIsSetWithObjects __NIMBUS_NAMESPACE_PREFIX_##NIIsSetWithObjects
+#define NIIsSetWithObjects __NIMBUS_NS_SYMBOL(NIIsSetWithObjects)
 #endif
 #ifndef NINetworkActivityTaskDidFinish
-#define NINetworkActivityTaskDidFinish __NIMBUS_NAMESPACE_PREFIX_##NINetworkActivityTaskDidFinish
+#define NINetworkActivityTaskDidFinish __NIMBUS_NS_SYMBOL(NINetworkActivityTaskDidFinish)
 #endif
 #ifndef NIStatusBarBoundsChangeAnimationCurve
-#define NIStatusBarBoundsChangeAnimationCurve __NIMBUS_NAMESPACE_PREFIX_##NIStatusBarBoundsChangeAnimationCurve
+#define NIStatusBarBoundsChangeAnimationCurve __NIMBUS_NS_SYMBOL(NIStatusBarBoundsChangeAnimationCurve)
 #endif
 #ifndef NIStatusBarBoundsChangeAnimationDuration
-#define NIStatusBarBoundsChangeAnimationDuration __NIMBUS_NAMESPACE_PREFIX_##NIStatusBarBoundsChangeAnimationDuration
+#define NIStatusBarBoundsChangeAnimationDuration __NIMBUS_NS_SYMBOL(NIStatusBarBoundsChangeAnimationDuration)
 #endif
 #ifndef NIDeviceOSVersionIsAtLeast
-#define NIDeviceOSVersionIsAtLeast __NIMBUS_NAMESPACE_PREFIX_##NIDeviceOSVersionIsAtLeast
+#define NIDeviceOSVersionIsAtLeast __NIMBUS_NS_SYMBOL(NIDeviceOSVersionIsAtLeast)
 #endif
 #ifndef NIRectShift
-#define NIRectShift __NIMBUS_NAMESPACE_PREFIX_##NIRectShift
+#define NIRectShift __NIMBUS_NS_SYMBOL(NIRectShift)
 #endif
 #ifndef NIStatusBarHeight
-#define NIStatusBarHeight __NIMBUS_NAMESPACE_PREFIX_##NIStatusBarHeight
+#define NIStatusBarHeight __NIMBUS_NS_SYMBOL(NIStatusBarHeight)
 #endif
 #ifndef NIScreenScale
-#define NIScreenScale __NIMBUS_NAMESPACE_PREFIX_##NIScreenScale
+#define NIScreenScale __NIMBUS_NS_SYMBOL(NIScreenScale)
 #endif
 #ifndef NIRotateTransformForOrientation
-#define NIRotateTransformForOrientation __NIMBUS_NAMESPACE_PREFIX_##NIRotateTransformForOrientation
+#define NIRotateTransformForOrientation __NIMBUS_NS_SYMBOL(NIRotateTransformForOrientation)
 #endif
 #ifndef NIIsStringWithAnyText
-#define NIIsStringWithAnyText __NIMBUS_NAMESPACE_PREFIX_##NIIsStringWithAnyText
+#define NIIsStringWithAnyText __NIMBUS_NS_SYMBOL(NIIsStringWithAnyText)
 #endif
 #ifndef NIPathForCachesResource
-#define NIPathForCachesResource __NIMBUS_NAMESPACE_PREFIX_##NIPathForCachesResource
+#define NIPathForCachesResource __NIMBUS_NS_SYMBOL(NIPathForCachesResource)
 #endif
 #ifndef NIRectInset
-#define NIRectInset __NIMBUS_NAMESPACE_PREFIX_##NIRectInset
+#define NIRectInset __NIMBUS_NS_SYMBOL(NIRectInset)
 #endif
 #ifndef NIDeviceRotationDuration
-#define NIDeviceRotationDuration __NIMBUS_NAMESPACE_PREFIX_##NIDeviceRotationDuration
+#define NIDeviceRotationDuration __NIMBUS_NS_SYMBOL(NIDeviceRotationDuration)
 #endif
 #ifndef NIUIPopoverControllerClass
-#define NIUIPopoverControllerClass __NIMBUS_NAMESPACE_PREFIX_##NIUIPopoverControllerClass
+#define NIUIPopoverControllerClass __NIMBUS_NS_SYMBOL(NIUIPopoverControllerClass)
 #endif
 #ifndef NICellContentPadding
-#define NICellContentPadding __NIMBUS_NAMESPACE_PREFIX_##NICellContentPadding
+#define NICellContentPadding __NIMBUS_NS_SYMBOL(NICellContentPadding)
 #endif
 #ifndef NIUITapGestureRecognizerClass
-#define NIUITapGestureRecognizerClass __NIMBUS_NAMESPACE_PREFIX_##NIUITapGestureRecognizerClass
+#define NIUITapGestureRecognizerClass __NIMBUS_NS_SYMBOL(NIUITapGestureRecognizerClass)
 #endif
 #ifndef NIMakeNSRangeFromCFRange
-#define NIMakeNSRangeFromCFRange __NIMBUS_NAMESPACE_PREFIX_##NIMakeNSRangeFromCFRange
+#define NIMakeNSRangeFromCFRange __NIMBUS_NS_SYMBOL(NIMakeNSRangeFromCFRange)
 #endif
 #ifndef NISwizzleMethodsForNetworkActivityDebugging
-#define NISwizzleMethodsForNetworkActivityDebugging __NIMBUS_NAMESPACE_PREFIX_##NISwizzleMethodsForNetworkActivityDebugging
+#define NISwizzleMethodsForNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NISwizzleMethodsForNetworkActivityDebugging)
 #endif
 #ifndef boundf
-#define boundf __NIMBUS_NAMESPACE_PREFIX_##boundf
+#define boundf __NIMBUS_NS_SYMBOL(boundf)
 #endif
 #ifndef NIEnableNetworkActivityDebugging
-#define NIEnableNetworkActivityDebugging __NIMBUS_NAMESPACE_PREFIX_##NIEnableNetworkActivityDebugging
+#define NIEnableNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NIEnableNetworkActivityDebugging)
 #endif
 #ifndef NIDisableNetworkActivityDebugging
-#define NIDisableNetworkActivityDebugging __NIMBUS_NAMESPACE_PREFIX_##NIDisableNetworkActivityDebugging
+#define NIDisableNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NIDisableNetworkActivityDebugging)
 #endif
 #ifndef boundi
-#define boundi __NIMBUS_NAMESPACE_PREFIX_##boundi
+#define boundi __NIMBUS_NS_SYMBOL(boundi)
 #endif
 // Externs
 #ifndef NIMaxLogLevel
-#define NIMaxLogLevel __NIMBUS_NAMESPACE_PREFIX_##NIMaxLogLevel
+#define NIMaxLogLevel __NIMBUS_NS_SYMBOL(NIMaxLogLevel)
 #endif
 #ifndef NIDebugAssertionsShouldBreak
-#define NIDebugAssertionsShouldBreak __NIMBUS_NAMESPACE_PREFIX_##NIDebugAssertionsShouldBreak
+#define NIDebugAssertionsShouldBreak __NIMBUS_NS_SYMBOL(NIDebugAssertionsShouldBreak)
+#endif
+#ifndef NINimbusErrorDomain
+#define NINimbusErrorDomain __NIMBUS_NS_SYMBOL(NINimbusErrorDomain)
+#endif
+#ifndef NIImageErrorKey
+#define NIImageErrorKey __NIMBUS_NS_SYMBOL(NIImageErrorKey)
 #endif
 #endif

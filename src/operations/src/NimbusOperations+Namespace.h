@@ -18,31 +18,40 @@
 #ifndef __NIMBUS_NAMESPACE_PREFIX_
 #error You must define __NIMBUS_NAMESPACE_PREFIX_ in your project settings in order to use a Nimbus namespace.
 #else
+
+#ifndef __NIMBUS_NS_SYMBOL
+// We need to have multiple levels of macros here so that __NIMBUS_NAMESPACE_PREFIX_ is
+// properly replaced by the time we concatenate the namespace prefix.
+#define __NIMBUS_NS_REWRITE(ns, symbol) ns ## _ ## symbol
+#define __NIMBUS_NS_BRIDGE(ns, symbol) __NIMBUS_NS_REWRITE(ns, symbol)
+#define __NIMBUS_NS_SYMBOL(symbol) __NIMBUS_NS_BRIDGE(__NIMBUS_NAMESPACE_PREFIX_, symbol)
+#endif
+
 // Classes
 #ifndef JKArray
-#define JKArray __NIMBUS_NAMESPACE_PREFIX_##JKArray
+#define JKArray __NIMBUS_NS_SYMBOL(JKArray)
 #endif
 #ifndef JKDictionary
-#define JKDictionary __NIMBUS_NAMESPACE_PREFIX_##JKDictionary
+#define JKDictionary __NIMBUS_NS_SYMBOL(JKDictionary)
 #endif
 #ifndef JKDictionaryEnumerator
-#define JKDictionaryEnumerator __NIMBUS_NAMESPACE_PREFIX_##JKDictionaryEnumerator
+#define JKDictionaryEnumerator __NIMBUS_NS_SYMBOL(JKDictionaryEnumerator)
 #endif
 #ifndef JKSerializer
-#define JKSerializer __NIMBUS_NAMESPACE_PREFIX_##JKSerializer
+#define JKSerializer __NIMBUS_NS_SYMBOL(JKSerializer)
 #endif
 #ifndef JSONDecoder
-#define JSONDecoder __NIMBUS_NAMESPACE_PREFIX_##JSONDecoder
+#define JSONDecoder __NIMBUS_NS_SYMBOL(JSONDecoder)
 #endif
 #ifndef NINetworkJSONRequest
-#define NINetworkJSONRequest __NIMBUS_NAMESPACE_PREFIX_##NINetworkJSONRequest
+#define NINetworkJSONRequest __NIMBUS_NS_SYMBOL(NINetworkJSONRequest)
 #endif
 #ifndef NINetworkRequestOperation
-#define NINetworkRequestOperation __NIMBUS_NAMESPACE_PREFIX_##NINetworkRequestOperation
+#define NINetworkRequestOperation __NIMBUS_NS_SYMBOL(NINetworkRequestOperation)
 #endif
 // Functions
 #ifndef jk_collectionClassLoadTimeInitialization
-#define jk_collectionClassLoadTimeInitialization __NIMBUS_NAMESPACE_PREFIX_##jk_collectionClassLoadTimeInitialization
+#define jk_collectionClassLoadTimeInitialization __NIMBUS_NS_SYMBOL(jk_collectionClassLoadTimeInitialization)
 #endif
 // Externs
 #endif
