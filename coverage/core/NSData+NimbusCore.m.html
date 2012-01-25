@@ -1,0 +1,421 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+   'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+  <html xmlns='http://www.w3.org/1999/xhtml'>
+    <head>
+      <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+      <meta name='generator' content='CoverStory' />
+      <link rel=StyleSheet href='coverstory.css' type='text/css'>
+      <script src='coverstory.js' language='javascript' type='text/javascript'></script>
+      <title>NSData+NimbusCore.m</title>
+    </head>
+    <body id='coverstory' onload='coverstory_load()' onunload='coverstory_unload()'>
+      <div id='maincontainer'>
+        <h1 id='sourcename'>NSData+NimbusCore.m</h1>
+        <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/core/src/NSData+NimbusCore.m</h2>
+        <div id='filelistcontainer'>
+          <div id='filesummary'>77.6% of 879 lines</div>
+          <table id='filetable'>
+            <tr id='filelistheader'>
+              <th id='filelistheadersource'>Source</th>
+              <th id='filelistheaderpercent'>%</th>
+            </tr>
+            <tr class='fileline'>
+<td class='filename'><a href='NINetworkActivity.m.html'>NINetworkActivity.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIDebuggingTools.m.html'>NIDebuggingTools.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIState.m.html'>NIState.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='UIView+NimbusCore.m.html'>UIView+NimbusCore.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NISDKAvailability.m.html'>NISDKAvailability.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>16.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIPaths.m.html'>NIPaths.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>20.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIFoundationMethods.m.html'>NIFoundationMethods.m</a></td>
+<td class='filepercent'><span class='filelessthan35percent'>28.95</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIOperations.m.html'>NIOperations.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>84.96</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NSString+NimbusCore.m.html'>NSString+NimbusCore.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>85.71</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NINavigationAppearance.m.html'>NINavigationAppearance.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>86.96</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIInMemoryCache.m.html'>NIInMemoryCache.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>91.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIDataStructures.m.html'>NIDataStructures.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>95.45</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NICommonMetrics.m.html'>NICommonMetrics.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NINonRetainingCollections.m.html'>NINonRetainingCollections.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NINonEmptyCollectionTesting.m.html'>NINonEmptyCollectionTesting.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIRuntimeClassModifications.m.html'>NIRuntimeClassModifications.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIViewRecycler.m.html'>NIViewRecycler.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NSData+NimbusCore.m.html'>NSData+NimbusCore.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+
+          </table>
+        </div>
+        <div id='sourcecontainer'>
+          <div id='sourcesummary'>Executed 100% of 8 lines (8 executed, 8 executable, 79 total lines)</div>
+          <table id='sourcetable'>
+          <tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Copyright 2011 Jeff Verkoeyen</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// you may not use this file except in compliance with the License.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// You may obtain a copy of the License at</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//    http://www.apache.org/licenses/LICENSE-2.0</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Unless required by applicable law or agreed to in writing, software</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// See the License for the specific language governing permissions and</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// limitations under the License.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NSData+NimbusCore.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NIPreprocessorMacros.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &lt;CommonCrypto/CommonDigest.h&gt;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>NI_FIX_CATEGORY_BUG(NSDataNimbusCore)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>/**</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * For hashing raw data.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * Turning NSData objects into hashes is a common operation when verifying downloaded</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * data and sending data over the wire.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> */</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@implementation NSData (NimbusCore)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>/**</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * Calculate an md5 hash using CC_MD5.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * @returns The md5 hash of this data.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> */</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>- (NSString *)md5Hash {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  unsigned char result[CC_MD5_DIGEST_LENGTH];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  CC_MD5([self bytes], [self length], result);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  return [NSString stringWithFormat:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          @&quot;%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x&quot;,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          result[8], result[9], result[10], result[11], result[12], result[13], result[14],</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          result[15]</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          ];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>/**</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * Calculate the SHA1 hash using CC_SHA1.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * @returns The SHA1 hash of this data.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> */</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>- (NSString *)sha1Hash {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  unsigned char result[CC_SHA1_DIGEST_LENGTH];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  CC_SHA1([self bytes], [self length], result);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  return [NSString stringWithFormat:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          @&quot;%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x&quot;,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          result[8], result[9], result[10], result[11], result[12], result[13], result[14],</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          result[15], result[16], result[17], result[18], result[19]</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          ];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@end</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>/**@}*/</td>
+</tr>
+
+          </table>
+        </div>
+      </div>
+    </body>
+  </html>
