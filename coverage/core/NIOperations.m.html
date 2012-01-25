@@ -1,0 +1,1141 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+   'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+  <html xmlns='http://www.w3.org/1999/xhtml'>
+    <head>
+      <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+      <meta name='generator' content='CoverStory' />
+      <link rel=StyleSheet href='coverstory.css' type='text/css'>
+      <script src='coverstory.js' language='javascript' type='text/javascript'></script>
+      <title>NIOperations.m</title>
+    </head>
+    <body id='coverstory' onload='coverstory_load()' onunload='coverstory_unload()'>
+      <div id='maincontainer'>
+        <h1 id='sourcename'>NIOperations.m</h1>
+        <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/core/src/NIOperations.m</h2>
+        <div id='filelistcontainer'>
+          <div id='filesummary'>77.6% of 879 lines</div>
+          <table id='filetable'>
+            <tr id='filelistheader'>
+              <th id='filelistheadersource'>Source</th>
+              <th id='filelistheaderpercent'>%</th>
+            </tr>
+            <tr class='fileline'>
+<td class='filename'><a href='NINetworkActivity.m.html'>NINetworkActivity.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIDebuggingTools.m.html'>NIDebuggingTools.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIState.m.html'>NIState.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='UIView+NimbusCore.m.html'>UIView+NimbusCore.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NISDKAvailability.m.html'>NISDKAvailability.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>16.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIPaths.m.html'>NIPaths.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>20.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIFoundationMethods.m.html'>NIFoundationMethods.m</a></td>
+<td class='filepercent'><span class='filelessthan35percent'>28.95</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIOperations.m.html'>NIOperations.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>84.96</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NSString+NimbusCore.m.html'>NSString+NimbusCore.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>85.71</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NINavigationAppearance.m.html'>NINavigationAppearance.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>86.96</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIInMemoryCache.m.html'>NIInMemoryCache.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>91.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIDataStructures.m.html'>NIDataStructures.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>95.45</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NICommonMetrics.m.html'>NICommonMetrics.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NINonRetainingCollections.m.html'>NINonRetainingCollections.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NINonEmptyCollectionTesting.m.html'>NINonEmptyCollectionTesting.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIRuntimeClassModifications.m.html'>NIRuntimeClassModifications.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIViewRecycler.m.html'>NIViewRecycler.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NSData+NimbusCore.m.html'>NSData+NimbusCore.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+
+          </table>
+        </div>
+        <div id='sourcecontainer'>
+          <div id='sourcesummary'>Executed 85.0% of 113 lines (96 executed, 113 executable, 259 total lines)</div>
+          <table id='sourcetable'>
+          <tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Copyright 2011 Jeff Verkoeyen</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// you may not use this file except in compliance with the License.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// You may obtain a copy of the License at</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//    http://www.apache.org/licenses/LICENSE-2.0</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Unless required by applicable law or agreed to in writing, software</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// See the License for the specific language governing permissions and</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// limitations under the License.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NIOperations.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NIDebuggingTools.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NIPreprocessorMacros.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NIOperations+Subclassing.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@implementation NINetworkRequestOperation</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>26</td>
+<td class='sourcelinehit'>@synthesize url = _url;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehit'>@synthesize timeout = _timeout;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehit'>@synthesize cachePolicy = _cachePolicy;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>@synthesize data = _data;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize processedObject = _processedObject;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>- (void)dealloc {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_url);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_data);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_processedObject);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  </td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>  [super dealloc];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>- (id)initWithURL:(NSURL *)url {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>  if ((self = [super init])) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>    self.url = url;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>    self.timeout = 60;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>    self.cachePolicy = NSURLRequestUseProtocolCachePolicy;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>  return self;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark NSOperation</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>- (void)main {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>  NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  </td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>  if ([self.url isFileURL]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Special case: load the image from disk without hitting the network.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>    [self operationDidStart];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>    NSError* dataReadError = nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    // The meat of the load-from-disk operation.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>    NSString* filePath = [self.url path];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>    NSMutableData* data = [NSMutableData dataWithContentsOfFile:filePath</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                        options:0</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>                                                          error:&amp;dataReadError];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>    if (nil != dataReadError) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // This generally happens when the file path points to a file that doesn&apos;t exist.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // dataReadError has the complete details.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>      [self operationDidFailWithError:dataReadError];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>    } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>      self.data = data;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // Notifies the delegates of the request completion.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>      [self operationWillFinish];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>      [self operationDidFinish];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>  } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Load the image from the network then.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [self operationDidStart];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    NSURLRequest* request = [NSURLRequest requestWithURL:self.url</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                             cachePolicy:self.cachePolicy</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>                                         timeoutInterval:self.timeout];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    NSError* networkError = nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    NSURLResponse* response = nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    NSData* data  = [NSURLConnection sendSynchronousRequest:request</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                          returningResponse:&amp;response</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>                                                      error:&amp;networkError];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    if (nil != networkError) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      [self operationDidFailWithError:networkError];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>    } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>      self.data = data;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      [self operationWillFinish];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      [self operationDidFinish];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(pool);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@end</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@implementation NIOperation</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>@synthesize delegate = _delegate;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize tag = _tag;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>@synthesize lastError = _lastError;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#if NS_BLOCKS_AVAILABLE</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>@synthesize didStartBlock         = _didStartBlock;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>@synthesize didFinishBlock        = _didFinishBlock;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>@synthesize didFailWithErrorBlock = _didFailWithErrorBlock;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>@synthesize willFinishBlock       = _willFinishBlock;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#endif // #if NS_BLOCKS_AVAILABLE</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>- (void)dealloc {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_lastError);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#if NS_BLOCKS_AVAILABLE</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_didStartBlock);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_didFinishBlock);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_didFailWithErrorBlock);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_willFinishBlock);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#endif // #if NS_BLOCKS_AVAILABLE</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>  [super dealloc];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark Initiate delegate notification from the NSOperation</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>- (void)operationDidStart {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>  [self performSelectorOnMainThread: @selector(onMainThreadOperationDidStart)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                         withObject: nil</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                      waitUntilDone: [NSThread isMainThread]];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>- (void)operationDidFinish {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>  [self performSelectorOnMainThread: @selector(onMainThreadOperationDidFinish)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                         withObject: nil</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                      waitUntilDone: [NSThread isMainThread]];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>- (void)operationDidFailWithError:(NSError *)error {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>  self.lastError = error;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>  [self performSelectorOnMainThread: @selector(onMainThreadOperationDidFailWithError:)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                         withObject: error</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                      waitUntilDone: [NSThread isMainThread]];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>- (void)operationWillFinish {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>  if ([self.delegate respondsToSelector:@selector(operationWillFinish:)]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [self.delegate operationWillFinish:self];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#if NS_BLOCKS_AVAILABLE</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>  if (nil != self.willFinishBlock) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.willFinishBlock(self);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#endif // #if NS_BLOCKS_AVAILABLE</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark Main Thread</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>- (void)onMainThreadOperationDidStart {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // This method should only be called on the main thread.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>  NIDASSERT([NSThread isMainThread]);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>  if ([self.delegate respondsToSelector:@selector(operationDidStart:)]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>    [self.delegate operationDidStart:self];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#if NS_BLOCKS_AVAILABLE</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>  if (nil != self.didStartBlock) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>    self.didStartBlock(self);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#endif // #if NS_BLOCKS_AVAILABLE</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>- (void)onMainThreadOperationDidFinish {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // This method should only be called on the main thread.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>  NIDASSERT([NSThread isMainThread]);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>  if ([self.delegate respondsToSelector:@selector(operationDidFinish:)]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    [self.delegate operationDidFinish:self];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#if NS_BLOCKS_AVAILABLE</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>  if (nil != self.didFinishBlock) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    self.didFinishBlock(self);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#endif // #if NS_BLOCKS_AVAILABLE</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>- (void)onMainThreadOperationDidFailWithError:(NSError *)error {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // This method should only be called on the main thread.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>  NIDASSERT([NSThread isMainThread]);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>  if ([self.delegate respondsToSelector:@selector(operationDidFail:withError:)]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    [self.delegate operationDidFail:self withError:error];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#if NS_BLOCKS_AVAILABLE</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>  if (nil != self.didFailWithErrorBlock) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    self.didFailWithErrorBlock(self, error);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#endif // #if NS_BLOCKS_AVAILABLE</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@end</td>
+</tr>
+
+          </table>
+        </div>
+      </div>
+    </body>
+  </html>

@@ -1,0 +1,1061 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+   'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+  <html xmlns='http://www.w3.org/1999/xhtml'>
+    <head>
+      <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+      <meta name='generator' content='CoverStory' />
+      <link rel=StyleSheet href='coverstory.css' type='text/css'>
+      <script src='coverstory.js' language='javascript' type='text/javascript'></script>
+      <title>NSString+NimbusCore.m</title>
+    </head>
+    <body id='coverstory' onload='coverstory_load()' onunload='coverstory_unload()'>
+      <div id='maincontainer'>
+        <h1 id='sourcename'>NSString+NimbusCore.m</h1>
+        <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/core/src/NSString+NimbusCore.m</h2>
+        <div id='filelistcontainer'>
+          <div id='filesummary'>77.6% of 879 lines</div>
+          <table id='filetable'>
+            <tr id='filelistheader'>
+              <th id='filelistheadersource'>Source</th>
+              <th id='filelistheaderpercent'>%</th>
+            </tr>
+            <tr class='fileline'>
+<td class='filename'><a href='NINetworkActivity.m.html'>NINetworkActivity.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIDebuggingTools.m.html'>NIDebuggingTools.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIState.m.html'>NIState.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='UIView+NimbusCore.m.html'>UIView+NimbusCore.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NISDKAvailability.m.html'>NISDKAvailability.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>16.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIPaths.m.html'>NIPaths.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>20.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIFoundationMethods.m.html'>NIFoundationMethods.m</a></td>
+<td class='filepercent'><span class='filelessthan35percent'>28.95</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIOperations.m.html'>NIOperations.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>84.96</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NSString+NimbusCore.m.html'>NSString+NimbusCore.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>85.71</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NINavigationAppearance.m.html'>NINavigationAppearance.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>86.96</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIInMemoryCache.m.html'>NIInMemoryCache.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>91.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIDataStructures.m.html'>NIDataStructures.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>95.45</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NICommonMetrics.m.html'>NICommonMetrics.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NINonRetainingCollections.m.html'>NINonRetainingCollections.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NINonEmptyCollectionTesting.m.html'>NINonEmptyCollectionTesting.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIRuntimeClassModifications.m.html'>NIRuntimeClassModifications.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIViewRecycler.m.html'>NIViewRecycler.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NSData+NimbusCore.m.html'>NSData+NimbusCore.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+
+          </table>
+        </div>
+        <div id='sourcecontainer'>
+          <div id='sourcesummary'>Executed 85.7% of 77 lines (66 executed, 77 executable, 239 total lines)</div>
+          <table id='sourcetable'>
+          <tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Copyright 2011 Jeff Verkoeyen</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// you may not use this file except in compliance with the License.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// You may obtain a copy of the License at</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//    http://www.apache.org/licenses/LICENSE-2.0</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Unless required by applicable law or agreed to in writing, software</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// See the License for the specific language governing permissions and</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// limitations under the License.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NSString+NimbusCore.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NSData+NimbusCore.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NIPreprocessorMacros.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &lt;UIKit/UIKit.h&gt;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>NI_FIX_CATEGORY_BUG(NSStringNimbusCore)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>/**</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * For manipulating NSStrings.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> */</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@implementation NSString (NimbusCore)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>/**</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * Determines if the string contains only whitespace and newlines.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> */</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>13</td>
+<td class='sourcelinehit'>- (BOOL)isWhitespaceAndNewlines {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>13</td>
+<td class='sourcelinehit'>  NSCharacterSet* whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>60</td>
+<td class='sourcelinehit'>  for (NSInteger i = 0; i &lt; self.length; ++i) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>    unichar c = [self characterAtIndex:i];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>    if (![whitespace characterIsMember:c]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>      return NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>17</td>
+<td class='sourcelinehit'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>11</td>
+<td class='sourcelinehit'>  return YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>13</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>/**</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * Calculates the height of this text given the font, max width, and line break mode.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * A convenience wrapper for sizeWithFont:constrainedToSize:lineBreakMode:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> */</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (CGFloat)heightWithFont: (UIFont*)font</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>       constrainedToWidth: (CGFloat)width</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>            lineBreakMode: (UILineBreakMode)lineBreakMode {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return [self sizeWithFont: font</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>          constrainedToSize: CGSizeMake(width, CGFLOAT_MAX)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>              lineBreakMode: lineBreakMode].height;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>/**</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * Parses a URL query string into a dictionary where the values are arrays.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * A query string is one that looks like &amp;param1=value1&amp;param2=value2...</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * The resulting NSDictionary will contain keys for each parameter name present in the query.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * The value for each key will be an NSArray which may be empty if the key is simply present</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * in the query. Otherwise each object in the array with be an NSString corresponding to a value</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * in the query for that parameter.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> */</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehit'>- (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehit'>  NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@&quot;&amp;;&quot;];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehit'>  NSMutableDictionary* pairs = [NSMutableDictionary dictionary];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehit'>  NSScanner* scanner = [[[NSScanner alloc] initWithString:self] autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>54</td>
+<td class='sourcelinehit'>  while (![scanner isAtEnd]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>26</td>
+<td class='sourcelinehit'>    NSString* pairString = nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>26</td>
+<td class='sourcelinehit'>    [scanner scanUpToCharactersFromSet:delimiterSet intoString:&amp;pairString];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>26</td>
+<td class='sourcelinehit'>    [scanner scanCharactersFromSet:delimiterSet intoString:NULL];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>26</td>
+<td class='sourcelinehit'>    NSArray* kvPair = [pairString componentsSeparatedByString:@&quot;=&quot;];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>48</td>
+<td class='sourcelinehit'>    if (kvPair.count == 1 || kvPair.count == 2) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>24</td>
+<td class='sourcelinehit'>      NSString* key = [[kvPair objectAtIndex:0]</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>24</td>
+<td class='sourcelinehit'>                       stringByReplacingPercentEscapesUsingEncoding:encoding];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>24</td>
+<td class='sourcelinehit'>      NSMutableArray* values = [pairs objectForKey:key];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>24</td>
+<td class='sourcelinehit'>      if (nil == values) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>        values = [NSMutableArray array];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>        [pairs setObject:values forKey:key];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>      }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>24</td>
+<td class='sourcelinehit'>      if (kvPair.count == 1) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>        [values addObject:[NSNull null]];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>24</td>
+<td class='sourcelinehit'>      } else if (kvPair.count == 2) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>        NSString* value = [[kvPair objectAtIndex:1]</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>                           stringByReplacingPercentEscapesUsingEncoding:encoding];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>        [values addObject:value];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>      }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>24</td>
+<td class='sourcelinehit'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>26</td>
+<td class='sourcelinehit'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehit'>  return [NSDictionary dictionaryWithDictionary:pairs];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>/**</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * Returns a string that has been escaped for use as a URL parameter.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> */</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>- (NSString *)stringByAddingPercentEscapesForURLParameter {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>  return [(NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                              (CFStringRef)self,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                              NULL,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                              (CFStringRef)@&quot;;/?:@&amp;=+$,&quot;,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                              kCFStringEncodingUTF8)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>/**</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> */</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>- (NSString*)stringByAddingQueryDictionary:(NSDictionary*)query {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>  NSMutableArray* pairs = [NSMutableArray array];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehit'>  for (NSString* key in [query keyEnumerator]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>    NSString* value = [[query objectForKey:key] stringByAddingPercentEscapesForURLParameter];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>    NSString* pair = [NSString stringWithFormat:@&quot;%@=%@&quot;, key, value];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>    [pairs addObject:pair];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>13</td>
+<td class='sourcelinehit'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>  NSString* params = [pairs componentsJoinedByString:@&quot;&amp;&quot;];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>  if ([self rangeOfString:@&quot;?&quot;].location == NSNotFound) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>    return [self stringByAppendingFormat:@&quot;?%@&quot;, params];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return [self stringByAppendingFormat:@&quot;&amp;%@&quot;, params];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>/**</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * Compares two strings expressing software versions.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * The comparison is (except for the development version provisions noted below) lexicographic</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * string comparison. So as long as the strings being compared use consistent version formats,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * a variety of schemes are supported. For example &quot;3.02&quot; &lt; &quot;3.03&quot; and &quot;3.0.2&quot; &lt; &quot;3.0.3&quot;. If you</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * mix such schemes, like trying to compare &quot;3.02&quot; and &quot;3.0.3&quot;, the result may not be what you</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * expect.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * Development versions are also supported by adding an &quot;a&quot; character and more version info after</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * it. For example &quot;3.0a1&quot; or &quot;3.01a4&quot;. The way these are handled is as follows: if the parts</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * before the &quot;a&quot; are different, the parts after the &quot;a&quot; are ignored. If the parts before the &quot;a&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * are identical, the result of the comparison is the result of NUMERICALLY comparing the parts</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * after the &quot;a&quot;. If the part after the &quot;a&quot; is empty, it is treated as if it were &quot;0&quot;. If one</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * string has an &quot;a&quot; and the other does not (e.g. &quot;3.0&quot; and &quot;3.0a1&quot;) the one without the &quot;a&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * is newer.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * Examples (?? means undefined):</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * @htmlonly</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * &lt;pre&gt;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *   &quot;3.0&quot; = &quot;3.0&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *   &quot;3.0a2&quot; = &quot;3.0a2&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *   &quot;3.0&quot; &gt; &quot;2.5&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *   &quot;3.1&quot; &gt; &quot;3.0&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *   &quot;3.0a1&quot; &lt; &quot;3.0&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *   &quot;3.0a1&quot; &lt; &quot;3.0a4&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *   &quot;3.0a2&quot; &lt; &quot;3.0a19&quot;  &lt;-- numeric, not lexicographic</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *   &quot;3.0a&quot; &lt; &quot;3.0a1&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *   &quot;3.02&quot; &lt; &quot;3.03&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *   &quot;3.0.2&quot; &lt; &quot;3.0.3&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *   &quot;3.00&quot; ?? &quot;3.0&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *   &quot;3.02&quot; ?? &quot;3.0.3&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *   &quot;3.02&quot; ?? &quot;3.0.2&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * &lt;/pre&gt;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * @endhtmlonly</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> */</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>- (NSComparisonResult)versionStringCompare:(NSString *)other {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>  NSArray *oneComponents = [self componentsSeparatedByString:@&quot;a&quot;];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>  NSArray *twoComponents = [other componentsSeparatedByString:@&quot;a&quot;];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // The parts before the &quot;a&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>  NSString *oneMain = [oneComponents objectAtIndex:0];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>  NSString *twoMain = [twoComponents objectAtIndex:0];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // If main parts are different, return that result, regardless of alpha part</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>  NSComparisonResult mainDiff;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>  if ((mainDiff = [oneMain compare:twoMain]) != NSOrderedSame) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>    return mainDiff;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // At this point the main parts are the same; just deal with alpha stuff</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // If one has an alpha part and the other doesn&apos;t, the one without is newer</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>  if ([oneComponents count] &lt; [twoComponents count]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return NSOrderedDescending;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>  } else if ([oneComponents count] &gt; [twoComponents count]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    return NSOrderedAscending;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>  } else if ([oneComponents count] == 1) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Neither has an alpha part, and we know the main parts are the same</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    return NSOrderedSame;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // At this point the main parts are the same and both have alpha parts. Compare the alpha parts</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // numerically. If it&apos;s not a valid number (including empty string) it&apos;s treated as zero.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>  NSNumber *oneAlpha = [NSNumber numberWithInt:[[oneComponents objectAtIndex:1] intValue]];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>  NSNumber *twoAlpha = [NSNumber numberWithInt:[[twoComponents objectAtIndex:1] intValue]];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>  return [oneAlpha compare:twoAlpha];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>/**</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * Calculate the md5 hash using CC_MD5.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * @returns md5 hash of this string.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> */</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (NSString*)md5Hash {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return [[self dataUsingEncoding:NSUTF8StringEncoding] md5Hash];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>/**</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * Calculate the SHA1 hash using CommonCrypto CC_SHA1.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> *</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> * @returns SHA1 hash of this string.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'> */</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (NSString*)sha1Hash {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return [[self dataUsingEncoding:NSUTF8StringEncoding] sha1Hash];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@end</td>
+</tr>
+
+          </table>
+        </div>
+      </div>
+    </body>
+  </html>

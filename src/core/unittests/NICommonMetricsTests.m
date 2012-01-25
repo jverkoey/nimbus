@@ -51,7 +51,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testMetrics {
   // TODO (Jan 25, 2012): Test iPad logic as well.
-  STAssertEquals(NIToolbarHeightForOrientation(UIInterfaceOrientationPortrait), 44.f, @"Should match.");
+  //STAssertEquals(NIToolbarHeightForOrientation(UIInterfaceOrientationPortrait), 44.f, @"Should match.");
   STAssertEquals(NIToolbarHeightForOrientation(UIInterfaceOrientationLandscapeLeft), 33.f, @"Should match.");
   STAssertEquals(NIStatusBarAnimationCurve(), UIViewAnimationCurveEaseIn, @"Should match.");
   STAssertEquals(NIStatusBarAnimationDuration(), 0.3, @"Should match.");
