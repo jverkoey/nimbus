@@ -6,12 +6,12 @@
       <meta name='generator' content='CoverStory' />
       <link rel=StyleSheet href='coverstory.css' type='text/css'>
       <script src='coverstory.js' language='javascript' type='text/javascript'></script>
-      <title>NSData+NimbusCore.m</title>
+      <title>NIDeviceOrientation.m</title>
     </head>
     <body id='coverstory' onload='coverstory_load()' onunload='coverstory_unload()'>
       <div id='maincontainer'>
-        <h1 id='sourcename'>NSData+NimbusCore.m</h1>
-        <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/core/src/NSData+NimbusCore.m</h2>
+        <h1 id='sourcename'>NIDeviceOrientation.m</h1>
+        <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/core/src/NIDeviceOrientation.m</h2>
         <div id='filelistcontainer'>
           <div id='filesummary'>75.9% of 898 lines</div>
           <table id='filetable'>
@@ -99,7 +99,7 @@
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 100% of 8 lines (8 executed, 8 executable, 79 total lines)</div>
+          <div id='sourcesummary'>Executed 0.0% of 19 lines (0 executed, 19 executable, 74 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -175,7 +175,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>#import &quot;NSData+NimbusCore.h&quot;</td>
+<td class='sourcelineskipped'>#import &quot;NIDeviceOrientation.h&quot;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -183,7 +183,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>#import &quot;NIPreprocessorMacros.h&quot;</td>
+<td class='sourcelineskipped'>#import &lt;QuartzCore/QuartzCore.h&gt;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -191,7 +191,83 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>#import &lt;CommonCrypto/CommonDigest.h&gt;</td>
+<td class='sourcelineskipped'>#import &quot;NIDebuggingTools.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NISDKAvailability.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (NIIsPad()) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    switch (orientation) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      case UIInterfaceOrientationPortrait:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      case UIInterfaceOrientationLandscapeLeft:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      case UIInterfaceOrientationLandscapeRight:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        return YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      default:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        return NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -207,43 +283,11 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+<td class='sourcelineskipped'>UIInterfaceOrientation NIInterfaceOrientation(void) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>NI_FIX_CATEGORY_BUG(NSDataNimbusCore)</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>/**</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'> * For hashing raw data.</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'> *</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'> * Turning NSData objects into hashes is a common operation when verifying downloaded</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'> * data and sending data over the wire.</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'> */</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>@implementation NSData (NimbusCore)</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -251,71 +295,35 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
+<td class='sourcelineskipped'>  // This code used to use the navigator to find the currently visible view controller and</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+<td class='sourcelineskipped'>  // fall back to checking its orientation if we didn&apos;t know the status bar&apos;s orientation.</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>/**</td>
+<td class='sourcelineskipped'>  // It&apos;s unclear when this was actually necessary, though, so this assertion is here to try</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'> * Calculate an md5 hash using CC_MD5.</td>
+<td class='sourcelineskipped'>  // to find that case. If this assertion fails then the repro case needs to be analyzed and</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'> *</td>
+<td class='sourcelineskipped'>  // this method made more robust to handle that case.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'> * @returns The md5 hash of this data.</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'> */</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>- (NSString *)md5Hash {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  unsigned char result[CC_MD5_DIGEST_LENGTH];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  CC_MD5([self bytes], [self length], result);</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NIDASSERT(UIDeviceOrientationUnknown != orient);</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  return [NSString stringWithFormat:</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>          @&quot;%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x&quot;,</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>          result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>          result[8], result[9], result[10], result[11], result[12], result[13], result[14],</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>          result[15]</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>          ];</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return orient;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -334,68 +342,40 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>/**</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>CGAffineTransform NIRotateTransformForOrientation(UIInterfaceOrientation orientation) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'> * Calculate the SHA1 hash using CC_SHA1.</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (orientation == UIInterfaceOrientationLandscapeLeft) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'> *</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'> * @returns The SHA1 hash of this data.</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'> */</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>- (NSString *)sha1Hash {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  unsigned char result[CC_SHA1_DIGEST_LENGTH];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  CC_SHA1([self bytes], [self length], result);</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return CGAffineTransformMakeRotation((CGFloat)(M_PI * 1.5));</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  return [NSString stringWithFormat:</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  } else if (orientation == UIInterfaceOrientationLandscapeRight) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return CGAffineTransformMakeRotation((CGFloat)(M_PI / 2.0));</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>          @&quot;%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x&quot;,</td>
+<td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>          result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>          result[8], result[9], result[10], result[11], result[12], result[13], result[14],</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>          result[15], result[16], result[17], result[18], result[19]</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>          ];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return CGAffineTransformMakeRotation((CGFloat)(-M_PI));</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -403,19 +383,19 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
+<td class='sourcelineskipped'>  } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return CGAffineTransformIdentity;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>@end</td>
+<td class='sourcelineskipped'>  }</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>/**@}*/</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 
           </table>
