@@ -38,7 +38,7 @@
 /**
  * The current page has changed.
  *
- * pagingScrollView.currentCenterPageIndex will reflect the changed page index.
+ * pagingScrollView.centerPageIndex will reflect the changed page index.
  */
 - (void)pagingScrollViewDidChangePages:(NIPagingScrollView *)pagingScrollView;
 
