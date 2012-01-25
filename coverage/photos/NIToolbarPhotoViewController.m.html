@@ -13,7 +13,7 @@
         <h1 id='sourcename'>NIToolbarPhotoViewController.m</h1>
         <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/photos/src/NIToolbarPhotoViewController.m</h2>
         <div id='filelistcontainer'>
-          <div id='filesummary'>0.0% of 827 lines</div>
+          <div id='filesummary'>0.0% of 814 lines</div>
           <table id='filetable'>
             <tr id='filelistheader'>
               <th id='filelistheadersource'>Source</th>
@@ -24,11 +24,11 @@
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
-<td class='filename'><a href='NIPhotoScrollView.m.html'>NIPhotoScrollView.m</a></td>
+<td class='filename'><a href='NIPhotoScrubberView.m.html'>NIPhotoScrubberView.m</a></td>
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
-<td class='filename'><a href='NIPhotoScrubberView.m.html'>NIPhotoScrubberView.m</a></td>
+<td class='filename'><a href='NIPhotoScrollView.m.html'>NIPhotoScrollView.m</a></td>
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
@@ -39,7 +39,7 @@
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 0.0% of 276 lines (0 executed, 276 executable, 595 total lines)</div>
+          <div id='sourcesummary'>Executed 0.0% of 275 lines (0 executed, 275 executable, 584 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -146,8 +146,8 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>@implementation NIToolbarPhotoViewController</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@implementation NIToolbarPhotoViewController</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -218,64 +218,20 @@
 <td class='sourcelinemissed'>  _photoAlbumView = nil;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _nextButton = nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_nextButton);</td>
+<td class='sourcelinemissed'>  _previousButton = nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_previousButton);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
+<td class='sourcelinemissed'>  _photoScrubberView = nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_photoScrubberView);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_tapGesture);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>}</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>- (void)dealloc {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  [self shutdown_NIToolbarPhotoViewController];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  [super dealloc];</td>
+<td class='sourcelinemissed'>  _tapGesture = nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -362,8 +318,8 @@
 <td class='sourcelinemissed'>  return self;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -459,7 +415,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>  [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace</td>
+<td class='sourcelineskipped'>  [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -467,7 +423,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>                                                 action: nil] autorelease];</td>
+<td class='sourcelinemissed'>                                                 action: nil];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -479,11 +435,11 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    NI_RELEASE_SAFELY(_nextButton);</td>
+<td class='sourcelinemissed'>    _nextButton = nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    NI_RELEASE_SAFELY(_previousButton);</td>
+<td class='sourcelinemissed'>    _previousButton = nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -498,8 +454,8 @@
 <td class='sourcelinemissed'>      CGRect scrubberFrame = CGRectMake(0, 0,</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>                                        self.toolbar.bounds.size.width,</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>                                        self.toolbar.bounds.size.width,</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -535,7 +491,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    [[[UIBarButtonItem alloc] initWithCustomView:self.photoScrubberView] autorelease];</td>
+<td class='sourcelinemissed'>    [[UIBarButtonItem alloc] initWithCustomView:self.photoScrubberView];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -567,7 +523,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    NI_RELEASE_SAFELY(_photoScrubberView);</td>
+<td class='sourcelinemissed'>    _photoScrubberView = nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -811,7 +767,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  _toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];</td>
+<td class='sourcelinemissed'>  _toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -867,7 +823,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  _photoAlbumView = [[[NIPhotoAlbumScrollView alloc] initWithFrame:photoAlbumFrame] autorelease];</td>
+<td class='sourcelinemissed'>  _photoAlbumView = [[NIPhotoAlbumScrollView alloc] initWithFrame:photoAlbumFrame];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>

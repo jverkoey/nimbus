@@ -13,22 +13,18 @@
         <h1 id='sourcename'>NIOverview.m</h1>
         <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverview.m</h2>
         <div id='filelistcontainer'>
-          <div id='filesummary'>0.8% of 839 lines</div>
+          <div id='filesummary'>0.9% of 823 lines</div>
           <table id='filetable'>
             <tr id='filelistheader'>
               <th id='filelistheadersource'>Source</th>
               <th id='filelistheaderpercent'>%</th>
             </tr>
             <tr class='fileline'>
-<td class='filename'><a href='NIOverview.m.html'>NIOverview.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
-</tr>
-<tr class='fileline'>
-<td class='filename'><a href='NIOverviewGraphView.m.html'>NIOverviewGraphView.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
-</tr>
-<tr class='fileline'>
 <td class='filename'><a href='NIOverviewLogger.m.html'>NIOverviewLogger.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIOverview.m.html'>NIOverview.m</a></td>
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
@@ -40,8 +36,12 @@
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
+<td class='filename'><a href='NIOverviewGraphView.m.html'>NIOverviewGraphView.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
 <td class='filename'><a href='NIOverviewPageView.m.html'>NIOverviewPageView.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.83</span></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.85</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIDeviceInfo.m.html'>NIDeviceInfo.m</a></td>
@@ -51,7 +51,7 @@
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 0.0% of 135 lines (0 executed, 135 executable, 383 total lines)</div>
+          <div id='sourcesummary'>Executed 0.0% of 133 lines (0 executed, 133 executable, 375 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -394,20 +394,12 @@
 <td class='sourcelinemissed'>                                      initWithLog:formattedLogMessage];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(formattedLogMessage);</td>
-</tr>
-<tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>  [[NIOverview logger] addConsoleLog:entry];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(entry);</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -428,14 +420,6 @@
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>  fprintf(stderr, &quot;%s&quot;, [formattedLogMessage UTF8String]);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>  </td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(formattedLogMessage);</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -803,11 +787,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>   [[[NIOverviewEventLogEntry alloc] initWithType:NIOverviewEventDidReceiveMemoryWarning]</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>    autorelease]];</td>
+<td class='sourcelineskipped'>   [[NIOverviewEventLogEntry alloc] initWithType:NIOverviewEventDidReceiveMemoryWarning]];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -838,12 +818,8 @@
 <td class='sourcelinemissed'>  NIOverviewDeviceLogEntry* logEntry =</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>  [[[NIOverviewDeviceLogEntry alloc] initWithTimestamp:[NSDate date]]</td>
-</tr>
-<tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>   autorelease];</td>
+<td class='sourcelinemissed'>  [[NIOverviewDeviceLogEntry alloc] initWithTimestamp:[NSDate date]];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -1047,7 +1023,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    sOverviewHeartbeatTimer = [[NSTimer scheduledTimerWithTimeInterval: 0.5</td>
+<td class='sourcelinemissed'>    sOverviewHeartbeatTimer = [NSTimer scheduledTimerWithTimeInterval: 0.5</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1063,11 +1039,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>                                                                 repeats: YES]</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>                                 retain];</td>
+<td class='sourcelineskipped'>                                                                 repeats: YES];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -1116,10 +1088,6 @@
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>    [sOverviewView removeFromSuperview];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    NI_RELEASE_SAFELY(sOverviewView);</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -1234,8 +1202,8 @@
 <td class='sourcelineskipped'>#endif</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1570,8 +1538,8 @@
 <td class='sourcelineskipped'>#endif</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>

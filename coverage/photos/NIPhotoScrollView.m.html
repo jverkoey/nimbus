@@ -13,7 +13,7 @@
         <h1 id='sourcename'>NIPhotoScrollView.m</h1>
         <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/photos/src/NIPhotoScrollView.m</h2>
         <div id='filelistcontainer'>
-          <div id='filesummary'>0.0% of 827 lines</div>
+          <div id='filesummary'>0.0% of 814 lines</div>
           <table id='filetable'>
             <tr id='filelistheader'>
               <th id='filelistheadersource'>Source</th>
@@ -24,11 +24,11 @@
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
-<td class='filename'><a href='NIPhotoScrollView.m.html'>NIPhotoScrollView.m</a></td>
+<td class='filename'><a href='NIPhotoScrubberView.m.html'>NIPhotoScrubberView.m</a></td>
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
-<td class='filename'><a href='NIPhotoScrubberView.m.html'>NIPhotoScrubberView.m</a></td>
+<td class='filename'><a href='NIPhotoScrollView.m.html'>NIPhotoScrollView.m</a></td>
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
@@ -39,7 +39,7 @@
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 0.0% of 218 lines (0 executed, 218 executable, 570 total lines)</div>
+          <div id='sourcesummary'>Executed 0.0% of 214 lines (0 executed, 214 executable, 561 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -270,8 +270,8 @@
 <td class='sourcelinemissed'>    frameToCenter.origin.x = floorf((boundsSize.width - frameToCenter.size.width) / 2);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'></td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -302,8 +302,8 @@
 <td class='sourcelinemissed'>    frameToCenter.origin.y = floorf((boundsSize.height - frameToCenter.size.height) / 2);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'></td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -394,8 +394,8 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>@implementation NIPhotoScrollView</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@implementation NIPhotoScrollView</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -447,42 +447,6 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>- (void)dealloc {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_doubleTapGestureRecognizer);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_reuseIdentifier);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  [super dealloc];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>}</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>- (id)initWithFrame:(CGRect)frame {</td>
 </tr>
 <tr class='sourceline'>
@@ -515,7 +479,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    _scrollView = [[[NICenteringScrollView alloc] initWithFrame:self.bounds] autorelease];</td>
+<td class='sourcelinemissed'>    _scrollView = [[NICenteringScrollView alloc] initWithFrame:self.bounds];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -591,7 +555,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    _imageView = [[[UIImageView alloc] initWithFrame:CGRectZero] autorelease];</td>
+<td class='sourcelinemissed'>    _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -614,8 +578,8 @@
 <td class='sourcelinemissed'>  return self;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -694,8 +658,8 @@
 <td class='sourcelinemissed'>  return _imageView;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>

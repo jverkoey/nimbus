@@ -13,7 +13,7 @@
         <h1 id='sourcename'>NSAttributedString+NimbusAttributedLabel.m</h1>
         <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/attributedlabel/src/NSAttributedString+NimbusAttributedLabel.m</h2>
         <div id='filelistcontainer'>
-          <div id='filesummary'>0.0% of 476 lines</div>
+          <div id='filesummary'>0.0% of 470 lines</div>
           <table id='filetable'>
             <tr id='filelistheader'>
               <th id='filelistheadersource'>Source</th>
@@ -199,7 +199,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>               value:(id)style </td>
+<td class='sourcelineskipped'>               value:(__bridge id)style </td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -311,7 +311,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  CTFontRef fontRef = CTFontCreateWithName((CFStringRef)font.fontName, font.pointSize, nil);</td>
+<td class='sourcelinemissed'>  CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, nil);</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -319,7 +319,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  [self addAttribute:(NSString*)kCTFontAttributeName value:(id)fontRef range:range];</td>
+<td class='sourcelinemissed'>  [self addAttribute:(__bridge NSString*)kCTFontAttributeName value:(__bridge id)fontRef range:range];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>

@@ -13,7 +13,7 @@
         <h1 id='sourcename'>NIDOM.m</h1>
         <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/css/src/NIDOM.m</h2>
         <div id='filelistcontainer'>
-          <div id='filesummary'>29.6% of 1426 lines</div>
+          <div id='filesummary'>29.4% of 1416 lines</div>
           <table id='filetable'>
             <tr id='filelistheader'>
               <th id='filelistheadersource'>Source</th>
@@ -32,10 +32,6 @@
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
-<td class='filename'><a href='NIStylesheetCache.m.html'>NIStylesheetCache.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
-</tr>
-<tr class='fileline'>
 <td class='filename'><a href='UIButton+NIStyleable.m.html'>UIButton+NIStyleable.m</a></td>
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
@@ -48,12 +44,16 @@
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
+<td class='filename'><a href='NIStylesheetCache.m.html'>NIStylesheetCache.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
 <td class='filename'><a href='UIView+NIStyleable.m.html'>UIView+NIStyleable.m</a></td>
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIStylesheet.m.html'>NIStylesheet.m</a></td>
-<td class='filepercent'><span class='filelessthan35percent'>27.34</span></td>
+<td class='filepercent'><span class='filelessthan35percent'>28.10</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='lex.css.c.html'>lex.css.c</a></td>
@@ -61,7 +61,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NICSSParser.m.html'>NICSSParser.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>86.86</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>86.64</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='css.grammar.html'>css.grammar</a></td>
@@ -71,7 +71,7 @@
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 0.0% of 73 lines (0 executed, 73 executable, 159 total lines)</div>
+          <div id='sourcesummary'>Executed 0.0% of 71 lines (0 executed, 71 executable, 148 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -174,48 +174,8 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>@implementation NIDOM</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
-</tr>
-<tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>- (void)dealloc {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_stylesheet);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_registeredViews);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_viewToSelectorsMap);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  [super dealloc];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>}</td>
+<td class='sourcelinemissed'>@implementation NIDOM</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -235,11 +195,11 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  return [[[self alloc] initWithStylesheet:stylesheet] autorelease];</td>
+<td class='sourcelinemissed'>  return [[self alloc] initWithStylesheet:stylesheet];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -271,7 +231,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NIStylesheet* compositeStylesheet = [[[NIStylesheet alloc] init] autorelease];</td>
+<td class='sourcelinemissed'>  NIStylesheet* compositeStylesheet = [[NIStylesheet alloc] init];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -311,10 +271,6 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>      NI_RELEASE_SAFELY(stylesheet);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>    }</td>
 </tr>
 <tr class='sourceline'>
@@ -335,11 +291,11 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  return [[[self alloc] initWithStylesheet:compositeStylesheet] autorelease];</td>
+<td class='sourcelinemissed'>  return [[self alloc] initWithStylesheet:compositeStylesheet];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -363,7 +319,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    _stylesheet = [stylesheet retain];</td>
+<td class='sourcelinemissed'>    _stylesheet = stylesheet;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -382,8 +338,8 @@
 <td class='sourcelinemissed'>  return self;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -470,8 +426,8 @@
 <td class='sourcelinemissed'>  return [NSNumber numberWithLong:(long)view];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -503,7 +459,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    selectors = [[[NSMutableArray alloc] init] autorelease];</td>
+<td class='sourcelinemissed'>    selectors = [[NSMutableArray alloc] init];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>

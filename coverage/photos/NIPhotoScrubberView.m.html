@@ -13,7 +13,7 @@
         <h1 id='sourcename'>NIPhotoScrubberView.m</h1>
         <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/photos/src/NIPhotoScrubberView.m</h2>
         <div id='filelistcontainer'>
-          <div id='filesummary'>0.0% of 827 lines</div>
+          <div id='filesummary'>0.0% of 814 lines</div>
           <table id='filetable'>
             <tr id='filelistheader'>
               <th id='filelistheadersource'>Source</th>
@@ -24,11 +24,11 @@
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
-<td class='filename'><a href='NIPhotoScrollView.m.html'>NIPhotoScrollView.m</a></td>
+<td class='filename'><a href='NIPhotoScrubberView.m.html'>NIPhotoScrubberView.m</a></td>
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
-<td class='filename'><a href='NIPhotoScrubberView.m.html'>NIPhotoScrubberView.m</a></td>
+<td class='filename'><a href='NIPhotoScrollView.m.html'>NIPhotoScrollView.m</a></td>
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
@@ -39,7 +39,7 @@
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 0.0% of 217 lines (0 executed, 217 executable, 511 total lines)</div>
+          <div id='sourcesummary'>Executed 0.0% of 210 lines (0 executed, 210 executable, 496 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -270,8 +270,8 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>@implementation NIPhotoScrubberView</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@implementation NIPhotoScrubberView</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -288,54 +288,6 @@
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>@synthesize selectedPhotoIndex = _selectedPhotoIndex;</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>- (void)dealloc {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_visiblePhotoViews);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_recycledPhotoViews);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>  </td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_containerView);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_selectionView);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  [super dealloc];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -399,7 +351,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    _selectionView = [[self photoView] retain];</td>
+<td class='sourcelinemissed'>    _selectionView = [self photoView];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -426,8 +378,8 @@
 <td class='sourcelinemissed'>  return self;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -442,8 +394,8 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -471,7 +423,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  UIImageView* imageView = [[[UIImageView alloc] init] autorelease];</td>
+<td class='sourcelinemissed'>  UIImageView* imageView = [[UIImageView alloc] init];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -526,8 +478,8 @@
 <td class='sourcelinemissed'>  return imageView;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1315,7 +1267,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>      photoView = [[[_recycledPhotoViews anyObject] retain] autorelease];</td>
+<td class='sourcelinemissed'>      photoView = [_recycledPhotoViews anyObject];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -1856,18 +1808,6 @@
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>  }</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_visiblePhotoViews);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_recycledPhotoViews);</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>

@@ -13,7 +13,7 @@
         <h1 id='sourcename'>NIStylesheet.m</h1>
         <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/css/src/NIStylesheet.m</h2>
         <div id='filelistcontainer'>
-          <div id='filesummary'>29.6% of 1426 lines</div>
+          <div id='filesummary'>29.4% of 1416 lines</div>
           <table id='filetable'>
             <tr id='filelistheader'>
               <th id='filelistheadersource'>Source</th>
@@ -32,10 +32,6 @@
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
-<td class='filename'><a href='NIStylesheetCache.m.html'>NIStylesheetCache.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
-</tr>
-<tr class='fileline'>
 <td class='filename'><a href='UIButton+NIStyleable.m.html'>UIButton+NIStyleable.m</a></td>
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
@@ -48,12 +44,16 @@
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
+<td class='filename'><a href='NIStylesheetCache.m.html'>NIStylesheetCache.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
 <td class='filename'><a href='UIView+NIStyleable.m.html'>UIView+NIStyleable.m</a></td>
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIStylesheet.m.html'>NIStylesheet.m</a></td>
-<td class='filepercent'><span class='filelessthan35percent'>27.34</span></td>
+<td class='filepercent'><span class='filelessthan35percent'>28.10</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='lex.css.c.html'>lex.css.c</a></td>
@@ -61,7 +61,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NICSSParser.m.html'>NICSSParser.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>86.86</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>86.64</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='css.grammar.html'>css.grammar</a></td>
@@ -71,7 +71,7 @@
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 27.3% of 128 lines (35 executed, 128 executable, 295 total lines)</div>
+          <div id='sourcesummary'>Executed 28.1% of 121 lines (34 executed, 121 executable, 278 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -206,8 +206,8 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>@implementation NIStylesheet</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>@implementation NIStylesheet</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -240,30 +240,6 @@
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>1</td>
 <td class='sourcelinehit'>  [[NSNotificationCenter defaultCenter] removeObserver:self];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_rawRulesets);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_ruleSets);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_significantScopeToScopes);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  [super dealloc];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>1</td>
@@ -330,8 +306,8 @@
 <td class='sourcelinehit'>  return self;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -498,10 +474,6 @@
 <td class='sourcelinemissed'>      [significantScopeToScopes setObject:scopes forKey:mostSignificantScopePart];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>      NI_RELEASE_SAFELY(scopes);</td>
-</tr>
-<tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'>      </td>
 </tr>
@@ -527,19 +499,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  [_significantScopeToScopes release];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>  _significantScopeToScopes = [significantScopeToScopes copy];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>  </td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(significantScopeToScopes);</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -604,10 +564,6 @@
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>- (void)reduceMemory {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_ruleSets);</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -682,8 +638,8 @@
 <td class='sourcelinehit'>  return [self loadFromPath:path pathPrefix:nil delegate:nil];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -706,8 +662,8 @@
 <td class='sourcelinehit'>  return [self loadFromPath:path pathPrefix:pathPrefix delegate:nil];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -746,16 +702,12 @@
 <td class='sourcelinehit'>  @synchronized(self) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>10</td>
-<td class='sourcelinehit'>    NI_RELEASE_SAFELY(_rawRulesets);</td>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>    _rawRulesets = nil;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>10</td>
-<td class='sourcelinehit'>    NI_RELEASE_SAFELY(_ruleSets);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>10</td>
-<td class='sourcelinehit'>    NI_RELEASE_SAFELY(_significantScopeToScopes);</td>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>    _significantScopeToScopes = nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -795,7 +747,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>      _rawRulesets = [results retain];</td>
+<td class='sourcelinemissed'>      _rawRulesets = results;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -804,10 +756,6 @@
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>    }</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>10</td>
-<td class='sourcelinehit'>    NI_RELEASE_SAFELY(parser);</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -838,8 +786,8 @@
 <td class='sourcelinehit'>  return loadDidSucceed;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -975,10 +923,6 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>        NI_RELEASE_SAFELY(compositeRuleSet);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>      }</td>
 </tr>
 <tr class='sourceline'>
@@ -991,15 +935,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    NI_RELEASE_SAFELY(_rawRulesets);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>    _rawRulesets = [compositeRuleSets copy];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    NI_RELEASE_SAFELY(compositeRuleSets);</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1199,10 +1135,6 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>      [ruleSet autorelease]; // We can release the ruleSet because it&apos;s retained by the dictionary.</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>    }</td>
 </tr>
 <tr class='sourceline'>
@@ -1218,8 +1150,8 @@
 <td class='sourcelinemissed'>  return ruleSet;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1242,8 +1174,8 @@
 <td class='sourcelinemissed'>  return [_rawRulesets objectForKey:kDependenciesSelectorKey];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>

@@ -13,22 +13,18 @@
         <h1 id='sourcename'>NIOverviewView.m</h1>
         <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/overview/src/NIOverviewView.m</h2>
         <div id='filelistcontainer'>
-          <div id='filesummary'>0.8% of 839 lines</div>
+          <div id='filesummary'>0.9% of 823 lines</div>
           <table id='filetable'>
             <tr id='filelistheader'>
               <th id='filelistheadersource'>Source</th>
               <th id='filelistheaderpercent'>%</th>
             </tr>
             <tr class='fileline'>
-<td class='filename'><a href='NIOverview.m.html'>NIOverview.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
-</tr>
-<tr class='fileline'>
-<td class='filename'><a href='NIOverviewGraphView.m.html'>NIOverviewGraphView.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
-</tr>
-<tr class='fileline'>
 <td class='filename'><a href='NIOverviewLogger.m.html'>NIOverviewLogger.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIOverview.m.html'>NIOverview.m</a></td>
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
@@ -40,8 +36,12 @@
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
+<td class='filename'><a href='NIOverviewGraphView.m.html'>NIOverviewGraphView.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
 <td class='filename'><a href='NIOverviewPageView.m.html'>NIOverviewPageView.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.83</span></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.85</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIDeviceInfo.m.html'>NIDeviceInfo.m</a></td>
@@ -51,7 +51,7 @@
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 0.0% of 77 lines (0 executed, 77 executable, 207 total lines)</div>
+          <div id='sourcesummary'>Executed 0.0% of 74 lines (0 executed, 74 executable, 196 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -194,8 +194,8 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>@implementation NIOverviewView</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@implementation NIOverviewView</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -204,42 +204,6 @@
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>@synthesize translucent = _translucent;</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>- (void)dealloc {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_backgroundImage);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_pageViews);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  [super dealloc];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -271,15 +235,11 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    _backgroundImage = [[UIImage imageWithContentsOfFile:</td>
+<td class='sourcelinemissed'>    _backgroundImage = [UIImage imageWithContentsOfFile:</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>                         NIPathForBundleResource(nil, @&quot;NimbusOverviewer.bundle/gfx/blueprint.gif&quot;)]</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>                        retain];</td>
+<td class='sourcelinemissed'>                        NIPathForBundleResource(nil, @&quot;NimbusOverviewer.bundle/gfx/blueprint.gif&quot;)];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -291,11 +251,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    _pagingScrollView = [[[UIScrollView alloc] initWithFrame:[self frameForPagingScrollView]]</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>                         autorelease];</td>
+<td class='sourcelinemissed'>    _pagingScrollView = [[UIScrollView alloc] initWithFrame:[self frameForPagingScrollView]];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -338,8 +294,8 @@
 <td class='sourcelinemissed'>  return self;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>

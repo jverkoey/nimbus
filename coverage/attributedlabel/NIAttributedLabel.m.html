@@ -13,7 +13,7 @@
         <h1 id='sourcename'>NIAttributedLabel.m</h1>
         <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/attributedlabel/src/NIAttributedLabel.m</h2>
         <div id='filelistcontainer'>
-          <div id='filesummary'>0.0% of 476 lines</div>
+          <div id='filesummary'>0.0% of 470 lines</div>
           <table id='filetable'>
             <tr id='filelistheader'>
               <th id='filelistheadersource'>Source</th>
@@ -31,7 +31,7 @@
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 0.0% of 414 lines (0 executed, 414 executable, 723 total lines)</div>
+          <div id='sourcesummary'>Executed 0.0% of 408 lines (0 executed, 408 executable, 705 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -158,8 +158,8 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>@implementation NIAttributedLabel</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@implementation NIAttributedLabel</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -219,14 +219,6 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_attributedString);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>  if (nil != _textFrame) {</td>
 </tr>
 <tr class='sourceline'>
@@ -240,46 +232,6 @@
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>  }</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_detectedlinkLocations);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_explicitLinkLocations);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_touchedLink);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_linkColor);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_linkHighlightColor);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_strokeColor);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  [super dealloc];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -415,7 +367,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  CFAttributedStringRef attributedStringRef = (CFAttributedStringRef)_attributedString;</td>
+<td class='sourcelinemissed'>  CFAttributedStringRef attributedStringRef = (__bridge CFAttributedStringRef)_attributedString;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -547,11 +499,11 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  return [[_attributedString copy] autorelease];</td>
+<td class='sourcelinemissed'>  return [_attributedString copy];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -575,10 +527,6 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    [_attributedString release];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
 <td class='sourcelinemissed'>    _attributedString = [attributedText mutableCopy];</td>
 </tr>
 <tr class='sourceline'>
@@ -591,7 +539,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    NI_RELEASE_SAFELY(_detectedlinkLocations);</td>
+<td class='sourcelinemissed'>    _detectedlinkLocations = nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -723,7 +671,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_explicitLinkLocations);</td>
+<td class='sourcelinemissed'>  _explicitLinkLocations = nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -970,8 +918,8 @@
 <td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'></td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1175,11 +1123,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    [_strokeColor release];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    _strokeColor = [strokeColor retain];</td>
+<td class='sourcelinemissed'>    _strokeColor = strokeColor;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -1331,7 +1275,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    _linkColor = [[UIColor blueColor] retain];</td>
+<td class='sourcelinemissed'>    _linkColor = [UIColor blueColor];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -1342,8 +1286,8 @@
 <td class='sourcelinemissed'>  return _linkColor;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1367,11 +1311,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    [_linkColor release];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    _linkColor = [linkColor retain];</td>
+<td class='sourcelinemissed'>    _linkColor = linkColor;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1411,7 +1351,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    _linkHighlightColor = [[UIColor colorWithWhite:0.5f alpha:0.5f] retain];</td>
+<td class='sourcelinemissed'>    _linkHighlightColor = [UIColor colorWithWhite:0.5f alpha:0.5f];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -1422,8 +1362,8 @@
 <td class='sourcelinemissed'>  return _linkHighlightColor;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1447,11 +1387,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    [_linkHighlightColor release];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    _linkHighlightColor = [linkHighlightColor retain];</td>
+<td class='sourcelinemissed'>    _linkHighlightColor = linkHighlightColor;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1523,11 +1459,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    [_detectedlinkLocations release];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    _detectedlinkLocations = [[linkDetector matchesInString:string options:0 range:range] retain];</td>
+<td class='sourcelinemissed'>    _detectedlinkLocations = [linkDetector matchesInString:string options:0 range:range];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1639,7 +1571,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>        foundResult = [[result retain] autorelease];</td>
+<td class='sourcelinemissed'>        foundResult = result;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -1675,7 +1607,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>        foundResult = [[result retain] autorelease];</td>
+<td class='sourcelinemissed'>        foundResult = result;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -1702,8 +1634,8 @@
 <td class='sourcelinemissed'>  return foundResult;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1955,19 +1887,15 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
+<td class='sourcelineskipped'>  </td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  [_touchedLink release];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  _touchedLink = [[self linkAtPoint:point] retain];</td>
+<td class='sourcelinemissed'>  _touchedLink = [self linkAtPoint:point];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
+<td class='sourcelineskipped'>  </td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -2039,7 +1967,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_touchedLink);</td>
+<td class='sourcelinemissed'>  _touchedLink = nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -2071,7 +1999,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_touchedLink);</td>
+<td class='sourcelinemissed'>  _touchedLink = nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -2119,7 +2047,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  NSMutableAttributedString* attributedString = [[self.attributedString mutableCopy] autorelease];</td>
+<td class='sourcelinemissed'>  NSMutableAttributedString* attributedString = [self.attributedString mutableCopy];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -2174,8 +2102,8 @@
 <td class='sourcelinemissed'>  return attributedString;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -2267,7 +2195,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>      CFAttributedStringRef attributedString = (CFAttributedStringRef)attributedStringWithLinks;</td>
+<td class='sourcelinemissed'>      CFAttributedStringRef attributedString = (__bridge CFAttributedStringRef)attributedStringWithLinks;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
@@ -2867,7 +2795,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    attributedString = [[[NSMutableAttributedString alloc] initWithString:label.text] autorelease];</td>
+<td class='sourcelinemissed'>    attributedString = [[NSMutableAttributedString alloc] initWithString:label.text];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -2914,8 +2842,8 @@
 <td class='sourcelinemissed'>  return attributedString;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>

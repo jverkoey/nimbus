@@ -13,7 +13,7 @@
         <h1 id='sourcename'>NICSSParser.m</h1>
         <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/css/src/NICSSParser.m</h2>
         <div id='filelistcontainer'>
-          <div id='filesummary'>29.6% of 1426 lines</div>
+          <div id='filesummary'>29.4% of 1416 lines</div>
           <table id='filetable'>
             <tr id='filelistheader'>
               <th id='filelistheadersource'>Source</th>
@@ -32,10 +32,6 @@
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
-<td class='filename'><a href='NIStylesheetCache.m.html'>NIStylesheetCache.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
-</tr>
-<tr class='fileline'>
 <td class='filename'><a href='UIButton+NIStyleable.m.html'>UIButton+NIStyleable.m</a></td>
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
@@ -48,12 +44,16 @@
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
+<td class='filename'><a href='NIStylesheetCache.m.html'>NIStylesheetCache.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
 <td class='filename'><a href='UIView+NIStyleable.m.html'>UIView+NIStyleable.m</a></td>
 <td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIStylesheet.m.html'>NIStylesheet.m</a></td>
-<td class='filepercent'><span class='filelessthan35percent'>27.34</span></td>
+<td class='filepercent'><span class='filelessthan35percent'>28.10</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='lex.css.c.html'>lex.css.c</a></td>
@@ -61,7 +61,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NICSSParser.m.html'>NICSSParser.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>86.86</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>86.64</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='css.grammar.html'>css.grammar</a></td>
@@ -71,7 +71,7 @@
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 86.9% of 236 lines (205 executed, 236 executable, 483 total lines)</div>
+          <div id='sourcesummary'>Executed 86.6% of 232 lines (201 executed, 232 executable, 467 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -258,8 +258,8 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>@implementation NICSSParser</td>
+<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehit'>@implementation NICSSParser</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -282,71 +282,39 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>38</td>
+<td class='sourcelinehitcount'>25</td>
 <td class='sourcelinehit'>- (void)shutdown {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>38</td>
-<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_rulesets);</td>
+<td class='sourcelinehitcount'>25</td>
+<td class='sourcelinehit'>  _rulesets = nil;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>38</td>
-<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_scopesForActiveRuleset);</td>
+<td class='sourcelinehitcount'>25</td>
+<td class='sourcelinehit'>  _scopesForActiveRuleset = nil;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>38</td>
-<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_mutatingScope);</td>
+<td class='sourcelinehitcount'>25</td>
+<td class='sourcelinehit'>  _mutatingScope = nil;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>38</td>
-<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_mutatingRuleset);</td>
+<td class='sourcelinehitcount'>25</td>
+<td class='sourcelinehit'>  _mutatingRuleset = nil;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>38</td>
-<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_currentPropertyName);</td>
+<td class='sourcelinehitcount'>25</td>
+<td class='sourcelinehit'>  _currentPropertyName = nil;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>38</td>
-<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_importedFilenames);</td>
+<td class='sourcelinehitcount'>25</td>
+<td class='sourcelinehit'>  _importedFilenames = nil;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>38</td>
-<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_lastTokenText);</td>
+<td class='sourcelinehitcount'>25</td>
+<td class='sourcelinehit'>  _lastTokenText = nil;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>38</td>
-<td class='sourcelinehit'>}</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>13</td>
-<td class='sourcelinehit'>- (void)dealloc {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>13</td>
-<td class='sourcelinehit'>  [self shutdown];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>13</td>
-<td class='sourcelinehit'>  [super dealloc];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>13</td>
+<td class='sourcelinehitcount'>25</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -510,20 +478,12 @@
 <td class='sourcelinehit'>        if (CSSIDENT == token &amp;&amp; !_state.Flags.InsideProperty) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>19</td>
-<td class='sourcelinehit'>          NI_RELEASE_SAFELY(_currentPropertyName);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'>          // Properties are case insensitive.</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>19</td>
-<td class='sourcelinehit'>          _currentPropertyName = [lowercaseTextAsString retain];</td>
+<td class='sourcelinehit'>          _currentPropertyName = lowercaseTextAsString;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -552,10 +512,6 @@
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>19</td>
 <td class='sourcelinehit'>          [_mutatingRuleset setObject:values forKey:_currentPropertyName];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>19</td>
-<td class='sourcelinehit'>          NI_RELEASE_SAFELY(values);</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -631,7 +587,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>26</td>
-<td class='sourcelinehit'>        NI_RELEASE_SAFELY(_currentPropertyName);</td>
+<td class='sourcelinehit'>        _currentPropertyName = nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -935,10 +891,6 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>21</td>
-<td class='sourcelinehit'>            NI_RELEASE_SAFELY(_mutatingRuleset);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>21</td>
 <td class='sourcelinehit'>            _mutatingRuleset = [[NSMutableDictionary alloc] init];</td>
 </tr>
 <tr class='sourceline'>
@@ -1006,10 +958,6 @@
 <td class='sourcelinehit'>              [_rulesets setObject:ruleSet forKey:name];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>16</td>
-<td class='sourcelinehit'>              NI_RELEASE_SAFELY(ruleSet);</td>
-</tr>
-<tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'></td>
 </tr>
@@ -1042,8 +990,8 @@
 <td class='sourcelinehit'>                [_mutatingRuleset setObject:order forKey:kPropertyOrderKey];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>              }</td>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>              }</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1087,7 +1035,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>20</td>
-<td class='sourcelinehit'>          NI_RELEASE_SAFELY(_mutatingRuleset);</td>
+<td class='sourcelinehit'>          _mutatingRuleset = nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>20</td>
@@ -1235,19 +1183,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>148</td>
-<td class='sourcelinehit'>  NI_RELEASE_SAFELY(textAsString);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>148</td>
-<td class='sourcelinehit'>  [_lastTokenText release];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>148</td>
-<td class='sourcelinehit'>  _lastTokenText = [textAsString retain];</td>
+<td class='sourcelinehit'>  _lastTokenText = textAsString;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>148</td>
@@ -1419,7 +1355,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>5</td>
-<td class='sourcelinehit'>    result = [[[compositeRulesets objectAtIndex:0] copy] autorelease];</td>
+<td class='sourcelinehit'>    result = [[compositeRulesets objectAtIndex:0] copy];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1431,7 +1367,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>    NSMutableDictionary* mergedResult = [[[compositeRulesets lastObject] retain] autorelease];</td>
+<td class='sourcelinehit'>    NSMutableDictionary* mergedResult = [compositeRulesets lastObject];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>1</td>
@@ -1546,8 +1482,8 @@
 <td class='sourcelinehit'>          }</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>        }</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>        }</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>4</td>
@@ -1575,11 +1511,11 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>    result = [[mergedResult copy] autorelease];</td>
+<td class='sourcelinehit'>    result = [mergedResult copy];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>  }</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  }</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1590,7 +1526,7 @@
 <td class='sourcelinehit'>  return result;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>12</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1638,8 +1574,8 @@
 <td class='sourcelinehit'>  return [self dictionaryForPath:path pathPrefix:nil delegate:nil];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1662,8 +1598,8 @@
 <td class='sourcelinehit'>  return [self dictionaryForPath:path pathPrefix:pathPrefix delegate:nil];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1723,7 +1659,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>9</td>
-<td class='sourcelinehit'>  NSMutableArray* compositeRulesets = [[[NSMutableArray alloc] init] autorelease];</td>
+<td class='sourcelinehit'>  NSMutableArray* compositeRulesets = [[NSMutableArray alloc] init];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1743,7 +1679,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>9</td>
-<td class='sourcelinehit'>  NSMutableSet* processedFilenames = [[[NSMutableSet alloc] init] autorelease];</td>
+<td class='sourcelinehit'>  NSMutableSet* processedFilenames = [[NSMutableSet alloc] init];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1930,7 +1866,7 @@
 <td class='sourcelinehit'>    [self shutdown];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehitcount'>24</td>
 <td class='sourcelinehit'>  }</td>
 </tr>
 <tr class='sourceline'>
@@ -1994,7 +1930,7 @@
 <td class='sourcelinehit'>  return result;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>18</td>
+<td class='sourcelinehitcount'>34</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
