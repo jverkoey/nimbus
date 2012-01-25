@@ -50,7 +50,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testMetrics {
-  
+  STAssertEquals(NIStatusBarAnimationCurve(), UIViewAnimationCurveEaseIn, @"Should match.");
 }
 
 

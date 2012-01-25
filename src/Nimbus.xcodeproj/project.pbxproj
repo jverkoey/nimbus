@@ -36,7 +36,6 @@
 		6623EB721402EDB100E0E61A /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0913E6E85E00B514F3 /* libNimbusCore.a */; };
 		6626330C14995C4600B99898 /* NITableViewModel+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 6626330B14995C4600B99898 /* NITableViewModel+Private.h */; };
 		663B524D1445052800CC26DF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
-		663B524E1445052800CC26DF /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		663B524F1445052800CC26DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		663B52521445052800CC26DF /* libNimbusPagingScrollView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663B523F1445052700CC26DF /* libNimbusPagingScrollView.a */; };
 		663B52671445061B00CC26DF /* NimbusPagingScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 663B52661445061B00CC26DF /* NimbusPagingScrollView.h */; };
@@ -47,7 +46,6 @@
 		663B527514450D1C00CC26DF /* NIPagingScrollViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 663B527414450D1C00CC26DF /* NIPagingScrollViewDataSource.h */; };
 		664D443214993010008B4C42 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 664D443014993010008B4C42 /* JSONKit.h */; };
 		664D443314993010008B4C42 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 664D443114993010008B4C42 /* JSONKit.m */; };
-		664D443414993010008B4C42 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 664D443114993010008B4C42 /* JSONKit.m */; };
 		6661BBDA13F1A3BB00D14F92 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		6661BBDC13F1A3BB00D14F92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		6661BBE013F1A3BB00D14F92 /* libNimbusModels.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6661BBCC13F1A3BB00D14F92 /* libNimbusModels.a */; };
@@ -154,38 +152,38 @@
 		66A03C1B13E6E85E00B514F3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66A03C1E13E6E85E00B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66A03C2313E6E85E00B514F3 /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0913E6E85E00B514F3 /* libNimbusCore.a */; };
-		66A03C7013E6E8D100B514F3 /* NIBlocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4013E6E8D100B514F3 /* NIBlocks.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03C7113E6E8D100B514F3 /* NICommonMetrics.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4113E6E8D100B514F3 /* NICommonMetrics.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03C7013E6E8D100B514F3 /* NIBlocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4013E6E8D100B514F3 /* NIBlocks.h */; settings = {ATTRIBUTES = (); }; };
+		66A03C7113E6E8D100B514F3 /* NICommonMetrics.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4113E6E8D100B514F3 /* NICommonMetrics.h */; settings = {ATTRIBUTES = (); }; };
 		66A03C7213E6E8D100B514F3 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C4213E6E8D100B514F3 /* NICommonMetrics.m */; };
-		66A03C7313E6E8D100B514F3 /* NIDataStructures.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4313E6E8D100B514F3 /* NIDataStructures.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03C7313E6E8D100B514F3 /* NIDataStructures.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4313E6E8D100B514F3 /* NIDataStructures.h */; settings = {ATTRIBUTES = (); }; };
 		66A03C7413E6E8D100B514F3 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C4413E6E8D100B514F3 /* NIDataStructures.m */; };
-		66A03C7513E6E8D100B514F3 /* NIDebuggingTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4513E6E8D100B514F3 /* NIDebuggingTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03C7513E6E8D100B514F3 /* NIDebuggingTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4513E6E8D100B514F3 /* NIDebuggingTools.h */; settings = {ATTRIBUTES = (); }; };
 		66A03C7613E6E8D100B514F3 /* NIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C4613E6E8D100B514F3 /* NIDebuggingTools.m */; };
-		66A03C7713E6E8D100B514F3 /* NIDeviceOrientation.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4713E6E8D100B514F3 /* NIDeviceOrientation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03C7713E6E8D100B514F3 /* NIDeviceOrientation.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4713E6E8D100B514F3 /* NIDeviceOrientation.h */; settings = {ATTRIBUTES = (); }; };
 		66A03C7813E6E8D100B514F3 /* NIDeviceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C4813E6E8D100B514F3 /* NIDeviceOrientation.m */; };
-		66A03C7913E6E8D100B514F3 /* NIError.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4913E6E8D100B514F3 /* NIError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03C7913E6E8D100B514F3 /* NIError.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4913E6E8D100B514F3 /* NIError.h */; settings = {ATTRIBUTES = (); }; };
 		66A03C7A13E6E8D100B514F3 /* NIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C4A13E6E8D100B514F3 /* NIError.m */; };
-		66A03C7B13E6E8D100B514F3 /* NIFoundationMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4B13E6E8D100B514F3 /* NIFoundationMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03C7B13E6E8D100B514F3 /* NIFoundationMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4B13E6E8D100B514F3 /* NIFoundationMethods.h */; settings = {ATTRIBUTES = (); }; };
 		66A03C7C13E6E8D100B514F3 /* NIFoundationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C4C13E6E8D100B514F3 /* NIFoundationMethods.m */; };
-		66A03C7D13E6E8D100B514F3 /* NIInMemoryCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4D13E6E8D100B514F3 /* NIInMemoryCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03C7D13E6E8D100B514F3 /* NIInMemoryCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4D13E6E8D100B514F3 /* NIInMemoryCache.h */; settings = {ATTRIBUTES = (); }; };
 		66A03C7E13E6E8D100B514F3 /* NIInMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C4E13E6E8D100B514F3 /* NIInMemoryCache.m */; };
-		66A03C7F13E6E8D100B514F3 /* NimbusCore+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4F13E6E8D100B514F3 /* NimbusCore+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03C8013E6E8D100B514F3 /* NimbusCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5013E6E8D100B514F3 /* NimbusCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03C8113E6E8D100B514F3 /* NINetworkActivity.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5113E6E8D100B514F3 /* NINetworkActivity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03C7F13E6E8D100B514F3 /* NimbusCore+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C4F13E6E8D100B514F3 /* NimbusCore+Additions.h */; settings = {ATTRIBUTES = (); }; };
+		66A03C8013E6E8D100B514F3 /* NimbusCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5013E6E8D100B514F3 /* NimbusCore.h */; settings = {ATTRIBUTES = (); }; };
+		66A03C8113E6E8D100B514F3 /* NINetworkActivity.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5113E6E8D100B514F3 /* NINetworkActivity.h */; settings = {ATTRIBUTES = (); }; };
 		66A03C8213E6E8D100B514F3 /* NINetworkActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C5213E6E8D100B514F3 /* NINetworkActivity.m */; };
 		66A03C8413E6E8D100B514F3 /* NINonEmptyCollectionTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C5413E6E8D100B514F3 /* NINonEmptyCollectionTesting.m */; };
-		66A03C8513E6E8D100B514F3 /* NINonRetainingCollections.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5513E6E8D100B514F3 /* NINonRetainingCollections.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03C8513E6E8D100B514F3 /* NINonRetainingCollections.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5513E6E8D100B514F3 /* NINonRetainingCollections.h */; settings = {ATTRIBUTES = (); }; };
 		66A03C8613E6E8D100B514F3 /* NINonRetainingCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C5613E6E8D100B514F3 /* NINonRetainingCollections.m */; };
-		66A03C8713E6E8D100B514F3 /* NIOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5713E6E8D100B514F3 /* NIOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03C8713E6E8D100B514F3 /* NIOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5713E6E8D100B514F3 /* NIOperations.h */; settings = {ATTRIBUTES = (); }; };
 		66A03C8813E6E8D100B514F3 /* NIOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C5813E6E8D100B514F3 /* NIOperations.m */; };
-		66A03C8913E6E8D100B514F3 /* NIPaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5913E6E8D100B514F3 /* NIPaths.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03C8913E6E8D100B514F3 /* NIPaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5913E6E8D100B514F3 /* NIPaths.h */; settings = {ATTRIBUTES = (); }; };
 		66A03C8A13E6E8D100B514F3 /* NIPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C5A13E6E8D100B514F3 /* NIPaths.m */; };
-		66A03C8B13E6E8D100B514F3 /* NIPreprocessorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5B13E6E8D100B514F3 /* NIPreprocessorMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03C8C13E6E8D100B514F3 /* NIRuntimeClassModifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5C13E6E8D100B514F3 /* NIRuntimeClassModifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03C8B13E6E8D100B514F3 /* NIPreprocessorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5B13E6E8D100B514F3 /* NIPreprocessorMacros.h */; settings = {ATTRIBUTES = (); }; };
+		66A03C8C13E6E8D100B514F3 /* NIRuntimeClassModifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5C13E6E8D100B514F3 /* NIRuntimeClassModifications.h */; settings = {ATTRIBUTES = (); }; };
 		66A03C8D13E6E8D100B514F3 /* NIRuntimeClassModifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C5D13E6E8D100B514F3 /* NIRuntimeClassModifications.m */; };
-		66A03C8E13E6E8D100B514F3 /* NISDKAvailability.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5E13E6E8D100B514F3 /* NISDKAvailability.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03C8E13E6E8D100B514F3 /* NISDKAvailability.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5E13E6E8D100B514F3 /* NISDKAvailability.h */; settings = {ATTRIBUTES = (); }; };
 		66A03C8F13E6E8D100B514F3 /* NISDKAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C5F13E6E8D100B514F3 /* NISDKAvailability.m */; };
-		66A03C9013E6E8D100B514F3 /* NIState.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C6013E6E8D100B514F3 /* NIState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03C9013E6E8D100B514F3 /* NIState.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C6013E6E8D100B514F3 /* NIState.h */; settings = {ATTRIBUTES = (); }; };
 		66A03C9113E6E8D100B514F3 /* NIState.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C6113E6E8D100B514F3 /* NIState.m */; };
 		66A03C9213E6E8D100B514F3 /* NSData+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C6213E6E8D100B514F3 /* NSData+NimbusCore.m */; };
 		66A03C9313E6E8D100B514F3 /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03C6313E6E8D100B514F3 /* NSString+NimbusCore.m */; };
@@ -199,8 +197,8 @@
 		66A03CB113E6E90500B514F3 /* NIRuntimeClassModificationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03CA713E6E90500B514F3 /* NIRuntimeClassModificationsTests.m */; };
 		66A03CB213E6E90500B514F3 /* NSDate+UnitTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03CA913E6E90500B514F3 /* NSDate+UnitTesting.m */; };
 		66A03CB413E6EF1F00B514F3 /* nimbus64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A03CB313E6EF1F00B514F3 /* nimbus64x64.png */; };
-		66A03CB813E6EFB000B514F3 /* NSData+NimbusCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03CB613E6EFAF00B514F3 /* NSData+NimbusCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03CB913E6EFB000B514F3 /* NSString+NimbusCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03CB713E6EFAF00B514F3 /* NSString+NimbusCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A03CB813E6EFB000B514F3 /* NSData+NimbusCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03CB613E6EFAF00B514F3 /* NSData+NimbusCore.h */; settings = {ATTRIBUTES = (); }; };
+		66A03CB913E6EFB000B514F3 /* NSString+NimbusCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03CB713E6EFAF00B514F3 /* NSString+NimbusCore.h */; settings = {ATTRIBUTES = (); }; };
 		66A03CCD13E6F0EE00B514F3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66A03CCF13E6F0EE00B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66A03CD313E6F0EE00B514F3 /* libNimbusLauncher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03CBF13E6F0ED00B514F3 /* libNimbusLauncher.a */; };
@@ -239,6 +237,19 @@
 		66C3A6B1143D61140048542F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66C3A6B4143D61140048542F /* libNimbusCss.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C3A6A1143D61130048542F /* libNimbusCss.a */; };
 		66E8CED214D089E500600592 /* NICommonMetricsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E8CED114D089E500600592 /* NICommonMetricsTests.m */; };
+		66E8CED814D08E7400600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
+		66E8CED914D08EAB00600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
+		66E8CEDA14D08ECF00600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
+		66E8CEDB14D08EDA00600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
+		66E8CEDC14D08EE600600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
+		66E8CEDD14D08EF000600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
+		66E8CEDE14D08EFA00600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
+		66E8CEDF14D08F0400600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
+		66E8CEE014D08F1900600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
+		66E8CEE114D08F2400600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
+		66E8CEE214D08F2E00600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
+		66E8CEE314D08F3800600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
+		66E8CEE414D08F8200600592 /* NINonEmptyCollectionTesting.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5313E6E8D100B514F3 /* NINonEmptyCollectionTesting.h */; };
 		66F27D55145B7A5F00AFCA08 /* NIPageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F27D53145B7A5F00AFCA08 /* NIPageView.h */; };
 		66F27D56145B7A5F00AFCA08 /* NIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F27D54145B7A5F00AFCA08 /* NIPageView.m */; };
 		66F27D60145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F27D5F145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h */; };
@@ -687,6 +698,9 @@
 		66C3A6A1143D61130048542F /* libNimbusCss.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCss.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C3A6AE143D61140048542F /* NimbusCssTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCssTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E8CED114D089E500600592 /* NICommonMetricsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICommonMetricsTests.m; sourceTree = "<group>"; };
+		66E8CED514D08B9F00600592 /* lib.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = lib.xcconfig; path = resources/lib.xcconfig; sourceTree = "<group>"; };
+		66E8CED614D08BAE00600592 /* unittest.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = unittest.xcconfig; path = resources/unittest.xcconfig; sourceTree = "<group>"; };
+		66E8CED714D08E7400600592 /* libprofile_rt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libprofile_rt.dylib; path = usr/lib/libprofile_rt.dylib; sourceTree = DEVELOPER_DIR; };
 		66F27D53145B7A5F00AFCA08 /* NIPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPageView.h; sourceTree = "<group>"; };
 		66F27D54145B7A5F00AFCA08 /* NIPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIPageView.m; sourceTree = "<group>"; };
 		66F27D5F145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPhotoAlbumScrollViewDataSource.h; sourceTree = "<group>"; };
@@ -733,8 +747,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E8CEE014D08F1900600592 /* libprofile_rt.dylib in Frameworks */,
 				663B524D1445052800CC26DF /* SenTestingKit.framework in Frameworks */,
-				663B524E1445052800CC26DF /* (null) in Frameworks */,
 				663B524F1445052800CC26DF /* Foundation.framework in Frameworks */,
 				663B52521445052800CC26DF /* libNimbusPagingScrollView.a in Frameworks */,
 			);
@@ -751,6 +765,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E8CEE214D08F2E00600592 /* libprofile_rt.dylib in Frameworks */,
 				66C113E5147DD0F1003C9AC6 /* UIKit.framework in Frameworks */,
 				6623EB721402EDB100E0E61A /* libNimbusCore.a in Frameworks */,
 				6661BBDA13F1A3BB00D14F92 /* SenTestingKit.framework in Frameworks */,
@@ -770,6 +785,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E8CEDF14D08F0400600592 /* libprofile_rt.dylib in Frameworks */,
 				6675723713E765BF0076F555 /* SenTestingKit.framework in Frameworks */,
 				6675723913E765BF0076F555 /* Foundation.framework in Frameworks */,
 				6675723D13E765BF0076F555 /* libNimbusOverview.a in Frameworks */,
@@ -787,6 +803,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E8CEE114D08F2400600592 /* libprofile_rt.dylib in Frameworks */,
 				6675728813E769150076F555 /* SenTestingKit.framework in Frameworks */,
 				6675728A13E769150076F555 /* Foundation.framework in Frameworks */,
 				6675728E13E769150076F555 /* libNimbusPhotos.a in Frameworks */,
@@ -804,6 +821,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E8CEDE14D08EFA00600592 /* libprofile_rt.dylib in Frameworks */,
 				667572CB13E76F460076F555 /* SenTestingKit.framework in Frameworks */,
 				667572CD13E76F460076F555 /* Foundation.framework in Frameworks */,
 				667572D113E76F460076F555 /* libNimbusOperations.a in Frameworks */,
@@ -821,6 +839,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E8CEDA14D08ECF00600592 /* libprofile_rt.dylib in Frameworks */,
 				6675732013E771380076F555 /* SenTestingKit.framework in Frameworks */,
 				6675732213E771380076F555 /* Foundation.framework in Frameworks */,
 				6675732613E771380076F555 /* libNimbusInterapp.a in Frameworks */,
@@ -838,6 +857,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E8CED814D08E7400600592 /* libprofile_rt.dylib in Frameworks */,
 				6675E4B714560372007D172F /* CoreGraphics.framework in Frameworks */,
 				6675E4B614560359007D172F /* UIKit.framework in Frameworks */,
 				66A03C1B13E6E85E00B514F3 /* SenTestingKit.framework in Frameworks */,
@@ -857,6 +877,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E8CEDB14D08EDA00600592 /* libprofile_rt.dylib in Frameworks */,
 				66A03CCD13E6F0EE00B514F3 /* SenTestingKit.framework in Frameworks */,
 				66A03CCF13E6F0EE00B514F3 /* Foundation.framework in Frameworks */,
 				66A03CD313E6F0EE00B514F3 /* libNimbusLauncher.a in Frameworks */,
@@ -874,6 +895,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E8CEDD14D08EF000600592 /* libprofile_rt.dylib in Frameworks */,
 				66A03D3513E6F97500B514F3 /* SenTestingKit.framework in Frameworks */,
 				66A03D3713E6F97500B514F3 /* Foundation.framework in Frameworks */,
 				66A03D3B13E6F97500B514F3 /* libNimbusNetworkImage.a in Frameworks */,
@@ -892,6 +914,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E8CEDC14D08EE600600592 /* libprofile_rt.dylib in Frameworks */,
 				66A0B0A714BD1069003FA413 /* SenTestingKit.framework in Frameworks */,
 				66A0B0A814BD1069003FA413 /* UIKit.framework in Frameworks */,
 				66A0B0A914BD1069003FA413 /* Foundation.framework in Frameworks */,
@@ -910,6 +933,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E8CED914D08EAB00600592 /* libprofile_rt.dylib in Frameworks */,
 				66832D04143E39DF003E413C /* UIKit.framework in Frameworks */,
 				66832D03143E38F0003E413C /* CoreGraphics.framework in Frameworks */,
 				66832CCC143D7AA4003E413C /* libNimbusCore.a in Frameworks */,
@@ -947,6 +971,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E8CEE314D08F3800600592 /* libprofile_rt.dylib in Frameworks */,
 				DB84BD8213EFDDCA00DACCFE /* SenTestingKit.framework in Frameworks */,
 				DB84BD8413EFDDCA00DACCFE /* Foundation.framework in Frameworks */,
 				DB84BD8813EFDDCA00DACCFE /* libNimbusWebController.a in Frameworks */,
@@ -1295,6 +1320,7 @@
 				6661BB0813F0B37000D14F92 /* LICENSE */,
 				6661BB0A13F0B38D00D14F92 /* NOTICE */,
 				666F73B614BBFFD600D1A32F /* generate_namespace_header */,
+				66E8CED414D08B8000600592 /* Configs */,
 				DB3A230B13FD4B8E00614220 /* NimbusAttributedLabel */,
 				66A03C0E13E6E85E00B514F3 /* NimbusCore */,
 				66C3A6A3143D61130048542F /* NimbusCss */,
@@ -1350,6 +1376,7 @@
 		66A03C0B13E6E85E00B514F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66E8CED714D08E7400600592 /* libprofile_rt.dylib */,
 				66832D02143E38F0003E413C /* CoreGraphics.framework */,
 				66832D00143E38E6003E413C /* UIKit.framework */,
 				669E98AD13E9EA1F00D99140 /* libz.dylib */,
@@ -1584,6 +1611,15 @@
 			path = NimbusCss;
 			sourceTree = "<group>";
 		};
+		66E8CED414D08B8000600592 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				66E8CED514D08B9F00600592 /* lib.xcconfig */,
+				66E8CED614D08BAE00600592 /* unittest.xcconfig */,
+			);
+			name = Configs;
+			sourceTree = "<group>";
+		};
 		66FE7D5513FB550A0061B987 /* examples */ = {
 			isa = PBXGroup;
 			children = (
@@ -1806,6 +1842,7 @@
 				66C115411486ACE3003C9AC6 /* NIOperations+Subclassing.h in Headers */,
 				666F738014BBC65A00D1A32F /* NimbusCore+Namespace.h in Headers */,
 				66A0B0CC14BD15CA003FA413 /* UIView+NimbusCore.h in Headers */,
+				66E8CEE414D08F8200600592 /* NINonEmptyCollectionTesting.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2972,7 +3009,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				664D443414993010008B4C42 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3295,6 +3331,7 @@
 /* Begin XCBuildConfiguration section */
 		663B525D1445052800CC26DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -3308,7 +3345,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = pagingscrollview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3318,13 +3354,13 @@
 		};
 		663B525E1445052800CC26DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusPagingScrollView.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = pagingscrollview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3335,6 +3371,7 @@
 		};
 		663B52601445052800CC26DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -3352,10 +3389,13 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "pagingscrollview/unittests/NimbusPagingScrollViewTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -3364,6 +3404,7 @@
 		};
 		663B52611445052800CC26DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -3374,10 +3415,13 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "pagingscrollview/unittests/NimbusPagingScrollViewTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -3387,6 +3431,7 @@
 		};
 		6661BBEB13F1A3BC00D14F92 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -3399,7 +3444,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = models;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3409,12 +3453,12 @@
 		};
 		6661BBEC13F1A3BC00D14F92 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusModels.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = models;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3425,6 +3469,7 @@
 		};
 		6661BBEE13F1A3BC00D14F92 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -3441,10 +3486,13 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "models/unittests/NimbusModelsTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -3453,6 +3501,7 @@
 		};
 		6661BBEF13F1A3BC00D14F92 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -3462,10 +3511,13 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "models/unittests/NimbusModelsTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -3475,6 +3527,7 @@
 		};
 		6675724813E765BF0076F555 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -3487,7 +3540,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = overview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3497,12 +3549,12 @@
 		};
 		6675724913E765BF0076F555 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusOverview.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = overview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3513,6 +3565,7 @@
 		};
 		6675724A13E765BF0076F555 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -3529,10 +3582,13 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "overview/unittests/NimbusOverviewTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -3541,6 +3597,7 @@
 		};
 		6675724B13E765BF0076F555 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -3550,10 +3607,13 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "overview/unittests/NimbusOverviewTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -3563,6 +3623,7 @@
 		};
 		6675729A13E769150076F555 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -3575,7 +3636,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = photos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3585,12 +3645,12 @@
 		};
 		6675729B13E769150076F555 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusPhotos.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = photos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3601,6 +3661,7 @@
 		};
 		6675729D13E769150076F555 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -3617,10 +3678,13 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "photos/unittests/NimbusPhotosTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -3629,6 +3693,7 @@
 		};
 		6675729E13E769150076F555 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -3638,10 +3703,13 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "photos/unittests/NimbusPhotosTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -3651,6 +3719,7 @@
 		};
 		667572DD13E76F460076F555 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -3663,7 +3732,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = operations;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3673,12 +3741,12 @@
 		};
 		667572DE13E76F460076F555 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusProcessors.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = operations;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3689,6 +3757,7 @@
 		};
 		667572E013E76F460076F555 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -3705,10 +3774,13 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "operations/unittests/NimbusProcessorsTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -3717,6 +3789,7 @@
 		};
 		667572E113E76F460076F555 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -3726,10 +3799,13 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "operations/unittests/NimbusProcessorsTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -3739,6 +3815,7 @@
 		};
 		6675733213E771380076F555 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -3751,7 +3828,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = interapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3761,12 +3837,12 @@
 		};
 		6675733313E771380076F555 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusInterapp.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = interapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3777,6 +3853,7 @@
 		};
 		6675733513E771380076F555 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -3793,10 +3870,13 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "interapp/unittests/NimbusInterappTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -3805,6 +3885,7 @@
 		};
 		6675733613E771380076F555 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -3814,10 +3895,13 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "interapp/unittests/NimbusInterappTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -3910,6 +3994,7 @@
 		};
 		66A03C2F13E6E85E00B514F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -3922,7 +4007,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -3934,12 +4018,12 @@
 		};
 		66A03C3013E6E85E00B514F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusCore.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -3952,6 +4036,7 @@
 		};
 		66A03C3213E6E85E00B514F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -3968,13 +4053,15 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "core/unittests/NimbusCoreTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				OTHER_LDFLAGS = "-ObjC";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -3983,6 +4070,7 @@
 		};
 		66A03C3313E6E85E00B514F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -3992,13 +4080,15 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "core/unittests/NimbusCoreTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				OTHER_LDFLAGS = "-ObjC";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -4008,6 +4098,7 @@
 		};
 		66A03CDF13E6F0EE00B514F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -4020,7 +4111,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = launcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4030,12 +4120,12 @@
 		};
 		66A03CE013E6F0EE00B514F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusLauncher.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = launcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4046,6 +4136,7 @@
 		};
 		66A03CE213E6F0EE00B514F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -4062,10 +4153,13 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "launcher/unittests/NimbusLauncherTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -4074,6 +4168,7 @@
 		};
 		66A03CE313E6F0EE00B514F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -4083,10 +4178,13 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "launcher/unittests/NimbusLauncherTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -4110,6 +4208,7 @@
 		};
 		66A03D4713E6F97600B514F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -4122,7 +4221,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = networkimage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4132,12 +4230,12 @@
 		};
 		66A03D4813E6F97600B514F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusNetworkImage.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = networkimage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4148,6 +4246,7 @@
 		};
 		66A03D4A13E6F97600B514F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -4164,10 +4263,13 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "networkimage/unittests/NimbusNetworkImageTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -4176,6 +4278,7 @@
 		};
 		66A03D4B13E6F97600B514F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -4185,10 +4288,13 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "networkimage/unittests/NimbusNetworkImageTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -4198,6 +4304,7 @@
 		};
 		66A0B0B614BD1069003FA413 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -4211,7 +4318,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = networkcontrollers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4221,13 +4327,13 @@
 		};
 		66A0B0B714BD1069003FA413 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusNetworkControllers.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = networkcontrollers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4238,6 +4344,7 @@
 		};
 		66A0B0B814BD1069003FA413 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -4253,9 +4360,12 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "NetworkControllersTests/NetworkControllersTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -4263,6 +4373,7 @@
 		};
 		66A0B0B914BD1069003FA413 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
@@ -4271,9 +4382,12 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "NetworkControllersTests/NetworkControllersTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = octest;
@@ -4282,6 +4396,7 @@
 		};
 		66C3A6BF143D61140048542F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -4294,7 +4409,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = css;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4304,12 +4418,12 @@
 		};
 		66C3A6C0143D61140048542F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusCss.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = css;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4320,6 +4434,7 @@
 		};
 		66C3A6C2143D61140048542F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -4337,11 +4452,13 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "css/unittests/NimbusCSSTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = "-ObjC";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -4350,6 +4467,7 @@
 		};
 		66C3A6C3143D61140048542F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -4360,11 +4478,13 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "css/unittests/NimbusCSSTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = "-ObjC";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -4374,6 +4494,7 @@
 		};
 		DB3A232813FD4B8E00614220 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -4387,7 +4508,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = attributedlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4397,13 +4517,13 @@
 		};
 		DB3A232913FD4B8E00614220 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusAttributedLabel.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = attributedlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4414,6 +4534,7 @@
 		};
 		DB3A232A13FD4B8E00614220 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -4432,7 +4553,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "attributedlabel/unittests/NimbusAttributedLabelTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -4444,6 +4564,7 @@
 		};
 		DB3A232B13FD4B8E00614220 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -4455,7 +4576,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NimbusAttributedLabel/NimbusAttributedLabel-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "attributedlabel/unittests/NimbusAttributedLabelTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -4468,6 +4588,7 @@
 		};
 		DB84BD9313EFDDCA00DACCFE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -4480,7 +4601,6 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = webcontroller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4490,12 +4610,12 @@
 		};
 		DB84BD9413EFDDCA00DACCFE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/NimbusWebController.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				NIMBUS_FEATURE_NAME = webcontroller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4506,6 +4626,7 @@
 		};
 		DB84BD9513EFDDCA00DACCFE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -4522,10 +4643,13 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "webcontroller/unittests/NimbusWebControllerTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -4534,6 +4658,7 @@
 		};
 		DB84BD9613EFDDCA00DACCFE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -4543,10 +4668,13 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "webcontroller/unittests/NimbusWebControllerTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
