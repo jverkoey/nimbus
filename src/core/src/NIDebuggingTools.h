@@ -37,8 +37,8 @@
  *  NIDASSERT(statement);
  * @endcode
  *
- * If <i>statement</i> is false, the statement will be written to the log and if you are running in
- * the simulator with a debugger attached, the app will break on the assertion line.
+ * If <i>statement</i> is false, the statement will be written to the log and if a debugger is
+ * attached, the app will break on the assertion line.
  *
  *
  * <h2>Debug Logging</h2>
@@ -94,15 +94,17 @@
  */
 #import <TargetConditionals.h>
 
-#if TARGET_IPHONE_SIMULATOR
 int NIIsInDebugger(void);
+#if TARGET_IPHONE_SIMULATOR
 // We leave the __asm__ in this macro so that when a break occurs, we don't have to step out of
 // a "breakInDebugger" function.
 #define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@"NIDASSERT failed: %s", #xx); \
-if (NIDebugAssertionsShouldBreak && NIIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
+if (NIDebugAssertionsShouldBreak && NIIsInDebugger()) { __asm__("int $3\n" : : ); } } \
 } ((void)0)
 #else
-#define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@"NIDASSERT failed: %s", #xx); } } ((void)0)
+#define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@"NIDASSERT failed: %s", #xx); \
+if (NIDebugAssertionsShouldBreak && NIIsInDebugger()) { raise(SIGTRAP); } } \
+} ((void)0)
 #endif // #if TARGET_IPHONE_SIMULATOR
 
 #else

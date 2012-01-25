@@ -22,8 +22,6 @@ BOOL NIDebugAssertionsShouldBreak = YES;
 
 #ifdef DEBUG
 
-#if TARGET_IPHONE_SIMULATOR
-
 #import <unistd.h>
 #import <sys/sysctl.h>
 
@@ -55,7 +53,5 @@ int NIIsInDebugger(void) {
 
   return (info.kp_proc.p_flag & P_TRACED) != 0;
 }
-
-#endif // #ifdef TARGET_IPHONE_SIMULATOR
 
 #endif // #ifdef DEBUG
