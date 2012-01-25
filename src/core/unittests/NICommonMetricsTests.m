@@ -50,7 +50,21 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testMetrics {
+  // TODO (Jan 25, 2012): Test iPad logic as well.
+  STAssertEquals(NIToolbarHeightForOrientation(UIInterfaceOrientationPortrait), 44.f, @"Should match.");
+  STAssertEquals(NIToolbarHeightForOrientation(UIInterfaceOrientationLandscapeLeft), 33.f, @"Should match.");
   STAssertEquals(NIStatusBarAnimationCurve(), UIViewAnimationCurveEaseIn, @"Should match.");
+  STAssertEquals(NIStatusBarAnimationDuration(), 0.3, @"Should match.");
+  STAssertEquals(NIStatusBarBoundsChangeAnimationCurve(), UIViewAnimationCurveEaseInOut, @"Should match.");
+  STAssertEquals(NIStatusBarBoundsChangeAnimationDuration(), 0.35, @"Should match.");
+
+  // TODO (Jan 25, 2012): Override the status bar functionality so that we can test the height code.
+  STAssertEquals(NIStatusBarHeight(), 0.f, @"Should match.");
+
+  STAssertEquals(NIDeviceRotationDuration(YES), 0.8, @"Should match.");
+  STAssertEquals(NIDeviceRotationDuration(NO), 0.4, @"Should match.");
+  STAssertTrue(UIEdgeInsetsEqualToEdgeInsets(NICellContentPadding(), UIEdgeInsetsMake(10, 10, 10, 10)),
+               @"Should match.");
 }
 
 
