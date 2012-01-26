@@ -6,12 +6,12 @@
       <meta name='generator' content='CoverStory' />
       <link rel=StyleSheet href='coverstory.css' type='text/css'>
       <script src='coverstory.js' language='javascript' type='text/javascript'></script>
-      <title>NIRuntimeClassModifications.m</title>
+      <title>NIDeviceOrientation.m</title>
     </head>
     <body id='coverstory' onload='coverstory_load()' onunload='coverstory_unload()'>
       <div id='maincontainer'>
-        <h1 id='sourcename'>NIRuntimeClassModifications.m</h1>
-        <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/core/src/NIRuntimeClassModifications.m</h2>
+        <h1 id='sourcename'>NIDeviceOrientation.m</h1>
+        <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/core/src/NIDeviceOrientation.m</h2>
         <div id='filelistcontainer'>
           <div id='filesummary'>75.6% of 898 lines</div>
           <table id='filetable'>
@@ -99,7 +99,7 @@
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 100% of 10 lines (10 executed, 10 executable, 37 total lines)</div>
+          <div id='sourcesummary'>Executed 0.0% of 19 lines (0 executed, 19 executable, 74 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -175,7 +175,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>#import &quot;NIRuntimeClassModifications.h&quot;</td>
+<td class='sourcelineskipped'>#import &quot;NIDeviceOrientation.h&quot;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -183,7 +183,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>#import &lt;objc/runtime.h&gt;</td>
+<td class='sourcelineskipped'>#import &lt;QuartzCore/QuartzCore.h&gt;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -191,31 +191,11 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
+<td class='sourcelineskipped'>#import &quot;NIDebuggingTools.h&quot;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>void NISwapInstanceMethods(Class cls, SEL originalSel, SEL newSel) {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  Method originalMethod = class_getInstanceMethod(cls, originalSel);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  Method newMethod = class_getInstanceMethod(cls, newSel);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  method_exchangeImplementations(originalMethod, newMethod);</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>}</td>
+<td class='sourcelineskipped'>#import &quot;NISDKAvailability.h&quot;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -230,24 +210,192 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>5</td>
-<td class='sourcelinehit'>void NISwapClassMethods(Class cls, SEL originalSel, SEL newSel) {</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>5</td>
-<td class='sourcelinehit'>  Method originalMethod = class_getClassMethod(cls, originalSel);</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (NIIsPad()) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>5</td>
-<td class='sourcelinehit'>  Method newMethod = class_getClassMethod(cls, newSel);</td>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return YES;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>5</td>
-<td class='sourcelinehit'>  method_exchangeImplementations(originalMethod, newMethod);</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>5</td>
-<td class='sourcelinehit'>}</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    switch (orientation) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      case UIInterfaceOrientationPortrait:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      case UIInterfaceOrientationLandscapeLeft:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      case UIInterfaceOrientationLandscapeRight:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        return YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      default:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        return NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>UIInterfaceOrientation NIInterfaceOrientation(void) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // This code used to use the navigator to find the currently visible view controller and</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // fall back to checking its orientation if we didn&apos;t know the status bar&apos;s orientation.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // It&apos;s unclear when this was actually necessary, though, so this assertion is here to try</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // to find that case. If this assertion fails then the repro case needs to be analyzed and</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // this method made more robust to handle that case.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NIDASSERT(UIDeviceOrientationUnknown != orient);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return orient;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>CGAffineTransform NIRotateTransformForOrientation(UIInterfaceOrientation orientation) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (orientation == UIInterfaceOrientationLandscapeLeft) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return CGAffineTransformMakeRotation((CGFloat)(M_PI * 1.5));</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  } else if (orientation == UIInterfaceOrientationLandscapeRight) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return CGAffineTransformMakeRotation((CGFloat)(M_PI / 2.0));</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return CGAffineTransformMakeRotation((CGFloat)(-M_PI));</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return CGAffineTransformIdentity;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
 </tr>
 
           </table>
