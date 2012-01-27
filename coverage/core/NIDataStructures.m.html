@@ -13,7 +13,7 @@
         <h1 id='sourcename'>NIDataStructures.m</h1>
         <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/core/src/NIDataStructures.m</h2>
         <div id='filelistcontainer'>
-          <div id='filesummary'>75.6% of 898 lines</div>
+          <div id='filesummary'>87.8% of 860 lines</div>
           <table id='filetable'>
             <tr id='filelistheader'>
               <th id='filelistheadersource'>Source</th>
@@ -25,7 +25,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIDataStructures.m.html'>NIDataStructures.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>95.45</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIDebuggingTools.m.html'>NIDebuggingTools.m</a></td>
@@ -37,15 +37,15 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIFoundationMethods.m.html'>NIFoundationMethods.m</a></td>
-<td class='filepercent'><span class='filelessthan35percent'>28.95</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIInMemoryCache.m.html'>NIInMemoryCache.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>91.00</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NINavigationAppearance.m.html'>NINavigationAppearance.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>86.96</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NINetworkActivity.m.html'>NINetworkActivity.m</a></td>
@@ -61,7 +61,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIOperations.m.html'>NIOperations.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>84.96</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIPaths.m.html'>NIPaths.m</a></td>
@@ -77,7 +77,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIState.m.html'>NIState.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIViewRecycler.m.html'>NIViewRecycler.m</a></td>
@@ -89,17 +89,17 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NSString+NimbusCore.m.html'>NSString+NimbusCore.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>85.71</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>97.22</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='UIView+NimbusCore.m.html'>UIView+NimbusCore.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 95.5% of 198 lines (189 executed, 198 executable, 499 total lines)</div>
+          <div id='sourcesummary'>Executed 100% of 189 lines (189 executed, 189 executable, 481 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -559,6 +559,26 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@interface NILinkedList()</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>254</td>
+<td class='sourcelinehit'>@property (nonatomic, readwrite, assign) NSUInteger count;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@end</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
@@ -578,6 +598,10 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
+<td class='sourcelinehitcount'>735</td>
+<td class='sourcelinehit'>@synthesize count = _count;</td>
+</tr>
+<tr class='sourceline'>
 <td class='sourcelinehitcount'>1</td>
 <td class='sourcelinehit'>@synthesize head = _head;</td>
 </tr>
@@ -594,11 +618,11 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>51</td>
+<td class='sourcelinehitcount'>61</td>
 <td class='sourcelinehit'>- (void)dealloc {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>51</td>
+<td class='sourcelinehitcount'>61</td>
 <td class='sourcelinehit'>  [self removeAllObjects];</td>
 </tr>
 <tr class='sourceline'>
@@ -606,11 +630,11 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>51</td>
+<td class='sourcelinehitcount'>61</td>
 <td class='sourcelinehit'>  [super dealloc];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>51</td>
+<td class='sourcelinehitcount'>61</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -694,31 +718,31 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>7</td>
 <td class='sourcelinehit'>- (id)initWithArray:(NSArray *)anArray {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>7</td>
 <td class='sourcelinehit'>  if ((self = [self init])) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>32</td>
+<td class='sourcelinehitcount'>40</td>
 <td class='sourcelinehit'>    for (id object in anArray) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>11</td>
+<td class='sourcelinehitcount'>14</td>
 <td class='sourcelinehit'>      [self addObject:object];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>32</td>
+<td class='sourcelinehitcount'>40</td>
 <td class='sourcelinehit'>    }</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>7</td>
 <td class='sourcelinehit'>  }</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>7</td>
 <td class='sourcelinehit'>  return self;</td>
 </tr>
 <tr class='sourceline'>
@@ -758,91 +782,19 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
+<td class='sourcelinehitcount'>140</td>
 <td class='sourcelinehit'>- (void)_eraseNode:(struct NILinkedListNode *)node {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
+<td class='sourcelinehitcount'>140</td>
 <td class='sourcelinehit'>  [node-&gt;object release];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
+<td class='sourcelinehitcount'>140</td>
 <td class='sourcelinehit'>  free(node);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
-<td class='sourcelinehit'>}</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>- (void)_setHead:(struct NILinkedListNode *)head {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  _head = head;</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>}</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>- (void)_setTail:(struct NILinkedListNode *)tail {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  _tail = tail;</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>}</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>- (void)_setCount:(NSUInteger)count {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  _count = count;</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehitcount'>140</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -919,7 +871,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  [copy _setCount:_count];</td>
+<td class='sourcelinehit'>  copy.count = self.count;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1071,7 +1023,7 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>    NIDASSERT(count == _count);</td>
+<td class='sourcelinehit'>    NIDASSERT(count == self.count);</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>1</td>
@@ -1118,23 +1070,23 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
-<td class='sourcelinehit'>- (NSUInteger)countByEnumeratingWithState: (NSFastEnumerationState *)state</td>
+<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehit'>- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
-<td class='sourcelinehit'>                                  objects: (id *)stackbuf</td>
+<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehit'>                                  objects:(id *)stackbuf</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
-<td class='sourcelinehit'>                                    count: (NSUInteger)len {</td>
+<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehit'>                                    count:(NSUInteger)len {</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'>  // Initialization condition.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehitcount'>14</td>
 <td class='sourcelinehit'>  if (0 == state-&gt;state) {</td>
 </tr>
 <tr class='sourceline'>
@@ -1146,11 +1098,11 @@
 <td class='sourcelineskipped'>    // enumeration to bail out if the linked list is modified mid-flight.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehitcount'>9</td>
 <td class='sourcelinehit'>    state-&gt;mutationsPtr = &amp;_modificationNumber;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehitcount'>9</td>
 <td class='sourcelinehit'>  }</td>
 </tr>
 <tr class='sourceline'>
@@ -1158,7 +1110,7 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehitcount'>14</td>
 <td class='sourcelinehit'>  NSUInteger numberOfItemsReturned = 0;</td>
 </tr>
 <tr class='sourceline'>
@@ -1170,11 +1122,11 @@
 <td class='sourcelineskipped'>  // If there is no _tail (i.e. this is an empty list) then this will end immediately.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehitcount'>14</td>
 <td class='sourcelinehit'>  if ((struct NILinkedListNode *)state-&gt;state != _tail) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>7</td>
 <td class='sourcelinehit'>    state-&gt;itemsPtr = stackbuf;</td>
 </tr>
 <tr class='sourceline'>
@@ -1182,7 +1134,7 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>7</td>
 <td class='sourcelinehit'>    if (0 == state-&gt;state) {</td>
 </tr>
 <tr class='sourceline'>
@@ -1202,11 +1154,11 @@
 <td class='sourcelineskipped'>      // object.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>7</td>
 <td class='sourcelinehit'>      state-&gt;state = (unsigned long)_head;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>7</td>
 <td class='sourcelinehit'>    }</td>
 </tr>
 <tr class='sourceline'>
@@ -1218,27 +1170,27 @@
 <td class='sourcelineskipped'>    // Return *at most* the number of request objects.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>40</td>
+<td class='sourcelinehitcount'>48</td>
 <td class='sourcelinehit'>    while ((0 != state-&gt;state) &amp;&amp; (numberOfItemsReturned &lt; len)) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehitcount'>17</td>
 <td class='sourcelinehit'>      struct NILinkedListNode* node = (struct NILinkedListNode *)state-&gt;state;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehitcount'>17</td>
 <td class='sourcelinehit'>      stackbuf[numberOfItemsReturned] = node-&gt;object;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehitcount'>17</td>
 <td class='sourcelinehit'>      state-&gt;state = (unsigned long)node-&gt;next;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehitcount'>17</td>
 <td class='sourcelinehit'>      ++numberOfItemsReturned;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehitcount'>17</td>
 <td class='sourcelinehit'>    }</td>
 </tr>
 <tr class='sourceline'>
@@ -1246,7 +1198,7 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>7</td>
 <td class='sourcelinehit'>    if (0 == state-&gt;state) {</td>
 </tr>
 <tr class='sourceline'>
@@ -1262,11 +1214,11 @@
 <td class='sourcelineskipped'>      // state == _tail.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>7</td>
 <td class='sourcelinehit'>      state-&gt;state = (unsigned long)_tail;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>7</td>
 <td class='sourcelinehit'>    }</td>
 </tr>
 <tr class='sourceline'>
@@ -1274,7 +1226,7 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>7</td>
 <td class='sourcelinehit'>  } // else we&apos;ve returned all of the items that we can; leave numberOfItemsReturned as 0 to</td>
 </tr>
 <tr class='sourceline'>
@@ -1286,7 +1238,7 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehitcount'>14</td>
 <td class='sourcelinehit'>  return numberOfItemsReturned;</td>
 </tr>
 <tr class='sourceline'>
@@ -1326,11 +1278,11 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>33</td>
+<td class='sourcelinehitcount'>34</td>
 <td class='sourcelinehit'>- (id)firstObject {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>99</td>
+<td class='sourcelinehitcount'>102</td>
 <td class='sourcelinehit'>  return (nil != _head) ? _head-&gt;object : nil;</td>
 </tr>
 <tr class='sourceline'>
@@ -1350,36 +1302,12 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>27</td>
+<td class='sourcelinehitcount'>28</td>
 <td class='sourcelinehit'>- (id)lastObject {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>81</td>
+<td class='sourcelinehitcount'>84</td>
 <td class='sourcelinehit'>  return (nil != _tail) ? _tail-&gt;object : nil;</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>}</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>34</td>
-<td class='sourcelinehit'>- (NSUInteger)count {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>34</td>
-<td class='sourcelinehit'>  return _count;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1418,11 +1346,11 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>- (NSArray *)allObjects {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>  NSMutableArray* mutableArrayOfObjects = [[NSMutableArray alloc] initWithCapacity:self.count];</td>
 </tr>
 <tr class='sourceline'>
@@ -1430,15 +1358,15 @@
 <td class='sourcelineskipped'>  </td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehitcount'>18</td>
 <td class='sourcelinehit'>  for (id object in self) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>6</td>
 <td class='sourcelinehit'>    [mutableArrayOfObjects addObject:object];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehitcount'>18</td>
 <td class='sourcelinehit'>  }</td>
 </tr>
 <tr class='sourceline'>
@@ -1446,15 +1374,15 @@
 <td class='sourcelineskipped'>  </td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>  NSArray* arrayOfObjects = [mutableArrayOfObjects copy];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>  NI_RELEASE_SAFELY(mutableArrayOfObjects);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>  return [arrayOfObjects autorelease];</td>
 </tr>
 <tr class='sourceline'>
@@ -1522,8 +1450,8 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>- (NSString *)description {</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>- (NSString *)description {</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1534,8 +1462,8 @@
 <td class='sourcelineskipped'>  // but the description method is complex enough that it&apos;s not worth reinventing the wheel here.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  return [[self allObjects] description];</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  return [[self allObjects] description];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1654,15 +1582,15 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>82</td>
+<td class='sourcelinehitcount'>89</td>
 <td class='sourcelinehit'>- (void)removeObjectAtLocation:(NILinkedListLocation *)location {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>82</td>
+<td class='sourcelinehitcount'>89</td>
 <td class='sourcelinehit'>  if (0 == location) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>33</td>
+<td class='sourcelinehitcount'>40</td>
 <td class='sourcelinehit'>    return;</td>
 </tr>
 <tr class='sourceline'>
@@ -1747,14 +1675,14 @@
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>49</td>
-<td class='sourcelinehit'>  --_count;</td>
+<td class='sourcelinehit'>  --self.count;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>49</td>
 <td class='sourcelinehit'>  ++_modificationNumber;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>131</td>
+<td class='sourcelinehitcount'>138</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1770,7 +1698,7 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
+<td class='sourcelinehitcount'>141</td>
 <td class='sourcelinehit'>- (NILinkedListLocation *)addObject:(id)object {</td>
 </tr>
 <tr class='sourceline'>
@@ -1778,16 +1706,16 @@
 <td class='sourcelineskipped'>  // nil objects can not be added to a linked list.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
+<td class='sourcelinehitcount'>143</td>
 <td class='sourcelinehit'>  NIDASSERT(nil != object);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
+<td class='sourcelinehitcount'>141</td>
 <td class='sourcelinehit'>  if (nil == object) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    return nil;</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    return nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1798,11 +1726,11 @@
 <td class='sourcelineskipped'>  </td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
+<td class='sourcelinehitcount'>140</td>
 <td class='sourcelinehit'>  struct NILinkedListNode* node = malloc(sizeof(struct NILinkedListNode));</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>390</td>
+<td class='sourcelinehitcount'>420</td>
 <td class='sourcelinehit'>  memset(node, 0, sizeof(struct NILinkedListNode));</td>
 </tr>
 <tr class='sourceline'>
@@ -1810,7 +1738,7 @@
 <td class='sourcelineskipped'>  </td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
+<td class='sourcelinehitcount'>140</td>
 <td class='sourcelinehit'>  node-&gt;object = [object retain];</td>
 </tr>
 <tr class='sourceline'>
@@ -1822,15 +1750,15 @@
 <td class='sourcelineskipped'>  // Empty condition.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
+<td class='sourcelinehitcount'>140</td>
 <td class='sourcelinehit'>  if (nil == _tail) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>50</td>
+<td class='sourcelinehitcount'>57</td>
 <td class='sourcelinehit'>    _head = node;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>50</td>
+<td class='sourcelinehitcount'>57</td>
 <td class='sourcelinehit'>    _tail = node;</td>
 </tr>
 <tr class='sourceline'>
@@ -1838,7 +1766,7 @@
 <td class='sourcelineskipped'>    </td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>50</td>
+<td class='sourcelinehitcount'>57</td>
 <td class='sourcelinehit'>  } else {</td>
 </tr>
 <tr class='sourceline'>
@@ -1846,15 +1774,15 @@
 <td class='sourcelineskipped'>    // Non-empty condition.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>80</td>
+<td class='sourcelinehitcount'>83</td>
 <td class='sourcelinehit'>    _tail-&gt;next = (struct NILinkedListNode*)node;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>80</td>
+<td class='sourcelinehitcount'>83</td>
 <td class='sourcelinehit'>    node-&gt;prev = (struct NILinkedListNode*)_tail;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>80</td>
+<td class='sourcelinehitcount'>83</td>
 <td class='sourcelinehit'>    _tail = node;</td>
 </tr>
 <tr class='sourceline'>
@@ -1866,11 +1794,11 @@
 <td class='sourcelineskipped'>  </td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
-<td class='sourcelinehit'>  ++_count;</td>
+<td class='sourcelinehitcount'>140</td>
+<td class='sourcelinehit'>  ++self.count;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
+<td class='sourcelinehitcount'>140</td>
 <td class='sourcelinehit'>  ++_modificationNumber;</td>
 </tr>
 <tr class='sourceline'>
@@ -1878,11 +1806,11 @@
 <td class='sourcelineskipped'>  </td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
+<td class='sourcelinehitcount'>140</td>
 <td class='sourcelinehit'>  return (NILinkedListLocation *)node;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
+<td class='sourcelinehitcount'>141</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1950,31 +1878,31 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>54</td>
+<td class='sourcelinehitcount'>64</td>
 <td class='sourcelinehit'>- (void)removeAllObjects {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>54</td>
+<td class='sourcelinehitcount'>64</td>
 <td class='sourcelinehit'>  struct NILinkedListNode* node = _head;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>189</td>
+<td class='sourcelinehitcount'>219</td>
 <td class='sourcelinehit'>  while (nil != node) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>81</td>
+<td class='sourcelinehitcount'>91</td>
 <td class='sourcelinehit'>    struct NILinkedListNode* next = (struct NILinkedListNode *)node-&gt;next;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>81</td>
+<td class='sourcelinehitcount'>91</td>
 <td class='sourcelinehit'>    [self _eraseNode:node];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>81</td>
+<td class='sourcelinehitcount'>91</td>
 <td class='sourcelinehit'>    node = next;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>81</td>
+<td class='sourcelinehitcount'>91</td>
 <td class='sourcelinehit'>  }</td>
 </tr>
 <tr class='sourceline'>
@@ -1982,11 +1910,11 @@
 <td class='sourcelineskipped'>  </td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>54</td>
+<td class='sourcelinehitcount'>64</td>
 <td class='sourcelinehit'>  _head = nil;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>54</td>
+<td class='sourcelinehitcount'>64</td>
 <td class='sourcelinehit'>  _tail = nil;</td>
 </tr>
 <tr class='sourceline'>
@@ -1994,15 +1922,15 @@
 <td class='sourcelineskipped'>  </td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>54</td>
-<td class='sourcelinehit'>  _count = 0;</td>
+<td class='sourcelinehitcount'>64</td>
+<td class='sourcelinehit'>  self.count = 0;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>54</td>
+<td class='sourcelinehitcount'>64</td>
 <td class='sourcelinehit'>  ++_modificationNumber;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>54</td>
+<td class='sourcelinehitcount'>64</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>

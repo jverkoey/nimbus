@@ -13,7 +13,7 @@
         <h1 id='sourcename'>NIOperations.m</h1>
         <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/core/src/NIOperations.m</h2>
         <div id='filelistcontainer'>
-          <div id='filesummary'>75.6% of 898 lines</div>
+          <div id='filesummary'>87.8% of 860 lines</div>
           <table id='filetable'>
             <tr id='filelistheader'>
               <th id='filelistheadersource'>Source</th>
@@ -25,7 +25,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIDataStructures.m.html'>NIDataStructures.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>95.45</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIDebuggingTools.m.html'>NIDebuggingTools.m</a></td>
@@ -37,15 +37,15 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIFoundationMethods.m.html'>NIFoundationMethods.m</a></td>
-<td class='filepercent'><span class='filelessthan35percent'>28.95</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIInMemoryCache.m.html'>NIInMemoryCache.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>91.00</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NINavigationAppearance.m.html'>NINavigationAppearance.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>86.96</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NINetworkActivity.m.html'>NINetworkActivity.m</a></td>
@@ -61,7 +61,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIOperations.m.html'>NIOperations.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>84.96</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIPaths.m.html'>NIPaths.m</a></td>
@@ -77,7 +77,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIState.m.html'>NIState.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIViewRecycler.m.html'>NIViewRecycler.m</a></td>
@@ -89,17 +89,17 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NSString+NimbusCore.m.html'>NSString+NimbusCore.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>85.71</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>97.22</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='UIView+NimbusCore.m.html'>UIView+NimbusCore.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 85.0% of 113 lines (96 executed, 113 executable, 259 total lines)</div>
+          <div id='sourcesummary'>Executed 100% of 98 lines (98 executed, 98 executable, 15 non-feasible, 259 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -230,8 +230,8 @@
 <td class='sourcelinehit'>@synthesize data = _data;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>@synthesize processedObject = _processedObject;</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>@synthesize processedObject = _processedObject;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -366,7 +366,7 @@
 <td class='sourcelineskipped'>  </td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>7</td>
 <td class='sourcelinehit'>  if ([self.url isFileURL]) {</td>
 </tr>
 <tr class='sourceline'>
@@ -398,7 +398,7 @@
 <td class='sourcelinehit'>    // The meat of the load-from-disk operation.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehitcount'>7</td>
 <td class='sourcelinehit'>    NSString* filePath = [self.url path];</td>
 </tr>
 <tr class='sourceline'>
@@ -470,96 +470,96 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>6</td>
-<td class='sourcelinehit'>  } else {</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>  } else { // COV_NF_START</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'>    // Load the image from the network then.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    [self operationDidStart];</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>    [self operationDidStart];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    NSURLRequest* request = [NSURLRequest requestWithURL:self.url</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>    NSURLRequest* request = [NSURLRequest requestWithURL:self.url</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'>                                             cachePolicy:self.cachePolicy</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>                                         timeoutInterval:self.timeout];</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>                                         timeoutInterval:self.timeout];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    NSError* networkError = nil;</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>    NSError* networkError = nil;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    NSURLResponse* response = nil;</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>    NSURLResponse* response = nil;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    NSData* data  = [NSURLConnection sendSynchronousRequest:request</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>    NSData* data  = [NSURLConnection sendSynchronousRequest:request</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'>                                          returningResponse:&amp;response</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>                                                      error:&amp;networkError];</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>                                                      error:&amp;networkError];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    if (nil != networkError) {</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>    if (nil != networkError) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>      [self operationDidFailWithError:networkError];</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>      [self operationDidFailWithError:networkError];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>7</td>
-<td class='sourcelinehit'></td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>7</td>
-<td class='sourcelinehit'>    } else {</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>    } else {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>7</td>
-<td class='sourcelinehit'>      self.data = data;</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>      self.data = data;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>      [self operationWillFinish];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>      [self operationDidFinish];</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>      [self operationWillFinish];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>    }</td>
+<td class='sourcelinenonfeasible'>      [self operationDidFinish];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    } // COV_NF_END</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -614,12 +614,12 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehitcount'>20</td>
 <td class='sourcelinehit'>@synthesize delegate = _delegate;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>@synthesize tag = _tag;</td>
+<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehit'>@synthesize tag = _tag;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'>10</td>
@@ -646,7 +646,7 @@
 <td class='sourcelinehit'>@synthesize didFailWithErrorBlock = _didFailWithErrorBlock;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>6</td>
 <td class='sourcelinehit'>@synthesize willFinishBlock       = _willFinishBlock;</td>
 </tr>
 <tr class='sourceline'>
@@ -862,12 +862,12 @@
 <td class='sourcelinehit'>  if ([self.delegate respondsToSelector:@selector(operationWillFinish:)]) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    [self.delegate operationWillFinish:self];</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    [self.delegate operationWillFinish:self];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  }</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  }</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -882,12 +882,12 @@
 <td class='sourcelinehit'>  if (nil != self.willFinishBlock) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    self.willFinishBlock(self);</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    self.willFinishBlock(self);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  }</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  }</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>

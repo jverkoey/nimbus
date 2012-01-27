@@ -13,7 +13,7 @@
         <h1 id='sourcename'>NSString+NimbusCore.m</h1>
         <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/core/src/NSString+NimbusCore.m</h2>
         <div id='filelistcontainer'>
-          <div id='filesummary'>75.6% of 898 lines</div>
+          <div id='filesummary'>87.8% of 860 lines</div>
           <table id='filetable'>
             <tr id='filelistheader'>
               <th id='filelistheadersource'>Source</th>
@@ -25,7 +25,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIDataStructures.m.html'>NIDataStructures.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>95.45</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIDebuggingTools.m.html'>NIDebuggingTools.m</a></td>
@@ -37,15 +37,15 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIFoundationMethods.m.html'>NIFoundationMethods.m</a></td>
-<td class='filepercent'><span class='filelessthan35percent'>28.95</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIInMemoryCache.m.html'>NIInMemoryCache.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>91.00</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NINavigationAppearance.m.html'>NINavigationAppearance.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>86.96</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NINetworkActivity.m.html'>NINetworkActivity.m</a></td>
@@ -61,7 +61,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIOperations.m.html'>NIOperations.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>84.96</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIPaths.m.html'>NIPaths.m</a></td>
@@ -77,7 +77,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIState.m.html'>NIState.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIViewRecycler.m.html'>NIViewRecycler.m</a></td>
@@ -89,17 +89,17 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NSString+NimbusCore.m.html'>NSString+NimbusCore.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>85.71</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>97.22</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='UIView+NimbusCore.m.html'>UIView+NimbusCore.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 85.7% of 77 lines (66 executed, 77 executable, 239 total lines)</div>
+          <div id='sourcesummary'>Executed 97.2% of 72 lines (70 executed, 72 executable, 5 non-feasible, 241 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -334,32 +334,40 @@
 <td class='sourcelineskipped'> */</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>- (CGFloat)heightWithFont: (UIFont*)font</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>       constrainedToWidth: (CGFloat)width</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>            lineBreakMode: (UILineBreakMode)lineBreakMode {</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  return [self sizeWithFont: font</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>          constrainedToSize: CGSizeMake(width, CGFLOAT_MAX)</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// COV_NF_START</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>              lineBreakMode: lineBreakMode].height;</td>
+<td class='sourcelinenonfeasible'>- (CGFloat)heightWithFont:(UIFont*)font</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>       constrainedToWidth:(CGFloat)width</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>            lineBreakMode:(UILineBreakMode)lineBreakMode {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>  return [self sizeWithFont:font</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>          constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>              lineBreakMode:lineBreakMode].height;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// COV_NF_END</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -994,12 +1002,12 @@
 <td class='sourcelineskipped'> */</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>- (NSString*)md5Hash {</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>- (NSString*)md5Hash {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  return [[self dataUsingEncoding:NSUTF8StringEncoding] md5Hash];</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  return [[self dataUsingEncoding:NSUTF8StringEncoding] md5Hash];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1038,12 +1046,12 @@
 <td class='sourcelineskipped'> */</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>- (NSString*)sha1Hash {</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>- (NSString*)sha1Hash {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  return [[self dataUsingEncoding:NSUTF8StringEncoding] sha1Hash];</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  return [[self dataUsingEncoding:NSUTF8StringEncoding] sha1Hash];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>

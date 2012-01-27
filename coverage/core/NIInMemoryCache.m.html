@@ -13,7 +13,7 @@
         <h1 id='sourcename'>NIInMemoryCache.m</h1>
         <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/core/src/NIInMemoryCache.m</h2>
         <div id='filelistcontainer'>
-          <div id='filesummary'>75.6% of 898 lines</div>
+          <div id='filesummary'>87.8% of 860 lines</div>
           <table id='filetable'>
             <tr id='filelistheader'>
               <th id='filelistheadersource'>Source</th>
@@ -25,7 +25,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIDataStructures.m.html'>NIDataStructures.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>95.45</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIDebuggingTools.m.html'>NIDebuggingTools.m</a></td>
@@ -37,15 +37,15 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIFoundationMethods.m.html'>NIFoundationMethods.m</a></td>
-<td class='filepercent'><span class='filelessthan35percent'>28.95</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIInMemoryCache.m.html'>NIInMemoryCache.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>91.00</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NINavigationAppearance.m.html'>NINavigationAppearance.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>86.96</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NINetworkActivity.m.html'>NINetworkActivity.m</a></td>
@@ -61,7 +61,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIOperations.m.html'>NIOperations.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>84.96</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIPaths.m.html'>NIPaths.m</a></td>
@@ -77,7 +77,7 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIState.m.html'>NIState.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NIViewRecycler.m.html'>NIViewRecycler.m</a></td>
@@ -89,17 +89,17 @@
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='NSString+NimbusCore.m.html'>NSString+NimbusCore.m</a></td>
-<td class='filepercent'><span class='filegoodcoveragepercent'>85.71</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>97.22</span></td>
 </tr>
 <tr class='fileline'>
 <td class='filename'><a href='UIView+NimbusCore.m.html'>UIView+NimbusCore.m</a></td>
-<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
 </tr>
 
           </table>
         </div>
         <div id='sourcecontainer'>
-          <div id='sourcesummary'>Executed 91.0% of 200 lines (182 executed, 200 executable, 512 total lines)</div>
+          <div id='sourcesummary'>Executed 100% of 197 lines (197 executed, 197 executable, 2 non-feasible, 511 total lines)</div>
           <table id='sourcetable'>
           <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -202,20 +202,12 @@
 <td class='sourcelineskipped'>@interface NIMemoryCache()</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>@property (nonatomic, readwrite, retain) NSMutableDictionary* cacheMap;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>@property (nonatomic, readwrite, retain) NSMutableDictionary* cacheMap;</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>@property (nonatomic, readwrite, retain) NILinkedList*        lruCacheObjects;</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>@property (nonatomic, readwrite, retain) NILinkedList* lruCacheObjects;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -306,7 +298,7 @@
 <td class='sourcelineskipped'> */</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>34</td>
+<td class='sourcelinehitcount'>41</td>
 <td class='sourcelinehit'>@property (nonatomic, readwrite, copy) NSString* name;</td>
 </tr>
 <tr class='sourceline'>
@@ -326,7 +318,7 @@
 <td class='sourcelineskipped'> */</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>35</td>
+<td class='sourcelinehitcount'>42</td>
 <td class='sourcelinehit'>@property (nonatomic, readwrite, retain) id object;</td>
 </tr>
 <tr class='sourceline'>
@@ -346,7 +338,7 @@
 <td class='sourcelineskipped'> */</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>35</td>
+<td class='sourcelinehitcount'>42</td>
 <td class='sourcelinehit'>@property (nonatomic, readwrite, retain) NSDate* expirationDate;</td>
 </tr>
 <tr class='sourceline'>
@@ -386,7 +378,7 @@
 <td class='sourcelineskipped'> */</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>65</td>
+<td class='sourcelinehitcount'>72</td>
 <td class='sourcelinehit'>@property (nonatomic, readwrite, retain) NSDate* lastAccessTime;</td>
 </tr>
 <tr class='sourceline'>
@@ -406,7 +398,7 @@
 <td class='sourcelineskipped'> */</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>65</td>
+<td class='sourcelinehitcount'>72</td>
 <td class='sourcelinehit'>@property (nonatomic, readwrite, assign) NILinkedListLocation* lruLocation;</td>
 </tr>
 <tr class='sourceline'>
@@ -482,11 +474,11 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>@synthesize cacheMap        = _cacheMap;</td>
+<td class='sourcelinehitcount'>272</td>
+<td class='sourcelinehit'>@synthesize cacheMap        = _cacheMap;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>21</td>
+<td class='sourcelinehitcount'>171</td>
 <td class='sourcelinehit'>@synthesize lruCacheObjects = _lruCacheObjects;</td>
 </tr>
 <tr class='sourceline'>
@@ -502,11 +494,11 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>23</td>
+<td class='sourcelinehitcount'>30</td>
 <td class='sourcelinehit'>- (void)dealloc {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>23</td>
+<td class='sourcelinehitcount'>30</td>
 <td class='sourcelinehit'>  [[NSNotificationCenter defaultCenter] removeObserver:self];</td>
 </tr>
 <tr class='sourceline'>
@@ -514,23 +506,23 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>23</td>
+<td class='sourcelinehitcount'>30</td>
 <td class='sourcelinehit'>  NI_RELEASE_SAFELY(_cacheMap);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>28</td>
+<td class='sourcelinehitcount'>30</td>
 <td class='sourcelinehit'>  NI_RELEASE_SAFELY(_lruCacheObjects);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
-<td class='sourcelinehit'></td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>23</td>
+<td class='sourcelinehitcount'>35</td>
 <td class='sourcelinehit'>  [super dealloc];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>23</td>
+<td class='sourcelinehitcount'>33</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -546,11 +538,11 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>23</td>
+<td class='sourcelinehitcount'>31</td>
 <td class='sourcelinehit'>- (id)init {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>23</td>
+<td class='sourcelinehitcount'>31</td>
 <td class='sourcelinehit'>  return [self initWithCapacity:0];</td>
 </tr>
 <tr class='sourceline'>
@@ -570,19 +562,19 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>23</td>
+<td class='sourcelinehitcount'>31</td>
 <td class='sourcelinehit'>- (id)initWithCapacity:(NSUInteger)capacity {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>23</td>
+<td class='sourcelinehitcount'>31</td>
 <td class='sourcelinehit'>  if ((self = [super init])) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>23</td>
+<td class='sourcelinehitcount'>31</td>
 <td class='sourcelinehit'>    _cacheMap = [[NSMutableDictionary alloc] initWithCapacity:capacity];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>23</td>
+<td class='sourcelinehitcount'>31</td>
 <td class='sourcelinehit'>    _lruCacheObjects = [[NILinkedList alloc] init];</td>
 </tr>
 <tr class='sourceline'>
@@ -594,7 +586,7 @@
 <td class='sourcelineskipped'>    // Automatically reduce memory usage when we get a memory warning.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>23</td>
+<td class='sourcelinehitcount'>31</td>
 <td class='sourcelinehit'>    [[NSNotificationCenter defaultCenter] addObserver: self</td>
 </tr>
 <tr class='sourceline'>
@@ -610,11 +602,11 @@
 <td class='sourcelineskipped'>                                               object: nil];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>23</td>
+<td class='sourcelinehitcount'>31</td>
 <td class='sourcelinehit'>  }</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>23</td>
+<td class='sourcelinehitcount'>31</td>
 <td class='sourcelinehit'>  return self;</td>
 </tr>
 <tr class='sourceline'>
@@ -658,27 +650,27 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>65</td>
+<td class='sourcelinehitcount'>72</td>
 <td class='sourcelinehit'>- (void)updateAccessTimeForInfo:(NIMemoryCacheInfo *)info {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>65</td>
+<td class='sourcelinehitcount'>72</td>
 <td class='sourcelinehit'>  NIDASSERT(nil != info);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>65</td>
+<td class='sourcelinehitcount'>72</td>
 <td class='sourcelinehit'>  if (nil == info) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    return;</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>    return; // COV_NF_LINE</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'>  }</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>65</td>
+<td class='sourcelinehitcount'>72</td>
 <td class='sourcelinehit'>  info.lastAccessTime = [NSDate date];</td>
 </tr>
 <tr class='sourceline'>
@@ -686,15 +678,15 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>65</td>
-<td class='sourcelinehit'>  [_lruCacheObjects removeObjectAtLocation:info.lruLocation];</td>
+<td class='sourcelinehitcount'>72</td>
+<td class='sourcelinehit'>  [self.lruCacheObjects removeObjectAtLocation:info.lruLocation];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>65</td>
-<td class='sourcelinehit'>  info.lruLocation = [_lruCacheObjects addObject:info];</td>
+<td class='sourcelinehitcount'>72</td>
+<td class='sourcelinehit'>  info.lruLocation = [self.lruCacheObjects addObject:info];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>130</td>
+<td class='sourcelinehitcount'>144</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -710,12 +702,12 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>140</td>
+<td class='sourcelinehitcount'>160</td>
 <td class='sourcelinehit'>- (NIMemoryCacheInfo *)cacheInfoForName:(NSString *)name {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>140</td>
-<td class='sourcelinehit'>  return [_cacheMap objectForKey:name];</td>
+<td class='sourcelinehitcount'>160</td>
+<td class='sourcelinehit'>  return [self.cacheMap objectForKey:name];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -734,15 +726,15 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>35</td>
+<td class='sourcelinehitcount'>42</td>
 <td class='sourcelinehit'>- (void)setCacheInfo:(NIMemoryCacheInfo *)info forName:(NSString *)name {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>41</td>
+<td class='sourcelinehitcount'>48</td>
 <td class='sourcelinehit'>  NIDASSERT(nil != name);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>35</td>
+<td class='sourcelinehitcount'>42</td>
 <td class='sourcelinehit'>  if (nil == name) {</td>
 </tr>
 <tr class='sourceline'>
@@ -762,7 +754,7 @@
 <td class='sourcelineskipped'>  // Storing in the cache counts as an access of the object, so we update the access time.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>32</td>
+<td class='sourcelinehitcount'>39</td>
 <td class='sourcelinehit'>  [self updateAccessTimeForInfo:info];</td>
 </tr>
 <tr class='sourceline'>
@@ -770,39 +762,39 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>32</td>
-<td class='sourcelinehit'>  [self willSetObject: info.object</td>
+<td class='sourcelinehitcount'>39</td>
+<td class='sourcelinehit'>  if ([self willSetObject:info.object</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>             withName: name</td>
+<td class='sourcelineskipped'>                 withName:name</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>       previousObject: [self cacheInfoForName:name].object];</td>
+<td class='sourcelineskipped'>           previousObject:[self cacheInfoForName:name].object]) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'></td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>32</td>
-<td class='sourcelinehit'>  [_cacheMap setObject:info forKey:name];</td>
+<td class='sourcelinehitcount'>38</td>
+<td class='sourcelinehit'>    [self.cacheMap setObject:info forKey:name];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>32</td>
-<td class='sourcelinehit'>  [self didSetObject: info.object</td>
+<td class='sourcelinehitcount'>38</td>
+<td class='sourcelinehit'>    [self didSetObject:info.object</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>            withName: name];</td>
+<td class='sourcelineskipped'>              withName:name];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>67</td>
+<td class='sourcelinehitcount'>38</td>
+<td class='sourcelinehit'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>42</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -818,15 +810,15 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehitcount'>18</td>
 <td class='sourcelinehit'>- (void)removeCacheInfoForName:(NSString *)name {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>16</td>
+<td class='sourcelinehitcount'>20</td>
 <td class='sourcelinehit'>  NIDASSERT(nil != name);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehitcount'>18</td>
 <td class='sourcelinehit'>  if (nil == name) {</td>
 </tr>
 <tr class='sourceline'>
@@ -842,7 +834,7 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>13</td>
+<td class='sourcelinehitcount'>17</td>
 <td class='sourcelinehit'>  [self willRemoveObject:[self cacheInfoForName:name].object withName:name];</td>
 </tr>
 <tr class='sourceline'>
@@ -850,11 +842,11 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>13</td>
-<td class='sourcelinehit'>  [_cacheMap removeObjectForKey:name];</td>
+<td class='sourcelinehitcount'>17</td>
+<td class='sourcelinehit'>  [self.cacheMap removeObjectForKey:name];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>27</td>
+<td class='sourcelinehitcount'>35</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -894,16 +886,20 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>20</td>
-<td class='sourcelinehit'>- (void)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {</td>
+<td class='sourcelinehitcount'>24</td>
+<td class='sourcelinehit'>- (BOOL)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
-<td class='sourcelineskipped'>  // No-op</td>
+<td class='sourcelineskipped'>  // Allow anything to be stored.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>20</td>
-<td class='sourcelinehit'>}</td>
+<td class='sourcelinehitcount'>24</td>
+<td class='sourcelinehit'>  return YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -918,7 +914,7 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehitcount'>24</td>
 <td class='sourcelinehit'>- (void)didSetObject:(id)object withName:(NSString *)name {</td>
 </tr>
 <tr class='sourceline'>
@@ -926,7 +922,7 @@
 <td class='sourcelineskipped'>  // No-op</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehitcount'>24</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -942,7 +938,7 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehitcount'>11</td>
 <td class='sourcelinehit'>- (void)willRemoveObject:(id)object withName:(NSString *)name {</td>
 </tr>
 <tr class='sourceline'>
@@ -950,7 +946,7 @@
 <td class='sourcelineskipped'>  // No-op</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehitcount'>11</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -990,15 +986,15 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>28</td>
+<td class='sourcelinehitcount'>31</td>
 <td class='sourcelinehit'>- (void)storeObject:(id)object withName:(NSString *)name {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>28</td>
+<td class='sourcelinehitcount'>31</td>
 <td class='sourcelinehit'>  [self storeObject:object withName:name expiresAfter:nil];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>28</td>
+<td class='sourcelinehitcount'>31</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1014,7 +1010,7 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>44</td>
+<td class='sourcelinehitcount'>51</td>
 <td class='sourcelinehit'>- (void)storeObject:(id)object withName:(NSString *)name expiresAfter:(NSDate *)expirationDate {</td>
 </tr>
 <tr class='sourceline'>
@@ -1022,7 +1018,7 @@
 <td class='sourcelineskipped'>  // Don&apos;t store nil objects in the cache.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>44</td>
+<td class='sourcelinehitcount'>51</td>
 <td class='sourcelinehit'>  if (nil == object) {</td>
 </tr>
 <tr class='sourceline'>
@@ -1038,7 +1034,7 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>51</td>
+<td class='sourcelinehitcount'>62</td>
 <td class='sourcelinehit'>  if (nil != expirationDate &amp;&amp; [[NSDate date] timeIntervalSinceDate:expirationDate] &gt;= 0) {</td>
 </tr>
 <tr class='sourceline'>
@@ -1066,7 +1062,7 @@
 <td class='sourcelineskipped'>  }</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>35</td>
+<td class='sourcelinehitcount'>42</td>
 <td class='sourcelinehit'>  NIMemoryCacheInfo* info = [self cacheInfoForName:name];</td>
 </tr>
 <tr class='sourceline'>
@@ -1078,19 +1074,19 @@
 <td class='sourcelineskipped'>  // Create a new cache entry.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>35</td>
+<td class='sourcelinehitcount'>42</td>
 <td class='sourcelinehit'>  if (nil == info) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>34</td>
+<td class='sourcelinehitcount'>41</td>
 <td class='sourcelinehit'>    info = [[[NIMemoryCacheInfo alloc] init] autorelease];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>34</td>
+<td class='sourcelinehitcount'>41</td>
 <td class='sourcelinehit'>    info.name = name;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>34</td>
+<td class='sourcelinehitcount'>41</td>
 <td class='sourcelinehit'>  }</td>
 </tr>
 <tr class='sourceline'>
@@ -1102,7 +1098,7 @@
 <td class='sourcelineskipped'>  // Store the object in the cache item.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>35</td>
+<td class='sourcelinehitcount'>42</td>
 <td class='sourcelinehit'>  info.object = object;</td>
 </tr>
 <tr class='sourceline'>
@@ -1114,7 +1110,7 @@
 <td class='sourcelineskipped'>  // Override any existing expiration date.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>35</td>
+<td class='sourcelinehitcount'>42</td>
 <td class='sourcelinehit'>  info.expirationDate = expirationDate;</td>
 </tr>
 <tr class='sourceline'>
@@ -1126,11 +1122,11 @@
 <td class='sourcelineskipped'>  // Commit the changes to the cache.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>35</td>
+<td class='sourcelinehitcount'>42</td>
 <td class='sourcelinehit'>  [self setCacheInfo:info forName:name];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>79</td>
+<td class='sourcelinehitcount'>93</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1234,11 +1230,11 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>- (BOOL)containsObjectWithName:(NSString *)name {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>  NIMemoryCacheInfo* info = [self cacheInfoForName:name];</td>
 </tr>
 <tr class='sourceline'>
@@ -1246,16 +1242,16 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>  if ([info hasExpired]) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    [self removeObjectWithName:name];</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    [self removeObjectWithName:name];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    return NO;</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    return NO;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1270,7 +1266,7 @@
 <td class='sourcelinehit'>  return (nil != info);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1286,11 +1282,11 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>- (NSDate *)dateOfLastAccessWithName:(NSString *)name {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>  NIMemoryCacheInfo* info = [self cacheInfoForName:name];</td>
 </tr>
 <tr class='sourceline'>
@@ -1298,16 +1294,16 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>  if ([info hasExpired]) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    [self removeObjectWithName:name];</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    [self removeObjectWithName:name];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    return nil;</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    return nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1322,7 +1318,7 @@
 <td class='sourcelinehit'>  return [info lastAccessTime];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1338,11 +1334,11 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>- (NSString *)nameOfLeastRecentlyUsedObject {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>  NIMemoryCacheInfo* info = [self.lruCacheObjects firstObject];</td>
 </tr>
 <tr class='sourceline'>
@@ -1350,16 +1346,16 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>  if ([info hasExpired]) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    [self removeObjectWithName:info.name];</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    [self removeObjectWithName:info.name];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    return nil;</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    return nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1374,7 +1370,7 @@
 <td class='sourcelinehit'>  return info.name;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1390,11 +1386,11 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>- (NSString *)nameOfMostRecentlyUsedObject {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>  NIMemoryCacheInfo* info = [self.lruCacheObjects lastObject];</td>
 </tr>
 <tr class='sourceline'>
@@ -1402,16 +1398,16 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>  if ([info hasExpired]) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    [self removeObjectWithName:info.name];</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    [self removeObjectWithName:info.name];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    return nil;</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    return nil;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1426,7 +1422,7 @@
 <td class='sourcelinehit'>  return info.name;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>3</td>
+<td class='sourcelinehitcount'>4</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1442,15 +1438,15 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehitcount'>11</td>
 <td class='sourcelinehit'>- (void)removeObjectWithName:(NSString *)name {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehitcount'>11</td>
 <td class='sourcelinehit'>  [self removeCacheInfoForName:name];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehitcount'>11</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1466,27 +1462,19 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehitcount'>2</td>
 <td class='sourcelinehit'>- (void)removeAllObjects {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_cacheMap);</td>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>  self.cacheMap = [[[NSMutableDictionary alloc] init] autorelease];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_lruCacheObjects);</td>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>  self.lruCacheObjects = [[[NILinkedList alloc] init] autorelease];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  _cacheMap = [[NSMutableDictionary alloc] init];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
-<td class='sourcelinehit'>  _lruCacheObjects = [[NILinkedList alloc] init];</td>
-</tr>
-<tr class='sourceline'>
-<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehitcount'>2</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1502,7 +1490,7 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehitcount'>6</td>
 <td class='sourcelinehit'>- (void)reduceMemoryUsage {</td>
 </tr>
 <tr class='sourceline'>
@@ -1510,8 +1498,8 @@
 <td class='sourcelineskipped'>  // Copy the cache map because it&apos;s likely that we&apos;re going to modify it.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>5</td>
-<td class='sourcelinehit'>  NSDictionary* cacheMap = [_cacheMap copy];</td>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>  NSDictionary* cacheMap = [self.cacheMap copy];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1522,7 +1510,7 @@
 <td class='sourcelineskipped'>  // Iterate over the copied cache map (which will not be modified).</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>25</td>
+<td class='sourcelinehitcount'>26</td>
 <td class='sourcelinehit'>  for (id name in cacheMap) {</td>
 </tr>
 <tr class='sourceline'>
@@ -1546,15 +1534,15 @@
 <td class='sourcelinehit'>    }</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>25</td>
+<td class='sourcelinehitcount'>26</td>
 <td class='sourcelinehit'>  }</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehitcount'>6</td>
 <td class='sourcelinehit'>  NI_RELEASE_SAFELY(cacheMap);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehitcount'>6</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1570,12 +1558,12 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>36</td>
+<td class='sourcelinehitcount'>47</td>
 <td class='sourcelinehit'>- (NSUInteger)count {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>36</td>
-<td class='sourcelinehit'>  return [_cacheMap count];</td>
+<td class='sourcelinehitcount'>47</td>
+<td class='sourcelinehit'>  return [self.cacheMap count];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1622,23 +1610,23 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>78</td>
+<td class='sourcelinehitcount'>94</td>
 <td class='sourcelinehit'>@synthesize name            = _name;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>178</td>
+<td class='sourcelinehitcount'>209</td>
 <td class='sourcelinehit'>@synthesize object          = _object;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>70</td>
+<td class='sourcelinehitcount'>84</td>
 <td class='sourcelinehit'>@synthesize expirationDate  = _expirationDate;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>133</td>
+<td class='sourcelinehitcount'>147</td>
 <td class='sourcelinehit'>@synthesize lastAccessTime  = _lastAccessTime;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>201</td>
+<td class='sourcelinehitcount'>222</td>
 <td class='sourcelinehit'>@synthesize lruLocation     = _lruLocation;</td>
 </tr>
 <tr class='sourceline'>
@@ -1654,27 +1642,27 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>34</td>
+<td class='sourcelinehitcount'>41</td>
 <td class='sourcelinehit'>- (void)dealloc {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>34</td>
+<td class='sourcelinehitcount'>41</td>
 <td class='sourcelinehit'>  NI_RELEASE_SAFELY(_name);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>34</td>
+<td class='sourcelinehitcount'>41</td>
 <td class='sourcelinehit'>  NI_RELEASE_SAFELY(_object);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>34</td>
+<td class='sourcelinehitcount'>41</td>
 <td class='sourcelinehit'>  NI_RELEASE_SAFELY(_expirationDate);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>34</td>
+<td class='sourcelinehitcount'>41</td>
 <td class='sourcelinehit'>  NI_RELEASE_SAFELY(_lastAccessTime);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>34</td>
+<td class='sourcelinehitcount'>41</td>
 <td class='sourcelinehit'>  _lruLocation = nil;</td>
 </tr>
 <tr class='sourceline'>
@@ -1682,11 +1670,11 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>34</td>
+<td class='sourcelinehitcount'>41</td>
 <td class='sourcelinehit'>  [super dealloc];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>34</td>
+<td class='sourcelinehitcount'>41</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1702,11 +1690,11 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>51</td>
+<td class='sourcelinehitcount'>55</td>
 <td class='sourcelinehit'>- (BOOL)hasExpired {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>55</td>
+<td class='sourcelinehitcount'>63</td>
 <td class='sourcelinehit'>  return (nil != _expirationDate</td>
 </tr>
 <tr class='sourceline'>
@@ -1714,7 +1702,7 @@
 <td class='sourcelineskipped'>          &amp;&amp; [[NSDate date] timeIntervalSinceDate:_expirationDate] &gt;= 0);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>51</td>
+<td class='sourcelinehitcount'>55</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1762,7 +1750,7 @@
 <td class='sourcelineskipped'>// Internally only.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>30</td>
+<td class='sourcelinehitcount'>35</td>
 <td class='sourcelinehit'>@property (nonatomic, readwrite, assign) NSUInteger numberOfPixels;</td>
 </tr>
 <tr class='sourceline'>
@@ -1802,15 +1790,15 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>109</td>
+<td class='sourcelinehitcount'>124</td>
 <td class='sourcelinehit'>@synthesize numberOfPixels                = _numberOfPixels;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>35</td>
+<td class='sourcelinehitcount'>37</td>
 <td class='sourcelinehit'>@synthesize maxNumberOfPixels             = _maxNumberOfPixels;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>16</td>
+<td class='sourcelinehitcount'>17</td>
 <td class='sourcelinehit'>@synthesize maxNumberOfPixelsUnderStress  = _maxNumberOfPixelsUnderStress;</td>
 </tr>
 <tr class='sourceline'>
@@ -1826,15 +1814,15 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>30</td>
+<td class='sourcelinehitcount'>34</td>
 <td class='sourcelinehit'>- (NSUInteger)numberOfPixelsUsedByImage:(UIImage *)image {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>30</td>
+<td class='sourcelinehitcount'>34</td>
 <td class='sourcelinehit'>  if (nil == image) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehitcount'>14</td>
 <td class='sourcelinehit'>    return 0;</td>
 </tr>
 <tr class='sourceline'>
@@ -1846,27 +1834,27 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>18</td>
+<td class='sourcelinehitcount'>20</td>
 <td class='sourcelinehit'>  NSUInteger numberOfPixels = (NSUInteger)(image.size.width * image.size.height);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>18</td>
+<td class='sourcelinehitcount'>20</td>
 <td class='sourcelinehit'>  if ([image respondsToSelector:@selector(scale)]) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>18</td>
+<td class='sourcelinehitcount'>20</td>
 <td class='sourcelinehit'>    numberOfPixels *= [image scale];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>18</td>
+<td class='sourcelinehitcount'>20</td>
 <td class='sourcelinehit'>  }</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>18</td>
+<td class='sourcelinehitcount'>20</td>
 <td class='sourcelinehit'>  return numberOfPixels;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>30</td>
+<td class='sourcelinehitcount'>34</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1882,24 +1870,24 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>- (void)removeAllObjects {</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>- (void)removeAllObjects {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  [super removeAllObjects];</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  [super removeAllObjects];</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>  self.numberOfPixels = 0;</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  self.numberOfPixels = 0;</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>}</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1914,7 +1902,7 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehitcount'>5</td>
 <td class='sourcelinehit'>- (void)reduceMemoryUsage {</td>
 </tr>
 <tr class='sourceline'>
@@ -1922,7 +1910,7 @@
 <td class='sourcelineskipped'>  // Remove all expired images first.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehitcount'>5</td>
 <td class='sourcelinehit'>  [super reduceMemoryUsage];</td>
 </tr>
 <tr class='sourceline'>
@@ -1930,7 +1918,7 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehitcount'>5</td>
 <td class='sourcelinehit'>  if (self.maxNumberOfPixelsUnderStress &gt; 0) {</td>
 </tr>
 <tr class='sourceline'>
@@ -1958,7 +1946,7 @@
 <td class='sourcelinehit'>  }</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehitcount'>5</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -1974,20 +1962,20 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
-<td class='sourcelinehit'>- (void)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {</td>
+<td class='sourcelinehitcount'>15</td>
+<td class='sourcelinehit'>- (BOOL)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>24</td>
+<td class='sourcelinehitcount'>32</td>
 <td class='sourcelinehit'>  NIDASSERT(nil == object || [object isKindOfClass:[UIImage class]]);</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehitcount'>15</td>
 <td class='sourcelinehit'>  if (![object isKindOfClass:[UIImage class]]) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    return;</td>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    return NO;</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
@@ -1998,15 +1986,23 @@
 <td class='sourcelineskipped'></td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehitcount'>14</td>
 <td class='sourcelinehit'>  self.numberOfPixels -= [self numberOfPixelsUsedByImage:previousObject];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehitcount'>14</td>
 <td class='sourcelinehit'>  self.numberOfPixels += [self numberOfPixelsUsedByImage:object];</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>24</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehit'>  return YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>15</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -2022,7 +2018,7 @@
 <td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehitcount'>14</td>
 <td class='sourcelinehit'>- (void)didSetObject:(id)object withName:(NSString *)name {</td>
 </tr>
 <tr class='sourceline'>
@@ -2042,7 +2038,7 @@
 <td class='sourcelineskipped'>  // and we&apos;ll get stuck in an infinite loop.</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehitcount'>14</td>
 <td class='sourcelinehit'>  if (self.maxNumberOfPixels &gt; 0) {</td>
 </tr>
 <tr class='sourceline'>
@@ -2074,7 +2070,7 @@
 <td class='sourcelinehit'>  }</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehitcount'>14</td>
 <td class='sourcelinehit'>}</td>
 </tr>
 <tr class='sourceline'>
@@ -2102,8 +2098,8 @@
 <td class='sourcelinehit'>  if (nil == object || ![object isKindOfClass:[UIImage class]]) {</td>
 </tr>
 <tr class='sourceline'>
-<td class='sourcelinehitcount'>0</td>
-<td class='sourcelinemissed'>    return;</td>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelinenonfeasible'>    return; // COV_NF_LINE</td>
 </tr>
 <tr class='sourceline'>
 <td class='sourcelinehitcount'></td>
