@@ -56,13 +56,15 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
  *
  * A convenience wrapper for sizeWithFont:constrainedToSize:lineBreakMode:
  */
-- (CGFloat)heightWithFont: (UIFont*)font
-       constrainedToWidth: (CGFloat)width
-            lineBreakMode: (UILineBreakMode)lineBreakMode {
-  return [self sizeWithFont: font
-          constrainedToSize: CGSizeMake(width, CGFLOAT_MAX)
-              lineBreakMode: lineBreakMode].height;
+// COV_NF_START
+- (CGFloat)heightWithFont:(UIFont*)font
+       constrainedToWidth:(CGFloat)width
+            lineBreakMode:(UILineBreakMode)lineBreakMode {
+  return [self sizeWithFont:font
+          constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
+              lineBreakMode:lineBreakMode].height;
 }
+// COV_NF_END
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
