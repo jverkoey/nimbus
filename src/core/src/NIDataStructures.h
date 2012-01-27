@@ -119,7 +119,6 @@ typedef void NILinkedListLocation;
 @private
   struct NILinkedListNode* _head;
   struct NILinkedListNode* _tail;
-  NSUInteger _count;
 
   // Used internally to track modifications to the linked list.
   unsigned long _modificationNumber;
