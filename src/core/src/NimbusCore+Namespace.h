@@ -107,44 +107,38 @@
 #ifndef NICreateNonRetainingMutableSet
 #define NICreateNonRetainingMutableSet __NIMBUS_NS_SYMBOL(NICreateNonRetainingMutableSet)
 #endif
-#ifndef NIInterfaceOrientation
-#define NIInterfaceOrientation __NIMBUS_NS_SYMBOL(NIInterfaceOrientation)
-#endif
-#ifndef NIStatusBarAnimationCurve
-#define NIStatusBarAnimationCurve __NIMBUS_NS_SYMBOL(NIStatusBarAnimationCurve)
-#endif
-#ifndef NIStatusBarAnimationDuration
-#define NIStatusBarAnimationDuration __NIMBUS_NS_SYMBOL(NIStatusBarAnimationDuration)
-#endif
-#ifndef NIPathForDocumentsResource
-#define NIPathForDocumentsResource __NIMBUS_NS_SYMBOL(NIPathForDocumentsResource)
-#endif
 #ifndef NIIsSetWithObjects
 #define NIIsSetWithObjects __NIMBUS_NS_SYMBOL(NIIsSetWithObjects)
 #endif
 #ifndef NINetworkActivityTaskDidFinish
 #define NINetworkActivityTaskDidFinish __NIMBUS_NS_SYMBOL(NINetworkActivityTaskDidFinish)
 #endif
-#ifndef NIStatusBarBoundsChangeAnimationCurve
-#define NIStatusBarBoundsChangeAnimationCurve __NIMBUS_NS_SYMBOL(NIStatusBarBoundsChangeAnimationCurve)
-#endif
-#ifndef NIStatusBarBoundsChangeAnimationDuration
-#define NIStatusBarBoundsChangeAnimationDuration __NIMBUS_NS_SYMBOL(NIStatusBarBoundsChangeAnimationDuration)
-#endif
-#ifndef NIDeviceOSVersionIsAtLeast
-#define NIDeviceOSVersionIsAtLeast __NIMBUS_NS_SYMBOL(NIDeviceOSVersionIsAtLeast)
+#ifndef NIPathForDocumentsResource
+#define NIPathForDocumentsResource __NIMBUS_NS_SYMBOL(NIPathForDocumentsResource)
 #endif
 #ifndef NIRectShift
 #define NIRectShift __NIMBUS_NS_SYMBOL(NIRectShift)
 #endif
-#ifndef NIStatusBarHeight
-#define NIStatusBarHeight __NIMBUS_NS_SYMBOL(NIStatusBarHeight)
+#ifndef NIStatusBarAnimationCurve
+#define NIStatusBarAnimationCurve __NIMBUS_NS_SYMBOL(NIStatusBarAnimationCurve)
+#endif
+#ifndef NIInterfaceOrientation
+#define NIInterfaceOrientation __NIMBUS_NS_SYMBOL(NIInterfaceOrientation)
+#endif
+#ifndef NIStatusBarAnimationDuration
+#define NIStatusBarAnimationDuration __NIMBUS_NS_SYMBOL(NIStatusBarAnimationDuration)
+#endif
+#ifndef NIDeviceOSVersionIsAtLeast
+#define NIDeviceOSVersionIsAtLeast __NIMBUS_NS_SYMBOL(NIDeviceOSVersionIsAtLeast)
+#endif
+#ifndef NIMakeNSRangeFromCFRange
+#define NIMakeNSRangeFromCFRange __NIMBUS_NS_SYMBOL(NIMakeNSRangeFromCFRange)
+#endif
+#ifndef NIStatusBarBoundsChangeAnimationCurve
+#define NIStatusBarBoundsChangeAnimationCurve __NIMBUS_NS_SYMBOL(NIStatusBarBoundsChangeAnimationCurve)
 #endif
 #ifndef NIScreenScale
 #define NIScreenScale __NIMBUS_NS_SYMBOL(NIScreenScale)
-#endif
-#ifndef NIRotateTransformForOrientation
-#define NIRotateTransformForOrientation __NIMBUS_NS_SYMBOL(NIRotateTransformForOrientation)
 #endif
 #ifndef NIIsStringWithAnyText
 #define NIIsStringWithAnyText __NIMBUS_NS_SYMBOL(NIIsStringWithAnyText)
@@ -152,38 +146,41 @@
 #ifndef NIPathForCachesResource
 #define NIPathForCachesResource __NIMBUS_NS_SYMBOL(NIPathForCachesResource)
 #endif
-#ifndef NIRectInset
-#define NIRectInset __NIMBUS_NS_SYMBOL(NIRectInset)
+#ifndef NIStatusBarBoundsChangeAnimationDuration
+#define NIStatusBarBoundsChangeAnimationDuration __NIMBUS_NS_SYMBOL(NIStatusBarBoundsChangeAnimationDuration)
 #endif
-#ifndef NIDeviceRotationDuration
-#define NIDeviceRotationDuration __NIMBUS_NS_SYMBOL(NIDeviceRotationDuration)
+#ifndef NIStatusBarHeight
+#define NIStatusBarHeight __NIMBUS_NS_SYMBOL(NIStatusBarHeight)
+#endif
+#ifndef NIRotateTransformForOrientation
+#define NIRotateTransformForOrientation __NIMBUS_NS_SYMBOL(NIRotateTransformForOrientation)
 #endif
 #ifndef NIUIPopoverControllerClass
 #define NIUIPopoverControllerClass __NIMBUS_NS_SYMBOL(NIUIPopoverControllerClass)
 #endif
-#ifndef NICellContentPadding
-#define NICellContentPadding __NIMBUS_NS_SYMBOL(NICellContentPadding)
+#ifndef NIDeviceRotationDuration
+#define NIDeviceRotationDuration __NIMBUS_NS_SYMBOL(NIDeviceRotationDuration)
 #endif
 #ifndef NIUITapGestureRecognizerClass
 #define NIUITapGestureRecognizerClass __NIMBUS_NS_SYMBOL(NIUITapGestureRecognizerClass)
 #endif
-#ifndef NIMakeNSRangeFromCFRange
-#define NIMakeNSRangeFromCFRange __NIMBUS_NS_SYMBOL(NIMakeNSRangeFromCFRange)
-#endif
-#ifndef NISwizzleMethodsForNetworkActivityDebugging
-#define NISwizzleMethodsForNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NISwizzleMethodsForNetworkActivityDebugging)
+#ifndef NICellContentPadding
+#define NICellContentPadding __NIMBUS_NS_SYMBOL(NICellContentPadding)
 #endif
 #ifndef boundf
 #define boundf __NIMBUS_NS_SYMBOL(boundf)
+#endif
+#ifndef boundi
+#define boundi __NIMBUS_NS_SYMBOL(boundi)
+#endif
+#ifndef NISwizzleMethodsForNetworkActivityDebugging
+#define NISwizzleMethodsForNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NISwizzleMethodsForNetworkActivityDebugging)
 #endif
 #ifndef NIEnableNetworkActivityDebugging
 #define NIEnableNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NIEnableNetworkActivityDebugging)
 #endif
 #ifndef NIDisableNetworkActivityDebugging
 #define NIDisableNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NIDisableNetworkActivityDebugging)
-#endif
-#ifndef boundi
-#define boundi __NIMBUS_NS_SYMBOL(boundi)
 #endif
 // Externs
 #ifndef NIMaxLogLevel

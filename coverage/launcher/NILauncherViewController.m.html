@@ -1,0 +1,837 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+   'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+  <html xmlns='http://www.w3.org/1999/xhtml'>
+    <head>
+      <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+      <meta name='generator' content='CoverStory' />
+      <link rel=StyleSheet href='coverstory.css' type='text/css'>
+      <script src='coverstory.js' language='javascript' type='text/javascript'></script>
+      <title>NILauncherViewController.m</title>
+    </head>
+    <body id='coverstory' onload='coverstory_load()' onunload='coverstory_unload()'>
+      <div id='maincontainer'>
+        <h1 id='sourcename'>NILauncherViewController.m</h1>
+        <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/launcher/src/NILauncherViewController.m</h2>
+        <div id='filelistcontainer'>
+          <div id='filesummary'>0.0% of 337 lines</div>
+          <table id='filetable'>
+            <tr id='filelistheader'>
+              <th id='filelistheadersource'>Source</th>
+              <th id='filelistheaderpercent'>%</th>
+            </tr>
+            <tr class='fileline'>
+<td class='filename'><a href='NILauncherButton.m.html'>NILauncherButton.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NILauncherItemDetails.m.html'>NILauncherItemDetails.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NILauncherView.m.html'>NILauncherView.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NILauncherViewController.m.html'>NILauncherViewController.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+
+          </table>
+        </div>
+        <div id='sourcecontainer'>
+          <div id='sourcesummary'>Executed 0.0% of 61 lines (0 executed, 61 executable, 197 total lines)</div>
+          <table id='sourcetable'>
+          <tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Copyright 2011 Jeff Verkoeyen</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// you may not use this file except in compliance with the License.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// You may obtain a copy of the License at</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//    http://www.apache.org/licenses/LICENSE-2.0</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Unless required by applicable law or agreed to in writing, software</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// See the License for the specific language governing permissions and</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// limitations under the License.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NILauncherViewController.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NILauncherView.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NimbusCore.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@implementation NILauncherViewController</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize launcherView  = _launcherView;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@synthesize pages         = _pages;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)dealloc {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_pages);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // _launcherView is retained by self.view and is released in viewDidUnload</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [super dealloc];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)viewDidLoad {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [super viewDidLoad];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _launcherView = [[[NILauncherView alloc] initWithFrame:self.view.bounds] autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _launcherView.autoresizingMask = (UIViewAutoresizingFlexibleWidth</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                    | UIViewAutoresizingFlexibleHeight);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _launcherView.dataSource = self;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _launcherView.delegate = self;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [_launcherView reloadData];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self.view addSubview:_launcherView];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)viewDidUnload {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _launcherView = nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [super viewDidUnload];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // Only allow portrait for the iPhone and iPod touch.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return NIIsPad() || UIInterfaceOrientationIsPortrait(toInterfaceOrientation);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark NILauncherDataSource</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (NSInteger)numberOfRowsPerPageInLauncherView:(NILauncherView *)launcherView {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // Replace this with NILauncherViewDynamic to allow the launcher view to calculate the number</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // of rows and columns automatically.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return (NIIsPad()</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          ? 4</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>          : (UIInterfaceOrientationIsPortrait(NIInterfaceOrientation())</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>             ? 3 : 2));</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (NSInteger)numberOfColumnsPerPageInLauncherView:(NILauncherView *)launcherView {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return (NIIsPad()</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          ? 5</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>          : (UIInterfaceOrientationIsPortrait(NIInterfaceOrientation())</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>             ? 3 : 5));</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (NSInteger)numberOfPagesInLauncherView:(NILauncherView *)launcherView {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return [_pages count];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (NSInteger)launcherView:(NILauncherView *)launcherView numberOfButtonsInPage:(NSInteger)page {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return [[_pages objectAtIndex:page] count];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (UIButton *)launcherView: (NILauncherView *)launcherView</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>             buttonForPage: (NSInteger)page</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>                   atIndex: (NSInteger)buttonIndex {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  UIButton* button = [[[[self launcherButtonClass] alloc] init] autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // launcherButtonClass must return a class that is a subclass of UIButton.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NIDASSERT([button isKindOfClass:[UIButton class]]);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (![button isKindOfClass:[UIButton class]]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NILauncherItemDetails* item = [[_pages objectAtIndex:page] objectAtIndex:buttonIndex];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [button setTitle:item.title forState:UIControlStateNormal];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [button setImage: [UIImage imageWithContentsOfFile:item.imagePath]</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          forState: UIControlStateNormal];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return button;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark NILauncherDelegate</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)launcherView: (NILauncherView *)launcher</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>     didSelectButton: (UIButton *)button</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>              onPage: (NSInteger)page</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>             atIndex: (NSInteger)buttonIndex {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // This is purely an example implementation. It is incredibly likely that you will not want to</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // use this in your production code.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // If you require access to the launcher item details, you may find the following</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // to be helpful:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  //</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  //     NILauncherItemDetails* item = [[_pages objectAtIndex:page] objectAtIndex:index];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  UIAlertView* alert =</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  [[[UIAlertView alloc] initWithTitle: @&quot;Launcher button tapped&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                              message: [button titleForState:UIControlStateNormal]</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                             delegate: nil</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                    cancelButtonTitle: nil</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                    otherButtonTitles: @&quot;OK&quot;, nil]</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>   autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [alert show];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark Override Methods</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (Class)launcherButtonClass {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return [NILauncherButton class];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark Properties</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)setPages:(NSArray *)pages {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (_pages != pages) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [_pages release];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    _pages = [pages mutableCopy];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // If the view hasn&apos;t been loaded yet (entirely possible) then this will no-op and the</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // launcher view will load its data in viewDidLoad.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [_launcherView reloadData];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (NSArray *)pages {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return [NSArray arrayWithArray:_pages];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@end</td>
+</tr>
+
+          </table>
+        </div>
+      </div>
+    </body>
+  </html>

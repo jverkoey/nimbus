@@ -112,11 +112,17 @@
 #pragma mark -
 
 
+@interface NILinkedList()
+@property (nonatomic, readwrite, assign) NSUInteger count;
+@end
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NILinkedList
 
+@synthesize count = _count;
 @synthesize head = _head;
 
 
@@ -169,24 +175,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)_setHead:(struct NILinkedListNode *)head {
-  _head = head;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)_setTail:(struct NILinkedListNode *)tail {
-  _tail = tail;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)_setCount:(NSUInteger)count {
-  _count = count;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark NSCopying
 
@@ -202,7 +190,7 @@
     node = node->next;
   }
 
-  [copy _setCount:_count];
+  copy.count = self.count;
 
   return copy;
 }
@@ -240,7 +228,7 @@
     }
 
     // Sanity check.
-    NIDASSERT(count == _count);
+    NIDASSERT(count == self.count);
   }
   return self;
 }
@@ -252,9 +240,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSUInteger)countByEnumeratingWithState: (NSFastEnumerationState *)state
-                                  objects: (id *)stackbuf
-                                    count: (NSUInteger)len {
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+                                  objects:(id *)stackbuf
+                                    count:(NSUInteger)len {
   // Initialization condition.
   if (0 == state->state) {
     // Whenever the linked list is modified, the modification number increases. This allows
@@ -312,12 +300,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)lastObject {
   return (nil != _tail) ? _tail->object : nil;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSUInteger)count {
-  return _count;
 }
 
 
@@ -409,7 +391,7 @@
   
   [self _eraseNode:node];
   
-  --_count;
+  --self.count;
   ++_modificationNumber;
 }
 
@@ -439,7 +421,7 @@
     _tail = node;
   }
   
-  ++_count;
+  ++self.count;
   ++_modificationNumber;
   
   return (NILinkedListLocation *)node;
@@ -471,7 +453,7 @@
   _head = nil;
   _tail = nil;
   
-  _count = 0;
+  self.count = 0;
   ++_modificationNumber;
 }
 

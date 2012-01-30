@@ -1,0 +1,2429 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+   'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+  <html xmlns='http://www.w3.org/1999/xhtml'>
+    <head>
+      <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+      <meta name='generator' content='CoverStory' />
+      <link rel=StyleSheet href='coverstory.css' type='text/css'>
+      <script src='coverstory.js' language='javascript' type='text/javascript'></script>
+      <title>NIToolbarPhotoViewController.m</title>
+    </head>
+    <body id='coverstory' onload='coverstory_load()' onunload='coverstory_unload()'>
+      <div id='maincontainer'>
+        <h1 id='sourcename'>NIToolbarPhotoViewController.m</h1>
+        <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/photos/src/NIToolbarPhotoViewController.m</h2>
+        <div id='filelistcontainer'>
+          <div id='filesummary'>0.0% of 827 lines</div>
+          <table id='filetable'>
+            <tr id='filelistheader'>
+              <th id='filelistheadersource'>Source</th>
+              <th id='filelistheaderpercent'>%</th>
+            </tr>
+            <tr class='fileline'>
+<td class='filename'><a href='NIPhotoAlbumScrollView.m.html'>NIPhotoAlbumScrollView.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIPhotoScrollView.m.html'>NIPhotoScrollView.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIPhotoScrubberView.m.html'>NIPhotoScrubberView.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIToolbarPhotoViewController.m.html'>NIToolbarPhotoViewController.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+
+          </table>
+        </div>
+        <div id='sourcecontainer'>
+          <div id='sourcesummary'>Executed 0.0% of 276 lines (0 executed, 276 executable, 595 total lines)</div>
+          <table id='sourcetable'>
+          <tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Copyright 2011 Jeff Verkoeyen</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// you may not use this file except in compliance with the License.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// You may obtain a copy of the License at</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//    http://www.apache.org/licenses/LICENSE-2.0</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Unless required by applicable law or agreed to in writing, software</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// See the License for the specific language governing permissions and</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// limitations under the License.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NIToolbarPhotoViewController.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NIPhotoAlbumScrollView.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NimbusCore.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@implementation NIToolbarPhotoViewController</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize toolbarIsTranslucent = _toolbarIsTranslucent;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize hidesChromeWhenScrolling = _hidesChromeWhenScrolling;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize chromeCanBeHidden = _chromeCanBeHidden;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize animateMovingToNextAndPreviousPhotos = _animateMovingToNextAndPreviousPhotos;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize scrubberIsEnabled = _scrubberIsEnabled;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize toolbar = _toolbar;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize photoAlbumView = _photoAlbumView;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize photoScrubberView = _photoScrubberView;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize nextButton = _nextButton;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize previousButton = _previousButton;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)shutdown_NIToolbarPhotoViewController {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _toolbar = nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _photoAlbumView = nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_nextButton);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_previousButton);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_photoScrubberView);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_tapGesture);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)dealloc {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self shutdown_NIToolbarPhotoViewController];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [super dealloc];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Default Configuration Settings</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.toolbarIsTranslucent = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.hidesChromeWhenScrolling = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.chromeCanBeHidden = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.animateMovingToNextAndPreviousPhotos = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    </td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // The scrubber is better use of the extra real estate on the iPad.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // If you ask me, though, the scrubber works pretty well on the iPhone too. It&apos;s up</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // to you if you want to use it in your own implementations.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.scrubberIsEnabled = NIIsPad();</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Allow the photos to display beneath the status bar.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.wantsFullScreenLayout = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return self;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)addTapGestureToView {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if ([self isViewLoaded]</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      &amp;&amp; nil != NIUITapGestureRecognizerClass()</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      &amp;&amp; [self.photoAlbumView respondsToSelector:@selector(addGestureRecognizer:)]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    if (nil == _tapGesture) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      _tapGesture =</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      [[NIUITapGestureRecognizerClass() alloc] initWithTarget: self</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                       action: @selector(didTap)];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      [self.photoAlbumView addGestureRecognizer:_tapGesture];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [_tapGesture setEnabled:YES];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)updateToolbarItems {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  UIBarItem* flexibleSpace =</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                 target: nil</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>                                                 action: nil] autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if ([self isScrubberEnabled]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    NI_RELEASE_SAFELY(_nextButton);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    NI_RELEASE_SAFELY(_previousButton);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    if (nil == _photoScrubberView) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      CGRect scrubberFrame = CGRectMake(0, 0,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                        self.toolbar.bounds.size.width,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                        self.toolbar.bounds.size.height);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      _photoScrubberView = [[NIPhotoScrubberView alloc] initWithFrame:scrubberFrame];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      _photoScrubberView.autoresizingMask = (UIViewAutoresizingFlexibleWidth</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                             | UIViewAutoresizingFlexibleHeight);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      _photoScrubberView.delegate = self;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    UIBarButtonItem* scrubberItem =</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [[[UIBarButtonItem alloc] initWithCustomView:self.photoScrubberView] autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.toolbar.items = [NSArray arrayWithObjects:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                          flexibleSpace, scrubberItem, flexibleSpace,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                          nil];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [_photoScrubberView setSelectedPhotoIndex:self.photoAlbumView.centerPageIndex];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    </td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    NI_RELEASE_SAFELY(_photoScrubberView);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    if (nil == _nextButton) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      UIImage* nextIcon = [UIImage imageWithContentsOfFile:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>                           NIPathForBundleResource(nil, @&quot;NimbusPhotos.bundle/gfx/next.png&quot;)];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // We weren&apos;t able to find the next or previous icons in your application&apos;s resources.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // Ensure that you&apos;ve dragged the NimbusPhotos.bundle from src/photos/resources into your</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // application with the &quot;Create Folder References&quot; option selected. You can verify that</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // you&apos;ve done this correctly by expanding the NimbusPhotos.bundle file in your project</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // and verifying that the &apos;gfx&apos; directory is blue. Also verify that the bundle is being</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // copied in the Copy Bundle Resources phase.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      NIDASSERT(nil != nextIcon);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      _nextButton = [[UIBarButtonItem alloc] initWithImage: nextIcon</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                     style: UIBarButtonItemStylePlain</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                    target: self</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                    action: @selector(didTapNextButton)];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      </td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    if (nil == _previousButton) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      UIImage* previousIcon = [UIImage imageWithContentsOfFile:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>                               NIPathForBundleResource(nil, @&quot;NimbusPhotos.bundle/gfx/previous.png&quot;)];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // We weren&apos;t able to find the next or previous icons in your application&apos;s resources.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // Ensure that you&apos;ve dragged the NimbusPhotos.bundle from src/photos/resources into your</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // application with the &quot;Create Folder References&quot; option selected. You can verify that</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // you&apos;ve done this correctly by expanding the NimbusPhotos.bundle file in your project</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // and verifying that the &apos;gfx&apos; directory is blue. Also verify that the bundle is being</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // copied in the Copy Bundle Resources phase.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      NIDASSERT(nil != previousIcon);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      _previousButton = [[UIBarButtonItem alloc] initWithImage: previousIcon</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                         style: UIBarButtonItemStylePlain</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                        target: self</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                        action: @selector(didTapPreviousButton)];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.toolbar.items = [NSArray arrayWithObjects:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                          flexibleSpace, self.previousButton,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                          flexibleSpace, self.nextButton,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                          flexibleSpace,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                          nil];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)loadView {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [super loadView];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  CGRect bounds = self.view.bounds;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // Toolbar Setup</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  CGFloat toolbarHeight = NIToolbarHeightForOrientation(NIInterfaceOrientation());</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  CGRect toolbarFrame = CGRectMake(0, bounds.size.height - toolbarHeight,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                   bounds.size.width, toolbarHeight);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _toolbar.barStyle = UIBarStyleBlack;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _toolbar.translucent = self.toolbarIsTranslucent;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _toolbar.autoresizingMask = (UIViewAutoresizingFlexibleWidth</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                               | UIViewAutoresizingFlexibleTopMargin);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self updateToolbarItems];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // Photo Album View Setup</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  CGRect photoAlbumFrame = bounds;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (!self.toolbarIsTranslucent) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    photoAlbumFrame = NIRectContract(bounds, 0, toolbarHeight);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _photoAlbumView = [[[NIPhotoAlbumScrollView alloc] initWithFrame:photoAlbumFrame] autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _photoAlbumView.autoresizingMask = (UIViewAutoresizingFlexibleWidth</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                      | UIViewAutoresizingFlexibleHeight);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _photoAlbumView.delegate = self;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self.view addSubview:_photoAlbumView];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self.view addSubview:_toolbar];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (self.hidesChromeWhenScrolling) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [self addTapGestureToView];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)viewDidUnload {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self shutdown_NIToolbarPhotoViewController];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [super viewDidUnload];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)viewWillAppear:(BOOL)animated {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [super viewWillAppear:animated];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [NINavigationAppearance pushAppearanceForNavigationController:self.navigationController];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [[UIApplication sharedApplication] setStatusBarStyle: (NIIsPad()</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                         ? UIStatusBarStyleBlackOpaque</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                         : UIStatusBarStyleBlackTranslucent)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                              animated: animated];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  UINavigationBar* navBar = self.navigationController.navigationBar;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  navBar.barStyle = UIBarStyleBlack;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  navBar.translucent = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _previousButton.enabled = [self.photoAlbumView hasPrevious];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _nextButton.enabled = [self.photoAlbumView hasNext];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)viewWillDisappear:(BOOL)animated {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [super viewWillDisappear:animated];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [NINavigationAppearance popAppearanceForNavigationController:self.navigationController animated:YES];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return NIIsSupportedOrientation(toInterfaceOrientation);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)willRotateToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>                                duration: (NSTimeInterval)duration {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self.photoAlbumView willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>                                         duration: (NSTimeInterval)duration {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self.photoAlbumView willAnimateRotationToInterfaceOrientation: toInterfaceOrientation</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                        duration: duration];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                          duration:duration];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  CGRect toolbarFrame = self.toolbar.frame;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  toolbarFrame.size.height = NIToolbarHeightForOrientation(toInterfaceOrientation);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  toolbarFrame.origin.y = self.view.bounds.size.height - toolbarFrame.size.height;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  self.toolbar.frame = toolbarFrame;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (!self.toolbarIsTranslucent) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    CGRect photoAlbumFrame = self.photoAlbumView.frame;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    photoAlbumFrame.size.height = self.view.bounds.size.height - toolbarFrame.size.height;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.photoAlbumView.frame = photoAlbumFrame;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)didHideChrome {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _isAnimatingChrome = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (self.toolbarIsTranslucent) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.toolbar.hidden = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _isChromeHidden = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)didShowChrome {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _isAnimatingChrome = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _isChromeHidden = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)setChromeVisibility:(BOOL)isVisible animated:(BOOL)animated {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (_isAnimatingChrome</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      || (!isVisible &amp;&amp; _isChromeHidden)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      || (isVisible &amp;&amp; !_isChromeHidden)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      || !self.chromeCanBeHidden) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Nothing to do here.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  CGRect toolbarFrame = self.toolbar.frame;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  CGRect bounds = self.view.bounds;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (self.toolbarIsTranslucent) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Reset the toolbar&apos;s initial position.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    if (!isVisible) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // Ensure that the toolbar is visible through the animation.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      self.toolbar.hidden = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      toolbarFrame.origin.y = bounds.size.height;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.toolbar.frame = toolbarFrame;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // Show/hide the system chrome.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if ([[UIApplication sharedApplication] respondsToSelector:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>       @selector(setStatusBarHidden:withAnimation:)]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // On 3.2 and higher we can slide the status bar out.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [[UIApplication sharedApplication] setStatusBarHidden: !isVisible</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                            withAnimation: (animated</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                            ? UIStatusBarAnimationSlide</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                            : UIStatusBarAnimationNone)];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#if __IPHONE_OS_VERSION_MIN_REQUIRED &lt; NIIOS_3_2</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // On 3.0 devices we use the boring fade animation.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    [[UIApplication sharedApplication] setStatusBarHidden: !isVisible</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                 animated: animated];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#endif</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (self.toolbarIsTranslucent) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Place the toolbar at its final location.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    if (isVisible) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // Slide up.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // Slide down.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      toolbarFrame.origin.y = bounds.size.height;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // If there is a navigation bar, place it at its final location.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  CGRect navigationBarFrame = CGRectZero;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (nil != self.navigationController.navigationBar) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    navigationBarFrame = self.navigationController.navigationBar.frame;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    CGFloat statusBarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    if (isVisible) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      navigationBarFrame.origin.y = statusBarHeight;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      navigationBarFrame.origin.y = 0;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (animated) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [UIView beginAnimations:nil context:nil];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [UIView setAnimationDelegate:self];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [UIView setAnimationDidStopSelector:(isVisible</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                         ? @selector(didShowChrome)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                         : @selector(didHideChrome))];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Ensure that the animation matches the status bar&apos;s.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [UIView setAnimationDuration:NIStatusBarAnimationDuration()];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [UIView setAnimationCurve:NIStatusBarAnimationCurve()];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (self.toolbarIsTranslucent) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.toolbar.frame = toolbarFrame;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (nil != self.navigationController.navigationBar) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.navigationController.navigationBar.frame = navigationBarFrame;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.navigationController.navigationBar.alpha = (isVisible ? 1 : 0);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (animated) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    _isAnimatingChrome = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [UIView commitAnimations];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  } else if (!isVisible) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [self didHideChrome];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  } else if (isVisible) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [self didShowChrome];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)toggleChromeVisibility {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self setChromeVisibility:(_isChromeHidden || _isAnimatingChrome) animated:YES];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark UIGestureRecognizer</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)didTap {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  SEL selector = @selector(toggleChromeVisibility);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (self.photoAlbumView.zoomingIsEnabled) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Cancel any previous delayed performs so that we don&apos;t stack them.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:selector object:nil];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // We need to delay taking action on the first tap in case a second tap comes in, causing</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // a double-tap gesture to be recognized and the photo to be zoomed.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [self performSelector: selector</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>               withObject: nil</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>               afterDelay: 0.3];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // When zooming is disabled, double-tap-to-zoom is also disabled so we don&apos;t have to</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // be as careful; just toggle the chrome immediately.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [self toggleChromeVisibility];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)refreshChromeState {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  self.previousButton.enabled = [self.photoAlbumView hasPrevious];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  self.nextButton.enabled = [self.photoAlbumView hasNext];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  self.title = [NSString stringWithFormat:@&quot;%d of %d&quot;,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                (self.photoAlbumView.centerPageIndex + 1),</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                self.photoAlbumView.numberOfPages];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark NIPhotoAlbumScrollViewDelegate</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)pagingScrollViewDidScroll:(NIPagingScrollView *)pagingScrollView {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (self.hidesChromeWhenScrolling) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [self setChromeVisibility:NO animated:YES];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>                   didZoomIn: (BOOL)didZoomIn {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // This delegate method is called after a double-tap gesture, so cancel any pending</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // single-tap gestures.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [NSObject cancelPreviousPerformRequestsWithTarget: self</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                           selector: @selector(toggleChromeVisibility)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                             object: nil];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)pagingScrollViewDidChangePages:(NIPagingScrollView *)pagingScrollView {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // We animate the scrubber when the chrome won&apos;t disappear as a nice touch.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // We don&apos;t bother animating if the chrome disappears when scrolling because the user</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // will barely see the animation happen.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self.photoScrubberView setSelectedPhotoIndex: [pagingScrollView centerPageIndex]</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                       animated: !self.hidesChromeWhenScrolling];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self refreshChromeState];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark NIPhotoScrubberViewDelegate</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)photoScrubberViewDidChangeSelection:(NIPhotoScrubberView *)photoScrubberView {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self.photoAlbumView moveToPageAtIndex:photoScrubberView.selectedPhotoIndex animated:NO];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self refreshChromeState];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark Actions</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)didTapNextButton {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self.photoAlbumView moveToNextAnimated:self.animateMovingToNextAndPreviousPhotos];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)didTapPreviousButton {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [self.photoAlbumView moveToPreviousAnimated:self.animateMovingToNextAndPreviousPhotos];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark Public Methods</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)settoolbarIsTranslucent:(BOOL)enabled {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _toolbarIsTranslucent = enabled;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  self.toolbar.translucent = enabled;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)setHidesChromeWhenScrolling:(BOOL)hidesToolbar {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _hidesChromeWhenScrolling = hidesToolbar;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (hidesToolbar) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [self addTapGestureToView];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [_tapGesture setEnabled:NO];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)setChromeCanBeHidden:(BOOL)canBeHidden {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (nil == NIUITapGestureRecognizerClass()) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Don&apos;t allow the chrome to be hidden if we can&apos;t tap to make it visible again.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    canBeHidden = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _chromeCanBeHidden = canBeHidden;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (!canBeHidden) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.hidesChromeWhenScrolling = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    if ([self isViewLoaded]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // Ensure that the toolbar is visible.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      self.toolbar.hidden = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      CGRect toolbarFrame = self.toolbar.frame;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      CGRect bounds = self.view.bounds;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      self.toolbar.frame = toolbarFrame;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)setScrubberIsEnabled:(BOOL)enabled {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (_scrubberIsEnabled != enabled) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    _scrubberIsEnabled = enabled;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    if ([self isViewLoaded]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      [self updateToolbarItems];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@end</td>
+</tr>
+
+          </table>
+        </div>
+      </div>
+    </body>
+  </html>

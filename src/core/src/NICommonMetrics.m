@@ -25,7 +25,7 @@ CGFloat NIToolbarHeightForOrientation(UIInterfaceOrientation orientation) {
           ? 44
           : (UIInterfaceOrientationIsPortrait(orientation)
              ? 44
-             : 33));;
+             : 33));
 }
 
 

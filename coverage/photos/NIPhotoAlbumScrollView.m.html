@@ -1,0 +1,1089 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+   'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+  <html xmlns='http://www.w3.org/1999/xhtml'>
+    <head>
+      <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+      <meta name='generator' content='CoverStory' />
+      <link rel=StyleSheet href='coverstory.css' type='text/css'>
+      <script src='coverstory.js' language='javascript' type='text/javascript'></script>
+      <title>NIPhotoAlbumScrollView.m</title>
+    </head>
+    <body id='coverstory' onload='coverstory_load()' onunload='coverstory_unload()'>
+      <div id='maincontainer'>
+        <h1 id='sourcename'>NIPhotoAlbumScrollView.m</h1>
+        <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/photos/src/NIPhotoAlbumScrollView.m</h2>
+        <div id='filelistcontainer'>
+          <div id='filesummary'>0.0% of 827 lines</div>
+          <table id='filetable'>
+            <tr id='filelistheader'>
+              <th id='filelistheadersource'>Source</th>
+              <th id='filelistheaderpercent'>%</th>
+            </tr>
+            <tr class='fileline'>
+<td class='filename'><a href='NIPhotoAlbumScrollView.m.html'>NIPhotoAlbumScrollView.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIPhotoScrollView.m.html'>NIPhotoScrollView.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIPhotoScrubberView.m.html'>NIPhotoScrubberView.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIToolbarPhotoViewController.m.html'>NIToolbarPhotoViewController.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+
+          </table>
+        </div>
+        <div id='sourcecontainer'>
+          <div id='sourcesummary'>Executed 0.0% of 116 lines (0 executed, 116 executable, 260 total lines)</div>
+          <table id='sourcetable'>
+          <tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Copyright 2011 Jeff Verkoeyen</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// you may not use this file except in compliance with the License.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// You may obtain a copy of the License at</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//    http://www.apache.org/licenses/LICENSE-2.0</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Unless required by applicable law or agreed to in writing, software</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// See the License for the specific language governing permissions and</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// limitations under the License.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NIPhotoAlbumScrollView.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NIPhotoScrollView.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NIPhotoAlbumScrollViewDataSource.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NimbusCore.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@implementation NIPhotoAlbumScrollView</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize loadingImage = _loadingImage;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize photoViewBackgroundColor = _photoViewBackgroundColor;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize zoomingIsEnabled = _zoomingIsEnabled;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>@synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)dealloc {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_loadingImage);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NI_RELEASE_SAFELY(_photoViewBackgroundColor);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [super dealloc];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (id)initWithFrame:(CGRect)frame {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if ((self = [super initWithFrame:frame])) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Default state.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.zoomingIsEnabled = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    self.zoomingAboveOriginalSizeIsEnabled = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return self;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)setBackgroundColor:(UIColor *)backgroundColor {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [super setBackgroundColor:backgroundColor];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  self.pagingScrollView.backgroundColor = backgroundColor;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)notifyDelegatePhotoDidLoadAtIndex:(NSInteger)photoIndex {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (photoIndex == (self.centerPageIndex + 1)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      &amp;&amp; [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidLoadNextPhoto:)]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [self.delegate photoAlbumScrollViewDidLoadNextPhoto:self];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  } else if (photoIndex == (self.centerPageIndex - 1)</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>             &amp;&amp; [self.delegate respondsToSelector:@selector(photoAlbumScrollViewDidLoadPreviousPhoto:)]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [self.delegate photoAlbumScrollViewDidLoadPreviousPhoto:self];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark Visible Page Management</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)willDisplayPage:(NIPhotoScrollView *)page {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // When we ask the data source for the image we expect the following to happen:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // 1) If the data source has any image at this index, it should return it and set the</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  //    photoSize accordingly.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // 2) If the returned photo is not the highest quality available, the data source should</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  //    start loading the high quality photo and set isLoading to YES.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // 3) If no photo was available, then the data source should start loading the photo</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  //    at its highest available quality and nil should be returned. The loadingImage property</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  //    will be displayed until the image is loaded. isLoading should be set to YES.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NIPhotoScrollViewPhotoSize photoSize = NIPhotoScrollViewPhotoSizeUnknown;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  BOOL isLoading = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  CGSize originalPhotoDimensions = CGSizeZero;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  UIImage* image = [self.dataSource photoAlbumScrollView: self</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                            photoAtIndex: page.pageIndex</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                               photoSize: &amp;photoSize</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                               isLoading: &amp;isLoading</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>                                 originalPhotoDimensions: &amp;originalPhotoDimensions];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  page.photoDimensions = originalPhotoDimensions;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (nil == image) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    page.zoomingIsEnabled = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [page setImage:self.loadingImage photoSize:NIPhotoScrollViewPhotoSizeUnknown];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    page.zoomingIsEnabled = ([self isZoomingEnabled]</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                             &amp;&amp; (NIPhotoScrollViewPhotoSizeOriginal == photoSize));</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    if (photoSize &gt; page.photoSize) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      [page setImage:image photoSize:photoSize];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      if (NIPhotoScrollViewPhotoSizeOriginal == photoSize) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        [self notifyDelegatePhotoDidLoadAtIndex:page.pageIndex];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)didRecyclePage:(UIView&lt;NIPagingScrollViewPage&gt; *)page {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // Give the data source the opportunity to kill any asynchronous operations for this</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // now-recycled page.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if ([self.dataSource respondsToSelector:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>       @selector(photoAlbumScrollView:stopLoadingPhotoAtIndex:)]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [self.dataSource photoAlbumScrollView: self</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                  stopLoadingPhotoAtIndex: page.pageIndex];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark NIPhotoScrollViewDelegate</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)photoScrollViewDidDoubleTapToZoom: (NIPhotoScrollView *)photoScrollView</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>                                didZoomIn: (BOOL)didZoomIn {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if ([self.delegate respondsToSelector:@selector(photoAlbumScrollView:didZoomIn:)]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [self.delegate photoAlbumScrollView:self didZoomIn:didZoomIn];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark Public Methods</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (UIView&lt;NIPagingScrollViewPage&gt; *)pagingScrollView:(NIPagingScrollView *)pagingScrollView</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>                                    pageViewForIndex:(NSInteger)pageIndex {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  UIView&lt;NIPagingScrollViewPage&gt;* pageView = nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NSString* reuseIdentifier = @&quot;photo&quot;;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  pageView = [pagingScrollView dequeueReusablePageWithIdentifier:reuseIdentifier];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (nil == pageView) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    pageView = [[[NIPhotoScrollView alloc] init] autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    pageView.reuseIdentifier = reuseIdentifier;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    pageView.backgroundColor = self.photoViewBackgroundColor;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NIPhotoScrollView* photoScrollView = (NIPhotoScrollView *)pageView;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  photoScrollView.photoScrollViewDelegate = self;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  photoScrollView.zoomingAboveOriginalSizeIsEnabled = [self isZoomingAboveOriginalSizeEnabled];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return pageView;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)didLoadPhoto: (UIImage *)image</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>             atIndex: (NSInteger)pageIndex</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>           photoSize: (NIPhotoScrollViewPhotoSize)photoSize {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  for (NIPhotoScrollView* page in self.visiblePages) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    if (page.pageIndex == pageIndex) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // Only replace the photo if it&apos;s of a higher quality than one we&apos;re already showing.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      if (photoSize &gt; page.photoSize) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        [page setImage:image photoSize:photoSize];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        page.zoomingIsEnabled = ([self isZoomingEnabled]</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                 &amp;&amp; (NIPhotoScrollViewPhotoSizeOriginal == photoSize));</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        // Notify the delegate that the photo has been loaded.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        if (NIPhotoScrollViewPhotoSizeOriginal == photoSize) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>          [self notifyDelegatePhotoDidLoadAtIndex:pageIndex];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      break;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)setZoomingAboveOriginalSizeIsEnabled:(BOOL)enabled {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  _zoomingAboveOriginalSizeIsEnabled = enabled;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  for (NIPhotoScrollView* page in self.visiblePages) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    page.zoomingAboveOriginalSizeIsEnabled = enabled;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)setPhotoViewBackgroundColor:(UIColor *)photoViewBackgroundColor {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  if (_photoViewBackgroundColor != photoViewBackgroundColor) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    [_photoViewBackgroundColor release];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    _photoViewBackgroundColor = [photoViewBackgroundColor retain];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    </td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    for (UIView&lt;NIPagingScrollViewPage&gt;* page in self.visiblePages) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      page.backgroundColor = photoViewBackgroundColor;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (BOOL)hasNext {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return (self.centerPageIndex &lt; self.numberOfPages - 1);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (BOOL)hasPrevious {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return self.centerPageIndex &gt; 0;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (id&lt;NIPhotoAlbumScrollViewDataSource&gt;)dataSource {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NIDASSERT([[super dataSource] conformsToProtocol:@protocol(NIPhotoAlbumScrollViewDataSource)]);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return (id&lt;NIPhotoAlbumScrollViewDataSource&gt;)[super dataSource];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)setDataSource:(id&lt;NIPhotoAlbumScrollViewDataSource&gt;)dataSource {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [super setDataSource:(id&lt;NIPagingScrollViewDataSource&gt;)dataSource];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (id&lt;NIPhotoAlbumScrollViewDelegate&gt;)delegate {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  NIDASSERT([[super delegate] conformsToProtocol:@protocol(NIPhotoAlbumScrollViewDelegate)]);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  return (id&lt;NIPhotoAlbumScrollViewDelegate&gt;)[super delegate];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>- (void)setDelegate:(id&lt;NIPhotoAlbumScrollViewDelegate&gt;)delegate {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>  [super setDelegate:(id&lt;NIPhotoAlbumScrollViewDelegate&gt;)delegate];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@end</td>
+</tr>
+
+          </table>
+        </div>
+      </div>
+    </body>
+  </html>

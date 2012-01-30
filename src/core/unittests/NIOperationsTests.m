@@ -67,6 +67,9 @@
                                                isDirectory:NO]]
                                    autorelease];
 
+  op.tag = 5;
+  STAssertEquals(op.tag, 5, @"Tag should still be the same.");
+
   STAssertNil(op.data, @"Data should be nil to start.");
 }
 
@@ -84,6 +87,7 @@
   [queue waitUntilAllOperationsAreFinished];
 
   STAssertNotNil(op.data, @"Data should have been read from the image.");
+  STAssertNil(op.processedObject, @"Should not be any processed object.");
 
   UIImage* image = [[[UIImage alloc] initWithData:op.data] autorelease];
 
@@ -125,11 +129,14 @@
   // Run the operation synchronously.
   [op main];
 
-  STAssertEquals([_delegateMethodsCalled count], (NSUInteger)2,
+  STAssertEquals([_delegateMethodsCalled count], (NSUInteger)3,
                  @"Start and finish should have been called.");
   STAssertTrue([_delegateMethodsCalled containsObject:
                 NSStringFromSelector(@selector(operationDidStart:))],
                @"operationDidStart: should have been called.");
+  STAssertTrue([_delegateMethodsCalled containsObject:
+                NSStringFromSelector(@selector(operationWillFinish:))],
+               @"operationWillFinish: should have been called.");
   STAssertTrue([_delegateMethodsCalled containsObject:
                 NSStringFromSelector(@selector(operationDidFinish:))],
                @"operationDidFinish: should have been called.");
@@ -176,12 +183,17 @@
                                    autorelease];
 
   __block BOOL didStart = NO;
+  __block BOOL willFinish = NO;
   __block BOOL didFinish = NO;
 
   op.didStartBlock = ^(NIOperation* blockOp) {
     didStart = YES;
   };
 
+  op.willFinishBlock = ^(NIOperation* blockOp) {
+    willFinish = YES;
+  };
+  
   op.didFinishBlock = ^(NIOperation* blockOp) {
     didFinish = YES;
   };
@@ -190,6 +202,7 @@
   [op main];
 
   STAssertTrue(didStart, @"didStartBlock should have been called.");
+  STAssertTrue(willFinish, @"willFinishBlock should have been called.");
   STAssertTrue(didFinish, @"didFinishBlock should have been called.");
 }
 
@@ -237,6 +250,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)operationDidStart:(NSOperation *)operation {
+  [_delegateMethodsCalled addObject:NSStringFromSelector(_cmd)];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)operationWillFinish:(NSOperation *)operation {
   [_delegateMethodsCalled addObject:NSStringFromSelector(_cmd)];
 }
 

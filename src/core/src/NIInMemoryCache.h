@@ -67,7 +67,7 @@
 
 // Subclassing
 
-- (void)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject;
+- (BOOL)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject;
 - (void)didSetObject:(id)object withName:(NSString *)name;
 - (void)willRemoveObject:(id)object withName:(NSString *)name;
 
@@ -268,6 +268,7 @@
  *      @param name            The cache name for the object.
  *      @param previousObject  The object previously stored in the cache. This may be the
  *                             same as object.
+ *      @returns YES If object is allowed to be stored in the cache.
  *      @fn NIMemoryCache::willSetObject:withName:previousObject:
  */
 

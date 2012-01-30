@@ -47,5 +47,4 @@
 @property (nonatomic, readonly) NSString* md5Hash;
 @property (nonatomic, readonly) NSString* sha1Hash;
 
-
 @end

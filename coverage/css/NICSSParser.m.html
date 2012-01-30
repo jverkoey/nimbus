@@ -1,0 +1,2013 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+   'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+  <html xmlns='http://www.w3.org/1999/xhtml'>
+    <head>
+      <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+      <meta name='generator' content='CoverStory' />
+      <link rel=StyleSheet href='coverstory.css' type='text/css'>
+      <script src='coverstory.js' language='javascript' type='text/javascript'></script>
+      <title>NICSSParser.m</title>
+    </head>
+    <body id='coverstory' onload='coverstory_load()' onunload='coverstory_unload()'>
+      <div id='maincontainer'>
+        <h1 id='sourcename'>NICSSParser.m</h1>
+        <h2 id='sourcepath'>/Users/featherless/workbench/ios/nimbus/src/css/src/NICSSParser.m</h2>
+        <div id='filelistcontainer'>
+          <div id='filesummary'>29.6% of 1426 lines</div>
+          <table id='filetable'>
+            <tr id='filelistheader'>
+              <th id='filelistheadersource'>Source</th>
+              <th id='filelistheaderpercent'>%</th>
+            </tr>
+            <tr class='fileline'>
+<td class='filename'><a href='NICSSParser.m.html'>NICSSParser.m</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>86.86</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NICSSRuleset.m.html'>NICSSRuleset.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIChameleonObserver.m.html'>NIChameleonObserver.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIDOM.m.html'>NIDOM.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIStylesheet.m.html'>NIStylesheet.m</a></td>
+<td class='filepercent'><span class='filelessthan35percent'>27.34</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='NIStylesheetCache.m.html'>NIStylesheetCache.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='UIButton+NIStyleable.m.html'>UIButton+NIStyleable.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='UILabel+NIStyleable.m.html'>UILabel+NIStyleable.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='UINavigationBar+NIStyleable.m.html'>UINavigationBar+NIStyleable.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='UIView+NIStyleable.m.html'>UIView+NIStyleable.m</a></td>
+<td class='filepercent'><span class='filelessthan25percent'>0.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='css.grammar.html'>css.grammar</a></td>
+<td class='filepercent'><span class='filegoodcoveragepercent'>100.00</span></td>
+</tr>
+<tr class='fileline'>
+<td class='filename'><a href='lex.css.c.html'>lex.css.c</a></td>
+<td class='filepercent'><span class='filelessthan45percent'>42.89</span></td>
+</tr>
+
+          </table>
+        </div>
+        <div id='sourcecontainer'>
+          <div id='sourcesummary'>Executed 86.9% of 236 lines (205 executed, 236 executable, 483 total lines)</div>
+          <table id='sourcetable'>
+          <tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Copyright 2011 Jeff Verkoeyen</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// you may not use this file except in compliance with the License.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// You may obtain a copy of the License at</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//    http://www.apache.org/licenses/LICENSE-2.0</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Unless required by applicable law or agreed to in writing, software</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// See the License for the specific language governing permissions and</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// limitations under the License.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>//</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NICSSParser.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;CSSTokens.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &quot;NimbusCore.h&quot;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#import &lt;pthread.h&gt;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>static pthread_mutex_t gMutex = PTHREAD_MUTEX_INITIALIZER;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>NSString* const kPropertyOrderKey = @&quot;__kRuleSetOrder__&quot;;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>NSString* const kDependenciesSelectorKey = @&quot;__kDependencies__&quot;;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Damn you, flex. Due to the nature of flex we can only have one active parser at any given time.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>NICSSParser* gActiveParser = nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>int cssConsume(char* text, int token);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@interface NICSSParser()</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>- (void)consumeToken:(int)token text:(char*)text;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@end</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// The entry point of the flex css parser.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>// Flex is inherently designed to operate as a singleton.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>150</td>
+<td class='sourcelinehit'>int cssConsume(char* text, int token) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>150</td>
+<td class='sourcelinehit'>  [gActiveParser consumeToken:token text:text];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>150</td>
+<td class='sourcelinehit'>  return 0;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@implementation NICSSParser</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>17</td>
+<td class='sourcelinehit'>@synthesize didFailToParse = _didFailToParse;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>38</td>
+<td class='sourcelinehit'>- (void)shutdown {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>38</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_rulesets);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>38</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_scopesForActiveRuleset);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>38</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_mutatingScope);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>38</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_mutatingRuleset);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>38</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_currentPropertyName);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>38</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_importedFilenames);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>38</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(_lastTokenText);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>38</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>13</td>
+<td class='sourcelinehit'>- (void)dealloc {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>13</td>
+<td class='sourcelinehit'>  [self shutdown];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>13</td>
+<td class='sourcelinehit'>  [super dealloc];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>13</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>- (void)setFailFlag {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  if (!self.didFailToParse) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    _didFailToParse = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    [self shutdown];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>22</td>
+<td class='sourcelinehit'>- (void)commitCurrentSelector {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>22</td>
+<td class='sourcelinehit'>  [_scopesForActiveRuleset addObject:[_mutatingScope componentsJoinedByString:@&quot; &quot;]];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>22</td>
+<td class='sourcelinehit'>  [_mutatingScope removeAllObjects];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>22</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>150</td>
+<td class='sourcelinehit'>- (void)consumeToken:(int)token text:(char*)text {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>150</td>
+<td class='sourcelinehit'>  if (_didFailToParse) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>    return;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>148</td>
+<td class='sourcelinehit'>  NSString* textAsString = [[NSString alloc] initWithCString:text encoding:NSUTF8StringEncoding];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>148</td>
+<td class='sourcelinehit'>  NSString* lowercaseTextAsString = [textAsString lowercaseString];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>148</td>
+<td class='sourcelinehit'>  switch (token) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSHASH: // #{name}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSIDENT: { // {ident}(:{ident})?</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>52</td>
+<td class='sourcelinehit'>      if (_state.Flags.InsideRuleset) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>26</td>
+<td class='sourcelinehit'>        NIDASSERT(nil != _mutatingRuleset);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>26</td>
+<td class='sourcelinehit'>        if (nil == _mutatingRuleset) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>          [self setFailFlag];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        // Treat CSSIDENT as a new property if we&apos;re not already defining one.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>52</td>
+<td class='sourcelinehit'>        if (CSSIDENT == token &amp;&amp; !_state.Flags.InsideProperty) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>          NI_RELEASE_SAFELY(_currentPropertyName);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          // Properties are case insensitive.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>          _currentPropertyName = [lowercaseTextAsString retain];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          </td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>          NSMutableArray* ruleSetOrder = [_mutatingRuleset objectForKey:kPropertyOrderKey];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>          [ruleSetOrder addObject:_currentPropertyName];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          // Clear any existing values for the given property.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>          NSMutableArray* values = [[NSMutableArray alloc] init];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>          [_mutatingRuleset setObject:values forKey:_currentPropertyName];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>          NI_RELEASE_SAFELY(values);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>        } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          // This is a value for the active property; add it.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>          NIDASSERT(nil != _currentPropertyName);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>          if (nil != _currentPropertyName) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>            NSMutableArray* values = [_mutatingRuleset objectForKey:_currentPropertyName];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>            [values addObject:lowercaseTextAsString];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>          } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>            [self setFailFlag];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>26</td>
+<td class='sourcelinehit'>      } else { // if not inside a rule set...</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>26</td>
+<td class='sourcelinehit'>        [_mutatingScope addObject:textAsString];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        // Ensure that we&apos;re not modifying a property.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>26</td>
+<td class='sourcelinehit'>        NI_RELEASE_SAFELY(_currentPropertyName);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>52</td>
+<td class='sourcelinehit'>      break;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSFUNCTION: {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      // Functions can only exist within properties.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      if (_state.Flags.InsideProperty) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        _state.Flags.InsideFunction = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        NIDASSERT(nil != _currentPropertyName);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        if (nil != _currentPropertyName) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>          NSMutableArray* values = [_mutatingRuleset objectForKey:_currentPropertyName];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>          [values addObject:lowercaseTextAsString];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>          [self setFailFlag];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      break;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSSTRING:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSEMS:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSEXS:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSLENGTH:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSANGLE:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSTIME:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSFREQ:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSDIMEN:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSPERCENTAGE:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSNUMBER:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSURI: {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>14</td>
+<td class='sourcelinehit'>      if (_lastToken == CSSIMPORT &amp;&amp; token == CSSURI) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>        NSInteger prefixLength = @&quot;url(\&quot;&quot;.length;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>        NSString* filename = [textAsString substringWithRange:NSMakeRange(prefixLength,</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                                                          textAsString.length</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>                                                                          - prefixLength - 2)];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>        [_importedFilenames addObject:filename];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>      } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehit'>        NIDASSERT(nil != _currentPropertyName);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehit'>        if (nil != _currentPropertyName) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehit'>          NSMutableArray* values = [_mutatingRuleset objectForKey:_currentPropertyName];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehit'>          [values addObject:lowercaseTextAsString];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>12</td>
+<td class='sourcelinehit'>        } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>          [self setFailFlag];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>13</td>
+<td class='sourcelinehit'>      break;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Parse individual characters.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    case CSSUNKNOWN: {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>82</td>
+<td class='sourcelinehit'>      switch (text[0]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        // Commit the current selector and start a new one.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        case &apos;,&apos;: {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>          if (!_state.Flags.InsideRuleset) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>            [self commitCurrentSelector];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>          }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>          break;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        // Start a new rule set.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        case &apos;{&apos;: {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>22</td>
+<td class='sourcelinehit'>          NIDASSERT(nil != _mutatingScope);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>64</td>
+<td class='sourcelinehit'>          if ([_mutatingScope count] &gt; 0</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>              &amp;&amp; !_state.Flags.InsideRuleset &amp;&amp; !_state.Flags.InsideFunction) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>21</td>
+<td class='sourcelinehit'>            [self commitCurrentSelector];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>21</td>
+<td class='sourcelinehit'>            _state.Flags.InsideRuleset = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>21</td>
+<td class='sourcelinehit'>            _state.Flags.InsideFunction = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>21</td>
+<td class='sourcelinehit'>            NI_RELEASE_SAFELY(_mutatingRuleset);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>21</td>
+<td class='sourcelinehit'>            _mutatingRuleset = [[NSMutableDictionary alloc] init];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>21</td>
+<td class='sourcelinehit'>            [_mutatingRuleset setObject:[NSMutableArray array] forKey:kPropertyOrderKey];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>21</td>
+<td class='sourcelinehit'>          } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>            [self setFailFlag];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>22</td>
+<td class='sourcelinehit'>          break;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        // Commit an existing rule set.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        case &apos;}&apos;: {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>82</td>
+<td class='sourcelinehit'>          for (NSString* name in _scopesForActiveRuleset) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>21</td>
+<td class='sourcelinehit'>            NSMutableDictionary* existingProperties = [_rulesets objectForKey:name];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>21</td>
+<td class='sourcelinehit'>            if (nil == existingProperties) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>16</td>
+<td class='sourcelinehit'>              NSMutableDictionary* ruleSet = [_mutatingRuleset mutableCopy];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>16</td>
+<td class='sourcelinehit'>              [_rulesets setObject:ruleSet forKey:name];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>16</td>
+<td class='sourcelinehit'>              NI_RELEASE_SAFELY(ruleSet);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>16</td>
+<td class='sourcelinehit'>            } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>              // Properties already exist, so overwrite them.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>              // Merge the orders.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>              {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>                NSMutableArray* order = [existingProperties objectForKey:kPropertyOrderKey];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>                [order addObjectsFromArray:[_mutatingRuleset objectForKey:kPropertyOrderKey]];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>                [_mutatingRuleset setObject:order forKey:kPropertyOrderKey];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>              }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>30</td>
+<td class='sourcelinehit'>              for (NSString* key in _mutatingRuleset) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>                [existingProperties setObject:[_mutatingRuleset objectForKey:key] forKey:key];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>30</td>
+<td class='sourcelinehit'>              }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>              // Add the order of the new properties.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>              [[existingProperties objectForKey:kPropertyOrderKey] addObjectsFromArray:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>               [_mutatingRuleset objectForKey:kPropertyOrderKey]];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>            }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>82</td>
+<td class='sourcelinehit'>          }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>          NI_RELEASE_SAFELY(_mutatingRuleset);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>          [_scopesForActiveRuleset removeAllObjects];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>          _state.Flags.InsideRuleset = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>          _state.Flags.InsideProperty = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>          _state.Flags.InsideFunction = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>          break;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        case &apos;:&apos;: {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          // Defining a property value.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>          if (_state.Flags.InsideRuleset) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>            _state.Flags.InsideProperty = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>          }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>          break;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        case &apos;)&apos;: {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>          if (_state.Flags.InsideFunction &amp;&amp; nil != _currentPropertyName) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>            NSMutableArray* values = [_mutatingRuleset objectForKey:_currentPropertyName];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>            [values addObject:lowercaseTextAsString];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>          }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>          _state.Flags.InsideFunction = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>          break;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        case &apos;;&apos;: {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          // Committing a property value.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>          if (_state.Flags.InsideRuleset) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>            _state.Flags.InsideProperty = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>19</td>
+<td class='sourcelinehit'>          }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>20</td>
+<td class='sourcelinehit'>          break;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>      }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>82</td>
+<td class='sourcelinehit'>      break;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>148</td>
+<td class='sourcelinehit'>  NI_RELEASE_SAFELY(textAsString);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>148</td>
+<td class='sourcelinehit'>  [_lastTokenText release];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>148</td>
+<td class='sourcelinehit'>  _lastTokenText = [textAsString retain];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>148</td>
+<td class='sourcelinehit'>  _lastToken = token;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>298</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>- (void)setup {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>  [self shutdown];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>  _rulesets = [[NSMutableDictionary alloc] init];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>  _scopesForActiveRuleset = [[NSMutableArray alloc] init];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>  _mutatingScope = [[NSMutableArray alloc] init];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>  _importedFilenames = [[NSMutableArray alloc] init];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>- (void)parseFileAtPath:(NSString *)path {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // flex is not thread-safe so we force it to be by creating a single-access lock here.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>  pthread_mutex_lock(&amp;gMutex); {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>    cssin = fopen([path UTF8String], &quot;r&quot;);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>    gActiveParser = self;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>    csslex();</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>    fclose(cssin);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>  pthread_mutex_unlock(&amp;gMutex);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>- (NSDictionary *)mergeCompositeRulesets:(NSMutableArray *)compositeRulesets dependencyFilenames:(NSSet *)dependencyFilenames {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>  NIDASSERT([compositeRulesets count] &gt; 0);</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>  if ([compositeRulesets count] == 0) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    return nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>  NSDictionary* result = nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>  if ([compositeRulesets count] == 1) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>    if ([dependencyFilenames count] &gt; 0) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      [[compositeRulesets objectAtIndex:0] setObject:dependencyFilenames</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                              forKey:kDependenciesSelectorKey];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>    result = [[[compositeRulesets objectAtIndex:0] copy] autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>  } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    NSMutableDictionary* mergedResult = [[[compositeRulesets lastObject] retain] autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    [compositeRulesets removeLastObject];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Merge all of the rulesets into one.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>    for (NSDictionary* ruleSet in [compositeRulesets reverseObjectEnumerator]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>      for (NSString* scope in ruleSet) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>        if (![mergedResult objectForKey:scope]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          // New scope means we can just add it.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>          [mergedResult setObject:[ruleSet objectForKey:scope] forKey:scope];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>          // Existing scope means we need to overwrite existing properties.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>          NSMutableDictionary* mergedScopeProperties = [mergedResult objectForKey:scope];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>          NSMutableDictionary* properties = [ruleSet objectForKey:scope];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>          for (NSString* propertyName in properties) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>            if (!(nil != [mergedScopeProperties objectForKey:propertyName]</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                  &amp;&amp; [propertyName isEqualToString:kPropertyOrderKey])) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>              // Overwrite the existing property&apos;s value.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>              [mergedScopeProperties setObject:[properties objectForKey:propertyName]</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                                        forKey:propertyName];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>            } else {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>              // Append the property order.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>              [[mergedScopeProperties objectForKey:kPropertyOrderKey] addObjectsFromArray:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>               [properties objectForKey:kPropertyOrderKey]];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>            }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>          }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>        }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>      }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>4</td>
+<td class='sourcelinehit'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    </td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    if ([dependencyFilenames count] &gt; 0) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>      [mergedResult setObject:dependencyFilenames forKey:kDependenciesSelectorKey];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>    result = [[mergedResult copy] autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>  return result;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark -</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>#pragma mark Public</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>- (NSDictionary *)dictionaryForPath:(NSString *)path {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>  return [self dictionaryForPath:path pathPrefix:nil delegate:nil];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>- (NSDictionary *)dictionaryForPath:(NSString *)path pathPrefix:(NSString *)pathPrefix {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>5</td>
+<td class='sourcelinehit'>  return [self dictionaryForPath:path pathPrefix:pathPrefix delegate:nil];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>///////////////////////////////////////////////////////////////////////////////////////////////////</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>18</td>
+<td class='sourcelinehit'>- (NSDictionary *)dictionaryForPath:(NSString *)aPath</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>18</td>
+<td class='sourcelinehit'>                         pathPrefix:(NSString *)pathPrefix</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>18</td>
+<td class='sourcelinehit'>                           delegate:(id&lt;NICSSParserDelegate&gt;)delegate {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // Bail out early if there was no path given.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>18</td>
+<td class='sourcelinehit'>  if ([aPath length] == 0) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>9</td>
+<td class='sourcelinehit'>    _didFailToParse = YES;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>9</td>
+<td class='sourcelinehit'>    return nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>9</td>
+<td class='sourcelinehit'>  _didFailToParse = NO;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>9</td>
+<td class='sourcelinehit'>  NSMutableArray* compositeRulesets = [[[NSMutableArray alloc] init] autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // Maintain a set of filenames that we&apos;ve looked at for two reasons:</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // 1) To avoid visiting the same CSS file twice.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // 2) To collect a list of dependencies for this stylesheet.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>9</td>
+<td class='sourcelinehit'>  NSMutableSet* processedFilenames = [[[NSMutableSet alloc] init] autorelease];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>  // Imported CSS files will be added to the queue.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>9</td>
+<td class='sourcelinehit'>  NILinkedList* filenameQueue = [NILinkedList linkedList];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>9</td>
+<td class='sourcelinehit'>  [filenameQueue addObject:aPath];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>25</td>
+<td class='sourcelinehit'>  while ([filenameQueue count] &gt; 0) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Om nom nom</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>    NSString* path = [filenameQueue firstObject];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>    [filenameQueue removeFirstObject];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Skip files that we&apos;ve already processed in order to avoid infinite loops.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>    if ([processedFilenames containsObject:path]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      continue;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>    [processedFilenames addObject:path];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Allow the delegate to rename the file.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>    if ([delegate respondsToSelector:@selector(cssParser:pathFromPath:)]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      NSString* reprocessedFilename = [delegate cssParser:self pathFromPath:path];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      if (nil != reprocessedFilename) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>        path = reprocessedFilename;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>      }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>0</td>
+<td class='sourcelinemissed'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Add the prefix, if it exists.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>    if (pathPrefix.length &gt; 0) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>      path = [pathPrefix stringByAppendingPathComponent:path];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // Verify that the file exists.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>10</td>
+<td class='sourcelinehit'>    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>      [self shutdown];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>2</td>
+<td class='sourcelinehit'>      return nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>    [self setup];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>    [self parseFileAtPath:path];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>8</td>
+<td class='sourcelinehit'>    if (self.didFailToParse) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>1</td>
+<td class='sourcelinehit'>      break;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>    [filenameQueue addObjectsFromArray:_importedFilenames];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>    [_importedFilenames removeAllObjects];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>    [compositeRulesets addObject:_rulesets];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>    [self shutdown];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>  NSDictionary* result = nil;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>  if (!self.didFailToParse) {</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>    // processedFilenames will be the set of dependencies, so remove the initial path.</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>    [processedFilenames removeObject:aPath];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>    result = [self mergeCompositeRulesets:compositeRulesets</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>                      dependencyFilenames:processedFilenames];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>6</td>
+<td class='sourcelinehit'>  }</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>  [self shutdown];</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>7</td>
+<td class='sourcelinehit'>  return result;</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'>18</td>
+<td class='sourcelinehit'>}</td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'></td>
+</tr>
+<tr class='sourceline'>
+<td class='sourcelinehitcount'></td>
+<td class='sourcelineskipped'>@end</td>
+</tr>
+
+          </table>
+        </div>
+      </div>
+    </body>
+  </html>
