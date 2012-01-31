@@ -83,7 +83,7 @@
 
   // The completion block will be executed on the main thread, so we must be careful not
   // to do anything computationally expensive here.
-  [readOp setDidFinishBlock:^{
+  [readOp setDidFinishBlock:^(NIOperation* operation) {
     UIImage* image = [UIImage imageWithData:readOp.data];
 
     // Store the image in the correct image cache.
@@ -111,7 +111,7 @@
 
   // When this request is canceled (like when we're quickly flipping through an album)
   // the request will fail, so we must be careful to remove the request from the active set.
-  [readOp setDidFailWithErrorBlock:^(NSError *error) {
+  [readOp setDidFailWithErrorBlock:^(NIOperation* operation, NSError* error) {
     [_activeRequests removeObject:identifierKey];
   }];
 
