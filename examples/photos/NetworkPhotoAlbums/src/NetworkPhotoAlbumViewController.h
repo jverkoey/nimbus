@@ -101,4 +101,7 @@
                      photoSize: (NIPhotoScrollViewPhotoSize)photoSize
                     photoIndex: (NSInteger)photoIndex;
 
+- (void)didCancelRequestWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
+                           photoIndex:(NSInteger)photoIndex;
+
 @end

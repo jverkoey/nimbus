@@ -57,12 +57,27 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestImageFromSource: (NSString *)source
-                     photoSize: (NIPhotoScrollViewPhotoSize)photoSize
-                    photoIndex: (NSInteger)photoIndex {
+- (NSInteger)identifierWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
+                          photoIndex:(NSInteger)photoIndex {
   BOOL isThumbnail = (NIPhotoScrollViewPhotoSizeThumbnail == photoSize);
   NSInteger identifier = isThumbnail ? -(photoIndex + 1) : photoIndex;
-  NSNumber* identifierKey = [NSNumber numberWithInt:identifier];
+  return identifier;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)identifierKeyFromIdentifier:(NSInteger)identifier {
+  return [NSNumber numberWithInt:identifier];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)requestImageFromSource:(NSString *)source
+                     photoSize:(NIPhotoScrollViewPhotoSize)photoSize
+                    photoIndex:(NSInteger)photoIndex {
+  BOOL isThumbnail = (NIPhotoScrollViewPhotoSizeThumbnail == photoSize);
+  NSInteger identifier = [self identifierWithPhotoSize:photoSize photoIndex:photoIndex];
+  id identifierKey = [self identifierKeyFromIdentifier:identifier];
 
   // Avoid duplicating requests.
   if ([_activeRequests containsObject:identifierKey]) {
@@ -77,7 +92,7 @@
 
   // Set an negative index for thumbnail requests so that they don't get cancelled by
   // photoAlbumScrollView:stopLoadingPhotoAtIndex:
-  readOp.tag = isThumbnail ? -(photoIndex + 1) : photoIndex;
+  readOp.tag = identifier;
 
   NSString* photoIndexKey = [self cacheKeyForPhotoIndex:photoIndex];
 
@@ -132,6 +147,15 @@
   [_activeRequests addObject:identifierKey];
 
   [_queue addOperation:readOp];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didCancelRequestWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
+                           photoIndex:(NSInteger)photoIndex {
+  NSInteger identifier = [self identifierWithPhotoSize:photoSize photoIndex:photoIndex];
+  id identifierKey = [self identifierKeyFromIdentifier:identifier];
+  [_activeRequests removeObject:identifierKey];
 }
 
 
