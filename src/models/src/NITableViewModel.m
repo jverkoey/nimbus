@@ -275,8 +275,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-  NIDASSERT(section < self.sections.count || 0 == self.sections.count);
-  if (section < self.sections.count) {
+  NIDASSERT((section >= 0 && section < self.sections.count) || 0 == self.sections.count);
+  if (section >= 0 && section < self.sections.count) {
     return [[self.sections objectAtIndex:section] headerTitle];
 
   } else {
@@ -287,8 +287,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-  NIDASSERT(section < self.sections.count || 0 == self.sections.count);
-  if (section < self.sections.count) {
+  NIDASSERT((section >= 0 && section < self.sections.count) || 0 == self.sections.count);
+  if (section >= 0 && section < self.sections.count) {
     return [[self.sections objectAtIndex:section] footerTitle];
     
   } else {
