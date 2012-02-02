@@ -50,6 +50,8 @@
   id<NIPhotoScrollViewDelegate> _photoScrollViewDelegate;
 }
 
+@property (nonatomic, readonly) UIImageView* imageView;
+
 #pragma mark Configuring Functionality
 
 @property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled; // default: yes
