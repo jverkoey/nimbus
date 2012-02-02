@@ -43,6 +43,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 @synthesize delegate = _delegate;
 @synthesize centerPageIndex = _centerPageIndex;
 @synthesize numberOfPages = _numberOfPages;
+@dynamic centerPage;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -611,5 +612,13 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   [self moveToPageAtIndex:centerPageIndex animated:animated];
 }
 
+- (UIView <NIPagingScrollViewPage>*) centerPage
+{
+    return [[self.visiblePages objectsPassingTest: ^(id obj, BOOL* stop)
+                                                   {
+                                                       UIView <NIPagingScrollViewPage>* page = obj;
+                                                       return *stop = page.pageIndex == self.centerPageIndex;
+                                                   }] anyObject];
+}
 
 @end

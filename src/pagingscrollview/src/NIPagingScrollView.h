@@ -78,6 +78,7 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 
 #pragma mark State
 
+@property (nonatomic, readonly) UIView <NIPagingScrollViewPage>* centerPage;
 @property (nonatomic, readwrite, assign) NSInteger centerPageIndex; // Use moveToPageAtIndex:animated: to animate to a given page.
 - (void)setCenterPageIndex:(NSInteger)centerPageIndex animated:(BOOL)animated __NI_DEPRECATED_METHOD;
 
