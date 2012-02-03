@@ -56,6 +56,17 @@
                                     labelText:@"Button with alert"
                                  tappedTarget:self
                                tappedSelector:@selector(showAlert:)],
+     @"NISliderFormElement",
+     [NISliderFormElement sliderElementWithID:0
+                                    labelText:@"Slider"
+                                        value:45
+                                 minimumValue:0
+                                 maximumValue:100],
+     [NISliderFormElement sliderElementWithID:0
+                                    labelText:@"Slider %.2f"
+                                        value:45
+                                 minimumValue:0
+                                 maximumValue:100],
      nil];
 
     // We let the Nimbus cell factory create the cells.
