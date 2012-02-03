@@ -108,6 +108,32 @@
 
 @end
 
+/**
+ * A slider form element.
+ *
+ * This element is a slider that can be embedded in a form. It shows a label with a switch
+ * align to the right edge of the row. Label may contain %f format symbol.
+ *
+ * Bound to NISliderFormElementCell when using the @link TableCellFactory Nimbus cell factory@endlink.
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NISliderFormElement : NIFormElement
+
+// Designated initializer
++ (id)sliderElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(float)value minimumValue:(float)minimumValue maximumValue:(float)maximumValue didChangeTarget:(id)target didChangeSelector:(SEL)selector;
++ (id)sliderElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(float)value minimumValue:(float)minimumValue maximumValue:(float)maximumValue;
+
+@property (nonatomic, readwrite, copy) NSString* labelText;
+@property (nonatomic, readwrite, assign) float value;
+@property (nonatomic, readwrite, assign) float minimumValue;
+@property (nonatomic, readwrite, assign) float maximumValue;
+@property (nonatomic, readwrite, assign) id didChangeTarget;
+@property (nonatomic, readwrite, assign) SEL didChangeSelector;
+
+@end
+
+
 #pragma mark -
 #pragma mark Form Element Cells
 
@@ -162,6 +188,19 @@
 // Called when this button cell is tapped.
 - (void)buttonWasTapped:(id)sender;
 
+@end
+
+/**
+ * The cell sibling to NISliderFormElement.
+ *
+ * Displays a left-aligned label and a right-aligned slider.
+ *
+ * @image html NISliderFormElementCellExample1.png "Example of a NISliderFormElementCell."
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NISliderFormElementCell : NIFormElementCell <UITextFieldDelegate>
+@property (nonatomic, readonly, retain) UISlider* sliderControl;
 @end
 
 @interface NITableViewModel (NIFormElementSearch)
