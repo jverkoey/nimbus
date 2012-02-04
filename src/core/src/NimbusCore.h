@@ -71,9 +71,3 @@
 #import "NISDKAvailability.h"
 #import "NIState.h"
 #import "NIViewRecycler.h"
-
-// ARC is compatible with iOS 4.0 upwards, but you need at least Xcode 4.2 with Clang LLVM 3.0 to compile it.
-// Thanks to steipete for this snippet: https://gist.github.com/1435680
-#if !__has_feature(objc_arc)
-#error This project must be compiled with ARC (Xcode 4.2+ with LLVM 3.0 and above)
-#endif
