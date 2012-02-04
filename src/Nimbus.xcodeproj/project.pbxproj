@@ -19,7 +19,9 @@
 				6675734113E771D90076F555 /* PBXTargetDependency */,
 				66A03D0413E6F75B00B514F3 /* PBXTargetDependency */,
 				6661BBFC13F1A42600D14F92 /* PBXTargetDependency */,
+				66759B4D14DCBFB40094C24B /* PBXTargetDependency */,
 				66A03D6313E6FA4B00B514F3 /* PBXTargetDependency */,
+				66759B4B14DCBFAD0094C24B /* PBXTargetDependency */,
 				667572F213E76FB90076F555 /* PBXTargetDependency */,
 				6675727513E766980076F555 /* PBXTargetDependency */,
 				663B526F1445074A00CC26DF /* PBXTargetDependency */,
@@ -142,6 +144,15 @@
 		6675733E13E7718B0076F555 /* NIInterapp.h in Headers */ = {isa = PBXBuildFile; fileRef = 6675733B13E7718B0076F555 /* NIInterapp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6675733F13E7718B0076F555 /* NIInterapp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675733C13E7718B0076F555 /* NIInterapp.m */; };
 		6675734513E773AA0076F555 /* NimbusInterapp.h in Headers */ = {isa = PBXBuildFile; fileRef = 6675734413E773AA0076F555 /* NimbusInterapp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66759B2414DCBE940094C24B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
+		66759B3114DCBE940094C24B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
+		66759B3214DCBE940094C24B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
+		66759B3314DCBE940094C24B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
+		66759B3614DCBE940094C24B /* libNimbusOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66759B2314DCBE940094C24B /* libNimbusOAuth.a */; };
+		66759B5114DCBFE40094C24B /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0913E6E85E00B514F3 /* libNimbusCore.a */; };
+		66759B5314DCC01A0094C24B /* NimbusOAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = 66759B5214DCC01A0094C24B /* NimbusOAuth.h */; };
+		66759B5614DCC04C0094C24B /* NIOpenAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 66759B5414DCC04C0094C24B /* NIOpenAuthenticator.h */; };
+		66759B5714DCC04C0094C24B /* NIOpenAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 66759B5514DCC04C0094C24B /* NIOpenAuthenticator.m */; };
 		6675E4B31455FCC5007D172F /* NIViewRecycler.h in Headers */ = {isa = PBXBuildFile; fileRef = 6675E4B11455FCC5007D172F /* NIViewRecycler.h */; };
 		6675E4B41455FCC5007D172F /* NIViewRecycler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675E4B21455FCC5007D172F /* NIViewRecycler.m */; };
 		6675E4B614560359007D172F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
@@ -497,6 +508,34 @@
 			remoteGlobalIDString = 6675731113E771380076F555;
 			remoteInfo = NimbusInterapp;
 		};
+		66759B3414DCBE940094C24B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66759B2214DCBE940094C24B;
+			remoteInfo = NimbusOAuth;
+		};
+		66759B4A14DCBFAD0094C24B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66759B2214DCBE940094C24B;
+			remoteInfo = NimbusOAuth;
+		};
+		66759B4C14DCBFB40094C24B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66A0B09814BD1069003FA413;
+			remoteInfo = NimbusNetworkControllers;
+		};
+		66759B4F14DCBFDD0094C24B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66A03C0813E6E85E00B514F3;
+			remoteInfo = NimbusCore;
+		};
 		66832CCA143D7A92003E413C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
@@ -675,6 +714,12 @@
 		6675733C13E7718B0076F555 /* NIInterapp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIInterapp.m; sourceTree = "<group>"; };
 		6675734313E772100076F555 /* NimbusInterappTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NimbusInterappTests-Info.plist"; sourceTree = "<group>"; };
 		6675734413E773AA0076F555 /* NimbusInterapp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusInterapp.h; sourceTree = "<group>"; };
+		66759B2314DCBE940094C24B /* libNimbusOAuth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusOAuth.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		66759B3014DCBE940094C24B /* NimbusOAuthTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusOAuthTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66759B4714DCBEC70094C24B /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = oauth/deps; sourceTree = SOURCE_ROOT; };
+		66759B5214DCC01A0094C24B /* NimbusOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusOAuth.h; path = oauth/src/NimbusOAuth.h; sourceTree = SOURCE_ROOT; };
+		66759B5414DCC04C0094C24B /* NIOpenAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOpenAuthenticator.h; path = oauth/src/NIOpenAuthenticator.h; sourceTree = SOURCE_ROOT; };
+		66759B5514DCC04C0094C24B /* NIOpenAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOpenAuthenticator.m; path = oauth/src/NIOpenAuthenticator.m; sourceTree = SOURCE_ROOT; };
 		6675E4B11455FCC5007D172F /* NIViewRecycler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIViewRecycler.h; sourceTree = "<group>"; };
 		6675E4B21455FCC5007D172F /* NIViewRecycler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIViewRecycler.m; sourceTree = "<group>"; };
 		6675E4B914560397007D172F /* NIViewRecyclerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIViewRecyclerTests.m; sourceTree = "<group>"; };
@@ -989,6 +1034,26 @@
 				6675732013E771380076F555 /* SenTestingKit.framework in Frameworks */,
 				6675732213E771380076F555 /* Foundation.framework in Frameworks */,
 				6675732613E771380076F555 /* libNimbusInterapp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66759B2014DCBE940094C24B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66759B2414DCBE940094C24B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66759B2C14DCBE940094C24B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66759B5114DCBFE40094C24B /* libNimbusCore.a in Frameworks */,
+				66759B3114DCBE940094C24B /* SenTestingKit.framework in Frameworks */,
+				66759B3214DCBE940094C24B /* UIKit.framework in Frameworks */,
+				66759B3314DCBE940094C24B /* Foundation.framework in Frameworks */,
+				66759B3614DCBE940094C24B /* libNimbusOAuth.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1368,6 +1433,33 @@
 			path = interapp/unittests;
 			sourceTree = SOURCE_ROOT;
 		};
+		66759B2514DCBE940094C24B /* NimbusOAuth */ = {
+			isa = PBXGroup;
+			children = (
+				66759B4714DCBEC70094C24B /* deps */,
+				66759B4814DCBECB0094C24B /* src */,
+				66759B4914DCBED00094C24B /* unittests */,
+			);
+			path = NimbusOAuth;
+			sourceTree = "<group>";
+		};
+		66759B4814DCBECB0094C24B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				66759B5214DCC01A0094C24B /* NimbusOAuth.h */,
+				66759B5414DCC04C0094C24B /* NIOpenAuthenticator.h */,
+				66759B5514DCC04C0094C24B /* NIOpenAuthenticator.m */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		66759B4914DCBED00094C24B /* unittests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = unittests;
+			sourceTree = "<group>";
+		};
 		667A8A07148C6992000779BD /* src_NSJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -1495,6 +1587,7 @@
 				6661BBCE13F1A3BB00D14F92 /* NimbusModels */,
 				66A0B09B14BD1069003FA413 /* NimbusNetworkControllers */,
 				66A03D2913E6F97500B514F3 /* NimbusNetworkImage */,
+				66759B2514DCBE940094C24B /* NimbusOAuth */,
 				667572BF13E76F460076F555 /* NimbusOperations */,
 				6675722B13E765BF0076F555 /* NimbusOverview */,
 				663B52411445052800CC26DF /* NimbusPagingScrollView */,
@@ -1535,6 +1628,8 @@
 				663B524C1445052800CC26DF /* NimbusPagingScrollViewTests.octest */,
 				66A0B09914BD1069003FA413 /* libNimbusNetworkControllers.a */,
 				66A0B0A614BD1069003FA413 /* NimbusNetworkControllersTests.octest */,
+				66759B2314DCBE940094C24B /* libNimbusOAuth.a */,
+				66759B3014DCBE940094C24B /* NimbusOAuthTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1978,6 +2073,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66759B2114DCBE940094C24B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66759B5314DCC01A0094C24B /* NimbusOAuth.h in Headers */,
+				66759B5614DCC04C0094C24B /* NIOpenAuthenticator.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66A03C0713E6E85E00B514F3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -2334,6 +2438,44 @@
 			productReference = 6675731F13E771380076F555 /* NimbusInterappTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		66759B2214DCBE940094C24B /* NimbusOAuth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66759B4414DCBE940094C24B /* Build configuration list for PBXNativeTarget "NimbusOAuth" */;
+			buildPhases = (
+				66759B1F14DCBE940094C24B /* Sources */,
+				66759B2014DCBE940094C24B /* Frameworks */,
+				66759B2114DCBE940094C24B /* Headers */,
+				66759B4E14DCBFC90094C24B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NimbusOAuth;
+			productName = NimbusOAuth;
+			productReference = 66759B2314DCBE940094C24B /* libNimbusOAuth.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		66759B2F14DCBE940094C24B /* NimbusOAuthTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66759B4514DCBE940094C24B /* Build configuration list for PBXNativeTarget "NimbusOAuthTests" */;
+			buildPhases = (
+				66759B2B14DCBE940094C24B /* Sources */,
+				66759B2C14DCBE940094C24B /* Frameworks */,
+				66759B2D14DCBE940094C24B /* Resources */,
+				66759B2E14DCBE940094C24B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66759B5014DCBFDD0094C24B /* PBXTargetDependency */,
+				66759B3514DCBE940094C24B /* PBXTargetDependency */,
+			);
+			name = NimbusOAuthTests;
+			productName = NimbusOAuthTests;
+			productReference = 66759B3014DCBE940094C24B /* NimbusOAuthTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		66A03C0813E6E85E00B514F3 /* NimbusCore */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66A03C2E13E6E85E00B514F3 /* Build configuration list for PBXNativeTarget "NimbusCore" */;
@@ -2634,6 +2776,8 @@
 				66A0B0A514BD1069003FA413 /* NimbusNetworkControllersTests */,
 				66A03D2613E6F97500B514F3 /* NimbusNetworkImage */,
 				66A03D3313E6F97500B514F3 /* NimbusNetworkImageTests */,
+				66759B2214DCBE940094C24B /* NimbusOAuth */,
+				66759B2F14DCBE940094C24B /* NimbusOAuthTests */,
 				667572BC13E76F460076F555 /* NimbusOperations */,
 				667572C913E76F460076F555 /* NimbusOperationsTests */,
 				6675722813E765BF0076F555 /* NimbusOverview */,
@@ -2692,6 +2836,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				666C3D2714D0ACA900F337D6 /* NIInterappTests.m in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66759B2D14DCBE940094C24B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2991,6 +3142,32 @@
 			shellPath = "/bin/sh ../scripts/run_unit_test.sh";
 			shellScript = "";
 		};
+		66759B2E14DCBE940094C24B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh ../scripts/run_unit_test.sh";
+			shellScript = "";
+		};
+		66759B4E14DCBFC90094C24B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh ../scripts/generate_namespace_header";
+			shellScript = "";
+		};
 		66A03C1713E6E85E00B514F3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3205,6 +3382,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				666C3D2F14D0ADF800F337D6 /* NIInterappTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66759B1F14DCBE940094C24B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66759B5714DCC04C0094C24B /* NIOpenAuthenticator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66759B2B14DCBE940094C24B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3496,6 +3688,26 @@
 			isa = PBXTargetDependency;
 			target = 6675731113E771380076F555 /* NimbusInterapp */;
 			targetProxy = 6675734013E771D90076F555 /* PBXContainerItemProxy */;
+		};
+		66759B3514DCBE940094C24B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66759B2214DCBE940094C24B /* NimbusOAuth */;
+			targetProxy = 66759B3414DCBE940094C24B /* PBXContainerItemProxy */;
+		};
+		66759B4B14DCBFAD0094C24B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66759B2214DCBE940094C24B /* NimbusOAuth */;
+			targetProxy = 66759B4A14DCBFAD0094C24B /* PBXContainerItemProxy */;
+		};
+		66759B4D14DCBFB40094C24B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66A0B09814BD1069003FA413 /* NimbusNetworkControllers */;
+			targetProxy = 66759B4C14DCBFB40094C24B /* PBXContainerItemProxy */;
+		};
+		66759B5014DCBFDD0094C24B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66A03C0813E6E85E00B514F3 /* NimbusCore */;
+			targetProxy = 66759B4F14DCBFDD0094C24B /* PBXContainerItemProxy */;
 		};
 		66832CCB143D7A92003E413C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -4097,6 +4309,90 @@
 				NIMBUS_TARGET_NAME = NimbusInterapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		66759B4014DCBE940094C24B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/NimbusOAuth.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				NIMBUS_FEATURE_NAME = oauth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		66759B4114DCBE940094C24B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/NimbusOAuth.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				NIMBUS_FEATURE_NAME = oauth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		66759B4214DCBE940094C24B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "oauth/unittests/NimbusOAuthTests-Info.plist";
+				NIMBUS_FEATURE_NAME = oauth;
+				NIMBUS_TARGET_NAME = NimbusOAuth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		66759B4314DCBE940094C24B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "oauth/unittests/NimbusOAuthTests-Info.plist";
+				NIMBUS_FEATURE_NAME = oauth;
+				NIMBUS_TARGET_NAME = NimbusOAuth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = octest;
 			};
@@ -4951,6 +5247,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		66759B4414DCBE940094C24B /* Build configuration list for PBXNativeTarget "NimbusOAuth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66759B4014DCBE940094C24B /* Debug */,
+				66759B4114DCBE940094C24B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		66759B4514DCBE940094C24B /* Build configuration list for PBXNativeTarget "NimbusOAuthTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66759B4214DCBE940094C24B /* Debug */,
+				66759B4314DCBE940094C24B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		66832C9E143D649D003E413C /* Build configuration list for PBXLegacyTarget "Nimbus CSS Grammar" */ = {
 			isa = XCConfigurationList;
