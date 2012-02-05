@@ -123,7 +123,22 @@ _model.delegate = (id)[NICellFactory class];
 - (BOOL)shouldUpdateCellWithObject:(id)object;
 
 @optional
-/** Used in tableView:heightForRowAtIndexPath: to calculate dynamic cell heights. */
+/** Used in tableView:heightForRowAtIndexPath: to calculate dynamic cell heights.
+ 
+ The following is an appropiate implementation:
+ 
+ -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+	CGFloat height	=	40;	 
+ 
+	id object	=	[(NITableViewModel*)[tableView dataSource] objectAtIndexPath:indexPath];
+	id class	=	[object cellClass];
+	if ([class respondsToSelector:@selector(heightForObject:atIndexPath:tableView:)]){
+		height	=	[class heightForObject:object atIndexPath:indexPath tableView:tableView];
+	}
+	return height;
+ }
+ */
 + (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView;
 @end
 
