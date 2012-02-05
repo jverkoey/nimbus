@@ -125,7 +125,7 @@ _model.delegate = (id)[NICellFactory class];
 @optional
 /** Used in tableView:heightForRowAtIndexPath: to calculate dynamic cell heights.
  
- The following is an appropiate implementation:
+ The following is an appropiate implementation in your tableView's delegate:
  
  -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
