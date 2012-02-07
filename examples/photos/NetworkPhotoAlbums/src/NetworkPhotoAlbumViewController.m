@@ -64,7 +64,7 @@
   NSURL* url = [NSURL URLWithString:source];
 
   // We must use __unsafe_unretained here to avoid creating a retain cycle with the readOp.
-  __unsafe_unretained NINetworkRequestOperation* readOp = [[[NINetworkRequestOperation alloc] initWithURL:url] autorelease];
+  __unsafe_unretained NINetworkRequestOperation* readOp = [[NINetworkRequestOperation alloc] initWithURL:url];
   readOp.timeout = 30;
 
   // Set an negative index for thumbnail requests so that they don't get cancelled by
