@@ -18,4 +18,10 @@
 
 @interface NIOpenAuthenticator : NSObject
 
+// Designated initializer.
+- (id)initWithClientIdentifier:(NSString *)clientIdentifier clientSecret:(NSString *)clientSecret;
+
+@property (nonatomic, readonly, copy) NSString* clientIdentifier;
+@property (nonatomic, readonly, copy) NSString* clientSecret;
+
 @end

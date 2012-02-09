@@ -16,6 +16,25 @@
 
 #import "NIOpenAuthenticator.h"
 
+#import "NimbusCore.h"
+
 @implementation NIOpenAuthenticator
+
+@synthesize clientIdentifier = _clientIdentifier;
+@synthesize clientSecret = _clientSecret;
+
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_clientIdentifier);
+  NI_RELEASE_SAFELY(_clientSecret);
+
+  [super dealloc];
+}
+
+- (id)initWithClientIdentifier:(NSString *)clientIdentifier clientSecret:(NSString *)clientSecret {
+  if ((self = [super init])) {
+    _clientIdentifier = [clientIdentifier copy];
+    _clientSecret = [clientSecret copy];
+  }
+}
 
 @end
