@@ -62,7 +62,7 @@
   // returning the object to the main thread. This is useful here because we perform sorting
   // operations and pruning on the results.
   NSURL* url = [NSURL URLWithString:albumURLPath];
-  NINetworkJSONRequest* albumRequest = [[[NINetworkJSONRequest alloc] initWithURL:url] autorelease];
+  NINetworkJSONRequest* albumRequest = [[NINetworkJSONRequest alloc] initWithURL:url];
 
   // Facebook albums are painfully slow to load if they have a lot of comments. Even more
   // frustrating is that you can't ask *not* to receive the comments from the graph API.
@@ -170,7 +170,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)operationDidFinish:(NINetworkRequestOperation *)operation {
-  _photoInformation = [operation.processedObject retain];
+  _photoInformation = operation.processedObject;
 
   [self.photoAlbumView reloadData];
 
@@ -289,7 +289,7 @@
   NSString* reuseIdentifier = NSStringFromClass([CaptionedPhotoView class]);
   pageView = [pagingScrollView dequeueReusablePageWithIdentifier:reuseIdentifier];
   if (nil == pageView) {
-    pageView = [[[CaptionedPhotoView alloc] init] autorelease];
+    pageView = [[CaptionedPhotoView alloc] init];
     pageView.reuseIdentifier = reuseIdentifier;
   }
 

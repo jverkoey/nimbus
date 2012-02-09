@@ -79,7 +79,8 @@
   NSURL* url = [NSURL URLWithString:source];
 
   // We must use __unsafe_unretained here to avoid creating a retain cycle with the readOp.
-  __unsafe_unretained NINetworkRequestOperation* readOp = [[NINetworkRequestOperation alloc] initWithURL:url];
+  NINetworkRequestOperation* readOp = [[NINetworkRequestOperation alloc] initWithURL:url];
+  __unsafe_unretained NINetworkRequestOperation* weakOp = readOp;
   readOp.timeout = 30;
 
   // Set an negative index for thumbnail requests so that they don't get cancelled by
@@ -91,7 +92,7 @@
   // The completion block will be executed on the main thread, so we must be careful not
   // to do anything computationally expensive here.
   [readOp setDidFinishBlock:^(NIOperation* operation) {
-    UIImage* image = [UIImage imageWithData:readOp.data];
+    UIImage* image = [UIImage imageWithData:weakOp.data];
 
     // Store the image in the correct image cache.
     if (isThumbnail) {

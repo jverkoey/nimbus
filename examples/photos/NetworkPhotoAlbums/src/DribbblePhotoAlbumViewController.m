@@ -58,7 +58,7 @@
   // returning the object to the main thread. This is useful here because we perform sorting
   // operations and pruning on the results.
   NSURL* url = [NSURL URLWithString:albumURLPath];
-  NINetworkRequestOperation* albumRequest = [[[NINetworkJSONRequest alloc] initWithURL:url] autorelease];
+  NINetworkRequestOperation* albumRequest = [[NINetworkJSONRequest alloc] initWithURL:url];
   albumRequest.timeout = 30;
 
   // When the request fully completes we'll be notified via this delegate on the main thread.
@@ -145,7 +145,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)operationDidFinish:(NINetworkRequestOperation *)operation {
-  _photoInformation = [operation.processedObject retain];
+  _photoInformation = operation.processedObject;
 
   [self.photoAlbumView reloadData];
 

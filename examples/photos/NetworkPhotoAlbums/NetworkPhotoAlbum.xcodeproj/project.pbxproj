@@ -43,7 +43,7 @@
 		665E0BD013CE816E008A1D21 /* NIPhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BCC13CE816E008A1D21 /* NIPhotoScrollView.m */; };
 		665E0BD113CE816E008A1D21 /* NIToolbarPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BCE13CE816E008A1D21 /* NIToolbarPhotoViewController.m */; };
 		665E0C0813CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0C0713CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m */; };
-		667A89FA148C60FF000779BD /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A89F9148C60FF000779BD /* JSONKit.m */; };
+		667A89FA148C60FF000779BD /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A89F9148C60FF000779BD /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		667A8A1C148CA1BE000779BD /* NINetworkJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A8A1B148CA1BE000779BD /* NINetworkJSONRequest.m */; };
 		667DC2BE13D89FD100C1B0ED /* NIPhotoScrubberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DC2BD13D89FD100C1B0ED /* NIPhotoScrubberView.m */; };
 		668FD7AD1482C1A600BA7009 /* CaptionedPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 668FD7AC1482C1A600BA7009 /* CaptionedPhotoView.m */; };
