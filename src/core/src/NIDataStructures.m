@@ -141,11 +141,17 @@
 #pragma mark -
 
 
+@interface NILinkedList()
+@property (nonatomic, readwrite, assign) NSUInteger count;
+@end
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NILinkedList
 
+@synthesize count = _count;
 @synthesize head = _head;
 @synthesize tail = _tail;
 
@@ -239,7 +245,7 @@
     node = node.next;
   }
 
-  [copy _setCount:_count];
+  copy.count = self.count;
 
   return copy;
 }
@@ -277,7 +283,7 @@
     }
 
     // Sanity check.
-    NIDASSERT(count == _count);
+    NIDASSERT(count == self.count);
   }
   return self;
 }
@@ -289,9 +295,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSUInteger)countByEnumeratingWithState: (NSFastEnumerationState *)state
-                                  objects: (__unsafe_unretained id *)stackbuf
-                                    count: (NSUInteger)len {
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+                                  objects:(__unsafe_unretained id *)stackbuf
+                                    count:(NSUInteger)len {
   // Initialization condition.
   if (0 == state->state) {
     // Whenever the linked list is modified, the modification number increases. This allows
@@ -349,12 +355,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)lastObject {
   return (nil != _tail) ? _tail.object : nil;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSUInteger)count {
-  return _count;
 }
 
 
@@ -453,7 +453,7 @@
     _tail = node;
   }
 
-  ++_count;
+  ++self.count;
   ++_modificationNumber;
 
   return [NILinkedListLocation locationWithNode:node];
@@ -486,7 +486,7 @@
   _head = nil;
   _tail = nil;
   
-  _count = 0;
+  self.count = 0;
   ++_modificationNumber;
 }
 

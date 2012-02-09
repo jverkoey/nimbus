@@ -229,6 +229,118 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testAccessExpiredObjectWithContains {
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
+
+  id cacheObject1 = [NSArray array];
+  [cache storeObject:cacheObject1
+            withName:@"obj1"
+        expiresAfter:[NSDate dateWithTimeIntervalSinceNow:1]];
+
+  [NSDate setFakeDate:[NSDate dateWithTimeIntervalSinceNow:2]];
+
+  // This makes [NSDate date] call our fakeDate implementation, which allows us to fake the
+  // current time so that we don't have to pause the tests while we wait for the object to
+  // expire.
+  [NSDate swizzleMethodsForUnitTesting];
+
+  STAssertEquals([cache count], (NSUInteger)1, @"Cache should have one object.");
+
+  // Accessing an expired object removes it from the cache entirely.
+  STAssertFalse([cache containsObjectWithName:@"obj1"], @"Object should have expired.");
+
+  STAssertEquals([cache count], (NSUInteger)0, @"Cache should be empty.");
+
+  // Reset the class implementations when we're done with them.
+  [NSDate swizzleMethodsForUnitTesting];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testAccessExpiredObjectWithDate {
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
+
+  id cacheObject1 = [NSArray array];
+  [cache storeObject:cacheObject1
+            withName:@"obj1"
+        expiresAfter:[NSDate dateWithTimeIntervalSinceNow:1]];
+
+  [NSDate setFakeDate:[NSDate dateWithTimeIntervalSinceNow:2]];
+
+  // This makes [NSDate date] call our fakeDate implementation, which allows us to fake the
+  // current time so that we don't have to pause the tests while we wait for the object to
+  // expire.
+  [NSDate swizzleMethodsForUnitTesting];
+
+  STAssertEquals([cache count], (NSUInteger)1, @"Cache should have one object.");
+
+  // Accessing an expired object removes it from the cache entirely.
+  STAssertNil([cache dateOfLastAccessWithName:@"obj1"], @"Object should have expired.");
+
+  STAssertEquals([cache count], (NSUInteger)0, @"Cache should be empty.");
+
+  // Reset the class implementations when we're done with them.
+  [NSDate swizzleMethodsForUnitTesting];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testAccessExpiredObjectWithNameOfLeastRecentlyUsedObject {
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
+
+  id cacheObject1 = [NSArray array];
+  [cache storeObject:cacheObject1
+            withName:@"obj1"
+        expiresAfter:[NSDate dateWithTimeIntervalSinceNow:1]];
+
+  [NSDate setFakeDate:[NSDate dateWithTimeIntervalSinceNow:2]];
+
+  // This makes [NSDate date] call our fakeDate implementation, which allows us to fake the
+  // current time so that we don't have to pause the tests while we wait for the object to
+  // expire.
+  [NSDate swizzleMethodsForUnitTesting];
+
+  STAssertEquals([cache count], (NSUInteger)1, @"Cache should have one object.");
+
+  // Accessing an expired object removes it from the cache entirely.
+  STAssertNil([cache nameOfLeastRecentlyUsedObject], @"Object should have expired.");
+
+  STAssertEquals([cache count], (NSUInteger)0, @"Cache should be empty.");
+
+  // Reset the class implementations when we're done with them.
+  [NSDate swizzleMethodsForUnitTesting];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testAccessExpiredObjectWithNameOfMostRecentlyUsedObject {
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
+
+  id cacheObject1 = [NSArray array];
+  [cache storeObject:cacheObject1
+            withName:@"obj1"
+        expiresAfter:[NSDate dateWithTimeIntervalSinceNow:1]];
+
+  [NSDate setFakeDate:[NSDate dateWithTimeIntervalSinceNow:2]];
+
+  // This makes [NSDate date] call our fakeDate implementation, which allows us to fake the
+  // current time so that we don't have to pause the tests while we wait for the object to
+  // expire.
+  [NSDate swizzleMethodsForUnitTesting];
+
+  STAssertEquals([cache count], (NSUInteger)1, @"Cache should have one object.");
+
+  // Accessing an expired object removes it from the cache entirely.
+  STAssertNil([cache nameOfMostRecentlyUsedObject], @"Object should have expired.");
+
+  STAssertEquals([cache count], (NSUInteger)0, @"Cache should be empty.");
+
+  // Reset the class implementations when we're done with them.
+  [NSDate swizzleMethodsForUnitTesting];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testHasObject {
   NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
@@ -349,20 +461,45 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testImageCacheStoreNonImage {
+  NIImageMemoryCache* cache = [[NIImageMemoryCache alloc] init];
+
+  NIDebugAssertionsShouldBreak = NO;
+  [cache storeObject:[NSArray array] withName:@"obj1"];
+  NIDebugAssertionsShouldBreak = YES;
+
+  STAssertEquals(cache.count, (NSUInteger)0, @"Cache should be empty.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testImageCacheNoLimit {
   NIImageMemoryCache* cache = [[NIImageMemoryCache alloc] init];
 
   UIImage* img1 = [self emptyImageWithSize:CGSizeMake(100, 100)];
   UIImage* img2 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+  [cache storeObject:img1 withName:@"obj1"];
+  [cache storeObject:img2 withName:@"obj2"];
 
-  [cache storeObject: img1
-            withName: @"obj1"];
-  [cache storeObject: img2
-            withName: @"obj2"];
-
-  STAssertEquals([cache count], (NSUInteger)2, @"Cache should have two objects.");
+  STAssertEquals(cache.count, (NSUInteger)2, @"Cache should have two objects.");
   STAssertNotNil([cache objectWithName:@"obj1"], @"Image 1 should still be around.");
   STAssertNotNil([cache objectWithName:@"obj2"], @"Image 2 should still be around.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testImageCacheRemoveAllObjects {
+  NIImageMemoryCache* cache = [[NIImageMemoryCache alloc] init];
+
+  UIImage* img1 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+  UIImage* img2 = [self emptyImageWithSize:CGSizeMake(100, 100)];
+  [cache storeObject:img1 withName:@"obj1"];
+  [cache storeObject:img2 withName:@"obj2"];
+
+  STAssertEquals(cache.count, (NSUInteger)2, @"Cache should have two objects in it.");
+  [cache removeAllObjects];
+  STAssertEquals(cache.count, (NSUInteger)0, @"Cache should now be empty.");
+  STAssertEquals(cache.numberOfPixels, (NSUInteger)0, @"Cache should have zero pixels.");
 }
 
 

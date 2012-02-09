@@ -115,7 +115,6 @@
 @private
   NILinkedListNode* _head;
   NILinkedListNode* _tail;
-  NSUInteger _count;
 
   // Used internally to track modifications to the linked list.
   unsigned long _modificationNumber;

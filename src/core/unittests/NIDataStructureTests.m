@@ -57,6 +57,19 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testLinkedListDescription {
+  id object1 = [NSArray array];
+  id object2 = [NSDictionary dictionary];
+  id object3 = [NSSet set];
+  NSArray* array = [NSArray arrayWithObjects:object1, object2, object3, nil];
+
+  NILinkedList* ll = [[NILinkedList alloc] initWithArray:array];
+
+  STAssertTrue([[ll description] isEqualToString:[array description]], @"Should be equal.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListWithArray {
   id object1 = [NSArray array];
   id object2 = [NSDictionary dictionary];
@@ -74,6 +87,17 @@
   STAssertEquals([ll count], (NSUInteger)3, @"Should have 3 objects.");
   STAssertEquals(ll.firstObject, object1, @"Head object should be object1.");
   STAssertEquals(ll.lastObject, object3, @"Tail object should be object3.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testLinkedListAddNilItem {
+  NILinkedList* ll = [[NILinkedList alloc] init];
+
+  NIDebugAssertionsShouldBreak = NO;
+  [ll addObject:nil];
+  NIDebugAssertionsShouldBreak = YES;
+  STAssertEquals(ll.count, (NSUInteger)0, @"There should be no objects.");
 }
 
 

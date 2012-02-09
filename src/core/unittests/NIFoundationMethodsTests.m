@@ -72,4 +72,28 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark General Purpose Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testboundf {
+  STAssertEquals(boundf(1, 0, 2), 1.f, @"Should be equal.");
+  STAssertEquals(boundf(20, 0, 2), 2.f, @"Should be equal.");
+  STAssertEquals(boundf(-500, 0, 2), 0.f, @"Should be equal.");
+  STAssertEquals(boundf(5234, 0, -500), 0.f, @"Should be equal.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testboundi {
+  STAssertEquals(boundi(1, 0, 2), 1, @"Should be equal.");
+  STAssertEquals(boundi(20, 0, 2), 2, @"Should be equal.");
+  STAssertEquals(boundi(-500, 0, 2), 0, @"Should be equal.");
+  STAssertEquals(boundi(5234, 0, -500), 0, @"Should be equal.");
+}
+
+
 @end

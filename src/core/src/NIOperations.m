@@ -79,7 +79,7 @@
       [self operationDidFinish];
     }
 
-  } else {
+  } else { // COV_NF_START
     // Load the image from the network then.
     [self operationDidStart];
 
@@ -101,7 +101,7 @@
 
       [self operationWillFinish];
       [self operationDidFinish];
-    }
+    } // COV_NF_END
   }
   }
 }

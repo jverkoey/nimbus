@@ -133,18 +133,18 @@
 - (void)updateAccessTimeForInfo:(NIMemoryCacheInfo *)info {
   NIDASSERT(nil != info);
   if (nil == info) {
-    return;
+    return; // COV_NF_LINE
   }
   info.lastAccessTime = [NSDate date];
 
-  [_lruCacheObjects removeObjectAtLocation:info.lruLocation];
-  info.lruLocation = [_lruCacheObjects addObject:info];
+  [self.lruCacheObjects removeObjectAtLocation:info.lruLocation];
+  info.lruLocation = [self.lruCacheObjects addObject:info];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NIMemoryCacheInfo *)cacheInfoForName:(NSString *)name {
-  return [_cacheMap objectForKey:name];
+  return [self.cacheMap objectForKey:name];
 }
 
 
@@ -158,14 +158,14 @@
   // Storing in the cache counts as an access of the object, so we update the access time.
   [self updateAccessTimeForInfo:info];
 
-  [self willSetObject: info.object
-             withName: name
-       previousObject: [self cacheInfoForName:name].object];
+  if ([self willSetObject:info.object
+                 withName:name
+           previousObject:[self cacheInfoForName:name].object]) {
+    [self.cacheMap setObject:info forKey:name];
 
-  [_cacheMap setObject:info forKey:name];
-
-  [self didSetObject: info.object
-            withName: name];
+    [self didSetObject:info.object
+              withName:name];
+  }
 }
 
 
@@ -178,7 +178,7 @@
 
   [self willRemoveObject:[self cacheInfoForName:name].object withName:name];
 
-  [_cacheMap removeObjectForKey:name];
+  [self.cacheMap removeObjectForKey:name];
 }
 
 
@@ -189,8 +189,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {
-  // No-op
+- (BOOL)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {
+  // Allow anything to be stored.
+  return YES;
 }
 
 
@@ -333,15 +334,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeAllObjects {
-  _cacheMap = [[NSMutableDictionary alloc] init];
-  _lruCacheObjects = [[NILinkedList alloc] init];
+  self.cacheMap = [[NSMutableDictionary alloc] init];
+  self.lruCacheObjects = [[NILinkedList alloc] init];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reduceMemoryUsage {
   // Copy the cache map because it's likely that we're going to modify it.
-  NSDictionary* cacheMap = [_cacheMap copy];
+  NSDictionary* cacheMap = [self.cacheMap copy];
 
   // Iterate over the copied cache map (which will not be modified).
   for (id name in cacheMap) {
@@ -357,7 +358,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSUInteger)count {
-  return [_cacheMap count];
+  return [self.cacheMap count];
 }
 
 
@@ -452,14 +453,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {
+- (BOOL)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {
   NIDASSERT(nil == object || [object isKindOfClass:[UIImage class]]);
   if (![object isKindOfClass:[UIImage class]]) {
-    return;
+    return NO;
   }
 
   self.numberOfPixels -= [self numberOfPixelsUsedByImage:previousObject];
   self.numberOfPixels += [self numberOfPixelsUsedByImage:object];
+
+  return YES;
 }
 
 
@@ -484,7 +487,7 @@
 - (void)willRemoveObject:(id)object withName:(NSString *)name {
   NIDASSERT(nil == object || [object isKindOfClass:[UIImage class]]);
   if (nil == object || ![object isKindOfClass:[UIImage class]]) {
-    return;
+    return; // COV_NF_LINE
   }
 
   NIMemoryCacheInfo* info = [self cacheInfoForName:name];

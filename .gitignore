@@ -6,3 +6,4 @@ docs/output-docset/
 xcuserdata
 *.xcworkspace
 node_modules
+coverage/

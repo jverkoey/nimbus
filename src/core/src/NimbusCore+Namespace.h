@@ -131,8 +131,8 @@
 #ifndef NIStatusBarAnimationDuration
 #define NIStatusBarAnimationDuration __NIMBUS_NS_SYMBOL(NIStatusBarAnimationDuration)
 #endif
-#ifndef NIRectInset
-#define NIRectInset __NIMBUS_NS_SYMBOL(NIRectInset)
+#ifndef NIMakeNSRangeFromCFRange
+#define NIMakeNSRangeFromCFRange __NIMBUS_NS_SYMBOL(NIMakeNSRangeFromCFRange)
 #endif
 #ifndef NIStatusBarBoundsChangeAnimationCurve
 #define NIStatusBarBoundsChangeAnimationCurve __NIMBUS_NS_SYMBOL(NIStatusBarBoundsChangeAnimationCurve)
@@ -158,9 +158,6 @@
 #ifndef NIRotateTransformForOrientation
 #define NIRotateTransformForOrientation __NIMBUS_NS_SYMBOL(NIRotateTransformForOrientation)
 #endif
-#ifndef NIMakeNSRangeFromCFRange
-#define NIMakeNSRangeFromCFRange __NIMBUS_NS_SYMBOL(NIMakeNSRangeFromCFRange)
-#endif
 #ifndef NIPathForCachesResource
 #define NIPathForCachesResource __NIMBUS_NS_SYMBOL(NIPathForCachesResource)
 #endif
@@ -173,11 +170,11 @@
 #ifndef NICellContentPadding
 #define NICellContentPadding __NIMBUS_NS_SYMBOL(NICellContentPadding)
 #endif
-#ifndef NIUITapGestureRecognizerClass
-#define NIUITapGestureRecognizerClass __NIMBUS_NS_SYMBOL(NIUITapGestureRecognizerClass)
-#endif
 #ifndef boundf
 #define boundf __NIMBUS_NS_SYMBOL(boundf)
+#endif
+#ifndef NIUITapGestureRecognizerClass
+#define NIUITapGestureRecognizerClass __NIMBUS_NS_SYMBOL(NIUITapGestureRecognizerClass)
 #endif
 #ifndef boundi
 #define boundi __NIMBUS_NS_SYMBOL(boundi)

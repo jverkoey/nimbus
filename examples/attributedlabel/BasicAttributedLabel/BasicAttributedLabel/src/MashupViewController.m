@@ -64,4 +64,8 @@
   [alert show];
   
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+  return NIIsSupportedOrientation(toInterfaceOrientation);
+}
 @end

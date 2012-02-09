@@ -63,17 +63,6 @@ CGRect NIRectContract(CGRect rect, CGFloat dx, CGFloat dy);
  */
 CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy);
 
-/**
- * Add the insets to a CGRect - equivalent to padding in CSS.
- *
- *      @attention This method is deprecated. Please use UIEdgeInsetsInsetRect instead.
- *
- *      @return a CGRect whose edges have been inset.
- *
- *      Example result: CGRectMake(x + left, y + top, w - (left + right), h - (top + bottom))
- */
-CGRect NIRectInset(CGRect rect, UIEdgeInsets insets) __NI_DEPRECATED_METHOD;
-
 /**@}*/
 
 

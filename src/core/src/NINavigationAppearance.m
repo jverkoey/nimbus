@@ -38,17 +38,17 @@ static NSMutableArray* sAppearanceStack = nil;
 /**
  * Holds value of UINavigationBar's translucent property.
  */
-@property (nonatomic, readwrite, assign) BOOL navBarTranslucent;
+@property (nonatomic, readonly, assign) BOOL navBarTranslucent;
 
 /**
  * Holds value of UINavigationBar's barStyle property.
  */
-@property (nonatomic, readwrite, assign) UIBarStyle navBarStyle;
+@property (nonatomic, readonly, assign) UIBarStyle navBarStyle;
 
 /**
  * Holds value of UIApplication's statusBarStyle property.
  */
-@property (nonatomic, readwrite, assign) UIStatusBarStyle statusBarStyle;
+@property (nonatomic, readonly, assign) UIStatusBarStyle statusBarStyle;
 
 
 /**
@@ -131,10 +131,9 @@ static NSMutableArray* sAppearanceStack = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)restoreForNavigationController:(UINavigationController *)navigationController animated:(BOOL)animated {
-  [[UIApplication sharedApplication] setStatusBarStyle: _statusBarStyle
-                                              animated: animated];
-  navigationController.navigationBar.barStyle = _navBarStyle;
-  navigationController.navigationBar.translucent = _navBarTranslucent;
+  [[UIApplication sharedApplication] setStatusBarStyle:self.statusBarStyle animated:animated];
+  navigationController.navigationBar.barStyle = self.navBarStyle;
+  navigationController.navigationBar.translucent = self.navBarTranslucent;
 }
 
 

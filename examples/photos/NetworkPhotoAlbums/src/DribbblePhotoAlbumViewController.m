@@ -250,6 +250,9 @@
   for (NIOperation* op in [self.queue operations]) {
     if (op.tag == photoIndex) {
       [op cancel];
+
+      [self didCancelRequestWithPhotoSize:NIPhotoScrollViewPhotoSizeOriginal
+                               photoIndex:photoIndex];
     }
   }
 }

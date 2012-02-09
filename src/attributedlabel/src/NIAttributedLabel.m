@@ -76,6 +76,30 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setFrame:(CGRect)frame {
+  BOOL frameDidChange = !CGRectEqualToRect(self.frame, frame);
+
+  [super setFrame:frame];
+
+  if (frameDidChange) {
+    [self attributedTextDidChange];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setBounds:(CGRect)bounds {
+  BOOL boundsDidChange = !CGRectEqualToRect(self.bounds, bounds);
+
+  [super setBounds:bounds];
+
+  if (boundsDidChange) {
+    [self attributedTextDidChange];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)sizeThatFits:(CGSize)size {
 	if (nil == _attributedString) {
     return CGSizeZero;

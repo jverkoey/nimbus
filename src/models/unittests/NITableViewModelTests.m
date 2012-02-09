@@ -63,6 +63,32 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testInvalidAccess {
+  NITableViewModel* model = [[NITableViewModel alloc] init];
+
+  STAssertNil([model tableView:nil titleForHeaderInSection:0], @"There should not be a header title.");
+  STAssertNil([model tableView:nil titleForFooterInSection:0], @"There should not be a footer title.");
+
+  STAssertNil([model tableView:nil titleForHeaderInSection:1], @"There should not be a header title.");
+  STAssertNil([model tableView:nil titleForFooterInSection:1], @"There should not be a footer title.");
+  
+  STAssertNil([model tableView:nil titleForHeaderInSection:-1], @"There should not be a header title.");
+  STAssertNil([model tableView:nil titleForFooterInSection:-1], @"There should not be a footer title.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testEditing {
+  NITableViewModel* model = [[NITableViewModel alloc] init];
+
+  STAssertFalse([model tableView:nil canEditRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]],
+                @"Should not be able to edit anything.");
+  STAssertFalse([model tableView:nil canEditRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]],
+                @"Should not be able to edit anything.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testListTableViewModel {
   NSArray* contents = [NSArray arrayWithObjects:
                        @"This is a string",
@@ -163,5 +189,66 @@
   STAssertNil([model tableView:nil titleForFooterInSection:6], @"There should not be a title.");
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testDynamicSectionedIndex {
+  NSArray* contents = [NSArray arrayWithObjects:
+                       @"A",
+                       [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"],
+                       [NSDictionary dictionaryWithObject:@"Row 2" forKey:@"title"],
+                       [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
+                       [NITableViewModelFooter footerWithTitle:@"Footer 1"],
+                       @"C",
+                       [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"],
+                       [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
+                       [NITableViewModelFooter footerWithTitle:@"Footer 2"],
+                       @"D",
+                       [NITableViewModelFooter footerWithTitle:@"Footer 3"],
+                       [NITableViewModelFooter footerWithTitle:@"Footer 4"],
+                       [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"],
+                       [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
+                       [NITableViewModelFooter footerWithTitle:@"Footer 5"],
+                       nil];
+  NITableViewModel* model = [[NITableViewModel alloc] initWithSectionedArray:contents delegate:nil];
+  [model setSectionIndexType:NITableViewModelSectionIndexDynamic showsSearch:YES showsSummary:YES];
+
+  STAssertEquals(model.sectionIndexType, NITableViewModelSectionIndexDynamic, @"Section index type should have been set.");
+  NSArray* sectionIndexTitles = [model sectionIndexTitlesForTableView:nil];
+  NSArray* expectedTitle = [NSArray arrayWithObjects:UITableViewIndexSearch, @"A", @"C", @"D", @"#", nil];
+  STAssertEquals(sectionIndexTitles.count, expectedTitle.count, @"Arrays should be the same size.");
+  for (NSInteger ix = 0; ix < sectionIndexTitles.count; ++ix) {
+    STAssertEquals([sectionIndexTitles objectAtIndex:ix], [expectedTitle objectAtIndex:ix], @"Objects should match.");
+  }
+
+  [model setSectionIndexType:NITableViewModelSectionIndexDynamic showsSearch:NO showsSummary:YES];
+
+  STAssertEquals(model.sectionIndexType, NITableViewModelSectionIndexDynamic, @"Section index type should have been set.");
+  sectionIndexTitles = [model sectionIndexTitlesForTableView:nil];
+  expectedTitle = [NSArray arrayWithObjects:@"A", @"C", @"D", @"#", nil];
+  STAssertEquals(sectionIndexTitles.count, expectedTitle.count, @"Arrays should be the same size.");
+  for (NSInteger ix = 0; ix < sectionIndexTitles.count; ++ix) {
+    STAssertEquals([sectionIndexTitles objectAtIndex:ix], [expectedTitle objectAtIndex:ix], @"Objects should match.");
+  }
+
+  [model setSectionIndexType:NITableViewModelSectionIndexDynamic showsSearch:YES showsSummary:NO];
+
+  STAssertEquals(model.sectionIndexType, NITableViewModelSectionIndexDynamic, @"Section index type should have been set.");
+  sectionIndexTitles = [model sectionIndexTitlesForTableView:nil];
+  expectedTitle = [NSArray arrayWithObjects:UITableViewIndexSearch, @"A", @"C", @"D", nil];
+  STAssertEquals(sectionIndexTitles.count, expectedTitle.count, @"Arrays should be the same size.");
+  for (NSInteger ix = 0; ix < sectionIndexTitles.count; ++ix) {
+    STAssertEquals([sectionIndexTitles objectAtIndex:ix], [expectedTitle objectAtIndex:ix], @"Objects should match.");
+  }
+
+  [model setSectionIndexType:NITableViewModelSectionIndexDynamic showsSearch:NO showsSummary:NO];
+
+  STAssertEquals(model.sectionIndexType, NITableViewModelSectionIndexDynamic, @"Section index type should have been set.");
+  sectionIndexTitles = [model sectionIndexTitlesForTableView:nil];
+  expectedTitle = [NSArray arrayWithObjects:@"A", @"C", @"D", nil];
+  STAssertEquals(sectionIndexTitles.count, expectedTitle.count, @"Arrays should be the same size.");
+  for (NSInteger ix = 0; ix < sectionIndexTitles.count; ++ix) {
+    STAssertEquals([sectionIndexTitles objectAtIndex:ix], [expectedTitle objectAtIndex:ix], @"Objects should match.");
+  }
+}
 
 @end
