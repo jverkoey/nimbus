@@ -302,6 +302,7 @@
 		66E8CEE214D08F2E00600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
 		66E8CEE314D08F3800600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
 		66E8CEE414D08F8200600592 /* NINonEmptyCollectionTesting.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5313E6E8D100B514F3 /* NINonEmptyCollectionTesting.h */; };
+		66EDE07C14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EDE07A14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h */; };
 		66F27D55145B7A5F00AFCA08 /* NIPageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F27D53145B7A5F00AFCA08 /* NIPageView.h */; };
 		66F27D56145B7A5F00AFCA08 /* NIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F27D54145B7A5F00AFCA08 /* NIPageView.m */; };
 		66F27D60145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F27D5F145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h */; };
@@ -877,6 +878,7 @@
 		66E8CED514D08B9F00600592 /* lib.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = lib.xcconfig; path = resources/lib.xcconfig; sourceTree = "<group>"; };
 		66E8CED614D08BAE00600592 /* unittest.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = unittest.xcconfig; path = resources/unittest.xcconfig; sourceTree = "<group>"; };
 		66E8CED714D08E7400600592 /* libprofile_rt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libprofile_rt.dylib; path = usr/lib/libprofile_rt.dylib; sourceTree = DEVELOPER_DIR; };
+		66EDE07A14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NIOpenAuthenticator+Subclassing.h"; path = "oauth/src/NIOpenAuthenticator+Subclassing.h"; sourceTree = SOURCE_ROOT; };
 		66F27D53145B7A5F00AFCA08 /* NIPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPageView.h; sourceTree = "<group>"; };
 		66F27D54145B7A5F00AFCA08 /* NIPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIPageView.m; sourceTree = "<group>"; };
 		66F27D5F145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPhotoAlbumScrollViewDataSource.h; sourceTree = "<group>"; };
@@ -1449,6 +1451,7 @@
 				66759B5214DCC01A0094C24B /* NimbusOAuth.h */,
 				66759B5414DCC04C0094C24B /* NIOpenAuthenticator.h */,
 				66759B5514DCC04C0094C24B /* NIOpenAuthenticator.m */,
+				66EDE07A14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -2079,6 +2082,7 @@
 			files = (
 				66759B5314DCC01A0094C24B /* NimbusOAuth.h in Headers */,
 				66759B5614DCC04C0094C24B /* NIOpenAuthenticator.h in Headers */,
+				66EDE07C14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5255,6 +5259,7 @@
 				66759B4114DCBE940094C24B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		66759B4514DCBE940094C24B /* Build configuration list for PBXNativeTarget "NimbusOAuthTests" */ = {
 			isa = XCConfigurationList;
@@ -5263,6 +5268,7 @@
 				66759B4314DCBE940094C24B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		66832C9E143D649D003E413C /* Build configuration list for PBXLegacyTarget "Nimbus CSS Grammar" */ = {
 			isa = XCConfigurationList;

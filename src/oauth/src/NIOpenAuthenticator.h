@@ -16,12 +16,38 @@
 
 #import <Foundation/Foundation.h>
 
+@class NIOpenAuthenticator;
+
+typedef enum {
+  NIOpenAuthenticationStateInactive,
+  NIOpenAuthenticationStateFetchingToken,
+  NIOpenAuthenticationStateAuthorized,
+} NIOpenAuthenticationState;
+
+typedef void (^NIOpenAuthenticationBlock)(NIOpenAuthenticator*, NIOpenAuthenticationState, NSError*);
+
 @interface NIOpenAuthenticator : NSObject
 
 // Designated initializer.
+- (id)initWithClientIdentifier:(NSString *)clientIdentifier clientSecret:(NSString *)clientSecret redirectBasePath:(NSString *)redirectBasePath;
 - (id)initWithClientIdentifier:(NSString *)clientIdentifier clientSecret:(NSString *)clientSecret;
 
 @property (nonatomic, readonly, copy) NSString* clientIdentifier;
 @property (nonatomic, readonly, copy) NSString* clientSecret;
 
+@property (nonatomic, readonly, copy) NSString* redirectBasePath;
+@property (nonatomic, readonly, assign) NIOpenAuthenticationState state;
+
+@property (nonatomic, readonly, copy) NSString* oauthCode;
+@property (nonatomic, readonly, copy) NSString* oauthToken;
+
+- (void)authenticateWithStateHandler:(NIOpenAuthenticationBlock)stateHandler;
+
++ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
+
++ (void)setApplicationRedirectBasePath:(NSString *)redirectBasePath;
+
+@end
+
+@interface NISoundCloudOpenAuthenticator : NIOpenAuthenticator
 @end
