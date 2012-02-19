@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -119,21 +119,24 @@
 <a name="l00116"></a><a class="code" href="protocol_n_i_cell-p.html">00116</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_cell-p.html" title="The protocol for a cell created in the NICellFactory.">NICell</a>
 <a name="l00117"></a>00117 <span class="keyword">@required</span>
 <a name="l00123"></a>00123 - (BOOL)shouldUpdateCellWithObject:(<span class="keywordtype">id</span>)object;
-<a name="l00124"></a>00124 <span class="keyword">@end</span>
-<a name="l00125"></a>00125 
-<a name="l00140"></a><a class="code" href="interface_n_i_cell_object.html">00140</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_cell_object.html" title="A light-weight implementation of the NICellObject protocol.">NICellObject</a> : NSObject &lt;<a class="code" href="protocol_n_i_cell_object-p.html" title="The protocol for an object that can be used in the NICellFactory.">NICellObject</a>&gt;
-<a name="l00141"></a>00141 
-<a name="l00142"></a>00142 <span class="comment">// Designated initializer.</span>
-<a name="l00143"></a>00143 - (id)initWithCellClass:(Class)cellClass userInfo:(<span class="keywordtype">id</span>)userInfo;
-<a name="l00144"></a>00144 - (id)initWithCellClass:(Class)cellClass;
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125 <span class="keyword">@optional</span>
+<a name="l00127"></a>00127 + (CGFloat)heightForObject:(<span class="keywordtype">id</span>)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView;
+<a name="l00128"></a>00128 <span class="keyword">@end</span>
+<a name="l00129"></a>00129 
+<a name="l00144"></a><a class="code" href="interface_n_i_cell_object.html">00144</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_cell_object.html" title="A light-weight implementation of the NICellObject protocol.">NICellObject</a> : NSObject &lt;<a class="code" href="protocol_n_i_cell_object-p.html" title="The protocol for an object that can be used in the NICellFactory.">NICellObject</a>&gt;
 <a name="l00145"></a>00145 
-<a name="l00146"></a>00146 + (id)objectWithCellClass:(Class)cellClass userInfo:(<span class="keywordtype">id</span>)userInfo;
-<a name="l00147"></a>00147 + (id)objectWithCellClass:(Class)cellClass;
-<a name="l00148"></a>00148 
-<a name="l00149"></a><a class="code" href="interface_n_i_cell_object.html#a274498d85c99c109ed85088f7f4b2415">00149</a> <span class="keyword">@property</span> (nonatomic, readonly, retain) <span class="keywordtype">id</span> <a class="code" href="interface_n_i_cell_object.html#a274498d85c99c109ed85088f7f4b2415" title="An object that can be used to populate information in the cell.">userInfo</a>;
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151 <span class="keyword">@end</span>
+<a name="l00146"></a>00146 <span class="comment">// Designated initializer.</span>
+<a name="l00147"></a>00147 - (id)initWithCellClass:(Class)cellClass userInfo:(<span class="keywordtype">id</span>)userInfo;
+<a name="l00148"></a>00148 - (id)initWithCellClass:(Class)cellClass;
+<a name="l00149"></a>00149 
+<a name="l00150"></a>00150 + (id)objectWithCellClass:(Class)cellClass userInfo:(<span class="keywordtype">id</span>)userInfo;
+<a name="l00151"></a>00151 + (id)objectWithCellClass:(Class)cellClass;
 <a name="l00152"></a>00152 
+<a name="l00153"></a><a class="code" href="interface_n_i_cell_object.html#a274498d85c99c109ed85088f7f4b2415">00153</a> <span class="keyword">@property</span> (nonatomic, readonly, retain) <span class="keywordtype">id</span> <a class="code" href="interface_n_i_cell_object.html#a274498d85c99c109ed85088f7f4b2415" title="An object that can be used to populate information in the cell.">userInfo</a>;
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155 <span class="keyword">@end</span>
+<a name="l00156"></a>00156 
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

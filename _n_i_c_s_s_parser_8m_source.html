@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -170,7 +170,7 @@
 <a name="l00100"></a>00100     <span class="keywordflow">case</span> CSSIDENT: { <span class="comment">// {ident}(:{ident})?</span>
 <a name="l00101"></a>00101 
 <a name="l00102"></a>00102       <span class="keywordflow">if</span> (_state.Flags.InsideRuleset) {
-<a name="l00103"></a>00103         <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != _mutatingRuleset);
+<a name="l00103"></a>00103         NIDASSERT(nil != _mutatingRuleset);
 <a name="l00104"></a>00104         <span class="keywordflow">if</span> (nil == _mutatingRuleset) {
 <a name="l00105"></a>00105           [<span class="keyword">self</span> setFailFlag];
 <a name="l00106"></a>00106         }
@@ -192,7 +192,7 @@
 <a name="l00122"></a>00122 
 <a name="l00123"></a>00123         } <span class="keywordflow">else</span> {
 <a name="l00124"></a>00124           <span class="comment">// This is a value for the active property; add it.</span>
-<a name="l00125"></a>00125           <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != _currentPropertyName);
+<a name="l00125"></a>00125           NIDASSERT(nil != _currentPropertyName);
 <a name="l00126"></a>00126 
 <a name="l00127"></a>00127           <span class="keywordflow">if</span> (nil != _currentPropertyName) {
 <a name="l00128"></a>00128             NSMutableArray* values = [_mutatingRuleset objectForKey:_currentPropertyName];
@@ -217,7 +217,7 @@
 <a name="l00147"></a>00147       <span class="keywordflow">if</span> (_state.Flags.InsideProperty) {
 <a name="l00148"></a>00148         _state.Flags.InsideFunction = YES;
 <a name="l00149"></a>00149 
-<a name="l00150"></a>00150         <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != _currentPropertyName);
+<a name="l00150"></a>00150         NIDASSERT(nil != _currentPropertyName);
 <a name="l00151"></a>00151         <span class="keywordflow">if</span> (nil != _currentPropertyName) {
 <a name="l00152"></a>00152           NSMutableArray* values = [_mutatingRuleset objectForKey:_currentPropertyName];
 <a name="l00153"></a>00153           [values addObject:lowercaseTextAsString];

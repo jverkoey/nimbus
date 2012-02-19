@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -211,7 +211,7 @@
 <a name="l00141"></a>00141       <span class="comment">// you&#39;ve done this correctly by expanding the NimbusPhotos.bundle file in your project</span>
 <a name="l00142"></a>00142       <span class="comment">// and verifying that the &#39;gfx&#39; directory is blue. Also verify that the bundle is being</span>
 <a name="l00143"></a>00143       <span class="comment">// copied in the Copy Bundle Resources phase.</span>
-<a name="l00144"></a>00144       <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != nextIcon);
+<a name="l00144"></a>00144       NIDASSERT(nil != nextIcon);
 <a name="l00145"></a>00145 
 <a name="l00146"></a>00146       _nextButton = [[UIBarButtonItem alloc] initWithImage: nextIcon
 <a name="l00147"></a>00147                                                      style: UIBarButtonItemStylePlain
@@ -230,7 +230,7 @@
 <a name="l00160"></a>00160       <span class="comment">// you&#39;ve done this correctly by expanding the NimbusPhotos.bundle file in your project</span>
 <a name="l00161"></a>00161       <span class="comment">// and verifying that the &#39;gfx&#39; directory is blue. Also verify that the bundle is being</span>
 <a name="l00162"></a>00162       <span class="comment">// copied in the Copy Bundle Resources phase.</span>
-<a name="l00163"></a>00163       <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != previousIcon);
+<a name="l00163"></a>00163       NIDASSERT(nil != previousIcon);
 <a name="l00164"></a>00164 
 <a name="l00165"></a>00165       _previousButton = [[UIBarButtonItem alloc] initWithImage: previousIcon
 <a name="l00166"></a>00166                                                          style: UIBarButtonItemStylePlain
@@ -551,7 +551,7 @@
 <a name="l00503"></a>00503 <span class="preprocessor"></span>
 <a name="l00504"></a>00504 
 <a name="l00506"></a>00506 - (void)photoScrubberViewDidChangeSelection:(<a class="code" href="interface_n_i_photo_scrubber_view.html" title="A control built for quickly skimming through a collection of images.">NIPhotoScrubberView</a> *)photoScrubberView {
-<a name="l00507"></a>00507   [<span class="keyword">self</span>.photoAlbumView setCenterPageIndex:photoScrubberView.selectedPhotoIndex animated:NO];
+<a name="l00507"></a>00507   [<span class="keyword">self</span>.photoAlbumView moveToPageAtIndex:photoScrubberView.selectedPhotoIndex animated:NO];
 <a name="l00508"></a>00508 
 <a name="l00509"></a>00509   [<span class="keyword">self</span> refreshChromeState];
 <a name="l00510"></a>00510 }

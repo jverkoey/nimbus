@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -177,7 +177,7 @@
 <a name="l00113"></a>00113   UIButton* button = [[[[<span class="keyword">self</span> launcherButtonClass] alloc] init] autorelease];
 <a name="l00114"></a>00114 
 <a name="l00115"></a>00115   <span class="comment">// launcherButtonClass must return a class that is a subclass of UIButton.</span>
-<a name="l00116"></a>00116   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([button isKindOfClass:[UIButton <span class="keyword">class</span>]]);
+<a name="l00116"></a>00116   NIDASSERT([button isKindOfClass:[UIButton <span class="keyword">class</span>]]);
 <a name="l00117"></a>00117   <span class="keywordflow">if</span> (![button isKindOfClass:[UIButton <span class="keyword">class</span>]]) {
 <a name="l00118"></a>00118     <span class="keywordflow">return</span> nil;
 <a name="l00119"></a>00119   }

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -282,7 +282,33 @@
 <a name="l00217"></a>00217 }
 <a name="l00218"></a>00218 
 <a name="l00219"></a>00219 
-<a name="l00220"></a>00220 <span class="keyword">@end</span>
+<a name="l00221"></a>00221 - (void)testNSString_md5Hash {
+<a name="l00222"></a>00222   STAssertTrue([[<span class="stringliteral">@&quot;nimbus&quot;</span> md5Hash] isEqualToString:<span class="stringliteral">@&quot;0e78d66f33c484a3c3b36d69bd3114cf&quot;</span>],
+<a name="l00223"></a>00223                <span class="stringliteral">@&quot;MD5 hashes don&#39;t match.&quot;</span>);
+<a name="l00224"></a>00224 }
+<a name="l00225"></a>00225 
+<a name="l00226"></a>00226 
+<a name="l00228"></a>00228 - (void)testNSString_sha1Hash {
+<a name="l00229"></a>00229   STAssertTrue([[<span class="stringliteral">@&quot;nimbus&quot;</span> sha1Hash] isEqualToString:<span class="stringliteral">@&quot;c1b42d95fd18ad8a56d4fd7bbb4105952620d857&quot;</span>],
+<a name="l00230"></a>00230                <span class="stringliteral">@&quot;SHA1 hashes don&#39;t match.&quot;</span>);
+<a name="l00231"></a>00231 }
+<a name="l00232"></a>00232 
+<a name="l00233"></a>00233 
+<a name="l00236"></a>00236 <span class="preprocessor">#pragma mark -</span>
+<a name="l00237"></a>00237 <span class="preprocessor"></span><span class="preprocessor">#pragma mark UIView Additions</span>
+<a name="l00238"></a>00238 <span class="preprocessor"></span>
+<a name="l00239"></a>00239 
+<a name="l00241"></a>00241 - (void)testCenterWithin {
+<a name="l00242"></a>00242   UIView *containerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)] autorelease];
+<a name="l00243"></a>00243   UIView *subview = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)] autorelease];
+<a name="l00244"></a>00244   
+<a name="l00245"></a>00245   [subview centerWithin:containerView];
+<a name="l00246"></a>00246   
+<a name="l00247"></a>00247   STAssertTrue(CGRectEqualToRect(subview.frame, CGRectMake(45, 45, 10, 10)), <span class="stringliteral">@&quot;Rect should be centered.&quot;</span>);
+<a name="l00248"></a>00248 }
+<a name="l00249"></a>00249 
+<a name="l00250"></a>00250 
+<a name="l00251"></a>00251 <span class="keyword">@end</span>
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

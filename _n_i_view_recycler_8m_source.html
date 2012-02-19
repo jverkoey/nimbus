@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -150,7 +150,7 @@
 <a name="l00083"></a>00083 
 <a name="l00084"></a>00084 
 <a name="l00086"></a><a class="code" href="interface_n_i_view_recycler.html#a7f280d0f79b8a29011942f914fd26185">00086</a> - (void)recycleView:(UIView&lt;<a class="code" href="protocol_n_i_recyclable_view-p.html" title="The protocol for a recyclable view.">NIRecyclableView</a>&gt; *)view {
-<a name="l00087"></a>00087   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([view isKindOfClass:[UIView <span class="keyword">class</span>]]);
+<a name="l00087"></a>00087   NIDASSERT([view isKindOfClass:[UIView <span class="keyword">class</span>]]);
 <a name="l00088"></a>00088 
 <a name="l00089"></a>00089   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* reuseIdentifier = nil;
 <a name="l00090"></a>00090   <span class="keywordflow">if</span> ([view respondsToSelector:<span class="keyword">@selector</span>(reuseIdentifier)]) {
@@ -160,7 +160,7 @@
 <a name="l00094"></a>00094     reuseIdentifier = NSStringFromClass([view <span class="keyword">class</span>]);
 <a name="l00095"></a>00095   }
 <a name="l00096"></a>00096 
-<a name="l00097"></a>00097   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != reuseIdentifier);
+<a name="l00097"></a>00097   NIDASSERT(nil != reuseIdentifier);
 <a name="l00098"></a>00098   <span class="keywordflow">if</span> (nil == reuseIdentifier) {
 <a name="l00099"></a>00099     <span class="keywordflow">return</span>;
 <a name="l00100"></a>00100   }

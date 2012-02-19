@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -82,7 +82,7 @@
 <p>Processing data is a potential bottleneck for any application that manipulates it. </p>
 <p>Older iPhone and iPod touch models get the worst of this with their slower processors and smaller amounts of ram. It's important to pull data processing off of the main UI thread. <a class="el" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> operations provide a consistent means of processing data in a defered way using the <a class="el" href="interface_n_i_operation.html" title="A base implementation of an NSOperation that supports traditional delegation and blocks.">NIOperation</a> class of objects.</p>
 <h2>Suggestions for Picking a Processing Method</h2>
-<h3>Use Blocks and <a class="el" href="protocol_n_i_operation_delegate-p.html" title="The delegate protocol for an NSOperation.">NIOperationDelegate</a> for One-Off Implementations</h3>
+<h3>Use Blocks and <a class="el" href="protocol_n_i_operation_delegate-p.html" title="The delegate protocol for an NIOperation.">NIOperationDelegate</a> for One-Off Implementations</h3>
 <p>Blocks are useful when writing inline code quickly, but after a certain point of complexity it may be cleaner to implement the delegate. If your block spans more than 10 lines of code or so, it might be worth considering moving the logic into the delegate method.</p>
 <h3>Subclass Common Functionality</h3>
 <p>If you find yourself repeating the same functionality across a variety of controllers then you should consider building a subclass. A good example is <a class="el" href="interface_n_i_network_j_s_o_n_request.html" title="A processor that uses JSONKit to turn the JSON response into objects.">NINetworkJSONRequest</a>, which subclasses <a class="el" href="interface_n_i_network_request_operation.html" title="An operation that makes a network request.">NINetworkRequestOperation</a> and turns the response data into Objective-C objects. <a class="el" href="interface_n_i_network_request_operation.html" title="An operation that makes a network request.">NINetworkRequestOperation</a> can be reused throughout an application as a result.</p>

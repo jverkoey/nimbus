@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -95,83 +95,86 @@
 <a name="l00017"></a>00017 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 <a name="l00018"></a>00018 <span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span>
 <a name="l00019"></a>00019 
-<a name="l00023"></a>00023 <span class="keyword">extern</span> <span class="keyword">const</span> NSInteger NIPagingScrollViewUnknownNumberOfPages;
-<a name="l00024"></a>00024 
-<a name="l00030"></a>00030 <span class="keyword">extern</span> <span class="keyword">const</span> CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
-<a name="l00031"></a>00031 
-<a name="l00032"></a>00032 <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_paging_scroll_view_data_source-p.html" title="The data source for NIPagingScrollView.">NIPagingScrollViewDataSource</a>;
-<a name="l00033"></a>00033 <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_paging_scroll_view_delegate-p.html" title="The delegate for NIPagingScrollView.">NIPagingScrollViewDelegate</a>;
-<a name="l00034"></a>00034 <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_paging_scroll_view_page-p.html" title="The protocol that a paging scroll view page should implement.">NIPagingScrollViewPage</a>;
-<a name="l00035"></a>00035 <span class="keyword">@class</span> <a class="code" href="interface_n_i_view_recycler.html" title="An object for efficiently reusing views by recycling and dequeuing them from a pool of views...">NIViewRecycler</a>;
-<a name="l00036"></a>00036 
-<a name="l00042"></a><a class="code" href="interface_n_i_paging_scroll_view.html">00042</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_paging_scroll_view.html" title="A paged scroll view that shows a series of pages.">NIPagingScrollView</a> : UIView &lt;UIScrollViewDelegate&gt; {
-<a name="l00043"></a>00043 <span class="keyword">@private</span>
-<a name="l00044"></a>00044   <span class="comment">// Views</span>
-<a name="l00045"></a>00045   UIScrollView* _pagingScrollView;
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047   <span class="comment">// Pages</span>
-<a name="l00048"></a>00048   NSMutableSet* _visiblePages;
-<a name="l00049"></a>00049   <a class="code" href="interface_n_i_view_recycler.html" title="An object for efficiently reusing views by recycling and dequeuing them from a pool of views...">NIViewRecycler</a>* _viewRecycler;
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051   <span class="comment">// Configurable Properties</span>
-<a name="l00052"></a>00052   CGFloat _pageHorizontalMargin;
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054   <span class="comment">// State Information</span>
-<a name="l00055"></a>00055   NSInteger _firstVisiblePageIndexBeforeRotation;
-<a name="l00056"></a>00056   CGFloat _percentScrolledIntoFirstVisiblePage;
-<a name="l00057"></a>00057   BOOL _isModifyingContentOffset;
-<a name="l00058"></a>00058   BOOL _isAnimatingToPage;
-<a name="l00059"></a>00059   NSInteger _centerPageIndex;
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061   <span class="comment">// Cached Data Source Information</span>
-<a name="l00062"></a>00062   NSInteger _numberOfPages;
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064   id&lt;NIPagingScrollViewDataSource&gt; _dataSource;
-<a name="l00065"></a>00065   id&lt;NIPagingScrollViewDelegate&gt; _delegate;
-<a name="l00066"></a>00066 }
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068 <span class="preprocessor">#pragma mark Data Source</span>
-<a name="l00069"></a>00069 <span class="preprocessor"></span>
-<a name="l00070"></a>00070 - (void)reloadData;
-<a name="l00071"></a><a class="code" href="interface_n_i_paging_scroll_view.html#af570769c867a0c331da0c638726537d6">00071</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NIPagingScrollViewDataSource&gt; dataSource;
-<a name="l00072"></a><a class="code" href="interface_n_i_paging_scroll_view.html#a95083f14ff553ac90045b1b0c8405ced">00072</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NIPagingScrollViewDelegate&gt; delegate;
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 <span class="comment">// It is highly recommended that you use this method to manage view recycling.</span>
-<a name="l00075"></a>00075 - (UIView&lt;<a class="code" href="protocol_n_i_paging_scroll_view_page-p.html" title="The protocol that a paging scroll view page should implement.">NIPagingScrollViewPage</a>&gt; *)dequeueReusablePageWithIdentifier:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)identifier;
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077 <span class="preprocessor">#pragma mark State</span>
-<a name="l00078"></a>00078 <span class="preprocessor"></span>
-<a name="l00079"></a><a class="code" href="interface_n_i_paging_scroll_view.html#a79afe66dc96e37fac5e84383c12e295e">00079</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) NSInteger centerPageIndex; <span class="comment">// Use setCenterPageIndex:animated: to animate to a given page.</span>
-<a name="l00080"></a>00080 - (void)setCenterPageIndex:(NSInteger)centerPageIndex animated:(BOOL)animated;
-<a name="l00081"></a>00081 
-<a name="l00082"></a><a class="code" href="interface_n_i_paging_scroll_view.html#a291d28e103bba1d22eccdac5b279d155">00082</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) NSInteger numberOfPages;
+<a name="l00020"></a>00020 <span class="preprocessor">#import &quot;NimbusCore.h&quot;</span>
+<a name="l00021"></a>00021 
+<a name="l00025"></a>00025 <span class="keyword">extern</span> <span class="keyword">const</span> NSInteger NIPagingScrollViewUnknownNumberOfPages;
+<a name="l00026"></a>00026 
+<a name="l00032"></a>00032 <span class="keyword">extern</span> <span class="keyword">const</span> CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034 <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_paging_scroll_view_data_source-p.html" title="The data source for NIPagingScrollView.">NIPagingScrollViewDataSource</a>;
+<a name="l00035"></a>00035 <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_paging_scroll_view_delegate-p.html" title="The delegate for NIPagingScrollView.">NIPagingScrollViewDelegate</a>;
+<a name="l00036"></a>00036 <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_paging_scroll_view_page-p.html" title="The protocol that a paging scroll view page should implement.">NIPagingScrollViewPage</a>;
+<a name="l00037"></a>00037 <span class="keyword">@class</span> <a class="code" href="interface_n_i_view_recycler.html" title="An object for efficiently reusing views by recycling and dequeuing them from a pool of views...">NIViewRecycler</a>;
+<a name="l00038"></a>00038 
+<a name="l00044"></a><a class="code" href="interface_n_i_paging_scroll_view.html">00044</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_paging_scroll_view.html" title="A paged scroll view that shows a series of pages.">NIPagingScrollView</a> : UIView &lt;UIScrollViewDelegate&gt; {
+<a name="l00045"></a>00045 <span class="keyword">@private</span>
+<a name="l00046"></a>00046   <span class="comment">// Views</span>
+<a name="l00047"></a>00047   UIScrollView* _pagingScrollView;
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049   <span class="comment">// Pages</span>
+<a name="l00050"></a>00050   NSMutableSet* _visiblePages;
+<a name="l00051"></a>00051   <a class="code" href="interface_n_i_view_recycler.html" title="An object for efficiently reusing views by recycling and dequeuing them from a pool of views...">NIViewRecycler</a>* _viewRecycler;
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053   <span class="comment">// Configurable Properties</span>
+<a name="l00054"></a>00054   CGFloat _pageHorizontalMargin;
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056   <span class="comment">// State Information</span>
+<a name="l00057"></a>00057   NSInteger _firstVisiblePageIndexBeforeRotation;
+<a name="l00058"></a>00058   CGFloat _percentScrolledIntoFirstVisiblePage;
+<a name="l00059"></a>00059   BOOL _isModifyingContentOffset;
+<a name="l00060"></a>00060   BOOL _isAnimatingToPage;
+<a name="l00061"></a>00061   NSInteger _centerPageIndex;
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063   <span class="comment">// Cached Data Source Information</span>
+<a name="l00064"></a>00064   NSInteger _numberOfPages;
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066   id&lt;NIPagingScrollViewDataSource&gt; _dataSource;
+<a name="l00067"></a>00067   id&lt;NIPagingScrollViewDelegate&gt; _delegate;
+<a name="l00068"></a>00068 }
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 <span class="preprocessor">#pragma mark Data Source</span>
+<a name="l00071"></a>00071 <span class="preprocessor"></span>
+<a name="l00072"></a>00072 - (void)reloadData;
+<a name="l00073"></a><a class="code" href="interface_n_i_paging_scroll_view.html#af570769c867a0c331da0c638726537d6">00073</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NIPagingScrollViewDataSource&gt; dataSource;
+<a name="l00074"></a><a class="code" href="interface_n_i_paging_scroll_view.html#a95083f14ff553ac90045b1b0c8405ced">00074</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NIPagingScrollViewDelegate&gt; delegate;
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 <span class="comment">// It is highly recommended that you use this method to manage view recycling.</span>
+<a name="l00077"></a>00077 - (UIView&lt;<a class="code" href="protocol_n_i_paging_scroll_view_page-p.html" title="The protocol that a paging scroll view page should implement.">NIPagingScrollViewPage</a>&gt; *)dequeueReusablePageWithIdentifier:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)identifier;
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 <span class="preprocessor">#pragma mark State</span>
+<a name="l00080"></a>00080 <span class="preprocessor"></span>
+<a name="l00081"></a><a class="code" href="interface_n_i_paging_scroll_view.html#a79afe66dc96e37fac5e84383c12e295e">00081</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) NSInteger centerPageIndex; <span class="comment">// Use moveToPageAtIndex:animated: to animate to a given page.</span>
+<a name="l00082"></a>00082 - (void)setCenterPageIndex:(NSInteger)centerPageIndex animated:(BOOL)animated __NI_DEPRECATED_METHOD;
 <a name="l00083"></a>00083 
-<a name="l00084"></a>00084 <span class="preprocessor">#pragma mark Configuring Presentation</span>
-<a name="l00085"></a>00085 <span class="preprocessor"></span>
-<a name="l00086"></a><a class="code" href="interface_n_i_paging_scroll_view.html#a430770a2cd91e7f90175d11b12f5edf0">00086</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) CGFloat pageHorizontalMargin;
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088 <span class="preprocessor">#pragma mark Changing the Visible Page</span>
-<a name="l00089"></a>00089 <span class="preprocessor"></span>
-<a name="l00090"></a>00090 - (BOOL)hasNext;
-<a name="l00091"></a>00091 - (BOOL)hasPrevious;
-<a name="l00092"></a>00092 - (void)moveToNextAnimated:(BOOL)animated;
-<a name="l00093"></a>00093 - (void)moveToPreviousAnimated:(BOOL)animated;
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 <span class="preprocessor">#pragma mark Rotating the Scroll View</span>
-<a name="l00096"></a>00096 <span class="preprocessor"></span>
-<a name="l00097"></a>00097 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
-<a name="l00098"></a>00098 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100 <span class="preprocessor">#pragma mark Subclassing</span>
-<a name="l00101"></a>00101 <span class="preprocessor"></span>
-<a name="l00102"></a><a class="code" href="interface_n_i_paging_scroll_view.html#a9358f63bdc6dfbde63402feede6f9058">00102</a> <span class="keyword">@property</span> (nonatomic, readonly, retain) UIScrollView* pagingScrollView;
-<a name="l00103"></a><a class="code" href="interface_n_i_paging_scroll_view.html#a8a0b2999b1eb90d34afae00b4e00e147">00103</a> <span class="keyword">@property</span> (nonatomic, readonly, copy) NSMutableSet* visiblePages;
-<a name="l00104"></a>00104 
-<a name="l00105"></a>00105 - (void)willDisplayPage:(UIView&lt;<a class="code" href="protocol_n_i_paging_scroll_view_page-p.html" title="The protocol that a paging scroll view page should implement.">NIPagingScrollViewPage</a>&gt; *)pageView;
-<a name="l00106"></a>00106 - (void)didRecyclePage:(UIView&lt;<a class="code" href="protocol_n_i_paging_scroll_view_page-p.html" title="The protocol that a paging scroll view page should implement.">NIPagingScrollViewPage</a>&gt; *)pageView;
+<a name="l00084"></a><a class="code" href="interface_n_i_paging_scroll_view.html#a291d28e103bba1d22eccdac5b279d155">00084</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) NSInteger numberOfPages;
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086 <span class="preprocessor">#pragma mark Configuring Presentation</span>
+<a name="l00087"></a>00087 <span class="preprocessor"></span>
+<a name="l00088"></a><a class="code" href="interface_n_i_paging_scroll_view.html#a430770a2cd91e7f90175d11b12f5edf0">00088</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) CGFloat pageHorizontalMargin;
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090 <span class="preprocessor">#pragma mark Changing the Visible Page</span>
+<a name="l00091"></a>00091 <span class="preprocessor"></span>
+<a name="l00092"></a>00092 - (BOOL)hasNext;
+<a name="l00093"></a>00093 - (BOOL)hasPrevious;
+<a name="l00094"></a>00094 - (void)moveToNextAnimated:(BOOL)animated;
+<a name="l00095"></a>00095 - (void)moveToPreviousAnimated:(BOOL)animated;
+<a name="l00096"></a>00096 - (void)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated;
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 <span class="preprocessor">#pragma mark Rotating the Scroll View</span>
+<a name="l00099"></a>00099 <span class="preprocessor"></span>
+<a name="l00100"></a>00100 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
+<a name="l00101"></a>00101 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 <span class="preprocessor">#pragma mark Subclassing</span>
+<a name="l00104"></a>00104 <span class="preprocessor"></span>
+<a name="l00105"></a><a class="code" href="interface_n_i_paging_scroll_view.html#a9358f63bdc6dfbde63402feede6f9058">00105</a> <span class="keyword">@property</span> (nonatomic, readonly, retain) UIScrollView* pagingScrollView;
+<a name="l00106"></a><a class="code" href="interface_n_i_paging_scroll_view.html#a8a0b2999b1eb90d34afae00b4e00e147">00106</a> <span class="keyword">@property</span> (nonatomic, readonly, copy) NSMutableSet* visiblePages;
 <a name="l00107"></a>00107 
-<a name="l00108"></a>00108 <span class="keyword">@end</span>
-<a name="l00109"></a>00109 
+<a name="l00108"></a>00108 - (void)willDisplayPage:(UIView&lt;<a class="code" href="protocol_n_i_paging_scroll_view_page-p.html" title="The protocol that a paging scroll view page should implement.">NIPagingScrollViewPage</a>&gt; *)pageView;
+<a name="l00109"></a>00109 - (void)didRecyclePage:(UIView&lt;<a class="code" href="protocol_n_i_paging_scroll_view_page-p.html" title="The protocol that a paging scroll view page should implement.">NIPagingScrollViewPage</a>&gt; *)pageView;
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 <span class="keyword">@end</span>
+<a name="l00112"></a>00112 
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

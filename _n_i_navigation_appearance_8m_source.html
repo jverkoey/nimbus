@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -105,11 +105,11 @@
 <a name="l00035"></a>00035   UIStatusBarStyle _statusBarStyle;
 <a name="l00036"></a>00036 }
 <a name="l00037"></a>00037 
-<a name="l00041"></a>00041 <span class="keyword">@property</span> (nonatomic, readwrite, assign) BOOL navBarTranslucent;
+<a name="l00041"></a>00041 <span class="keyword">@property</span> (nonatomic, readonly, assign) BOOL navBarTranslucent;
 <a name="l00042"></a>00042 
-<a name="l00046"></a>00046 <span class="keyword">@property</span> (nonatomic, readwrite, assign) UIBarStyle navBarStyle;
+<a name="l00046"></a>00046 <span class="keyword">@property</span> (nonatomic, readonly, assign) UIBarStyle navBarStyle;
 <a name="l00047"></a>00047 
-<a name="l00051"></a>00051 <span class="keyword">@property</span> (nonatomic, readwrite, assign) UIStatusBarStyle statusBarStyle;
+<a name="l00051"></a>00051 <span class="keyword">@property</span> (nonatomic, readonly, assign) UIStatusBarStyle statusBarStyle;
 <a name="l00052"></a>00052 
 <a name="l00053"></a>00053 
 <a name="l00057"></a>00057 - (id)initForNavigationController:(UINavigationController *)navigationController;
@@ -134,7 +134,7 @@
 <a name="l00080"></a>00080 
 <a name="l00081"></a>00081 
 <a name="l00083"></a><a class="code" href="interface_n_i_navigation_appearance.html#aeebe1720743b94a3248fb49db318e306">00083</a> + (void)popAppearanceForNavigationController:(UINavigationController *)navigationController animated:(BOOL)animated {
-<a name="l00084"></a>00084   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([sAppearanceStack <a class="code" href="interface_n_i_navigation_appearance.html#abe79248b75d244c86de514d5d6af23b6" title="Number of items in the appearance stack.">count</a>] &gt; 0);
+<a name="l00084"></a>00084   NIDASSERT([sAppearanceStack <a class="code" href="interface_n_i_navigation_appearance.html#abe79248b75d244c86de514d5d6af23b6" title="Number of items in the appearance stack.">count</a>] &gt; 0);
 <a name="l00085"></a>00085   <span class="keywordflow">if</span> ([sAppearanceStack <a class="code" href="interface_n_i_navigation_appearance.html#abe79248b75d244c86de514d5d6af23b6" title="Number of items in the appearance stack.">count</a>]) {
 <a name="l00086"></a>00086     NINavigationAppearanceSnapshot *snapshot = [sAppearanceStack objectAtIndex:0];
 <a name="l00087"></a>00087     [snapshot restoreForNavigationController:navigationController animated:animated];
@@ -183,14 +183,13 @@
 <a name="l00133"></a>00133 
 <a name="l00134"></a>00134 
 <a name="l00136"></a>00136 - (void)restoreForNavigationController:(UINavigationController *)navigationController animated:(BOOL)animated {
-<a name="l00137"></a>00137   [[UIApplication sharedApplication] setStatusBarStyle: _statusBarStyle
-<a name="l00138"></a>00138                                               animated: animated];
-<a name="l00139"></a>00139   navigationController.navigationBar.barStyle = _navBarStyle;
-<a name="l00140"></a>00140   navigationController.navigationBar.translucent = _navBarTranslucent;
-<a name="l00141"></a>00141 }
+<a name="l00137"></a>00137   [[UIApplication sharedApplication] setStatusBarStyle:self.statusBarStyle animated:animated];
+<a name="l00138"></a>00138   navigationController.navigationBar.barStyle = <span class="keyword">self</span>.navBarStyle;
+<a name="l00139"></a>00139   navigationController.navigationBar.translucent = <span class="keyword">self</span>.navBarTranslucent;
+<a name="l00140"></a>00140 }
+<a name="l00141"></a>00141 
 <a name="l00142"></a>00142 
-<a name="l00143"></a>00143 
-<a name="l00144"></a>00144 <span class="keyword">@end</span>
+<a name="l00143"></a>00143 <span class="keyword">@end</span>
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

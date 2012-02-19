@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -204,7 +204,7 @@
 <a name="l00140"></a>00140                                imageSize:(CGSize)imageSize
 <a name="l00141"></a>00141                              contentMode:(UIViewContentMode)contentMode
 <a name="l00142"></a>00142                             scaleOptions:(<a class="code" href="group___network-_image-_user-_interface.html#ga44d338b3b1eae1d2a3bb8fd985acf856" title="Flags for modifying the way cropping is handled when scaling images to fit or fill.">NINetworkImageViewScaleOptions</a>)scaleOptions {
-<a name="l00143"></a>00143   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(<a class="code" href="group___non-_empty-_collection-_testing.html#ga8a7eaa0c885803d11397e454631cc175" title="Tests if an object is a non-nil string which is not empty.">NIIsStringWithAnyText</a>(cacheIdentifier));
+<a name="l00143"></a>00143   NIDASSERT(<a class="code" href="group___non-_empty-_collection-_testing.html#ga8a7eaa0c885803d11397e454631cc175" title="Tests if an object is a non-nil string which is not empty.">NIIsStringWithAnyText</a>(cacheIdentifier));
 <a name="l00144"></a>00144 
 <a name="l00145"></a>00145   <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* cacheKey = cacheIdentifier;
 <a name="l00146"></a>00146 
@@ -403,8 +403,8 @@
 <a name="l00363"></a>00363     <span class="comment">// We explicitly do not allow negative display sizes. Check the call stack to figure</span>
 <a name="l00364"></a>00364     <span class="comment">// out who is providing a negative display size. It&#39;s possible that displaySize is an</span>
 <a name="l00365"></a>00365     <span class="comment">// uninitialized CGSize structure.</span>
-<a name="l00366"></a>00366     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(displaySize.width &gt;= 0);
-<a name="l00367"></a>00367     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(displaySize.height &gt;= 0);
+<a name="l00366"></a>00366     NIDASSERT(displaySize.width &gt;= 0);
+<a name="l00367"></a>00367     NIDASSERT(displaySize.height &gt;= 0);
 <a name="l00368"></a>00368 
 <a name="l00369"></a>00369     <span class="comment">// If an invalid display size is provided, use the image view&#39;s frame instead.</span>
 <a name="l00370"></a>00370     <span class="keywordflow">if</span> (0 &gt;= displaySize.width || 0 &gt;= displaySize.height) {
@@ -430,70 +430,72 @@
 <a name="l00390"></a>00390         [<span class="keyword">self</span>.delegate networkImageView:self didLoadImage:self.image];
 <a name="l00391"></a>00391       }
 <a name="l00392"></a>00392 
-<a name="l00393"></a>00393     } <span class="keywordflow">else</span> {
-<a name="l00394"></a>00394       <span class="comment">// Unable to load the image from memory, so let&#39;s fire off the operation now.</span>
-<a name="l00395"></a>00395       operation.delegate = <span class="keyword">self</span>;
-<a name="l00396"></a>00396 
-<a name="l00397"></a>00397       operation.imageCropRect = cropRect;
-<a name="l00398"></a>00398       operation.scaleOptions = <span class="keyword">self</span>.scaleOptions;
-<a name="l00399"></a>00399       operation.interpolationQuality = <span class="keyword">self</span>.interpolationQuality;
-<a name="l00400"></a>00400       <span class="keywordflow">if</span> (<span class="keyword">self</span>.<a class="code" href="interface_n_i_network_image_view.html#ae89362b1efb1347953529ddec044787f" title="A flag for enabling the resizing of images for display.">sizeForDisplay</a>) {
-<a name="l00401"></a>00401         operation.imageDisplaySize = displaySize;
-<a name="l00402"></a>00402         operation.imageContentMode = contentMode;
-<a name="l00403"></a>00403       }
-<a name="l00404"></a>00404 
-<a name="l00405"></a>00405       <span class="keyword">self</span>.operation = operation;
+<a name="l00393"></a>00393       [<span class="keyword">self</span> networkImageViewDidLoadImage:image];
+<a name="l00394"></a>00394 
+<a name="l00395"></a>00395     } <span class="keywordflow">else</span> {
+<a name="l00396"></a>00396       <span class="comment">// Unable to load the image from memory, so let&#39;s fire off the operation now.</span>
+<a name="l00397"></a>00397       operation.delegate = <span class="keyword">self</span>;
+<a name="l00398"></a>00398 
+<a name="l00399"></a>00399       operation.imageCropRect = cropRect;
+<a name="l00400"></a>00400       operation.scaleOptions = <span class="keyword">self</span>.scaleOptions;
+<a name="l00401"></a>00401       operation.interpolationQuality = <span class="keyword">self</span>.interpolationQuality;
+<a name="l00402"></a>00402       <span class="keywordflow">if</span> (<span class="keyword">self</span>.<a class="code" href="interface_n_i_network_image_view.html#ae89362b1efb1347953529ddec044787f" title="A flag for enabling the resizing of images for display.">sizeForDisplay</a>) {
+<a name="l00403"></a>00403         operation.imageDisplaySize = displaySize;
+<a name="l00404"></a>00404         operation.imageContentMode = contentMode;
+<a name="l00405"></a>00405       }
 <a name="l00406"></a>00406 
-<a name="l00407"></a>00407       [<span class="keyword">self</span>.networkOperationQueue addOperation:self.operation];
-<a name="l00408"></a>00408     }
-<a name="l00409"></a>00409   }
-<a name="l00410"></a>00410 }
-<a name="l00411"></a>00411 
-<a name="l00412"></a>00412 
-<a name="l00414"></a><a class="code" href="interface_n_i_network_image_view.html#a7cce26c40c058f1c8b7265b971b2abc5">00414</a> - (void)<a class="code" href="interface_n_i_network_image_view.html#a7cce26c40c058f1c8b7265b971b2abc5" title="Kill any network requests and replace the displayed image with the initial image.">prepareForReuse</a> {
-<a name="l00415"></a>00415   [<span class="keyword">self</span> cancelOperation];
-<a name="l00416"></a>00416 
-<a name="l00417"></a>00417   [<span class="keyword">self</span> setImage:self.initialImage];
-<a name="l00418"></a>00418 }
-<a name="l00419"></a>00419 
-<a name="l00420"></a>00420 
-<a name="l00423"></a>00423 <span class="preprocessor">#pragma mark -</span>
-<a name="l00424"></a>00424 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Properties</span>
-<a name="l00425"></a>00425 <span class="preprocessor"></span>
-<a name="l00426"></a>00426 
-<a name="l00428"></a>00428 - (void)setInitialImage:(UIImage *)initialImage {
-<a name="l00429"></a>00429   <span class="keywordflow">if</span> (_initialImage != initialImage) {
-<a name="l00430"></a>00430     BOOL updateViewImage = (_initialImage == <span class="keyword">self</span>.image);
-<a name="l00431"></a>00431     [_initialImage release];
-<a name="l00432"></a>00432     _initialImage = [initialImage retain];
-<a name="l00433"></a>00433 
-<a name="l00434"></a>00434     <span class="keywordflow">if</span> (updateViewImage) {
-<a name="l00435"></a>00435       [<span class="keyword">self</span> setImage:_initialImage];
-<a name="l00436"></a>00436     }
-<a name="l00437"></a>00437   }
-<a name="l00438"></a>00438 }
-<a name="l00439"></a>00439 
-<a name="l00440"></a>00440 
-<a name="l00442"></a>00442 - (BOOL)isLoading {
-<a name="l00443"></a>00443   <span class="keywordflow">return</span> nil != <span class="keyword">self</span>.operation;
-<a name="l00444"></a>00444 }
-<a name="l00445"></a>00445 
-<a name="l00446"></a>00446 
-<a name="l00448"></a>00448 - (void)setNetworkOperationQueue:(NSOperationQueue *)queue {
-<a name="l00449"></a>00449   <span class="comment">// Don&#39;t allow a nil network operation queue.</span>
-<a name="l00450"></a>00450   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != queue);
-<a name="l00451"></a>00451   <span class="keywordflow">if</span> (nil == queue) {
-<a name="l00452"></a>00452     queue = [<a class="code" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> <a class="code" href="interface_nimbus.html#a1b76dec78c8c30a174aaea7a6f859b8e" title="Access the global network operation queue.">networkOperationQueue</a>];
-<a name="l00453"></a>00453   }
-<a name="l00454"></a>00454   <span class="keywordflow">if</span> (queue != _networkOperationQueue) {
-<a name="l00455"></a>00455     [_networkOperationQueue release];
-<a name="l00456"></a>00456     _networkOperationQueue = [queue retain];
-<a name="l00457"></a>00457   }
-<a name="l00458"></a>00458 }
-<a name="l00459"></a>00459 
-<a name="l00460"></a>00460 
-<a name="l00461"></a>00461 <span class="keyword">@end</span>
+<a name="l00407"></a>00407       <span class="keyword">self</span>.operation = operation;
+<a name="l00408"></a>00408 
+<a name="l00409"></a>00409       [<span class="keyword">self</span>.networkOperationQueue addOperation:self.operation];
+<a name="l00410"></a>00410     }
+<a name="l00411"></a>00411   }
+<a name="l00412"></a>00412 }
+<a name="l00413"></a>00413 
+<a name="l00414"></a>00414 
+<a name="l00416"></a><a class="code" href="interface_n_i_network_image_view.html#a7cce26c40c058f1c8b7265b971b2abc5">00416</a> - (void)<a class="code" href="interface_n_i_network_image_view.html#a7cce26c40c058f1c8b7265b971b2abc5" title="Kill any network requests and replace the displayed image with the initial image.">prepareForReuse</a> {
+<a name="l00417"></a>00417   [<span class="keyword">self</span> cancelOperation];
+<a name="l00418"></a>00418 
+<a name="l00419"></a>00419   [<span class="keyword">self</span> setImage:self.initialImage];
+<a name="l00420"></a>00420 }
+<a name="l00421"></a>00421 
+<a name="l00422"></a>00422 
+<a name="l00425"></a>00425 <span class="preprocessor">#pragma mark -</span>
+<a name="l00426"></a>00426 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Properties</span>
+<a name="l00427"></a>00427 <span class="preprocessor"></span>
+<a name="l00428"></a>00428 
+<a name="l00430"></a>00430 - (void)setInitialImage:(UIImage *)initialImage {
+<a name="l00431"></a>00431   <span class="keywordflow">if</span> (_initialImage != initialImage) {
+<a name="l00432"></a>00432     BOOL updateViewImage = (_initialImage == <span class="keyword">self</span>.image);
+<a name="l00433"></a>00433     [_initialImage release];
+<a name="l00434"></a>00434     _initialImage = [initialImage retain];
+<a name="l00435"></a>00435 
+<a name="l00436"></a>00436     <span class="keywordflow">if</span> (updateViewImage) {
+<a name="l00437"></a>00437       [<span class="keyword">self</span> setImage:_initialImage];
+<a name="l00438"></a>00438     }
+<a name="l00439"></a>00439   }
+<a name="l00440"></a>00440 }
+<a name="l00441"></a>00441 
+<a name="l00442"></a>00442 
+<a name="l00444"></a>00444 - (BOOL)isLoading {
+<a name="l00445"></a>00445   <span class="keywordflow">return</span> nil != <span class="keyword">self</span>.operation;
+<a name="l00446"></a>00446 }
+<a name="l00447"></a>00447 
+<a name="l00448"></a>00448 
+<a name="l00450"></a>00450 - (void)setNetworkOperationQueue:(NSOperationQueue *)queue {
+<a name="l00451"></a>00451   <span class="comment">// Don&#39;t allow a nil network operation queue.</span>
+<a name="l00452"></a>00452   NIDASSERT(nil != queue);
+<a name="l00453"></a>00453   <span class="keywordflow">if</span> (nil == queue) {
+<a name="l00454"></a>00454     queue = [<a class="code" href="interface_nimbus.html" title="The Nimbus state interface.">Nimbus</a> <a class="code" href="interface_nimbus.html#a1b76dec78c8c30a174aaea7a6f859b8e" title="Access the global network operation queue.">networkOperationQueue</a>];
+<a name="l00455"></a>00455   }
+<a name="l00456"></a>00456   <span class="keywordflow">if</span> (queue != _networkOperationQueue) {
+<a name="l00457"></a>00457     [_networkOperationQueue release];
+<a name="l00458"></a>00458     _networkOperationQueue = [queue retain];
+<a name="l00459"></a>00459   }
+<a name="l00460"></a>00460 }
+<a name="l00461"></a>00461 
 <a name="l00462"></a>00462 
+<a name="l00463"></a>00463 <span class="keyword">@end</span>
+<a name="l00464"></a>00464 
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

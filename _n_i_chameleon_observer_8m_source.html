@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -123,7 +123,7 @@
 <a name="l00050"></a><a class="code" href="interface_n_i_chameleon_observer.html#aef2448bb149ab3f0aa3a69549060cec7">00050</a> - (id)initWithStylesheetCache:(<a class="code" href="interface_n_i_stylesheet_cache.html" title="A simple in-memory cache for stylesheets.">NIStylesheetCache</a> *)stylesheetCache host:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)host {
 <a name="l00051"></a>00051   <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super init])) {
 <a name="l00052"></a>00052     <span class="comment">// You must provide a stylesheet cache.</span>
-<a name="l00053"></a>00053     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != stylesheetCache);
+<a name="l00053"></a>00053     NIDASSERT(nil != stylesheetCache);
 <a name="l00054"></a>00054     _stylesheetCache = [stylesheetCache retain];
 <a name="l00055"></a>00055     _stylesheetPaths = [[NSMutableArray alloc] init];
 <a name="l00056"></a>00056     _operations = [[NSOperationQueue alloc] init];
@@ -151,7 +151,7 @@
 <a name="l00078"></a>00078         [fm removeItemAtPath:cachePath error:&amp;error];
 <a name="l00079"></a>00079         error = nil;
 <a name="l00080"></a>00080         [fm copyItemAtPath:path toPath:cachePath error:&amp;error];
-<a name="l00081"></a>00081         <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil == error);
+<a name="l00081"></a>00081         NIDASSERT(nil == error);
 <a name="l00082"></a>00082       }
 <a name="l00083"></a>00083     }
 <a name="l00084"></a>00084   }
@@ -202,7 +202,7 @@
 <a name="l00135"></a>00135     
 <a name="l00136"></a>00136     <span class="keywordflow">for</span> (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* iteratingPath in _stylesheetPaths) {
 <a name="l00137"></a>00137       stylesheet = [_stylesheetCache stylesheetWithPath:iteratingPath loadFromDisk:NO];
-<a name="l00138"></a>00138       <span class="keywordflow">if</span> ([stylesheet.<a class="code" href="interface_n_i_stylesheet.html#a8b4cf64369996018bd95328f78aba762" title="A set of filenames for the dependencies of this stylesheet.">dependencies</a> containsObject:path]) {
+<a name="l00138"></a>00138       <span class="keywordflow">if</span> ([stylesheet.<a class="code" href="interface_n_i_stylesheet.html#a8b4cf64369996018bd95328f78aba762" title="A set of NSString filenames for the  in this stylesheet.">dependencies</a> containsObject:path]) {
 <a name="l00139"></a>00139         <span class="comment">// This stylesheet has the changed stylesheet as a dependency so let&#39;s refresh it.</span>
 <a name="l00140"></a>00140         <span class="keywordflow">if</span> ([stylesheet loadFromPath:iteratingPath pathPrefix:rootPath delegate:<span class="keyword">self</span>]) {
 <a name="l00141"></a>00141           [changedStylesheets addObject:stylesheet];
@@ -259,7 +259,7 @@
 <a name="l00200"></a>00200   NSURL* url = [NSURL URLWithString:[<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">_host</a> stringByAppendingString:@&quot;watch&quot;]];
 <a name="l00201"></a>00201   <a class="code" href="interface_n_i_network_request_operation.html" title="An operation that makes a network request.">NINetworkRequestOperation</a>* op = [[[<a class="code" href="interface_n_i_network_request_operation.html" title="An operation that makes a network request.">NINetworkRequestOperation</a> alloc] initWithURL:url] autorelease];
 <a name="l00202"></a>00202   op.<a class="code" href="interface_n_i_operation.html#af4051a42c46f1ddb9d308daf9596c40d" title="The delegate through which changes are notified for this operation.">delegate</a> = <span class="keyword">self</span>;
-<a name="l00203"></a>00203   op.timeout = kTimeoutInterval;
+<a name="l00203"></a>00203   op.<a class="code" href="interface_n_i_network_request_operation.html#aa4bca4d57ffcac2986056815151b1a05" title="The number of seconds that may pass before a request gives up and fails.">timeout</a> = kTimeoutInterval;
 <a name="l00204"></a>00204   [_operations addOperation:op];
 <a name="l00205"></a>00205 }
 <a name="l00206"></a>00206 

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -185,7 +185,7 @@
 <a name="l00117"></a>00117 
 <a name="l00118"></a>00118 
 <a name="l00120"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#a864739605c7f5ba72ae1a762e7283435">00120</a> - (UIColor *)<a class="code" href="interface_n_i_c_s_s_ruleset.html#a864739605c7f5ba72ae1a762e7283435" title="Returns the text color.">textColor</a> {
-<a name="l00121"></a>00121   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a8bcb78257ff8311b9cf858aec5ed49c2" title="Returns YES if the ruleset has a &#39;color&#39; property.">hasTextColor</a>]);
+<a name="l00121"></a>00121   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a8bcb78257ff8311b9cf858aec5ed49c2" title="Returns YES if the ruleset has a &#39;color&#39; property.">hasTextColor</a>]);
 <a name="l00122"></a>00122   <span class="keywordflow">if</span> (!_is.cached.TextColor) {
 <a name="l00123"></a>00123     _textColor = [[[<span class="keyword">self</span> class] colorFromCssValues:[_ruleset objectForKey:kTextColorKey]
 <a name="l00124"></a>00124                             numberOfConsumedTokens:nil] retain];
@@ -201,7 +201,7 @@
 <a name="l00135"></a>00135 
 <a name="l00136"></a>00136 
 <a name="l00138"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#ae1e73ede4e4642d665d4375f2ffa83d5">00138</a> - (UITextAlignment)<a class="code" href="interface_n_i_c_s_s_ruleset.html#ae1e73ede4e4642d665d4375f2ffa83d5" title="Returns the text alignment.">textAlignment</a> {
-<a name="l00139"></a>00139   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#afc44d46c26cfed01a55a2be897c246eb" title="Returns YES if the ruleset has a &#39;text-align&#39; property.">hasTextAlignment</a>]);
+<a name="l00139"></a>00139   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#afc44d46c26cfed01a55a2be897c246eb" title="Returns YES if the ruleset has a &#39;text-align&#39; property.">hasTextAlignment</a>]);
 <a name="l00140"></a>00140   <span class="keywordflow">if</span> (!_is.cached.TextAlignment) {
 <a name="l00141"></a>00141     _textAlignment = [[<span class="keyword">self</span> class] textAlignmentFromCssValues:[_ruleset objectForKey:kTextAlignmentKey]];
 <a name="l00142"></a>00142     _is.cached.TextAlignment = YES;
@@ -220,7 +220,7 @@
 <a name="l00156"></a>00156 
 <a name="l00157"></a>00157 
 <a name="l00159"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#a570711f9469eb88afcedae759343c725">00159</a> - (UIFont *)<a class="code" href="interface_n_i_c_s_s_ruleset.html#a570711f9469eb88afcedae759343c725" title="Returns the font.">font</a> {
-<a name="l00160"></a>00160   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a43026e9c8cf7c1f420c653b74f3943ad" title="Returns YES if the ruleset has a value for any of the following properties: font, font-family...">hasFont</a>]);
+<a name="l00160"></a>00160   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a43026e9c8cf7c1f420c653b74f3943ad" title="Returns YES if the ruleset has a value for any of the following properties: font, font-family...">hasFont</a>]);
 <a name="l00161"></a>00161   
 <a name="l00162"></a>00162   <span class="keywordflow">if</span> (_is.cached.Font) {
 <a name="l00163"></a>00163     <span class="keywordflow">return</span> _font;
@@ -233,13 +233,13 @@
 <a name="l00170"></a>00170   
 <a name="l00171"></a>00171   NSArray* values = [_ruleset objectForKey:kFontWeightKey];
 <a name="l00172"></a>00172   <span class="keywordflow">if</span> (nil != values) {
-<a name="l00173"></a>00173     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([values count] == 1);
+<a name="l00173"></a>00173     NIDASSERT([values count] == 1);
 <a name="l00174"></a>00174     fontIsBold = [[values objectAtIndex:0] isEqualToString:@&quot;bold&quot;];
 <a name="l00175"></a>00175   }
 <a name="l00176"></a>00176   
 <a name="l00177"></a>00177   values = [_ruleset objectForKey:kFontStyleKey];
 <a name="l00178"></a>00178   <span class="keywordflow">if</span> (nil != values) {
-<a name="l00179"></a>00179     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([values count] == 1);
+<a name="l00179"></a>00179     NIDASSERT([values count] == 1);
 <a name="l00180"></a>00180     fontIsItalic = [[values objectAtIndex:0] isEqualToString:@&quot;italic&quot;];
 <a name="l00181"></a>00181   }
 <a name="l00182"></a>00182 
@@ -253,14 +253,14 @@
 <a name="l00190"></a>00190   <span class="keywordflow">for</span> (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* name in [order reverseObjectEnumerator]) {
 <a name="l00191"></a>00191     <span class="keywordflow">if</span> (!hasSetFontName &amp;&amp; [name isEqualToString:kFontFamilyKey]) {
 <a name="l00192"></a>00192       values = [_ruleset objectForKey:name];
-<a name="l00193"></a>00193       <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([values count] == 1); <span class="keywordflow">if</span> ([values count] &lt; 1) { <span class="keywordflow">continue</span>; }
+<a name="l00193"></a>00193       NIDASSERT([values count] == 1); <span class="keywordflow">if</span> ([values count] &lt; 1) { <span class="keywordflow">continue</span>; }
 <a name="l00194"></a>00194       fontName = [[values objectAtIndex:0] stringByTrimmingCharactersInSet:
 <a name="l00195"></a>00195                   [NSCharacterSet characterSetWithCharactersInString:@&quot;\&quot;&quot;]];
 <a name="l00196"></a>00196       hasSetFontName = YES;
 <a name="l00197"></a>00197 
 <a name="l00198"></a>00198     } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!hasSetFontSize &amp;&amp; [name isEqualToString:kFontSizeKey]) {
 <a name="l00199"></a>00199       values = [_ruleset objectForKey:name];
-<a name="l00200"></a>00200       <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([values count] == 1); <span class="keywordflow">if</span> ([values count] &lt; 1) { <span class="keywordflow">continue</span>; }
+<a name="l00200"></a>00200       NIDASSERT([values count] == 1); <span class="keywordflow">if</span> ([values count] &lt; 1) { <span class="keywordflow">continue</span>; }
 <a name="l00201"></a>00201       <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* value = [values objectAtIndex:0];
 <a name="l00202"></a>00202       <span class="keywordflow">if</span> ([value isEqualToString:<span class="stringliteral">@&quot;default&quot;</span>]) {
 <a name="l00203"></a>00203         fontSize = [UIFont systemFontSize];
@@ -272,7 +272,7 @@
 <a name="l00209"></a>00209 
 <a name="l00210"></a>00210     } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!hasSetFontSize &amp;&amp; !hasSetFontName &amp;&amp; [name isEqualToString:kFontKey]) {
 <a name="l00211"></a>00211       values = [_ruleset objectForKey:name];
-<a name="l00212"></a>00212       <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([values count] &lt;= 2); <span class="keywordflow">if</span> ([values count] &lt; 1) { <span class="keywordflow">continue</span>; }
+<a name="l00212"></a>00212       NIDASSERT([values count] &lt;= 2); <span class="keywordflow">if</span> ([values count] &lt; 1) { <span class="keywordflow">continue</span>; }
 <a name="l00213"></a>00213 
 <a name="l00214"></a>00214       <span class="keywordflow">if</span> ([values count] &gt;= 1) {
 <a name="l00215"></a>00215         <span class="comment">// Font size</span>
@@ -297,13 +297,13 @@
 <a name="l00234"></a>00234   <span class="keywordflow">if</span> (hasSetFontName) {
 <a name="l00235"></a>00235     <span class="comment">// If you wish to set the weight and style for a non-standard font family then you will need</span>
 <a name="l00236"></a>00236     <span class="comment">// to set the font family to the given style manually.</span>
-<a name="l00237"></a>00237     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(!fontIsItalic &amp;&amp; !fontIsBold);
+<a name="l00237"></a>00237     NIDASSERT(!fontIsItalic &amp;&amp; !fontIsBold);
 <a name="l00238"></a>00238     <a class="code" href="interface_n_i_c_s_s_ruleset.html#a570711f9469eb88afcedae759343c725" title="Returns the font.">font</a> = [UIFont fontWithName:fontName size:fontSize];
 <a name="l00239"></a>00239 
 <a name="l00240"></a>00240   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (fontIsItalic &amp;&amp; fontIsBold) {
 <a name="l00241"></a>00241     <span class="comment">// There is no easy way to create a bold italic font using the exposed UIFont methods.</span>
 <a name="l00242"></a>00242     <span class="comment">// Please consider using the exact font name instead. E.g. font-name: Helvetica-BoldObliquei</span>
-<a name="l00243"></a>00243     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(NO);
+<a name="l00243"></a>00243     NIDASSERT(NO);
 <a name="l00244"></a>00244     <a class="code" href="interface_n_i_c_s_s_ruleset.html#a570711f9469eb88afcedae759343c725" title="Returns the font.">font</a> = [UIFont systemFontOfSize:fontSize];
 <a name="l00245"></a>00245 
 <a name="l00246"></a>00246   } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (fontIsItalic) {
@@ -330,7 +330,7 @@
 <a name="l00268"></a>00268 
 <a name="l00269"></a>00269 
 <a name="l00271"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#a4ce8be8541d63448321c66d6f866cf45">00271</a> - (UIColor *)<a class="code" href="interface_n_i_c_s_s_ruleset.html#a4ce8be8541d63448321c66d6f866cf45" title="Returns the text shadow color.">textShadowColor</a> {
-<a name="l00272"></a>00272   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#aa0ad64569faeb2fa33319a29c3cb888a" title="Returns YES if the ruleset has a &#39;text-shadow&#39; property.">hasTextShadowColor</a>]);
+<a name="l00272"></a>00272   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#aa0ad64569faeb2fa33319a29c3cb888a" title="Returns YES if the ruleset has a &#39;text-shadow&#39; property.">hasTextShadowColor</a>]);
 <a name="l00273"></a>00273   <span class="keywordflow">if</span> (!_is.cached.TextShadowColor) {
 <a name="l00274"></a>00274     NSArray* values = [_ruleset objectForKey:kTextShadowKey];
 <a name="l00275"></a>00275     _textShadowColor = [[[<span class="keyword">self</span> class] colorFromCssValues:values numberOfConsumedTokens:nil] retain];
@@ -346,7 +346,7 @@
 <a name="l00286"></a>00286 
 <a name="l00287"></a>00287 
 <a name="l00289"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#a4baeb4750b0e408a2c8ba0fefa2c3486">00289</a> - (CGSize)<a class="code" href="interface_n_i_c_s_s_ruleset.html#a4baeb4750b0e408a2c8ba0fefa2c3486" title="Returns the text shadow offset.">textShadowOffset</a> {
-<a name="l00290"></a>00290   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a27b66da6ec37a5a3a88197578c5e26df" title="Returns YES if the ruleset has a &#39;text-shadow&#39; property.">hasTextShadowOffset</a>]);
+<a name="l00290"></a>00290   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a27b66da6ec37a5a3a88197578c5e26df" title="Returns YES if the ruleset has a &#39;text-shadow&#39; property.">hasTextShadowOffset</a>]);
 <a name="l00291"></a>00291   <span class="keywordflow">if</span> (!_is.cached.TextShadowOffset) {
 <a name="l00292"></a>00292     NSArray* values = [_ruleset objectForKey:kTextShadowKey];
 <a name="l00293"></a>00293     NSInteger skipTokens = 0;
@@ -371,10 +371,10 @@
 <a name="l00313"></a>00313 
 <a name="l00314"></a>00314 
 <a name="l00316"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#ae0053e834f39b6692bbc18c8308aa872">00316</a> - (UILineBreakMode)<a class="code" href="interface_n_i_c_s_s_ruleset.html#ae0053e834f39b6692bbc18c8308aa872" title="Returns the line break mode.">lineBreakMode</a> {
-<a name="l00317"></a>00317   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#ac3982526c97290d6194d3ab7931f8c1b" title="Returns YES if the ruleset has an &#39;-ios-line-break-mode&#39; property.">hasLineBreakMode</a>]);
+<a name="l00317"></a>00317   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#ac3982526c97290d6194d3ab7931f8c1b" title="Returns YES if the ruleset has an &#39;-ios-line-break-mode&#39; property.">hasLineBreakMode</a>]);
 <a name="l00318"></a>00318   <span class="keywordflow">if</span> (!_is.cached.LineBreakMode) {
 <a name="l00319"></a>00319     NSArray* values = [_ruleset objectForKey:kLineBreakModeKey];
-<a name="l00320"></a>00320     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([values count] == 1);
+<a name="l00320"></a>00320     NIDASSERT([values count] == 1);
 <a name="l00321"></a>00321     <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* value = [values objectAtIndex:0];
 <a name="l00322"></a>00322     <span class="keywordflow">if</span> ([value isEqualToString:<span class="stringliteral">@&quot;wrap&quot;</span>]) {
 <a name="l00323"></a>00323       _lineBreakMode = UILineBreakModeWordWrap;
@@ -403,10 +403,10 @@
 <a name="l00347"></a>00347 
 <a name="l00348"></a>00348 
 <a name="l00350"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#a3e9e9fd12ec496613d4bbb89699d8e96">00350</a> - (NSInteger)<a class="code" href="interface_n_i_c_s_s_ruleset.html#a3e9e9fd12ec496613d4bbb89699d8e96" title="Returns the number of lines.">numberOfLines</a> {
-<a name="l00351"></a>00351   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a27cb07ab01f2b53100b9261c9754225c" title="Returns YES if the ruleset has an &#39;-ios-number-of-lines&#39; property.">hasNumberOfLines</a>]);
+<a name="l00351"></a>00351   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a27cb07ab01f2b53100b9261c9754225c" title="Returns YES if the ruleset has an &#39;-ios-number-of-lines&#39; property.">hasNumberOfLines</a>]);
 <a name="l00352"></a>00352   <span class="keywordflow">if</span> (!_is.cached.NumberOfLines) {
 <a name="l00353"></a>00353     NSArray* values = [_ruleset objectForKey:kNumberOfLinesKey];
-<a name="l00354"></a>00354     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([values count] == 1);
+<a name="l00354"></a>00354     NIDASSERT([values count] == 1);
 <a name="l00355"></a>00355     _numberOfLines = [[values objectAtIndex:0] intValue];
 <a name="l00356"></a>00356     _is.cached.NumberOfLines = YES;
 <a name="l00357"></a>00357   }
@@ -420,10 +420,10 @@
 <a name="l00366"></a>00366 
 <a name="l00367"></a>00367 
 <a name="l00369"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#a37f7fefeaf1d6a8c6346d7fbfe97a04a">00369</a> - (CGFloat)<a class="code" href="interface_n_i_c_s_s_ruleset.html#a37f7fefeaf1d6a8c6346d7fbfe97a04a" title="Returns the minimum font size.">minimumFontSize</a> {
-<a name="l00370"></a>00370   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a462acac7a119dad12e9c1ce1d7bb88a7" title="Returns YES if the ruleset has an &#39;-ios-minimum-font-size&#39; property.">hasMinimumFontSize</a>]);
+<a name="l00370"></a>00370   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a462acac7a119dad12e9c1ce1d7bb88a7" title="Returns YES if the ruleset has an &#39;-ios-minimum-font-size&#39; property.">hasMinimumFontSize</a>]);
 <a name="l00371"></a>00371   <span class="keywordflow">if</span> (!_is.cached.MinimumFontSize) {
 <a name="l00372"></a>00372     NSArray* values = [_ruleset objectForKey:kMinimumFontSizeKey];
-<a name="l00373"></a>00373     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([values count] == 1);
+<a name="l00373"></a>00373     NIDASSERT([values count] == 1);
 <a name="l00374"></a>00374     _minimumFontSize = [[values objectAtIndex:0] floatValue];
 <a name="l00375"></a>00375     _is.cached.MinimumFontSize = YES;
 <a name="l00376"></a>00376   }
@@ -437,10 +437,10 @@
 <a name="l00385"></a>00385 
 <a name="l00386"></a>00386 
 <a name="l00388"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#a511c96e6daef29d03648045faaabc0cd">00388</a> - (BOOL)<a class="code" href="interface_n_i_c_s_s_ruleset.html#a511c96e6daef29d03648045faaabc0cd" title="Returns the adjustsFontSize value.">adjustsFontSize</a> {
-<a name="l00389"></a>00389   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#afdf16b770182574bd6ee8f9078c0e9d6" title="Returns YES if the ruleset has an &#39;-ios-adjusts-font-size&#39; property.">hasAdjustsFontSize</a>]);
+<a name="l00389"></a>00389   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#afdf16b770182574bd6ee8f9078c0e9d6" title="Returns YES if the ruleset has an &#39;-ios-adjusts-font-size&#39; property.">hasAdjustsFontSize</a>]);
 <a name="l00390"></a>00390   <span class="keywordflow">if</span> (!_is.cached.AdjustsFontSize) {
 <a name="l00391"></a>00391     NSArray* values = [_ruleset objectForKey:kAdjustsFontSizeKey];
-<a name="l00392"></a>00392     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([values count] == 1);
+<a name="l00392"></a>00392     NIDASSERT([values count] == 1);
 <a name="l00393"></a>00393     _adjustsFontSize = [[values objectAtIndex:0] boolValue];
 <a name="l00394"></a>00394     _is.cached.AdjustsFontSize = YES;
 <a name="l00395"></a>00395   }
@@ -454,10 +454,10 @@
 <a name="l00404"></a>00404 
 <a name="l00405"></a>00405 
 <a name="l00407"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#a1dfe156ec179cb27fbfecbc44e92edf7">00407</a> - (UIBaselineAdjustment)<a class="code" href="interface_n_i_c_s_s_ruleset.html#a1dfe156ec179cb27fbfecbc44e92edf7" title="Returns the baseline adjustment.">baselineAdjustment</a> {
-<a name="l00408"></a>00408   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a780b5a89f31bdd85c5d744f96155d851" title="Returns YES if the ruleset has an &#39;-ios-baseline-adjustment&#39; property.">hasBaselineAdjustment</a>]);
+<a name="l00408"></a>00408   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a780b5a89f31bdd85c5d744f96155d851" title="Returns YES if the ruleset has an &#39;-ios-baseline-adjustment&#39; property.">hasBaselineAdjustment</a>]);
 <a name="l00409"></a>00409   <span class="keywordflow">if</span> (!_is.cached.BaselineAdjustment) {
 <a name="l00410"></a>00410     NSArray* values = [_ruleset objectForKey:kBaselineAdjustmentKey];
-<a name="l00411"></a>00411     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([values count] == 1);
+<a name="l00411"></a>00411     NIDASSERT([values count] == 1);
 <a name="l00412"></a>00412     <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* value = [values objectAtIndex:0];
 <a name="l00413"></a>00413     <span class="keywordflow">if</span> ([value isEqualToString:<span class="stringliteral">@&quot;align-baselines&quot;</span>]) {
 <a name="l00414"></a>00414       _baselineAdjustment = UIBaselineAdjustmentAlignBaselines;
@@ -478,10 +478,10 @@
 <a name="l00430"></a>00430 
 <a name="l00431"></a>00431 
 <a name="l00433"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#ad94bb6b47a8a5d3cb799a10f619c2d8e">00433</a> - (CGFloat)<a class="code" href="interface_n_i_c_s_s_ruleset.html#ad94bb6b47a8a5d3cb799a10f619c2d8e" title="Returns the opacity.">opacity</a> {
-<a name="l00434"></a>00434   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a6de14c0db21e22cedc2411b27fee9af5" title="Returns YES if the ruleset has an &#39;opacity&#39; property.">hasOpacity</a>]);
+<a name="l00434"></a>00434   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a6de14c0db21e22cedc2411b27fee9af5" title="Returns YES if the ruleset has an &#39;opacity&#39; property.">hasOpacity</a>]);
 <a name="l00435"></a>00435   <span class="keywordflow">if</span> (!_is.cached.Opacity) {
 <a name="l00436"></a>00436     NSArray* values = [_ruleset objectForKey:kOpacityKey];
-<a name="l00437"></a>00437     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([values count] == 1);
+<a name="l00437"></a>00437     NIDASSERT([values count] == 1);
 <a name="l00438"></a>00438     _opacity = [[values objectAtIndex:0] floatValue];
 <a name="l00439"></a>00439     _is.cached.Opacity = YES;
 <a name="l00440"></a>00440   }
@@ -495,7 +495,7 @@
 <a name="l00449"></a>00449 
 <a name="l00450"></a>00450 
 <a name="l00452"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#a95cea880df1b62f0edccd102eba7eb98">00452</a> - (UIColor *)<a class="code" href="interface_n_i_c_s_s_ruleset.html#a95cea880df1b62f0edccd102eba7eb98" title="Returns the background color.">backgroundColor</a> {
-<a name="l00453"></a>00453   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#ac54580800f721c3ba0a92f577c6bf545" title="Returns YES if the ruleset has a &#39;background-color&#39; property.">hasBackgroundColor</a>]);
+<a name="l00453"></a>00453   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#ac54580800f721c3ba0a92f577c6bf545" title="Returns YES if the ruleset has a &#39;background-color&#39; property.">hasBackgroundColor</a>]);
 <a name="l00454"></a>00454   <span class="keywordflow">if</span> (!_is.cached.BackgroundColor) {
 <a name="l00455"></a>00455     _backgroundColor = [[[<span class="keyword">self</span> class] colorFromCssValues:[_ruleset objectForKey:kBackgroundColorKey]
 <a name="l00456"></a>00456                                   numberOfConsumedTokens:nil] retain];
@@ -511,10 +511,10 @@
 <a name="l00467"></a>00467 
 <a name="l00468"></a>00468 
 <a name="l00470"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#ad9c050d14f2083da8dafe32ca993bccb">00470</a> - (CGFloat)<a class="code" href="interface_n_i_c_s_s_ruleset.html#ad9c050d14f2083da8dafe32ca993bccb" title="Returns the border radius.">borderRadius</a> {
-<a name="l00471"></a>00471   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#aa5b2757a8a2d5ed3204d64aeb58a75df" title="Returns YES if the ruleset has a &#39;border-radius&#39; property.">hasBorderRadius</a>]);
+<a name="l00471"></a>00471   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#aa5b2757a8a2d5ed3204d64aeb58a75df" title="Returns YES if the ruleset has a &#39;border-radius&#39; property.">hasBorderRadius</a>]);
 <a name="l00472"></a>00472   <span class="keywordflow">if</span> (!_is.cached.BorderRadius) {
 <a name="l00473"></a>00473     NSArray* values = [_ruleset objectForKey:kBorderRadiusKey];
-<a name="l00474"></a>00474     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([values count] == 1);
+<a name="l00474"></a>00474     NIDASSERT([values count] == 1);
 <a name="l00475"></a>00475     _borderRadius = [[values objectAtIndex:0] floatValue];
 <a name="l00476"></a>00476     _is.cached.BorderRadius = YES;
 <a name="l00477"></a>00477   }
@@ -550,7 +550,7 @@
 <a name="l00509"></a>00509 
 <a name="l00510"></a>00510     } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!hasSetBorderWidth &amp;&amp; [name isEqualToString:kBorderWidthKey]) {
 <a name="l00511"></a>00511       values = [_ruleset objectForKey:name];
-<a name="l00512"></a>00512       <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([values count] == 1); <span class="keywordflow">if</span> ([values count] &lt; 1) { <span class="keywordflow">continue</span>; }
+<a name="l00512"></a>00512       NIDASSERT([values count] == 1); <span class="keywordflow">if</span> ([values count] &lt; 1) { <span class="keywordflow">continue</span>; }
 <a name="l00513"></a>00513       _borderWidth = [[values objectAtIndex:0] floatValue];
 <a name="l00514"></a>00514       hasSetBorderWidth = YES;
 <a name="l00515"></a>00515 
@@ -582,7 +582,7 @@
 <a name="l00541"></a>00541 
 <a name="l00542"></a>00542 
 <a name="l00544"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#a1f96bf068e1c1667557d2b566d204019">00544</a> - (UIColor *)<a class="code" href="interface_n_i_c_s_s_ruleset.html#a1f96bf068e1c1667557d2b566d204019" title="Returns the border color.">borderColor</a> {
-<a name="l00545"></a>00545   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a37a794d327087c3bf08fa08be1ae29ba" title="Returns YES if the ruleset has a &#39;border&#39; or &#39;border-color&#39; property.">hasBorderColor</a>]);
+<a name="l00545"></a>00545   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a37a794d327087c3bf08fa08be1ae29ba" title="Returns YES if the ruleset has a &#39;border&#39; or &#39;border-color&#39; property.">hasBorderColor</a>]);
 <a name="l00546"></a>00546 
 <a name="l00547"></a>00547   [<span class="keyword">self</span> cacheBorderValues];
 <a name="l00548"></a>00548   <span class="keywordflow">return</span> _borderColor;
@@ -596,7 +596,7 @@
 <a name="l00557"></a>00557 
 <a name="l00558"></a>00558 
 <a name="l00560"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#a433528c5d69f9fa29773cb15d49ed624">00560</a> - (CGFloat)<a class="code" href="interface_n_i_c_s_s_ruleset.html#a433528c5d69f9fa29773cb15d49ed624" title="Returns the border width.">borderWidth</a> {
-<a name="l00561"></a>00561   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a98c9354965c0d3bcc0ff97d943d654ff" title="Returns YES if the ruleset has a &#39;border&#39; or &#39;border-width&#39; property.">hasBorderWidth</a>]);
+<a name="l00561"></a>00561   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a98c9354965c0d3bcc0ff97d943d654ff" title="Returns YES if the ruleset has a &#39;border&#39; or &#39;border-width&#39; property.">hasBorderWidth</a>]);
 <a name="l00562"></a>00562 
 <a name="l00563"></a>00563   [<span class="keyword">self</span> cacheBorderValues];
 <a name="l00564"></a>00564   <span class="keywordflow">return</span> _borderWidth;
@@ -609,7 +609,7 @@
 <a name="l00572"></a>00572 
 <a name="l00573"></a>00573 
 <a name="l00575"></a><a class="code" href="interface_n_i_c_s_s_ruleset.html#a2d134869cff8b392d41d9e93c8554aa2">00575</a> - (UIColor *)<a class="code" href="interface_n_i_c_s_s_ruleset.html#a2d134869cff8b392d41d9e93c8554aa2" title="Returns the tint color.">tintColor</a> {
-<a name="l00576"></a>00576   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a56f7e80728e458c6bbc1fea899f309a0" title="Returns YES if the ruleset has an &#39;-ios-tint-color&#39; property.">hasTintColor</a>]);
+<a name="l00576"></a>00576   NIDASSERT([<span class="keyword">self</span> <a class="code" href="interface_n_i_c_s_s_ruleset.html#a56f7e80728e458c6bbc1fea899f309a0" title="Returns YES if the ruleset has an &#39;-ios-tint-color&#39; property.">hasTintColor</a>]);
 <a name="l00577"></a>00577   <span class="keywordflow">if</span> (!_is.cached.TintColor) {
 <a name="l00578"></a>00578     _tintColor = [[[<span class="keyword">self</span> class] colorFromCssValues:[_ruleset objectForKey:kTintColorKey]
 <a name="l00579"></a>00579                             numberOfConsumedTokens:nil] retain];
@@ -905,7 +905,7 @@
 <a name="l00877"></a>00877 
 <a name="l00878"></a>00878 
 <a name="l00880"></a>00880 + (UITextAlignment)textAlignmentFromCssValues:(NSArray *)cssValues {
-<a name="l00881"></a>00881   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>([cssValues count] == 1);
+<a name="l00881"></a>00881   NIDASSERT([cssValues count] == 1);
 <a name="l00882"></a>00882   <span class="keywordflow">if</span> ([cssValues count] &lt; 1) {
 <a name="l00883"></a>00883     <span class="keywordflow">return</span> UITextAlignmentLeft;
 <a name="l00884"></a>00884   }

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -99,6 +99,8 @@ Inheritance diagram for NINetworkRequestOperation:</div>
 Methods</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Configuring the Operation</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSURL *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_network_request_operation.html#a0c009df785e56c1d3624e835f38299bb">url</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_network_request_operation.html#aa4bca4d57ffcac2986056815151b1a05">timeout</a> <span class="suffix">property</span></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSURLRequestCachePolicy&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_network_request_operation.html#ada71db35a26b6a0bb007d4e92bfa3261">cachePolicy</a> <span class="suffix">property</span></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Operation Results</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_n_s_data.html">NSData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_network_request_operation.html#a3752c6c0fc4db423b6128728a9f0be60">data</a> <span class="suffix">property</span></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">id&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_n_i_network_request_operation.html#a96e82ef25c81b771c0d46449ae333ccf">processedObject</a> <span class="suffix">property</span></td></tr>
@@ -140,6 +142,40 @@ Methods</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aa4bca4d57ffcac2986056815151b1a05"></a><!-- doxytag: member="NINetworkRequestOperation::timeout" ref="aa4bca4d57ffcac2986056815151b1a05" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- NINetworkRequestOperation:<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The number of seconds that may pass before a request gives up and fails. </p>
+
+<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00110">110</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ada71db35a26b6a0bb007d4e92bfa3261"></a><!-- doxytag: member="NINetworkRequestOperation::cachePolicy" ref="ada71db35a26b6a0bb007d4e92bfa3261" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- NINetworkRequestOperation:<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The request cache policy to use. </p>
+
+<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00111">111</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a3752c6c0fc4db423b6128728a9f0be60"></a><!-- doxytag: member="NINetworkRequestOperation::data" ref="a3752c6c0fc4db423b6128728a9f0be60" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -155,7 +191,7 @@ Methods</h2></td></tr>
 <p>Will be nil if the request failed.</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="interface_n_i_operation.html#ab16ac8d4ce97062b0d4545df15226c27" title="The error last passed to the didFailWithError notification.">NIOperation::lastError</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00111">111</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00112">112</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
 
 </div>
 </div>
@@ -174,7 +210,7 @@ Methods</h2></td></tr>
 <p>Will be nil if the request failed.</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="interface_n_i_operation.html#ab16ac8d4ce97062b0d4545df15226c27" title="The error last passed to the didFailWithError notification.">NIOperation::lastError</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00112">112</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_operations_8h_source.html#l00113">113</a> of file <a class="el" href="_n_i_operations_8h_source.html">NIOperations.h</a>.</p>
 
 </div>
 </div>
@@ -195,7 +231,7 @@ Methods</h2></td></tr>
 
 <p>Initializes a newly allocated network operation with a given url. </p>
 
-<p>Definition at line <a class="el" href="_n_i_operations_8m_source.html#l00046">46</a> of file <a class="el" href="_n_i_operations_8m_source.html">NIOperations.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_operations_8m_source.html#l00047">47</a> of file <a class="el" href="_n_i_operations_8m_source.html">NIOperations.m</a>.</p>
 
 </div>
 </div>
@@ -342,7 +378,7 @@ Methods</h2></td></tr>
 
 <p>On the main thread, notify the delegate that the operation has begun. </p>
 
-<p>Definition at line <a class="el" href="_n_i_operations_8m_source.html#l00161">161</a> of file <a class="el" href="_n_i_operations_8m_source.html">NIOperations.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_operations_8m_source.html#l00163">163</a> of file <a class="el" href="_n_i_operations_8m_source.html">NIOperations.m</a>.</p>
 
 </div>
 </div>
@@ -362,7 +398,7 @@ Methods</h2></td></tr>
 
 <p>On the main thread, notify the delegate that the operation has finished. </p>
 
-<p>Definition at line <a class="el" href="_n_i_operations_8m_source.html#l00169">169</a> of file <a class="el" href="_n_i_operations_8m_source.html">NIOperations.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_operations_8m_source.html#l00171">171</a> of file <a class="el" href="_n_i_operations_8m_source.html">NIOperations.m</a>.</p>
 
 </div>
 </div>
@@ -382,7 +418,7 @@ Methods</h2></td></tr>
 
 <p>In the operation's thread, notify the delegate that the operation will finish successfully. </p>
 
-<p>Definition at line <a class="el" href="_n_i_operations_8m_source.html#l00187">187</a> of file <a class="el" href="_n_i_operations_8m_source.html">NIOperations.m</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_operations_8m_source.html#l00189">189</a> of file <a class="el" href="_n_i_operations_8m_source.html">NIOperations.m</a>.</p>
 
 </div>
 </div>

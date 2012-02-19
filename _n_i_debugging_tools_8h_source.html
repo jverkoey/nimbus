@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -100,56 +100,58 @@
 <a name="l00088"></a>00088 <span class="preprocessor"></span>
 <a name="l00095"></a>00095 <span class="preprocessor">#import &lt;TargetConditionals.h&gt;</span>
 <a name="l00096"></a>00096 
-<a name="l00097"></a>00097 <span class="preprocessor">#if TARGET_IPHONE_SIMULATOR</span>
-<a name="l00098"></a>00098 <span class="preprocessor"></span><span class="keywordtype">int</span> NIIsInDebugger(<span class="keywordtype">void</span>);
-<a name="l00099"></a>00099 <span class="comment">// We leave the __asm__ in this macro so that when a break occurs, we don&#39;t have to step out of</span>
+<a name="l00097"></a>00097 <span class="keywordtype">int</span> <a class="code" href="group___debugging-_tools.html#ga33240488eb3d90ec74ee36931e406404" title="Assertions that only fire when DEBUG is defined.">NIIsInDebugger</a>(<span class="keywordtype">void</span>);
+<a name="l00098"></a>00098 <span class="preprocessor">#if TARGET_IPHONE_SIMULATOR</span>
+<a name="l00099"></a>00099 <span class="preprocessor"></span><span class="comment">// We leave the __asm__ in this macro so that when a break occurs, we don&#39;t have to step out of</span>
 <a name="l00100"></a>00100 <span class="comment">// a &quot;breakInDebugger&quot; function.</span>
 <a name="l00101"></a>00101 <span class="preprocessor">#define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@&quot;NIDASSERT failed: %s&quot;, #xx); \</span>
-<a name="l00102"></a>00102 <span class="preprocessor">if (NIDebugAssertionsShouldBreak &amp;&amp; NIIsInDebugger()) { __asm__(&quot;int $3\n&quot; : : ); }; } \</span>
+<a name="l00102"></a>00102 <span class="preprocessor">if (NIDebugAssertionsShouldBreak &amp;&amp; NIIsInDebugger()) { __asm__(&quot;int $3\n&quot; : : ); } } \</span>
 <a name="l00103"></a>00103 <span class="preprocessor">} ((void)0)</span>
 <a name="l00104"></a>00104 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00105"></a><a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f">00105</a> <span class="preprocessor"></span><span class="preprocessor">#define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@&quot;NIDASSERT failed: %s&quot;, #xx); } } ((void)0)</span>
-<a name="l00106"></a>00106 <span class="preprocessor"></span><span class="preprocessor">#endif // #if TARGET_IPHONE_SIMULATOR</span>
-<a name="l00107"></a>00107 <span class="preprocessor"></span>
-<a name="l00108"></a>00108 <span class="preprocessor">#else</span>
-<a name="l00109"></a>00109 <span class="preprocessor"></span><span class="preprocessor">#define NIDASSERT(xx) ((void)0)</span>
-<a name="l00110"></a>00110 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
-<a name="l00111"></a>00111 <span class="preprocessor"></span>
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113 <span class="preprocessor">#define NILOGLEVEL_INFO     5</span>
-<a name="l00114"></a>00114 <span class="preprocessor"></span><span class="preprocessor">#define NILOGLEVEL_WARNING  3</span>
-<a name="l00115"></a>00115 <span class="preprocessor"></span><span class="preprocessor">#define NILOGLEVEL_ERROR    1</span>
-<a name="l00116"></a>00116 <span class="preprocessor"></span>
-<a name="l00124"></a>00124 <span class="keyword">extern</span> NSInteger <a class="code" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505" title="The maximum log level to output for Nimbus debug logs.">NIMaxLogLevel</a>;
-<a name="l00125"></a>00125 
-<a name="l00134"></a>00134 <span class="keyword">extern</span> BOOL <a class="code" href="group___debugging-_tools.html#ga9b5abee5150b99d8ccce041099d44706" title="Whether or not debug assertions should halt program execution like a breakpoint when they fail...">NIDebugAssertionsShouldBreak</a>;
-<a name="l00135"></a>00135 
-<a name="l00142"></a>00142 <span class="preprocessor">#ifdef DEBUG</span>
-<a name="l00143"></a><a class="code" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26">00143</a> <span class="preprocessor"></span><span class="preprocessor">#define NIDPRINT(xx, ...)  NSLog(@&quot;%s(%d): &quot; xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)</span>
-<a name="l00144"></a>00144 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00145"></a>00145 <span class="preprocessor"></span><span class="preprocessor">#define NIDPRINT(xx, ...)  ((void)0)</span>
-<a name="l00146"></a>00146 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
-<a name="l00147"></a>00147 <span class="preprocessor"></span>
-<a name="l00151"></a><a class="code" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8">00151</a> <span class="preprocessor">#define NIDPRINTMETHODNAME() NIDPRINT(@&quot;%s&quot;, __PRETTY_FUNCTION__)</span>
-<a name="l00152"></a>00152 <span class="preprocessor"></span>
-<a name="l00153"></a>00153 <span class="preprocessor">#ifdef DEBUG</span>
+<a name="l00105"></a>00105 <span class="preprocessor"></span><span class="preprocessor">#define NIDASSERT(xx) { if (!(xx)) { NIDPRINT(@&quot;NIDASSERT failed: %s&quot;, #xx); \</span>
+<a name="l00106"></a>00106 <span class="preprocessor">if (NIDebugAssertionsShouldBreak &amp;&amp; NIIsInDebugger()) { raise(SIGTRAP); } } \</span>
+<a name="l00107"></a>00107 <span class="preprocessor">} ((void)0)</span>
+<a name="l00108"></a>00108 <span class="preprocessor"></span><span class="preprocessor">#endif // #if TARGET_IPHONE_SIMULATOR</span>
+<a name="l00109"></a>00109 <span class="preprocessor"></span>
+<a name="l00110"></a>00110 <span class="preprocessor">#else</span>
+<a name="l00111"></a>00111 <span class="preprocessor"></span><span class="preprocessor">#define NIDASSERT(xx) ((void)0)</span>
+<a name="l00112"></a>00112 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
+<a name="l00113"></a>00113 <span class="preprocessor"></span>
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115 <span class="preprocessor">#define NILOGLEVEL_INFO     5</span>
+<a name="l00116"></a>00116 <span class="preprocessor"></span><span class="preprocessor">#define NILOGLEVEL_WARNING  3</span>
+<a name="l00117"></a>00117 <span class="preprocessor"></span><span class="preprocessor">#define NILOGLEVEL_ERROR    1</span>
+<a name="l00118"></a>00118 <span class="preprocessor"></span>
+<a name="l00126"></a>00126 <span class="keyword">extern</span> NSInteger <a class="code" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505" title="The maximum log level to output for Nimbus debug logs.">NIMaxLogLevel</a>;
+<a name="l00127"></a>00127 
+<a name="l00136"></a>00136 <span class="keyword">extern</span> BOOL <a class="code" href="group___debugging-_tools.html#ga9b5abee5150b99d8ccce041099d44706" title="Whether or not debug assertions should halt program execution like a breakpoint when they fail...">NIDebugAssertionsShouldBreak</a>;
+<a name="l00137"></a>00137 
+<a name="l00144"></a>00144 <span class="preprocessor">#ifdef DEBUG</span>
+<a name="l00145"></a><a class="code" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26">00145</a> <span class="preprocessor"></span><span class="preprocessor">#define NIDPRINT(xx, ...)  NSLog(@&quot;%s(%d): &quot; xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)</span>
+<a name="l00146"></a>00146 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00147"></a>00147 <span class="preprocessor"></span><span class="preprocessor">#define NIDPRINT(xx, ...)  ((void)0)</span>
+<a name="l00148"></a>00148 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
+<a name="l00149"></a>00149 <span class="preprocessor"></span>
+<a name="l00153"></a><a class="code" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8">00153</a> <span class="preprocessor">#define NIDPRINTMETHODNAME() NIDPRINT(@&quot;%s&quot;, __PRETTY_FUNCTION__)</span>
 <a name="l00154"></a>00154 <span class="preprocessor"></span>
-<a name="l00160"></a><a class="code" href="group___debugging-_tools.html#ga2d769dcaac3915eea5b9860a40bd179a">00160</a> <span class="preprocessor">#define NIDCONDITIONLOG(condition, xx, ...) { if ((condition)) { NIDPRINT(xx, ##__VA_ARGS__); } \</span>
-<a name="l00161"></a>00161 <span class="preprocessor">} ((void)0)</span>
-<a name="l00162"></a>00162 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00163"></a>00163 <span class="preprocessor"></span><span class="preprocessor">#define NIDCONDITIONLOG(condition, xx, ...) ((void)0)</span>
-<a name="l00164"></a>00164 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
-<a name="l00165"></a>00165 <span class="preprocessor"></span>
-<a name="l00166"></a>00166 
-<a name="l00170"></a><a class="code" href="group___debugging-_tools.html#gab5d8a773517976d97335706474ae1317">00170</a> <span class="preprocessor">#define NIDERROR(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_ERROR &lt;= NIMaxLogLevel), xx, ##__VA_ARGS__)</span>
-<a name="l00171"></a>00171 <span class="preprocessor"></span>
-<a name="l00175"></a><a class="code" href="group___debugging-_tools.html#gacc8f90bb05765e613bb0dbb16d372dfc">00175</a> <span class="preprocessor">#define NIDWARNING(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_WARNING &lt;= NIMaxLogLevel), \</span>
-<a name="l00176"></a>00176 <span class="preprocessor">xx, ##__VA_ARGS__)</span>
-<a name="l00177"></a>00177 <span class="preprocessor"></span>
-<a name="l00181"></a><a class="code" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84">00181</a> <span class="preprocessor">#define NIDINFO(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_INFO &lt;= NIMaxLogLevel), xx, ##__VA_ARGS__)</span>
-<a name="l00182"></a>00182 <span class="preprocessor"></span>
-<a name="l00183"></a>00183 
-<a name="l00185"></a>00185 <span class="comment">// End of Debugging Tools //////////////////////////////////////////////////////////////////</span>
+<a name="l00155"></a>00155 <span class="preprocessor">#ifdef DEBUG</span>
+<a name="l00156"></a>00156 <span class="preprocessor"></span>
+<a name="l00162"></a><a class="code" href="group___debugging-_tools.html#ga2d769dcaac3915eea5b9860a40bd179a">00162</a> <span class="preprocessor">#define NIDCONDITIONLOG(condition, xx, ...) { if ((condition)) { NIDPRINT(xx, ##__VA_ARGS__); } \</span>
+<a name="l00163"></a>00163 <span class="preprocessor">} ((void)0)</span>
+<a name="l00164"></a>00164 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00165"></a>00165 <span class="preprocessor"></span><span class="preprocessor">#define NIDCONDITIONLOG(condition, xx, ...) ((void)0)</span>
+<a name="l00166"></a>00166 <span class="preprocessor"></span><span class="preprocessor">#endif // #ifdef DEBUG</span>
+<a name="l00167"></a>00167 <span class="preprocessor"></span>
+<a name="l00168"></a>00168 
+<a name="l00172"></a><a class="code" href="group___debugging-_tools.html#gab5d8a773517976d97335706474ae1317">00172</a> <span class="preprocessor">#define NIDERROR(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_ERROR &lt;= NIMaxLogLevel), xx, ##__VA_ARGS__)</span>
+<a name="l00173"></a>00173 <span class="preprocessor"></span>
+<a name="l00177"></a><a class="code" href="group___debugging-_tools.html#gacc8f90bb05765e613bb0dbb16d372dfc">00177</a> <span class="preprocessor">#define NIDWARNING(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_WARNING &lt;= NIMaxLogLevel), \</span>
+<a name="l00178"></a>00178 <span class="preprocessor">xx, ##__VA_ARGS__)</span>
+<a name="l00179"></a>00179 <span class="preprocessor"></span>
+<a name="l00183"></a><a class="code" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84">00183</a> <span class="preprocessor">#define NIDINFO(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_INFO &lt;= NIMaxLogLevel), xx, ##__VA_ARGS__)</span>
+<a name="l00184"></a>00184 <span class="preprocessor"></span>
+<a name="l00185"></a>00185 
+<a name="l00187"></a>00187 <span class="comment">// End of Debugging Tools //////////////////////////////////////////////////////////////////</span>
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

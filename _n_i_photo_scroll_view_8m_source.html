@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -223,7 +223,7 @@
 <a name="l00171"></a>00171 <span class="preprocessor"></span>
 <a name="l00172"></a>00172 
 <a name="l00174"></a>00174 - (CGRect)rectAroundPoint:(CGPoint)point atZoomScale:(CGFloat)zoomScale {
-<a name="l00175"></a>00175   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(zoomScale &gt; 0);
+<a name="l00175"></a>00175   NIDASSERT(zoomScale &gt; 0);
 <a name="l00176"></a>00176 
 <a name="l00177"></a>00177   <span class="comment">// Define the shape of the zoom rect.</span>
 <a name="l00178"></a>00178   CGSize boundsSize = <span class="keyword">self</span>.bounds.size;
@@ -404,8 +404,8 @@
 <a name="l00380"></a>00380                           photoSize: (NIPhotoScrollViewPhotoSize)photoSize
 <a name="l00381"></a>00381                            minScale: (CGFloat *)pMinScale
 <a name="l00382"></a>00382                            maxScale: (CGFloat *)pMaxScale {
-<a name="l00383"></a>00383   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != pMinScale);
-<a name="l00384"></a>00384   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != pMaxScale);
+<a name="l00383"></a>00383   NIDASSERT(nil != pMinScale);
+<a name="l00384"></a>00384   NIDASSERT(nil != pMaxScale);
 <a name="l00385"></a>00385   <span class="keywordflow">if</span> (nil == pMinScale
 <a name="l00386"></a>00386       || nil == pMaxScale) {
 <a name="l00387"></a>00387     <span class="keywordflow">return</span>;
@@ -450,7 +450,7 @@
 <a name="l00427"></a>00427   CGSize imageSize = _imageView.bounds.size;
 <a name="l00428"></a>00428   
 <a name="l00429"></a>00429   <span class="comment">// Avoid crashing if the image has no dimensions.</span>
-<a name="l00430"></a>00430   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(imageSize.width &gt; 0 &amp;&amp; imageSize.height &gt; 0);
+<a name="l00430"></a>00430   NIDASSERT(imageSize.width &gt; 0 &amp;&amp; imageSize.height &gt; 0);
 <a name="l00431"></a>00431   <span class="keywordflow">if</span> (imageSize.width &lt;= 0 || imageSize.height &lt;= 0) {
 <a name="l00432"></a>00432     _scrollView.maximumZoomScale = 1;
 <a name="l00433"></a>00433     _scrollView.minimumZoomScale = 1;

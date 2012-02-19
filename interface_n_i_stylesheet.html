@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -82,7 +82,7 @@
 <p>Stylesheets can be merged using the addStylesheet: method.</p>
 <p>Cached rulesets are released when a memory warning is received. </p>
 
-<p>Definition at line <a class="el" href="_n_i_stylesheet_8h_source.html#l00045">45</a> of file <a class="el" href="_n_i_stylesheet_8h_source.html">NIStylesheet.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_stylesheet_8h_source.html#l00046">46</a> of file <a class="el" href="_n_i_stylesheet_8h_source.html">NIStylesheet.h</a>.</p>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
@@ -91,10 +91,12 @@ Methods</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Loading Stylesheets</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_stylesheet.html#af95a88b29e53a7695d03fc77e057f131">loadFromPath:pathPrefix:delegate:</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_stylesheet.html#ad35501aa073cb676534dc597133ad4ab">loadFromPath:pathPrefix:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_stylesheet.html#a96bd7584fa340a41f3066bc550dcec64">loadFromPath:</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Compositing Stylesheets</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_stylesheet.html#adc4556a3250618a7d33d7468e5d3d82b">addStylesheet:</a></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Applying Stylesheets to Views</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_stylesheet.html#a62b3736dd285a2eb2e60c4c446605c24">applyStyleToView:withClassName:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_n_i_c_s_s_ruleset.html">NICSSRuleset</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_n_i_stylesheet.html#ac25cdc9c8a9b28ea62d222c9d419efcd">rulesetForClassName:</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
 <a class="anchor" id="a8b4cf64369996018bd95328f78aba762"></a><!-- doxytag: member="NIStylesheet::dependencies" ref="a8b4cf64369996018bd95328f78aba762" args="" -->
@@ -108,9 +110,9 @@ Methods</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>A set of filenames for the dependencies of this stylesheet. </p>
+<p>A set of <a class="el" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> filenames for the  in this stylesheet. </p>
 
-<p>Definition at line <a class="el" href="_n_i_stylesheet_8h_source.html#l00052">52</a> of file <a class="el" href="_n_i_stylesheet_8h_source.html">NIStylesheet.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_stylesheet_8h_source.html#l00053">53</a> of file <a class="el" href="_n_i_stylesheet_8h_source.html">NIStylesheet.h</a>.</p>
 
 </div>
 </div>
@@ -190,6 +192,26 @@ Methods</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a96bd7584fa340a41f3066bc550dcec64"></a><!-- doxytag: member="NIStylesheet::loadFromPath:" ref="a96bd7584fa340a41f3066bc550dcec64" args="(NSString *path)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) loadFromPath: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="class_n_s_string.html">NSString</a> *)&#160;</td>
+          <td class="paramname"><em>path</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="interface_n_i_stylesheet.html#af95a88b29e53a7695d03fc77e057f131" title="Loads and parses a CSS file from disk.">- loadFromPath:pathPrefix:delegate:</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="_n_i_stylesheet_8m_source.html#l00151">151</a> of file <a class="el" href="_n_i_stylesheet_8m_source.html">NIStylesheet.m</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="adc4556a3250618a7d33d7468e5d3d82b"></a><!-- doxytag: member="NIStylesheet::addStylesheet:" ref="adc4556a3250618a7d33d7468e5d3d82b" args="(NIStylesheet *stylesheet)" -->
 <div class="memitem">
 <div class="memproto">
@@ -247,6 +269,33 @@ Methods</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="_n_i_stylesheet_8m_source.html#l00255">255</a> of file <a class="el" href="_n_i_stylesheet_8m_source.html">NIStylesheet.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac25cdc9c8a9b28ea62d222c9d419efcd"></a><!-- doxytag: member="NIStylesheet::rulesetForClassName:" ref="ac25cdc9c8a9b28ea62d222c9d419efcd" args="(NSString *className)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_n_i_c_s_s_ruleset.html">NICSSRuleset</a> *) rulesetForClassName: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="class_n_s_string.html">NSString</a> *)&#160;</td>
+          <td class="paramname"><em>className</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns an autoreleased ruleset for the given class name. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">className</td><td>Either the view's class as a string using NSStringFromClass([view class]); or a CSS class selector such as ".myClassSelector". </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_n_i_stylesheet_8m_source.html#l00264">264</a> of file <a class="el" href="_n_i_stylesheet_8m_source.html">NIStylesheet.m</a>.</p>
 
 </div>
 </div>

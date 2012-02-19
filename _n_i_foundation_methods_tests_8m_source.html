@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -141,7 +141,27 @@
 <a name="l00072"></a>00072 }
 <a name="l00073"></a>00073 
 <a name="l00074"></a>00074 
-<a name="l00075"></a>00075 <span class="keyword">@end</span>
+<a name="l00077"></a>00077 <span class="preprocessor">#pragma mark -</span>
+<a name="l00078"></a>00078 <span class="preprocessor"></span><span class="preprocessor">#pragma mark General Purpose Methods</span>
+<a name="l00079"></a>00079 <span class="preprocessor"></span>
+<a name="l00080"></a>00080 
+<a name="l00082"></a>00082 - (void)testboundf {
+<a name="l00083"></a>00083   STAssertEquals(<a class="code" href="group___general-_purpose-_methods.html#ga983d44cb238c454d070504924bf4e7d5" title="Bounds a given value within the min and max values.">boundf</a>(1, 0, 2), 1.f, <span class="stringliteral">@&quot;Should be equal.&quot;</span>);
+<a name="l00084"></a>00084   STAssertEquals(<a class="code" href="group___general-_purpose-_methods.html#ga983d44cb238c454d070504924bf4e7d5" title="Bounds a given value within the min and max values.">boundf</a>(20, 0, 2), 2.f, <span class="stringliteral">@&quot;Should be equal.&quot;</span>);
+<a name="l00085"></a>00085   STAssertEquals(<a class="code" href="group___general-_purpose-_methods.html#ga983d44cb238c454d070504924bf4e7d5" title="Bounds a given value within the min and max values.">boundf</a>(-500, 0, 2), 0.f, <span class="stringliteral">@&quot;Should be equal.&quot;</span>);
+<a name="l00086"></a>00086   STAssertEquals(<a class="code" href="group___general-_purpose-_methods.html#ga983d44cb238c454d070504924bf4e7d5" title="Bounds a given value within the min and max values.">boundf</a>(5234, 0, -500), 0.f, <span class="stringliteral">@&quot;Should be equal.&quot;</span>);
+<a name="l00087"></a>00087 }
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 
+<a name="l00091"></a>00091 - (void)testboundi {
+<a name="l00092"></a>00092   STAssertEquals(<a class="code" href="group___general-_purpose-_methods.html#gace7056b3790906a7496f61835889cb34" title="Bounds a given value within the min and max values.">boundi</a>(1, 0, 2), 1, <span class="stringliteral">@&quot;Should be equal.&quot;</span>);
+<a name="l00093"></a>00093   STAssertEquals(<a class="code" href="group___general-_purpose-_methods.html#gace7056b3790906a7496f61835889cb34" title="Bounds a given value within the min and max values.">boundi</a>(20, 0, 2), 2, <span class="stringliteral">@&quot;Should be equal.&quot;</span>);
+<a name="l00094"></a>00094   STAssertEquals(<a class="code" href="group___general-_purpose-_methods.html#gace7056b3790906a7496f61835889cb34" title="Bounds a given value within the min and max values.">boundi</a>(-500, 0, 2), 0, <span class="stringliteral">@&quot;Should be equal.&quot;</span>);
+<a name="l00095"></a>00095   STAssertEquals(<a class="code" href="group___general-_purpose-_methods.html#gace7056b3790906a7496f61835889cb34" title="Bounds a given value within the min and max values.">boundi</a>(5234, 0, -500), 0, <span class="stringliteral">@&quot;Should be equal.&quot;</span>);
+<a name="l00096"></a>00096 }
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099 <span class="keyword">@end</span>
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

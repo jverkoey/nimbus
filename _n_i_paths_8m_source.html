@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -113,6 +113,18 @@
 <a name="l00037"></a>00037   }
 <a name="l00038"></a>00038   <span class="keywordflow">return</span> [documentsPath stringByAppendingPathComponent:relativePath];
 <a name="l00039"></a>00039 }
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041 
+<a name="l00043"></a><a class="code" href="group___paths.html#ga2a31eae717082695601bae955d54836e">00043</a> <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* <a class="code" href="group___paths.html#ga2a31eae717082695601bae955d54836e" title="Create a path with the caches directory and the relative path appended.">NIPathForCachesResource</a>(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* relativePath) {
+<a name="l00044"></a>00044   <span class="keyword">static</span> <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* cachesPath = nil;
+<a name="l00045"></a>00045   <span class="keywordflow">if</span> (nil == cachesPath) {
+<a name="l00046"></a>00046     NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
+<a name="l00047"></a>00047                                                         NSUserDomainMask,
+<a name="l00048"></a>00048                                                         YES);
+<a name="l00049"></a>00049     cachesPath = [[dirs objectAtIndex:0] retain];
+<a name="l00050"></a>00050   }
+<a name="l00051"></a>00051   <span class="keywordflow">return</span> [cachesPath stringByAppendingPathComponent:relativePath];
+<a name="l00052"></a>00052 }
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

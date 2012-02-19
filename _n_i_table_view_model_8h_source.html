@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -113,70 +113,64 @@
 <a name="l00035"></a>00035   NITableViewModelSectionIndexAlphabetical, <span class="comment">// Generates an alphabetical section index.</span>
 <a name="l00036"></a>00036 } NITableViewModelSectionIndex;
 <a name="l00037"></a>00037 
-<a name="l00049"></a>00049 <span class="keyword">@interface </span><a class="code" href="class_n_i_table_view_model.html" title="A non-mutable table view model that complies to the UITableViewDataSource protocol.">NITableViewModel</a> : NSObject &lt;UITableViewDataSource&gt; {
-<a name="l00050"></a>00050 <span class="keyword">@private</span>
-<a name="l00051"></a>00051   <span class="comment">// Compiled Information</span>
-<a name="l00052"></a>00052   NSArray* _sections;  <span class="comment">// Array of internal section objects</span>
-<a name="l00053"></a>00053   NSArray* _sectionIndexTitles;
-<a name="l00054"></a>00054   NSDictionary* _sectionPrefixToSectionIndex;
-<a name="l00055"></a>00055 }
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057 <span class="preprocessor">#pragma mark Creating Table View Models</span>
-<a name="l00058"></a>00058 <span class="preprocessor"></span>
-<a name="l00059"></a>00059 <span class="comment">// Designated initializer.</span>
-<a name="l00060"></a>00060 - (id)initWithDelegate:(<span class="keywordtype">id</span>&lt;<a class="code" href="protocol_n_i_table_view_model_delegate-p.html" title="A protocol for NITableViewModel to fetch rows to be displayed for the table view.">NITableViewModelDelegate</a>&gt;)delegate;
-<a name="l00061"></a>00061 - (id)initWithListArray:(NSArray *)sectionedArray delegate:(<span class="keywordtype">id</span>&lt;<a class="code" href="protocol_n_i_table_view_model_delegate-p.html" title="A protocol for NITableViewModel to fetch rows to be displayed for the table view.">NITableViewModelDelegate</a>&gt;)delegate;
-<a name="l00062"></a>00062 <span class="comment">// Each NSString in the array starts a new section. Any other object is a new row (with exception of certain model-specific objects).</span>
-<a name="l00063"></a>00063 - (id)initWithSectionedArray:(NSArray *)sectionedArray delegate:(<span class="keywordtype">id</span>&lt;<a class="code" href="protocol_n_i_table_view_model_delegate-p.html" title="A protocol for NITableViewModel to fetch rows to be displayed for the table view.">NITableViewModelDelegate</a>&gt;)delegate;
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065 <span class="preprocessor">#pragma mark Accessing Objects</span>
-<a name="l00066"></a>00066 <span class="preprocessor"></span>
-<a name="l00067"></a>00067 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069 <span class="preprocessor">#pragma mark Configuration</span>
-<a name="l00070"></a>00070 <span class="preprocessor"></span>
-<a name="l00071"></a>00071 <span class="comment">// Immediately compiles the section index.</span>
-<a name="l00072"></a>00072 - (void)setSectionIndexType:(NITableViewModelSectionIndex)sectionIndexType showsSearch:(BOOL)showsSearch showsSummary:(BOOL)showsSummary;
-<a name="l00073"></a>00073 
-<a name="l00074"></a><a class="code" href="class_n_i_table_view_model.html#adcc35e36d9bc1e47a9f084e504d8ebda">00074</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) NITableViewModelSectionIndex sectionIndexType; <span class="comment">// Default: NITableViewModelSectionIndexNone</span>
-<a name="l00075"></a><a class="code" href="class_n_i_table_view_model.html#ad1991fde667958dafc9158684795a6b9">00075</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) BOOL sectionIndexShowsSearch; <span class="comment">// Default: NO</span>
-<a name="l00076"></a><a class="code" href="class_n_i_table_view_model.html#a48850ea92b2a9ffe69a153bcfe9416e0">00076</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) BOOL sectionIndexShowsSummary; <span class="comment">// Default: NO</span>
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 <span class="preprocessor">#pragma mark Creating Table View Cells</span>
-<a name="l00079"></a>00079 <span class="preprocessor"></span>
-<a name="l00080"></a><a class="code" href="class_n_i_table_view_model.html#a78c3eba3b94e5e0e25f3bb867fd23e47">00080</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NITableViewModelDelegate&gt; delegate;
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00083"></a>00083 <span class="preprocessor"></span><span class="comment">// If both the delegate and this block are provided, cells returned by this block will be used</span>
-<a name="l00084"></a>00084 <span class="comment">// and the delegate will not be called.</span>
-<a name="l00085"></a><a class="code" href="class_n_i_table_view_model.html#a1c47c87deb807cb1e9f557521c87394e">00085</a> <span class="keyword">@property</span> (nonatomic, readwrite, copy) NITableViewModelCellForIndexPathBlock createCellBlock;
-<a name="l00086"></a>00086 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
-<a name="l00087"></a>00087 <span class="preprocessor"></span>
-<a name="l00088"></a>00088 <span class="keyword">@end</span>
-<a name="l00089"></a>00089 
-<a name="l00093"></a><a class="code" href="protocol_n_i_table_view_model_delegate-p.html">00093</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_table_view_model_delegate-p.html" title="A protocol for NITableViewModel to fetch rows to be displayed for the table view.">NITableViewModelDelegate</a> &lt;NSObject&gt;
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 <span class="keyword">@required</span>
-<a name="l00096"></a>00096 
-<a name="l00102"></a>00102 - (UITableViewCell *)tableViewModel: (<a class="code" href="class_n_i_table_view_model.html" title="A non-mutable table view model that complies to the UITableViewDataSource protocol.">NITableViewModel</a> *)tableViewModel
-<a name="l00103"></a>00103                    cellForTableView: (UITableView *)tableView
-<a name="l00104"></a>00104                         atIndexPath: (NSIndexPath *)indexPath
-<a name="l00105"></a>00105                          withObject: (<span class="keywordtype">id</span>)object;
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107 <span class="keyword">@end</span>
-<a name="l00108"></a>00108 
-<a name="l00120"></a><a class="code" href="interface_n_i_table_view_model_footer.html">00120</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_table_view_model_footer.html" title="An object used in sectioned arrays to denote a section footer title.">NITableViewModelFooter</a> : NSObject
-<a name="l00121"></a>00121 
-<a name="l00122"></a>00122 + (id)footerWithTitle:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)title;
-<a name="l00123"></a>00123 - (id)initWithTitle:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)title;
-<a name="l00124"></a>00124 
-<a name="l00125"></a>00125 <span class="keyword">@property</span> (nonatomic, readwrite, copy) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* title;
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127 <span class="keyword">@end</span>
-<a name="l00128"></a>00128 
-<a name="l00248"></a>00248 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00249"></a>00249 <span class="preprocessor"></span>
-<a name="l00256"></a>00256 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
+<a name="l00049"></a>00049 <span class="keyword">@interface </span><a class="code" href="class_n_i_table_view_model.html" title="A non-mutable table view model that complies to the UITableViewDataSource protocol.">NITableViewModel</a> : NSObject &lt;UITableViewDataSource&gt;
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 <span class="preprocessor">#pragma mark Creating Table View Models</span>
+<a name="l00052"></a>00052 <span class="preprocessor"></span>
+<a name="l00053"></a>00053 <span class="comment">// Designated initializer.</span>
+<a name="l00054"></a>00054 - (id)initWithDelegate:(<span class="keywordtype">id</span>&lt;<a class="code" href="protocol_n_i_table_view_model_delegate-p.html" title="A protocol for NITableViewModel to fetch rows to be displayed for the table view.">NITableViewModelDelegate</a>&gt;)delegate;
+<a name="l00055"></a>00055 - (id)initWithListArray:(NSArray *)sectionedArray delegate:(<span class="keywordtype">id</span>&lt;<a class="code" href="protocol_n_i_table_view_model_delegate-p.html" title="A protocol for NITableViewModel to fetch rows to be displayed for the table view.">NITableViewModelDelegate</a>&gt;)delegate;
+<a name="l00056"></a>00056 <span class="comment">// Each NSString in the array starts a new section. Any other object is a new row (with exception of certain model-specific objects).</span>
+<a name="l00057"></a>00057 - (id)initWithSectionedArray:(NSArray *)sectionedArray delegate:(<span class="keywordtype">id</span>&lt;<a class="code" href="protocol_n_i_table_view_model_delegate-p.html" title="A protocol for NITableViewModel to fetch rows to be displayed for the table view.">NITableViewModelDelegate</a>&gt;)delegate;
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 <span class="preprocessor">#pragma mark Accessing Objects</span>
+<a name="l00060"></a>00060 <span class="preprocessor"></span>
+<a name="l00061"></a>00061 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063 <span class="preprocessor">#pragma mark Configuration</span>
+<a name="l00064"></a>00064 <span class="preprocessor"></span>
+<a name="l00065"></a>00065 <span class="comment">// Immediately compiles the section index.</span>
+<a name="l00066"></a>00066 - (void)setSectionIndexType:(NITableViewModelSectionIndex)sectionIndexType showsSearch:(BOOL)showsSearch showsSummary:(BOOL)showsSummary;
+<a name="l00067"></a>00067 
+<a name="l00068"></a><a class="code" href="class_n_i_table_view_model.html#adcc35e36d9bc1e47a9f084e504d8ebda">00068</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) NITableViewModelSectionIndex <a class="code" href="class_n_i_table_view_model.html#adcc35e36d9bc1e47a9f084e504d8ebda" title="The section index type.">sectionIndexType</a>; <span class="comment">// Default: NITableViewModelSectionIndexNone</span>
+<a name="l00069"></a><a class="code" href="class_n_i_table_view_model.html#ad1991fde667958dafc9158684795a6b9">00069</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) BOOL <a class="code" href="class_n_i_table_view_model.html#ad1991fde667958dafc9158684795a6b9" title="Whether or not the search symbol will be shown in the section index.">sectionIndexShowsSearch</a>; <span class="comment">// Default: NO</span>
+<a name="l00070"></a><a class="code" href="class_n_i_table_view_model.html#a48850ea92b2a9ffe69a153bcfe9416e0">00070</a> <span class="keyword">@property</span> (nonatomic, readonly, assign) BOOL <a class="code" href="class_n_i_table_view_model.html#a48850ea92b2a9ffe69a153bcfe9416e0" title="Whether or not the summary symbol will be shown in the section index.">sectionIndexShowsSummary</a>; <span class="comment">// Default: NO</span>
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 <span class="preprocessor">#pragma mark Creating Table View Cells</span>
+<a name="l00073"></a>00073 <span class="preprocessor"></span>
+<a name="l00074"></a><a class="code" href="class_n_i_table_view_model.html#a78c3eba3b94e5e0e25f3bb867fd23e47">00074</a> <span class="keyword">@property</span> (nonatomic, readwrite, assign) id&lt;NITableViewModelDelegate&gt; delegate;
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00077"></a>00077 <span class="preprocessor"></span><span class="comment">// If both the delegate and this block are provided, cells returned by this block will be used</span>
+<a name="l00078"></a>00078 <span class="comment">// and the delegate will not be called.</span>
+<a name="l00079"></a><a class="code" href="class_n_i_table_view_model.html#a1c47c87deb807cb1e9f557521c87394e">00079</a> <span class="keyword">@property</span> (nonatomic, readwrite, copy) NITableViewModelCellForIndexPathBlock <a class="code" href="class_n_i_table_view_model.html#a1c47c87deb807cb1e9f557521c87394e" title="A block used to create a UITableViewCell for a given object.">createCellBlock</a>;
+<a name="l00080"></a>00080 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
+<a name="l00081"></a>00081 <span class="preprocessor"></span>
+<a name="l00082"></a>00082 <span class="keyword">@end</span>
+<a name="l00083"></a>00083 
+<a name="l00087"></a><a class="code" href="protocol_n_i_table_view_model_delegate-p.html">00087</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_table_view_model_delegate-p.html" title="A protocol for NITableViewModel to fetch rows to be displayed for the table view.">NITableViewModelDelegate</a> &lt;NSObject&gt;
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 <span class="keyword">@required</span>
+<a name="l00090"></a>00090 
+<a name="l00096"></a>00096 - (UITableViewCell *)tableViewModel: (<a class="code" href="class_n_i_table_view_model.html" title="A non-mutable table view model that complies to the UITableViewDataSource protocol.">NITableViewModel</a> *)tableViewModel
+<a name="l00097"></a>00097                    cellForTableView: (UITableView *)tableView
+<a name="l00098"></a>00098                         atIndexPath: (NSIndexPath *)indexPath
+<a name="l00099"></a>00099                          withObject: (<span class="keywordtype">id</span>)object;
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101 <span class="keyword">@end</span>
+<a name="l00102"></a>00102 
+<a name="l00114"></a><a class="code" href="interface_n_i_table_view_model_footer.html">00114</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_table_view_model_footer.html" title="An object used in sectioned arrays to denote a section footer title.">NITableViewModelFooter</a> : NSObject
+<a name="l00115"></a>00115 
+<a name="l00116"></a>00116 + (id)footerWithTitle:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)title;
+<a name="l00117"></a>00117 - (id)initWithTitle:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)title;
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119 <span class="keyword">@property</span> (nonatomic, readwrite, copy) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* title;
+<a name="l00120"></a>00120 
+<a name="l00121"></a>00121 <span class="keyword">@end</span>
+<a name="l00122"></a>00122 
+<a name="l00242"></a>00242 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00243"></a>00243 <span class="preprocessor"></span>
+<a name="l00250"></a>00250 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

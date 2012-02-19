@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -101,6 +101,7 @@ Inheritance diagram for NITextInputFormElementCell:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Methods</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_n_i_cell-p.html#af12eab4c2d2d97f512a373a30d230a98">shouldUpdateCellWithObject:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(CGFloat)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="protocol_n_i_cell-p.html#afc17edfd6d4d5b745ebf307039894737">heightForObject:atIndexPath:tableView:</a></td></tr>
 </table>
 <hr/><h2>Method Documentation</h2>
 <a class="anchor" id="af12eab4c2d2d97f512a373a30d230a98"></a><!-- doxytag: member="NITextInputFormElementCell::shouldUpdateCellWithObject:" ref="af12eab4c2d2d97f512a373a30d230a98" args="(id object)" -->
@@ -120,6 +121,41 @@ Methods</h2></td></tr>
 
 <p>Called when a cell is created and reused. </p>
 <p>Implement this method to customize the cell's properties for display using the given object. </p>
+
+</div>
+</div>
+<a class="anchor" id="afc17edfd6d4d5b745ebf307039894737"></a><!-- doxytag: member="NITextInputFormElementCell::heightForObject:atIndexPath:tableView:" ref="afc17edfd6d4d5b745ebf307039894737" args="(id object,[atIndexPath] NSIndexPath *indexPath,[tableView] UITableView *tableView)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (CGFloat) heightForObject: </td>
+          <td></td>
+          <td class="paramtype">(id)&#160;</td>
+          <td class="paramname"><em>object</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">atIndexPath:</td>
+          <td></td>
+          <td class="paramtype">(NSIndexPath *)&#160;</td>
+          <td class="paramname"><em>indexPath</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">tableView:</td>
+          <td></td>
+          <td class="paramtype">(UITableView *)&#160;</td>
+          <td class="paramname"><em>tableView</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td><code> [static, optional, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Used in tableView:heightForRowAtIndexPath: to calculate dynamic cell heights. </p>
 
 </div>
 </div>

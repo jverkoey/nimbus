@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -471,7 +471,7 @@
 <a name="l00445"></a>00445 
 <a name="l00446"></a>00446 
 <a name="l00448"></a><a class="code" href="interface_n_i_photo_scrubber_view.html#aaee2253bf84cdc2cb32f416ac1bc3559">00448</a> - (void)<a class="code" href="interface_n_i_photo_scrubber_view.html#aaee2253bf84cdc2cb32f416ac1bc3559" title="Forces the scrubber view to reload all of its data.">reloadData</a> {
-<a name="l00449"></a>00449   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != _dataSource);
+<a name="l00449"></a>00449   NIDASSERT(nil != _dataSource);
 <a name="l00450"></a>00450 
 <a name="l00451"></a>00451   <span class="comment">// Remove any visible photos from the view before we release the sets.</span>
 <a name="l00452"></a>00452   <span class="keywordflow">for</span> (UIView* photoView in _visiblePhotoViews) {

@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -85,6 +85,7 @@
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___paths.html#gae830aca759474dfce53aee898ebaf0df">NIPathForBundleResource</a> (NSBundle *bundle, <a class="el" href="class_n_s_string.html">NSString</a> *relativePath)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___paths.html#ga375fcba480fc66d69cd3e6a6aa71ba4d">NIPathForDocumentsResource</a> (<a class="el" href="class_n_s_string.html">NSString</a> *relativePath)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___paths.html#ga2a31eae717082695601bae955d54836e">NIPathForCachesResource</a> (<a class="el" href="class_n_s_string.html">NSString</a> *relativePath)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="gae830aca759474dfce53aee898ebaf0df"></a><!-- doxytag: member="NIPaths.h::NIPathForBundleResource" ref="gae830aca759474dfce53aee898ebaf0df" args="(NSBundle *bundle, NSString *relativePath)" -->
@@ -145,6 +146,28 @@ Functions</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The documents path concatenated with the given relative path. </dd></dl>
 
 <p>Definition at line <a class="el" href="_n_i_paths_8m_source.html#l00030">30</a> of file <a class="el" href="_n_i_paths_8m_source.html">NIPaths.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga2a31eae717082695601bae955d54836e"></a><!-- doxytag: member="NIPaths.h::NIPathForCachesResource" ref="ga2a31eae717082695601bae955d54836e" args="(NSString *relativePath)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_n_s_string.html">NSString</a>* NIPathForCachesResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_n_s_string.html">NSString</a> *&#160;</td>
+          <td class="paramname"><em>relativePath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Create a path with the caches directory and the relative path appended. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The caches path concatenated with the given relative path. </dd></dl>
+
+<p>Definition at line <a class="el" href="_n_i_paths_8m_source.html#l00043">43</a> of file <a class="el" href="_n_i_paths_8m_source.html">NIPaths.m</a>.</p>
 
 </div>
 </div>

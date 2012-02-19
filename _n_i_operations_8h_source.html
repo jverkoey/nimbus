@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -97,7 +97,7 @@
 <a name="l00019"></a>00019 
 <a name="l00020"></a>00020 <span class="preprocessor">#import &quot;NIBlocks.h&quot;</span>
 <a name="l00021"></a>00021 
-<a name="l00033"></a>00033 <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_operation_delegate-p.html" title="The delegate protocol for an NSOperation.">NIOperationDelegate</a>;
+<a name="l00033"></a>00033 <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_operation_delegate-p.html" title="The delegate protocol for an NIOperation.">NIOperationDelegate</a>;
 <a name="l00034"></a>00034 
 <a name="l00046"></a><a class="code" href="interface_n_i_operation.html">00046</a> <span class="keyword">@interface </span><a class="code" href="interface_n_i_operation.html" title="A base implementation of an NSOperation that supports traditional delegation and blocks.">NIOperation</a> : NSOperation {
 <a name="l00047"></a>00047 <span class="keyword">@private</span>
@@ -154,35 +154,36 @@
 <a name="l00107"></a>00107 - (id)initWithURL:(NSURL *)url;
 <a name="l00108"></a>00108 
 <a name="l00109"></a><a class="code" href="interface_n_i_network_request_operation.html#a0c009df785e56c1d3624e835f38299bb">00109</a> <span class="keyword">@property</span> (readwrite, copy) NSURL* url;
-<a name="l00110"></a>00110 <span class="keyword">@property</span> (readwrite, assign) NSTimeInterval timeout;
-<a name="l00111"></a><a class="code" href="interface_n_i_network_request_operation.html#a3752c6c0fc4db423b6128728a9f0be60">00111</a> <span class="keyword">@property</span> (readonly, retain) <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a>* data;
-<a name="l00112"></a><a class="code" href="interface_n_i_network_request_operation.html#a96e82ef25c81b771c0d46449ae333ccf">00112</a> <span class="keyword">@property</span> (readwrite, retain) <span class="keywordtype">id</span> processedObject;
-<a name="l00113"></a>00113 
-<a name="l00114"></a>00114 <span class="keyword">@end</span>
-<a name="l00115"></a>00115 
-<a name="l00121"></a><a class="code" href="protocol_n_i_operation_delegate-p.html">00121</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_operation_delegate-p.html" title="The delegate protocol for an NSOperation.">NIOperationDelegate</a> &lt;NSObject&gt;
-<a name="l00122"></a>00122 <span class="keyword">@optional</span>
-<a name="l00123"></a>00123 
-<a name="l00127"></a>00127 - (void)operationDidStart:(NSOperation *)operation;
-<a name="l00128"></a>00128 
-<a name="l00136"></a>00136 - (void)operationWillFinish:(NSOperation *)operation;
-<a name="l00137"></a>00137 
-<a name="l00143"></a>00143 - (void)operationDidFinish:(NSOperation *)operation;
-<a name="l00144"></a>00144 
-<a name="l00150"></a>00150 - (void)operationDidFail:(NSOperation *)operation withError:(NSError *)error;
-<a name="l00151"></a>00151 
-<a name="l00152"></a>00152 <span class="keyword">@end</span>
-<a name="l00153"></a>00153 
+<a name="l00110"></a><a class="code" href="interface_n_i_network_request_operation.html#aa4bca4d57ffcac2986056815151b1a05">00110</a> <span class="keyword">@property</span> (readwrite, assign) NSTimeInterval timeout; <span class="comment">// Default: 60</span>
+<a name="l00111"></a><a class="code" href="interface_n_i_network_request_operation.html#ada71db35a26b6a0bb007d4e92bfa3261">00111</a> <span class="keyword">@property</span> (readwrite, assign) NSURLRequestCachePolicy cachePolicy; <span class="comment">// Default: NSURLRequestUseProtocolCachePolicy</span>
+<a name="l00112"></a><a class="code" href="interface_n_i_network_request_operation.html#a3752c6c0fc4db423b6128728a9f0be60">00112</a> <span class="keyword">@property</span> (readonly, retain) <a class="code" href="class_n_s_data.html" title="For hashing raw data.">NSData</a>* data;
+<a name="l00113"></a><a class="code" href="interface_n_i_network_request_operation.html#a96e82ef25c81b771c0d46449ae333ccf">00113</a> <span class="keyword">@property</span> (readwrite, retain) <span class="keywordtype">id</span> processedObject;
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115 <span class="keyword">@end</span>
+<a name="l00116"></a>00116 
+<a name="l00122"></a><a class="code" href="protocol_n_i_operation_delegate-p.html">00122</a> <span class="keyword">@protocol </span><a class="code" href="protocol_n_i_operation_delegate-p.html" title="The delegate protocol for an NIOperation.">NIOperationDelegate</a> &lt;NSObject&gt;
+<a name="l00123"></a>00123 <span class="keyword">@optional</span>
+<a name="l00124"></a>00124 
+<a name="l00128"></a>00128 - (void)operationDidStart:(NSOperation *)operation;
+<a name="l00129"></a>00129 
+<a name="l00137"></a>00137 - (void)operationWillFinish:(NSOperation *)operation;
+<a name="l00138"></a>00138 
+<a name="l00144"></a>00144 - (void)operationDidFinish:(NSOperation *)operation;
+<a name="l00145"></a>00145 
+<a name="l00151"></a>00151 - (void)operationDidFail:(NSOperation *)operation withError:(NSError *)error;
+<a name="l00152"></a>00152 
+<a name="l00153"></a>00153 <span class="keyword">@end</span>
 <a name="l00154"></a>00154 
-<a name="l00156"></a>00156 <span class="comment">// NIOperation</span>
-<a name="l00157"></a>00157 
-<a name="l00187"></a>00187 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
-<a name="l00188"></a>00188 <span class="preprocessor"></span>
-<a name="l00227"></a>00227 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
-<a name="l00228"></a>00228 <span class="preprocessor"></span>
-<a name="l00229"></a>00229 
-<a name="l00262"></a>00262 <span class="comment">// NINetworkRequestOperation</span>
-<a name="l00263"></a>00263 
+<a name="l00155"></a>00155 
+<a name="l00157"></a>00157 <span class="comment">// NIOperation</span>
+<a name="l00158"></a>00158 
+<a name="l00188"></a>00188 <span class="preprocessor">#if NS_BLOCKS_AVAILABLE</span>
+<a name="l00189"></a>00189 <span class="preprocessor"></span>
+<a name="l00228"></a>00228 <span class="preprocessor">#endif // #if NS_BLOCKS_AVAILABLE</span>
+<a name="l00229"></a>00229 <span class="preprocessor"></span>
+<a name="l00230"></a>00230 
+<a name="l00263"></a>00263 <span class="comment">// NINetworkRequestOperation</span>
+<a name="l00264"></a>00264 
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

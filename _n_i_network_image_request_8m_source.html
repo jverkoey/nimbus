@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -414,7 +414,7 @@
 <a name="l00355"></a>00355     <span class="comment">// If this fails then we&#39;re likely creating an invalid bitmap and shit&#39;s about to go down.</span>
 <a name="l00356"></a>00356     <span class="comment">// In production this will fail somewhat gracefully, in that we&#39;ll end up just using the</span>
 <a name="l00357"></a>00357     <span class="comment">// source image instead of the cropped and resized image.</span>
-<a name="l00358"></a>00358     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil != dstBmp);
+<a name="l00358"></a>00358     NIDASSERT(nil != dstBmp);
 <a name="l00359"></a>00359 
 <a name="l00360"></a>00360     <span class="keywordflow">if</span> (nil != dstBmp) {
 <a name="l00361"></a>00361       CGRect dstRect = CGRectMake(0, 0,

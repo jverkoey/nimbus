@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -95,39 +95,37 @@
 <a name="l00017"></a>00017 <span class="comment">//</span>
 <a name="l00018"></a>00018 
 <a name="l00019"></a>00019 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021 <span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span>
-<a name="l00022"></a>00022 
-<a name="l00023"></a>00023 <span class="comment">// Documentation for these additions is found in the .m file.</span>
-<a name="l00024"></a>00024 <span class="keyword">@interface </span><a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> (NimbusCore)
-<a name="l00025"></a>00025 
-<a name="l00026"></a>00026 <span class="preprocessor">#pragma mark Checking String Contents</span>
-<a name="l00027"></a>00027 <span class="preprocessor"></span>
-<a name="l00028"></a>00028 - (BOOL)isWhitespaceAndNewlines;
-<a name="l00029"></a>00029 
-<a name="l00030"></a>00030 <span class="preprocessor">#pragma mark Display</span>
-<a name="l00031"></a>00031 <span class="preprocessor"></span>
-<a name="l00032"></a>00032 - (CGFloat)heightWithFont: (UIFont*)font
-<a name="l00033"></a>00033        constrainedToWidth: (CGFloat)width
-<a name="l00034"></a>00034             lineBreakMode: (UILineBreakMode)lineBreakMode;
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036 <span class="preprocessor">#pragma mark URL queries</span>
-<a name="l00037"></a>00037 <span class="preprocessor"></span>
-<a name="l00038"></a>00038 - (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding;
-<a name="l00039"></a>00039 - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)stringByAddingPercentEscapesForURLParameter;
-<a name="l00040"></a>00040 - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>*)stringByAddingQueryDictionary:(NSDictionary*)query;
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042 <span class="preprocessor">#pragma mark Versions</span>
-<a name="l00043"></a>00043 <span class="preprocessor"></span>
-<a name="l00044"></a>00044 - (NSComparisonResult)versionStringCompare:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)other;
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="preprocessor">#pragma mark Hashing</span>
-<a name="l00047"></a>00047 <span class="preprocessor"></span>
-<a name="l00048"></a>00048 <span class="keyword">@property</span> (nonatomic, readonly) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* md5Hash;
-<a name="l00049"></a>00049 <span class="keyword">@property</span> (nonatomic, readonly) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* sha1Hash;
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="keyword">@end</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span>
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 <span class="comment">// Documentation for these additions is found in the .m file.</span>
+<a name="l00023"></a>00023 <span class="keyword">@interface </span><a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> (NimbusCore)
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 <span class="preprocessor">#pragma mark Checking String Contents</span>
+<a name="l00026"></a>00026 <span class="preprocessor"></span>
+<a name="l00027"></a>00027 - (BOOL)isWhitespaceAndNewlines;
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029 <span class="preprocessor">#pragma mark Display</span>
+<a name="l00030"></a>00030 <span class="preprocessor"></span>
+<a name="l00031"></a>00031 - (CGFloat)heightWithFont: (UIFont*)font
+<a name="l00032"></a>00032        constrainedToWidth: (CGFloat)width
+<a name="l00033"></a>00033             lineBreakMode: (UILineBreakMode)lineBreakMode;
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 <span class="preprocessor">#pragma mark URL queries</span>
+<a name="l00036"></a>00036 <span class="preprocessor"></span>
+<a name="l00037"></a>00037 - (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding;
+<a name="l00038"></a>00038 - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)stringByAddingPercentEscapesForURLParameter;
+<a name="l00039"></a>00039 - (<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>*)stringByAddingQueryDictionary:(NSDictionary*)query;
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041 <span class="preprocessor">#pragma mark Versions</span>
+<a name="l00042"></a>00042 <span class="preprocessor"></span>
+<a name="l00043"></a>00043 - (NSComparisonResult)versionStringCompare:(<a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a> *)other;
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 <span class="preprocessor">#pragma mark Hashing</span>
+<a name="l00046"></a>00046 <span class="preprocessor"></span>
+<a name="l00047"></a>00047 <span class="keyword">@property</span> (nonatomic, readonly) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* md5Hash;
+<a name="l00048"></a>00048 <span class="keyword">@property</span> (nonatomic, readonly) <a class="code" href="class_n_s_string.html" title="For manipulating NSStrings.">NSString</a>* sha1Hash;
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="keyword">@end</span>
 </pre></div><div id="disqus_thread"></div></div>
 </div>
   <div id="nav-path" class="navpath">

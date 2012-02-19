@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -475,7 +475,7 @@
 <a name="l00460"></a>00460   NSFileManager* fm = [NSFileManager defaultManager];
 <a name="l00461"></a>00461   NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 <a name="l00462"></a>00462 
-<a name="l00463"></a>00463   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(<a class="code" href="group___non-_empty-_collection-_testing.html#ga567f748c399da8a4393884242f3da4ba" title="Tests if an object is a non-nil array which is not empty.">NIIsArrayWithObjects</a>(paths));
+<a name="l00463"></a>00463   NIDASSERT(<a class="code" href="group___non-_empty-_collection-_testing.html#ga567f748c399da8a4393884242f3da4ba" title="Tests if an object is a non-nil array which is not empty.">NIIsArrayWithObjects</a>(paths));
 <a name="l00464"></a>00464   <span class="keywordflow">if</span> (!<a class="code" href="group___non-_empty-_collection-_testing.html#ga567f748c399da8a4393884242f3da4ba" title="Tests if an object is a non-nil array which is not empty.">NIIsArrayWithObjects</a>(paths)) {
 <a name="l00465"></a>00465     <span class="keywordflow">return</span> nil;
 <a name="l00466"></a>00466   }
@@ -489,7 +489,7 @@
 <a name="l00474"></a>00474               toPath: destinationPath
 <a name="l00475"></a>00475                error: error];
 <a name="l00476"></a>00476 
-<a name="l00477"></a>00477   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(nil == error || nil == *error);
+<a name="l00477"></a>00477   NIDASSERT(nil == error || nil == *error);
 <a name="l00478"></a>00478   <span class="keywordflow">if</span> (nil == error || nil == *error) {
 <a name="l00479"></a>00479     <span class="keywordflow">return</span> [NSURL URLWithString:[@&quot;file:&quot; stringByAppendingString:destinationPath]];
 <a name="l00480"></a>00480 

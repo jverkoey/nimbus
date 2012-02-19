@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -126,7 +126,7 @@
 <a name="l00050"></a>00050 
 <a name="l00051"></a>00051   --gNetworkTaskCount;
 <a name="l00052"></a>00052   <span class="comment">// If this asserts, you don&#39;t have enough stop requests to match your start requests.</span>
-<a name="l00053"></a>00053   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(gNetworkTaskCount &gt;= 0);
+<a name="l00053"></a>00053   NIDASSERT(gNetworkTaskCount &gt;= 0);
 <a name="l00054"></a>00054   gNetworkTaskCount = MAX(0, gNetworkTaskCount);
 <a name="l00055"></a>00055 
 <a name="l00056"></a>00056   <span class="keywordflow">if</span> (gNetworkTaskCount == 0) {
@@ -155,19 +155,19 @@
 <a name="l00082"></a>00082   [<span class="keyword">self</span> nimbusDebugSetNetworkActivityIndicatorVisible:visible];
 <a name="l00083"></a>00083 
 <a name="l00084"></a>00084   <span class="comment">// Sanity check that this method isn&#39;t being called directly when debugging isn&#39;t enabled.</span>
-<a name="l00085"></a>00085   <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(gNetworkActivityDebuggingEnabled);
+<a name="l00085"></a>00085   NIDASSERT(gNetworkActivityDebuggingEnabled);
 <a name="l00086"></a>00086 
 <a name="l00087"></a>00087   <span class="comment">// If either of the following assertions fail then you should look at the call stack to</span>
 <a name="l00088"></a>00088   <span class="comment">// determine what code is erroneously calling setNetworkActivityIndicatorVisible: directly.</span>
 <a name="l00089"></a>00089   <span class="keywordflow">if</span> (visible) {
 <a name="l00090"></a>00090     <span class="comment">// The only time we should be enabling the network activity indicator is when the task</span>
 <a name="l00091"></a>00091     <span class="comment">// count is one.</span>
-<a name="l00092"></a>00092     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(1 == gNetworkTaskCount);
+<a name="l00092"></a>00092     NIDASSERT(1 == gNetworkTaskCount);
 <a name="l00093"></a>00093 
 <a name="l00094"></a>00094   } <span class="keywordflow">else</span> {
 <a name="l00095"></a>00095     <span class="comment">// The only time we should be disabling the network activity indicator is when the task</span>
 <a name="l00096"></a>00096     <span class="comment">// count is zero.</span>
-<a name="l00097"></a>00097     <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(0 == gNetworkTaskCount);
+<a name="l00097"></a>00097     NIDASSERT(0 == gNetworkTaskCount);
 <a name="l00098"></a>00098   }
 <a name="l00099"></a>00099 }
 <a name="l00100"></a>00100 

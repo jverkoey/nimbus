@@ -42,7 +42,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Nimbus
-   &#160;<span id="projectnumber">0.9.1 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
+   &#160;<span id="projectnumber">0.9.2 - <a href="http://github.com/jverkoey/nimbus">Nimbus is proudly hosted on Github</a></span>
    </div>
    <div id="projectbrief">An iOS framework whose growth is bounded by O(documentation).</div>
   </td>
@@ -74,6 +74,7 @@
 <div class="header">
   <div class="summary">
 <a href="#define-members">Defines</a> &#124;
+<a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">Debugging Tools</div>  </div>
@@ -84,8 +85,8 @@
 <p>Nearly all of the following macros will only do anything if the DEBUG macro is defined. The recommended way to enable the debug tools is to specify DEBUG in the "Preprocessor Macros" field in your application's Debug target settings. Be careful not to set this for your release or app store builds because this will enable code that may cause your app to be rejected.</p>
 <h2>Debug Assertions</h2>
 <p>Debug assertions are a lightweight "sanity check". They won't crash the app, nor will they be included in release builds. They <em>will</em> halt the app's execution when debugging so that you can inspect the values that caused the failure.</p>
-<div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f" title="Assertions that only fire when DEBUG is defined.">NIDASSERT</a>(statement);
-</pre></div><p>If <em>statement</em> is false, the statement will be written to the log and if you are running in the simulator with a debugger attached, the app will break on the assertion line.</p>
+<div class="fragment"><pre class="fragment">  NIDASSERT(statement);
+</pre></div><p>If <em>statement</em> is false, the statement will be written to the log and if a debugger is attached, the app will break on the assertion line.</p>
 <h2>Debug Logging</h2>
 <div class="fragment"><pre class="fragment">  <a class="code" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26" title="Only writes to the log when DEBUG is defined.">NIDPRINT</a>(<span class="stringliteral">@&quot;formatted log text %d&quot;</span>, param1);
 </pre></div><p>Print the given formatted text to the log.</p>
@@ -102,41 +103,21 @@
 </pre></div> <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga13cc3ae82820ea8141bc319bcb76ab7f">NIDASSERT</a>(xx)&#160;&#160;&#160;{ if (!(xx)) { NIDPRINT(@&quot;NIDASSERT failed: %s&quot;, #xx); } } ((void)0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga74e1fbd5193e3020f3abf072dcd59f26">NIDPRINT</a>(xx,...)&#160;&#160;&#160;NSLog(@&quot;%s(%d): &quot; xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gaa606f4ba1dd48de5e2fd679b7d8b22d8">NIDPRINTMETHODNAME</a>()&#160;&#160;&#160;NIDPRINT(@&quot;%s&quot;, __PRETTY_FUNCTION__)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga2d769dcaac3915eea5b9860a40bd179a">NIDCONDITIONLOG</a>(condition, xx,...)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gab5d8a773517976d97335706474ae1317">NIDERROR</a>(xx,...)&#160;&#160;&#160;NIDCONDITIONLOG((NILOGLEVEL_ERROR &lt;= <a class="el" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505">NIMaxLogLevel</a>), xx, ##__VA_ARGS__)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gacc8f90bb05765e613bb0dbb16d372dfc">NIDWARNING</a>(xx,...)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#gaf0d5ca9cb5bd5c57cfaee0b9a565bb84">NIDINFO</a>(xx,...)&#160;&#160;&#160;NIDCONDITIONLOG((NILOGLEVEL_INFO &lt;= <a class="el" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505">NIMaxLogLevel</a>), xx, ##__VA_ARGS__)</td></tr>
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga33240488eb3d90ec74ee36931e406404">NIIsInDebugger</a> (void)</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga4772ce14310fecf30ed2bc36dfe7c505">NIMaxLogLevel</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___debugging-_tools.html#ga9b5abee5150b99d8ccce041099d44706">NIDebugAssertionsShouldBreak</a></td></tr>
 </table>
 <hr/><h2>Define Documentation</h2>
-<a class="anchor" id="ga13cc3ae82820ea8141bc319bcb76ab7f"></a><!-- doxytag: member="NIDebuggingTools.h::NIDASSERT" ref="ga13cc3ae82820ea8141bc319bcb76ab7f" args="(xx)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NIDASSERT</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">xx</td><td>)</td>
-          <td>&#160;&#160;&#160;{ if (!(xx)) { NIDPRINT(@&quot;NIDASSERT failed: %s&quot;, #xx); } } ((void)0)</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Assertions that only fire when DEBUG is defined. </p>
-<p>An assertion is like a programmatic breakpoint. Use it for sanity checks to save headache while writing your code. </p>
-
-<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00105">105</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ga74e1fbd5193e3020f3abf072dcd59f26"></a><!-- doxytag: member="NIDebuggingTools.h::NIDPRINT" ref="ga74e1fbd5193e3020f3abf072dcd59f26" args="(xx,...)" -->
 <div class="memitem">
 <div class="memproto">
@@ -165,7 +146,7 @@ Variables</h2></td></tr>
 <p>Only writes to the log when DEBUG is defined. </p>
 <p>This log method will always write to the log, regardless of log levels. It is used by all of the other logging methods in Nimbus' debugging library. </p>
 
-<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00143">143</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00145">145</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
 
 </div>
 </div>
@@ -185,7 +166,7 @@ Variables</h2></td></tr>
 
 <p>Write the containing method's name to the log using NIDPRINT. </p>
 
-<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00151">151</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00153">153</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
 
 </div>
 </div>
@@ -225,7 +206,7 @@ Variables</h2></td></tr>
 <p>Only writes to the log if condition is satisified. </p>
 <p>This macro powers the level-based loggers. It can also be used for conditionally enabling families of logs. </p>
 
-<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00160">160</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00162">162</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
 
 </div>
 </div>
@@ -256,7 +237,7 @@ Variables</h2></td></tr>
 
 <p>Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_ERROR. </p>
 
-<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00170">170</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00172">172</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
 
 </div>
 </div>
@@ -289,7 +270,7 @@ xx, ##__VA_ARGS__)
 </pre></div>
 <p>Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_WARNING. </p>
 
-<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00175">175</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00177">177</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
 
 </div>
 </div>
@@ -320,7 +301,30 @@ xx, ##__VA_ARGS__)
 
 <p>Only writes to the log if NIMaxLogLevel &gt;= NILOGLEVEL_INFO. </p>
 
-<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00181">181</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8h_source.html#l00183">183</a> of file <a class="el" href="_n_i_debugging_tools_8h_source.html">NIDebuggingTools.h</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="ga33240488eb3d90ec74ee36931e406404"></a><!-- doxytag: member="NIDebuggingTools.h::NIIsInDebugger" ref="ga33240488eb3d90ec74ee36931e406404" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int NIIsInDebugger </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Assertions that only fire when DEBUG is defined. </p>
+<p>An assertion is like a programmatic breakpoint. Use it for sanity checks to save headache while writing your code. </p>
+
+<p>Definition at line <a class="el" href="_n_i_debugging_tools_8m_source.html#l00029">29</a> of file <a class="el" href="_n_i_debugging_tools_8m_source.html">NIDebuggingTools.m</a>.</p>
 
 </div>
 </div>
