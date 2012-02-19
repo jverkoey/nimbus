@@ -31,7 +31,7 @@
 @synthesize cachePolicy = _cachePolicy;
 @synthesize data = _data;
 @synthesize processedObject = _processedObject;
-
+@synthesize responseHeaders;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
@@ -99,11 +99,12 @@
                                          timeoutInterval:self.timeout];
 
     NSError* networkError = nil;
-    NSURLResponse* response = nil;
+    NSHTTPURLResponse* response = nil;
     NSData* data  = [NSURLConnection sendSynchronousRequest:request
                                           returningResponse:&response
                                                       error:&networkError];
-
+    [self setResponseHeaders:[response allHeaderFields]];
+      
     if (nil != networkError) {
       [self operationDidFailWithError:networkError];
 

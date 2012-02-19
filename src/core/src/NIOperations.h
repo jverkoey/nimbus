@@ -111,6 +111,7 @@
 @property (readwrite, assign) NSURLRequestCachePolicy cachePolicy; // Default: NSURLRequestUseProtocolCachePolicy
 @property (readonly, retain) NSData* data;
 @property (readwrite, retain) id processedObject;
+@property (readonly, retain) NSDictionary* responseHeaders;
 
 @end
 
