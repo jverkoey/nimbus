@@ -125,7 +125,7 @@ static NSMutableSet* gAuthenticators = nil;
   [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
   [request setHTTPBody:body];
   NINetworkActivityTaskDidStart();
-  
+
   self.state = NIOpenAuthenticationStateFetchingToken;
   if (nil != self.stateHandler) {
     self.stateHandler(self, NIOpenAuthenticationStateFetchingToken, nil);
@@ -148,6 +148,8 @@ static NSMutableSet* gAuthenticators = nil;
          didFindToken = YES;
          self.state = NIOpenAuthenticationStateAuthorized;
          if (nil != self.stateHandler) {
+           // The state handler may interact with UI so we must ensure that the
+           // block is executed on the main thread.
            dispatch_async(dispatch_get_main_queue(), ^{
              self.stateHandler(self, NIOpenAuthenticationStateAuthorized, nil);
              self.stateHandler = nil;
@@ -159,6 +161,8 @@ static NSMutableSet* gAuthenticators = nil;
      if (!didFindToken) {
        self.state = NIOpenAuthenticationStateInactive;
        if (nil != self.stateHandler) {
+         // The state handler may interact with UI so we must ensure that the
+         // block is executed on the main thread.
          dispatch_async(dispatch_get_main_queue(), ^{
            self.stateHandler(self, NIOpenAuthenticationStateFetchingToken, error);
            self.stateHandler = nil;
@@ -183,15 +187,16 @@ static NSMutableSet* gAuthenticators = nil;
       NSString* error = [[query objectForKey:@"error"] objectAtIndex:0];
       NSString* errorDescription = [[query objectForKey:@"error_description"] objectAtIndex:0];
       if (nil != error) {
-        // TODO: Better error handling.
-        errorDescription = [errorDescription stringByReplacingOccurrencesOfString:@"+"
-                                                                       withString:@" "];
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:errorDescription
-                                                       delegate:nil
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles:@"OK", nil];
-        [alert show];
+        if (nil != auth.stateHandler) {
+          // TODO: Formalize these errors.
+          NSError* error = [NSError errorWithDomain:@"nimbus"
+                                               code:0
+                                           userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                     error, @"error",
+                                                     errorDescription, @"errorDescription",
+                                                     nil]];
+          auth.stateHandler(auth, NIOpenAuthenticationStateInactive, error);
+        }
 
       } else if (nil != code) {
         auth.oauthCode = code;
