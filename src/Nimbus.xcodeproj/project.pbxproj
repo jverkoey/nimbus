@@ -303,6 +303,8 @@
 		66E8CEE314D08F3800600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
 		66E8CEE414D08F8200600592 /* NINonEmptyCollectionTesting.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03C5313E6E8D100B514F3 /* NINonEmptyCollectionTesting.h */; };
 		66EDE07C14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EDE07A14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h */; };
+		66EDE10D14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EDE10B14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h */; };
+		66EDE10E14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE10C14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m */; };
 		66F27D55145B7A5F00AFCA08 /* NIPageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F27D53145B7A5F00AFCA08 /* NIPageView.h */; };
 		66F27D56145B7A5F00AFCA08 /* NIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F27D54145B7A5F00AFCA08 /* NIPageView.m */; };
 		66F27D60145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F27D5F145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h */; };
@@ -879,6 +881,8 @@
 		66E8CED614D08BAE00600592 /* unittest.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = unittest.xcconfig; path = resources/unittest.xcconfig; sourceTree = "<group>"; };
 		66E8CED714D08E7400600592 /* libprofile_rt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libprofile_rt.dylib; path = usr/lib/libprofile_rt.dylib; sourceTree = DEVELOPER_DIR; };
 		66EDE07A14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NIOpenAuthenticator+Subclassing.h"; path = "oauth/src/NIOpenAuthenticator+Subclassing.h"; sourceTree = SOURCE_ROOT; };
+		66EDE10B14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NISoundCloudOpenAuthenticator.h; path = oauth/src/NISoundCloudOpenAuthenticator.h; sourceTree = SOURCE_ROOT; };
+		66EDE10C14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISoundCloudOpenAuthenticator.m; path = oauth/src/NISoundCloudOpenAuthenticator.m; sourceTree = SOURCE_ROOT; };
 		66F27D53145B7A5F00AFCA08 /* NIPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPageView.h; sourceTree = "<group>"; };
 		66F27D54145B7A5F00AFCA08 /* NIPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIPageView.m; sourceTree = "<group>"; };
 		66F27D5F145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPhotoAlbumScrollViewDataSource.h; sourceTree = "<group>"; };
@@ -1452,6 +1456,8 @@
 				66759B5414DCC04C0094C24B /* NIOpenAuthenticator.h */,
 				66759B5514DCC04C0094C24B /* NIOpenAuthenticator.m */,
 				66EDE07A14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h */,
+				66EDE10B14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h */,
+				66EDE10C14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -2083,6 +2089,7 @@
 				66759B5314DCC01A0094C24B /* NimbusOAuth.h in Headers */,
 				66759B5614DCC04C0094C24B /* NIOpenAuthenticator.h in Headers */,
 				66EDE07C14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h in Headers */,
+				66EDE10D14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3394,6 +3401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66759B5714DCC04C0094C24B /* NIOpenAuthenticator.m in Sources */,
+				66EDE10E14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

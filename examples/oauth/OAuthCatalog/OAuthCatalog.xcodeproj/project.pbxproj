@@ -41,6 +41,9 @@
 		66EDE10314F1A3C70002B92B /* TableViewText.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE10214F1A3C70002B92B /* TableViewText.m */; };
 		66EDE10614F1A68D0002B92B /* SoundCloudController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE10514F1A68D0002B92B /* SoundCloudController.m */; };
 		66EDE10A14F1BA3D0002B92B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE10914F1BA3D0002B92B /* JSONKit.m */; };
+		66EDE11114F1CEA70002B92B /* NISoundCloudOpenAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE11014F1CEA60002B92B /* NISoundCloudOpenAuthenticator.m */; };
+		66EDE11714F1D01F0002B92B /* NINetworkJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE11614F1D01F0002B92B /* NINetworkJSONRequest.m */; };
+		66EDE11A14F1D51D0002B92B /* TableViewKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE11914F1D51D0002B92B /* TableViewKeyValue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +125,14 @@
 		66EDE10514F1A68D0002B92B /* SoundCloudController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudController.m; sourceTree = "<group>"; };
 		66EDE10814F1BA3D0002B92B /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = ../../../../thirdparty/JSONKit/JSONKit.h; sourceTree = "<group>"; };
 		66EDE10914F1BA3D0002B92B /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = ../../../../thirdparty/JSONKit/JSONKit.m; sourceTree = "<group>"; };
+		66EDE10F14F1CEA60002B92B /* NISoundCloudOpenAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NISoundCloudOpenAuthenticator.h; path = ../../../src/oauth/src/NISoundCloudOpenAuthenticator.h; sourceTree = "<group>"; };
+		66EDE11014F1CEA60002B92B /* NISoundCloudOpenAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISoundCloudOpenAuthenticator.m; path = ../../../src/oauth/src/NISoundCloudOpenAuthenticator.m; sourceTree = "<group>"; };
+		66EDE11314F1D01F0002B92B /* NimbusOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusOperations.h; path = ../../../src/operations/src/NimbusOperations.h; sourceTree = "<group>"; };
+		66EDE11414F1D01F0002B92B /* NimbusOperations+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusOperations+Namespace.h"; path = "../../../src/operations/src/NimbusOperations+Namespace.h"; sourceTree = "<group>"; };
+		66EDE11514F1D01F0002B92B /* NINetworkJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkJSONRequest.h; path = ../../../src/operations/src_JSONKit/NINetworkJSONRequest.h; sourceTree = "<group>"; };
+		66EDE11614F1D01F0002B92B /* NINetworkJSONRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkJSONRequest.m; path = ../../../src/operations/src_JSONKit/NINetworkJSONRequest.m; sourceTree = "<group>"; };
+		66EDE11814F1D51D0002B92B /* TableViewKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewKeyValue.h; sourceTree = "<group>"; };
+		66EDE11914F1D51D0002B92B /* TableViewKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewKeyValue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +184,7 @@
 				66EDE09B14F1A1A10002B92B /* OAuthCatalog-Prefix.pch */,
 				66EDE09C14F1A1A10002B92B /* AppDelegate.h */,
 				66EDE09D14F1A1A10002B92B /* AppDelegate.m */,
+				66EDE0EF14F1A2450002B92B /* Controllers */,
 				66EDE10014F1A3B80002B92B /* Cells */,
 				66EDE09414F1A1A10002B92B /* Supporting Files */,
 			);
@@ -195,6 +207,7 @@
 				66EDE0A514F1A1C30002B92B /* Core */,
 				66EDE0F314F1A2E90002B92B /* Models */,
 				66EDE0A614F1A1C60002B92B /* OAuth */,
+				66EDE11214F1D0110002B92B /* Operations */,
 			);
 			name = Nimbus;
 			sourceTree = "<group>";
@@ -260,6 +273,8 @@
 				66EDE0EB14F1A1E10002B92B /* NIOpenAuthenticator.h */,
 				66EDE0EC14F1A1E10002B92B /* NIOpenAuthenticator.m */,
 				66EDE0ED14F1A1E10002B92B /* NIOpenAuthenticator+Subclassing.h */,
+				66EDE10F14F1CEA60002B92B /* NISoundCloudOpenAuthenticator.h */,
+				66EDE11014F1CEA60002B92B /* NISoundCloudOpenAuthenticator.m */,
 			);
 			name = OAuth;
 			sourceTree = "<group>";
@@ -296,7 +311,8 @@
 			children = (
 				66EDE10114F1A3C70002B92B /* TableViewText.h */,
 				66EDE10214F1A3C70002B92B /* TableViewText.m */,
-				66EDE0EF14F1A2450002B92B /* Controllers */,
+				66EDE11814F1D51D0002B92B /* TableViewKeyValue.h */,
+				66EDE11914F1D51D0002B92B /* TableViewKeyValue.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -309,6 +325,17 @@
 			);
 			name = JSONKit;
 			path = OAuthCatalog;
+			sourceTree = "<group>";
+		};
+		66EDE11214F1D0110002B92B /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				66EDE11314F1D01F0002B92B /* NimbusOperations.h */,
+				66EDE11414F1D01F0002B92B /* NimbusOperations+Namespace.h */,
+				66EDE11514F1D01F0002B92B /* NINetworkJSONRequest.h */,
+				66EDE11614F1D01F0002B92B /* NINetworkJSONRequest.m */,
+			);
+			name = Operations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,6 +429,9 @@
 				66EDE10314F1A3C70002B92B /* TableViewText.m in Sources */,
 				66EDE10614F1A68D0002B92B /* SoundCloudController.m in Sources */,
 				66EDE10A14F1BA3D0002B92B /* JSONKit.m in Sources */,
+				66EDE11114F1CEA70002B92B /* NISoundCloudOpenAuthenticator.m in Sources */,
+				66EDE11714F1D01F0002B92B /* NINetworkJSONRequest.m in Sources */,
+				66EDE11A14F1D51D0002B92B /* TableViewKeyValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

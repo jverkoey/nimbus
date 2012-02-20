@@ -17,3 +17,4 @@
 #import <Foundation/Foundation.h>
 
 #import "NIOpenAuthenticator.h"
+#import "NISoundCloudOpenAuthenticator.h"

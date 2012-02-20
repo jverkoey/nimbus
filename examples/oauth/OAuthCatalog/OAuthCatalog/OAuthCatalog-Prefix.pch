@@ -14,5 +14,6 @@
   #import "NimbusCore+Additions.h"
   #import "NimbusModels.h"
   #import "NimbusOAuth.h"
+  #import "NimbusOperations.h"
   #import "JSONKit.h"
 #endif

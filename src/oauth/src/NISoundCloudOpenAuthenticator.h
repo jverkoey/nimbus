@@ -14,15 +14,7 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import "NIOpenAuthenticator.h"
 
-@interface TableViewText : NSObject <NICellObject>
-+ (id)objectWithText:(NSString *)text;
-+ (id)objectWithText:(NSString *)text object:(id)object;
-- (id)initWithText:(NSString *)text object:(id)object;
-@property (nonatomic, readwrite, copy) NSString* text;
-@property (nonatomic, readwrite, retain) id object;
-@end
-
-@interface TableViewTextCell : UITableViewCell <NICell>
+@interface NISoundCloudOpenAuthenticator : NIOpenAuthenticator
 @end

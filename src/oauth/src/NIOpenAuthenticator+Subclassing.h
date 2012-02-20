@@ -10,6 +10,8 @@
 
 @interface NIOpenAuthenticator()
 
+- (NSString *)redirectPath;
+
 @property (nonatomic, readonly, copy) NSURL* authenticationUrl;
 @property (nonatomic, readonly, copy) NSURL* tokenUrl;
 

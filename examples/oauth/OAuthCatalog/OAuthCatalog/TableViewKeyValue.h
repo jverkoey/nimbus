@@ -16,13 +16,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TableViewText : NSObject <NICellObject>
-+ (id)objectWithText:(NSString *)text;
-+ (id)objectWithText:(NSString *)text object:(id)object;
-- (id)initWithText:(NSString *)text object:(id)object;
-@property (nonatomic, readwrite, copy) NSString* text;
-@property (nonatomic, readwrite, retain) id object;
+@interface TableViewKeyValue : NSObject <NICellObject>
++ (id)objectWithKey:(NSString *)key value:(NSString *)value;
+- (id)initWithKey:(NSString *)key value:(NSString *)value;
+@property (nonatomic, readwrite, copy) NSString* key;
+@property (nonatomic, readwrite, copy) NSString* value;
 @end
 
-@interface TableViewTextCell : UITableViewCell <NICell>
+@interface TableViewKeyValueCell : UITableViewCell <NICell>
 @end

@@ -31,8 +31,11 @@
 #ifndef NIOpenAuthenticator
 #define NIOpenAuthenticator __NIMBUS_NS_SYMBOL(NIOpenAuthenticator)
 #endif
-#ifndef NISoundcloudOpenAuthenticator
-#define NISoundcloudOpenAuthenticator __NIMBUS_NS_SYMBOL(NISoundcloudOpenAuthenticator)
+#ifndef NISoundCloudOpenAuthenticator
+#define NISoundCloudOpenAuthenticator __NIMBUS_NS_SYMBOL(NISoundCloudOpenAuthenticator)
+#endif
+#ifndef Nimbus
+#define Nimbus __NIMBUS_NS_SYMBOL(Nimbus)
 #endif
 // Functions
 // Externs

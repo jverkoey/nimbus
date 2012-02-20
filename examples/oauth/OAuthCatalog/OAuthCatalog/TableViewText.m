@@ -28,6 +28,10 @@
   [super dealloc];
 }
 
++ (id)objectWithText:(NSString *)text {
+  return [[[self alloc] initWithText:text object:nil] autorelease];
+}
+
 + (id)objectWithText:(NSString *)text object:(Class)object {
   return [[[self alloc] initWithText:text object:object] autorelease];
 }

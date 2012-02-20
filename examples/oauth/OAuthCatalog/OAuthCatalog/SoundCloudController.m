@@ -9,6 +9,7 @@
 #import "SoundCloudController.h"
 
 #import "TableViewText.h"
+#import "TableViewKeyValue.h"
 
 typedef enum {
   AuthenticateAction = 1,
@@ -57,14 +58,13 @@ typedef enum {
   }
   self.model = [[[NITableViewModel alloc] initWithSectionedArray:objects
                                                         delegate:(id)[NICellFactory class]]autorelease];
-  self.tableView.dataSource = nil;
+  self.tableView.dataSource = self.model;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
 
   [self refreshModel];
-  self.tableView.dataSource = self.model;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -78,7 +78,6 @@ typedef enum {
       [self.auth authenticateWithStateHandler:
        ^(NIOpenAuthenticator* auth, NIOpenAuthenticationState state, NSError* error) {
          [self refreshModel];
-         self.tableView.dataSource = self.model;
          [self.tableView reloadData];
        }];
       break;

@@ -18,6 +18,7 @@
 
 #import "NIOpenAuthenticator+Subclassing.h"
 #import "NimbusCore+Additions.h"
+#import "JSONKit.h"
 
 static NSString* gApplicationRedirectBasePath = nil;
 static NSMutableSet* gAuthenticators = nil;
@@ -29,6 +30,10 @@ static NSMutableSet* gAuthenticators = nil;
 @property (nonatomic, readwrite, copy) NSString* oauthToken;
 @end
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIOpenAuthenticator
 
 @synthesize authenticationUrl = _authenticationUrl;
@@ -41,6 +46,8 @@ static NSMutableSet* gAuthenticators = nil;
 @synthesize stateHandler = _stateHandler;
 @synthesize tokenUrl = _tokenUrl;
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [gAuthenticators removeObject:self];
 
@@ -56,10 +63,14 @@ static NSMutableSet* gAuthenticators = nil;
   [super dealloc];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)initialize {
   gAuthenticators = NICreateNonRetainingMutableSet();
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithClientIdentifier:(NSString *)clientIdentifier clientSecret:(NSString *)clientSecret redirectBasePath:(NSString *)redirectBasePath {
   if ((self = [super init])) {
     _clientIdentifier = [clientIdentifier copy];
@@ -72,10 +83,14 @@ static NSMutableSet* gAuthenticators = nil;
   return self;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithClientIdentifier:(NSString *)clientIdentifier clientSecret:(NSString *)clientSecret {
   return [self initWithClientIdentifier:clientIdentifier clientSecret:clientSecret redirectBasePath:nil];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)authenticateWithStateHandler:(NIOpenAuthenticationBlock)stateHandler {
   self.stateHandler = stateHandler;
   NSURL* authenticationUrl = self.authenticationUrl;
@@ -84,6 +99,8 @@ static NSMutableSet* gAuthenticators = nil;
   [[UIApplication sharedApplication] openURL:authenticationUrl];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)redirectBasePath {
   if (nil == _redirectBasePath) {
     // If you don't provide a redirect path you must specify an application redirect path.
@@ -93,6 +110,8 @@ static NSMutableSet* gAuthenticators = nil;
   return _redirectBasePath;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)redirectPath {
   if ([self.redirectBasePath hasSuffix:@"/"]) {
     return [self.redirectBasePath stringByAppendingString:@"oauth"];
@@ -101,6 +120,8 @@ static NSMutableSet* gAuthenticators = nil;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)fetchToken {
   NSDictionary* bodyParts = [NSDictionary dictionaryWithObjectsAndKeys:
                              self.clientIdentifier, @"client_id",
@@ -172,6 +193,8 @@ static NSMutableSet* gAuthenticators = nil;
    }];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)setApplicationRedirectBasePath:(NSString *)redirectBasePath {
   if (gApplicationRedirectBasePath != redirectBasePath) {
     [gApplicationRedirectBasePath release];
@@ -179,20 +202,22 @@ static NSMutableSet* gAuthenticators = nil;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
   for (NIOpenAuthenticator* auth in gAuthenticators) {
     if ([url.absoluteString hasPrefix:auth.redirectPath]) {
       NSDictionary* query = [url.query queryContentsUsingEncoding:NSUTF8StringEncoding];
       NSString* code = [[query objectForKey:@"code"] objectAtIndex:0];
-      NSString* error = [[query objectForKey:@"error"] objectAtIndex:0];
+      NSString* errorTitle = [[query objectForKey:@"error"] objectAtIndex:0];
       NSString* errorDescription = [[query objectForKey:@"error_description"] objectAtIndex:0];
-      if (nil != error) {
+      if (nil != errorTitle) {
         if (nil != auth.stateHandler) {
           // TODO: Formalize these errors.
           NSError* error = [NSError errorWithDomain:@"nimbus"
                                                code:0
                                            userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                     error, @"error",
+                                                     errorTitle, @"error",
                                                      errorDescription, @"errorDescription",
                                                      nil]];
           auth.stateHandler(auth, NIOpenAuthenticationStateInactive, error);
@@ -206,26 +231,6 @@ static NSMutableSet* gAuthenticators = nil;
     }
   }
   return NO;
-}
-
-@end
-
-@implementation NISoundCloudOpenAuthenticator
-
-- (NSString *)redirectPath {
-  return [[super redirectPath] stringByAppendingString:@"/soundcloud"];
-}
-
-- (NSURL *)authenticationUrl {
-  return [NSURL URLWithString:
-          [NSString stringWithFormat:
-           @"https://soundcloud.com/connect?client_id=%@&response_type=code&redirect_uri=%@&scope=non-expiring",
-           self.clientIdentifier,
-           self.redirectPath]];
-}
-
-- (NSURL *)tokenUrl {
-  return [NSURL URLWithString:@"https://api.soundcloud.com/oauth2/token"];
 }
 
 @end

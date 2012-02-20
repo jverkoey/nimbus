@@ -24,7 +24,7 @@ typedef enum {
   NIOpenAuthenticationStateAuthorized,
 } NIOpenAuthenticationState;
 
-typedef void (^NIOpenAuthenticationBlock)(NIOpenAuthenticator*, NIOpenAuthenticationState, NSError*);
+typedef void (^NIOpenAuthenticationBlock)(NIOpenAuthenticator* auth, NIOpenAuthenticationState state, NSError* error);
 
 @interface NIOpenAuthenticator : NSObject
 
@@ -47,7 +47,4 @@ typedef void (^NIOpenAuthenticationBlock)(NIOpenAuthenticator*, NIOpenAuthentica
 
 + (void)setApplicationRedirectBasePath:(NSString *)redirectBasePath;
 
-@end
-
-@interface NISoundCloudOpenAuthenticator : NIOpenAuthenticator
 @end
