@@ -305,6 +305,8 @@
 		66EDE07C14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EDE07A14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h */; };
 		66EDE10D14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EDE10B14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h */; };
 		66EDE10E14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE10C14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m */; };
+		66EDE11D14F1D99F0002B92B /* NIKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EDE11B14F1D99F0002B92B /* NIKeychain.h */; };
+		66EDE11E14F1D99F0002B92B /* NIKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE11C14F1D99F0002B92B /* NIKeychain.m */; };
 		66F27D55145B7A5F00AFCA08 /* NIPageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F27D53145B7A5F00AFCA08 /* NIPageView.h */; };
 		66F27D56145B7A5F00AFCA08 /* NIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F27D54145B7A5F00AFCA08 /* NIPageView.m */; };
 		66F27D60145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F27D5F145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h */; };
@@ -883,6 +885,8 @@
 		66EDE07A14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NIOpenAuthenticator+Subclassing.h"; path = "oauth/src/NIOpenAuthenticator+Subclassing.h"; sourceTree = SOURCE_ROOT; };
 		66EDE10B14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NISoundCloudOpenAuthenticator.h; path = oauth/src/NISoundCloudOpenAuthenticator.h; sourceTree = SOURCE_ROOT; };
 		66EDE10C14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISoundCloudOpenAuthenticator.m; path = oauth/src/NISoundCloudOpenAuthenticator.m; sourceTree = SOURCE_ROOT; };
+		66EDE11B14F1D99F0002B92B /* NIKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIKeychain.h; path = oauth/src/NIKeychain.h; sourceTree = SOURCE_ROOT; };
+		66EDE11C14F1D99F0002B92B /* NIKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIKeychain.m; path = oauth/src/NIKeychain.m; sourceTree = SOURCE_ROOT; };
 		66F27D53145B7A5F00AFCA08 /* NIPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPageView.h; sourceTree = "<group>"; };
 		66F27D54145B7A5F00AFCA08 /* NIPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIPageView.m; sourceTree = "<group>"; };
 		66F27D5F145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPhotoAlbumScrollViewDataSource.h; sourceTree = "<group>"; };
@@ -1458,6 +1462,8 @@
 				66EDE07A14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h */,
 				66EDE10B14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h */,
 				66EDE10C14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m */,
+				66EDE11B14F1D99F0002B92B /* NIKeychain.h */,
+				66EDE11C14F1D99F0002B92B /* NIKeychain.m */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -2090,6 +2096,7 @@
 				66759B5614DCC04C0094C24B /* NIOpenAuthenticator.h in Headers */,
 				66EDE07C14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h in Headers */,
 				66EDE10D14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h in Headers */,
+				66EDE11D14F1D99F0002B92B /* NIKeychain.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3402,6 +3409,7 @@
 			files = (
 				66759B5714DCC04C0094C24B /* NIOpenAuthenticator.m in Sources */,
 				66EDE10E14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m in Sources */,
+				66EDE11E14F1D99F0002B92B /* NIKeychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

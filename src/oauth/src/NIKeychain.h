@@ -15,7 +15,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Security/Security.h>
 
-#import "NIKeychain.h"
-#import "NIOpenAuthenticator.h"
-#import "NISoundCloudOpenAuthenticator.h"
+@interface NIKeychainPassword : NSObject
+
+// Designated initializer.
+- (id)initWithIdentifier:(NSString *)identifier;
+
+@property (nonatomic, readwrite, copy) NSString* password;
+
+@end

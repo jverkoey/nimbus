@@ -16,6 +16,7 @@
 
 #import "NIOpenAuthenticator.h"
 
+#import "NIKeychain.h"
 #import "NIOpenAuthenticator+Subclassing.h"
 #import "NimbusCore+Additions.h"
 #import "JSONKit.h"
@@ -24,6 +25,7 @@ static NSString* gApplicationRedirectBasePath = nil;
 static NSMutableSet* gAuthenticators = nil;
 
 @interface NIOpenAuthenticator()
+@property (nonatomic, readwrite, assign) NIKeychainPassword* keychain;
 @property (nonatomic, readwrite, assign) NIOpenAuthenticationState state;
 @property (nonatomic, readwrite, copy) NIOpenAuthenticationBlock stateHandler;
 @property (nonatomic, readwrite, copy) NSString* oauthCode;
@@ -39,6 +41,7 @@ static NSMutableSet* gAuthenticators = nil;
 @synthesize authenticationUrl = _authenticationUrl;
 @synthesize clientIdentifier = _clientIdentifier;
 @synthesize clientSecret = _clientSecret;
+@synthesize keychain = _keychain;
 @synthesize oauthCode = _oauthCode;
 @synthesize oauthToken = _oauthToken;
 @synthesize redirectBasePath = _redirectBasePath;
@@ -54,6 +57,7 @@ static NSMutableSet* gAuthenticators = nil;
   NI_RELEASE_SAFELY(_authenticationUrl);
   NI_RELEASE_SAFELY(_clientIdentifier);
   NI_RELEASE_SAFELY(_clientSecret);
+  NI_RELEASE_SAFELY(_keychain);
   NI_RELEASE_SAFELY(_oauthCode);
   NI_RELEASE_SAFELY(_oauthToken);
   NI_RELEASE_SAFELY(_redirectBasePath);
@@ -73,10 +77,18 @@ static NSMutableSet* gAuthenticators = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithClientIdentifier:(NSString *)clientIdentifier clientSecret:(NSString *)clientSecret redirectBasePath:(NSString *)redirectBasePath {
   if ((self = [super init])) {
+    _keychain = [[NIKeychainPassword alloc] initWithIdentifier:@"nimbus.oauth"];
     _clientIdentifier = [clientIdentifier copy];
     _clientSecret = [clientSecret copy];
     _redirectBasePath = [redirectBasePath copy];
-    _state = NIOpenAuthenticationStateInactive;
+
+    if (NIIsStringWithAnyText(self.keychain.password)) {
+      self.oauthToken = self.keychain.password;
+      self.state = NIOpenAuthenticationStateAuthorized;
+
+    } else {
+      self.state = NIOpenAuthenticationStateInactive;
+    }
 
     [gAuthenticators addObject:self];
   }
@@ -91,12 +103,25 @@ static NSMutableSet* gAuthenticators = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)authenticateWithStateHandler:(NIOpenAuthenticationBlock)stateHandler {
-  self.stateHandler = stateHandler;
-  NSURL* authenticationUrl = self.authenticationUrl;
-  NIDASSERT(NIIsStringWithAnyText([authenticationUrl absoluteString]));
+- (NSString *)keychainKey {
+  return kSecValueData;
+}
 
-  [[UIApplication sharedApplication] openURL:authenticationUrl];
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)authenticateWithStateHandler:(NIOpenAuthenticationBlock)stateHandler {
+  if (NIIsStringWithAnyText(self.keychain.password)) {
+    self.oauthToken = self.keychain.password;
+    self.state = NIOpenAuthenticationStateAuthorized;
+    stateHandler(self, NIOpenAuthenticationStateAuthorized, nil);
+
+  } else {
+    self.stateHandler = stateHandler;
+    NSURL* authenticationUrl = self.authenticationUrl;
+    NIDASSERT(NIIsStringWithAnyText([authenticationUrl absoluteString]));
+
+    [[UIApplication sharedApplication] openURL:authenticationUrl];
+  }
 }
 
 
@@ -165,6 +190,7 @@ static NSMutableSet* gAuthenticators = nil;
        NSDictionary* results = object;
        if ([results objectForKey:@"access_token"]) {
          self.oauthToken = [results objectForKey:@"access_token"];
+         self.keychain.password = self.oauthToken;
 
          didFindToken = YES;
          self.state = NIOpenAuthenticationStateAuthorized;
@@ -213,7 +239,7 @@ static NSMutableSet* gAuthenticators = nil;
       NSString* errorDescription = [[query objectForKey:@"error_description"] objectAtIndex:0];
       if (nil != errorTitle) {
         if (nil != auth.stateHandler) {
-          // TODO: Formalize these errors.
+          // TODO: Formalize this errors.
           NSError* error = [NSError errorWithDomain:@"nimbus"
                                                code:0
                                            userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
