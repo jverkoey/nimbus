@@ -17,6 +17,7 @@
 #import "NIOperations.h"
 
 #import "NIDebuggingTools.h"
+#import "NINetworkActivity.h"
 #import "NIPreprocessorMacros.h"
 #import "NIOperations+Subclassing.h"
 
@@ -98,11 +99,13 @@
                                              cachePolicy:self.cachePolicy
                                          timeoutInterval:self.timeout];
 
+    NINetworkActivityTaskDidStart();
     NSError* networkError = nil;
     NSURLResponse* response = nil;
     NSData* data  = [NSURLConnection sendSynchronousRequest:request
                                           returningResponse:&response
                                                       error:&networkError];
+    NINetworkActivityTaskDidFinish();
 
     // If we get a 404 error then the request will not fail with an error, so only let successful
     // responses pass.
