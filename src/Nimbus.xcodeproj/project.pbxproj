@@ -75,7 +75,6 @@
 		666C3D4414D0AF8C00F337D6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D02143E38F0003E413C /* CoreGraphics.framework */; };
 		666C3D4514D0AFD000F337D6 /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0913E6E85E00B514F3 /* libNimbusCore.a */; };
 		666C3D4D14D0B05C00F337D6 /* NINetworkTableViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 666C3D4C14D0B05800F337D6 /* NINetworkTableViewControllerTests.m */; };
-		666C3D5014D0B0F200F337D6 /* NINetworkImageViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 666C3D4F14D0B0ED00F337D6 /* NINetworkImageViewTests.m */; };
 		666C3D5114D0B11800F337D6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D02143E38F0003E413C /* CoreGraphics.framework */; };
 		666C3D5214D0B11B00F337D6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
 		666C3D5314D0B13F00F337D6 /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0913E6E85E00B514F3 /* libNimbusCore.a */; };
@@ -288,6 +287,11 @@
 		66C3A6AF143D61140048542F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66C3A6B1143D61140048542F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66C3A6B4143D61140048542F /* libNimbusCss.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C3A6A1143D61130048542F /* libNimbusCss.a */; };
+		66DC73D614F4237A0077DAB0 /* NIKeychainPassword.h in Headers */ = {isa = PBXBuildFile; fileRef = 66DC73D414F4237A0077DAB0 /* NIKeychainPassword.h */; };
+		66DC73D714F4237A0077DAB0 /* NIKeychainPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DC73D514F4237A0077DAB0 /* NIKeychainPassword.m */; };
+		66DC73DB14F424020077DAB0 /* NIKeychainPasswordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DC73DA14F424020077DAB0 /* NIKeychainPasswordTests.m */; };
+		66DC73DD14F424DF0077DAB0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DC73DC14F424DF0077DAB0 /* Security.framework */; };
+		66DC73DE14F425110077DAB0 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
 		66E8CED214D089E500600592 /* NICommonMetricsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E8CED114D089E500600592 /* NICommonMetricsTests.m */; };
 		66E8CED814D08E7400600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
 		66E8CED914D08EAB00600592 /* libprofile_rt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E8CED714D08E7400600592 /* libprofile_rt.dylib */; };
@@ -305,8 +309,6 @@
 		66EDE07C14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EDE07A14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h */; };
 		66EDE10D14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EDE10B14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h */; };
 		66EDE10E14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE10C14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m */; };
-		66EDE11D14F1D99F0002B92B /* NIKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EDE11B14F1D99F0002B92B /* NIKeychain.h */; };
-		66EDE11E14F1D99F0002B92B /* NIKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE11C14F1D99F0002B92B /* NIKeychain.m */; };
 		66F27D55145B7A5F00AFCA08 /* NIPageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F27D53145B7A5F00AFCA08 /* NIPageView.h */; };
 		66F27D56145B7A5F00AFCA08 /* NIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F27D54145B7A5F00AFCA08 /* NIPageView.m */; };
 		66F27D60145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F27D5F145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h */; };
@@ -665,7 +667,6 @@
 		666C3D4B14D0B05800F337D6 /* NetworkControllersTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NetworkControllersTests-Info.plist"; path = "networkcontrollers/unittests/NetworkControllersTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		666C3D4C14D0B05800F337D6 /* NINetworkTableViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NINetworkTableViewControllerTests.m; path = networkcontrollers/unittests/NINetworkTableViewControllerTests.m; sourceTree = SOURCE_ROOT; };
 		666C3D4E14D0B0ED00F337D6 /* NimbusNetworkImageTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NimbusNetworkImageTests-Info.plist"; path = "networkimage/unittests/NimbusNetworkImageTests-Info.plist"; sourceTree = SOURCE_ROOT; };
-		666C3D4F14D0B0ED00F337D6 /* NINetworkImageViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NINetworkImageViewTests.m; path = networkimage/unittests/NINetworkImageViewTests.m; sourceTree = SOURCE_ROOT; };
 		666F737F14BBC65A00D1A32F /* NimbusCore+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusCore+Namespace.h"; sourceTree = "<group>"; };
 		666F739E14BBFE6800D1A32F /* NimbusAttributedLabel+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusAttributedLabel+Namespace.h"; sourceTree = "<group>"; };
 		666F73A214BBFEA300D1A32F /* NimbusCss+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusCss+Namespace.h"; path = "css/src/NimbusCss+Namespace.h"; sourceTree = SOURCE_ROOT; };
@@ -878,6 +879,11 @@
 		66C1153F1486ACDD003C9AC6 /* NIOperations+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIOperations+Subclassing.h"; sourceTree = "<group>"; };
 		66C3A6A1143D61130048542F /* libNimbusCss.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCss.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C3A6AE143D61140048542F /* NimbusCssTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCssTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66DC73D414F4237A0077DAB0 /* NIKeychainPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIKeychainPassword.h; path = oauth/src/NIKeychainPassword.h; sourceTree = SOURCE_ROOT; };
+		66DC73D514F4237A0077DAB0 /* NIKeychainPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIKeychainPassword.m; path = oauth/src/NIKeychainPassword.m; sourceTree = SOURCE_ROOT; };
+		66DC73D814F423A90077DAB0 /* NimbusOAuthTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NimbusOAuthTests-Info.plist"; path = "oauth/unittests/NimbusOAuthTests-Info.plist"; sourceTree = SOURCE_ROOT; };
+		66DC73DA14F424020077DAB0 /* NIKeychainPasswordTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIKeychainPasswordTests.m; path = oauth/unittests/NIKeychainPasswordTests.m; sourceTree = SOURCE_ROOT; };
+		66DC73DC14F424DF0077DAB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		66E8CED114D089E500600592 /* NICommonMetricsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICommonMetricsTests.m; sourceTree = "<group>"; };
 		66E8CED514D08B9F00600592 /* lib.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = lib.xcconfig; path = resources/lib.xcconfig; sourceTree = "<group>"; };
 		66E8CED614D08BAE00600592 /* unittest.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = unittest.xcconfig; path = resources/unittest.xcconfig; sourceTree = "<group>"; };
@@ -885,8 +891,6 @@
 		66EDE07A14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NIOpenAuthenticator+Subclassing.h"; path = "oauth/src/NIOpenAuthenticator+Subclassing.h"; sourceTree = SOURCE_ROOT; };
 		66EDE10B14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NISoundCloudOpenAuthenticator.h; path = oauth/src/NISoundCloudOpenAuthenticator.h; sourceTree = SOURCE_ROOT; };
 		66EDE10C14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISoundCloudOpenAuthenticator.m; path = oauth/src/NISoundCloudOpenAuthenticator.m; sourceTree = SOURCE_ROOT; };
-		66EDE11B14F1D99F0002B92B /* NIKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIKeychain.h; path = oauth/src/NIKeychain.h; sourceTree = SOURCE_ROOT; };
-		66EDE11C14F1D99F0002B92B /* NIKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIKeychain.m; path = oauth/src/NIKeychain.m; sourceTree = SOURCE_ROOT; };
 		66F27D53145B7A5F00AFCA08 /* NIPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPageView.h; sourceTree = "<group>"; };
 		66F27D54145B7A5F00AFCA08 /* NIPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIPageView.m; sourceTree = "<group>"; };
 		66F27D5F145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPhotoAlbumScrollViewDataSource.h; sourceTree = "<group>"; };
@@ -1059,6 +1063,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66DC73DE14F425110077DAB0 /* libprofile_rt.dylib in Frameworks */,
+				66DC73DD14F424DF0077DAB0 /* Security.framework in Frameworks */,
 				66759B5114DCBFE40094C24B /* libNimbusCore.a in Frameworks */,
 				66759B3114DCBE940094C24B /* SenTestingKit.framework in Frameworks */,
 				66759B3214DCBE940094C24B /* UIKit.framework in Frameworks */,
@@ -1462,8 +1468,8 @@
 				66EDE07A14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h */,
 				66EDE10B14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h */,
 				66EDE10C14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m */,
-				66EDE11B14F1D99F0002B92B /* NIKeychain.h */,
-				66EDE11C14F1D99F0002B92B /* NIKeychain.m */,
+				66DC73D414F4237A0077DAB0 /* NIKeychainPassword.h */,
+				66DC73D514F4237A0077DAB0 /* NIKeychainPassword.m */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -1471,6 +1477,8 @@
 		66759B4914DCBED00094C24B /* unittests */ = {
 			isa = PBXGroup;
 			children = (
+				66DC73D814F423A90077DAB0 /* NimbusOAuthTests-Info.plist */,
+				66DC73DA14F424020077DAB0 /* NIKeychainPasswordTests.m */,
 			);
 			name = unittests;
 			sourceTree = "<group>";
@@ -1652,6 +1660,7 @@
 		66A03C0B13E6E85E00B514F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66DC73DC14F424DF0077DAB0 /* Security.framework */,
 				666C3D1E14D0AC2100F337D6 /* CoreText.framework */,
 				66E8CED714D08E7400600592 /* libprofile_rt.dylib */,
 				66832D02143E38F0003E413C /* CoreGraphics.framework */,
@@ -1836,7 +1845,6 @@
 			isa = PBXGroup;
 			children = (
 				666C3D4E14D0B0ED00F337D6 /* NimbusNetworkImageTests-Info.plist */,
-				666C3D4F14D0B0ED00F337D6 /* NINetworkImageViewTests.m */,
 			);
 			name = unittests;
 			path = ../networkimage/unittests;
@@ -2096,7 +2104,7 @@
 				66759B5614DCC04C0094C24B /* NIOpenAuthenticator.h in Headers */,
 				66EDE07C14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h in Headers */,
 				66EDE10D14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h in Headers */,
-				66EDE11D14F1D99F0002B92B /* NIKeychain.h in Headers */,
+				66DC73D614F4237A0077DAB0 /* NIKeychainPassword.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3409,7 +3417,7 @@
 			files = (
 				66759B5714DCC04C0094C24B /* NIOpenAuthenticator.m in Sources */,
 				66EDE10E14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m in Sources */,
-				66EDE11E14F1D99F0002B92B /* NIKeychain.m in Sources */,
+				66DC73D714F4237A0077DAB0 /* NIKeychainPassword.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3417,6 +3425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66DC73DB14F424020077DAB0 /* NIKeychainPasswordTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3500,7 +3509,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				666C3D5014D0B0F200F337D6 /* NINetworkImageViewTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4336,6 +4344,7 @@
 		};
 		66759B4014DCBE940094C24B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -4357,6 +4366,7 @@
 		};
 		66759B4114DCBE940094C24B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED514D08B9F00600592 /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
@@ -4372,6 +4382,7 @@
 		};
 		66759B4214DCBE940094C24B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -4390,6 +4401,10 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "oauth/unittests/NimbusOAuthTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				NIMBUS_FEATURE_NAME = oauth;
 				NIMBUS_TARGET_NAME = NimbusOAuth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4399,6 +4414,7 @@
 		};
 		66759B4314DCBE940094C24B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66E8CED614D08BAE00600592 /* unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
@@ -4410,6 +4426,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "oauth/unittests/NimbusOAuthTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_DIR)/usr/lib\"",
+				);
 				NIMBUS_FEATURE_NAME = oauth;
 				NIMBUS_TARGET_NAME = NimbusOAuth;
 				PRODUCT_NAME = "$(TARGET_NAME)";

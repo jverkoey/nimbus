@@ -13,6 +13,7 @@
 
 typedef enum {
   AuthenticateAction = 1,
+  DeauthenticateAction,
 } Actions;
 
 @interface SoundCloudController()
@@ -47,6 +48,9 @@ typedef enum {
   if (NIOpenAuthenticationStateAuthorized == self.auth.state) {
     [objects addObject:[TableViewText objectWithText:@"Authenticated!"
                                               object:nil]];
+    
+    [objects addObject:[TableViewText objectWithText:@"De-authenticate"
+                                              object:[NSNumber numberWithInt:DeauthenticateAction]]];
 
   } else if (NIOpenAuthenticationStateFetchingToken == self.auth.state) {
     [objects addObject:[TableViewText objectWithText:@"Authenticating..."
@@ -80,6 +84,12 @@ typedef enum {
          [self refreshModel];
          [self.tableView reloadData];
        }];
+      break;
+    }
+    case DeauthenticateAction: {
+      [self.auth clearAuthentication];
+      [self refreshModel];
+      [self.tableView reloadData];
       break;
     }
   }

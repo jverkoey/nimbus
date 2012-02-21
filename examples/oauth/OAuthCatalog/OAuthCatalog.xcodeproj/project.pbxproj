@@ -44,7 +44,7 @@
 		66EDE11114F1CEA70002B92B /* NISoundCloudOpenAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE11014F1CEA60002B92B /* NISoundCloudOpenAuthenticator.m */; };
 		66EDE11714F1D01F0002B92B /* NINetworkJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE11614F1D01F0002B92B /* NINetworkJSONRequest.m */; };
 		66EDE11A14F1D51D0002B92B /* TableViewKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE11914F1D51D0002B92B /* TableViewKeyValue.m */; };
-		66EDE12114F1DABD0002B92B /* NIKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE12014F1DABD0002B92B /* NIKeychain.m */; };
+		66EDE12114F1DABD0002B92B /* NIKeychainPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE12014F1DABD0002B92B /* NIKeychainPassword.m */; };
 		66EDE12314F1DAD20002B92B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE12214F1DAD10002B92B /* Security.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,8 +135,8 @@
 		66EDE11614F1D01F0002B92B /* NINetworkJSONRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkJSONRequest.m; path = ../../../src/operations/src_JSONKit/NINetworkJSONRequest.m; sourceTree = "<group>"; };
 		66EDE11814F1D51D0002B92B /* TableViewKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewKeyValue.h; sourceTree = "<group>"; };
 		66EDE11914F1D51D0002B92B /* TableViewKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewKeyValue.m; sourceTree = "<group>"; };
-		66EDE11F14F1DABC0002B92B /* NIKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIKeychain.h; path = ../../../src/oauth/src/NIKeychain.h; sourceTree = "<group>"; };
-		66EDE12014F1DABD0002B92B /* NIKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIKeychain.m; path = ../../../src/oauth/src/NIKeychain.m; sourceTree = "<group>"; };
+		66EDE11F14F1DABC0002B92B /* NIKeychainPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIKeychainPassword.h; path = ../../../src/oauth/src/NIKeychainPassword.h; sourceTree = "<group>"; };
+		66EDE12014F1DABD0002B92B /* NIKeychainPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIKeychainPassword.m; path = ../../../src/oauth/src/NIKeychainPassword.m; sourceTree = "<group>"; };
 		66EDE12214F1DAD10002B92B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -282,8 +282,8 @@
 				66EDE0ED14F1A1E10002B92B /* NIOpenAuthenticator+Subclassing.h */,
 				66EDE10F14F1CEA60002B92B /* NISoundCloudOpenAuthenticator.h */,
 				66EDE11014F1CEA60002B92B /* NISoundCloudOpenAuthenticator.m */,
-				66EDE11F14F1DABC0002B92B /* NIKeychain.h */,
-				66EDE12014F1DABD0002B92B /* NIKeychain.m */,
+				66EDE11F14F1DABC0002B92B /* NIKeychainPassword.h */,
+				66EDE12014F1DABD0002B92B /* NIKeychainPassword.m */,
 			);
 			name = OAuth;
 			sourceTree = "<group>";
@@ -441,7 +441,7 @@
 				66EDE11114F1CEA70002B92B /* NISoundCloudOpenAuthenticator.m in Sources */,
 				66EDE11714F1D01F0002B92B /* NINetworkJSONRequest.m in Sources */,
 				66EDE11A14F1D51D0002B92B /* TableViewKeyValue.m in Sources */,
-				66EDE12114F1DABD0002B92B /* NIKeychain.m in Sources */,
+				66EDE12114F1DABD0002B92B /* NIKeychainPassword.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +543,7 @@
 				66EDE0A314F1A1A10002B92B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

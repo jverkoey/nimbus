@@ -16,7 +16,7 @@
 
 #import "NIOpenAuthenticator.h"
 
-#import "NIKeychain.h"
+#import "NIKeychainPassword.h"
 #import "NIOpenAuthenticator+Subclassing.h"
 #import "NimbusCore+Additions.h"
 #import "JSONKit.h"
@@ -77,7 +77,7 @@ static NSMutableSet* gAuthenticators = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithClientIdentifier:(NSString *)clientIdentifier clientSecret:(NSString *)clientSecret redirectBasePath:(NSString *)redirectBasePath {
   if ((self = [super init])) {
-    _keychain = [[NIKeychainPassword alloc] initWithIdentifier:@"nimbus.oauth"];
+    _keychain = [[NIKeychainPassword alloc] initWithIdentifier:NSStringFromClass([self class])];
     _clientIdentifier = [clientIdentifier copy];
     _clientSecret = [clientSecret copy];
     _redirectBasePath = [redirectBasePath copy];
@@ -103,12 +103,6 @@ static NSMutableSet* gAuthenticators = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)keychainKey {
-  return kSecValueData;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)authenticateWithStateHandler:(NIOpenAuthenticationBlock)stateHandler {
   if (NIIsStringWithAnyText(self.keychain.password)) {
     self.oauthToken = self.keychain.password;
@@ -122,6 +116,16 @@ static NSMutableSet* gAuthenticators = nil;
 
     [[UIApplication sharedApplication] openURL:authenticationUrl];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)clearAuthentication {
+  self.oauthToken = nil;
+  self.oauthCode = nil;
+  self.stateHandler = nil;
+  self.state = NIOpenAuthenticationStateInactive;
+  [self.keychain erasePassword];
 }
 
 

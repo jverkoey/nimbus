@@ -43,6 +43,8 @@ typedef void (^NIOpenAuthenticationBlock)(NIOpenAuthenticator* auth, NIOpenAuthe
 
 - (void)authenticateWithStateHandler:(NIOpenAuthenticationBlock)stateHandler;
 
+- (void)clearAuthentication;
+
 + (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
 + (void)setApplicationRedirectBasePath:(NSString *)redirectBasePath;

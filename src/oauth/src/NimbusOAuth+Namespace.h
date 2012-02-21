@@ -28,8 +28,8 @@
 #endif
 
 // Classes
-#ifndef NIKeychain
-#define NIKeychain __NIMBUS_NS_SYMBOL(NIKeychain)
+#ifndef NIKeychainPassword
+#define NIKeychainPassword __NIMBUS_NS_SYMBOL(NIKeychainPassword)
 #endif
 #ifndef NIOpenAuthenticator
 #define NIOpenAuthenticator __NIMBUS_NS_SYMBOL(NIOpenAuthenticator)

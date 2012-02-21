@@ -16,6 +16,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NIKeychain.h"
+/**
+ * @defgroup NimbusOAuth Nimbus OAuth
+ * @{
+ *
+ * Nimbus OAuth.
+ */
+
 #import "NIOpenAuthenticator.h"
 #import "NISoundCloudOpenAuthenticator.h"
