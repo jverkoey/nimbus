@@ -20,6 +20,26 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+CGRect NINavigationFrame() {
+    CGRect frame = [UIScreen mainScreen].applicationFrame;
+    return CGRectMake(0, 0, frame.size.width, frame.size.height - NIToolbarHeightForOrientation(NIInterfaceOrientation()));
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+CGRect NIKeyboardNavigationFrame() {
+    return NIRectContract(NINavigationFrame(), 0, NIKeyboardHeightForOrientation(NIInterfaceOrientation()));
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+CGFloat NIKeyboardHeightForOrientation(UIInterfaceOrientation orientation) {
+    return (NIIsPad()) ?
+    UIInterfaceOrientationIsPortrait(orientation) ? 264.0f : 352.0f :
+    UIInterfaceOrientationIsPortrait(orientation) ? 216.0f : 160.0f;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat NIToolbarHeightForOrientation(UIInterfaceOrientation orientation) {
   return (NIIsPad()
           ? 44

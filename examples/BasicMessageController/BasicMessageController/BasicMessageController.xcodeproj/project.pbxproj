@@ -1,0 +1,551 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8546CF151502CD780011B29A /* NIGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8546CF141502CD770011B29A /* NIGradientView.m */; };
+		85B6155F14FE82DB008B2D52 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85B6155E14FE82DB008B2D52 /* UIKit.framework */; };
+		85B6156114FE82DB008B2D52 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85B6156014FE82DB008B2D52 /* Foundation.framework */; };
+		85B6156314FE82DB008B2D52 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85B6156214FE82DB008B2D52 /* CoreGraphics.framework */; };
+		85B6156614FE82DB008B2D52 /* BasicMessageController_Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = 85B6156514FE82DB008B2D52 /* BasicMessageController_Prefix.pch */; };
+		85B6156A14FE82DB008B2D52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6156914FE82DB008B2D52 /* AppDelegate.m */; };
+		85B6156C14FE82DB008B2D52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6156B14FE82DB008B2D52 /* main.m */; };
+		85B615AD14FE845A008B2D52 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6158114FE845A008B2D52 /* NICommonMetrics.m */; };
+		85B615AE14FE845A008B2D52 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6158314FE845A008B2D52 /* NIDataStructures.m */; };
+		85B615AF14FE845A008B2D52 /* NIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6158514FE845A008B2D52 /* NIDebuggingTools.m */; };
+		85B615B014FE845A008B2D52 /* NIDeviceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6158714FE845A008B2D52 /* NIDeviceOrientation.m */; };
+		85B615B114FE845A008B2D52 /* NIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6158914FE845A008B2D52 /* NIError.m */; };
+		85B615B214FE845A008B2D52 /* NIFoundationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6158B14FE845A008B2D52 /* NIFoundationMethods.m */; };
+		85B615B314FE845A008B2D52 /* NIInMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6158D14FE845A008B2D52 /* NIInMemoryCache.m */; };
+		85B615B414FE845A008B2D52 /* NINavigationAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6159214FE845A008B2D52 /* NINavigationAppearance.m */; };
+		85B615B514FE845A008B2D52 /* NINetworkActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6159414FE845A008B2D52 /* NINetworkActivity.m */; };
+		85B615B614FE845A008B2D52 /* NINonEmptyCollectionTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6159614FE845A008B2D52 /* NINonEmptyCollectionTesting.m */; };
+		85B615B714FE845A008B2D52 /* NINonRetainingCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6159814FE845A008B2D52 /* NINonRetainingCollections.m */; };
+		85B615B814FE845A008B2D52 /* NIOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6159A14FE845A008B2D52 /* NIOperations.m */; };
+		85B615B914FE845A008B2D52 /* NIPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6159D14FE845A008B2D52 /* NIPaths.m */; };
+		85B615BA14FE845A008B2D52 /* NIRuntimeClassModifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615A014FE845A008B2D52 /* NIRuntimeClassModifications.m */; };
+		85B615BB14FE845A008B2D52 /* NISDKAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615A214FE845A008B2D52 /* NISDKAvailability.m */; };
+		85B615BC14FE845A008B2D52 /* NIState.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615A414FE845A008B2D52 /* NIState.m */; };
+		85B615BD14FE845A008B2D52 /* NIViewRecycler.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615A614FE845A008B2D52 /* NIViewRecycler.m */; };
+		85B615BE14FE845A008B2D52 /* NSData+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615A814FE845A008B2D52 /* NSData+NimbusCore.m */; };
+		85B615BF14FE845A008B2D52 /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615AA14FE845A008B2D52 /* NSString+NimbusCore.m */; };
+		85B615C014FE845A008B2D52 /* UIView+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615AC14FE845A008B2D52 /* UIView+NimbusCore.m */; };
+		85B615C714FE84A3008B2D52 /* NIMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615C514FE84A3008B2D52 /* NIMessageController.m */; };
+		85B615C914FE901F008B2D52 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85B615C814FE901F008B2D52 /* QuartzCore.framework */; };
+		85B615E614FE9FE3008B2D52 /* NIMessageRecipientField.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615E514FE9FE3008B2D52 /* NIMessageRecipientField.m */; };
+		85B615E814FEA163008B2D52 /* NIPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615E714FEA162008B2D52 /* NIPickerTextField.m */; };
+		85B615EA14FEA2A8008B2D52 /* NIPickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615E914FEA2A8008B2D52 /* NIPickerViewCell.m */; };
+		85B615EB14FEAE68008B2D52 /* NIMessageSubjectField.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615DC14FE99CF008B2D52 /* NIMessageSubjectField.m */; };
+		85B615EE14FEAED5008B2D52 /* NIMessageField.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615D914FE99CF008B2D52 /* NIMessageField.m */; };
+		85B615EF14FEAED5008B2D52 /* NIMessageTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615ED14FEAEB4008B2D52 /* NIMessageTextField.m */; };
+		85B615F014FEAED5008B2D52 /* NISearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615E114FE9A68008B2D52 /* NISearchTextField.m */; };
+		85B615F114FEAED5008B2D52 /* NISearchTextFieldInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615E414FE9A68008B2D52 /* NISearchTextFieldInternal.m */; };
+		85B6160814FEB84D008B2D52 /* NICellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6160014FEB84D008B2D52 /* NICellFactory.m */; };
+		85B6160914FEB84D008B2D52 /* NIFormCellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6160214FEB84D008B2D52 /* NIFormCellCatalog.m */; };
+		85B6160A14FEB84D008B2D52 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6160614FEB84D008B2D52 /* NITableViewModel.m */; };
+		85B6164814FEC86E008B2D52 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6164714FEC86E008B2D52 /* MainViewController.m */; };
+		85C3EF04150307950062BBFE /* NIActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C3EF03150307950062BBFE /* NIActivityLabel.m */; };
+		85C3EF44150317390062BBFE /* NITableViewSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8546CF0E1502ABC10011B29A /* NITableViewSearchModel.m */; };
+		85F96BF21500460A00B9A3D6 /* SearchTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F96BF11500460A00B9A3D6 /* SearchTableViewModel.m */; };
+		85F96BF515004D3600B9A3D6 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F96BF415004D3600B9A3D6 /* SearchViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8546CF0D1502ABC00011B29A /* NITableViewSearchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NITableViewSearchModel.h; path = ../../../src/messagecontroller/NITableViewSearchModel.h; sourceTree = "<group>"; };
+		8546CF0E1502ABC10011B29A /* NITableViewSearchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NITableViewSearchModel.m; path = ../../../src/messagecontroller/NITableViewSearchModel.m; sourceTree = "<group>"; };
+		8546CF131502CD760011B29A /* NIGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIGradientView.h; path = ../../../src/messagecontroller/NIGradientView.h; sourceTree = "<group>"; };
+		8546CF141502CD770011B29A /* NIGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIGradientView.m; path = ../../../src/messagecontroller/NIGradientView.m; sourceTree = "<group>"; };
+		85B6155A14FE82DB008B2D52 /* BasicMessageController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicMessageController.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85B6155E14FE82DB008B2D52 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		85B6156014FE82DB008B2D52 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		85B6156214FE82DB008B2D52 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		85B6156514FE82DB008B2D52 /* BasicMessageController_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BasicMessageController_Prefix.pch; path = src/BasicMessageController_Prefix.pch; sourceTree = "<group>"; };
+		85B6156814FE82DB008B2D52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = src/AppDelegate.h; sourceTree = "<group>"; };
+		85B6156914FE82DB008B2D52 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = src/AppDelegate.m; sourceTree = "<group>"; };
+		85B6156B14FE82DB008B2D52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = src/main.m; sourceTree = "<group>"; };
+		85B6156E14FE82DB008B2D52 /* BasicMessageController-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BasicMessageController-Info.plist"; path = "resources/BasicMessageController-Info.plist"; sourceTree = "<group>"; };
+		85B6157F14FE845A008B2D52 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = ../../../src/core/src/NIBlocks.h; sourceTree = "<group>"; };
+		85B6158014FE845A008B2D52 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../../../src/core/src/NICommonMetrics.h; sourceTree = "<group>"; };
+		85B6158114FE845A008B2D52 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../../../src/core/src/NICommonMetrics.m; sourceTree = "<group>"; };
+		85B6158214FE845A008B2D52 /* NIDataStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDataStructures.h; path = ../../../src/core/src/NIDataStructures.h; sourceTree = "<group>"; };
+		85B6158314FE845A008B2D52 /* NIDataStructures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDataStructures.m; path = ../../../src/core/src/NIDataStructures.m; sourceTree = "<group>"; };
+		85B6158414FE845A008B2D52 /* NIDebuggingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDebuggingTools.h; path = ../../../src/core/src/NIDebuggingTools.h; sourceTree = "<group>"; };
+		85B6158514FE845A008B2D52 /* NIDebuggingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDebuggingTools.m; path = ../../../src/core/src/NIDebuggingTools.m; sourceTree = "<group>"; };
+		85B6158614FE845A008B2D52 /* NIDeviceOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDeviceOrientation.h; path = ../../../src/core/src/NIDeviceOrientation.h; sourceTree = "<group>"; };
+		85B6158714FE845A008B2D52 /* NIDeviceOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDeviceOrientation.m; path = ../../../src/core/src/NIDeviceOrientation.m; sourceTree = "<group>"; };
+		85B6158814FE845A008B2D52 /* NIError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIError.h; path = ../../../src/core/src/NIError.h; sourceTree = "<group>"; };
+		85B6158914FE845A008B2D52 /* NIError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIError.m; path = ../../../src/core/src/NIError.m; sourceTree = "<group>"; };
+		85B6158A14FE845A008B2D52 /* NIFoundationMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIFoundationMethods.h; path = ../../../src/core/src/NIFoundationMethods.h; sourceTree = "<group>"; };
+		85B6158B14FE845A008B2D52 /* NIFoundationMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIFoundationMethods.m; path = ../../../src/core/src/NIFoundationMethods.m; sourceTree = "<group>"; };
+		85B6158C14FE845A008B2D52 /* NIInMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIInMemoryCache.h; path = ../../../src/core/src/NIInMemoryCache.h; sourceTree = "<group>"; };
+		85B6158D14FE845A008B2D52 /* NIInMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIInMemoryCache.m; path = ../../../src/core/src/NIInMemoryCache.m; sourceTree = "<group>"; };
+		85B6158E14FE845A008B2D52 /* NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusCore.h; path = ../../../src/core/src/NimbusCore.h; sourceTree = "<group>"; };
+		85B6158F14FE845A008B2D52 /* NimbusCore+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusCore+Additions.h"; path = "../../../src/core/src/NimbusCore+Additions.h"; sourceTree = "<group>"; };
+		85B6159014FE845A008B2D52 /* NimbusCore+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusCore+Namespace.h"; path = "../../../src/core/src/NimbusCore+Namespace.h"; sourceTree = "<group>"; };
+		85B6159114FE845A008B2D52 /* NINavigationAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINavigationAppearance.h; path = ../../../src/core/src/NINavigationAppearance.h; sourceTree = "<group>"; };
+		85B6159214FE845A008B2D52 /* NINavigationAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINavigationAppearance.m; path = ../../../src/core/src/NINavigationAppearance.m; sourceTree = "<group>"; };
+		85B6159314FE845A008B2D52 /* NINetworkActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkActivity.h; path = ../../../src/core/src/NINetworkActivity.h; sourceTree = "<group>"; };
+		85B6159414FE845A008B2D52 /* NINetworkActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkActivity.m; path = ../../../src/core/src/NINetworkActivity.m; sourceTree = "<group>"; };
+		85B6159514FE845A008B2D52 /* NINonEmptyCollectionTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINonEmptyCollectionTesting.h; path = ../../../src/core/src/NINonEmptyCollectionTesting.h; sourceTree = "<group>"; };
+		85B6159614FE845A008B2D52 /* NINonEmptyCollectionTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINonEmptyCollectionTesting.m; path = ../../../src/core/src/NINonEmptyCollectionTesting.m; sourceTree = "<group>"; };
+		85B6159714FE845A008B2D52 /* NINonRetainingCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINonRetainingCollections.h; path = ../../../src/core/src/NINonRetainingCollections.h; sourceTree = "<group>"; };
+		85B6159814FE845A008B2D52 /* NINonRetainingCollections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINonRetainingCollections.m; path = ../../../src/core/src/NINonRetainingCollections.m; sourceTree = "<group>"; };
+		85B6159914FE845A008B2D52 /* NIOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOperations.h; path = ../../../src/core/src/NIOperations.h; sourceTree = "<group>"; };
+		85B6159A14FE845A008B2D52 /* NIOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOperations.m; path = ../../../src/core/src/NIOperations.m; sourceTree = "<group>"; };
+		85B6159B14FE845A008B2D52 /* NIOperations+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NIOperations+Subclassing.h"; path = "../../../src/core/src/NIOperations+Subclassing.h"; sourceTree = "<group>"; };
+		85B6159C14FE845A008B2D52 /* NIPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPaths.h; path = ../../../src/core/src/NIPaths.h; sourceTree = "<group>"; };
+		85B6159D14FE845A008B2D52 /* NIPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPaths.m; path = ../../../src/core/src/NIPaths.m; sourceTree = "<group>"; };
+		85B6159E14FE845A008B2D52 /* NIPreprocessorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPreprocessorMacros.h; path = ../../../src/core/src/NIPreprocessorMacros.h; sourceTree = "<group>"; };
+		85B6159F14FE845A008B2D52 /* NIRuntimeClassModifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIRuntimeClassModifications.h; path = ../../../src/core/src/NIRuntimeClassModifications.h; sourceTree = "<group>"; };
+		85B615A014FE845A008B2D52 /* NIRuntimeClassModifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIRuntimeClassModifications.m; path = ../../../src/core/src/NIRuntimeClassModifications.m; sourceTree = "<group>"; };
+		85B615A114FE845A008B2D52 /* NISDKAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NISDKAvailability.h; path = ../../../src/core/src/NISDKAvailability.h; sourceTree = "<group>"; };
+		85B615A214FE845A008B2D52 /* NISDKAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISDKAvailability.m; path = ../../../src/core/src/NISDKAvailability.m; sourceTree = "<group>"; };
+		85B615A314FE845A008B2D52 /* NIState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIState.h; path = ../../../src/core/src/NIState.h; sourceTree = "<group>"; };
+		85B615A414FE845A008B2D52 /* NIState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIState.m; path = ../../../src/core/src/NIState.m; sourceTree = "<group>"; };
+		85B615A514FE845A008B2D52 /* NIViewRecycler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIViewRecycler.h; path = ../../../src/core/src/NIViewRecycler.h; sourceTree = "<group>"; };
+		85B615A614FE845A008B2D52 /* NIViewRecycler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIViewRecycler.m; path = ../../../src/core/src/NIViewRecycler.m; sourceTree = "<group>"; };
+		85B615A714FE845A008B2D52 /* NSData+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+NimbusCore.h"; path = "../../../src/core/src/NSData+NimbusCore.h"; sourceTree = "<group>"; };
+		85B615A814FE845A008B2D52 /* NSData+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+NimbusCore.m"; path = "../../../src/core/src/NSData+NimbusCore.m"; sourceTree = "<group>"; };
+		85B615A914FE845A008B2D52 /* NSString+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+NimbusCore.h"; path = "../../../src/core/src/NSString+NimbusCore.h"; sourceTree = "<group>"; };
+		85B615AA14FE845A008B2D52 /* NSString+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NimbusCore.m"; path = "../../../src/core/src/NSString+NimbusCore.m"; sourceTree = "<group>"; };
+		85B615AB14FE845A008B2D52 /* UIView+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+NimbusCore.h"; path = "../../../src/core/src/UIView+NimbusCore.h"; sourceTree = "<group>"; };
+		85B615AC14FE845A008B2D52 /* UIView+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+NimbusCore.m"; path = "../../../src/core/src/UIView+NimbusCore.m"; sourceTree = "<group>"; };
+		85B615C214FE84A3008B2D52 /* NimbusMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusMessageController.h; path = ../../../src/messagecontroller/NimbusMessageController.h; sourceTree = "<group>"; };
+		85B615C414FE84A3008B2D52 /* NIMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIMessageController.h; path = ../../../src/messagecontroller/NIMessageController.h; sourceTree = "<group>"; };
+		85B615C514FE84A3008B2D52 /* NIMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIMessageController.m; path = ../../../src/messagecontroller/NIMessageController.m; sourceTree = "<group>"; };
+		85B615C814FE901F008B2D52 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		85B615D814FE99CF008B2D52 /* NIMessageField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NIMessageField.h; path = ../../../src/messagecontroller/NIMessageField.h; sourceTree = "<group>"; };
+		85B615D914FE99CF008B2D52 /* NIMessageField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NIMessageField.m; path = ../../../src/messagecontroller/NIMessageField.m; sourceTree = "<group>"; };
+		85B615DA14FE99CF008B2D52 /* NIMessageRecipientField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NIMessageRecipientField.h; path = ../../../src/messagecontroller/NIMessageRecipientField.h; sourceTree = "<group>"; };
+		85B615DB14FE99CF008B2D52 /* NIMessageSubjectField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NIMessageSubjectField.h; path = ../../../src/messagecontroller/NIMessageSubjectField.h; sourceTree = "<group>"; };
+		85B615DC14FE99CF008B2D52 /* NIMessageSubjectField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NIMessageSubjectField.m; path = ../../../src/messagecontroller/NIMessageSubjectField.m; sourceTree = "<group>"; };
+		85B615DD14FE99CF008B2D52 /* NIPickerTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NIPickerTextField.h; path = ../../../src/messagecontroller/NIPickerTextField.h; sourceTree = "<group>"; };
+		85B615DF14FE99CF008B2D52 /* NIPickerViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NIPickerViewCell.h; path = ../../../src/messagecontroller/NIPickerViewCell.h; sourceTree = "<group>"; };
+		85B615E014FE9A68008B2D52 /* NISearchTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NISearchTextField.h; path = ../../../src/messagecontroller/NISearchTextField.h; sourceTree = "<group>"; };
+		85B615E114FE9A68008B2D52 /* NISearchTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NISearchTextField.m; path = ../../../src/messagecontroller/NISearchTextField.m; sourceTree = "<group>"; };
+		85B615E314FE9A68008B2D52 /* NISearchTextFieldInternal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NISearchTextFieldInternal.h; path = ../../../src/messagecontroller/NISearchTextFieldInternal.h; sourceTree = "<group>"; };
+		85B615E414FE9A68008B2D52 /* NISearchTextFieldInternal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NISearchTextFieldInternal.m; path = ../../../src/messagecontroller/NISearchTextFieldInternal.m; sourceTree = "<group>"; };
+		85B615E514FE9FE3008B2D52 /* NIMessageRecipientField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIMessageRecipientField.m; path = ../../../src/messagecontroller/NIMessageRecipientField.m; sourceTree = "<group>"; };
+		85B615E714FEA162008B2D52 /* NIPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPickerTextField.m; path = ../../../src/messagecontroller/NIPickerTextField.m; sourceTree = "<group>"; };
+		85B615E914FEA2A8008B2D52 /* NIPickerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPickerViewCell.m; path = ../../../src/messagecontroller/NIPickerViewCell.m; sourceTree = "<group>"; };
+		85B615EC14FEAEB4008B2D52 /* NIMessageTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NIMessageTextField.h; path = ../../../src/messagecontroller/NIMessageTextField.h; sourceTree = "<group>"; };
+		85B615ED14FEAEB4008B2D52 /* NIMessageTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NIMessageTextField.m; path = ../../../src/messagecontroller/NIMessageTextField.m; sourceTree = "<group>"; };
+		85B615FF14FEB84D008B2D52 /* NICellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICellFactory.h; path = ../../../src/models/src/NICellFactory.h; sourceTree = "<group>"; };
+		85B6160014FEB84D008B2D52 /* NICellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICellFactory.m; path = ../../../src/models/src/NICellFactory.m; sourceTree = "<group>"; };
+		85B6160114FEB84D008B2D52 /* NIFormCellCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIFormCellCatalog.h; path = ../../../src/models/src/NIFormCellCatalog.h; sourceTree = "<group>"; };
+		85B6160214FEB84D008B2D52 /* NIFormCellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIFormCellCatalog.m; path = ../../../src/models/src/NIFormCellCatalog.m; sourceTree = "<group>"; };
+		85B6160314FEB84D008B2D52 /* NimbusModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusModels.h; path = ../../../src/models/src/NimbusModels.h; sourceTree = "<group>"; };
+		85B6160414FEB84D008B2D52 /* NimbusModels+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusModels+Namespace.h"; path = "../../../src/models/src/NimbusModels+Namespace.h"; sourceTree = "<group>"; };
+		85B6160514FEB84D008B2D52 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITableViewModel.h; path = ../../../src/models/src/NITableViewModel.h; sourceTree = "<group>"; };
+		85B6160614FEB84D008B2D52 /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITableViewModel.m; path = ../../../src/models/src/NITableViewModel.m; sourceTree = "<group>"; };
+		85B6160714FEB84D008B2D52 /* NITableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NITableViewModel+Private.h"; path = "../../../src/models/src/NITableViewModel+Private.h"; sourceTree = "<group>"; };
+		85B6164614FEC86E008B2D52 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = src/MainViewController.h; sourceTree = "<group>"; };
+		85B6164714FEC86E008B2D52 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = src/MainViewController.m; sourceTree = "<group>"; };
+		85C3EF02150307950062BBFE /* NIActivityLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIActivityLabel.h; path = ../../../src/messagecontroller/NIActivityLabel.h; sourceTree = "<group>"; };
+		85C3EF03150307950062BBFE /* NIActivityLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIActivityLabel.m; path = ../../../src/messagecontroller/NIActivityLabel.m; sourceTree = "<group>"; };
+		85F96BF01500460A00B9A3D6 /* SearchTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchTableViewModel.h; path = src/SearchTableViewModel.h; sourceTree = "<group>"; };
+		85F96BF11500460A00B9A3D6 /* SearchTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchTableViewModel.m; path = src/SearchTableViewModel.m; sourceTree = "<group>"; };
+		85F96BF315004D3600B9A3D6 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = src/SearchViewController.h; sourceTree = "<group>"; };
+		85F96BF415004D3600B9A3D6 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = src/SearchViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		85B6155714FE82DB008B2D52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85B615C914FE901F008B2D52 /* QuartzCore.framework in Frameworks */,
+				85B6155F14FE82DB008B2D52 /* UIKit.framework in Frameworks */,
+				85B6156114FE82DB008B2D52 /* Foundation.framework in Frameworks */,
+				85B6156314FE82DB008B2D52 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		85B6154F14FE82DB008B2D52 = {
+			isa = PBXGroup;
+			children = (
+				85B615C814FE901F008B2D52 /* QuartzCore.framework */,
+				85B6157814FE8432008B2D52 /* Nimbus */,
+				85B6156414FE82DB008B2D52 /* BasicMessageController */,
+				85B6155D14FE82DB008B2D52 /* Frameworks */,
+				85B6155B14FE82DB008B2D52 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		85B6155B14FE82DB008B2D52 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				85B6155A14FE82DB008B2D52 /* BasicMessageController.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		85B6155D14FE82DB008B2D52 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				85B6155E14FE82DB008B2D52 /* UIKit.framework */,
+				85B6156014FE82DB008B2D52 /* Foundation.framework */,
+				85B6156214FE82DB008B2D52 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		85B6156414FE82DB008B2D52 /* BasicMessageController */ = {
+			isa = PBXGroup;
+			children = (
+				85B6156514FE82DB008B2D52 /* BasicMessageController_Prefix.pch */,
+				85B6156714FE82DB008B2D52 /* Source */,
+				85B6156D14FE82DB008B2D52 /* Resources */,
+			);
+			path = BasicMessageController;
+			sourceTree = "<group>";
+		};
+		85B6156714FE82DB008B2D52 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				85F96BEF150045BA00B9A3D6 /* SearchModel */,
+				85B6156814FE82DB008B2D52 /* AppDelegate.h */,
+				85B6156914FE82DB008B2D52 /* AppDelegate.m */,
+				85B6156B14FE82DB008B2D52 /* main.m */,
+				85B6164614FEC86E008B2D52 /* MainViewController.h */,
+				85B6164714FEC86E008B2D52 /* MainViewController.m */,
+				85F96BF315004D3600B9A3D6 /* SearchViewController.h */,
+				85F96BF415004D3600B9A3D6 /* SearchViewController.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		85B6156D14FE82DB008B2D52 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				85B6156E14FE82DB008B2D52 /* BasicMessageController-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		85B6157814FE8432008B2D52 /* Nimbus */ = {
+			isa = PBXGroup;
+			children = (
+				85B615FE14FEB840008B2D52 /* Models */,
+				85B615C114FE8489008B2D52 /* Message Controller */,
+				85B6157A14FE8439008B2D52 /* Core */,
+			);
+			name = Nimbus;
+			sourceTree = "<group>";
+		};
+		85B6157A14FE8439008B2D52 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				85B6157F14FE845A008B2D52 /* NIBlocks.h */,
+				85B6158014FE845A008B2D52 /* NICommonMetrics.h */,
+				85B6158114FE845A008B2D52 /* NICommonMetrics.m */,
+				85B6158214FE845A008B2D52 /* NIDataStructures.h */,
+				85B6158314FE845A008B2D52 /* NIDataStructures.m */,
+				85B6158414FE845A008B2D52 /* NIDebuggingTools.h */,
+				85B6158514FE845A008B2D52 /* NIDebuggingTools.m */,
+				85B6158614FE845A008B2D52 /* NIDeviceOrientation.h */,
+				85B6158714FE845A008B2D52 /* NIDeviceOrientation.m */,
+				85B6158814FE845A008B2D52 /* NIError.h */,
+				85B6158914FE845A008B2D52 /* NIError.m */,
+				85B6158A14FE845A008B2D52 /* NIFoundationMethods.h */,
+				85B6158B14FE845A008B2D52 /* NIFoundationMethods.m */,
+				85B6158C14FE845A008B2D52 /* NIInMemoryCache.h */,
+				85B6158D14FE845A008B2D52 /* NIInMemoryCache.m */,
+				85B6158E14FE845A008B2D52 /* NimbusCore.h */,
+				85B6158F14FE845A008B2D52 /* NimbusCore+Additions.h */,
+				85B6159014FE845A008B2D52 /* NimbusCore+Namespace.h */,
+				85B6159114FE845A008B2D52 /* NINavigationAppearance.h */,
+				85B6159214FE845A008B2D52 /* NINavigationAppearance.m */,
+				85B6159314FE845A008B2D52 /* NINetworkActivity.h */,
+				85B6159414FE845A008B2D52 /* NINetworkActivity.m */,
+				85B6159514FE845A008B2D52 /* NINonEmptyCollectionTesting.h */,
+				85B6159614FE845A008B2D52 /* NINonEmptyCollectionTesting.m */,
+				85B6159714FE845A008B2D52 /* NINonRetainingCollections.h */,
+				85B6159814FE845A008B2D52 /* NINonRetainingCollections.m */,
+				85B6159914FE845A008B2D52 /* NIOperations.h */,
+				85B6159A14FE845A008B2D52 /* NIOperations.m */,
+				85B6159B14FE845A008B2D52 /* NIOperations+Subclassing.h */,
+				85B6159C14FE845A008B2D52 /* NIPaths.h */,
+				85B6159D14FE845A008B2D52 /* NIPaths.m */,
+				85B6159E14FE845A008B2D52 /* NIPreprocessorMacros.h */,
+				85B6159F14FE845A008B2D52 /* NIRuntimeClassModifications.h */,
+				85B615A014FE845A008B2D52 /* NIRuntimeClassModifications.m */,
+				85B615A114FE845A008B2D52 /* NISDKAvailability.h */,
+				85B615A214FE845A008B2D52 /* NISDKAvailability.m */,
+				85B615A314FE845A008B2D52 /* NIState.h */,
+				85B615A414FE845A008B2D52 /* NIState.m */,
+				85B615A514FE845A008B2D52 /* NIViewRecycler.h */,
+				85B615A614FE845A008B2D52 /* NIViewRecycler.m */,
+				85B615A714FE845A008B2D52 /* NSData+NimbusCore.h */,
+				85B615A814FE845A008B2D52 /* NSData+NimbusCore.m */,
+				85B615A914FE845A008B2D52 /* NSString+NimbusCore.h */,
+				85B615AA14FE845A008B2D52 /* NSString+NimbusCore.m */,
+				85B615AB14FE845A008B2D52 /* UIView+NimbusCore.h */,
+				85B615AC14FE845A008B2D52 /* UIView+NimbusCore.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		85B615C114FE8489008B2D52 /* Message Controller */ = {
+			isa = PBXGroup;
+			children = (
+				85C3EF02150307950062BBFE /* NIActivityLabel.h */,
+				85C3EF03150307950062BBFE /* NIActivityLabel.m */,
+				8546CF131502CD760011B29A /* NIGradientView.h */,
+				8546CF141502CD770011B29A /* NIGradientView.m */,
+				85B615C214FE84A3008B2D52 /* NimbusMessageController.h */,
+				85B615C414FE84A3008B2D52 /* NIMessageController.h */,
+				85B615C514FE84A3008B2D52 /* NIMessageController.m */,
+				85B615D814FE99CF008B2D52 /* NIMessageField.h */,
+				85B615D914FE99CF008B2D52 /* NIMessageField.m */,
+				85B615DA14FE99CF008B2D52 /* NIMessageRecipientField.h */,
+				85B615E514FE9FE3008B2D52 /* NIMessageRecipientField.m */,
+				85B615DB14FE99CF008B2D52 /* NIMessageSubjectField.h */,
+				85B615DC14FE99CF008B2D52 /* NIMessageSubjectField.m */,
+				85B615EC14FEAEB4008B2D52 /* NIMessageTextField.h */,
+				85B615ED14FEAEB4008B2D52 /* NIMessageTextField.m */,
+				85B615DD14FE99CF008B2D52 /* NIPickerTextField.h */,
+				85B615E714FEA162008B2D52 /* NIPickerTextField.m */,
+				85B615DF14FE99CF008B2D52 /* NIPickerViewCell.h */,
+				85B615E914FEA2A8008B2D52 /* NIPickerViewCell.m */,
+				85B615E014FE9A68008B2D52 /* NISearchTextField.h */,
+				85B615E114FE9A68008B2D52 /* NISearchTextField.m */,
+				85B615E314FE9A68008B2D52 /* NISearchTextFieldInternal.h */,
+				85B615E414FE9A68008B2D52 /* NISearchTextFieldInternal.m */,
+				8546CF0D1502ABC00011B29A /* NITableViewSearchModel.h */,
+				8546CF0E1502ABC10011B29A /* NITableViewSearchModel.m */,
+			);
+			name = "Message Controller";
+			sourceTree = "<group>";
+		};
+		85B615FE14FEB840008B2D52 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				85B615FF14FEB84D008B2D52 /* NICellFactory.h */,
+				85B6160014FEB84D008B2D52 /* NICellFactory.m */,
+				85B6160114FEB84D008B2D52 /* NIFormCellCatalog.h */,
+				85B6160214FEB84D008B2D52 /* NIFormCellCatalog.m */,
+				85B6160314FEB84D008B2D52 /* NimbusModels.h */,
+				85B6160414FEB84D008B2D52 /* NimbusModels+Namespace.h */,
+				85B6160514FEB84D008B2D52 /* NITableViewModel.h */,
+				85B6160614FEB84D008B2D52 /* NITableViewModel.m */,
+				85B6160714FEB84D008B2D52 /* NITableViewModel+Private.h */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		85F96BEF150045BA00B9A3D6 /* SearchModel */ = {
+			isa = PBXGroup;
+			children = (
+				85F96BF01500460A00B9A3D6 /* SearchTableViewModel.h */,
+				85F96BF11500460A00B9A3D6 /* SearchTableViewModel.m */,
+			);
+			name = SearchModel;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		85B6155914FE82DB008B2D52 /* BasicMessageController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85B6157114FE82DB008B2D52 /* Build configuration list for PBXNativeTarget "BasicMessageController" */;
+			buildPhases = (
+				85B6155614FE82DB008B2D52 /* Sources */,
+				85B6155714FE82DB008B2D52 /* Frameworks */,
+				85B6155814FE82DB008B2D52 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BasicMessageController;
+			productName = BasicMessageController;
+			productReference = 85B6155A14FE82DB008B2D52 /* BasicMessageController.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		85B6155114FE82DB008B2D52 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Taknology, Inc.";
+			};
+			buildConfigurationList = 85B6155414FE82DB008B2D52 /* Build configuration list for PBXProject "BasicMessageController" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 85B6154F14FE82DB008B2D52;
+			productRefGroup = 85B6155B14FE82DB008B2D52 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				85B6155914FE82DB008B2D52 /* BasicMessageController */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		85B6155814FE82DB008B2D52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85B6156614FE82DB008B2D52 /* BasicMessageController_Prefix.pch in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		85B6155614FE82DB008B2D52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85C3EF44150317390062BBFE /* NITableViewSearchModel.m in Sources */,
+				85B615EE14FEAED5008B2D52 /* NIMessageField.m in Sources */,
+				85B615EF14FEAED5008B2D52 /* NIMessageTextField.m in Sources */,
+				85B615F014FEAED5008B2D52 /* NISearchTextField.m in Sources */,
+				85B615F114FEAED5008B2D52 /* NISearchTextFieldInternal.m in Sources */,
+				85B615EB14FEAE68008B2D52 /* NIMessageSubjectField.m in Sources */,
+				85B6156A14FE82DB008B2D52 /* AppDelegate.m in Sources */,
+				85B6156C14FE82DB008B2D52 /* main.m in Sources */,
+				85B615AD14FE845A008B2D52 /* NICommonMetrics.m in Sources */,
+				85B615AE14FE845A008B2D52 /* NIDataStructures.m in Sources */,
+				85B615AF14FE845A008B2D52 /* NIDebuggingTools.m in Sources */,
+				85B615B014FE845A008B2D52 /* NIDeviceOrientation.m in Sources */,
+				85B615B114FE845A008B2D52 /* NIError.m in Sources */,
+				85B615B214FE845A008B2D52 /* NIFoundationMethods.m in Sources */,
+				85B615B314FE845A008B2D52 /* NIInMemoryCache.m in Sources */,
+				85B615B414FE845A008B2D52 /* NINavigationAppearance.m in Sources */,
+				85B615B514FE845A008B2D52 /* NINetworkActivity.m in Sources */,
+				85B615B614FE845A008B2D52 /* NINonEmptyCollectionTesting.m in Sources */,
+				85B615B714FE845A008B2D52 /* NINonRetainingCollections.m in Sources */,
+				85B615B814FE845A008B2D52 /* NIOperations.m in Sources */,
+				85B615B914FE845A008B2D52 /* NIPaths.m in Sources */,
+				85B615BA14FE845A008B2D52 /* NIRuntimeClassModifications.m in Sources */,
+				85B615BB14FE845A008B2D52 /* NISDKAvailability.m in Sources */,
+				85B615BC14FE845A008B2D52 /* NIState.m in Sources */,
+				85B615BD14FE845A008B2D52 /* NIViewRecycler.m in Sources */,
+				85B615BE14FE845A008B2D52 /* NSData+NimbusCore.m in Sources */,
+				85B615BF14FE845A008B2D52 /* NSString+NimbusCore.m in Sources */,
+				85B615C014FE845A008B2D52 /* UIView+NimbusCore.m in Sources */,
+				85B615C714FE84A3008B2D52 /* NIMessageController.m in Sources */,
+				85B615E614FE9FE3008B2D52 /* NIMessageRecipientField.m in Sources */,
+				85B615E814FEA163008B2D52 /* NIPickerTextField.m in Sources */,
+				85B615EA14FEA2A8008B2D52 /* NIPickerViewCell.m in Sources */,
+				85B6160814FEB84D008B2D52 /* NICellFactory.m in Sources */,
+				85B6160914FEB84D008B2D52 /* NIFormCellCatalog.m in Sources */,
+				85B6160A14FEB84D008B2D52 /* NITableViewModel.m in Sources */,
+				85B6164814FEC86E008B2D52 /* MainViewController.m in Sources */,
+				85F96BF21500460A00B9A3D6 /* SearchTableViewModel.m in Sources */,
+				85F96BF515004D3600B9A3D6 /* SearchViewController.m in Sources */,
+				8546CF151502CD780011B29A /* NIGradientView.m in Sources */,
+				85C3EF04150307950062BBFE /* NIActivityLabel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		85B6156F14FE82DB008B2D52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		85B6157014FE82DB008B2D52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		85B6157214FE82DB008B2D52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BasicMessageController/src/BasicMessageController_Prefix.pch;
+				GCC_VERSION = "";
+				INFOPLIST_FILE = "BasicMessageController/resources/BasicMessageController-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		85B6157314FE82DB008B2D52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BasicMessageController/src/BasicMessageController_Prefix.pch;
+				GCC_VERSION = "";
+				INFOPLIST_FILE = "BasicMessageController/resources/BasicMessageController-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		85B6155414FE82DB008B2D52 /* Build configuration list for PBXProject "BasicMessageController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85B6156F14FE82DB008B2D52 /* Debug */,
+				85B6157014FE82DB008B2D52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85B6157114FE82DB008B2D52 /* Build configuration list for PBXNativeTarget "BasicMessageController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85B6157214FE82DB008B2D52 /* Debug */,
+				85B6157314FE82DB008B2D52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 85B6155114FE82DB008B2D52 /* Project object */;
+}

@@ -1,7 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
-//
-// Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,53 +14,57 @@
 // limitations under the License.
 //
 
-#import "UIView+NimbusCore.h"
+#import "NIMessageTextField.h"
+
+// UI
+#import "NIPickerTextField.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation UIView (NimbusCore)
+@implementation NIMessageTextField
+
+
+@synthesize text = _text;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)centerWithin:(UIView *)otherView {
-  CGSize otherSize = otherView.frame.size;
-  CGSize size = self.frame.size;
-  self.frame = CGRectMake(floorf((otherSize.width - size.width) / 2.f),
-                          floorf((otherSize.height - size.height) / 2.f),
-                          size.width, size.height);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView*)descendantOrSelfWithClass:(Class)cls {
-    if ([self isKindOfClass:cls])
-        return self;
+- (void)dealloc {
+    NI_RELEASE_SAFELY(_text);
     
-    for (UIView* child in self.subviews) {
-        UIView* it = [child descendantOrSelfWithClass:cls];
-        if (it)
-            return it;
-    }
-    
-    return nil;
+    [super dealloc];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView*)ancestorOrSelfWithClass:(Class)cls {
-    if ([self isKindOfClass:cls]) {
-        return self;
-        
-    } else if (self.superview) {
-        return [self.superview ancestorOrSelfWithClass:cls];
-        
-    } else {
-        return nil;
-    }
+- (NSString*)description {
+    return [NSString stringWithFormat:@"%@ %@", _title, _text];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NIMessageField
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NIPickerTextField*)createViewForController:(NIMessageController*)controller {
+    return [[[NIPickerTextField alloc] init] autorelease];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)persistField:(UITextField*)textField {
+    return textField.text;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)restoreField:(UITextField*)textField withData:(id)data {
+    textField.text = data;
+}
 
 
 @end

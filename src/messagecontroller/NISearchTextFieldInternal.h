@@ -1,7 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
-//
-// Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,12 +14,21 @@
 // limitations under the License.
 //
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface UIView (NimbusCore)
+#import "NISearchTextField.h"
 
-- (void)centerWithin:(UIView *)otherView;
-- (UIView*)descendantOrSelfWithClass:(Class)cls;
-- (UIView*)ancestorOrSelfWithClass:(Class)cls;
+//@class NISearchTextField;
+
+@interface NISearchTextFieldInternal : NSObject <NISearchTextFieldDelegate> {
+    NISearchTextField*      _textField;
+    id<NISearchTextFieldDelegate> _delegate;
+}
+
+@property (nonatomic, assign) id<NISearchTextFieldDelegate> delegate;
+
+
+- (id)initWithTextField:(NISearchTextField*)textField;
 
 @end

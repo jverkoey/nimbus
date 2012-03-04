@@ -73,6 +73,29 @@
 #endif
 
 /**
+ * @return the application frame below the navigation bar.
+ */
+CGRect NINavigationFrame();
+
+/**
+ * @return the application frame below the navigation bar and above the keyboard.
+ */
+CGRect NIKeyboardNavigationFrame();
+
+/**
+ * Fetch the height of the keyboard in a given orientation.
+ *
+ * On the iPhone:
+ * - Portrait: 216
+ * - Landscape: 160
+ *
+ * On the iPad:
+ * - Portrait: 264
+ * - Landscape: 352
+ */
+
+CGFloat NIKeyboardHeightForOrientation(UIInterfaceOrientation orientation);
+/**
  * Fetch the height of a toolbar in a given orientation.
  *
  * On the iPhone:

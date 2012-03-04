@@ -1,7 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
-//
-// Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,12 +14,18 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+// UI
+#import "NIMessageField.h"
 
-@interface UIView (NimbusCore)
+/**
+ * A field for holding recipients, typically found in an address book.
+ * Distinct values are rendered as individual cells. Once a cell has been
+ * inserted, it is deleted as a whole.
+ */
+@interface NIMessageRecipientField : NIMessageField {
+    NSArray* _recipients;
+}
 
-- (void)centerWithin:(UIView *)otherView;
-- (UIView*)descendantOrSelfWithClass:(Class)cls;
-- (UIView*)ancestorOrSelfWithClass:(Class)cls;
+@property (nonatomic, copy) NSArray* recipients;
 
 @end

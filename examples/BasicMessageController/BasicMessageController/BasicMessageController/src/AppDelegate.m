@@ -1,7 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
-//
-// Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
+// Copyright 2012 Taknology, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,53 +14,46 @@
 // limitations under the License.
 //
 
-#import "UIView+NimbusCore.h"
+#import "AppDelegate.h"
+#import "MainViewController.h"
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation AppDelegate
+
+@synthesize window = _window;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation UIView (NimbusCore)
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)centerWithin:(UIView *)otherView {
-  CGSize otherSize = otherView.frame.size;
-  CGSize size = self.frame.size;
-  self.frame = CGRectMake(floorf((otherSize.width - size.width) / 2.f),
-                          floorf((otherSize.height - size.height) / 2.f),
-                          size.width, size.height);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView*)descendantOrSelfWithClass:(Class)cls {
-    if ([self isKindOfClass:cls])
-        return self;
+- (void)dealloc {
+    [_window release]; _window = nil;
+    [_rootController release]; _rootController = nil;
     
-    for (UIView* child in self.subviews) {
-        UIView* it = [child descendantOrSelfWithClass:cls];
-        if (it)
-            return it;
-    }
-    
-    return nil;
+    [super dealloc];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView*)ancestorOrSelfWithClass:(Class)cls {
-    if ([self isKindOfClass:cls]) {
-        return self;
-        
-    } else if (self.superview) {
-        return [self.superview ancestorOrSelfWithClass:cls];
-        
-    } else {
-        return nil;
-    }
-}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Application lifecycle
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)              application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+    
+    MainViewController* mainViewController = [[MainViewController alloc] init];
+    UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    _rootController = navController;
+    [self.window addSubview:_rootController.view];
+    
+    [self.window makeKeyAndVisible];
+    
+    return YES;
+}
 
 
 @end
