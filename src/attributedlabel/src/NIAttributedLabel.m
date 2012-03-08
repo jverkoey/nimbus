@@ -48,6 +48,7 @@
 		CFRelease(_textFrame);
 		_textFrame = nil;
 	}
+  [super dealloc];
 }
 
 
