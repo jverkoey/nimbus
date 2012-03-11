@@ -17,28 +17,6 @@
 #import <Foundation/Foundation.h>
 #import <Security/Security.h>
 
-/**
- * A simple keychain storage mechanism for passwords.
- *
- * This object provides a simple interface for storing and retrieving values that need to be
- * safely encrypted in the keychain.
- *
- * Example:
-@code
-NIKeychainPassword* keychain = [NIKeychainPassword keychainPasswordWithIdentifier:@"authentication"];
-
-// Store the password in the keychain:
-keychain.password = @"my-secret-password";
-
-// At a later point (perhaps even after the app restarts), fetch the password from the keychain:
-NSString* password = keychain.password;
-
-// Destroy the password:
-[keychain erasePassword];
-@endcode
- *
- *      @ingroup NimbusOAuth
- */
 @interface NIKeychainPassword : NSObject
 
 // Designated initializer.
@@ -49,6 +27,30 @@ NSString* password = keychain.password;
 - (void)erasePassword;
 
 @end
+
+/**
+ * A simple keychain storage mechanism for passwords.
+ *
+ * This object provides a simple interface for storing and retrieving values that need to be
+ * safely encrypted in the keychain.
+ *
+ * Example:
+ @code
+ NIKeychainPassword* keychain = [NIKeychainPassword keychainPasswordWithIdentifier:@"authentication"];
+ 
+ // Store the password in the keychain:
+ keychain.password = @"my-secret-password";
+ 
+ // At a later point (perhaps even after the app restarts), fetch the password from the keychain:
+ NSString* password = keychain.password;
+ 
+ // Destroy the password:
+ [keychain erasePassword];
+ @endcode
+ *
+ *      @ingroup NimbusOAuth
+ *      @class NIKeychainPassword
+ */
 
 /** @name Creating a Keychain Password */
 

@@ -120,6 +120,23 @@ static NSMutableSet* gAuthenticators = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)authenticateWithStateHandler:(NIOpenAuthenticationBlock)stateHandler webView:(UIWebView *)webView {
+  if (NIIsStringWithAnyText(self.keychain.password)) {
+    self.oauthToken = self.keychain.password;
+    self.state = NIOpenAuthenticationStateAuthorized;
+    stateHandler(self, NIOpenAuthenticationStateAuthorized, nil);
+    
+  } else {
+    self.stateHandler = stateHandler;
+    NSURL* authenticationUrl = self.authenticationUrl;
+    NIDASSERT(NIIsStringWithAnyText([authenticationUrl absoluteString]));
+    
+    [[UIApplication sharedApplication] openURL:authenticationUrl];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)clearAuthentication {
   self.oauthToken = nil;
   self.oauthCode = nil;

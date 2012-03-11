@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66DC73E714F499FD0077DAB0 /* NIWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DC73E614F499FD0077DAB0 /* NIWebController.m */; };
 		66EDE08E14F1A1A10002B92B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE08D14F1A1A10002B92B /* UIKit.framework */; };
 		66EDE09014F1A1A10002B92B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE08F14F1A1A10002B92B /* Foundation.framework */; };
 		66EDE09214F1A1A10002B92B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE09114F1A1A10002B92B /* CoreGraphics.framework */; };
@@ -49,6 +50,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66DC73E314F499FD0077DAB0 /* NimbusWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusWebController.h; path = ../../../src/webcontroller/src/NimbusWebController.h; sourceTree = "<group>"; };
+		66DC73E414F499FD0077DAB0 /* NimbusWebController+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusWebController+Namespace.h"; path = "../../../src/webcontroller/src/NimbusWebController+Namespace.h"; sourceTree = "<group>"; };
+		66DC73E514F499FD0077DAB0 /* NIWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIWebController.h; path = ../../../src/webcontroller/src/NIWebController.h; sourceTree = "<group>"; };
+		66DC73E614F499FD0077DAB0 /* NIWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIWebController.m; path = ../../../src/webcontroller/src/NIWebController.m; sourceTree = "<group>"; };
 		66EDE08914F1A1A10002B92B /* OAuthCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OAuthCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66EDE08D14F1A1A10002B92B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		66EDE08F14F1A1A10002B92B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -155,6 +160,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66DC73E214F499E60077DAB0 /* Web Controller */ = {
+			isa = PBXGroup;
+			children = (
+				66DC73E314F499FD0077DAB0 /* NimbusWebController.h */,
+				66DC73E414F499FD0077DAB0 /* NimbusWebController+Namespace.h */,
+				66DC73E514F499FD0077DAB0 /* NIWebController.h */,
+				66DC73E614F499FD0077DAB0 /* NIWebController.m */,
+			);
+			name = "Web Controller";
+			sourceTree = "<group>";
+		};
 		66EDE07E14F1A1A10002B92B = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +231,7 @@
 				66EDE0F314F1A2E90002B92B /* Models */,
 				66EDE0A614F1A1C60002B92B /* OAuth */,
 				66EDE11214F1D0110002B92B /* Operations */,
+				66DC73E214F499E60077DAB0 /* Web Controller */,
 			);
 			name = Nimbus;
 			sourceTree = "<group>";
@@ -442,6 +459,7 @@
 				66EDE11714F1D01F0002B92B /* NINetworkJSONRequest.m in Sources */,
 				66EDE11A14F1D51D0002B92B /* TableViewKeyValue.m in Sources */,
 				66EDE12114F1DABD0002B92B /* NIKeychainPassword.m in Sources */,
+				66DC73E714F499FD0077DAB0 /* NIWebController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
