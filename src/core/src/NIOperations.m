@@ -104,6 +104,17 @@
                                           returningResponse:&response
                                                       error:&networkError];
 
+    // If we get a 404 error then the request will not fail with an error, so only let successful
+    // responses pass.
+    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+      NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse *)response;
+      if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+        networkError = [NSError errorWithDomain:NSURLErrorDomain
+                                           code:NSURLErrorResourceUnavailable
+                                       userInfo:nil];
+      }
+    }
+
     if (nil != networkError) {
       [self operationDidFailWithError:networkError];
 
