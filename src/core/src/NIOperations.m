@@ -104,18 +104,17 @@
                                           returningResponse:&response
                                                       error:&networkError];
 
-    // If we get a 404 error, the network error will not everytime be filled with
-    // an error, so it will not fail with error, but will finish. We should check
-    // if in the response the status code is different from a 200 status code ok.
+    // If we get a 404 error then the request will not fail with an error, so only let successful
+    // responses pass.
     if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-      NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)response;
-      if ([httpResponse statusCode] != 200) {
-        networkError = [NSError errorWithDomain:@"nimbus" 
-                                           code:[httpResponse statusCode] 
+      NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse *)response;
+      if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+        networkError = [NSError errorWithDomain:NSURLErrorDomain
+                                           code:NSURLErrorResourceUnavailable
                                        userInfo:nil];
       }
     }
-      
+
     if (nil != networkError) {
       [self operationDidFailWithError:networkError];
 
