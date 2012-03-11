@@ -98,7 +98,7 @@
                                              cachePolicy:self.cachePolicy
                                          timeoutInterval:self.timeout];
 
-    NSError* networkError = nil;
+    NSError* networkError = NULL;
     NSURLResponse* response = nil;
     NSData* data  = [NSURLConnection sendSynchronousRequest:request
                                           returningResponse:&response
