@@ -27,7 +27,7 @@
  * 
  * - <a href="http://wiki.nimbuskit.info/Add-Nimbus-to-your-project">Add Nimbus to your project</a>.
  * - Follow Nimbus' development through its <a href="http://jverkoey.github.com/nimbus/group___version-_history.html">version history</a>.
- * - See the <a href="http://jverkoey.github.com/nimbus/group___version-9-1.html">latest API diffs</a>.
+ * - See the <a href="http://jverkoey.github.com/nimbus/group___version-9-2.html">latest API diffs</a>.
  * - Read the <a href="http://jverkoey.github.com/nimbus/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
  * - Ask questions and get updates via the <a href="http://groups.google.com/group/nimbusios">Nimbus mailing list</a>.
  * 
@@ -87,6 +87,12 @@
  * </div>
  * 
  * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/2ea33a461b2c20894f62958bcd9a4fb2?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Adam Doppelt</div> 
+ * <div class="github"><a href="http://github.com/gurgeous">gurgeous</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/a7acedfd4044ad79252e3b062aef25e7?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Glenn Grant</div> 
  * <div class="github"><a href="http://github.com/alias1">alias1</a></div> 
@@ -102,6 +108,11 @@
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/ca1536c2ef2e263ed2aec69c1d147677?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Aviel Lazar</div> 
  * <div class="github"><a href="http://github.com/aviell">aviell</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <div class="name">lipeiqiang</div> 
+ * <div class="github"><a href="http://github.com/lipeiqiang">lipeiqiang</a></div> 
  * </div>
  *
  * <div class="contributor_profile"> 
@@ -140,6 +151,12 @@
  * <div class="github"><a href="http://github.com/steipete">steipete</a></div> 
  * </div>
  * 
+ * <div class="contributor_profile">
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/4366e6b67ae5107e30b1c039353dd100?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">superquadratic</div> 
+ * <div class="github"><a href="http://github.com/superquadratic">superquadratic</a></div> 
+ * </div>
+ *
  * <div class="contributor_profile">
  * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
  * <div class="name">Jeff Verkoeyen</div> 
@@ -191,6 +208,160 @@
  * @defgroup Version-History Version History
  *
  * Presented here are the API diffs for each major release of Nimbus.
+ */
+
+/**
+ * @defgroup Version-9-2 Version 0.9.2 API Changes
+ * @ingroup Version-9-0
+ *
+ * Version 0.9.2 of Nimbus was released on February 19, 2011. This minor version fixes various bugs.
+ *
+ *
+ * <h2>Misc Changes</h2>
+ *
+ * - Code coverage is now generated for the entire Nimbus framework.
+ * - <a href="http://wiki.nimbuskit.info/Nimbus-Namespacing">Namespace support</a>.
+ *
+ * <h2>AttributedLabel</h2>
+ *
+ * <h3>NIAttributedLabel[.m]</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Attributed labels now invalidate the core text object when the frame or bounds changes.
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed bug in highlight frame calculation (bug fixed by <a href="http://github.com/lipeiqiang">lipeiqiang</a>).
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed setStrokeColor:range: to use correct ivar (bug fixed by <a href="http://github.com/rogchap">rogchap</a>).
+ *
+ * <h2>Core</h2>
+ *
+ * <h3>NIBlocks.h</h3>
+ *
+ * - <span class="apiDiffModified">Modified</span> <code>NIBasicBlock</code> (fixed by <a href="http://github.com/gurgeous">gurgeous</a>)
+ * @htmlonly<table class="modificationtable"><tr><th></th><th>Method Name</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row"><tt>typedef void (^NIBasicBlock)(void)</tt></td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>typedef void (^NIBasicBlock)(NIOperation *operation)</tt></td></tr></table>@endhtmlonly
+ *
+ * - <span class="apiDiffModified">Modified</span> <code>NIErrorBlock</code> (fixed by <a href="http://github.com/gurgeous">gurgeous</a>)
+ * @htmlonly<table class="modificationtable"><tr><th></th><th>Method Name</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row"><tt>typedef void (^NIErrorBlock)(NSError* error)</tt></td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>typedef void (^NIErrorBlock)(NIOperation *operation, NSError* error)</tt></td></tr></table>@endhtmlonly
+ *
+ * <h3>NICommonMetrics.h</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> UIViewAutoresizingFlexibleMargins.
+ * - <span class="apiDiffAdded">Added</span> UIViewAutoresizingFlexibleDimensions.
+ *
+ * <h3>NIDebuggingTools.h</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> NIDASSERT now breaks on the device as well.
+ *
+ * <h3>NIFoundationMethods.h</h3>
+ *
+ * - <span class="apiDiffRemoved">Removed</span> NIRectInset (previously deprecated).
+ *
+ * <h3>NIInMemoryCache.h</h3>
+ *
+ * - <span class="apiDiffModified">Modified</span> <code>NIMemoryCache::@link NIMemoryCache::willSetObject:withName:previousObject: willSetObject:withName:previousObject:@endlink</code>
+ * @htmlonly<table class="modificationtable"><tr><th></th><th>Method Name</th></tr> 
+ * <tr><th>From</th><td class='Declaration' scope="row"><tt>- (void)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject</tt></td></tr> 
+ * <tr><th>To</th><td class='Declaration' scope="row"><tt>- (BOOL)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject</tt></td></tr></table>@endhtmlonly
+ *
+ * <h3>NINonRetainingCollections.m</h3>
+ *
+ * - <span class="apiDiffModified">Modified</span> Simplified the various non-retaining collection implementations.
+ *
+ * <h3>NIOperations.m</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> @link NINetworkRequestOperation::cachePolicy cachePolicy@endlink.
+ *
+ * <h3>NIPaths.m</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> @link NIPathForCachesResource NIPathForCachesResource@endlink (added by <a href="http://github.com/superquadratic">superquadratic</a>).
+ *
+ * <h3>UIView.m</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> centerWithin:
+ *
+ * <h2>CSS</h2>
+ *
+ * <h3>NIStylesheet</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> @link NIStylesheet::rulesetForClassName: rulesetForClassName:@endlink.
+ *
+ * <h2>Models</h2>
+ *
+ * <h3>NICellFactory</h3>
+ *
+ * - <span class="apiDiffAdded">Added</span> @link NICell::heightForObject:atIndexPath:tableView: heightForObject:atIndexPath:tableView::@endlink.
+ *
+ * <h2>NetworkImages</h2>
+ *
+ * <h3>NINetworkImageView</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> networkImageViewDidLoadImage: when loading images from memory.
+ *
+ * <h2>PagingScrollView</h2>
+ *
+ * <h3>NIPagingScrollView[.h]</h3>
+ *
+ * - <span class="apiDiffModified">Deprecated</span> <code>setCenterPageIndex:animated:</code> deprecated in favor of <code>moveToPageAtIndex:animated:</code>.
+ * - <span class="apiDiffBugfix">Bugfix</span> Don't ask for pages if the data source is empty (bug fixed by <a href="http://github.com/gurgeous">gurgeous</a>).
+ * - <span class="apiDiffBugfix">Bugfix</span> Added initWithCoder to NIPagingScrollView (bug fixed by <a href="http://github.com/gurgeous">gurgeous</a>).
+ *
+ * <h2>Photos</h2>
+ *
+ * <h3>NetworkPhotoAlbums</h3>
+ *
+ * - <span class="apiDiffBugfix">Bugfix</span> Fixed bug in the photo album example app where photo requests would not be properly canceled.
+ *
+ *
+ * <h2>Real Live People Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/c28f6b282ad61bff6aa9aba06c62ad66?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Roger Chapman</div> 
+ * <div class="github"><a href="http://github.com/rogchap">rogchap</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/2ea33a461b2c20894f62958bcd9a4fb2?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Adam Doppelt</div> 
+ * <div class="github"><a href="http://github.com/gurgeous">gurgeous</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile"> 
+ * <div class="name">lipeiqiang</div> 
+ * <div class="github"><a href="http://github.com/lipeiqiang">lipeiqiang</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile">
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/4366e6b67ae5107e30b1c039353dd100?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">superquadratic</div> 
+ * <div class="github"><a href="http://github.com/superquadratic">superquadratic</a></div> 
+ * </div>
+ *
+ * <div class="contributor_profile">
+ * <img width="135px" height="135px" src="http://www.gravatar.com/avatar/f3c8603c353afa79b9f1c77f35efd566?s=135&amp;d=http://three20.info/gfx/team/silhouette.gif" /> 
+ * <div class="name">Jeff Verkoeyen</div> 
+ * <div class="github"><a href="http://github.com/jverkoey">jverkoey</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
+ *
+ * <h3>Add Your Name to This List</h3>
+ *
+ * Contributions are highly encouraged! If you have a feature that you feel would fit within the
+ * Nimbus framework, feel free to fire off a pull request on GitHub. Bugs may be reported
+ * using the issue tracker on GitHub as well.
+ *
+ * Check out the <a href="https://github.com/jverkoey/nimbus/issues?sort=created&direction=desc&state=open&page=1&milestone=5">tasks grab bag</a>
+ * for opportunities to help out.
+ *
+ * <h2>Robots Involved in this Release</h2>
+ *
+ * <div class="contributor_profile"> 
+ *  <div class="name"><a href="https://github.com/nimbusios/Doxygen">Nimbus Doxygen</a></div> 
+ * </div>
+ *
+ * <div class="clearfix"></div>
  */
 
 /**

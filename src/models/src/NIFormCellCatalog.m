@@ -212,6 +212,8 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
     _textField = [[UITextField alloc] init];
+    [_textField setTag:self.element.elementID];
+    [_textField setAdjustsFontSizeToFitWidth:YES];
     [_textField addTarget:self action:@selector(textFieldDidChangeValue) forControlEvents:UIControlEventAllEditingEvents];
     [self.contentView addSubview:_textField];
 
