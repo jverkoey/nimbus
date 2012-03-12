@@ -108,7 +108,7 @@
     // responses pass.
     if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
       NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse *)response;
-      if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+      if (httpResponse.statusCode < 200 || httpResponse.statusCode >= 300) {
         networkError = [NSError errorWithDomain:NSURLErrorDomain
                                            code:NSURLErrorResourceUnavailable
                                        userInfo:nil];
