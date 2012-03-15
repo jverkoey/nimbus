@@ -108,6 +108,134 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NITextInputFormElement2
+
+@synthesize title			= _title;
+@synthesize required		= _required;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+	NI_RELEASE_SAFELY(_title);
+	
+	[super dealloc];
+}
+
+- (UITableViewCellStyle) cellStyle {
+	return UITableViewCellStyleValue2;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)textInputElementWithID:(NSInteger)elementID 
+					   title:(NSString *)title 
+			 placeholderText:(NSString *)placeholderText 
+					   value:(NSString *)value 
+					delegate:(id<UITextFieldDelegate>)delegate
+					required:(BOOL)required {
+	//
+	NITextInputFormElement2* element = [super textInputElementWithID:elementID 
+													 placeholderText:placeholderText 
+															   value:value 
+															delegate:delegate];
+	element.title = title;
+	element.required = required;
+	
+	return element;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)textInputElementWithID:(NSInteger)elementID 
+					   title:(NSString *)title 
+			 placeholderText:(NSString *)placeholderText 
+					   value:(NSString *)value 
+					delegate:(id<UITextFieldDelegate>)delegate {
+	//
+	return [self textInputElementWithID:elementID 
+								  title:title 
+						placeholderText:placeholderText 
+								  value:value 
+							   delegate:delegate
+							   required:NO];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)textInputElementWithID:(NSInteger)elementID 
+					   title:(NSString *)title 
+			 placeholderText:(NSString *)placeholderText 
+					   value:(NSString *)value {
+	//
+	return [self textInputElementWithID:elementID 
+								  title:title 
+						placeholderText:placeholderText 
+								  value:value 
+							   delegate:nil
+							   required:NO];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)passwordInputElementWithID:(NSInteger)elementID 
+						   title:(NSString *)title 
+				 placeholderText:(NSString *)placeholderText 
+						   value:(NSString *)value 
+						delegate:(id<UITextFieldDelegate>)delegate
+						required:(BOOL)required {
+	//
+	NITextInputFormElement2* element = [self textInputElementWithID:elementID 
+															  title:title 
+													placeholderText:placeholderText 
+															  value:value 
+														   delegate:delegate 
+														   required:required];
+	element.isPassword = YES;
+	
+	return element;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)passwordInputElementWithID:(NSInteger)elementID 
+						   title:(NSString *)title 
+				 placeholderText:(NSString *)placeholderText 
+						   value:(NSString *)value 
+						delegate:(id<UITextFieldDelegate>)delegate {
+	//
+	return [self passwordInputElementWithID:elementID 
+									  title:title 
+							placeholderText:placeholderText 
+									  value:value 
+								   delegate:delegate 
+								   required:NO];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)passwordInputElementWithID:(NSInteger)elementID 
+						   title:(NSString *)title 
+				 placeholderText:(NSString *)placeholderText 
+						   value:(NSString *)value {
+	//
+	return [self passwordInputElementWithID:elementID 
+									  title:title 
+							placeholderText:placeholderText 
+									  value:value 
+								   delegate:nil];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)cellClass {
+	return [NITextInputFormElementCell2 class];
+}
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NISwitchFormElement
 
 @synthesize labelText = _labelText;
@@ -306,6 +434,75 @@
   NITextInputFormElement* textInputElement = (NITextInputFormElement *)self.element;
   textInputElement.value = _textField.text;
 }
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NITextInputFormElementCell2
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+	[super dealloc];
+}
+
++ (UITableViewCellStyle) cellStyle {
+	return UITableViewCellStyleValue2;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+	
+	if (self) {
+		_maxLabelLength = (NIIsPad() ? 100.0f : 55.0f);
+	}
+	
+	return self;
+}
+
+/**
+ * Use the built-in structure of UITextField to place a label on the left side and the text content 
+ *	on the right.
+ */
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldUpdateCellWithObject:(id)object {
+	BOOL shouldUpdate = [super shouldUpdateCellWithObject:object];
+	
+	if (shouldUpdate) {
+		NITextInputFormElement2* textInputElement = (NITextInputFormElement2 *)self.element;
+		
+		UILabel *label = [[[UILabel alloc] init] autorelease];
+		
+		NSString *title = textInputElement.title;
+		label.text = [title stringByAppendingFormat:@"%@", (textInputElement.required ? @" * " : @" ")];
+		
+		label.textAlignment = UITextAlignmentRight;
+//		label.font = TTSTYLEVAR(messageFont);
+//		label.textColor = TTSTYLEVAR(messageFieldTextColor);
+		[label sizeToFit];
+		label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y, _maxLabelLength, label.frame.size.height);
+		label.frame = CGRectInset(label.frame, -2, 0);
+		
+		self.textField.leftView = label;
+		self.textField.leftViewMode = UITextFieldViewModeAlways;
+
+		self.textField.placeholder = textInputElement.placeholderText;
+		self.textField.text = textInputElement.value;
+		self.textField.delegate = textInputElement.delegate;
+		self.textField.secureTextEntry = textInputElement.isPassword;
+		
+		self.textField.tag = self.tag;
+		
+		[self setNeedsLayout];
+	}
+	
+	return shouldUpdate;
+}
+
 
 @end
 
