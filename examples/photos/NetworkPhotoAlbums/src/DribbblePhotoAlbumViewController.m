@@ -27,7 +27,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  NI_RELEASE_SAFELY(_photoInformation);
   NI_RELEASE_SAFELY(_apiPath);
 
   [super dealloc];
@@ -40,24 +39,6 @@
     self.apiPath = object;
   }
   return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)loadThumbnails {
-  for (NSInteger ix = 0; ix < [_photoInformation count]; ++ix) {
-    NSDictionary* photo = [_photoInformation objectAtIndex:ix];
-
-    NSString* photoIndexKey = [self cacheKeyForPhotoIndex:ix];
-
-    // Don't load the thumbnail if it's already in memory.
-    if (![self.thumbnailImageCache containsObjectWithName:photoIndexKey]) {
-      NSString* source = [photo objectForKey:@"thumbnailSource"];
-      [self requestImageFromSource: source
-                         photoSize: NIPhotoScrollViewPhotoSizeThumbnail
-                        photoIndex: ix];
-    }
-  }
 }
 
 
@@ -105,8 +86,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
-  NI_RELEASE_SAFELY(_photoInformation);
-
   [super viewDidUnload];
 }
 
@@ -128,7 +107,8 @@
   id object = operation.processedObject;
   NSArray* data = [object objectForKey:@"shots"];
   
-  NSMutableArray* photoInformation = [NSMutableArray arrayWithCapacity:[data count]];
+  self.networkPhotoInformation = [NSMutableArray arrayWithCapacity:[data count]];
+	
   for (NSDictionary* photo in data) {
     
     // Gather the high-quality photo information.
@@ -141,137 +121,11 @@
     CGSize dimensions = CGSizeMake(width, height);
     
     NSString* thumbnailImageSource = [photo objectForKey:@"image_teaser_url"];
-    
-    NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     originalImageSource, @"originalSource",
-                                     thumbnailImageSource, @"thumbnailSource",
-                                     [NSValue valueWithCGSize:dimensions], @"dimensions",
-                                     nil];
-    [photoInformation addObject:prunedPhotoInfo];
+		
+		[super addImageSourceURL:originalImageSource thumbnailSourceURL:thumbnailImageSource dimensions:dimensions];
   }
 
-  operation.processedObject = photoInformation;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFinish:(NINetworkRequestOperation *)operation {
-  _photoInformation = [operation.processedObject retain];
-
-  [self.photoAlbumView reloadData];
-
-  [self loadThumbnails];
-  
-  [self.photoScrubberView reloadData];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NIPhotoScrubberViewDataSource
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)numberOfPhotosInScrubberView:(NIPhotoScrubberView *)photoScrubberView {
-  return [_photoInformation count];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIImage *)photoScrubberView: (NIPhotoScrubberView *)photoScrubberView
-              thumbnailAtIndex: (NSInteger)thumbnailIndex {
-  NSString* photoIndexKey = [self cacheKeyForPhotoIndex:thumbnailIndex];
-  
-  UIImage* image = [self.thumbnailImageCache objectWithName:photoIndexKey];
-  if (nil == image) {
-    NSDictionary* photo = [_photoInformation objectAtIndex:thumbnailIndex];
-    
-    NSString* thumbnailSource = [photo objectForKey:@"thumbnailSource"];
-    [self requestImageFromSource: thumbnailSource
-                       photoSize: NIPhotoScrollViewPhotoSizeThumbnail
-                      photoIndex: thumbnailIndex];
-  }
-  
-  return image;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NIPhotoAlbumScrollViewDataSource
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)numberOfPagesInPagingScrollView:(NIPhotoAlbumScrollView *)photoScrollView {
-  return [_photoInformation count];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIImage *)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
-                     photoAtIndex: (NSInteger)photoIndex
-                        photoSize: (NIPhotoScrollViewPhotoSize *)photoSize
-                        isLoading: (BOOL *)isLoading
-          originalPhotoDimensions: (CGSize *)originalPhotoDimensions {
-  UIImage* image = nil;
-
-  NSString* photoIndexKey = [self cacheKeyForPhotoIndex:photoIndex];
-
-  NSDictionary* photo = [_photoInformation objectAtIndex:photoIndex];
-
-  // Let the photo album view know how large the photo will be once it's fully loaded.
-  *originalPhotoDimensions = [[photo objectForKey:@"dimensions"] CGSizeValue];
-
-  image = [self.highQualityImageCache objectWithName:photoIndexKey];
-  if (nil != image) {
-    *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
-
-  } else {
-    NSString* source = [photo objectForKey:@"originalSource"];
-    [self requestImageFromSource: source
-                       photoSize: NIPhotoScrollViewPhotoSizeOriginal
-                      photoIndex: photoIndex];
-
-    *isLoading = YES;
-
-    // Try to return the thumbnail image if we can.
-    image = [self.thumbnailImageCache objectWithName:photoIndexKey];
-    if (nil != image) {
-      *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
-
-    } else {
-      // Load the thumbnail as well.
-      NSString* thumbnailSource = [photo objectForKey:@"thumbnailSource"];
-      [self requestImageFromSource: thumbnailSource
-                         photoSize: NIPhotoScrollViewPhotoSizeThumbnail
-                        photoIndex: photoIndex];
-
-    }
-  }
-
-  return image;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
-     stopLoadingPhotoAtIndex: (NSInteger)photoIndex {
-  for (NIOperation* op in [self.queue operations]) {
-    if (op.tag == photoIndex) {
-      [op cancel];
-
-      [self didCancelRequestWithPhotoSize:NIPhotoScrollViewPhotoSizeOriginal
-                               photoIndex:photoIndex];
-    }
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
-  return [self.photoAlbumView pagingScrollView:pagingScrollView pageViewForIndex:pageIndex];
+  operation.processedObject = self.networkPhotoInformation;
 }
 
 

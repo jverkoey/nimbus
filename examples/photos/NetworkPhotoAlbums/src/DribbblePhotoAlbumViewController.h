@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NetworkPhotoAlbumViewController.h"
+#import "NINetworkPhotoAlbumViewController.h"
 
 /**
  * Shows a Dribbble shot list.
@@ -25,15 +25,9 @@
  *      Minimum iOS SDK Version: 4.0
  *      SDK Requirements: Blocks (4.0)
  */
-@interface DribbblePhotoAlbumViewController : NetworkPhotoAlbumViewController <
-  NIPhotoAlbumScrollViewDataSource,
-  NIPhotoScrubberViewDataSource,
-  NIOperationDelegate
-> {
+@interface DribbblePhotoAlbumViewController : NINetworkPhotoAlbumViewController {
 @private
   NSString* _apiPath;
-
-  NSArray* _photoInformation;
 }
 
 /**
