@@ -32,7 +32,7 @@
 @synthesize animateMovingToNextAndPreviousPhotos = _animateMovingToNextAndPreviousPhotos;
 @synthesize scrubberIsEnabled = _scrubberIsEnabled;
 @synthesize toolbar = _toolbar;
-@synthesize photoAlbumView = _photoAlbumView;
+//@synthesize photoAlbumView = _photoAlbumView;
 @synthesize photoScrubberView = _photoScrubberView;
 @synthesize nextButton = _nextButton;
 @synthesize previousButton = _previousButton;
@@ -42,12 +42,12 @@
 - (void)shutdown_NIToolbarPhotoViewController {
   _toolbar = nil;
   _photoAlbumView = nil;
-
+  
   NI_RELEASE_SAFELY(_nextButton);
   NI_RELEASE_SAFELY(_previousButton);
-
+  
   NI_RELEASE_SAFELY(_photoScrubberView);
-
+  
   NI_RELEASE_SAFELY(_tapGesture);
 }
 
@@ -273,9 +273,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
                                          duration: (NSTimeInterval)duration {
-  [self.photoAlbumView willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
-                                                        duration: duration];
-
   [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation
                                           duration:duration];
 
@@ -289,25 +286,26 @@
     photoAlbumFrame.size.height = self.view.bounds.size.height - toolbarFrame.size.height;
     self.photoAlbumView.frame = photoAlbumFrame;
   }
+
+  [self.photoAlbumView willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
+                                                        duration: duration];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didHideChrome {
   _isAnimatingChrome = NO;
-  if (self.toolbarIsTranslucent) {
-    self.toolbar.hidden = YES;
-  }
-
-  _isChromeHidden = YES;
+	if (self.toolbarIsTranslucent) {
+		self.toolbar.hidden = YES;
+	}
+	
+	_isChromeHidden = YES;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didShowChrome {
   _isAnimatingChrome = NO;
-
-  _isChromeHidden = NO;
 }
 
 
@@ -324,19 +322,19 @@
   CGRect toolbarFrame = self.toolbar.frame;
   CGRect bounds = self.view.bounds;
 
-  if (self.toolbarIsTranslucent) {
-    // Reset the toolbar's initial position.
-    if (!isVisible) {
-      toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
-
-    } else {
-      // Ensure that the toolbar is visible through the animation.
-      self.toolbar.hidden = NO;
-
-      toolbarFrame.origin.y = bounds.size.height;
-    }
-    self.toolbar.frame = toolbarFrame;
-  }
+	if (self.toolbarIsTranslucent) {
+		// Reset the toolbar's initial position.
+		if (!isVisible) {
+			toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
+			
+		} else {
+			// Ensure that the toolbar is visible through the animation.
+			self.toolbar.hidden = NO;
+			
+			toolbarFrame.origin.y = bounds.size.height;
+		}
+		self.toolbar.frame = toolbarFrame;
+	}
 
   // Show/hide the system chrome.
   if ([[UIApplication sharedApplication] respondsToSelector:
@@ -355,17 +353,17 @@
 #endif
   }
 
-  if (self.toolbarIsTranslucent) {
-    // Place the toolbar at its final location.
-    if (isVisible) {
-      // Slide up.
-      toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
-
-    } else {
-      // Slide down.
-      toolbarFrame.origin.y = bounds.size.height;
-    }
-  }
+	if (self.toolbarIsTranslucent) {
+		// Place the toolbar at its final location.
+		if (isVisible) {
+			// Slide up.
+			toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
+			
+		} else {
+			// Slide down.
+			toolbarFrame.origin.y = bounds.size.height;
+		}
+	}
 
   // If there is a navigation bar, place it at its final location.
   CGRect navigationBarFrame = CGRectZero;
@@ -394,10 +392,11 @@
     [UIView setAnimationCurve:NIStatusBarAnimationCurve()];
   }
 
-  if (self.toolbarIsTranslucent) {
-    self.toolbar.frame = toolbarFrame;
-  }
-  if (nil != self.navigationController.navigationBar) {
+	if (self.toolbarIsTranslucent) {
+		self.toolbar.frame = toolbarFrame;
+	}
+
+	if (nil != self.navigationController.navigationBar) {
     self.navigationController.navigationBar.frame = navigationBarFrame;
     self.navigationController.navigationBar.alpha = (isVisible ? 1 : 0);
   }
@@ -452,7 +451,7 @@
 - (void)refreshChromeState {
   self.previousButton.enabled = [self.photoAlbumView hasPrevious];
   self.nextButton.enabled = [self.photoAlbumView hasNext];
-
+  
   self.title = [NSString stringWithFormat:@"%d of %d",
                 (self.photoAlbumView.centerPageIndex + 1),
                 self.photoAlbumView.numberOfPages];
@@ -536,7 +535,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)settoolbarIsTranslucent:(BOOL)enabled {
-  _toolbarIsTranslucent = enabled;
+	_toolbarIsTranslucent = enabled;
 
   self.toolbar.translucent = enabled;
 }
