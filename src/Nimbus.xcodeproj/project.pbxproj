@@ -1282,15 +1282,14 @@
 		667572A113E7692F0076F555 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				CCABFE38151177A60007E218 /* Delegate */,
+				CCABFE37151177950007E218 /* DataSource */,
 				667572A213E7692F0076F555 /* NimbusPhotos.h */,
 				666F73B214BBFFAA00D1A32F /* NimbusPhotos+Namespace.h */,
 				667572A313E7692F0076F555 /* NIPhotoAlbumScrollView.h */,
 				667572A413E7692F0076F555 /* NIPhotoAlbumScrollView.m */,
-				66F27D5F145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h */,
-				66F27D61145BA35B00AFCA08 /* NIPhotoAlbumScrollViewDelegate.h */,
 				667572A513E7692F0076F555 /* NIPhotoScrollView.h */,
 				667572A613E7692F0076F555 /* NIPhotoScrollView.m */,
-				66F27D63145BA4E500AFCA08 /* NIPhotoScrollViewDelegate.h */,
 				66F27D65145BA56400AFCA08 /* NIPhotoScrollViewPhotoSize.h */,
 				667572A713E7692F0076F555 /* NIPhotoScrubberView.h */,
 				667572A813E7692F0076F555 /* NIPhotoScrubberView.m */,
@@ -1839,6 +1838,23 @@
 			name = unittests;
 			path = models/unittests;
 			sourceTree = SOURCE_ROOT;
+		};
+		CCABFE37151177950007E218 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				66F27D5F145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h */,
+			);
+			name = DataSource;
+			sourceTree = "<group>";
+		};
+		CCABFE38151177A60007E218 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				66F27D61145BA35B00AFCA08 /* NIPhotoAlbumScrollViewDelegate.h */,
+				66F27D63145BA4E500AFCA08 /* NIPhotoScrollViewDelegate.h */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
 		};
 		DB3A230B13FD4B8E00614220 /* NimbusAttributedLabel */ = {
 			isa = PBXGroup;
