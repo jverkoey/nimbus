@@ -7,17 +7,19 @@
 
 #import "NIPhotoAlbumViewController.h"
 
-@interface NIPhotoAlbumViewController()
-- (void) initImageCaches;
-@end
+//@interface NIPhotoAlbumViewController()
+//- (void) initImageCaches;
+//@end
 
 @implementation NIPhotoAlbumViewController
 
-@synthesize photoAlbumView = _photoAlbumView;
+//@synthesize photoAlbumView = _photoAlbumView;
+//
+//@synthesize highQualityImageCache = _highQualityImageCache;
+//@synthesize thumbnailImageCache = _thumbnailImageCache;
+//@synthesize queue = _queue;
 
-@synthesize highQualityImageCache = _highQualityImageCache;
-@synthesize thumbnailImageCache = _thumbnailImageCache;
-@synthesize queue = _queue;
+@synthesize photoDataSource			= _photoDataSource;
 
 
 - (void) dealloc {
@@ -26,48 +28,50 @@
   NI_RELEASE_SAFELY(_photoInformation);
 }
 
-- (void) shutdown {
-	_photoAlbumView = nil;
-	
-  [_queue cancelAllOperations];
-
-  NI_RELEASE_SAFELY(_activeRequests);
-
-	NI_RELEASE_SAFELY(_highQualityImageCache);
-	NI_RELEASE_SAFELY(_thumbnailImageCache);
-  NI_RELEASE_SAFELY(_queue);
-}
+//- (void) shutdown {
+//	_photoAlbumView = nil;
+//	
+//  [_queue cancelAllOperations];
+//
+//  NI_RELEASE_SAFELY(_activeRequests);
+//
+//	NI_RELEASE_SAFELY(_highQualityImageCache);
+//	NI_RELEASE_SAFELY(_thumbnailImageCache);
+//  NI_RELEASE_SAFELY(_queue);
+//}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) loadView {
 	[super loadView];
 	
-  _activeRequests = [[NSMutableSet alloc] init];
+	_photoDataSource = [[NIPhotoDataSource alloc] init];
 	
-	[self initImageCaches];
-	
-  _queue = [[NSOperationQueue alloc] init];
-  [_queue setMaxConcurrentOperationCount:5];
+//  _activeRequests = [[NSMutableSet alloc] init];
+//	
+//	[self initImageCaches];
+//	
+//  _queue = [[NSOperationQueue alloc] init];
+//  [_queue setMaxConcurrentOperationCount:5];
 }
 
 - (void) viewDidUnload {
 	[super viewDidUnload];
 	
-	NI_RELEASE_SAFELY(_photoInformation);
+//	NI_RELEASE_SAFELY(_photoInformation);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) initImageCaches {
-	_highQualityImageCache = [[NIImageMemoryCache alloc] init];
-	_thumbnailImageCache = [[NIImageMemoryCache alloc] init];
-	
-	[_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024*1024*3];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)cacheKeyForPhotoIndex:(NSInteger)photoIndex {
-  return [NSString stringWithFormat:@"%d", photoIndex];
-}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//- (void) initImageCaches {
+//	_highQualityImageCache = [[NIImageMemoryCache alloc] init];
+//	_thumbnailImageCache = [[NIImageMemoryCache alloc] init];
+//	
+//	[_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024*1024*3];
+//}
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//- (NSString *)cacheKeyForPhotoIndex:(NSInteger)photoIndex {
+//  return [NSString stringWithFormat:@"%d", photoIndex];
+//}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,14 +93,16 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) initPhotoAlbumViewWithFrame:(CGRect)photoAlbumFrame 
-														delegate:(id<NIPhotoAlbumScrollViewDelegate>)delegate {
+							delegate:(id<NIPhotoAlbumScrollViewDelegate>)delegate {
 	//
-	_photoAlbumView = [[[NIPhotoAlbumScrollView alloc] initWithFrame:photoAlbumFrame] autorelease];
+	NIPhotoAlbumScrollView *_photoAlbumView = [[[NIPhotoAlbumScrollView alloc] initWithFrame:photoAlbumFrame] autorelease];
 	
 	_photoAlbumView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
 										| UIViewAutoresizingFlexibleHeight);
 	
 	_photoAlbumView.delegate = delegate;
+
+	self.photoDataSource.photoAlbumView = _photoAlbumView;
 }
 
 
@@ -112,15 +118,15 @@
 }
 
 
-// Abstract method to be implemented in sub-classes.
-- (void)requestImageFromSource: (NSString *)source
-                     photoSize: (NIPhotoScrollViewPhotoSize)photoSize
-                    photoIndex: (NSInteger)photoIndex {
-	//
-	NSException *ex = [NSException exceptionWithName:@"invalid method implementation" reason:@"requestImageFromSource:photoSize:photoIndex: must be implemented in a subclass of NIPhotoAlbumViewController" userInfo:nil];
-	
-	[ex raise];
-}
+//// Abstract method to be implemented in sub-classes.
+//- (void)requestImageFromSource: (NSString *)source
+//                     photoSize: (NIPhotoScrollViewPhotoSize)photoSize
+//                    photoIndex: (NSInteger)photoIndex {
+//	//
+//	NSException *ex = [NSException exceptionWithName:@"invalid method implementation" reason:@"requestImageFromSource:photoSize:photoIndex: must be implemented in a subclass of NIPhotoAlbumViewController" userInfo:nil];
+//	
+//	[ex raise];
+//}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

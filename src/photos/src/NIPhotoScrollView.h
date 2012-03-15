@@ -20,7 +20,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@protocol NIPhotoScrollViewDelegate;
+//@protocol NIPhotoScrollViewDelegate;
 @class NICenteringScrollView;
 
 /**
