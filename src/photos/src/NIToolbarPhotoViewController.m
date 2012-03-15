@@ -86,6 +86,7 @@
   if ([self isViewLoaded]
       && nil != NIUITapGestureRecognizerClass()
       && [self.photoAlbumView respondsToSelector:@selector(addGestureRecognizer:)]) {
+		//
     if (nil == _tapGesture) {
       _tapGesture =
       [[NIUITapGestureRecognizerClass() alloc] initWithTarget: self
@@ -295,6 +296,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didHideChrome {
   _isAnimatingChrome = NO;
+	
 	if (self.toolbarIsTranslucent) {
 		self.toolbar.hidden = YES;
 	}
@@ -306,6 +308,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didShowChrome {
   _isAnimatingChrome = NO;
+	_isChromeHidden = NO;
 }
 
 
