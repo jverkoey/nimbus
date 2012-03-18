@@ -218,7 +218,7 @@
   self.operation = nil;
 
   if ([self.delegate respondsToSelector:@selector(networkImageViewDidFailLoad:)]) {
-    [self.delegate networkImageViewDidFailLoad:error];
+    [self.delegate networkImageViewDidFailLoad:self];
   }
 
   [self networkImageViewDidFailToLoad:error];
