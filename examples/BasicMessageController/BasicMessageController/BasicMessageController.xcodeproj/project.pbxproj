@@ -7,7 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8546CF151502CD780011B29A /* NIGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8546CF141502CD770011B29A /* NIGradientView.m */; };
+		8514B71615057FA1002F4C25 /* NIActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8514B6FD15057FA1002F4C25 /* NIActivityLabel.m */; };
+		8514B71715057FA1002F4C25 /* NIGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8514B6FF15057FA1002F4C25 /* NIGradientView.m */; };
+		8514B71815057FA1002F4C25 /* NIMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8514B70315057FA1002F4C25 /* NIMessageController.m */; };
+		8514B71915057FA1002F4C25 /* NIMessageField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8514B70515057FA1002F4C25 /* NIMessageField.m */; };
+		8514B71A15057FA1002F4C25 /* NIMessageRecipientField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8514B70715057FA1002F4C25 /* NIMessageRecipientField.m */; };
+		8514B71B15057FA1002F4C25 /* NIMessageSubjectField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8514B70915057FA1002F4C25 /* NIMessageSubjectField.m */; };
+		8514B71C15057FA1002F4C25 /* NIMessageTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8514B70B15057FA1002F4C25 /* NIMessageTextField.m */; };
+		8514B71D15057FA1002F4C25 /* NIPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8514B70D15057FA1002F4C25 /* NIPickerTextField.m */; };
+		8514B71E15057FA1002F4C25 /* NIPickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8514B70F15057FA1002F4C25 /* NIPickerViewCell.m */; };
+		8514B71F15057FA1002F4C25 /* NISearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8514B71115057FA1002F4C25 /* NISearchTextField.m */; };
+		8514B72015057FA1002F4C25 /* NISearchTextFieldInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 8514B71315057FA1002F4C25 /* NISearchTextFieldInternal.m */; };
+		8514B72115057FA1002F4C25 /* NITableViewSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8514B71515057FA1002F4C25 /* NITableViewSearchModel.m */; };
 		85B6155F14FE82DB008B2D52 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85B6155E14FE82DB008B2D52 /* UIKit.framework */; };
 		85B6156114FE82DB008B2D52 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85B6156014FE82DB008B2D52 /* Foundation.framework */; };
 		85B6156314FE82DB008B2D52 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85B6156214FE82DB008B2D52 /* CoreGraphics.framework */; };
@@ -34,31 +45,42 @@
 		85B615BE14FE845A008B2D52 /* NSData+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615A814FE845A008B2D52 /* NSData+NimbusCore.m */; };
 		85B615BF14FE845A008B2D52 /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615AA14FE845A008B2D52 /* NSString+NimbusCore.m */; };
 		85B615C014FE845A008B2D52 /* UIView+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615AC14FE845A008B2D52 /* UIView+NimbusCore.m */; };
-		85B615C714FE84A3008B2D52 /* NIMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615C514FE84A3008B2D52 /* NIMessageController.m */; };
 		85B615C914FE901F008B2D52 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85B615C814FE901F008B2D52 /* QuartzCore.framework */; };
-		85B615E614FE9FE3008B2D52 /* NIMessageRecipientField.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615E514FE9FE3008B2D52 /* NIMessageRecipientField.m */; };
-		85B615E814FEA163008B2D52 /* NIPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615E714FEA162008B2D52 /* NIPickerTextField.m */; };
-		85B615EA14FEA2A8008B2D52 /* NIPickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615E914FEA2A8008B2D52 /* NIPickerViewCell.m */; };
-		85B615EB14FEAE68008B2D52 /* NIMessageSubjectField.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615DC14FE99CF008B2D52 /* NIMessageSubjectField.m */; };
-		85B615EE14FEAED5008B2D52 /* NIMessageField.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615D914FE99CF008B2D52 /* NIMessageField.m */; };
-		85B615EF14FEAED5008B2D52 /* NIMessageTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615ED14FEAEB4008B2D52 /* NIMessageTextField.m */; };
-		85B615F014FEAED5008B2D52 /* NISearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615E114FE9A68008B2D52 /* NISearchTextField.m */; };
-		85B615F114FEAED5008B2D52 /* NISearchTextFieldInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B615E414FE9A68008B2D52 /* NISearchTextFieldInternal.m */; };
 		85B6160814FEB84D008B2D52 /* NICellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6160014FEB84D008B2D52 /* NICellFactory.m */; };
 		85B6160914FEB84D008B2D52 /* NIFormCellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6160214FEB84D008B2D52 /* NIFormCellCatalog.m */; };
 		85B6160A14FEB84D008B2D52 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6160614FEB84D008B2D52 /* NITableViewModel.m */; };
 		85B6164814FEC86E008B2D52 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B6164714FEC86E008B2D52 /* MainViewController.m */; };
-		85C3EF04150307950062BBFE /* NIActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C3EF03150307950062BBFE /* NIActivityLabel.m */; };
-		85C3EF44150317390062BBFE /* NITableViewSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8546CF0E1502ABC10011B29A /* NITableViewSearchModel.m */; };
 		85F96BF21500460A00B9A3D6 /* SearchTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F96BF11500460A00B9A3D6 /* SearchTableViewModel.m */; };
 		85F96BF515004D3600B9A3D6 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F96BF415004D3600B9A3D6 /* SearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8546CF0D1502ABC00011B29A /* NITableViewSearchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NITableViewSearchModel.h; path = ../../../src/messagecontroller/NITableViewSearchModel.h; sourceTree = "<group>"; };
-		8546CF0E1502ABC10011B29A /* NITableViewSearchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NITableViewSearchModel.m; path = ../../../src/messagecontroller/NITableViewSearchModel.m; sourceTree = "<group>"; };
-		8546CF131502CD760011B29A /* NIGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIGradientView.h; path = ../../../src/messagecontroller/NIGradientView.h; sourceTree = "<group>"; };
-		8546CF141502CD770011B29A /* NIGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIGradientView.m; path = ../../../src/messagecontroller/NIGradientView.m; sourceTree = "<group>"; };
+		8514B6FC15057FA1002F4C25 /* NIActivityLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIActivityLabel.h; path = ../../../src/messagecontroller/src/NIActivityLabel.h; sourceTree = "<group>"; };
+		8514B6FD15057FA1002F4C25 /* NIActivityLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIActivityLabel.m; path = ../../../src/messagecontroller/src/NIActivityLabel.m; sourceTree = "<group>"; };
+		8514B6FE15057FA1002F4C25 /* NIGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIGradientView.h; path = ../../../src/messagecontroller/src/NIGradientView.h; sourceTree = "<group>"; };
+		8514B6FF15057FA1002F4C25 /* NIGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIGradientView.m; path = ../../../src/messagecontroller/src/NIGradientView.m; sourceTree = "<group>"; };
+		8514B70015057FA1002F4C25 /* NimbusMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusMessageController.h; path = ../../../src/messagecontroller/src/NimbusMessageController.h; sourceTree = "<group>"; };
+		8514B70115057FA1002F4C25 /* NimbusMessageController+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusMessageController+Namespace.h"; path = "../../../src/messagecontroller/src/NimbusMessageController+Namespace.h"; sourceTree = "<group>"; };
+		8514B70215057FA1002F4C25 /* NIMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIMessageController.h; path = ../../../src/messagecontroller/src/NIMessageController.h; sourceTree = "<group>"; };
+		8514B70315057FA1002F4C25 /* NIMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIMessageController.m; path = ../../../src/messagecontroller/src/NIMessageController.m; sourceTree = "<group>"; };
+		8514B70415057FA1002F4C25 /* NIMessageField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIMessageField.h; path = ../../../src/messagecontroller/src/NIMessageField.h; sourceTree = "<group>"; };
+		8514B70515057FA1002F4C25 /* NIMessageField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIMessageField.m; path = ../../../src/messagecontroller/src/NIMessageField.m; sourceTree = "<group>"; };
+		8514B70615057FA1002F4C25 /* NIMessageRecipientField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIMessageRecipientField.h; path = ../../../src/messagecontroller/src/NIMessageRecipientField.h; sourceTree = "<group>"; };
+		8514B70715057FA1002F4C25 /* NIMessageRecipientField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIMessageRecipientField.m; path = ../../../src/messagecontroller/src/NIMessageRecipientField.m; sourceTree = "<group>"; };
+		8514B70815057FA1002F4C25 /* NIMessageSubjectField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIMessageSubjectField.h; path = ../../../src/messagecontroller/src/NIMessageSubjectField.h; sourceTree = "<group>"; };
+		8514B70915057FA1002F4C25 /* NIMessageSubjectField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIMessageSubjectField.m; path = ../../../src/messagecontroller/src/NIMessageSubjectField.m; sourceTree = "<group>"; };
+		8514B70A15057FA1002F4C25 /* NIMessageTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIMessageTextField.h; path = ../../../src/messagecontroller/src/NIMessageTextField.h; sourceTree = "<group>"; };
+		8514B70B15057FA1002F4C25 /* NIMessageTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIMessageTextField.m; path = ../../../src/messagecontroller/src/NIMessageTextField.m; sourceTree = "<group>"; };
+		8514B70C15057FA1002F4C25 /* NIPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPickerTextField.h; path = ../../../src/messagecontroller/src/NIPickerTextField.h; sourceTree = "<group>"; };
+		8514B70D15057FA1002F4C25 /* NIPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPickerTextField.m; path = ../../../src/messagecontroller/src/NIPickerTextField.m; sourceTree = "<group>"; };
+		8514B70E15057FA1002F4C25 /* NIPickerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPickerViewCell.h; path = ../../../src/messagecontroller/src/NIPickerViewCell.h; sourceTree = "<group>"; };
+		8514B70F15057FA1002F4C25 /* NIPickerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPickerViewCell.m; path = ../../../src/messagecontroller/src/NIPickerViewCell.m; sourceTree = "<group>"; };
+		8514B71015057FA1002F4C25 /* NISearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NISearchTextField.h; path = ../../../src/messagecontroller/src/NISearchTextField.h; sourceTree = "<group>"; };
+		8514B71115057FA1002F4C25 /* NISearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISearchTextField.m; path = ../../../src/messagecontroller/src/NISearchTextField.m; sourceTree = "<group>"; };
+		8514B71215057FA1002F4C25 /* NISearchTextFieldInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NISearchTextFieldInternal.h; path = ../../../src/messagecontroller/src/NISearchTextFieldInternal.h; sourceTree = "<group>"; };
+		8514B71315057FA1002F4C25 /* NISearchTextFieldInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISearchTextFieldInternal.m; path = ../../../src/messagecontroller/src/NISearchTextFieldInternal.m; sourceTree = "<group>"; };
+		8514B71415057FA1002F4C25 /* NITableViewSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITableViewSearchModel.h; path = ../../../src/messagecontroller/src/NITableViewSearchModel.h; sourceTree = "<group>"; };
+		8514B71515057FA1002F4C25 /* NITableViewSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITableViewSearchModel.m; path = ../../../src/messagecontroller/src/NITableViewSearchModel.m; sourceTree = "<group>"; };
 		85B6155A14FE82DB008B2D52 /* BasicMessageController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicMessageController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85B6155E14FE82DB008B2D52 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		85B6156014FE82DB008B2D52 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -114,26 +136,7 @@
 		85B615AA14FE845A008B2D52 /* NSString+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NimbusCore.m"; path = "../../../src/core/src/NSString+NimbusCore.m"; sourceTree = "<group>"; };
 		85B615AB14FE845A008B2D52 /* UIView+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+NimbusCore.h"; path = "../../../src/core/src/UIView+NimbusCore.h"; sourceTree = "<group>"; };
 		85B615AC14FE845A008B2D52 /* UIView+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+NimbusCore.m"; path = "../../../src/core/src/UIView+NimbusCore.m"; sourceTree = "<group>"; };
-		85B615C214FE84A3008B2D52 /* NimbusMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusMessageController.h; path = ../../../src/messagecontroller/NimbusMessageController.h; sourceTree = "<group>"; };
-		85B615C414FE84A3008B2D52 /* NIMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIMessageController.h; path = ../../../src/messagecontroller/NIMessageController.h; sourceTree = "<group>"; };
-		85B615C514FE84A3008B2D52 /* NIMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIMessageController.m; path = ../../../src/messagecontroller/NIMessageController.m; sourceTree = "<group>"; };
 		85B615C814FE901F008B2D52 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		85B615D814FE99CF008B2D52 /* NIMessageField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NIMessageField.h; path = ../../../src/messagecontroller/NIMessageField.h; sourceTree = "<group>"; };
-		85B615D914FE99CF008B2D52 /* NIMessageField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NIMessageField.m; path = ../../../src/messagecontroller/NIMessageField.m; sourceTree = "<group>"; };
-		85B615DA14FE99CF008B2D52 /* NIMessageRecipientField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NIMessageRecipientField.h; path = ../../../src/messagecontroller/NIMessageRecipientField.h; sourceTree = "<group>"; };
-		85B615DB14FE99CF008B2D52 /* NIMessageSubjectField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NIMessageSubjectField.h; path = ../../../src/messagecontroller/NIMessageSubjectField.h; sourceTree = "<group>"; };
-		85B615DC14FE99CF008B2D52 /* NIMessageSubjectField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NIMessageSubjectField.m; path = ../../../src/messagecontroller/NIMessageSubjectField.m; sourceTree = "<group>"; };
-		85B615DD14FE99CF008B2D52 /* NIPickerTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NIPickerTextField.h; path = ../../../src/messagecontroller/NIPickerTextField.h; sourceTree = "<group>"; };
-		85B615DF14FE99CF008B2D52 /* NIPickerViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NIPickerViewCell.h; path = ../../../src/messagecontroller/NIPickerViewCell.h; sourceTree = "<group>"; };
-		85B615E014FE9A68008B2D52 /* NISearchTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NISearchTextField.h; path = ../../../src/messagecontroller/NISearchTextField.h; sourceTree = "<group>"; };
-		85B615E114FE9A68008B2D52 /* NISearchTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NISearchTextField.m; path = ../../../src/messagecontroller/NISearchTextField.m; sourceTree = "<group>"; };
-		85B615E314FE9A68008B2D52 /* NISearchTextFieldInternal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NISearchTextFieldInternal.h; path = ../../../src/messagecontroller/NISearchTextFieldInternal.h; sourceTree = "<group>"; };
-		85B615E414FE9A68008B2D52 /* NISearchTextFieldInternal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NISearchTextFieldInternal.m; path = ../../../src/messagecontroller/NISearchTextFieldInternal.m; sourceTree = "<group>"; };
-		85B615E514FE9FE3008B2D52 /* NIMessageRecipientField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIMessageRecipientField.m; path = ../../../src/messagecontroller/NIMessageRecipientField.m; sourceTree = "<group>"; };
-		85B615E714FEA162008B2D52 /* NIPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPickerTextField.m; path = ../../../src/messagecontroller/NIPickerTextField.m; sourceTree = "<group>"; };
-		85B615E914FEA2A8008B2D52 /* NIPickerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPickerViewCell.m; path = ../../../src/messagecontroller/NIPickerViewCell.m; sourceTree = "<group>"; };
-		85B615EC14FEAEB4008B2D52 /* NIMessageTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NIMessageTextField.h; path = ../../../src/messagecontroller/NIMessageTextField.h; sourceTree = "<group>"; };
-		85B615ED14FEAEB4008B2D52 /* NIMessageTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NIMessageTextField.m; path = ../../../src/messagecontroller/NIMessageTextField.m; sourceTree = "<group>"; };
 		85B615FF14FEB84D008B2D52 /* NICellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICellFactory.h; path = ../../../src/models/src/NICellFactory.h; sourceTree = "<group>"; };
 		85B6160014FEB84D008B2D52 /* NICellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICellFactory.m; path = ../../../src/models/src/NICellFactory.m; sourceTree = "<group>"; };
 		85B6160114FEB84D008B2D52 /* NIFormCellCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIFormCellCatalog.h; path = ../../../src/models/src/NIFormCellCatalog.h; sourceTree = "<group>"; };
@@ -145,8 +148,6 @@
 		85B6160714FEB84D008B2D52 /* NITableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NITableViewModel+Private.h"; path = "../../../src/models/src/NITableViewModel+Private.h"; sourceTree = "<group>"; };
 		85B6164614FEC86E008B2D52 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = src/MainViewController.h; sourceTree = "<group>"; };
 		85B6164714FEC86E008B2D52 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = src/MainViewController.m; sourceTree = "<group>"; };
-		85C3EF02150307950062BBFE /* NIActivityLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIActivityLabel.h; path = ../../../src/messagecontroller/NIActivityLabel.h; sourceTree = "<group>"; };
-		85C3EF03150307950062BBFE /* NIActivityLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIActivityLabel.m; path = ../../../src/messagecontroller/NIActivityLabel.m; sourceTree = "<group>"; };
 		85F96BF01500460A00B9A3D6 /* SearchTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchTableViewModel.h; path = src/SearchTableViewModel.h; sourceTree = "<group>"; };
 		85F96BF11500460A00B9A3D6 /* SearchTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchTableViewModel.m; path = src/SearchTableViewModel.m; sourceTree = "<group>"; };
 		85F96BF315004D3600B9A3D6 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = src/SearchViewController.h; sourceTree = "<group>"; };
@@ -171,7 +172,6 @@
 		85B6154F14FE82DB008B2D52 = {
 			isa = PBXGroup;
 			children = (
-				85B615C814FE901F008B2D52 /* QuartzCore.framework */,
 				85B6157814FE8432008B2D52 /* Nimbus */,
 				85B6156414FE82DB008B2D52 /* BasicMessageController */,
 				85B6155D14FE82DB008B2D52 /* Frameworks */,
@@ -190,9 +190,10 @@
 		85B6155D14FE82DB008B2D52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				85B6155E14FE82DB008B2D52 /* UIKit.framework */,
-				85B6156014FE82DB008B2D52 /* Foundation.framework */,
 				85B6156214FE82DB008B2D52 /* CoreGraphics.framework */,
+				85B6156014FE82DB008B2D52 /* Foundation.framework */,
+				85B615C814FE901F008B2D52 /* QuartzCore.framework */,
+				85B6155E14FE82DB008B2D52 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -296,31 +297,32 @@
 		85B615C114FE8489008B2D52 /* Message Controller */ = {
 			isa = PBXGroup;
 			children = (
-				85C3EF02150307950062BBFE /* NIActivityLabel.h */,
-				85C3EF03150307950062BBFE /* NIActivityLabel.m */,
-				8546CF131502CD760011B29A /* NIGradientView.h */,
-				8546CF141502CD770011B29A /* NIGradientView.m */,
-				85B615C214FE84A3008B2D52 /* NimbusMessageController.h */,
-				85B615C414FE84A3008B2D52 /* NIMessageController.h */,
-				85B615C514FE84A3008B2D52 /* NIMessageController.m */,
-				85B615D814FE99CF008B2D52 /* NIMessageField.h */,
-				85B615D914FE99CF008B2D52 /* NIMessageField.m */,
-				85B615DA14FE99CF008B2D52 /* NIMessageRecipientField.h */,
-				85B615E514FE9FE3008B2D52 /* NIMessageRecipientField.m */,
-				85B615DB14FE99CF008B2D52 /* NIMessageSubjectField.h */,
-				85B615DC14FE99CF008B2D52 /* NIMessageSubjectField.m */,
-				85B615EC14FEAEB4008B2D52 /* NIMessageTextField.h */,
-				85B615ED14FEAEB4008B2D52 /* NIMessageTextField.m */,
-				85B615DD14FE99CF008B2D52 /* NIPickerTextField.h */,
-				85B615E714FEA162008B2D52 /* NIPickerTextField.m */,
-				85B615DF14FE99CF008B2D52 /* NIPickerViewCell.h */,
-				85B615E914FEA2A8008B2D52 /* NIPickerViewCell.m */,
-				85B615E014FE9A68008B2D52 /* NISearchTextField.h */,
-				85B615E114FE9A68008B2D52 /* NISearchTextField.m */,
-				85B615E314FE9A68008B2D52 /* NISearchTextFieldInternal.h */,
-				85B615E414FE9A68008B2D52 /* NISearchTextFieldInternal.m */,
-				8546CF0D1502ABC00011B29A /* NITableViewSearchModel.h */,
-				8546CF0E1502ABC10011B29A /* NITableViewSearchModel.m */,
+				8514B6FC15057FA1002F4C25 /* NIActivityLabel.h */,
+				8514B6FD15057FA1002F4C25 /* NIActivityLabel.m */,
+				8514B6FE15057FA1002F4C25 /* NIGradientView.h */,
+				8514B6FF15057FA1002F4C25 /* NIGradientView.m */,
+				8514B70015057FA1002F4C25 /* NimbusMessageController.h */,
+				8514B70115057FA1002F4C25 /* NimbusMessageController+Namespace.h */,
+				8514B70215057FA1002F4C25 /* NIMessageController.h */,
+				8514B70315057FA1002F4C25 /* NIMessageController.m */,
+				8514B70415057FA1002F4C25 /* NIMessageField.h */,
+				8514B70515057FA1002F4C25 /* NIMessageField.m */,
+				8514B70615057FA1002F4C25 /* NIMessageRecipientField.h */,
+				8514B70715057FA1002F4C25 /* NIMessageRecipientField.m */,
+				8514B70815057FA1002F4C25 /* NIMessageSubjectField.h */,
+				8514B70915057FA1002F4C25 /* NIMessageSubjectField.m */,
+				8514B70A15057FA1002F4C25 /* NIMessageTextField.h */,
+				8514B70B15057FA1002F4C25 /* NIMessageTextField.m */,
+				8514B70C15057FA1002F4C25 /* NIPickerTextField.h */,
+				8514B70D15057FA1002F4C25 /* NIPickerTextField.m */,
+				8514B70E15057FA1002F4C25 /* NIPickerViewCell.h */,
+				8514B70F15057FA1002F4C25 /* NIPickerViewCell.m */,
+				8514B71015057FA1002F4C25 /* NISearchTextField.h */,
+				8514B71115057FA1002F4C25 /* NISearchTextField.m */,
+				8514B71215057FA1002F4C25 /* NISearchTextFieldInternal.h */,
+				8514B71315057FA1002F4C25 /* NISearchTextFieldInternal.m */,
+				8514B71415057FA1002F4C25 /* NITableViewSearchModel.h */,
+				8514B71515057FA1002F4C25 /* NITableViewSearchModel.m */,
 			);
 			name = "Message Controller";
 			sourceTree = "<group>";
@@ -412,12 +414,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85C3EF44150317390062BBFE /* NITableViewSearchModel.m in Sources */,
-				85B615EE14FEAED5008B2D52 /* NIMessageField.m in Sources */,
-				85B615EF14FEAED5008B2D52 /* NIMessageTextField.m in Sources */,
-				85B615F014FEAED5008B2D52 /* NISearchTextField.m in Sources */,
-				85B615F114FEAED5008B2D52 /* NISearchTextFieldInternal.m in Sources */,
-				85B615EB14FEAE68008B2D52 /* NIMessageSubjectField.m in Sources */,
 				85B6156A14FE82DB008B2D52 /* AppDelegate.m in Sources */,
 				85B6156C14FE82DB008B2D52 /* main.m in Sources */,
 				85B615AD14FE845A008B2D52 /* NICommonMetrics.m in Sources */,
@@ -440,18 +436,24 @@
 				85B615BE14FE845A008B2D52 /* NSData+NimbusCore.m in Sources */,
 				85B615BF14FE845A008B2D52 /* NSString+NimbusCore.m in Sources */,
 				85B615C014FE845A008B2D52 /* UIView+NimbusCore.m in Sources */,
-				85B615C714FE84A3008B2D52 /* NIMessageController.m in Sources */,
-				85B615E614FE9FE3008B2D52 /* NIMessageRecipientField.m in Sources */,
-				85B615E814FEA163008B2D52 /* NIPickerTextField.m in Sources */,
-				85B615EA14FEA2A8008B2D52 /* NIPickerViewCell.m in Sources */,
 				85B6160814FEB84D008B2D52 /* NICellFactory.m in Sources */,
 				85B6160914FEB84D008B2D52 /* NIFormCellCatalog.m in Sources */,
 				85B6160A14FEB84D008B2D52 /* NITableViewModel.m in Sources */,
 				85B6164814FEC86E008B2D52 /* MainViewController.m in Sources */,
 				85F96BF21500460A00B9A3D6 /* SearchTableViewModel.m in Sources */,
 				85F96BF515004D3600B9A3D6 /* SearchViewController.m in Sources */,
-				8546CF151502CD780011B29A /* NIGradientView.m in Sources */,
-				85C3EF04150307950062BBFE /* NIActivityLabel.m in Sources */,
+				8514B71615057FA1002F4C25 /* NIActivityLabel.m in Sources */,
+				8514B71715057FA1002F4C25 /* NIGradientView.m in Sources */,
+				8514B71815057FA1002F4C25 /* NIMessageController.m in Sources */,
+				8514B71915057FA1002F4C25 /* NIMessageField.m in Sources */,
+				8514B71A15057FA1002F4C25 /* NIMessageRecipientField.m in Sources */,
+				8514B71B15057FA1002F4C25 /* NIMessageSubjectField.m in Sources */,
+				8514B71C15057FA1002F4C25 /* NIMessageTextField.m in Sources */,
+				8514B71D15057FA1002F4C25 /* NIPickerTextField.m in Sources */,
+				8514B71E15057FA1002F4C25 /* NIPickerViewCell.m in Sources */,
+				8514B71F15057FA1002F4C25 /* NISearchTextField.m in Sources */,
+				8514B72015057FA1002F4C25 /* NISearchTextFieldInternal.m in Sources */,
+				8514B72115057FA1002F4C25 /* NITableViewSearchModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
