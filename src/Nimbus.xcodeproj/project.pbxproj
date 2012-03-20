@@ -730,6 +730,7 @@
 		668ECDC51455C17100455266 /* NIStylesheetCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIStylesheetCache.h; path = css/src/NIStylesheetCache.h; sourceTree = SOURCE_ROOT; };
 		668ECDC61455C17100455266 /* NIStylesheetCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIStylesheetCache.m; path = css/src/NIStylesheetCache.m; sourceTree = SOURCE_ROOT; };
 		668ECDCF14565AB200455266 /* README.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.mdown; path = css/chameleon/README.mdown; sourceTree = SOURCE_ROOT; };
+		66922F1C150C7CE400667191 /* run_unit_test.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = run_unit_test.sh; path = ../scripts/run_unit_test.sh; sourceTree = "<group>"; };
 		669E98AD13E9EA1F00D99140 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		66A03C0913E6E85E00B514F3 /* libNimbusCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A03C0C13E6E85E00B514F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1484,6 +1485,7 @@
 				6661BB0813F0B37000D14F92 /* LICENSE */,
 				6661BB0A13F0B38D00D14F92 /* NOTICE */,
 				666F73B614BBFFD600D1A32F /* generate_namespace_header */,
+				66922F1C150C7CE400667191 /* run_unit_test.sh */,
 				66E8CED414D08B8000600592 /* Configs */,
 				DB3A230B13FD4B8E00614220 /* NimbusAttributedLabel */,
 				66A03C0E13E6E85E00B514F3 /* NimbusCore */,
@@ -3619,10 +3621,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "pagingscrollview/unittests/NimbusPagingScrollViewTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = pagingscrollview;
 				NIMBUS_TARGET_NAME = NimbusPagingScrollView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3645,10 +3643,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "pagingscrollview/unittests/NimbusPagingScrollViewTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = pagingscrollview;
 				NIMBUS_TARGET_NAME = NimbusPagingScrollView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3717,10 +3711,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "models/unittests/NimbusModelsTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = models;
 				NIMBUS_TARGET_NAME = NimbusModels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3743,10 +3733,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "models/unittests/NimbusModelsTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = models;
 				NIMBUS_TARGET_NAME = NimbusModels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3815,10 +3801,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "overview/unittests/NimbusOverviewTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = overview;
 				NIMBUS_TARGET_NAME = NimbusOverview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3841,10 +3823,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "overview/unittests/NimbusOverviewTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = overview;
 				NIMBUS_TARGET_NAME = NimbusOverview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3913,10 +3891,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "photos/unittests/NimbusPhotosTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = photos;
 				NIMBUS_TARGET_NAME = NimbusPhotos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3939,10 +3913,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "photos/unittests/NimbusPhotosTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = photos;
 				NIMBUS_TARGET_NAME = NimbusPhotos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4011,10 +3981,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "operations/unittests/NimbusProcessorsTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = operations;
 				NIMBUS_TARGET_NAME = NimbusOperations;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4037,10 +4003,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "operations/unittests/NimbusProcessorsTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = operations;
 				NIMBUS_TARGET_NAME = NimbusOperations;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4109,10 +4071,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "interapp/unittests/NimbusInterappTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = interapp;
 				NIMBUS_TARGET_NAME = NimbusInterapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4135,10 +4093,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "interapp/unittests/NimbusInterappTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = interapp;
 				NIMBUS_TARGET_NAME = NimbusInterapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4208,6 +4162,7 @@
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = "\"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib\"";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				TEST_AFTER_BUILD = NO;
@@ -4227,6 +4182,7 @@
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = "\"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib\"";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				TEST_AFTER_BUILD = NO;
@@ -4298,10 +4254,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "core/unittests/NimbusCoreTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = core;
 				NIMBUS_TARGET_NAME = NimbusCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4326,10 +4278,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "core/unittests/NimbusCoreTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = core;
 				NIMBUS_TARGET_NAME = NimbusCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4398,10 +4346,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "launcher/unittests/NimbusLauncherTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = launcher;
 				NIMBUS_TARGET_NAME = NimbusLauncher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4424,10 +4368,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "launcher/unittests/NimbusLauncherTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = launcher;
 				NIMBUS_TARGET_NAME = NimbusLauncher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4510,10 +4450,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "networkimage/unittests/NimbusNetworkImageTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = networkimage;
 				NIMBUS_TARGET_NAME = NimbusNetworkImage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4536,10 +4472,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "networkimage/unittests/NimbusNetworkImageTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = networkimage;
 				NIMBUS_TARGET_NAME = NimbusNetworkImage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4609,10 +4541,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "networkcontrollers/unittests/NetworkControllersTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = networkcontrollers;
 				NIMBUS_TARGET_NAME = NimbusNetworkControllers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4633,10 +4561,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "networkcontrollers/unittests/NetworkControllersTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = networkcontrollers;
 				NIMBUS_TARGET_NAME = NimbusNetworkControllers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4704,10 +4628,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "css/unittests/NimbusCSSTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = css;
 				NIMBUS_TARGET_NAME = NimbusCss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4730,10 +4650,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "css/unittests/NimbusCSSTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = css;
 				NIMBUS_TARGET_NAME = NimbusCss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4804,10 +4720,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "attributedlabel/unittests/NimbusAttributedLabelTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = attributedlabel;
 				NIMBUS_TARGET_NAME = NimbusAttributedLabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4830,10 +4742,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "attributedlabel/unittests/NimbusAttributedLabelTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = attributedlabel;
 				NIMBUS_TARGET_NAME = NimbusAttributedLabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4902,10 +4810,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "webcontroller/unittests/NimbusWebControllerTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = webcontroller;
 				NIMBUS_TARGET_NAME = NimbusWebController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4928,10 +4832,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "webcontroller/unittests/NimbusWebControllerTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-				);
 				NIMBUS_FEATURE_NAME = webcontroller;
 				NIMBUS_TARGET_NAME = NimbusWebController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
