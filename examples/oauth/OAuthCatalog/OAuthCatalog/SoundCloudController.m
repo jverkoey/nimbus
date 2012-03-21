@@ -1,15 +1,26 @@
 //
-//  SoundCloudController.m
-//  OAuthCatalog
+// Copyright 2012 Jeff Verkoeyen
 //
-//  Created by Jeffrey Verkoeyen on 12-02-19.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 //
 
 #import "SoundCloudController.h"
 
 #import "TableViewText.h"
 #import "TableViewKeyValue.h"
+
+static NSString* const kClientIdentifier = @"41381b580d073d076059a96d17da2e2e";
+static NSString* const kClientSecret = @"c35bb8d143e13255c2addca65e59a34d";
 
 typedef enum {
   AuthenticateAction = 1,
@@ -35,9 +46,8 @@ typedef enum {
 
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:style])) {
-    self.auth = [[[NISoundCloudOpenAuthenticator alloc]
-                  initWithClientIdentifier:@"41381b580d073d076059a96d17da2e2e"
-                  clientSecret:@"c35bb8d143e13255c2addca65e59a34d"] autorelease];
+    self.auth = [[[NISoundCloudOpenAuthenticator alloc] initWithClientIdentifier:kClientIdentifier
+                                                                    clientSecret:kClientSecret] autorelease];
     self.title = @"SoundCloud";
   }
   return self;

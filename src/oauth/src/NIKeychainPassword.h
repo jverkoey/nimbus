@@ -35,18 +35,18 @@
  * safely encrypted in the keychain.
  *
  * Example:
- @code
- NIKeychainPassword* keychain = [NIKeychainPassword keychainPasswordWithIdentifier:@"authentication"];
- 
- // Store the password in the keychain:
- keychain.password = @"my-secret-password";
- 
- // At a later point (perhaps even after the app restarts), fetch the password from the keychain:
- NSString* password = keychain.password;
- 
- // Destroy the password:
- [keychain erasePassword];
- @endcode
+@code
+NIKeychainPassword* keychain = [NIKeychainPassword keychainPasswordWithIdentifier:@"authentication"];
+
+// Store the password in the keychain:
+keychain.password = @"my-secret-password";
+
+// At a later point (perhaps even after the app restarts), fetch the password from the keychain:
+NSString* password = keychain.password;
+
+// Destroy the password:
+[keychain erasePassword];
+@endcode
  *
  *      @ingroup NimbusOAuth
  *      @class NIKeychainPassword

@@ -71,6 +71,22 @@ static NSMutableSet* gAuthenticators = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)initialize {
   gAuthenticators = NICreateNonRetainingMutableSet();
+
+  NSBundle* mainBundle = [NSBundle mainBundle];
+  NSArray* urlTypes = [mainBundle objectForInfoDictionaryKey:@"CFBundleURLTypes"];
+  if (NIIsArrayWithObjects(urlTypes)) {
+    NSDictionary* urlType = [urlTypes objectAtIndex:0];
+    if ([urlType isKindOfClass:[NSDictionary class]] && urlType.count > 0) {
+      NSArray* schemes = [urlType objectForKey:@"CFBundleURLSchemes"];
+      if (NIIsArrayWithObjects(schemes)) {
+        NSString* scheme = [schemes objectAtIndex:0];
+        if (![scheme hasSuffix:@"://"]) {
+          scheme = [scheme stringByAppendingString:@"://"];
+        }
+        [self setApplicationRedirectBasePath:scheme];
+      }
+    }
+  }
 }
 
 
