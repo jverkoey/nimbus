@@ -280,6 +280,8 @@
 		66A0B0CC14BD15CA003FA413 /* UIView+NimbusCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A0B0CA14BD15CA003FA413 /* UIView+NimbusCore.h */; };
 		66A0B0CD14BD15CA003FA413 /* UIView+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A0B0CB14BD15CA003FA413 /* UIView+NimbusCore.m */; };
 		66A0B0D014BD1635003FA413 /* NimbusNetworkControllers+Namespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A0B0CF14BD1635003FA413 /* NimbusNetworkControllers+Namespace.h */; };
+		66A6974B151A56780076FC25 /* NITwitterOpenAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A69749151A56780076FC25 /* NITwitterOpenAuthenticator.h */; };
+		66A6974C151A56780076FC25 /* NITwitterOpenAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A6974A151A56780076FC25 /* NITwitterOpenAuthenticator.m */; };
 		66B10900144C931F004576D1 /* UIButton+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */; };
 		66B10901144C931F004576D1 /* UIButton+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */; };
 		66C113E5147DD0F1003C9AC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
@@ -873,6 +875,8 @@
 		66A0B0CA14BD15CA003FA413 /* UIView+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NimbusCore.h"; sourceTree = "<group>"; };
 		66A0B0CB14BD15CA003FA413 /* UIView+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NimbusCore.m"; sourceTree = "<group>"; };
 		66A0B0CF14BD1635003FA413 /* NimbusNetworkControllers+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusNetworkControllers+Namespace.h"; path = "networkcontrollers/src/NimbusNetworkControllers+Namespace.h"; sourceTree = SOURCE_ROOT; };
+		66A69749151A56780076FC25 /* NITwitterOpenAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITwitterOpenAuthenticator.h; path = oauth/src/NITwitterOpenAuthenticator.h; sourceTree = SOURCE_ROOT; };
+		66A6974A151A56780076FC25 /* NITwitterOpenAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITwitterOpenAuthenticator.m; path = oauth/src/NITwitterOpenAuthenticator.m; sourceTree = SOURCE_ROOT; };
 		66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+NIStyleable.h"; path = "css/src/UIButton+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
 		66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+NIStyleable.m"; path = "css/src/UIButton+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		66B10906144D4C15004576D1 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = css/deps; sourceTree = SOURCE_ROOT; };
@@ -1468,6 +1472,8 @@
 				66EDE07A14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h */,
 				66EDE10B14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h */,
 				66EDE10C14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m */,
+				66A69749151A56780076FC25 /* NITwitterOpenAuthenticator.h */,
+				66A6974A151A56780076FC25 /* NITwitterOpenAuthenticator.m */,
 				66DC73D414F4237A0077DAB0 /* NIKeychainPassword.h */,
 				66DC73D514F4237A0077DAB0 /* NIKeychainPassword.m */,
 			);
@@ -2105,6 +2111,7 @@
 				66EDE07C14F1A01F0002B92B /* NIOpenAuthenticator+Subclassing.h in Headers */,
 				66EDE10D14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.h in Headers */,
 				66DC73D614F4237A0077DAB0 /* NIKeychainPassword.h in Headers */,
+				66A6974B151A56780076FC25 /* NITwitterOpenAuthenticator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3418,6 +3425,7 @@
 				66759B5714DCC04C0094C24B /* NIOpenAuthenticator.m in Sources */,
 				66EDE10E14F1CCEC0002B92B /* NISoundCloudOpenAuthenticator.m in Sources */,
 				66DC73D714F4237A0077DAB0 /* NIKeychainPassword.m in Sources */,
+				66A6974C151A56780076FC25 /* NITwitterOpenAuthenticator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

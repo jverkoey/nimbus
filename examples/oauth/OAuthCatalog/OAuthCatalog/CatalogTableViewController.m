@@ -16,6 +16,7 @@
 
 #import "CatalogTableViewController.h"
 
+#import "GithubController.h"
 #import "SoundCloudController.h"
 #import "TableViewText.h"
 
@@ -39,6 +40,8 @@
 
     NSArray* objects = [NSArray arrayWithObjects:
                         @"Services",
+                        [TableViewText objectWithText:@"Github"
+                                               object:[GithubController class]],
                         [TableViewText objectWithText:@"SoundCloud"
                                                object:[SoundCloudController class]],
                         nil];

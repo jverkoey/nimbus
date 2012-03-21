@@ -14,13 +14,7 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-/**
- * @defgroup NimbusOAuth Nimbus OAuth
- * @{
- *
- * Nimbus OAuth.
- */
-
-#import "NIOpenAuthenticator.h"
+@interface GithubController : UITableViewController
+@end

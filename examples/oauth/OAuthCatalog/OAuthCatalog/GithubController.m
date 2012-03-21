@@ -14,26 +14,26 @@
 // limitations under the License.
 //
 
-#import "SoundCloudController.h"
+#import "GithubController.h"
 
 #import "TableViewText.h"
 #import "TableViewKeyValue.h"
-#import "NISoundCloudOpenAuthenticator.h"
+#import "NIGithubOpenAuthenticator.h"
 
-static NSString* const kClientIdentifier = @"41381b580d073d076059a96d17da2e2e";
-static NSString* const kClientSecret = @"c35bb8d143e13255c2addca65e59a34d";
+static NSString* const kClientIdentifier = @"5ba59bf2ac97dfbdc280";
+static NSString* const kClientSecret = @"bac6e9a230ae40f6430ab18eb351b89c57cbf66b";
 
 typedef enum {
   AuthenticateAction = 1,
   DeauthenticateAction,
 } Actions;
 
-@interface SoundCloudController()
-@property (nonatomic, readwrite, retain) NISoundCloudOpenAuthenticator* auth;
+@interface GithubController()
+@property (nonatomic, readwrite, retain) NIGithubOpenAuthenticator* auth;
 @property (nonatomic, readwrite, retain) NITableViewModel* model;
 @end
 
-@implementation SoundCloudController
+@implementation GithubController
 
 @synthesize auth = _auth;
 @synthesize model = _model;
@@ -47,9 +47,9 @@ typedef enum {
 
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:style])) {
-    self.auth = [[[NISoundCloudOpenAuthenticator alloc] initWithClientIdentifier:kClientIdentifier
-                                                                    clientSecret:kClientSecret] autorelease];
-    self.title = @"SoundCloud";
+    self.auth = [[[NIGithubOpenAuthenticator alloc] initWithClientIdentifier:kClientIdentifier
+                                                                clientSecret:kClientSecret] autorelease];
+    self.title = @"Github";
   }
   return self;
 }
@@ -62,7 +62,7 @@ typedef enum {
     
     [objects addObject:[TableViewText objectWithText:@"De-authenticate"
                                               object:[NSNumber numberWithInt:DeauthenticateAction]]];
-
+    
     [objects addObject:[NITableViewModelFooter footerWithTitle:self.auth.oauthToken]];
 
   } else if (NIOpenAuthenticationStateFetchingToken == self.auth.state) {

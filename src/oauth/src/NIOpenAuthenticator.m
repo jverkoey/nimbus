@@ -221,28 +221,47 @@ static NSMutableSet* gAuthenticators = nil;
      NINetworkActivityTaskDidFinish();
 
      NSString* result = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-     BOOL didFindToken = NO;
+     NSString* accessToken = nil;
+
+     // JSON return type.
      id object = [result objectFromJSONString];
      if ([object isKindOfClass:[NSDictionary class]]) {
        NSDictionary* results = object;
        if ([results objectForKey:@"access_token"]) {
-         self.oauthToken = [results objectForKey:@"access_token"];
-         self.keychain.password = self.oauthToken;
+         accessToken = [results objectForKey:@"access_token"];
+       }
 
-         didFindToken = YES;
-         self.state = NIOpenAuthenticationStateAuthorized;
-         if (nil != self.stateHandler) {
-           // The state handler may interact with UI so we must ensure that the
-           // block is executed on the main thread.
-           dispatch_async(dispatch_get_main_queue(), ^{
-             self.stateHandler(self, NIOpenAuthenticationStateAuthorized, nil);
-             self.stateHandler = nil;
-           });
+     } else if (nil == object) {
+       // URL parameters return type.
+       NSArray* components = [result componentsSeparatedByString:@"&"];
+       for (NSString *component in components) {
+         NSArray* parts = [component componentsSeparatedByString:@"="];
+         if (parts.count == 2) {
+           NSString* key = [parts objectAtIndex:0];
+           NSString* value = [parts objectAtIndex:1];
+           if ([key isEqualToString:@"access_token"]) {
+             accessToken = value;
+             break;
+           }
          }
        }
      }
 
-     if (!didFindToken) {
+     if (NIIsStringWithAnyText(accessToken)) {
+       self.oauthToken = accessToken;
+       self.keychain.password = self.oauthToken;
+
+       self.state = NIOpenAuthenticationStateAuthorized;
+       if (nil != self.stateHandler) {
+         // The state handler may interact with UI so we must ensure that the
+         // block is executed on the main thread.
+         dispatch_async(dispatch_get_main_queue(), ^{
+           self.stateHandler(self, NIOpenAuthenticationStateAuthorized, nil);
+           self.stateHandler = nil;
+         });
+       }
+
+     } else {
        self.state = NIOpenAuthenticationStateInactive;
        if (nil != self.stateHandler) {
          // The state handler may interact with UI so we must ensure that the

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66A69748151A566E0076FC25 /* NIGithubOpenAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A69747151A566E0076FC25 /* NIGithubOpenAuthenticator.m */; };
+		66A69750151A5E150076FC25 /* GithubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A6974F151A5E150076FC25 /* GithubController.m */; };
 		66DC73E714F499FD0077DAB0 /* NIWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DC73E614F499FD0077DAB0 /* NIWebController.m */; };
 		66EDE08E14F1A1A10002B92B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE08D14F1A1A10002B92B /* UIKit.framework */; };
 		66EDE09014F1A1A10002B92B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EDE08F14F1A1A10002B92B /* Foundation.framework */; };
@@ -50,6 +52,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66A69746151A566E0076FC25 /* NIGithubOpenAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIGithubOpenAuthenticator.h; path = ../../../src/oauth/src/NIGithubOpenAuthenticator.h; sourceTree = "<group>"; };
+		66A69747151A566E0076FC25 /* NIGithubOpenAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIGithubOpenAuthenticator.m; path = ../../../src/oauth/src/NIGithubOpenAuthenticator.m; sourceTree = "<group>"; };
+		66A6974E151A5E150076FC25 /* GithubController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GithubController.h; sourceTree = "<group>"; };
+		66A6974F151A5E150076FC25 /* GithubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GithubController.m; sourceTree = "<group>"; };
 		66DC73E314F499FD0077DAB0 /* NimbusWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusWebController.h; path = ../../../src/webcontroller/src/NimbusWebController.h; sourceTree = "<group>"; };
 		66DC73E414F499FD0077DAB0 /* NimbusWebController+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusWebController+Namespace.h"; path = "../../../src/webcontroller/src/NimbusWebController+Namespace.h"; sourceTree = "<group>"; };
 		66DC73E514F499FD0077DAB0 /* NIWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIWebController.h; path = ../../../src/webcontroller/src/NIWebController.h; sourceTree = "<group>"; };
@@ -299,6 +305,8 @@
 				66EDE0ED14F1A1E10002B92B /* NIOpenAuthenticator+Subclassing.h */,
 				66EDE10F14F1CEA60002B92B /* NISoundCloudOpenAuthenticator.h */,
 				66EDE11014F1CEA60002B92B /* NISoundCloudOpenAuthenticator.m */,
+				66A69746151A566E0076FC25 /* NIGithubOpenAuthenticator.h */,
+				66A69747151A566E0076FC25 /* NIGithubOpenAuthenticator.m */,
 				66EDE11F14F1DABC0002B92B /* NIKeychainPassword.h */,
 				66EDE12014F1DABD0002B92B /* NIKeychainPassword.m */,
 			);
@@ -310,6 +318,8 @@
 			children = (
 				66EDE0F014F1A2620002B92B /* CatalogTableViewController.h */,
 				66EDE0F114F1A2620002B92B /* CatalogTableViewController.m */,
+				66A6974E151A5E150076FC25 /* GithubController.h */,
+				66A6974F151A5E150076FC25 /* GithubController.m */,
 				66EDE10414F1A68D0002B92B /* SoundCloudController.h */,
 				66EDE10514F1A68D0002B92B /* SoundCloudController.m */,
 			);
@@ -460,6 +470,8 @@
 				66EDE11A14F1D51D0002B92B /* TableViewKeyValue.m in Sources */,
 				66EDE12114F1DABD0002B92B /* NIKeychainPassword.m in Sources */,
 				66DC73E714F499FD0077DAB0 /* NIWebController.m in Sources */,
+				66A69748151A566E0076FC25 /* NIGithubOpenAuthenticator.m in Sources */,
+				66A69750151A5E150076FC25 /* GithubController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
