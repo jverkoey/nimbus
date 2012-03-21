@@ -26,6 +26,15 @@ typedef enum {
 
 typedef void (^NIOpenAuthenticationBlock)(NIOpenAuthenticator* auth, NIOpenAuthenticationState state, NSError* error);
 
+/**
+ * The base class for open authentication.
+ *
+ * This object defines all of the basic components required by an implementation of the OAuth 2.0
+ * protocol.
+ *
+ *      @ingroup NimbusOAuth
+ *      @class NIOpenAuthenticator
+ */
 @interface NIOpenAuthenticator : NSObject
 
 // Designated initializer.

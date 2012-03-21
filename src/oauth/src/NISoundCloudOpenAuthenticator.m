@@ -27,8 +27,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)redirectPath {
-  return [[super redirectPath] stringByAppendingString:@"/soundcloud"];
+- (NSString *)applicationRedirectPath {
+  return [[super applicationRedirectPath] stringByAppendingString:@"/soundcloud"];
 }
 
 
@@ -38,7 +38,7 @@
           [NSString stringWithFormat:
            @"https://soundcloud.com/connect?client_id=%@&response_type=code&redirect_uri=%@&scope=non-expiring",
            self.clientIdentifier,
-           self.redirectPath]];
+           self.applicationRedirectPath]];
 }
 
 

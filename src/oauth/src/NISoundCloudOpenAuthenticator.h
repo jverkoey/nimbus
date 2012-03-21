@@ -16,5 +16,30 @@
 
 #import "NIOpenAuthenticator.h"
 
+/**
+ * A SoundCloud OAuth 2.0 implementation.
+ *
+ * This provides support for authenticating against the SoundCloud API outlined here:
+ * http://developers.soundcloud.com/docs
+ *
+ * <h1>Registering a SoundCloud Application</h1>
+ *
+ * To register a SoundCloud application for use with the Nimbus OAuth API, please follow the
+ * following steps.
+ *
+ * 1) Create a SoundCloud account at http://soundcloud.com/
+ * 2) Visit the developer apps page at http://soundcloud.com/you/apps
+ * 3) Click "Register a new application"
+ * 4) Provide a name for your application and click "Register"
+ * 5) Ensure that OAuth 2 is selected and enter the following value in the Redirect URI input:
+ *    <your application URL prefix>://oauth/soundcloud
+ * 6) Click "Save app".
+ * 7) Follow the generic directions for using the Nimbus OAuth API in your application. You will
+ *    find your Client ID and Client Secret on the page where you edited your application's
+ *    redirect URI.
+ *
+ *      @ingroup NimbusOAuth
+ *      @class NISoundCloudOpenAuthenticator
+ */
 @interface NISoundCloudOpenAuthenticator : NIOpenAuthenticator
 @end

@@ -174,7 +174,7 @@ static NSMutableSet* gAuthenticators = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)redirectPath {
+- (NSString *)applicationRedirectPath {
   if ([self.redirectBasePath hasSuffix:@"/"]) {
     return [self.redirectBasePath stringByAppendingString:@"oauth"];
   } else {
@@ -189,7 +189,7 @@ static NSMutableSet* gAuthenticators = nil;
                              self.clientIdentifier, @"client_id",
                              self.clientSecret, @"client_secret",
                              @"authorization_code", @"grant_type",
-                             self.redirectPath, @"redirect_uri",
+                             self.applicationRedirectPath, @"redirect_uri",
                              self.oauthCode, @"code",
                              nil];
 
@@ -269,7 +269,7 @@ static NSMutableSet* gAuthenticators = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
   for (NIOpenAuthenticator* auth in gAuthenticators) {
-    if ([url.absoluteString hasPrefix:auth.redirectPath]) {
+    if ([url.absoluteString hasPrefix:auth.applicationRedirectPath]) {
       NSDictionary* query = [url.query queryContentsUsingEncoding:NSUTF8StringEncoding];
       NSString* code = [[query objectForKey:@"code"] objectAtIndex:0];
       NSString* errorTitle = [[query objectForKey:@"error"] objectAtIndex:0];
