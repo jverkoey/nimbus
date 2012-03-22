@@ -56,7 +56,7 @@
   // When the request fully completes we'll be notified via this delegate on the main thread.
   albumRequest.delegate = self;
 
-  [self.queue addOperation:albumRequest];
+  [self.photoDataSource.queue addOperation:albumRequest];
 }
 
 
@@ -70,12 +70,12 @@
 - (void)loadView {
   [super loadView];
 
-  self.photoAlbumView.dataSource = self;
-  self.photoScrubberView.dataSource = self;
+//  self.photoDataSource.photoAlbumView.dataSource = self;
+//  self.photoDataSource.photoScrubberView.dataSource = self;
 
   // Dribbble is for mockups and designs, so we don't want to allow the photos to be zoomed
   // in and become blurry.
-  self.photoAlbumView.zoomingAboveOriginalSizeIsEnabled = NO;
+  self.photoDataSource.photoAlbumView.zoomingAboveOriginalSizeIsEnabled = NO;
 
   // This title will be displayed until we get the results back for the album information.
   self.title = NSLocalizedString(@"Loading...", @"Navigation bar title - Loading a photo album");

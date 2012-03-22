@@ -29,7 +29,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  NI_RELEASE_SAFELY(_photoInformation);
   NI_RELEASE_SAFELY(_facebookAlbumId);
 
   [super dealloc];
@@ -82,7 +81,7 @@
   // When the request fully completes we'll be notified via this delegate on the main thread.
   albumRequest.delegate = self;
 
-  [self.queue addOperation:albumRequest];
+  [self.photoDataSource.queue addOperation:albumRequest];
 }
 
 
@@ -96,9 +95,9 @@
 - (void)loadView {
   [super loadView];
 
-  self.photoAlbumView.dataSource = self;
-  self.photoScrubberView.dataSource = self;
-
+//  self.photoDataSource.photoAlbumView.dataSource = self;
+//  self.photoDataSource.photoScrubberView.dataSource = self;
+//
   // This title will be displayed until we get the results back for the album information.
   self.title = NSLocalizedString(@"Loading...", @"Navigation bar title - Loading a photo album");
 
@@ -108,8 +107,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
-  NI_RELEASE_SAFELY(_photoInformation);
-
   [super viewDidUnload];
 }
 
@@ -194,11 +191,11 @@
   }
 
   NIPhotoScrollView* photoScrollView = (NIPhotoScrollView *)pageView;
-  photoScrollView.photoScrollViewDelegate = self.photoAlbumView;
-  photoScrollView.zoomingAboveOriginalSizeIsEnabled = [self.photoAlbumView isZoomingAboveOriginalSizeEnabled];
+  photoScrollView.photoScrollViewDelegate = self.photoDataSource.photoAlbumView;
+  photoScrollView.zoomingAboveOriginalSizeIsEnabled = [self.photoDataSource.photoAlbumView isZoomingAboveOriginalSizeEnabled];
 
   CaptionedPhotoView* captionedView = (CaptionedPhotoView *)pageView;
-  captionedView.caption = [[_photoInformation objectAtIndex:pageIndex] objectForKey:keyImageCaption];
+  captionedView.caption = [[self.photoDataSource.photoInformation objectAtIndex:pageIndex] objectForKey:keyImageCaption];
   
   return pageView;
 }
