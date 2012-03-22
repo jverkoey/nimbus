@@ -217,11 +217,11 @@
 - (void)_didFailToLoadWithError:(NSError *)error {
   self.operation = nil;
 
-  if ([self.delegate respondsToSelector:@selector(networkImageViewDidFailLoad:)]) {
-    [self.delegate networkImageViewDidFailLoad:error];
+  if ([self.delegate respondsToSelector:@selector(networkImageView:didFailWithError:)]) {
+    [self.delegate networkImageView:self didFailWithError:error];
   }
 
-  [self networkImageViewDidFailToLoad:error];
+  [self networkImageViewDidFailWithError:error];
 }
 
 
@@ -273,7 +273,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)networkImageViewDidFailToLoad:(NSError *)error {
+- (void)networkImageViewDidFailWithError:(NSError *)error {
   // No-op. Meant to be overridden.
 }
 
