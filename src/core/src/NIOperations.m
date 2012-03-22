@@ -94,9 +94,14 @@
     // Load the image from the network then.
     [self operationDidStart];
 
-    NSURLRequest* request = [NSURLRequest requestWithURL:self.url
-                                             cachePolicy:self.cachePolicy
-                                         timeoutInterval:self.timeout];
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:self.url
+                                                             cachePolicy:self.cachePolicy
+                                                         timeoutInterval:self.timeout];
+      
+    NSCachedURLResponse *cachedResponse = [[NSURLCache sharedURLCache] cachedResponseForRequest:request];
+    if (cachedResponse) {
+        [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
+    }
 
     NSError* networkError = nil;
     NSURLResponse* response = nil;
