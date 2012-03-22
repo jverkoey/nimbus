@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "NIPhotoAlbumScrollView.h"
+#import "NIPhotoScrubberView.h"
+
+#import "NIPhotoAlbumScrollViewDataSource.h"
+
 /**
  * Definitions for building dictionary containing image data.
  */
@@ -17,7 +22,7 @@
 #define keyImageCaption					@"caption"
 
 
-@interface NIPhotoDataSource : NSObject <NIPhotoAlbumScrollViewDataSource, NIPhotoScrubberViewDataSource> {
+@interface NIPhotoDataSource : NSObject <NIPhotoAlbumScrollViewDataSource> {
 @protected
     __strong NSOperationQueue* _queue;
 	
@@ -30,7 +35,6 @@
 @property (nonatomic, strong) NSArray *photoInformation;
 
 @property (nonatomic, unsafe_unretained) NIPhotoAlbumScrollView* photoAlbumView;
-@property (nonatomic, unsafe_unretained) NIPhotoScrubberView* photoScrubberView;
 
 /**
  * The high quality image cache.
@@ -68,6 +72,9 @@
 
 - (void) shutdown;
 
+- (void) shutdown_Queue;
+
+
 /**
  * Generate the in-memory cache key for the given index.
  */
@@ -87,6 +94,8 @@
 - (void)reload;
 
 - (void)loadThumbnails;
+
+- (void) cancelRequestWithIdentifier:(id)identifierKey;
 
 
 @end

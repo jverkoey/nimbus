@@ -10,7 +10,7 @@
 
 @implementation NIPhotoDataSource
 
-@synthesize photoAlbumView, photoScrubberView, photoInformation;
+@synthesize photoAlbumView, photoInformation;
 
 @synthesize highQualityImageCache = _highQualityImageCache;
 @synthesize thumbnailImageCache = _thumbnailImageCache;
@@ -42,11 +42,9 @@
 }
 
 - (void) shutdown {
-    for (NINetworkRequestOperation* request in _queue.operations) {
-        request.delegate = nil;
-    }
+	[self shutdown_Queue];
 	
-	_photoAlbumView = nil;
+	self.photoAlbumView = nil;
 	
 	[_queue cancelAllOperations];
 	
@@ -55,6 +53,9 @@
 	NI_RELEASE_SAFELY(_highQualityImageCache);
 	NI_RELEASE_SAFELY(_thumbnailImageCache);
 	NI_RELEASE_SAFELY(_queue);
+}
+
+- (void) shutdown_Queue {
 }
 
 - (void) setPhotoAlbumView:(NIPhotoAlbumScrollView *)_photoAlbumView {
@@ -69,113 +70,31 @@
 	photoAlbumView.dataSource = self;
 }
 
-- (void) setPhotoScrubberView:(NIPhotoScrubberView *)_photoScrubberView {
-	if(!photoScrubberView) {
-		photoScrubberView = nil;
-		
-		NI_RELEASE_SAFELY(photoScrubberView);
-	}
-	
-	photoScrubberView = _photoScrubberView;
-	
-	photoScrubberView.dataSource = self;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)cacheKeyForPhotoIndex:(NSInteger)photoIndex {
+- (NSString *) cacheKeyForPhotoIndex:(NSInteger)photoIndex {
     return [NSString stringWithFormat:@"%d", photoIndex];
 }
 
 
+/**
+ * This needs to be overridden by the subclass that is specific to the data source 
+ *	being used.  See NINetworkPhotoDataSource for an example of how this works.
+ */
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)requestImageFromSource: (NSString *)source
-                     photoSize: (NIPhotoScrollViewPhotoSize)photoSize
-                    photoIndex: (NSInteger)photoIndex {
-	//
-//    BOOL isThumbnail = (NIPhotoScrollViewPhotoSizeThumbnail == photoSize);
-//    NSInteger identifier = isThumbnail ? -(photoIndex + 1) : photoIndex;
-//    NSNumber* identifierKey = [NSNumber numberWithInt:identifier];
-//	
-//    // Avoid duplicating requests.
-//    if ([_activeRequests containsObject:identifierKey]) {
-//        return;
-//    }
-//	
-//    NSURL* url = [NSURL URLWithString:source];
-//	
-//    NINetworkRequestOperation* readOp = [[NINetworkRequestOperation alloc] initWithURL:url];
-//    readOp.timeout = 30;
-//	
-//    // Set an negative index for thumbnail requests so that they don't get cancelled by
-//    // photoAlbumScrollView:stopLoadingPhotoAtIndex:
-//    readOp.tag = isThumbnail ? -(photoIndex + 1) : photoIndex;
-//	
-//    NSString* photoIndexKey = [self cacheKeyForPhotoIndex:photoIndex];
-//	
-//    // The completion block will be executed on the main thread, so we must be careful not
-//    // to do anything computationally expensive here.
-//    [readOp setDidFinishBlock:^(NIOperation *operation) {
-//        UIImage* image = [UIImage imageWithData:((NINetworkRequestOperation *) operation).data];
-//		
-//        // Store the image in the correct image cache.
-//        if (isThumbnail) {
-//            [_thumbnailImageCache storeObject: image
-//                                     withName: photoIndexKey];
-//			
-//        } else {
-//            [_highQualityImageCache storeObject: image
-//                                       withName: photoIndexKey];
-//        }
-//		
-//        // If you decide to move this code around then ensure that this method is called from
-//        // the main thread. Calling it from any other thread will have undefined results.
-//        [self.photoAlbumView didLoadPhoto: image
-//                                  atIndex: photoIndex
-//                                photoSize: photoSize];
-//		
-//        if (isThumbnail) {
-//            [self.photoScrubberView didLoadThumbnail:image atIndex:photoIndex];
-//        }
-//		
-//        [_activeRequests removeObject:identifierKey];
-//    }];
-//	
-//    // When this request is canceled (like when we're quickly flipping through an album)
-//    // the request will fail, so we must be careful to remove the request from the active set.
-//    [readOp setDidFailWithErrorBlock:^(NIOperation *operation, NSError *error) {
-//        [_activeRequests removeObject:identifierKey];
-//    }];
-//	
-//	
-//    // Set the operation priority level.
-//	
-//    if (NIPhotoScrollViewPhotoSizeThumbnail == photoSize) {
-//        // Thumbnail images should be lower priority than full-size images.
-//        [readOp setQueuePriority:NSOperationQueuePriorityLow];
-//		
-//    } else {
-//        [readOp setQueuePriority:NSOperationQueuePriorityNormal];
-//    }
-//	
-//	
-//    // Start the operation.
-//	
-//    [_activeRequests addObject:identifierKey];
-//	
-//    [_queue addOperation:readOp];
+- (void) requestImageFromSource: (NSString *)source
+					  photoSize: (NIPhotoScrollViewPhotoSize)photoSize
+					 photoIndex: (NSInteger)photoIndex {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)reload {
+- (void) reload {
     [self.photoAlbumView reloadData];
 	
     [self loadThumbnails];
-	
-    [self.photoScrubberView reloadData];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)loadThumbnails {
+- (void) loadThumbnails {
     for (NSInteger ix = 0; ix < [self.photoInformation count]; ++ix) {
         NSDictionary* photo = [self.photoInformation objectAtIndex:ix];
 		
@@ -184,6 +103,7 @@
         // Don't load the thumbnail if it's already in memory.
         if (![self.thumbnailImageCache containsObjectWithName:photoIndexKey]) {
             NSString* source = [photo valueForKey:keyThumbnailSourceURL];
+			
             [self requestImageFromSource: source
                                photoSize: NIPhotoScrollViewPhotoSizeThumbnail
                               photoIndex: ix];
@@ -191,33 +111,8 @@
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NIPhotoScrubberViewDataSource
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)numberOfPhotosInScrubberView:(NIPhotoScrubberView *)photoScrubberView {
-    return [self.photoInformation count];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIImage *)photoScrubberView: (NIPhotoScrubberView *)photoScrubberView
-              thumbnailAtIndex: (NSInteger)thumbnailIndex {
-    NSString* photoIndexKey = [self cacheKeyForPhotoIndex:thumbnailIndex];
-	
-    UIImage* image = [self.thumbnailImageCache objectWithName:photoIndexKey];
-    if (nil == image) {
-        NSDictionary* photo = [self.photoInformation objectAtIndex:thumbnailIndex];
-		
-        NSString* thumbnailSource = [photo valueForKey:keyThumbnailSourceURL];
-        [self requestImageFromSource: thumbnailSource
-                           photoSize: NIPhotoScrollViewPhotoSizeThumbnail
-                          photoIndex: thumbnailIndex];
-    }
-	
-    return image;
+- (void) cancelRequestWithIdentifier:(id)identifierKey {
+	[_activeRequests removeObject:identifierKey];
 }
 
 

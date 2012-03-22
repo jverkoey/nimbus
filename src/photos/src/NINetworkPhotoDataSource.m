@@ -18,30 +18,16 @@
 
 @implementation NINetworkPhotoDataSource
 
-//@synthesize photoAlbumView, photoScrubberView, photoInformation;
-//
-//@synthesize highQualityImageCache = _highQualityImageCache;
-//@synthesize thumbnailImageCache = _thumbnailImageCache;
-//@synthesize queue = _queue;
-//
+
+/**
+ * Right now, init, shutdown, and dealloc are placeholders.  The work that needs 
+ *	to be done is either in the superclass, NIPhotoDataSource, or in a subclass.
+ */
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
 	self = [super init];
 	
     if (self) {
-//        _activeRequests = [[NSMutableSet alloc] init];
-//
-//        _highQualityImageCache = [[NIImageMemoryCache alloc] init];
-//        _thumbnailImageCache = [[NIImageMemoryCache alloc] init];
-//
-//        [_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024*1024*3];
-//
-//        _queue = [[NSOperationQueue alloc] init];
-//        [_queue setMaxConcurrentOperationCount:5];
-
-        // Set the default loading image.
-        self.photoAlbumView.loadingImage = [UIImage imageWithContentsOfFile:
-                                            NIPathForBundleResource(nil, @"NimbusPhotos.bundle/gfx/default.png")];
     }
 
     return self;
@@ -51,12 +37,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)shutdown {
 	[super shutdown];
-	
-//    for (NINetworkRequestOperation* request in _queue.operations) {
-//        request.delegate = nil;
-//    }
-//	
-//    [_queue cancelAllOperations];
+}
+
+- (void) shutdown_Queue {
+	for (NINetworkRequestOperation* request in _queue.operations) {
+        request.delegate = nil;
+    }
 }
 
 
@@ -66,6 +52,13 @@
 }
 
 
+/**
+ * We are overriding the declared method in NIPhotoDataSource.  The work being done here
+ *	is network-specific.  It is being called by whichever subclass is defining the specific
+ *	network source of the data ((NSString *)source in the method call).  Most likely,
+ *	this method will *not* need to be overridden by any subclasses that are relying
+ *	on a network-based data source.
+ */
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)requestImageFromSource: (NSString *)source
                      photoSize: (NIPhotoScrollViewPhotoSize)photoSize
@@ -82,7 +75,7 @@
 
     NSURL* url = [NSURL URLWithString:source];
 
-    NINetworkRequestOperation* readOp = [[NINetworkRequestOperation alloc] initWithURL:url];
+    NINetworkRequestOperation* readOp = [[[NINetworkRequestOperation alloc] initWithURL:url] autorelease];
     readOp.timeout = 30;
 
     // Set an negative index for thumbnail requests so that they don't get cancelled by
@@ -141,139 +134,6 @@
 
     [_queue addOperation:readOp];
 }
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//- (void)loadThumbnails {
-//    for (NSInteger ix = 0; ix < [self.photoInformation count]; ++ix) {
-//        NSDictionary* photo = [self.photoInformation objectAtIndex:ix];
-//
-//        NSString* photoIndexKey = [self cacheKeyForPhotoIndex:ix];
-//
-//        // Don't load the thumbnail if it's already in memory.
-//        if (![self.thumbnailImageCache containsObjectWithName:photoIndexKey]) {
-//            NSString* source = [photo valueForKey:@"thumbnailSource"];
-//            [self requestImageFromSource: source
-//                               photoSize: NIPhotoScrollViewPhotoSizeThumbnail
-//                              photoIndex: ix];
-//        }
-//    }
-//}
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//- (void)reload {
-//    [self.photoAlbumView reloadData];
-//
-//    [self loadThumbnails];
-//
-//    [self.photoScrubberView reloadData];
-//}
-//
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//#pragma mark -
-//#pragma mark NIPhotoScrubberViewDataSource
-//
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//- (NSInteger)numberOfPhotosInScrubberView:(NIPhotoScrubberView *)photoScrubberView {
-//    return [self.photoInformation count];
-//}
-//
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//- (UIImage *)photoScrubberView: (NIPhotoScrubberView *)photoScrubberView
-//              thumbnailAtIndex: (NSInteger)thumbnailIndex {
-//    NSString* photoIndexKey = [self cacheKeyForPhotoIndex:thumbnailIndex];
-//
-//    UIImage* image = [self.thumbnailImageCache objectWithName:photoIndexKey];
-//    if (nil == image) {
-//        NSDictionary* photo = [self.photoInformation objectAtIndex:thumbnailIndex];
-//
-//        NSString* thumbnailSource = [photo valueForKey:@"thumbnailSource"];
-//        [self requestImageFromSource: thumbnailSource
-//                           photoSize: NIPhotoScrollViewPhotoSizeThumbnail
-//                          photoIndex: thumbnailIndex];
-//    }
-//
-//    return image;
-//}
-//
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//#pragma mark -
-//#pragma mark NIPhotoAlbumScrollViewDataSource
-//
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//- (NSInteger)numberOfPagesInPagingScrollView:(NIPhotoAlbumScrollView *)photoScrollView {
-//    return [self.photoInformation count];
-//}
-//
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//- (UIImage *)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
-//                     photoAtIndex: (NSInteger)photoIndex
-//                        photoSize: (NIPhotoScrollViewPhotoSize *)photoSize
-//                        isLoading: (BOOL *)isLoading
-//          originalPhotoDimensions: (CGSize *)originalPhotoDimensions {
-//    UIImage* image = nil;
-//
-//    NSString* photoIndexKey = [self cacheKeyForPhotoIndex:photoIndex];
-//
-//    id photo = [self.photoInformation objectAtIndex:photoIndex];
-//
-//    // Let the photo album view know how large the photo will be once it's fully loaded.
-//    *originalPhotoDimensions = [[photo valueForKey:@"dimensions"] CGSizeValue];
-//
-//    image = [self.highQualityImageCache objectWithName:photoIndexKey];
-//    if (nil != image) {
-//        *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
-//
-//    } else {
-//        NSString* source = [photo valueForKey:@"originalSource"];
-//        [self requestImageFromSource: source
-//                           photoSize: NIPhotoScrollViewPhotoSizeOriginal
-//                          photoIndex: photoIndex];
-//
-//        *isLoading = YES;
-//
-//        // Try to return the thumbnail image if we can.
-//        image = [self.thumbnailImageCache objectWithName:photoIndexKey];
-//        if (nil != image) {
-//            *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
-//
-//        } else {
-//            // Load the thumbnail as well.
-//            NSString* thumbnailSource = [photo valueForKey:@"thumbnailSource"];
-//            [self requestImageFromSource: thumbnailSource
-//                               photoSize: NIPhotoScrollViewPhotoSizeThumbnail
-//                              photoIndex: photoIndex];
-//
-//        }
-//    }
-//
-//    return image;
-//}
-//
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//- (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
-//     stopLoadingPhotoAtIndex: (NSInteger)photoIndex {
-//    for (NIOperation* op in [self.queue operations]) {
-//        if (op.tag == photoIndex) {
-//            [op cancel];
-//        }
-//    }
-//}
-//
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//- (id<NIPagingScrollViewPage>)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
-//    return [self.photoAlbumView pagingScrollView:pagingScrollView pageViewForIndex:pageIndex];
-//}
-
 
 
 @end

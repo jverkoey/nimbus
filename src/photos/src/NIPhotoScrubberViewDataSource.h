@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class NIPhotoScrubberView;
+
 /**
  * The data source for the photo scrubber.
  *
