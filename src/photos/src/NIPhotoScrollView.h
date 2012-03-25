@@ -14,13 +14,16 @@
 // limitations under the License.
 //
 
-#import "NIPagingScrollViewPage.h"
-#import "NIPhotoScrollViewPhotoSize.h"
-
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@protocol NIPhotoScrollViewDelegate;
+#import "NIPagingScrollViewPage.h"
+#import "NIPhotoScrollViewPhotoSize.h"
+
+#import "NIPhotoScrollViewDelegate.h"
+
+
+//@protocol NIPhotoScrollViewDelegate;
 @class NICenteringScrollView;
 
 /**

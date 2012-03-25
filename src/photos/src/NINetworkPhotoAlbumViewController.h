@@ -18,6 +18,7 @@
 #import <UIKit/UIKit.h>
 
 #import "NIToolbarPhotoViewController.h"
+#import "NINetworkPhotoDataSource.h"
 
 
 /**
@@ -56,7 +57,8 @@
 
 
 /**
- Helper methods to load photo information
+ * Helper methods to load photo information.  Subclasses need to load the individual photos into
+ *	a dictionary.  These methods standardize the process.
  */
 - (void) addImageSourceURL:(NSString *)originalSourceURL thumbnailSourceURL:(NSString *)thumbnailSourceURL dimensions:(CGSize)dimensions;
 

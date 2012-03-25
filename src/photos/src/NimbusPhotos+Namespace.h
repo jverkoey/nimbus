@@ -31,8 +31,20 @@
 #ifndef NICenteringScrollView
 #define NICenteringScrollView __NIMBUS_NS_SYMBOL(NICenteringScrollView)
 #endif
+#ifndef NIImageMemoryCache
+#define NIImageMemoryCache __NIMBUS_NS_SYMBOL(NIImageMemoryCache)
+#endif
 #ifndef NINavigationAppearance
 #define NINavigationAppearance __NIMBUS_NS_SYMBOL(NINavigationAppearance)
+#endif
+#ifndef NINetworkPhotoAlbumViewController
+#define NINetworkPhotoAlbumViewController __NIMBUS_NS_SYMBOL(NINetworkPhotoAlbumViewController)
+#endif
+#ifndef NINetworkPhotoDataSource
+#define NINetworkPhotoDataSource __NIMBUS_NS_SYMBOL(NINetworkPhotoDataSource)
+#endif
+#ifndef NINetworkRequestOperation
+#define NINetworkRequestOperation __NIMBUS_NS_SYMBOL(NINetworkRequestOperation)
 #endif
 #ifndef NIPagingScrollView
 #define NIPagingScrollView __NIMBUS_NS_SYMBOL(NIPagingScrollView)
@@ -40,11 +52,20 @@
 #ifndef NIPhotoAlbumScrollView
 #define NIPhotoAlbumScrollView __NIMBUS_NS_SYMBOL(NIPhotoAlbumScrollView)
 #endif
+#ifndef NIPhotoAlbumViewController
+#define NIPhotoAlbumViewController __NIMBUS_NS_SYMBOL(NIPhotoAlbumViewController)
+#endif
+#ifndef NIPhotoDataSource
+#define NIPhotoDataSource __NIMBUS_NS_SYMBOL(NIPhotoDataSource)
+#endif
 #ifndef NIPhotoScrollView
 #define NIPhotoScrollView __NIMBUS_NS_SYMBOL(NIPhotoScrollView)
 #endif
 #ifndef NIPhotoScrubberView
 #define NIPhotoScrubberView __NIMBUS_NS_SYMBOL(NIPhotoScrubberView)
+#endif
+#ifndef NIToolbarDataSource
+#define NIToolbarDataSource __NIMBUS_NS_SYMBOL(NIToolbarDataSource)
 #endif
 #ifndef NIToolbarPhotoViewController
 #define NIToolbarPhotoViewController __NIMBUS_NS_SYMBOL(NIToolbarPhotoViewController)

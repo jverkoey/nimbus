@@ -302,6 +302,13 @@
 		66FE7D6B13FB83620061B987 /* NimbusModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6413FB83620061B987 /* NimbusModels.h */; };
 		66FE7D6C13FB83620061B987 /* NITableViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6513FB83620061B987 /* NITableViewModel.h */; };
 		66FE7D6D13FB83620061B987 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FE7D6613FB83620061B987 /* NITableViewModel.m */; };
+		CC51D968151AAC5C0084CFA6 /* NIToolbarDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = CC51D966151AAC5C0084CFA6 /* NIToolbarDataSource.h */; };
+		CC51D969151AAC5C0084CFA6 /* NIToolbarDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CC51D967151AAC5C0084CFA6 /* NIToolbarDataSource.m */; };
+		CC67A0B91512BFB800078A53 /* NINetworkPhotoDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = CC67A0B41512BFB800078A53 /* NINetworkPhotoDataSource.h */; };
+		CC67A0BA1512BFB800078A53 /* NINetworkPhotoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CC67A0B51512BFB800078A53 /* NINetworkPhotoDataSource.m */; };
+		CC67A0BB1512BFB800078A53 /* NIPhotoDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = CC67A0B61512BFB800078A53 /* NIPhotoDataSource.h */; };
+		CC67A0BC1512BFB800078A53 /* NIPhotoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CC67A0B71512BFB800078A53 /* NIPhotoDataSource.m */; };
+		CC67A0BD1512BFB800078A53 /* NIPhotoScrubberViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = CC67A0B81512BFB800078A53 /* NIPhotoScrubberViewDataSource.h */; };
 		CCABFE2315116E7C0007E218 /* NINetworkPhotoAlbumViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = CCABFE1F15116E7C0007E218 /* NINetworkPhotoAlbumViewController.h */; };
 		CCABFE2415116E7C0007E218 /* NINetworkPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCABFE2015116E7C0007E218 /* NINetworkPhotoAlbumViewController.m */; };
 		CCABFE2515116E7C0007E218 /* NIPhotoAlbumViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = CCABFE2115116E7C0007E218 /* NIPhotoAlbumViewController.h */; };
@@ -851,6 +858,13 @@
 		66FE7D6513FB83620061B987 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITableViewModel.h; sourceTree = "<group>"; };
 		66FE7D6613FB83620061B987 /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewModel.m; sourceTree = "<group>"; };
 		66FE7D6813FB83620061B987 /* NimbusModelsTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NimbusModelsTests-Info.plist"; sourceTree = "<group>"; };
+		CC51D966151AAC5C0084CFA6 /* NIToolbarDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIToolbarDataSource.h; sourceTree = "<group>"; };
+		CC51D967151AAC5C0084CFA6 /* NIToolbarDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIToolbarDataSource.m; sourceTree = "<group>"; };
+		CC67A0B41512BFB800078A53 /* NINetworkPhotoDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NINetworkPhotoDataSource.h; sourceTree = "<group>"; };
+		CC67A0B51512BFB800078A53 /* NINetworkPhotoDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINetworkPhotoDataSource.m; sourceTree = "<group>"; };
+		CC67A0B61512BFB800078A53 /* NIPhotoDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPhotoDataSource.h; sourceTree = "<group>"; };
+		CC67A0B71512BFB800078A53 /* NIPhotoDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIPhotoDataSource.m; sourceTree = "<group>"; };
+		CC67A0B81512BFB800078A53 /* NIPhotoScrubberViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPhotoScrubberViewDataSource.h; sourceTree = "<group>"; };
 		CCABFE1F15116E7C0007E218 /* NINetworkPhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NINetworkPhotoAlbumViewController.h; sourceTree = "<group>"; };
 		CCABFE2015116E7C0007E218 /* NINetworkPhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINetworkPhotoAlbumViewController.m; sourceTree = "<group>"; };
 		CCABFE2115116E7C0007E218 /* NIPhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPhotoAlbumViewController.h; sourceTree = "<group>"; };
@@ -1847,11 +1861,11 @@
 			name = "Data Source";
 			sourceTree = "<group>";
 		};
-		CCABFE38151177A60007E218 /* Delegate */ = {
+		CC67A0B31512BF7200078A53 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				66F27D61145BA35B00AFCA08 /* NIPhotoAlbumScrollViewDelegate.h */,
 				66F27D63145BA4E500AFCA08 /* NIPhotoScrollViewDelegate.h */,
+				66F27D61145BA35B00AFCA08 /* NIPhotoAlbumScrollViewDelegate.h */,
 			);
 			name = Delegate;
 			sourceTree = "<group>";
@@ -1983,6 +1997,10 @@
 				666F73B314BBFFAA00D1A32F /* NimbusPhotos+Namespace.h in Headers */,
 				CCABFE2315116E7C0007E218 /* NINetworkPhotoAlbumViewController.h in Headers */,
 				CCABFE2515116E7C0007E218 /* NIPhotoAlbumViewController.h in Headers */,
+				CC67A0B91512BFB800078A53 /* NINetworkPhotoDataSource.h in Headers */,
+				CC67A0BB1512BFB800078A53 /* NIPhotoDataSource.h in Headers */,
+				CC67A0BD1512BFB800078A53 /* NIPhotoScrubberViewDataSource.h in Headers */,
+				CC51D968151AAC5C0084CFA6 /* NIToolbarDataSource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3195,6 +3213,9 @@
 				667572B613E7692F0076F555 /* NIToolbarPhotoViewController.m in Sources */,
 				CCABFE2415116E7C0007E218 /* NINetworkPhotoAlbumViewController.m in Sources */,
 				CCABFE2615116E7C0007E218 /* NIPhotoAlbumViewController.m in Sources */,
+				CC67A0BA1512BFB800078A53 /* NINetworkPhotoDataSource.m in Sources */,
+				CC67A0BC1512BFB800078A53 /* NIPhotoDataSource.m in Sources */,
+				CC51D969151AAC5C0084CFA6 /* NIToolbarDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

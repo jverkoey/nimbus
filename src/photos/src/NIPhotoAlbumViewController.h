@@ -7,118 +7,38 @@
 
 #import "NIPhotoAlbumScrollView.h"
 
-/**
- * Definitions for building dictionary containing image data.  Used in subclasses of NIPhotoAlbumViewController
- * 	to do the heavy lifting as far as building.  Then used by NIPhotoAlbumViewController 
- *	to access the data for display purposes.
- */
-#define keyOriginalSourceURL			@"originalSource"
-#define keyThumbnailSourceURL			@"thumbnailSource"
-#define keyImageDimensions				@"dimensions"
-#define keyImageCaption						@"caption"
+#import "NIPhotoDataSource.h"
 
 
-@interface NIPhotoAlbumViewController : UIViewController <
-	NIPhotoAlbumScrollViewDataSource,
-	NIPhotoScrubberViewDataSource
-> {
-	// Views
-	NIPhotoAlbumScrollView* _photoAlbumView;
-	
-	// Caches
-	NIImageMemoryCache* _highQualityImageCache;
-	NIImageMemoryCache* _thumbnailImageCache;
-
-  NSOperationQueue* _queue;
-  
-  NSMutableSet* _activeRequests;
-	
-  NSArray* _photoInformation;
-	
+@interface NIPhotoAlbumViewController : UIViewController {
+	NIPhotoDataSource		*_photoDataSource;
 }
 
-/**
- * The photo album view.
- */
-@property (nonatomic, readonly, retain) NIPhotoAlbumScrollView* photoAlbumView;
 
-/**
- * The high quality image cache.
- *
- * All original-sized photos are stored in this cache.
- *
- * By default the cache is unlimited with a max stress size of 1024*1024*3 pixels.
- *
- * Images are stored with a name that corresponds directly to the photo index in the form "%d".
- *
- * This is unloaded when the controller's view is unloaded from memory.
- */
-@property (nonatomic, readonly, retain) NIImageMemoryCache* highQualityImageCache;
+@property (nonatomic, retain) NIPhotoDataSource			*photoDataSource;
 
-/**
- * The thumbnail image cache.
- *
- * All thumbnail photos are stored in this cache.
- *
- * By default the cache is unlimited.
- *
- * Images are stored with a name that corresponds directly to the photo index in the form "%d".
- *
- * This is unloaded when the controller's view is unloaded from memory.
- */
-@property (nonatomic, readonly, retain) NIImageMemoryCache* thumbnailImageCache;
+- (NSInteger) identifierWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
+                           photoIndex:(NSInteger)photoIndex;
 
-/**
- * The operation queue that runs all of the network and processing operations.
- *
- * This is unloaded when the controller's view is unloaded from memory.
- */
-@property (nonatomic, readonly, retain) NSOperationQueue* queue;
-
-
-- (void) shutdown;
-
-/**
- * Generate the in-memory cache key for the given index.
- */
-- (NSString *)cacheKeyForPhotoIndex:(NSInteger)photoIndex;
-
-- (void) initImageCaches;
-
-- (NSInteger)identifierWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
-                          photoIndex:(NSInteger)photoIndex;
-
-- (id)identifierKeyFromIdentifier:(NSInteger)identifier;
+- (id) identifierKeyFromIdentifier:(NSInteger)identifier;
 
 - (void) initPhotoAlbumViewWithFrame:(CGRect)photoAlbumFrame delegate:(id<NIPhotoAlbumScrollViewDelegate>)delegate;
 
-- (void)loadThumbnails;
-
-
-/**
- * Request an image from a source URL and store the result in the corresponding image cache.
- *
- *      @param source       The image's source URL path.
- *      @param photoSize    The size of the photo being requested.
- *      @param photoIndex   The photo index used to store the image in the memory cache.
- *		
- *		Method at this level is "abstract" for now.  Will be implemented by sub-classes to fulfill on requests based on type of image source.
- *		For example, the source could be on the web, or in the file system, or a CoreData repository.
- */
-- (void)requestImageFromSource: (NSString *)source
-                     photoSize: (NIPhotoScrollViewPhotoSize)photoSize
-                    photoIndex: (NSInteger)photoIndex;
 
 - (void)didCancelRequestWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
                            photoIndex:(NSInteger)photoIndex;
 
 
 /**
- Helper methods to load photo information
+ * Load data source.  Must be overridden in subclass if data source is unique.
  */
-//- (void) addPhoto:(NSString *)originalSourceURL thumbnailSourceURL:(NSString *)thumbnailSourceURL dimensions:(CGSize)dimensions;
-//
-//- (void) addPhoto:(NSString *)originalSourceURL thumbnailSourceURL:(NSString *)thumbnailSourceURL dimensions:(CGSize)dimensions caption:(NSString *)caption;
+- (void) loadDataSource;
+
+/**
+ * Path for initial image that is displayed during loading of other images.  Must be overridden in
+ *	subclass if new loading image is desired.
+ */
+- (NSString *) loadingImagePath;
 
 
 @end

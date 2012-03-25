@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,18 +14,12 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import "NimbusCore+Additions.h"
+#import "NimbusPhotos.h"
 
-/**
- * Contextual information about the size of the photo.
- */
-typedef enum {
-  // Unknown photo size.
-  NIPhotoScrollViewPhotoSizeUnknown,
-  
-  // A smaller version of the image.
-  NIPhotoScrollViewPhotoSizeThumbnail,
-  
-  // The full-size image.
-  NIPhotoScrollViewPhotoSizeOriginal,
-} NIPhotoScrollViewPhotoSize;
+#import "NIToolbarDataSource.h"
+
+
+@interface NINetworkPhotoDataSource : NIToolbarDataSource
+
+@end

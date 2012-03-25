@@ -21,6 +21,8 @@
 
 #import "NIPhotoScrubberView.h"
 
+#import "NIToolbarDataSource.h"
+
 @class NIPhotoAlbumScrollView;
 
 /**
@@ -81,13 +83,9 @@
 	  UIBarButtonItem* _nextButton;
 	  UIBarButtonItem* _previousButton;
 	  
-	  // Scrubber View
-	  NIPhotoScrubberView* _photoScrubberView;
-	  
 @private
   // Views
   UIToolbar*              _toolbar;
-	  //NIPhotoAlbumScrollView* _photoAlbumView;
 
   // State
   BOOL _isAnimatingChrome;
@@ -113,9 +111,6 @@
 #pragma mark Views
 
 @property (nonatomic, readonly, retain) UIToolbar* toolbar;
-//@property (nonatomic, readonly, retain) NIPhotoAlbumScrollView* photoAlbumView;
-@property (nonatomic, readonly, retain) NIPhotoScrubberView* photoScrubberView;
-
 
 #pragma mark Toolbar Buttons
 
