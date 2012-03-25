@@ -64,6 +64,48 @@
 @end
 
 /**
+ * Created by Gregory Hill on 03/15/2012
+ *
+ * A text input form element with a label on the left.
+ *
+ * This element is similar to HTML's <input type="text">. It presents a simple text field
+ * control with optional placeholder text. You can assign a delegate to this object that will
+ * be assigned to the text field, allowing you to receive text field delegate notifications.
+ *
+ * The next step is to create text fields that can accept specific input (text, numeric)
+ *
+ * Bound to NITextInputFormElementCell2 when using the @link TableCellFactory Nimbus cell factory@endlink.
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NITextInputFormElement2 : NITextInputFormElement
+
+// Designated initializer
++ (id)textInputElementWithID:(NSInteger)elementID title:(NSString *)title placeholderText:(NSString *)placeholderText value:(NSString *)value delegate:(id<UITextFieldDelegate>)delegate required:(BOOL)required;
++ (id)textInputElementWithID:(NSInteger)elementID title:(NSString *)title placeholderText:(NSString *)placeholderText value:(NSString *)value  delegate:(id<UITextFieldDelegate>)delegate;
++ (id)textInputElementWithID:(NSInteger)elementID title:(NSString *)title placeholderText:(NSString *)placeholderText value:(NSString *)value;
+
++ (id)passwordInputElementWithID:(NSInteger)elementID title:(NSString *)title placeholderText:(NSString *)placeholderText value:(NSString *)value delegate:(id<UITextFieldDelegate>)delegate required:(BOOL)required;
++ (id)passwordInputElementWithID:(NSInteger)elementID title:(NSString *)title placeholderText:(NSString *)placeholderText value:(NSString *)value delegate:(id<UITextFieldDelegate>)delegate;
++ (id)passwordInputElementWithID:(NSInteger)elementID title:(NSString *)title placeholderText:(NSString *)placeholderText value:(NSString *)value;
+
+- (UITableViewCellStyle) cellStyle;
+
+/**
+ * @property title is used to place a label on the left side of the textfield
+ */
+@property (nonatomic, readwrite, copy) NSString *title;
+
+/**
+ * @property required used to identify any field that is required.  Processing
+ *	the data after submission to verify that data has been entered is left
+ *	as an exercise for the user.
+ */
+@property (nonatomic, readwrite, assign) BOOL required;
+
+@end
+
+/**
  * A switch form element.
  *
  * This element is similar to the Settings app's switch fields. It shows a label with a switch
@@ -133,6 +175,23 @@
  */
 @interface NITextInputFormElementCell : NIFormElementCell <UITextFieldDelegate>
 @property (nonatomic, readonly, retain) UITextField* textField;
+@end
+
+/**
+ * The cell sibling to NITextInputFormElement2.
+ *
+ * Displays two fields: a readonly title, and a text field for editing.
+ *
+ * @image html NITextInputCellExample1.png "Example of a NITextInputFormElementCell."
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NITextInputFormElementCell2 : NITextInputFormElementCell <UITextFieldDelegate> {
+@private
+	CGFloat			_maxLabelLength;
+}
+
++ (UITableViewCellStyle) cellStyle;
 @end
 
 /**
