@@ -40,5 +40,11 @@
  */
 - (NSString *) loadingImagePath;
 
+/**
+ * Empty method to be overridden by subclasses.  Used to set up paths (such as network URLs, file system
+ *	subdirectories, etc.) where the particular albums to be loaded are sourced.
+ */
+- (void) loadAlbumInformation;
+
 
 @end

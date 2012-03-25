@@ -50,6 +50,7 @@
     NSString* photoIndexKey = [self cacheKeyForPhotoIndex:thumbnailIndex];
 	
     UIImage* image = [self.thumbnailImageCache objectWithName:photoIndexKey];
+	
     if (nil == image) {
         NSDictionary* photo = [self.photoInformation objectAtIndex:thumbnailIndex];
 		

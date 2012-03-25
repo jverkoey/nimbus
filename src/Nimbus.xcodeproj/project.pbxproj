@@ -302,6 +302,8 @@
 		66FE7D6B13FB83620061B987 /* NimbusModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6413FB83620061B987 /* NimbusModels.h */; };
 		66FE7D6C13FB83620061B987 /* NITableViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6513FB83620061B987 /* NITableViewModel.h */; };
 		66FE7D6D13FB83620061B987 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FE7D6613FB83620061B987 /* NITableViewModel.m */; };
+		CC08D502151B80BD00932787 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC08D501151B80BD00932787 /* CoreData.framework */; };
+		CC08D503151B814E00932787 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC08D501151B80BD00932787 /* CoreData.framework */; };
 		CC51D968151AAC5C0084CFA6 /* NIToolbarDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = CC51D966151AAC5C0084CFA6 /* NIToolbarDataSource.h */; };
 		CC51D969151AAC5C0084CFA6 /* NIToolbarDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CC51D967151AAC5C0084CFA6 /* NIToolbarDataSource.m */; };
 		CC67A0B91512BFB800078A53 /* NINetworkPhotoDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = CC67A0B41512BFB800078A53 /* NINetworkPhotoDataSource.h */; };
@@ -858,6 +860,7 @@
 		66FE7D6513FB83620061B987 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITableViewModel.h; sourceTree = "<group>"; };
 		66FE7D6613FB83620061B987 /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewModel.m; sourceTree = "<group>"; };
 		66FE7D6813FB83620061B987 /* NimbusModelsTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NimbusModelsTests-Info.plist"; sourceTree = "<group>"; };
+		CC08D501151B80BD00932787 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		CC51D966151AAC5C0084CFA6 /* NIToolbarDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIToolbarDataSource.h; sourceTree = "<group>"; };
 		CC51D967151AAC5C0084CFA6 /* NIToolbarDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIToolbarDataSource.m; sourceTree = "<group>"; };
 		CC67A0B41512BFB800078A53 /* NINetworkPhotoDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NINetworkPhotoDataSource.h; sourceTree = "<group>"; };
@@ -955,6 +958,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC08D502151B80BD00932787 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1018,6 +1022,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC08D503151B814E00932787 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1567,6 +1572,7 @@
 		66A03C0B13E6E85E00B514F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CC08D501151B80BD00932787 /* CoreData.framework */,
 				666C3D1E14D0AC2100F337D6 /* CoreText.framework */,
 				66E8CED714D08E7400600592 /* libprofile_rt.dylib */,
 				66832D02143E38F0003E413C /* CoreGraphics.framework */,

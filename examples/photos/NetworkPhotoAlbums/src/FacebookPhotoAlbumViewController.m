@@ -44,24 +44,6 @@
 }
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//- (void)loadThumbnails {
-//  for (NSInteger ix = 0; ix < [_photoInformation count]; ++ix) {
-//    NSDictionary* photo = [_photoInformation objectAtIndex:ix];
-//
-//    NSString* photoIndexKey = [self cacheKeyForPhotoIndex:ix];
-//
-//    // Don't load the thumbnail if it's already in memory.
-//    if (![self.thumbnailImageCache containsObjectWithName:photoIndexKey]) {
-//      NSString* source = [photo objectForKey:@"thumbnailSource"];
-//      [self requestImageFromSource: source
-//                         photoSize: NIPhotoScrollViewPhotoSizeThumbnail
-//                        photoIndex: ix];
-//    }
-//  }
-//}
-//
-//
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadAlbumInformation {
   NSString* albumURLPath = [NSString stringWithFormat:

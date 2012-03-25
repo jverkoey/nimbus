@@ -27,9 +27,14 @@
 	_photoDataSource = [[NIPhotoDataSource alloc] init];
 }
 
-
 - (NSString *) loadingImagePath {
 	return NIPathForBundleResource(nil, @"NimbusPhotos.bundle/gfx/default.png");
+}
+
+- (void) loadAlbumInformation {
+	NSException *ex = [NSException exceptionWithName:@"invalid method implementation" reason:@"loadAlbumInformation must be implemented in a subclass of NIPhotoAlbumViewController" userInfo:nil];
+	
+	[ex raise];
 }
 
 
@@ -62,7 +67,7 @@
 	NIPhotoAlbumScrollView *_photoAlbumView = [[[NIPhotoAlbumScrollView alloc] initWithFrame:photoAlbumFrame] autorelease];
 	
 	_photoAlbumView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
-										| UIViewAutoresizingFlexibleHeight);
+																			| UIViewAutoresizingFlexibleHeight);
 	
 	_photoAlbumView.delegate = delegate;
 
@@ -75,7 +80,7 @@
                                          duration: (NSTimeInterval)duration {
 	//
 	[self.photoDataSource.photoAlbumView willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
-																		  duration: duration];
+																																				duration: duration];
 	
 	[super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation
 											duration:duration];

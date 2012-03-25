@@ -32,7 +32,6 @@
 		665E0BBD13CE815D008A1D21 /* NINonEmptyCollectionTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BA713CE815D008A1D21 /* NINonEmptyCollectionTesting.m */; };
 		665E0BBE13CE815D008A1D21 /* NINonRetainingCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BA913CE815D008A1D21 /* NINonRetainingCollections.m */; };
 		665E0BBF13CE815D008A1D21 /* NIOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BAB13CE815D008A1D21 /* NIOperations.m */; };
-		665E0BC013CE815D008A1D21 /* NIPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BAD13CE815D008A1D21 /* NIPaths.m */; };
 		665E0BC113CE815D008A1D21 /* NIRuntimeClassModifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BB013CE815D008A1D21 /* NIRuntimeClassModifications.m */; };
 		665E0BC213CE815D008A1D21 /* NISDKAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BB213CE815D008A1D21 /* NISDKAvailability.m */; };
 		665E0BC313CE815D008A1D21 /* NIState.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BB413CE815D008A1D21 /* NIState.m */; };
@@ -119,8 +118,6 @@
 		665E0BA913CE815D008A1D21 /* NINonRetainingCollections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINonRetainingCollections.m; path = ../../../src/core/src/NINonRetainingCollections.m; sourceTree = SOURCE_ROOT; };
 		665E0BAA13CE815D008A1D21 /* NIOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOperations.h; path = ../../../src/core/src/NIOperations.h; sourceTree = SOURCE_ROOT; };
 		665E0BAB13CE815D008A1D21 /* NIOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOperations.m; path = ../../../src/core/src/NIOperations.m; sourceTree = SOURCE_ROOT; };
-		665E0BAC13CE815D008A1D21 /* NIPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPaths.h; path = ../../../src/core/src/NIPaths.h; sourceTree = SOURCE_ROOT; };
-		665E0BAD13CE815D008A1D21 /* NIPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPaths.m; path = ../../../src/core/src/NIPaths.m; sourceTree = SOURCE_ROOT; };
 		665E0BAE13CE815D008A1D21 /* NIPreprocessorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPreprocessorMacros.h; path = ../../../src/core/src/NIPreprocessorMacros.h; sourceTree = SOURCE_ROOT; };
 		665E0BAF13CE815D008A1D21 /* NIRuntimeClassModifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIRuntimeClassModifications.h; path = ../../../src/core/src/NIRuntimeClassModifications.h; sourceTree = SOURCE_ROOT; };
 		665E0BB013CE815D008A1D21 /* NIRuntimeClassModifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIRuntimeClassModifications.m; path = ../../../src/core/src/NIRuntimeClassModifications.m; sourceTree = SOURCE_ROOT; };
@@ -325,8 +322,6 @@
 				665E0BAA13CE815D008A1D21 /* NIOperations.h */,
 				665E0BAB13CE815D008A1D21 /* NIOperations.m */,
 				667A89FE148C65F3000779BD /* NIOperations+Subclassing.h */,
-				665E0BAC13CE815D008A1D21 /* NIPaths.h */,
-				665E0BAD13CE815D008A1D21 /* NIPaths.m */,
 				665E0BAE13CE815D008A1D21 /* NIPreprocessorMacros.h */,
 				665E0BAF13CE815D008A1D21 /* NIRuntimeClassModifications.h */,
 				665E0BB013CE815D008A1D21 /* NIRuntimeClassModifications.m */,
@@ -526,7 +521,6 @@
 				665E0BBD13CE815D008A1D21 /* NINonEmptyCollectionTesting.m in Sources */,
 				665E0BBE13CE815D008A1D21 /* NINonRetainingCollections.m in Sources */,
 				665E0BBF13CE815D008A1D21 /* NIOperations.m in Sources */,
-				665E0BC013CE815D008A1D21 /* NIPaths.m in Sources */,
 				665E0BC113CE815D008A1D21 /* NIRuntimeClassModifications.m in Sources */,
 				665E0BC213CE815D008A1D21 /* NISDKAvailability.m in Sources */,
 				665E0BC313CE815D008A1D21 /* NIState.m in Sources */,
