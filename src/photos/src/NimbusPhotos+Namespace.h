@@ -28,9 +28,6 @@
 #endif
 
 // Classes
-#ifndef CoreDataPhotoDataSource
-#define CoreDataPhotoDataSource __NIMBUS_NS_SYMBOL(CoreDataPhotoDataSource)
-#endif
 #ifndef NICenteringScrollView
 #define NICenteringScrollView __NIMBUS_NS_SYMBOL(NICenteringScrollView)
 #endif

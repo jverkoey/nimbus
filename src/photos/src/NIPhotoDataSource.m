@@ -82,12 +82,8 @@
  */
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) requestImageFromSource: (NSString *)source
-											photoSize: (NIPhotoScrollViewPhotoSize)photoSize
-										 photoIndex: (NSInteger)photoIndex {
-	//
-	NSException *ex = [NSException exceptionWithName:@"invalid method implementation" reason:@"requestImageFromSource:photoSize:photoIndex: must be implemented in a subclass of NIPhotoDataSource" userInfo:nil];
-	
-	[ex raise];
+					  photoSize: (NIPhotoScrollViewPhotoSize)photoSize
+					 photoIndex: (NSInteger)photoIndex {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -126,7 +122,7 @@
 #pragma mark NIPhotoAlbumScrollViewDataSource
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger) numberOfPagesInPagingScrollView:(NIPhotoAlbumScrollView *)photoScrollView {
+- (NSInteger)numberOfPagesInPagingScrollView:(NIPhotoAlbumScrollView *)photoScrollView {
     return [self.photoInformation count];
 }
 
@@ -148,13 +144,11 @@
     *originalPhotoDimensions = [[photo valueForKey:keyImageDimensions] CGSizeValue];
 	
     image = [self.highQualityImageCache objectWithName:photoIndexKey];
-	
     if (nil != image) {
         *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
 		
     } else {
         NSString* source = [photo valueForKey:keyOriginalSourceURL];
-			
         [self requestImageFromSource: source
                            photoSize: NIPhotoScrollViewPhotoSizeOriginal
                           photoIndex: photoIndex];

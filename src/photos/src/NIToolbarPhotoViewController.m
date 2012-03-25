@@ -293,12 +293,11 @@
   if (!self.toolbarIsTranslucent) {
     CGRect photoAlbumFrame = self.photoDataSource.photoAlbumView.frame;
     photoAlbumFrame.size.height = self.view.bounds.size.height - toolbarFrame.size.height;
-		
     self.photoDataSource.photoAlbumView.frame = photoAlbumFrame;
   }
 
   [self.photoDataSource.photoAlbumView willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
-																																				duration: duration];
+                                                        duration: duration];
 }
 
 
@@ -501,7 +500,7 @@
   // We don't bother animating if the chrome disappears when scrolling because the user
   // will barely see the animation happen.
   [((NIToolbarDataSource *)self.photoDataSource).photoScrubberView setSelectedPhotoIndex: [pagingScrollView centerPageIndex]
-																																								animated: !self.hidesChromeWhenScrolling];
+																				animated: !self.hidesChromeWhenScrolling];
 
   [self refreshChromeState];
 }
@@ -515,8 +514,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)photoScrubberViewDidChangeSelection:(NIPhotoScrubberView *)photoScrubberView {
-  [self.photoDataSource.photoAlbumView moveToPageAtIndex:photoScrubberView.selectedPhotoIndex
-																								animated:NO];
+  [self.photoDataSource.photoAlbumView moveToPageAtIndex:photoScrubberView.selectedPhotoIndex 
+												animated:NO];
 
   [self refreshChromeState];
 }
