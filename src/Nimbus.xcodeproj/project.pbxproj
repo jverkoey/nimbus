@@ -1283,7 +1283,7 @@
 			isa = PBXGroup;
 			children = (
 				CCABFE38151177A60007E218 /* Delegate */,
-				CCABFE37151177950007E218 /* DataSource */,
+				CCABFE37151177950007E218 /* Data Source */,
 				667572A213E7692F0076F555 /* NimbusPhotos.h */,
 				666F73B214BBFFAA00D1A32F /* NimbusPhotos+Namespace.h */,
 				667572A313E7692F0076F555 /* NIPhotoAlbumScrollView.h */,
@@ -1839,12 +1839,12 @@
 			path = models/unittests;
 			sourceTree = SOURCE_ROOT;
 		};
-		CCABFE37151177950007E218 /* DataSource */ = {
+		CCABFE37151177950007E218 /* Data Source */ = {
 			isa = PBXGroup;
 			children = (
 				66F27D5F145BA32500AFCA08 /* NIPhotoAlbumScrollViewDataSource.h */,
 			);
-			name = DataSource;
+			name = "Data Source";
 			sourceTree = "<group>";
 		};
 		CCABFE38151177A60007E218 /* Delegate */ = {
