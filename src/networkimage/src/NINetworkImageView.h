@@ -137,7 +137,7 @@ typedef enum {
 
 - (void)networkImageViewDidStartLoading;
 - (void)networkImageViewDidLoadImage:(UIImage *)image;
-- (void)networkImageViewDidFailToLoad:(NSError *)error;
+- (void)networkImageViewDidFailWithError:(NSError *)error;
 
 @end
 
@@ -163,7 +163,7 @@ typedef enum {
 /**
  * The asynchronous download failed.
  */
-- (void)networkImageViewDidFailLoad:(NINetworkImageView *)imageView;
+- (void)networkImageView:(NINetworkImageView *)imageView didFailWithError:(NSError *)error;
 
 @end
 
@@ -686,5 +686,5 @@ typedef enum {
 /**
  * A network request failed to load.
  *
- *      @fn NINetworkImageView::networkImageViewDidFailToLoad:
+ *      @fn NINetworkImageView::networkImageViewDidFailWithError:
  */
