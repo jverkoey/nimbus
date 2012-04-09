@@ -45,3 +45,4 @@
 
 #import "NimbusCore.h"
 #import "NIMessageController.h"
+#import "NIPostController.h"

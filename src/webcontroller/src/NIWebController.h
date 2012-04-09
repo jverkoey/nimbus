@@ -76,24 +76,24 @@
 #import <UIKit/UIKit.h>
 
 @interface NIWebController : UIViewController <
-  UIWebViewDelegate,
-  UIActionSheetDelegate > {
+UIWebViewDelegate,
+UIActionSheetDelegate > {
 @protected
-  // Views
-  UIWebView*        _webView;
-  UIToolbar*        _toolbar;
-  UIActionSheet*    _actionSheet;
-  
-  // Toolbar buttons
-  UIBarButtonItem*  _backButton;
-  UIBarButtonItem*  _forwardButton;
-  UIBarButtonItem*  _refreshButton;
-  UIBarButtonItem*  _stopButton;
-  UIBarButtonItem*  _actionButton;
-  UIBarButtonItem*  _activityItem;
-
-  NSURL*            _actionSheetURL;
-  NSURL*            _loadingURL;
+    // Views
+    UIWebView*        _webView;
+    UIToolbar*        _toolbar;
+    UIActionSheet*    _actionSheet;
+    
+    // Toolbar buttons
+    UIBarButtonItem*  _backButton;
+    UIBarButtonItem*  _forwardButton;
+    UIBarButtonItem*  _refreshButton;
+    UIBarButtonItem*  _stopButton;
+    UIBarButtonItem*  _actionButton;
+    UIBarButtonItem*  _activityItem;
+    
+    NSURL*            _actionSheetURL;
+    NSURL*            _loadingURL;
 }
 
 /**

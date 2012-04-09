@@ -28,35 +28,35 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)releaseAllSubviews {
-  _actionSheet.delegate = nil;
-  _webView.delegate = nil;
-
-  NI_RELEASE_SAFELY(_actionSheet);
-  NI_RELEASE_SAFELY(_webView);
-  NI_RELEASE_SAFELY(_toolbar);
-  NI_RELEASE_SAFELY(_backButton);
-  NI_RELEASE_SAFELY(_forwardButton);
-  NI_RELEASE_SAFELY(_refreshButton);
-  NI_RELEASE_SAFELY(_stopButton);
-  NI_RELEASE_SAFELY(_actionButton);
-  NI_RELEASE_SAFELY(_activityItem);
+    _actionSheet.delegate = nil;
+    _webView.delegate = nil;
+    
+    NI_RELEASE_SAFELY(_actionSheet);
+    NI_RELEASE_SAFELY(_webView);
+    NI_RELEASE_SAFELY(_toolbar);
+    NI_RELEASE_SAFELY(_backButton);
+    NI_RELEASE_SAFELY(_forwardButton);
+    NI_RELEASE_SAFELY(_refreshButton);
+    NI_RELEASE_SAFELY(_stopButton);
+    NI_RELEASE_SAFELY(_actionButton);
+    NI_RELEASE_SAFELY(_activityItem);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  NI_RELEASE_SAFELY(_actionSheetURL);
-  NI_RELEASE_SAFELY(_loadingURL);
-  [self releaseAllSubviews];
-
-  [super dealloc];
+    NI_RELEASE_SAFELY(_actionSheetURL);
+    NI_RELEASE_SAFELY(_loadingURL);
+    [self releaseAllSubviews];
+    
+    [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-    self.hidesBottomBarWhenPushed = YES;
-  }
-  return self;
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+        self.hidesBottomBarWhenPushed = YES;
+    }
+    return self;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -66,87 +66,87 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)backAction {
-  [_webView goBack];
+    [_webView goBack];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)forwardAction {
-  [_webView goForward];
+    [_webView goForward];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)refreshAction {
-  [_webView reload];
+    [_webView reload];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)stopAction {
-  [_webView stopLoading];
+    [_webView stopLoading];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)shareAction {
-  // Dismiss the action menu if the user taps the action button again on the iPad.
-  if ([_actionSheet isVisible]) {
-    // It shouldn't be possible to tap the share action button again on anything but the iPad.
-    NIDASSERT(NIIsPad());
-
-    [_actionSheet dismissWithClickedButtonIndex:[_actionSheet cancelButtonIndex] animated:YES];
-
-    // We remove the action sheet here just in case the delegate isn't properly implemented.
-    _actionSheet.delegate = nil;
-    NI_RELEASE_SAFELY(_actionSheet);
-    NI_RELEASE_SAFELY(_actionSheetURL);
-
-    // Don't show the menu again.
-    return;
-  }
-
-  // Remember the URL at this point
-  [_actionSheetURL release];
-  _actionSheetURL = [self.URL copy];
-
-  if (nil == _actionSheet) {
-    _actionSheet =
-    [[UIActionSheet alloc] initWithTitle:[_actionSheetURL absoluteString]
-                                delegate:self
-                       cancelButtonTitle:nil
-                  destructiveButtonTitle:nil
-                       otherButtonTitles:nil];
-    // Let -shouldPresentActionSheet: setup the action sheet
-    if (![self shouldPresentActionSheet:_actionSheet]) {
-      // A subclass decided to handle the action in another way
-      NI_RELEASE_SAFELY(_actionSheet);
-      NI_RELEASE_SAFELY(_actionSheetURL);
-      return;
+    // Dismiss the action menu if the user taps the action button again on the iPad.
+    if ([_actionSheet isVisible]) {
+        // It shouldn't be possible to tap the share action button again on anything but the iPad.
+        NIDASSERT(NIIsPad());
+        
+        [_actionSheet dismissWithClickedButtonIndex:[_actionSheet cancelButtonIndex] animated:YES];
+        
+        // We remove the action sheet here just in case the delegate isn't properly implemented.
+        _actionSheet.delegate = nil;
+        NI_RELEASE_SAFELY(_actionSheet);
+        NI_RELEASE_SAFELY(_actionSheetURL);
+        
+        // Don't show the menu again.
+        return;
     }
-    // Add "Cancel" button except for iPads
-    if (!NIIsPad()) {
-      [_actionSheet setCancelButtonIndex:[_actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", @"")]];
+    
+    // Remember the URL at this point
+    [_actionSheetURL release];
+    _actionSheetURL = [self.URL copy];
+    
+    if (nil == _actionSheet) {
+        _actionSheet =
+        [[UIActionSheet alloc] initWithTitle:[_actionSheetURL absoluteString]
+                                    delegate:self
+                           cancelButtonTitle:nil
+                      destructiveButtonTitle:nil
+                           otherButtonTitles:nil];
+        // Let -shouldPresentActionSheet: setup the action sheet
+        if (![self shouldPresentActionSheet:_actionSheet]) {
+            // A subclass decided to handle the action in another way
+            NI_RELEASE_SAFELY(_actionSheet);
+            NI_RELEASE_SAFELY(_actionSheetURL);
+            return;
+        }
+        // Add "Cancel" button except for iPads
+        if (!NIIsPad()) {
+            [_actionSheet setCancelButtonIndex:[_actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", @"")]];
+        }
     }
-  }
-
-  if (NIIsPad()) {
-    [_actionSheet showFromBarButtonItem:_actionButton animated:YES];
-  } else {
-    [_actionSheet showInView:self.view];
-  }
+    
+    if (NIIsPad()) {
+        [_actionSheet showFromBarButtonItem:_actionButton animated:YES];
+    } else {
+        [_actionSheet showInView:self.view];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateToolbarWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
-
-  CGRect toolbarFrame = _toolbar.frame;
-  toolbarFrame.size.height = NIToolbarHeightForOrientation(interfaceOrientation);
-  toolbarFrame.origin.y = self.view.bounds.size.height - toolbarFrame.size.height;
-  _toolbar.frame = toolbarFrame;
-
-  CGRect webViewFrame = _webView.frame;
-  webViewFrame.size.height = self.view.bounds.size.height - toolbarFrame.size.height;
-  _webView.frame = webViewFrame;
+    
+    CGRect toolbarFrame = _toolbar.frame;
+    toolbarFrame.size.height = NIToolbarHeightForOrientation(interfaceOrientation);
+    toolbarFrame.origin.y = self.view.bounds.size.height - toolbarFrame.size.height;
+    _toolbar.frame = toolbarFrame;
+    
+    CGRect webViewFrame = _webView.frame;
+    webViewFrame.size.height = self.view.bounds.size.height - toolbarFrame.size.height;
+    _webView.frame = webViewFrame;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -156,127 +156,127 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
-  [super loadView];
-
-  CGRect bounds = self.view.bounds;
-
-  CGFloat toolbarHeight = NIToolbarHeightForOrientation(NIInterfaceOrientation());
-  CGRect toolbarFrame = CGRectMake(0, bounds.size.height - toolbarHeight,
-                                   bounds.size.width, toolbarHeight);
-
-  _toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
-  _toolbar.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin
-                               | UIViewAutoresizingFlexibleWidth);
-
-  UIActivityIndicatorView* spinner =
-  [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-    UIActivityIndicatorViewStyleWhite] autorelease];
-  [spinner startAnimating];
-  _activityItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
-
-  UIImage* backIcon = [UIImage imageWithContentsOfFile:
-                      NIPathForBundleResource(nil, @"NimbusWebController.bundle/gfx/backIcon.png")];
-  // We weren't able to find the forward or back icons in your application's resources.
-  // Ensure that you've dragged the NimbusWebController.bundle from src/webcontroller/resources
-  //into your application with the "Create Folder References" option selected. You can verify that
-  // you've done this correctly by expanding the NimbusPhotos.bundle file in your project
-  // and verifying that the 'gfx' directory is blue. Also verify that the bundle is being
-  // copied in the Copy Bundle Resources phase.
-  NIDASSERT(nil != backIcon);
-
-  _backButton =
-  [[UIBarButtonItem alloc] initWithImage:backIcon
-                                   style:UIBarButtonItemStylePlain
-                                  target:self
-                                  action:@selector(backAction)];
-  _backButton.tag = 2;
-  _backButton.enabled = NO;
-
-  UIImage* forwardIcon = [UIImage imageWithContentsOfFile:
-                  NIPathForBundleResource(nil, @"NimbusWebController.bundle/gfx/forwardIcon.png")];
-  // We weren't able to find the forward or back icons in your application's resources.
-  // Ensure that you've dragged the NimbusWebController.bundle from src/webcontroller/resources
-  // into your application with the "Create Folder References" option selected. You can verify that
-  // you've done this correctly by expanding the NimbusPhotos.bundle file in your project
-  // and verifying that the 'gfx' directory is blue. Also verify that the bundle is being
-  // copied in the Copy Bundle Resources phase.
-  NIDASSERT(nil != forwardIcon);
-
-  _forwardButton =
-  [[UIBarButtonItem alloc] initWithImage:forwardIcon
-                                   style:UIBarButtonItemStylePlain
-                                  target:self
-                                  action:@selector(forwardAction)];
-  _forwardButton.tag = 1;
-  _forwardButton.enabled = NO;
-  _refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                    UIBarButtonSystemItemRefresh target:self action:@selector(refreshAction)];
-  _refreshButton.tag = 3;
-  _stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                 UIBarButtonSystemItemStop target:self action:@selector(stopAction)];
-  _stopButton.tag = 3;
-  _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                   UIBarButtonSystemItemAction target:self action:@selector(shareAction)];
-
-  UIBarItem* flexibleSpace =
-  [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace
-                                                 target: nil
-                                                 action: nil] autorelease];
-
-  _toolbar.items = [NSArray arrayWithObjects:
-                    _backButton,
-                    flexibleSpace,
-                    _forwardButton,
-                    flexibleSpace,
-                    _refreshButton,
-                    flexibleSpace,
-                    _actionButton,
-                    nil];
-  [self.view addSubview:_toolbar];
-
-  CGRect webViewFrame = NIRectContract(bounds, 0, toolbarHeight);
-
-  _webView = [[UIWebView alloc] initWithFrame:webViewFrame];
-  _webView.delegate = self;
-  _webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
-                               | UIViewAutoresizingFlexibleHeight);
-  _webView.scalesPageToFit = YES;
-  [self.view addSubview:_webView];
+    [super loadView];
+    
+    CGRect bounds = self.view.bounds;
+    
+    CGFloat toolbarHeight = NIToolbarHeightForOrientation(NIInterfaceOrientation());
+    CGRect toolbarFrame = CGRectMake(0, bounds.size.height - toolbarHeight,
+                                     bounds.size.width, toolbarHeight);
+    
+    _toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
+    _toolbar.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin
+                                 | UIViewAutoresizingFlexibleWidth);
+    
+    UIActivityIndicatorView* spinner =
+    [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
+      UIActivityIndicatorViewStyleWhite] autorelease];
+    [spinner startAnimating];
+    _activityItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
+    
+    UIImage* backIcon = [UIImage imageWithContentsOfFile:
+                         NIPathForBundleResource(nil, @"NimbusWebController.bundle/gfx/backIcon.png")];
+    // We weren't able to find the forward or back icons in your application's resources.
+    // Ensure that you've dragged the NimbusWebController.bundle from src/webcontroller/resources
+    //into your application with the "Create Folder References" option selected. You can verify that
+    // you've done this correctly by expanding the NimbusPhotos.bundle file in your project
+    // and verifying that the 'gfx' directory is blue. Also verify that the bundle is being
+    // copied in the Copy Bundle Resources phase.
+    NIDASSERT(nil != backIcon);
+    
+    _backButton =
+    [[UIBarButtonItem alloc] initWithImage:backIcon
+                                     style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(backAction)];
+    _backButton.tag = 2;
+    _backButton.enabled = NO;
+    
+    UIImage* forwardIcon = [UIImage imageWithContentsOfFile:
+                            NIPathForBundleResource(nil, @"NimbusWebController.bundle/gfx/forwardIcon.png")];
+    // We weren't able to find the forward or back icons in your application's resources.
+    // Ensure that you've dragged the NimbusWebController.bundle from src/webcontroller/resources
+    // into your application with the "Create Folder References" option selected. You can verify that
+    // you've done this correctly by expanding the NimbusPhotos.bundle file in your project
+    // and verifying that the 'gfx' directory is blue. Also verify that the bundle is being
+    // copied in the Copy Bundle Resources phase.
+    NIDASSERT(nil != forwardIcon);
+    
+    _forwardButton =
+    [[UIBarButtonItem alloc] initWithImage:forwardIcon
+                                     style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(forwardAction)];
+    _forwardButton.tag = 1;
+    _forwardButton.enabled = NO;
+    _refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
+                      UIBarButtonSystemItemRefresh target:self action:@selector(refreshAction)];
+    _refreshButton.tag = 3;
+    _stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
+                   UIBarButtonSystemItemStop target:self action:@selector(stopAction)];
+    _stopButton.tag = 3;
+    _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
+                     UIBarButtonSystemItemAction target:self action:@selector(shareAction)];
+    
+    UIBarItem* flexibleSpace =
+    [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace
+                                                   target: nil
+                                                   action: nil] autorelease];
+    
+    _toolbar.items = [NSArray arrayWithObjects:
+                      _backButton,
+                      flexibleSpace,
+                      _forwardButton,
+                      flexibleSpace,
+                      _refreshButton,
+                      flexibleSpace,
+                      _actionButton,
+                      nil];
+    [self.view addSubview:_toolbar];
+    
+    CGRect webViewFrame = NIRectContract(bounds, 0, toolbarHeight);
+    
+    _webView = [[UIWebView alloc] initWithFrame:webViewFrame];
+    _webView.delegate = self;
+    _webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                 | UIViewAutoresizingFlexibleHeight);
+    _webView.scalesPageToFit = YES;
+    [self.view addSubview:_webView];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
-  [super viewDidUnload];
-
-  [self releaseAllSubviews];
+    [super viewDidUnload];
+    
+    [self releaseAllSubviews];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  [self updateToolbarWithOrientation:self.interfaceOrientation];
+    [super viewWillAppear:animated];
+    [self updateToolbarWithOrientation:self.interfaceOrientation];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillDisappear:(BOOL)animated {
-  // If the browser launched the media player, it steals the key window and never gives it
-  // back, so this is a way to try and fix that.
-  [self.view.window makeKeyWindow];
-
-  [super viewWillDisappear:animated];
+    // If the browser launched the media player, it steals the key window and never gives it
+    // back, so this is a way to try and fix that.
+    [self.view.window makeKeyWindow];
+    
+    [super viewWillDisappear:animated];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  return NIIsSupportedOrientation(interfaceOrientation);
+    return NIIsSupportedOrientation(interfaceOrientation);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                          duration:(NSTimeInterval)duration {
-  [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-  [self updateToolbarWithOrientation:toInterfaceOrientation];
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self updateToolbarWithOrientation:toInterfaceOrientation];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -287,65 +287,65 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request
  navigationType:(UIWebViewNavigationType)navigationType {
-
-  [_loadingURL release];
-  _loadingURL = [request.mainDocumentURL copy];
-  _backButton.enabled = [_webView canGoBack];
-  _forwardButton.enabled = [_webView canGoForward];
-  return YES;
+    
+    [_loadingURL release];
+    _loadingURL = [request.mainDocumentURL copy];
+    _backButton.enabled = [_webView canGoBack];
+    _forwardButton.enabled = [_webView canGoForward];
+    return YES;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webViewDidStartLoad:(UIWebView*)webView {
-
-  self.title = NSLocalizedString(@"Loading...", @"");
-  if (!self.navigationItem.rightBarButtonItem) {
-    [self.navigationItem setRightBarButtonItem:_activityItem animated:YES];
-  }
-
-  NSInteger buttonIndex = 0;
-  for (UIBarButtonItem* button in _toolbar.items) {
-    if (button.tag == 3) {
-      NSMutableArray* newItems = [NSMutableArray arrayWithArray:_toolbar.items];
-      [newItems replaceObjectAtIndex:buttonIndex withObject:_stopButton];
-      _toolbar.items = newItems;
-      break;
+    
+    self.title = NSLocalizedString(@"Loading...", @"");
+    if (!self.navigationItem.rightBarButtonItem) {
+        [self.navigationItem setRightBarButtonItem:_activityItem animated:YES];
     }
-    ++buttonIndex;
-  }
-  _backButton.enabled = [_webView canGoBack];
-  _forwardButton.enabled = [_webView canGoForward];
+    
+    NSInteger buttonIndex = 0;
+    for (UIBarButtonItem* button in _toolbar.items) {
+        if (button.tag == 3) {
+            NSMutableArray* newItems = [NSMutableArray arrayWithArray:_toolbar.items];
+            [newItems replaceObjectAtIndex:buttonIndex withObject:_stopButton];
+            _toolbar.items = newItems;
+            break;
+        }
+        ++buttonIndex;
+    }
+    _backButton.enabled = [_webView canGoBack];
+    _forwardButton.enabled = [_webView canGoForward];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webViewDidFinishLoad:(UIWebView*)webView {
-
-  NI_RELEASE_SAFELY(_loadingURL);
-  self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-  if (self.navigationItem.rightBarButtonItem == _activityItem) {
-    [self.navigationItem setRightBarButtonItem:nil animated:YES];
-  }
-
-  NSInteger buttonIndex = 0;
-  for (UIBarButtonItem* button in _toolbar.items) {
-    if (button.tag == 3) {
-      NSMutableArray* newItems = [NSMutableArray arrayWithArray:_toolbar.items];
-      [newItems replaceObjectAtIndex:buttonIndex withObject:_refreshButton];
-      _toolbar.items = newItems;
-      break;
+    
+    NI_RELEASE_SAFELY(_loadingURL);
+    self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    if (self.navigationItem.rightBarButtonItem == _activityItem) {
+        [self.navigationItem setRightBarButtonItem:nil animated:YES];
     }
-    ++buttonIndex;
-  }
-
-  _backButton.enabled = [_webView canGoBack];
-  _forwardButton.enabled = [_webView canGoForward];
+    
+    NSInteger buttonIndex = 0;
+    for (UIBarButtonItem* button in _toolbar.items) {
+        if (button.tag == 3) {
+            NSMutableArray* newItems = [NSMutableArray arrayWithArray:_toolbar.items];
+            [newItems replaceObjectAtIndex:buttonIndex withObject:_refreshButton];
+            _toolbar.items = newItems;
+            break;
+        }
+        ++buttonIndex;
+    }
+    
+    _backButton.enabled = [_webView canGoBack];
+    _forwardButton.enabled = [_webView canGoForward];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error {
-
-  NI_RELEASE_SAFELY(_loadingURL);
-  [self webViewDidFinishLoad:webView];
+    
+    NI_RELEASE_SAFELY(_loadingURL);
+    [self webViewDidFinishLoad:webView];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -355,22 +355,22 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-  if (actionSheet == _actionSheet) {
-    if (buttonIndex == 0) {
-      [[UIApplication sharedApplication] openURL:_actionSheetURL];
-    } else if (buttonIndex == 1) {
-      [[UIPasteboard generalPasteboard] setURL:_actionSheetURL];
+    if (actionSheet == _actionSheet) {
+        if (buttonIndex == 0) {
+            [[UIApplication sharedApplication] openURL:_actionSheetURL];
+        } else if (buttonIndex == 1) {
+            [[UIPasteboard generalPasteboard] setURL:_actionSheetURL];
+        }
     }
-  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-  if (actionSheet == _actionSheet) {
-    _actionSheet.delegate = nil;
-    NI_RELEASE_SAFELY(_actionSheet);
-    NI_RELEASE_SAFELY(_actionSheetURL);
-  }
+    if (actionSheet == _actionSheet) {
+        _actionSheet.delegate = nil;
+        NI_RELEASE_SAFELY(_actionSheet);
+        NI_RELEASE_SAFELY(_actionSheetURL);
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -380,48 +380,48 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSURL *)URL {
-  return _loadingURL ? _loadingURL : _webView.request.mainDocumentURL;
+    return _loadingURL ? _loadingURL : _webView.request.mainDocumentURL;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)openURL:(NSURL*)URL {
-  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
-  [self openRequest:request];
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
+    [self openRequest:request];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)openRequest:(NSURLRequest*)request {
-  // The view must be loaded before you call this method.
-  NIDASSERT([self isViewLoaded]);
-  [_webView loadRequest:request];
+    // The view must be loaded before you call this method.
+    NIDASSERT([self isViewLoaded]);
+    [_webView loadRequest:request];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setToolbarHidden:(BOOL)hidden {
-  _toolbar.hidden = hidden;
-  if (hidden) {
-    _webView.frame = self.view.bounds;
-
-  } else {
-    _webView.frame = NIRectContract(self.view.bounds, 0, _toolbar.frame.size.height);
-  }
+    _toolbar.hidden = hidden;
+    if (hidden) {
+        _webView.frame = self.view.bounds;
+        
+    } else {
+        _webView.frame = NIRectContract(self.view.bounds, 0, _toolbar.frame.size.height);
+    }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setToolbarTintColor:(UIColor*)color {
-  _toolbar.tintColor = color;
+    _toolbar.tintColor = color;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet {
-  if (actionSheet == _actionSheet) {
-    [_actionSheet addButtonWithTitle:NSLocalizedString(@"Open in Safari", @"")];
-    [_actionSheet addButtonWithTitle:NSLocalizedString(@"Copy URL", @"")];
-  }
-  return YES;
+    if (actionSheet == _actionSheet) {
+        [_actionSheet addButtonWithTitle:NSLocalizedString(@"Open in Safari", @"")];
+        [_actionSheet addButtonWithTitle:NSLocalizedString(@"Copy URL", @"")];
+    }
+    return YES;
 }
 
 @end

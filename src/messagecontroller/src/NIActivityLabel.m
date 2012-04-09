@@ -50,6 +50,9 @@ static CGFloat kProgressMargin  = 6;
             //_bezelView.layer.borderColor = [RGBCOLOR(178, 178, 178) CGColor];
             //_bezelView.layer.borderWidth = 1;
             self.backgroundColor = [UIColor clearColor];
+        } else if (_style == NIActivityLabelStyleBlackBanner) {
+            _bezelView.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
+            self.backgroundColor = [UIColor clearColor];
         } else {
             _bezelView.backgroundColor = [UIColor clearColor];
             self.backgroundColor = [UIColor clearColor];
@@ -79,6 +82,13 @@ static CGFloat kProgressMargin  = 6;
                                   UIActivityIndicatorViewStyleGray];
             _label.font = [UIFont systemFontOfSize:17];
             _label.textColor = RGBCOLOR(99, 109, 125);
+        } else if (_style == NIActivityLabelStyleBlackBanner) {
+            _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
+                                  UIActivityIndicatorViewStyleWhite];
+            _label.font = [UIFont boldSystemFontOfSize:11];
+            _label.textColor = [UIColor whiteColor];
+            _label.shadowColor = [UIColor colorWithWhite:0 alpha:0.3];
+            _label.shadowOffset = CGSizeMake(1, 1);
         }
         
         [self addSubview:_bezelView];
@@ -195,6 +205,9 @@ static CGFloat kProgressMargin  = 6;
     CGFloat y = padding + floor((bezelHeight - padding*2)/2 - contentHeight/2);
     
     if (_progressView) {
+        if (_style == NIActivityLabelStyleBlackBanner) {
+            y += kBannerPadding/2;
+        }
         _progressView.frame = CGRectMake(kProgressMargin, y,
                                          bezelWidth - kProgressMargin*2, _progressView.frame.size.height);
         y += _progressView.frame.size.height + kSpacing-1;

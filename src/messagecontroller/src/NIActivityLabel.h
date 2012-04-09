@@ -12,7 +12,8 @@
 typedef enum {
     NIActivityLabelStyleBlackBezel,
     NIActivityLabelStyleWhiteBezel,
-    NIActivityLabelStyleWhiteBox
+    NIActivityLabelStyleWhiteBox,
+    NIActivityLabelStyleBlackBanner
 } NIActivityLabelStyle;
 
 
