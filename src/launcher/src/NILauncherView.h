@@ -81,6 +81,10 @@ extern const NSInteger NILauncherViewDynamic;
 
 - (void)setFrame:(CGRect)frame;
 
+#pragma mark Background Image
+
+- (void)setBackgroundImage:(UIImage *) backgroundImage; 
+
 @end
 
 
