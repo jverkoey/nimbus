@@ -105,6 +105,15 @@
 @property (nonatomic, retain) UIColor* linkHighlightColor;
 
 /**
+ * Whether or not links should have underlines.
+ *
+ * By default this is NO.
+ *
+ * This affects all links in the label.
+ */
+@property (nonatomic, assign) BOOL linksHaveUnderlines;
+
+/**
  * The underline style for the whole text.
  *
  * Value:
