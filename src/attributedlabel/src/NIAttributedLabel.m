@@ -39,6 +39,7 @@
 @synthesize textKern = _textKern;
 @synthesize linkColor = _linkColor;
 @synthesize linkHighlightColor = _linkHighlightColor;
+@synthesize linksHaveUnderlines = _linksHaveUnderlines;
 @synthesize delegate = _delegate;
 
 
@@ -384,6 +385,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setLinksHaveUnderlines:(BOOL)linksHaveUnderlines {
+  if (_linksHaveUnderlines != linksHaveUnderlines) {
+    _linksHaveUnderlines = linksHaveUnderlines;
+
+    [self attributedTextDidChange];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // Use an NSDataDetector to find any implicit links in the text. The results are cached until
 // the text changes.
 - (void)detectLinks {
@@ -548,12 +559,22 @@
     for (NSTextCheckingResult* result in _detectedlinkLocations) {
       [attributedString setTextColor:self.linkColor
                                range:result.range];
+      if (self.linksHaveUnderlines) {
+        [attributedString setUnderlineStyle:kCTUnderlineStyleSingle
+                                   modifier:kCTUnderlinePatternSolid
+                                      range:result.range];
+      }
     }
   }
 
   for (NSTextCheckingResult* result in _explicitLinkLocations) {
     [attributedString setTextColor:self.linkColor
                              range:result.range];
+    if (self.linksHaveUnderlines) {
+      [attributedString setUnderlineStyle:kCTUnderlineStyleSingle
+                                 modifier:kCTUnderlinePatternSolid
+                                    range:result.range];
+    }
   }
 
   return attributedString;
