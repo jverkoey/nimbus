@@ -589,8 +589,9 @@
 
   NSMutableAttributedString* attributedStringWithLinks =
     [self mutableAttributedStringWithLinkStylesApplied];
-  self.userInteractionEnabled = (_detectedlinkLocations.count > 0
-                                 || _explicitLinkLocations.count > 0);
+  if (_detectedlinkLocations.count > 0 || _explicitLinkLocations.count > 0) {
+    self.userInteractionEnabled = YES;
+  }
 
   if (nil != attributedStringWithLinks) {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
