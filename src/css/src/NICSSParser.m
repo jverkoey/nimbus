@@ -238,7 +238,7 @@ int cssConsume(char* text, int token) {
               // Merge the orders.
               {
                 NSMutableArray* order = [existingProperties objectForKey:kPropertyOrderKey];
-                [order addObjectsFromArray:[_mutatingRuleset objectForKey:kPropertyOrderKey]];
+                [order addObjectsFromArray:[NSArray arrayWithArray:[_mutatingRuleset objectForKey:kPropertyOrderKey]]];
                 [_mutatingRuleset setObject:order forKey:kPropertyOrderKey];
               }
 
@@ -247,7 +247,7 @@ int cssConsume(char* text, int token) {
               }
               // Add the order of the new properties.
               [[existingProperties objectForKey:kPropertyOrderKey] addObjectsFromArray:
-               [_mutatingRuleset objectForKey:kPropertyOrderKey]];
+               [NSArray arrayWithArray:[_mutatingRuleset objectForKey:kPropertyOrderKey]]];
             }
           }
 
