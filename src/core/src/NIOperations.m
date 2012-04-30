@@ -56,7 +56,7 @@
   if ([self.url isFileURL]) {
     // Special case: load the image from disk without hitting the network.
 
-    [self operationDidStart];
+    [self didStart];
 
     NSError* dataReadError = nil;
 
@@ -69,19 +69,19 @@
     if (nil != dataReadError) {
       // This generally happens when the file path points to a file that doesn't exist.
       // dataReadError has the complete details.
-      [self operationDidFailWithError:dataReadError];
+      [self didFailWithError:dataReadError];
 
     } else {
       self.data = data;
 
       // Notifies the delegates of the request completion.
-      [self operationWillFinish];
-      [self operationDidFinish];
+      [self willFinish];
+      [self didFinish];
     }
 
   } else { // COV_NF_START
     // Load the image from the network then.
-    [self operationDidStart];
+    [self didStart];
 
     NSURLRequest* request = [NSURLRequest requestWithURL:self.url
                                              cachePolicy:self.cachePolicy
@@ -105,13 +105,13 @@
     }
 
     if (nil != networkError) {
-      [self operationDidFailWithError:networkError];
+      [self didFailWithError:networkError];
 
     } else {
       self.data = data;
 
-      [self operationWillFinish];
-      [self operationDidFinish];
+      [self willFinish];
+      [self didFinish];
     } // COV_NF_END
   }
   }
@@ -157,7 +157,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidStart {
+- (void)didStart {
 	[self performSelectorOnMainThread: @selector(onMainThreadOperationDidStart)
                          withObject: nil
                       waitUntilDone: [NSThread isMainThread]];
@@ -165,7 +165,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFinish {
+- (void)didFinish {
 	[self performSelectorOnMainThread: @selector(onMainThreadOperationDidFinish)
                          withObject: nil
                       waitUntilDone: [NSThread isMainThread]];
@@ -173,7 +173,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFailWithError:(NSError *)error {
+- (void)didFailWithError:(NSError *)error {
   self.lastError = error;
 
 	[self performSelectorOnMainThread: @selector(onMainThreadOperationDidFailWithError:)
@@ -183,9 +183,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationWillFinish {
-  if ([self.delegate respondsToSelector:@selector(operationWillFinish:)]) {
-    [self.delegate operationWillFinish:self];
+- (void)willFinish {
+  if ([self.delegate respondsToSelector:@selector(nimbusOperationWillFinish:)]) {
+    [self.delegate nimbusOperationWillFinish:self];
   }
 
 #if NS_BLOCKS_AVAILABLE
@@ -207,8 +207,8 @@
   // This method should only be called on the main thread.
   NIDASSERT([NSThread isMainThread]);
 
-  if ([self.delegate respondsToSelector:@selector(operationDidStart:)]) {
-    [self.delegate operationDidStart:self];
+  if ([self.delegate respondsToSelector:@selector(nimbusOperationDidStart:)]) {
+    [self.delegate nimbusOperationDidStart:self];
   }
 
 #if NS_BLOCKS_AVAILABLE
@@ -224,8 +224,8 @@
   // This method should only be called on the main thread.
   NIDASSERT([NSThread isMainThread]);
 
-  if ([self.delegate respondsToSelector:@selector(operationDidFinish:)]) {
-    [self.delegate operationDidFinish:self];
+  if ([self.delegate respondsToSelector:@selector(nimbusOperationDidFinish:)]) {
+    [self.delegate nimbusOperationDidFinish:self];
   }
 
 #if NS_BLOCKS_AVAILABLE
@@ -241,8 +241,8 @@
   // This method should only be called on the main thread.
   NIDASSERT([NSThread isMainThread]);
 
-  if ([self.delegate respondsToSelector:@selector(operationDidFail:withError:)]) {
-    [self.delegate operationDidFail:self withError:error];
+  if ([self.delegate respondsToSelector:@selector(nimbusOperationDidFail:withError:)]) {
+    [self.delegate nimbusOperationDidFail:self withError:error];
   }
 
 #if NS_BLOCKS_AVAILABLE

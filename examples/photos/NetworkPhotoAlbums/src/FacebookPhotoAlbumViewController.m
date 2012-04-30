@@ -110,7 +110,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationWillFinish:(NINetworkRequestOperation *)operation {
+- (void)nimbusOperationWillFinish:(NINetworkRequestOperation *)operation {
   // This is called from the processing thread in order to allow us to turn the root object
   // into something more interesting.
   if (![operation.processedObject isKindOfClass:[NSDictionary class]]) {
@@ -169,7 +169,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFinish:(NINetworkRequestOperation *)operation {
+- (void)nimbusOperationDidFinish:(NINetworkRequestOperation *)operation {
   _photoInformation = operation.processedObject;
 
   [self.photoAlbumView reloadData];

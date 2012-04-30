@@ -219,13 +219,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidStart:(NSOperation *)operation {
+- (void)nimbusOperationDidStart:(NIOperation *)operation {
   [self _didStartLoading];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFinish:(NINetworkImageRequest *)operation {
+- (void)nimbusOperationDidFinish:(NINetworkImageRequest *)operation {
   [self _didFinishLoadingWithImage:operation.imageCroppedAndSizedForDisplay
                    cacheIdentifier:operation.cacheIdentifier
                        displaySize:operation.imageDisplaySize
@@ -236,7 +236,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFail:(NSOperation *)operation withError:(NSError *)error {
+- (void)nimbusOperationDidFail:(NIOperation *)operation withError:(NSError *)error {
   [self _didFailToLoadWithError:error];
 }
 

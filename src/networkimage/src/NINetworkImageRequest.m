@@ -47,7 +47,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationWillFinish {
+- (void)willFinish {
   NSData* responseData = self.data;
   UIImage* image = [[UIImage alloc] initWithData:responseData];
 
@@ -61,7 +61,7 @@
                                                            scaleOptions:self.scaleOptions
                                                    interpolationQuality:self.interpolationQuality]];
 
-  [super operationWillFinish];
+  [super willFinish];
 }
 
 
