@@ -122,9 +122,9 @@
     
     NSString* thumbnailImageSource = [photo objectForKey:@"image_teaser_url"];
 		
-		[super addImageSourceURL:originalImageSource 
-					thumbnailSourceURL:thumbnailImageSource 
-									dimensions:dimensions];
+		[super addImageSourceURL: originalImageSource 
+			  thumbnailSourceURL: thumbnailImageSource 
+					  dimensions: dimensions];
   }
 
   operation.processedObject = self.networkPhotoInformation;

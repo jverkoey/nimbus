@@ -73,7 +73,8 @@
         return;
     }
 
-    NSURL* url = [NSURL URLWithString:source];
+	//DebugLog(@"Network source: %@", source);
+    NSURL* url = [self urlFromSource:source];
 
     NINetworkRequestOperation* readOp = [[[NINetworkRequestOperation alloc] initWithURL:url] autorelease];
     readOp.timeout = 30;
@@ -82,33 +83,22 @@
     // photoAlbumScrollView:stopLoadingPhotoAtIndex:
     readOp.tag = isThumbnail ? -(photoIndex + 1) : photoIndex;
 
-    NSString* photoIndexKey = [self cacheKeyForPhotoIndex:photoIndex];
-
     // The completion block will be executed on the main thread, so we must be careful not
     // to do anything computationally expensive here.
     [readOp setDidFinishBlock:^(NIOperation *operation) {
-        UIImage* image = [UIImage imageWithData:((NINetworkRequestOperation *) operation).data];
-
-        // Store the image in the correct image cache.
-        if (isThumbnail) {
-            [_thumbnailImageCache storeObject: image
-                                     withName: photoIndexKey];
-
-        } else {
-            [_highQualityImageCache storeObject: image
-                                       withName: photoIndexKey];
-        }
-
-        // If you decide to move this code around then ensure that this method is called from
-        // the main thread. Calling it from any other thread will have undefined results.
-        [self.photoAlbumView didLoadPhoto: image
-                                  atIndex: photoIndex
-                                photoSize: photoSize];
-
-        if (isThumbnail) {
-            [self.photoScrubberView didLoadThumbnail:image atIndex:photoIndex];
-        }
-
+		NSData *imageData = ((NINetworkRequestOperation *) operation).data;
+		
+		NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+									imageData, @"imageData",
+									[NSNumber numberWithBool:isThumbnail], @"isThumbnail",
+									[NSNumber numberWithInt:photoIndex], @"photoIndex",
+									[NSNumber numberWithInt:photoSize], @"photoSize",
+									nil];
+		
+		[super performSelectorOnMainThread: @selector(cacheImageWithDictionary:) 
+								withObject: dictionary
+							 waitUntilDone: YES];
+		
         [_activeRequests removeObject:identifierKey];
     }];
 
@@ -134,6 +124,14 @@
 
     [_queue addOperation:readOp];
 }
+
+
+- (NSURL *) urlFromSource:(NSString *)source {
+	NSURL* url = [NSURL URLWithString:source];
+
+	return url;
+}
+
 
 
 @end

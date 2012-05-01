@@ -12,9 +12,10 @@
 
 @synthesize photoAlbumView, photoInformation;
 
-@synthesize highQualityImageCache = _highQualityImageCache;
-@synthesize thumbnailImageCache = _thumbnailImageCache;
-@synthesize queue = _queue;
+@synthesize highQualityImageCache 	= _highQualityImageCache;
+@synthesize thumbnailImageCache 	= _thumbnailImageCache;
+@synthesize queue 					= _queue;
+@synthesize forceReloadAll			= _forceReloadAll;
 
 
 - (id) init {
@@ -26,7 +27,8 @@
         _highQualityImageCache = [[NIImageMemoryCache alloc] init];
         _thumbnailImageCache = [[NIImageMemoryCache alloc] init];
 		
-        [_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024*1024*3];
+		// 8 megapixels == 3456 x 2304
+        [_highQualityImageCache setMaxNumberOfPixelsUnderStress:3456*2304*3];
 		
         _queue = [[NSOperationQueue alloc] init];
         [_queue setMaxConcurrentOperationCount:5];
@@ -88,9 +90,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) reload {
-    [self.photoAlbumView reloadData];
+	self.photoAlbumView.forceReloadAll = _forceReloadAll;
+
+	[self.photoAlbumView reloadData];
 	
     [self loadThumbnails];
+	
+	_forceReloadAll = NO;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -144,6 +150,7 @@
     *originalPhotoDimensions = [[photo valueForKey:keyImageDimensions] CGSizeValue];
 	
     image = [self.highQualityImageCache objectWithName:photoIndexKey];
+	
     if (nil != image) {
         *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
 		

@@ -38,8 +38,8 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)identifierWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
-                          photoIndex:(NSInteger)photoIndex {
+- (NSInteger)identifierWithPhotoSize: (NIPhotoScrollViewPhotoSize)photoSize
+                          photoIndex: (NSInteger)photoIndex {
 	//
   BOOL isThumbnail = (NIPhotoScrollViewPhotoSizeThumbnail == photoSize);
   NSInteger identifier = isThumbnail ? -(photoIndex + 1) : photoIndex;
@@ -56,8 +56,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) initPhotoAlbumViewWithFrame:(CGRect)photoAlbumFrame 
-							delegate:(id<NIPhotoAlbumScrollViewDelegate>)delegate {
+- (void) initPhotoAlbumViewWithFrame: (CGRect)photoAlbumFrame 
+							delegate: (id<NIPhotoAlbumScrollViewDelegate>)delegate {
 	//
 	NIPhotoAlbumScrollView *_photoAlbumView = [[[NIPhotoAlbumScrollView alloc] initWithFrame:photoAlbumFrame] autorelease];
 	
@@ -83,13 +83,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didCancelRequestWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
-                           photoIndex:(NSInteger)photoIndex {
+- (void)didCancelRequestWithPhotoSize: (NIPhotoScrollViewPhotoSize)photoSize
+                           photoIndex: (NSInteger)photoIndex {
 	//
   NSInteger identifier = [self identifierWithPhotoSize:photoSize photoIndex:photoIndex];
   id identifierKey = [self identifierKeyFromIdentifier:identifier];
 	
   [self.photoDataSource cancelRequestWithIdentifier:identifierKey];
+}
+
+
+- (void) dataSourceLoaded {
+	NSException *ex = [NSException exceptionWithName:@"invalid method implementation" reason:@"dataSourceLoaded must be implemented in a subclass of NIPhotoAlbumViewController" userInfo:nil];
+	
+	[ex raise];
 }
 
 

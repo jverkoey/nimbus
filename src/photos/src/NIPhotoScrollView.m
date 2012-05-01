@@ -380,6 +380,7 @@
                           photoSize: (NIPhotoScrollViewPhotoSize)photoSize
                            minScale: (CGFloat *)pMinScale
                            maxScale: (CGFloat *)pMaxScale {
+	//
   NIDASSERT(nil != pMinScale);
   NIDASSERT(nil != pMaxScale);
   if (nil == pMinScale

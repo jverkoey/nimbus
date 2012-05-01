@@ -67,8 +67,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationWillFinish:(NINetworkRequestOperation *)operation {
-	NSException *ex = [NSException exceptionWithName:@"invalid method implementation" reason:@"operationWillFinish: must be implemented in a subclass of NIPhotoAlbumViewController" userInfo:nil];
+- (void) operationWillFinish:(NINetworkRequestOperation *)operation {
+	NSException *ex = [NSException exceptionWithName:@"invalid method implementation" reason:@"operationWillFinish: must be implemented in a subclass of NINetworkPhotoAlbumViewController" userInfo:nil];
 	
 	[ex raise];
 }
@@ -82,24 +82,26 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) addImageSourceURL:(NSString *)originalSourceURL 
-		thumbnailSourceURL:(NSString *)thumbnailSourceURL 
-				dimensions:(CGSize)dimensions {
+- (void) addImageSourceURL: (NSString *)originalSourceURL 
+		thumbnailSourceURL: (NSString *)thumbnailSourceURL 
+				dimensions: (CGSize)dimensions {
 	//
 	NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
 																	 originalSourceURL, keyOriginalSourceURL,
 																	 thumbnailSourceURL, keyThumbnailSourceURL,
 																	 [NSValue valueWithCGSize:dimensions], keyImageDimensions,
 																	 nil];
-	
+
+	//DebugLog(@"\nNetwork photoInfo: %@", prunedPhotoInfo);
+
 	[_networkPhotoInformation addObject:prunedPhotoInfo];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) addImageSourceURL:(NSString *)originalSourceURL 
-		thumbnailSourceURL:(NSString *)thumbnailSourceURL 
-				dimensions:(CGSize)dimensions 
-				   caption:(NSString *)caption {
+- (void) addImageSourceURL: (NSString *)originalSourceURL 
+		thumbnailSourceURL: (NSString *)thumbnailSourceURL 
+				dimensions: (CGSize)dimensions 
+				   caption: (NSString *)caption {
 	//
 		NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
 																		 originalSourceURL, keyOriginalSourceURL,

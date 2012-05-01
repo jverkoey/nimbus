@@ -22,4 +22,6 @@
 
 @interface NINetworkPhotoDataSource : NIToolbarDataSource
 
+- (NSURL *) urlFromSource:(NSString *)source;
+
 @end

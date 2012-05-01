@@ -43,6 +43,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 @synthesize delegate = _delegate;
 @synthesize centerPageIndex = _centerPageIndex;
 @synthesize numberOfPages = _numberOfPages;
+@synthesize forceReloadAll = _forceReloadAll;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -310,7 +311,8 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
     _centerPageIndex = -1;
   }
 
-  if (oldCenterPageIndex != _centerPageIndex
+  if (oldCenterPageIndex != _centerPageIndex 
+	  && _centerPageIndex != -1
       && [self.delegate respondsToSelector:@selector(pagingScrollViewDidChangePages:)]) {
     [self.delegate pagingScrollViewDidChangePages:self];
   }
@@ -449,12 +451,20 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
     [_viewRecycler removeAllViews];
 
     return;
+  } else if (_forceReloadAll) {
+	  _forceReloadAll = NO;
+	  
+	  // May as well just get rid of all the views then.
+	  [_viewRecycler removeAllViews];
   }
 
   _visiblePages = [[NSMutableSet alloc] init];
 
   // Cache the number of pages.
   _numberOfPages = [_dataSource numberOfPagesInPagingScrollView:self];
+//	if(_numberOfPages == 0)
+//		_numberOfPages = 1;
+	
   self.pagingScrollView.frame = [self frameForPagingScrollView];
   self.pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
 

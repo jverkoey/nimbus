@@ -13,5 +13,12 @@
 
 @property (nonatomic, unsafe_unretained) NIPhotoScrubberView* photoScrubberView;
 
+- (void) cacheImageWithData: (NSData *)data 
+				isThumbnail: (BOOL)isThumbnail 
+				 photoIndex: (NSInteger)photoIndex 
+				  photoSize: (NIPhotoScrollViewPhotoSize)photoSize;
+
+
+- (void) cacheImageWithDictionary:(NSDictionary *)dictionary;
 
 @end

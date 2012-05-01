@@ -17,16 +17,16 @@
 
 @property (nonatomic, retain) NIPhotoDataSource			*photoDataSource;
 
-- (NSInteger) identifierWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
-                           photoIndex:(NSInteger)photoIndex;
+- (NSInteger) identifierWithPhotoSize: (NIPhotoScrollViewPhotoSize)photoSize
+                           photoIndex: (NSInteger)photoIndex;
 
 - (id) identifierKeyFromIdentifier:(NSInteger)identifier;
 
 - (void) initPhotoAlbumViewWithFrame:(CGRect)photoAlbumFrame delegate:(id<NIPhotoAlbumScrollViewDelegate>)delegate;
 
 
-- (void)didCancelRequestWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
-                           photoIndex:(NSInteger)photoIndex;
+- (void)didCancelRequestWithPhotoSize: (NIPhotoScrollViewPhotoSize)photoSize
+                           photoIndex: (NSInteger)photoIndex;
 
 
 /**
@@ -39,6 +39,13 @@
  *	subclass if new loading image is desired.
  */
 - (NSString *) loadingImagePath;
+
+
+/**
+ * Abstract method to be implemented by sub-classes.  Used to update UI if elements
+ *	depending on data source need to be updated.
+ */
+- (void) dataSourceLoaded;
 
 
 @end

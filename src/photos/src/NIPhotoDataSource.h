@@ -16,10 +16,15 @@
 /**
  * Definitions for building dictionary containing image data.
  */
+#define keyImageType					@"imageType"
 #define keyOriginalSourceURL			@"originalSource"
 #define keyThumbnailSourceURL			@"thumbnailSource"
 #define keyImageDimensions				@"dimensions"
 #define keyImageCaption					@"caption"
+#define keyImageName					@"imageName"
+
+#define thumbnailScale					75
+#define thumbnailScaleIPad				125
 
 
 @interface NIPhotoDataSource : NSObject <NIPhotoAlbumScrollViewDataSource> {
@@ -68,6 +73,9 @@
  * This is unloaded when the controller's view is unloaded from memory.
  */
 @property (nonatomic, readonly, strong) NSOperationQueue* queue;
+
+
+@property (nonatomic, readwrite, assign) BOOL				forceReloadAll;
 
 
 - (void) shutdown;

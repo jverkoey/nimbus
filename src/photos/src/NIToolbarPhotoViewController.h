@@ -117,6 +117,14 @@
 @property (nonatomic, readonly, retain) UIBarButtonItem* nextButton;
 @property (nonatomic, readonly, retain) UIBarButtonItem* previousButton;
 
+@property (nonatomic, assign) CGRect					localFrame;
+
+
+- (void) toggleChromeVisibility;
+
+- (void) setupPhotoViewManagers;
+
+
 @end
 
 /** @name Configuring Functionality */
