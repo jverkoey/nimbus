@@ -60,6 +60,7 @@
 		CC67A0D91512CFDF00078A53 /* NIPhotoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CC67A0D31512CFDE00078A53 /* NIPhotoDataSource.m */; };
 		CCABFE3015116EC50007E218 /* NINetworkPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCABFE2D15116EC50007E218 /* NINetworkPhotoAlbumViewController.m */; };
 		CCABFE3115116EC50007E218 /* NIPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCABFE2F15116EC50007E218 /* NIPhotoAlbumViewController.m */; };
+		CCCFC1AB1541CC4A00CD48A0 /* NIPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = CCCFC1AA1541CC4A00CD48A0 /* NIPaths.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,6 +181,8 @@
 		CCABFE2D15116EC50007E218 /* NINetworkPhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkPhotoAlbumViewController.m; path = ../../../src/photos/src/NINetworkPhotoAlbumViewController.m; sourceTree = "<group>"; };
 		CCABFE2E15116EC50007E218 /* NIPhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPhotoAlbumViewController.h; path = ../../../src/photos/src/NIPhotoAlbumViewController.h; sourceTree = "<group>"; };
 		CCABFE2F15116EC50007E218 /* NIPhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPhotoAlbumViewController.m; path = ../../../src/photos/src/NIPhotoAlbumViewController.m; sourceTree = "<group>"; };
+		CCCFC1A91541CC4A00CD48A0 /* NIPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPaths.h; path = ../../../src/core/src/NIPaths.h; sourceTree = "<group>"; };
+		CCCFC1AA1541CC4A00CD48A0 /* NIPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPaths.m; path = ../../../src/core/src/NIPaths.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +299,8 @@
 		665E0B9513CE814D008A1D21 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				CCCFC1A91541CC4A00CD48A0 /* NIPaths.h */,
+				CCCFC1AA1541CC4A00CD48A0 /* NIPaths.m */,
 				665E0B9713CE815D008A1D21 /* NIBlocks.h */,
 				66EAC64B13D28D9A00BDFF34 /* NICommonMetrics.h */,
 				66EAC64C13D28D9A00BDFF34 /* NICommonMetrics.m */,
@@ -554,6 +559,7 @@
 				CC67A0D81512CFDF00078A53 /* NINetworkPhotoDataSource.m in Sources */,
 				CC67A0D91512CFDF00078A53 /* NIPhotoDataSource.m in Sources */,
 				CC51D96D151AB0C80084CFA6 /* NIToolbarDataSource.m in Sources */,
+				CCCFC1AB1541CC4A00CD48A0 /* NIPaths.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

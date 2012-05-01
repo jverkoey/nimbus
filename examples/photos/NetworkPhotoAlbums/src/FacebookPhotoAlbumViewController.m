@@ -162,7 +162,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView<NIPagingScrollViewPage>*)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
+- (UIView<NIPagingScrollViewPage> *) pagingScrollView: (NIPagingScrollView *)pagingScrollView 
+																		 pageViewForIndex: (NSInteger)pageIndex {
+	//
   // TODO (jverkoey Nov 27, 2011): We should make this sort of custom logic easier to build.
   UIView<NIPagingScrollViewPage>* pageView = nil;
   NSString* reuseIdentifier = NSStringFromClass([CaptionedPhotoView class]);
