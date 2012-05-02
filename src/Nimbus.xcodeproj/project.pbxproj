@@ -32,6 +32,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		443589C8155190B300757E50 /* UISearchBar+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 443589BF1551909D00757E50 /* UISearchBar+NIStyleable.h */; };
+		443589C9155190CA00757E50 /* UIToolbar+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 443589C11551909E00757E50 /* UIToolbar+NIStyleable.h */; };
+		443589CA1551914400757E50 /* UISearchBar+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 443589C01551909D00757E50 /* UISearchBar+NIStyleable.m */; };
+		443589CB1551914800757E50 /* UIToolbar+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 443589C21551909E00757E50 /* UIToolbar+NIStyleable.m */; };
 		6607851C14D245BF00FE3283 /* NINetworkActivityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6607851B14D245BE00FE3283 /* NINetworkActivityTests.m */; };
 		6607852014D33EAA00FE3283 /* NIStateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6607851F14D33EA900FE3283 /* NIStateTests.m */; };
 		6623EB6D1402ECE400E0E61A /* NITableViewModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6623EB6C1402ECE400E0E61A /* NITableViewModelTests.m */; };
@@ -584,6 +588,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		443589BF1551909D00757E50 /* UISearchBar+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UISearchBar+NIStyleable.h"; path = "css/src/UISearchBar+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
+		443589C01551909D00757E50 /* UISearchBar+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UISearchBar+NIStyleable.m"; path = "css/src/UISearchBar+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
+		443589C11551909E00757E50 /* UIToolbar+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIToolbar+NIStyleable.h"; path = "css/src/UIToolbar+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
+		443589C21551909E00757E50 /* UIToolbar+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIToolbar+NIStyleable.m"; path = "css/src/UIToolbar+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		6607851B14D245BE00FE3283 /* NINetworkActivityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINetworkActivityTests.m; sourceTree = "<group>"; };
 		6607851F14D33EA900FE3283 /* NIStateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIStateTests.m; sourceTree = "<group>"; };
 		6623EB6C1402ECE400E0E61A /* NITableViewModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewModelTests.m; sourceTree = "<group>"; };
@@ -1456,6 +1464,10 @@
 				66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */,
 				66832DA014421B4A003E413C /* UINavigationBar+NIStyleable.h */,
 				66832DA114421B4A003E413C /* UINavigationBar+NIStyleable.m */,
+				443589BF1551909D00757E50 /* UISearchBar+NIStyleable.h */,
+				443589C01551909D00757E50 /* UISearchBar+NIStyleable.m */,
+				443589C11551909E00757E50 /* UIToolbar+NIStyleable.h */,
+				443589C21551909E00757E50 /* UIToolbar+NIStyleable.m */,
 				66832D0D143E3C32003E413C /* UILabel+NIStyleable.h */,
 				66832D0E143E3C32003E413C /* UILabel+NIStyleable.m */,
 				66832D1114416368003E413C /* UIView+NIStyleable.h */,
@@ -2061,6 +2073,8 @@
 				66B10900144C931F004576D1 /* UIButton+NIStyleable.h in Headers */,
 				668ECDC71455C17200455266 /* NIStylesheetCache.h in Headers */,
 				666F73A314BBFEA300D1A32F /* NimbusCss+Namespace.h in Headers */,
+				443589C8155190B300757E50 /* UISearchBar+NIStyleable.h in Headers */,
+				443589C9155190CA00757E50 /* UIToolbar+NIStyleable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3324,6 +3338,8 @@
 				66832E0714435071003E413C /* NIChameleonObserver.m in Sources */,
 				66B10901144C931F004576D1 /* UIButton+NIStyleable.m in Sources */,
 				668ECDC81455C17200455266 /* NIStylesheetCache.m in Sources */,
+				443589CA1551914400757E50 /* UISearchBar+NIStyleable.m in Sources */,
+				443589CB1551914800757E50 /* UIToolbar+NIStyleable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

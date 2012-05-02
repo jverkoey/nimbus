@@ -183,6 +183,14 @@ UIButton {
 UINavigationBar {
   -ios-tint-color: <color>  {navBar.tintColor}
 }
+ 
+ UISearchBar {
+ -ios-tint-color: <color>  {searchBar.tintColor}
+ }
+ 
+ UIToolbar {
+ -ios-tint-color: <color>  {toolbar.tintColor}
+ }
 @endcode
  *
  *
@@ -231,6 +239,8 @@ _chameleonObserver = [[NIChameleonObserver alloc] initWithStylesheetCache:_style
 #import "UIButton+NIStyleable.h"
 #import "UILabel+NIStyleable.h"
 #import "UINavigationBar+NIStyleable.h"
+#import "UISearchBar+NIStyleable.h"
+#import "UIToolbar+NIStyleable.h"
 #import "UIView+NIStyleable.h"
 
 // Dependencies
