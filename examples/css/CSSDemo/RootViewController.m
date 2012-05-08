@@ -111,6 +111,7 @@ static CGFloat squareSize = 200;
 
   // Register our views with the DOM.
   [_dom registerView:self.view withCSSClass:@"background"];
+  [_dom registerView:_activityIndicator];
   [_dom registerView:_testLabel];
   [_dom registerView:_backgroundView withCSSClass:@"noticeBox"];
   

@@ -1,4 +1,8 @@
 
+UINavigationBar {
+  -ios-tint-color: orange;
+}
+
 .background {
   background-color: blue;
 }
@@ -7,6 +11,10 @@
   background-color: rgba(32, 32, 32, 0.5);
   border-radius: 10px;
   border: none;
+}
+
+UIActivityIndicatorView {
+  -ios-activity-indicator-style: gray;
 }
 
 UILabel {

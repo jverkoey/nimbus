@@ -45,6 +45,7 @@
   UIColor *_borderColor;
   CGFloat _borderWidth;
   UIColor *_tintColor;
+  UIActivityIndicatorViewStyle _activityIndicatorStyle;
 
   union {
     struct {
@@ -64,6 +65,7 @@
       int BorderColor : 1;
       int BorderWidth : 1;
       int TintColor : 1;
+      int ActivityIndicatorStyle : 1;
     } cached;
     int _data;
   } _is;
@@ -118,6 +120,9 @@
 
 - (BOOL)hasTintColor;
 - (UIColor *)tintColor; // -ios-tint-color
+
+- (BOOL)hasActivityIndicatorStyle;
+- (UIActivityIndicatorViewStyle)activityIndicatorStyle; // -ios-activity-indicator-style
 
 @end
 
