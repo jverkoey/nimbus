@@ -14,10 +14,12 @@ UINavigationBar {
 }
 
 UIActivityIndicatorView {
-  -ios-activity-indicator-style: gray;
+  -ios-activity-indicator-style: white-large;
+  -ios-autoresizing: left right bottom;
 }
 
 UILabel {
+  -ios-autoresizing: left right height width;
   background-color: clear;
   -ios-number-of-lines: 0;
   color: white;

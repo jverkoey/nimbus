@@ -40,6 +40,7 @@ static NSString* const kBorderColorKey = @"border-color";
 static NSString* const kBorderWidthKey = @"border-width";
 static NSString* const kTintColorKey = @"-ios-tint-color";
 static NSString* const kActivityIndicatorStyleKey = @"-ios-activity-indicator-style";
+static NSString* const kAutoresizingKey = @"-ios-autoresizing";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -607,6 +608,46 @@ static NSDictionary* sColorTable = nil;
     _is.cached.ActivityIndicatorStyle = YES;
   }
   return _activityIndicatorStyle;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasAutoresizing {
+  return nil != [_ruleset objectForKey:kAutoresizingKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIViewAutoresizing)autoresizing {
+  NIDASSERT([self hasAutoresizing]);
+  if (!_is.cached.Autoresizing) {
+    NSArray* values = [_ruleset objectForKey:kAutoresizingKey];
+    UIViewAutoresizing autoresizing = UIViewAutoresizingNone;
+    for (NSString* value in values) {
+      if ([value isEqualToString:@"left"]) {
+        autoresizing |= UIViewAutoresizingFlexibleLeftMargin;
+      } else if ([value isEqualToString:@"top"]) {
+        autoresizing |= UIViewAutoresizingFlexibleTopMargin;
+      } else if ([value isEqualToString:@"right"]) {
+        autoresizing |= UIViewAutoresizingFlexibleRightMargin;
+      } else if ([value isEqualToString:@"bottom"]) {
+        autoresizing |= UIViewAutoresizingFlexibleBottomMargin;
+      } else if ([value isEqualToString:@"width"]) {
+        autoresizing |= UIViewAutoresizingFlexibleWidth;
+      } else if ([value isEqualToString:@"height"]) {
+        autoresizing |= UIViewAutoresizingFlexibleHeight;
+      } else if ([value isEqualToString:@"all"]) {
+        autoresizing |= UIViewAutoresizingFlexibleDimensions | UIViewAutoresizingFlexibleMargins;
+      } else if ([value isEqualToString:@"margins"]) {
+        autoresizing |= UIViewAutoresizingFlexibleMargins;
+      } else if ([value isEqualToString:@"dimensions"]) {
+        autoresizing |= UIViewAutoresizingFlexibleDimensions;
+      }
+    }
+    _autoresizing = autoresizing;
+    _is.cached.Autoresizing = YES;
+  }
+  return _autoresizing;
 }
 
 

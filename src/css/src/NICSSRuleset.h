@@ -46,6 +46,7 @@
   CGFloat _borderWidth;
   UIColor *_tintColor;
   UIActivityIndicatorViewStyle _activityIndicatorStyle;
+  UIViewAutoresizing _autoresizing;
 
   union {
     struct {
@@ -66,6 +67,7 @@
       int BorderWidth : 1;
       int TintColor : 1;
       int ActivityIndicatorStyle : 1;
+      int Autoresizing : 1;
     } cached;
     int _data;
   } _is;
@@ -123,6 +125,9 @@
 
 - (BOOL)hasActivityIndicatorStyle;
 - (UIActivityIndicatorViewStyle)activityIndicatorStyle; // -ios-activity-indicator-style
+
+- (BOOL)hasAutoresizing;
+- (UIViewAutoresizing)autoresizing; // -ios-autoresizing
 
 @end
 
