@@ -347,6 +347,62 @@
 			remoteGlobalIDString = 663B523E1445052700CC26DF;
 			remoteInfo = NimbusPagingScrollView;
 		};
+		664EFAE0155989EB009826AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 664EFAD8155989EB009826AB /* BasicAttributedLabel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DB6A04821403F02D0020F7FD;
+			remoteInfo = BasicAttributedLabel;
+		};
+		664EFAEA15598A07009826AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 664EFAE215598A07009826AB /* CSSDemo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66832D2014421450003E413C;
+			remoteInfo = CSSDemo;
+		};
+		664EFAF415598A27009826AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 664EFAEC15598A27009826AB /* InterAppCatalog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66B4E8D113E4BC290098787F;
+			remoteInfo = InterAppCatalog;
+		};
+		664EFB0215598A40009826AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
+			remoteInfo = BasicLauncher;
+		};
+		664EFB0C15598A49009826AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 664EFB0415598A49009826AB /* ModelCatalog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66FE7D7D13FB90C40061B987;
+			remoteInfo = ModelCatalog;
+		};
+		664EFB1615598A53009826AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 664EFB0E15598A52009826AB /* BasicNetworkImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
+			remoteInfo = BasicNetworkImage;
+		};
+		664EFB2015598A5E009826AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 664EFB1815598A5E009826AB /* NetworkPhotoAlbum.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
+			remoteInfo = NetworkPhotoAlbum;
+		};
+		664EFB2A15598A67009826AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 664EFB2215598A67009826AB /* BasicWebController.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DB01A9BC13E30D1600C24060;
+			remoteInfo = BasicWebController;
+		};
 		6661BBDE13F1A3BB00D14F92 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
@@ -612,6 +668,14 @@
 		663B52E7144675BF00CC26DF /* NimbusOverviewer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusOverviewer.bundle; path = ../resources/NimbusOverviewer.bundle; sourceTree = "<group>"; };
 		664D443014993010008B4C42 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = ../thirdparty/JSONKit/JSONKit.h; sourceTree = "<group>"; };
 		664D443114993010008B4C42 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = ../thirdparty/JSONKit/JSONKit.m; sourceTree = "<group>"; };
+		664EFAD8155989EB009826AB /* BasicAttributedLabel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BasicAttributedLabel.xcodeproj; path = ../examples/attributedlabel/BasicAttributedLabel/BasicAttributedLabel.xcodeproj; sourceTree = "<group>"; };
+		664EFAE215598A07009826AB /* CSSDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CSSDemo.xcodeproj; path = ../examples/css/CSSDemo.xcodeproj; sourceTree = "<group>"; };
+		664EFAEC15598A27009826AB /* InterAppCatalog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = InterAppCatalog.xcodeproj; path = ../examples/interapp/catalog/InterAppCatalog.xcodeproj; sourceTree = "<group>"; };
+		664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BasicLauncher.xcodeproj; path = ../examples/launcher/BasicLauncher/BasicLauncher.xcodeproj; sourceTree = "<group>"; };
+		664EFB0415598A49009826AB /* ModelCatalog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ModelCatalog.xcodeproj; path = ../examples/models/ModelCatalog/ModelCatalog.xcodeproj; sourceTree = "<group>"; };
+		664EFB0E15598A52009826AB /* BasicNetworkImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BasicNetworkImage.xcodeproj; path = ../examples/networkimage/BasicNetworkImage/BasicNetworkImage.xcodeproj; sourceTree = "<group>"; };
+		664EFB1815598A5E009826AB /* NetworkPhotoAlbum.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NetworkPhotoAlbum.xcodeproj; path = ../examples/photos/NetworkPhotoAlbums/NetworkPhotoAlbum.xcodeproj; sourceTree = "<group>"; };
+		664EFB2215598A67009826AB /* BasicWebController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BasicWebController.xcodeproj; path = ../examples/webcontroller/BasicWebController/BasicWebController.xcodeproj; sourceTree = "<group>"; };
 		6661BAFF13F0AA6000D14F92 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = webcontroller/deps; sourceTree = "<group>"; };
 		6661BB0813F0B37000D14F92 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		6661BB0A13F0B38D00D14F92 /* NOTICE */ = {isa = PBXFileReference; lastKnownFileType = text; name = NOTICE; path = ../NOTICE; sourceTree = "<group>"; };
@@ -1212,6 +1276,85 @@
 			name = JSONKit;
 			sourceTree = "<group>";
 		};
+		664EFAD6155989D9009826AB /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				664EFAD8155989EB009826AB /* BasicAttributedLabel.xcodeproj */,
+				664EFAE215598A07009826AB /* CSSDemo.xcodeproj */,
+				664EFAEC15598A27009826AB /* InterAppCatalog.xcodeproj */,
+				664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */,
+				664EFB0415598A49009826AB /* ModelCatalog.xcodeproj */,
+				664EFB0E15598A52009826AB /* BasicNetworkImage.xcodeproj */,
+				664EFB1815598A5E009826AB /* NetworkPhotoAlbum.xcodeproj */,
+				664EFB2215598A67009826AB /* BasicWebController.xcodeproj */,
+			);
+			name = Examples;
+			sourceTree = "<group>";
+		};
+		664EFAD9155989EB009826AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				664EFAE1155989EB009826AB /* BasicAttributedLabel.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		664EFAE315598A07009826AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				664EFAEB15598A07009826AB /* CSSDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		664EFAED15598A27009826AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				664EFAF515598A27009826AB /* InterAppCatalog.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		664EFAFB15598A40009826AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				664EFB0315598A40009826AB /* BasicLauncher.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		664EFB0515598A49009826AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				664EFB0D15598A49009826AB /* ModelCatalog.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		664EFB0F15598A52009826AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				664EFB1715598A53009826AB /* BasicNetworkImage.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		664EFB1915598A5E009826AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				664EFB2115598A5E009826AB /* NetworkPhotoAlbum.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		664EFB2315598A67009826AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				664EFB2B15598A67009826AB /* BasicWebController.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		6661BBCE13F1A3BB00D14F92 /* NimbusModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1514,6 +1657,7 @@
 				DB84BD9A13EFDE3C00DACCFE /* NimbusWebController */,
 				664D442E14992FE0008B4C42 /* Third Party */,
 				66A03C0B13E6E85E00B514F3 /* Frameworks */,
+				664EFAD6155989D9009826AB /* Examples */,
 				66A03C0A13E6E85E00B514F3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -2631,6 +2775,40 @@
 			mainGroup = 66A03BFC13E6E84800B514F3;
 			productRefGroup = 66A03C0A13E6E85E00B514F3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 664EFAD9155989EB009826AB /* Products */;
+					ProjectRef = 664EFAD8155989EB009826AB /* BasicAttributedLabel.xcodeproj */;
+				},
+				{
+					ProductGroup = 664EFAFB15598A40009826AB /* Products */;
+					ProjectRef = 664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */;
+				},
+				{
+					ProductGroup = 664EFB0F15598A52009826AB /* Products */;
+					ProjectRef = 664EFB0E15598A52009826AB /* BasicNetworkImage.xcodeproj */;
+				},
+				{
+					ProductGroup = 664EFB2315598A67009826AB /* Products */;
+					ProjectRef = 664EFB2215598A67009826AB /* BasicWebController.xcodeproj */;
+				},
+				{
+					ProductGroup = 664EFAE315598A07009826AB /* Products */;
+					ProjectRef = 664EFAE215598A07009826AB /* CSSDemo.xcodeproj */;
+				},
+				{
+					ProductGroup = 664EFAED15598A27009826AB /* Products */;
+					ProjectRef = 664EFAEC15598A27009826AB /* InterAppCatalog.xcodeproj */;
+				},
+				{
+					ProductGroup = 664EFB0515598A49009826AB /* Products */;
+					ProjectRef = 664EFB0415598A49009826AB /* ModelCatalog.xcodeproj */;
+				},
+				{
+					ProductGroup = 664EFB1915598A5E009826AB /* Products */;
+					ProjectRef = 664EFB1815598A5E009826AB /* NetworkPhotoAlbum.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				DB3A230813FD4B8E00614220 /* NimbusAttributedLabel */,
@@ -2664,6 +2842,65 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		664EFAE1155989EB009826AB /* BasicAttributedLabel.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = BasicAttributedLabel.app;
+			remoteRef = 664EFAE0155989EB009826AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		664EFAEB15598A07009826AB /* CSSDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CSSDemo.app;
+			remoteRef = 664EFAEA15598A07009826AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		664EFAF515598A27009826AB /* InterAppCatalog.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = InterAppCatalog.app;
+			remoteRef = 664EFAF415598A27009826AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		664EFB0315598A40009826AB /* BasicLauncher.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = BasicLauncher.app;
+			remoteRef = 664EFB0215598A40009826AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		664EFB0D15598A49009826AB /* ModelCatalog.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = ModelCatalog.app;
+			remoteRef = 664EFB0C15598A49009826AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		664EFB1715598A53009826AB /* BasicNetworkImage.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = BasicNetworkImage.app;
+			remoteRef = 664EFB1615598A53009826AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		664EFB2115598A5E009826AB /* NetworkPhotoAlbum.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = NetworkPhotoAlbum.app;
+			remoteRef = 664EFB2015598A5E009826AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		664EFB2B15598A67009826AB /* BasicWebController.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = BasicWebController.app;
+			remoteRef = 664EFB2A15598A67009826AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		663B52491445052800CC26DF /* Resources */ = {
