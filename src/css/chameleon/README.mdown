@@ -1,4 +1,3 @@
-
 Chameleon - Real-Time CSS Styling for iOS Applications
 ======================================================
 
@@ -21,12 +20,12 @@ You then need to install the Node Package Manager.
 
 Within the chameleon directory install the optimist package.
 
-> cd nimbus/src/chameleon/
-> npm install optimist
+> cd nimbus/src/css/chameleon/
+> sudo npm install optimist
 
 Start the server from within the chameleon directory.
 
-> cd nimbus/src/chameleon/
+> cd nimbus/src/css/chameleon/
 > node chameleon.js --watch /path/to/watch/directory
 
 Test it by hitting localhost:8888/watch and modifying a file within the watch directory.

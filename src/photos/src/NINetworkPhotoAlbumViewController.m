@@ -67,18 +67,29 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) operationWillFinish:(NINetworkRequestOperation *)operation {
+- (void) nimbusOperationWillFinish:(NINetworkRequestOperation *)operation {
 	NSException *ex = [NSException exceptionWithName:@"invalid method implementation" reason:@"operationWillFinish: must be implemented in a subclass of NINetworkPhotoAlbumViewController" userInfo:nil];
 	
 	[ex raise];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFinish:(NINetworkRequestOperation *)operation {
+- (void)nimbusOperationDidFinish:(NINetworkRequestOperation *)operation {
   self.photoDataSource.photoInformation = operation.processedObject;
 	
   [self.photoDataSource reload];
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//- (void)nimbusOperationDidFinish:(NINetworkRequestOperation *)operation {
+//  _photoInformation = [operation.processedObject retain];
+//
+//  [self.photoAlbumView reloadData];
+//
+//  [self loadThumbnails];
+//  
+//  [self.photoScrubberView reloadData];
+//}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

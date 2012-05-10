@@ -34,14 +34,14 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationWillFinish {
+- (void)willFinish {
   NSError* error = nil;
   self.processedObject = [[JSONDecoder decoder] objectWithData:self.data
                                                          error:&error];
 
   self.lastError = error;
 
-  [super operationWillFinish];
+  [super willFinish];
 }
 
 

@@ -53,6 +53,7 @@
   label3.autoDetectLinks = YES;
   //label3.linkColor = [UIColor purpleColor];
   //label3.linkHighlightColor = [UIColor orangeColor];
+  //label3.linksHaveUnderlines = YES;
   
   label4.textAlignment = UITextAlignmentJustify;
   [label4 setTextColor:[UIColor orangeColor] 

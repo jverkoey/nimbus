@@ -97,7 +97,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationWillFinish:(NINetworkRequestOperation *)operation {
+- (void)nimbusOperationWillFinish:(NINetworkRequestOperation *)operation {
   // This is called from the processing thread in order to allow us to turn the root object
   // into something more interesting.
   if (![operation.processedObject isKindOfClass:[NSDictionary class]]) {
@@ -121,13 +121,12 @@
     CGSize dimensions = CGSizeMake(width, height);
     
     NSString* thumbnailImageSource = [photo objectForKey:@"image_teaser_url"];
-		
-		[super addImageSourceURL: originalImageSource 
-			  thumbnailSourceURL: thumbnailImageSource 
-					  dimensions: dimensions];
-  }
-
-  operation.processedObject = self.networkPhotoInformation;
+									  
+	[super addImageSourceURL: originalImageSource 
+		  thumbnailSourceURL: thumbnailImageSource 
+				  dimensions: dimensions];
+									  
+	operation.processedObject = self.networkPhotoInformation;
 }
 
 

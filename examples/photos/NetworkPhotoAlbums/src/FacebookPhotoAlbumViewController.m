@@ -100,56 +100,59 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationWillFinish:(NINetworkRequestOperation *)operation {
-  // This is called from the processing thread in order to allow us to turn the root object
-  // into something more interesting.
-  if (![operation.processedObject isKindOfClass:[NSDictionary class]]) {
-    return;
-  }
+- (void)nimbusOperationWillFinish:(NINetworkRequestOperation *)operation {
+	// This is called from the processing thread in order to allow us to turn the root object
+	// into something more interesting.
+	if (![operation.processedObject isKindOfClass:[NSDictionary class]]) {
+		return;
+	}
 
-  id object = operation.processedObject;
-  NSArray* data = [object objectForKey:@"data"];
+	id object = operation.processedObject;
+	NSArray* data = [object objectForKey:@"data"];
 
-  self.networkPhotoInformation = [NSMutableArray arrayWithCapacity:[data count]];
-	
-  for (NSDictionary* photo in data) {
-    NSArray* images = [photo objectForKey:@"images"];
+	self.networkPhotoInformation = [NSMutableArray arrayWithCapacity:[data count]];
 
-    if ([images count] > 0) {
-      // Sort the images in descending order by image size.
-      NSArray* sortedImages =
-      [images sortedArrayUsingDescriptors:
-       [NSArray arrayWithObject:
-        [[[NSSortDescriptor alloc] initWithKey:@"width" ascending:NO] autorelease]]];
+	for (NSDictionary* photo in data) {
+		NSArray* images = [photo objectForKey:@"images"];
 
-      // Gather the high-quality photo information.
-      NSDictionary* originalImage = [sortedImages objectAtIndex:0];
-      NSString* originalImageSource = [originalImage objectForKey:@"source"];
-      NSInteger width = [[originalImage objectForKey:@"width"] intValue];
-      NSInteger height = [[originalImage objectForKey:@"height"] intValue];
+		if ([images count] > 0) {
+			// Sort the images in descending order by image size.
+			NSArray* sortedImages =
+				[images sortedArrayUsingDescriptors:
+					[NSArray arrayWithObject:
+						[[[NSSortDescriptor alloc] initWithKey:@"width" ascending:NO] autorelease]]];
 
-      // We gather the highest-quality photo's dimensions so that we can size the thumbnails
-      // correctly until the high-quality image is downloaded.
-      CGSize dimensions = CGSizeMake(width, height);
+			// Gather the high-quality photo information.
+			NSDictionary* originalImage = [sortedImages objectAtIndex:0];
+			NSString* originalImageSource = [originalImage objectForKey:@"source"];
+			NSInteger width = [[originalImage objectForKey:@"width"] intValue];
+			NSInteger height = [[originalImage objectForKey:@"height"] intValue];
 
-      NSInteger numberOfImages = [sortedImages count];
+			// We gather the highest-quality photo's dimensions so that we can size the thumbnails
+			// correctly until the high-quality image is downloaded.
+			CGSize dimensions = CGSizeMake(width, height);
 
-      // 0 being the lowest quality. On larger screens we fetch larger thumbnails.
-      NSInteger qualityLevel = (NIIsPad() || NIScreenScale() > 1) ? 1 : 0;
+			NSInteger numberOfImages = [sortedImages count];
 
-      NSInteger thumbnailIndex = ((numberOfImages - 1)
-                                  - MIN(qualityLevel, numberOfImages - 2));
+			// 0 being the lowest quality. On larger screens we fetch larger thumbnails.
+			NSInteger qualityLevel = (NIIsPad() || NIScreenScale() > 1) ? 1 : 0;
 
-      NSString* thumbnailImageSource = nil;
-      if (0 < thumbnailIndex) {
-        thumbnailImageSource = [[sortedImages objectAtIndex:thumbnailIndex] objectForKey:@"source"];
-      }
+			NSInteger thumbnailIndex = ((numberOfImages - 1)
+										- MIN(qualityLevel, numberOfImages - 2));
 
-      NSString* caption = [photo objectForKey:@"name"];
+			NSString* thumbnailImageSource = nil;
+			if (0 < thumbnailIndex) {
+				thumbnailImageSource = [[sortedImages objectAtIndex:thumbnailIndex] objectForKey:@"source"];
+			}
 
-			[super addImageSourceURL:originalImageSource thumbnailSourceURL:thumbnailImageSource dimensions:dimensions caption:caption];
-    }
-  }
+			NSString* caption = [photo objectForKey:@"name"];
+
+			[super addImageSourceURL: originalImageSource 
+				  thumbnailSourceURL: thumbnailImageSource 
+						  dimensions: dimensions 
+							 caption: caption];
+		}
+	}
 	
   operation.processedObject = self.networkPhotoInformation;
 }
@@ -163,7 +166,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView<NIPagingScrollViewPage> *) pagingScrollView: (NIPagingScrollView *)pagingScrollView 
-																		 pageViewForIndex: (NSInteger)pageIndex {
+									 pageViewForIndex: (NSInteger)pageIndex {
 	//
   // TODO (jverkoey Nov 27, 2011): We should make this sort of custom logic easier to build.
   UIView<NIPagingScrollViewPage>* pageView = nil;
