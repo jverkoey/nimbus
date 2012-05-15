@@ -41,6 +41,8 @@ static NSString* const kBorderWidthKey = @"border-width";
 static NSString* const kTintColorKey = @"-ios-tint-color";
 static NSString* const kActivityIndicatorStyleKey = @"-ios-activity-indicator-style";
 static NSString* const kAutoresizingKey = @"-ios-autoresizing";
+static NSString* const kTableViewCellSeparatorStyleKey = @"-ios-table-view-cell-separator-style";
+static NSString* const kScrollViewIndicatorStyleKey = @"-ios-scroll-view-indicator-style";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -648,6 +650,58 @@ static NSDictionary* sColorTable = nil;
     _is.cached.Autoresizing = YES;
   }
   return _autoresizing;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasTableViewCellSeparatorStyle {
+  return nil != [_ruleset objectForKey:kTableViewCellSeparatorStyleKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UITableViewCellSeparatorStyle)tableViewCellSeparatorStyle {
+  NIDASSERT([self hasTableViewCellSeparatorStyle]);
+  if (!_is.cached.TableViewCellSeparatorStyle) {
+    NSArray* values = [_ruleset objectForKey:kActivityIndicatorStyleKey];
+    NIDASSERT([values count] == 1);
+    NSString* value = [values objectAtIndex:0];
+    UITableViewCellSeparatorStyle style = UITableViewCellSeparatorStyleSingleLine;
+    if ([value isEqualToString:@"none"]) {
+      style = UITableViewCellSeparatorStyleNone;
+    } else if ([value isEqualToString:@"single-line-etched"]) {
+      style = UITableViewCellSeparatorStyleSingleLineEtched;
+    }
+    _tableViewCellSeparatorStyle = style;
+    _is.cached.TableViewCellSeparatorStyle = YES;
+  }
+  return _tableViewCellSeparatorStyle;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasScrollViewIndicatorStyle {
+  return nil != [_ruleset objectForKey:kScrollViewIndicatorStyleKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIScrollViewIndicatorStyle)scrollViewIndicatorStyle {
+  NIDASSERT([self hasScrollViewIndicatorStyle]);
+  if (!_is.cached.ScrollViewIndicatorStyle) {
+    NSArray* values = [_ruleset objectForKey:kScrollViewIndicatorStyleKey];
+    NIDASSERT([values count] == 1);
+    NSString* value = [values objectAtIndex:0];
+    UIScrollViewIndicatorStyle style = UIScrollViewIndicatorStyleDefault;
+    if ([value isEqualToString:@"black"]) {
+      style = UIScrollViewIndicatorStyleBlack;
+    } else if ([value isEqualToString:@"white"]) {
+      style = UIScrollViewIndicatorStyleWhite;
+    }
+    _scrollViewIndicatorStyle = style;
+    _is.cached.ScrollViewIndicatorStyle = YES;
+  }
+  return _scrollViewIndicatorStyle;
 }
 
 
