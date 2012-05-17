@@ -55,7 +55,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationWillFinish {
+- (void)willFinish {
   NSData* responseData = self.data;
   UIImage* image = [[UIImage alloc] initWithData:responseData];
 
@@ -71,7 +71,7 @@
 
   NI_RELEASE_SAFELY(image);
 
-  [super operationWillFinish];
+  [super willFinish];
 }
 
 

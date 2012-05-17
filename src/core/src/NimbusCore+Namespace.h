@@ -143,11 +143,11 @@
 #ifndef NIIsStringWithAnyText
 #define NIIsStringWithAnyText __NIMBUS_NS_SYMBOL(NIIsStringWithAnyText)
 #endif
-#ifndef NIStatusBarBoundsChangeAnimationDuration
-#define NIStatusBarBoundsChangeAnimationDuration __NIMBUS_NS_SYMBOL(NIStatusBarBoundsChangeAnimationDuration)
-#endif
 #ifndef NIPathForCachesResource
 #define NIPathForCachesResource __NIMBUS_NS_SYMBOL(NIPathForCachesResource)
+#endif
+#ifndef NIStatusBarBoundsChangeAnimationDuration
+#define NIStatusBarBoundsChangeAnimationDuration __NIMBUS_NS_SYMBOL(NIStatusBarBoundsChangeAnimationDuration)
 #endif
 #ifndef NIStatusBarHeight
 #define NIStatusBarHeight __NIMBUS_NS_SYMBOL(NIStatusBarHeight)

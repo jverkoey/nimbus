@@ -36,6 +36,7 @@ NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
   if ([ruleSet hasBorderRadius]) { self.layer.cornerRadius = ruleSet.borderRadius; }
   if ([ruleSet hasBorderWidth]) { self.layer.borderWidth = ruleSet.borderWidth; }
   if ([ruleSet hasBorderColor]) { self.layer.borderColor = ruleSet.borderColor.CGColor; }
+  if ([ruleSet hasAutoresizing]) { self.autoresizingMask = ruleSet.autoresizing; }
 }
 
 

@@ -132,14 +132,14 @@
   STAssertEquals([_delegateMethodsCalled count], (NSUInteger)3,
                  @"Start and finish should have been called.");
   STAssertTrue([_delegateMethodsCalled containsObject:
-                NSStringFromSelector(@selector(operationDidStart:))],
-               @"operationDidStart: should have been called.");
+                NSStringFromSelector(@selector(nimbusOperationDidStart:))],
+               @"nimbusOperationDidStart: should have been called.");
   STAssertTrue([_delegateMethodsCalled containsObject:
-                NSStringFromSelector(@selector(operationWillFinish:))],
-               @"operationWillFinish: should have been called.");
+                NSStringFromSelector(@selector(nimbusOperationWillFinish:))],
+               @"nimbusOperationWillFinish: should have been called.");
   STAssertTrue([_delegateMethodsCalled containsObject:
-                NSStringFromSelector(@selector(operationDidFinish:))],
-               @"operationDidFinish: should have been called.");
+                NSStringFromSelector(@selector(nimbusOperationDidFinish:))],
+               @"nimbusOperationDidFinish: should have been called.");
 }
 
 
@@ -158,10 +158,10 @@
   STAssertEquals([_delegateMethodsCalled count], (NSUInteger)2,
                  @"Start and finish should have been called.");
   STAssertTrue([_delegateMethodsCalled containsObject:
-                NSStringFromSelector(@selector(operationDidStart:))],
+                NSStringFromSelector(@selector(nimbusOperationDidStart:))],
                @"operationDidStart: should have been called.");
   STAssertTrue([_delegateMethodsCalled containsObject:
-                NSStringFromSelector(@selector(operationDidFail:withError:))],
+                NSStringFromSelector(@selector(nimbusOperationDidFail:withError:))],
                @"operationDidFail:withError: should have been called.");
 
   STAssertEquals([op.lastError domain], NSCocoaErrorDomain,
@@ -249,25 +249,25 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidStart:(NSOperation *)operation {
+- (void)nimbusOperationDidStart:(NSOperation *)operation {
   [_delegateMethodsCalled addObject:NSStringFromSelector(_cmd)];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationWillFinish:(NSOperation *)operation {
+- (void)nimbusOperationWillFinish:(NSOperation *)operation {
   [_delegateMethodsCalled addObject:NSStringFromSelector(_cmd)];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFinish:(NSOperation *)operation {
+- (void)nimbusOperationDidFinish:(NSOperation *)operation {
   [_delegateMethodsCalled addObject:NSStringFromSelector(_cmd)];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFail:(NSOperation *)operation withError:(NSError *)error {
+- (void)nimbusOperationDidFail:(NSOperation *)operation withError:(NSError *)error {
   [_delegateMethodsCalled addObject:NSStringFromSelector(_cmd)];
 }
 

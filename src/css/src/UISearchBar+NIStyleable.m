@@ -14,43 +14,31 @@
 // limitations under the License.
 //
 
-#import "AppDelegate.h"
+#import "UISearchBar+NIStyleable.h"
+
+#import "UIView+NIStyleable.h"
+#import "NICSSRuleset.h"
+#import "NimbusCore.h"
+
+NI_FIX_CATEGORY_BUG(UISearchBar_NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation AppDelegate
-
-@synthesize window = _window;
+@implementation UISearchBar (NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_window);
-
-  [super dealloc];
+- (void)applySearchBarStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+  if ([ruleSet hasTintColor]) { self.tintColor = ruleSet.tintColor; }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Application lifecycle
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)              application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-
-  UIViewController* vc = [[[UIViewController alloc] initWithNibName:nil bundle:nil] autorelease];
-  vc.view.backgroundColor = [UIColor blueColor];
-  [self.window addSubview:vc.view];
-
-  [self.window makeKeyAndVisible];
-
-  return YES;
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+  [self applyViewStyleWithRuleSet:ruleSet];
+  [self applySearchBarStyleWithRuleSet:ruleSet];
 }
 
 

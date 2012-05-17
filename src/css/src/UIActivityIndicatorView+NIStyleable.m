@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,25 +14,31 @@
 // limitations under the License.
 //
 
-#import "NINetworkJSONRequest.h"
+#import "UIActivityIndicatorView+NIStyleable.h"
 
-#import "NIOperations+Subclassing.h"
+#import "UIView+NIStyleable.h"
+#import "NICSSRuleset.h"
+#import "NimbusCore.h"
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NINetworkJSONRequest
+NI_FIX_CATEGORY_BUG(UIActivityIndicatorView_NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)willFinish {
-  NSError* error = nil;
-  self.processedObject = [NSJSONSerialization JSONObjectWithData:self.data options:0 error:&error];
-  
-  self.lastError = error;
-  
-  [super willFinish];
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation UIActivityIndicatorView (NIStyleable)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applyActivityIndicatorStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+  if ([ruleSet hasActivityIndicatorStyle]) { [self setActivityIndicatorViewStyle:ruleSet.activityIndicatorStyle]; } else { [self setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge]; }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+  [self applyViewStyleWithRuleSet:ruleSet];
+  [self applyActivityIndicatorStyleWithRuleSet:ruleSet];
 }
 
 

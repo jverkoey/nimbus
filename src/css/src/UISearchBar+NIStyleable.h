@@ -16,9 +16,16 @@
 
 #import <UIKit/UIKit.h>
 
-int main(int argc, char *argv[]) {
-  NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-  int retVal = UIApplicationMain(argc, argv, nil, @"AppDelegate");
-  [pool release];
-  return retVal;
-}
+@class NICSSRuleset;
+
+@interface UISearchBar (NIStyleable)
+
+/**
+ * Applies the given rule set to this search bar.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applySearchBarStyleWithRuleSet:(NICSSRuleset *)ruleSet;
+
+@end

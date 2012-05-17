@@ -217,11 +217,11 @@
 - (void)_didFailToLoadWithError:(NSError *)error {
   self.operation = nil;
 
-  if ([self.delegate respondsToSelector:@selector(networkImageViewDidFailLoad:)]) {
-    [self.delegate networkImageViewDidFailLoad:nil];
+  if ([self.delegate respondsToSelector:@selector(networkImageView:didFailWithError:)]) {
+    [self.delegate networkImageView:self didFailWithError:error];
   }
 
-  [self networkImageViewDidFailToLoad:error];
+  [self networkImageViewDidFailWithError:error];
 }
 
 
@@ -232,13 +232,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidStart:(NSOperation *)operation {
+- (void)nimbusOperationDidStart:(NIOperation *)operation {
   [self _didStartLoading];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFinish:(NINetworkImageRequest *)operation {
+- (void)nimbusOperationDidFinish:(NINetworkImageRequest *)operation {
   [self _didFinishLoadingWithImage:operation.imageCroppedAndSizedForDisplay
                    cacheIdentifier:operation.cacheIdentifier
                        displaySize:operation.imageDisplaySize
@@ -249,7 +249,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFail:(NSOperation *)operation withError:(NSError *)error {
+- (void)nimbusOperationDidFail:(NIOperation *)operation withError:(NSError *)error {
   [self _didFailToLoadWithError:error];
 }
 
@@ -273,7 +273,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)networkImageViewDidFailToLoad:(NSError *)error {
+- (void)networkImageViewDidFailWithError:(NSError *)error {
   // No-op. Meant to be overridden.
 }
 
