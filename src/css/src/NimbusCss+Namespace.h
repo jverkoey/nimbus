@@ -52,6 +52,9 @@
 #ifndef NIStylesheetCache
 #define NIStylesheetCache __NIMBUS_NS_SYMBOL(NIStylesheetCache)
 #endif
+#ifndef NI_FIX_CATEGORY_BUG_UIActivityIndicatorView_NIStyleable
+#define NI_FIX_CATEGORY_BUG_UIActivityIndicatorView_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UIActivityIndicatorView_NIStyleable)
+#endif
 #ifndef NI_FIX_CATEGORY_BUG_UIButton_NIStyleable
 #define NI_FIX_CATEGORY_BUG_UIButton_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UIButton_NIStyleable)
 #endif
