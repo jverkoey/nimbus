@@ -121,6 +121,14 @@ typedef enum {
   // view is unloaded (more importantly: you shouldn't, due to the reason just outlined
   // regarding loadView).
   self.tableView.dataSource = _model;
+
+  // When including text editing cells in table views you should provide a means for the user to
+  // stop editing the control. To do this we add a gesture recognizer to the table view.
+  UITapGestureRecognizer* tap = [[[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                         action:@selector(didTapTableView)] autorelease];
+  // We still want the table view to be able to process touch events when we tap.
+  tap.cancelsTouchesInView = NO;
+  [self.tableView addGestureRecognizer:tap];
 }
 
 
@@ -192,6 +200,18 @@ typedef enum {
   }
   // Clear the selection state when we're done.
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Gesture Recognizers
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didTapTableView {
+  [self.view endEditing:YES];
 }
 
 @end
