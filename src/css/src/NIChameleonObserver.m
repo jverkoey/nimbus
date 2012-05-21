@@ -101,7 +101,7 @@ static const NSInteger kMaxNumberOfRetries = 3;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFail:(NSOperation *)operation withError:(NSError *)error {
+- (void)nimbusOperationDidFail:(NSOperation *)operation withError:(NSError *)error {
   if (_retryCount < kMaxNumberOfRetries) {
     ++_retryCount;
 
@@ -111,7 +111,7 @@ static const NSInteger kMaxNumberOfRetries = 3;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationWillFinish:(NINetworkRequestOperation *)operation {
+- (void)nimbusOperationWillFinish:(NINetworkRequestOperation *)operation {
   if (![operation.url.path isEqualToString:@"/watch"]) {
     NSMutableArray* changedStylesheets = [NSMutableArray array];
     NSArray* pathParts = [[operation.url absoluteString] pathComponents];
@@ -143,7 +143,7 @@ static const NSInteger kMaxNumberOfRetries = 3;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFinish:(NINetworkRequestOperation *)operation {
+- (void)nimbusOperationDidFinish:(NINetworkRequestOperation *)operation {
   if ([operation.url.path isEqualToString:@"/watch"]) {
     NSString* stringData = [[NSString alloc] initWithData:operation.data
                                                  encoding:NSUTF8StringEncoding];

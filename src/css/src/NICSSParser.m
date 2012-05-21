@@ -171,7 +171,7 @@ int cssConsume(char* text, int token) {
 
         if (nil != _currentPropertyName) {
           NSMutableArray* values = [_mutatingRuleset objectForKey:_currentPropertyName];
-          [values addObject:lowercaseTextAsString];
+          [values addObject:textAsString];
 
         } else {
           [self setFailFlag];

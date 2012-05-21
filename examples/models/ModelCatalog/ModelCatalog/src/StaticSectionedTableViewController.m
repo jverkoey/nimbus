@@ -16,11 +16,17 @@
 
 #import "StaticSectionedTableViewController.h"
 
+@interface StaticSectionedTableViewController()
+@property (nonatomic, readwrite, retain) NITableViewModel* model;
+@end
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation StaticSectionedTableViewController
+
+@synthesize model = _model;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -31,38 +37,38 @@
     [NSArray arrayWithObjects:
      // This is here to test creating sections without a header.
      [NITableViewModelFooter footerWithTitle:@"Footer only"],
-
+     
      // This as well.
-     [NSDictionary dictionaryWithObject:@"Row only" forKey:@"title"],
-
+     [NITitleCellObject cellWithTitle:@"Row only"],
+     
      // In practice most of your models will use some form of the following groups:
-
+     
      @"Section with header + rows + footer",
-     [NSDictionary dictionaryWithObject:@"Row" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Row" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Row" forKey:@"title"],
+     [NITitleCellObject cellWithTitle:@"Row"],
+     [NITitleCellObject cellWithTitle:@"Row"],
+     [NITitleCellObject cellWithTitle:@"Row"],
      [NITableViewModelFooter footerWithTitle:@"Footer"],
-
+     
      @"Header + row",
-     [NSDictionary dictionaryWithObject:@"Row" forKey:@"title"],
-
+     [NITitleCellObject cellWithTitle:@"Row"],
+     
      @"Header only",
-
+     
      @"",
-     [NSDictionary dictionaryWithObject:@"Rows only" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Rows only" forKey:@"title"],
-
+     [NITitleCellObject cellWithTitle:@"Rows only"],
+     [NITitleCellObject cellWithTitle:@"Rows only"],
+     
      @"",
-     [NSDictionary dictionaryWithObject:@"Row" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Row" forKey:@"title"],
+     [NITitleCellObject cellWithTitle:@"Row"],
+     [NITitleCellObject cellWithTitle:@"Row"],
      [NITableViewModelFooter footerWithTitle:@"Footer"],
-
+     
      [NITableViewModelFooter footerWithTitle:@"Footer only"],
      nil];
 
-    // This controller creates the table view cells.
+    // We use NICellFactory to create the cell views.
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
-                                                     delegate:self];
+                                                     delegate:(id)[NICellFactory class]];
   }
   return self;
 }
@@ -85,23 +91,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel
-                   cellForTableView: (UITableView *)tableView
-                        atIndexPath: (NSIndexPath *)indexPath
-                         withObject: (id)object {
-  // A pretty standard implementation of creating table view cells follows.
-  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
-  
-  if (nil == cell) {
-    cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-                                   reuseIdentifier: @"row"];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  }
-  
-  cell.textLabel.text = [object objectForKey:@"title"];
-  
-  return cell;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+  return NIIsSupportedOrientation(toInterfaceOrientation);
 }
 
 

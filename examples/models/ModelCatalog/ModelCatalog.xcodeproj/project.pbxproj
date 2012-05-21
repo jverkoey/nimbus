@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6601D8E713FC7BB500B884DC /* NIFormCellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6601D8E613FC7BB500B884DC /* NIFormCellCatalog.m */; };
 		6601D8EA13FC87BA00B884DC /* NICellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6601D8E913FC87BA00B884DC /* NICellFactory.m */; };
+		66688683156AD3D2006E874F /* NICellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 66688682156AD3D2006E874F /* NICellCatalog.m */; };
+		6668868C156AEBC7006E874F /* NIRadioGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6668868B156AEBC7006E874F /* NIRadioGroup.m */; };
 		666C0D6213FC5A9D00C6E955 /* StaticIndexedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666C0D6113FC5A9D00C6E955 /* StaticIndexedTableViewController.m */; };
 		668DA80313FD77650000DBF6 /* CatalogEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 668DA80213FD77650000DBF6 /* CatalogEntry.m */; };
 		668DA80813FD944B0000DBF6 /* FormCellCatalogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668DA80713FD944B0000DBF6 /* FormCellCatalogTableViewController.m */; };
@@ -46,6 +48,11 @@
 		6601D8E613FC7BB500B884DC /* NIFormCellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIFormCellCatalog.m; path = ../../../../src/models/src/NIFormCellCatalog.m; sourceTree = "<group>"; };
 		6601D8E813FC87B900B884DC /* NICellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICellFactory.h; path = ../../../../src/models/src/NICellFactory.h; sourceTree = "<group>"; };
 		6601D8E913FC87BA00B884DC /* NICellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICellFactory.m; path = ../../../../src/models/src/NICellFactory.m; sourceTree = "<group>"; };
+		66688681156AD3D2006E874F /* NICellCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICellCatalog.h; path = ../../../../src/models/src/NICellCatalog.h; sourceTree = "<group>"; };
+		66688682156AD3D2006E874F /* NICellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICellCatalog.m; path = ../../../../src/models/src/NICellCatalog.m; sourceTree = "<group>"; };
+		66688685156AD3E0006E874F /* NITableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NITableViewModel+Private.h"; path = "../../../../src/models/src/NITableViewModel+Private.h"; sourceTree = "<group>"; };
+		6668868A156AEBC7006E874F /* NIRadioGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIRadioGroup.h; path = ../../../../src/models/src/NIRadioGroup.h; sourceTree = "<group>"; };
+		6668868B156AEBC7006E874F /* NIRadioGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIRadioGroup.m; path = ../../../../src/models/src/NIRadioGroup.m; sourceTree = "<group>"; };
 		666C0D6013FC5A9D00C6E955 /* StaticIndexedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticIndexedTableViewController.h; path = src/StaticIndexedTableViewController.h; sourceTree = "<group>"; };
 		666C0D6113FC5A9D00C6E955 /* StaticIndexedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StaticIndexedTableViewController.m; path = src/StaticIndexedTableViewController.m; sourceTree = "<group>"; };
 		668DA80113FD77650000DBF6 /* CatalogEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatalogEntry.h; path = src/CatalogEntry.h; sourceTree = "<group>"; };
@@ -281,10 +288,15 @@
 				66FE7DD513FBF06F0061B987 /* NimbusModels.h */,
 				66FE7DD613FBF06F0061B987 /* NITableViewModel.h */,
 				66FE7DD713FBF06F0061B987 /* NITableViewModel.m */,
+				66688685156AD3E0006E874F /* NITableViewModel+Private.h */,
+				66688681156AD3D2006E874F /* NICellCatalog.h */,
+				66688682156AD3D2006E874F /* NICellCatalog.m */,
 				6601D8E513FC7BB500B884DC /* NIFormCellCatalog.h */,
 				6601D8E613FC7BB500B884DC /* NIFormCellCatalog.m */,
 				6601D8E813FC87B900B884DC /* NICellFactory.h */,
 				6601D8E913FC87BA00B884DC /* NICellFactory.m */,
+				6668868A156AEBC7006E874F /* NIRadioGroup.h */,
+				6668868B156AEBC7006E874F /* NIRadioGroup.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -407,6 +419,8 @@
 				668DA83E13FD98140000DBF6 /* NIState.m in Sources */,
 				668DA83F13FD98140000DBF6 /* NSData+NimbusCore.m in Sources */,
 				668DA84013FD98140000DBF6 /* NSString+NimbusCore.m in Sources */,
+				66688683156AD3D2006E874F /* NICellCatalog.m in Sources */,
+				6668868C156AEBC7006E874F /* NIRadioGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

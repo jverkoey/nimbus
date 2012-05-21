@@ -16,10 +16,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StaticIndexedTableViewController : UITableViewController <NITableViewModelDelegate> {
-@private
-  NITableViewModel* _model;
-  UISearchDisplayController* _searchController;
-}
+@interface StaticIndexedTableViewController : UITableViewController
 
 @end

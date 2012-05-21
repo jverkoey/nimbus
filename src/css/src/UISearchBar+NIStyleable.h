@@ -15,12 +15,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@interface AppDelegate : NSObject <UIApplicationDelegate> {
-  UIWindow* _window;
-}
+@class NICSSRuleset;
 
-@property (nonatomic, readwrite, retain) UIWindow* window;
+@interface UISearchBar (NIStyleable)
+
+/**
+ * Applies the given rule set to this search bar.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applySearchBarStyleWithRuleSet:(NICSSRuleset *)ruleSet;
 
 @end
 

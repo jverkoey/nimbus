@@ -14,35 +14,31 @@
 // limitations under the License.
 //
 
-#import "AppDelegate.h"
+#import "UIToolbar+NIStyleable.h"
+
+#import "UIView+NIStyleable.h"
+#import "NICSSRuleset.h"
+#import "NimbusCore.h"
+
+NI_FIX_CATEGORY_BUG(UIToolbar_NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation AppDelegate
-
-@synthesize window = _window;
+@implementation UIToolbar (NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Application lifecycle
+- (void)applyToolbarStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+  if ([ruleSet hasTintColor]) { self.tintColor = ruleSet.tintColor; }
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)              application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-
-  UIViewController* vc = [[UIViewController alloc] initWithNibName:nil bundle:nil];
-  vc.view.backgroundColor = [UIColor blueColor];
-  [self.window addSubview:vc.view];
-
-  [self.window makeKeyAndVisible];
-
-  return YES;
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+  [self applyViewStyleWithRuleSet:ruleSet];
+  [self applyToolbarStyleWithRuleSet:ruleSet];
 }
 
 

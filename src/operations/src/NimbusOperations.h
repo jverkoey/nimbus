@@ -60,7 +60,7 @@
  *  // Called on the operation's thread.
  *  // We can do computationally expensive operations here without blocking the UI in any way.
  *  // Note: You must be careful not to access any non-thread-safe objects from within this block.
- *  request.willFinishBlock = ^{
+ *  request.willFinishBlock = ^(NIOperation* operation) {
  *
  *    NSString* graphName = nil;
  *
@@ -75,7 +75,7 @@
  *  __block UIViewController* vc = self;
  *
  *  // Called on the main UI thread. This method should be light-weight.
- *  request.didFinishBlock = ^{
+ *  request.didFinishBlock = ^(NIOperation* operation) {
  *    NSString* graphName = request.processedObject;
  *    // Do what we will with the graph name now.
  *    vc.title = graphName;

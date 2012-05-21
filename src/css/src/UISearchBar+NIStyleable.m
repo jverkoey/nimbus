@@ -14,35 +14,30 @@
 // limitations under the License.
 //
 
-#import "UIView+NIStyleable.h"
+#import "UISearchBar+NIStyleable.h"
 
+#import "UIView+NIStyleable.h"
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
-#import <QuartzCore/QuartzCore.h>
 
-NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation UIView (NIStyleable)
+NI_FIX_CATEGORY_BUG(UISearchBar_NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  if ([ruleSet hasBackgroundColor]) { self.backgroundColor = ruleSet.backgroundColor; }
-  if ([ruleSet hasOpacity]) { self.alpha = ruleSet.opacity; }
-  if ([ruleSet hasBorderRadius]) { self.layer.cornerRadius = ruleSet.borderRadius; }
-  if ([ruleSet hasBorderWidth]) { self.layer.borderWidth = ruleSet.borderWidth; }
-  if ([ruleSet hasBorderColor]) { self.layer.borderColor = ruleSet.borderColor.CGColor; }
-  if ([ruleSet hasAutoresizing]) { self.autoresizingMask = ruleSet.autoresizing; }
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation UISearchBar (NIStyleable)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applySearchBarStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+  if ([ruleSet hasTintColor]) { self.tintColor = ruleSet.tintColor; }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
   [self applyViewStyleWithRuleSet:ruleSet];
+  [self applySearchBarStyleWithRuleSet:ruleSet];
 }
 
 

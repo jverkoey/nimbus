@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,35 +14,31 @@
 // limitations under the License.
 //
 
-#import "UIView+NIStyleable.h"
+#import "UIActivityIndicatorView+NIStyleable.h"
 
+#import "UIView+NIStyleable.h"
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
-#import <QuartzCore/QuartzCore.h>
 
-NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation UIView (NIStyleable)
+NI_FIX_CATEGORY_BUG(UIActivityIndicatorView_NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  if ([ruleSet hasBackgroundColor]) { self.backgroundColor = ruleSet.backgroundColor; }
-  if ([ruleSet hasOpacity]) { self.alpha = ruleSet.opacity; }
-  if ([ruleSet hasBorderRadius]) { self.layer.cornerRadius = ruleSet.borderRadius; }
-  if ([ruleSet hasBorderWidth]) { self.layer.borderWidth = ruleSet.borderWidth; }
-  if ([ruleSet hasBorderColor]) { self.layer.borderColor = ruleSet.borderColor.CGColor; }
-  if ([ruleSet hasAutoresizing]) { self.autoresizingMask = ruleSet.autoresizing; }
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation UIActivityIndicatorView (NIStyleable)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applyActivityIndicatorStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+  if ([ruleSet hasActivityIndicatorStyle]) { [self setActivityIndicatorViewStyle:ruleSet.activityIndicatorStyle]; } else { [self setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge]; }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
   [self applyViewStyleWithRuleSet:ruleSet];
+  [self applyActivityIndicatorStyleWithRuleSet:ruleSet];
 }
 
 
