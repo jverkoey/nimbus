@@ -351,9 +351,9 @@ _model.delegate = (id)[NICellFactory class];
 /**
  * @defgroup TableViewForms Table Forms
  *
- * One commonly-required feature of table views is a radio button interaction in a group of
- * cells. This is useful when you need the user to select one choice from a set of options.
- * Implementing this functionality is made easy by the Nimbus NIRadioGroup object.
+ * One commonly-required feature for table views is radio button functionality. This is useful when
+ * you need the user to make a choice from a set of options. Implementing this is trivial with the
+ * Nimbus NIRadioGroup object.
  *
  * The radio group object allows you to map a set of table objects to a group of identifiers and
  * then support radio button interactions. You can find a working example of this in the
