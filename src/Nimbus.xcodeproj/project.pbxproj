@@ -59,6 +59,8 @@
 		6661BBE013F1A3BB00D14F92 /* libNimbusModels.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6661BBCC13F1A3BB00D14F92 /* libNimbusModels.a */; };
 		6668867F156AD148006E874F /* NICellCatalog.h in Headers */ = {isa = PBXBuildFile; fileRef = 6668867D156AD148006E874F /* NICellCatalog.h */; };
 		66688680156AD148006E874F /* NICellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6668867E156AD148006E874F /* NICellCatalog.m */; };
+		66688688156ADDB3006E874F /* NIRadioGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 66688686156ADDB0006E874F /* NIRadioGroup.h */; };
+		66688689156ADDB3006E874F /* NIRadioGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 66688687156ADDB1006E874F /* NIRadioGroup.m */; };
 		666C3D1C14D0AB7E00F337D6 /* NIAttributedLabelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 666C3D1B14D0AB7E00F337D6 /* NIAttributedLabelTests.m */; };
 		666C3D1F14D0AC2100F337D6 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 666C3D1E14D0AC2100F337D6 /* CoreText.framework */; };
 		666C3D2014D0AC3800F337D6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D02143E38F0003E413C /* CoreGraphics.framework */; };
@@ -689,6 +691,8 @@
 		6661BBD913F1A3BB00D14F92 /* NimbusModelsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusModelsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6668867D156AD148006E874F /* NICellCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICellCatalog.h; sourceTree = "<group>"; };
 		6668867E156AD148006E874F /* NICellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICellCatalog.m; sourceTree = "<group>"; };
+		66688686156ADDB0006E874F /* NIRadioGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIRadioGroup.h; sourceTree = "<group>"; };
+		66688687156ADDB1006E874F /* NIRadioGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIRadioGroup.m; sourceTree = "<group>"; };
 		666C3D1B14D0AB7E00F337D6 /* NIAttributedLabelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIAttributedLabelTests.m; sourceTree = "<group>"; };
 		666C3D1E14D0AC2100F337D6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		666C3D2614D0ACA900F337D6 /* NIInterappTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIInterappTests.m; sourceTree = "<group>"; };
@@ -1981,6 +1985,8 @@
 				667A749A13FE20BD009D277D /* NIFormCellCatalog.m */,
 				667A749B13FE20BD009D277D /* NICellFactory.h */,
 				667A749C13FE20BD009D277D /* NICellFactory.m */,
+				66688686156ADDB0006E874F /* NIRadioGroup.h */,
+				66688687156ADDB1006E874F /* NIRadioGroup.m */,
 			);
 			name = src;
 			path = models/src;
@@ -2089,6 +2095,7 @@
 				6626330C14995C4600B99898 /* NITableViewModel+Private.h in Headers */,
 				666F73A914BBFEE300D1A32F /* NimbusModels+Namespace.h in Headers */,
 				6668867F156AD148006E874F /* NICellCatalog.h in Headers */,
+				66688688156ADDB3006E874F /* NIRadioGroup.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3388,6 +3395,7 @@
 				667A74A013FE20BD009D277D /* NIFormCellCatalog.m in Sources */,
 				667A74A213FE20BD009D277D /* NICellFactory.m in Sources */,
 				66688680156AD148006E874F /* NICellCatalog.m in Sources */,
+				66688689156ADDB3006E874F /* NIRadioGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

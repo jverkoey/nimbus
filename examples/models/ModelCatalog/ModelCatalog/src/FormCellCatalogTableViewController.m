@@ -16,11 +16,29 @@
 
 #import "FormCellCatalogTableViewController.h"
 
+// This enumeration is used in the radio group mapping.
+typedef enum {
+  RadioOption1,
+  RadioOption2,
+  RadioOption3,
+} RadioOptions;
+
+@interface FormCellCatalogTableViewController() <UITextFieldDelegate>
+@property (nonatomic, readwrite, retain) NITableViewModel* model;
+
+// A radio group object allows us to easily maintain radio group-style interactions in the table
+// view.
+@property (nonatomic, readwrite, retain) NIRadioGroup* radioGroup;
+@end
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation FormCellCatalogTableViewController
+
+@synthesize model = _model;
+@synthesize radioGroup = _radioGroup;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,6 +46,7 @@
   // The model is a retained object in this controller, so we must release it when the controller
   // is deallocated.
   [_model release]; _model = nil;
+  [_radioGroup release]; _radioGroup = nil;
   
   [super dealloc];
 }
@@ -38,8 +57,17 @@
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     self.title = NSLocalizedString(@"Form Cells", @"Controller Title: Form Cells");
 
+    NISubtitleCellObject* radioObject1 = [NISubtitleCellObject cellWithTitle:@"Radio 1"
+                                                                    subtitle:@"First option"];
+    NISubtitleCellObject* radioObject2 = [NISubtitleCellObject cellWithTitle:@"Radio 2"
+                                                                    subtitle:@"Second option"];
+    NISubtitleCellObject* radioObject3 = [NISubtitleCellObject cellWithTitle:@"Radio 3"
+                                                                    subtitle:@"Third option"];
     NSArray* tableContents =
     [NSArray arrayWithObjects:
+     @"Radio Cells",
+     radioObject1, radioObject2, radioObject3,
+
      @"NITextInputFormElement",
      [NITextInputFormElement textInputElementWithID:0 placeholderText:@"Placeholder" value:nil],
      [NITextInputFormElement textInputElementWithID:0 placeholderText:@"Placeholder" value:@"Initial value"],
@@ -57,6 +85,12 @@
                                  tappedTarget:self
                                tappedSelector:@selector(showAlert:)],
      nil];
+
+    _radioGroup = [[NIRadioGroup alloc] init];
+    [_radioGroup mapObject:radioObject1 toIdentifier:RadioOption1];
+    [_radioGroup mapObject:radioObject2 toIdentifier:RadioOption2];
+    [_radioGroup mapObject:radioObject3 toIdentifier:RadioOption3];
+    _radioGroup.selectedIdentifier = RadioOption1;
 
     // We let the Nimbus cell factory create the cells.
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
@@ -131,17 +165,26 @@
       textInputCell.textField.textColor = [UIColor blackColor];
     }
   }
+
+  id object = [self.model objectAtIndexPath:indexPath];
+  // This helper method checks whether the object is in the radio group and, if it is, updates
+  // the selection state accordingly.
+  if ([self.radioGroup willDisplayCell:cell forObject:object]) {
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark UITableViewDelegate
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+  id object = [self.model objectAtIndexPath:indexPath];
+  // This helper method checks whether the selected object is within the radio group and, if it is,
+  // updates the selection. If the selection changes then the helper method returns YES so that we
+  // can react accordingly.
+  if ([self.radioGroup tableView:tableView didSelectObject:object atIndexPath:indexPath]) {
+    NSLog(@"Radio group selection changed: %d", self.radioGroup.selectedIdentifier);
+  }
+
   UITableViewCell* selectedCell = [self.tableView.dataSource tableView:tableView cellForRowAtIndexPath:indexPath];
   if ([selectedCell isKindOfClass:[NIButtonFormElementCell class]]) {
     NIButtonFormElementCell* buttonCell = (NIButtonFormElementCell*)selectedCell;

@@ -636,5 +636,6 @@ _model.delegate = (id)[NICellFactory class];
 #import "NICellCatalog.h"
 #import "NICellFactory.h"
 #import "NIFormCellCatalog.h"
+#import "NIRadioGroup.h"
 
 /**@}*/
