@@ -65,7 +65,7 @@
  * You may NOT map the same object to multiple identifiers. Attempts to do so fill fire a debug
  * assertion and will not map the new object in the radio group.
  *
- *      @fn NIRadioCellGroup::mapObject:toIdentifier:
+ *      @fn NIRadioGroup::mapObject:toIdentifier:
  */
 
 /** @name Selection */
@@ -73,19 +73,19 @@
 /**
  * Whether or not a selection has been made.
  *
- *      @fn NIRadioCellGroup::hasSelection
+ *      @fn NIRadioGroup::hasSelection
  */
 
 /**
  * The currently selected identifier if one is selected, otherwise returns NSIntegerMin.
  *
- *      @fn NIRadioCellGroup::selectedIdentifier
+ *      @fn NIRadioGroup::selectedIdentifier
  */
 
 /**
  * Removes the selection from this cell group.
  *
- *      @fn NIRadioCellGroup::clearSelection
+ *      @fn NIRadioGroup::clearSelection
  */
 
 /** @name Object State */
@@ -93,7 +93,7 @@
 /**
  * Returns YES if the given object is in this radio group.
  *
- *      @fn NIRadioCellGroup::isObjectInRadioGroup:
+ *      @fn NIRadioGroup::isObjectInRadioGroup:
  */
 
 /**
@@ -102,7 +102,7 @@
  * This method should only be called after verifying that the object is contained within the radio
  * group with isObjectInRadioGroup:.
  *
- *      @fn NIRadioCellGroup::isObjectSelected:
+ *      @fn NIRadioGroup::isObjectSelected:
  */
 
 /**
@@ -111,7 +111,7 @@
  * This method should only be called after verifying that the object is contained within the radio
  * group with isObjectInRadioGroup:.
  *
- *      @fn NIRadioCellGroup::identifierForObject:
+ *      @fn NIRadioGroup::identifierForObject:
  */
 
 /** @name UITableView Helpers */
@@ -125,7 +125,7 @@
  *      @param cell The table view cell that is about to be displayed.
  *      @param object The object that will was mapped to this cell view.
  *      @returns YES if the cell is within this radio group, NO otherwise.
- *      @fn NIRadioCellGroup::willDisplayCell:forObject:
+ *      @fn NIRadioGroup::willDisplayCell:forObject:
  */
 
 /**
@@ -137,5 +137,5 @@
  *      @param object The object that was selected.
  *      @param indexPath The index path of the selected object.
  *      @returns YES if the radio group selection changed, NO otherwise.
- *      @fn NIRadioCellGroup::tableView:didSelectObject:atIndexPath:
+ *      @fn NIRadioGroup::tableView:didSelectObject:atIndexPath:
  */
