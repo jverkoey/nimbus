@@ -373,8 +373,8 @@ typedef enum {
 @property (nonatomic, readwrite, retain) NIRadioGroup* radioGroup;
 
 - (void)refreshModel {
-  NISubtitleCellObject* manual = [NITitleCellObject cellWithTitle:@"Manually"];
-  NISubtitleCellObject* byTime = [NITitleCellObject cellWithTitle:@"By Time"];
+  id manual = [NITitleCellObject cellWithTitle:@"Manually"];
+  id byTime = [NITitleCellObject cellWithTitle:@"By Time"];
 
   NSArray* contents =
   [NSArray arrayWithObjects:
