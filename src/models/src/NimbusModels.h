@@ -31,291 +31,8 @@
  *
  * <h2>Vanilla UIKit vs Nimbus Models</h2>
  *
- * Presented below is a side-by-side comparison of implementing a table view controller with
- * pure UIKit (on the left) and implementing the same controller with Nimbus (on the right).
- * This comparison's purpose is to show the reduction in amount of code to be written.
- * The code that has been completely removed is grayed out on the left.
- *
  * If you would like to see an example of Nimbus models being used, check out
  * the ModelCatalog example application.
- *
- * @htmlonly
- * <div class="side-by-side-compare">
- * <pre>
- @implementation CatalogTableViewController
- 
- #pragma mark -
- #pragma mark UITableViewDataSource
- 
- - (NSArray *)rows {
-   static NSArray* rows = nil;
-   if (nil == rows) {
-     rows = [NSArray arrayWithObjects:
-             @"Dribbble",
-             [NSDictionary dictionaryWithObjectsAndKeys:
-              [DribbblePhotoAlbumViewController class], @"class",
-              @"Popular Shots", @"title",
-              @"/shots", @"initWith",
-              nil],
-             [NSDictionary dictionaryWithObjectsAndKeys:
-              [DribbblePhotoAlbumViewController class], @"class",
-              @"Everyone's Shots", @"title",
-              @"/shots/everyone", @"initWith",
-              nil],
-             [NSDictionary dictionaryWithObjectsAndKeys:
-              [DribbblePhotoAlbumViewController class], @"class",
-              @"Debuts", @"title",
-              @"/shots/debuts", @"initWith",
-              nil],
- 
-             @"Facebook Albums",
-             [NSDictionary dictionaryWithObjectsAndKeys:
-              [FacebookPhotoAlbumViewController class], @"class",
-              @"120th Commencement in Pictures", @"title",
-              @"10150219083838418", @"initWith",
-              nil],
-             [NSDictionary dictionaryWithObjectsAndKeys:
-              [FacebookPhotoAlbumViewController class], @"class",
-              @"Stanford 40th Annual Powwow", @"title",
-              @"10150185938728418", @"initWith",
-              nil],
-             [NSDictionary dictionaryWithObjectsAndKeys:
-              [FacebookPhotoAlbumViewController class], @"class",
-              @"Spring blossoms at Stanford", @"title",
-              @"10150160584103418", @"initWith",
-              nil],
-             [NSDictionary dictionaryWithObjectsAndKeys:
-              [FacebookPhotoAlbumViewController class], @"class",
-              @"Shark Week", @"title",
-              @"208546235826221", @"initWith",
-              nil],
-             [NSDictionary dictionaryWithObjectsAndKeys:
-              [FacebookPhotoAlbumViewController class], @"class",
-              @"Game of Thrones", @"title",
-              @"489714642733", @"initWith",
-              nil],
- 
-             nil];
-     [rows retain];
-   }
-   return rows;
- }
- <span style="color:gray">
- - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-   NSArray* rows = [self rows];
- 
-   NSInteger numberOfSections = 0;
-   for (id object in rows) {
-     numberOfSections += [object isKindOfClass:[NSString class]];
-   }
- 
-   return MAX(1, numberOfSections);
- }
- 
- - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-   NSArray* rows = [self rows];
- 
-   NSInteger sectionIndex = -1;
-   for (id object in rows) {
-     sectionIndex += [object isKindOfClass:[NSString class]];
- 
-     if (sectionIndex == section) {
-       return object;
-     }
-   }
- 
-   return nil;
- }
- 
- - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   NSArray* rows = [self rows];
- 
-   NSInteger sectionIndex = -1;
-   NSInteger numberOfRows = 0;
-   for (id object in rows) {
-     sectionIndex += [object isKindOfClass:[NSString class]];
- 
-     if (sectionIndex == section && [object isKindOfClass:[NSDictionary class]]) {
-       numberOfRows++;
-     } else if (numberOfRows > 0) {
-       break;
-     }
-   }
- 
-   return numberOfRows;
- }
- 
- - (id)objectForIndexPath:(NSIndexPath *)indexPath {
-   // UGH: This is slow. Thankfully it doesn't matter because we know that we're only ever going to
-   // have < 100 items or so.
- 
-   NSArray* rows = [self rows];
- 
-   NSInteger sectionIndex = -1;
-   NSInteger rowIndex = -1;
-   for (id object in rows) {
-     sectionIndex += [object isKindOfClass:[NSString class]];
- 
-     if (sectionIndex == [indexPath section] && [object isKindOfClass:[NSDictionary class]]) {
-       rowIndex++;
-     } else if (rowIndex >= 0) {
-       break;
-     }
- 
-     if (rowIndex == [indexPath row] && sectionIndex == [indexPath section]) {
-       return object;
-     }
-   }
- 
-   return nil;
- }</span>
- 
- - (UITableViewCell *)tableView: (UITableView *)tableView
-          cellForRowAtIndexPath: (NSIndexPath *)indexPath {
-   UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
- 
-   if (nil == cell) {
-     cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-                                    reuseIdentifier: @"row"]
-             autorelease];
-     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-   }
- 
-   id object = [self objectForIndexPath:indexPath];
- 
-   cell.textLabel.text = [object objectForKey:@"title"];
- 
-   return cell;
- }
- 
- 
- #pragma mark -
- #pragma mark UITableViewDelegate
- 
- - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   id object = [self objectForIndexPath:indexPath];
- 
-   Class vcClass = [object objectForKey:@"class"];
-   id initWith = [object objectForKey:@"initWith"];
-   NSString* title = [object objectForKey:@"title"];
-   UIViewController* vc = [[[vcClass alloc] initWith:initWith] autorelease];
-   vc.title = title;
- 
-   [self.navigationController pushViewController:vc animated:YES];
- }
- 
- @end</pre>
- * </div>
- *
- * <div class="side-by-side-compare">
- * <pre>
- @implementation CatalogTableViewController
- 
- - (void)dealloc {
-   NI_RELEASE_SAFELY(_model);
-   [super dealloc];
- }
- 
- - (id)initWithStyle:(UITableViewStyle)style {
-   if ((self = [super initWithStyle:style])) {
-     NSArray* tableContents =
-     [NSArray arrayWithObjects:
-      @"Dribbble",
-      [NSDictionary dictionaryWithObjectsAndKeys:
-       [DribbblePhotoAlbumViewController class], @"class",
-       @"Popular Shots", @"title",
-       @"/shots", @"initWith",
-       nil],
-      [NSDictionary dictionaryWithObjectsAndKeys:
-       [DribbblePhotoAlbumViewController class], @"class",
-       @"Everyone's Shots", @"title",
-       @"/shots/everyone", @"initWith",
-       nil],
-      [NSDictionary dictionaryWithObjectsAndKeys:
-       [DribbblePhotoAlbumViewController class], @"class",
-       @"Debuts", @"title",
-       @"/shots/debuts", @"initWith",
-       nil],
-      
-      @"Facebook Albums",
-      [NSDictionary dictionaryWithObjectsAndKeys:
-       [FacebookPhotoAlbumViewController class], @"class",
-       @"120th Commencement in Pictures", @"title",
-       @"10150219083838418", @"initWith",
-       nil],
-      [NSDictionary dictionaryWithObjectsAndKeys:
-       [FacebookPhotoAlbumViewController class], @"class",
-       @"Stanford 40th Annual Powwow", @"title",
-       @"10150185938728418", @"initWith",
-       nil],
-      [NSDictionary dictionaryWithObjectsAndKeys:
-       [FacebookPhotoAlbumViewController class], @"class",
-       @"Spring blossoms at Stanford", @"title",
-       @"10150160584103418", @"initWith",
-       nil],
-      [NSDictionary dictionaryWithObjectsAndKeys:
-       [FacebookPhotoAlbumViewController class], @"class",
-       @"Shark Week", @"title",
-       @"208546235826221", @"initWith",
-       nil],
-      [NSDictionary dictionaryWithObjectsAndKeys:
-       [FacebookPhotoAlbumViewController class], @"class",
-       @"Game of Thrones", @"title",
-       @"489714642733", @"initWith",
-       nil],
-      nil];
-     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
-                                                      delegate:self];
-   }
-   return self;
- }
- 
- - (void)viewDidLoad {
-   [super viewDidLoad];
- 
-   self.tableView.dataSource = _model;
- }
- 
- #pragma mark -
- #pragma mark NITableViewModelDelegate
- 
- - (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel
-                    cellForTableView: (UITableView *)tableView
-                         atIndexPath: (NSIndexPath *)indexPath
-                          withObject: (id)object {
-   UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
- 
-   if (nil == cell) {
-     cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-                                    reuseIdentifier: @"row"]
-             autorelease];
-     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-   }
- 
-   cell.textLabel.text = [object objectForKey:@"title"];
- 
-   return cell;
- }
- 
- #pragma mark -
- #pragma mark UITableViewDelegate
- 
- - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   id object = [_model objectAtIndexPath:indexPath];
- 
-   Class vcClass = [object objectForKey:@"class"];
-   id initWith = [object objectForKey:@"initWith"];
-   NSString* title = [object objectForKey:@"title"];
-   UIViewController* vc = [[[vcClass alloc] initWith:initWith] autorelease];
-   vc.title = title;
- 
-   [self.navigationController pushViewController:vc animated:YES];
- }
- 
- @end</pre>
- * </div>
- * <div class="clearfix"></div>
- * @endhtmlonly
  */
 
 #pragma mark * Table View Models
@@ -627,6 +344,81 @@ _model.delegate = (id)[NICellFactory class];
  [NISwitchFormElement switchElementWithID:kPushNotifications labelText:@"Push Notifications" value:NO],
  * @endcode
  *
+ */
+
+#pragma mark * Table Forms
+
+/**
+ * @defgroup TableViewForms Table Forms
+ *
+ * One commonly-required feature of table views is a radio button interaction in a group of
+ * cells. This is useful when you need the user to select one choice from a set of options.
+ * Implementing this functionality is made easy by the Nimbus NIRadioGroup object.
+ *
+ * The radio group object allows you to map a set of table objects to a group of identifiers and
+ * then support radio button interactions. You can find a working example of this in the
+ * ModelCatalog sample application.
+ *
+ * Provided below is a quick overview of implementing the iOS Settings app's notifications page.
+ *
+@code
+// We first define the enumeration of identifiers that we will use to map the table objects
+// to unique identifiers.
+typedef enum {
+  AppSortManual,
+  AppSortByTime,
+} AppSort;
+
+// You will create and retain a radio group object for the lifecycle of your controller.
+@property (nonatomic, readwrite, retain) NIRadioGroup* radioGroup;
+
+- (void)refreshModel {
+  NISubtitleCellObject* manual = [NITitleCellObject cellWithTitle:@"Manually"];
+  NISubtitleCellObject* byTime = [NITitleCellObject cellWithTitle:@"By Time"];
+
+  NSArray* contents =
+  [NSArray arrayWithObjects:
+   @"Sort Apps:",
+   manual, byTime,
+   nil];
+
+  self.model = [[NITableViewModel alloc] initWithSectionedArray:contents
+                                                       delegate:(id)[NICellFactory class]];
+
+  // Map the objects to their corresponding identifiers.
+  self.radioGroup = [[[NIRadioGroup alloc] init] autorelease];
+  [self.radioGroup mapObject:manual toIdentifier:AppSortManual];
+  [self.radioGroup mapObject:byTime toIdentifier:AppSortByTime];
+
+  // Set the initial selection.
+  self.radioGroup.selectedIdentifier = AppSortManual;
+
+  self.tableView.dataSource = self.model;
+  [self.tableView reloadData];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+  id object = [self.model objectAtIndexPath:indexPath];
+
+  // This helper method checks whether the object is in the radio group and, if it is, updates
+  // the selection state accordingly.
+  if ([self.radioGroup willDisplayCell:cell forObject:object]) {
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+  }
+}
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+  id object = [self.model objectAtIndexPath:indexPath];
+
+  // This helper method checks whether the selected object is within the radio group and, if it is,
+  // updates the selection. If the selection changes then the helper method returns YES so that we
+  // can react accordingly.
+  if ([self.radioGroup tableView:tableView didSelectObject:object atIndexPath:indexPath]) {
+    NSLog(@"Radio group selection changed: %d", self.radioGroup.selectedIdentifier);
+  }
+}
+
+@endcode
  */
 
 #import <Foundation/Foundation.h>

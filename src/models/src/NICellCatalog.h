@@ -22,6 +22,8 @@
  * This object maps by default to a NITextCell and displays the title with a
  * UITableViewCellStyleDefault cell. You can customize the cell class using the
  * NICellObject methods.
+ *
+ *      @ingroup TableCellCatalog
  */
 @interface NITitleCellObject : NICellObject
 - (id)initWithTitle:(NSString *)title;
@@ -35,6 +37,8 @@
  * This object maps by default to a NITextCell and displays the title with a
  * UITableViewCellStyleSubtitle cell. You can customize the cell class using the
  * NICellObject methods.
+ *
+ *      @ingroup TableCellCatalog
  */
 @interface NISubtitleCellObject : NITitleCellObject
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle;
@@ -45,8 +49,10 @@
 /**
  * A general-purpose cell for displaying text.
  *
- * When given a NITitleCellObject, will set the textLabel's text to the title.
- * When given a 
+ * When given a NITitleCellObject, will set the textLabel's text with the title.
+ * When given a NISubtitleCellObject, will also set the detailTextLabel's text with the subtitle.
+ *
+ *      @ingroup TableCellCatalog
  */
 @interface NITextCell : UITableViewCell <NICell>
 @end
