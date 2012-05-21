@@ -633,6 +633,7 @@ _model.delegate = (id)[NICellFactory class];
 #import <UIKit/UIKit.h>
 
 #import "NITableViewModel.h"
+#import "NICellCatalog.h"
 #import "NICellFactory.h"
 #import "NIFormCellCatalog.h"
 

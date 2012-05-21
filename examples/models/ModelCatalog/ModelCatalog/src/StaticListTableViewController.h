@@ -16,9 +16,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StaticListTableViewController : UITableViewController <NITableViewModelDelegate> {
-@private
-  NITableViewModel* _model;
-}
-
+@interface StaticListTableViewController : UITableViewController
 @end

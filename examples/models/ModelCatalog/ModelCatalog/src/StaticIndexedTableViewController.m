@@ -16,11 +16,19 @@
 
 #import "StaticIndexedTableViewController.h"
 
+@interface StaticIndexedTableViewController()
+@property (nonatomic, readwrite, retain) NITableViewModel* model;
+@property (nonatomic, readwrite, retain) UISearchDisplayController* searchController;
+@end
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation StaticIndexedTableViewController
+
+@synthesize model = _model;
+@synthesize searchController = _searchController;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,58 +42,58 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+- (id)initWithStyle:(UITableViewStyle)style {
+  if ((self = [super initWithStyle:UITableViewStylePlain])) {
     self.title = NSLocalizedString(@"Indexed Model", @"Controller Title: Indexed Model");
     
     NSArray* tableContents =
     [NSArray arrayWithObjects:
      @"A",
-     [NSDictionary dictionaryWithObject:@"Jon Abrams" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Crystal Arbor" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Mike Axiom" forKey:@"title"],
+     [NITitleCellObject cellWithTitle:@"Jon Abrams"],
+     [NITitleCellObject cellWithTitle:@"Crystal Arbor"],
+     [NITitleCellObject cellWithTitle:@"Mike Axiom"],
      
      @"B",
-     [NSDictionary dictionaryWithObject:@"Joey Bannister" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Ray Bowl" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Jane Byte" forKey:@"title"],
+     [NITitleCellObject cellWithTitle:@"Joey Bannister"],
+     [NITitleCellObject cellWithTitle:@"Ray Bowl"],
+     [NITitleCellObject cellWithTitle:@"Jane Byte"],
      
      @"C",
-     [NSDictionary dictionaryWithObject:@"JJ Cranilly" forKey:@"title"],
+     [NITitleCellObject cellWithTitle:@"JJ Cranilly"],
      
      @"K",
-     [NSDictionary dictionaryWithObject:@"Jake Klark" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Viktor Krum" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Abraham Kyle" forKey:@"title"],
+     [NITitleCellObject cellWithTitle:@"Jake Klark"],
+     [NITitleCellObject cellWithTitle:@"Viktor Krum"],
+     [NITitleCellObject cellWithTitle:@"Abraham Kyle"],
      
      @"L",
-     [NSDictionary dictionaryWithObject:@"Mr Larry" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Mo Lundlum" forKey:@"title"],
+     [NITitleCellObject cellWithTitle:@"Mr Larry"],
+     [NITitleCellObject cellWithTitle:@"Mo Lundlum"],
      
      @"N",
-     [NSDictionary dictionaryWithObject:@"Carl Nolly" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Jeremy Nym" forKey:@"title"],
-
+     [NITitleCellObject cellWithTitle:@"Carl Nolly"],
+     [NITitleCellObject cellWithTitle:@"Jeremy Nym"],
+     
      @"O",
-     [NSDictionary dictionaryWithObject:@"Number 1 Otter" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Number 2 Otter" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Number 3 Otter" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Number 4 Otter" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Number 5 Otter" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Number 6 Otter" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Number 7 Otter" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Number 8 Otter" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Number 9 Otter" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Number 10 Otter" forKey:@"title"],
+     [NITitleCellObject cellWithTitle:@"Number 1 Otter"],
+     [NITitleCellObject cellWithTitle:@"Number 2 Otter"],
+     [NITitleCellObject cellWithTitle:@"Number 3 Otter"],
+     [NITitleCellObject cellWithTitle:@"Number 4 Otter"],
+     [NITitleCellObject cellWithTitle:@"Number 5 Otter"],
+     [NITitleCellObject cellWithTitle:@"Number 6 Otter"],
+     [NITitleCellObject cellWithTitle:@"Number 7 Otter"],
+     [NITitleCellObject cellWithTitle:@"Number 8 Otter"],
+     [NITitleCellObject cellWithTitle:@"Number 9 Otter"],
+     [NITitleCellObject cellWithTitle:@"Number 10 Otter"],
      
      @"X",
-     [NSDictionary dictionaryWithObject:@"Charles Xavier" forKey:@"title"],
+     [NITitleCellObject cellWithTitle:@"Charles Xavier"],
 
      nil];
     
-    // This controller creates the table view cells.
+    // We use NICellFactory to create the cell views.
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
-                                                     delegate:self];
+                                                     delegate:(id)[NICellFactory class]];
     [_model setSectionIndexType:NITableViewModelSectionIndexAlphabetical showsSearch:YES showsSummary:NO];
   }
   return self;
@@ -115,24 +123,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel
-                   cellForTableView: (UITableView *)tableView
-                        atIndexPath: (NSIndexPath *)indexPath
-                         withObject: (id)object {
-  // A pretty standard implementation of creating table view cells follows.
-  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
-
-  if (nil == cell) {
-    cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-                                   reuseIdentifier: @"row"]
-            autorelease];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  }
-
-  cell.textLabel.text = [object objectForKey:@"title"];
-
-  return cell;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+  return NIIsSupportedOrientation(toInterfaceOrientation);
 }
 
 

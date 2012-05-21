@@ -16,9 +16,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StaticSectionedTableViewController : UITableViewController <NITableViewModelDelegate> {
-@private
-  NITableViewModel* _model;
-}
-
+@interface StaticSectionedTableViewController : UITableViewController
 @end
