@@ -25,6 +25,8 @@
  * Due to the general-purpose nature of this object, it can be used with UITableViews or any other
  * view that has sets of objects being displayed. There are helper methods specifically for
  * UITableViews to reduce code duplication.
+ *
+ *      @ingroup TableViewForms
  */
 @interface NIRadioGroup : NSObject
 
