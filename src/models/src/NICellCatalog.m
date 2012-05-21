@@ -26,14 +26,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_title release];
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCellClass:(Class)cellClass userInfo:(id)userInfo {
   return [super initWithCellClass:cellClass userInfo:userInfo];
 }
@@ -50,7 +42,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)cellWithTitle:(NSString *)title {
-  return [[[self alloc] initWithTitle:title] autorelease];
+  return [[self alloc] initWithTitle:title];
 }
 
 @end
@@ -65,14 +57,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_subtitle release];
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
   if ((self = [super initWithTitle:title])) {
     _subtitle = [subtitle copy];
@@ -83,7 +67,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)cellWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
-  return [[[self alloc] initWithTitle:title subtitle:subtitle] autorelease];
+  return [[self alloc] initWithTitle:title subtitle:subtitle];
 }
 
 

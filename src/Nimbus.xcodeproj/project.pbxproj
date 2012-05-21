@@ -2138,7 +2138,6 @@
 				667A8A0A148CA164000779BD /* NimbusOperations.h in Headers */,
 				667A8A0D148CA16F000779BD /* NINetworkJSONRequest.h in Headers */,
 				667A8A11148CA178000779BD /* NINetworkJSONRequest.h in Headers */,
-				664D443214993010008B4C42 /* JSONKit.h in Headers */,
 				666F73AD14BBFF2A00D1A32F /* NimbusOperations+Namespace.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

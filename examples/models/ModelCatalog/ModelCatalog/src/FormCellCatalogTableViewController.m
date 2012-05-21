@@ -112,8 +112,8 @@ typedef enum {
 
   // When including text editing cells in table views you should provide a means for the user to
   // stop editing the control. To do this we add a gesture recognizer to the table view.
-  UITapGestureRecognizer* tap = [[[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                         action:@selector(didTapTableView)] autorelease];
+  UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                        action:@selector(didTapTableView)];
   // We still want the table view to be able to process touch events when we tap.
   tap.cancelsTouchesInView = NO;
   [self.tableView addGestureRecognizer:tap];
