@@ -32,6 +32,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIRadioGroup
 
+@synthesize delegate = _delegate;
 @synthesize objectMap = _objectMap;
 @synthesize objectSet = _objectSet;
 @synthesize hasSelection = _hasSelection;
@@ -244,6 +245,8 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
         [tableView selectRowAtIndexPath:indexPath
                                animated:NO
                          scrollPosition:UITableViewScrollPositionNone];
+
+        [self.delegate radioGroup:self didSelectIdentifier:newSelection];
       }
 
       // Fade the selection out.

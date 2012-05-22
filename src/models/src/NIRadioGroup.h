@@ -15,6 +15,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@protocol NIRadioGroupDelegate;
 
 /**
  * A general-purpose radio cell group.
@@ -29,6 +32,8 @@
  *      @ingroup TableViewForms
  */
 @interface NIRadioGroup : NSObject <UITableViewDelegate>
+
+@property (nonatomic, readwrite, assign) id<NIRadioGroupDelegate> delegate;
 
 #pragma mark Mapping Objects
 
@@ -51,6 +56,11 @@
 @property (nonatomic, readwrite, assign) UITableViewCellSelectionStyle tableViewCellSelectionStyle;
 - (id<UITableViewDelegate>)forwardingTo:(id<UITableViewDelegate>)forwardDelegate;
 
+@end
+
+@protocol NIRadioGroupDelegate
+@required
+- (void)radioGroup:(NIRadioGroup *)radioGroup didSelectIdentifier:(NSInteger)identifier;
 @end
 
 /** @name Mapping Objects */

@@ -23,7 +23,7 @@ typedef enum {
   RadioOption3,
 } RadioOptions;
 
-@interface FormCellCatalogTableViewController() <UITextFieldDelegate>
+@interface FormCellCatalogTableViewController() <UITextFieldDelegate, NIRadioGroupDelegate>
 @property (nonatomic, readwrite, retain) NITableViewModel* model;
 
 // A radio group object allows us to easily maintain radio group-style interactions in the table
@@ -66,8 +66,14 @@ typedef enum {
                                                                     subtitle:@"Second option"];
     NISubtitleCellObject* radioObject3 = [NISubtitleCellObject cellWithTitle:@"Radio 3"
                                                                     subtitle:@"Third option"];
-    NSMutableArray* tableContents =
-    [NSMutableArray arrayWithObjects:
+    NIButtonFormElement* button =
+    [NIButtonFormElement buttonElementWithID:0
+                                   labelText:@"Button with alert"
+                                tappedTarget:self
+                              tappedSelector:@selector(showAlert:)];
+
+    NSArray* tableContents =
+    [NSArray arrayWithObjects:
      @"Radio Cells",
      radioObject1, radioObject2, radioObject3,
 
@@ -83,16 +89,11 @@ typedef enum {
      [NISwitchFormElement switchElementWithID:0 labelText:@"Switch with a really long label that will be cut off" value:YES],
 
      @"NIButtonFormElement",
+     button,
      nil];
-    
-    NIButtonFormElement* button =
-    [NIButtonFormElement buttonElementWithID:0
-                                   labelText:@"Button with alert"
-                                tappedTarget:self
-                              tappedSelector:@selector(showAlert:)];
-    [tableContents addObject:button];
 
     _radioGroup = [[NIRadioGroup alloc] init];
+    _radioGroup.delegate = self;
     [_radioGroup mapObject:radioObject1 toIdentifier:RadioOption1];
     [_radioGroup mapObject:radioObject2 toIdentifier:RadioOption2];
     [_radioGroup mapObject:radioObject3 toIdentifier:RadioOption3];
@@ -189,6 +190,18 @@ typedef enum {
       textInputCell.textField.textColor = [UIColor blackColor];
     }
   }
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NIRadioGroupDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)radioGroup:(NIRadioGroup *)radioGroup didSelectIdentifier:(NSInteger)identifier {
+  NSLog(@"New selection: %d", identifier);
 }
 
 
