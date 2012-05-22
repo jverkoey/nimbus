@@ -44,6 +44,7 @@
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle;
 + (id)cellWithTitle:(NSString *)title subtitle:(NSString *)subtitle;
 @property (nonatomic, readwrite, copy) NSString* subtitle;
+@property (nonatomic, readwrite, assign) UITableViewCellStyle cellStyle;
 @end
 
 /**
@@ -94,4 +95,12 @@
  * The text to be displayed in the subtitle portion of the cell.
  *
  *      @fn NISubtitleCellObject::subtitle
+ */
+
+/**
+ * The type of UITableViewCell to instantiate.
+ *
+ * By default this is UITableViewCellStyleSubtitle.
+ *
+ *      @fn NISubtitleCellObject::cellStyle
  */
