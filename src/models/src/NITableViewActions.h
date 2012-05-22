@@ -21,7 +21,10 @@ typedef void (^NITableViewActionBlock)(id object, UIViewController* controller);
 
 NITableViewActionBlock NIPushControllerAction(Class controllerClass);
 
-@interface NITableViewActions : NSObject
+@interface NITableViewActions : NSObject <UITableViewDelegate>
+
+// Designated initializer.
+- (id)initWithController:(UIViewController *)controller;
 
 #pragma mark Mapping Objects 
 
@@ -35,7 +38,6 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
 
 #pragma mark UITableView Helpers
 
-- (void)willDisplayCell:(UITableViewCell *)cell forObject:(id)object;
-- (void)controller:(UIViewController *)controller didSelectObject:(id)object;
+- (id<UITableViewDelegate>)forwardingTo:(id<UITableViewDelegate>)forwardDelegate;
 
 @end

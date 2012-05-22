@@ -52,18 +52,19 @@
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     self.title = NSLocalizedString(@"Model Catalog", @"Controller Title: Model Catalog");
 
-    NSMutableArray* tableContents = [NSMutableArray array];
-    [tableContents addObject:@"Table View Models"];
     NITitleCellObject* list = [NITitleCellObject cellWithTitle:@"List"];
     NITitleCellObject* sectioned = [NITitleCellObject cellWithTitle:@"Sectioned"];
     NITitleCellObject* indexed = [NITitleCellObject cellWithTitle:@"Indexed"];
     NITitleCellObject* forms = [NITitleCellObject cellWithTitle:@"Form Cells"];
+
+    NSMutableArray* tableContents = [NSMutableArray array];
+    [tableContents addObject:@"Table View Models"];
     [tableContents addObjectsFromArray:[NSArray arrayWithObjects:
                                         list, sectioned, indexed, nil]];
     [tableContents addObject:@"Table Cell Factory"];
     [tableContents addObject:forms];
 
-    _actions = [[NITableViewActions alloc] init];
+    _actions = [[NITableViewActions alloc] initWithController:self];
     [_actions mapObject:list
        toNavigateAction:NIPushControllerAction([StaticListTableViewController class])];
     [_actions mapObject:sectioned
@@ -73,7 +74,6 @@
     [_actions mapObject:forms
        toNavigateAction:NIPushControllerAction([FormCellCatalogTableViewController class])];
 
-    // This controller creates the table view cells.
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
                                                      delegate:(id)[NICellFactory class]];
   }
@@ -91,20 +91,7 @@
   // view is unloaded (more importantly: you shouldn't, due to the reason just outlined
   // regarding loadView).
   self.tableView.dataSource = _model;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-  id object = [self.model objectAtIndexPath:indexPath];
-  [self.actions willDisplayCell:cell forObject:object];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  id object = [self.model objectAtIndexPath:indexPath];
-  [self.actions controller:self didSelectObject:object];
+  self.tableView.delegate = [self.actions forwardingTo:self.tableView.delegate];
 }
 
 

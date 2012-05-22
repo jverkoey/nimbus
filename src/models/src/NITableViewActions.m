@@ -23,6 +23,8 @@
 @end
 
 @interface NITableViewActions()
+@property (nonatomic, readwrite, assign) UIViewController* controller;
+@property (nonatomic, readwrite, assign) id<UITableViewDelegate> forwardDelegate;
 @property (nonatomic, readonly, retain) NSMutableDictionary* objectMap;
 @property (nonatomic, readonly, retain) NSMutableSet* objectSet;
 @end
@@ -32,6 +34,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NITableViewActions
 
+@synthesize controller = _controller;
+@synthesize forwardDelegate = _forwardDelegate;
 @synthesize objectMap = _objectMap;
 @synthesize objectSet = _objectSet;
 
@@ -46,8 +50,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
+- (id)initWithController:(UIViewController *)controller {
   if ((self = [super init])) {
+    _controller = controller;
     _objectMap = [[NSMutableDictionary alloc] init];
     _objectSet = [[NSMutableSet alloc] init];
   }
@@ -56,9 +61,14 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)init {
+  return [self initWithController:nil];
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Private Methods
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private Methods
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,8 +91,40 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Forward Invocations
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)forwardInvocation:(NSInvocation *)invocation {
+  if ([self.forwardDelegate respondsToSelector:invocation.selector]) {
+    [invocation invokeWithTarget:self.forwardDelegate];
+
+  } else {
+    [super forwardInvocation:invocation];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)respondsToSelector:(SEL)selector {
+  BOOL doesRespond = [super respondsToSelector:selector];
+  if (!doesRespond) {
+    doesRespond = [self.forwardDelegate respondsToSelector:selector];
+  }
+  return doesRespond;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id<UITableViewDelegate>)forwardingTo:(id<UITableViewDelegate>)forwardDelegate {
+  self.forwardDelegate = forwardDelegate;
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Public Methods
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -113,33 +155,56 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)willDisplayCell:(UITableViewCell *)cell forObject:(id)object {
-  if ([self isObjectActionable:object]) {
-    NITableViewAction* action = [self actionForObject:object];
-    UITableViewCellAccessoryType accessoryType = UITableViewCellAccessoryNone;
-    if (nil != action.detailAction) {
-      accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-    } else if (nil != action.navigateAction) {
-      accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UITableViewDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+  NIDASSERT([tableView.dataSource isKindOfClass:[NITableViewModel class]]);
+  if ([tableView.dataSource isKindOfClass:[NITableViewModel class]]) {
+    NITableViewModel* model = (NITableViewModel *)tableView.dataSource;
+    id object = [model objectAtIndexPath:indexPath];
+    if ([self isObjectActionable:object]) {
+      NITableViewAction* action = [self actionForObject:object];
+      UITableViewCellAccessoryType accessoryType = UITableViewCellAccessoryNone;
+      if (nil != action.detailAction) {
+        accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+      } else if (nil != action.navigateAction) {
+        accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+      }
+      cell.accessoryType = accessoryType;
+      if (action.navigateAction || action.tapAction) {
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+      }
     }
-    cell.accessoryType = accessoryType;
-    if (action.navigateAction || action.tapAction) {
-      cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-    }
+  }
+
+  if ([self.forwardDelegate respondsToSelector:_cmd]) {
+    [self.forwardDelegate tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
   }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)controller:(UIViewController *)controller didSelectObject:(id)object {
-  if ([self isObjectActionable:object]) {
-    NITableViewAction* action = [self actionForObject:object];
-    if (action.tapAction) {
-      action.tapAction(object, controller);
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  NIDASSERT([tableView.dataSource isKindOfClass:[NITableViewModel class]]);
+  if ([tableView.dataSource isKindOfClass:[NITableViewModel class]]) {
+    NITableViewModel* model = (NITableViewModel *)tableView.dataSource;
+    id object = [model objectAtIndexPath:indexPath];
+    if ([self isObjectActionable:object]) {
+      NITableViewAction* action = [self actionForObject:object];
+      if (action.tapAction) {
+        action.tapAction(object, self.controller);
+      }
+      if (action.navigateAction) {
+        action.navigateAction(object, self.controller);
+      }
     }
-    if (action.navigateAction) {
-      action.navigateAction(object, controller);
-    }
+  }
+
+  if ([self.forwardDelegate respondsToSelector:_cmd]) {
+    [self.forwardDelegate tableView:tableView didSelectRowAtIndexPath:indexPath];
   }
 }
 
