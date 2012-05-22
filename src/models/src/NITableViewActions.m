@@ -16,6 +16,9 @@
 
 #import "NITableViewActions.h"
 
+#import "NITableViewModel.h"
+#import "NimbusCore.h"
+
 @interface NITableViewAction : NSObject
 @property (nonatomic, readwrite, copy) NITableViewActionBlock tapAction;
 @property (nonatomic, readwrite, copy) NITableViewActionBlock detailAction;

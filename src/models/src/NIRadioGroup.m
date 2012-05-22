@@ -16,6 +16,7 @@
 
 #import "NIRadioGroup.h"
 
+#import "NITableViewModel.h"
 #import "NimbusCore.h"
 
 static const NSInteger kInvalidSelection = NSIntegerMin;
