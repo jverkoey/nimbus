@@ -20,7 +20,7 @@
 @protocol NIRadioGroupDelegate;
 
 /**
- * A general-purpose radio cell group.
+ * A general-purpose radio group.
  *
  * This group object manages radio-style selection of objects. Only one object may be selected at
  * a time.
@@ -139,7 +139,7 @@
 /** @name Forwarding */
 
 /**
- * The cell selection style that will be applied to the radio group cell when it is displayed using
+ * The cell selection style that will be applied to the cell when it is displayed using
  * delegate forwarding.
  *
  * By default this is UITableViewCellSelectionStyleBlue.

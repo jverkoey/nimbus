@@ -100,11 +100,11 @@ typedef enum {
     _radioGroup.selectedIdentifier = RadioOption1;
 
     _actions = [[NITableViewActions alloc] initWithController:self];
-    [_actions mapObject:button toTapAction:^(id object, UIViewController *controller) {
+    [_actions attachTapAction:^(id object, UIViewController *controller) {
       NIButtonFormElement* tappedButton = object;
       [tappedButton.tappedTarget performSelector:tappedButton.tappedSelector];
       return YES;
-    }];
+    } toObject:button];
 
     // We let the Nimbus cell factory create the cells.
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents

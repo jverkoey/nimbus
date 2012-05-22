@@ -130,21 +130,21 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)mapObject:(id)object toTapAction:(NITableViewActionBlock)action {
+- (void)attachTapAction:(NITableViewActionBlock)action toObject:(id)object {
   [self.objectSet addObject:object];
   [self actionForObject:object].tapAction = action;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)mapObject:(id)object toDetailAction:(NITableViewActionBlock)action {
+- (void)attachDetailAction:(NITableViewActionBlock)action toObject:(id)object {
   [self.objectSet addObject:object];
   [self actionForObject:object].detailAction = action;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)mapObject:(id)object toNavigateAction:(NITableViewActionBlock)action {
+- (void)attachNavigationAction:(NITableViewActionBlock)action toObject:(id)object {
   [self.objectSet addObject:object];
   [self actionForObject:object].navigateAction = action;
 }
@@ -167,15 +167,22 @@
   if ([tableView.dataSource isKindOfClass:[NITableViewModel class]]) {
     NITableViewModel* model = (NITableViewModel *)tableView.dataSource;
     id object = [model objectAtIndexPath:indexPath];
+
     if ([self isObjectActionable:object]) {
       NITableViewAction* action = [self actionForObject:object];
       UITableViewCellAccessoryType accessoryType = UITableViewCellAccessoryNone;
+
+      // Detail disclosure indicator takes precedence over regular disclosure indicator.
       if (nil != action.detailAction) {
         accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+
       } else if (nil != action.navigateAction) {
         accessoryType = UITableViewCellAccessoryDisclosureIndicator;
       }
+
       cell.accessoryType = accessoryType;
+
+      // If the cell is tappable, reflect that in the selection style.
       if (action.navigateAction || action.tapAction) {
         cell.selectionStyle = self.tableViewCellSelectionStyle;
       }
@@ -195,13 +202,17 @@
   if ([tableView.dataSource isKindOfClass:[NITableViewModel class]]) {
     NITableViewModel* model = (NITableViewModel *)tableView.dataSource;
     id object = [model objectAtIndexPath:indexPath];
+
     if ([self isObjectActionable:object]) {
       NITableViewAction* action = [self actionForObject:object];
+
       if (action.tapAction) {
+        // Tap actions can deselect the row if they return YES.
         if (action.tapAction(object, self.controller)) {
           [tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
       }
+
       if (action.navigateAction) {
         action.navigateAction(object, self.controller);
       }

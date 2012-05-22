@@ -65,14 +65,14 @@
     [tableContents addObject:forms];
 
     _actions = [[NITableViewActions alloc] initWithController:self];
-    [_actions mapObject:list
-       toNavigateAction:NIPushControllerAction([StaticListTableViewController class])];
-    [_actions mapObject:sectioned
-       toNavigateAction:NIPushControllerAction([StaticSectionedTableViewController class])];
-    [_actions mapObject:indexed
-       toNavigateAction:NIPushControllerAction([StaticIndexedTableViewController class])];
-    [_actions mapObject:forms
-       toNavigateAction:NIPushControllerAction([FormCellCatalogTableViewController class])];
+    [_actions attachNavigationAction:NIPushControllerAction([StaticListTableViewController class])
+                            toObject:list];
+    [_actions attachNavigationAction:NIPushControllerAction([StaticSectionedTableViewController class])
+                            toObject:sectioned];
+    [_actions attachNavigationAction:NIPushControllerAction([StaticIndexedTableViewController class])
+                            toObject:indexed];
+    [_actions attachNavigationAction:NIPushControllerAction([FormCellCatalogTableViewController class])
+                            toObject:forms];
 
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
                                                      delegate:(id)[NICellFactory class]];
