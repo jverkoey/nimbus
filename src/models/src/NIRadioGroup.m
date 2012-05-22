@@ -24,6 +24,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 @property (nonatomic, readonly, retain) NSMutableDictionary* objectMap;
 @property (nonatomic, readonly, retain) NSMutableSet* objectSet;
 @property (nonatomic, readwrite, assign) BOOL hasSelection;
+@property (nonatomic, readwrite, assign) id<UITableViewDelegate> forwardDelegate;
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +36,8 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 @synthesize objectSet = _objectSet;
 @synthesize hasSelection = _hasSelection;
 @synthesize selectedIdentifier = _selectedIdentifier;
+@synthesize tableViewCellSelectionStyle = _tableViewCellSelectionStyle;
+@synthesize forwardDelegate = _forwardDelegate;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,6 +54,8 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
   if ((self = [super init])) {
     _objectMap = [[NSMutableDictionary alloc] init];
     _objectSet = [[NSMutableSet alloc] init];
+
+    _tableViewCellSelectionStyle = UITableViewCellSelectionStyleBlue;
   }
   return self;
 }
@@ -58,8 +63,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Private Methods
+#pragma mark - Private Methods
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,8 +74,40 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Forward Invocations
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)forwardInvocation:(NSInvocation *)invocation {
+  if ([self.forwardDelegate respondsToSelector:invocation.selector]) {
+    [invocation invokeWithTarget:self.forwardDelegate];
+
+  } else {
+    [super forwardInvocation:invocation];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)respondsToSelector:(SEL)selector {
+  BOOL doesRespond = [super respondsToSelector:selector];
+  if (!doesRespond) {
+    doesRespond = [self.forwardDelegate respondsToSelector:selector];
+  }
+  return doesRespond;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id<UITableViewDelegate>)forwardingTo:(id<UITableViewDelegate>)forwardDelegate {
+  self.forwardDelegate = forwardDelegate;
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Public Methods
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -159,46 +195,66 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)willDisplayCell:(UITableViewCell *)cell forObject:(id)object {
-  if ([self isObjectInRadioGroup:object]) {
-    cell.accessoryType = ([self isObjectSelected:object]
-                          ? UITableViewCellAccessoryCheckmark
-                          : UITableViewCellAccessoryNone);
-    return YES;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UITableViewDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+  NIDASSERT([tableView.dataSource isKindOfClass:[NITableViewModel class]]);
+  if ([tableView.dataSource isKindOfClass:[NITableViewModel class]]) {
+    NITableViewModel* model = (NITableViewModel *)tableView.dataSource;
+    id object = [model objectAtIndexPath:indexPath];
+    if ([self isObjectInRadioGroup:object]) {
+      cell.accessoryType = ([self isObjectSelected:object]
+                            ? UITableViewCellAccessoryCheckmark
+                            : UITableViewCellAccessoryNone);
+      cell.selectionStyle = self.tableViewCellSelectionStyle;
+    }
   }
-  return NO;
+
+  // Forward the invocation along.
+  if ([self.forwardDelegate respondsToSelector:_cmd]) {
+    [self.forwardDelegate tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)tableView:(UITableView*)tableView didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
-  BOOL didChange = NO;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  NIDASSERT([tableView.dataSource isKindOfClass:[NITableViewModel class]]);
+  if ([tableView.dataSource isKindOfClass:[NITableViewModel class]]) {
+    NITableViewModel* model = (NITableViewModel *)tableView.dataSource;
+    id object = [model objectAtIndexPath:indexPath];
 
-  if ([self isObjectInRadioGroup:object]) {
-    NSInteger newSelection = [self identifierForObject:object];
+    if ([self isObjectInRadioGroup:object]) {
+      NSInteger newSelection = [self identifierForObject:object];
 
-    if (newSelection != self.selectedIdentifier) {
-      [self setSelectedIdentifier:newSelection];
+      if (newSelection != self.selectedIdentifier) {
+        [self setSelectedIdentifier:newSelection];
 
-      // It's easiest to simply reload the visible table cells. Reloading only the radio group
-      // cells would require iterating through the visible cell objects and determining whether
-      // each was in the radio group. This is more complex behavior that should be relegated to
-      // the controller.
-      [tableView reloadRowsAtIndexPaths:tableView.indexPathsForVisibleRows
-                       withRowAnimation:UITableViewRowAnimationNone];
+        // It's easiest to simply reload the visible table cells. Reloading only the radio group
+        // cells would require iterating through the visible cell objects and determining whether
+        // each was in the radio group. This is more complex behavior that should be relegated to
+        // the controller.
+        [tableView reloadRowsAtIndexPaths:tableView.indexPathsForVisibleRows
+                         withRowAnimation:UITableViewRowAnimationNone];
 
-      // After we reload the table view the selection will be lost, so set the selection again.
-      [tableView selectRowAtIndexPath:indexPath
-                             animated:NO
-                       scrollPosition:UITableViewScrollPositionNone];
-      didChange = YES;
+        // After we reload the table view the selection will be lost, so set the selection again.
+        [tableView selectRowAtIndexPath:indexPath
+                               animated:NO
+                         scrollPosition:UITableViewScrollPositionNone];
+      }
+
+      // Fade the selection out.
+      [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-
-    // Fade the selection out.
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
   }
-
-  return didChange;
+  
+  // Forward the invocation along.
+  if ([self.forwardDelegate respondsToSelector:_cmd]) {
+    [self.forwardDelegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+  }
 }
 
 @end

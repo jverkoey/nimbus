@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-typedef void (^NITableViewActionBlock)(id object, UIViewController* controller);
+typedef BOOL (^NITableViewActionBlock)(id object, UIViewController* controller);
 
 NITableViewActionBlock NIPushControllerAction(Class controllerClass);
 
@@ -36,8 +36,9 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
 
 - (BOOL)isObjectActionable:(id)object;
 
-#pragma mark UITableView Helpers
+#pragma mark Forwarding
 
+@property (nonatomic, readwrite, assign) UITableViewCellSelectionStyle tableViewCellSelectionStyle;
 - (id<UITableViewDelegate>)forwardingTo:(id<UITableViewDelegate>)forwardDelegate;
 
 @end

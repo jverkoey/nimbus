@@ -38,6 +38,7 @@
 @synthesize forwardDelegate = _forwardDelegate;
 @synthesize objectMap = _objectMap;
 @synthesize objectSet = _objectSet;
+@synthesize tableViewCellSelectionStyle = _tableViewCellSelectionStyle;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -55,6 +56,7 @@
     _controller = controller;
     _objectMap = [[NSMutableDictionary alloc] init];
     _objectSet = [[NSMutableSet alloc] init];
+    _tableViewCellSelectionStyle = UITableViewCellSelectionStyleBlue;
   }
   return self;
 }
@@ -175,11 +177,12 @@
       }
       cell.accessoryType = accessoryType;
       if (action.navigateAction || action.tapAction) {
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell.selectionStyle = self.tableViewCellSelectionStyle;
       }
     }
   }
-
+  
+  // Forward the invocation along.
   if ([self.forwardDelegate respondsToSelector:_cmd]) {
     [self.forwardDelegate tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
   }
@@ -195,14 +198,17 @@
     if ([self isObjectActionable:object]) {
       NITableViewAction* action = [self actionForObject:object];
       if (action.tapAction) {
-        action.tapAction(object, self.controller);
+        if (action.tapAction(object, self.controller)) {
+          [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        }
       }
       if (action.navigateAction) {
         action.navigateAction(object, self.controller);
       }
     }
   }
-
+  
+  // Forward the invocation along.
   if ([self.forwardDelegate respondsToSelector:_cmd]) {
     [self.forwardDelegate tableView:tableView didSelectRowAtIndexPath:indexPath];
   }
@@ -236,8 +242,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NITableViewActionBlock NIPushControllerAction(Class controllerClass) {
   return [[^(id object, UIViewController* controller) {
-    id nextController = [[[controllerClass alloc] init] autorelease];
-    [controller.navigationController pushViewController:nextController
-                                               animated:YES];
+    // You must initialize the actions object with initWithController: and pass a valid
+    // controller.
+    NIDASSERT(nil != controller);
+
+    if (nil != controller) {
+      id nextController = [[[controllerClass alloc] init] autorelease];
+      [controller.navigationController pushViewController:nextController
+                                                 animated:YES];
+    }
+
+    return NO;
   } copy] autorelease];
 }

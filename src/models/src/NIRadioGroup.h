@@ -28,7 +28,7 @@
  *
  *      @ingroup TableViewForms
  */
-@interface NIRadioGroup : NSObject
+@interface NIRadioGroup : NSObject <UITableViewDelegate>
 
 #pragma mark Mapping Objects
 
@@ -46,10 +46,10 @@
 - (BOOL)isObjectSelected:(id)object;
 - (NSInteger)identifierForObject:(id)object;
 
-#pragma mark UITableView Helpers
+#pragma mark Forwarding
 
-- (BOOL)willDisplayCell:(UITableViewCell *)cell forObject:(id)object;
-- (BOOL)tableView:(UITableView*)tableView didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
+@property (nonatomic, readwrite, assign) UITableViewCellSelectionStyle tableViewCellSelectionStyle;
+- (id<UITableViewDelegate>)forwardingTo:(id<UITableViewDelegate>)forwardDelegate;
 
 @end
 

@@ -439,7 +439,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)buttonWasTapped:(id)sender {
   NIButtonFormElement* buttonElement = (NIButtonFormElement *)self.element;
-  
+
   if (nil != buttonElement.tappedSelector && nil != buttonElement.tappedTarget
       && [buttonElement.tappedTarget respondsToSelector:buttonElement.tappedSelector]) {
     [buttonElement.tappedTarget performSelector:buttonElement.tappedSelector];
