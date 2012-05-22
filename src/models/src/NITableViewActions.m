@@ -45,15 +45,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_objectMap release];
-  [_objectSet release];
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithController:(UIViewController *)controller {
   if ((self = [super init])) {
     _controller = controller;
@@ -87,7 +78,7 @@
   id key = [self keyForObject:object];
   NITableViewAction* action = [self.objectMap objectForKey:key];
   if (nil == action) {
-    action = [[[NITableViewAction alloc] init] autorelease];
+    action = [[NITableViewAction alloc] init];
     [self.objectMap setObject:action forKey:key];
   }
   return action;
@@ -235,37 +226,25 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NITableViewAction
-
-@synthesize tapAction = _tapAction;
-@synthesize detailAction = _detailAction;
-@synthesize navigateAction = _navigateAction;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_tapAction release];
-  [_detailAction release];
-  [_navigateAction release];
-  
-  [super dealloc];
-}
-
+@synthesize tapAction;
+@synthesize detailAction;
+@synthesize navigateAction;
 @end
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NITableViewActionBlock NIPushControllerAction(Class controllerClass) {
-  return [[^(id object, UIViewController* controller) {
+  return [^(id object, UIViewController* controller) {
     // You must initialize the actions object with initWithController: and pass a valid
     // controller.
     NIDASSERT(nil != controller);
 
     if (nil != controller) {
-      id nextController = [[[controllerClass alloc] init] autorelease];
+      id nextController = [[controllerClass alloc] init];
       [controller.navigationController pushViewController:nextController
                                                  animated:YES];
     }
 
     return NO;
-  } copy] autorelease];
+  } copy];
 }
