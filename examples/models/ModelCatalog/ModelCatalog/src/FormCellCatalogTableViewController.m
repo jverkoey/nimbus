@@ -66,11 +66,7 @@ typedef enum {
                                                                     subtitle:@"Second option"];
     NISubtitleCellObject* radioObject3 = [NISubtitleCellObject cellWithTitle:@"Radio 3"
                                                                     subtitle:@"Third option"];
-    NIButtonFormElement* button =
-    [NIButtonFormElement buttonElementWithID:0
-                                   labelText:@"Button with alert"
-                                tappedTarget:self
-                              tappedSelector:@selector(showAlert:)];
+    NITitleCellObject* button = [NITitleCellObject cellWithTitle:@"Button with alert"];
 
     NSArray* tableContents =
     [NSArray arrayWithObjects:
@@ -101,8 +97,13 @@ typedef enum {
 
     _actions = [[NITableViewActions alloc] initWithController:self];
     [_actions attachTapAction:^(id object, UIViewController *controller) {
-      NIButtonFormElement* tappedButton = object;
-      [tappedButton.tappedTarget performSelector:tappedButton.tappedSelector];
+      UIAlertView* alertView =
+          [[[UIAlertView alloc] initWithTitle:@"This is an alert!"
+                                     message:@"Don't panic."
+                                    delegate:nil
+                           cancelButtonTitle:@"Neat!"
+                           otherButtonTitles:nil] autorelease];
+      [alertView show];
       return YES;
     } toObject:button];
 
@@ -113,17 +114,6 @@ typedef enum {
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)showAlert:(id)button {
-  UIAlertView* alertView =
-      [[[UIAlertView alloc] initWithTitle:@"This is an alert!"
-                                 message:@"Don't panic."
-                                delegate:nil
-                       cancelButtonTitle:@"Neat!"
-                       otherButtonTitles:nil] autorelease];
-  [alertView show];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
