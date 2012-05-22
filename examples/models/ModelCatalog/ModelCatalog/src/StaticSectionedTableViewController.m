@@ -29,8 +29,8 @@
 @synthesize model = _model;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+- (id)initWithStyle:(UITableViewStyle)style {
+  if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = NSLocalizedString(@"Sectioned Model", @"Controller Title: Sectioned Model");
 
     NSArray* tableContents =

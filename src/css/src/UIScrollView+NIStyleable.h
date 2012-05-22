@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,5 +16,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CatalogViewController : UITableViewController
+@class NICSSRuleset;
+
+@interface UIScrollView (NIStyleable)
+
+/**
+ * Applies the given rule set to this scroll view.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applyScrollViewStyleWithRuleSet:(NICSSRuleset *)ruleSet;
+
 @end

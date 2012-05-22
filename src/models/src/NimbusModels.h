@@ -346,10 +346,14 @@ _model.delegate = (id)[NICellFactory class];
  *
  */
 
-#pragma mark * Table Forms
+#pragma mark * Model Tools
 
 /**
- * @defgroup TableViewForms Table Forms
+ * @defgroup ModelTools Model Tools
+ *
+ * Model tools are objects that abstract common functionality used in view controllers.
+ *
+ * <h1>Radio Groups</h1>
  *
  * One commonly-required feature for table views is radio button functionality. This is useful when
  * you need the user to make a choice from a set of options. Implementing this is trivial with the
@@ -384,40 +388,76 @@ typedef enum {
 
   self.model = [[NITableViewModel alloc] initWithSectionedArray:contents
                                                        delegate:(id)[NICellFactory class]];
+  self.tableView.dataSource = self.model;
+
+  self.radioGroup = [[[NIRadioGroup alloc] init] autorelease];
+
+  // Selection notifications are sent through the delegate.
+  self.radioGroup.delegate = self;
 
   // Map the objects to their corresponding identifiers.
-  self.radioGroup = [[[NIRadioGroup alloc] init] autorelease];
   [self.radioGroup mapObject:manual toIdentifier:AppSortManual];
   [self.radioGroup mapObject:byTime toIdentifier:AppSortByTime];
 
   // Set the initial selection.
   self.radioGroup.selectedIdentifier = AppSortManual;
 
-  self.tableView.dataSource = self.model;
+  // Insert the radio group into the delegate call chain.
+  self.tableView.delegate = [self.radioGroup forwardingTo:self.tableView.delegate];
+
   [self.tableView reloadData];
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-  id object = [self.model objectAtIndexPath:indexPath];
-
-  // This helper method checks whether the object is in the radio group and, if it is, updates
-  // the selection state accordingly.
-  if ([self.radioGroup willDisplayCell:cell forObject:object]) {
-    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-  }
+- (void)radioGroup:(NIRadioGroup *)radioGroup didSelectIdentifier:(NSInteger)identifier {
+  NSLog(@"Radio group selection changed: %d", identifier);
 }
+@endcode
+ *
+ * <h1>Table View Actions</h1>
+ *
+ * Separating actions from presentation is an important aspect in simplifying table view cell
+ * design. It can be tempting to add delegate and selector properties to cells, but this ends up
+ * forcing a lot of logic to be written on the cell level so that the cells accurately represent
+ * their actionable state.
+ *
+ * Nimbus provides a solution with NITableViewActions. NITableViewActions manages the cell <=>
+ * action mapping by inserting itself in the delegate call chain invocation forwarding. When cells
+ * are displayed, their accessoryType and selectionStyle are updated to reflect the actions that
+ * have been attached to them. When cells are tapped, the correct set of actions are performed.
+ *
+ * Below is an example of implementing the "General" page of the Settings app.
+ *
+@code
+// You will create and retain an actions object for the lifecycle of your controller.
+@property (nonatomic, readwrite, retain) NITableViewActions* actions;
 
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-  id object = [self.model objectAtIndexPath:indexPath];
+- (void)refreshModel {
+  id about = [NITitleCellObject cellWithTitle:@"About"];
+  id softwareUpdate = [NITitleCellObject cellWithTitle:@"Software Update"];
 
-  // This helper method checks whether the selected object is within the radio group and, if it is,
-  // updates the selection. If the selection changes then the helper method returns YES so that we
-  // can react accordingly.
-  if ([self.radioGroup tableView:tableView didSelectObject:object atIndexPath:indexPath]) {
-    NSLog(@"Radio group selection changed: %d", self.radioGroup.selectedIdentifier);
-  }
+  NSArray* contents =
+  [NSArray arrayWithObjects:
+   @"",
+   about, softwareUpdate,
+   nil];
+
+  self.model = [[NITableViewModel alloc] initWithSectionedArray:contents
+                                                       delegate:(id)[NICellFactory class]];
+  self.tableView.dataSource = self.model;
+
+  // The controller we provide here will be passed to the action blocks.
+  self.actions = [[[NITableViewActions alloc] initWithController:self] autorelease];
+ 
+  [self.actions attachNavigationAction:NIPushControllerAction([AboutViewController class])
+                              toObject:about];
+  [self.actions attachNavigationAction:NIPushControllerAction([SoftwareUpdateViewController class])
+                              toObject:softwareUpdate];
+
+  // Insert the actions into the delegate call chain.
+  self.tableView.delegate = [self.actions forwardingTo:self.tableView.delegate];
+
+  [self.tableView reloadData];
 }
-
 @endcode
  */
 
@@ -429,5 +469,6 @@ typedef enum {
 #import "NICellFactory.h"
 #import "NIFormCellCatalog.h"
 #import "NIRadioGroup.h"
+#import "NITableViewActions.h"
 
 /**@}*/

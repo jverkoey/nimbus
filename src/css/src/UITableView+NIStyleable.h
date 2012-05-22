@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,17 +14,18 @@
 // limitations under the License.
 //
 
-#import "NICellFactory.h"
+#import <UIKit/UIKit.h>
 
-@interface CatalogEntry : NSObject <NICellObject> {
-@private
-  NSString* _title;
-  Class _controllerClass;
-}
+@class NICSSRuleset;
 
-+ (id)entryWithTitle:(NSString *)title controllerClass:(Class)controllerClass;
+@interface UITableView (NIStyleable)
 
-@property (nonatomic, readwrite, copy)    NSString* title;
-@property (nonatomic, readwrite, assign)  Class controllerClass;
+/**
+ * Applies the given rule set to this table view.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applyTableViewStyleWithRuleSet:(NICSSRuleset *)ruleSet;
 
 @end
