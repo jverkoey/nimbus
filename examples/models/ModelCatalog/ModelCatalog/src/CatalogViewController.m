@@ -21,7 +21,10 @@
 #import "StaticIndexedTableViewController.h"
 #import "FormCellCatalogTableViewController.h"
 
-#import "CatalogEntry.h"
+@interface CatalogViewController()
+@property (nonatomic, readwrite, retain) NITableViewModel* model;
+@property (nonatomic, readwrite, retain) NITableViewActions* actions;
+@end
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,12 +32,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation CatalogViewController
 
+@synthesize model = _model;
+@synthesize actions = _actions;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   // The model is a retained object in this controller, so we must release it when the controller
   // is deallocated.
-  [_model release]; _model = nil;
+  [_model release];
+  [_actions release];
   
   [super dealloc];
 }
@@ -45,16 +52,26 @@
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     self.title = NSLocalizedString(@"Model Catalog", @"Controller Title: Model Catalog");
 
-    NSArray* tableContents =
-    [NSArray arrayWithObjects:
-     @"Table View Models",
-     [CatalogEntry entryWithTitle:@"List" controllerClass:[StaticListTableViewController class]],
-     [CatalogEntry entryWithTitle:@"Sectioned" controllerClass:[StaticSectionedTableViewController class]],
-     [CatalogEntry entryWithTitle:@"Indexed" controllerClass:[StaticIndexedTableViewController class]],
-     
-     @"Table Cell Factory",
-     [CatalogEntry entryWithTitle:@"Form Cells" controllerClass:[FormCellCatalogTableViewController class]],
-     nil];
+    NSMutableArray* tableContents = [NSMutableArray array];
+    [tableContents addObject:@"Table View Models"];
+    NITitleCellObject* list = [NITitleCellObject cellWithTitle:@"List"];
+    NITitleCellObject* sectioned = [NITitleCellObject cellWithTitle:@"Sectioned"];
+    NITitleCellObject* indexed = [NITitleCellObject cellWithTitle:@"Indexed"];
+    NITitleCellObject* forms = [NITitleCellObject cellWithTitle:@"Form Cells"];
+    [tableContents addObjectsFromArray:[NSArray arrayWithObjects:
+                                        list, sectioned, indexed, nil]];
+    [tableContents addObject:@"Table Cell Factory"];
+    [tableContents addObject:forms];
+
+    _actions = [[NITableViewActions alloc] init];
+    [_actions mapObject:list
+       toNavigateAction:NIPushControllerAction([StaticListTableViewController class])];
+    [_actions mapObject:sectioned
+       toNavigateAction:NIPushControllerAction([StaticSectionedTableViewController class])];
+    [_actions mapObject:indexed
+       toNavigateAction:NIPushControllerAction([StaticIndexedTableViewController class])];
+    [_actions mapObject:forms
+       toNavigateAction:NIPushControllerAction([FormCellCatalogTableViewController class])];
 
     // This controller creates the table view cells.
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
@@ -78,11 +95,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+  id object = [self.model objectAtIndexPath:indexPath];
+  [self.actions willDisplayCell:cell forObject:object];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  CatalogEntry* entry = [_model objectAtIndexPath:indexPath];
-  Class cls = [entry controllerClass];
-  UIViewController* controller = [[[cls alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-  [self.navigationController pushViewController:controller animated:YES];
+  id object = [self.model objectAtIndexPath:indexPath];
+  [self.actions controller:self didSelectObject:object];
 }
 
 

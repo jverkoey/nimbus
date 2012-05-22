@@ -53,8 +53,8 @@ typedef enum {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+- (id)initWithStyle:(UITableViewStyle)style {
+  if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = NSLocalizedString(@"Form Cells", @"Controller Title: Form Cells");
 
     NISubtitleCellObject* radioObject1 = [NISubtitleCellObject cellWithTitle:@"Radio 1"

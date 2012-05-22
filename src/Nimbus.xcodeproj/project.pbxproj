@@ -50,6 +50,8 @@
 		663B527114450CC100CC26DF /* NIPagingScrollViewPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 663B527014450CC100CC26DF /* NIPagingScrollViewPage.h */; };
 		663B527314450CEF00CC26DF /* NIPagingScrollViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 663B527214450CEF00CC26DF /* NIPagingScrollViewDelegate.h */; };
 		663B527514450D1C00CC26DF /* NIPagingScrollViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 663B527414450D1C00CC26DF /* NIPagingScrollViewDataSource.h */; };
+		6641617B156B516E0018AC1C /* NITableViewActions.h in Headers */ = {isa = PBXBuildFile; fileRef = 66416179156B516E0018AC1C /* NITableViewActions.h */; };
+		6641617C156B516E0018AC1C /* NITableViewActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6641617A156B516E0018AC1C /* NITableViewActions.m */; };
 		664D443214993010008B4C42 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 664D443014993010008B4C42 /* JSONKit.h */; };
 		664D443314993010008B4C42 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 664D443114993010008B4C42 /* JSONKit.m */; };
 		664EFB6215598CDF009826AB /* UIActivityIndicatorView+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 664EFB6015598CDF009826AB /* UIActivityIndicatorView+NIStyleable.h */; };
@@ -676,6 +678,8 @@
 		663B527414450D1C00CC26DF /* NIPagingScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPagingScrollViewDataSource.h; sourceTree = "<group>"; };
 		663B52761445129400CC26DF /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = photos/deps; sourceTree = SOURCE_ROOT; };
 		663B52E7144675BF00CC26DF /* NimbusOverviewer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusOverviewer.bundle; path = ../resources/NimbusOverviewer.bundle; sourceTree = "<group>"; };
+		66416179156B516E0018AC1C /* NITableViewActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITableViewActions.h; sourceTree = "<group>"; };
+		6641617A156B516E0018AC1C /* NITableViewActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewActions.m; sourceTree = "<group>"; };
 		664D443014993010008B4C42 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = ../thirdparty/JSONKit/JSONKit.h; sourceTree = "<group>"; };
 		664D443114993010008B4C42 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = ../thirdparty/JSONKit/JSONKit.m; sourceTree = "<group>"; };
 		664EFAD8155989EB009826AB /* BasicAttributedLabel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BasicAttributedLabel.xcodeproj; path = ../examples/attributedlabel/BasicAttributedLabel/BasicAttributedLabel.xcodeproj; sourceTree = "<group>"; };
@@ -1999,6 +2003,8 @@
 				667A749C13FE20BD009D277D /* NICellFactory.m */,
 				66688686156ADDB0006E874F /* NIRadioGroup.h */,
 				66688687156ADDB1006E874F /* NIRadioGroup.m */,
+				66416179156B516E0018AC1C /* NITableViewActions.h */,
+				6641617A156B516E0018AC1C /* NITableViewActions.m */,
 			);
 			name = src;
 			path = models/src;
@@ -2108,6 +2114,7 @@
 				666F73A914BBFEE300D1A32F /* NimbusModels+Namespace.h in Headers */,
 				6668867F156AD148006E874F /* NICellCatalog.h in Headers */,
 				66688688156ADDB3006E874F /* NIRadioGroup.h in Headers */,
+				6641617B156B516E0018AC1C /* NITableViewActions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3410,6 +3417,7 @@
 				667A74A213FE20BD009D277D /* NICellFactory.m in Sources */,
 				66688680156AD148006E874F /* NICellCatalog.m in Sources */,
 				66688689156ADDB3006E874F /* NIRadioGroup.m in Sources */,
+				6641617C156B516E0018AC1C /* NITableViewActions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
