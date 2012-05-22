@@ -172,6 +172,8 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)tableView:(UITableView*)tableView didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+  BOOL didChange = NO;
+
   if ([self isObjectInRadioGroup:object]) {
     NSInteger newSelection = [self identifierForObject:object];
 
@@ -189,12 +191,14 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
       [tableView selectRowAtIndexPath:indexPath
                              animated:NO
                        scrollPosition:UITableViewScrollPositionNone];
-      // And then fade the selection out.
-      [tableView deselectRowAtIndexPath:indexPath animated:YES];
-      return YES;
+      didChange = YES;
     }
+
+    // Fade the selection out.
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
   }
-  return NO;
+
+  return didChange;
 }
 
 @end
