@@ -28,12 +28,6 @@
 #endif
 
 // Classes
-#ifndef NIButtonFormElement
-#define NIButtonFormElement __NIMBUS_NS_SYMBOL(NIButtonFormElement)
-#endif
-#ifndef NIButtonFormElementCell
-#define NIButtonFormElementCell __NIMBUS_NS_SYMBOL(NIButtonFormElementCell)
-#endif
 #ifndef NICellFactory
 #define NICellFactory __NIMBUS_NS_SYMBOL(NICellFactory)
 #endif

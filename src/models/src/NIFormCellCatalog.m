@@ -135,34 +135,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIButtonFormElement
-
-@synthesize labelText = _labelText;
-@synthesize tappedTarget = _tappedTarget;
-@synthesize tappedSelector = _tappedSelector;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)buttonElementWithID:(NSInteger)elementID labelText:(NSString *)labelText tappedTarget:(id)target tappedSelector:(SEL)selector {
-  NIButtonFormElement* element = [super elementWithID:elementID];
-  element.labelText = labelText;
-  element.tappedTarget = target;
-  element.tappedSelector = selector;
-  return element;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (Class)cellClass {
-  return [NIButtonFormElementCell class];
-}
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Form Element Cells
 
@@ -347,58 +319,6 @@
     // The following is a workarround to supress the warning and requires <objc/message.h>
     objc_msgSend(switchElement.didChangeTarget, 
                  switchElement.didChangeSelector, _switchControl);
-  }
-}
-
-@end
-
-
-@class NITableViewModelSection;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NIButtonFormElementCell
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-  if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
-    self.selectionStyle = UITableViewCellSelectionStyleBlue;
-  }
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)prepareForReuse {
-  [super prepareForReuse];
-
-  self.textLabel.text = @"";
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)shouldUpdateCellWithObject:(id)object {
-  if ([super shouldUpdateCellWithObject:object]) {
-    NIButtonFormElement* buttonElement = (NIButtonFormElement *)self.element;
-    self.textLabel.text = buttonElement.labelText;
-
-    [self setNeedsLayout];
-    return YES;
-  }
-  return NO;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)buttonWasTapped:(id)sender {
-  NIButtonFormElement* buttonElement = (NIButtonFormElement *)self.element;
-
-  if (nil != buttonElement.tappedSelector && nil != buttonElement.tappedTarget
-      && [buttonElement.tappedTarget respondsToSelector:buttonElement.tappedSelector]) {
-    //[buttonElement.tappedTarget performSelector:buttonElement.tappedSelector];
-    objc_msgSend(buttonElement.tappedTarget, buttonElement.tappedSelector, nil);
   }
 }
 
