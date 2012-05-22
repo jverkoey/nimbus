@@ -346,10 +346,14 @@ _model.delegate = (id)[NICellFactory class];
  *
  */
 
-#pragma mark * Table Forms
+#pragma mark * Model Tools
 
 /**
- * @defgroup TableViewForms Table Forms
+ * @defgroup ModelTools Model Tools
+ *
+ * Model tools are objects that abstract common functionality used in view controllers.
+ *
+ * <h1>Radio Groups</h1>
  *
  * One commonly-required feature for table views is radio button functionality. This is useful when
  * you need the user to make a choice from a set of options. Implementing this is trivial with the
@@ -385,8 +389,12 @@ typedef enum {
   self.model = [[NITableViewModel alloc] initWithSectionedArray:contents
                                                        delegate:(id)[NICellFactory class]];
 
-  // Map the objects to their corresponding identifiers.
   self.radioGroup = [[[NIRadioGroup alloc] init] autorelease];
+
+  // Selection notifications are sent through the delegate.
+  self.radioGroup.delegate = self;
+
+  // Map the objects to their corresponding identifiers.
   [self.radioGroup mapObject:manual toIdentifier:AppSortManual];
   [self.radioGroup mapObject:byTime toIdentifier:AppSortByTime];
 
@@ -394,28 +402,15 @@ typedef enum {
   self.radioGroup.selectedIdentifier = AppSortManual;
 
   self.tableView.dataSource = self.model;
+
+  // Insert the radio group into the delegate call chain.
+  self.tableView.delegate = [self.radioGroup forwardingTo:self.tableView.delegate];
+
   [self.tableView reloadData];
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-  id object = [self.model objectAtIndexPath:indexPath];
-
-  // This helper method checks whether the object is in the radio group and, if it is, updates
-  // the selection state accordingly.
-  if ([self.radioGroup willDisplayCell:cell forObject:object]) {
-    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-  }
-}
-
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-  id object = [self.model objectAtIndexPath:indexPath];
-
-  // This helper method checks whether the selected object is within the radio group and, if it is,
-  // updates the selection. If the selection changes then the helper method returns YES so that we
-  // can react accordingly.
-  if ([self.radioGroup tableView:tableView didSelectObject:object atIndexPath:indexPath]) {
-    NSLog(@"Radio group selection changed: %d", self.radioGroup.selectedIdentifier);
-  }
+- (void)radioGroup:(NIRadioGroup *)radioGroup didSelectIdentifier:(NSInteger)identifier {
+  NSLog(@"Radio group selection changed: %d", identifier);
 }
 
 @endcode

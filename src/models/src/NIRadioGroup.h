@@ -26,10 +26,11 @@
  * a time.
  *
  * Due to the general-purpose nature of this object, it can be used with UITableViews or any other
- * view that has sets of objects being displayed. There are helper methods specifically for
- * UITableViews to reduce code duplication.
+ * view that has sets of objects being displayed. This object can insert itself into a
+ * UITableViewDelegate call chain to minimize the amount of code that needs to be written in your
+ * controller.
  *
- *      @ingroup TableViewForms
+ *      @ingroup ModelTools
  */
 @interface NIRadioGroup : NSObject <UITableViewDelegate>
 
@@ -58,8 +59,19 @@
 
 @end
 
+/**
+ * The delegate for NIRadioGroup.
+ *
+ *      @ingroup ModelTools
+ */
 @protocol NIRadioGroupDelegate
 @required
+/**
+ * Called when the user changes the radio group selection.
+ *
+ *      @param radioGroup The radio group object.
+ *      @param identifier The newly selected identifier.
+ */
 - (void)radioGroup:(NIRadioGroup *)radioGroup didSelectIdentifier:(NSInteger)identifier;
 @end
 
@@ -124,28 +136,32 @@
  *      @fn NIRadioGroup::identifierForObject:
  */
 
-/** @name UITableView Helpers */
+/** @name Forwarding */
 
 /**
- * Helper method to be used in UITableViewDelegate's tableView:willDisplayCell:forRowAtIndexPath:
+ * The cell selection style that will be applied to the radio group cell when it is displayed using
+ * delegate forwarding.
  *
- * Checks whether the given object exists within this radio group and, if it is, updates the
- * cell accessory type accordingly.
+ * By default this is UITableViewCellSelectionStyleBlue.
  *
- *      @param cell The table view cell that is about to be displayed.
- *      @param object The object that will was mapped to this cell view.
- *      @returns YES if the cell is within this radio group, NO otherwise.
- *      @fn NIRadioGroup::willDisplayCell:forObject:
+ *      @fn NIRadioGroup::tableViewCellSelectionStyle
  */
 
 /**
- * Helper method to be used in UITableViewDelegate's tableView:didSelectRowAtIndexPath::
+ * Sets the delegate that table view methods should be forwarded to.
  *
- * Updates the radio group selection if the selected object is within this radio group.
+ * This method allows you to insert the radio group into the call chain for the table view's
+ * delegate methods.
  *
- *      @param tableView The table view within which this object resides.
- *      @param object The object that was selected.
- *      @param indexPath The index path of the selected object.
- *      @returns YES if the radio group selection changed, NO otherwise.
- *      @fn NIRadioGroup::tableView:didSelectObject:atIndexPath:
+ * Example:
+ *
+@code
+// Let the radio group handle delegate methods and then forward them to whatever delegate was
+// already assigned.
+self.tableView.delegate = [self.radioGroup forwardingTo:self.tableView.delegate];
+@endcode
+ *
+ *      @param forwardDelegate The delegate to forward invocations to.
+ *      @returns self so that this method can be chained.
+ *      @fn NIRadioGroup::forwardingTo:
  */
