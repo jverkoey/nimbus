@@ -54,12 +54,14 @@
 @implementation NISubtitleCellObject
 
 @synthesize subtitle = _subtitle;
+@synthesize cellStyle = _cellStyle;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
   if ((self = [super initWithTitle:title])) {
     _subtitle = [subtitle copy];
+    _cellStyle = UITableViewCellStyleSubtitle;
   }
   return self;
 }
@@ -68,12 +70,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)cellWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
   return [[self alloc] initWithTitle:title subtitle:subtitle];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UITableViewCellStyle)cellStyle {
-  return UITableViewCellStyleSubtitle;
 }
 
 @end
