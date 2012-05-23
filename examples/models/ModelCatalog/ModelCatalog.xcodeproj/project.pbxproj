@@ -12,6 +12,7 @@
 		66688683156AD3D2006E874F /* NICellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 66688682156AD3D2006E874F /* NICellCatalog.m */; };
 		6668868C156AEBC7006E874F /* NIRadioGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6668868B156AEBC7006E874F /* NIRadioGroup.m */; };
 		666C0D6213FC5A9D00C6E955 /* StaticIndexedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666C0D6113FC5A9D00C6E955 /* StaticIndexedTableViewController.m */; };
+		667DD36F156D79690045ABBB /* NIRadioGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DD36E156D79690045ABBB /* NIRadioGroupController.m */; };
 		668DA80813FD944B0000DBF6 /* FormCellCatalogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668DA80713FD944B0000DBF6 /* FormCellCatalogTableViewController.m */; };
 		668DA83013FD98140000DBF6 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 668DA80C13FD98140000DBF6 /* NICommonMetrics.m */; };
 		668DA83113FD98140000DBF6 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = 668DA80E13FD98140000DBF6 /* NIDataStructures.m */; };
@@ -55,6 +56,8 @@
 		6668868B156AEBC7006E874F /* NIRadioGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIRadioGroup.m; path = ../../../../src/models/src/NIRadioGroup.m; sourceTree = "<group>"; };
 		666C0D6013FC5A9D00C6E955 /* StaticIndexedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StaticIndexedTableViewController.h; path = src/StaticIndexedTableViewController.h; sourceTree = "<group>"; };
 		666C0D6113FC5A9D00C6E955 /* StaticIndexedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StaticIndexedTableViewController.m; path = src/StaticIndexedTableViewController.m; sourceTree = "<group>"; };
+		667DD36D156D79690045ABBB /* NIRadioGroupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIRadioGroupController.h; path = ../../../../src/models/src/NIRadioGroupController.h; sourceTree = "<group>"; };
+		667DD36E156D79690045ABBB /* NIRadioGroupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIRadioGroupController.m; path = ../../../../src/models/src/NIRadioGroupController.m; sourceTree = "<group>"; };
 		668DA80613FD944B0000DBF6 /* FormCellCatalogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormCellCatalogTableViewController.h; path = src/FormCellCatalogTableViewController.h; sourceTree = "<group>"; };
 		668DA80713FD944B0000DBF6 /* FormCellCatalogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormCellCatalogTableViewController.m; path = src/FormCellCatalogTableViewController.m; sourceTree = "<group>"; };
 		668DA80A13FD98140000DBF6 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = ../../../../src/core/src/NIBlocks.h; sourceTree = "<group>"; };
@@ -295,6 +298,8 @@
 				6601D8E913FC87BA00B884DC /* NICellFactory.m */,
 				6668868A156AEBC7006E874F /* NIRadioGroup.h */,
 				6668868B156AEBC7006E874F /* NIRadioGroup.m */,
+				667DD36D156D79690045ABBB /* NIRadioGroupController.h */,
+				667DD36E156D79690045ABBB /* NIRadioGroupController.m */,
 				66F6E2A4156C0BFA008A3A94 /* NITableViewActions.h */,
 				66F6E2A5156C0BFA008A3A94 /* NITableViewActions.m */,
 			);
@@ -355,7 +360,7 @@
 		66FE7D7413FB90C40061B987 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "Jeff Verkoeyen";
 			};
 			buildConfigurationList = 66FE7D7713FB90C40061B987 /* Build configuration list for PBXProject "ModelCatalog" */;
@@ -421,6 +426,7 @@
 				66688683156AD3D2006E874F /* NICellCatalog.m in Sources */,
 				6668868C156AEBC7006E874F /* NIRadioGroup.m in Sources */,
 				66F6E2A6156C0BFA008A3A94 /* NITableViewActions.m in Sources */,
+				667DD36F156D79690045ABBB /* NIRadioGroupController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

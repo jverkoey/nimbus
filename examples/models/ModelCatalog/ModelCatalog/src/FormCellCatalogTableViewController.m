@@ -23,12 +23,20 @@ typedef enum {
   RadioOption3,
 } RadioOptions;
 
+// This enumeration is used in the sub radio group mapping.
+typedef enum {
+  SubRadioOption1,
+  SubRadioOption2,
+  SubRadioOption3,
+} SubRadioOptions;
+
 @interface FormCellCatalogTableViewController() <UITextFieldDelegate, NIRadioGroupDelegate>
 @property (nonatomic, readwrite, retain) NITableViewModel* model;
 
 // A radio group object allows us to easily maintain radio group-style interactions in the table
 // view.
 @property (nonatomic, readwrite, retain) NIRadioGroup* radioGroup;
+@property (nonatomic, readwrite, retain) NIRadioGroup* subRadioGroup;
 @property (nonatomic, readwrite, retain) NITableViewActions* actions;
 @end
 
@@ -40,6 +48,7 @@ typedef enum {
 
 @synthesize model = _model;
 @synthesize radioGroup = _radioGroup;
+@synthesize subRadioGroup = _subRadioGroup;
 @synthesize actions = _actions;
 
 
@@ -56,10 +65,28 @@ typedef enum {
                                                                     subtitle:@"Third option"];
     NITitleCellObject* button = [NITitleCellObject cellWithTitle:@"Button with alert"];
 
+    NISubtitleCellObject* subRadioObject1 = [NISubtitleCellObject cellWithTitle:@"Sub Radio 1"
+                                                                       subtitle:@"First option"];
+    NISubtitleCellObject* subRadioObject2 = [NISubtitleCellObject cellWithTitle:@"Sub Radio 2"
+                                                                       subtitle:@"Second option"];
+    NISubtitleCellObject* subRadioObject3 = [NISubtitleCellObject cellWithTitle:@"Sub Radio 3"
+                                                                       subtitle:@"Third option"];
+
+    _subRadioGroup = [[NIRadioGroup alloc] initWithController:self];
+    _subRadioGroup.cellTitle = @"Selection";
+    _subRadioGroup.controllerTitle = @"Make a Selection";
+    _subRadioGroup.delegate = self;
+    [_subRadioGroup mapObject:subRadioObject1 toIdentifier:SubRadioOption1];
+    [_subRadioGroup mapObject:subRadioObject2 toIdentifier:SubRadioOption2];
+    [_subRadioGroup mapObject:subRadioObject3 toIdentifier:SubRadioOption3];
+    _subRadioGroup.selectedIdentifier = SubRadioOption1;
+
     NSArray* tableContents =
     [NSArray arrayWithObjects:
      @"Radio Cells",
      radioObject1, radioObject2, radioObject3,
+     @"Sub Radio Groups",
+     _subRadioGroup,
 
      @"NITextInputFormElement",
      [NITextInputFormElement textInputElementWithID:0 placeholderText:@"Placeholder" value:nil],
@@ -115,7 +142,8 @@ typedef enum {
   self.tableView.dataSource = _model;
 
   self.tableView.delegate = [self.radioGroup forwardingTo:
-                             [self.actions forwardingTo:self.tableView.delegate]];
+                             [self.subRadioGroup forwardingTo:
+                              [self.actions forwardingTo:self.tableView.delegate]]];
 
   // When including text editing cells in table views you should provide a means for the user to
   // stop editing the control. To do this we add a gesture recognizer to the table view.
@@ -179,7 +207,25 @@ typedef enum {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)radioGroup:(NIRadioGroup *)radioGroup didSelectIdentifier:(NSInteger)identifier {
-  NSLog(@"New selection: %d", identifier);
+  if (radioGroup == self.radioGroup) {
+    NSLog(@"Radio group selection: %d", identifier);
+  } else if (radioGroup == self.subRadioGroup) {
+    NSLog(@"Sub radio group selection: %d", identifier);
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)radioGroup:(NIRadioGroup *)radioGroup textForIdentifier:(NSInteger)identifier {
+  switch (identifier) {
+    case SubRadioOption1:
+      return @"Option 1";
+    case SubRadioOption2:
+      return @"Option 2";
+    case SubRadioOption3:
+      return @"Option 3";
+  }
+  return nil;
 }
 
 

@@ -63,6 +63,7 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
 
 @property (nonatomic, readwrite, assign) UITableViewCellSelectionStyle tableViewCellSelectionStyle;
 - (id<UITableViewDelegate>)forwardingTo:(id<UITableViewDelegate>)forwardDelegate;
+- (void)removeForwarding:(id<UITableViewDelegate>)forwardDelegate;
 
 @end
 
@@ -170,4 +171,14 @@ self.tableView.delegate = [self.actions forwardingTo:self.tableView.delegate];
  *      @param forwardDelegate The delegate to forward invocations to.
  *      @returns self so that this method can be chained.
  *      @fn NITableViewActions::forwardingTo:
+ */
+
+/**
+ * Removes the delegate from the forwarding chain.
+ *
+ * If a forwared delegate is about to be released but this object may live on, you must remove the
+ * forwarding in order to avoid invalid access errors at runtime.
+ *
+ *      @param forwardDelegate The delegate to stop forwarding invocations to.
+ *      @fn NITableViewActions::removeForwarding:
  */
