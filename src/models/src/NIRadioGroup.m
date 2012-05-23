@@ -50,7 +50,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initwithcontroller:(uiviewcontroller *)controller {
+- (id)initWithController:(UIViewController *)controller {
   if ((self = [super init])) {
     _controller = controller;
     _objectMap = [[NSMutableDictionary alloc] init];
@@ -241,7 +241,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)allObjects {
-  return [[self.objectOrder copy] autorelease];
+  return [self.objectOrder copy];
 }
 
 
@@ -284,7 +284,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
       // You must provide a controller in the initWithController: initializer.
       NIDASSERT(nil != self.controller);
 
-      NIRadioGroupController* controller = [[[NIRadioGroupController alloc] initWithRadioGroup:self tappedCell:(id<NICell>)[tableView cellForRowAtIndexPath:indexPath]] autorelease];
+      NIRadioGroupController* controller = [[NIRadioGroupController alloc] initWithRadioGroup:self tappedCell:(id<NICell>)[tableView cellForRowAtIndexPath:indexPath]];
       controller.title = self.controllerTitle;
       [self.controller.navigationController pushViewController:controller animated:YES];
 

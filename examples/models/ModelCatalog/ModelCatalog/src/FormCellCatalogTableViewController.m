@@ -113,11 +113,11 @@ typedef enum {
     _actions = [[NITableViewActions alloc] initWithController:self];
     [_actions attachTapAction:^(id object, UIViewController *controller) {
       UIAlertView* alertView =
-          [[[UIAlertView alloc] initWithTitle:@"This is an alert!"
-                                     message:@"Don't panic."
-                                    delegate:nil
-                           cancelButtonTitle:@"Neat!"
-                           otherButtonTitles:nil] autorelease];
+      [[UIAlertView alloc] initWithTitle:@"This is an alert!"
+                                 message:@"Don't panic."
+                                delegate:nil
+                       cancelButtonTitle:@"Neat!"
+                       otherButtonTitles:nil];
       [alertView show];
       return YES;
     } toObject:button];
