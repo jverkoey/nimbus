@@ -470,5 +470,6 @@ typedef enum {
 #import "NIFormCellCatalog.h"
 #import "NIRadioGroup.h"
 #import "NITableViewActions.h"
+#import "NIRadioGroupController.h"
 
 /**@}*/

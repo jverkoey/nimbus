@@ -172,6 +172,8 @@
 		667A8A0E148CA16F000779BD /* NINetworkJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A8A0C148CA16F000779BD /* NINetworkJSONRequest.m */; };
 		667A8A11148CA178000779BD /* NINetworkJSONRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 667A8A0F148CA178000779BD /* NINetworkJSONRequest.h */; };
 		667A8A12148CA178000779BD /* NINetworkJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A8A10148CA178000779BD /* NINetworkJSONRequest.m */; };
+		667DD36B156D78980045ABBB /* NIRadioGroupController.h in Headers */ = {isa = PBXBuildFile; fileRef = 667DD369156D78980045ABBB /* NIRadioGroupController.h */; };
+		667DD36C156D78980045ABBB /* NIRadioGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DD36A156D78980045ABBB /* NIRadioGroupController.m */; };
 		66832CB9143D681B003E413C /* NimbusCSS.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CB7143D681B003E413C /* NimbusCSS.h */; };
 		66832CC1143D7883003E413C /* NICSSParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832CC0143D7883003E413C /* NICSSParserTests.m */; };
 		66832CC4143D7898003E413C /* NICSSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832CC2143D7898003E413C /* NICSSParser.h */; };
@@ -785,6 +787,8 @@
 		667A8A0F148CA178000779BD /* NINetworkJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkJSONRequest.h; path = operations/src_NSJSON/NINetworkJSONRequest.h; sourceTree = SOURCE_ROOT; };
 		667A8A10148CA178000779BD /* NINetworkJSONRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkJSONRequest.m; path = operations/src_NSJSON/NINetworkJSONRequest.m; sourceTree = SOURCE_ROOT; };
 		667A8A13148CA181000779BD /* NimbusProcessorsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NimbusProcessorsTests-Info.plist"; path = "operations/unittests/NimbusProcessorsTests-Info.plist"; sourceTree = SOURCE_ROOT; };
+		667DD369156D78980045ABBB /* NIRadioGroupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIRadioGroupController.h; sourceTree = "<group>"; };
+		667DD36A156D78980045ABBB /* NIRadioGroupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIRadioGroupController.m; sourceTree = "<group>"; };
 		66832C98143D63D2003E413C /* css.grammar */ = {isa = PBXFileReference; lastKnownFileType = text; name = css.grammar; path = css/grammar/css.grammar; sourceTree = SOURCE_ROOT; };
 		66832CA1143D64CF003E413C /* generate */ = {isa = PBXFileReference; lastKnownFileType = text; name = generate; path = css/grammar/generate; sourceTree = SOURCE_ROOT; };
 		66832CA8143D6642003E413C /* CSSTokenizerPrefix */ = {isa = PBXFileReference; lastKnownFileType = text; name = CSSTokenizerPrefix; path = css/grammar/CSSTokenizerPrefix; sourceTree = SOURCE_ROOT; };
@@ -2003,6 +2007,8 @@
 				667A749C13FE20BD009D277D /* NICellFactory.m */,
 				66688686156ADDB0006E874F /* NIRadioGroup.h */,
 				66688687156ADDB1006E874F /* NIRadioGroup.m */,
+				667DD369156D78980045ABBB /* NIRadioGroupController.h */,
+				667DD36A156D78980045ABBB /* NIRadioGroupController.m */,
 				66416179156B516E0018AC1C /* NITableViewActions.h */,
 				6641617A156B516E0018AC1C /* NITableViewActions.m */,
 			);
@@ -2115,6 +2121,7 @@
 				6668867F156AD148006E874F /* NICellCatalog.h in Headers */,
 				66688688156ADDB3006E874F /* NIRadioGroup.h in Headers */,
 				6641617B156B516E0018AC1C /* NITableViewActions.h in Headers */,
+				667DD36B156D78980045ABBB /* NIRadioGroupController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3418,6 +3425,7 @@
 				66688680156AD148006E874F /* NICellCatalog.m in Sources */,
 				66688689156ADDB3006E874F /* NIRadioGroup.m in Sources */,
 				6641617C156B516E0018AC1C /* NITableViewActions.m in Sources */,
+				667DD36C156D78980045ABBB /* NIRadioGroupController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

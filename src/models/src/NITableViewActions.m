@@ -26,8 +26,8 @@
 @end
 
 @interface NITableViewActions()
-@property (nonatomic, readwrite, assign) UIViewController* controller;
-@property (nonatomic, readwrite, assign) id<UITableViewDelegate> forwardDelegate;
+@property (nonatomic, readonly, assign) UIViewController* controller;
+@property (nonatomic, readonly, retain) NSMutableArray* forwardDelegates;
 @property (nonatomic, readonly, retain) NSMutableDictionary* objectMap;
 @property (nonatomic, readonly, retain) NSMutableSet* objectSet;
 @end
@@ -38,7 +38,7 @@
 @implementation NITableViewActions
 
 @synthesize controller = _controller;
-@synthesize forwardDelegate = _forwardDelegate;
+@synthesize forwardDelegates = _forwardDelegates;
 @synthesize objectMap = _objectMap;
 @synthesize objectSet = _objectSet;
 @synthesize tableViewCellSelectionStyle = _tableViewCellSelectionStyle;
@@ -46,6 +46,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
+  [_forwardDelegates release];
   [_objectMap release];
   [_objectSet release];
 
@@ -59,6 +60,7 @@
     _controller = controller;
     _objectMap = [[NSMutableDictionary alloc] init];
     _objectSet = [[NSMutableSet alloc] init];
+    _forwardDelegates = NICreateNonRetainingMutableArray();
     _tableViewCellSelectionStyle = UITableViewCellSelectionStyleBlue;
   }
   return self;
@@ -101,10 +103,17 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)forwardInvocation:(NSInvocation *)invocation {
-  if ([self.forwardDelegate respondsToSelector:invocation.selector]) {
-    [invocation invokeWithTarget:self.forwardDelegate];
+  BOOL didForward = NO;
 
-  } else {
+  for (id delegate in self.forwardDelegates) {
+    if ([delegate respondsToSelector:invocation.selector]) {
+      [invocation invokeWithTarget:delegate];
+      didForward = YES;
+      break;
+    }
+  }
+
+  if (!didForward) {
     [super forwardInvocation:invocation];
   }
 }
@@ -114,7 +123,12 @@
 - (BOOL)respondsToSelector:(SEL)selector {
   BOOL doesRespond = [super respondsToSelector:selector];
   if (!doesRespond) {
-    doesRespond = [self.forwardDelegate respondsToSelector:selector];
+    for (id delegate in self.forwardDelegates) {
+      doesRespond = [delegate respondsToSelector:selector];
+      if (doesRespond) {
+        break;
+      }
+    }
   }
   return doesRespond;
 }
@@ -122,8 +136,14 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id<UITableViewDelegate>)forwardingTo:(id<UITableViewDelegate>)forwardDelegate {
-  self.forwardDelegate = forwardDelegate;
+  [self.forwardDelegates addObject:forwardDelegate];
   return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)removeForwarding:(id<UITableViewDelegate>)forwardDelegate; {
+  [self.forwardDelegates removeObject:forwardDelegate];
 }
 
 
@@ -191,10 +211,12 @@
       }
     }
   }
-  
+
   // Forward the invocation along.
-  if ([self.forwardDelegate respondsToSelector:_cmd]) {
-    [self.forwardDelegate tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+  for (id<UITableViewDelegate> delegate in self.forwardDelegates) {
+    if ([delegate respondsToSelector:_cmd]) {
+      [delegate tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    }
   }
 }
 
@@ -221,10 +243,12 @@
       }
     }
   }
-  
+
   // Forward the invocation along.
-  if ([self.forwardDelegate respondsToSelector:_cmd]) {
-    [self.forwardDelegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+  for (id<UITableViewDelegate> delegate in self.forwardDelegates) {
+    if ([delegate respondsToSelector:_cmd]) {
+      [delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+    }
   }
 }
 
