@@ -20,7 +20,7 @@
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
 
-NI_FIX_CATEGORY_BUG(UIToolbar_NIStyleable)
+NI_FIX_CATEGORY_BUG(UIScrollView_NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
