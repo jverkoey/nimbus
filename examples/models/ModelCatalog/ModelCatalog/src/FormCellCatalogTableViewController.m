@@ -108,6 +108,13 @@ typedef enum {
      [NITextInputFormElement passwordInputElementWithID:0 placeholderText:@"Password" value:nil],
      [NITextInputFormElement passwordInputElementWithID:0 placeholderText:@"Password" value:@"Password"],
 
+     @"NITextInputFormElement2",
+     [NITextInputFormElement2 textInputElementWithID:0 title:@"field1" placeholderText:@"Placeholder" value:nil],
+     [NITextInputFormElement2 textInputElementWithID:0 title:@"field2" placeholderText:@"Placeholder" value:@"Initial value"],
+     [NITextInputFormElement2 textInputElementWithID:1 title:@"field3" placeholderText:nil value:@"Disabled input field" delegate:self required:YES],
+     [NITextInputFormElement2 passwordInputElementWithID:0 title:@"field4" placeholderText:@"Password" value:nil],
+     [NITextInputFormElement2 passwordInputElementWithID:0 title:@"field5" placeholderText:@"Password" value:@"Password"],
+	 
      @"NISwitchFormElement",
      [NISwitchFormElement switchElementWithID:0 labelText:@"Switch" value:NO],
      [NISwitchFormElement switchElementWithID:0 labelText:@"Switch with a really long label that will be cut off" value:YES],

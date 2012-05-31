@@ -22,9 +22,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NetworkPhotoAlbumViewController
 
-@synthesize highQualityImageCache = _highQualityImageCache;
-@synthesize thumbnailImageCache = _thumbnailImageCache;
-@synthesize queue = _queue;
+//@synthesize highQualityImageCache = _highQualityImageCache;
+//@synthesize thumbnailImageCache = _thumbnailImageCache;
+//@synthesize queue = _queue;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,13 +32,16 @@
   for (NINetworkRequestOperation* request in _queue.operations) {
     request.delegate = nil;
   }
-  [_queue cancelAllOperations];
+	
+	[super shutdown];
+//	
+//  [_queue cancelAllOperations];
 
-  NI_RELEASE_SAFELY(_activeRequests);
+//  NI_RELEASE_SAFELY(_activeRequests);
 
-  NI_RELEASE_SAFELY(_highQualityImageCache);
-  NI_RELEASE_SAFELY(_thumbnailImageCache);
-  NI_RELEASE_SAFELY(_queue);
+//  NI_RELEASE_SAFELY(_highQualityImageCache);
+//  NI_RELEASE_SAFELY(_thumbnailImageCache);
+//  NI_RELEASE_SAFELY(_queue);
 }
 
 
@@ -50,27 +53,27 @@
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)cacheKeyForPhotoIndex:(NSInteger)photoIndex {
-  return [NSString stringWithFormat:@"%d", photoIndex];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)identifierWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
-                          photoIndex:(NSInteger)photoIndex {
-  BOOL isThumbnail = (NIPhotoScrollViewPhotoSizeThumbnail == photoSize);
-  NSInteger identifier = isThumbnail ? -(photoIndex + 1) : photoIndex;
-  return identifier;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)identifierKeyFromIdentifier:(NSInteger)identifier {
-  return [NSNumber numberWithInt:identifier];
-}
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//- (NSString *)cacheKeyForPhotoIndex:(NSInteger)photoIndex {
+//  return [NSString stringWithFormat:@"%d", photoIndex];
+//}
+//
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//- (NSInteger)identifierWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
+//                          photoIndex:(NSInteger)photoIndex {
+//  BOOL isThumbnail = (NIPhotoScrollViewPhotoSizeThumbnail == photoSize);
+//  NSInteger identifier = isThumbnail ? -(photoIndex + 1) : photoIndex;
+//  return identifier;
+//}
+//
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//- (id)identifierKeyFromIdentifier:(NSInteger)identifier {
+//  return [NSNumber numberWithInt:identifier];
+//}
+//
+//
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)requestImageFromSource:(NSString *)source
                      photoSize:(NIPhotoScrollViewPhotoSize)photoSize
@@ -150,15 +153,15 @@
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didCancelRequestWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
-                           photoIndex:(NSInteger)photoIndex {
-  NSInteger identifier = [self identifierWithPhotoSize:photoSize photoIndex:photoIndex];
-  id identifierKey = [self identifierKeyFromIdentifier:identifier];
-  [_activeRequests removeObject:identifierKey];
-}
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//- (void)didCancelRequestWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
+//                           photoIndex:(NSInteger)photoIndex {
+//  NSInteger identifier = [self identifierWithPhotoSize:photoSize photoIndex:photoIndex];
+//  id identifierKey = [self identifierKeyFromIdentifier:identifier];
+//  [_activeRequests removeObject:identifierKey];
+//}
+//
+//
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -168,16 +171,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
   [super loadView];
-
-  _activeRequests = [[NSMutableSet alloc] init];
-
-  _highQualityImageCache = [[NIImageMemoryCache alloc] init];
-  _thumbnailImageCache = [[NIImageMemoryCache alloc] init];
-
-  [_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024*1024*3];
-
-  _queue = [[NSOperationQueue alloc] init];
-  [_queue setMaxConcurrentOperationCount:5];
+//
+//  _activeRequests = [[NSMutableSet alloc] init];
+//
+//  _highQualityImageCache = [[NIImageMemoryCache alloc] init];
+//  _thumbnailImageCache = [[NIImageMemoryCache alloc] init];
+//
+//  [_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024*1024*3];
+//
+//  _queue = [[NSOperationQueue alloc] init];
+//  [_queue setMaxConcurrentOperationCount:5];
 
   // Set the default loading image.
   self.photoAlbumView.loadingImage = [UIImage imageWithContentsOfFile:

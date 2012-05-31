@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NetworkPhotoAlbumViewController.h"
+#import "NINetworkPhotoAlbumViewController.h"
 
 /**
  * Shows a Facebook photo album accessed through the Graph API.
@@ -25,15 +25,9 @@
  *      Minimum iOS SDK Version: 4.0
  *      SDK Requirements: Blocks (4.0)
  */
-@interface FacebookPhotoAlbumViewController : NetworkPhotoAlbumViewController <
-  NIPhotoAlbumScrollViewDataSource,
-  NIPhotoScrubberViewDataSource,
-  NIOperationDelegate
-> {
+@interface FacebookPhotoAlbumViewController : NINetworkPhotoAlbumViewController {
 @private
   NSString* _facebookAlbumId;
-
-  NSArray* _photoInformation;
 }
 
 /**

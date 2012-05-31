@@ -92,6 +92,7 @@
   NIPhotoScrollViewPhotoSize photoSize = NIPhotoScrollViewPhotoSizeUnknown;
   BOOL isLoading = NO;
   CGSize originalPhotoDimensions = CGSizeZero;
+	
   UIImage* image = [self.dataSource photoAlbumScrollView: self
                                             photoAtIndex: page.pageIndex
                                                photoSize: &photoSize
@@ -139,6 +140,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)photoScrollViewDidDoubleTapToZoom: (NIPhotoScrollView *)photoScrollView
                                 didZoomIn: (BOOL)didZoomIn {
+	//
   if ([self.delegate respondsToSelector:@selector(photoAlbumScrollView:didZoomIn:)]) {
     [self.delegate photoAlbumScrollView:self didZoomIn:didZoomIn];
   }
@@ -152,8 +154,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView
-                                    pageViewForIndex:(NSInteger)pageIndex {
+- (UIView<NIPagingScrollViewPage> *)pagingScrollView: (NIPagingScrollView *)pagingScrollView
+                                    pageViewForIndex: (NSInteger)pageIndex {
+	//
   UIView<NIPagingScrollViewPage>* pageView = nil;
   NSString* reuseIdentifier = @"photo";
   pageView = [pagingScrollView dequeueReusablePageWithIdentifier:reuseIdentifier];
@@ -175,6 +178,7 @@
 - (void)didLoadPhoto: (UIImage *)image
              atIndex: (NSInteger)pageIndex
            photoSize: (NIPhotoScrollViewPhotoSize)photoSize {
+	//
   for (NIPhotoScrollView* page in self.visiblePages) {
     if (page.pageIndex == pageIndex) {
 

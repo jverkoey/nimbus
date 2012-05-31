@@ -73,6 +73,8 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 @property (nonatomic, readwrite, assign) id<NIPagingScrollViewDataSource> dataSource;
 @property (nonatomic, readwrite, assign) id<NIPagingScrollViewDelegate> delegate;
 
+@property (nonatomic, readwrite, assign) BOOL							forceReloadAll;
+
 // It is highly recommended that you use this method to manage view recycling.
 - (UIView<NIPagingScrollViewPage> *)dequeueReusablePageWithIdentifier:(NSString *)identifier;
 
@@ -94,6 +96,7 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 - (void)moveToNextAnimated:(BOOL)animated;
 - (void)moveToPreviousAnimated:(BOOL)animated;
 - (void)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated;
+- (NSInteger)currentVisiblePageIndex;
 
 #pragma mark Rotating the Scroll View
 

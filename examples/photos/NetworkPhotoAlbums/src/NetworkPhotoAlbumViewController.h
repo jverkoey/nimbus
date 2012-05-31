@@ -17,6 +17,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NIToolbarPhotoViewController.h"
+
+
 /**
  * A network-based photo album view controller.
  *
@@ -44,64 +47,64 @@
  */
 @interface NetworkPhotoAlbumViewController : NIToolbarPhotoViewController {
 @private
-  NSOperationQueue* _queue;
-  
-  NSMutableSet* _activeRequests;
-
-  NIImageMemoryCache* _highQualityImageCache;
-  NIImageMemoryCache* _thumbnailImageCache;
+//  NSOperationQueue* _queue;
+//  
+//  NSMutableSet* _activeRequests;
+//
+//  NIImageMemoryCache* _highQualityImageCache;
+//  NIImageMemoryCache* _thumbnailImageCache;
 }
 
-/**
- * The high quality image cache.
- *
- * All original-sized photos are stored in this cache.
- *
- * By default the cache is unlimited with a max stress size of 1024*1024*3 pixels.
- *
- * Images are stored with a name that corresponds directly to the photo index in the form "%d".
- *
- * This is unloaded when the controller's view is unloaded from memory.
- */
-@property (nonatomic, readonly, retain) NIImageMemoryCache* highQualityImageCache;
+///**
+// * The high quality image cache.
+// *
+// * All original-sized photos are stored in this cache.
+// *
+// * By default the cache is unlimited with a max stress size of 1024*1024*3 pixels.
+// *
+// * Images are stored with a name that corresponds directly to the photo index in the form "%d".
+// *
+// * This is unloaded when the controller's view is unloaded from memory.
+// */
+//@property (nonatomic, readonly, retain) NIImageMemoryCache* highQualityImageCache;
+//
+///**
+// * The thumbnail image cache.
+// *
+// * All thumbnail photos are stored in this cache.
+// *
+// * By default the cache is unlimited.
+// *
+// * Images are stored with a name that corresponds directly to the photo index in the form "%d".
+// *
+// * This is unloaded when the controller's view is unloaded from memory.
+// */
+//@property (nonatomic, readonly, retain) NIImageMemoryCache* thumbnailImageCache;
 
-/**
- * The thumbnail image cache.
- *
- * All thumbnail photos are stored in this cache.
- *
- * By default the cache is unlimited.
- *
- * Images are stored with a name that corresponds directly to the photo index in the form "%d".
- *
- * This is unloaded when the controller's view is unloaded from memory.
- */
-@property (nonatomic, readonly, retain) NIImageMemoryCache* thumbnailImageCache;
+///**
+// * The operation queue that runs all of the network and processing operations.
+// *
+// * This is unloaded when the controller's view is unloaded from memory.
+// */
+//@property (nonatomic, readonly, retain) NSOperationQueue* queue;
+//
+///**
+// * Generate the in-memory cache key for the given index.
+// */
+//- (NSString *)cacheKeyForPhotoIndex:(NSInteger)photoIndex;
+//
+///**
+// * Request an image from a source URL and store the result in the corresponding image cache.
+// *
+// *      @param source       The image's source URL path.
+// *      @param photoSize    The size of the photo being requested.
+// *      @param photoIndex   The photo index used to store the image in the memory cache.
+// */
+//- (void)requestImageFromSource: (NSString *)source
+//                     photoSize: (NIPhotoScrollViewPhotoSize)photoSize
+//                    photoIndex: (NSInteger)photoIndex;
 
-/**
- * The operation queue that runs all of the network and processing operations.
- *
- * This is unloaded when the controller's view is unloaded from memory.
- */
-@property (nonatomic, readonly, retain) NSOperationQueue* queue;
-
-/**
- * Generate the in-memory cache key for the given index.
- */
-- (NSString *)cacheKeyForPhotoIndex:(NSInteger)photoIndex;
-
-/**
- * Request an image from a source URL and store the result in the corresponding image cache.
- *
- *      @param source       The image's source URL path.
- *      @param photoSize    The size of the photo being requested.
- *      @param photoIndex   The photo index used to store the image in the memory cache.
- */
-- (void)requestImageFromSource: (NSString *)source
-                     photoSize: (NIPhotoScrollViewPhotoSize)photoSize
-                    photoIndex: (NSInteger)photoIndex;
-
-- (void)didCancelRequestWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
-                           photoIndex:(NSInteger)photoIndex;
-
+//- (void)didCancelRequestWithPhotoSize:(NIPhotoScrollViewPhotoSize)photoSize
+//                           photoIndex:(NSInteger)photoIndex;
+//
 @end

@@ -277,6 +277,75 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NITextInputFormElementCell2
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+	[super dealloc];
+}
+
++ (UITableViewCellStyle) cellStyle {
+	return UITableViewCellStyleValue2;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+	
+	if (self) {
+		_maxLabelLength = (NIIsPad() ? 100.0f : 55.0f);
+	}
+	
+	return self;
+}
+
+/**
+ * Use the built-in structure of UITextField to place a label on the left side and the text content 
+ *	on the right.
+ */
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldUpdateCellWithObject:(id)object {
+	BOOL shouldUpdate = [super shouldUpdateCellWithObject:object];
+	
+	if (shouldUpdate) {
+		NITextInputFormElement2* textInputElement = (NITextInputFormElement2 *)self.element;
+		
+		UILabel *label = [[[UILabel alloc] init] autorelease];
+		
+		NSString *title = textInputElement.title;
+		label.text = [title stringByAppendingFormat:@"%@", (textInputElement.required ? @" * " : @" ")];
+		
+		label.textAlignment = UITextAlignmentRight;
+//		label.font = TTSTYLEVAR(messageFont);
+//		label.textColor = TTSTYLEVAR(messageFieldTextColor);
+		[label sizeToFit];
+		label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y, _maxLabelLength, label.frame.size.height);
+		label.frame = CGRectInset(label.frame, -2, 0);
+		
+		self.textField.leftView = label;
+		self.textField.leftViewMode = UITextFieldViewModeAlways;
+
+		self.textField.placeholder = textInputElement.placeholderText;
+		self.textField.text = textInputElement.value;
+		self.textField.delegate = textInputElement.delegate;
+		self.textField.secureTextEntry = textInputElement.isPassword;
+		
+		self.textField.tag = self.tag;
+		
+		[self setNeedsLayout];
+	}
+	
+	return shouldUpdate;
+}
+
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NISwitchFormElementCell
 
 @synthesize switchControl = _switchControl;

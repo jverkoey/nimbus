@@ -17,8 +17,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NIPhotoAlbumScrollView.h"
+#import "NIPhotoAlbumViewController.h"
+
 #import "NIPhotoScrubberView.h"
+
+#import "NIToolbarDataSource.h"
 
 @class NIPhotoAlbumScrollView;
 
@@ -69,27 +72,24 @@
  *  photoAlbumView.zoomingIsEnabled = NO;
  * @endcode
  */
-@interface NIToolbarPhotoViewController : UIViewController <
+@interface NIToolbarPhotoViewController : NIPhotoAlbumViewController <
   NIPhotoAlbumScrollViewDelegate,
   NIPhotoScrubberViewDelegate > {
+
+	  // Gestures
+	  UITapGestureRecognizer* _tapGesture;
+	  
+	  // Toolbar Buttons
+	  UIBarButtonItem* _nextButton;
+	  UIBarButtonItem* _previousButton;
+	  
 @private
   // Views
   UIToolbar*              _toolbar;
-  NIPhotoAlbumScrollView* _photoAlbumView;
-
-  // Scrubber View
-  NIPhotoScrubberView* _photoScrubberView;
-
-  // Toolbar Buttons
-  UIBarButtonItem* _nextButton;
-  UIBarButtonItem* _previousButton;
-
-  // Gestures
-  UITapGestureRecognizer* _tapGesture;
 
   // State
   BOOL _isAnimatingChrome;
-  BOOL _isChromeHidden;
+	BOOL _isChromeHidden;
 
   // Configuration
   BOOL _toolbarIsTranslucent;
@@ -111,14 +111,19 @@
 #pragma mark Views
 
 @property (nonatomic, readonly, retain) UIToolbar* toolbar;
-@property (nonatomic, readonly, retain) NIPhotoAlbumScrollView* photoAlbumView;
-@property (nonatomic, readonly, retain) NIPhotoScrubberView* photoScrubberView;
-
 
 #pragma mark Toolbar Buttons
 
 @property (nonatomic, readonly, retain) UIBarButtonItem* nextButton;
 @property (nonatomic, readonly, retain) UIBarButtonItem* previousButton;
+
+@property (nonatomic, assign) CGRect					localFrame;
+
+
+- (void) toggleChromeVisibility;
+
+- (void) setupPhotoViewManagers;
+
 
 @end
 

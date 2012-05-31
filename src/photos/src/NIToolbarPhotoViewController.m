@@ -20,6 +20,11 @@
 
 #import "NimbusCore.h"
 
+@interface NIToolbarPhotoViewController()
+- (CGFloat) setupToolbar:(CGRect)bounds;
+- (void) setupPhotoAlbum:(CGRect)bounds toolbarHeight:(CGFloat)toolbarHeight;
+@end
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,22 +37,20 @@
 @synthesize animateMovingToNextAndPreviousPhotos = _animateMovingToNextAndPreviousPhotos;
 @synthesize scrubberIsEnabled = _scrubberIsEnabled;
 @synthesize toolbar = _toolbar;
-@synthesize photoAlbumView = _photoAlbumView;
-@synthesize photoScrubberView = _photoScrubberView;
 @synthesize nextButton = _nextButton;
 @synthesize previousButton = _previousButton;
+
+@synthesize localFrame				= _localFrame;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)shutdown_NIToolbarPhotoViewController {
+	[self.photoDataSource shutdown];
   _toolbar = nil;
-  _photoAlbumView = nil;
-
+  
   NI_RELEASE_SAFELY(_nextButton);
   NI_RELEASE_SAFELY(_previousButton);
-
-  NI_RELEASE_SAFELY(_photoScrubberView);
-
+  
   NI_RELEASE_SAFELY(_tapGesture);
 }
 
@@ -62,7 +65,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	
+  if (self) {
     // Default Configuration Settings
     self.toolbarIsTranslucent = YES;
     self.hidesChromeWhenScrolling = YES;
@@ -85,18 +90,24 @@
 - (void)addTapGestureToView {
   if ([self isViewLoaded]
       && nil != NIUITapGestureRecognizerClass()
-      && [self.photoAlbumView respondsToSelector:@selector(addGestureRecognizer:)]) {
+      && [self.photoDataSource.photoAlbumView respondsToSelector:@selector(addGestureRecognizer:)]) {
+		//
     if (nil == _tapGesture) {
       _tapGesture =
       [[NIUITapGestureRecognizerClass() alloc] initWithTarget: self
                                                        action: @selector(didTap)];
 
-      [self.photoAlbumView addGestureRecognizer:_tapGesture];
+      [self.photoDataSource.photoAlbumView addGestureRecognizer:_tapGesture];
     }
   }
 
   [_tapGesture setEnabled:YES];
 }
+
+- (void) loadDataSource {
+	_photoDataSource = [[NIToolbarDataSource alloc] init];
+}
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -110,27 +121,29 @@
     NI_RELEASE_SAFELY(_nextButton);
     NI_RELEASE_SAFELY(_previousButton);
 
-    if (nil == _photoScrubberView) {
+    if (nil == ((NIToolbarDataSource *)self.photoDataSource).photoScrubberView) {
       CGRect scrubberFrame = CGRectMake(0, 0,
                                         self.toolbar.bounds.size.width,
                                         self.toolbar.bounds.size.height);
-      _photoScrubberView = [[NIPhotoScrubberView alloc] initWithFrame:scrubberFrame];
+		
+      NIPhotoScrubberView *_photoScrubberView = [[NIPhotoScrubberView alloc] initWithFrame:scrubberFrame];
       _photoScrubberView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                              | UIViewAutoresizingFlexibleHeight);
       _photoScrubberView.delegate = self;
+			
+		((NIToolbarDataSource *)self.photoDataSource).photoScrubberView = _photoScrubberView;
     }
 
     UIBarButtonItem* scrubberItem =
-    [[[UIBarButtonItem alloc] initWithCustomView:self.photoScrubberView] autorelease];
+    	[[[UIBarButtonItem alloc] initWithCustomView:((NIToolbarDataSource *)self.photoDataSource).photoScrubberView] autorelease];
+		
     self.toolbar.items = [NSArray arrayWithObjects:
                           flexibleSpace, scrubberItem, flexibleSpace,
                           nil];
 
-    [_photoScrubberView setSelectedPhotoIndex:self.photoAlbumView.centerPageIndex];
+    [((NIToolbarDataSource *)self.photoDataSource).photoScrubberView setSelectedPhotoIndex:self.photoDataSource.photoAlbumView.centerPageIndex];
     
   } else {
-    NI_RELEASE_SAFELY(_photoScrubberView);
-
     if (nil == _nextButton) {
       UIImage* nextIcon = [UIImage imageWithContentsOfFile:
                            NIPathForBundleResource(nil, @"NimbusPhotos.bundle/gfx/next.png")];
@@ -180,42 +193,65 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
-  [super loadView];
+	[super loadView];
+	
+	// Setup Toolbar and Photo Album View
+	[self setupPhotoViewManagers];
+		
+	[self.view addSubview:self.photoDataSource.photoAlbumView];
+	[self.view addSubview:_toolbar];
+	
+	if (self.hidesChromeWhenScrolling) {
+		[self addTapGestureToView];
+	}
+}
 
-  CGRect bounds = self.view.bounds;
+- (void) setupPhotoViewManagers {
+	CGRect bounds;
+	if(!CGRectIsEmpty(self.localFrame)) {
+		bounds = self.localFrame;
+	} else {
+		bounds = self.view.bounds;
+	}
+	
+	// Toolbar Setup
+	CGFloat _toolbarHeight = [self setupToolbar:bounds];
+	
+	// Photo Album View Setup
+	[self setupPhotoAlbum:bounds toolbarHeight:_toolbarHeight];
+}
 
-  // Toolbar Setup
+- (CGFloat) setupToolbar:(CGRect)bounds {
+	CGFloat toolbarHeight = NIToolbarHeightForOrientation(NIInterfaceOrientation());
+	CGRect toolbarFrame = CGRectMake(0, bounds.size.height - toolbarHeight,
+									 bounds.size.width, toolbarHeight);
+	
+	_toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
+	_toolbar.barStyle = UIBarStyleBlack;
+	_toolbar.translucent = self.toolbarIsTranslucent;
+	_toolbar.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+								 | UIViewAutoresizingFlexibleTopMargin);
+	
+	[self updateToolbarItems];
+	
+	return toolbarHeight;
+}
 
-  CGFloat toolbarHeight = NIToolbarHeightForOrientation(NIInterfaceOrientation());
-  CGRect toolbarFrame = CGRectMake(0, bounds.size.height - toolbarHeight,
-                                   bounds.size.width, toolbarHeight);
-
-  _toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
-  _toolbar.barStyle = UIBarStyleBlack;
-  _toolbar.translucent = self.toolbarIsTranslucent;
-  _toolbar.autoresizingMask = (UIViewAutoresizingFlexibleWidth
-                               | UIViewAutoresizingFlexibleTopMargin);
-
-  [self updateToolbarItems];
-
-  // Photo Album View Setup
-
-  CGRect photoAlbumFrame = bounds;
-  if (!self.toolbarIsTranslucent) {
-    photoAlbumFrame = NIRectContract(bounds, 0, toolbarHeight);
-  }
-  _photoAlbumView = [[[NIPhotoAlbumScrollView alloc] initWithFrame:photoAlbumFrame] autorelease];
-  _photoAlbumView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
-                                      | UIViewAutoresizingFlexibleHeight);
-  _photoAlbumView.delegate = self;
-
-  [self.view addSubview:_photoAlbumView];
-  [self.view addSubview:_toolbar];
-
-
-  if (self.hidesChromeWhenScrolling) {
-    [self addTapGestureToView];
-  }
+- (void) setupPhotoAlbum:(CGRect)bounds toolbarHeight:(CGFloat)toolbarHeight {
+	CGRect photoAlbumFrame = bounds;
+	if (!self.toolbarIsTranslucent) {
+		photoAlbumFrame = NIRectContract(bounds, 0, toolbarHeight);
+	}
+	
+	NIPhotoAlbumScrollView *_photoAlbumView = [[[NIPhotoAlbumScrollView alloc] initWithFrame:photoAlbumFrame] autorelease];
+	_photoAlbumView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+										| UIViewAutoresizingFlexibleHeight);
+	_photoAlbumView.delegate = self;
+	
+	NSString *imagePath = [self loadingImagePath];
+	_photoAlbumView.loadingImage = [UIImage imageWithContentsOfFile:imagePath];
+	
+	self.photoDataSource.photoAlbumView = _photoAlbumView;
 }
 
 
@@ -242,8 +278,8 @@
   navBar.barStyle = UIBarStyleBlack;
   navBar.translucent = YES;
 
-  _previousButton.enabled = [self.photoAlbumView hasPrevious];
-  _nextButton.enabled = [self.photoAlbumView hasNext];
+  _previousButton.enabled = [self.photoDataSource.photoAlbumView hasPrevious];
+  _nextButton.enabled = [self.photoDataSource.photoAlbumView hasNext];
 }
 
 
@@ -264,18 +300,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willRotateToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
                                 duration: (NSTimeInterval)duration {
+	//
   [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 
-  [self.photoAlbumView willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+  [self.photoDataSource.photoAlbumView willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
                                          duration: (NSTimeInterval)duration {
-  [self.photoAlbumView willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
-                                                        duration: duration];
-
+	//
   [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation
                                           duration:duration];
 
@@ -285,138 +320,142 @@
   self.toolbar.frame = toolbarFrame;
 
   if (!self.toolbarIsTranslucent) {
-    CGRect photoAlbumFrame = self.photoAlbumView.frame;
+    CGRect photoAlbumFrame = self.photoDataSource.photoAlbumView.frame;
     photoAlbumFrame.size.height = self.view.bounds.size.height - toolbarFrame.size.height;
-    self.photoAlbumView.frame = photoAlbumFrame;
+    self.photoDataSource.photoAlbumView.frame = photoAlbumFrame;
   }
+
+  [self.photoDataSource.photoAlbumView willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
+                                                        duration: duration];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didHideChrome {
   _isAnimatingChrome = NO;
-  if (self.toolbarIsTranslucent) {
-    self.toolbar.hidden = YES;
-  }
-
-  _isChromeHidden = YES;
+	
+	if (self.toolbarIsTranslucent) {
+		self.toolbar.hidden = YES;
+	}
+	
+	_isChromeHidden = YES;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didShowChrome {
-  _isAnimatingChrome = NO;
-
-  _isChromeHidden = NO;
+	_isAnimatingChrome = NO;
+	_isChromeHidden = NO;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setChromeVisibility:(BOOL)isVisible animated:(BOOL)animated {
-  if (_isAnimatingChrome
-      || (!isVisible && _isChromeHidden)
-      || (isVisible && !_isChromeHidden)
-      || !self.chromeCanBeHidden) {
-    // Nothing to do here.
-    return;
-  }
-
-  CGRect toolbarFrame = self.toolbar.frame;
-  CGRect bounds = self.view.bounds;
-
-  if (self.toolbarIsTranslucent) {
-    // Reset the toolbar's initial position.
-    if (!isVisible) {
-      toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
-
-    } else {
-      // Ensure that the toolbar is visible through the animation.
-      self.toolbar.hidden = NO;
-
-      toolbarFrame.origin.y = bounds.size.height;
-    }
-    self.toolbar.frame = toolbarFrame;
-  }
-
-  // Show/hide the system chrome.
-  if ([[UIApplication sharedApplication] respondsToSelector:
-       @selector(setStatusBarHidden:withAnimation:)]) {
-    // On 3.2 and higher we can slide the status bar out.
-    [[UIApplication sharedApplication] setStatusBarHidden: !isVisible
-                                            withAnimation: (animated
-                                                            ? UIStatusBarAnimationSlide
-                                                            : UIStatusBarAnimationNone)];
-
-  } else {
+	if (_isAnimatingChrome
+		|| (!isVisible && _isChromeHidden)
+		|| (isVisible && !_isChromeHidden)
+		|| !self.chromeCanBeHidden) {
+		// Nothing to do here.
+		return;
+	}
+	
+	CGRect toolbarFrame = self.toolbar.frame;
+	CGRect bounds = self.view.bounds;
+	
+	if (self.toolbarIsTranslucent) {
+		// Reset the toolbar's initial position.
+		if (!isVisible) {
+			toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
+			
+		} else {
+			// Ensure that the toolbar is visible through the animation.
+			self.toolbar.hidden = NO;
+			
+			toolbarFrame.origin.y = bounds.size.height;
+		}
+		self.toolbar.frame = toolbarFrame;
+	}
+	
+	// Show/hide the system chrome.
+	if ([[UIApplication sharedApplication] respondsToSelector:
+		 @selector(setStatusBarHidden:withAnimation:)]) {
+		// On 3.2 and higher we can slide the status bar out.
+		[[UIApplication sharedApplication] setStatusBarHidden: !isVisible
+												withAnimation: (animated
+																? UIStatusBarAnimationSlide
+																: UIStatusBarAnimationNone)];
+		
+	} else {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_3_2
-    // On 3.0 devices we use the boring fade animation.
-    [[UIApplication sharedApplication] setStatusBarHidden: !isVisible
-                                                 animated: animated];
+		// On 3.0 devices we use the boring fade animation.
+		[[UIApplication sharedApplication] setStatusBarHidden: !isVisible
+													 animated: animated];
 #endif
-  }
-
-  if (self.toolbarIsTranslucent) {
-    // Place the toolbar at its final location.
-    if (isVisible) {
-      // Slide up.
-      toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
-
-    } else {
-      // Slide down.
-      toolbarFrame.origin.y = bounds.size.height;
-    }
-  }
-
-  // If there is a navigation bar, place it at its final location.
-  CGRect navigationBarFrame = CGRectZero;
-  if (nil != self.navigationController.navigationBar) {
-    navigationBarFrame = self.navigationController.navigationBar.frame;
-    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-    CGFloat statusBarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);
-
-    if (isVisible) {
-      navigationBarFrame.origin.y = statusBarHeight;
-
-    } else {
-      navigationBarFrame.origin.y = 0;
-    }
-  }
-
-  if (animated) {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:(isVisible
-                                         ? @selector(didShowChrome)
-                                         : @selector(didHideChrome))];
-
-    // Ensure that the animation matches the status bar's.
-    [UIView setAnimationDuration:NIStatusBarAnimationDuration()];
-    [UIView setAnimationCurve:NIStatusBarAnimationCurve()];
-  }
-
-  if (self.toolbarIsTranslucent) {
-    self.toolbar.frame = toolbarFrame;
-  }
-  if (nil != self.navigationController.navigationBar) {
-    self.navigationController.navigationBar.frame = navigationBarFrame;
-    self.navigationController.navigationBar.alpha = (isVisible ? 1 : 0);
-  }
-
-  if (animated) {
-    _isAnimatingChrome = YES;
-    [UIView commitAnimations];
-
-  } else if (!isVisible) {
-    [self didHideChrome];
-
-  } else if (isVisible) {
-    [self didShowChrome];
-  }
+	}
+	
+	if (self.toolbarIsTranslucent) {
+		// Place the toolbar at its final location.
+		if (isVisible) {
+			// Slide up.
+			toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
+			
+		} else {
+			// Slide down.
+			toolbarFrame.origin.y = bounds.size.height;
+		}
+	}
+	
+	// If there is a navigation bar, place it at its final location.
+	CGRect navigationBarFrame = CGRectZero;
+	if (nil != self.navigationController.navigationBar) {
+		navigationBarFrame = self.navigationController.navigationBar.frame;
+		CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+		CGFloat statusBarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);
+		
+		if (isVisible) {
+			navigationBarFrame.origin.y = statusBarHeight;
+			
+		} else {
+			navigationBarFrame.origin.y = 0;
+		}
+	}
+	
+	if (animated) {
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDelegate:self];
+		[UIView setAnimationDidStopSelector:(isVisible
+											 ? @selector(didShowChrome)
+											 : @selector(didHideChrome))];
+		
+		// Ensure that the animation matches the status bar's.
+		[UIView setAnimationDuration:NIStatusBarAnimationDuration()];
+		[UIView setAnimationCurve:NIStatusBarAnimationCurve()];
+	}
+	
+	if (self.toolbarIsTranslucent) {
+		self.toolbar.frame = toolbarFrame;
+	}
+	
+	if (nil != self.navigationController.navigationBar) {
+		self.navigationController.navigationBar.frame = navigationBarFrame;
+		self.navigationController.navigationBar.alpha = (isVisible ? 1 : 0);
+	}
+	
+	if (animated) {
+		_isAnimatingChrome = YES;
+		[UIView commitAnimations];
+		
+	} else if (!isVisible) {
+		[self didHideChrome];
+		
+	} else if (isVisible) {
+		[self didShowChrome];
+	}
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)toggleChromeVisibility {
+- (void) toggleChromeVisibility {
   [self setChromeVisibility:(_isChromeHidden || _isAnimatingChrome) animated:YES];
 }
 
@@ -430,7 +469,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTap {
   SEL selector = @selector(toggleChromeVisibility);
-  if (self.photoAlbumView.zoomingIsEnabled) {
+  if (self.photoDataSource.photoAlbumView.zoomingIsEnabled) {
     // Cancel any previous delayed performs so that we don't stack them.
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:selector object:nil];
 
@@ -450,12 +489,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)refreshChromeState {
-  self.previousButton.enabled = [self.photoAlbumView hasPrevious];
-  self.nextButton.enabled = [self.photoAlbumView hasNext];
-
+  self.previousButton.enabled = [self.photoDataSource.photoAlbumView hasPrevious];
+  self.nextButton.enabled = [self.photoDataSource.photoAlbumView hasNext];
+  
   self.title = [NSString stringWithFormat:@"%d of %d",
-                (self.photoAlbumView.centerPageIndex + 1),
-                self.photoAlbumView.numberOfPages];
+                (self.photoDataSource.photoAlbumView.centerPageIndex + 1),
+                self.photoDataSource.photoAlbumView.numberOfPages];
 }
 
 
@@ -476,6 +515,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
                    didZoomIn: (BOOL)didZoomIn {
+	//
   // This delegate method is called after a double-tap gesture, so cancel any pending
   // single-tap gestures.
   [NSObject cancelPreviousPerformRequestsWithTarget: self
@@ -489,8 +529,8 @@
   // We animate the scrubber when the chrome won't disappear as a nice touch.
   // We don't bother animating if the chrome disappears when scrolling because the user
   // will barely see the animation happen.
-  [self.photoScrubberView setSelectedPhotoIndex: [pagingScrollView centerPageIndex]
-                                       animated: !self.hidesChromeWhenScrolling];
+  [((NIToolbarDataSource *)self.photoDataSource).photoScrubberView setSelectedPhotoIndex: [pagingScrollView centerPageIndex]
+																				animated: !self.hidesChromeWhenScrolling];
 
   [self refreshChromeState];
 }
@@ -504,7 +544,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)photoScrubberViewDidChangeSelection:(NIPhotoScrubberView *)photoScrubberView {
-  [self.photoAlbumView moveToPageAtIndex:photoScrubberView.selectedPhotoIndex animated:NO];
+  [self.photoDataSource.photoAlbumView moveToPageAtIndex:photoScrubberView.selectedPhotoIndex 
+												animated:NO];
 
   [self refreshChromeState];
 }
@@ -518,13 +559,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTapNextButton {
-  [self.photoAlbumView moveToNextAnimated:self.animateMovingToNextAndPreviousPhotos];
+  [self.photoDataSource.photoAlbumView moveToNextAnimated:self.animateMovingToNextAndPreviousPhotos];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTapPreviousButton {
-  [self.photoAlbumView moveToPreviousAnimated:self.animateMovingToNextAndPreviousPhotos];
+  [self.photoDataSource.photoAlbumView moveToPreviousAnimated:self.animateMovingToNextAndPreviousPhotos];
 }
 
 
@@ -536,7 +577,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)settoolbarIsTranslucent:(BOOL)enabled {
-  _toolbarIsTranslucent = enabled;
+	_toolbarIsTranslucent = enabled;
 
   self.toolbar.translucent = enabled;
 }

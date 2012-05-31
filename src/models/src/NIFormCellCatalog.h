@@ -116,6 +116,23 @@
 @end
 
 /**
+ * The cell sibling to NITextInputFormElement2.
+ *
+ * Displays two fields: a readonly title, and a text field for editing.
+ *
+ * @image html NITextInputCellExample1.png "Example of a NITextInputFormElementCell."
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NITextInputFormElementCell2 : NITextInputFormElementCell <UITextFieldDelegate> {
+@private
+	CGFloat			_maxLabelLength;
+}
+
++ (UITableViewCellStyle) cellStyle;
+@end
+
+/**
  * The cell sibling to NISwitchFormElement.
  *
  * Displays a left-aligned label and a right-aligned switch.
