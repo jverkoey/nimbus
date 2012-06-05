@@ -186,11 +186,11 @@ static CGFloat kProgressMargin  = 6;
         bezelHeight = self.frame.size.height;
     }
     
-    CGFloat maxBevelWidth = [UIScreen mainScreen].applicationFrame.size.width - margin*2;
-    if (bezelWidth > maxBevelWidth) {
-        bezelWidth = maxBevelWidth;
-        contentWidth = bezelWidth - (kSpacing + indicatorSize);
-    }
+//    CGFloat maxBevelWidth = [UIApplication sharedApplication].keyWindow.bounds.size.width - margin*2;
+//    if (bezelWidth > maxBevelWidth) {
+//        bezelWidth = maxBevelWidth;
+//        contentWidth = bezelWidth - (kSpacing + indicatorSize);
+//    }
     
     CGFloat textMaxWidth = (bezelWidth - (indicatorSize + kSpacing)) - padding*2;
     CGFloat textWidth = textSize.width;

@@ -1,6 +1,5 @@
 //
 //  NIPostController.h
-//  FaceDeck
 //
 //  Created by Tony Lewis on 4/7/12.
 //  Copyright (c) 2012 Taknology, Inc. All rights reserved.
@@ -16,6 +15,7 @@
 <UITextViewDelegate,NIOperationDelegate> {
     id                _result;
     NSString*         _defaultText;
+    NSString*         _titleForActivity;
     CGRect            _originRect;
     UIView*           _originView;
     UIView*           _innerView;
@@ -36,6 +36,7 @@
 @property (nonatomic, readonly) UITextView*       textView;
 @property (nonatomic, readonly) UINavigationBar*  navigatorBar;
 @property (nonatomic, retain)   UIView*           originView;
+@property (nonatomic, retain)   NSString*         titleForActivity;
 @property (nonatomic, assign)   NSInteger         maxCharCount;
 @property (nonatomic, assign)   id<NIPostControllerDelegate> delegate;
 
@@ -70,8 +71,6 @@
  * @return YES if the controller should be dismissed immediately.
  */
 - (BOOL)willPostText:(NSString*)text;
-
-- (NSString*)titleForActivity;
 
 - (NSString*)titleForError:(NSError*)error;
 

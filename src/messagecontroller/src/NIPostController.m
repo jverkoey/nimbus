@@ -1,6 +1,5 @@
 //
 //  NIPostController.m
-//  FaceDeck
 //
 //  Created by Tony Lewis on 4/7/12.
 //  Copyright (c) 2012 Taknology, Inc. All rights reserved.
@@ -16,8 +15,9 @@ static const CGFloat kMarginY = 6;
 @synthesize result      = _result;
 @synthesize textView    = _textView;
 @synthesize originView  = _originView;
-@synthesize delegate = _delegate;
+@synthesize delegate    = _delegate;
 @synthesize maxCharCount = _maxCharCount;
+@synthesize titleForActivity = _titleForActivity;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -94,7 +94,7 @@ static const CGFloat kMarginY = 6;
     NI_RELEASE_SAFELY(_innerView);
     NI_RELEASE_SAFELY(_activityView);
     NI_RELEASE_SAFELY(_charLimitLabel);
-//    NI_RELEASE_SAFELY(_backgroundView);
+    NI_RELEASE_SAFELY(_titleForActivity);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,6 +188,7 @@ static const CGFloat kMarginY = 6;
                                  _screenView.frame.size.width - (kMarginX*2),
                                  (_screenView.frame.size.height - (kMarginY*2)));
 
+    [_charLimitLabel sizeToFit];
     _charLimitLabel.frame = CGRectMake(_textView.frame.size.width - _charLimitLabel.frame.size.width,
                                        (_textView.frame.origin.y + _textView.frame.size.height)-_charLimitLabel.frame.size.height,
                                        _charLimitLabel.frame.size.width, _charLimitLabel.frame.size.height);
@@ -206,12 +207,9 @@ static const CGFloat kMarginY = 6;
         [_charLimitLabel removeFromSuperview];
         NI_RELEASE_SAFELY(_charLimitLabel);
     }
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setPositiveFormat:@"##,##0"];
     _charLimitLabel = [[UILabel alloc] init];
     _charLimitLabel.backgroundColor = [UIColor clearColor];
-    _charLimitLabel.text = [NSString stringWithFormat:@"%@", 
-                            [numberFormatter stringFromNumber:[NSNumber numberWithInt:_maxCharCount]]];
+    _charLimitLabel.text = [NSString stringWithFormat:@"%i", _maxCharCount];
 
     _charLimitLabel.textColor = [[UIColor greenColor] colorWithAlphaComponent:0.5];
     _charLimitLabel.font = [UIFont boldSystemFontOfSize:32.0f];
@@ -271,6 +269,7 @@ static const CGFloat kMarginY = 6;
     
     BOOL animated = YES;
     [self dismissPopupViewControllerAnimated:animated];
+    [_textView resignFirstResponder];
 }
 
 
@@ -295,6 +294,7 @@ static const CGFloat kMarginY = 6;
 - (void)loadView {
     [super loadView];
 
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     self.view.frame = [UIScreen mainScreen].applicationFrame;
     self.view.backgroundColor = [UIColor clearColor];
     self.view.autoresizesSubviews = YES;
@@ -470,19 +470,24 @@ static const CGFloat kMarginY = 6;
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma UITextViewDelegate
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)textViewDidChange:(UITextView *)textView {
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setPositiveFormat:@"##,##0"];
-    _charLimitLabel.text = [NSString stringWithFormat:@"%@", 
-                            [numberFormatter stringFromNumber:[NSNumber numberWithInt:(_maxCharCount - [textView.text length])]]];
+    _charLimitLabel.text = [NSString stringWithFormat:@"%i", (_maxCharCount - [_textView.text length])];
     if ([textView.text length] > _maxCharCount) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
         _charLimitLabel.textColor = [[UIColor redColor] colorWithAlphaComponent:0.6];
     } else {
         _charLimitLabel.textColor = [[UIColor greenColor] colorWithAlphaComponent:0.6];
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    if (!NIIsStringWithAnyText(textView.text)
+        && !textView.text.isWhitespaceAndNewlines) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
     }
 }
 
@@ -628,12 +633,6 @@ static const CGFloat kMarginY = 6;
     return YES;
 }
 
-- (NSString*)titleForActivity {
-    return nil;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)titleForError:(NSError*)error {
     return nil;
 }
