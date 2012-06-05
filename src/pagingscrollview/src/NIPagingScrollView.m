@@ -406,45 +406,43 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark Forwarding unimplemented UIScrollViewDelegate methods
+#pragma mark - Forward UIScrollViewDelegate Methods
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)shouldForwardSelectorToDelegate:(SEL)aSelector
-{
-    struct objc_method_description description;
-    description = protocol_getMethodDescription(@protocol(UIScrollViewDelegate),
-                                                aSelector,
-                                                NO,
-                                                YES);
-    BOOL isSelectorInScrollViewDelegate = (description.name != NULL && description.types != NULL);
-    
-    return (   isSelectorInScrollViewDelegate
-            && [self.delegate respondsToSelector:aSelector]);
+- (BOOL)shouldForwardSelectorToDelegate:(SEL)aSelector {
+  struct objc_method_description description;
+  // Only forward the selector if it's part of the UIScrollViewDelegate protocol.
+  description = protocol_getMethodDescription(@protocol(UIScrollViewDelegate),
+                                              aSelector,
+                                              NO,
+                                              YES);
+
+  BOOL isSelectorInScrollViewDelegate = (description.name != NULL && description.types != NULL);
+  return (isSelectorInScrollViewDelegate
+          && [self.delegate respondsToSelector:aSelector]);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)respondsToSelector:(SEL)aSelector
-{
-    if ([super respondsToSelector:aSelector] == YES) {
-        return YES;
-    
-    } else {
-        return [self shouldForwardSelectorToDelegate:aSelector];
-    }
+- (BOOL)respondsToSelector:(SEL)aSelector {
+  if ([super respondsToSelector:aSelector] == YES) {
+    return YES;
+
+  } else {
+    return [self shouldForwardSelectorToDelegate:aSelector];
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)forwardingTargetForSelector:(SEL)aSelector
-{
-    if ([self shouldForwardSelectorToDelegate:aSelector]) {
-        return self.delegate;
-    
-    } else {
-        return nil;
-    }
+- (id)forwardingTargetForSelector:(SEL)aSelector {
+  if ([self shouldForwardSelectorToDelegate:aSelector]) {
+    return self.delegate;
+
+  } else {
+    return nil;
+  }
 }
 
 
