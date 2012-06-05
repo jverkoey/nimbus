@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,9 +16,16 @@
 
 #import <UIKit/UIKit.h>
 
-int main(int argc, char *argv[]) {
-  NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-  int retVal = UIApplicationMain(argc, argv, nil, @"AppDelegate");
-  [pool release];
-  return retVal;
-}
+@class NICSSRuleset;
+
+@interface UITableView (NIStyleable)
+
+/**
+ * Applies the given rule set to this table view.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applyTableViewStyleWithRuleSet:(NICSSRuleset *)ruleSet;
+
+@end

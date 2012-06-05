@@ -14,17 +14,18 @@
 // limitations under the License.
 //
 
-#import "NICellFactory.h"
+#import <UIKit/UIKit.h>
 
-@interface CatalogEntry : NSObject <NICellObject> {
-@private
-  NSString* _title;
-  Class _controllerClass;
-}
+@class NICSSRuleset;
 
-+ (id)entryWithTitle:(NSString *)title controllerClass:(Class)controllerClass;
+@interface UISearchBar (NIStyleable)
 
-@property (nonatomic, readwrite, copy)    NSString* title;
-@property (nonatomic, readwrite, assign)  Class controllerClass;
+/**
+ * Applies the given rule set to this search bar.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applySearchBarStyleWithRuleSet:(NICSSRuleset *)ruleSet;
 
 @end

@@ -16,5 +16,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StaticSectionedTableViewController : UITableViewController
+@class NICSSRuleset;
+
+@interface UIToolbar (NIStyleable)
+
+/**
+ * Applies the given rule set to this toolbar.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applyToolbarStyleWithRuleSet:(NICSSRuleset *)ruleSet;
+
 @end

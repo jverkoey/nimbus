@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		664EFB6615598E3D009826AB /* UIActivityIndicatorView+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 664EFB6515598E3D009826AB /* UIActivityIndicatorView+NIStyleable.m */; };
 		66832D2514421450003E413C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D2414421450003E413C /* UIKit.framework */; };
 		66832D2714421450003E413C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D2614421450003E413C /* Foundation.framework */; };
 		66832D2914421450003E413C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D2814421450003E413C /* CoreGraphics.framework */; };
@@ -48,6 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		664EFB6415598E3D009826AB /* UIActivityIndicatorView+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+NIStyleable.h"; path = "../../src/css/src/UIActivityIndicatorView+NIStyleable.h"; sourceTree = "<group>"; };
+		664EFB6515598E3D009826AB /* UIActivityIndicatorView+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+NIStyleable.m"; path = "../../src/css/src/UIActivityIndicatorView+NIStyleable.m"; sourceTree = "<group>"; };
 		66832D2014421450003E413C /* CSSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66832D2414421450003E413C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		66832D2614421450003E413C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -270,6 +273,8 @@
 				66832DEC14434FBE003E413C /* NIStylesheet.m */,
 				668ECDC91456438C00455266 /* NIStylesheetCache.h */,
 				668ECDCA1456438C00455266 /* NIStylesheetCache.m */,
+				664EFB6415598E3D009826AB /* UIActivityIndicatorView+NIStyleable.h */,
+				664EFB6515598E3D009826AB /* UIActivityIndicatorView+NIStyleable.m */,
 				668ECDCC145656F300455266 /* UIButton+NIStyleable.h */,
 				668ECDCD145656F400455266 /* UIButton+NIStyleable.m */,
 				66832DEF14434FBE003E413C /* UILabel+NIStyleable.h */,
@@ -393,6 +398,7 @@
 				66832E0A14435A07003E413C /* NIChameleonObserver.m in Sources */,
 				668ECDCB1456438C00455266 /* NIStylesheetCache.m in Sources */,
 				668ECDCE145656F400455266 /* UIButton+NIStyleable.m in Sources */,
+				664EFB6615598E3D009826AB /* UIActivityIndicatorView+NIStyleable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

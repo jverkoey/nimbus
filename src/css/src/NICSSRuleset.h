@@ -45,6 +45,10 @@
   UIColor *_borderColor;
   CGFloat _borderWidth;
   UIColor *_tintColor;
+  UIActivityIndicatorViewStyle _activityIndicatorStyle;
+  UIViewAutoresizing _autoresizing;
+  UITableViewCellSeparatorStyle _tableViewCellSeparatorStyle;
+  UIScrollViewIndicatorStyle _scrollViewIndicatorStyle;
 
   union {
     struct {
@@ -64,6 +68,10 @@
       int BorderColor : 1;
       int BorderWidth : 1;
       int TintColor : 1;
+      int ActivityIndicatorStyle : 1;
+      int Autoresizing : 1;
+      int TableViewCellSeparatorStyle : 1;
+      int ScrollViewIndicatorStyle : 1;
     } cached;
     int _data;
   } _is;
@@ -118,6 +126,18 @@
 
 - (BOOL)hasTintColor;
 - (UIColor *)tintColor; // -ios-tint-color
+
+- (BOOL)hasActivityIndicatorStyle;
+- (UIActivityIndicatorViewStyle)activityIndicatorStyle; // -ios-activity-indicator-style
+
+- (BOOL)hasAutoresizing;
+- (UIViewAutoresizing)autoresizing; // -ios-autoresizing
+
+- (BOOL)hasTableViewCellSeparatorStyle;
+- (UITableViewCellSeparatorStyle)tableViewCellSeparatorStyle; // -ios-table-view-cell-separator-style
+
+- (BOOL)hasScrollViewIndicatorStyle;
+- (UIScrollViewIndicatorStyle)scrollViewIndicatorStyle; // -ios-scroll-view-indicator-style
 
 @end
 

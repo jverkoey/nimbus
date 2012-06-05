@@ -39,6 +39,10 @@ static NSString* const kBorderKey = @"border";
 static NSString* const kBorderColorKey = @"border-color";
 static NSString* const kBorderWidthKey = @"border-width";
 static NSString* const kTintColorKey = @"-ios-tint-color";
+static NSString* const kActivityIndicatorStyleKey = @"-ios-activity-indicator-style";
+static NSString* const kAutoresizingKey = @"-ios-autoresizing";
+static NSString* const kTableViewCellSeparatorStyleKey = @"-ios-table-view-cell-separator-style";
+static NSString* const kScrollViewIndicatorStyleKey = @"-ios-scroll-view-indicator-style";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -580,6 +584,124 @@ static NSDictionary* sColorTable = nil;
     _is.cached.TintColor = YES;
   }
   return _tintColor;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasActivityIndicatorStyle {
+  return nil != [_ruleset objectForKey:kActivityIndicatorStyleKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIActivityIndicatorViewStyle)activityIndicatorStyle {
+  NIDASSERT([self hasActivityIndicatorStyle]);
+  if (!_is.cached.ActivityIndicatorStyle) {
+    NSArray* values = [_ruleset objectForKey:kActivityIndicatorStyleKey];
+    NIDASSERT([values count] == 1);
+    NSString* value = [values objectAtIndex:0];
+    if ([value isEqualToString:@"white"]) {
+      _activityIndicatorStyle = UIActivityIndicatorViewStyleWhite;
+    } else if ([value isEqualToString:@"gray"]) {
+      _activityIndicatorStyle = UIActivityIndicatorViewStyleGray;
+    } else {
+      _activityIndicatorStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    }
+    _is.cached.ActivityIndicatorStyle = YES;
+  }
+  return _activityIndicatorStyle;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasAutoresizing {
+  return nil != [_ruleset objectForKey:kAutoresizingKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIViewAutoresizing)autoresizing {
+  NIDASSERT([self hasAutoresizing]);
+  if (!_is.cached.Autoresizing) {
+    NSArray* values = [_ruleset objectForKey:kAutoresizingKey];
+    UIViewAutoresizing autoresizing = UIViewAutoresizingNone;
+    for (NSString* value in values) {
+      if ([value isEqualToString:@"left"]) {
+        autoresizing |= UIViewAutoresizingFlexibleLeftMargin;
+      } else if ([value isEqualToString:@"top"]) {
+        autoresizing |= UIViewAutoresizingFlexibleTopMargin;
+      } else if ([value isEqualToString:@"right"]) {
+        autoresizing |= UIViewAutoresizingFlexibleRightMargin;
+      } else if ([value isEqualToString:@"bottom"]) {
+        autoresizing |= UIViewAutoresizingFlexibleBottomMargin;
+      } else if ([value isEqualToString:@"width"]) {
+        autoresizing |= UIViewAutoresizingFlexibleWidth;
+      } else if ([value isEqualToString:@"height"]) {
+        autoresizing |= UIViewAutoresizingFlexibleHeight;
+      } else if ([value isEqualToString:@"all"]) {
+        autoresizing |= UIViewAutoresizingFlexibleDimensions | UIViewAutoresizingFlexibleMargins;
+      } else if ([value isEqualToString:@"margins"]) {
+        autoresizing |= UIViewAutoresizingFlexibleMargins;
+      } else if ([value isEqualToString:@"dimensions"]) {
+        autoresizing |= UIViewAutoresizingFlexibleDimensions;
+      }
+    }
+    _autoresizing = autoresizing;
+    _is.cached.Autoresizing = YES;
+  }
+  return _autoresizing;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasTableViewCellSeparatorStyle {
+  return nil != [_ruleset objectForKey:kTableViewCellSeparatorStyleKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UITableViewCellSeparatorStyle)tableViewCellSeparatorStyle {
+  NIDASSERT([self hasTableViewCellSeparatorStyle]);
+  if (!_is.cached.TableViewCellSeparatorStyle) {
+    NSArray* values = [_ruleset objectForKey:kActivityIndicatorStyleKey];
+    NIDASSERT([values count] == 1);
+    NSString* value = [values objectAtIndex:0];
+    UITableViewCellSeparatorStyle style = UITableViewCellSeparatorStyleSingleLine;
+    if ([value isEqualToString:@"none"]) {
+      style = UITableViewCellSeparatorStyleNone;
+    } else if ([value isEqualToString:@"single-line-etched"]) {
+      style = UITableViewCellSeparatorStyleSingleLineEtched;
+    }
+    _tableViewCellSeparatorStyle = style;
+    _is.cached.TableViewCellSeparatorStyle = YES;
+  }
+  return _tableViewCellSeparatorStyle;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasScrollViewIndicatorStyle {
+  return nil != [_ruleset objectForKey:kScrollViewIndicatorStyleKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIScrollViewIndicatorStyle)scrollViewIndicatorStyle {
+  NIDASSERT([self hasScrollViewIndicatorStyle]);
+  if (!_is.cached.ScrollViewIndicatorStyle) {
+    NSArray* values = [_ruleset objectForKey:kScrollViewIndicatorStyleKey];
+    NIDASSERT([values count] == 1);
+    NSString* value = [values objectAtIndex:0];
+    UIScrollViewIndicatorStyle style = UIScrollViewIndicatorStyleDefault;
+    if ([value isEqualToString:@"black"]) {
+      style = UIScrollViewIndicatorStyleBlack;
+    } else if ([value isEqualToString:@"white"]) {
+      style = UIScrollViewIndicatorStyleWhite;
+    }
+    _scrollViewIndicatorStyle = style;
+    _is.cached.ScrollViewIndicatorStyle = YES;
+  }
+  return _scrollViewIndicatorStyle;
 }
 
 
