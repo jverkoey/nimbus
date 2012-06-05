@@ -39,9 +39,11 @@ static NSOperationQueue* sNimbusGlobalOperationQueue = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NIImageMemoryCache *)imageMemoryCache {
-  if (nil == sNimbusGlobalMemoryCache) {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
     sNimbusGlobalMemoryCache = [[NIImageMemoryCache alloc] init];
-  }
+  });
+  
   return sNimbusGlobalMemoryCache;
 }
 
