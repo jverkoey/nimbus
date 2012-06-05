@@ -637,7 +637,7 @@
 
           CGFloat pi = (CGFloat)M_PI;
 
-          CGFloat radius = 5.0f;
+          CGFloat radius = 1.0f;
           CGContextMoveToPoint(ctx, highlightRect.origin.x, highlightRect.origin.y + radius);
           CGContextAddLineToPoint(ctx, highlightRect.origin.x, highlightRect.origin.y + highlightRect.size.height - radius);
           CGContextAddArc(ctx, highlightRect.origin.x + radius, highlightRect.origin.y + highlightRect.size.height - radius, 
