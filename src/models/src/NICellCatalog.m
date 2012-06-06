@@ -23,11 +23,13 @@
 @implementation NITitleCellObject
 
 @synthesize title = _title;
+@synthesize image = _image;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [_title release];
+  [_image release];
 
   [super dealloc];
 }
@@ -40,17 +42,30 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithTitle:(NSString *)title {
+- (id)initWithTitle:(NSString *)title image:(UIImage *)image {
   if ((self = [self initWithCellClass:[NITextCell class] userInfo:nil])) {
     _title = [title copy];
+    _image = [image retain];
   }
   return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)cellWithTitle:(NSString *)title {
-  return [[[self alloc] initWithTitle:title] autorelease];
+- (id)initWithTitle:(NSString *)title {
+  return [self initWithTitle:title image:nil];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)objectWithTitle:(NSString *)title image:(UIImage *)image {
+  return [[[self alloc] initWithTitle:title image:image] autorelease];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)objectWithTitle:(NSString *)title {
+  return [[[self alloc] initWithTitle:title image:nil] autorelease];
 }
 
 @end
@@ -74,8 +89,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
-  if ((self = [super initWithTitle:title])) {
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image {
+  if ((self = [super initWithTitle:title image:image])) {
     _subtitle = [subtitle copy];
     _cellStyle = UITableViewCellStyleSubtitle;
   }
@@ -84,8 +99,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)cellWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
-  return [[[self alloc] initWithTitle:title subtitle:subtitle] autorelease];
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
+  return [self initWithTitle:title subtitle:subtitle image:nil];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image {
+  return [[[self alloc] initWithTitle:title subtitle:subtitle image:image] autorelease];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
+  return [[[self alloc] initWithTitle:title subtitle:subtitle image:nil] autorelease];
 }
 
 @end
@@ -110,6 +137,7 @@
 - (void)prepareForReuse {
   [super prepareForReuse];
 
+  self.imageView.image = nil;
   self.textLabel.text = nil;
   self.detailTextLabel.text = nil;
 }
@@ -120,6 +148,7 @@
   if ([object isKindOfClass:[NITitleCellObject class]]) {
     NITitleCellObject* titleObject = object;
     self.textLabel.text = titleObject.title;
+    self.imageView.image = titleObject.image;
   }
   if ([object isKindOfClass:[NISubtitleCellObject class]]) {
     NISubtitleCellObject* subtitleObject = object;
