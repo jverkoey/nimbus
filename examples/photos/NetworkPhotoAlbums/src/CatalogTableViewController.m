@@ -158,7 +158,14 @@
   Class vcClass = [object objectForKey:@"class"];
   id initWith = [object objectForKey:@"initWith"];
   NSString* title = [object objectForKey:@"title"];
-  UIViewController* vc = [[[vcClass alloc] initWith:initWith] autorelease];
+  UIViewController* vc = nil;
+  
+  SEL selector = (SEL)[[object objectForKey:@"initWithSelector"] nonretainedObjectValue];
+  if (nil == selector) {
+    vc = [[[vcClass alloc] initWith:initWith] autorelease];
+  } else {
+    vc = [[[vcClass alloc] performSelector:selector withObject:initWith] autorelease];
+  }
   vc.title = title;
 
   [self.navigationController pushViewController:vc animated:YES];

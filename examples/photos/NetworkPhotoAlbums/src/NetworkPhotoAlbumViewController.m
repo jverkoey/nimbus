@@ -16,6 +16,7 @@
 
 #import "NetworkPhotoAlbumViewController.h"
 
+#import "NIOverviewMemoryCacheController.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,6 +48,17 @@
   [self shutdown_NetworkPhotoAlbumViewController];
 
   [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+    
+    UIBarButtonItem* button = [[[UIBarButtonItem alloc] initWithTitle:@"Cache" style:UIBarButtonItemStyleBordered target:self action:@selector(didTapCacheButton:)] autorelease];
+    self.navigationItem.rightBarButtonItem = button;
+  }
+  return self;
 }
 
 
@@ -190,6 +202,22 @@
   [self shutdown_NetworkPhotoAlbumViewController];
 
   [super viewDidUnload];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark User Actions
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didTapCacheButton:(UIBarButtonItem *)button {
+  // This will push a controller from the [overview] feature that shows all of the images in an
+  // in-memory image cache, sorted in least-recently-used format.
+  NIOverviewMemoryCacheController* controller = [[[NIOverviewMemoryCacheController alloc] initWithMemoryCache:self.highQualityImageCache] autorelease];
+  controller.title = @"Cache";
+  [self.navigationController pushViewController:controller animated:YES];
 }
 
 
