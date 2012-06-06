@@ -236,8 +236,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id<NIPhotoAlbumScrollViewDelegate>)delegate {
-  NIDASSERT([[super delegate] conformsToProtocol:@protocol(NIPhotoAlbumScrollViewDelegate)]);
-  return (id<NIPhotoAlbumScrollViewDelegate>)[super delegate];
+  id<NIPagingScrollViewDelegate> superDelegate = [super delegate];
+  NIDASSERT(nil == superDelegate
+            || [superDelegate conformsToProtocol:@protocol(NIPhotoAlbumScrollViewDelegate)]);
+  return (id<NIPhotoAlbumScrollViewDelegate>)superDelegate;
 }
 
 

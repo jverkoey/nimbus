@@ -20,6 +20,9 @@
 #import "NIRadioGroup.h"
 #import "NITableViewModel.h"
 
+#import "NIDebuggingTools.h"
+#import "NIDeviceOrientation.h"
+
 @interface NIRadioGroupController ()
 @property (nonatomic, readonly, retain) NIRadioGroup* radioGroup;
 @property (nonatomic, readonly, retain) id<NICell> tappedCell;
