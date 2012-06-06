@@ -113,7 +113,7 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
  * When a cell's detail button is tapped, the detail action block will be executed. The return
  * value of the block is ignored.
  *
- *      @param object The object to attach the action to.
+ *      @param object The object to attach the action to. This object should be displayed by the table view.
  *      @param action The detail action block.
  *      @fn NITableViewActions::attachDetailAction:toObject:
  */
