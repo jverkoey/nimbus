@@ -861,10 +861,10 @@ static const CGFloat kGraphRightMargin = 5;
     // a dependency on the models feature.
     Class class = NSClassFromString(@"NIOverviewMemoryCacheController");
     if (nil != class) {
-      id instance = [class alloc];
+      id instance = [[class alloc] autorelease];
       SEL initSelector = @selector(initWithMemoryCache:);
       NIDASSERT([instance respondsToSelector:initSelector]);
-      UIViewController* controller = [[[class alloc] performSelector:initSelector withObject:self.cache] autorelease];
+      UIViewController* controller = [instance performSelector:initSelector withObject:self.cache];
       controller.title = @"Memory Cache";
       [(UINavigationController *)rootController pushViewController:controller animated:YES];
     }
