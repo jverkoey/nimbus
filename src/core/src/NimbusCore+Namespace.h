@@ -113,14 +113,14 @@
 #ifndef NICreateNonRetainingMutableSet
 #define NICreateNonRetainingMutableSet __NIMBUS_NS_SYMBOL(NICreateNonRetainingMutableSet)
 #endif
-#ifndef NIIsSetWithObjects
-#define NIIsSetWithObjects __NIMBUS_NS_SYMBOL(NIIsSetWithObjects)
-#endif
 #ifndef NINetworkActivityTaskDidFinish
 #define NINetworkActivityTaskDidFinish __NIMBUS_NS_SYMBOL(NINetworkActivityTaskDidFinish)
 #endif
 #ifndef NIRectShift
 #define NIRectShift __NIMBUS_NS_SYMBOL(NIRectShift)
+#endif
+#ifndef NIIsSetWithObjects
+#define NIIsSetWithObjects __NIMBUS_NS_SYMBOL(NIIsSetWithObjects)
 #endif
 #ifndef NIStatusBarAnimationCurve
 #define NIStatusBarAnimationCurve __NIMBUS_NS_SYMBOL(NIStatusBarAnimationCurve)
@@ -146,11 +146,11 @@
 #ifndef NIDeviceOSVersionIsAtLeast
 #define NIDeviceOSVersionIsAtLeast __NIMBUS_NS_SYMBOL(NIDeviceOSVersionIsAtLeast)
 #endif
-#ifndef NIIsStringWithAnyText
-#define NIIsStringWithAnyText __NIMBUS_NS_SYMBOL(NIIsStringWithAnyText)
-#endif
 #ifndef NIStatusBarHeight
 #define NIStatusBarHeight __NIMBUS_NS_SYMBOL(NIStatusBarHeight)
+#endif
+#ifndef NIIsStringWithAnyText
+#define NIIsStringWithAnyText __NIMBUS_NS_SYMBOL(NIIsStringWithAnyText)
 #endif
 #ifndef NIScreenScale
 #define NIScreenScale __NIMBUS_NS_SYMBOL(NIScreenScale)
@@ -170,11 +170,11 @@
 #ifndef NICellContentPadding
 #define NICellContentPadding __NIMBUS_NS_SYMBOL(NICellContentPadding)
 #endif
-#ifndef NIUITapGestureRecognizerClass
-#define NIUITapGestureRecognizerClass __NIMBUS_NS_SYMBOL(NIUITapGestureRecognizerClass)
-#endif
 #ifndef boundf
 #define boundf __NIMBUS_NS_SYMBOL(boundf)
+#endif
+#ifndef NIUITapGestureRecognizerClass
+#define NIUITapGestureRecognizerClass __NIMBUS_NS_SYMBOL(NIUITapGestureRecognizerClass)
 #endif
 #ifndef boundi
 #define boundi __NIMBUS_NS_SYMBOL(boundi)

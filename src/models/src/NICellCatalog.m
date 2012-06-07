@@ -36,7 +36,7 @@
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image {
   if ((self = [self initWithCellClass:[NITextCell class] userInfo:nil])) {
     _title = [title copy];
-    _image = [image retain];
+    _image = image;
   }
   return self;
 }

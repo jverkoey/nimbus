@@ -43,6 +43,12 @@
 #ifndef NIRadioGroup
 #define NIRadioGroup __NIMBUS_NS_SYMBOL(NIRadioGroup)
 #endif
+#ifndef NIRadioGroupCell
+#define NIRadioGroupCell __NIMBUS_NS_SYMBOL(NIRadioGroupCell)
+#endif
+#ifndef NIRadioGroupController
+#define NIRadioGroupController __NIMBUS_NS_SYMBOL(NIRadioGroupController)
+#endif
 #ifndef NISubtitleCellObject
 #define NISubtitleCellObject __NIMBUS_NS_SYMBOL(NISubtitleCellObject)
 #endif

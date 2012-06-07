@@ -723,16 +723,6 @@ static const CGFloat kGraphRightMargin = 5;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_enumerator);
-  NI_RELEASE_SAFELY(_history);
-  NI_RELEASE_SAFELY(_cache);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     self.pageTitle = NSLocalizedString(@"Memory Cache", @"Overview Page Title: Memory Cache");
@@ -741,7 +731,7 @@ static const CGFloat kGraphRightMargin = 5;
     self.history = [NILinkedList linkedList];
     self.graphView.dataSource = self;
 
-    UITapGestureRecognizer* tap = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)] autorelease];
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
     // We still want to be able to drag the pages.
     tap.cancelsTouchesInView = NO;
     [self addGestureRecognizer:tap];
@@ -752,7 +742,7 @@ static const CGFloat kGraphRightMargin = 5;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)pageWithCache:(NIMemoryCache *)cache {
-  NIOverviewMemoryCachePageView* pageView = [[[[self class] alloc] initWithFrame:CGRectZero] autorelease];
+  NIOverviewMemoryCachePageView* pageView = [[[self class] alloc] initWithFrame:CGRectZero];
   pageView.cache = cache;
   return pageView;
 }
@@ -773,7 +763,7 @@ static const CGFloat kGraphRightMargin = 5;
                         NIStringFromBytes(imageCache.maxNumberOfPixelsUnderStress),
                         NIStringFromBytes(imageCache.maxNumberOfPixels)];
 
-    NIOverviewImageMemoryCacheEntry* imageEntry = [[[NIOverviewImageMemoryCacheEntry alloc] init] autorelease];
+    NIOverviewImageMemoryCacheEntry* imageEntry = [[NIOverviewImageMemoryCacheEntry alloc] init];
     imageEntry.numberOfPixels = imageCache.numberOfPixels;
     imageEntry.maxNumberOfPixels = imageCache.maxNumberOfPixels;
     imageEntry.maxNumberOfPixelsUnderStress = imageCache.maxNumberOfPixelsUnderStress;
@@ -783,7 +773,7 @@ static const CGFloat kGraphRightMargin = 5;
     self.label1.text = [NSString stringWithFormat:@"%d objects", self.cache.count];
     self.label2.text = nil;
 
-    entry = [[[NIOverviewMemoryCacheEntry alloc] init] autorelease];
+    entry = [[NIOverviewMemoryCacheEntry alloc] init];
   }
 
   entry.timestamp = [NSDate date];
@@ -810,7 +800,10 @@ static const CGFloat kGraphRightMargin = 5;
       id instance = [class alloc];
       SEL initSelector = @selector(initWithMemoryCache:);
       NIDASSERT([instance respondsToSelector:initSelector]);
-      UIViewController* controller = [[[class alloc] performSelector:initSelector withObject:self.cache] autorelease];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+      UIViewController* controller = [[class alloc] performSelector:initSelector withObject:self.cache];
+#pragma clang diagnostic pop
       controller.title = @"Memory Cache";
       [(UINavigationController *)rootController pushViewController:controller animated:YES];
     }
@@ -858,8 +851,7 @@ static const CGFloat kGraphRightMargin = 5;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resetPointIterator {
-  NI_RELEASE_SAFELY(_enumerator);
-  _enumerator = [[self.history objectEnumerator] retain];
+  _enumerator = [self.history objectEnumerator];
 }
 
 
