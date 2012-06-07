@@ -16,6 +16,17 @@
 
 #import "NetworkPhotoAlbumViewController.h"
 
+#import "NIOverviewMemoryCacheController.h"
+#import "NimbusOverview.h"
+#import "NIOverviewView.h"
+#import "NIOverviewPageView.h"
+
+#ifdef DEBUG
+@interface NetworkPhotoAlbumViewController()
+@property (nonatomic, readwrite, retain) NIOverviewMemoryCachePageView* highQualityPage;
+@property (nonatomic, readwrite, retain) NIOverviewMemoryCachePageView* thumbnailPage;
+@end
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,6 +36,10 @@
 @synthesize highQualityImageCache = _highQualityImageCache;
 @synthesize thumbnailImageCache = _thumbnailImageCache;
 @synthesize queue = _queue;
+#ifdef DEBUG
+@synthesize highQualityPage = _highQualityPage;
+@synthesize thumbnailPage = _thumbnailPage;
+#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,6 +48,11 @@
     request.delegate = nil;
   }
   [_queue cancelAllOperations];
+
+#ifdef DEBUG
+  [[NIOverview view] removePageView:self.highQualityPage];
+  [[NIOverview view] removePageView:self.thumbnailPage];
+#endif
 }
 
 
@@ -167,7 +187,8 @@
   _highQualityImageCache = [[NIImageMemoryCache alloc] init];
   _thumbnailImageCache = [[NIImageMemoryCache alloc] init];
 
-  [_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024*1024*3];
+  [_highQualityImageCache setMaxNumberOfPixels:1024L*1024L*10L];
+  [_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024L*1024L*3L];
 
   _queue = [[NSOperationQueue alloc] init];
   [_queue setMaxConcurrentOperationCount:5];
@@ -175,6 +196,13 @@
   // Set the default loading image.
   self.photoAlbumView.loadingImage = [UIImage imageWithContentsOfFile:
                                       NIPathForBundleResource(nil, @"NimbusPhotos.bundle/gfx/default.png")];
+
+#ifdef DEBUG
+  self.highQualityPage = [NIOverviewMemoryCachePageView pageWithCache:self.highQualityImageCache];
+  [[NIOverview view] addPageView:self.highQualityPage];
+  self.thumbnailPage = [NIOverviewMemoryCachePageView pageWithCache:self.thumbnailImageCache];
+  [[NIOverview view] addPageView:self.thumbnailPage];
+#endif
 }
 
 

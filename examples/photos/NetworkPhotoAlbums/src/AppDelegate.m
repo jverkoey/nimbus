@@ -47,6 +47,7 @@
 
   _rootViewController = [[UINavigationController alloc] initWithRootViewController:catalogVC];
 
+  self.window.rootViewController = _rootViewController;
   [self.window addSubview:_rootViewController.view];
 
   [NIOverview addOverviewToWindow:self.window];

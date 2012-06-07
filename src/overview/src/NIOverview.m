@@ -263,6 +263,7 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
   
   [sOverviewView addPageView:[NIOverviewMemoryPageView page]];
   [sOverviewView addPageView:[NIOverviewDiskPageView page]];
+  [sOverviewView addPageView:[NIOverviewMemoryCachePageView page]];
   [sOverviewView addPageView:[NIOverviewConsoleLogPageView page]];
   [sOverviewView addPageView:[NIOverviewMaxLogLevelPageView page]];
 
