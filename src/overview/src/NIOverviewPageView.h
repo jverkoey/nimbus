@@ -20,6 +20,8 @@
 
 #import "NIOverviewGraphView.h"
 
+@class NIMemoryCache;
+
 /**
  * A page in the Overview.
  *
