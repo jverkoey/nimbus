@@ -797,12 +797,12 @@ static const CGFloat kGraphRightMargin = 5;
     // a dependency on the models feature.
     Class class = NSClassFromString(@"NIOverviewMemoryCacheController");
     if (nil != class) {
-      id instance = [class alloc];
+      id instance = [[class alloc] autorelease];
       SEL initSelector = @selector(initWithMemoryCache:);
       NIDASSERT([instance respondsToSelector:initSelector]);
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-      UIViewController* controller = [[class alloc] performSelector:initSelector withObject:self.cache];
+      UIViewController* controller = [instance performSelector:initSelector withObject:self.cache];
 #pragma clang diagnostic pop
       controller.title = @"Memory Cache";
       [(UINavigationController *)rootController pushViewController:controller animated:YES];
