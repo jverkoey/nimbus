@@ -252,6 +252,31 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+  NIDASSERT([tableView.dataSource isKindOfClass:[NITableViewModel class]]);
+  if ([tableView.dataSource isKindOfClass:[NITableViewModel class]]) {
+    NITableViewModel* model = (NITableViewModel *)tableView.dataSource;
+    id object = [model objectAtIndexPath:indexPath];
+    
+    if ([self isObjectActionable:object]) {
+      NITableViewAction* action = [self actionForObject:object];
+
+      if (action.detailAction) {
+        action.detailAction(object, self.controller);
+      }
+    }
+  }
+
+  // Forward the invocation along.
+  for (id<UITableViewDelegate> delegate in self.forwardDelegates) {
+    if ([delegate respondsToSelector:_cmd]) {
+      [delegate tableView:tableView accessoryButtonTappedForRowWithIndexPath:indexPath];
+    }
+  }
+}
+
 @end
 
 
