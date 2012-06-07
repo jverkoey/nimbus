@@ -21,6 +21,8 @@
 #import "NimbusCore.h"
 #import <objc/message.h>
 
+static const CGFloat kSwitchLeftMargin = 10;
+static const CGFloat kImageViewRightMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -272,9 +274,18 @@
   frame.origin.x = self.contentView.frame.size.width - frame.size.width - frame.origin.y;
   _switchControl.frame = frame;
 
-  static const CGFloat kSwitchLeftMargin = 10;
   frame = self.textLabel.frame;
-  frame.size.width = self.contentView.frame.size.width - contentFrame.origin.x - _switchControl.frame.size.width - _switchControl.frame.origin.y - kSwitchLeftMargin;
+  CGFloat leftEdge = 0;
+  // Take into account the size of the image view.
+  if (nil != self.imageView.image) {
+    leftEdge = self.imageView.frame.size.width + kImageViewRightMargin;
+  }
+  frame.size.width = (self.contentView.frame.size.width
+                      - contentFrame.origin.x
+                      - _switchControl.frame.size.width
+                      - _switchControl.frame.origin.y
+                      - kSwitchLeftMargin
+                      - leftEdge);
   self.textLabel.frame = frame;
 }
 
