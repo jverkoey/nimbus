@@ -17,6 +17,16 @@
 #import "NetworkPhotoAlbumViewController.h"
 
 #import "NIOverviewMemoryCacheController.h"
+#import "NimbusOverview.h"
+#import "NIOverviewView.h"
+#import "NIOverviewPageView.h"
+
+#ifdef DEBUG
+@interface NetworkPhotoAlbumViewController()
+@property (nonatomic, readwrite, retain) NIOverviewMemoryCachePageView* highQualityPage;
+@property (nonatomic, readwrite, retain) NIOverviewMemoryCachePageView* thumbnailPage;
+@end
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,6 +36,10 @@
 @synthesize highQualityImageCache = _highQualityImageCache;
 @synthesize thumbnailImageCache = _thumbnailImageCache;
 @synthesize queue = _queue;
+#ifdef DEBUG
+@synthesize highQualityPage = _highQualityPage;
+@synthesize thumbnailPage = _thumbnailPage;
+#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,11 +49,20 @@
   }
   [_queue cancelAllOperations];
 
+#ifdef DEBUG
+  [[NIOverview view] removePageView:self.highQualityPage];
+  [[NIOverview view] removePageView:self.thumbnailPage];
+#endif
+
   NI_RELEASE_SAFELY(_activeRequests);
 
   NI_RELEASE_SAFELY(_highQualityImageCache);
   NI_RELEASE_SAFELY(_thumbnailImageCache);
   NI_RELEASE_SAFELY(_queue);
+#ifdef DEBUG
+  NI_RELEASE_SAFELY(_highQualityPage);
+  NI_RELEASE_SAFELY(_thumbnailPage);
+#endif
 }
 
 
@@ -48,17 +71,6 @@
   [self shutdown_NetworkPhotoAlbumViewController];
 
   [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-    
-    UIBarButtonItem* button = [[[UIBarButtonItem alloc] initWithTitle:@"Cache" style:UIBarButtonItemStyleBordered target:self action:@selector(didTapCacheButton:)] autorelease];
-    self.navigationItem.rightBarButtonItem = button;
-  }
-  return self;
 }
 
 
@@ -186,7 +198,8 @@
   _highQualityImageCache = [[NIImageMemoryCache alloc] init];
   _thumbnailImageCache = [[NIImageMemoryCache alloc] init];
 
-  [_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024*1024*3];
+  [_highQualityImageCache setMaxNumberOfPixels:1024L*1024L*10L];
+  [_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024L*1024L*3L];
 
   _queue = [[NSOperationQueue alloc] init];
   [_queue setMaxConcurrentOperationCount:5];
@@ -194,6 +207,13 @@
   // Set the default loading image.
   self.photoAlbumView.loadingImage = [UIImage imageWithContentsOfFile:
                                       NIPathForBundleResource(nil, @"NimbusPhotos.bundle/gfx/default.png")];
+
+#ifdef DEBUG
+  self.highQualityPage = [NIOverviewMemoryCachePageView pageWithCache:self.highQualityImageCache];
+  [[NIOverview view] addPageView:self.highQualityPage];
+  self.thumbnailPage = [NIOverviewMemoryCachePageView pageWithCache:self.thumbnailImageCache];
+  [[NIOverview view] addPageView:self.thumbnailPage];
+#endif
 }
 
 
@@ -202,22 +222,6 @@
   [self shutdown_NetworkPhotoAlbumViewController];
 
   [super viewDidUnload];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark User Actions
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didTapCacheButton:(UIBarButtonItem *)button {
-  // This will push a controller from the [overview] feature that shows all of the images in an
-  // in-memory image cache, sorted in least-recently-used format.
-  NIOverviewMemoryCacheController* controller = [[[NIOverviewMemoryCacheController alloc] initWithMemoryCache:self.highQualityImageCache] autorelease];
-  controller.title = @"Cache";
-  [self.navigationController pushViewController:controller animated:YES];
 }
 
 
