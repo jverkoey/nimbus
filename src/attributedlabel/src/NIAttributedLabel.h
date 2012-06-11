@@ -30,27 +30,7 @@
  *      @ingroup NimbusAttributedLabel
  */
 
-@interface NIAttributedLabel : UILabel {
-  NSMutableAttributedString* _attributedString;
-  
-  CTFrameRef _textFrame;
-
-  BOOL _linksHaveBeenDetected;
-  NSArray* _detectedlinkLocations;
-  NSMutableArray* _explicitLinkLocations;
-  NSTextCheckingResult* _touchedLink;
-
-  BOOL _autoDetectLinks;
-  UIColor* _linkColor;
-  UIColor* _linkHighlightColor;
-  CGFloat _strokeWidth;
-  UIColor* _strokeColor;
-  CGFloat _textKern;
-  CTUnderlineStyle _underlineStyle;
-  CTUnderlineStyleModifiers _underlineStyleModifier;
-
-  id<NIAttributedLabelDelegate> _delegate;
-}
+@interface NIAttributedLabel : UILabel
 
 /**
  * The attributed string that will be displayed.
