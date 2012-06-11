@@ -23,7 +23,9 @@
 #import <UIKit/UIKit.h>
 
 @interface NIMemoryCache()
+// Mapping from a name (usually a URL) to an internal object.
 @property (nonatomic, readwrite, retain) NSMutableDictionary* cacheMap;
+// A linked list of least recently used cache objects. Most recently used is the tail.
 @property (nonatomic, readwrite, retain) NILinkedList* lruCacheObjects;
 @end
 
@@ -33,16 +35,7 @@
  *
  * Used in expiration calculations and for storing the actual cache object.
  */
-@interface NIMemoryCacheInfo : NSObject {
-@private
-  NSString* _name;
-  id        _object;
-  NSDate*   _expirationDate;
-  NSDate*   _lastAccessTime;
-
-  // Keep tabs on the location of the lru object so that we can move it quickly.
-  NILinkedListLocation* _lruLocation;
-}
+@interface NIMemoryCacheInfo : NSObject
 
 /**
  * @brief The name used to store this object in the cache.
@@ -408,10 +401,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NIImageMemoryCache()
-
-// Internally only.
 @property (nonatomic, readwrite, assign) NSUInteger numberOfPixels;
-
 @end
 
 
