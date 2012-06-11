@@ -632,8 +632,8 @@
 
       CGMutablePathRef path = CGPathCreateMutable();
 			CGPathAddRect(path, NULL, self.bounds);
-      if (nil != self.layer.shadowColor) {
-        CGContextSetShadowWithColor(ctx, self.layer.shadowOffset, 0, self.layer.shadowColor);
+      if (nil != self.shadowColor) {
+        CGContextSetShadowWithColor(ctx, self.shadowOffset, 0, self.shadowColor.CGColor);
       }
       _textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
 			CGPathRelease(path);
