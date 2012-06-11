@@ -27,6 +27,9 @@
  * Exposed so that the linked list enumerator can iterate over the nodes directly.
  */
 @property (nonatomic, readonly, assign) struct NILinkedListNode* head;
+@property (nonatomic, readonly, assign) struct NILinkedListNode* tail;
+@property (nonatomic, readwrite, assign) NSUInteger count;
+@property (nonatomic, readwrite, assign) unsigned long modificationNumber;
 
 @end
 
@@ -112,11 +115,6 @@
 #pragma mark -
 
 
-@interface NILinkedList()
-@property (nonatomic, readwrite, assign) NSUInteger count;
-@end
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -124,6 +122,8 @@
 
 @synthesize count = _count;
 @synthesize head = _head;
+@synthesize tail = _tail;
+@synthesize modificationNumber = _modificationNumber;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

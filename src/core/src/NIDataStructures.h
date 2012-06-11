@@ -115,14 +115,7 @@ typedef void NILinkedListLocation;
  * structure we could easily run into an O(N^2) exponential-time operation which is
  * absolutely unacceptable.
  */
-@interface NILinkedList : NSObject <NSCopying, NSCoding, NSFastEnumeration> {
-@private
-  struct NILinkedListNode* _head;
-  struct NILinkedListNode* _tail;
-
-  // Used internally to track modifications to the linked list.
-  unsigned long _modificationNumber;
-}
+@interface NILinkedList : NSObject <NSCopying, NSCoding, NSFastEnumeration>
 
 - (NSUInteger)count;
 
