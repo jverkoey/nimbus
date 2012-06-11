@@ -68,15 +68,10 @@ if (nil == view) {
  *
  * This sort of object is what UITableView and NIPagingScrollView use to recycle their views.
  */
-@interface NIViewRecycler : NSObject {
-@private
-  NSMutableDictionary* _reuseIdentifiersToRecycledViews;
-}
-
+@interface NIViewRecycler : NSObject
 - (UIView<NIRecyclableView> *)dequeueReusableViewWithIdentifier:(NSString *)reuseIdentifier;
 - (void)recycleView:(UIView<NIRecyclableView> *)view;
 - (void)removeAllViews;
-
 @end
 
 /**
