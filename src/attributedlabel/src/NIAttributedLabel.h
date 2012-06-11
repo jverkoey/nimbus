@@ -27,9 +27,28 @@
 /**
  * A UILabel that utilizes NSAttributedString to format its text.
  *
+ * A note on using lineBreakMode with NIAttributedLabel:
+ * CoreText's line break mode functionality does not work the same way as UILabel.
+ *
+ * UILabel: when you use truncation modes with multiline labels, the text will be treated as
+ * one continuous string. The documentation for each UILineBreakMode value applies correctly to
+ * UILabels.
+ *
+ * NIAttributedLabel: when you use truncation modes with multiline labels, the modes behave
+ * differently:
+ *
+ * - UILineBreakModeWordWrap, UILineBreakModeCharacterWrap: wraps the text over multiple lines with
+ *   no truncation.
+ * - UILineBreakModeHeadTruncation, UILineBreakModeTailTruncation, UILineBreakModeMiddleTruncation:
+ *   will only break the text onto a new line when a \n character is encountered. Each line is
+ *   truncated with the line break mode.
+ *
+ * In short: if you want to use truncation with a multiline attributed label then you need to
+ * manually wrap the lines by using \n characters. If you don't need truncation then you can use
+ * the word wrap and character wrap modes to have the text automatically wrap.
+ *
  *      @ingroup NimbusAttributedLabel
  */
-
 @interface NIAttributedLabel : UILabel
 
 /**
