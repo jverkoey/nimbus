@@ -43,29 +43,11 @@
  *
  *      @ingroup Operations
  */
-@interface NIOperation : NSOperation {
-@private
-  id<NIOperationDelegate> _delegate;
-
-  NSInteger _tag;
-
-  NSError* _lastError;
-
-#if NS_BLOCKS_AVAILABLE
-  // Performed on the main thread.
-  NIBasicBlock _didStartBlock;
-  NIBasicBlock _didFinishBlock;
-  NIErrorBlock _didFailWithErrorBlock;
-
-  // Performed in the operation's thread.
-  NIBasicBlock _willFinishBlock;
-#endif // #if NS_BLOCKS_AVAILABLE
-}
+@interface NIOperation : NSOperation
 
 @property (readwrite, assign) id<NIOperationDelegate> delegate;
 @property (readonly, retain) NSError* lastError;
 @property (readwrite, assign) NSInteger tag;
-
 
 #if NS_BLOCKS_AVAILABLE
 
@@ -92,16 +74,7 @@
  *
  *      @ingroup Operations
  */
-@interface NINetworkRequestOperation : NIOperation {
-@private
-  // [in]
-  NSURL* _url;
-  NSTimeInterval _timeout;
-
-  // [out]
-  NSData* _data;
-  id _processedObject;
-}
+@interface NINetworkRequestOperation : NIOperation
 
 // Designated initializer.
 - (id)initWithURL:(NSURL *)url;
