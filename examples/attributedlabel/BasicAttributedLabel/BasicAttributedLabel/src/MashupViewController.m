@@ -16,6 +16,8 @@
 
 #import "MashupViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @interface MashupViewController() <NIAttributedLabelDelegate>
 @end
 
@@ -46,6 +48,8 @@
   nimbusTitle.strokeWidth = -3.0;
   nimbusTitle.strokeColor = [UIColor blackColor];
   nimbusTitle.textKern = 15.0;
+  //nimbusTitle.layer.shadowColor = [UIColor redColor].CGColor;
+  //nimbusTitle.layer.shadowOffset = CGSizeMake(3, 3);
 
   label1.underlineStyle = kCTUnderlineStyleDouble;
   label1.underlineStyleModifier = kCTUnderlinePatternDot;

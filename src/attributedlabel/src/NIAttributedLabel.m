@@ -18,6 +18,7 @@
 
 #import "NimbusCore.h"
 #import "NSAttributedString+NimbusAttributedLabel.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface NIAttributedLabel()
 @property (nonatomic, readwrite, retain) NSMutableAttributedString* mutableAttributedString;
@@ -631,6 +632,9 @@
 
       CGMutablePathRef path = CGPathCreateMutable();
 			CGPathAddRect(path, NULL, self.bounds);
+      if (nil != self.layer.shadowColor) {
+        CGContextSetShadowWithColor(ctx, self.layer.shadowOffset, 0, self.layer.shadowColor);
+      }
       _textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
 			CGPathRelease(path);
 			CFRelease(framesetter);
