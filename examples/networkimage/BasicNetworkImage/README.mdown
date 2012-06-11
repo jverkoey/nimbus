@@ -25,6 +25,3 @@ Concepts Demoed in this App
 
 * Using CALayer to render borders around the images.
   RootViewController.m -networkImageView
-
-*
-

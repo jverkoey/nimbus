@@ -21,10 +21,46 @@
 
 #import "NimbusCore.h"
 
+@interface NIWebController()
+@property (nonatomic, readwrite, retain) UIWebView* webView;
+@property (nonatomic, readwrite, retain) UIToolbar* toolbar;
+@property (nonatomic, readwrite, retain) UIActionSheet* actionSheet;
+
+@property (nonatomic, readwrite, retain) UIBarButtonItem* backButton;
+@property (nonatomic, readwrite, retain) UIBarButtonItem* forwardButton;
+@property (nonatomic, readwrite, retain) UIBarButtonItem* refreshButton;
+@property (nonatomic, readwrite, retain) UIBarButtonItem* stopButton;
+@property (nonatomic, readwrite, retain) UIBarButtonItem* actionButton;
+@property (nonatomic, readwrite, retain) UIBarButtonItem* activityItem;
+
+@property (nonatomic, readwrite, retain) NSURL* actionSheetURL;
+@property (nonatomic, readwrite, retain) NSURL* loadingURL;
+
+@property (nonatomic, readwrite, retain) NSURLRequest* loadRequest;
+@property (nonatomic, readwrite, assign) BOOL toolbarHidden;
+@property (nonatomic, readwrite, retain) UIColor* toolbarTintColor;
+@end
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIWebController
+
+@synthesize webView = _webView;
+@synthesize toolbar = _toolbar;
+@synthesize actionSheet = _actionSheet;
+@synthesize backButton = _backButton;
+@synthesize forwardButton = _forwardButton;
+@synthesize refreshButton = _refreshButton;
+@synthesize stopButton = _stopButton;
+@synthesize actionButton = _actionButton;
+@synthesize activityItem = _activityItem;
+@synthesize actionSheetURL = _actionSheetURL;
+@synthesize loadingURL = _loadingURL;
+@synthesize loadRequest = _loadRequest;
+@synthesize toolbarHidden = _toolbarHidden;
+@synthesize toolbarTintColor = _toolbarTintColor;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)nilAllSubviews {
@@ -42,12 +78,12 @@
   _activityItem = nil;
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  _actionSheetURL = nil;
-  _loadingURL = nil;
   [self nilAllSubviews];
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -57,10 +93,11 @@
   return self;
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Private
+#pragma mark - Private
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)backAction {
@@ -84,6 +121,7 @@
 - (void)stopAction {
   [_webView stopLoading];
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)shareAction {
@@ -133,6 +171,7 @@
   }
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateToolbarWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
 
@@ -146,10 +185,23 @@
   _webView.frame = webViewFrame;
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark UIViewController
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)updateWebViewFrame {
+  if (self.toolbarHidden) {
+    _webView.frame = self.view.bounds;
+    
+  } else {
+    _webView.frame = NIRectContract(self.view.bounds, 0, self.toolbar.frame.size.height);
+  }
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
@@ -164,6 +216,8 @@
   _toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
   _toolbar.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin
                                | UIViewAutoresizingFlexibleWidth);
+  _toolbar.tintColor = self.toolbarTintColor;
+  _toolbar.hidden = self.toolbarHidden;
 
   UIActivityIndicatorView* spinner =
   [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
@@ -231,15 +285,24 @@
                     nil];
   [self.view addSubview:_toolbar];
 
-  CGRect webViewFrame = NIRectContract(bounds, 0, toolbarHeight);
-
-  _webView = [[UIWebView alloc] initWithFrame:webViewFrame];
+  _webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+  [self updateWebViewFrame];
   _webView.delegate = self;
   _webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                | UIViewAutoresizingFlexibleHeight);
   _webView.scalesPageToFit = YES;
+
+  if ([UIColor respondsToSelector:@selector(underPageBackgroundColor)]) {
+    self.webView.backgroundColor = [UIColor underPageBackgroundColor];
+  }
+
   [self.view addSubview:_webView];
+
+  if (nil != self.loadRequest) {
+    [self.webView loadRequest:self.loadRequest];
+  }
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
@@ -248,11 +311,14 @@
   [self nilAllSubviews];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+
   [self updateToolbarWithOrientation:self.interfaceOrientation];
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillDisappear:(BOOL)animated {
@@ -262,6 +328,7 @@
 
   [super viewWillDisappear:animated];
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -276,25 +343,23 @@
   [self updateToolbarWithOrientation:toInterfaceOrientation];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark UIWebViewDelegate
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request
- navigationType:(UIWebViewNavigationType)navigationType {
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIWebViewDelegate
 
-  _loadingURL = nil;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
   _loadingURL = [request.mainDocumentURL copy];
   _backButton.enabled = [_webView canGoBack];
   _forwardButton.enabled = [_webView canGoForward];
   return YES;
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webViewDidStartLoad:(UIWebView*)webView {
-
   self.title = NSLocalizedString(@"Loading...", @"");
   if (!self.navigationItem.rightBarButtonItem) {
     [self.navigationItem setRightBarButtonItem:_activityItem animated:YES];
@@ -314,9 +379,9 @@
   _forwardButton.enabled = [_webView canGoForward];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webViewDidFinishLoad:(UIWebView*)webView {
-
   _loadingURL = nil;
   self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
   if (self.navigationItem.rightBarButtonItem == _activityItem) {
@@ -338,17 +403,18 @@
   _forwardButton.enabled = [_webView canGoForward];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error {
-
   _loadingURL = nil;
   [self webViewDidFinishLoad:webView];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark UIActionSheetDelegate
+#pragma mark - UIActionSheetDelegate
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -361,6 +427,7 @@
   }
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
   if (actionSheet == _actionSheet) {
@@ -370,15 +437,17 @@
   }
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Public
+#pragma mark - Public
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSURL *)URL {
   return _loadingURL ? _loadingURL : _webView.request.mainDocumentURL;
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)openURL:(NSURL*)URL {
@@ -388,29 +457,42 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)openRequest:(NSURLRequest*)request {
-  // The view must be loaded before you call this method.
-  NIDASSERT([self isViewLoaded]);
-  [_webView loadRequest:request];
+- (void)openRequest:(NSURLRequest *)request {
+  self.loadRequest = request;
+
+  if ([self isViewLoaded]) {
+    if (nil != request) {
+      [_webView loadRequest:request];
+
+    } else {
+      [_webView stopLoading];
+    }
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setToolbarHidden:(BOOL)hidden {
-  _toolbar.hidden = hidden;
-  if (hidden) {
-    _webView.frame = self.view.bounds;
-
-  } else {
-    _webView.frame = NIRectContract(self.view.bounds, 0, _toolbar.frame.size.height);
+  _toolbarHidden = hidden;
+  if ([self isViewLoaded]) {
+    _toolbar.hidden = hidden;
+    [self updateWebViewFrame];
   }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setToolbarTintColor:(UIColor*)color {
-  _toolbar.tintColor = color;
+  if (color != _toolbarTintColor) {
+    [_toolbarTintColor release];
+    _toolbarTintColor = [color retain];
+  }
+
+  if ([self isViewLoaded]) {
+    _toolbar.tintColor = color;
+  }
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet {
@@ -420,5 +502,6 @@
   }
   return YES;
 }
+
 
 @end

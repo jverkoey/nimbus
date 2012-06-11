@@ -24,105 +24,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NINetworkRequestOperation
-
-@synthesize url = _url;
-@synthesize timeout = _timeout;
-@synthesize cachePolicy = _cachePolicy;
-@synthesize data = _data;
-@synthesize processedObject = _processedObject;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithURL:(NSURL *)url {
-  if ((self = [super init])) {
-    self.url = url;
-    self.timeout = 60;
-    self.cachePolicy = NSURLRequestUseProtocolCachePolicy;
-  }
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NSOperation
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)main {
-  @autoreleasepool {
-  if ([self.url isFileURL]) {
-    // Special case: load the image from disk without hitting the network.
-
-    [self didStart];
-
-    NSError* dataReadError = nil;
-
-    // The meat of the load-from-disk operation.
-    NSString* filePath = [self.url path];
-    NSMutableData* data = [NSMutableData dataWithContentsOfFile:filePath
-                                                        options:0
-                                                          error:&dataReadError];
-
-    if (nil != dataReadError) {
-      // This generally happens when the file path points to a file that doesn't exist.
-      // dataReadError has the complete details.
-      [self didFailWithError:dataReadError];
-
-    } else {
-      self.data = data;
-
-      // Notifies the delegates of the request completion.
-      [self willFinish];
-      [self didFinish];
-    }
-
-  } else { // COV_NF_START
-    // Load the image from the network then.
-    [self didStart];
-
-    NSURLRequest* request = [NSURLRequest requestWithURL:self.url
-                                             cachePolicy:self.cachePolicy
-                                         timeoutInterval:self.timeout];
-
-    NSError* networkError = nil;
-    NSURLResponse* response = nil;
-    NSData* data  = [NSURLConnection sendSynchronousRequest:request
-                                          returningResponse:&response
-                                                      error:&networkError];
-
-    // If we get a 404 error then the request will not fail with an error, so only let successful
-    // responses pass.
-    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-      NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse *)response;
-      if (httpResponse.statusCode < 200 || httpResponse.statusCode >= 300) {
-        networkError = [NSError errorWithDomain:NSURLErrorDomain
-                                           code:NSURLErrorResourceUnavailable
-                                       userInfo:nil];
-      }
-    }
-
-    if (nil != networkError) {
-      [self didFailWithError:networkError];
-
-    } else {
-      self.data = data;
-
-      [self willFinish];
-      [self didFinish];
-    } // COV_NF_END
-  }
-  }
-}
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIOperation
 
 @synthesize delegate = _delegate;
@@ -252,5 +153,116 @@
 #endif // #if NS_BLOCKS_AVAILABLE
 }
 
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NINetworkRequestOperation
+
+@synthesize url = _url;
+@synthesize timeout = _timeout;
+@synthesize cachePolicy = _cachePolicy;
+@synthesize data = _data;
+@synthesize processedObject = _processedObject;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_url);
+  NI_RELEASE_SAFELY(_data);
+  NI_RELEASE_SAFELY(_processedObject);
+  
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithURL:(NSURL *)url {
+  if ((self = [super init])) {
+    self.url = url;
+    self.timeout = 60;
+    self.cachePolicy = NSURLRequestUseProtocolCachePolicy;
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NSOperation
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)main {
+  NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+  
+  if ([self.url isFileURL]) {
+    // Special case: load the image from disk without hitting the network.
+
+    [self didStart];
+
+    NSError* dataReadError = nil;
+
+    // The meat of the load-from-disk operation.
+    NSString* filePath = [self.url path];
+    NSMutableData* data = [NSMutableData dataWithContentsOfFile:filePath
+                                                        options:0
+                                                          error:&dataReadError];
+
+    if (nil != dataReadError) {
+      // This generally happens when the file path points to a file that doesn't exist.
+      // dataReadError has the complete details.
+      [self didFailWithError:dataReadError];
+
+    } else {
+      self.data = data;
+
+      // Notifies the delegates of the request completion.
+      [self willFinish];
+      [self didFinish];
+    }
+
+  } else { // COV_NF_START
+    // Load the image from the network then.
+    [self didStart];
+
+    NSURLRequest* request = [NSURLRequest requestWithURL:self.url
+                                             cachePolicy:self.cachePolicy
+                                         timeoutInterval:self.timeout];
+
+    NSError* networkError = nil;
+    NSURLResponse* response = nil;
+    NSData* data  = [NSURLConnection sendSynchronousRequest:request
+                                          returningResponse:&response
+                                                      error:&networkError];
+
+    // If we get a 404 error then the request will not fail with an error, so only let successful
+    // responses pass.
+    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+      NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse *)response;
+      if (httpResponse.statusCode < 200 || httpResponse.statusCode >= 300) {
+        networkError = [NSError errorWithDomain:NSURLErrorDomain
+                                           code:NSURLErrorResourceUnavailable
+                                       userInfo:nil];
+      }
+    }
+
+    if (nil != networkError) {
+      [self didFailWithError:networkError];
+
+    } else {
+      self.data = data;
+
+      [self willFinish];
+      [self didFinish];
+    } // COV_NF_END
+  }
+
+  NI_RELEASE_SAFELY(pool);
+}
 
 @end

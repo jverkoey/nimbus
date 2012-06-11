@@ -16,10 +16,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RootViewController : UITableViewController {
-
-@private
-NITableViewModel* _model;
-}
-
+@interface RootViewController : UITableViewController
 @end

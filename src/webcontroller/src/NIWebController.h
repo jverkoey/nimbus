@@ -17,6 +17,9 @@
 // limitations under the License.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 /**
  * A simple web view controller implementation with a toolbar.
  *
@@ -71,73 +74,66 @@
  *  [webController setToolbarTintColor:[UIColor blackColor]];
  * @endcode
  */
+@interface NIWebController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate>
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+- (NSURL *)URL;
 
-@interface NIWebController : UIViewController <
-  UIWebViewDelegate,
-  UIActionSheetDelegate > {
-@protected
-  // Views
-  UIWebView*        _webView;
-  UIToolbar*        _toolbar;
-  UIActionSheet*    _actionSheet;
-  
-  // Toolbar buttons
-  UIBarButtonItem*  _backButton;
-  UIBarButtonItem*  _forwardButton;
-  UIBarButtonItem*  _refreshButton;
-  UIBarButtonItem*  _stopButton;
-  UIBarButtonItem*  _actionButton;
-  UIBarButtonItem*  _activityItem;
+- (void)openURL:(NSURL*)URL;
+- (void)openRequest:(NSURLRequest*)request;
 
-  NSURL*            _actionSheetURL;
-  NSURL*            _loadingURL;
-}
+- (void)setToolbarHidden:(BOOL)hidden;
+- (void)setToolbarTintColor:(UIColor*)color;
+
+// Subclassing
+
+- (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet;
+
+@end
 
 /**
  * The current web view URL.
  *
  * If the web view is currently loading a URL then the loading URL is returned instead.
+ *
+ *      @fn NIWebController::URL:
  */
-- (NSURL *)URL;
 
 /**
  * Opens the given URL in the web view.
+ *
+ *      @fn NIWebController::openURL:
  */
-- (void)openURL:(NSURL*)URL;
 
 /**
  * Load the given request using UIWebView's loadRequest:.
  *
  *      @param request  A URL request identifying the location of the content to load.
+ *
+ *      @fn NIWebController::openRequest:
  */
-- (void)openRequest:(NSURLRequest*)request;
 
 /**
  * Sets the visibility of the toolbar.
  *
  * If the toolbar is hidden then the web view will take up the controller's entire view.
+ *
+ *      @fn NIWebController::setToolbarHidden:
  */
-- (void)setToolbarHidden:(BOOL)hidden;
 
 /**
  * Sets the toolbar to the given color.
+ *
+ *      @fn NIWebController::setToolbarTintColor:
  */
-- (void)setToolbarTintColor:(UIColor*)color;
 
 /**
- * This message is send to the receiver in response to the user clicking the action toolbar button.
+ * This message is called in response to the user clicking the action toolbar button.
  *
- * You can provide your own implementation in your subclass and customize the @c actionSheet
+ * You can provide your own implementation in your subclass and customize the actionSheet
  * that is shown to the user or even cancel the presentation of the @c actionSheet by
- * returning @c NO from your implementation.
+ * returning NO from your implementation.
  *
- * @param actionSheet The UIActionSheet that will be presented to the user.
- *
- * @return @c YES to present the @p actionSheet, @c NO if you want to perform a custom action.
+ *      @param actionSheet The UIActionSheet that will be presented to the user.
+ *      @return YES to present the actionSheet, NO if you want to perform a custom action.
+ *      @fn NIWebController::shouldPresentActionSheet:
  */
-- (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet;
-
-@end

@@ -19,17 +19,17 @@
 #import "NIDebuggingTools.h"
 #import "NIPreprocessorMacros.h"
 
-// The internal representation of a single node.
-@interface NILinkedListNode : NSObject {
-@private
-  id _object;
-  NILinkedListNode* _prev;
-  NILinkedListNode* _next;
-}
-@property (nonatomic, readwrite, retain) id object;
-@property (nonatomic, readwrite, retain) NILinkedListNode* prev;
-@property (nonatomic, readwrite, retain) NILinkedListNode* next;
-@end
+@interface NILinkedList()
+
+/**
+ * @internal
+ *
+ * Exposed so that the linked list enumerator can iterate over the nodes directly.
+ */
+@property (nonatomic, readonly, assign) struct NILinkedListNode* head;
+@property (nonatomic, readonly, assign) struct NILinkedListNode* tail;
+@property (nonatomic, readwrite, assign) NSUInteger count;
+@property (nonatomic, readwrite, assign) unsigned long modificationNumber;
 
 @implementation NILinkedListNode
 @synthesize object = _object;
@@ -141,11 +141,6 @@
 #pragma mark -
 
 
-@interface NILinkedList()
-@property (nonatomic, readwrite, assign) NSUInteger count;
-@end
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -154,6 +149,7 @@
 @synthesize count = _count;
 @synthesize head = _head;
 @synthesize tail = _tail;
+@synthesize modificationNumber = _modificationNumber;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -20,6 +20,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation UnderlineViewController
+
+@synthesize scrollView;
 @synthesize single;
 @synthesize thick;
 @synthesize ddouble;
@@ -29,20 +31,22 @@
 @synthesize dashdotdot;
 @synthesize doubledashdotdot;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  return [super initWithNibName:@"UnderlineView" bundle:nibBundleOrNil];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)viewDidLoad {
-  
-  self.title = @"Underlined Text";
-  
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if ((self = [super initWithNibName:@"UnderlineView" bundle:nibBundleOrNil])) {
+    self.title = @"Underlined Text";
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)viewDidLoad {
   single.underlineStyle = kCTUnderlineStyleSingle;
   thick.underlineStyle = kCTUnderlineStyleThick;
   ddouble.underlineStyle = kCTUnderlineStyleDouble;
-  
+
   dot.underlineStyle = kCTUnderlineStyleSingle;
   dot.underlineStyleModifier = kCTUnderlinePatternDot;
   dash.underlineStyle = kCTUnderlineStyleSingle;
@@ -51,9 +55,19 @@
   dashdot.underlineStyleModifier = kCTUnderlinePatternDashDot;
   dashdotdot.underlineStyle = kCTUnderlineStyleSingle;
   dashdotdot.underlineStyleModifier = kCTUnderlinePatternDashDotDot;
-  
+
   doubledashdotdot.underlineStyle = kCTUnderlineStyleDouble;
   doubledashdotdot.underlineStyleModifier = kCTUnderlinePatternDashDotDot;
   
+  self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(doubledashdotdot.frame) + 20);
+  [super viewDidLoad];
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+  return NIIsSupportedOrientation(toInterfaceOrientation);
+}
+
+
 @end

@@ -22,10 +22,31 @@ static const CGFloat kImageDimensions = 93;
 static const CGFloat kImageSpacing = 10;
 
 
+@interface RootViewController()
+@property (nonatomic, readwrite, retain) UIScrollView* scrollView;
+@property (nonatomic, readwrite, retain)NSMutableArray* networkImageViews;
+@property (nonatomic, readwrite, retain)UILabel* memoryUsageLabel;
+@end
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation RootViewController
+
+@synthesize scrollView = _scrollView;
+@synthesize networkImageViews = _networkImageViews;
+@synthesize memoryUsageLabel = _memoryUsageLabel;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_memoryUsageLabel);
+  NI_RELEASE_SAFELY(_networkImageViews);
+  NI_RELEASE_SAFELY(_memoryUsageLabel);
+
+  [super dealloc];
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -175,6 +196,7 @@ static const CGFloat kImageSpacing = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
+  _memoryUsageLabel = nil;
   _networkImageViews = nil;
   _scrollView = nil;
 

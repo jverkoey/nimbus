@@ -35,14 +35,7 @@
  * The Nimbus in-memory object cache allows you to store objects in memory with an expiration
  * date attached. Objects with expiration dates drop out of the cache when they have expired.
  */
-@interface NIMemoryCache : NSObject {
-@private
-  // Mapping from a name (usually a URL) to an internal object.
-  NSMutableDictionary*  _cacheMap;
-
-  // A linked list of least recently used cache objects. Most recently used is the tail.
-  NILinkedList*         _lruCacheObjects;
-}
+@interface NIMemoryCache : NSObject
 
 // Designated initializer.
 - (id)initWithCapacity:(NSUInteger)capacity;
@@ -93,18 +86,10 @@
  *      @see Nimbus::imageMemoryCache
  *      @see Nimbus::setImageMemoryCache:
  */
-@interface NIImageMemoryCache : NIMemoryCache {
-@private
-  NSUInteger _numberOfPixels;
-
-  NSUInteger _maxNumberOfPixels;
-  NSUInteger _maxNumberOfPixelsUnderStress;
-}
-
+@interface NIImageMemoryCache : NIMemoryCache
 @property (nonatomic, readonly, assign) NSUInteger numberOfPixels;
 @property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixels;
 @property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixelsUnderStress;
-
 @end
 
 
