@@ -35,7 +35,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
   RootViewController* mainController = [[RootViewController alloc] init];
   UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:mainController];

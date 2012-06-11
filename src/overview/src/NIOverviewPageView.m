@@ -797,7 +797,7 @@ static const CGFloat kGraphRightMargin = 5;
     // a dependency on the models feature.
     Class class = NSClassFromString(@"NIOverviewMemoryCacheController");
     if (nil != class) {
-      id instance = [[class alloc] autorelease];
+      id instance = [class alloc];
       SEL initSelector = @selector(initWithMemoryCache:);
       NIDASSERT([instance respondsToSelector:initSelector]);
 #pragma clang diagnostic push

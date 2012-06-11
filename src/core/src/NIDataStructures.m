@@ -19,17 +19,12 @@
 #import "NIDebuggingTools.h"
 #import "NIPreprocessorMacros.h"
 
-@interface NILinkedList()
-
-/**
- * @internal
- *
- * Exposed so that the linked list enumerator can iterate over the nodes directly.
- */
-@property (nonatomic, readonly, assign) struct NILinkedListNode* head;
-@property (nonatomic, readonly, assign) struct NILinkedListNode* tail;
-@property (nonatomic, readwrite, assign) NSUInteger count;
-@property (nonatomic, readwrite, assign) unsigned long modificationNumber;
+// The internal representation of a single node.
+@interface NILinkedListNode : NSObject
+@property (nonatomic, readwrite, retain) id object;
+@property (nonatomic, readwrite, retain) NILinkedListNode* prev;
+@property (nonatomic, readwrite, retain) NILinkedListNode* next;
+@end
 
 @implementation NILinkedListNode
 @synthesize object = _object;
@@ -64,6 +59,8 @@
 // Exposed so that the linked list enumerator can iterate over the nodes directly.
 @property (nonatomic, readonly, retain) NILinkedListNode* head;
 @property (nonatomic, readonly, retain) NILinkedListNode* tail;
+@property (nonatomic, readwrite, assign) NSUInteger count;
+@property (nonatomic, readwrite, assign) unsigned long modificationNumber;
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

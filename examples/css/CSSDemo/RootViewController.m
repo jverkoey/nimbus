@@ -89,9 +89,9 @@ static CGFloat squareSize = 200;
 - (void)viewDidUnload {
   [_dom unregisterAllViews];
 
-  NI_RELEASE_SAFELY(_activityIndicator);
-  NI_RELEASE_SAFELY(_backgroundView);
-  NI_RELEASE_SAFELY(_testLabel);
+  _activityIndicator = nil;
+  _backgroundView = nil;
+  _testLabel = nil;
 }
 
 

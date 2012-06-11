@@ -68,12 +68,7 @@
 
 @class NILinkedListNode;
 
-@interface NILinkedListLocation : NSObject {
-@private
-  // The location object does not retain the node so take care not to use a location object
-  // after a node has been removed from the linked list.
-  __unsafe_unretained NILinkedListNode* _node;
-}
+@interface NILinkedListLocation : NSObject
 @end
 
 /**

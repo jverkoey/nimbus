@@ -38,7 +38,7 @@
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = @"NIAttributedLabel Demo";
 
-    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
 
     _actions = [[NITableViewActions alloc] initWithController:self];
     NSArray* tableContents =

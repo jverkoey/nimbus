@@ -34,7 +34,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
   NIWebController* webController = [[NIWebController alloc] initWithNibName:nil bundle:nil];
   [webController openURL:[NSURL URLWithString:@"http://jverkoey.github.com/nimbus/index.html"]];

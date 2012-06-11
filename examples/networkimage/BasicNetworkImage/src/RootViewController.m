@@ -40,16 +40,6 @@ static const CGFloat kImageSpacing = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_memoryUsageLabel);
-  NI_RELEASE_SAFELY(_networkImageViews);
-  NI_RELEASE_SAFELY(_memoryUsageLabel);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * @returns an autoreleased network image view.
  */

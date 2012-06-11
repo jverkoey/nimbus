@@ -484,8 +484,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setToolbarTintColor:(UIColor*)color {
   if (color != _toolbarTintColor) {
-    [_toolbarTintColor release];
-    _toolbarTintColor = [color retain];
+    _toolbarTintColor = color;
   }
 
   if ([self isViewLoaded]) {
