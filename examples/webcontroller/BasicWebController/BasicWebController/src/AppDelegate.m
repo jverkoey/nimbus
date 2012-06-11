@@ -16,9 +16,6 @@
 
 #import "AppDelegate.h"
 
-// View Controllers
-#import "RootViewController.h"
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +28,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_window);
-  NI_RELEASE_SAFELY(_rootController);
+
   [super dealloc];
 }
 
@@ -46,15 +43,16 @@
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-  
-  RootViewController* webController =
-  [[[RootViewController alloc] initWithNibName:nil bundle:nil] autorelease];
-  
-  _rootController = [[UINavigationController alloc] initWithRootViewController:webController];
-  
-  [self.window addSubview:_rootController.view];
 
-  
+  NIWebController* webController = [[[NIWebController alloc] initWithNibName:nil bundle:nil] autorelease];
+  [webController openURL:[NSURL URLWithString:@"http://jverkoey.github.com/nimbus/index.html"]];
+  [webController setToolbarTintColor:[UIColor blackColor]];
+
+  UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:webController];
+  nc.navigationBar.barStyle = UIBarStyleBlack;
+  self.window.rootViewController = nc;
+  [self.window addSubview:nc.view];
+
   [self.window makeKeyAndVisible];
 
   return YES;

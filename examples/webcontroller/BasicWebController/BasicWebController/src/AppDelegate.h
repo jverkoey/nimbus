@@ -16,12 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : NSObject <UIApplicationDelegate> {
-  UIWindow* _window;
-  NIWebController* _rootController;
-}
-
+@interface AppDelegate : NSObject <UIApplicationDelegate>
 @property (nonatomic, readwrite, retain) UIWindow* window;
-
 @end
 
