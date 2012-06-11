@@ -51,9 +51,9 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
 
 #pragma mark Mapping Objects 
 
-- (void)attachTapAction:(NITableViewActionBlock)action toObject:(id)object;
-- (void)attachDetailAction:(NITableViewActionBlock)action toObject:(id)object;
-- (void)attachNavigationAction:(NITableViewActionBlock)action toObject:(id)object;
+- (id)attachTapAction:(NITableViewActionBlock)action toObject:(id)object;
+- (id)attachDetailAction:(NITableViewActionBlock)action toObject:(id)object;
+- (id)attachNavigationAction:(NITableViewActionBlock)action toObject:(id)object;
 
 #pragma mark Object State
 
@@ -101,6 +101,7 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
  *
  *      @param object The object to attach the action to.
  *      @param action The tap action block.
+ *      @returns The object that you attached this action to.
  *      @fn NITableViewActions::attachTapAction:toObject:
  */
 
@@ -115,6 +116,7 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
  *
  *      @param object The object to attach the action to.
  *      @param action The detail action block.
+ *      @returns The object that you attached this action to.
  *      @fn NITableViewActions::attachDetailAction:toObject:
  */
 
@@ -132,6 +134,7 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
  *
  *      @param object The object to attach the action to.
  *      @param action The navigation action block.
+ *      @returns The object that you attached this action to.
  *      @fn NITableViewActions::attachNavigationAction:toObject:
  */
 

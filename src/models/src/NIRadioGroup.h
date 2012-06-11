@@ -20,6 +20,7 @@
 #import "NICellFactory.h"
 
 @protocol NIRadioGroupDelegate;
+@class NIRadioGroupController;
 
 /**
  * A general-purpose radio group.
@@ -49,7 +50,7 @@
 
 #pragma mark Mapping Objects
 
-- (void)mapObject:(id)object toIdentifier:(NSInteger)identifier;
+- (id)mapObject:(id)object toIdentifier:(NSInteger)identifier;
 
 #pragma mark Selection
 
@@ -102,6 +103,13 @@
  */
 - (NSString *)radioGroup:(NIRadioGroup *)radioGroup textForIdentifier:(NSInteger)identifier;
 
+/**
+ * The radio group controller is about to appear.
+ *
+ * This method provides a customization point for the radio group view controller.
+ */
+- (void)radioGroup:(NIRadioGroup *)radioGroup radioGroupController:(NIRadioGroupController *)radioGroupController willAppear:(BOOL)animated;
+
 @end
 
 /**
@@ -143,9 +151,12 @@
  * the objects. The identifier range does not have to be sequential. The only reserved value is
  * NSIntegerMin, which is used to signify that no selection exists.
  *
- * You may NOT map the same object to multiple identifiers. Attempts to do so fill fire a debug
+ * You can NOT map the same object to multiple identifiers. Attempts to do so fill fire a debug
  * assertion and will not map the new object in the radio group.
  *
+ *      @param object The object to map to the identifier.
+ *      @param identifier The identifier that will represent the object.
+ *      @returns The object that was mapped.
  *      @fn NIRadioGroup::mapObject:toIdentifier:
  */
 

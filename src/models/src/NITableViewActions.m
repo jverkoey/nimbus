@@ -27,7 +27,7 @@
 
 @interface NITableViewActions()
 @property (nonatomic, readonly, assign) UIViewController* controller;
-@property (nonatomic, readonly, retain) NSMutableArray* forwardDelegates;
+@property (nonatomic, readonly, retain) NSMutableSet* forwardDelegates;
 @property (nonatomic, readonly, retain) NSMutableDictionary* objectMap;
 @property (nonatomic, readonly, retain) NSMutableSet* objectSet;
 @end
@@ -60,7 +60,7 @@
     _controller = controller;
     _objectMap = [[NSMutableDictionary alloc] init];
     _objectSet = [[NSMutableSet alloc] init];
-    _forwardDelegates = NICreateNonRetainingMutableArray();
+    _forwardDelegates = NICreateNonRetainingMutableSet();
     _tableViewCellSelectionStyle = UITableViewCellSelectionStyleBlue;
   }
   return self;
@@ -153,23 +153,26 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachTapAction:(NITableViewActionBlock)action toObject:(id)object {
+- (id)attachTapAction:(NITableViewActionBlock)action toObject:(id)object {
   [self.objectSet addObject:object];
   [self actionForObject:object].tapAction = action;
+  return object;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachDetailAction:(NITableViewActionBlock)action toObject:(id)object {
+- (id)attachDetailAction:(NITableViewActionBlock)action toObject:(id)object {
   [self.objectSet addObject:object];
   [self actionForObject:object].detailAction = action;
+  return object;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachNavigationAction:(NITableViewActionBlock)action toObject:(id)object {
+- (id)attachNavigationAction:(NITableViewActionBlock)action toObject:(id)object {
   [self.objectSet addObject:object];
   [self actionForObject:object].navigateAction = action;
+  return object;
 }
 
 

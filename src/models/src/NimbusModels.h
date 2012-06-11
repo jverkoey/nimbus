@@ -469,7 +469,7 @@ typedef enum {
 #import "NICellFactory.h"
 #import "NIFormCellCatalog.h"
 #import "NIRadioGroup.h"
-#import "NITableViewActions.h"
 #import "NIRadioGroupController.h"
+#import "NITableViewActions.h"
 
 /**@}*/
