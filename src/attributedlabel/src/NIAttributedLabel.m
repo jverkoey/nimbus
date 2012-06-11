@@ -234,37 +234,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setLineBreakMode:(UILineBreakMode)lineBreakMode {
   [super setLineBreakMode:lineBreakMode];
-  
-  // If your label will wrap over multiple lines then you can only use UILineBreakModeWordWrap.
-  NIDASSERT(self.numberOfLines == 1 || lineBreakMode == UILineBreakModeWordWrap);
-  // If the debug assertion is firing that means you're trying to set a line break mode
-  // other than word wrapping for a multi-line label. We'll set it to word wrapping because
-  // that's likely what you want, but you should fix this in your code as well so that you
-  // don't get any more debug assertions.
-  if (self.numberOfLines != 1) {
-    lineBreakMode = UILineBreakModeWordWrap;
-  }
 
   if (nil != _mutableAttributedString) {
     CTTextAlignment alignment = [[self class] alignmentFromUITextAlignment:self.textAlignment];
     CTLineBreakMode lineBreak = [[self class] lineBreakModeFromUILineBreakMode:lineBreakMode];
     [_mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setNumberOfLines:(NSInteger)numberOfLines {
-  [super setNumberOfLines:numberOfLines];
-
-  // If your label will wrap over multiple lines then you can only use UILineBreakModeWordWrap.
-  NIDASSERT(numberOfLines == 1 || self.lineBreakMode == UILineBreakModeWordWrap);
-  // If the debug assertion is firing that means you're trying to set a line break mode
-  // other than word wrapping for a multi-line label. We'll set it to word wrapping because
-  // that's likely what you want, but you should fix this in your code as well so that you
-  // don't get any more debug assertions.
-  if (numberOfLines != 1) {
-    self.lineBreakMode = UILineBreakModeWordWrap;
   }
 }
 
