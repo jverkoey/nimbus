@@ -30,7 +30,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [_window release]; _window = nil;
-  [_rootController release]; _rootController = nil;
 
   [super dealloc];
 }
@@ -49,8 +48,8 @@
   
   CatalogViewController* catalogController = [[CatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];
   UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:catalogController];
-  _rootController = navController;
-  [self.window addSubview:_rootController.view];
+  self.window.rootViewController = navController;
+  [self.window addSubview:navController.view];
   
   [self.window makeKeyAndVisible];
 

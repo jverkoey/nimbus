@@ -51,28 +51,22 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     self.title = NSLocalizedString(@"Model Catalog", @"Controller Title: Model Catalog");
-
-    NITitleCellObject* list = [NITitleCellObject cellWithTitle:@"List"];
-    NITitleCellObject* sectioned = [NITitleCellObject cellWithTitle:@"Sectioned"];
-    NITitleCellObject* indexed = [NITitleCellObject cellWithTitle:@"Indexed"];
-    NITitleCellObject* forms = [NITitleCellObject cellWithTitle:@"Form Cells"];
-
-    NSMutableArray* tableContents = [NSMutableArray array];
-    [tableContents addObject:@"Table View Models"];
-    [tableContents addObjectsFromArray:[NSArray arrayWithObjects:
-                                        list, sectioned, indexed, nil]];
-    [tableContents addObject:@"Table Cell Factory"];
-    [tableContents addObject:forms];
-
+    
     _actions = [[NITableViewActions alloc] initWithController:self];
-    [_actions attachNavigationAction:NIPushControllerAction([StaticListTableViewController class])
-                            toObject:list];
-    [_actions attachNavigationAction:NIPushControllerAction([StaticSectionedTableViewController class])
-                            toObject:sectioned];
-    [_actions attachNavigationAction:NIPushControllerAction([StaticIndexedTableViewController class])
-                            toObject:indexed];
-    [_actions attachNavigationAction:NIPushControllerAction([FormCellCatalogTableViewController class])
-                            toObject:forms];
+
+    NSMutableArray* tableContents =
+    [NSMutableArray arrayWithObjects:
+     @"Table View Models",
+     [_actions attachNavigationAction:NIPushControllerAction([StaticListTableViewController class])
+                             toObject:[NITitleCellObject objectWithTitle:@"List"]],
+     [_actions attachNavigationAction:NIPushControllerAction([StaticSectionedTableViewController class])
+                             toObject:[NITitleCellObject objectWithTitle:@"Sectioned"]],
+     [_actions attachNavigationAction:NIPushControllerAction([StaticIndexedTableViewController class])
+                             toObject:[NITitleCellObject objectWithTitle:@"Indexed"]],
+     @"Table Cell Factory",
+     [_actions attachNavigationAction:NIPushControllerAction([FormCellCatalogTableViewController class])
+                             toObject:[NITitleCellObject objectWithTitle:@"Form Cells"]],
+     nil];
 
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
                                                      delegate:(id)[NICellFactory class]];

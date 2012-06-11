@@ -70,35 +70,39 @@ typedef enum {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = NSLocalizedString(@"Form Cells", @"Controller Title: Form Cells");
 
-    NISubtitleCellObject* radioObject1 = [NISubtitleCellObject cellWithTitle:@"Radio 1"
-                                                                    subtitle:@"First option"];
-    NISubtitleCellObject* radioObject2 = [NISubtitleCellObject cellWithTitle:@"Radio 2"
-                                                                    subtitle:@"Second option"];
-    NISubtitleCellObject* radioObject3 = [NISubtitleCellObject cellWithTitle:@"Radio 3"
-                                                                    subtitle:@"Third option"];
-    NITitleCellObject* button = [NITitleCellObject cellWithTitle:@"Button with alert"];
+    _actions = [[NITableViewActions alloc] initWithController:self];
 
-    NISubtitleCellObject* subRadioObject1 = [NISubtitleCellObject cellWithTitle:@"Sub Radio 1"
-                                                                       subtitle:@"First option"];
-    NISubtitleCellObject* subRadioObject2 = [NISubtitleCellObject cellWithTitle:@"Sub Radio 2"
-                                                                       subtitle:@"Second option"];
-    NISubtitleCellObject* subRadioObject3 = [NISubtitleCellObject cellWithTitle:@"Sub Radio 3"
-                                                                       subtitle:@"Third option"];
+    _radioGroup = [[NIRadioGroup alloc] init];
+    _radioGroup.delegate = self;
 
     _subRadioGroup = [[NIRadioGroup alloc] initWithController:self];
+    _subRadioGroup.delegate = self;
     _subRadioGroup.cellTitle = @"Selection";
     _subRadioGroup.controllerTitle = @"Make a Selection";
-    _subRadioGroup.delegate = self;
-    [_subRadioGroup mapObject:subRadioObject1 toIdentifier:SubRadioOption1];
-    [_subRadioGroup mapObject:subRadioObject2 toIdentifier:SubRadioOption2];
-    [_subRadioGroup mapObject:subRadioObject3 toIdentifier:SubRadioOption3];
-    _subRadioGroup.selectedIdentifier = SubRadioOption1;
+
+    [_subRadioGroup mapObject:[NISubtitleCellObject objectWithTitle:@"Sub Radio 1"
+                                                           subtitle:@"First option"]
+                 toIdentifier:SubRadioOption1];
+    [_subRadioGroup mapObject:[NISubtitleCellObject objectWithTitle:@"Sub Radio 2"
+                                                           subtitle:@"Second option"]
+                 toIdentifier:SubRadioOption2];
+    [_subRadioGroup mapObject:[NISubtitleCellObject objectWithTitle:@"Sub Radio 3"
+                                                           subtitle:@"Third option"]
+                 toIdentifier:SubRadioOption3];
 
     NSArray* tableContents =
     [NSArray arrayWithObjects:
-     @"Radio Cells",
-     radioObject1, radioObject2, radioObject3,
-     @"Sub Radio Groups",
+     @"Radio Group",
+     [_radioGroup mapObject:[NISubtitleCellObject objectWithTitle:@"Radio 1"
+                                                         subtitle:@"First option"]
+               toIdentifier:RadioOption1],
+     [_radioGroup mapObject:[NISubtitleCellObject objectWithTitle:@"Radio 2"
+                                                         subtitle:@"Second option"]
+               toIdentifier:RadioOption2],
+     [_radioGroup mapObject:[NISubtitleCellObject objectWithTitle:@"Radio 3"
+                                                         subtitle:@"Third option"]
+               toIdentifier:RadioOption3],
+     @"Radio Group Controller",
      _subRadioGroup,
 
      @"NITextInputFormElement",
@@ -113,27 +117,20 @@ typedef enum {
      [NISwitchFormElement switchElementWithID:0 labelText:@"Switch with a really long label that will be cut off" value:YES],
 
      @"NIButtonFormElement",
-     button,
+     [_actions attachTapAction:^(id object, UIViewController *controller) {
+        UIAlertView* alertView =
+        [[[UIAlertView alloc] initWithTitle:@"This is an alert!"
+                                    message:@"Don't panic."
+                                   delegate:nil
+                          cancelButtonTitle:@"Neat!"
+                          otherButtonTitles:nil] autorelease];
+        [alertView show];
+        return YES;
+      } toObject:[NITitleCellObject objectWithTitle:@"Button with alert"]],
      nil];
-
-    _radioGroup = [[NIRadioGroup alloc] init];
-    _radioGroup.delegate = self;
-    [_radioGroup mapObject:radioObject1 toIdentifier:RadioOption1];
-    [_radioGroup mapObject:radioObject2 toIdentifier:RadioOption2];
-    [_radioGroup mapObject:radioObject3 toIdentifier:RadioOption3];
-    _radioGroup.selectedIdentifier = RadioOption1;
-
-    _actions = [[NITableViewActions alloc] initWithController:self];
-    [_actions attachTapAction:^(id object, UIViewController *controller) {
-      UIAlertView* alertView =
-          [[[UIAlertView alloc] initWithTitle:@"This is an alert!"
-                                     message:@"Don't panic."
-                                    delegate:nil
-                           cancelButtonTitle:@"Neat!"
-                           otherButtonTitles:nil] autorelease];
-      [alertView show];
-      return YES;
-    } toObject:button];
+    
+    self.radioGroup.selectedIdentifier = RadioOption1;
+    self.subRadioGroup.selectedIdentifier = SubRadioOption1;
 
     // We let the Nimbus cell factory create the cells.
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
