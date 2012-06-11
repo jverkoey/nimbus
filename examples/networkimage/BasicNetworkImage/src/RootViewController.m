@@ -22,10 +22,31 @@ static const CGFloat kImageDimensions = 93;
 static const CGFloat kImageSpacing = 10;
 
 
+@interface RootViewController()
+@property (nonatomic, readwrite, retain) UIScrollView* scrollView;
+@property (nonatomic, readwrite, retain)NSMutableArray* networkImageViews;
+@property (nonatomic, readwrite, retain)UILabel* memoryUsageLabel;
+@end
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation RootViewController
+
+@synthesize scrollView = _scrollView;
+@synthesize networkImageViews = _networkImageViews;
+@synthesize memoryUsageLabel = _memoryUsageLabel;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  NI_RELEASE_SAFELY(_memoryUsageLabel);
+  NI_RELEASE_SAFELY(_networkImageViews);
+  NI_RELEASE_SAFELY(_memoryUsageLabel);
+
+  [super dealloc];
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -142,10 +163,9 @@ static const CGFloat kImageSpacing = 10;
 
   _networkImageViews = [[NSMutableArray alloc] init];
 
-  _scrollView = [[[UIScrollView alloc] initWithFrame:
+  _scrollView = [[UIScrollView alloc] initWithFrame:
                   NIRectShift(self.view.bounds,
-                              0, CGRectGetMaxY(_memoryUsageLabel.frame) + kTextBottomMargin)]
-                 autorelease];
+                              0, CGRectGetMaxY(_memoryUsageLabel.frame) + kTextBottomMargin)];
   _scrollView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1];
   _scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
   _scrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
@@ -178,8 +198,9 @@ static const CGFloat kImageSpacing = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
+  NI_RELEASE_SAFELY(_memoryUsageLabel);
   NI_RELEASE_SAFELY(_networkImageViews);
-  _scrollView = nil;
+  NI_RELEASE_SAFELY(_scrollView);
 
   [super viewDidUnload];
 }
