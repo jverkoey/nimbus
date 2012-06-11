@@ -16,17 +16,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UnderlineViewController : UIViewController {
-  NIAttributedLabel *single;
-  NIAttributedLabel *thick;
-  NIAttributedLabel *ddouble;
-  NIAttributedLabel *dot;
-  NIAttributedLabel *dash;
-  NIAttributedLabel *dashdot;
-  NIAttributedLabel *dashdotdot;
-  NIAttributedLabel *doubledashdotdot;
-}
+@interface UnderlineViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 @property (nonatomic, retain) IBOutlet NIAttributedLabel *single;
 @property (nonatomic, retain) IBOutlet NIAttributedLabel *thick;
 @property (nonatomic, retain) IBOutlet NIAttributedLabel *ddouble;

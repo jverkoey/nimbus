@@ -20,6 +20,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation UnderlineViewController
+
+@synthesize scrollView;
 @synthesize single;
 @synthesize thick;
 @synthesize ddouble;
@@ -29,13 +31,19 @@
 @synthesize dashdotdot;
 @synthesize doubledashdotdot;
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  return [super initWithNibName:@"UnderlineView" bundle:nibBundleOrNil];
+  if ((self = [super initWithNibName:@"UnderlineView" bundle:nibBundleOrNil])) {
+    self.title = @"Underlined Text";
+  }
+  return self;
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
+  NI_RELEASE_SAFELY(scrollView);
   NI_RELEASE_SAFELY(single);
   NI_RELEASE_SAFELY(thick);
   NI_RELEASE_SAFELY(ddouble);
@@ -44,18 +52,16 @@
   NI_RELEASE_SAFELY(dashdot);
   NI_RELEASE_SAFELY(dashdotdot);
   NI_RELEASE_SAFELY(doubledashdotdot);
+
   [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)viewDidLoad {
-  
-  self.title = @"Underlined Text";
-  
+- (void)viewDidLoad {
   single.underlineStyle = kCTUnderlineStyleSingle;
   thick.underlineStyle = kCTUnderlineStyleThick;
   ddouble.underlineStyle = kCTUnderlineStyleDouble;
-  
+
   dot.underlineStyle = kCTUnderlineStyleSingle;
   dot.underlineStyleModifier = kCTUnderlinePatternDot;
   dash.underlineStyle = kCTUnderlineStyleSingle;
@@ -64,9 +70,19 @@
   dashdot.underlineStyleModifier = kCTUnderlinePatternDashDot;
   dashdotdot.underlineStyle = kCTUnderlineStyleSingle;
   dashdotdot.underlineStyleModifier = kCTUnderlinePatternDashDotDot;
-  
+
   doubledashdotdot.underlineStyle = kCTUnderlineStyleDouble;
   doubledashdotdot.underlineStyleModifier = kCTUnderlinePatternDashDotDot;
   
+  self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(doubledashdotdot.frame) + 20);
+  [super viewDidLoad];
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+  return NIIsSupportedOrientation(toInterfaceOrientation);
+}
+
+
 @end

@@ -30,7 +30,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   NI_RELEASE_SAFELY(_window);
-  NI_RELEASE_SAFELY(_rootController);
   [super dealloc];
 }
 
@@ -45,14 +44,11 @@
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-  
-  RootViewController* mainController =
-  [[[RootViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-  
-  _rootController = [[UINavigationController alloc] initWithRootViewController:mainController];
-  
-  [self.window addSubview:_rootController.view];
-  
+
+  RootViewController* mainController = [[[RootViewController alloc] init] autorelease];
+  UINavigationController* nc = [[[UINavigationController alloc] initWithRootViewController:mainController] autorelease];
+  self.window.rootViewController = nc;
+  [self.window addSubview:nc.view];
   [self.window makeKeyAndVisible];
 
   return YES;

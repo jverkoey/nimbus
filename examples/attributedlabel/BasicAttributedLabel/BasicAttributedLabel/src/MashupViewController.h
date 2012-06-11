@@ -16,14 +16,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MashupViewController : UIViewController<NIAttributedLabelDelegate> {
-  NIAttributedLabel *nimbusTitle;
-  NIAttributedLabel *label1;
-  NIAttributedLabel *label2;
-  NIAttributedLabel *label3;
-  NIAttributedLabel *label4;
-}
+@interface MashupViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 @property (nonatomic, retain) IBOutlet NIAttributedLabel *nimbusTitle;
 @property (nonatomic, retain) IBOutlet NIAttributedLabel *label1;
 @property (nonatomic, retain) IBOutlet NIAttributedLabel *label2;

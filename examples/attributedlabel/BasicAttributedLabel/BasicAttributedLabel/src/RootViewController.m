@@ -16,50 +16,69 @@
 
 #import "RootViewController.h"
 
-#import "LabelEntry.h"
 #import "MashupViewController.h"
 #import "UnderlineViewController.h"
+
+@interface RootViewController()
+@property (nonatomic, readwrite, retain) NITableViewModel* model;
+@property (nonatomic, readwrite, retain) NITableViewActions* actions;
+@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation RootViewController
 
+@synthesize model = _model;
+@synthesize actions = _actions;
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)dealloc {
+- (void)dealloc {
   NI_RELEASE_SAFELY(_model);
+  NI_RELEASE_SAFELY(_actions);
+
   [super dealloc];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)viewDidLoad {
-  
-  self.title = @"NIAttributedLabel Demo";
-  self.navigationItem.backBarButtonItem = 
-  [[[UIBarButtonItem alloc] initWithTitle:@"Back" 
-                                    style:UIBarButtonItemStylePlain 
-                                   target:nil 
-                                   action:nil] autorelease];
-  
-  NSArray* tableContents =
-  [NSArray arrayWithObjects:
-   @"",
-   [LabelEntry entryWithTitle:@"Mashup" controllerClass:[MashupViewController class]], 
-   @"",
-   [LabelEntry entryWithTitle:@"Underline" controllerClass:[UnderlineViewController class]], nil];
-  
-  _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
-                                                   delegate:(id)[NICellFactory class]];
-  self.tableView.dataSource = _model;
-  
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {  
-  LabelEntry* entry = [_model objectAtIndexPath:indexPath];
-  Class cls = [entry controllerClass];
-  UIViewController* controller = [[[cls alloc] initWithNibName:nil bundle:nil] autorelease];
-  [self.navigationController pushViewController:controller animated:YES];
+- (id)initWithStyle:(UITableViewStyle)style {
+  if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
+    self.title = @"NIAttributedLabel Demo";
+
+    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+
+    _actions = [[NITableViewActions alloc] initWithController:self];
+    NSArray* tableContents =
+    [NSArray arrayWithObjects:
+     @"",
+     [self.actions attachNavigationAction:NIPushControllerAction([MashupViewController class])
+                                 toObject:[NITitleCellObject objectWithTitle:@"Mashup"]], 
+     @"",
+     [self.actions attachNavigationAction:NIPushControllerAction([UnderlineViewController class])
+                                 toObject:[NITitleCellObject objectWithTitle:@"Underline"]],
+     nil];
+
+    _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
+                                                     delegate:(id)[NICellFactory class]];
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)viewDidLoad {
+  self.tableView.dataSource = self.model;
+  self.tableView.delegate = [self.actions forwardingTo:self];
+
+  [super viewDidLoad];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+  return NIIsSupportedOrientation(toInterfaceOrientation);
 }
 
 
