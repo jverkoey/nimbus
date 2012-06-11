@@ -115,8 +115,7 @@
  * @ingroup Version-9-0
  *
  * Version 0.9.3 of Nimbus was released on June 10, 2012. This minor version introduces
- * <a href=
-http://latest.docs.nimbuskit.info/group___model_tools.html">table view actions and radio groups</a>.
+ * <a href="http://latest.docs.nimbuskit.info/group___model_tools.html">table view actions and radio groups</a>.
  *
  * <h2>Misc Changes</h2>
  *
