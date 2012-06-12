@@ -48,17 +48,6 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_pagingScrollView);
-
-  NI_RELEASE_SAFELY(_visiblePages);
-  NI_RELEASE_SAFELY(_viewRecycler);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)commonInit {
   // Default state.
   self.pageHorizontalMargin = NIPagingScrollViewDefaultPageHorizontalMargin;
@@ -70,7 +59,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
   _viewRecycler = [[NIViewRecycler alloc] init];
 
-  self.pagingScrollView = [[[UIScrollView alloc] initWithFrame:self.bounds] autorelease];
+  self.pagingScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
   self.pagingScrollView.pagingEnabled = YES;
 
   self.pagingScrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
@@ -280,7 +269,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
   // Recycle no-longer-visible pages. We copy _visiblePages because we may modify it while we're
   // iterating over it.
-  for (UIView<NIPagingScrollViewPage>* page in [[_visiblePages copy] autorelease]) {
+  for (UIView<NIPagingScrollViewPage>* page in [_visiblePages copy]) {
     if (!NSLocationInRange(page.pageIndex, visiblePageRange)) {
       [_viewRecycler recycleView:page];
       [page removeFromSuperview];
@@ -480,7 +469,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
     [(UIView *)page removeFromSuperview];
   }
 
-  NI_RELEASE_SAFELY(_visiblePages);
+  _visiblePages = nil;
 
   // If there is no data source then we can't do anything particularly interesting.
   if (nil == _dataSource) {

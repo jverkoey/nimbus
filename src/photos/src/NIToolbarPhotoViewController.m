@@ -42,21 +42,10 @@
 - (void)shutdown_NIToolbarPhotoViewController {
   _toolbar = nil;
   _photoAlbumView = nil;
-
-  NI_RELEASE_SAFELY(_nextButton);
-  NI_RELEASE_SAFELY(_previousButton);
-
-  NI_RELEASE_SAFELY(_photoScrubberView);
-
-  NI_RELEASE_SAFELY(_tapGesture);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [self shutdown_NIToolbarPhotoViewController];
-
-  [super dealloc];
+  _nextButton = nil;
+  _previousButton = nil;
+  _photoScrubberView = nil;
+  _tapGesture = nil;
 }
 
 
@@ -102,13 +91,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateToolbarItems {
   UIBarItem* flexibleSpace =
-  [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace
+  [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace
                                                  target: nil
-                                                 action: nil] autorelease];
+                                                 action: nil];
 
   if ([self isScrubberEnabled]) {
-    NI_RELEASE_SAFELY(_nextButton);
-    NI_RELEASE_SAFELY(_previousButton);
+    _nextButton = nil;
+    _previousButton = nil;
 
     if (nil == _photoScrubberView) {
       CGRect scrubberFrame = CGRectMake(0, 0,
@@ -121,7 +110,7 @@
     }
 
     UIBarButtonItem* scrubberItem =
-    [[[UIBarButtonItem alloc] initWithCustomView:self.photoScrubberView] autorelease];
+    [[UIBarButtonItem alloc] initWithCustomView:self.photoScrubberView];
     self.toolbar.items = [NSArray arrayWithObjects:
                           flexibleSpace, scrubberItem, flexibleSpace,
                           nil];
@@ -129,7 +118,7 @@
     [_photoScrubberView setSelectedPhotoIndex:self.photoAlbumView.centerPageIndex];
     
   } else {
-    NI_RELEASE_SAFELY(_photoScrubberView);
+    _photoScrubberView = nil;
 
     if (nil == _nextButton) {
       UIImage* nextIcon = [UIImage imageWithContentsOfFile:
@@ -190,7 +179,7 @@
   CGRect toolbarFrame = CGRectMake(0, bounds.size.height - toolbarHeight,
                                    bounds.size.width, toolbarHeight);
 
-  _toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
+  _toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
   _toolbar.barStyle = UIBarStyleBlack;
   _toolbar.translucent = self.toolbarIsTranslucent;
   _toolbar.autoresizingMask = (UIViewAutoresizingFlexibleWidth
@@ -204,7 +193,7 @@
   if (!self.toolbarIsTranslucent) {
     photoAlbumFrame = NIRectContract(bounds, 0, toolbarHeight);
   }
-  _photoAlbumView = [[[NIPhotoAlbumScrollView alloc] initWithFrame:photoAlbumFrame] autorelease];
+  _photoAlbumView = [[NIPhotoAlbumScrollView alloc] initWithFrame:photoAlbumFrame];
   _photoAlbumView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                       | UIViewAutoresizingFlexibleHeight);
   _photoAlbumView.delegate = self;

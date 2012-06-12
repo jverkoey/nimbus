@@ -69,19 +69,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [self cancelOperation];
-
-  NI_RELEASE_SAFELY(_operation);
-
-  NI_RELEASE_SAFELY(_initialImage);
-
-  NI_RELEASE_SAFELY(_imageMemoryCache);
-  NI_RELEASE_SAFELY(_networkOperationQueue);
-
-  NI_RELEASE_SAFELY(_memoryCachePrefix);
-
-  NI_RELEASE_SAFELY(_lastPathToNetworkImage);
-
-  [super dealloc];
 }
 
 
@@ -353,7 +340,7 @@
       return;
     }
     
-    NINetworkImageRequest* request = [[[NINetworkImageRequest alloc] initWithURL:url] autorelease];
+    NINetworkImageRequest* request = [[NINetworkImageRequest alloc] initWithURL:url];
     [self setNetworkImageOperation:request forDisplaySize:displaySize contentMode:contentMode cropRect:cropRect];
   }
 }
@@ -434,8 +421,7 @@
 - (void)setInitialImage:(UIImage *)initialImage {
   if (_initialImage != initialImage) {
     BOOL updateViewImage = (_initialImage == self.image);
-    [_initialImage release];
-    _initialImage = [initialImage retain];
+    _initialImage = initialImage;
 
     if (updateViewImage) {
       [self setImage:_initialImage];
@@ -458,8 +444,7 @@
     queue = [Nimbus networkOperationQueue];
   }
   if (queue != _networkOperationQueue) {
-    [_networkOperationQueue release];
-    _networkOperationQueue = [queue retain];
+    _networkOperationQueue = queue;
   }
 }
 

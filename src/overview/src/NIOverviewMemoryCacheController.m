@@ -42,24 +42,20 @@
 - (void)dealloc {
   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
-
-  [_cache release];
-
-  [super dealloc];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithMemoryCache:(NIMemoryCache *)cache {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
-    _cache = [cache retain];
+    _cache = cache;
 
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver: self
            selector: @selector(didReceiveMemoryWarning:)
                name: UIApplicationDidReceiveMemoryWarningNotification
              object: nil];
-    UIBarButtonItem* refreshButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(didTapRefreshButton:)] autorelease];
+    UIBarButtonItem* refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(didTapRefreshButton:)];
     self.navigationItem.rightBarButtonItem = refreshButton;
   }
   return self;
@@ -99,7 +95,7 @@
   }
   [contents addObject:[NITableViewModelFooter footerWithTitle:summary]];
 
-  NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
+  NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
   // We care more about time than date here.
   [formatter setDateStyle:NSDateFormatterShortStyle];
   [formatter setTimeStyle:NSDateFormatterMediumStyle];
@@ -146,8 +142,8 @@
   [contents addObject:[NITableViewModelFooter footerWithTitle:
                        @"The most-recently-used object is here at the bottom"]];
 
-  self.model = [[[NITableViewModel alloc] initWithSectionedArray:contents
-                                                        delegate:(id)[NICellFactory class]] autorelease];
+  self.model = [[NITableViewModel alloc] initWithSectionedArray:contents
+                                                       delegate:(id)[NICellFactory class]];
   self.tableView.dataSource = self.model;
   [self.tableView reloadData];
 }

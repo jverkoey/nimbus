@@ -86,16 +86,14 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)updateFileSystemAttributes {
-  NI_RELEASE_SAFELY(sFileSystem);
-
 	NSError* error = nil;
   // This path could be any path that is on the device's local disk.
 	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 
   // Fetch the file system information based on the path given (the user's documents directory).
 	sFileSystem =
-  [[[NSFileManager defaultManager] attributesOfFileSystemForPath: [paths lastObject]
-                                                           error: &error] retain];
+  [[NSFileManager defaultManager] attributesOfFileSystemForPath: [paths lastObject]
+                                                           error: &error];
   return (nil == error);
 }
 

@@ -450,13 +450,9 @@ static NSString* const sInstagramScheme = @"instagram:";
                                userInfo: [NSDictionary dictionaryWithObject: image
                                                                      forKey: NIImageErrorKey]];
     }
-    NI_RELEASE_SAFELY(image);
     return nil;
   }
 
-  // Immediately remove the image from memory.
-  NI_RELEASE_SAFELY(image);
-  
   NSFileManager* fm = [NSFileManager defaultManager];
   NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 
@@ -519,20 +515,8 @@ static NSString* const sInstagramScheme = @"instagram:";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_recipient);
-  NI_RELEASE_SAFELY(_cc);
-  NI_RELEASE_SAFELY(_bcc);
-  NI_RELEASE_SAFELY(_subject);
-  NI_RELEASE_SAFELY(_body);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)invocation {
-  return [[[[self class] alloc] init] autorelease];
+  return [[[self class] alloc] init];
 }
 
 

@@ -28,17 +28,6 @@
 
 @synthesize model = _model;
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  // The model is a retained object in this controller, so we must release it when the controller
-  // is deallocated.
-  [_model release]; _model = nil;
-
-  [super dealloc];
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {

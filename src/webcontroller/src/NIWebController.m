@@ -63,31 +63,25 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)releaseAllSubviews {
+- (void)nilAllSubviews {
   _actionSheet.delegate = nil;
   _webView.delegate = nil;
 
-  NI_RELEASE_SAFELY(_actionSheet);
-  NI_RELEASE_SAFELY(_webView);
-  NI_RELEASE_SAFELY(_toolbar);
-  NI_RELEASE_SAFELY(_backButton);
-  NI_RELEASE_SAFELY(_forwardButton);
-  NI_RELEASE_SAFELY(_refreshButton);
-  NI_RELEASE_SAFELY(_stopButton);
-  NI_RELEASE_SAFELY(_actionButton);
-  NI_RELEASE_SAFELY(_activityItem);
+  _actionSheet = nil;
+  _webView = nil;
+  _toolbar = nil;
+  _backButton = nil;
+  _forwardButton = nil;
+  _refreshButton = nil;
+  _stopButton = nil;
+  _actionButton = nil;
+  _activityItem = nil;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  NI_RELEASE_SAFELY(_actionSheetURL);
-  NI_RELEASE_SAFELY(_loadingURL);
-  NI_RELEASE_SAFELY(_loadRequest);
-  NI_RELEASE_SAFELY(_toolbarTintColor);
-  [self releaseAllSubviews];
-
-  [super dealloc];
+  [self nilAllSubviews];
 }
 
 
@@ -140,15 +134,14 @@
 
     // We remove the action sheet here just in case the delegate isn't properly implemented.
     _actionSheet.delegate = nil;
-    NI_RELEASE_SAFELY(_actionSheet);
-    NI_RELEASE_SAFELY(_actionSheetURL);
+    _actionSheet = nil;
+    _actionSheetURL = nil;
 
     // Don't show the menu again.
     return;
   }
 
   // Remember the URL at this point
-  [_actionSheetURL release];
   _actionSheetURL = [self.URL copy];
 
   if (nil == _actionSheet) {
@@ -161,8 +154,8 @@
     // Let -shouldPresentActionSheet: setup the action sheet
     if (![self shouldPresentActionSheet:_actionSheet]) {
       // A subclass decided to handle the action in another way
-      NI_RELEASE_SAFELY(_actionSheet);
-      NI_RELEASE_SAFELY(_actionSheetURL);
+      _actionSheet = nil;
+      _actionSheetURL = nil;
       return;
     }
     // Add "Cancel" button except for iPads
@@ -227,8 +220,8 @@
   _toolbar.hidden = self.toolbarHidden;
 
   UIActivityIndicatorView* spinner =
-  [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-    UIActivityIndicatorViewStyleWhite] autorelease];
+  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
+    UIActivityIndicatorViewStyleWhite];
   [spinner startAnimating];
   _activityItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
 
@@ -277,9 +270,9 @@
                    UIBarButtonSystemItemAction target:self action:@selector(shareAction)];
 
   UIBarItem* flexibleSpace =
-  [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace
+  [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace
                                                  target: nil
-                                                 action: nil] autorelease];
+                                                 action: nil];
 
   _toolbar.items = [NSArray arrayWithObjects:
                     _backButton,
@@ -315,7 +308,7 @@
 - (void)viewDidUnload {
   [super viewDidUnload];
 
-  [self releaseAllSubviews];
+  [self nilAllSubviews];
 }
 
 
@@ -358,7 +351,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
-  [_loadingURL release];
   _loadingURL = [request.mainDocumentURL copy];
   _backButton.enabled = [_webView canGoBack];
   _forwardButton.enabled = [_webView canGoForward];
@@ -390,7 +382,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webViewDidFinishLoad:(UIWebView*)webView {
-  NI_RELEASE_SAFELY(_loadingURL);
+  _loadingURL = nil;
   self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
   if (self.navigationItem.rightBarButtonItem == _activityItem) {
     [self.navigationItem setRightBarButtonItem:nil animated:YES];
@@ -414,7 +406,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error {
-  NI_RELEASE_SAFELY(_loadingURL);
+  _loadingURL = nil;
   [self webViewDidFinishLoad:webView];
 }
 
@@ -440,8 +432,8 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
   if (actionSheet == _actionSheet) {
     _actionSheet.delegate = nil;
-    NI_RELEASE_SAFELY(_actionSheet);
-    NI_RELEASE_SAFELY(_actionSheetURL);
+    _actionSheet = nil;
+    _actionSheetURL = nil;
   }
 }
 
@@ -492,8 +484,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setToolbarTintColor:(UIColor*)color {
   if (color != _toolbarTintColor) {
-    [_toolbarTintColor release];
-    _toolbarTintColor = [color retain];
+    _toolbarTintColor = color;
   }
 
   if ([self isViewLoaded]) {

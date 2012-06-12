@@ -36,20 +36,20 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setUp {
-  _unitTestBundle = [[NSBundle bundleWithIdentifier:@"com.nimbus.css.unittests"] retain];
+  _unitTestBundle = [NSBundle bundleWithIdentifier:@"com.nimbus.css.unittests"];
   STAssertNotNil(_unitTestBundle, @"Unable to find the bundle %@", [NSBundle allBundles]);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)tearDown {
-  NI_RELEASE_SAFELY(_unitTestBundle);
+  _unitTestBundle = nil;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testFailures {
-  NICSSParser* parser = [[[NICSSParser alloc] init] autorelease];
+  NICSSParser* parser = [[NICSSParser alloc] init];
   
   STAssertNil([parser dictionaryForPath:nil], @"Parsing nil path should result in nil.");
   STAssertNil([parser dictionaryForPath:nil pathPrefix:nil], @"Parsing nil path should result in nil.");
@@ -62,7 +62,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testEmptyFile {
-  NICSSParser* parser = [[[NICSSParser alloc] init] autorelease];
+  NICSSParser* parser = [[NICSSParser alloc] init];
   
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"empty.css");
 
@@ -73,7 +73,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testComments {
-  NICSSParser* parser = [[[NICSSParser alloc] init] autorelease];
+  NICSSParser* parser = [[NICSSParser alloc] init];
   
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"comments.css");
   
@@ -84,7 +84,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testMalformed {
-  NICSSParser* parser = [[[NICSSParser alloc] init] autorelease];
+  NICSSParser* parser = [[NICSSParser alloc] init];
 
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"malformed.css");
 
@@ -96,7 +96,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testEmptyRulesets {
-  NICSSParser* parser = [[[NICSSParser alloc] init] autorelease];
+  NICSSParser* parser = [[NICSSParser alloc] init];
 
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"empty-rulesets.css");
 
@@ -118,7 +118,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testRulesets {
-  NICSSParser* parser = [[[NICSSParser alloc] init] autorelease];
+  NICSSParser* parser = [[NICSSParser alloc] init];
 
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"rulesets.css");
 
@@ -136,7 +136,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testRulesetOverrides {
-  NICSSParser* parser = [[[NICSSParser alloc] init] autorelease];
+  NICSSParser* parser = [[NICSSParser alloc] init];
 
   NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"rulesets-overrides.css");
 
@@ -153,7 +153,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testImports {
-  NICSSParser* parser = [[[NICSSParser alloc] init] autorelease];
+  NICSSParser* parser = [[NICSSParser alloc] init];
 
   NSString* pathPrefix = NIPathForBundleResource(_unitTestBundle, nil);
 

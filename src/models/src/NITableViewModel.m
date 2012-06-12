@@ -39,20 +39,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_sections);
-  NI_RELEASE_SAFELY(_sectionIndexTitles);
-  NI_RELEASE_SAFELY(_sectionPrefixToSectionIndex);
-
-#if NS_BLOCKS_AVAILABLE
-  NI_RELEASE_SAFELY(_createCellBlock);
-#endif // #if NS_BLOCKS_AVAILABLE
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithDelegate:(id<NITableViewModelDelegate>)delegate {
   if ((self = [super init])) {
     self.delegate = delegate;
@@ -157,7 +143,7 @@
         [sections addObject:section];
       }
 
-      NI_RELEASE_SAFELY(currentSectionRows);
+      currentSectionRows = nil;
       currentSectionHeaderTitle = nextSectionHeaderTitle;
       currentSectionFooterTitle = nil;
     }
@@ -171,7 +157,7 @@
     section.rows = currentSectionRows;
     [sections addObject:section];
   }
-  NI_RELEASE_SAFELY(currentSectionRows);
+  currentSectionRows = nil;
 
   // Update the compiled information for this data source.
   self.sections = sections;
@@ -180,7 +166,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_compileSectionIndex {
-  NI_RELEASE_SAFELY(_sectionIndexTitles);
+  _sectionIndexTitles = nil;
 
   // Prime the section index and the map
   NSMutableArray* titles = nil;
@@ -423,17 +409,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NITableViewModelFooter *)footerWithTitle:(NSString *)title {
-  return [[[self alloc] initWithTitle:title] autorelease];
+  return [[self alloc] initWithTitle:title];
 }
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_title);
-
-  [super dealloc];
-}
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString *)title {
@@ -442,7 +419,6 @@
   }
   return self;
 }
-
 
 @end
 
@@ -458,18 +434,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_headerTitle);
-  NI_RELEASE_SAFELY(_footerTitle);
-  NI_RELEASE_SAFELY(_rows);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)section {
-  return [[[self alloc] init] autorelease];
+  return [[self alloc] init];
 }
 
 

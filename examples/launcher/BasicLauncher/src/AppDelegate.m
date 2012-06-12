@@ -26,15 +26,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_window);
-  NI_RELEASE_SAFELY(_rootController);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Application lifecycle
@@ -43,7 +34,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
   // Create a stock launcher view controller and populate it with stock data.
   // In a real-world setting, you would probably create your own view controller that
@@ -51,7 +42,7 @@
   // this controller you'd create the necessary information to create the launcher buttons.
 
   NILauncherViewController* launcherController =
-  [[[NILauncherViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+    [[NILauncherViewController alloc] initWithNibName:nil bundle:nil];
   launcherController.title = @"Basic Launcher Demo";
 
   NSString* imagePath = NIPathForBundleResource([NSBundle mainBundle], @"nimbus64x64.png");

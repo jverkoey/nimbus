@@ -86,7 +86,7 @@ typedef enum {
   NSOperationQueue* _networkOperationQueue;
 
   // Delegation
-  id<NINetworkImageViewDelegate> _delegate;
+  __unsafe_unretained id<NINetworkImageViewDelegate> _delegate;
 }
 
 #pragma mark Creating a Network Image View

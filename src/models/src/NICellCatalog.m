@@ -27,15 +27,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_title release];
-  [_image release];
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCellClass:(Class)cellClass userInfo:(id)userInfo {
   return [super initWithCellClass:cellClass userInfo:userInfo];
 }
@@ -45,7 +36,7 @@
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image {
   if ((self = [self initWithCellClass:[NITextCell class] userInfo:nil])) {
     _title = [title copy];
-    _image = [image retain];
+    _image = image;
   }
   return self;
 }
@@ -59,13 +50,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)objectWithTitle:(NSString *)title image:(UIImage *)image {
-  return [[[self alloc] initWithTitle:title image:image] autorelease];
+  return [[self alloc] initWithTitle:title image:image];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)objectWithTitle:(NSString *)title {
-  return [[[self alloc] initWithTitle:title image:nil] autorelease];
+  return [[self alloc] initWithTitle:title image:nil];
 }
 
 @end
@@ -78,14 +69,6 @@
 
 @synthesize subtitle = _subtitle;
 @synthesize cellStyle = _cellStyle;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_subtitle release];
-
-  [super dealloc];
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -106,13 +89,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image {
-  return [[[self alloc] initWithTitle:title subtitle:subtitle image:image] autorelease];
+  return [[self alloc] initWithTitle:title subtitle:subtitle image:image];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
-  return [[[self alloc] initWithTitle:title subtitle:subtitle image:nil] autorelease];
+  return [[self alloc] initWithTitle:title subtitle:subtitle image:nil];
 }
 
 @end

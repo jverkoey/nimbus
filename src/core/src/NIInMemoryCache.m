@@ -65,7 +65,7 @@
 /**
  * @brief The location of this object in the least-recently used linked list.
  */
-@property (nonatomic, readwrite, assign) NILinkedListLocation* lruLocation;
+@property (nonatomic, readwrite, retain) NILinkedListLocation* lruLocation;
 
 /**
  * @brief Determine whether this cache entry has past its expiration date.
@@ -91,11 +91,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-  NI_RELEASE_SAFELY(_cacheMap);
-  NI_RELEASE_SAFELY(_lruCacheObjects);
-
-  [super dealloc];
 }
 
 
@@ -235,7 +230,7 @@
 
   // Create a new cache entry.
   if (nil == info) {
-    info = [[[NIMemoryCacheInfo alloc] init] autorelease];
+    info = [[NIMemoryCacheInfo alloc] init];
     info.name = name;
   }
 
@@ -268,7 +263,7 @@
     }
   }
 
-  return [[object retain] autorelease];
+  return object;
 }
 
 
@@ -332,8 +327,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeAllObjects {
-  self.cacheMap = [[[NSMutableDictionary alloc] init] autorelease];
-  self.lruCacheObjects = [[[NILinkedList alloc] init] autorelease];
+  self.cacheMap = [[NSMutableDictionary alloc] init];
+  self.lruCacheObjects = [[NILinkedList alloc] init];
 }
 
 
@@ -350,7 +345,7 @@
       [self removeCacheInfoForName:name];
     }
   }
-  NI_RELEASE_SAFELY(cacheMap);
+  cacheMap = nil;
 }
 
 
@@ -377,13 +372,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  NI_RELEASE_SAFELY(_name);
-  NI_RELEASE_SAFELY(_object);
-  NI_RELEASE_SAFELY(_expirationDate);
-  NI_RELEASE_SAFELY(_lastAccessTime);
-  _lruLocation = nil;
 
-  [super dealloc];
+  _lruLocation = nil;
 }
 
 

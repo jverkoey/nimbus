@@ -31,8 +31,8 @@ static NSOperationQueue* sNimbusGlobalOperationQueue = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)setImageMemoryCache:(NIImageMemoryCache *)imageMemoryCache {
   if (sNimbusGlobalMemoryCache != imageMemoryCache) {
-    [sNimbusGlobalMemoryCache release];
-    sNimbusGlobalMemoryCache = [imageMemoryCache retain];
+    sNimbusGlobalMemoryCache = nil;
+    sNimbusGlobalMemoryCache = imageMemoryCache;
   }
 }
 
@@ -49,8 +49,8 @@ static NSOperationQueue* sNimbusGlobalOperationQueue = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)setNetworkOperationQueue:(NSOperationQueue *)queue {
   if (sNimbusGlobalOperationQueue != queue) {
-    [sNimbusGlobalOperationQueue release];
-    sNimbusGlobalOperationQueue = [queue retain];
+    sNimbusGlobalOperationQueue = nil;
+    sNimbusGlobalOperationQueue = queue;
   }
 }
 

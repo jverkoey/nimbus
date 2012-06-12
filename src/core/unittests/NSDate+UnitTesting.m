@@ -47,10 +47,7 @@ static NSDate* sFakeDate = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)setFakeDate:(NSDate *)date {
-  if (sFakeDate != date) {
-    [sFakeDate release];
-    sFakeDate = [date retain];
-  }
+  sFakeDate = date;
 }
 
 

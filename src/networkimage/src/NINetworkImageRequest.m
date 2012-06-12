@@ -34,14 +34,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_imageCroppedAndSizedForDisplay);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURL:(NSURL *)newURL {
   if ((self = [super initWithURL:newURL])) {
     self.imageCropRect = CGRectZero;
@@ -69,8 +61,6 @@
                                                            scaleOptions:self.scaleOptions
                                                    interpolationQuality:self.interpolationQuality]];
 
-  NI_RELEASE_SAFELY(image);
-
   [super willFinish];
 }
 
@@ -79,7 +69,6 @@
 - (NSString *)cacheIdentifier {
   return [self.url absoluteString];
 }
-
 
 @end
 

@@ -44,19 +44,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(scrollView);
-  NI_RELEASE_SAFELY(label1);
-  NI_RELEASE_SAFELY(label2);
-  NI_RELEASE_SAFELY(label3);
-  NI_RELEASE_SAFELY(label4);
-  NI_RELEASE_SAFELY(nimbusTitle);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
   nimbusTitle.strokeWidth = -3.0;
   nimbusTitle.strokeColor = [UIColor blackColor];
@@ -106,7 +93,6 @@
   UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Link Selected" message:url.relativeString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 
   [alert show];
-  NI_RELEASE_SAFELY(alert);
 }
 
 

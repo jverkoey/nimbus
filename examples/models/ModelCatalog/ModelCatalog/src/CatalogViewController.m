@@ -37,17 +37,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  // The model is a retained object in this controller, so we must release it when the controller
-  // is deallocated.
-  [_model release];
-  [_actions release];
-  
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     self.title = NSLocalizedString(@"Model Catalog", @"Controller Title: Model Catalog");

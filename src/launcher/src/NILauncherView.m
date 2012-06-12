@@ -49,17 +49,6 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_pager);
-  NI_RELEASE_SAFELY(_scrollView);
-  NI_RELEASE_SAFELY(_pagesOfButtons);
-  NI_RELEASE_SAFELY(_pagesOfScrollViews);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_initialize {
   _maxNumberOfButtonsPerPage = NSIntegerMax;
   _padding = UIEdgeInsetsMake(kDefaultPadding, kDefaultPadding,
@@ -460,9 +449,6 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
     [scrollView removeFromSuperview];
   }
 
-  NI_RELEASE_SAFELY(_pagesOfButtons);
-  NI_RELEASE_SAFELY(_pagesOfScrollViews);
-
   // We query the data source for all of the button views. Each page of buttons lives within
   // a scroll view that will scroll vertically if there are too many buttons for the page.
 
@@ -473,10 +459,9 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
                                   [self.dataSource launcherView: self
                                           numberOfButtonsInPage: ixPage]);
 
-    NSMutableArray* page = [[[NSMutableArray alloc] initWithCapacity:numberOfItems]
-                            autorelease];
+    NSMutableArray* page = [[NSMutableArray alloc] initWithCapacity:numberOfItems];
 
-    UIScrollView* pageScrollView = [[[UIScrollView alloc] init] autorelease];
+    UIScrollView* pageScrollView = [[UIScrollView alloc] init];
     pageScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
 
     for (NSInteger ixItem = 0 ; ixItem < numberOfItems; ++ixItem) {

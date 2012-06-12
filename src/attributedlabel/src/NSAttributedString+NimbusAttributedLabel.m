@@ -39,7 +39,7 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
 	};
 	CTParagraphStyleRef style = CTParagraphStyleCreate(paragraphStyles, 2);
   [self addAttribute:(NSString*)kCTParagraphStyleAttributeName
-               value:(id)style 
+               value:(__bridge id)style 
                range:range];
   CFRelease(style);
 }
@@ -67,9 +67,9 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) setFont:(UIFont*)font range:(NSRange)range {
-  CTFontRef fontRef = CTFontCreateWithName((CFStringRef)font.fontName, font.pointSize, nil);
+  CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, nil);
   [self removeAttribute:(NSString*)kCTFontAttributeName range:range];
-	[self addAttribute:(NSString*)kCTFontAttributeName value:(id)fontRef range:range];
+	[self addAttribute:(__bridge NSString*)kCTFontAttributeName value:(__bridge id)fontRef range:range];
 	CFRelease(fontRef);
 }
 

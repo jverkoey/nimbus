@@ -29,3 +29,4 @@
 - (void)applySearchBarStyleWithRuleSet:(NICSSRuleset *)ruleSet;
 
 @end
+

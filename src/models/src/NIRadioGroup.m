@@ -50,19 +50,6 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_objectMap release];
-  [_objectSet release];
-  [_objectOrder release];
-  [_cellTitle release];
-  [_controllerTitle release];
-  [_forwardDelegates release];
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithController:(UIViewController *)controller {
   if ((self = [super init])) {
     _controller = controller;
@@ -255,7 +242,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)allObjects {
-  return [[self.objectOrder copy] autorelease];
+  return [self.objectOrder copy];
 }
 
 
@@ -298,7 +285,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
       // You must provide a controller in the initWithController: initializer.
       NIDASSERT(nil != self.controller);
 
-      NIRadioGroupController* controller = [[[NIRadioGroupController alloc] initWithRadioGroup:self tappedCell:(id<NICell>)[tableView cellForRowAtIndexPath:indexPath]] autorelease];
+      NIRadioGroupController* controller = [[NIRadioGroupController alloc] initWithRadioGroup:self tappedCell:(id<NICell>)[tableView cellForRowAtIndexPath:indexPath]];
       controller.title = self.controllerTitle;
 
       // Notify the delegate that the controller is about to appear.

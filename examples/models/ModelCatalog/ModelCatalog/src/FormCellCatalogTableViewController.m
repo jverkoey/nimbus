@@ -53,19 +53,6 @@ typedef enum {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  // The model is a retained object in this controller, so we must release it when the controller
-  // is deallocated.
-  [_model release];
-  [_radioGroup release];
-  [_subRadioGroup release];
-  [_actions release];
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = NSLocalizedString(@"Form Cells", @"Controller Title: Form Cells");
@@ -119,11 +106,11 @@ typedef enum {
      @"NIButtonFormElement",
      [_actions attachTapAction:^(id object, UIViewController *controller) {
         UIAlertView* alertView =
-        [[[UIAlertView alloc] initWithTitle:@"This is an alert!"
-                                    message:@"Don't panic."
-                                   delegate:nil
-                          cancelButtonTitle:@"Neat!"
-                          otherButtonTitles:nil] autorelease];
+        [[UIAlertView alloc] initWithTitle:@"This is an alert!"
+                                   message:@"Don't panic."
+                                  delegate:nil
+                         cancelButtonTitle:@"Neat!"
+                         otherButtonTitles:nil];
         [alertView show];
         return YES;
       } toObject:[NITitleCellObject objectWithTitle:@"Button with alert"]],
@@ -157,8 +144,8 @@ typedef enum {
 
   // When including text editing cells in table views you should provide a means for the user to
   // stop editing the control. To do this we add a gesture recognizer to the table view.
-  UITapGestureRecognizer* tap = [[[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                         action:@selector(didTapTableView)] autorelease];
+  UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                        action:@selector(didTapTableView)];
   // We still want the table view to be able to process touch events when we tap.
   tap.cancelsTouchesInView = NO;
   [self.tableView addGestureRecognizer:tap];

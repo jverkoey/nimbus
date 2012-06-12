@@ -53,24 +53,12 @@
   [[NIOverview view] removePageView:self.highQualityPage];
   [[NIOverview view] removePageView:self.thumbnailPage];
 #endif
-
-  NI_RELEASE_SAFELY(_activeRequests);
-
-  NI_RELEASE_SAFELY(_highQualityImageCache);
-  NI_RELEASE_SAFELY(_thumbnailImageCache);
-  NI_RELEASE_SAFELY(_queue);
-#ifdef DEBUG
-  NI_RELEASE_SAFELY(_highQualityPage);
-  NI_RELEASE_SAFELY(_thumbnailPage);
-#endif
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [self shutdown_NetworkPhotoAlbumViewController];
-
-  [super dealloc];
 }
 
 
@@ -110,8 +98,9 @@
 
   NSURL* url = [NSURL URLWithString:source];
 
-  // We must use __block here to avoid creating a retain cycle with the readOp.
-  __block NINetworkRequestOperation* readOp = [[[NINetworkRequestOperation alloc] initWithURL:url] autorelease];
+  // We must use __unsafe_unretained here to avoid creating a retain cycle with the readOp.
+  NINetworkRequestOperation* readOp = [[NINetworkRequestOperation alloc] initWithURL:url];
+  __unsafe_unretained NINetworkRequestOperation* weakOp = readOp;
   readOp.timeout = 30;
 
   // Set an negative index for thumbnail requests so that they don't get cancelled by
@@ -123,7 +112,7 @@
   // The completion block will be executed on the main thread, so we must be careful not
   // to do anything computationally expensive here.
   [readOp setDidFinishBlock:^(NIOperation* operation) {
-    UIImage* image = [UIImage imageWithData:readOp.data];
+    UIImage* image = [UIImage imageWithData:weakOp.data];
 
     // Store the image in the correct image cache.
     if (isThumbnail) {

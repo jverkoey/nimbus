@@ -30,17 +30,6 @@
 @synthesize model = _model;
 @synthesize searchController = _searchController;
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  // The model is a retained object in this controller, so we must release it when the controller
-  // is deallocated.
-  [_model release]; _model = nil;
-
-  [super dealloc];
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:UITableViewStylePlain])) {
@@ -112,7 +101,7 @@
   self.tableView.dataSource = _model;
 
   // Create a dummy search display controller just to show the use of a search bar.
-  UISearchBar* searchBar = [[[UISearchBar alloc] init] autorelease];
+  UISearchBar* searchBar = [[UISearchBar alloc] init];
   [searchBar sizeToFit];
   _searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
   self.tableView.tableHeaderView = _searchController.searchBar;
