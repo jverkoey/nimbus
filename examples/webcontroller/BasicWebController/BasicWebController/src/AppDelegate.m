@@ -37,7 +37,7 @@
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
   NIWebController* webController = [[NIWebController alloc] initWithNibName:nil bundle:nil];
-  [webController openURL:[NSURL URLWithString:@"http://jverkoey.github.com/nimbus/index.html"]];
+  [webController openURL:[NSURL URLWithString:@"http://docs.nimbuskit.info"]];
   [webController setToolbarTintColor:[UIColor blackColor]];
 
   UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:webController];
