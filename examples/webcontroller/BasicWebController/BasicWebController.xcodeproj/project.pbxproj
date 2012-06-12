@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		663BF631158734160066B814 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF62A158734160066B814 /* Icon-72.png */; };
+		663BF632158734160066B814 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF62B158734160066B814 /* Icon-Small-50.png */; };
+		663BF633158734160066B814 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF62C158734160066B814 /* Icon-Small.png */; };
+		663BF634158734160066B814 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF62D158734160066B814 /* Icon-Small@2x.png */; };
+		663BF635158734160066B814 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF62E158734160066B814 /* Icon.png */; };
+		663BF636158734160066B814 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF62F158734160066B814 /* Icon@2x.png */; };
 		DB01A9C113E30D1700C24060 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB01A9C013E30D1600C24060 /* UIKit.framework */; };
 		DB01A9C313E30D1700C24060 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB01A9C213E30D1700C24060 /* Foundation.framework */; };
 		DB01A9C513E30D1700C24060 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB01A9C413E30D1700C24060 /* CoreGraphics.framework */; };
@@ -34,6 +40,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		663BF62A158734160066B814 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-72.png"; path = "../../../../src/resources/Icon-72.png"; sourceTree = "<group>"; };
+		663BF62B158734160066B814 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-Small-50.png"; path = "../../../../src/resources/Icon-Small-50.png"; sourceTree = "<group>"; };
+		663BF62C158734160066B814 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-Small.png"; path = "../../../../src/resources/Icon-Small.png"; sourceTree = "<group>"; };
+		663BF62D158734160066B814 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-Small@2x.png"; path = "../../../../src/resources/Icon-Small@2x.png"; sourceTree = "<group>"; };
+		663BF62E158734160066B814 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icon.png; path = ../../../../src/resources/Icon.png; sourceTree = "<group>"; };
+		663BF62F158734160066B814 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon@2x.png"; path = "../../../../src/resources/Icon@2x.png"; sourceTree = "<group>"; };
 		DB01A9BC13E30D1600C24060 /* BasicWebController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicWebController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB01A9C013E30D1600C24060 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DB01A9C213E30D1700C24060 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -97,6 +109,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		663BF630158734160066B814 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				663BF62A158734160066B814 /* Icon-72.png */,
+				663BF62B158734160066B814 /* Icon-Small-50.png */,
+				663BF62C158734160066B814 /* Icon-Small.png */,
+				663BF62D158734160066B814 /* Icon-Small@2x.png */,
+				663BF62E158734160066B814 /* Icon.png */,
+				663BF62F158734160066B814 /* Icon@2x.png */,
+			);
+			name = Resources;
+			path = /Users/featherless/workbench/ios/nimbus/examples/interapp/catalog/../../models/ModelCatalog/ModelCatalog;
+			sourceTree = "<absolute>";
+		};
 		DB01A9B113E30D1600C24060 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +177,7 @@
 		DB01A9DE13E30DE000C24060 /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
+				663BF630158734160066B814 /* Resources */,
 				DB01A9E013E30DFF00C24060 /* Web Controller */,
 				DB01A9DF13E30DF100C24060 /* Core */,
 			);
@@ -261,6 +288,12 @@
 			files = (
 				DB01A9C813E30D1700C24060 /* BasicWebController_Prefix.pch in Resources */,
 				DB01AA2013E310B300C24060 /* NimbusWebController.bundle in Resources */,
+				663BF631158734160066B814 /* Icon-72.png in Resources */,
+				663BF632158734160066B814 /* Icon-Small-50.png in Resources */,
+				663BF633158734160066B814 /* Icon-Small.png in Resources */,
+				663BF634158734160066B814 /* Icon-Small@2x.png in Resources */,
+				663BF635158734160066B814 /* Icon.png in Resources */,
+				663BF636158734160066B814 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

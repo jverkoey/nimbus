@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		663BF6071587339A0066B814 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5FE1587339A0066B814 /* Icon-72.png */; };
+		663BF6081587339A0066B814 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5FF1587339A0066B814 /* Icon-Small-50.png */; };
+		663BF6091587339A0066B814 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF6001587339A0066B814 /* Icon-Small.png */; };
+		663BF60A1587339A0066B814 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF6011587339A0066B814 /* Icon-Small@2x.png */; };
+		663BF60B1587339A0066B814 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF6021587339A0066B814 /* Icon.png */; };
+		663BF60C1587339A0066B814 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF6031587339A0066B814 /* Icon@2x.png */; };
 		664EFB6615598E3D009826AB /* UIActivityIndicatorView+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 664EFB6515598E3D009826AB /* UIActivityIndicatorView+NIStyleable.m */; };
 		66832D2514421450003E413C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D2414421450003E413C /* UIKit.framework */; };
 		66832D2714421450003E413C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D2614421450003E413C /* Foundation.framework */; };
@@ -49,6 +55,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		663BF5FE1587339A0066B814 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-72.png"; path = "../../../../src/resources/Icon-72.png"; sourceTree = "<group>"; };
+		663BF5FF1587339A0066B814 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-Small-50.png"; path = "../../../../src/resources/Icon-Small-50.png"; sourceTree = "<group>"; };
+		663BF6001587339A0066B814 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-Small.png"; path = "../../../../src/resources/Icon-Small.png"; sourceTree = "<group>"; };
+		663BF6011587339A0066B814 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-Small@2x.png"; path = "../../../../src/resources/Icon-Small@2x.png"; sourceTree = "<group>"; };
+		663BF6021587339A0066B814 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icon.png; path = ../../../../src/resources/Icon.png; sourceTree = "<group>"; };
+		663BF6031587339A0066B814 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon@2x.png"; path = "../../../../src/resources/Icon@2x.png"; sourceTree = "<group>"; };
 		664EFB6415598E3D009826AB /* UIActivityIndicatorView+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+NIStyleable.h"; path = "../../src/css/src/UIActivityIndicatorView+NIStyleable.h"; sourceTree = "<group>"; };
 		664EFB6515598E3D009826AB /* UIActivityIndicatorView+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+NIStyleable.m"; path = "../../src/css/src/UIActivityIndicatorView+NIStyleable.m"; sourceTree = "<group>"; };
 		66832D2014421450003E413C /* CSSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +157,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		663BF6041587339A0066B814 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				663BF5FE1587339A0066B814 /* Icon-72.png */,
+				663BF5FF1587339A0066B814 /* Icon-Small-50.png */,
+				663BF6001587339A0066B814 /* Icon-Small.png */,
+				663BF6011587339A0066B814 /* Icon-Small@2x.png */,
+				663BF6021587339A0066B814 /* Icon.png */,
+				663BF6031587339A0066B814 /* Icon@2x.png */,
+			);
+			name = Resources;
+			path = /Users/featherless/workbench/ios/nimbus/examples/interapp/catalog/../../models/ModelCatalog/ModelCatalog;
+			sourceTree = "<absolute>";
+		};
 		66832D1514421450003E413C = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +233,7 @@
 		66832D40144214CD003E413C /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
+				663BF6041587339A0066B814 /* Resources */,
 				66832D41144214DA003E413C /* Core */,
 				66832D7C144214EF003E413C /* CSS */,
 			);
@@ -355,6 +382,12 @@
 			files = (
 				66832D2F14421450003E413C /* InfoPlist.strings in Resources */,
 				66832E1814442D17003E413C /* css in Resources */,
+				663BF6071587339A0066B814 /* Icon-72.png in Resources */,
+				663BF6081587339A0066B814 /* Icon-Small-50.png in Resources */,
+				663BF6091587339A0066B814 /* Icon-Small.png in Resources */,
+				663BF60A1587339A0066B814 /* Icon-Small@2x.png in Resources */,
+				663BF60B1587339A0066B814 /* Icon.png in Resources */,
+				663BF60C1587339A0066B814 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
