@@ -15,6 +15,14 @@
 		6631673613D6825800FF0CBE /* CatalogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631673513D6825800FF0CBE /* CatalogTableViewController.m */; };
 		6631680D13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6631680C13D6891F00FF0CBE /* DribbblePhotoAlbumViewController.m */; };
 		663B52831445130E00CC26DF /* NIPagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 663B527F1445130E00CC26DF /* NIPagingScrollView.m */; };
+		663BF5F3158732280066B814 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5EA158732280066B814 /* Default.png */; };
+		663BF5F4158732280066B814 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5EB158732280066B814 /* Default@2x.png */; };
+		663BF5F5158732280066B814 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5EC158732280066B814 /* Icon-72.png */; };
+		663BF5F6158732280066B814 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5ED158732280066B814 /* Icon-Small-50.png */; };
+		663BF5F7158732280066B814 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5EE158732280066B814 /* Icon-Small.png */; };
+		663BF5F8158732280066B814 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5EF158732280066B814 /* Icon-Small@2x.png */; };
+		663BF5F9158732280066B814 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5F0158732280066B814 /* Icon.png */; };
+		663BF5FA158732280066B814 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5F1158732280066B814 /* Icon@2x.png */; };
 		66409FA013E25C5300E9BA5A /* NIDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9213E25C5300E9BA5A /* NIDeviceInfo.m */; };
 		66409FA113E25C5300E9BA5A /* NIOverview.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9513E25C5300E9BA5A /* NIOverview.m */; };
 		66409FA213E25C5300E9BA5A /* NIOverviewGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66409F9713E25C5300E9BA5A /* NIOverviewGraphView.m */; };
@@ -85,6 +93,14 @@
 		663B52801445130E00CC26DF /* NIPagingScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewPage.h; path = ../../../src/pagingscrollview/src/NIPagingScrollViewPage.h; sourceTree = "<group>"; };
 		663B52811445130E00CC26DF /* NIPagingScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewDelegate.h; path = ../../../src/pagingscrollview/src/NIPagingScrollViewDelegate.h; sourceTree = "<group>"; };
 		663B52821445130E00CC26DF /* NIPagingScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewDataSource.h; path = ../../../src/pagingscrollview/src/NIPagingScrollViewDataSource.h; sourceTree = "<group>"; };
+		663BF5EA158732280066B814 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = Default.png; path = ../../../../src/resources/Default.png; sourceTree = "<group>"; };
+		663BF5EB158732280066B814 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Default@2x.png"; path = "../../../../src/resources/Default@2x.png"; sourceTree = "<group>"; };
+		663BF5EC158732280066B814 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-72.png"; path = "../../../../src/resources/Icon-72.png"; sourceTree = "<group>"; };
+		663BF5ED158732280066B814 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-Small-50.png"; path = "../../../../src/resources/Icon-Small-50.png"; sourceTree = "<group>"; };
+		663BF5EE158732280066B814 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-Small.png"; path = "../../../../src/resources/Icon-Small.png"; sourceTree = "<group>"; };
+		663BF5EF158732280066B814 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-Small@2x.png"; path = "../../../../src/resources/Icon-Small@2x.png"; sourceTree = "<group>"; };
+		663BF5F0158732280066B814 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icon.png; path = ../../../../src/resources/Icon.png; sourceTree = "<group>"; };
+		663BF5F1158732280066B814 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon@2x.png"; path = "../../../../src/resources/Icon@2x.png"; sourceTree = "<group>"; };
 		66409F9113E25C5300E9BA5A /* NIDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDeviceInfo.h; path = ../../../src/overview/src/NIDeviceInfo.h; sourceTree = "<group>"; };
 		66409F9213E25C5300E9BA5A /* NIDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDeviceInfo.m; path = ../../../src/overview/src/NIDeviceInfo.m; sourceTree = "<group>"; };
 		66409F9313E25C5300E9BA5A /* NimbusOverview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusOverview.h; path = ../../../src/overview/src/NimbusOverview.h; sourceTree = "<group>"; };
@@ -158,7 +174,7 @@
 		669815F713D5083200417E8B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		669815FB13D5083600417E8B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		669815FF13D5083A00417E8B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		669F0D01158002B60069B972 /* NIOverviewMemoryCacheController.h */ = {isa = PBXFileReference; fileEncoding = 4; name = NIOverviewMemoryCacheController.h; path = ../../../src/overview/src/NIOverviewMemoryCacheController.h; sourceTree = "<group>"; };
+		669F0D01158002B60069B972 /* NIOverviewMemoryCacheController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOverviewMemoryCacheController.h; path = ../../../src/overview/src/NIOverviewMemoryCacheController.h; sourceTree = "<group>"; };
 		669F0D02158002B60069B972 /* NIOverviewMemoryCacheController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOverviewMemoryCacheController.m; path = ../../../src/overview/src/NIOverviewMemoryCacheController.m; sourceTree = "<group>"; };
 		669F0D06158002DD0069B972 /* NimbusModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusModels.h; path = ../../../src/models/src/NimbusModels.h; sourceTree = "<group>"; };
 		669F0D07158002DD0069B972 /* NimbusModels+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusModels+Namespace.h"; path = "../../../src/models/src/NimbusModels+Namespace.h"; sourceTree = "<group>"; };
@@ -291,6 +307,22 @@
 				66243CC0146112B300B78F5D /* NIPageView.m */,
 			);
 			name = "Paging Scroll View";
+			sourceTree = "<group>";
+		};
+		663BF5F2158732280066B814 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				663BF5EA158732280066B814 /* Default.png */,
+				663BF5EB158732280066B814 /* Default@2x.png */,
+				663BF5EC158732280066B814 /* Icon-72.png */,
+				663BF5ED158732280066B814 /* Icon-Small-50.png */,
+				663BF5EE158732280066B814 /* Icon-Small.png */,
+				663BF5EF158732280066B814 /* Icon-Small@2x.png */,
+				663BF5F0158732280066B814 /* Icon.png */,
+				663BF5F1158732280066B814 /* Icon@2x.png */,
+			);
+			name = Resources;
+			path = ../../models/ModelCatalog/ModelCatalog;
 			sourceTree = "<group>";
 		};
 		665E0B9513CE814D008A1D21 /* Core */ = {
@@ -438,6 +470,7 @@
 		66EA058E13C0126F004FFE1A /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
+				663BF5F2158732280066B814 /* Resources */,
 				665E0B9513CE814D008A1D21 /* Core */,
 				669F0D05158002C90069B972 /* Models */,
 				66C52CC313DAA79E00D6BA6F /* Overview */,
@@ -512,6 +545,14 @@
 			files = (
 				66EAC7DC13D2A77D00BDFF34 /* NimbusPhotos.bundle in Resources */,
 				66409FA813E25C5E00E9BA5A /* NimbusOverviewer.bundle in Resources */,
+				663BF5F3158732280066B814 /* Default.png in Resources */,
+				663BF5F4158732280066B814 /* Default@2x.png in Resources */,
+				663BF5F5158732280066B814 /* Icon-72.png in Resources */,
+				663BF5F6158732280066B814 /* Icon-Small-50.png in Resources */,
+				663BF5F7158732280066B814 /* Icon-Small.png in Resources */,
+				663BF5F8158732280066B814 /* Icon-Small@2x.png in Resources */,
+				663BF5F9158732280066B814 /* Icon.png in Resources */,
+				663BF5FA158732280066B814 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
