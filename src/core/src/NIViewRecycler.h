@@ -47,7 +47,7 @@ for (UIView<NIRecyclableView>* view in visibleViews) {
 @endcode
  *
  * This will take the views that are no longer visible and add them to the recycler. At a later
- * point in that same did scroll code we will check if there are any new views that are visible.
+ * point in that same didScroll code we will check if there are any new views that are visible.
  * This is when we try to dequeue a recycled view from the recycler.
  *
 @code

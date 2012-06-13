@@ -23,8 +23,68 @@
 #pragma mark Preprocessor Macros
 
 /**
- * For generating code where methods can't be used.
+ * Preprocessor macros are added to Nimbus with care. Macros hide functionality and are difficult
+ * to debug, so most macros found in Nimbus are one-liners or compiler utilities.
  *
+ * <h2>Creating Byte- and Hex-based Colors</h2>
+ * 
+ * Nimbus provides the RGBCOLOR and RGBACOLOR macros for easily creating UIColor objects
+ * with byte and hex values.
+ * 
+ * <h3>Examples</h3>
+ * 
+@code
+UIColor* color = RGBCOLOR(255, 128, 64); // Fully opaque orange
+UIColor* color = RGBACOLOR(255, 128, 64, 0.5); // Orange with 50% transparency
+UIColor* color = RGBCOLOR(0xFF, 0x7A, 0x64); // Hexadecimal color
+@endcode
+ * 
+ * <h3>Why it exists</h3>
+ * 
+ * There is no easy way to create UIColor objects using 0 - 255 range values or hexadecimal. This
+ * leads to code like this being written:
+ * 
+@code
+UIColor* color = [UIColor colorWithRed:128.f/255.0f green:64.f/255.0f blue:32.f/255.0f alpha:1]
+@endcode
+ *
+ * <h2>Avoid requiring the -all_load and -force_load flags</h2>
+ * 
+ * Categories can introduce the need for the -all_load and -force_load because of the fact that
+ * the application will not load these categories on startup without them. This is due to the way
+ * Xcode deals with .m files that only contain categories: it doesn't load them without the
+ * -all_load or -force_load flag specified.
+ * 
+ * There is, however, a way to force Xcode into loading the category .m file. If you provide an
+ * empty class implementation in the .m file then your app will pick up the category
+ * implementation.
+ * 
+ * Example in plain UIKit:
+ * 
+@code
+@interface BogusClass
+@end
+@implementation BogusClass
+@end
+
+@implementation UIViewController (MyCustomCategory)
+...
+@end
+@endcode
+ * 
+ * NI_FIX_CATEGORY_BUG is a Nimbus macro that you include in your category `.m` file to save you
+ * the trouble of having to write a bogus class for every category. Just be sure that the name you
+ * provide to the macro is unique across your project or you will encounter duplicate symbol errors
+ * when linking.
+ * 
+@code
+NI_FIX_CATEGORY_BUG(UIViewController_MyCustomCategory);
+
+@implementation UIViewController (MyCustomCategory)
+...
+@end
+@endcode
+ * 
  * @ingroup NimbusCore
  * @defgroup Preprocessor-Macros Preprocessor Macros
  * @{

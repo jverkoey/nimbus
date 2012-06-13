@@ -72,6 +72,16 @@
                                               | UIViewAutoresizingFlexibleHeight)
 #endif
 
+#ifndef UIViewAutoresizingNavigationBar
+#define UIViewAutoresizingNavigationBar (UIViewAutoresizingFlexibleWidth \
+                                         | UIViewAutoresizingFlexibleBottomMargin)
+#endif
+
+#ifndef UIViewAutoresizingToolbarBar
+#define UIViewAutoresizingToolbarBar (UIViewAutoresizingFlexibleWidth \
+                                      | UIViewAutoresizingFlexibleTopMargin)
+#endif
+
 /**
  * Fetch the height of a toolbar in a given orientation.
  *
