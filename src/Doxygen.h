@@ -75,33 +75,6 @@
  * - Peter Nelson
  * - Craig Gilchrist
  * - Atsushi Nagase
- * 
- * <h2>Nimbus' Background</h2>
- * 
- * Nimbus has been built with much inspiration from the Three20 framework. That being said, there
- * are a number of fundamental problems with Three20 that Nimbus works very hard to avoid.
- * Among them:
- * 
- * - Poor documentation.
- * - Spaghetti dependencies.
- * - Suffering from a "kitchen sink" complex.
- * - A complex build structure.
- * - An enormous number of difficult-to-solve bugs.
- * - Next-to-zero test coverage.
- * 
- * For its weaknesses, Three20 does provide a good deal of value through its feature set. It is
- * used in over 100 apps in the app store by companies such as Facebook, LinkedIn, Posterous,
- * Meetup, and SCVNGR.
- * 
- * Nimbus hopes to one day provide as much value as Three20 does on a feature-by-feature
- * comparison, but with the invaluable benefit of sublime documentation and test coverage.
- * 
- * <h2>Nimbus' Development Roadmap</h2>
- * 
- * Most of the discussion revolving around Nimbus' roadmap is in the Github issue tracker. In
- * particular, check out the grab bag of tasks that are actively being worked on here:
- * 
- * https://github.com/jverkoey/nimbus/issues?milestone=5&sort=created&direction=desc&state=open
  */
 
 /**
