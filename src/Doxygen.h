@@ -92,15 +92,15 @@
  * @htmlonly<table class="modificationtable"><tr><th></th><th>Method Name</th></tr> 
  * <tr><th>From</th><td class='Declaration' scope="row"><tt>- (void)operationDidStart</tt></td></tr> 
  * <tr><th>To</th><td class='Declaration' scope="row"><tt>- (void)didStart</tt></td></tr></table>@endhtmlonly
- * - <span class="apiDiffModified">Modified</span> <code>NIOperation.@link NIOperation::operationDidFinish operationDidFinish@endlink</code>
+ * - <span class="apiDiffModified">Modified</span> <code>NIOperation.@link NIOperation::didFinish didFinish@endlink</code>
  * @htmlonly<table class="modificationtable"><tr><th></th><th>Method Name</th></tr> 
  * <tr><th>From</th><td class='Declaration' scope="row"><tt>- (void)operationDidFinish</tt></td></tr> 
  * <tr><th>To</th><td class='Declaration' scope="row"><tt>- (void)didFinish</tt></td></tr></table>@endhtmlonly
- * - <span class="apiDiffModified">Modified</span> <code>NIOperation.@link NIOperation::operationDidFailWithError: operationDidFailWithError:@endlink</code>
+ * - <span class="apiDiffModified">Modified</span> <code>NIOperation.@link NIOperation::didFailWithError: didFailWithError:@endlink</code>
  * @htmlonly<table class="modificationtable"><tr><th></th><th>Method Name</th></tr> 
  * <tr><th>From</th><td class='Declaration' scope="row"><tt>- (void)operationDidFailWithError:(NSError *)error</tt></td></tr> 
  * <tr><th>To</th><td class='Declaration' scope="row"><tt>- (void)didFailWithError:(NSError *)error</tt></td></tr></table>@endhtmlonly
- * - <span class="apiDiffModified">Modified</span> <code>NIOperation.@link NIOperation::operationWillFinish operationWillFinish@endlink</code>
+ * - <span class="apiDiffModified">Modified</span> <code>NIOperation.@link NIOperation::willFinish willFinish@endlink</code>
  * @htmlonly<table class="modificationtable"><tr><th></th><th>Method Name</th></tr> 
  * <tr><th>From</th><td class='Declaration' scope="row"><tt>- (void)operationWillFinish</tt></td></tr> 
  * <tr><th>To</th><td class='Declaration' scope="row"><tt>- (void)willFinish</tt></td></tr></table>@endhtmlonly
