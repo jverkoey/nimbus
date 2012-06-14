@@ -52,7 +52,7 @@
 
 - (id)initWithStyle:(UITableViewStyle)style {
   // We explicitly set the table view style in this controller's implementation because we want this
-  // controller to control how its contents are displayed.
+  // controller to control how the table view is displayed.
   self = [super initWithStyle:UITableViewStyleGrouped];
 
   if (self) {
