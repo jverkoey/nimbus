@@ -91,9 +91,19 @@
 #define NIIOS_4_3     40300
 
 /**
- * Release TBD.
+ * Released on October 12, 2011.
  */
 #define NIIOS_5_0     50000
+
+/**
+ * Released on March 7, 2012.
+ */
+#define NIIOS_5_1     50100
+
+/**
+ * Release TBD. Should be sometime between September and October.
+ */
+#define NIIOS_6_0     60000
 
 #ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_0
 #define kCFCoreFoundationVersionNumber_iPhoneOS_2_0 478.23
@@ -121,6 +131,26 @@
 
 #ifndef kCFCoreFoundationVersionNumber_iOS_4_0
 #define kCFCoreFoundationVersionNumber_iOS_4_0 550.32
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iOS_4_1
+#define kCFCoreFoundationVersionNumber_iOS_4_1 550.38
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iOS_4_2
+#define kCFCoreFoundationVersionNumber_iOS_4_2 550.52
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iOS_4_3
+#define kCFCoreFoundationVersionNumber_iOS_4_3 550.52
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iOS_5_0
+#define kCFCoreFoundationVersionNumber_iOS_5_0 675
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iOS_5_1
+#define kCFCoreFoundationVersionNumber_iOS_5_1 690.1
 #endif
 
 #if __cplusplus
