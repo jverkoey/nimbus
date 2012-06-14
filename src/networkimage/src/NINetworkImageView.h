@@ -87,9 +87,6 @@ typedef enum {
 
 @property (nonatomic, readwrite, assign) NSTimeInterval maxAge;     // Default: 0
 
-@property (nonatomic, readwrite, copy) NSString* memoryCachePrefix; // Default: nil
-@property (nonatomic, readonly, copy) NSString* lastPathToNetworkImage;
-
 #pragma mark Requesting a Network Image
 
 - (void)setPathToNetworkImage:(NSString *)pathToNetworkImage;
@@ -494,22 +491,6 @@ typedef enum {
  * By default this is NINetworkImageViewDiskCacheLifetimePermanent.
  *
  *      @fn NINetworkImageView::diskCacheLifetime
- */
-
-/**
- * A prefix for the memory cache key.
- *
- * Prefixed to the memory cache key when looking for and storing this image in the memory cache.
- *
- * This makes it possible to keep multiple versions of a network image from the same url in
- * memory cropped and/or resized using different parameters. This can be useful if you're
- * downloading a high resolution photo and using that same photo in various locations with
- * different presentation requirements (a table view 50x50 icon and a larger 300x200 thumbnail
- * for example).
- *
- * By default this is nil.
- *
- *      @fn NINetworkImageView::memoryCachePrefix
  */
 
 /**

@@ -126,11 +126,6 @@
 
   NSString* cacheKey = cacheIdentifier;
 
-  // Prefix cache key to create a namespace.
-  if (nil != self.memoryCachePrefix) {
-    cacheKey = [self.memoryCachePrefix stringByAppendingString:cacheKey];
-  }
-
   // Append the size to the key. This allows us to differentiate cache keys by image dimension.
   // If the display size ever changes, we want to ensure that we're fetching the correct image
   // from the cache.
@@ -140,7 +135,7 @@
   }
 
   // The resulting cache key will look like:
-  // (memoryCachePrefix)/path/to/image({width,height}{contentMode,cropImageForDisplay})
+  // /path/to/image({width,height}{contentMode,cropImageForDisplay})
 
   return cacheKey;
 }
