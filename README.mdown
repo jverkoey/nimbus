@@ -3,7 +3,6 @@ Nimbus is an iOS framework whose feature set grows only as fast as its documenta
 <h2>Getting Started</h2>
 
 - Visit the Nimbus website at <a href="http://nimbuskit.info">nimbuskit.info</a>.
-- <a href="http://wiki.nimbuskit.info/Nimbus-Overview">Learn when and why you should use Nimbus</a>.
 - <a href="http://wiki.nimbuskit.info/Add-Nimbus-to-your-project">Add Nimbus to your project</a>.
 - Follow Nimbus' development through its <a href="http://docs.nimbuskit.info/group___version-_history.html">version history</a>.
 - See the <a href="http://docs.nimbuskit.info/group___version-9-3.html">latest API diffs</a>.
