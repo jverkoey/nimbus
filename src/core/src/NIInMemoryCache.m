@@ -117,6 +117,19 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)description {
+  return [NSString stringWithFormat:
+          @"<%@"
+          @" lruObjects: %@"
+          @" cache map: %@"
+          @">",
+          [super description],
+          self.lruCacheObjects,
+          self.cacheMap];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Internal Methods
@@ -169,8 +182,10 @@
     return;
   }
 
-  [self willRemoveObject:[self cacheInfoForName:name].object withName:name];
+  NIMemoryCacheInfo* cacheInfo = [self cacheInfoForName:name];
+  [self willRemoveObject:cacheInfo.object withName:name];
 
+  [self.lruCacheObjects removeObjectAtLocation:cacheInfo.lruLocation];
   [self.cacheMap removeObjectForKey:name];
 }
 
@@ -326,6 +341,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)removeAllObjectsWithPrefix:(NSString *)prefix {
+  for (NSString* key in [self.cacheMap copy]) {
+    if ([key hasPrefix:prefix]) {
+      [self removeObjectWithName:key];
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeAllObjects {
   self.cacheMap = [[NSMutableDictionary alloc] init];
   self.lruCacheObjects = [[NILinkedList alloc] init];
@@ -371,16 +396,26 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-
-  _lruLocation = nil;
+- (BOOL)hasExpired {
+  return (nil != _expirationDate
+          && [[NSDate date] timeIntervalSinceDate:_expirationDate] >= 0);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)hasExpired {
-  return (nil != _expirationDate
-          && [[NSDate date] timeIntervalSinceDate:_expirationDate] >= 0);
+- (NSString *)description {
+  return [NSString stringWithFormat:
+          @"<%@"
+          @" name: %@"
+          @" object: %@"
+          @" expiration date: %@"
+          @" last access time: %@"
+          @">",
+          [super description],
+          self.name,
+          self.object,
+          self.expirationDate,
+          self.lastAccessTime];
 }
 
 
@@ -479,9 +514,6 @@
   if (nil == object || ![object isKindOfClass:[UIImage class]]) {
     return; // COV_NF_LINE
   }
-
-  NIMemoryCacheInfo* info = [self cacheInfoForName:name];
-  [self.lruCacheObjects removeObjectAtLocation:info.lruLocation];
 
   self.numberOfPixels -= [self numberOfPixelsUsedByImage:object];
 }

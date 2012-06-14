@@ -46,6 +46,7 @@
 - (void)storeObject:(id)object withName:(NSString *)name expiresAfter:(NSDate *)expirationDate;
 
 - (void)removeObjectWithName:(NSString *)name;
+- (void)removeAllObjectsWithPrefix:(NSString *)prefix;
 - (void)removeAllObjects;
 
 - (id)objectWithName:(NSString *)name;
@@ -138,10 +139,19 @@
 /** @name Removing Objects from the Cache */
 
 /**
- * Removes an object from the cache.
+ * Removes an object from the cache with the given name.
  *
  *      @param name The name used as a key to store this object.
  *      @fn NIMemoryCache::removeObjectWithName:
+ */
+
+/**
+ * Removes all objects from the cache with a given prefix.
+ *
+ * This method requires a scan of the cache entries.
+ *
+ *      @param prefix Any object name that has this prefix will be removed from the cache.
+ *      @fn NIMemoryCache::removeAllObjectsWithPrefix:
  */
 
 /**

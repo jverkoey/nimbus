@@ -91,6 +91,23 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testRemovingCachePrefixes {
+  NIMemoryCache* cache = [[NIMemoryCache alloc] init];
+
+  id cacheObject1 = [NSArray array];
+  [cache storeObject:cacheObject1 withName:@"obj1"];
+  id cacheObject1Prefix = [NSArray array];
+  [cache storeObject:cacheObject1Prefix withName:@"obj1_details"];
+  id cacheObject2 = [NSArray array];
+  [cache storeObject:cacheObject2 withName:@"obj2"];
+
+  [cache removeAllObjectsWithPrefix:@"obj1"];
+
+  STAssertEquals([cache count], (NSUInteger)1, @"Cache should have one object.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testRemovingAllObjects {
   NIMemoryCache* cache = [[NIMemoryCache alloc] init];
 
