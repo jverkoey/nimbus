@@ -98,34 +98,34 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)nimbusOperationWillFinish:(NINetworkRequestOperation *)operation {
-  // This is called from the processing thread in order to allow us to turn the root object
-  // into something more interesting.
-  if (![operation.processedObject isKindOfClass:[NSDictionary class]]) {
-    return;
-  }
+	// This is called from the processing thread in order to allow us to turn the root object
+	// into something more interesting.
+	if (![operation.processedObject isKindOfClass:[NSDictionary class]]) {
+		return;
+	}
 
-  id object = operation.processedObject;
-  NSArray* data = [object objectForKey:@"shots"];
-  
-  self.networkPhotoInformation = [NSMutableArray arrayWithCapacity:[data count]];
-	
-  for (NSDictionary* photo in data) {
-    
-    // Gather the high-quality photo information.
-    NSString* originalImageSource = [photo objectForKey:@"image_url"];
-    NSInteger width = [[photo objectForKey:@"width"] intValue];
-    NSInteger height = [[photo objectForKey:@"height"] intValue];
-    
-    // We gather the highest-quality photo's dimensions so that we can size the thumbnails
-    // correctly until the high-quality image is downloaded.
-    CGSize dimensions = CGSizeMake(width, height);
-    
-    NSString* thumbnailImageSource = [photo objectForKey:@"image_teaser_url"];
-									  
-	[super addImageSourceURL: originalImageSource 
-		  thumbnailSourceURL: thumbnailImageSource 
-				  dimensions: dimensions];
-									  
+	id object = operation.processedObject;
+	NSArray* data = [object objectForKey:@"shots"];
+
+	self.networkPhotoInformation = [NSMutableArray arrayWithCapacity:[data count]];
+
+	for (NSDictionary* photo in data) {
+		// Gather the high-quality photo information.
+		NSString* originalImageSource = [photo objectForKey:@"image_url"];
+		NSInteger width = [[photo objectForKey:@"width"] intValue];
+		NSInteger height = [[photo objectForKey:@"height"] intValue];
+
+		// We gather the highest-quality photo's dimensions so that we can size the thumbnails
+		// correctly until the high-quality image is downloaded.
+		CGSize dimensions = CGSizeMake(width, height);
+
+		NSString* thumbnailImageSource = [photo objectForKey:@"image_teaser_url"];
+					  
+		[super addImageSourceURL: originalImageSource 
+			  thumbnailSourceURL: thumbnailImageSource 
+					  dimensions: dimensions];
+	}
+				  
 	operation.processedObject = self.networkPhotoInformation;
 }
 
