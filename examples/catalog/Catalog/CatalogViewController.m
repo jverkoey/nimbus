@@ -35,6 +35,11 @@
 // NITableViewActions
 // NISubtitleCellObject
 //
+// This controller requires the following frameworks:
+//
+// Foundation.framework
+// UIKit.framework
+//
 
 @interface CatalogViewController ()
 // We declare these properties here in the source file so that we don't have to expose private

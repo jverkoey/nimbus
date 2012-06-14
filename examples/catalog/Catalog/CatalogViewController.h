@@ -16,6 +16,6 @@
 
 #import <UIKit/UIKit.h>
 
+// All docs found in the .m.
 @interface CatalogViewController : UITableViewController
-
 @end

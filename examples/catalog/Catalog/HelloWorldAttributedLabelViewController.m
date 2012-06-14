@@ -16,8 +16,29 @@
 
 #import "HelloWorldAttributedLabelViewController.h"
 
-@interface HelloWorldAttributedLabelViewController ()
-@end
+//
+// What's going on in this file:
+//
+// This is a simple hello world example of the NIAttributedLabel object from the [attributedlabel]
+// feature of Nimbus. It is a simple view controller that instantiates and styles a single
+// NIAttributedLabel that says "Hello World!" with an orange stroke.
+//
+// You will find the following Nimbus features used:
+//
+// [core]
+// UIViewAutoresizingFlexibleDimensions
+// RGBCOLOR
+// RGBACOLOR
+//
+// [attributedlabel]
+// NIAttributedLabel
+//
+// This controller requires the following frameworks:
+//
+// Foundation.framework
+// UIKit.framework
+// CoreText.framework
+//
 
 @implementation HelloWorldAttributedLabelViewController
 
@@ -47,10 +68,14 @@
   // These are standard UILabel styles. We can set these whenever we like and the attributed label
   // will apply them to entire string even if we change the text again.
   label.font = [UIFont fontWithName:@"Zapfino" size:30];
+
+  // Set the text color to the bright Nimbus orange. This will be the "fill" color when we specify
+  // a negative stroke width below.
   label.textColor = RGBCOLOR(0xFF, 0x9F, 0x00);
 
-  // Set a CoreText stroke.
+  // Set a CoreText stroke color to a dark orange with 40% opacity.
   label.strokeColor = RGBACOLOR(0x93, 0x36, 0x00, 0.4);
+
   // A negative stroke width means that we also want to fill the stroke with the textColor.
   // A postiive stroke would leave the fill as the background color.
   label.strokeWidth = -3;
