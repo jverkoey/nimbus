@@ -31,8 +31,13 @@
 
 
 @interface NIAttributedLabel(ConversionUtilities)
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 + (CTTextAlignment)alignmentFromUITextAlignment:(UITextAlignment)alignment;
 + (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(UILineBreakMode)lineBreakMode;
+#else
++ (CTTextAlignment)alignmentFromUITextAlignment:(NSTextAlignment)alignment;
++ (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(NSLineBreakMode)lineBreakMode;
+#endif
 + (NSMutableAttributedString *)mutableAttributedStringFromLabel:(UILabel *)label;
 @end
 
@@ -72,8 +77,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)awakeFromNib {
   [super awakeFromNib];
-
-  self.attributedString = [[self class] mutableAttributedStringFromLabel:self];
+  
+  NSMutableAttributedString* attributedText = [[self class] mutableAttributedStringFromLabel:self];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
+  self.attributedString = attributedText;
+#else
+  self.attributedText = attributedText;
+#endif
 }
 
 
@@ -147,21 +157,35 @@
 - (void)setText:(NSString *)text {
   [super setText:text];
 
-  self.attributedString = [[self class] mutableAttributedStringFromLabel:self];
+  NSMutableAttributedString* attributedText = [[self class] mutableAttributedStringFromLabel:self];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
+  self.attributedString = attributedText;
+#else
+  self.attributedText = attributedText;
+#endif
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSAttributedString *)attributedString {
   if (nil == _mutableAttributedString) {
-    self.attributedString = [[self class] mutableAttributedStringFromLabel:self];
+    NSMutableAttributedString* attributedText = [[self class] mutableAttributedStringFromLabel:self];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
+    self.attributedString = attributedText;
+#else
+    self.attributedText = attributedText;
+#endif
   }
   return [_mutableAttributedString copy];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 - (void)setAttributedString:(NSAttributedString *)attributedText {
+#else
+- (void)setAttributedText:(NSAttributedString *)attributedText {
+#endif
   if (_mutableAttributedString != attributedText) {
     _mutableAttributedString = [attributedText mutableCopy];
 
@@ -724,26 +748,50 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 + (CTTextAlignment)alignmentFromUITextAlignment:(UITextAlignment)alignment {
+#else
++ (CTTextAlignment)alignmentFromUITextAlignment:(NSTextAlignment)alignment {
+#endif
   switch (alignment) {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 		case UITextAlignmentLeft: return kCTLeftTextAlignment;
 		case UITextAlignmentCenter: return kCTCenterTextAlignment;
 		case UITextAlignmentRight: return kCTRightTextAlignment;
-		case UITextAlignmentJustify: return kCTJustifiedTextAlignment; 		
+		case UITextAlignmentJustify: return kCTJustifiedTextAlignment;
+#else
+		case NSTextAlignmentLeft: return kCTLeftTextAlignment;
+		case NSTextAlignmentCenter: return kCTCenterTextAlignment;
+		case NSTextAlignmentRight: return kCTRightTextAlignment;
+		case NSTextAlignmentJustified: return kCTJustifiedTextAlignment;
+#endif
     default: return kCTNaturalTextAlignment;
 	}
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 + (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(UILineBreakMode)lineBreakMode {
+#else
++ (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(NSLineBreakMode)lineBreakMode {
+#endif
 	switch (lineBreakMode) {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 		case UILineBreakModeWordWrap: return kCTLineBreakByWordWrapping;
 		case UILineBreakModeCharacterWrap: return kCTLineBreakByCharWrapping;
 		case UILineBreakModeClip: return kCTLineBreakByClipping;
 		case UILineBreakModeHeadTruncation: return kCTLineBreakByTruncatingHead;
 		case UILineBreakModeTailTruncation: return kCTLineBreakByTruncatingTail;
 		case UILineBreakModeMiddleTruncation: return kCTLineBreakByTruncatingMiddle;
+#else
+		case NSLineBreakByWordWrapping: return kCTLineBreakByWordWrapping;
+		case NSLineBreakByCharWrapping: return kCTLineBreakByCharWrapping;
+		case NSLineBreakByClipping: return kCTLineBreakByClipping;
+		case NSLineBreakByTruncatingHead: return kCTLineBreakByTruncatingHead;
+		case NSLineBreakByTruncatingTail: return kCTLineBreakByTruncatingTail;
+		case NSLineBreakByTruncatingMiddle: return kCTLineBreakByTruncatingMiddle;
+#endif
 		default: return 0;
 	}
 }
@@ -752,19 +800,19 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSMutableAttributedString *)mutableAttributedStringFromLabel:(UILabel *)label {
   NSMutableAttributedString* attributedString = nil;
-  
+
   if (NIIsStringWithAnyText(label.text)) {
     attributedString = [[NSMutableAttributedString alloc] initWithString:label.text];
-    
+
     [attributedString setFont:label.font];
     [attributedString setTextColor:label.textColor];
-    
+
     CTTextAlignment textAlignment = [self alignmentFromUITextAlignment:label.textAlignment];
     CTLineBreakMode lineBreak = [self lineBreakModeFromUILineBreakMode:label.lineBreakMode];
-    
+
     [attributedString setTextAlignment:textAlignment lineBreakMode:lineBreak]; 
   }
-  
+
   return attributedString;
 }
 
