@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -67,27 +67,7 @@ typedef enum {
  *
  *      @ingroup Network-Image-User-Interface
  */
-@interface NINetworkImageView : UIImageView <NIOperationDelegate> {
-@private
-  // The active operation for the image
-  NIOperation<NINetworkImageOperation>* _operation;
-
-  // Configurable Presentation Properties
-  UIImage* _initialImage;
-  BOOL _sizeForDisplay;
-  NINetworkImageViewScaleOptions _scaleOptions;
-  CGInterpolationQuality _interpolationQuality;
-  
-  // Configurable Properties
-  NSString* _memoryCachePrefix;
-  NSString* _lastPathToNetworkImage;
-  NSTimeInterval _maxAge;
-  NIImageMemoryCache* _imageMemoryCache;
-  NSOperationQueue* _networkOperationQueue;
-
-  // Delegation
-  __unsafe_unretained id<NINetworkImageViewDelegate> _delegate;
-}
+@interface NINetworkImageView : UIImageView <NIOperationDelegate>
 
 #pragma mark Creating a Network Image View
 

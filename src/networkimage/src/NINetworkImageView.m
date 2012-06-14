@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2012 Jeff Verkoeyen
 //
 // Forked from Three20 June 15, 2011 - Copyright 2009-2011 Facebook
 //
@@ -28,11 +28,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NINetworkImageView()
-
 @property (nonatomic, readwrite, retain) NSOperation* operation;
-
-@property (nonatomic, readwrite, copy) NSString* lastPathToNetworkImage;
-
 @end
 
 
@@ -50,7 +46,6 @@
 @synthesize maxAge                  = _maxAge;
 @synthesize initialImage            = _initialImage;
 @synthesize memoryCachePrefix       = _memoryCachePrefix;
-@synthesize lastPathToNetworkImage  = _lastPathToNetworkImage;
 @synthesize delegate                = _delegate;
 
 
@@ -321,8 +316,6 @@
   [self cancelOperation];
 
   if (NIIsStringWithAnyText(pathToNetworkImage)) {
-    self.lastPathToNetworkImage = pathToNetworkImage;
-
     NSURL* url = nil;
 
     // Check for file URLs.
@@ -357,7 +350,7 @@
     NIDASSERT(displaySize.width >= 0);
     NIDASSERT(displaySize.height >= 0);
 
-    // If an invalid display size is provided, use the image view's frame instead.
+    // If an invalid display size IS provided, use the image view's frame instead.
     if (0 >= displaySize.width || 0 >= displaySize.height) {
       displaySize = self.frame.size;
     }
@@ -420,10 +413,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setInitialImage:(UIImage *)initialImage {
   if (_initialImage != initialImage) {
-    BOOL updateViewImage = (_initialImage == self.image);
+    // Only update the displayed image if we're currently showing the old initial image.
+    BOOL updateDisplayedImage = (_initialImage == self.image);
     _initialImage = initialImage;
 
-    if (updateViewImage) {
+    if (updateDisplayedImage) {
       [self setImage:_initialImage];
     }
   }
@@ -443,9 +437,7 @@
   if (nil == queue) {
     queue = [Nimbus networkOperationQueue];
   }
-  if (queue != _networkOperationQueue) {
-    _networkOperationQueue = queue;
-  }
+  _networkOperationQueue = queue;
 }
 
 
