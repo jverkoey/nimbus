@@ -579,6 +579,13 @@
 			remoteGlobalIDString = 66A03C0813E6E85E00B514F3;
 			remoteInfo = NimbusCore;
 		};
+		6693C14C158A648500950D42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6693C106158A63E600950D42 /* NimbusCatalog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6693C0EB158A63E600950D42;
+			remoteInfo = NimbusCatalog;
+		};
 		66A03C2113E6E85E00B514F3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
@@ -832,6 +839,7 @@
 		668ECDC61455C17100455266 /* NIStylesheetCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIStylesheetCache.m; path = css/src/NIStylesheetCache.m; sourceTree = SOURCE_ROOT; };
 		668ECDCF14565AB200455266 /* README.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.mdown; path = css/chameleon/README.mdown; sourceTree = SOURCE_ROOT; };
 		66922F1C150C7CE400667191 /* run_unit_test.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = run_unit_test.sh; path = ../scripts/run_unit_test.sh; sourceTree = "<group>"; };
+		6693C106158A63E600950D42 /* NimbusCatalog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NimbusCatalog.xcodeproj; path = ../examples/Catalog/NimbusCatalog.xcodeproj; sourceTree = "<group>"; };
 		669E98AD13E9EA1F00D99140 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		669F0CFD158000810069B972 /* NIOverviewMemoryCacheController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOverviewMemoryCacheController.h; sourceTree = "<group>"; };
 		669F0CFE158000810069B972 /* NIOverviewMemoryCacheController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOverviewMemoryCacheController.m; sourceTree = "<group>"; };
@@ -1311,6 +1319,7 @@
 		664EFAD6155989D9009826AB /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				6693C106158A63E600950D42 /* NimbusCatalog.xcodeproj */,
 				664EFAD8155989EB009826AB /* BasicAttributedLabel.xcodeproj */,
 				664EFAE215598A07009826AB /* CSSDemo.xcodeproj */,
 				664EFAEC15598A27009826AB /* InterAppCatalog.xcodeproj */,
@@ -1667,6 +1676,14 @@
 				66832E0514435071003E413C /* NIChameleonObserver.m */,
 			);
 			name = Chameleon;
+			sourceTree = "<group>";
+		};
+		6693C149158A648500950D42 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6693C14D158A648500950D42 /* NimbusCatalog.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		66A03BFC13E6E84800B514F3 = {
@@ -2864,6 +2881,10 @@
 					ProductGroup = 664EFB1915598A5E009826AB /* Products */;
 					ProjectRef = 664EFB1815598A5E009826AB /* NetworkPhotoAlbum.xcodeproj */;
 				},
+				{
+					ProductGroup = 6693C149158A648500950D42 /* Products */;
+					ProjectRef = 6693C106158A63E600950D42 /* NimbusCatalog.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -2954,6 +2975,13 @@
 			fileType = wrapper.application;
 			path = BasicWebController.app;
 			remoteRef = 664EFB2A15598A67009826AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6693C14D158A648500950D42 /* NimbusCatalog.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Nimbus.app;
+			remoteRef = 6693C14C158A648500950D42 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
