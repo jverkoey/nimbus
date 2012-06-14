@@ -77,9 +77,9 @@
                                          | UIViewAutoresizingFlexibleBottomMargin)
 #endif
 
-#ifndef UIViewAutoresizingToolbarBar
-#define UIViewAutoresizingToolbarBar (UIViewAutoresizingFlexibleWidth \
-                                      | UIViewAutoresizingFlexibleTopMargin)
+#ifndef UIViewAutoresizingToolbar
+#define UIViewAutoresizingToolbar (UIViewAutoresizingFlexibleWidth \
+                                   | UIViewAutoresizingFlexibleTopMargin)
 #endif
 
 /**
