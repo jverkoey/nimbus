@@ -78,13 +78,13 @@
   STAssertTrue([@"\r" isWhitespaceAndNewlines], @"Carriage return character should be whitespace.");
 
   // Unicode whitespace
-  for (int unicode = 0x000A; unicode <= 0x000D; ++unicode) {
+  for (unsigned short unicode = 0x000A; unicode <= 0x000D; ++unicode) {
     NSString* str = [NSString stringWithFormat:@"%C", unicode];
     STAssertTrue([str isWhitespaceAndNewlines],
                  @"Unicode string #%X should be whitespace.", unicode);
   }
 
-  NSString* str = [NSString stringWithFormat:@"%C", 0x0085];
+  NSString* str = [NSString stringWithFormat:@"%C", (unsigned short)0x0085];
   STAssertTrue([str isWhitespaceAndNewlines], @"Unicode string should be whitespace.");
 
   STAssertTrue([@" \t\r\n" isWhitespaceAndNewlines], @"Empty string should be whitespace.");
