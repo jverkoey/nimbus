@@ -17,6 +17,7 @@
 #import "CatalogViewController.h"
 
 #import "HelloWorldAttributedLabelViewController.h"
+#import "CustomTextAttributedLabelViewController.h"
 
 //
 // What's going on in this file:
@@ -91,8 +92,14 @@
 
       // A subtitle cell object will eventually display a NITextCell in the table view. A NITextCell
       // is a simple UITableViewCell built to work with Nimbus' cell architecture.
-      toObject:[NISubtitleCellObject objectWithTitle:@"Hello World"
-                                            subtitle:@"Create a simple NIAttributedLabel"]],
+      toObject:[NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
+                                            subtitle:@"How to create a simple NIAttributedLabel"]],
+
+     [_actions attachNavigationAction:
+      NIPushControllerAction([CustomTextAttributedLabelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Customizing Text"
+                                   subtitle:@"How to use NSAttributedString"]],
      nil];
 
     // When we create the model we must provide it with a delegate that implements the
