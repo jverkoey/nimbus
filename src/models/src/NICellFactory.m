@@ -74,6 +74,11 @@
                          withObject:(id)object {
   UITableViewCell* cell = nil;
 
+  // If this assertion fires then your app is about to crash. You need to either add an explicit
+  // binding in a NICellFactory object or implement the NICellObject protocol on this object and
+  // return a cell class.
+  NIDASSERT([object respondsToSelector:@selector(cellClass)]);
+
   // Only NICellObject-conformant objects may pass.
   if ([object respondsToSelector:@selector(cellClass)]) {
     Class cellClass = [object cellClass];
