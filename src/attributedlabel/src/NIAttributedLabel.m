@@ -20,14 +20,21 @@
 #import "NSMutableAttributedString+NimbusAttributedLabel.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface NIAttributedLabel()
+static const NSTimeInterval kLongPressTimeInterval = 0.5;
+static const CGFloat kLongPressGutter = 22;
+
+@interface NIAttributedLabel() <UIActionSheetDelegate>
 @property (nonatomic, readwrite, retain) NSMutableAttributedString* mutableAttributedString;
 @property (nonatomic, readwrite, assign) CTFrameRef textFrame;
 @property (readwrite, assign) BOOL detectingLinks; // Atomic.
 @property (nonatomic, readwrite, assign) BOOL linksHaveBeenDetected;
 @property (nonatomic, readwrite, copy) NSArray* detectedlinkLocations;
 @property (nonatomic, readwrite, retain) NSMutableArray* explicitLinkLocations;
+@property (nonatomic, readwrite, retain) NSTextCheckingResult* originalLink;
 @property (nonatomic, readwrite, retain) NSTextCheckingResult* touchedLink;
+@property (nonatomic, readwrite, retain) NSTimer* longPressTimer;
+@property (nonatomic, readwrite, assign) CGPoint touchPoint;
+@property (nonatomic, readwrite, retain) NSTextCheckingResult* actionSheetLink;
 @end
 
 
@@ -54,7 +61,11 @@
 @synthesize linksHaveBeenDetected = _linksHaveBeenDetected;
 @synthesize detectedlinkLocations = _detectedlinkLocations;
 @synthesize explicitLinkLocations = _explicitLinkLocations;
+@synthesize originalLink = _originalLink;
 @synthesize touchedLink = _touchedLink;
+@synthesize longPressTimer = _longPressTimer;
+@synthesize touchPoint = _touchPoint;
+@synthesize actionSheetLink = _actionSheetLink;
 @synthesize autoDetectLinks = _autoDetectLinks;
 @synthesize deferLinkDetection = _deferLinkDetection;
 @synthesize dataDetectorTypes = _dataDetectorTypes;
@@ -74,6 +85,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
+  [_longPressTimer invalidate];
+
   if (nil != _textFrame) {
     CFRelease(_textFrame);
   }
@@ -195,30 +208,43 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 - (NSAttributedString *)attributedString {
-#else
-- (NSAttributedString *)attributedText {
-#endif
   return [self.mutableAttributedString copy];
 }
+#else
+- (NSAttributedString *)attributedText {
+  return [self.mutableAttributedString copy];
+}
+#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 - (void)setAttributedString:(NSAttributedString *)attributedText {
-#else
-- (void)setAttributedText:(NSAttributedString *)attributedText {
-#endif
   if (self.mutableAttributedString != attributedText) {
     self.mutableAttributedString = [attributedText mutableCopy];
-
+    
     // Clear the link caches.
     self.detectedlinkLocations = nil;
     self.linksHaveBeenDetected = NO;
     [self removeAllExplicitLinks];
-
+    
     [self attributedTextDidChange];
   }
 }
+#else
+- (void)setAttributedText:(NSAttributedString *)attributedText {
+  if (self.mutableAttributedString != attributedText) {
+    self.mutableAttributedString = [attributedText mutableCopy];
+    
+    // Clear the link caches.
+    self.detectedlinkLocations = nil;
+    self.linksHaveBeenDetected = NO;
+    [self removeAllExplicitLinks];
+    
+    [self attributedTextDidChange];
+  }
+}
+#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -327,6 +353,7 @@
     [self attributedTextDidChange];
   }
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setUnderlineStyle:(CTUnderlineStyle)style modifier:(CTUnderlineStyleModifiers)modifier range:(NSRange)range {
@@ -603,14 +630,63 @@
 	CGPoint point = [touch locationInView:self];
 
   self.touchedLink = [self linkAtPoint:point];
+  self.touchPoint = point;
+  self.originalLink = self.touchedLink;
+
+  [self.longPressTimer invalidate];
+  if (nil != self.touchedLink) {
+    self.longPressTimer = [NSTimer scheduledTimerWithTimeInterval:kLongPressTimeInterval target:self selector:@selector(_longPressTimerDidFire:) userInfo:nil repeats:NO];
+  }
 
   [self setNeedsDisplay];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+  [super touchesMoved:touches withEvent:event];
+  
+  UITouch* touch = [touches anyObject];
+	CGPoint point = [touch locationInView:self];
+
+  // If the user moves their finger away from the original link, deselect it.
+  // If the user moves their finger back to the original link, reselect it.
+  // Don't allow other links to be selected other than the original link.
+  NSTextCheckingResult* newLink = [self linkAtPoint:point];
+  if (newLink != self.touchedLink) {
+    if (newLink != self.originalLink) {
+      [self.longPressTimer invalidate];
+      self.longPressTimer = nil;
+      self.touchedLink = nil;
+      [self setNeedsDisplay];
+
+    } else if (newLink == self.originalLink) {
+      self.touchedLink = self.originalLink;
+      [self setNeedsDisplay];
+    }
+  }
+
+  // If the user moves their finger within the link beyond a certain gutter amount, reset the
+  // hold timer. The user must hold their finger still for the long press interval in order for
+  // the long press action to fire.
+  if (fabsf(self.touchPoint.x - point.x) >= kLongPressGutter
+      || fabsf(self.touchPoint.y - point.y) >= kLongPressGutter) {
+    [self.longPressTimer invalidate];
+    self.longPressTimer = nil;
+    if (nil != self.touchedLink) {
+      self.longPressTimer = [NSTimer scheduledTimerWithTimeInterval:kLongPressTimeInterval target:self selector:@selector(_longPressTimerDidFire:) userInfo:nil repeats:NO];
+      self.touchPoint = point;
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesEnded:touches withEvent:event];
+
+  [self.longPressTimer invalidate];
+  self.longPressTimer = nil;
 
   UITouch* touch = [touches anyObject];
 	CGPoint point = [touch locationInView:self];
@@ -635,10 +711,86 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesCancelled:touches withEvent:event];
+  
+  [self.longPressTimer invalidate];
+  self.longPressTimer = nil;
 
   self.touchedLink = nil;
 
   [self setNeedsDisplay];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIActionSheet *)actionSheetForResult:(NSTextCheckingResult *)result {
+  UIActionSheet* actionSheet =
+  [[UIActionSheet alloc] initWithTitle:nil
+                              delegate:self
+                     cancelButtonTitle:nil
+                destructiveButtonTitle:nil
+                     otherButtonTitles:nil];
+
+  NSString* title = nil;
+  if (NSTextCheckingTypeLink == result.resultType) {
+    if ([result.URL.scheme isEqualToString:@"mailto"]) {
+      title = result.URL.resourceSpecifier;
+      [actionSheet addButtonWithTitle:NSLocalizedString(@"Open in Mail", @"")];
+      [actionSheet addButtonWithTitle:NSLocalizedString(@"Copy Email Address", @"")];
+
+    } else {
+      title = result.URL.absoluteString;
+      [actionSheet addButtonWithTitle:NSLocalizedString(@"Open in Safari", @"")];
+      [actionSheet addButtonWithTitle:NSLocalizedString(@"Copy URL", @"")];
+    }
+
+  } else if (NSTextCheckingTypePhoneNumber == result.resultType) {
+    title = result.phoneNumber;
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Call", @"")];
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Copy Phone Number", @"")];
+
+  } else if (NSTextCheckingTypeAddress == result.resultType) {
+    title = [self.mutableAttributedString.string substringWithRange:self.actionSheetLink.range];
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Open in Maps", @"")];
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Copy Address", @"")];
+
+  } else {
+    // This type has not been implemented yet.
+    NIDASSERT(NO);
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Copy", @"")];
+  }
+  actionSheet.title = title;
+
+  if (!NIIsPad()) {
+    [actionSheet setCancelButtonIndex:[actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", @"")]];
+  }
+
+  return actionSheet;
+}
+
+  
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_longPressTimerDidFire:(NSTimer *)timer {
+  self.longPressTimer = nil;
+
+  if (nil != self.touchedLink) {
+    self.actionSheetLink = self.touchedLink;
+
+    UIActionSheet* actionSheet = [self actionSheetForResult:self.actionSheetLink];
+
+    BOOL shouldPresent = YES;
+    if ([self.delegate respondsToSelector:@selector(attributedLabel:shouldPresentActionSheet:withTextCheckingResult:atPoint:)]) {
+      // Give the delegate the opportunity to not show the action sheet or to present their own.
+      shouldPresent = [self.delegate attributedLabel:self shouldPresentActionSheet:actionSheet withTextCheckingResult:self.touchedLink atPoint:self.touchPoint];
+    }
+
+    if (shouldPresent) {
+      if (NIIsPad()) {
+        [actionSheet showFromRect:CGRectMake(self.touchPoint.x - 22, self.touchPoint.y - 22, 44, 44) inView:self animated:YES];
+      } else {
+        [actionSheet showInView:self];
+      }
+    }
+  }
 }
 
 
@@ -717,10 +869,10 @@
     }
 
     // Draw the tapped link's highlight.
-    if (nil != self.touchedLink && nil != self.highlightedLinkBackgroundColor) {
+    if ((nil != self.touchedLink || nil != self.actionSheetLink) && nil != self.highlightedLinkBackgroundColor) {
       [self.highlightedLinkBackgroundColor setFill];
 
-      NSRange linkRange = self.touchedLink.range;
+      NSRange linkRange = nil != self.touchedLink ? self.touchedLink.range : self.actionSheetLink.range;
 
       CFArrayRef lines = CTFrameGetLines(self.textFrame);
       CFIndex count = CFArrayGetCount(lines);
@@ -817,6 +969,63 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIActionSheetDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  if (NSTextCheckingTypeLink == self.actionSheetLink.resultType) {
+    if (buttonIndex == 0) {
+      [[UIApplication sharedApplication] openURL:self.actionSheetLink.URL];
+
+    } else if (buttonIndex == 1) {
+      if ([self.actionSheetLink.URL.scheme isEqualToString:@"mailto"]) {
+        [[UIPasteboard generalPasteboard] setString:self.actionSheetLink.URL.resourceSpecifier];
+
+      } else {
+        [[UIPasteboard generalPasteboard] setURL:self.actionSheetLink.URL];
+      }
+    }
+
+  } else if (NSTextCheckingTypePhoneNumber == self.actionSheetLink.resultType) {
+    if (buttonIndex == 0) {
+      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"tel:" stringByAppendingString:self.actionSheetLink.phoneNumber]]];
+
+    } else if (buttonIndex == 1) {
+      [[UIPasteboard generalPasteboard] setString:self.actionSheetLink.phoneNumber];
+    }
+
+  } else if (NSTextCheckingTypeAddress == self.actionSheetLink.resultType) {
+    NSString* address = [self.mutableAttributedString.string substringWithRange:self.actionSheetLink.range];
+    if (buttonIndex == 0) {
+      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[@"http://maps.google.com/maps?q=" stringByAppendingString:address] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+      
+    } else if (buttonIndex == 1) {
+      [[UIPasteboard generalPasteboard] setString:address];
+    }
+
+  } else {
+    // Unsupported data type only allows the user to copy.
+    if (buttonIndex == 0) {
+      NSString* text = [self.mutableAttributedString.string substringWithRange:self.actionSheetLink.range];
+      [[UIPasteboard generalPasteboard] setString:text];
+    }
+  }
+
+  self.actionSheetLink = nil;
+  [self setNeedsDisplay];
+}
+
+  
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet {
+  self.actionSheetLink = nil;
+  [self setNeedsDisplay];
+}
+
+
 @end
 
 
@@ -829,51 +1038,53 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 + (CTTextAlignment)alignmentFromUITextAlignment:(UITextAlignment)alignment {
-#else
-+ (CTTextAlignment)alignmentFromUITextAlignment:(NSTextAlignment)alignment {
-#endif
   switch (alignment) {
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 		case UITextAlignmentLeft: return kCTLeftTextAlignment;
 		case UITextAlignmentCenter: return kCTCenterTextAlignment;
 		case UITextAlignmentRight: return kCTRightTextAlignment;
 		case UITextAlignmentJustify: return kCTJustifiedTextAlignment;
+    default: return kCTNaturalTextAlignment;
+	}
+}
 #else
++ (CTTextAlignment)alignmentFromUITextAlignment:(NSTextAlignment)alignment {
+  switch (alignment) {
     case NSTextAlignmentLeft: return kCTLeftTextAlignment;
     case NSTextAlignmentCenter: return kCTCenterTextAlignment;
     case NSTextAlignmentRight: return kCTRightTextAlignment;
     case NSTextAlignmentJustified: return kCTJustifiedTextAlignment;
-#endif
     default: return kCTNaturalTextAlignment;
 	}
 }
+#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 + (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(UILineBreakMode)lineBreakMode {
-#else
-+ (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(NSLineBreakMode)lineBreakMode {
-#endif
 	switch (lineBreakMode) {
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 		case UILineBreakModeWordWrap: return kCTLineBreakByWordWrapping;
 		case UILineBreakModeCharacterWrap: return kCTLineBreakByCharWrapping;
 		case UILineBreakModeClip: return kCTLineBreakByClipping;
 		case UILineBreakModeHeadTruncation: return kCTLineBreakByTruncatingHead;
 		case UILineBreakModeTailTruncation: return kCTLineBreakByTruncatingTail;
 		case UILineBreakModeMiddleTruncation: return kCTLineBreakByTruncatingMiddle;
+		default: return 0;
+	}
+}
 #else
++ (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(NSLineBreakMode)lineBreakMode {
+  switch (lineBreakMode) {
     case NSLineBreakByWordWrapping: return kCTLineBreakByWordWrapping;
     case NSLineBreakByCharWrapping: return kCTLineBreakByCharWrapping;
     case NSLineBreakByClipping: return kCTLineBreakByClipping;
     case NSLineBreakByTruncatingHead: return kCTLineBreakByTruncatingHead;
     case NSLineBreakByTruncatingTail: return kCTLineBreakByTruncatingTail;
     case NSLineBreakByTruncatingMiddle: return kCTLineBreakByTruncatingMiddle;
-#endif
-		default: return 0;
-	}
+    default: return 0;
+  }
 }
+#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
