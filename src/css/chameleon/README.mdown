@@ -11,7 +11,8 @@ Chameleon uses Node.js. Check out Node.js somewhere on your system and build/ins
     make
     sudo make install
 
-Node.js comes packaged with it's own dependency management tool called npm. Within the chameleon directory install chameleon's dependencies by running `npm install`
+Node.js comes packaged with it's own dependency management tool called npm. Within the chameleon
+directory install chameleon's dependencies by running `npm install`
 
     cd nimbus/src/css/chameleon/
     npm install
