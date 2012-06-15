@@ -115,9 +115,9 @@
   self.tableView.dataSource = self.model;
 
   // What we're doing here is known as "delegate chaining". It uses the message forwarding
-  // functionality of Objective-C to allow us to insert the actions object between the table view
-  // and this controller. The actions object forwards all methods of the UITableViewDelegate and
-  // also selectively implements the methods required to make user interactions work.
+  // functionality of Objective-C to insert the actions object between the table view
+  // and this controller. The actions object forwards UITableViewDelegate methods along and
+  // selectively intercepts methods required to make user interactions work.
   //
   // Experiment: try commenting out this line. You'll notice that you can no longer tap any of
   // the cells in the table view and that they no longer show the disclosure accessory types.
