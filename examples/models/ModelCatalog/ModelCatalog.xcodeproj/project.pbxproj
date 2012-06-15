@@ -57,14 +57,14 @@
 		6601D8E613FC7BB500B884DC /* NIFormCellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIFormCellCatalog.m; path = ../../../../src/models/src/NIFormCellCatalog.m; sourceTree = "<group>"; };
 		6601D8E813FC87B900B884DC /* NICellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICellFactory.h; path = ../../../../src/models/src/NICellFactory.h; sourceTree = "<group>"; };
 		6601D8E913FC87BA00B884DC /* NICellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICellFactory.m; path = ../../../../src/models/src/NICellFactory.m; sourceTree = "<group>"; };
-		663BF55D1587304F0066B814 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "../../../../src/resources/Icon-72.png"; sourceTree = "<group>"; };
-		663BF55E1587304F0066B814 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "../../../../src/resources/Icon-Small-50.png"; sourceTree = "<group>"; };
-		663BF55F1587304F0066B814 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "../../../../src/resources/Icon-Small.png"; sourceTree = "<group>"; };
-		663BF5601587304F0066B814 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "../../../../src/resources/Icon-Small@2x.png"; sourceTree = "<group>"; };
-		663BF5611587304F0066B814 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../../../../src/resources/Icon.png; sourceTree = "<group>"; };
-		663BF5621587304F0066B814 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../../../../src/resources/Icon@2x.png"; sourceTree = "<group>"; };
-		663BF56D1587318A0066B814 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../../../../src/resources/Default.png; sourceTree = "<group>"; };
-		663BF56E1587318A0066B814 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../../../src/resources/Default@2x.png"; sourceTree = "<group>"; };
+		663BF55D1587304F0066B814 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		663BF55E1587304F0066B814 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		663BF55F1587304F0066B814 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		663BF5601587304F0066B814 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		663BF5611587304F0066B814 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		663BF5621587304F0066B814 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		663BF56D1587318A0066B814 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		663BF56E1587318A0066B814 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		66688681156AD3D2006E874F /* NICellCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICellCatalog.h; path = ../../../../src/models/src/NICellCatalog.h; sourceTree = "<group>"; };
 		66688682156AD3D2006E874F /* NICellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICellCatalog.m; path = ../../../../src/models/src/NICellCatalog.m; sourceTree = "<group>"; };
 		66688685156AD3E0006E874F /* NITableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NITableViewModel+Private.h"; path = "../../../../src/models/src/NITableViewModel+Private.h"; sourceTree = "<group>"; };
@@ -163,6 +163,7 @@
 				663BF5621587304F0066B814 /* Icon@2x.png */,
 			);
 			name = Resources;
+			path = ../../../../src/resources;
 			sourceTree = "<group>";
 		};
 		666C0D5E13FC5A6A00C6E955 /* Static Indexed Model */ = {

@@ -55,12 +55,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		663BF5FE1587339A0066B814 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-72.png"; path = "../../../../src/resources/Icon-72.png"; sourceTree = "<group>"; };
-		663BF5FF1587339A0066B814 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-Small-50.png"; path = "../../../../src/resources/Icon-Small-50.png"; sourceTree = "<group>"; };
-		663BF6001587339A0066B814 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-Small.png"; path = "../../../../src/resources/Icon-Small.png"; sourceTree = "<group>"; };
-		663BF6011587339A0066B814 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon-Small@2x.png"; path = "../../../../src/resources/Icon-Small@2x.png"; sourceTree = "<group>"; };
-		663BF6021587339A0066B814 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icon.png; path = ../../../../src/resources/Icon.png; sourceTree = "<group>"; };
-		663BF6031587339A0066B814 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Icon@2x.png"; path = "../../../../src/resources/Icon@2x.png"; sourceTree = "<group>"; };
+		663BF5FE1587339A0066B814 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		663BF5FF1587339A0066B814 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		663BF6001587339A0066B814 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		663BF6011587339A0066B814 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		663BF6021587339A0066B814 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		663BF6031587339A0066B814 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		664EFB6415598E3D009826AB /* UIActivityIndicatorView+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+NIStyleable.h"; path = "../../src/css/src/UIActivityIndicatorView+NIStyleable.h"; sourceTree = "<group>"; };
 		664EFB6515598E3D009826AB /* UIActivityIndicatorView+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+NIStyleable.m"; path = "../../src/css/src/UIActivityIndicatorView+NIStyleable.m"; sourceTree = "<group>"; };
 		66832D2014421450003E413C /* CSSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,8 +168,8 @@
 				663BF6031587339A0066B814 /* Icon@2x.png */,
 			);
 			name = Resources;
-			path = /Users/featherless/workbench/ios/nimbus/examples/interapp/catalog/../../models/ModelCatalog/ModelCatalog;
-			sourceTree = "<absolute>";
+			path = ../../src/resources;
+			sourceTree = "<group>";
 		};
 		66832D1514421450003E413C = {
 			isa = PBXGroup;

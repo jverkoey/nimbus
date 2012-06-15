@@ -132,21 +132,21 @@
 		6693C224158A81DD00950D42 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITableViewModel.h; path = ../../src/models/src/NITableViewModel.h; sourceTree = "<group>"; };
 		6693C225158A81DD00950D42 /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITableViewModel.m; path = ../../src/models/src/NITableViewModel.m; sourceTree = "<group>"; };
 		6693C226158A81DD00950D42 /* NITableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NITableViewModel+Private.h"; path = "../../src/models/src/NITableViewModel+Private.h"; sourceTree = "<group>"; };
-		6693C290158A8E4000950D42 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../../../../src/resources/Default.png; sourceTree = "<group>"; };
-		6693C291158A8E4000950D42 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../../../src/resources/Default@2x.png"; sourceTree = "<group>"; };
-		6693C292158A8E4000950D42 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "../../../../src/resources/Icon-72.png"; sourceTree = "<group>"; };
-		6693C293158A8E4000950D42 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "../../../../src/resources/Icon-Small-50.png"; sourceTree = "<group>"; };
-		6693C294158A8E4000950D42 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "../../../../src/resources/Icon-Small.png"; sourceTree = "<group>"; };
-		6693C295158A8E4000950D42 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "../../../../src/resources/Icon-Small@2x.png"; sourceTree = "<group>"; };
-		6693C296158A8E4000950D42 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../../../../src/resources/Icon.png; sourceTree = "<group>"; };
-		6693C297158A8E4000950D42 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../../../../src/resources/Icon@2x.png"; sourceTree = "<group>"; };
+		6693C290158A8E4000950D42 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		6693C291158A8E4000950D42 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		6693C292158A8E4000950D42 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		6693C293158A8E4000950D42 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		6693C294158A8E4000950D42 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		6693C295158A8E4000950D42 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		6693C296158A8E4000950D42 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		6693C297158A8E4000950D42 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		6693C2DE158A9A3E00950D42 /* HelloWorldAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloWorldAttributedLabelViewController.h; path = ../catalog/Catalog/HelloWorldAttributedLabelViewController.h; sourceTree = "<group>"; };
 		6693C2DF158A9A3E00950D42 /* HelloWorldAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelloWorldAttributedLabelViewController.m; path = ../catalog/Catalog/HelloWorldAttributedLabelViewController.m; sourceTree = "<group>"; };
 		6693C2E2158AA21E00950D42 /* NIAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIAttributedLabel.h; path = ../../src/attributedlabel/src/NIAttributedLabel.h; sourceTree = "<group>"; };
 		6693C2E3158AA21E00950D42 /* NIAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIAttributedLabel.m; path = ../../src/attributedlabel/src/NIAttributedLabel.m; sourceTree = "<group>"; };
 		6693C2E4158AA21E00950D42 /* NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusAttributedLabel.h; path = ../../src/attributedlabel/src/NimbusAttributedLabel.h; sourceTree = "<group>"; };
 		6693C2E5158AA21E00950D42 /* NimbusAttributedLabel+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusAttributedLabel+Namespace.h"; path = "../../src/attributedlabel/src/NimbusAttributedLabel+Namespace.h"; sourceTree = "<group>"; };
-		6693C2E6158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; name = "NSMutableAttributedString+NimbusAttributedLabel.h"; path = "../../src/attributedlabel/src/NSMutableAttributedString+NimbusAttributedLabel.h"; sourceTree = "<group>"; };
+		6693C2E6158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+NimbusAttributedLabel.h"; path = "../../src/attributedlabel/src/NSMutableAttributedString+NimbusAttributedLabel.h"; sourceTree = "<group>"; };
 		6693C2E7158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+NimbusAttributedLabel.m"; path = "../../src/attributedlabel/src/NSMutableAttributedString+NimbusAttributedLabel.m"; sourceTree = "<group>"; };
 		6693C2EA158AA2BE00950D42 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		6693C2EC158AB5B600950D42 /* CustomTextAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTextAttributedLabelViewController.h; path = ../catalog/Catalog/CustomTextAttributedLabelViewController.h; sourceTree = "<group>"; };
@@ -322,8 +322,8 @@
 				6693C297158A8E4000950D42 /* Icon@2x.png */,
 			);
 			name = Resources;
-			path = /Users/featherless/workbench/ios/nimbus/examples/interapp/catalog/../../models/ModelCatalog/ModelCatalog;
-			sourceTree = "<absolute>";
+			path = ../../src/resources;
+			sourceTree = "<group>";
 		};
 		6693C2DC158A9A0E00950D42 /* Attributed Label */ = {
 			isa = PBXGroup;
