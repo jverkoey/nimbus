@@ -99,7 +99,8 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
  * If a navigation action also exists for this object then the tap action will be executed first,
  * followed by the navigation action.
  *
- *      @param object The object to attach the action to.
+ *      @param object The object to attach the action to. This object must be contained within
+ *                    an NITableViewModel.
  *      @param action The tap action block.
  *      @returns The object that you attached this action to.
  *      @fn NITableViewActions::attachTapAction:toObject:
@@ -114,7 +115,8 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
  * When a cell's detail button is tapped, the detail action block will be executed. The return
  * value of the block is ignored.
  *
- *      @param object The object to attach the action to.
+ *      @param object The object to attach the action to. This object must be contained within
+ *                    an NITableViewModel.
  *      @param action The detail action block.
  *      @returns The object that you attached this action to.
  *      @fn NITableViewActions::attachDetailAction:toObject:
@@ -132,7 +134,8 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
  * If a tap action also exists for this object then the tap action will be executed first, followed
  * by the navigation action.
  *
- *      @param object The object to attach the action to.
+ *      @param object The object to attach the action to. This object must be contained within
+ *                    an NITableViewModel.
  *      @param action The navigation action block.
  *      @returns The object that you attached this action to.
  *      @fn NITableViewActions::attachNavigationAction:toObject:
