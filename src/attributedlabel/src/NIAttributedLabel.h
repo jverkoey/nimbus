@@ -50,6 +50,8 @@
   CTUnderlineStyleModifiers _underlineStyleModifier;
 
   id<NIAttributedLabelDelegate> _delegate;
+	
+  NSTimer *_longPressTimer;
 }
 
 /**
@@ -237,5 +239,12 @@
 -(void)attributedLabel:(NIAttributedLabel*)attributedLabel 
          didSelectLink:(NSURL*)url 
                atPoint:(CGPoint)point;
+
+
+/**
+ * Called when the user keep pressed a detected link for a while.
+ */
+-(void)attributedLabel:(NIAttributedLabel*)attributedLabel 
+      didLongPressLink:(NSURL*)url;
 
 @end

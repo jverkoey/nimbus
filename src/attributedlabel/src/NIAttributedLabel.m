@@ -19,6 +19,10 @@
 #import "NimbusCore.h"
 #import "NSAttributedString+NimbusAttributedLabel.h"
 
+@interface NIAttributedLabel ()
+@property (nonatomic, retain) NSTimer *longPressTimer;
+@end
+
 @interface NIAttributedLabel (ConversionUtilities)
 + (CTTextAlignment)alignmentFromUITextAlignment:(UITextAlignment)alignment;
 + (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(UILineBreakMode)lineBreakMode;
@@ -40,7 +44,7 @@
 @synthesize linkColor = _linkColor;
 @synthesize linkHighlightColor = _linkHighlightColor;
 @synthesize delegate = _delegate;
-
+@synthesize longPressTimer = _longPressTimer;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
@@ -59,6 +63,9 @@
   NI_RELEASE_SAFELY(_linkHighlightColor);
   NI_RELEASE_SAFELY(_strokeColor);
 
+  [_longPressTimer invalidate];
+  NI_RELEASE_SAFELY(_longPressTimer);
+  
   [super dealloc];
 }
 
@@ -481,6 +488,9 @@
 
   [_touchedLink release];
   _touchedLink = [[self linkAtPoint:point] retain];
+  
+  [self.longPressTimer invalidate];
+  self.longPressTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(_longPressTimerDidFire:) userInfo:nil repeats:NO];
 
   [self setNeedsDisplay];
 }
@@ -488,6 +498,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  
+  [self.longPressTimer invalidate];
+  self.longPressTimer = nil;
+  
   UITouch* touch = [touches anyObject];
 	CGPoint point = [touch locationInView:self];
 
@@ -507,8 +521,28 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+  [self.longPressTimer invalidate];
+  self.longPressTimer = nil;
+
   NI_RELEASE_SAFELY(_touchedLink);
 
+  [self setNeedsDisplay];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_longPressTimerDidFire:(NSTimer *)timer {
+  [self.longPressTimer invalidate];
+  self.longPressTimer = nil;
+  
+  if (_touchedLink.URL) {
+    if ([self.delegate respondsToSelector:@selector(attributedLabel:didLongPressLink:)]) {
+      [self.delegate attributedLabel:self didLongPressLink:_touchedLink.URL];
+    }
+  }
+  
+  NI_RELEASE_SAFELY(_touchedLink);
+  
   [self setNeedsDisplay];
 }
 
