@@ -77,7 +77,7 @@
   [text setUnderlineStyle:kCTUnderlineStyleSingle
                  modifier:kCTUnderlinePatternSolid
                     range:rangeOfHello];
-  [text setTextColor:[UIColor blueColor] range:rangeOfHello];
+  [text setTextColor:[UIColor redColor] range:rangeOfHello];
 
   NIAttributedLabel* label = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
   label.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
