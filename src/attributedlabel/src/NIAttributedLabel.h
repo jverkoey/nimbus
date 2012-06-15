@@ -17,16 +17,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
 
-#import "NimbusCore.h"
-
-// In standard UI text alignment prior to iOS 6.0 we do not have justify, however we can justify in
-// CoreText.
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
+// In standard UI text alignment we do not have justify, however we can justify in CoreText
 #ifndef UITextAlignmentJustify
 #define UITextAlignmentJustify ((UITextAlignment)kCTJustifiedTextAlignment)
-#endif
-#else
-// UITextAlignmentJustify is deprecated in iOS 6.0. Please use NSTextAlignmentJustified instead.
 #endif
 
 @protocol NIAttributedLabelDelegate;
@@ -58,11 +51,8 @@
  */
 @interface NIAttributedLabel : UILabel
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 /**
  * The attributed string that will be displayed.
- *
- * When building for iOS 6.0 and higher this property will not exist. Use attributedText instead.
  *
  * Setting this property explicitly will ignore the UILabel's existing style.
  *
@@ -72,7 +62,6 @@
  * string back to this label.
  */
 @property (nonatomic, copy) NSAttributedString* attributedString;
-#endif
 
 /**
  * Whether to automatically detect links in the string.
@@ -253,7 +242,7 @@
 /**
  * Called when the user taps and releases a detected link.
  */
--(void)attributedLabel:(NIAttributedLabel *)attributedLabel 
+-(void)attributedLabel:(NIAttributedLabel*)attributedLabel 
          didSelectLink:(NSURL*)url 
                atPoint:(CGPoint)point;
 
