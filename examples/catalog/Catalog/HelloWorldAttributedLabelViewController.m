@@ -38,6 +38,7 @@
 // Foundation.framework
 // UIKit.framework
 // CoreText.framework
+// QuartzCore.framework
 //
 
 @implementation HelloWorldAttributedLabelViewController
