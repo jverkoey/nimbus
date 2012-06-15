@@ -57,7 +57,14 @@
   NIAttributedLabel* label = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
 
   // In practice we set the text before applying any CoreText style. Modifying the text after
-  // setting the styles will clear any existing CoreText styles.
+  // setting the styles will clear any existing CoreText-specific styles.
+  //
+  // Peeking under the hood: NIAttributedLabel creates an NSMutableAttributedString object when we
+  // set this text. The NSMutableAttributedString object is initially styled with whatever values
+  // were set on the UILabel. For example, if we set the textColor to blue and then set the text to
+  // @"Nimbus", the label would correctly display the text as blue. This allows you to treat
+  // NIAttributedLabel as a UILabel but still easily be able to style its attributed string with
+  // additional CoreText properties.
   label.text = @"Hello world!";
 
   // UIViewAutoresizingFlexibleDimensions is a Nimbus autoresizing mask that causes the view to

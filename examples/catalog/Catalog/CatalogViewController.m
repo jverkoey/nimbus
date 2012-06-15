@@ -60,8 +60,8 @@
     // set the title in loadView or viewDidLoad because those methods may be called repeatedly.
     self.title = @"Nimbus Catalog";
 
-    // When we instantiate the actions object we provide it a weak reference to this controller.
-    // This value is then passed to the action blocks so that we can easily navigate to new
+    // When we instantiate the actions object we must provide it with a weak reference to the parent
+    // controller. This value is passed to the action blocks so that we can easily navigate to new
     // controllers without introducing retain cycles by otherwise having to access self in the
     // block.
     _actions = [[NITableViewActions alloc] initWithController:self];
@@ -95,6 +95,11 @@
                                             subtitle:@"Create a simple NIAttributedLabel"]],
      nil];
 
+    // When we create the model we must provide it with a delegate that implements the
+    // NITableViewModelDelegate protocol. This protocol has a single method that is used to create
+    // cells given an object from the model. If we don't require any custom cell bindings then it's
+    // often easiest to use the NICellFactory as the delegate. The NICellFactory class provides a
+    // barebones implementation that is sufficient for nearly all applications.
     _model = [[NITableViewModel alloc] initWithSectionedArray:sectionedObjects
                                                      delegate:(id)[NICellFactory class]];
   }
