@@ -45,7 +45,6 @@
 @synthesize networkOperationQueue   = _networkOperationQueue;
 @synthesize maxAge                  = _maxAge;
 @synthesize initialImage            = _initialImage;
-@synthesize memoryCachePrefix       = _memoryCachePrefix;
 @synthesize delegate                = _delegate;
 
 
