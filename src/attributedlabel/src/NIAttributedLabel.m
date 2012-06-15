@@ -423,6 +423,10 @@
 // Use an NSDataDetector to find any implicit links in the text. The results are cached until
 // the text changes.
 - (void)detectLinks {
+  if (nil == _mutableAttributedString) {
+    return;
+  }
+
   if (self.autoDetectLinks && !_linksHaveBeenDetected) {
     NSError* error = nil;
     NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink
