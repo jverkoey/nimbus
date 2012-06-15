@@ -14,6 +14,11 @@
 // limitations under the License.
 //
 
+#import <UIKit/UIKit.h>
+#import <CoreText/CoreText.h>
+
+#import "NimbusCore.h"
+
 // In standard UI text alignment prior to iOS 6.0 we do not have justify, however we can justify in
 // CoreText.
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
@@ -23,9 +28,6 @@
 #else
 // UITextAlignmentJustify is deprecated in iOS 6.0. Please use NSTextAlignmentJustified instead.
 #endif
-
-#import <UIKit/UIKit.h>
-#import <CoreText/CoreText.h>
 
 @protocol NIAttributedLabelDelegate;
 

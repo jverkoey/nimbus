@@ -15,6 +15,7 @@
 		663BF5BF158731FA0066B814 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF58C158731FA0066B814 /* Icon-Small@2x.png */; };
 		663BF5C0158731FA0066B814 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF58D158731FA0066B814 /* Icon.png */; };
 		663BF5C1158731FA0066B814 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF58E158731FA0066B814 /* Icon@2x.png */; };
+		6693C2F2158BB8CB00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C2F1158BB8CB00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m */; };
 		66BACC9E15853D1800B0B481 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BACC9015853D1800B0B481 /* NITableViewModel.m */; };
 		66BACC9F15853D1800B0B481 /* NICellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BACC9315853D1800B0B481 /* NICellCatalog.m */; };
 		66BACCA015853D1800B0B481 /* NIFormCellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BACC9515853D1800B0B481 /* NIFormCellCatalog.m */; };
@@ -52,7 +53,6 @@
 		DB6A04DF1403F0BC0020F7FD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6A04DE1403F0BC0020F7FD /* CoreText.framework */; };
 		DB6A04E21403F1890020F7FD /* MashupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6A04E11403F1890020F7FD /* MashupViewController.m */; };
 		DB6A04E61403F2780020F7FD /* MashupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB6A04E51403F2780020F7FD /* MashupView.xib */; };
-		DB6AADFA1407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6AADF91407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +64,8 @@
 		663BF58C158731FA0066B814 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "../../../../src/resources/Icon-Small@2x.png"; sourceTree = "<group>"; };
 		663BF58D158731FA0066B814 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../../../../src/resources/Icon.png; sourceTree = "<group>"; };
 		663BF58E158731FA0066B814 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../../../../src/resources/Icon@2x.png"; sourceTree = "<group>"; };
+		6693C2F0158BB8CB00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+NimbusAttributedLabel.h"; path = "/Users/featherless/workbench/ios/nimbus/examples/Catalog/../../src/attributedlabel/src/NSMutableAttributedString+NimbusAttributedLabel.h"; sourceTree = "<absolute>"; };
+		6693C2F1158BB8CB00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+NimbusAttributedLabel.m"; path = "/Users/featherless/workbench/ios/nimbus/examples/Catalog/../../src/attributedlabel/src/NSMutableAttributedString+NimbusAttributedLabel.m"; sourceTree = "<absolute>"; };
 		66BACC8D15853D1800B0B481 /* NimbusModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusModels.h; path = ../../../src/models/src/NimbusModels.h; sourceTree = "<group>"; };
 		66BACC8E15853D1800B0B481 /* NimbusModels+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusModels+Namespace.h"; path = "../../../src/models/src/NimbusModels+Namespace.h"; sourceTree = "<group>"; };
 		66BACC8F15853D1800B0B481 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITableViewModel.h; path = ../../../src/models/src/NITableViewModel.h; sourceTree = "<group>"; };
@@ -140,8 +142,6 @@
 		DB6A04E01403F1890020F7FD /* MashupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MashupViewController.h; path = src/MashupViewController.h; sourceTree = "<group>"; };
 		DB6A04E11403F1890020F7FD /* MashupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MashupViewController.m; path = src/MashupViewController.m; sourceTree = "<group>"; };
 		DB6A04E51403F2780020F7FD /* MashupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MashupView.xib; path = resources/MashupView.xib; sourceTree = "<group>"; };
-		DB6AADF81407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+NimbusAttributedLabel.h"; path = "../../../src/attributedlabel/src/NSAttributedString+NimbusAttributedLabel.h"; sourceTree = "<group>"; };
-		DB6AADF91407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+NimbusAttributedLabel.m"; path = "../../../src/attributedlabel/src/NSAttributedString+NimbusAttributedLabel.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,8 +309,8 @@
 		DB6A04A21403F0740020F7FD /* Attributed Label */ = {
 			isa = PBXGroup;
 			children = (
-				DB6AADF81407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.h */,
-				DB6AADF91407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.m */,
+				6693C2F0158BB8CB00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.h */,
+				6693C2F1158BB8CB00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m */,
 				DB6A04DA1403F09E0020F7FD /* NIAttributedLabel.h */,
 				DB6A04DB1403F09E0020F7FD /* NIAttributedLabel.m */,
 				DB6A04DC1403F09E0020F7FD /* NimbusAttributedLabel.h */,
@@ -433,7 +433,6 @@
 				DB6A04D91403F08D0020F7FD /* NSString+NimbusCore.m in Sources */,
 				DB6A04DD1403F09E0020F7FD /* NIAttributedLabel.m in Sources */,
 				DB6A04E21403F1890020F7FD /* MashupViewController.m in Sources */,
-				DB6AADFA1407A82F0003CB63 /* NSAttributedString+NimbusAttributedLabel.m in Sources */,
 				DB530FDD1407EE7900BCB9E7 /* RootViewController.m in Sources */,
 				DB1867771407FB0A002DEA82 /* UnderlineViewController.m in Sources */,
 				66BACC9E15853D1800B0B481 /* NITableViewModel.m in Sources */,
@@ -443,6 +442,7 @@
 				66BACCA215853D1800B0B481 /* NIRadioGroup.m in Sources */,
 				66BACCA315853D1800B0B481 /* NIRadioGroupController.m in Sources */,
 				66BACCA415853D1800B0B481 /* NITableViewActions.m in Sources */,
+				6693C2F2158BB8CB00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

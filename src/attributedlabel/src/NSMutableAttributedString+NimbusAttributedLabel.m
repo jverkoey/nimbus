@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "NSAttributedString+NimbusAttributedLabel.h"
+#import "NSMutableAttributedString+NimbusAttributedLabel.h"
 
 #import "NimbusCore.h"
 

@@ -17,7 +17,7 @@
 #import "NIAttributedLabel.h"
 
 #import "NimbusCore.h"
-#import "NSAttributedString+NimbusAttributedLabel.h"
+#import "NSMutableAttributedString+NimbusAttributedLabel.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface NIAttributedLabel()
