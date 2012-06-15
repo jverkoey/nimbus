@@ -87,7 +87,11 @@
   // will only work for single lines of text and would require us to explicitly break the lines up
   // with newline (\n) characters.
   label.numberOfLines = 0;
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
   label.lineBreakMode = UILineBreakModeWordWrap;
+#else
+  label.lineBreakMode = NSLineBreakByWordWrapping;
+#endif
 
   label.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
   label.frame = CGRectInset(self.view.bounds, 20, 20);
@@ -95,7 +99,11 @@
   // When we assign the attributed text to the label it copies the attributed text object into the
   // label. If we want to make any further stylistic changes then we must either use the label's
   // methods or assign a modified attributed string object again.
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
   label.attributedString = text;
+#else
+  label.attributedText = text;
+#endif
 
   [self.view addSubview:label];
 }

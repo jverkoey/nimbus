@@ -71,7 +71,11 @@
   // Kerning modifies the spacing between letters.
   nimbusTitle.textKern = 15.0;
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
   label1.textAlignment = UITextAlignmentJustify;
+#else
+  label1.textAlignment = NSTextAlignmentJustified;
+#endif
 
   label2.underlineStyle = kCTUnderlineStyleDouble;
   label2.underlineStyleModifier = kCTUnderlinePatternDot;
@@ -80,8 +84,12 @@
   label3.linkColor = [UIColor purpleColor];
   label3.highlightedLinkBackgroundColor = [UIColor orangeColor];
   label3.linksHaveUnderlines = YES;
-
+  
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
   label4.textAlignment = UITextAlignmentJustify;
+#else
+  label4.textAlignment = NSTextAlignmentJustified;
+#endif
   [label4 setTextColor:[UIColor orangeColor]  range:[label4.text rangeOfString:@"Nimbus"]];
   [label4 setTextColor:[UIColor redColor]  range:[label4.text rangeOfString:@"accelerates"]];
   [label4 setFont:[UIFont boldSystemFontOfSize:22] range:[label4.text rangeOfString:@"iOS"]];

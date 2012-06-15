@@ -16,10 +16,16 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
+#import "NimbusCore.h"
 
-// In standard UI text alignment we do not have justify, however we can justify in CoreText
+// In UITextAlignment prior to iOS 6.0 we do not have justify, so we add support for it when
+// building for pre-iOS 6.0.
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 #ifndef UITextAlignmentJustify
 #define UITextAlignmentJustify ((UITextAlignment)kCTJustifiedTextAlignment)
+#endif
+#else
+// UITextAlignmentJustify is deprecated in iOS 6.0. Please use NSTextAlignmentJustified instead.
 #endif
 
 // Vertical alignments for NIAttributedLabel.
@@ -49,7 +55,10 @@ typedef enum {
  */
 @interface NIAttributedLabel : UILabel
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
+// When building for iOS 6.0 and higher use attributedText.
 @property (nonatomic, copy) NSAttributedString* attributedString;
+#endif
 
 @property (nonatomic, assign) BOOL autoDetectLinks; // Default: NO
 @property (nonatomic, assign) NSTextCheckingType dataDetectorTypes; // Default: NSTextCheckingTypeLink
@@ -107,6 +116,10 @@ typedef enum {
 
 /**
  * The attributed string that will be displayed.
+ *
+ * @attention
+ *      When building for iOS 6.0 and higher this property will not exist. Use attributedText
+ *      instead.
  *
  * Setting this property explicitly will ignore the UILabel's existing style.
  *
