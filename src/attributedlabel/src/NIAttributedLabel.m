@@ -55,7 +55,7 @@
 @synthesize strokeColor = _strokeColor;
 @synthesize textKern = _textKern;
 @synthesize linkColor = _linkColor;
-@synthesize linkHighlightColor = _linkHighlightColor;
+@synthesize highlightedLinkColor = _highlightedLinkColor;
 @synthesize linksHaveUnderlines = _linksHaveUnderlines;
 @synthesize delegate = _delegate;
 
@@ -66,6 +66,15 @@
     CFRelease(_textFrame);
     _textFrame = nil;
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithFrame:(CGRect)frame {
+  if ((self = [super initWithFrame:frame])) {
+    self.highlightedLinkColor = [UIColor colorWithWhite:0.5f alpha:0.5f];
+  }
+  return self;
 }
 
 
@@ -262,6 +271,7 @@
   [self attributedTextDidChange];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setUnderlineStyle:(CTUnderlineStyle)style {
   if (style != _underlineStyle) {
@@ -367,18 +377,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIColor *)linkHighlightColor {
-  if (!_linkHighlightColor) {
-    _linkHighlightColor = [UIColor colorWithWhite:0.5f alpha:0.5f];
-  }
-  return _linkHighlightColor;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setLinkHighlightColor:(UIColor *)linkHighlightColor {
-  if (_linkHighlightColor != linkHighlightColor) {
-    _linkHighlightColor = linkHighlightColor;
+- (void)setHighlightedLinkColor:(UIColor *)highlightedLinkColor {
+  if (_highlightedLinkColor != highlightedLinkColor) {
+    _highlightedLinkColor = highlightedLinkColor;
 
     [self attributedTextDidChange];
   }
@@ -618,9 +619,9 @@
 			CFRelease(framesetter);
     }
 
-    if (nil != _touchedLink) {
-      // Draw the link's background first.
-      [self.linkHighlightColor setFill];
+    // Draw the tapped link's highlight.
+    if (nil != _touchedLink && nil != self.highlightedLinkColor) {
+      [self.highlightedLinkColor setFill];
 
       NSRange linkRange = _touchedLink.range;
 
@@ -686,7 +687,6 @@
         }
 
         if (!CGRectIsEmpty(highlightRect)) {
-
           CGFloat pi = (CGFloat)M_PI;
 
           CGFloat radius = 5.0f;
