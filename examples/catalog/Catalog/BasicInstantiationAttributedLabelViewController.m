@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "HelloWorldAttributedLabelViewController.h"
+#import "BasicInstantiationAttributedLabelViewController.h"
 
 //
 // What's going on in this file:
@@ -41,7 +41,7 @@
 // QuartzCore.framework
 //
 
-@implementation HelloWorldAttributedLabelViewController
+@implementation BasicInstantiationAttributedLabelViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

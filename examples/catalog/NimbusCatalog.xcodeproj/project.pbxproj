@@ -49,12 +49,12 @@
 		6693C29E158A8E4000950D42 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6693C295158A8E4000950D42 /* Icon-Small@2x.png */; };
 		6693C29F158A8E4000950D42 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6693C296158A8E4000950D42 /* Icon.png */; };
 		6693C2A0158A8E4000950D42 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6693C297158A8E4000950D42 /* Icon@2x.png */; };
-		6693C2E0158A9A3E00950D42 /* HelloWorldAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C2DF158A9A3E00950D42 /* HelloWorldAttributedLabelViewController.m */; };
 		6693C2E8158AA21E00950D42 /* NIAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C2E3158AA21E00950D42 /* NIAttributedLabel.m */; };
 		6693C2E9158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C2E7158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m */; };
 		6693C2EB158AA2BF00950D42 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C2EA158AA2BE00950D42 /* CoreText.framework */; };
 		6693C2EE158AB5B600950D42 /* CustomTextAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C2ED158AB5B600950D42 /* CustomTextAttributedLabelViewController.m */; };
 		669A15CD158D318B00A0990A /* LinksAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15CC158D318B00A0990A /* LinksAttributedLabelViewController.m */; };
+		669A15D0158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15CF158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -141,8 +141,7 @@
 		6693C295158A8E4000950D42 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		6693C296158A8E4000950D42 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		6693C297158A8E4000950D42 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		6693C2DE158A9A3E00950D42 /* HelloWorldAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldAttributedLabelViewController.h; sourceTree = "<group>"; };
-		6693C2DF158A9A3E00950D42 /* HelloWorldAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloWorldAttributedLabelViewController.m; sourceTree = "<group>"; };
+		6693C2DE158A9A3E00950D42 /* BasicInstantiationAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInstantiationAttributedLabelViewController.h; sourceTree = "<group>"; };
 		6693C2E2158AA21E00950D42 /* NIAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIAttributedLabel.h; path = ../../src/attributedlabel/src/NIAttributedLabel.h; sourceTree = "<group>"; };
 		6693C2E3158AA21E00950D42 /* NIAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIAttributedLabel.m; path = ../../src/attributedlabel/src/NIAttributedLabel.m; sourceTree = "<group>"; };
 		6693C2E4158AA21E00950D42 /* NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusAttributedLabel.h; path = ../../src/attributedlabel/src/NimbusAttributedLabel.h; sourceTree = "<group>"; };
@@ -150,10 +149,11 @@
 		6693C2E6158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+NimbusAttributedLabel.h"; path = "../../src/attributedlabel/src/NSMutableAttributedString+NimbusAttributedLabel.h"; sourceTree = "<group>"; };
 		6693C2E7158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+NimbusAttributedLabel.m"; path = "../../src/attributedlabel/src/NSMutableAttributedString+NimbusAttributedLabel.m"; sourceTree = "<group>"; };
 		6693C2EA158AA2BE00950D42 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		6693C2EC158AB5B600950D42 /* CustomTextAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CustomTextAttributedLabelViewController.h; sourceTree = "<group>"; };
+		6693C2EC158AB5B600950D42 /* CustomTextAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextAttributedLabelViewController.h; sourceTree = "<group>"; };
 		6693C2ED158AB5B600950D42 /* CustomTextAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextAttributedLabelViewController.m; sourceTree = "<group>"; };
-		669A15CB158D318B00A0990A /* LinksAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = LinksAttributedLabelViewController.h; sourceTree = "<group>"; };
+		669A15CB158D318B00A0990A /* LinksAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinksAttributedLabelViewController.h; sourceTree = "<group>"; };
 		669A15CC158D318B00A0990A /* LinksAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinksAttributedLabelViewController.m; sourceTree = "<group>"; };
+		669A15CF158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicInstantiationAttributedLabelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,8 +332,8 @@
 		6693C2DC158A9A0E00950D42 /* Attributed Label */ = {
 			isa = PBXGroup;
 			children = (
-				6693C2DE158A9A3E00950D42 /* HelloWorldAttributedLabelViewController.h */,
-				6693C2DF158A9A3E00950D42 /* HelloWorldAttributedLabelViewController.m */,
+				6693C2DE158A9A3E00950D42 /* BasicInstantiationAttributedLabelViewController.h */,
+				669A15CF158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m */,
 				6693C2EC158AB5B600950D42 /* CustomTextAttributedLabelViewController.h */,
 				6693C2ED158AB5B600950D42 /* CustomTextAttributedLabelViewController.m */,
 				669A15CB158D318B00A0990A /* LinksAttributedLabelViewController.h */,
@@ -455,11 +455,11 @@
 				6693C22B158A81DD00950D42 /* NIRadioGroupController.m in Sources */,
 				6693C22C158A81DD00950D42 /* NITableViewActions.m in Sources */,
 				6693C22D158A81DD00950D42 /* NITableViewModel.m in Sources */,
-				6693C2E0158A9A3E00950D42 /* HelloWorldAttributedLabelViewController.m in Sources */,
 				6693C2E8158AA21E00950D42 /* NIAttributedLabel.m in Sources */,
 				6693C2E9158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */,
 				6693C2EE158AB5B600950D42 /* CustomTextAttributedLabelViewController.m in Sources */,
 				669A15CD158D318B00A0990A /* LinksAttributedLabelViewController.m in Sources */,
+				669A15D0158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
