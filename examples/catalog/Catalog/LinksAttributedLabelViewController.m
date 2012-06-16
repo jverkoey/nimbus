@@ -75,11 +75,11 @@
   label.linksHaveUnderlines = YES;
 
   label.text =
-  @"A screen on the dash flickers and displays a beautiful rendition of the planet.\n"
+  @"A screen on the dash flickers and displays an artist's rendition of the planet.\n"
   // We can use \n characters to separate lines of text.
   @"Signed beneath the image: tenach.deviantart.com";
 
-  NSRange linkRange = [label.text rangeOfString:@"a beautiful rendition of the planet"];
+  NSRange linkRange = [label.text rangeOfString:@"an artist's rendition of the planet"];
   label.font = [UIFont fontWithName:@"AmericanTypewriter" size:15];
 
   // Explicitly adds a link at a given range.
