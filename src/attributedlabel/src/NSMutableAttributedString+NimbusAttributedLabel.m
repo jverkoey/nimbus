@@ -18,15 +18,16 @@
 
 #import "NimbusCore.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NSMutableAttributedString (NimbusAttributedLabel)
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) setTextAlignment:(CTTextAlignment)textAlignment 
+- (void)setTextAlignment:(CTTextAlignment)textAlignment 
            lineBreakMode:(CTLineBreakMode)lineBreakMode 
                    range:(NSRange)range {
   CTParagraphStyleSetting paragraphStyles[2] = {
@@ -44,42 +45,48 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
   CFRelease(style);
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) setTextAlignment:(CTTextAlignment)textAlignment 
+- (void)setTextAlignment:(CTTextAlignment)textAlignment 
            lineBreakMode:(CTLineBreakMode)lineBreakMode {
   [self setTextAlignment:textAlignment 
            lineBreakMode:lineBreakMode 
-                   range:NSMakeRange(0, [self length])];
+                   range:NSMakeRange(0, self.length)];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) setTextColor:(UIColor*)color range:(NSRange)range {
+- (void)setTextColor:(UIColor*)color range:(NSRange)range {
   [self removeAttribute:(NSString *)kCTForegroundColorAttributeName range:range];
 	[self addAttribute:(NSString*)kCTForegroundColorAttributeName
                value:(id)color.CGColor
                range:range];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) setTextColor:(UIColor*)color {
-  [self setTextColor:color range:NSMakeRange(0, [self length])];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) setFont:(UIFont*)font range:(NSRange)range {
+- (void)setTextColor:(UIColor*)color {
+  [self setTextColor:color range:NSMakeRange(0, self.length)];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setFont:(UIFont*)font range:(NSRange)range {
   CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, nil);
   [self removeAttribute:(NSString*)kCTFontAttributeName range:range];
 	[self addAttribute:(__bridge NSString*)kCTFontAttributeName value:(__bridge id)fontRef range:range];
 	CFRelease(fontRef);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) setFont:(UIFont*)font {
-  [self setFont:font range:NSMakeRange(0, [self length])];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) setUnderlineStyle:(CTUnderlineStyle)style
+- (void)setFont:(UIFont*)font {
+  [self setFont:font range:NSMakeRange(0, self.length)];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setUnderlineStyle:(CTUnderlineStyle)style
                 modifier:(CTUnderlineStyleModifiers)modifier
                    range:(NSRange)range {
   [self removeAttribute:(NSString*)kCTUnderlineColorAttributeName range:range]; 
@@ -88,51 +95,59 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
                            range:range];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) setUnderlineStyle:(CTUnderlineStyle)style 
+- (void)setUnderlineStyle:(CTUnderlineStyle)style 
                 modifier:(CTUnderlineStyleModifiers)modifier {
   [self setUnderlineStyle:style 
                  modifier:modifier
-                    range:NSMakeRange(0, [self length])];
+                    range:NSMakeRange(0, self.length)];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) setStrokeWidth:(CGFloat)width range:(NSRange)range {
+- (void)setStrokeWidth:(CGFloat)width range:(NSRange)range {
   [self removeAttribute:(NSString*)kCTStrokeWidthAttributeName range:range]; 
   [self addAttribute:(NSString*)kCTStrokeWidthAttributeName 
                value:[NSNumber numberWithFloat:width] 
                range:range];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) setStrokeWidth:(CGFloat)width {
-  [self setStrokeWidth:width range:NSMakeRange(0, [self length])];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) setStrokeColor:(UIColor *)color range:(NSRange)range {
+- (void)setStrokeWidth:(CGFloat)width {
+  [self setStrokeWidth:width range:NSMakeRange(0, self.length)];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setStrokeColor:(UIColor *)color range:(NSRange)range {
   [self removeAttribute:(NSString*)kCTStrokeColorAttributeName range:range];
   [self addAttribute:(NSString*)kCTStrokeColorAttributeName 
                value:(id)color.CGColor 
                range:range];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) setStrokeColor:(UIColor *)color {
-  [self setStrokeColor:color range:NSMakeRange(0, [self length])];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) setKern:(CGFloat)kern range:(NSRange)range {
+- (void)setStrokeColor:(UIColor *)color {
+  [self setStrokeColor:color range:NSMakeRange(0, self.length)];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setKern:(CGFloat)kern range:(NSRange)range {
   [self removeAttribute:(NSString*)kCTKernAttributeName range:range]; 
   [self addAttribute:(NSString*)kCTKernAttributeName 
                value:[NSNumber numberWithFloat:kern] 
                range:range];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) setKern:(CGFloat)kern {
-  [self setKern:kern range:NSMakeRange(0, [self length])];
+- (void)setKern:(CGFloat)kern {
+  [self setKern:kern range:NSMakeRange(0, self.length)];
 }
+
 
 @end

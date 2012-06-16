@@ -45,7 +45,7 @@
  * - kCTLineBreakByTruncatingTail
  * _ kCTLineBreakByTruncatingMiddle
  */
--(void) setTextAlignment:(CTTextAlignment)textAlignment 
+- (void)setTextAlignment:(CTTextAlignment)textAlignment 
            lineBreakMode:(CTLineBreakMode)lineBreakMode 
                    range:(NSRange)range;
 
@@ -69,29 +69,29 @@
  * _ kCTLineBreakByTruncatingMiddle
 
  */
--(void) setTextAlignment:(CTTextAlignment)textAlignment 
+- (void)setTextAlignment:(CTTextAlignment)textAlignment 
            lineBreakMode:(CTLineBreakMode)lineBreakMode;
 
 
 /**
  * Sets the text color for a given range.
  */
--(void) setTextColor:(UIColor*)color range:(NSRange)range;
+- (void)setTextColor:(UIColor*)color range:(NSRange)range;
 
 /**
  * Sets the text color for the whole string.
  */
--(void) setTextColor:(UIColor*)color;
+- (void)setTextColor:(UIColor*)color;
 
 /**
  * Sets the font for a given range.
  */
--(void) setFont:(UIFont*)font range:(NSRange)range;
+- (void)setFont:(UIFont*)font range:(NSRange)range;
 
 /**
  * Sets the font for the whole string.
  */
--(void) setFont:(UIFont*)font;
+- (void)setFont:(UIFont*)font;
 
 /**
  * Sets the underline style and modifier for a given range.
@@ -109,7 +109,7 @@
  * - kCTUnderlinePatternDashDot
  * - kCTUnderlinePatternDashDotDot
  */
--(void) setUnderlineStyle:(CTUnderlineStyle)style
+- (void)setUnderlineStyle:(CTUnderlineStyle)style
                  modifier:(CTUnderlineStyleModifiers)modifier
                     range:(NSRange)range;
 
@@ -129,37 +129,37 @@
  * - kCTUnderlinePatternDashDot
  * - kCTUnderlinePatternDashDotDot
  */
--(void) setUnderlineStyle:(CTUnderlineStyle)style
+- (void)setUnderlineStyle:(CTUnderlineStyle)style
                  modifier:(CTUnderlineStyleModifiers)modifier;
 
 /**
  * Sets the stroke width for a given range.
  */
--(void) setStrokeWidth:(CGFloat)width range:(NSRange)range;
+- (void)setStrokeWidth:(CGFloat)width range:(NSRange)range;
 
 /**
  * Sets the stroke width for the whole string.
  */
--(void) setStrokeWidth:(CGFloat)width;
+- (void)setStrokeWidth:(CGFloat)width;
 
 /**
  * Sets the stroke color for a given range.
  */
--(void) setStrokeColor:(UIColor*)color range:(NSRange)range;
+- (void)setStrokeColor:(UIColor*)color range:(NSRange)range;
 
 /**
  * Sets the stroke color for the whole string.
  */
--(void) setStrokeColor:(UIColor*)color;
+- (void)setStrokeColor:(UIColor*)color;
 
 /**
  * Sets the text kern for a given range.
  */
--(void) setKern:(CGFloat)kern range:(NSRange)range;
+- (void)setKern:(CGFloat)kern range:(NSRange)range;
 
 /**
  * Sets the text kern for the whole string.
  */
--(void) setKern:(CGFloat)kern;
+- (void)setKern:(CGFloat)kern;
 
 @end
