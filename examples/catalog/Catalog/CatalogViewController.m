@@ -18,6 +18,7 @@
 
 #import "HelloWorldAttributedLabelViewController.h"
 #import "CustomTextAttributedLabelViewController.h"
+#import "LinksAttributedLabelViewController.h"
 
 //
 // What's going on in this file:
@@ -100,6 +101,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Customizing Text"
                                    subtitle:@"How to use NSAttributedString"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([LinksAttributedLabelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Links"
+                                   subtitle:@"Automatic and explicit links"]],
      nil];
 
     // When we create the model we must provide it with a delegate that implements the

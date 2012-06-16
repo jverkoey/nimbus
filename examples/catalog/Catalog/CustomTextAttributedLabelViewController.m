@@ -80,6 +80,14 @@
   [text setTextColor:[UIColor redColor] range:rangeOfHello];
 
   NIAttributedLabel* label = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
+
+  // We want this label to wrap over multiple lines. With CoreText we have to use either word or
+  // character wrapping in order to have a paragraph wrap over multiple lines. Truncation modes
+  // will only work for single lines of text and would require us to explicitly break the lines up
+  // with newline (\n) characters.
+  label.numberOfLines = 0;
+  label.lineBreakMode = UILineBreakModeWordWrap;
+
   label.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
   label.frame = CGRectInset(self.view.bounds, 20, 20);
 

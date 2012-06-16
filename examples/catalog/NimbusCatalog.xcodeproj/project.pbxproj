@@ -54,6 +54,7 @@
 		6693C2E9158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C2E7158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m */; };
 		6693C2EB158AA2BF00950D42 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C2EA158AA2BE00950D42 /* CoreText.framework */; };
 		6693C2EE158AB5B600950D42 /* CustomTextAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C2ED158AB5B600950D42 /* CustomTextAttributedLabelViewController.m */; };
+		669A15CD158D318B00A0990A /* LinksAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15CC158D318B00A0990A /* LinksAttributedLabelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,8 +68,8 @@
 		6693C0FD158A63E600950D42 /* NimbusCatalog-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NimbusCatalog-Prefix.pch"; path = "Catalog/NimbusCatalog-Prefix.pch"; sourceTree = "<group>"; };
 		6693C0FE158A63E600950D42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Catalog/AppDelegate.h; sourceTree = "<group>"; };
 		6693C0FF158A63E600950D42 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Catalog/AppDelegate.m; sourceTree = "<group>"; };
-		6693C1D1158A80A000950D42 /* CatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatalogViewController.h; path = ../catalog/Catalog/CatalogViewController.h; sourceTree = "<group>"; };
-		6693C1D2158A80A000950D42 /* CatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CatalogViewController.m; path = ../catalog/Catalog/CatalogViewController.m; sourceTree = "<group>"; };
+		6693C1D1158A80A000950D42 /* CatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatalogViewController.h; sourceTree = "<group>"; };
+		6693C1D2158A80A000950D42 /* CatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalogViewController.m; sourceTree = "<group>"; };
 		6693C1D4158A81D300950D42 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = ../../src/core/src/NIBlocks.h; sourceTree = "<group>"; };
 		6693C1D5158A81D300950D42 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../../src/core/src/NICommonMetrics.h; sourceTree = "<group>"; };
 		6693C1D6158A81D300950D42 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../../src/core/src/NICommonMetrics.m; sourceTree = "<group>"; };
@@ -140,8 +141,8 @@
 		6693C295158A8E4000950D42 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		6693C296158A8E4000950D42 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		6693C297158A8E4000950D42 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		6693C2DE158A9A3E00950D42 /* HelloWorldAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloWorldAttributedLabelViewController.h; path = ../catalog/Catalog/HelloWorldAttributedLabelViewController.h; sourceTree = "<group>"; };
-		6693C2DF158A9A3E00950D42 /* HelloWorldAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelloWorldAttributedLabelViewController.m; path = ../catalog/Catalog/HelloWorldAttributedLabelViewController.m; sourceTree = "<group>"; };
+		6693C2DE158A9A3E00950D42 /* HelloWorldAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldAttributedLabelViewController.h; sourceTree = "<group>"; };
+		6693C2DF158A9A3E00950D42 /* HelloWorldAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloWorldAttributedLabelViewController.m; sourceTree = "<group>"; };
 		6693C2E2158AA21E00950D42 /* NIAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIAttributedLabel.h; path = ../../src/attributedlabel/src/NIAttributedLabel.h; sourceTree = "<group>"; };
 		6693C2E3158AA21E00950D42 /* NIAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIAttributedLabel.m; path = ../../src/attributedlabel/src/NIAttributedLabel.m; sourceTree = "<group>"; };
 		6693C2E4158AA21E00950D42 /* NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusAttributedLabel.h; path = ../../src/attributedlabel/src/NimbusAttributedLabel.h; sourceTree = "<group>"; };
@@ -149,8 +150,10 @@
 		6693C2E6158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+NimbusAttributedLabel.h"; path = "../../src/attributedlabel/src/NSMutableAttributedString+NimbusAttributedLabel.h"; sourceTree = "<group>"; };
 		6693C2E7158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+NimbusAttributedLabel.m"; path = "../../src/attributedlabel/src/NSMutableAttributedString+NimbusAttributedLabel.m"; sourceTree = "<group>"; };
 		6693C2EA158AA2BE00950D42 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		6693C2EC158AB5B600950D42 /* CustomTextAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTextAttributedLabelViewController.h; path = ../catalog/Catalog/CustomTextAttributedLabelViewController.h; sourceTree = "<group>"; };
-		6693C2ED158AB5B600950D42 /* CustomTextAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTextAttributedLabelViewController.m; path = ../catalog/Catalog/CustomTextAttributedLabelViewController.m; sourceTree = "<group>"; };
+		6693C2EC158AB5B600950D42 /* CustomTextAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CustomTextAttributedLabelViewController.h; sourceTree = "<group>"; };
+		6693C2ED158AB5B600950D42 /* CustomTextAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextAttributedLabelViewController.m; sourceTree = "<group>"; };
+		669A15CB158D318B00A0990A /* LinksAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = LinksAttributedLabelViewController.h; sourceTree = "<group>"; };
+		669A15CC158D318B00A0990A /* LinksAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinksAttributedLabelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +310,7 @@
 				6693C2DC158A9A0E00950D42 /* Attributed Label */,
 			);
 			name = Catalog;
+			path = ../catalog/Catalog;
 			sourceTree = "<group>";
 		};
 		6693C298158A8E4000950D42 /* Resources */ = {
@@ -332,6 +336,8 @@
 				6693C2DF158A9A3E00950D42 /* HelloWorldAttributedLabelViewController.m */,
 				6693C2EC158AB5B600950D42 /* CustomTextAttributedLabelViewController.h */,
 				6693C2ED158AB5B600950D42 /* CustomTextAttributedLabelViewController.m */,
+				669A15CB158D318B00A0990A /* LinksAttributedLabelViewController.h */,
+				669A15CC158D318B00A0990A /* LinksAttributedLabelViewController.m */,
 			);
 			name = "Attributed Label";
 			sourceTree = "<group>";
@@ -453,6 +459,7 @@
 				6693C2E8158AA21E00950D42 /* NIAttributedLabel.m in Sources */,
 				6693C2E9158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */,
 				6693C2EE158AB5B600950D42 /* CustomTextAttributedLabelViewController.m in Sources */,
+				669A15CD158D318B00A0990A /* LinksAttributedLabelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
