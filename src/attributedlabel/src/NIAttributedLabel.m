@@ -534,7 +534,7 @@
 
   NSTextCheckingResult* linkTouched = [self linkAtPoint:point];
 
-  if (_touchedLink.URL && [_touchedLink.URL isEqual:linkTouched.URL]) {
+  if (_touchedLink && [_touchedLink isEqual:linkTouched]) {
     // This old-style method is deprecated, please update to the newer delegate method that supports
     // more data types.
     NIDASSERT(![self.delegate respondsToSelector:@selector(attributedLabel:didSelectLink:atPoint:)]);
