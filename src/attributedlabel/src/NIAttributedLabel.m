@@ -49,6 +49,7 @@
 @synthesize explicitLinkLocations = _explicitLinkLocations;
 @synthesize touchedLink = _touchedLink;
 @synthesize autoDetectLinks = _autoDetectLinks;
+@synthesize dataTypes = _dataTypes;
 @synthesize underlineStyle = _underlineStyle;
 @synthesize underlineStyleModifier = _underlineStyleModifier;
 @synthesize strokeWidth = _strokeWidth;
@@ -72,6 +73,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
+    self.dataTypes = NSTextCheckingTypeLink;
     self.highlightedLinkColor = [UIColor colorWithWhite:0.5f alpha:0.5f];
   }
   return self;
@@ -406,7 +408,7 @@
 
   if (self.autoDetectLinks && !_linksHaveBeenDetected) {
     NSError* error = nil;
-    NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink
+    NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:self.dataTypes
                                                                    error:&error];
     NSString* string = _mutableAttributedString.string;
     NSRange range = NSMakeRange(0, string.length);
@@ -533,8 +535,11 @@
   NSTextCheckingResult* linkTouched = [self linkAtPoint:point];
 
   if (_touchedLink.URL && [_touchedLink.URL isEqual:linkTouched.URL]) {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(attributedLabel:didSelectLink:atPoint:)]) {
-      [self.delegate attributedLabel:self didSelectLink:linkTouched.URL atPoint:point];
+    // This old-style method is deprecated, please update to the newer delegate method that supports
+    // more data types.
+    NIDASSERT(![self.delegate respondsToSelector:@selector(attributedLabel:didSelectLink:atPoint:)]);
+    if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectTextCheckingResult:atPoint:)]) {
+      [self.delegate attributedLabel:self didSelectTextCheckingResult:linkTouched atPoint:point];
     }
   }
 

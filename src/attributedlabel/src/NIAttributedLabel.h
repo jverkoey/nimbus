@@ -54,6 +54,7 @@
 @property (nonatomic, copy) NSAttributedString* attributedString;
 
 @property (nonatomic, assign) BOOL autoDetectLinks; // Default: NO
+@property (nonatomic, assign) NSTextCheckingType dataTypes; // Default: NSTextCheckingTypeLink
 - (void)addLink:(NSURL *)urlLink range:(NSRange)range;
 - (void)removeAllExplicitLinks; // Removes all links that were added by addLink:range:. Does not remove autodetected links.
 
@@ -88,9 +89,7 @@
 /**
  * Called when the user has tapped a link in the attributed label.
  */
-- (void)attributedLabel:(NIAttributedLabel*)attributedLabel
-          didSelectLink:(NSURL*)url
-                atPoint:(CGPoint)point;
+- (void)attributedLabel:(NIAttributedLabel*)attributedLabel didSelectTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point;
 
 @end
 
