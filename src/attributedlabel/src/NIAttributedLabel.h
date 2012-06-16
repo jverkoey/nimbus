@@ -53,7 +53,7 @@
 
 @property (nonatomic, copy) NSAttributedString* attributedString;
 
-@property (nonatomic, assign) BOOL autoDetectLinks;
+@property (nonatomic, assign) BOOL autoDetectLinks; // Default: NO
 - (void)addLink:(NSURL *)urlLink range:(NSRange)range;
 - (void)removeAllExplicitLinks; // Removes all links that were added by addLink:range:. Does not remove autodetected links.
 
