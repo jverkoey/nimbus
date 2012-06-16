@@ -95,12 +95,10 @@
 
 #pragma mark - NIAttributedLabelDelegate
 
-- (void)attributedLabel:(NIAttributedLabel*)attributedLabel
-          didSelectLink:(NSURL*)url
-                atPoint:(CGPoint)point {
+- (void)attributedLabel:(NIAttributedLabel*)attributedLabel didSelectTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point {
   // In a later example we will show how to push a Nimbus web controller onto the navigation stack
   // rather than punt the user out of the application to Safari.
-  [[UIApplication sharedApplication] openURL:url];
+  [[UIApplication sharedApplication] openURL:result.URL];
 }
 
 @end
