@@ -20,6 +20,7 @@
 #import "CustomTextAttributedLabelViewController.h"
 #import "LinksAttributedLabelViewController.h"
 #import "DataTypesAttributedLabelViewController.h"
+#import "PerformanceAttributedLabelViewController.h"
 
 //
 // What's going on in this file:
@@ -115,6 +116,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Data Types"
                                    subtitle:@"Detecting different data types"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([PerformanceAttributedLabelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Performance"
+                                   subtitle:@"Speeding up attributed labels"]],
      nil];
 
     // When we create the model we must provide it with a delegate that implements the

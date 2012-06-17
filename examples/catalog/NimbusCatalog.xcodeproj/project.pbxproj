@@ -56,6 +56,7 @@
 		669A15CD158D318B00A0990A /* LinksAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15CC158D318B00A0990A /* LinksAttributedLabelViewController.m */; };
 		669A15D0158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15CF158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m */; };
 		669A15D3158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15D2158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m */; };
+		669A15D6158E81D200A0990A /* PerformanceAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15D5158E81D200A0990A /* PerformanceAttributedLabelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +158,8 @@
 		669A15CF158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicInstantiationAttributedLabelViewController.m; sourceTree = "<group>"; };
 		669A15D1158E6C7C00A0990A /* DataTypesAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTypesAttributedLabelViewController.h; sourceTree = "<group>"; };
 		669A15D2158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataTypesAttributedLabelViewController.m; sourceTree = "<group>"; };
+		669A15D4158E81D200A0990A /* PerformanceAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformanceAttributedLabelViewController.h; sourceTree = "<group>"; };
+		669A15D5158E81D200A0990A /* PerformanceAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformanceAttributedLabelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +346,8 @@
 				669A15CC158D318B00A0990A /* LinksAttributedLabelViewController.m */,
 				669A15D1158E6C7C00A0990A /* DataTypesAttributedLabelViewController.h */,
 				669A15D2158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m */,
+				669A15D4158E81D200A0990A /* PerformanceAttributedLabelViewController.h */,
+				669A15D5158E81D200A0990A /* PerformanceAttributedLabelViewController.m */,
 			);
 			name = "Attributed Label";
 			sourceTree = "<group>";
@@ -466,6 +471,7 @@
 				669A15CD158D318B00A0990A /* LinksAttributedLabelViewController.m in Sources */,
 				669A15D0158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m in Sources */,
 				669A15D3158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m in Sources */,
+				669A15D6158E81D200A0990A /* PerformanceAttributedLabelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

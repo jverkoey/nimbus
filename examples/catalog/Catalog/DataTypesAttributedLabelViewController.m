@@ -16,6 +16,24 @@
 
 #import "DataTypesAttributedLabelViewController.h"
 
+//
+// What's going on in this file:
+//
+// This controller shows the various data types that an attributed label may display and handle.
+//
+// You will find the following Nimbus features used:
+//
+// [attributedlabel]
+// NIAttributedLabel
+//
+// This controller requires the following frameworks:
+//
+// Foundation.framework
+// UIKit.framework
+// CoreText.framework
+// QuartzCore.framework
+//
+
 @interface DataTypesAttributedLabelViewController() <NIAttributedLabelDelegate>
 @end
 
