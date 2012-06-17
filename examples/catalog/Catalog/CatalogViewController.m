@@ -53,6 +53,9 @@
 
 @implementation CatalogViewController
 
+@synthesize model = _model;
+@synthesize actions = _actions;
+
 - (id)initWithStyle:(UITableViewStyle)style {
   // We explicitly set the table view style in this controller's implementation because we want this
   // controller to control how the table view is displayed.
