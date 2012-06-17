@@ -54,6 +54,7 @@
 @property (nonatomic, copy) NSAttributedString* attributedString;
 
 @property (nonatomic, assign) BOOL autoDetectLinks; // Default: NO
+@property (nonatomic, assign) BOOL deferLinkDetection; // Default: NO
 @property (nonatomic, assign) NSTextCheckingType dataTypes; // Default: NSTextCheckingTypeLink
 - (void)addLink:(NSURL *)urlLink range:(NSRange)range;
 - (void)removeAllExplicitLinks; // Removes all links that were added by addLink:range:. Does not remove autodetected links.
@@ -109,10 +110,29 @@
 /**
  * Whether to automatically detect links in the string.
  *
+ * By default this is disabled.
+ *
  * Link detection is deferred until the label is displayed for the first time. If the text changes
  * then all of the links will be cleared and re-detected when the label displays again.
  *
+ * Note that link detection is an expensive operation. If you are planning to use attributed labels
+ * in table views or similar high-performance situations then you should consider enabling defered
+ * link detection by setting deferLinkDetection to YES.
+ *
  *      @fn NIAttributedLabel::autoDetectLinks
+ */
+
+/**
+ * Whether to defer link detection to a separate thread.
+ *
+ * By default this is disabled.
+ *
+ * When defering is enabled, link detection will be performed on a separate thread. This will cause
+ * your label to appear without any links briefly before being redrawn with the detected links.
+ * This offloads the data processing to a separate thread so that your labels can be displayed
+ * faster.
+ *
+ *      @fn NIAttributedLabel::deferLinkDetection
  */
 
 /**

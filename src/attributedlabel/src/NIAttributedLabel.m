@@ -23,6 +23,7 @@
 @interface NIAttributedLabel()
 @property (nonatomic, readwrite, retain) NSMutableAttributedString* mutableAttributedString;
 @property (nonatomic, readwrite, assign) CTFrameRef textFrame;
+@property (readwrite, assign) BOOL detectingLinks; // Atomic.
 @property (nonatomic, readwrite, assign) BOOL linksHaveBeenDetected;
 @property (nonatomic, readwrite, copy) NSArray* detectedlinkLocations;
 @property (nonatomic, readwrite, retain) NSMutableArray* explicitLinkLocations;
@@ -44,11 +45,13 @@
 
 @synthesize mutableAttributedString = _mutableAttributedString;
 @synthesize textFrame = _textFrame;
+@synthesize detectingLinks = _detectingLinks;
 @synthesize linksHaveBeenDetected = _linksHaveBeenDetected;
 @synthesize detectedlinkLocations = _detectedlinkLocations;
 @synthesize explicitLinkLocations = _explicitLinkLocations;
 @synthesize touchedLink = _touchedLink;
 @synthesize autoDetectLinks = _autoDetectLinks;
+@synthesize deferLinkDetection = _deferLinkDetection;
 @synthesize dataTypes = _dataTypes;
 @synthesize underlineStyle = _underlineStyle;
 @synthesize underlineStyleModifier = _underlineStyleModifier;
@@ -389,6 +392,38 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSArray *)_matchesFromAttributedString:(NSString *)string {
+  NSError* error = nil;
+  NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:self.dataTypes
+                                                                 error:&error];
+  NSRange range = NSMakeRange(0, string.length);
+  
+  return [linkDetector matchesInString:string options:0 range:range];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_deferLinkDetection {
+  if (!self.detectingLinks) {
+    self.detectingLinks = YES;
+
+    NSString* string = [self.mutableAttributedString.string copy];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+      NSArray* matches = [self _matchesFromAttributedString:string];
+      self.detectingLinks = NO;
+
+      dispatch_async(dispatch_get_main_queue(), ^{
+        self.detectedlinkLocations = matches;
+        self.linksHaveBeenDetected = YES;
+
+        [self attributedTextDidChange];
+      });
+    });
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // Use an NSDataDetector to find any implicit links in the text. The results are cached until
 // the text changes.
 - (void)detectLinks {
@@ -397,14 +432,13 @@
   }
 
   if (self.autoDetectLinks && !self.linksHaveBeenDetected) {
-    NSError* error = nil;
-    NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:self.dataTypes
-                                                                   error:&error];
-    NSString* string = self.mutableAttributedString.string;
-    NSRange range = NSMakeRange(0, string.length);
+    if (self.deferLinkDetection) {
+      [self _deferLinkDetection];
 
-    self.detectedlinkLocations = [linkDetector matchesInString:string options:0 range:range];
-    self.linksHaveBeenDetected = YES;
+    } else {
+      self.detectedlinkLocations = [self _matchesFromAttributedString:self.mutableAttributedString.string];
+      self.linksHaveBeenDetected = YES;
+    }
   }
 }
 
