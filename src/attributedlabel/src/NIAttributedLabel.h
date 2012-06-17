@@ -129,7 +129,7 @@
  *
  * When defering is enabled, link detection will be performed on a separate thread. This will cause
  * your label to appear without any links briefly before being redrawn with the detected links.
- * This offloads the data processing to a separate thread so that your labels can be displayed
+ * This offloads the data detection to a separate thread so that your labels can be displayed
  * faster.
  *
  *      @fn NIAttributedLabel::deferLinkDetection
