@@ -19,6 +19,7 @@
 #import "BasicInstantiationAttributedLabelViewController.h"
 #import "CustomTextAttributedLabelViewController.h"
 #import "LinksAttributedLabelViewController.h"
+#import "DataTypesAttributedLabelViewController.h"
 
 //
 // What's going on in this file:
@@ -106,6 +107,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Links"
                                    subtitle:@"Automatic and explicit links"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([DataTypesAttributedLabelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Data Types"
+                                   subtitle:@"Detecting different data types"]],
      nil];
 
     // When we create the model we must provide it with a delegate that implements the

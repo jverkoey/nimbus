@@ -54,7 +54,7 @@
   [super viewDidLoad];
 
   NSString* string =
-  @"For years our hero has explored the dark horizon. "
+  @"For 20 years she has ventured into the dark horizon. "
   @"At long last, a planet grows in the distance. "
   @"\"Hello world!\" she exclaims.";
 

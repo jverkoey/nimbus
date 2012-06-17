@@ -35,6 +35,8 @@
 // QuartzCore.framework
 //
 
+// We declare the protocol conformity here in the source file using a category extension.
+// This allows us to conform to protocols privately and to avoid polluting the public namespace.
 @interface LinksAttributedLabelViewController() <NIAttributedLabelDelegate>
 @end
 
