@@ -21,7 +21,7 @@
 /**
  * The photo scroll view delegate.
  *
- *      @ingroup Photos-Protocols
+ *      @ingroup NimbusPhotos
  */
 @protocol NIPhotoScrollViewDelegate <NSObject>
 

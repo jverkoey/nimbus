@@ -26,7 +26,7 @@
 /**
  * A single photo view that supports zooming and rotation.
  *
- *      @ingroup Photos-Views
+ *      @ingroup NimbusPhotos
  */
 @interface NIPhotoScrollView : UIView <
   UIScrollViewDelegate,
