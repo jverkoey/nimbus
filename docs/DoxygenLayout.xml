@@ -127,10 +127,10 @@
   <!-- Layout definition for a group page -->
   <group>
     <memberdecl>
-      <classes visible="yes" title=""/>
+      <classes visible="yes" title="Classes"/>
       <namespaces visible="yes" title=""/>
       <dirs visible="yes" title=""/>
-      <nestedgroups visible="yes" title=""/>
+      <nestedgroups visible="yes" title="Sub-Modules"/>
       <files visible="yes" title=""/>
       <defines title=""/>
       <typedefs title=""/>
