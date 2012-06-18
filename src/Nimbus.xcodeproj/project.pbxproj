@@ -360,13 +360,6 @@
 			remoteGlobalIDString = 663B523E1445052700CC26DF;
 			remoteInfo = NimbusPagingScrollView;
 		};
-		664EFAE0155989EB009826AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 664EFAD8155989EB009826AB /* BasicAttributedLabel.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DB6A04821403F02D0020F7FD;
-			remoteInfo = BasicAttributedLabel;
-		};
 		664EFAEA15598A07009826AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 664EFAE215598A07009826AB /* CSSDemo.xcodeproj */;
@@ -690,7 +683,6 @@
 		6641617A156B516E0018AC1C /* NITableViewActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewActions.m; sourceTree = "<group>"; };
 		664D443014993010008B4C42 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = ../thirdparty/JSONKit/JSONKit.h; sourceTree = "<group>"; };
 		664D443114993010008B4C42 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = ../thirdparty/JSONKit/JSONKit.m; sourceTree = "<group>"; };
-		664EFAD8155989EB009826AB /* BasicAttributedLabel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BasicAttributedLabel.xcodeproj; path = ../examples/attributedlabel/BasicAttributedLabel/BasicAttributedLabel.xcodeproj; sourceTree = "<group>"; };
 		664EFAE215598A07009826AB /* CSSDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CSSDemo.xcodeproj; path = ../examples/css/CSSDemo.xcodeproj; sourceTree = "<group>"; };
 		664EFAEC15598A27009826AB /* InterAppCatalog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = InterAppCatalog.xcodeproj; path = ../examples/interapp/catalog/InterAppCatalog.xcodeproj; sourceTree = "<group>"; };
 		664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BasicLauncher.xcodeproj; path = ../examples/launcher/BasicLauncher/BasicLauncher.xcodeproj; sourceTree = "<group>"; };
@@ -1319,7 +1311,6 @@
 			isa = PBXGroup;
 			children = (
 				6693C106158A63E600950D42 /* NimbusCatalog.xcodeproj */,
-				664EFAD8155989EB009826AB /* BasicAttributedLabel.xcodeproj */,
 				664EFAE215598A07009826AB /* CSSDemo.xcodeproj */,
 				664EFAEC15598A27009826AB /* InterAppCatalog.xcodeproj */,
 				664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */,
@@ -1329,14 +1320,6 @@
 				664EFB2215598A67009826AB /* BasicWebController.xcodeproj */,
 			);
 			name = Examples;
-			sourceTree = "<group>";
-		};
-		664EFAD9155989EB009826AB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				664EFAE1155989EB009826AB /* BasicAttributedLabel.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		664EFAE315598A07009826AB /* Products */ = {
@@ -2849,10 +2832,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 664EFAD9155989EB009826AB /* Products */;
-					ProjectRef = 664EFAD8155989EB009826AB /* BasicAttributedLabel.xcodeproj */;
-				},
-				{
 					ProductGroup = 664EFAFB15598A40009826AB /* Products */;
 					ProjectRef = 664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */;
 				},
@@ -2920,13 +2899,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		664EFAE1155989EB009826AB /* BasicAttributedLabel.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = BasicAttributedLabel.app;
-			remoteRef = 664EFAE0155989EB009826AB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		664EFAEB15598A07009826AB /* CSSDemo.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
