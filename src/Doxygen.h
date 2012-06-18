@@ -37,22 +37,6 @@
  * particular, check out the grab bag of tasks that are actively being worked on here:
  * 
  * https://github.com/jverkoey/nimbus/issues?milestone=5&sort=created&direction=desc&state=open
- * 
- * <h2>Nimbus Contributors</h2>
- * 
- * Contributing to Nimbus is a great way to feel all warm and fuzzy inside. Either by adding your
- * banner to the cause and writing code or donating money to the pledgie link, every bit is greatly
- * appreciated and helps keep Nimbus running.
- * 
- * http://pledgie.com/campaigns/15519
- * 
- * <div style="clear:both"></div>
- * 
- * <h3>Generous Donations Have Been Made By the Following People</h3>
- * 
- * - Peter Nelson
- * - Craig Gilchrist
- * - Atsushi Nagase
  */
 
 /**
