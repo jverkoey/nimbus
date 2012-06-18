@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6633C7EF158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6633C7EE158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m */; };
+		6633C7F2158F08EA0054D240 /* AttributedLabelMashup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6633C7F1158F08EA0054D240 /* AttributedLabelMashup.xib */; };
 		6693C0F0158A63E600950D42 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C0EF158A63E600950D42 /* UIKit.framework */; };
 		6693C0F2158A63E600950D42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C0F1158A63E600950D42 /* Foundation.framework */; };
 		6693C0F4158A63E600950D42 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C0F3158A63E600950D42 /* CoreGraphics.framework */; };
@@ -60,6 +62,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6633C7ED158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterfaceBuilderAttributedLabelViewController.h; sourceTree = "<group>"; };
+		6633C7EE158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterfaceBuilderAttributedLabelViewController.m; sourceTree = "<group>"; };
+		6633C7F1158F08EA0054D240 /* AttributedLabelMashup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttributedLabelMashup.xib; sourceTree = "<group>"; };
 		6693C0EB158A63E600950D42 /* Nimbus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nimbus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6693C0EF158A63E600950D42 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6693C0F1158A63E600950D42 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -348,6 +353,9 @@
 				669A15D2158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m */,
 				669A15D4158E81D200A0990A /* PerformanceAttributedLabelViewController.h */,
 				669A15D5158E81D200A0990A /* PerformanceAttributedLabelViewController.m */,
+				6633C7ED158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.h */,
+				6633C7EE158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m */,
+				6633C7F1158F08EA0054D240 /* AttributedLabelMashup.xib */,
 			);
 			name = "Attributed Label";
 			sourceTree = "<group>";
@@ -425,6 +433,7 @@
 				6693C29E158A8E4000950D42 /* Icon-Small@2x.png in Resources */,
 				6693C29F158A8E4000950D42 /* Icon.png in Resources */,
 				6693C2A0158A8E4000950D42 /* Icon@2x.png in Resources */,
+				6633C7F2158F08EA0054D240 /* AttributedLabelMashup.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +481,7 @@
 				669A15D0158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m in Sources */,
 				669A15D3158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m in Sources */,
 				669A15D6158E81D200A0990A /* PerformanceAttributedLabelViewController.m in Sources */,
+				6633C7EF158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

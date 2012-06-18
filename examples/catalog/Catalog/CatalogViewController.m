@@ -21,6 +21,7 @@
 #import "LinksAttributedLabelViewController.h"
 #import "DataTypesAttributedLabelViewController.h"
 #import "PerformanceAttributedLabelViewController.h"
+#import "InterfaceBuilderAttributedLabelViewController.h"
 
 //
 // What's going on in this file:
@@ -121,6 +122,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Performance"
                                    subtitle:@"Speeding up attributed labels"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([InterfaceBuilderAttributedLabelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Interface Builder"
+                                   subtitle:@"Using attributed labels in IB"]],
      nil];
 
     // When we create the model we must provide it with a delegate that implements the
