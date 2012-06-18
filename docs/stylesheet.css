@@ -677,11 +677,7 @@ div.ingroups a
 
 div.header
 {
-        background-image:url('nav_h.png');
-        background-repeat:repeat-x;
-	background-color: #F9FAFC;
 	margin:  0px;
-	border-bottom: 1px solid #C4CFE5;
 }
 
 div.headertitle
@@ -1034,4 +1030,22 @@ table.modificationtable td {
 
 .mdescRight {
   padding-left: 40px;
+}
+
+#nav-tree {
+  background:none;
+  background-color: #E4EBF7;
+  border-right: 1px solid #ACACAC;
+}
+
+#side-nav {
+  width: 250px;
+}
+
+#doc-content {
+  margin-left: 250px;
+}
+
+#nav-path {
+  display: none;
 }
