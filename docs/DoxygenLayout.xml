@@ -126,8 +126,6 @@
 
   <!-- Layout definition for a group page -->
   <group>
-    <detaileddescription title="Overview"/>
-    <groupgraph visible="$GROUP_GRAPHS"/>
     <memberdecl>
       <classes visible="yes" title=""/>
       <namespaces visible="yes" title=""/>
@@ -149,6 +147,8 @@
       <friends title=""/>
       <membergroups visible="yes"/>
     </memberdecl>
+    <detaileddescription title="Overview"/>
+    <groupgraph visible="$GROUP_GRAPHS"/>
     <memberdef>
       <pagedocs/>
       <inlineclasses title=""/>

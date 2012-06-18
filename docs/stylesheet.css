@@ -1031,3 +1031,7 @@ table.modificationtable td {
 .memItemRight {
 	padding-left: 20px;
 }
+
+.mdescRight {
+  padding-left: 40px;
+}
