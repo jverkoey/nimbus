@@ -22,7 +22,7 @@
 /**
  * A view controller that displays a launcher view and implements its protocols.
  *
- * @ingroup Launcher-User-Interface
+ * @ingroup NimbusLauncher
  *
  * This view controller may be used in production, though you'll likely want to subclass it
  * and internalize the loading of the pages. You can also simply use this controller as an
@@ -126,7 +126,7 @@
 /**
  * A simple launcher button that shows an image and text.
  *
- * @ingroup Launcher-User-Interface
+ * @ingroup NimbusLauncher
  *
  * Shows the icon centered in the top portion of the button with the text taking up one
  * line at the bottom.
@@ -153,7 +153,7 @@
 /**
  * A convenience class for managing the data used to create an NILauncherButton.
  *
- * @ingroup Launcher-User-Interface
+ * @ingroup NimbusLauncher
  *
  * In your own implementation of a launcher controller you do not need to use this object;
  * it is a trivial convenience object for containing the basic information required to display
