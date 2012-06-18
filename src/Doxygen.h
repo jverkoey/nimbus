@@ -1545,10 +1545,3 @@
  * - Availability (+1)
  * - Additions (+1)
  */
-
-/**
- * @defgroup Three20-Migration-Guide Three20 Migration Guide
- *
- * This article has moved to
- * <a href="http://wiki.nimbuskit.info/Three20-Migration-Guide">wiki.nimbuskit.info/Three20-Migration-Guide</a>.
- */
