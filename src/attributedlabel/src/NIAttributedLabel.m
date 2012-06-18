@@ -73,11 +73,17 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_configureDefaults {
+  self.linkColor = [UIColor blueColor];
+  self.dataTypes = NSTextCheckingTypeLink;
+  self.highlightedLinkColor = [UIColor colorWithWhite:0.5f alpha:0.5f];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
-    self.linkColor = [UIColor blueColor];
-    self.dataTypes = NSTextCheckingTypeLink;
-    self.highlightedLinkColor = [UIColor colorWithWhite:0.5f alpha:0.5f];
+    [self _configureDefaults];
   }
   return self;
 }
@@ -86,6 +92,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)awakeFromNib {
   [super awakeFromNib];
+  
+  [self _configureDefaults];
 
   self.attributedString = [self.class mutableAttributedStringFromLabel:self];
 }
