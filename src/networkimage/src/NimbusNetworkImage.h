@@ -60,19 +60,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-
-/**
- * The view and protocols used to display a network image.
- *
- * @defgroup Network-Image-User-Interface User Interface
- */
-
-/**
- * The network requests that power the network image view.
- *
- * @defgroup Network-Image-Requests Network Requests
- */
-
 #import "NINetworkImageView.h"
 
 /**@}*/

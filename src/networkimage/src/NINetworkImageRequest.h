@@ -25,7 +25,7 @@
  * A threaded network request for an image that chops up and resizes the image before returning
  * to the UI thread.
  *
- *      @ingroup Network-Image-Requests
+ *      @ingroup NimbusNetworkImage
  */
 @interface NINetworkImageRequest : NINetworkRequestOperation <NINetworkImageOperation> {
 @private
