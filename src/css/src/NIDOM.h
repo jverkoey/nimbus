@@ -21,7 +21,7 @@
 /**
  * A leight-weight DOM-like object to which you attach views and stylesheets.
  *
- *      @ingroup CSS-Stylesheets
+ *      @ingroup NimbusCSS
  *
  * To be clear: this is not an HTML DOM, but its intent is the same. NIDOM is designed
  * to simplify the view <=> stylesheet relationship. Add a view to the DOM and it will
