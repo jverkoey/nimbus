@@ -37,7 +37,7 @@ PROJECT_NUMBER         = 0.9.3
 # for a project that appears at the top of each page and should give viewer 
 # a quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "An iOS framework whose growth is bounded by O(documentation)."
+PROJECT_BRIEF          = "The iOS framework whose growth is bounded by its documentation."
 
 # With the PROJECT_LOGO tag one can specify an logo or icon that is 
 # included in the documentation. The maximum height of the logo should not 
@@ -898,7 +898,8 @@ HTML_STYLESHEET        = docs/stylesheet.css
 # the files will be copied as-is; there are no commands or markers available.
 
 HTML_EXTRA_FILES       = docs/fixed.js \
-                         docs/cleannavtree.js
+                         docs/cleannavtree.js \
+                         docs/gfx/nimbus128.png
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. 
 # Doxygen will adjust the colors in the stylesheet and background images 
