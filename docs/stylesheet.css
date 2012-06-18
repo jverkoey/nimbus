@@ -818,6 +818,7 @@ div.summary {
   padding: 10px;
   padding-right: 0;
   width: auto;
+  display: none;
 }
 
 div.ingroups {
@@ -1048,4 +1049,13 @@ table.modificationtable td {
 
 #nav-path {
   display: none;
+}
+
+#nav-tree .selected {
+  background: none;
+  text-shadow: none;
+}
+
+#nav-tree .selected a {
+  color: gray;
 }
