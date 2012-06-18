@@ -68,7 +68,7 @@
   self.label.lineBreakMode = UILineBreakModeWordWrap;
   self.label.font = [UIFont fontWithName:@"Optima-Regular" size:20];
   self.label.autoDetectLinks = YES;
-  self.label.dataTypes = NSTextCheckingAllSystemTypes;
+  self.label.dataDetectorTypes = NSTextCheckingAllSystemTypes;
 
   // When we enable defering the link detection is offloaded to a separate thread. This allows
   // the label to display its text immediately and redraw itself once the links have been

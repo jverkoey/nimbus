@@ -27,25 +27,14 @@
 /**
  * A UILabel that utilizes NSAttributedString to format its text.
  *
- * A note on using lineBreakMode with NIAttributedLabel:
- * CoreText's line break mode functionality does not work the same way as UILabel.
+ * Differences between UILabel and NIAttributedLabel:
  *
- * UILabel: when you use truncation modes with multiline labels, the text will be treated as
- * one continuous string. The documentation for each UILineBreakMode value applies correctly to
- * UILabels.
- *
- * NIAttributedLabel: when you use truncation modes with multiline labels, the modes behave
- * differently:
- *
- * - UILineBreakModeWordWrap, UILineBreakModeCharacterWrap: wraps the text over multiple lines with
- *   no truncation.
- * - UILineBreakModeHeadTruncation, UILineBreakModeTailTruncation, UILineBreakModeMiddleTruncation:
- *   will only break the text onto a new line when a \n character is encountered. Each line is
- *   truncated with the line break mode.
- *
- * In short: if you want to use truncation with a multiline attributed label then you need to
- * manually wrap the lines by using \n characters. If you don't need truncation then you can use
- * the word wrap and character wrap modes to have the text automatically wrap.
+ * - UILineBreakModeHeadTruncation, UILineBreakModeTailTruncation, and
+ *   UILineBreakModeMiddleTruncation only apply to single lines and will not wrap the label
+ *   regardless of the numberOfLines property. To wrap liines with any of these line break modes
+ *   you must explicitly add \n characters to the string.
+ * - When you assign an NSString to the text property the attributed label will create an
+ *   attributed string that inherits all of the label's current styles.
  *
  *      @ingroup NimbusAttributedLabel
  */
@@ -54,8 +43,9 @@
 @property (nonatomic, copy) NSAttributedString* attributedString;
 
 @property (nonatomic, assign) BOOL autoDetectLinks; // Default: NO
+@property (nonatomic, assign) NSTextCheckingType dataDetectorTypes; // Default: NSTextCheckingTypeLink
 @property (nonatomic, assign) BOOL deferLinkDetection; // Default: NO
-@property (nonatomic, assign) NSTextCheckingType dataTypes; // Default: NSTextCheckingTypeLink
+
 - (void)addLink:(NSURL *)urlLink range:(NSRange)range;
 - (void)removeAllExplicitLinks; // Removes all links that were added by addLink:range:. Does not remove autodetected links.
 
@@ -94,6 +84,8 @@
 
 @end
 
+/** @name Accessing the Text Attributes */
+
 /**
  * The attributed string that will be displayed.
  *
@@ -106,6 +98,8 @@
  *
  *      @fn NIAttributedLabel::attributedString
  */
+
+/** @name Accessing and Detecting Links */
 
 /**
  * Whether to automatically detect links in the string.
@@ -136,7 +130,15 @@
  */
 
 /**
- * Adds a link at a given range.
+ * The types of data that will be detected when autoDetectLinks is enabled.
+ *
+ * By default this is NSTextCheckingTypeLink.
+ *
+ *      @fn NIAttributedLabel::dataDetectorTypes
+ */
+
+/**
+ * Adds a link to a URL at a given range.
  *
  * Adding any links will immediately enable user interaction on this label. Explicitly added
  * links are removed whenever the text changes.
@@ -151,6 +153,8 @@
  *
  *      @fn NIAttributedLabel::removeAllExplicitLinks
  */
+
+/** @name Accessing Link Display Styles */
 
 /**
  * The color of detected links.
@@ -180,6 +184,8 @@
  *
  *      @fn NIAttributedLabel::linksHaveUnderlines
  */
+
+/** @name Modifying Rich Text Styles for All Text */
 
 /**
  * The underline style for the whole text.
@@ -232,6 +238,8 @@
  *
  *      @fn NIAttributedLabel::textKern
  */
+
+/** @name Modifying Rich Text Styles for Specific Ranges */
 
 /**
  * Sets the text color for a given range.
@@ -302,6 +310,8 @@
  *
  *      @fn NIAttributedLabel::setTextKern:range:
  */
+
+/** @name Accessing the Delegate */
 
 /**
  * The attributed label notifies the delegate of any user interactions.

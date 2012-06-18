@@ -61,7 +61,7 @@
 
   // Turn on all available data detectors. This includes phone numbers, email addresses, and
   // addresses.
-  label.dataTypes = NSTextCheckingAllSystemTypes;
+  label.dataDetectorTypes = NSTextCheckingAllSystemTypes;
 
   label.text = @"She presses a button next to the display and it flickers once more."
   @"\n\nUpon the arrival at Gliese 581 g, initiate contact with the following:"

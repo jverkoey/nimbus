@@ -18,214 +18,181 @@
  * @defgroup NimbusAttributedLabel Nimbus Attributed Label
  * @{
  *
- * The Nimbus Attributed Label is a UILabel that uses NSAttributedString to provide
- * custom text styling. NIAttributedLabel uses Apple's CoreText framework to handle the
- * styling, resulting in a fast, iOS SDK-based solution for styled text.
+ * The Nimbus Attributed Label is a UILabel that uses NSAttributedString to render
+ * rich text labels with links using CoreText.
  *
- * NIAttributedLabel will initially inherit the default styles set on the UILabel. You can 
- * use an attributed label within Interface Builder by creating a regualar UILabel and then
+ * NIAttributedLabel requires CoreText.framework, QuartzCore.framework, and iOS 4.0.
+ *
+ * <h2>Basic Use</h2>
+ *
+ * You can use an NIAttributedLabel just as you would use a UILabel. The attributed label creates
+ * an attributed string behind the scenes when you assign a string to the text property. The label
+ * then uses this attributed string to maintain and eventually present the rich text properties.
+ *
+@code
+NIAttributedLabel* label = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
+
+// The internal NSAttributedString will inherit all of the UILabel properties when we assign text.
+label.text = @"Nimbus";
+@endcode
+ *
+ *
+ * <h2>Interface Builder</h2>
+ *
+ * You can use an attributed label within Interface Builder by creating a regualar UILabel and
  * changing its class to NIAttributedLabel. This will allow you to set styles that apply to
- * the entire string, but if you want to style specific parts of the string then you will
- * need to do this formatting in code.
+ * the entire string. If you want to style specific parts of the string then you will
+ * need to do this in code.
  *
- * <h2>Key Features</h2>
  *
- * - Link detection
- * - Custom links
- * - Setting custom styles for specific ranges
- * - Underline text
- * - Justify paragraph style
- * - Text stroking
- * - Text kerning
+ * <h2>Feature Overview</h2>
+ *
+ * - Automatic link detection using data detectors
+ * - Explicit links
+ * - Underlining
+ * - Justifying paragraphs
+ * - Stroking
+ * - Kerning
+ * - Setting rich text styles at specific ranges
  *
  *  @image html NIAttributedLabelExample1.png "A mashup of possible label styles"
  *
- * <h2>Link Detection</h2>
  *
- * Link detection is achieved using NSDataDetector and therefore is only available in iOS 4.0
- * and later. If pre-iOS 4.0 support is required then a regex solution will likely
- * be used if NSDataDetector is not available, though this is not currently implemented.
+ * <h3>Automatic Link Detection</h3>
  *
- * Link detection is off by default and must be enabled by setting autoDetectLinks to YES:
+ * Automatic link detection is provided using the NSDataDetector facilities of iOS 4.0.
+ * It is off by default and can be enabled by setting
+ * @link NIAttributedLabel::autoDetectLinks autoDetectLinks@endlink to YES. You may configure
+ * the types of data that are detected by modifying the
+ * @link NIAttributedLabel::dataDetectorTypes dataDetectorTypes@endlink property.
  *
- * @code
- * - (void)viewDidLoad {
- *    // Enables link detection on the label.
- *    myLabel.autoDetectLinks = YES;
- * }
- * @endcode
+@code
+// Enable link detection on the label.
+myLabel.autoDetectLinks = YES;
+@endcode
  *
- * Enabling link detection will also enable user interation with the label view i.e. allow users 
- * to tap the detected links.
+ * Enabling automatic link detection will enable user interation with the label view so that the
+ * user can tap the detected links.
  *
- * Detected links will inherit the linkColor and linkHighlight color (highlights on tap).
- * These colors are both customizable:
+ * Detected links will use @link NIAttributedLabel::linkColor linkColor@endlink and
+ * @link NIAttributedLabel::highlightedLinkColor highlightedLinkColor@endlink to differentiate
+ * themselves from standard text. highlightedLinkColor is the color of the highlighting frame
+ * around the text.
  *
- * @code
- * - (void)viewDidLoad {
- *    // Sets all links to to be colored purple.
- *    myLabel.linkColor = [UIColor purpleColor];
- *    // Set the on tap highlight color to orange.
- *    myLabel.linkHighlightColor = [UIColor orangeColor];
- * } 
- * @endcode
  *
- * In the mashup screenshot above you can see links in blue, which is the default color.
+ * <h4>A note on performance</h4>
  *
- * linkColor and linkHighlightColor will also effect custom links (see below).
+ * Automatic link detection is expensive. You can choose to defer automatic link detection by
+ * enabling @link NIAttributedLabel::deferLinkDetection deferLinkDetection@endlink. This will move
+ * the link detection to a separate background thread. Once the links have been detected the label
+ * will be redrawn.
  *
- * Implementing NIAttributedLabelDelegate will alow you to take action when a link is tapped:
  *
- * @code
- * - (void)viewDidLoad {
- *    myLabel.delegate = self;
- * } 
+ * <h3>Handling Taps on Links</h3>
  *
- * - (void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectLink:(NSURL *)url {
- *    // TODO: send user to selected url
- * }
- * @endcode
+ * The NIAttributedLabelDelegate protocol allows you to handle when the user taps on a given link.
+ * The protocol methods provide the tap point as well as the data pertaining to the tapped link.
  *
- * <h2>Custom Links</h2>
  *
- * Custom links behave the same as detected links but allow you to set any range of text to 
- * any URL. This is useful for internal links:
+ * <h3>Explicit Links</h3>
+ *
+ * It is easy to add explicit links by using the
+ * @link NIAttributedLabel::addLink:range: addLink:range:@endlink method.
  * 
- * @code
- * - (void)viewDidLoad {
- *    // Add a custom link to the text 'nimbus'.
- *    [myLabel addLink:[NSURL URLWithString:@"nimbus://custom/url"]
- *               range:[myLabel.text rangeOfString:@"nimbus"]];
- * }
- * @endcode
+@code
+- (void)viewDidLoad {
+  [super viewDidLoad];
+
+  // Add a custom link to the text 'nimbus'.
+  [myLabel addLink:[NSURL URLWithString:@"nimbus://custom/url"]
+             range:[myLabel.text rangeOfString:@"nimbus"]];
+}
+@endcode
  *
- * <h2>Underlined Text</h2>
  *
- * Simple example to underline a label:
+ * <h3>Underlining Text</h3>
  *
- * @code
- * - (void)viewDidLoad {
- *    // Underline the whole label with a single line.
- *    myLabel.underlineStyle = kCTUnderlineStyleSingle;
- * }
- * @endcode
+ * To underline an entire label:
+ *
+@code
+// Underline the whole label with a single line.
+myLabel.underlineStyle = kCTUnderlineStyleSingle;
+@endcode
  *
  * Underline modifiers can also be added:
  *
- * @code
- * - (void)viewDidLoad {
- *    // Underline the whole label with a dash dot single line.
- *    myLabel.underlineStyle = kCTUnderlineStyleSingle;
- *    myLabel.underlineStyleModifier = kCTUnderlinePatternDashDot;
- * }
- * @endcode
+@code
+// Underline the whole label with a dash dot single line.
+myLabel.underlineStyle = kCTUnderlineStyleSingle;
+myLabel.underlineStyleModifier = kCTUnderlinePatternDashDot;
+@endcode
  *
  * Underline styles and modifiers can be mixed to create the desired effect, which is shown in
  * the following screenshot:
  *
  * @image html NIAttributedLabelExample2.png "Underline styles"
  *
- *    @remarks Underline style kCTUnderlineStyleThick seems to only render a single line, it's
+ *    @remarks Underline style kCTUnderlineStyleThick only over renders a single line. It's
  *             possible that it is not supported with Helvetica Neue and is font specific.
  *
- * <h2>Justified Paragraph Style</h2>
  *
- * Standard UILabel has support for left aligned, right aligned and centered text.
- * NIAttributtedLabel adds support for justified text.
+ * <h3>Justifying Paragraphs</h3>
  *
- * NIAttributtedLabel uses CoreText's CTTextAlignment under the hood for text alignment, however
- * for convenience and eases alignment can be set via the more common UIKit's UITextAlignment, just
- * like a regular UILabel. A UITextAlignmentJustify macro has been created to set justified text:
+ * NIAttributedLabel supports justified text using UITextAlignmentJustify.
  *
- * @code
- * - (void)viewDidLoad {
- *    // Label will be justified to the label's frame width.
- *    myLabel.textAlignment = UITextAlignmentJustify;
- * }
- * @endcode
+@code
+ myLabel.textAlignment = UITextAlignmentJustify;
+@endcode
  *
- * <h2>Text Stroke</h3>
  *
- * Text stroke styles can be set by setting the stroke width and stroke color:
+ * <h3>Stroking Text</h3>
  *
- * @code
- * - (void)viewDidLoad {
- *    // Set the stroke width.
- *    myLabel.strokeWidth = 3.0;
- *    // Give the text a black stroke.
- *    myLabel.strokeColor = [UIColor blackColor];
- * }
- * @endcode
+@code
+myLabel.strokeWidth = 3.0;
+myLabel.strokeColor = [UIColor blackColor];
+@endcode
  *
- * If you give the stroke width a positive number then the label will ignore the text color and 
- * just render the given stroke:
+ * A positive stroke width will render only the stroke.
  *
  * @image html NIAttributedLabelExample3.png "Black stroke of 3.0"
  *
- * If you use a negative number then it will add the stroke the same as before, but 
- * also render the fill color which will be the original text color:
+ * A negative number will fill the stroke with textColor:
  * 
- * @code
- * - (void)viewDidLoad {
- *    // set the stoke width and renders the fill color
- *    myLabel.strokeWidth = -3.0;
- *    myLabel.strokeColor = [UIColor blackColor];
- * }
- * @endcode
+@code
+myLabel.strokeWidth = -3.0;
+myLabel.strokeColor = [UIColor blackColor];
+@endcode
  *
  * @image html NIAttributedLabelExample4.png "Black stroke of -3.0"
  *
- * <h2>Text Kerning</h2>
  *
- * Text kerning is the space between characters. A value of 0 is the default spacing. A
- * positive number will increase the space and a negative number will decrease the space:
+ * <h3>Kerning Text</h3>
  *
- * @code
- * - (void)viewDidLoad {
- *    // Move the character spacing closer together.
- *    myLabel.textKern = -6.0;
- * }
- * @endcode
+ * Kerning is the space between characters in points. A positive kern will increase the space
+ * between letters. Correspondingly a negative number will decrease the space.
+ *
+@code
+myLabel.textKern = -6.0;
+@endcode
  *
  * @image html NIAttributedLabelExample5.png "Text kern of -6.0"
  *
- * <h2>Range Format Styles</h2>
+ *
+ * <h3>Setting Rich Text styles at specific ranges</h3>
  *
  * All styles that can be added to the whole label (as well as default UILabel styles like font and
- * text color) can be added to just a range of text as shown in the mashup screenshot above (last
- * paragraph):
+ * text color) can be added to just a range of text.
  *
- * @code
- * - (void)viewDidLoad {
- *    // Change the text 'Nimbus' to orange.
- *    [myLabel setTextColor:[UIColor orangeColor] range:[myLabel.text rangeOfString:@"Nimbus"]];
- *    // Change the text 'iOS' to a larger font.
- *    [myLabel setFont:[UIFont boldSystemFontOfSize:22] range:[myLabel.text rangeOfString:@"iOS"]];
- *    // etc. etc.
- * }
- * @endcode
- *
- * All NIAttributedLabel format properties also have a method to set format with a NSRange.
- *
- * <h2>Example Project</h2>
- *
- * NIAttributedLabel should be very easy to get up and running. The easiest way to learn is to 
- * have a look at the BasicAttributedLabel project in the examples folder:
- *
- * <a
- * href="https://github.com/jverkoey/nimbus/tree/master/examples/attributedlabel/BasicAttributedLabel">
- * Example Project on GitHub</a>
- *
- * <h2>Planned Features</h2>
- *
- * There are still a few things missing, like line spacing, that we would like to support. We may
- * also add support for inline images in the future (not easy in CoreText). 
- *
- * We are planning to build a Markdown to NSAttributedString parser which will
- * make it easier to add rich text to your applications.
- *
+@code
+[myLabel setTextColor:[UIColor orangeColor] range:[myLabel.text rangeOfString:@"Nimbus"]];
+[myLabel setFont:[UIFont boldSystemFontOfSize:22] range:[myLabel.text rangeOfString:@"iOS"]];
+@endcode
+ */
+
+/**
  * @defgroup NimbusAttributedLabel-Protocol Protocol
- * @} */
+ * @}
+ */
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>

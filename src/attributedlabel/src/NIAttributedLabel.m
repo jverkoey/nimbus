@@ -52,7 +52,7 @@
 @synthesize touchedLink = _touchedLink;
 @synthesize autoDetectLinks = _autoDetectLinks;
 @synthesize deferLinkDetection = _deferLinkDetection;
-@synthesize dataTypes = _dataTypes;
+@synthesize dataDetectorTypes = _dataDetectorTypes;
 @synthesize underlineStyle = _underlineStyle;
 @synthesize underlineStyleModifier = _underlineStyleModifier;
 @synthesize strokeWidth = _strokeWidth;
@@ -75,7 +75,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_configureDefaults {
   self.linkColor = [UIColor blueColor];
-  self.dataTypes = NSTextCheckingTypeLink;
+  self.dataDetectorTypes = NSTextCheckingTypeLink;
   self.highlightedLinkColor = [UIColor colorWithWhite:0.5f alpha:0.5f];
 }
 
@@ -402,7 +402,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)_matchesFromAttributedString:(NSString *)string {
   NSError* error = nil;
-  NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:self.dataTypes
+  NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:self.dataDetectorTypes
                                                                  error:&error];
   NSRange range = NSMakeRange(0, string.length);
   
