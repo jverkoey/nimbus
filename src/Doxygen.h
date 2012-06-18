@@ -1552,11 +1552,3 @@
  * This article has moved to
  * <a href="http://wiki.nimbuskit.info/Three20-Migration-Guide">wiki.nimbuskit.info/Three20-Migration-Guide</a>.
  */
-
-/**
- * @defgroup Add-Nimbus Add Nimbus to your project
- *
- * This article has moved to
- * <a href="http://wiki.nimbuskit.info/Add-Nimbus-to-your-project">wiki.nimbuskit.info/Add-Nimbus-to-your-project</a>.
- */
-
