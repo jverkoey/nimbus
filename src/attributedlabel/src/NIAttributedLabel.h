@@ -72,7 +72,7 @@
 /**
  * The attributed label delegate used to inform of user interactions.
  *
- * @ingroup NimbusAttributedLabel-Protocol
+ * @ingroup NimbusAttributedLabel
  */
 @protocol NIAttributedLabelDelegate <NSObject>
 @optional

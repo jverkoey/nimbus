@@ -189,11 +189,6 @@ myLabel.textKern = -6.0;
 @endcode
  */
 
-/**
- * @defgroup NimbusAttributedLabel-Protocol Protocol
- * @}
- */
-
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
