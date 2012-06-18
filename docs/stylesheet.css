@@ -348,7 +348,6 @@ table.memberdecls {
 .mdescLeft, .mdescRight,
 .memItemLeft, .memItemRight,
 .memTemplItemLeft, .memTemplItemRight, .memTemplParams {
-	background-color: #F9FAFC;
 	border: none;
 	margin: 4px;
 	padding: 1px 0 0 8px;
@@ -922,6 +921,7 @@ div.groupHeader {
 
 a.el {
   font-weight: normal;
+  font-family: Courier, Consolas, monospace;
 }
 
 table.modificationtable {
@@ -1026,4 +1026,8 @@ table.modificationtable td {
   font-family: Consolas,Monaco,"Lucida Console","Liberation Mono","DejaVu Sans Mono","Bitstream Vera Sans Mono","Courier New";
   margin-right: 10px;
   font-size: 0.5em;
+}
+
+.memItemRight {
+	padding-left: 20px;
 }
