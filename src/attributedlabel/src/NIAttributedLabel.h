@@ -52,6 +52,7 @@
 @property (nonatomic, retain) UIColor* linkColor; // Default: [UIColor blueColor]
 @property (nonatomic, retain) UIColor* highlightedLinkColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
 @property (nonatomic, assign) BOOL linksHaveUnderlines; // Default: NO
+@property (nonatomic, retain) NSDictionary *attributesForLinks; // Default: nil
 
 @property (nonatomic, assign) CTUnderlineStyle underlineStyle;
 @property (nonatomic, assign) CTUnderlineStyleModifiers underlineStyleModifier;
@@ -183,6 +184,15 @@
  * This affects all links in the label.
  *
  *      @fn NIAttributedLabel::linksHaveUnderlines
+ */
+
+/**
+ * A dictionary of attributes to apply to links.
+ *
+ * This dictionary must contain CoreText properties. These attributes are applied after the color
+ * and link styles have been applied to the link.
+ *
+ *      @fn NIAttributedLabel::attributesForLinks
  */
 
 /** @name Modifying Rich Text Styles for All Text */

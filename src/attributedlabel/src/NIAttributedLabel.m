@@ -61,6 +61,7 @@
 @synthesize linkColor = _linkColor;
 @synthesize highlightedLinkColor = _highlightedLinkColor;
 @synthesize linksHaveUnderlines = _linksHaveUnderlines;
+@synthesize attributesForLinks = _attributesForLinks;
 @synthesize delegate = _delegate;
 
 
@@ -591,6 +592,23 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_applyLinkStyleWithResults:(NSArray *)results toAttributedString:(NSMutableAttributedString *)attributedString {
+  for (NSTextCheckingResult* result in self.detectedlinkLocations) {
+    [attributedString setTextColor:self.linkColor range:result.range];
+    if (self.linksHaveUnderlines) {
+      [attributedString setUnderlineStyle:kCTUnderlineStyleSingle
+                                 modifier:kCTUnderlinePatternSolid
+                                    range:result.range];
+    }
+
+    if (self.attributesForLinks.count > 0) {
+      [attributedString addAttributes:self.attributesForLinks range:result.range];
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // We apply the link styles immediately before we render the attributed string. This
 // composites the link styles with the existing styles without losing any information. This
 // makes it possible to turn off links or remove them altogether without losing the existing
@@ -598,24 +616,12 @@
 - (NSMutableAttributedString *)mutableAttributedStringWithLinkStylesApplied {
   NSMutableAttributedString* attributedString = [self.attributedString mutableCopy];
   if (self.autoDetectLinks) {
-    for (NSTextCheckingResult* result in self.detectedlinkLocations) {
-      [attributedString setTextColor:self.linkColor range:result.range];
-      if (self.linksHaveUnderlines) {
-        [attributedString setUnderlineStyle:kCTUnderlineStyleSingle
-                                   modifier:kCTUnderlinePatternSolid
-                                      range:result.range];
-      }
-    }
+    [self _applyLinkStyleWithResults:self.detectedlinkLocations
+                  toAttributedString:attributedString];
   }
 
-  for (NSTextCheckingResult* result in self.explicitLinkLocations) {
-    [attributedString setTextColor:self.linkColor range:result.range];
-    if (self.linksHaveUnderlines) {
-      [attributedString setUnderlineStyle:kCTUnderlineStyleSingle
-                                 modifier:kCTUnderlinePatternSolid
-                                    range:result.range];
-    }
-  }
+  [self _applyLinkStyleWithResults:self.explicitLinkLocations
+                toAttributedString:attributedString];
 
   return attributedString;
 }
