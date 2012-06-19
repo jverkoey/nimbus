@@ -22,6 +22,13 @@
 #define UITextAlignmentJustify ((UITextAlignment)kCTJustifiedTextAlignment)
 #endif
 
+// Vertical alignments for NIAttributedLabel.
+typedef enum {
+  NIVerticalTextAlignmentTop = 0,
+  NIVerticalTextAlignmentMiddle,
+  NIVerticalTextAlignmentBottom,
+} NIVerticalTextAlignment;
+
 @protocol NIAttributedLabelDelegate;
 
 /**
@@ -35,6 +42,8 @@
  *   you must explicitly add \n characters to the string.
  * - When you assign an NSString to the text property the attributed label will create an
  *   attributed string that inherits all of the label's current styles.
+ * - Text is aligned vertically to the top of the bounds rather than centered. You can change this
+ *   using @link NIAttributedLabel::verticalTextAlignment verticalTextAlignment@endlink.
  *
  *      @ingroup NimbusAttributedLabel
  */
@@ -54,6 +63,7 @@
 @property (nonatomic, assign) BOOL linksHaveUnderlines; // Default: NO
 @property (nonatomic, retain) NSDictionary *attributesForLinks; // Default: nil
 
+@property (nonatomic, assign) NIVerticalTextAlignment verticalTextAlignment; // Default: NIVerticalTextAlignmentTop
 @property (nonatomic, assign) CTUnderlineStyle underlineStyle;
 @property (nonatomic, assign) CTUnderlineStyleModifiers underlineStyleModifier;
 @property (nonatomic, assign) CGFloat shadowBlur; // Default: 0
@@ -198,6 +208,18 @@
  */
 
 /** @name Modifying Rich Text Styles for All Text */
+
+/**
+ * The vertical alignment of the text within the label's bounds.
+ *
+ * @c NIVerticalTextAlignmentBottom will align the text to the bottom of the bounds, while
+ * @c NIVerticalTextAlignmentMiddle will center the text vertically.
+ *
+ * The default is @c NIVerticalTextAlignmentTop. This is for performance reasons because the other
+ * modes require more computation and aligning to the top is generally what you want anyway.
+ *
+ *      @fn NIAttributedLabel::verticalTextAlignment
+ */
 
 /**
  * The underline style for the whole text.

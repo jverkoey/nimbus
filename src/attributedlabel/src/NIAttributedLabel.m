@@ -53,6 +53,7 @@
 @synthesize autoDetectLinks = _autoDetectLinks;
 @synthesize deferLinkDetection = _deferLinkDetection;
 @synthesize dataDetectorTypes = _dataDetectorTypes;
+@synthesize verticalTextAlignment = _verticalTextAlignment;
 @synthesize underlineStyle = _underlineStyle;
 @synthesize underlineStyleModifier = _underlineStyleModifier;
 @synthesize shadowBlur = _shadowBlur;
@@ -76,6 +77,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_configureDefaults {
+  self.verticalTextAlignment = NIVerticalTextAlignmentTop;
   self.linkColor = [UIColor blueColor];
   self.dataDetectorTypes = NSTextCheckingTypeLink;
   self.highlightedLinkColor = [UIColor colorWithWhite:0.5f alpha:0.5f];
@@ -494,6 +496,33 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)_verticalOffsetForBounds:(CGRect)bounds {
+  CGFloat verticalOffset = 0;
+  if (NIVerticalTextAlignmentTop != self.verticalTextAlignment) {
+    // When the text is attached to the top we can easily just start drawing and leave the
+    // remainder. This is the most performant case.
+    // With other alignment modes we must calculate the size of the text first.
+    CGSize textSize = [self sizeThatFits:CGSizeMake(bounds.size.width, CGFLOAT_MAX)];
+
+    if (NIVerticalTextAlignmentMiddle == self.verticalTextAlignment) {
+      verticalOffset = floorf((bounds.size.height - textSize.height) / 2.f);
+      
+    } else if (NIVerticalTextAlignmentBottom == self.verticalTextAlignment) {
+      verticalOffset = bounds.size.height - textSize.height;
+    }
+  }
+  return verticalOffset;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGAffineTransform)_transformForCoreText {
+  // CoreText context coordinates are the opposite to UIKit so we flip the bounds
+  return CGAffineTransformScale(CGAffineTransformMakeTranslation(0, self.bounds.size.height), 1.f, -1.f);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSTextCheckingResult *)linkAtPoint:(CGPoint)point {
   static const CGFloat kVMargin = 5.0f;
 	if (!CGRectContainsPoint(CGRectInset(self.bounds, 0, -kVMargin), point)) {
@@ -508,22 +537,20 @@
 
 	CGPoint origins[count];
 	CTFrameGetLineOrigins(self.textFrame, CFRangeMake(0,0), origins);
+  
+  CGAffineTransform transform = [self _transformForCoreText];
+  CGFloat verticalOffset = [self _verticalOffsetForBounds:self.bounds];
 
   for (int i = 0; i < count; i++) {
 		CGPoint linePoint = origins[i];
 
 		CTLineRef line = CFArrayGetValueAtIndex(lines, i);
 		CGRect flippedRect = [self getLineBounds:line point:linePoint];
-    CGRect bounds = CGRectMake(CGRectGetMinX(self.bounds),
-                               CGRectGetMaxY(self.bounds)-CGRectGetMaxY(self.bounds),
-                               CGRectGetWidth(self.bounds),
-                               CGRectGetHeight(self.bounds));
-    CGRect rect = CGRectMake(CGRectGetMinX(flippedRect),
-                             CGRectGetMaxY(bounds)-CGRectGetMaxY(flippedRect),
-                             CGRectGetWidth(flippedRect),
-                             CGRectGetHeight(flippedRect));                      
+    CGRect rect = CGRectApplyAffineTransform(flippedRect, transform);
 
 		rect = CGRectInset(rect, 0, -kVMargin);
+    rect = CGRectOffset(rect, 0, verticalOffset);
+
 		if (CGRectContainsPoint(rect, point)) {
 			CGPoint relativePoint = CGPointMake(point.x-CGRectGetMinX(rect),
                                           point.y-CGRectGetMinY(rect));
@@ -623,6 +650,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawTextInRect:(CGRect)rect {
+  if (NIVerticalTextAlignmentTop != self.verticalTextAlignment) {
+    rect.origin.y = [self _verticalOffsetForBounds:rect];
+  }
+
   if (self.autoDetectLinks) {
     [self detectLinks];
   }
@@ -636,15 +667,17 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 		CGContextSaveGState(ctx);
 
-    // CoreText context coordinates are the opposite to UIKit so we flip the bounds
-    CGContextConcatCTM(ctx, CGAffineTransformScale(CGAffineTransformMakeTranslation(0, self.bounds.size.height), 1.f, -1.f));
+    CGAffineTransform transform = [self _transformForCoreText];
+    CGContextConcatCTM(ctx, transform);
 
     if (nil == self.textFrame) {
       CFAttributedStringRef attributedString = (__bridge CFAttributedStringRef)attributedStringWithLinks;
       CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attributedString);
 
       CGMutablePathRef path = CGPathCreateMutable();
-			CGPathAddRect(path, NULL, self.bounds);
+      // We must tranform the path rectangle in order to draw the text correctly for bottom/middle
+      // vertical alignment modes.
+			CGPathAddRect(path, &transform, rect);
       if (nil != self.shadowColor) {
         CGContextSetShadowWithColor(ctx, self.shadowOffset, self.shadowBlur, self.shadowColor.CGColor);
       }
@@ -721,6 +754,8 @@
         }
 
         if (!CGRectIsEmpty(highlightRect)) {
+          highlightRect = CGRectOffset(highlightRect, 0, -rect.origin.y);
+
           CGFloat pi = (CGFloat)M_PI;
 
           CGFloat radius = 5.0f;
