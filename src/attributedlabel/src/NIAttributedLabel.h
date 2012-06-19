@@ -65,7 +65,7 @@
 - (void)setFont:(UIFont *)font range:(NSRange)range;
 - (void)setUnderlineStyle:(CTUnderlineStyle)style modifier:(CTUnderlineStyleModifiers)modifier range:(NSRange)range;
 - (void)setStrokeWidth:(CGFloat)width range:(NSRange)range;
-- (void)setStrokeColor:(UIColor*)color range:(NSRange)range;
+- (void)setStrokeColor:(UIColor *)color range:(NSRange)range;
 - (void)setTextKern:(CGFloat)kern range:(NSRange)range;
 
 @property (nonatomic, assign) IBOutlet id<NIAttributedLabelDelegate> delegate;
@@ -259,7 +259,7 @@
  *      @fn NIAttributedLabel::textKern
  */
 
-/** @name Modifying Rich Text Styles for Specific Ranges */
+/** @name Modifying Rich Text Styles in Ranges */
 
 /**
  * Sets the text color for a given range.
@@ -273,8 +273,7 @@
 /** 
  * Sets the font for a given range.
  *
- * Note that this will not change the default font value and font will
- * return the default font.
+ * Note that this will not change the default font value and font will return the default font.
  *
  *      @fn NIAttributedLabel::setFont:range:
  */
@@ -285,12 +284,14 @@
  * Note that this will not change the default underline style.
  *
  * Style Values:
+ *
  * - kCTUnderlineStyleNone (default)
  * - kCTUnderlineStyleSingle
  * - kCTUnderlineStyleThick
  * - kCTUnderlineStyleDouble
  *
  * Modifier Values:
+ *
  * - kCTUnderlinePatternSolid (default)
  * - kCTUnderlinePatternDot
  * - kCTUnderlinePatternDash
@@ -303,9 +304,8 @@
 /**
  * Modifies the stroke width for a given range.
  *
- * A positive number will render only the stroke, whereas negivive a number are for stroke
- * and fill.
- * A width of 3.0 is a good starting point.
+ * A positive number will draw only the stroke.
+ * A negative number wlll draw the stroke and fill.
  *
  *      @fn NIAttributedLabel::setStrokeWidth:range:
  */
@@ -313,7 +313,7 @@
 /**
  * Modifies the stroke color for a given range.
  *
- * Normally you would use this in conjunction with setStrokeWidth:range: passing in the same
+ * Normally you would use this in conjunction with setStrokeWidth:range:, passing in the same
  * range for both.
  *
  *      @fn NIAttributedLabel::setStrokeColor:range:

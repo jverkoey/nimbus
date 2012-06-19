@@ -187,6 +187,7 @@ myLabel.textKern = -6.0;
 [myLabel setTextColor:[UIColor orangeColor] range:[myLabel.text rangeOfString:@"Nimbus"]];
 [myLabel setFont:[UIFont boldSystemFontOfSize:22] range:[myLabel.text rangeOfString:@"iOS"]];
 @endcode
+ * @}
  */
 
 #import <Foundation/Foundation.h>
