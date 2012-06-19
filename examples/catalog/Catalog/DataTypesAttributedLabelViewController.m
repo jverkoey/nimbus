@@ -15,6 +15,7 @@
 //
 
 #import "DataTypesAttributedLabelViewController.h"
+#import "NimbusAttributedLabel.h"
 
 //
 // What's going on in this file:

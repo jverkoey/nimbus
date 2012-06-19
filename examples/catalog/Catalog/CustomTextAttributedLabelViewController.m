@@ -15,6 +15,7 @@
 //
 
 #import "CustomTextAttributedLabelViewController.h"
+#import "NimbusAttributedLabel.h"
 
 // This import is not included by NimbusAttributedLabel.h because it is a category and we want to
 // make it explicit that you are augmenting a class.
