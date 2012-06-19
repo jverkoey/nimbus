@@ -343,6 +343,7 @@ hr.footer {
 table.memberdecls {
 	border-spacing: 0px;
 	padding: 0px;
+	width: 100%;
 }
 
 .mdescLeft, .mdescRight,
@@ -408,9 +409,11 @@ table.memberdecls {
 }
 
 .memname {
-        white-space: nowrap;
-        font-weight: bold;
-        margin-left: 6px;
+  margin-top: 1.5em;
+  margin-bottom: .25em;
+  font-size: 145%;
+  font-weight: normal;
+  color: black;
 }
 
 .memproto {
@@ -422,8 +425,6 @@ table.memberdecls {
 }
 
 .memdoc {
-        padding: 2px 5px;
-        background-color: #FBFCFD;
 }
 
 .paramkey {
