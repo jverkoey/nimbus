@@ -43,7 +43,6 @@
 		665E0BD013CE816E008A1D21 /* NIPhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BCC13CE816E008A1D21 /* NIPhotoScrollView.m */; };
 		665E0BD113CE816E008A1D21 /* NIToolbarPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BCE13CE816E008A1D21 /* NIToolbarPhotoViewController.m */; };
 		665E0C0813CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0C0713CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m */; };
-		667A89FA148C60FF000779BD /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A89F9148C60FF000779BD /* JSONKit.m */; };
 		667A8A1C148CA1BE000779BD /* NINetworkJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A8A1B148CA1BE000779BD /* NINetworkJSONRequest.m */; };
 		667DC2BE13D89FD100C1B0ED /* NIPhotoScrubberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DC2BD13D89FD100C1B0ED /* NIPhotoScrubberView.m */; };
 		668FD7AD1482C1A600BA7009 /* CaptionedPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 668FD7AC1482C1A600BA7009 /* CaptionedPhotoView.m */; };
@@ -57,6 +56,8 @@
 		66EAC7DC13D2A77D00BDFF34 /* NimbusPhotos.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66EAC7DB13D2A77D00BDFF34 /* NimbusPhotos.bundle */; };
 		66F27D5D145B7DF500AFCA08 /* NIViewRecycler.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F27D5C145B7DF500AFCA08 /* NIViewRecycler.m */; };
 		66FE7D7113FB8CD00061B987 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FE7D7013FB8CD00061B987 /* NITableViewModel.m */; };
+		8564BEC6157DA378008F3C5B /* NINetworkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8564BEC5157DA378008F3C5B /* NINetworkTableViewController.m */; };
+		8564BEC7157DA3CD008F3C5B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8564BEC2157DA333008F3C5B /* JSONKit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,8 +138,6 @@
 		665E0BCE13CE816E008A1D21 /* NIToolbarPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIToolbarPhotoViewController.m; path = ../../../src/photos/src/NIToolbarPhotoViewController.m; sourceTree = SOURCE_ROOT; };
 		665E0C0613CE82A1008A1D21 /* FacebookPhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookPhotoAlbumViewController.h; path = src/FacebookPhotoAlbumViewController.h; sourceTree = "<group>"; };
 		665E0C0713CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FacebookPhotoAlbumViewController.m; path = src/FacebookPhotoAlbumViewController.m; sourceTree = "<group>"; };
-		667A89F8148C60FF000779BD /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = ../../../thirdparty/JSONKit/JSONKit.h; sourceTree = "<group>"; };
-		667A89F9148C60FF000779BD /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = ../../../thirdparty/JSONKit/JSONKit.m; sourceTree = "<group>"; };
 		667A89FE148C65F3000779BD /* NIOperations+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NIOperations+Subclassing.h"; path = "../../../src/core/src/NIOperations+Subclassing.h"; sourceTree = "<group>"; };
 		667A8A19148CA1BE000779BD /* NimbusOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusOperations.h; path = ../../../src/operations/src/NimbusOperations.h; sourceTree = "<group>"; };
 		667A8A1A148CA1BE000779BD /* NINetworkJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkJSONRequest.h; path = ../../../src/operations/src_JSONKit/NINetworkJSONRequest.h; sourceTree = "<group>"; };
@@ -165,6 +164,11 @@
 		66FE7D6E13FB8CD00061B987 /* NimbusModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusModels.h; path = ../../../src/models/src/NimbusModels.h; sourceTree = "<group>"; };
 		66FE7D6F13FB8CD00061B987 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITableViewModel.h; path = ../../../src/models/src/NITableViewModel.h; sourceTree = "<group>"; };
 		66FE7D7013FB8CD00061B987 /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITableViewModel.m; path = ../../../src/models/src/NITableViewModel.m; sourceTree = "<group>"; };
+		8564BEC1157DA333008F3C5B /* JSONKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = src/JSONKit.h; sourceTree = "<group>"; };
+		8564BEC2157DA333008F3C5B /* JSONKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = src/JSONKit.m; sourceTree = "<group>"; };
+		8564BEC3157DA378008F3C5B /* NimbusNetworkControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusNetworkControllers.h; path = ../../../src/networkcontrollers/src/NimbusNetworkControllers.h; sourceTree = "<group>"; };
+		8564BEC4157DA378008F3C5B /* NINetworkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkTableViewController.h; path = ../../../src/networkcontrollers/src/NINetworkTableViewController.h; sourceTree = "<group>"; };
+		8564BEC5157DA378008F3C5B /* NINetworkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkTableViewController.m; path = ../../../src/networkcontrollers/src/NINetworkTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,8 +349,8 @@
 		667A89F7148C60F0000779BD /* JSONKit */ = {
 			isa = PBXGroup;
 			children = (
-				667A89F8148C60FF000779BD /* JSONKit.h */,
-				667A89F9148C60FF000779BD /* JSONKit.m */,
+				8564BEC1157DA333008F3C5B /* JSONKit.h */,
+				8564BEC2157DA333008F3C5B /* JSONKit.m */,
 			);
 			name = JSONKit;
 			sourceTree = "<group>";
@@ -354,6 +358,9 @@
 		669819D313D5739D00417E8B /* Operations */ = {
 			isa = PBXGroup;
 			children = (
+				8564BEC3157DA378008F3C5B /* NimbusNetworkControllers.h */,
+				8564BEC4157DA378008F3C5B /* NINetworkTableViewController.h */,
+				8564BEC5157DA378008F3C5B /* NINetworkTableViewController.m */,
 				667A8A19148CA1BE000779BD /* NimbusOperations.h */,
 				667A8A1A148CA1BE000779BD /* NINetworkJSONRequest.h */,
 				667A8A1B148CA1BE000779BD /* NINetworkJSONRequest.m */,
@@ -483,6 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8564BEC7157DA3CD008F3C5B /* JSONKit.m in Sources */,
 				66EA058313C011D6004FFE1A /* AppDelegate.m in Sources */,
 				66EA058813C011EC004FFE1A /* main.m in Sources */,
 				665E0BB713CE815D008A1D21 /* NIDataStructures.m in Sources */,
@@ -522,8 +530,8 @@
 				66F27D5D145B7DF500AFCA08 /* NIViewRecycler.m in Sources */,
 				66243CC1146112B300B78F5D /* NIPageView.m in Sources */,
 				668FD7AD1482C1A600BA7009 /* CaptionedPhotoView.m in Sources */,
-				667A89FA148C60FF000779BD /* JSONKit.m in Sources */,
 				667A8A1C148CA1BE000779BD /* NINetworkJSONRequest.m in Sources */,
+				8564BEC6157DA378008F3C5B /* NINetworkTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
