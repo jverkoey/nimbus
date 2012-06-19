@@ -115,6 +115,7 @@
  * in table views or similar high-performance situations then you should consider enabling defered
  * link detection by setting deferLinkDetection to YES.
  *
+ *      @sa NIAttributedLabel::dataDetectorTypes
  *      @fn NIAttributedLabel::autoDetectLinks
  */
 
@@ -134,7 +135,7 @@
 /**
  * The types of data that will be detected when autoDetectLinks is enabled.
  *
- * By default this is NSTextCheckingTypeLink.
+ * By default this is NSTextCheckingTypeLink. <a href="https://developer.apple.com/library/mac/#documentation/AppKit/Reference/NSTextCheckingResult_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40008798-CH1-DontLinkElementID_50">All available data detector types</a>.
  *
  *      @fn NIAttributedLabel::dataDetectorTypes
  */
