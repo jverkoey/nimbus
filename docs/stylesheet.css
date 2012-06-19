@@ -346,6 +346,12 @@ table.memberdecls {
 	width: 100%;
 }
 
+.declaration {
+  font: 104% Courier,Consolas,monospace;
+  margin-top: 1.182em;
+  margin-bottom: .909em;
+}
+
 .mdescLeft, .mdescRight,
 .memItemLeft, .memItemRight,
 .memTemplItemLeft, .memTemplItemRight, .memTemplParams {
@@ -838,7 +844,13 @@ h2 {
 }
 
 p {
+  margin-top: 0;
   font: 100% 'Lucida Grande',Geneva,Helvetica,Arial,sans-serif;
+}
+
+p.abstract {
+  margin-top: 1.083em;
+  margin-bottom: .833em;
 }
 
 pre.fragment {
@@ -1059,4 +1071,11 @@ table.modificationtable td {
 
 #nav-tree .selected a {
   color: gray;
+}
+
+h5 {
+  margin: .692em 0 .154em 0;
+  padding: 0;
+  font-size: 100%;
+  color: black;
 }
