@@ -18,10 +18,19 @@
  * @defgroup NimbusAttributedLabel Nimbus Attributed Label
  * @{
  *
- * The Nimbus Attributed Label is a UILabel that uses NSAttributedString to render
- * rich text labels with links using CoreText.
+ * The Nimbus Attributed Label is a UILabel that uses NSAttributedString to render rich text labels
+ * with links using CoreText.
  *
- * NIAttributedLabel requires CoreText.framework, QuartzCore.framework, and iOS 4.0.
+ * <h2>Minimum Requirements</h2>
+ *
+ * Required frameworks:
+ *
+ * - CoreText.framework
+ * - QuartzCore.framework
+ *
+ * Minimum Operating System: <b>iOS 4.0</b>
+ *
+ * Source located in <code>src/attributedlabel/src</code>
  *
  * <h2>Basic Use</h2>
  *
