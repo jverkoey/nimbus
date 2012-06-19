@@ -56,6 +56,7 @@
 
 @property (nonatomic, assign) CTUnderlineStyle underlineStyle;
 @property (nonatomic, assign) CTUnderlineStyleModifiers underlineStyleModifier;
+@property (nonatomic, assign) CGFloat shadowBlur; // Default: 0
 @property (nonatomic, assign) CGFloat strokeWidth;
 @property (nonatomic, retain) UIColor* strokeColor;
 @property (nonatomic, assign) CGFloat textKern;
@@ -220,6 +221,15 @@
  * - kCTUnderlinePatternDashDotDot
  *
  *      @fn NIAttributedLabel::underlineStyleModifier
+ */
+
+/**
+ * A non-negative number specifying the amount of blur to apply to the label's shadow.
+ *
+ * By default this is zero. In practice this is often the desired amount of blurring to apply to a
+ * label shadow.
+ *
+ *      @fn NIAttributedLabel::shadowBlur
  */
 
 /**

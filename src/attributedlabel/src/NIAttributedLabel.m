@@ -55,6 +55,7 @@
 @synthesize dataDetectorTypes = _dataDetectorTypes;
 @synthesize underlineStyle = _underlineStyle;
 @synthesize underlineStyleModifier = _underlineStyleModifier;
+@synthesize shadowBlur = _shadowBlur;
 @synthesize strokeWidth = _strokeWidth;
 @synthesize strokeColor = _strokeColor;
 @synthesize textKern = _textKern;
@@ -652,7 +653,7 @@
       CGMutablePathRef path = CGPathCreateMutable();
 			CGPathAddRect(path, NULL, self.bounds);
       if (nil != self.shadowColor) {
-        CGContextSetShadowWithColor(ctx, self.shadowOffset, 0, self.shadowColor.CGColor);
+        CGContextSetShadowWithColor(ctx, self.shadowOffset, self.shadowBlur, self.shadowColor.CGColor);
       }
       self.textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
 			CGPathRelease(path);
