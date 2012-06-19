@@ -36,6 +36,7 @@
  * <h2>Getting Started</h2>
  * 
  * - <a href="http://wiki.nimbuskit.info/Add-Nimbus-to-your-project">Add Nimbus to your project</a>.
+ * - Learn about Nimbus' features by checking out the Catalog app in the examples folder.
  * - Follow Nimbus' development through its <a href="http://docs.nimbuskit.info/group___version-_history.html">version history</a>.
  * - See the <a href="http://docs.nimbuskit.info/group___version-9-3.html">latest API diffs</a>.
  * - Read the <a href="http://docs.nimbuskit.info/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
