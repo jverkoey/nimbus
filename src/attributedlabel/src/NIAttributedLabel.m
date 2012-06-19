@@ -539,20 +539,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-  UIView* view = [super hitTest:point withEvent:event];
-  if (view != self) {
-		return view;
-	}
-  if (nil == [self linkAtPoint:point]) {
-    return nil;
-  }
-  return view;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+  [super touchesBegan:touches withEvent:event];
+
   UITouch* touch = [touches anyObject];
 	CGPoint point = [touch locationInView:self];
 
@@ -564,6 +553,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  [super touchesEnded:touches withEvent:event];
+
   UITouch* touch = [touches anyObject];
 	CGPoint point = [touch locationInView:self];
 
@@ -586,6 +577,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+  [super touchesCancelled:touches withEvent:event];
+
   self.touchedLink = nil;
 
   [self setNeedsDisplay];
@@ -594,7 +587,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_applyLinkStyleWithResults:(NSArray *)results toAttributedString:(NSMutableAttributedString *)attributedString {
-  for (NSTextCheckingResult* result in self.detectedlinkLocations) {
+  for (NSTextCheckingResult* result in results) {
     [attributedString setTextColor:self.linkColor range:result.range];
     if (self.linksHaveUnderlines) {
       [attributedString setUnderlineStyle:kCTUnderlineStyleSingle
