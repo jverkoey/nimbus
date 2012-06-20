@@ -33,7 +33,6 @@
 //
 // Foundation.framework
 // UIKit.framework
-// QuartzCore.framework
 //
 
 @implementation BasicInstantiationBadgeViewController
