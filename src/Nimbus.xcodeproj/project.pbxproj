@@ -696,6 +696,7 @@
 		443589C21551909E00757E50 /* UIToolbar+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIToolbar+NIStyleable.m"; path = "css/src/UIToolbar+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		6607851B14D245BE00FE3283 /* NINetworkActivityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINetworkActivityTests.m; sourceTree = "<group>"; };
 		6607851F14D33EA900FE3283 /* NIStateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIStateTests.m; sourceTree = "<group>"; };
+		661F28AA1591B03400D11FC3 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = badge/deps; sourceTree = SOURCE_ROOT; };
 		6623EB6C1402ECE400E0E61A /* NITableViewModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewModelTests.m; sourceTree = "<group>"; };
 		6626330B14995C4600B99898 /* NITableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NITableViewModel+Private.h"; sourceTree = "<group>"; };
 		66325D5613EB0301008D6EAD /* HACKERS.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = HACKERS.mdown; path = ../HACKERS.mdown; sourceTree = "<group>"; };
@@ -1303,6 +1304,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		661F28A91591B01D00D11FC3 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				66E1CE0515916220004DA4A2 /* NimbusBadge.h */,
+				66E1CE0315916220004DA4A2 /* NIBadgeView.h */,
+				66E1CE0415916220004DA4A2 /* NIBadgeView.m */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		661F28AB1591B03700D11FC3 /* unittests */ = {
+			isa = PBXGroup;
+			children = (
+				66E1CE071591622B004DA4A2 /* NimbusBadgeTests-Info.plist */,
+			);
+			name = unittests;
+			sourceTree = "<group>";
+		};
 		66325D5F13EB1BFA008D6EAD /* src_JSONKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1743,7 +1762,6 @@
 				66E8CED414D08B8000600592 /* Configs */,
 				DB3A230B13FD4B8E00614220 /* NimbusAttributedLabel */,
 				66E1CDE1159161ED004DA4A2 /* NimbusBadge */,
-				66E1CDF4159161EE004DA4A2 /* NimbusBadgeTests */,
 				66A03C0E13E6E85E00B514F3 /* NimbusCore */,
 				66C3A6A3143D61130048542F /* NimbusCss */,
 				6675731413E771380076F555 /* NimbusInterapp */,
@@ -2037,19 +2055,11 @@
 		66E1CDE1159161ED004DA4A2 /* NimbusBadge */ = {
 			isa = PBXGroup;
 			children = (
-				66E1CE0515916220004DA4A2 /* NimbusBadge.h */,
-				66E1CE0315916220004DA4A2 /* NIBadgeView.h */,
-				66E1CE0415916220004DA4A2 /* NIBadgeView.m */,
+				661F28AA1591B03400D11FC3 /* deps */,
+				661F28A91591B01D00D11FC3 /* src */,
+				661F28AB1591B03700D11FC3 /* unittests */,
 			);
 			path = NimbusBadge;
-			sourceTree = "<group>";
-		};
-		66E1CDF4159161EE004DA4A2 /* NimbusBadgeTests */ = {
-			isa = PBXGroup;
-			children = (
-				66E1CE071591622B004DA4A2 /* NimbusBadgeTests-Info.plist */,
-			);
-			path = NimbusBadgeTests;
 			sourceTree = "<group>";
 		};
 		66E1CE0A15916391004DA4A2 /* Products */ = {
