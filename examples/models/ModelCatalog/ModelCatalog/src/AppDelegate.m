@@ -41,7 +41,6 @@
   CatalogViewController* catalogController = [[CatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];
   UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:catalogController];
   self.window.rootViewController = navController;
-  [self.window addSubview:navController.view];
   
   [self.window makeKeyAndVisible];
 

@@ -91,8 +91,7 @@
 
   _rootController = [[UINavigationController alloc] initWithRootViewController:launcherController];
   _rootController.view.frame = self.window.bounds;
-
-  [self.window addSubview:_rootController.view];
+  self.window.rootViewController = _rootController;
 
   [self.window makeKeyAndVisible];
 
