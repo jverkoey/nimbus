@@ -16,12 +16,17 @@
 
 #import "CatalogViewController.h"
 
+// Attributed Label
 #import "BasicInstantiationAttributedLabelViewController.h"
 #import "CustomTextAttributedLabelViewController.h"
 #import "LinksAttributedLabelViewController.h"
 #import "DataTypesAttributedLabelViewController.h"
 #import "PerformanceAttributedLabelViewController.h"
 #import "InterfaceBuilderAttributedLabelViewController.h"
+
+// Badge
+#import "BasicInstantiationBadgeViewController.h"
+
 #import "NimbusModels.h"
 
 //
@@ -128,6 +133,14 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Interface Builder"
                                    subtitle:@"Using attributed labels in IB"]],
+
+     @"Badge",
+     [_actions attachNavigationAction:
+      NIPushControllerAction([BasicInstantiationBadgeViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
+                                   subtitle:@"How to create a simple NIBadgeView"]],
+
      nil];
 
     // When we create the model we must provide it with a delegate that implements the
