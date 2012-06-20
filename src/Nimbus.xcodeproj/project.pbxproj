@@ -647,13 +647,6 @@
 			remoteGlobalIDString = 66E1CDDE159161ED004DA4A2;
 			remoteInfo = NimbusBadge;
 		};
-		66E1CE1115916391004DA4A2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66E1CE0915916391004DA4A2 /* BasicBadge.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DB66B80613E96712003F89DA;
-			remoteInfo = BasicBadge;
-		};
 		DB3A231B13FD4B8E00614220 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66A03BFE13E6E84800B514F3 /* Project object */;
@@ -973,7 +966,6 @@
 		66E1CE0415916220004DA4A2 /* NIBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIBadgeView.m; path = badge/src/NIBadgeView.m; sourceTree = SOURCE_ROOT; };
 		66E1CE0515916220004DA4A2 /* NimbusBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusBadge.h; path = badge/src/NimbusBadge.h; sourceTree = SOURCE_ROOT; };
 		66E1CE071591622B004DA4A2 /* NimbusBadgeTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "NimbusBadgeTests-Info.plist"; path = "badge/unittests/NimbusBadgeTests-Info.plist"; sourceTree = SOURCE_ROOT; };
-		66E1CE0915916391004DA4A2 /* BasicBadge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BasicBadge.xcodeproj; path = ../examples/badge/BasicBadge/BasicBadge.xcodeproj; sourceTree = "<group>"; };
 		66E8CED114D089E500600592 /* NICommonMetricsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICommonMetricsTests.m; sourceTree = "<group>"; };
 		66E8CED514D08B9F00600592 /* lib.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = lib.xcconfig; path = resources/lib.xcconfig; sourceTree = "<group>"; };
 		66E8CED614D08BAE00600592 /* unittest.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = unittest.xcconfig; path = resources/unittest.xcconfig; sourceTree = "<group>"; };
@@ -1389,7 +1381,6 @@
 			isa = PBXGroup;
 			children = (
 				6693C106158A63E600950D42 /* NimbusCatalog.xcodeproj */,
-				66E1CE0915916391004DA4A2 /* BasicBadge.xcodeproj */,
 				664EFAE215598A07009826AB /* CSSDemo.xcodeproj */,
 				664EFAEC15598A27009826AB /* InterAppCatalog.xcodeproj */,
 				664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */,
@@ -2060,14 +2051,6 @@
 				661F28AB1591B03700D11FC3 /* unittests */,
 			);
 			path = NimbusBadge;
-			sourceTree = "<group>";
-		};
-		66E1CE0A15916391004DA4A2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				66E1CE1215916391004DA4A2 /* BasicBadge.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		66E8CED414D08B8000600592 /* Configs */ = {
@@ -2968,10 +2951,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 66E1CE0A15916391004DA4A2 /* Products */;
-					ProjectRef = 66E1CE0915916391004DA4A2 /* BasicBadge.xcodeproj */;
-				},
-				{
 					ProductGroup = 664EFAFB15598A40009826AB /* Products */;
 					ProjectRef = 664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */;
 				},
@@ -3095,13 +3074,6 @@
 			fileType = wrapper.application;
 			path = Nimbus.app;
 			remoteRef = 6693C14C158A648500950D42 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66E1CE1215916391004DA4A2 /* BasicBadge.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = BasicBadge.app;
-			remoteRef = 66E1CE1115916391004DA4A2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
