@@ -211,6 +211,21 @@
 }
 
 
+- (void)setChromeVisibility:(BOOL)isVisible animated:(BOOL)animated {
+  [super setChromeVisibility:isVisible animated:animated];
+
+  // TODO(jverkoey June 19, 2012): This is not the ideal way to do access the visible pages.
+  // Let's consider adding a new API for this.
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationCurve:NIStatusBarAnimationCurve()];
+  [UIView setAnimationDuration:NIStatusBarAnimationDuration()];
+  for (CaptionedPhotoView* captionedPageView in self.photoAlbumView.visiblePages) {
+    captionedPageView.captionWell.alpha = isVisible ? 1 : 0;
+  }
+  [UIView commitAnimations];
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -

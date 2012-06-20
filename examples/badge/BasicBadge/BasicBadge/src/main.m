@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011 Roger Chapman
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,15 +16,10 @@
 
 #import <UIKit/UIKit.h>
 
-/**
- * A subclass of NIPhotoScrollView that shows a caption beneath the picture.
- *
- * This class is purposefully lightweight and simply presents the caption without providing
- * any means of configuring the caption. This is left as an exercise to the developer.
- */
-@interface CaptionedPhotoView : NIPhotoScrollView
-
-@property (nonatomic, readwrite, copy) NSString* caption;
-@property (nonatomic, readwrite, retain) UIView* captionWell;
-
-@end
+int main(int argc, char *argv[]) {
+  int retVal = 0;
+  @autoreleasepool {
+    retVal = UIApplicationMain(argc, argv, nil, @"AppDelegate");
+  }
+  return retVal;
+}

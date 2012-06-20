@@ -52,9 +52,8 @@
   RootViewController* mainController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
   
   _rootController = [[UINavigationController alloc] initWithRootViewController:mainController];
-  
-  [self.window addSubview:_rootController.view];
-  
+  self.window.rootViewController = _rootController;
+
   [self.window makeKeyAndVisible];
   
   return YES;

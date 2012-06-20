@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011 Roger Chapman
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,8 +15,7 @@
 //
 
 #import "AppDelegate.h"
-
-#import "CatalogViewController.h"
+#import "RootViewController.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,10 +37,10 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   
-  CatalogViewController* catalogController = [[CatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];
-  UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:catalogController];
-  self.window.rootViewController = navController;
+  RootViewController* badgeController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
   
+  _rootController = [[UINavigationController alloc] initWithRootViewController:badgeController];
+  self.window.rootViewController = _rootController;
   [self.window makeKeyAndVisible];
 
   return YES;

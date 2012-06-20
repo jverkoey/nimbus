@@ -114,6 +114,18 @@ typedef enum {
         [alertView show];
         return YES;
       } toObject:[NITitleCellObject objectWithTitle:@"Button with alert"]],
+
+     @"NISliderFormElement",
+     [NISliderFormElement sliderElementWithID:0
+                                    labelText:@"Slider"
+                                        value:45
+                                 minimumValue:0
+                                 maximumValue:100],
+     [NISliderFormElement sliderElementWithID:0
+                                    labelText:@"Slider %.2f"
+                                        value:45
+                                 minimumValue:0
+                                 maximumValue:100],
      nil];
     
     self.radioGroup.selectedIdentifier = RadioOption1;
