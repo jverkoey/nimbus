@@ -1,0 +1,10 @@
+//
+// Prefix header for all source files of the 'BasicBadge' target in the 'BasicBadge' project
+//
+
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+  #import <UIKit/UIKit.h>
+  #import "NimbusCore+Additions.h"
+  #import "NimbusBadge.h"
+#endif
