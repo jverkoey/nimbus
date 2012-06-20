@@ -149,26 +149,26 @@ static const CGFloat kImageViewRightMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)sliderElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(float)value minimumValue:(float)minimumValue maximumValue:(float)maximumValue didChangeTarget:(id)target didChangeSelector:(SEL)selector {
-    NISliderFormElement* element = [super elementWithID:elementID];
-    element.labelText = labelText;
-    element.value = value;
-    element.minimumValue = minimumValue;
-    element.maximumValue = maximumValue;
-    element.didChangeTarget = target;
-    element.didChangeSelector = selector;
-    return element;
+  NISliderFormElement* element = [super elementWithID:elementID];
+  element.labelText = labelText;
+  element.value = value;
+  element.minimumValue = minimumValue;
+  element.maximumValue = maximumValue;
+  element.didChangeTarget = target;
+  element.didChangeSelector = selector;
+  return element;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)sliderElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(float)value minimumValue:(float)minimumValue maximumValue:(float)maximumValue {
-    return [self sliderElementWithID:elementID labelText:labelText value:value minimumValue:minimumValue maximumValue:maximumValue didChangeTarget:nil didChangeSelector:nil];
+  return [self sliderElementWithID:elementID labelText:labelText value:value minimumValue:minimumValue maximumValue:maximumValue didChangeTarget:nil didChangeSelector:nil];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)cellClass {
-    return [NISliderFormElementCell class];
+  return [NISliderFormElementCell class];
 }
 
 @end
@@ -366,7 +366,7 @@ static const CGFloat kImageViewRightMargin = 10;
     //[switchElement.didChangeTarget performSelector: switchElement.didChangeSelector
     //                                    withObject: _switchControl];
     
-    // The following is a workarround to supress the warning and requires <objc/message.h>
+    // The following is a workaround to supress the warning and requires <objc/message.h>
     objc_msgSend(switchElement.didChangeTarget, 
                  switchElement.didChangeSelector, _switchControl);
   }
@@ -384,87 +384,84 @@ static const CGFloat kImageViewRightMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-    NI_RELEASE_SAFELY(_sliderControl);
-
-    [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
+  if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        _sliderControl = [[UISlider alloc] init];
-        [_sliderControl addTarget:self action:@selector(sliderDidChangeValue) forControlEvents:UIControlEventValueChanged];
-        [self.contentView addSubview:_sliderControl];
-    }
-    return self;
+    _sliderControl = [[UISlider alloc] init];
+    [_sliderControl addTarget:self action:@selector(sliderDidChangeValue) forControlEvents:UIControlEventValueChanged];
+    [self.contentView addSubview:_sliderControl];
+  }
+  return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
-    [super layoutSubviews];
+  [super layoutSubviews];
 
-    UIEdgeInsets contentPadding = NICellContentPadding();
-    CGRect contentFrame = UIEdgeInsetsInsetRect(self.contentView.frame, contentPadding);
-    CGFloat labelWidth = contentFrame.size.width * 0.5;
+  UIEdgeInsets contentPadding = NICellContentPadding();
+  CGRect contentFrame = UIEdgeInsetsInsetRect(self.contentView.frame, contentPadding);
+  CGFloat labelWidth = contentFrame.size.width * 0.5;
 
-    CGRect frame = self.textLabel.frame;
-    frame.size.width = labelWidth;
-    self.textLabel.frame = frame;
+  CGRect frame = self.textLabel.frame;
+  frame.size.width = labelWidth;
+  self.textLabel.frame = frame;
 
-    static const CGFloat kSliderLeftMargin = 8;
-    [_sliderControl sizeToFit];
-    frame = _sliderControl.frame;
-    frame.origin.y = ceilf((self.contentView.frame.size.height - frame.size.height) / 2);
-    frame.origin.x = self.textLabel.frame.origin.x + self.textLabel.frame.size.width + kSliderLeftMargin;
-    frame.size.width = contentFrame.size.width - frame.origin.x;
-    _sliderControl.frame = frame;
+  static const CGFloat kSliderLeftMargin = 8;
+  [_sliderControl sizeToFit];
+  frame = _sliderControl.frame;
+  frame.origin.y = ceilf((self.contentView.frame.size.height - frame.size.height) / 2);
+  frame.origin.x = self.textLabel.frame.origin.x + self.textLabel.frame.size.width + kSliderLeftMargin;
+  frame.size.width = contentFrame.size.width - frame.origin.x;
+  _sliderControl.frame = frame;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prepareForReuse {
-    [super prepareForReuse];
+  [super prepareForReuse];
 
-    self.textLabel.text = nil;
+  self.textLabel.text = nil;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldUpdateCellWithObject:(id)object {
-    if ([super shouldUpdateCellWithObject:object]) {
-        NISliderFormElement* sliderElement = (NISliderFormElement *)self.element;
-        _sliderControl.minimumValue = sliderElement.minimumValue;
-        _sliderControl.maximumValue = sliderElement.maximumValue;
-        _sliderControl.value = sliderElement.value;
-        self.textLabel.text = [NSString stringWithFormat:sliderElement.labelText, sliderElement.value];
+  if ([super shouldUpdateCellWithObject:object]) {
+    NISliderFormElement* sliderElement = (NISliderFormElement *)self.element;
+    _sliderControl.minimumValue = sliderElement.minimumValue;
+    _sliderControl.maximumValue = sliderElement.maximumValue;
+    _sliderControl.value = sliderElement.value;
+    self.textLabel.text = [NSString stringWithFormat:sliderElement.labelText, sliderElement.value];
 
-        _sliderControl.tag = self.tag;
+    _sliderControl.tag = self.tag;
 
-        [self setNeedsLayout];
-        return YES;
-    }
-    return NO;
+    [self setNeedsLayout];
+    return YES;
+  }
+  return NO;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)sliderDidChangeValue {
-    NISliderFormElement* sliderElement = (NISliderFormElement *)self.element;
-    sliderElement.value = _sliderControl.value;
-    self.textLabel.text = [NSString stringWithFormat:sliderElement.labelText, sliderElement.value];
+  NISliderFormElement* sliderElement = (NISliderFormElement *)self.element;
+  sliderElement.value = _sliderControl.value;
+  self.textLabel.text = [NSString stringWithFormat:sliderElement.labelText, sliderElement.value];
 
-    [self setNeedsLayout];
+  if (nil != sliderElement.didChangeSelector && nil != sliderElement.didChangeTarget
+      && [sliderElement.didChangeTarget respondsToSelector:sliderElement.didChangeSelector]) {
 
-    if (nil != sliderElement.didChangeSelector && nil != sliderElement.didChangeTarget
-        && [sliderElement.didChangeTarget respondsToSelector:sliderElement.didChangeSelector]) {
-        [sliderElement.didChangeTarget performSelector: sliderElement.didChangeSelector
-                                            withObject: _sliderControl];
-    }
+    // This throws a warning a seclectors that the compiler do not know about cannot be
+    // memory managed by ARC
+    //[sliderElement.didChangeTarget performSelector:sliderElement.didChangeSelector
+    //                                    withObject:_sliderControl];
+
+    // The following is a workaround to supress the warning and requires <objc/message.h>
+    objc_msgSend(sliderElement.didChangeTarget, 
+                 sliderElement.didChangeSelector, _sliderControl);
+  }
 }
 
 @end
