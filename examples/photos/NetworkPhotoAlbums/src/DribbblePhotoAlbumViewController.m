@@ -24,16 +24,6 @@
 
 @synthesize apiPath = _apiPath;
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_photoInformation);
-  NI_RELEASE_SAFELY(_apiPath);
-
-  [super dealloc];
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWith:(id)object {
   if ((self = [self initWithNibName:nil bundle:nil])) {
@@ -41,7 +31,6 @@
   }
   return self;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadThumbnails {
@@ -69,7 +58,7 @@
   // returning the object to the main thread. This is useful here because we perform sorting
   // operations and pruning on the results.
   NSURL* url = [NSURL URLWithString:albumURLPath];
-  NINetworkRequestOperation* albumRequest = [[[NINetworkJSONRequest alloc] initWithURL:url] autorelease];
+  NINetworkRequestOperation* albumRequest = [[NINetworkJSONRequest alloc] initWithURL:url];
   albumRequest.timeout = 30;
 
   // When the request fully completes we'll be notified via this delegate on the main thread.
@@ -105,7 +94,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
-  NI_RELEASE_SAFELY(_photoInformation);
+  _photoInformation = nil;
 
   [super viewDidUnload];
 }
@@ -156,7 +145,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)nimbusOperationDidFinish:(NINetworkRequestOperation *)operation {
-  _photoInformation = [operation.processedObject retain];
+  _photoInformation = operation.processedObject;
 
   [self.photoAlbumView reloadData];
 

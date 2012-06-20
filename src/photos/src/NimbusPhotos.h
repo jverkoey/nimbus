@@ -70,6 +70,13 @@
  * functionality that is expected from a photo viewer. This includes: a toolbar with next and
  * previous arrows; auto-rotation support; and toggling the chrome.
  *
+ * <h3>NIPhotoAlbumScrollView</h3>
+ *
+ * NIPhotoAlbumScrollView is the meat of the Nimbus photo viewer's functionality. Contained
+ * within this view are pages of NIPhotoScrollView views. In your view controller you are
+ * expected to implement the NIPhotoAlbumScrollViewDataSource in order to provide the photo
+ * album view with the necessary information for presenting an album.
+ *
  *
  * <h2>Example Applications</h2>
  *
@@ -93,33 +100,6 @@
  * @image html photos-iphone-example1.png "Screenshot of a basic photo album on the iPhone."
  *
  * Image source: <a href="http://www.flickr.com/photos/janekm/360669001/">flickr.com/photos/janekm/360669001</a>
- */
-
-/**
- * The views used to display photos.
- *
- *      @defgroup Photos-Views Photo Views
- *
- * NIPhotoAlbumScrollView is the meat of the Nimbus photo viewer's functionality. Contained
- * within this view are pages of NIPhotoScrollView views. In your view controller you are
- * expected to implement the NIPhotoAlbumScrollViewDataSource in order to provide the photo
- * album view with the necessary information for presenting an album.
- */
-
-/**
- * The protocols used to interact with the photo views.
- *
- *      @defgroup Photos-Protocols Photo Protocols
- */
-
-/**
- * Basic photo album view controller implementations.
- *
- *      @defgroup Photos-Controllers Photo View Controllers
- *
- * The view controllers provided here are not meant to be fully functional view controllers
- * on their own. It's up to you to build the data source, whether that be from disk or from
- * a network API.
  */
 
 /**@}*/

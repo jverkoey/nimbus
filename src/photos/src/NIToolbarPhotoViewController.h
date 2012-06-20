@@ -25,7 +25,7 @@
 /**
  * A simple photo album view controller implementation with a toolbar.
  *
- *      @ingroup Photos-Controllers
+ *      @ingroup NimbusPhotos
  *
  * This controller does not implement the photo album data source, it simply implements
  * some of the most common UI elements that are associated with a photo viewer.

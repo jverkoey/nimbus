@@ -177,9 +177,6 @@
 #ifndef gActiveParser
 #define gActiveParser __NIMBUS_NS_SYMBOL(gActiveParser)
 #endif
-#ifndef NIStylesheetDidChangeNotification
-#define NIStylesheetDidChangeNotification __NIMBUS_NS_SYMBOL(NIStylesheetDidChangeNotification)
-#endif
 #ifndef cssin
 #define cssin __NIMBUS_NS_SYMBOL(cssin)
 #endif
@@ -188,5 +185,8 @@
 #endif
 #ifndef css_flex_debug
 #define css_flex_debug __NIMBUS_NS_SYMBOL(css_flex_debug)
+#endif
+#ifndef NIStylesheetDidChangeNotification
+#define NIStylesheetDidChangeNotification __NIMBUS_NS_SYMBOL(NIStylesheetDidChangeNotification)
 #endif
 #endif

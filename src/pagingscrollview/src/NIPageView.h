@@ -25,15 +25,9 @@
  *
  *      @ingroup NimbusPagingScrollView
  */
-@interface NIPageView : UIView <NIPagingScrollViewPage> {
-@private
-  NSInteger _pageIndex;
-  NSString* _reuseIdentifier;
-}
-
+@interface NIPageView : UIView <NIPagingScrollViewPage>
 @property (nonatomic, readwrite, assign) NSInteger pageIndex;
 @property (nonatomic, readwrite, copy) NSString* reuseIdentifier;
-
 @end
 
 /**

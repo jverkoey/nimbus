@@ -63,8 +63,8 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
   // Cached Data Source Information
   NSInteger _numberOfPages;
 
-  id<NIPagingScrollViewDataSource> _dataSource;
-  id<NIPagingScrollViewDelegate> _delegate;
+  __unsafe_unretained id<NIPagingScrollViewDataSource> _dataSource;
+  __unsafe_unretained id<NIPagingScrollViewDelegate> _delegate;
 }
 
 #pragma mark Data Source

@@ -33,7 +33,7 @@ NSString* NIPathForDocumentsResource(NSString* relativePath) {
     NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                         NSUserDomainMask,
                                                         YES);
-    documentsPath = [[dirs objectAtIndex:0] retain];
+    documentsPath = [dirs objectAtIndex:0];
   }
   return [documentsPath stringByAppendingPathComponent:relativePath];
 }
@@ -46,7 +46,7 @@ NSString* NIPathForCachesResource(NSString* relativePath) {
     NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
                                                         NSUserDomainMask,
                                                         YES);
-    cachesPath = [[dirs objectAtIndex:0] retain];
+    cachesPath = [dirs objectAtIndex:0];
   }
   return [cachesPath stringByAppendingPathComponent:relativePath];
 }

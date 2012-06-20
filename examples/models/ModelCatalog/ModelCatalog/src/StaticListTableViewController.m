@@ -30,16 +30,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  // The model is a retained object in this controller, so we must release it when the controller
-  // is deallocated.
-  [_model release]; _model = nil;
-  
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = NSLocalizedString(@"List Model", @"Controller Title: List Model");
@@ -47,9 +37,9 @@
     // Each of the cell objects below is mapped to the NITextCell class.
     NSArray* tableContents =
     [NSArray arrayWithObjects:
-     [NITitleCellObject cellWithTitle:@"Row 1"],
-     [NITitleCellObject cellWithTitle:@"Row 2"],
-     [NISubtitleCellObject cellWithTitle:@"Row 3" subtitle:@"Subtitle"],
+     [NITitleCellObject objectWithTitle:@"Row 1"],
+     [NITitleCellObject objectWithTitle:@"Row 2"],
+     [NISubtitleCellObject objectWithTitle:@"Row 3" subtitle:@"Subtitle"],
      nil];
 
     // We use NICellFactory to create the cell views.

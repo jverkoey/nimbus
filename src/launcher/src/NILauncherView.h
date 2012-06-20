@@ -30,7 +30,7 @@ extern const NSInteger NILauncherViewDynamic;
 /**
  * A launcher view that simulates iOS' home screen launcher functionality.
  *
- *      @ingroup Launcher-User-Interface
+ *      @ingroup NimbusLauncher
  *
  *      @todo Implement tap-and-hold editing for the launcher button ordering. The Three20
  *            implementation can likely be learned from to implement this, though it's possible that
@@ -58,8 +58,8 @@ extern const NSInteger NILauncherViewDynamic;
   NSMutableArray* _pagesOfScrollViews;  // NSArray< UIScrollView *>
 
   // Protocols
-  id<NILauncherDelegate>    _delegate;
-  id<NILauncherDataSource>  _dataSource;
+  __unsafe_unretained id<NILauncherDelegate>    _delegate;
+  __unsafe_unretained id<NILauncherDataSource>  _dataSource;
 }
 
 #pragma mark Configurable Properties
@@ -87,7 +87,7 @@ extern const NSInteger NILauncherViewDynamic;
 /**
  * The launcher delegate used to inform of state changes and user interactions.
  *
- * @ingroup Launcher-Protocols
+ * @ingroup NimbusLauncher
  */
 @protocol NILauncherDelegate <NSObject>
 
@@ -107,7 +107,7 @@ extern const NSInteger NILauncherViewDynamic;
 /**
  * The launcher data source used to populate the view.
  *
- * @ingroup Launcher-Protocols
+ * @ingroup NimbusLauncher
  */
 @protocol NILauncherDataSource <NSObject>
 

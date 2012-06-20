@@ -32,14 +32,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_objectToCellMap);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
   if ((self = [super init])) {
     _objectToCellMap = [[NSMutableDictionary alloc] init];
@@ -63,7 +55,7 @@
     if ([object respondsToSelector:@selector(cellStyle)]) {
       style = [object cellStyle];
     }
-    cell = [[[cellClass alloc] initWithStyle:style reuseIdentifier:identifier] autorelease];
+    cell = [[cellClass alloc] initWithStyle:style reuseIdentifier:identifier];
   }
 
   // Allow the cell to configure itself with the object's information.
@@ -81,6 +73,11 @@
                         atIndexPath:(NSIndexPath *)indexPath
                          withObject:(id)object {
   UITableViewCell* cell = nil;
+
+  // If this assertion fires then your app is about to crash. You need to either add an explicit
+  // binding in a NICellFactory object or implement the NICellObject protocol on this object and
+  // return a cell class.
+  NIDASSERT([object respondsToSelector:@selector(cellClass)]);
 
   // Only NICellObject-conformant objects may pass.
   if ([object respondsToSelector:@selector(cellClass)]) {
@@ -118,7 +115,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)mapObjectClass:(Class)objectClass toCellClass:(Class)cellClass {
-  [self.objectToCellMap setObject:cellClass forKey:objectClass];
+  [self.objectToCellMap setObject:cellClass forKey:(id<NSCopying>)objectClass];
 }
 
 
@@ -144,18 +141,10 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_userInfo);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCellClass:(Class)cellClass userInfo:(id)userInfo {
   if ((self = [super init])) {
     _cellClass = cellClass;
-    _userInfo = [userInfo retain];
+    _userInfo = userInfo;
   }
   return self;
 }
@@ -169,13 +158,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)objectWithCellClass:(Class)cellClass userInfo:(id)userInfo {
-  return [[[self alloc] initWithCellClass:cellClass userInfo:userInfo] autorelease];
+  return [[self alloc] initWithCellClass:cellClass userInfo:userInfo];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)objectWithCellClass:(Class)cellClass {
-  return [[[self alloc] initWithCellClass:cellClass userInfo:nil] autorelease];
+  return [[self alloc] initWithCellClass:cellClass userInfo:nil];
 }
 
 

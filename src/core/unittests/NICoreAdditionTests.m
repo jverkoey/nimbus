@@ -47,8 +47,6 @@
 
   STAssertTrue([[data md5Hash] isEqualToString:@"0e78d66f33c484a3c3b36d69bd3114cf"],
                @"MD5 hashes don't match.");
-
-  NI_RELEASE_SAFELY(data);
 }
 
 
@@ -59,8 +57,6 @@
 
   STAssertTrue([[data sha1Hash] isEqualToString:@"c1b42d95fd18ad8a56d4fd7bbb4105952620d857"],
                @"SHA1 hashes don't match.");
-
-  NI_RELEASE_SAFELY(data);
 }
 
 
@@ -82,13 +78,13 @@
   STAssertTrue([@"\r" isWhitespaceAndNewlines], @"Carriage return character should be whitespace.");
 
   // Unicode whitespace
-  for (int unicode = 0x000A; unicode <= 0x000D; ++unicode) {
+  for (unsigned short unicode = 0x000A; unicode <= 0x000D; ++unicode) {
     NSString* str = [NSString stringWithFormat:@"%C", unicode];
     STAssertTrue([str isWhitespaceAndNewlines],
                  @"Unicode string #%X should be whitespace.", unicode);
   }
 
-  NSString* str = [NSString stringWithFormat:@"%C", 0x0085];
+  NSString* str = [NSString stringWithFormat:@"%C", (unsigned short)0x0085];
   STAssertTrue([str isWhitespaceAndNewlines], @"Unicode string should be whitespace.");
 
   STAssertTrue([@" \t\r\n" isWhitespaceAndNewlines], @"Empty string should be whitespace.");
@@ -239,8 +235,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testCenterWithin {
-  UIView *containerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)] autorelease];
-  UIView *subview = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)] autorelease];
+  UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+  UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
   
   [subview centerWithin:containerView];
   

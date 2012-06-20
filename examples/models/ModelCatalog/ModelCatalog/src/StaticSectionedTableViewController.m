@@ -28,17 +28,6 @@
 
 @synthesize model = _model;
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  // The model is a retained object in this controller, so we must release it when the controller
-  // is deallocated.
-  [_model release]; _model = nil;
-
-  [super dealloc];
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
@@ -50,28 +39,28 @@
      [NITableViewModelFooter footerWithTitle:@"Footer only"],
      
      // This as well.
-     [NITitleCellObject cellWithTitle:@"Row only"],
+     [NITitleCellObject objectWithTitle:@"Row only"],
      
      // In practice most of your models will use some form of the following groups:
      
      @"Section with header + rows + footer",
-     [NITitleCellObject cellWithTitle:@"Row"],
-     [NITitleCellObject cellWithTitle:@"Row"],
-     [NITitleCellObject cellWithTitle:@"Row"],
+     [NITitleCellObject objectWithTitle:@"Row"],
+     [NITitleCellObject objectWithTitle:@"Row"],
+     [NITitleCellObject objectWithTitle:@"Row"],
      [NITableViewModelFooter footerWithTitle:@"Footer"],
      
      @"Header + row",
-     [NITitleCellObject cellWithTitle:@"Row"],
+     [NITitleCellObject objectWithTitle:@"Row"],
      
      @"Header only",
      
      @"",
-     [NITitleCellObject cellWithTitle:@"Rows only"],
-     [NITitleCellObject cellWithTitle:@"Rows only"],
+     [NITitleCellObject objectWithTitle:@"Rows only"],
+     [NITitleCellObject objectWithTitle:@"Rows only"],
      
      @"",
-     [NITitleCellObject cellWithTitle:@"Row"],
-     [NITitleCellObject cellWithTitle:@"Row"],
+     [NITitleCellObject objectWithTitle:@"Row"],
+     [NITitleCellObject objectWithTitle:@"Row"],
      [NITableViewModelFooter footerWithTitle:@"Footer"],
      
      [NITableViewModelFooter footerWithTitle:@"Footer only"],

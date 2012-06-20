@@ -3,13 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		663BF623158734040066B814 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF61C158734040066B814 /* Icon-72.png */; };
+		663BF624158734040066B814 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF61D158734040066B814 /* Icon-Small-50.png */; };
+		663BF625158734040066B814 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF61E158734040066B814 /* Icon-Small.png */; };
+		663BF626158734040066B814 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF61F158734040066B814 /* Icon-Small@2x.png */; };
+		663BF627158734040066B814 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF620158734040066B814 /* Icon.png */; };
+		663BF628158734040066B814 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF621158734040066B814 /* Icon@2x.png */; };
 		665E079E13C6BD47008A1D21 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E078013C6BD47008A1D21 /* NIDataStructures.m */; };
 		665E079F13C6BD47008A1D21 /* NIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E078213C6BD47008A1D21 /* NIDebuggingTools.m */; };
 		665E07A013C6BD47008A1D21 /* NIDeviceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E078413C6BD47008A1D21 /* NIDeviceOrientation.m */; };
@@ -43,6 +49,12 @@
 		1D6058910D05DD3D006BFB54 /* BasicNetworkImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicNetworkImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		663BF61C158734040066B814 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		663BF61D158734040066B814 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		663BF61E158734040066B814 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		663BF61F158734040066B814 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		663BF620158734040066B814 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		663BF621158734040066B814 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		665E077E13C6BD47008A1D21 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = ../../../src/core/src/NIBlocks.h; sourceTree = SOURCE_ROOT; };
 		665E077F13C6BD47008A1D21 /* NIDataStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDataStructures.h; path = ../../../src/core/src/NIDataStructures.h; sourceTree = SOURCE_ROOT; };
 		665E078013C6BD47008A1D21 /* NIDataStructures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDataStructures.m; path = ../../../src/core/src/NIDataStructures.m; sourceTree = SOURCE_ROOT; };
@@ -83,7 +95,7 @@
 		66EA05A213C01297004FFE1A /* BasicNetworkImage-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "BasicNetworkImage-Info.plist"; path = "resources/BasicNetworkImage-Info.plist"; sourceTree = "<group>"; };
 		66EA05DD13C01BE6004FFE1A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = src/RootViewController.h; sourceTree = "<group>"; };
 		66EA05DE13C01BE6004FFE1A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = src/RootViewController.m; sourceTree = "<group>"; };
-		66EA06A213C01D10004FFE1A /* NINetworkImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; name = NINetworkImageRequest.h; path = ../../../src/networkimage/src/NINetworkImageRequest.h; sourceTree = SOURCE_ROOT; };
+		66EA06A213C01D10004FFE1A /* NINetworkImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkImageRequest.h; path = ../../../src/networkimage/src/NINetworkImageRequest.h; sourceTree = SOURCE_ROOT; };
 		66EA06A313C01D10004FFE1A /* NINetworkImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkImageRequest.m; path = ../../../src/networkimage/src/NINetworkImageRequest.m; sourceTree = SOURCE_ROOT; };
 		66EA06A413C01D10004FFE1A /* NimbusNetworkImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusNetworkImage.h; path = ../../../src/networkimage/src/NimbusNetworkImage.h; sourceTree = SOURCE_ROOT; };
 		66EA06A513C01D10004FFE1A /* NINetworkImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkImageView.h; path = ../../../src/networkimage/src/NINetworkImageView.h; sourceTree = SOURCE_ROOT; };
@@ -127,7 +139,10 @@
 			children = (
 				66EA0F1D13C20BFD004FFE1A /* README.mdown */,
 				66EA058213C011D6004FFE1A /* BasicNetworkImage_Prefix.pch */,
-				66EA057A13C011C0004FFE1A /* Source */,
+				66EA058013C011D6004FFE1A /* AppDelegate.h */,
+				66EA058113C011D6004FFE1A /* AppDelegate.m */,
+				66EA058713C011EC004FFE1A /* main.m */,
+				66EA05DC13C01BD8004FFE1A /* Controllers */,
 				66EA058E13C0126F004FFE1A /* Nimbus */,
 				66EA059D13C0128E004FFE1A /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -148,6 +163,20 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		663BF622158734040066B814 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				663BF61C158734040066B814 /* Icon-72.png */,
+				663BF61D158734040066B814 /* Icon-Small-50.png */,
+				663BF61E158734040066B814 /* Icon-Small.png */,
+				663BF61F158734040066B814 /* Icon-Small@2x.png */,
+				663BF620158734040066B814 /* Icon.png */,
+				663BF621158734040066B814 /* Icon@2x.png */,
+			);
+			name = Resources;
+			path = ../../../src/resources;
 			sourceTree = "<group>";
 		};
 		665E077113C6BD2D008A1D21 /* Core */ = {
@@ -190,20 +219,10 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
-		66EA057A13C011C0004FFE1A /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				66EA05DC13C01BD8004FFE1A /* Controllers */,
-				66EA058013C011D6004FFE1A /* AppDelegate.h */,
-				66EA058113C011D6004FFE1A /* AppDelegate.m */,
-				66EA058713C011EC004FFE1A /* main.m */,
-			);
-			name = Source;
-			sourceTree = "<group>";
-		};
 		66EA058E13C0126F004FFE1A /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
+				663BF622158734040066B814 /* Resources */,
 				665E077113C6BD2D008A1D21 /* Core */,
 				66EA06A013C01CFD004FFE1A /* Network Image */,
 			);
@@ -265,8 +284,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BasicNetworkImage" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -291,6 +313,12 @@
 			files = (
 				66EA070C13C01F2F004FFE1A /* nimbus64x64.png in Resources */,
 				66EA0F1E13C20BFD004FFE1A /* README.mdown in Resources */,
+				663BF623158734040066B814 /* Icon-72.png in Resources */,
+				663BF624158734040066B814 /* Icon-Small-50.png in Resources */,
+				663BF625158734040066B814 /* Icon-Small.png in Resources */,
+				663BF626158734040066B814 /* Icon-Small@2x.png in Resources */,
+				663BF627158734040066B814 /* Icon.png in Resources */,
+				663BF628158734040066B814 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,12 +387,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -374,13 +402,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

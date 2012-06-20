@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		6601D8E713FC7BB500B884DC /* NIFormCellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6601D8E613FC7BB500B884DC /* NIFormCellCatalog.m */; };
 		6601D8EA13FC87BA00B884DC /* NICellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6601D8E913FC87BA00B884DC /* NICellFactory.m */; };
+		663BF5631587304F0066B814 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF55D1587304F0066B814 /* Icon-72.png */; };
+		663BF5641587304F0066B814 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF55E1587304F0066B814 /* Icon-Small-50.png */; };
+		663BF5651587304F0066B814 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF55F1587304F0066B814 /* Icon-Small.png */; };
+		663BF5661587304F0066B814 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5601587304F0066B814 /* Icon-Small@2x.png */; };
+		663BF5671587304F0066B814 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5611587304F0066B814 /* Icon.png */; };
+		663BF5681587304F0066B814 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5621587304F0066B814 /* Icon@2x.png */; };
+		663BF56F1587318A0066B814 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF56D1587318A0066B814 /* Default.png */; };
+		663BF5701587318A0066B814 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF56E1587318A0066B814 /* Default@2x.png */; };
 		66688683156AD3D2006E874F /* NICellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 66688682156AD3D2006E874F /* NICellCatalog.m */; };
 		6668868C156AEBC7006E874F /* NIRadioGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6668868B156AEBC7006E874F /* NIRadioGroup.m */; };
 		666C0D6213FC5A9D00C6E955 /* StaticIndexedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666C0D6113FC5A9D00C6E955 /* StaticIndexedTableViewController.m */; };
@@ -49,6 +57,14 @@
 		6601D8E613FC7BB500B884DC /* NIFormCellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIFormCellCatalog.m; path = ../../../../src/models/src/NIFormCellCatalog.m; sourceTree = "<group>"; };
 		6601D8E813FC87B900B884DC /* NICellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICellFactory.h; path = ../../../../src/models/src/NICellFactory.h; sourceTree = "<group>"; };
 		6601D8E913FC87BA00B884DC /* NICellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICellFactory.m; path = ../../../../src/models/src/NICellFactory.m; sourceTree = "<group>"; };
+		663BF55D1587304F0066B814 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		663BF55E1587304F0066B814 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		663BF55F1587304F0066B814 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		663BF5601587304F0066B814 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		663BF5611587304F0066B814 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		663BF5621587304F0066B814 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		663BF56D1587318A0066B814 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		663BF56E1587318A0066B814 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		66688681156AD3D2006E874F /* NICellCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICellCatalog.h; path = ../../../../src/models/src/NICellCatalog.h; sourceTree = "<group>"; };
 		66688682156AD3D2006E874F /* NICellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICellCatalog.m; path = ../../../../src/models/src/NICellCatalog.m; sourceTree = "<group>"; };
 		66688685156AD3E0006E874F /* NITableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NITableViewModel+Private.h"; path = "../../../../src/models/src/NITableViewModel+Private.h"; sourceTree = "<group>"; };
@@ -134,6 +150,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		663BF55B158730470066B814 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				663BF56D1587318A0066B814 /* Default.png */,
+				663BF56E1587318A0066B814 /* Default@2x.png */,
+				663BF55D1587304F0066B814 /* Icon-72.png */,
+				663BF55E1587304F0066B814 /* Icon-Small-50.png */,
+				663BF55F1587304F0066B814 /* Icon-Small.png */,
+				663BF5601587304F0066B814 /* Icon-Small@2x.png */,
+				663BF5611587304F0066B814 /* Icon.png */,
+				663BF5621587304F0066B814 /* Icon@2x.png */,
+			);
+			name = Resources;
+			path = ../../../../src/resources;
+			sourceTree = "<group>";
+		};
 		666C0D5E13FC5A6A00C6E955 /* Static Indexed Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +308,7 @@
 		66FE7D9B13FBF0350061B987 /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
+				663BF55B158730470066B814 /* Resources */,
 				668DA80913FD980A0000DBF6 /* Core */,
 				66FE7DD413FBF04E0061B987 /* Models */,
 			);
@@ -386,6 +419,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				66FE7D8913FB90C40061B987 /* ModelCatalog_Prefix.pch in Resources */,
+				663BF5631587304F0066B814 /* Icon-72.png in Resources */,
+				663BF5641587304F0066B814 /* Icon-Small-50.png in Resources */,
+				663BF5651587304F0066B814 /* Icon-Small.png in Resources */,
+				663BF5661587304F0066B814 /* Icon-Small@2x.png in Resources */,
+				663BF5671587304F0066B814 /* Icon.png in Resources */,
+				663BF5681587304F0066B814 /* Icon@2x.png in Resources */,
+				663BF56F1587318A0066B814 /* Default.png in Resources */,
+				663BF5701587318A0066B814 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +478,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -455,6 +497,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;

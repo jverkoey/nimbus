@@ -28,7 +28,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 @property (nonatomic, readonly, retain) NSMutableSet* objectSet;
 @property (nonatomic, readonly, retain) NSMutableArray* objectOrder;
 @property (nonatomic, readwrite, assign) BOOL hasSelection;
-@property (nonatomic, readonly, retain) NSMutableArray* forwardDelegates;
+@property (nonatomic, readonly, retain) NSMutableSet* forwardDelegates;
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,26 +50,13 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_objectMap release];
-  [_objectSet release];
-  [_objectOrder release];
-  [_cellTitle release];
-  [_controllerTitle release];
-  [_forwardDelegates release];
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithController:(UIViewController *)controller {
   if ((self = [super init])) {
     _controller = controller;
     _objectMap = [[NSMutableDictionary alloc] init];
     _objectSet = [[NSMutableSet alloc] init];
     _objectOrder = [[NSMutableArray alloc] init];
-    _forwardDelegates = NICreateNonRetainingMutableArray();
+    _forwardDelegates = NICreateNonRetainingMutableSet();
 
     _tableViewCellSelectionStyle = UITableViewCellSelectionStyleBlue;
   }
@@ -168,22 +155,23 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)mapObject:(id)object toIdentifier:(NSInteger)identifier {
+- (id)mapObject:(id)object toIdentifier:(NSInteger)identifier {
   NIDASSERT(nil != object);
   NIDASSERT(identifier != kInvalidSelection);
   NIDASSERT(![self isObjectInRadioGroup:object]);
   if (nil == object) {
-    return;
+    return nil;
   }
   if (kInvalidSelection == identifier) {
-    return;
+    return nil;
   }
   if ([self isObjectInRadioGroup:object]) {
-    return;
+    return nil;
   }
   [self.objectMap setObject:object forKey:[self keyForIdentifier:identifier]];
   [self.objectSet addObject:object];
   [self.objectOrder addObject:object];
+  return object;
 }
 
 
@@ -254,7 +242,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)allObjects {
-  return [[self.objectOrder copy] autorelease];
+  return [self.objectOrder copy];
 }
 
 
@@ -297,8 +285,14 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
       // You must provide a controller in the initWithController: initializer.
       NIDASSERT(nil != self.controller);
 
-      NIRadioGroupController* controller = [[[NIRadioGroupController alloc] initWithRadioGroup:self tappedCell:(id<NICell>)[tableView cellForRowAtIndexPath:indexPath]] autorelease];
+      NIRadioGroupController* controller = [[NIRadioGroupController alloc] initWithRadioGroup:self tappedCell:(id<NICell>)[tableView cellForRowAtIndexPath:indexPath]];
       controller.title = self.controllerTitle;
+
+      // Notify the delegate that the controller is about to appear.
+      if ([self.delegate respondsToSelector:@selector(radioGroup:radioGroupController:willAppear:)]) {
+        [self.delegate radioGroup:self radioGroupController:controller willAppear:YES];
+      }
+
       [self.controller.navigationController pushViewController:controller animated:YES];
 
     } else if ([self isObjectInRadioGroup:object]) {

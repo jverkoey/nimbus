@@ -20,6 +20,8 @@
 
 #import "NIOverviewGraphView.h"
 
+@class NIMemoryCache;
+
 /**
  * A page in the Overview.
  *
@@ -163,6 +165,22 @@
   UILabel* _infoLogLevelLabel;
 }
 
+@end
+
+
+/**
+ * A page that shows information regarding an in-memory cache.
+ *
+ *      @ingroup Overview-Pages
+ */
+@interface NIOverviewMemoryCachePageView : NIOverviewGraphPageView
+
+/**
+ * Returns an autoreleased instance of this page with the given cache.
+ */
++ (id)pageWithCache:(NIMemoryCache *)cache;
+
+@property (nonatomic, readwrite, retain) NIMemoryCache* cache;
 @end
 
 #endif

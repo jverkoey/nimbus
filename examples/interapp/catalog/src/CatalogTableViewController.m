@@ -15,6 +15,7 @@
 //
 
 #import "CatalogTableViewController.h"
+#import <objc/message.h>
 
 typedef BOOL (^BasicBlockReturnBool)(void);
 
@@ -26,17 +27,13 @@ typedef BOOL (^BasicBlockReturnBool)(void);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cleanupDocController {
-  NI_RELEASE_SAFELY(_docController);
   [[NSFileManager defaultManager] removeItemAtURL:_fileUrl error:nil];
-  NI_RELEASE_SAFELY(_fileUrl);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [self cleanupDocController];
-
-  [super dealloc];
 }
 
 
@@ -98,103 +95,102 @@ typedef BOOL (^BasicBlockReturnBool)(void);
     rows = [NSArray arrayWithObjects:
             @"Generic",
             [NSDictionary dictionaryWithObjectsAndKeys: @"URL in Safari", @"title",
-             [^{ return [NIInterapp safariWithURL:[NSURL URLWithString:@"http://jverkoey.github.com/nimbus"]];} autorelease], @"block", nil],
+             ^{ return [NIInterapp safariWithURL:[NSURL URLWithString:@"http://jverkoey.github.com/nimbus"]];}, @"block", nil],
 
             @"Google Maps",
             [NSDictionary dictionaryWithObjectsAndKeys: @"Location", @"title",
-             [^{ return [NIInterapp googleMapAtLocation:CLLocationCoordinate2DMake(37.37165, -121.97877)];} autorelease], @"block", nil],
+             ^{ return [NIInterapp googleMapAtLocation:CLLocationCoordinate2DMake(37.37165, -121.97877)];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"Location with title", @"title",
-             [^{ return [NIInterapp googleMapAtLocation:CLLocationCoordinate2DMake(37.37165, -121.97877)
-                                                title:@"Trampoline Dodgeball"];} autorelease], @"block", nil],
+             ^{ return [NIInterapp googleMapAtLocation:CLLocationCoordinate2DMake(37.37165, -121.97877)
+                                                title:@"Trampoline Dodgeball"];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"Directions", @"title",
-             [^{ return [NIInterapp googleMapDirectionsFromLocation:CLLocationCoordinate2DMake(37.6139, -122.4871)
-                                                       toLocation:CLLocationCoordinate2DMake(36.6039, -121.9116)];} autorelease], @"block", nil],
+             ^{ return [NIInterapp googleMapDirectionsFromLocation:CLLocationCoordinate2DMake(37.6139, -122.4871)
+                                                       toLocation:CLLocationCoordinate2DMake(36.6039, -121.9116)];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"Query for Boudin Bakeries", @"title",
-             [^{ return [NIInterapp googleMapWithQuery:@"Boudin Bakeries"];} autorelease], @"block", nil],
+             ^{ return [NIInterapp googleMapWithQuery:@"Boudin Bakeries"];}, @"block", nil],
 
             @"Phone",
             [NSDictionary dictionaryWithObjectsAndKeys: @"Open the app", @"title",
-             [^{ return [NIInterapp phone];} autorelease], @"block", nil],
+             ^{ return [NIInterapp phone];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"Call 123-456-7890", @"title",
-             [^{ return [NIInterapp phoneWithNumber:@"123-456-7890"];} autorelease], @"block", nil],
+             ^{ return [NIInterapp phoneWithNumber:@"123-456-7890"];}, @"block", nil],
 
             @"SMS",
             [NSDictionary dictionaryWithObjectsAndKeys: @"Open the app", @"title",
-             [^{ return [NIInterapp sms];} autorelease], @"block", nil],
+             ^{ return [NIInterapp sms];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"SMS 123-456-7890", @"title",
-             [^{ return [NIInterapp smsWithNumber:@"123-456-7890"];} autorelease], @"block", nil],
+             ^{ return [NIInterapp smsWithNumber:@"123-456-7890"];}, @"block", nil],
 
             @"Mail",
             [NSDictionary dictionaryWithObjectsAndKeys: @"Mail to jverkoey@gmail.com", @"title",
-             [^{ NIMailAppInvocation* invocation = [NIMailAppInvocation invocation];
+             ^{ NIMailAppInvocation* invocation = [NIMailAppInvocation invocation];
               invocation.recipient = @"jverkoey+nimbus@gmail.com";
-              return [NIInterapp mailWithInvocation:invocation];} autorelease], @"block", nil],
+              return [NIInterapp mailWithInvocation:invocation];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"Mail to jverkoey@gmail.com with a subject", @"title",
-             [^{ NIMailAppInvocation* invocation = [NIMailAppInvocation invocation];
+             ^{ NIMailAppInvocation* invocation = [NIMailAppInvocation invocation];
               invocation.recipient = @"jverkoey+nimbus@gmail.com";
               invocation.subject = @"Nimbus made me do it!";
-              return [NIInterapp mailWithInvocation:invocation];} autorelease], @"block", nil],
+              return [NIInterapp mailWithInvocation:invocation];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"Mail to jverkoey@gmail.com with all details", @"title",
-             [^{ NIMailAppInvocation* invocation = [NIMailAppInvocation invocation];
+             ^{ NIMailAppInvocation* invocation = [NIMailAppInvocation invocation];
               invocation.recipient = @"jverkoey+nimbus@gmail.com";
               invocation.subject = @"Nimbus made me do it!";
               invocation.bcc = @"jverkoey+bcc@gmail.com";
               invocation.cc = @"jverkoey+cc@gmail.com";
               invocation.body = @"This will be an awesome email.";
-              return [NIInterapp mailWithInvocation:invocation];} autorelease], @"block", nil],
+              return [NIInterapp mailWithInvocation:invocation];}, @"block", nil],
 
             @"YouTube",
             [NSDictionary dictionaryWithObjectsAndKeys: @"Ninja cat video", @"title",
-             [^{ return [NIInterapp youTubeWithVideoId:@"fzzjgBAaWZw"];} autorelease], @"block", nil],
+             ^{ return [NIInterapp youTubeWithVideoId:@"fzzjgBAaWZw"];}, @"block", nil],
 
             @"iBooks",
             [NSDictionary dictionaryWithObjectsAndKeys: @"Open the app", @"title",
-             [^{ return [NIInterapp iBooks];} autorelease], @"block", nil],
+             ^{ return [NIInterapp iBooks];}, @"block", nil],
 
             @"App Store",
             [NSDictionary dictionaryWithObjectsAndKeys: @"iBooks", @"title",
-             [^{ return [NIInterapp appStoreWithAppId:@"364709193"];} autorelease], @"block", nil],
+             ^{ return [NIInterapp appStoreWithAppId:@"364709193"];}, @"block", nil],
             
             @"Facebook",
             [NSDictionary dictionaryWithObjectsAndKeys: @"Open the app", @"title",
-             [^{ return [NIInterapp facebook];} autorelease], @"block", nil],
+             ^{ return [NIInterapp facebook];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"Jeff's profile page", @"title",
-             [^{ return [NIInterapp facebookProfileWithId:@"122605446"];} autorelease], @"block", nil],
+             ^{ return [NIInterapp facebookProfileWithId:@"122605446"];}, @"block", nil],
 
             @"Twitter",
             [NSDictionary dictionaryWithObjectsAndKeys: @"Open the app", @"title",
-             [^{ return [NIInterapp twitter];} autorelease], @"block", nil],
+             ^{ return [NIInterapp twitter];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"Post a tweet", @"title",
-             [^{ return [NIInterapp twitterWithMessage:@"I'm playing with the Nimbus sample apps! http://jverkoey.github.com/nimbus"];} autorelease], @"block", nil],
+             ^{ return [NIInterapp twitterWithMessage:@"I'm playing with the Nimbus sample apps! http://jverkoey.github.com/nimbus"];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"featherless", @"title",
-             [^{ return [NIInterapp twitterProfileForUsername:@"featherless"];} autorelease], @"block", nil],
+             ^{ return [NIInterapp twitterProfileForUsername:@"featherless"];}, @"block", nil],
 
             @"Instagram",
             [NSDictionary dictionaryWithObjectsAndKeys: @"Open the app", @"title",
-             [^{ return [NIInterapp instagram];} autorelease], @"block", nil],
+             ^{ return [NIInterapp instagram];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"Camera", @"title",
-             [^{ return [NIInterapp instagramCamera];} autorelease], @"block", nil],
+             ^{ return [NIInterapp instagramCamera];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"featherless", @"title",
-             [^{ return [NIInterapp instagramProfileForUsername:@"featherless"];} autorelease], @"block", nil],
+             ^{ return [NIInterapp instagramProfileForUsername:@"featherless"];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"Open local image in Instagram", @"title",
              [NSValue valueWithPointer:@selector(openInstagramImage:)], @"selector", nil],
             
             @"Custom Application",
             [NSDictionary dictionaryWithObjectsAndKeys: @"Open custom app (RAWR:)", @"title",
-             [^{ return [NIInterapp applicationWithScheme:@"RAWR:"];} autorelease], @"block", nil],
+             ^{ return [NIInterapp applicationWithScheme:@"RAWR:"];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"Custom app or AppStore", @"title",
-             [^{ return [NIInterapp applicationWithScheme:@"RAWR:"
-                                            andAppStoreId:@"000000000"];} autorelease], @"block", nil],
+             ^{ return [NIInterapp applicationWithScheme:@"RAWR:"
+                                            andAppStoreId:@"000000000"];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"Custom app with url", @"title",
-             [^{ return [NIInterapp applicationWithScheme:@"RAWR:" 
-                                                  andPath:@"//friends/blah"];} autorelease], @"block", nil],
+             ^{ return [NIInterapp applicationWithScheme:@"RAWR:" 
+                                                  andPath:@"//friends/blah"];}, @"block", nil],
             [NSDictionary dictionaryWithObjectsAndKeys: @"Custom app with url or AppStore", @"title",
-             [^{ return [NIInterapp applicationWithScheme:@"RAWR:" 
+             ^{ return [NIInterapp applicationWithScheme:@"RAWR:" 
                                                appStoreId:@"000000000" 
-                                                  andPath:@"//friends/blah"];} autorelease], @"block", nil],
+                                                  andPath:@"//friends/blah"];}, @"block", nil],
 
             nil];
-    [rows retain];
   }
   return rows;
 }
@@ -205,13 +201,11 @@ typedef BOOL (^BasicBlockReturnBool)(void);
   [self cleanupDocController];
 
   NSError* error = nil;
-  _fileUrl = [[NIInterapp urlForInstagramImageAtFilePath: NIPathForBundleResource(nil, @"dilly.jpg")
-                                                        error: &error]
-              retain];
+  _fileUrl = [NIInterapp urlForInstagramImageAtFilePath: NIPathForBundleResource(nil, @"dilly.jpg")
+                                                        error: &error];
   NIDASSERT(nil != _fileUrl);
   if (nil != _fileUrl) {
-    _docController = [[UIDocumentInteractionController interactionControllerWithURL:_fileUrl]
-                      retain];
+    _docController = [UIDocumentInteractionController interactionControllerWithURL:_fileUrl];
     _docController.delegate = self;
 
     UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
@@ -305,9 +299,8 @@ typedef BOOL (^BasicBlockReturnBool)(void);
   UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
   
   if (nil == cell) {
-    cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-                                   reuseIdentifier: @"row"]
-            autorelease];
+    cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
+                                   reuseIdentifier: @"row"];
     cell.accessoryType = UITableViewCellAccessoryNone;
   }
   
@@ -333,18 +326,18 @@ typedef BOOL (^BasicBlockReturnBool)(void);
   if (nil != block) {
     BOOL result = block();
     if (!result) {
-      UIAlertView* alert = [[[UIAlertView alloc] initWithTitle: @"We've givin' her all she's got, cap'n!"
+      UIAlertView* alert = [[UIAlertView alloc] initWithTitle: @"We've givin' her all she's got, cap'n!"
                                                        message: @"The app you tried to open does not appear to be installed on this device."
                                                       delegate: nil
                                              cancelButtonTitle: @"Oh well"
-                                             otherButtonTitles: nil]
-                            autorelease];
+                                             otherButtonTitles: nil];
       [alert show];
     }
 
   } else if (nil != [object objectForKey:@"selector"]) {
     SEL selector = (SEL)[[object objectForKey:@"selector"] pointerValue];
-    [self performSelector:selector withObject:indexPath];
+    // supress warning: PerformSelector may cause a leak because its selector is unknown
+    objc_msgSend(self, selector, indexPath);
   }
 }
 

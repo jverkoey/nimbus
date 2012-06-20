@@ -48,6 +48,11 @@
 - (void)addPageView:(NIOverviewPageView *)page;
 
 /**
+ * Removes a page from the Overview.
+ */
+- (void)removePageView:(NIOverviewPageView *)page;
+
+/**
  * Update all of the views.
  */
 - (void)updatePages;

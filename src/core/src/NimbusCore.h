@@ -47,6 +47,50 @@
  *
  * Great care must be taken to ensure that Nimbus doesn't become a framework composed of
  * hundreds of miniscule libraries.
+ * 
+ * <h2>Common autoresizing masks</h2>
+ * 
+ * Nimbus provides the following macros: UIViewAutoresizingFlexibleMargins,
+ * UIViewAutoresizingFlexibleDimensions, UIViewAutoresizingNavigationBar, and
+ * UIViewAutoresizingToolbarBar.
+ * 
+@code
+// Create a view that fills its superview's bounds.
+UIView* contentView = [[UIView alloc] initWithFrame:self.view.bounds];
+contentView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
+[self.view addSubview:contentView];
+
+// Create a view that is always centered in the superview's bounds.
+UIView* centeredView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+centeredView.autoresizingMask = UIViewAutoresizingFlexibleMargins;
+// Center the view within the superview however you choose.
+[self.view addSubview:centeredView];
+
+// Create a navigation bar that stays fixed to the top.
+UINavigationBar* navBar = [[UINavigationBar alloc] initWithFrame:CGRectZero];
+[navBar sizeToFit];
+navBar.autoresizingMask = UIViewAutoresizingNavigationBar;
+[self.view addSubview:navBar];
+
+// Create a toolbar that stays fixed to the bottom.
+UIToolbar* toolBar = [[UIToolbar alloc] initWithFrame:CGRectZero];
+[toolBar sizeToFit];
+toolBar.autoresizingMask = UIViewAutoresizingToolbarBar;
+[self.view addSubview:toolBar];
+@endcode
+ * 
+ * <h3>Why they exist</h3>
+ * 
+ * Using the existing UIViewAutoresizing flags can be tedious for common flags.
+ * 
+ * For example, to make a view have flexible margins you would need to write four flags:
+ * 
+@code
+view.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin
+                         | UIViewAutoresizingFlexibleTopMargin
+                         | UIViewAutoresizingFlexibleRightMargin
+                         | UIViewAutoresizingFlexibleBottomMargin);
+@endcode
  */
 
 #import <Foundation/Foundation.h>

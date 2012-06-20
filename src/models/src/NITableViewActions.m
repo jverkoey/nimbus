@@ -27,7 +27,7 @@
 
 @interface NITableViewActions()
 @property (nonatomic, readonly, assign) UIViewController* controller;
-@property (nonatomic, readonly, retain) NSMutableArray* forwardDelegates;
+@property (nonatomic, readonly, retain) NSMutableSet* forwardDelegates;
 @property (nonatomic, readonly, retain) NSMutableDictionary* objectMap;
 @property (nonatomic, readonly, retain) NSMutableSet* objectSet;
 @end
@@ -45,22 +45,12 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_forwardDelegates release];
-  [_objectMap release];
-  [_objectSet release];
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithController:(UIViewController *)controller {
   if ((self = [super init])) {
     _controller = controller;
     _objectMap = [[NSMutableDictionary alloc] init];
     _objectSet = [[NSMutableSet alloc] init];
-    _forwardDelegates = NICreateNonRetainingMutableArray();
+    _forwardDelegates = NICreateNonRetainingMutableSet();
     _tableViewCellSelectionStyle = UITableViewCellSelectionStyleBlue;
   }
   return self;
@@ -89,7 +79,7 @@
   id key = [self keyForObject:object];
   NITableViewAction* action = [self.objectMap objectForKey:key];
   if (nil == action) {
-    action = [[[NITableViewAction alloc] init] autorelease];
+    action = [[NITableViewAction alloc] init];
     [self.objectMap setObject:action forKey:key];
   }
   return action;
@@ -153,23 +143,26 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachTapAction:(NITableViewActionBlock)action toObject:(id)object {
+- (id)attachTapAction:(NITableViewActionBlock)action toObject:(id)object {
   [self.objectSet addObject:object];
   [self actionForObject:object].tapAction = action;
+  return object;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachDetailAction:(NITableViewActionBlock)action toObject:(id)object {
+- (id)attachDetailAction:(NITableViewActionBlock)action toObject:(id)object {
   [self.objectSet addObject:object];
   [self actionForObject:object].detailAction = action;
+  return object;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachNavigationAction:(NITableViewActionBlock)action toObject:(id)object {
+- (id)attachNavigationAction:(NITableViewActionBlock)action toObject:(id)object {
   [self.objectSet addObject:object];
   [self actionForObject:object].navigateAction = action;
+  return object;
 }
 
 
@@ -252,6 +245,31 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+  NIDASSERT([tableView.dataSource isKindOfClass:[NITableViewModel class]]);
+  if ([tableView.dataSource isKindOfClass:[NITableViewModel class]]) {
+    NITableViewModel* model = (NITableViewModel *)tableView.dataSource;
+    id object = [model objectAtIndexPath:indexPath];
+    
+    if ([self isObjectActionable:object]) {
+      NITableViewAction* action = [self actionForObject:object];
+
+      if (action.detailAction) {
+        action.detailAction(object, self.controller);
+      }
+    }
+  }
+
+  // Forward the invocation along.
+  for (id<UITableViewDelegate> delegate in self.forwardDelegates) {
+    if ([delegate respondsToSelector:_cmd]) {
+      [delegate tableView:tableView accessoryButtonTappedForRowWithIndexPath:indexPath];
+    }
+  }
+}
+
 @end
 
 
@@ -259,37 +277,25 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NITableViewAction
-
-@synthesize tapAction = _tapAction;
-@synthesize detailAction = _detailAction;
-@synthesize navigateAction = _navigateAction;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [_tapAction release];
-  [_detailAction release];
-  [_navigateAction release];
-  
-  [super dealloc];
-}
-
+@synthesize tapAction;
+@synthesize detailAction;
+@synthesize navigateAction;
 @end
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NITableViewActionBlock NIPushControllerAction(Class controllerClass) {
-  return [[^(id object, UIViewController* controller) {
+  return [^(id object, UIViewController* controller) {
     // You must initialize the actions object with initWithController: and pass a valid
     // controller.
     NIDASSERT(nil != controller);
 
     if (nil != controller) {
-      id nextController = [[[controllerClass alloc] init] autorelease];
+      id nextController = [[controllerClass alloc] init];
       [controller.navigationController pushViewController:nextController
                                                  animated:YES];
     }
 
     return NO;
-  } copy] autorelease];
+  } copy];
 }

@@ -23,31 +23,6 @@
 #import "NIPreprocessorMacros.h"
 #import "NINonRetainingCollections.h"
 
-
-#pragma mark -
-#pragma mark Unit Test Documentation
-
-/**
- * @fn NICreateNonRetainingMutableArray()
- *
- * - [test] Verify that the retain count of objects aren't modified when added to and removed from
- *   non-retaining arrays.
- */
-
-/**
- * @fn NICreateNonRetainingMutableDictionary()
- *
- * - [test] Verify that the retain count of objects aren't modified when added to and removed from
- *   non-retaining dictionaries.
- */
-
-/**
- * @fn NICreateNonRetainingMutableSet()
- *
- * - [test] Verify that the retain count of objects aren't modified when added to and removed from
- *   non-retaining sets.
- */
-
 @interface NINonRetainingCollectionsTests : SenTestCase {
 }
 
@@ -58,66 +33,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NINonRetainingCollectionsTests
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNonRetainingArray {
-  NSMutableArray* array = NICreateNonRetainingMutableArray();
-  id testObject = [[NSArray alloc] init];
-  NSUInteger initialRetainCount = [testObject retainCount];
-
-  STAssertTrue(initialRetainCount > 0, @"Improper initial retain count");
-
-  [array addObject:testObject];
-  STAssertEquals([testObject retainCount], initialRetainCount, @"Improper new retain count");
-
-  NI_RELEASE_SAFELY(array);
-
-  STAssertEquals([testObject retainCount], initialRetainCount,
-                 @"Improper retain count after release");
-
-  [testObject release];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNonRetainingDictionary {
-  NSMutableDictionary* dictionary = NICreateNonRetainingMutableDictionary();
-  id testObject = [[NSArray alloc] init];
-  NSUInteger initialRetainCount = [testObject retainCount];
-
-  STAssertTrue(initialRetainCount > 0, @"Improper initial retain count");
-
-  [dictionary setObject:testObject forKey:@"obj"];
-  STAssertEquals([testObject retainCount], initialRetainCount, @"Improper new retain count");
-
-  NI_RELEASE_SAFELY(dictionary);
-
-  STAssertEquals([testObject retainCount], initialRetainCount,
-                 @"Improper retain count after release");
-
-  [testObject release];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNonRetainingSet {
-  NSMutableSet* set = NICreateNonRetainingMutableSet();
-  id testObject = [[NSArray alloc] init];
-  NSUInteger initialRetainCount = [testObject retainCount];
-
-  STAssertTrue(initialRetainCount > 0, @"Improper initial retain count");
-
-  [set addObject:testObject];
-  STAssertEquals([testObject retainCount], initialRetainCount, @"Improper new retain count");
-
-  NI_RELEASE_SAFELY(set);
-
-  STAssertEquals([testObject retainCount], initialRetainCount,
-                 @"Improper retain count after release");
-
-  [testObject release];
-}
-
 
 @end

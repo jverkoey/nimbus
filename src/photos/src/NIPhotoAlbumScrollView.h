@@ -26,7 +26,7 @@
 /**
  * A paged scroll view that shows a collection of photos.
  *
- *      @ingroup Photos-Views
+ *      @ingroup NimbusPhotos
  *
  * This view provides a light-weight implementation of a photo viewer, complete with
  * pinch-to-zoom and swiping to change photos. It is designed to perform well with

@@ -27,14 +27,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_model);
-  
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:style])) {
     self.title = NSLocalizedString(@"Photo Album Catalog", @"");
@@ -133,9 +125,8 @@
   UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
 
   if (nil == cell) {
-    cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-                                   reuseIdentifier: @"row"]
-            autorelease];
+    cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
+                                   reuseIdentifier: @"row"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
 
@@ -158,7 +149,7 @@
   Class vcClass = [object objectForKey:@"class"];
   id initWith = [object objectForKey:@"initWith"];
   NSString* title = [object objectForKey:@"title"];
-  UIViewController* vc = [[[vcClass alloc] initWith:initWith] autorelease];
+  UIViewController* vc = [[vcClass alloc] initWith:initWith];
   vc.title = title;
 
   [self.navigationController pushViewController:vc animated:YES];

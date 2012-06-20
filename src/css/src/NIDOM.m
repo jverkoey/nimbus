@@ -27,18 +27,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_stylesheet);
-  NI_RELEASE_SAFELY(_registeredViews);
-  NI_RELEASE_SAFELY(_viewToSelectorsMap);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)domWithStylesheet:(NIStylesheet *)stylesheet {
-  return [[[self alloc] initWithStylesheet:stylesheet] autorelease];
+  return [[self alloc] initWithStylesheet:stylesheet];
 }
 
 
@@ -47,7 +37,7 @@
   va_list ap;
   va_start(ap, path);
 
-  NIStylesheet* compositeStylesheet = [[[NIStylesheet alloc] init] autorelease];
+  NIStylesheet* compositeStylesheet = [[NIStylesheet alloc] init];
 
   while (nil != path) {
     NIDASSERT([path isKindOfClass:[NSString class]]);
@@ -57,20 +47,19 @@
       if ([stylesheet loadFromPath:path pathPrefix:pathPrefix]) {
         [compositeStylesheet addStylesheet:stylesheet];
       }
-      NI_RELEASE_SAFELY(stylesheet);
     }
     path = va_arg(ap, NSString*);
   }
   va_end(ap);
 
-  return [[[self alloc] initWithStylesheet:compositeStylesheet] autorelease];
+  return [[self alloc] initWithStylesheet:compositeStylesheet];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStylesheet:(NIStylesheet *)stylesheet {
   if ((self = [super init])) {
-    _stylesheet = [stylesheet retain];
+    _stylesheet = stylesheet;
     _registeredViews = [[NSMutableSet alloc] init];
     _viewToSelectorsMap = [[NSMutableDictionary alloc] init];
   }
@@ -105,7 +94,7 @@
   id key = [self keyForView:view];
   NSMutableArray* selectors = [_viewToSelectorsMap objectForKey:key];
   if (nil == selectors) {
-    selectors = [[[NSMutableArray alloc] init] autorelease];
+    selectors = [[NSMutableArray alloc] init];
     [_viewToSelectorsMap setObject:selectors forKey:key];
   }
   [selectors addObject:selector];

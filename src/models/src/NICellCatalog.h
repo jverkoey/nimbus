@@ -26,9 +26,13 @@
  *      @ingroup TableCellCatalog
  */
 @interface NITitleCellObject : NICellObject
+// Designated initializer.
+- (id)initWithTitle:(NSString *)title image:(UIImage *)image;
 - (id)initWithTitle:(NSString *)title;
-+ (id)cellWithTitle:(NSString *)title;
++ (id)objectWithTitle:(NSString *)title image:(UIImage *)image;
++ (id)objectWithTitle:(NSString *)title;
 @property (nonatomic, readwrite, copy) NSString* title;
+@property (nonatomic, readwrite, retain) UIImage* image;
 @end
 
 /**
@@ -41,8 +45,10 @@
  *      @ingroup TableCellCatalog
  */
 @interface NISubtitleCellObject : NITitleCellObject
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
++ (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle;
-+ (id)cellWithTitle:(NSString *)title subtitle:(NSString *)subtitle;
++ (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle;
 @property (nonatomic, readwrite, copy) NSString* subtitle;
 @property (nonatomic, readwrite, assign) UITableViewCellStyle cellStyle;
 @end
@@ -59,9 +65,22 @@
 @end
 
 /**
+ * Initializes the NICellObject with NITextCell as the cell class and the given title text and image.
+ *
+ *      @fn NITitleCellObject::initWithTitle:image:
+ */
+
+/**
  * Initializes the NICellObject with NITextCell as the cell class and the given title text.
  *
  *      @fn NITitleCellObject::initWithTitle:
+ */
+
+/**
+ * Convenience method for initWithTitle:image:.
+ *
+ *      @fn NITitleCellObject::cellWithTitle:image:
+ *      @returns Autoreleased instance of NITitleCellObject.
  */
 
 /**

@@ -30,17 +30,6 @@
 @synthesize model = _model;
 @synthesize searchController = _searchController;
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  // The model is a retained object in this controller, so we must release it when the controller
-  // is deallocated.
-  [_model release]; _model = nil;
-
-  [super dealloc];
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:UITableViewStylePlain])) {
@@ -49,45 +38,45 @@
     NSArray* tableContents =
     [NSArray arrayWithObjects:
      @"A",
-     [NITitleCellObject cellWithTitle:@"Jon Abrams"],
-     [NITitleCellObject cellWithTitle:@"Crystal Arbor"],
-     [NITitleCellObject cellWithTitle:@"Mike Axiom"],
+     [NITitleCellObject objectWithTitle:@"Jon Abrams"],
+     [NITitleCellObject objectWithTitle:@"Crystal Arbor"],
+     [NITitleCellObject objectWithTitle:@"Mike Axiom"],
      
      @"B",
-     [NITitleCellObject cellWithTitle:@"Joey Bannister"],
-     [NITitleCellObject cellWithTitle:@"Ray Bowl"],
-     [NITitleCellObject cellWithTitle:@"Jane Byte"],
+     [NITitleCellObject objectWithTitle:@"Joey Bannister"],
+     [NITitleCellObject objectWithTitle:@"Ray Bowl"],
+     [NITitleCellObject objectWithTitle:@"Jane Byte"],
      
      @"C",
-     [NITitleCellObject cellWithTitle:@"JJ Cranilly"],
+     [NITitleCellObject objectWithTitle:@"JJ Cranilly"],
      
      @"K",
-     [NITitleCellObject cellWithTitle:@"Jake Klark"],
-     [NITitleCellObject cellWithTitle:@"Viktor Krum"],
-     [NITitleCellObject cellWithTitle:@"Abraham Kyle"],
+     [NITitleCellObject objectWithTitle:@"Jake Klark"],
+     [NITitleCellObject objectWithTitle:@"Viktor Krum"],
+     [NITitleCellObject objectWithTitle:@"Abraham Kyle"],
      
      @"L",
-     [NITitleCellObject cellWithTitle:@"Mr Larry"],
-     [NITitleCellObject cellWithTitle:@"Mo Lundlum"],
+     [NITitleCellObject objectWithTitle:@"Mr Larry"],
+     [NITitleCellObject objectWithTitle:@"Mo Lundlum"],
      
      @"N",
-     [NITitleCellObject cellWithTitle:@"Carl Nolly"],
-     [NITitleCellObject cellWithTitle:@"Jeremy Nym"],
+     [NITitleCellObject objectWithTitle:@"Carl Nolly"],
+     [NITitleCellObject objectWithTitle:@"Jeremy Nym"],
      
      @"O",
-     [NITitleCellObject cellWithTitle:@"Number 1 Otter"],
-     [NITitleCellObject cellWithTitle:@"Number 2 Otter"],
-     [NITitleCellObject cellWithTitle:@"Number 3 Otter"],
-     [NITitleCellObject cellWithTitle:@"Number 4 Otter"],
-     [NITitleCellObject cellWithTitle:@"Number 5 Otter"],
-     [NITitleCellObject cellWithTitle:@"Number 6 Otter"],
-     [NITitleCellObject cellWithTitle:@"Number 7 Otter"],
-     [NITitleCellObject cellWithTitle:@"Number 8 Otter"],
-     [NITitleCellObject cellWithTitle:@"Number 9 Otter"],
-     [NITitleCellObject cellWithTitle:@"Number 10 Otter"],
+     [NITitleCellObject objectWithTitle:@"Number 1 Otter"],
+     [NITitleCellObject objectWithTitle:@"Number 2 Otter"],
+     [NITitleCellObject objectWithTitle:@"Number 3 Otter"],
+     [NITitleCellObject objectWithTitle:@"Number 4 Otter"],
+     [NITitleCellObject objectWithTitle:@"Number 5 Otter"],
+     [NITitleCellObject objectWithTitle:@"Number 6 Otter"],
+     [NITitleCellObject objectWithTitle:@"Number 7 Otter"],
+     [NITitleCellObject objectWithTitle:@"Number 8 Otter"],
+     [NITitleCellObject objectWithTitle:@"Number 9 Otter"],
+     [NITitleCellObject objectWithTitle:@"Number 10 Otter"],
      
      @"X",
-     [NITitleCellObject cellWithTitle:@"Charles Xavier"],
+     [NITitleCellObject objectWithTitle:@"Charles Xavier"],
 
      nil];
     
@@ -112,7 +101,7 @@
   self.tableView.dataSource = _model;
 
   // Create a dummy search display controller just to show the use of a search bar.
-  UISearchBar* searchBar = [[[UISearchBar alloc] init] autorelease];
+  UISearchBar* searchBar = [[UISearchBar alloc] init];
   [searchBar sizeToFit];
   _searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
   self.tableView.tableHeaderView = _searchController.searchBar;

@@ -16,12 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : NSObject <UIApplicationDelegate> {
-  UIWindow* _window;
-  UIViewController* _rootController;
-}
-
+@interface AppDelegate : NSObject <UIApplicationDelegate>
 @property (nonatomic, readwrite, retain) UIWindow* window;
-
 @end
 
