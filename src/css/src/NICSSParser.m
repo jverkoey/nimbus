@@ -51,21 +51,13 @@ int cssConsume(char* text, int token) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)shutdown {
-  NI_RELEASE_SAFELY(_rulesets);
-  NI_RELEASE_SAFELY(_scopesForActiveRuleset);
-  NI_RELEASE_SAFELY(_mutatingScope);
-  NI_RELEASE_SAFELY(_mutatingRuleset);
-  NI_RELEASE_SAFELY(_currentPropertyName);
-  NI_RELEASE_SAFELY(_importedFilenames);
-  NI_RELEASE_SAFELY(_lastTokenText);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  [self shutdown];
-
-  [super dealloc];
+  _rulesets = nil;
+  _scopesForActiveRuleset = nil;
+  _mutatingScope = nil;
+  _mutatingRuleset = nil;
+  _currentPropertyName = nil;
+  _importedFilenames = nil;
+  _lastTokenText = nil;
 }
 
 
@@ -107,10 +99,8 @@ int cssConsume(char* text, int token) {
 
         // Treat CSSIDENT as a new property if we're not already defining one.
         if (CSSIDENT == token && !_state.Flags.InsideProperty) {
-          NI_RELEASE_SAFELY(_currentPropertyName);
-
           // Properties are case insensitive.
-          _currentPropertyName = [lowercaseTextAsString retain];
+          _currentPropertyName = lowercaseTextAsString;
           
           NSMutableArray* ruleSetOrder = [_mutatingRuleset objectForKey:kPropertyOrderKey];
           [ruleSetOrder addObject:_currentPropertyName];
@@ -118,7 +108,6 @@ int cssConsume(char* text, int token) {
           // Clear any existing values for the given property.
           NSMutableArray* values = [[NSMutableArray alloc] init];
           [_mutatingRuleset setObject:values forKey:_currentPropertyName];
-          NI_RELEASE_SAFELY(values);
 
         } else {
           // This is a value for the active property; add it.
@@ -137,7 +126,7 @@ int cssConsume(char* text, int token) {
         [_mutatingScope addObject:textAsString];
 
         // Ensure that we're not modifying a property.
-        NI_RELEASE_SAFELY(_currentPropertyName);
+        _currentPropertyName = nil;
       }
       break;
     }
@@ -182,7 +171,7 @@ int cssConsume(char* text, int token) {
 
         if (nil != _currentPropertyName) {
           NSMutableArray* values = [_mutatingRuleset objectForKey:_currentPropertyName];
-          [values addObject:lowercaseTextAsString];
+          [values addObject:textAsString];
 
         } else {
           [self setFailFlag];
@@ -213,7 +202,6 @@ int cssConsume(char* text, int token) {
             _state.Flags.InsideRuleset = YES;
             _state.Flags.InsideFunction = NO;
 
-            NI_RELEASE_SAFELY(_mutatingRuleset);
             _mutatingRuleset = [[NSMutableDictionary alloc] init];
             [_mutatingRuleset setObject:[NSMutableArray array] forKey:kPropertyOrderKey];
 
@@ -231,7 +219,6 @@ int cssConsume(char* text, int token) {
             if (nil == existingProperties) {
               NSMutableDictionary* ruleSet = [_mutatingRuleset mutableCopy];
               [_rulesets setObject:ruleSet forKey:name];
-              NI_RELEASE_SAFELY(ruleSet);
 
             } else {
               // Properties already exist, so overwrite them.
@@ -251,7 +238,7 @@ int cssConsume(char* text, int token) {
             }
           }
 
-          NI_RELEASE_SAFELY(_mutatingRuleset);
+          _mutatingRuleset = nil;
           [_scopesForActiveRuleset removeAllObjects];
           _state.Flags.InsideRuleset = NO;
           _state.Flags.InsideProperty = NO;
@@ -288,10 +275,7 @@ int cssConsume(char* text, int token) {
     }
   }
 
-  NI_RELEASE_SAFELY(textAsString);
-
-  [_lastTokenText release];
-  _lastTokenText = [textAsString retain];
+  _lastTokenText = textAsString;
   _lastToken = token;
 }
 
@@ -334,10 +318,10 @@ int cssConsume(char* text, int token) {
       [[compositeRulesets objectAtIndex:0] setObject:dependencyFilenames
                                               forKey:kDependenciesSelectorKey];
     }
-    result = [[[compositeRulesets objectAtIndex:0] copy] autorelease];
+    result = [[compositeRulesets objectAtIndex:0] copy];
 
   } else {
-    NSMutableDictionary* mergedResult = [[[compositeRulesets lastObject] retain] autorelease];
+    NSMutableDictionary* mergedResult = [compositeRulesets lastObject];
     [compositeRulesets removeLastObject];
 
     // Merge all of the rulesets into one.
@@ -373,7 +357,7 @@ int cssConsume(char* text, int token) {
     if ([dependencyFilenames count] > 0) {
       [mergedResult setObject:dependencyFilenames forKey:kDependenciesSelectorKey];
     }
-    result = [[mergedResult copy] autorelease];
+    result = [mergedResult copy];
   }
 
   return result;
@@ -410,12 +394,12 @@ int cssConsume(char* text, int token) {
 
   _didFailToParse = NO;
 
-  NSMutableArray* compositeRulesets = [[[NSMutableArray alloc] init] autorelease];
+  NSMutableArray* compositeRulesets = [[NSMutableArray alloc] init];
 
   // Maintain a set of filenames that we've looked at for two reasons:
   // 1) To avoid visiting the same CSS file twice.
   // 2) To collect a list of dependencies for this stylesheet.
-  NSMutableSet* processedFilenames = [[[NSMutableSet alloc] init] autorelease];
+  NSMutableSet* processedFilenames = [[NSMutableSet alloc] init];
 
   // Imported CSS files will be added to the queue.
   NILinkedList* filenameQueue = [NILinkedList linkedList];

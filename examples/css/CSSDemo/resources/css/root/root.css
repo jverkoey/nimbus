@@ -1,4 +1,8 @@
 
+UINavigationBar {
+  -ios-tint-color: orange;
+}
+
 .background {
   background-color: blue;
 }
@@ -9,7 +13,13 @@
   border: none;
 }
 
+UIActivityIndicatorView {
+  -ios-activity-indicator-style: white-large;
+  -ios-autoresizing: left right bottom;
+}
+
 UILabel {
+  -ios-autoresizing: left right height width;
   background-color: clear;
   -ios-number-of-lines: 0;
   color: white;

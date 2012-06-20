@@ -40,12 +40,6 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-  NI_RELEASE_SAFELY(_rawRulesets);
-  NI_RELEASE_SAFELY(_ruleSets);
-  NI_RELEASE_SAFELY(_significantScopeToScopes);
-
-  [super dealloc];
 }
 
 
@@ -104,17 +98,13 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
     if (nil == scopes) {
       scopes = [[NSMutableArray alloc] initWithObjects:scope, nil];
       [significantScopeToScopes setObject:scopes forKey:mostSignificantScopePart];
-      NI_RELEASE_SAFELY(scopes);
       
     } else {
       [scopes addObject:scope];
     }
   }
 
-  [_significantScopeToScopes release];
   _significantScopeToScopes = [significantScopeToScopes copy];
-  
-  NI_RELEASE_SAFELY(significantScopeToScopes);
 }
 
 
@@ -131,7 +121,6 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reduceMemory {
-  NI_RELEASE_SAFELY(_ruleSets);
   _ruleSets = [[NSMutableDictionary alloc] init];
 }
 
@@ -166,9 +155,8 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
   BOOL loadDidSucceed = NO;
 
   @synchronized(self) {
-    NI_RELEASE_SAFELY(_rawRulesets);
-    NI_RELEASE_SAFELY(_ruleSets);
-    NI_RELEASE_SAFELY(_significantScopeToScopes);
+    _rawRulesets = nil;
+    _significantScopeToScopes = nil;
 
     _ruleSets = [[NSMutableDictionary alloc] init];
 
@@ -178,10 +166,9 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
                                            pathPrefix:pathPrefix
                                              delegate:delegate];
     if (nil != results && ![parser didFailToParse]) {
-      _rawRulesets = [results retain];
+      _rawRulesets = results;
       loadDidSucceed = YES;
     }
-    NI_RELEASE_SAFELY(parser);
 
     if (loadDidSucceed) {
       [self ruleSetsDidChange];
@@ -223,13 +210,10 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
         [compositeRuleSet addEntriesFromDictionary:incomingRuleSet];
 
         [compositeRuleSets setObject:compositeRuleSet forKey:selector];
-        NI_RELEASE_SAFELY(compositeRuleSet);
       }
     }
 
-    NI_RELEASE_SAFELY(_rawRulesets);
     _rawRulesets = [compositeRuleSets copy];
-    NI_RELEASE_SAFELY(compositeRuleSets);
 
     if (ruleSetsDidChange) {
       [self ruleSetsDidChange];
@@ -279,7 +263,6 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
 
       NIDASSERT(nil != _ruleSets);
       [_ruleSets setObject:ruleSet forKey:className];
-      [ruleSet autorelease]; // We can release the ruleSet because it's retained by the dictionary.
     }
   }
 

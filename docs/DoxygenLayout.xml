@@ -26,7 +26,6 @@
   <class>
     <detaileddescription title="Overview"/>
     <includes visible="$SHOW_INCLUDE_FILES"/>
-    <inheritancegraph visible="$CLASS_GRAPH"/>
     <collaborationgraph visible="$COLLABORATION_GRAPH"/>
     <allmemberslink visible="no"/>
     <memberdecl>
@@ -34,7 +33,7 @@
       <publictypes title=""/>
       <publicslots title=""/>
       <signals title=""/>
-      <publicmethods title=""/>
+      <publicmethods title="Tasks"/>
       <publicstaticmethods title=""/>
       <publicattributes title=""/>
       <publicstaticattributes title=""/>
@@ -127,13 +126,11 @@
 
   <!-- Layout definition for a group page -->
   <group>
-    <detaileddescription title="Overview"/>
-    <groupgraph visible="$GROUP_GRAPHS"/>
     <memberdecl>
-      <classes visible="yes" title=""/>
+      <classes visible="yes" title="Classes"/>
       <namespaces visible="yes" title=""/>
       <dirs visible="yes" title=""/>
-      <nestedgroups visible="yes" title=""/>
+      <nestedgroups visible="yes" title="Sub-Modules"/>
       <files visible="yes" title=""/>
       <defines title=""/>
       <typedefs title=""/>
@@ -150,6 +147,8 @@
       <friends title=""/>
       <membergroups visible="yes"/>
     </memberdecl>
+    <detaileddescription title="Overview"/>
+    <groupgraph visible="$GROUP_GRAPHS"/>
     <memberdef>
       <pagedocs/>
       <inlineclasses title=""/>

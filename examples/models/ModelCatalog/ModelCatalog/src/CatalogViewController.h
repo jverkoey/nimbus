@@ -16,9 +16,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CatalogViewController : UITableViewController {
-@private
-  NITableViewModel* _model;
-}
-
+@interface CatalogViewController : UITableViewController
 @end

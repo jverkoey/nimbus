@@ -43,29 +43,11 @@
  *
  *      @ingroup Operations
  */
-@interface NIOperation : NSOperation {
-@private
-  id<NIOperationDelegate> _delegate;
-
-  NSInteger _tag;
-
-  NSError* _lastError;
-
-#if NS_BLOCKS_AVAILABLE
-  // Performed on the main thread.
-  NIBasicBlock _didStartBlock;
-  NIBasicBlock _didFinishBlock;
-  NIErrorBlock _didFailWithErrorBlock;
-
-  // Performed in the operation's thread.
-  NIBasicBlock _willFinishBlock;
-#endif // #if NS_BLOCKS_AVAILABLE
-}
+@interface NIOperation : NSOperation
 
 @property (readwrite, assign) id<NIOperationDelegate> delegate;
 @property (readonly, retain) NSError* lastError;
 @property (readwrite, assign) NSInteger tag;
-
 
 #if NS_BLOCKS_AVAILABLE
 
@@ -76,10 +58,10 @@
 
 #endif // #if NS_BLOCKS_AVAILABLE
 
-- (void)operationDidStart;
-- (void)operationDidFinish;
-- (void)operationDidFailWithError:(NSError *)error;
-- (void)operationWillFinish;
+- (void)didStart;
+- (void)didFinish;
+- (void)didFailWithError:(NSError *)error;
+- (void)willFinish;
 
 @end
 
@@ -92,16 +74,7 @@
  *
  *      @ingroup Operations
  */
-@interface NINetworkRequestOperation : NIOperation {
-@private
-  // [in]
-  NSURL* _url;
-  NSTimeInterval _timeout;
-
-  // [out]
-  NSData* _data;
-  id _processedObject;
-}
+@interface NINetworkRequestOperation : NIOperation
 
 // Designated initializer.
 - (id)initWithURL:(NSURL *)url;
@@ -125,7 +98,7 @@
 /** @name [NIOperationDelegate] State Changes */
 
 /** The operation has started executing. */
-- (void)operationDidStart:(NSOperation *)operation;
+- (void)nimbusOperationDidStart:(NIOperation *)operation;
 
 /**
  * The operation is about to complete successfully.
@@ -134,21 +107,21 @@
  *
  * This will be called from within the operation's runloop and must be thread safe.
  */
-- (void)operationWillFinish:(NSOperation *)operation;
+- (void)nimbusOperationWillFinish:(NIOperation *)operation;
 
 /**
  * The operation has completed successfully.
  *
  * This will not be called if the operation fails.
  */
-- (void)operationDidFinish:(NSOperation *)operation;
+- (void)nimbusOperationDidFinish:(NIOperation *)operation;
 
 /**
  * The operation failed in some way and has completed.
  *
  * operationDidFinish: will not be called.
  */
-- (void)operationDidFail:(NSOperation *)operation withError:(NSError *)error;
+- (void)nimbusOperationDidFail:(NIOperation *)operation withError:(NSError *)error;
 
 @end
 
@@ -238,25 +211,25 @@
 /**
  * On the main thread, notify the delegate that the operation has begun.
  *
- *      @fn NIOperation::operationDidStart
+ *      @fn NIOperation::didStart
  */
 
 /**
  * On the main thread, notify the delegate that the operation has finished.
  *
- *      @fn NIOperation::operationDidFinish
+ *      @fn NIOperation::didFinish
  */
 
 /**
  * On the main thread, notify the delegate that the operation has failed.
  *
- *      @fn NIOperation::operationDidFailWithError:
+ *      @fn NIOperation::didFailWithError:
  */
 
 /**
  * In the operation's thread, notify the delegate that the operation will finish successfully.
  *
- *      @fn NIOperation::operationWillFinish
+ *      @fn NIOperation::willFinish
  */
 
 

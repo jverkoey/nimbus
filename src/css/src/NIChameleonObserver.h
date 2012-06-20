@@ -25,7 +25,7 @@
 /**
  * An observer for the Chameleon server.
  *
- *      @ingroup CSS-Stylesheets
+ *      @ingroup NimbusCSS
  *
  * This observer connects to a Chameleon server and waits for changes in stylesheets. Once
  * a stylesheet change has been detected, the new stylesheet is retrieved from the server

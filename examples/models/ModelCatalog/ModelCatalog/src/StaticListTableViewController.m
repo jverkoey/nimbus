@@ -16,38 +16,35 @@
 
 #import "StaticListTableViewController.h"
 
+@interface StaticListTableViewController()
+@property (nonatomic, readwrite, retain) NITableViewModel* model;
+@end
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation StaticListTableViewController
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  // The model is a retained object in this controller, so we must release it when the controller
-  // is deallocated.
-  [_model release]; _model = nil;
-  
-  [super dealloc];
-}
+@synthesize model = _model;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+- (id)initWithStyle:(UITableViewStyle)style {
+  if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = NSLocalizedString(@"List Model", @"Controller Title: List Model");
 
+    // Each of the cell objects below is mapped to the NITextCell class.
     NSArray* tableContents =
     [NSArray arrayWithObjects:
-     [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Row 2" forKey:@"title"],
-     [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
+     [NITitleCellObject objectWithTitle:@"Row 1"],
+     [NITitleCellObject objectWithTitle:@"Row 2"],
+     [NISubtitleCellObject objectWithTitle:@"Row 3" subtitle:@"Subtitle"],
      nil];
 
-    // This controller creates the table view cells.
+    // We use NICellFactory to create the cell views.
     _model = [[NITableViewModel alloc] initWithListArray:tableContents
-                                                delegate:self];
+                                                delegate:(id)[NICellFactory class]];
   }
   return self;
 }
@@ -70,24 +67,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel
-                   cellForTableView: (UITableView *)tableView
-                        atIndexPath: (NSIndexPath *)indexPath
-                         withObject: (id)object {
-  // A pretty standard implementation of creating table view cells follows.
-  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
-  
-  if (nil == cell) {
-    cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-                                   reuseIdentifier: @"row"]
-            autorelease];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  }
-  
-  cell.textLabel.text = [object objectForKey:@"title"];
-  
-  return cell;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+  return NIIsSupportedOrientation(toInterfaceOrientation);
 }
 
 

@@ -16,30 +16,82 @@
 
 #import "FormCellCatalogTableViewController.h"
 
+// This enumeration is used in the radio group mapping.
+typedef enum {
+  RadioOption1,
+  RadioOption2,
+  RadioOption3,
+} RadioOptions;
+
+// This enumeration is used in the sub radio group mapping.
+typedef enum {
+  SubRadioOption1,
+  SubRadioOption2,
+  SubRadioOption3,
+} SubRadioOptions;
+
+@interface FormCellCatalogTableViewController() <UITextFieldDelegate, NIRadioGroupDelegate>
+@property (nonatomic, readwrite, retain) NITableViewModel* model;
+
+// A radio group object allows us to easily maintain radio group-style interactions in the table
+// view.
+@property (nonatomic, readwrite, retain) NIRadioGroup* radioGroup;
+@property (nonatomic, readwrite, retain) NIRadioGroup* subRadioGroup;
+@property (nonatomic, readwrite, retain) NITableViewActions* actions;
+@end
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation FormCellCatalogTableViewController
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  // The model is a retained object in this controller, so we must release it when the controller
-  // is deallocated.
-  [_model release]; _model = nil;
-  
-  [super dealloc];
-}
+@synthesize model = _model;
+@synthesize radioGroup = _radioGroup;
+@synthesize subRadioGroup = _subRadioGroup;
+@synthesize actions = _actions;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+- (id)initWithStyle:(UITableViewStyle)style {
+  if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = NSLocalizedString(@"Form Cells", @"Controller Title: Form Cells");
+
+    _actions = [[NITableViewActions alloc] initWithController:self];
+
+    _radioGroup = [[NIRadioGroup alloc] init];
+    _radioGroup.delegate = self;
+
+    _subRadioGroup = [[NIRadioGroup alloc] initWithController:self];
+    _subRadioGroup.delegate = self;
+    _subRadioGroup.cellTitle = @"Selection";
+    _subRadioGroup.controllerTitle = @"Make a Selection";
+
+    [_subRadioGroup mapObject:[NISubtitleCellObject objectWithTitle:@"Sub Radio 1"
+                                                           subtitle:@"First option"]
+                 toIdentifier:SubRadioOption1];
+    [_subRadioGroup mapObject:[NISubtitleCellObject objectWithTitle:@"Sub Radio 2"
+                                                           subtitle:@"Second option"]
+                 toIdentifier:SubRadioOption2];
+    [_subRadioGroup mapObject:[NISubtitleCellObject objectWithTitle:@"Sub Radio 3"
+                                                           subtitle:@"Third option"]
+                 toIdentifier:SubRadioOption3];
 
     NSArray* tableContents =
     [NSArray arrayWithObjects:
+     @"Radio Group",
+     [_radioGroup mapObject:[NISubtitleCellObject objectWithTitle:@"Radio 1"
+                                                         subtitle:@"First option"]
+               toIdentifier:RadioOption1],
+     [_radioGroup mapObject:[NISubtitleCellObject objectWithTitle:@"Radio 2"
+                                                         subtitle:@"Second option"]
+               toIdentifier:RadioOption2],
+     [_radioGroup mapObject:[NISubtitleCellObject objectWithTitle:@"Radio 3"
+                                                         subtitle:@"Third option"]
+               toIdentifier:RadioOption3],
+     @"Radio Group Controller",
+     _subRadioGroup,
+
      @"NITextInputFormElement",
      [NITextInputFormElement textInputElementWithID:0 placeholderText:@"Placeholder" value:nil],
      [NITextInputFormElement textInputElementWithID:0 placeholderText:@"Placeholder" value:@"Initial value"],
@@ -52,11 +104,20 @@
      [NISwitchFormElement switchElementWithID:0 labelText:@"Switch with a really long label that will be cut off" value:YES],
 
      @"NIButtonFormElement",
-     [NIButtonFormElement buttonElementWithID:0
-                                    labelText:@"Button with alert"
-                                 tappedTarget:self
-                               tappedSelector:@selector(showAlert:)],
+     [_actions attachTapAction:^(id object, UIViewController *controller) {
+        UIAlertView* alertView =
+        [[UIAlertView alloc] initWithTitle:@"This is an alert!"
+                                   message:@"Don't panic."
+                                  delegate:nil
+                         cancelButtonTitle:@"Neat!"
+                         otherButtonTitles:nil];
+        [alertView show];
+        return YES;
+      } toObject:[NITitleCellObject objectWithTitle:@"Button with alert"]],
      nil];
+    
+    self.radioGroup.selectedIdentifier = RadioOption1;
+    self.subRadioGroup.selectedIdentifier = SubRadioOption1;
 
     // We let the Nimbus cell factory create the cells.
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
@@ -65,17 +126,6 @@
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)showAlert:(id)button {
-  UIAlertView* alertView =
-      [[[UIAlertView alloc] initWithTitle:@"This is an alert!"
-                                 message:@"Don't panic."
-                                delegate:nil
-                       cancelButtonTitle:@"Neat!"
-                       otherButtonTitles:nil] autorelease];
-  [alertView show];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
@@ -87,6 +137,18 @@
   // view is unloaded (more importantly: you shouldn't, due to the reason just outlined
   // regarding loadView).
   self.tableView.dataSource = _model;
+
+  self.tableView.delegate = [self.radioGroup forwardingTo:
+                             [self.subRadioGroup forwardingTo:
+                              [self.actions forwardingTo:self.tableView.delegate]]];
+
+  // When including text editing cells in table views you should provide a means for the user to
+  // stop editing the control. To do this we add a gesture recognizer to the table view.
+  UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                        action:@selector(didTapTableView)];
+  // We still want the table view to be able to process touch events when we tap.
+  tap.cancelsTouchesInView = NO;
+  [self.tableView addGestureRecognizer:tap];
 }
 
 
@@ -134,21 +196,45 @@
 }
 
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NIRadioGroupDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)radioGroup:(NIRadioGroup *)radioGroup didSelectIdentifier:(NSInteger)identifier {
+  if (radioGroup == self.radioGroup) {
+    NSLog(@"Radio group selection: %d", identifier);
+  } else if (radioGroup == self.subRadioGroup) {
+    NSLog(@"Sub radio group selection: %d", identifier);
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)radioGroup:(NIRadioGroup *)radioGroup textForIdentifier:(NSInteger)identifier {
+  switch (identifier) {
+    case SubRadioOption1:
+      return @"Option 1";
+    case SubRadioOption2:
+      return @"Option 2";
+    case SubRadioOption3:
+      return @"Option 3";
+  }
+  return nil;
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark UITableViewDelegate
+#pragma mark Gesture Recognizers
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-  UITableViewCell* selectedCell = [self.tableView.dataSource tableView:tableView cellForRowAtIndexPath:indexPath];
-  if ([selectedCell isKindOfClass:[NIButtonFormElementCell class]]) {
-    NIButtonFormElementCell* buttonCell = (NIButtonFormElementCell*)selectedCell;
-    [buttonCell buttonWasTapped:selectedCell];
-  }
-  // Clear the selection state when we're done.
-  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+- (void)didTapTableView {
+  [self.view endEditing:YES];
 }
 
 @end

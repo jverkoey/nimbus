@@ -28,12 +28,6 @@
 #endif
 
 // Classes
-#ifndef NIButtonFormElement
-#define NIButtonFormElement __NIMBUS_NS_SYMBOL(NIButtonFormElement)
-#endif
-#ifndef NIButtonFormElementCell
-#define NIButtonFormElementCell __NIMBUS_NS_SYMBOL(NIButtonFormElementCell)
-#endif
 #ifndef NICellFactory
 #define NICellFactory __NIMBUS_NS_SYMBOL(NICellFactory)
 #endif
@@ -46,11 +40,29 @@
 #ifndef NIFormElementCell
 #define NIFormElementCell __NIMBUS_NS_SYMBOL(NIFormElementCell)
 #endif
+#ifndef NIRadioGroup
+#define NIRadioGroup __NIMBUS_NS_SYMBOL(NIRadioGroup)
+#endif
+#ifndef NIRadioGroupCell
+#define NIRadioGroupCell __NIMBUS_NS_SYMBOL(NIRadioGroupCell)
+#endif
+#ifndef NIRadioGroupController
+#define NIRadioGroupController __NIMBUS_NS_SYMBOL(NIRadioGroupController)
+#endif
+#ifndef NISubtitleCellObject
+#define NISubtitleCellObject __NIMBUS_NS_SYMBOL(NISubtitleCellObject)
+#endif
 #ifndef NISwitchFormElement
 #define NISwitchFormElement __NIMBUS_NS_SYMBOL(NISwitchFormElement)
 #endif
 #ifndef NISwitchFormElementCell
 #define NISwitchFormElementCell __NIMBUS_NS_SYMBOL(NISwitchFormElementCell)
+#endif
+#ifndef NITableViewAction
+#define NITableViewAction __NIMBUS_NS_SYMBOL(NITableViewAction)
+#endif
+#ifndef NITableViewActions
+#define NITableViewActions __NIMBUS_NS_SYMBOL(NITableViewActions)
 #endif
 #ifndef NITableViewModel
 #define NITableViewModel __NIMBUS_NS_SYMBOL(NITableViewModel)
@@ -61,12 +73,21 @@
 #ifndef NITableViewModelSection
 #define NITableViewModelSection __NIMBUS_NS_SYMBOL(NITableViewModelSection)
 #endif
+#ifndef NITextCell
+#define NITextCell __NIMBUS_NS_SYMBOL(NITextCell)
+#endif
 #ifndef NITextInputFormElement
 #define NITextInputFormElement __NIMBUS_NS_SYMBOL(NITextInputFormElement)
 #endif
 #ifndef NITextInputFormElementCell
 #define NITextInputFormElementCell __NIMBUS_NS_SYMBOL(NITextInputFormElementCell)
 #endif
+#ifndef NITitleCellObject
+#define NITitleCellObject __NIMBUS_NS_SYMBOL(NITitleCellObject)
+#endif
 // Functions
+#ifndef NIPushControllerAction
+#define NIPushControllerAction __NIMBUS_NS_SYMBOL(NIPushControllerAction)
+#endif
 // Externs
 #endif

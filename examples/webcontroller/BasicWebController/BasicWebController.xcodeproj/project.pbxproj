@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		663BF631158734160066B814 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF62A158734160066B814 /* Icon-72.png */; };
+		663BF632158734160066B814 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF62B158734160066B814 /* Icon-Small-50.png */; };
+		663BF633158734160066B814 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF62C158734160066B814 /* Icon-Small.png */; };
+		663BF634158734160066B814 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF62D158734160066B814 /* Icon-Small@2x.png */; };
+		663BF635158734160066B814 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF62E158734160066B814 /* Icon.png */; };
+		663BF636158734160066B814 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF62F158734160066B814 /* Icon@2x.png */; };
 		DB01A9C113E30D1700C24060 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB01A9C013E30D1600C24060 /* UIKit.framework */; };
 		DB01A9C313E30D1700C24060 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB01A9C213E30D1700C24060 /* Foundation.framework */; };
 		DB01A9C513E30D1700C24060 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB01A9C413E30D1700C24060 /* CoreGraphics.framework */; };
 		DB01A9C813E30D1700C24060 /* BasicWebController_Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = DB01A9C713E30D1700C24060 /* BasicWebController_Prefix.pch */; };
 		DB01A9CC13E30D1700C24060 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB01A9CB13E30D1700C24060 /* AppDelegate.m */; };
 		DB01A9CE13E30D1700C24060 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB01A9CD13E30D1700C24060 /* main.m */; };
-		DB01A9DC13E30D5C00C24060 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB01A9DB13E30D5C00C24060 /* RootViewController.m */; };
 		DB01AA0313E30E2D00C24060 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = DB01A9E313E30E2D00C24060 /* NICommonMetrics.m */; };
 		DB01AA0413E30E2D00C24060 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = DB01A9E513E30E2D00C24060 /* NIDataStructures.m */; };
 		DB01AA0513E30E2D00C24060 /* NIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = DB01A9E713E30E2D00C24060 /* NIDebuggingTools.m */; };
@@ -35,17 +40,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		663BF62A158734160066B814 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		663BF62B158734160066B814 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		663BF62C158734160066B814 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		663BF62D158734160066B814 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		663BF62E158734160066B814 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		663BF62F158734160066B814 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		DB01A9BC13E30D1600C24060 /* BasicWebController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicWebController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB01A9C013E30D1600C24060 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DB01A9C213E30D1700C24060 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DB01A9C413E30D1700C24060 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		DB01A9C713E30D1700C24060 /* BasicWebController_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BasicWebController_Prefix.pch; path = src/BasicWebController_Prefix.pch; sourceTree = "<group>"; };
+		DB01A9C713E30D1700C24060 /* BasicWebController_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BasicWebController_Prefix.pch; path = BasicWebController/src/BasicWebController_Prefix.pch; sourceTree = "<group>"; };
 		DB01A9CA13E30D1700C24060 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = src/AppDelegate.h; sourceTree = "<group>"; };
 		DB01A9CB13E30D1700C24060 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = src/AppDelegate.m; sourceTree = "<group>"; };
 		DB01A9CD13E30D1700C24060 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = src/main.m; sourceTree = "<group>"; };
 		DB01A9D013E30D1700C24060 /* BasicWebController-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BasicWebController-Info.plist"; path = "resources/BasicWebController-Info.plist"; sourceTree = "<group>"; };
-		DB01A9DA13E30D5C00C24060 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = src/RootViewController.h; sourceTree = "<group>"; };
-		DB01A9DB13E30D5C00C24060 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = src/RootViewController.m; sourceTree = "<group>"; };
 		DB01A9E113E30E2D00C24060 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = ../../../src/core/src/NIBlocks.h; sourceTree = "<group>"; };
 		DB01A9E213E30E2D00C24060 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../../../src/core/src/NICommonMetrics.h; sourceTree = "<group>"; };
 		DB01A9E313E30E2D00C24060 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../../../src/core/src/NICommonMetrics.m; sourceTree = "<group>"; };
@@ -100,10 +109,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		663BF630158734160066B814 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				663BF62A158734160066B814 /* Icon-72.png */,
+				663BF62B158734160066B814 /* Icon-Small-50.png */,
+				663BF62C158734160066B814 /* Icon-Small.png */,
+				663BF62D158734160066B814 /* Icon-Small@2x.png */,
+				663BF62E158734160066B814 /* Icon.png */,
+				663BF62F158734160066B814 /* Icon@2x.png */,
+			);
+			name = Resources;
+			path = ../../../src/resources;
+			sourceTree = "<group>";
+		};
 		DB01A9B113E30D1600C24060 = {
 			isa = PBXGroup;
 			children = (
-				DB01A9C613E30D1700C24060 /* BasicWebController */,
+				DB01A9C713E30D1700C24060 /* BasicWebController_Prefix.pch */,
+				DB01A9C913E30D1700C24060 /* Source */,
+				DB01A9CF13E30D1700C24060 /* Resources */,
 				DB01A9DE13E30DE000C24060 /* Nimbus */,
 				DB01A9BF13E30D1600C24060 /* Frameworks */,
 				DB01A9BD13E30D1600C24060 /* Products */,
@@ -128,25 +153,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DB01A9C613E30D1700C24060 /* BasicWebController */ = {
-			isa = PBXGroup;
-			children = (
-				DB01A9C713E30D1700C24060 /* BasicWebController_Prefix.pch */,
-				DB01A9C913E30D1700C24060 /* Source */,
-				DB01A9CF13E30D1700C24060 /* Resources */,
-			);
-			path = BasicWebController;
-			sourceTree = "<group>";
-		};
 		DB01A9C913E30D1700C24060 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				DB01A9DD13E30D6700C24060 /* Controllers */,
 				DB01A9CA13E30D1700C24060 /* AppDelegate.h */,
 				DB01A9CB13E30D1700C24060 /* AppDelegate.m */,
 				DB01A9CD13E30D1700C24060 /* main.m */,
 			);
 			name = Source;
+			path = BasicWebController;
 			sourceTree = "<group>";
 		};
 		DB01A9CF13E30D1700C24060 /* Resources */ = {
@@ -156,20 +171,13 @@
 				DB01A9D013E30D1700C24060 /* BasicWebController-Info.plist */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		DB01A9DD13E30D6700C24060 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				DB01A9DA13E30D5C00C24060 /* RootViewController.h */,
-				DB01A9DB13E30D5C00C24060 /* RootViewController.m */,
-			);
-			name = Controllers;
+			path = BasicWebController;
 			sourceTree = "<group>";
 		};
 		DB01A9DE13E30DE000C24060 /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
+				663BF630158734160066B814 /* Resources */,
 				DB01A9E013E30DFF00C24060 /* Web Controller */,
 				DB01A9DF13E30DF100C24060 /* Core */,
 			);
@@ -253,6 +261,7 @@
 		DB01A9B313E30D1600C24060 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Storm ID Ltd";
 			};
 			buildConfigurationList = DB01A9B613E30D1600C24060 /* Build configuration list for PBXProject "BasicWebController" */;
@@ -279,6 +288,12 @@
 			files = (
 				DB01A9C813E30D1700C24060 /* BasicWebController_Prefix.pch in Resources */,
 				DB01AA2013E310B300C24060 /* NimbusWebController.bundle in Resources */,
+				663BF631158734160066B814 /* Icon-72.png in Resources */,
+				663BF632158734160066B814 /* Icon-Small-50.png in Resources */,
+				663BF633158734160066B814 /* Icon-Small.png in Resources */,
+				663BF634158734160066B814 /* Icon-Small@2x.png in Resources */,
+				663BF635158734160066B814 /* Icon.png in Resources */,
+				663BF636158734160066B814 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +306,6 @@
 			files = (
 				DB01A9CC13E30D1700C24060 /* AppDelegate.m in Sources */,
 				DB01A9CE13E30D1700C24060 /* main.m in Sources */,
-				DB01A9DC13E30D5C00C24060 /* RootViewController.m in Sources */,
 				DB01AA0313E30E2D00C24060 /* NICommonMetrics.m in Sources */,
 				DB01AA0413E30E2D00C24060 /* NIDataStructures.m in Sources */,
 				DB01AA0513E30E2D00C24060 /* NIDebuggingTools.m in Sources */,
@@ -319,6 +333,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -337,6 +352,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -357,6 +373,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = BasicWebController/src/BasicWebController_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "BasicWebController/resources/BasicWebController-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -370,6 +387,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = BasicWebController/src/BasicWebController_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "BasicWebController/resources/BasicWebController-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
@@ -396,6 +414,7 @@
 				DB01A9D513E30D1700C24060 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

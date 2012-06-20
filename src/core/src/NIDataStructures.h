@@ -66,19 +66,10 @@
  *      @{
  */
 
-// This is not to be used externally.
-struct NILinkedListNode {
-#if __has_feature(objc_arc) // __unsafe_unretained is only available if building with ARC.
-  __unsafe_unretained
-#endif
-  id object;
-  struct NILinkedListNode* prev;
-  struct NILinkedListNode* next;
-};
+@class NILinkedListNode;
 
-// A thin veil over NILinkedListNode pointers. This is the "public" interface to an object's
-// location. Internally, this is cast to an NILinkedListNode*.
-typedef void NILinkedListLocation;
+@interface NILinkedListLocation : NSObject
+@end
 
 /**
  * A singly linked list implementation.
@@ -115,14 +106,7 @@ typedef void NILinkedListLocation;
  * structure we could easily run into an O(N^2) exponential-time operation which is
  * absolutely unacceptable.
  */
-@interface NILinkedList : NSObject <NSCopying, NSCoding, NSFastEnumeration> {
-@private
-  struct NILinkedListNode* _head;
-  struct NILinkedListNode* _tail;
-
-  // Used internally to track modifications to the linked list.
-  unsigned long _modificationNumber;
-}
+@interface NILinkedList : NSObject <NSCopying, NSCoding, NSFastEnumeration>
 
 - (NSUInteger)count;
 

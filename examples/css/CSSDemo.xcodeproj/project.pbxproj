@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		663BF6071587339A0066B814 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5FE1587339A0066B814 /* Icon-72.png */; };
+		663BF6081587339A0066B814 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF5FF1587339A0066B814 /* Icon-Small-50.png */; };
+		663BF6091587339A0066B814 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF6001587339A0066B814 /* Icon-Small.png */; };
+		663BF60A1587339A0066B814 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF6011587339A0066B814 /* Icon-Small@2x.png */; };
+		663BF60B1587339A0066B814 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF6021587339A0066B814 /* Icon.png */; };
+		663BF60C1587339A0066B814 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF6031587339A0066B814 /* Icon@2x.png */; };
+		664EFB6615598E3D009826AB /* UIActivityIndicatorView+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 664EFB6515598E3D009826AB /* UIActivityIndicatorView+NIStyleable.m */; };
 		66832D2514421450003E413C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D2414421450003E413C /* UIKit.framework */; };
 		66832D2714421450003E413C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D2614421450003E413C /* Foundation.framework */; };
 		66832D2914421450003E413C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D2814421450003E413C /* CoreGraphics.framework */; };
@@ -48,6 +55,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		663BF5FE1587339A0066B814 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		663BF5FF1587339A0066B814 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		663BF6001587339A0066B814 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		663BF6011587339A0066B814 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		663BF6021587339A0066B814 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		663BF6031587339A0066B814 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		664EFB6415598E3D009826AB /* UIActivityIndicatorView+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+NIStyleable.h"; path = "../../src/css/src/UIActivityIndicatorView+NIStyleable.h"; sourceTree = "<group>"; };
+		664EFB6515598E3D009826AB /* UIActivityIndicatorView+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+NIStyleable.m"; path = "../../src/css/src/UIActivityIndicatorView+NIStyleable.m"; sourceTree = "<group>"; };
 		66832D2014421450003E413C /* CSSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66832D2414421450003E413C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		66832D2614421450003E413C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -142,6 +157,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		663BF6041587339A0066B814 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				663BF5FE1587339A0066B814 /* Icon-72.png */,
+				663BF5FF1587339A0066B814 /* Icon-Small-50.png */,
+				663BF6001587339A0066B814 /* Icon-Small.png */,
+				663BF6011587339A0066B814 /* Icon-Small@2x.png */,
+				663BF6021587339A0066B814 /* Icon.png */,
+				663BF6031587339A0066B814 /* Icon@2x.png */,
+			);
+			name = Resources;
+			path = ../../src/resources;
+			sourceTree = "<group>";
+		};
 		66832D1514421450003E413C = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +233,7 @@
 		66832D40144214CD003E413C /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
+				663BF6041587339A0066B814 /* Resources */,
 				66832D41144214DA003E413C /* Core */,
 				66832D7C144214EF003E413C /* CSS */,
 			);
@@ -270,6 +300,8 @@
 				66832DEC14434FBE003E413C /* NIStylesheet.m */,
 				668ECDC91456438C00455266 /* NIStylesheetCache.h */,
 				668ECDCA1456438C00455266 /* NIStylesheetCache.m */,
+				664EFB6415598E3D009826AB /* UIActivityIndicatorView+NIStyleable.h */,
+				664EFB6515598E3D009826AB /* UIActivityIndicatorView+NIStyleable.m */,
 				668ECDCC145656F300455266 /* UIButton+NIStyleable.h */,
 				668ECDCD145656F400455266 /* UIButton+NIStyleable.m */,
 				66832DEF14434FBE003E413C /* UILabel+NIStyleable.h */,
@@ -350,6 +382,12 @@
 			files = (
 				66832D2F14421450003E413C /* InfoPlist.strings in Resources */,
 				66832E1814442D17003E413C /* css in Resources */,
+				663BF6071587339A0066B814 /* Icon-72.png in Resources */,
+				663BF6081587339A0066B814 /* Icon-Small-50.png in Resources */,
+				663BF6091587339A0066B814 /* Icon-Small.png in Resources */,
+				663BF60A1587339A0066B814 /* Icon-Small@2x.png in Resources */,
+				663BF60B1587339A0066B814 /* Icon.png in Resources */,
+				663BF60C1587339A0066B814 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +431,7 @@
 				66832E0A14435A07003E413C /* NIChameleonObserver.m in Sources */,
 				668ECDCB1456438C00455266 /* NIStylesheetCache.m in Sources */,
 				668ECDCE145656F400455266 /* UIButton+NIStyleable.m in Sources */,
+				664EFB6615598E3D009826AB /* UIActivityIndicatorView+NIStyleable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +454,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -440,6 +480,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

@@ -3021,8 +3021,9 @@ static int yy_get_next_buffer (void)
 		YY_CURRENT_BUFFER_LVALUE->yy_buf_pos = (yy_c_buf_p);
 		YY_CURRENT_BUFFER_LVALUE->yy_n_chars = (yy_n_chars);
 		}
-
-	YY_CURRENT_BUFFER_LVALUE = new_buffer;
+  if (yy_buffer_stack) {
+    YY_CURRENT_BUFFER_LVALUE = new_buffer;
+  }
 	css_load_buffer_state( );
 
 	/* We don't actually know whether we did this switch during
@@ -3174,7 +3175,9 @@ void csspush_buffer_state (YY_BUFFER_STATE new_buffer )
 	/* Only push if top exists. Otherwise, replace top. */
 	if (YY_CURRENT_BUFFER)
 		(yy_buffer_stack_top)++;
-	YY_CURRENT_BUFFER_LVALUE = new_buffer;
+  if (yy_buffer_stack) {
+    YY_CURRENT_BUFFER_LVALUE = new_buffer;
+  }
 
 	/* copied from css_switch_to_buffer. */
 	css_load_buffer_state( );
@@ -3215,9 +3218,10 @@ static void cssensure_buffer_stack (void)
 		 * immediate realloc on the next call.
          */
 		num_to_alloc = 1;
-		(yy_buffer_stack) = (struct yy_buffer_state**)cssalloc
-								(num_to_alloc * sizeof(struct yy_buffer_state*)
-								);
+    const yy_size_t ptr_size = sizeof(struct yy_buffer_state*);
+    const yy_size_t size_to_alloc = ptr_size /* * num_to_alloc */;
+		(yy_buffer_stack) = (struct yy_buffer_state**)cssalloc(size_to_alloc);
+
 		if ( ! (yy_buffer_stack) )
 			YY_FATAL_ERROR( "out of dynamic memory in cssensure_buffer_stack()" );
 								  

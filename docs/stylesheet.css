@@ -343,12 +343,18 @@ hr.footer {
 table.memberdecls {
 	border-spacing: 0px;
 	padding: 0px;
+	width: 100%;
+}
+
+.declaration {
+  font: 104% Courier,Consolas,monospace;
+  margin-top: 1.182em;
+  margin-bottom: .909em;
 }
 
 .mdescLeft, .mdescRight,
 .memItemLeft, .memItemRight,
 .memTemplItemLeft, .memTemplItemRight, .memTemplParams {
-	background-color: #F9FAFC;
 	border: none;
 	margin: 4px;
 	padding: 1px 0 0 8px;
@@ -409,9 +415,11 @@ table.memberdecls {
 }
 
 .memname {
-        white-space: nowrap;
-        font-weight: bold;
-        margin-left: 6px;
+  margin-top: 1.5em;
+  margin-bottom: .25em;
+  font-size: 145%;
+  font-weight: normal;
+  color: black;
 }
 
 .memproto {
@@ -423,8 +431,6 @@ table.memberdecls {
 }
 
 .memdoc {
-        padding: 2px 5px;
-        background-color: #FBFCFD;
 }
 
 .paramkey {
@@ -678,11 +684,7 @@ div.ingroups a
 
 div.header
 {
-        background-image:url('nav_h.png');
-        background-repeat:repeat-x;
-	background-color: #F9FAFC;
 	margin:  0px;
-	border-bottom: 1px solid #C4CFE5;
 }
 
 div.headertitle
@@ -823,6 +825,7 @@ div.summary {
   padding: 10px;
   padding-right: 0;
   width: auto;
+  display: none;
 }
 
 div.ingroups {
@@ -841,7 +844,13 @@ h2 {
 }
 
 p {
+  margin-top: 0;
   font: 100% 'Lucida Grande',Geneva,Helvetica,Arial,sans-serif;
+}
+
+p.abstract {
+  margin-top: 1.083em;
+  margin-bottom: .833em;
 }
 
 pre.fragment {
@@ -922,6 +931,7 @@ div.groupHeader {
 
 a.el {
   font-weight: normal;
+  font-family: Courier, Consolas, monospace;
 }
 
 table.modificationtable {
@@ -1026,4 +1036,46 @@ table.modificationtable td {
   font-family: Consolas,Monaco,"Lucida Console","Liberation Mono","DejaVu Sans Mono","Bitstream Vera Sans Mono","Courier New";
   margin-right: 10px;
   font-size: 0.5em;
+}
+
+.memItemRight {
+	padding-left: 20px;
+}
+
+.mdescRight {
+  padding-left: 40px;
+}
+
+#nav-tree {
+  background:none;
+  background-color: #E4EBF7;
+  border-right: 1px solid #ACACAC;
+}
+
+#side-nav {
+  width: 250px;
+}
+
+#doc-content {
+  margin-left: 250px;
+}
+
+#nav-path {
+  display: none;
+}
+
+#nav-tree .selected {
+  background: none;
+  text-shadow: none;
+}
+
+#nav-tree .selected a {
+  color: gray;
+}
+
+h5 {
+  margin: .692em 0 .154em 0;
+  padding: 0;
+  font-size: 100%;
+  color: black;
 }

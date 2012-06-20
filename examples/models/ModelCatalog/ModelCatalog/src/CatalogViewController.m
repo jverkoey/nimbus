@@ -21,7 +21,10 @@
 #import "StaticIndexedTableViewController.h"
 #import "FormCellCatalogTableViewController.h"
 
-#import "CatalogEntry.h"
+@interface CatalogViewController()
+@property (nonatomic, readwrite, retain) NITableViewModel* model;
+@property (nonatomic, readwrite, retain) NITableViewActions* actions;
+@end
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,34 +32,31 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation CatalogViewController
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  // The model is a retained object in this controller, so we must release it when the controller
-  // is deallocated.
-  [_model release]; _model = nil;
-  
-  [super dealloc];
-}
+@synthesize model = _model;
+@synthesize actions = _actions;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     self.title = NSLocalizedString(@"Model Catalog", @"Controller Title: Model Catalog");
+    
+    _actions = [[NITableViewActions alloc] initWithController:self];
 
-    NSArray* tableContents =
-    [NSArray arrayWithObjects:
+    NSMutableArray* tableContents =
+    [NSMutableArray arrayWithObjects:
      @"Table View Models",
-     [CatalogEntry entryWithTitle:@"List" controllerClass:[StaticListTableViewController class]],
-     [CatalogEntry entryWithTitle:@"Sectioned" controllerClass:[StaticSectionedTableViewController class]],
-     [CatalogEntry entryWithTitle:@"Indexed" controllerClass:[StaticIndexedTableViewController class]],
-     
+     [_actions attachNavigationAction:NIPushControllerAction([StaticListTableViewController class])
+                             toObject:[NITitleCellObject objectWithTitle:@"List"]],
+     [_actions attachNavigationAction:NIPushControllerAction([StaticSectionedTableViewController class])
+                             toObject:[NITitleCellObject objectWithTitle:@"Sectioned"]],
+     [_actions attachNavigationAction:NIPushControllerAction([StaticIndexedTableViewController class])
+                             toObject:[NITitleCellObject objectWithTitle:@"Indexed"]],
      @"Table Cell Factory",
-     [CatalogEntry entryWithTitle:@"Form Cells" controllerClass:[FormCellCatalogTableViewController class]],
+     [_actions attachNavigationAction:NIPushControllerAction([FormCellCatalogTableViewController class])
+                             toObject:[NITitleCellObject objectWithTitle:@"Form Cells"]],
      nil];
 
-    // This controller creates the table view cells.
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
                                                      delegate:(id)[NICellFactory class]];
   }
@@ -74,15 +74,13 @@
   // view is unloaded (more importantly: you shouldn't, due to the reason just outlined
   // regarding loadView).
   self.tableView.dataSource = _model;
+  self.tableView.delegate = [self.actions forwardingTo:self.tableView.delegate];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  CatalogEntry* entry = [_model objectAtIndexPath:indexPath];
-  Class cls = [entry controllerClass];
-  UIViewController* controller = [[[cls alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-  [self.navigationController pushViewController:controller animated:YES];
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+  return NIIsSupportedOrientation(toInterfaceOrientation);
 }
 
 

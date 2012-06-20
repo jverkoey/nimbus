@@ -40,11 +40,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testSingletonSetting {
-  NIImageMemoryCache *cache = [[[NIImageMemoryCache alloc] init] autorelease];
+  NIImageMemoryCache *cache = [[NIImageMemoryCache alloc] init];
   [Nimbus setImageMemoryCache:cache];
   STAssertEquals([Nimbus imageMemoryCache], cache, @"Singleton object should have been set.");
 
-  NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
+  NSOperationQueue *queue = [[NSOperationQueue alloc] init];
   [Nimbus setNetworkOperationQueue:queue];
   STAssertEquals([Nimbus networkOperationQueue], queue, @"Singleton object should have been set.");
 }

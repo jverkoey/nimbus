@@ -63,18 +63,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_visiblePhotoViews);
-  NI_RELEASE_SAFELY(_recycledPhotoViews);
-  
-  NI_RELEASE_SAFELY(_containerView);
-  NI_RELEASE_SAFELY(_selectionView);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     // Only one finger should be allowed to interact with the scrubber at a time.
@@ -87,7 +75,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
     _containerView.userInteractionEnabled = NO;
     [self addSubview:_containerView];
     
-    _selectionView = [[self photoView] retain];
+    _selectionView = [self photoView];
     [self addSubview:_selectionView];
 
     _selectedPhotoIndex = -1;
@@ -105,7 +93,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIImageView *)photoView {
-  UIImageView* imageView = [[[UIImageView alloc] init] autorelease];
+  UIImageView* imageView = [[UIImageView alloc] init];
   
   imageView.layer.borderColor = [UIColor whiteColor].CGColor;
   imageView.layer.borderWidth = 1;
@@ -316,7 +304,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
 
     // If there aren't enough visible photo views then try to recycle another view.
     if (ix >= [_visiblePhotoViews count]) {
-      photoView = [[[_recycledPhotoViews anyObject] retain] autorelease];
+      photoView = [_recycledPhotoViews anyObject];
       if (nil == photoView) {
         // Couldn't recycle the view, so create a new one.
         photoView = [self photoView];
@@ -452,9 +440,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   for (UIView* photoView in _visiblePhotoViews) {
     [photoView removeFromSuperview];
   }
-
-  NI_RELEASE_SAFELY(_visiblePhotoViews);
-  NI_RELEASE_SAFELY(_recycledPhotoViews);
 
   // If there is no data source then we can't do anything particularly interesting.
   if (nil == _dataSource) {

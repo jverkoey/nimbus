@@ -35,14 +35,7 @@
  * The Nimbus in-memory object cache allows you to store objects in memory with an expiration
  * date attached. Objects with expiration dates drop out of the cache when they have expired.
  */
-@interface NIMemoryCache : NSObject {
-@private
-  // Mapping from a name (usually a URL) to an internal object.
-  NSMutableDictionary*  _cacheMap;
-
-  // A linked list of least recently used cache objects. Most recently used is the tail.
-  NILinkedList*         _lruCacheObjects;
-}
+@interface NIMemoryCache : NSObject
 
 // Designated initializer.
 - (id)initWithCapacity:(NSUInteger)capacity;
@@ -53,6 +46,7 @@
 - (void)storeObject:(id)object withName:(NSString *)name expiresAfter:(NSDate *)expirationDate;
 
 - (void)removeObjectWithName:(NSString *)name;
+- (void)removeAllObjectsWithPrefix:(NSString *)prefix;
 - (void)removeAllObjects;
 
 - (id)objectWithName:(NSString *)name;
@@ -93,18 +87,10 @@
  *      @see Nimbus::imageMemoryCache
  *      @see Nimbus::setImageMemoryCache:
  */
-@interface NIImageMemoryCache : NIMemoryCache {
-@private
-  NSUInteger _numberOfPixels;
-
-  NSUInteger _maxNumberOfPixels;
-  NSUInteger _maxNumberOfPixelsUnderStress;
-}
-
+@interface NIImageMemoryCache : NIMemoryCache
 @property (nonatomic, readonly, assign) NSUInteger numberOfPixels;
 @property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixels;
 @property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixelsUnderStress;
-
 @end
 
 
@@ -153,10 +139,19 @@
 /** @name Removing Objects from the Cache */
 
 /**
- * Removes an object from the cache.
+ * Removes an object from the cache with the given name.
  *
  *      @param name The name used as a key to store this object.
  *      @fn NIMemoryCache::removeObjectWithName:
+ */
+
+/**
+ * Removes all objects from the cache with a given prefix.
+ *
+ * This method requires a scan of the cache entries.
+ *
+ *      @param prefix Any object name that has this prefix will be removed from the cache.
+ *      @fn NIMemoryCache::removeAllObjectsWithPrefix:
  */
 
 /**

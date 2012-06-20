@@ -26,16 +26,6 @@
 
 @synthesize facebookAlbumId = _facebookAlbumId;
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_photoInformation);
-  NI_RELEASE_SAFELY(_facebookAlbumId);
-
-  [super dealloc];
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWith:(id)object {
   if ((self = [self initWithNibName:nil bundle:nil])) {
@@ -43,7 +33,6 @@
   }
   return self;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadThumbnails {
@@ -73,7 +62,7 @@
   // returning the object to the main thread. This is useful here because we perform sorting
   // operations and pruning on the results.
   NSURL* url = [NSURL URLWithString:albumURLPath];
-  NINetworkJSONRequest* albumRequest = [[[NINetworkJSONRequest alloc] initWithURL:url] autorelease];
+  NINetworkJSONRequest* albumRequest = [[NINetworkJSONRequest alloc] initWithURL:url];
 
   // Facebook albums are painfully slow to load if they have a lot of comments. Even more
   // frustrating is that you can't ask *not* to receive the comments from the graph API.
@@ -108,7 +97,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
-  NI_RELEASE_SAFELY(_photoInformation);
+  _photoInformation = nil;
 
   [super viewDidUnload];
 }
@@ -121,7 +110,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationWillFinish:(NINetworkRequestOperation *)operation {
+- (void)nimbusOperationWillFinish:(NINetworkRequestOperation *)operation {
   // This is called from the processing thread in order to allow us to turn the root object
   // into something more interesting.
   if (![operation.processedObject isKindOfClass:[NSDictionary class]]) {
@@ -140,7 +129,7 @@
       NSArray* sortedImages =
       [images sortedArrayUsingDescriptors:
        [NSArray arrayWithObject:
-        [[[NSSortDescriptor alloc] initWithKey:@"width" ascending:NO] autorelease]]];
+        [[NSSortDescriptor alloc] initWithKey:@"width" ascending:NO]]];
 
       // Gather the high-quality photo information.
       NSDictionary* originalImage = [sortedImages objectAtIndex:0];
@@ -180,8 +169,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationDidFinish:(NINetworkRequestOperation *)operation {
-  _photoInformation = [operation.processedObject retain];
+- (void)nimbusOperationDidFinish:(NINetworkRequestOperation *)operation {
+  _photoInformation = operation.processedObject;
 
   [self.photoAlbumView reloadData];
 
@@ -300,7 +289,7 @@
   NSString* reuseIdentifier = NSStringFromClass([CaptionedPhotoView class]);
   pageView = [pagingScrollView dequeueReusablePageWithIdentifier:reuseIdentifier];
   if (nil == pageView) {
-    pageView = [[[CaptionedPhotoView alloc] init] autorelease];
+    pageView = [[CaptionedPhotoView alloc] init];
     pageView.reuseIdentifier = reuseIdentifier;
   }
 

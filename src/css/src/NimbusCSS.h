@@ -32,12 +32,6 @@
  *   the application's UI when the app state changes. A good example of this is the Rdio app
  *   when you go into offline mode and the app's online components gray out.
  * - Chameleon - modify CSS files and watch the changes affect your app in real time.
- */
-
-/**
- * NIStylesheet is the backbone of the Nimbus CSS feature.
- *
- *      @defgroup CSS-Stylesheets CSS Stylesheets
  *
  * <h2>How to Create a Stylesheet</h2>
  *
@@ -183,6 +177,14 @@ UIButton {
 UINavigationBar {
   -ios-tint-color: <color>  {navBar.tintColor}
 }
+ 
+ UISearchBar {
+ -ios-tint-color: <color>  {searchBar.tintColor}
+ }
+ 
+ UIToolbar {
+ -ios-tint-color: <color>  {toolbar.tintColor}
+ }
 @endcode
  *
  *
@@ -231,6 +233,8 @@ _chameleonObserver = [[NIChameleonObserver alloc] initWithStylesheetCache:_style
 #import "UIButton+NIStyleable.h"
 #import "UILabel+NIStyleable.h"
 #import "UINavigationBar+NIStyleable.h"
+#import "UISearchBar+NIStyleable.h"
+#import "UIToolbar+NIStyleable.h"
 #import "UIView+NIStyleable.h"
 
 // Dependencies

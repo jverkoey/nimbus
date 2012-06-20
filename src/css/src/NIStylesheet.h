@@ -22,7 +22,7 @@
 /**
  * The notification key for when a stylesheet has changed.
  *
- *      @ingroup CSS-Stylesheets
+ *      @ingroup NimbusCSS
  *
  * This notification will be sent with the stylesheet as the object. Listeners should add
  * themselves using the stylesheet object that they are interested in.
@@ -34,7 +34,7 @@ extern NSString* const NIStylesheetDidChangeNotification;
 /**
  * Loads and caches information regarding a specific stylesheet.
  *
- *      @ingroup CSS-Stylesheets
+ *      @ingroup NimbusCSS
  *
  * Use this object to load and parse a CSS stylesheet from disk and then apply the stylesheet
  * to views. Rulesets are cached on demand and cleared when a memory warning is received.

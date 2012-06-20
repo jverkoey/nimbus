@@ -17,14 +17,5 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface RootViewController : UIViewController <
-  NINetworkImageViewDelegate
-> {
-@private
-  UIScrollView*   _scrollView;
-  NSMutableArray* _networkImageViews;
-
-  UILabel*        _memoryUsageLabel;
-}
-
+@interface RootViewController : UIViewController <NINetworkImageViewDelegate>
 @end

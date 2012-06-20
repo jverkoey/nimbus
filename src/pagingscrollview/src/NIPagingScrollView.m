@@ -21,6 +21,8 @@
 #import "NIPagingScrollViewDelegate.h"
 #import "NimbusCore.h"
 
+#import <objc/runtime.h>
+
 const NSInteger NIPagingScrollViewUnknownNumberOfPages = -1;
 const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
@@ -46,17 +48,6 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_pagingScrollView);
-
-  NI_RELEASE_SAFELY(_visiblePages);
-  NI_RELEASE_SAFELY(_viewRecycler);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)commonInit {
   // Default state.
   self.pageHorizontalMargin = NIPagingScrollViewDefaultPageHorizontalMargin;
@@ -68,7 +59,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
   _viewRecycler = [[NIViewRecycler alloc] init];
 
-  self.pagingScrollView = [[[UIScrollView alloc] initWithFrame:self.bounds] autorelease];
+  self.pagingScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
   self.pagingScrollView.pagingEnabled = YES;
 
   self.pagingScrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
@@ -278,7 +269,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
   // Recycle no-longer-visible pages. We copy _visiblePages because we may modify it while we're
   // iterating over it.
-  for (UIView<NIPagingScrollViewPage>* page in [[_visiblePages copy] autorelease]) {
+  for (UIView<NIPagingScrollViewPage>* page in [_visiblePages copy]) {
     if (!NSLocationInRange(page.pageIndex, visiblePageRange)) {
       [_viewRecycler recycleView:page];
       [page removeFromSuperview];
@@ -404,6 +395,48 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Forward UIScrollViewDelegate Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldForwardSelectorToDelegate:(SEL)aSelector {
+  struct objc_method_description description;
+  // Only forward the selector if it's part of the UIScrollViewDelegate protocol.
+  description = protocol_getMethodDescription(@protocol(UIScrollViewDelegate),
+                                              aSelector,
+                                              NO,
+                                              YES);
+
+  BOOL isSelectorInScrollViewDelegate = (description.name != NULL && description.types != NULL);
+  return (isSelectorInScrollViewDelegate
+          && [self.delegate respondsToSelector:aSelector]);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)respondsToSelector:(SEL)aSelector {
+  if ([super respondsToSelector:aSelector] == YES) {
+    return YES;
+
+  } else {
+    return [self shouldForwardSelectorToDelegate:aSelector];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)forwardingTargetForSelector:(SEL)aSelector {
+  if ([self shouldForwardSelectorToDelegate:aSelector]) {
+    return self.delegate;
+
+  } else {
+    return nil;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Subclassing
 
@@ -436,7 +469,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
     [(UIView *)page removeFromSuperview];
   }
 
-  NI_RELEASE_SAFELY(_visiblePages);
+  _visiblePages = nil;
 
   // If there is no data source then we can't do anything particularly interesting.
   if (nil == _dataSource) {

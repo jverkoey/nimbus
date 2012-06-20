@@ -39,6 +39,10 @@ static NSString* const kBorderKey = @"border";
 static NSString* const kBorderColorKey = @"border-color";
 static NSString* const kBorderWidthKey = @"border-width";
 static NSString* const kTintColorKey = @"-ios-tint-color";
+static NSString* const kActivityIndicatorStyleKey = @"-ios-activity-indicator-style";
+static NSString* const kAutoresizingKey = @"-ios-autoresizing";
+static NSString* const kTableViewCellSeparatorStyleKey = @"-ios-table-view-cell-separator-style";
+static NSString* const kScrollViewIndicatorStyleKey = @"-ios-scroll-view-indicator-style";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -58,23 +62,8 @@ static NSDictionary* sColorTable = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)clearCache {
-  NI_RELEASE_SAFELY(_textColor);
-  NI_RELEASE_SAFELY(_font);
-  NI_RELEASE_SAFELY(_textShadowColor);
-  NI_RELEASE_SAFELY(_backgroundColor);
-  NI_RELEASE_SAFELY(_borderColor);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  NI_RELEASE_SAFELY(_ruleset);
-
-  [self clearCache];
-
-  [super dealloc];
 }
 
 
@@ -100,7 +89,7 @@ static NSDictionary* sColorTable = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addEntriesFromDictionary:(NSDictionary *)dictionary {
-  NSMutableArray* order = [[[_ruleset objectForKey:kPropertyOrderKey] retain] autorelease];
+  NSMutableArray* order = [_ruleset objectForKey:kPropertyOrderKey];
   [_ruleset addEntriesFromDictionary:dictionary];
 
   if (nil != order) {
@@ -120,8 +109,8 @@ static NSDictionary* sColorTable = nil;
 - (UIColor *)textColor {
   NIDASSERT([self hasTextColor]);
   if (!_is.cached.TextColor) {
-    _textColor = [[[self class] colorFromCssValues:[_ruleset objectForKey:kTextColorKey]
-                            numberOfConsumedTokens:nil] retain];
+    _textColor = [[self class] colorFromCssValues:[_ruleset objectForKey:kTextColorKey]
+                           numberOfConsumedTokens:nil];
     _is.cached.TextColor = YES;
   }
   return _textColor;
@@ -253,8 +242,7 @@ static NSDictionary* sColorTable = nil;
     font = [UIFont systemFontOfSize:fontSize];
   }
 
-  [_font release];
-  _font = [font retain];
+  _font = font;
   _is.cached.Font = YES;
 
   return font;
@@ -272,7 +260,7 @@ static NSDictionary* sColorTable = nil;
   NIDASSERT([self hasTextShadowColor]);
   if (!_is.cached.TextShadowColor) {
     NSArray* values = [_ruleset objectForKey:kTextShadowKey];
-    _textShadowColor = [[[self class] colorFromCssValues:values numberOfConsumedTokens:nil] retain];
+    _textShadowColor = [[self class] colorFromCssValues:values numberOfConsumedTokens:nil];
     _is.cached.TextShadowColor = YES;
   }
   return _textShadowColor;
@@ -452,8 +440,8 @@ static NSDictionary* sColorTable = nil;
 - (UIColor *)backgroundColor {
   NIDASSERT([self hasBackgroundColor]);
   if (!_is.cached.BackgroundColor) {
-    _backgroundColor = [[[self class] colorFromCssValues:[_ruleset objectForKey:kBackgroundColorKey]
-                                  numberOfConsumedTokens:nil] retain];
+    _backgroundColor = [[self class] colorFromCssValues:[_ruleset objectForKey:kBackgroundColorKey]
+                                 numberOfConsumedTokens:nil];
     _is.cached.BackgroundColor = YES;
   }
   return _backgroundColor;
@@ -489,7 +477,7 @@ static NSDictionary* sColorTable = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cacheBorderValues {
   _borderWidth = 0;
-  NI_RELEASE_SAFELY(_borderColor);
+  _borderColor = nil;
 
   NSArray* values = nil;
 
@@ -503,8 +491,8 @@ static NSDictionary* sColorTable = nil;
   for (NSString* name in [order reverseObjectEnumerator]) {
     if (!hasSetBorderColor && [name isEqualToString:kBorderColorKey]) {
       values = [_ruleset objectForKey:name];
-      _borderColor = [[[self class] colorFromCssValues:values
-                                numberOfConsumedTokens:nil] retain];
+      _borderColor = [[self class] colorFromCssValues:values
+                               numberOfConsumedTokens:nil];
       hasSetBorderColor = YES;
 
     } else if (!hasSetBorderWidth && [name isEqualToString:kBorderWidthKey]) {
@@ -523,8 +511,8 @@ static NSDictionary* sColorTable = nil;
       }
       if ([values count] >= 3) {
         // Border color
-        _borderColor = [[[self class] colorFromCssValues:[values subarrayWithRange:NSMakeRange(2, [values count] - 2)]
-                                  numberOfConsumedTokens:nil] retain];
+        _borderColor = [[self class] colorFromCssValues:[values subarrayWithRange:NSMakeRange(2, [values count] - 2)]
+                                 numberOfConsumedTokens:nil];
         hasSetBorderColor = YES;
       }
     }
@@ -575,11 +563,129 @@ static NSDictionary* sColorTable = nil;
 - (UIColor *)tintColor {
   NIDASSERT([self hasTintColor]);
   if (!_is.cached.TintColor) {
-    _tintColor = [[[self class] colorFromCssValues:[_ruleset objectForKey:kTintColorKey]
-                            numberOfConsumedTokens:nil] retain];
+    _tintColor = [[self class] colorFromCssValues:[_ruleset objectForKey:kTintColorKey]
+                           numberOfConsumedTokens:nil];
     _is.cached.TintColor = YES;
   }
   return _tintColor;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasActivityIndicatorStyle {
+  return nil != [_ruleset objectForKey:kActivityIndicatorStyleKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIActivityIndicatorViewStyle)activityIndicatorStyle {
+  NIDASSERT([self hasActivityIndicatorStyle]);
+  if (!_is.cached.ActivityIndicatorStyle) {
+    NSArray* values = [_ruleset objectForKey:kActivityIndicatorStyleKey];
+    NIDASSERT([values count] == 1);
+    NSString* value = [values objectAtIndex:0];
+    if ([value isEqualToString:@"white"]) {
+      _activityIndicatorStyle = UIActivityIndicatorViewStyleWhite;
+    } else if ([value isEqualToString:@"gray"]) {
+      _activityIndicatorStyle = UIActivityIndicatorViewStyleGray;
+    } else {
+      _activityIndicatorStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    }
+    _is.cached.ActivityIndicatorStyle = YES;
+  }
+  return _activityIndicatorStyle;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasAutoresizing {
+  return nil != [_ruleset objectForKey:kAutoresizingKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIViewAutoresizing)autoresizing {
+  NIDASSERT([self hasAutoresizing]);
+  if (!_is.cached.Autoresizing) {
+    NSArray* values = [_ruleset objectForKey:kAutoresizingKey];
+    UIViewAutoresizing autoresizing = UIViewAutoresizingNone;
+    for (NSString* value in values) {
+      if ([value isEqualToString:@"left"]) {
+        autoresizing |= UIViewAutoresizingFlexibleLeftMargin;
+      } else if ([value isEqualToString:@"top"]) {
+        autoresizing |= UIViewAutoresizingFlexibleTopMargin;
+      } else if ([value isEqualToString:@"right"]) {
+        autoresizing |= UIViewAutoresizingFlexibleRightMargin;
+      } else if ([value isEqualToString:@"bottom"]) {
+        autoresizing |= UIViewAutoresizingFlexibleBottomMargin;
+      } else if ([value isEqualToString:@"width"]) {
+        autoresizing |= UIViewAutoresizingFlexibleWidth;
+      } else if ([value isEqualToString:@"height"]) {
+        autoresizing |= UIViewAutoresizingFlexibleHeight;
+      } else if ([value isEqualToString:@"all"]) {
+        autoresizing |= UIViewAutoresizingFlexibleDimensions | UIViewAutoresizingFlexibleMargins;
+      } else if ([value isEqualToString:@"margins"]) {
+        autoresizing |= UIViewAutoresizingFlexibleMargins;
+      } else if ([value isEqualToString:@"dimensions"]) {
+        autoresizing |= UIViewAutoresizingFlexibleDimensions;
+      }
+    }
+    _autoresizing = autoresizing;
+    _is.cached.Autoresizing = YES;
+  }
+  return _autoresizing;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasTableViewCellSeparatorStyle {
+  return nil != [_ruleset objectForKey:kTableViewCellSeparatorStyleKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UITableViewCellSeparatorStyle)tableViewCellSeparatorStyle {
+  NIDASSERT([self hasTableViewCellSeparatorStyle]);
+  if (!_is.cached.TableViewCellSeparatorStyle) {
+    NSArray* values = [_ruleset objectForKey:kActivityIndicatorStyleKey];
+    NIDASSERT([values count] == 1);
+    NSString* value = [values objectAtIndex:0];
+    UITableViewCellSeparatorStyle style = UITableViewCellSeparatorStyleSingleLine;
+    if ([value isEqualToString:@"none"]) {
+      style = UITableViewCellSeparatorStyleNone;
+    } else if ([value isEqualToString:@"single-line-etched"]) {
+      style = UITableViewCellSeparatorStyleSingleLineEtched;
+    }
+    _tableViewCellSeparatorStyle = style;
+    _is.cached.TableViewCellSeparatorStyle = YES;
+  }
+  return _tableViewCellSeparatorStyle;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasScrollViewIndicatorStyle {
+  return nil != [_ruleset objectForKey:kScrollViewIndicatorStyleKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIScrollViewIndicatorStyle)scrollViewIndicatorStyle {
+  NIDASSERT([self hasScrollViewIndicatorStyle]);
+  if (!_is.cached.ScrollViewIndicatorStyle) {
+    NSArray* values = [_ruleset objectForKey:kScrollViewIndicatorStyleKey];
+    NIDASSERT([values count] == 1);
+    NSString* value = [values objectAtIndex:0];
+    UIScrollViewIndicatorStyle style = UIScrollViewIndicatorStyleDefault;
+    if ([value isEqualToString:@"black"]) {
+      style = UIScrollViewIndicatorStyleBlack;
+    } else if ([value isEqualToString:@"white"]) {
+      style = UIScrollViewIndicatorStyleWhite;
+    }
+    _scrollViewIndicatorStyle = style;
+    _is.cached.ScrollViewIndicatorStyle = YES;
+  }
+  return _scrollViewIndicatorStyle;
 }
 
 
@@ -588,12 +694,18 @@ static NSDictionary* sColorTable = nil;
 #pragma mark - NSNotifications
 
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reduceMemory {
-  NI_RELEASE_SAFELY(sColorTable);
-  
-  [self clearCache];
-  
+  sColorTable = nil;
+
+  _textColor = nil;
+  _font = nil;
+  _textShadowColor = nil;
+  _backgroundColor = nil;
+  _borderColor = nil;
+  _tintColor = nil;
+
   memset(&_is, 0, sizeof(_is));
 }
 
@@ -815,7 +927,6 @@ static NSDictionary* sColorTable = nil;
     [colorTable setObject:[UIColor clearColor] forKey:@"clear"];
 
     sColorTable = [colorTable copy];
-    NI_RELEASE_SAFELY(colorTable);
   }
   return sColorTable;
 }

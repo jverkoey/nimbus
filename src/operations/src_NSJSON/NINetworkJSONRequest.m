@@ -26,13 +26,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)operationWillFinish {
+- (void)willFinish {
   NSError* error = nil;
   self.processedObject = [NSJSONSerialization JSONObjectWithData:self.data options:0 error:&error];
   
   self.lastError = error;
   
-  [super operationWillFinish];
+  [super willFinish];
 }
 
 

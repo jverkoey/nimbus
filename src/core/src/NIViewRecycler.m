@@ -18,20 +18,22 @@
 
 #import "NimbusCore.h"
 
+@interface NIViewRecycler()
+@property (nonatomic, readwrite, retain) NSMutableDictionary* reuseIdentifiersToRecycledViews;
+@end
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIViewRecycler
 
+@synthesize reuseIdentifiersToRecycledViews = _reuseIdentifiersToRecycledViews;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-  NI_RELEASE_SAFELY(_reuseIdentifiersToRecycledViews);
-
-  [super dealloc];
 }
 
 
@@ -72,7 +74,6 @@
   NSMutableArray* views = [_reuseIdentifiersToRecycledViews objectForKey:reuseIdentifier];
   UIView<NIRecyclableView>* view = [views lastObject];
   if (nil != view) {
-    [[view retain] autorelease]; // Ensure that this object lives for the rest of the call stack.
     [views removeLastObject];
     if ([view respondsToSelector:@selector(prepareForReuse)]) {
       [view prepareForReuse];
@@ -101,7 +102,7 @@
 
   NSMutableArray* views = [_reuseIdentifiersToRecycledViews objectForKey:reuseIdentifier];
   if (nil == views) {
-    views = [[[NSMutableArray alloc] init] autorelease];
+    views = [[NSMutableArray alloc] init];
     [_reuseIdentifiersToRecycledViews setObject:views forKey:reuseIdentifier];
   }
   [views addObject:view];

@@ -23,7 +23,7 @@
 /**
  * A control built for quickly skimming through a collection of images.
  *
- *      @ingroup Photos-Views
+ *      @ingroup NimbusPhotos
  *
  * The user interacts with the scrubber by "scrubbing" their finger along the control,
  * or more simply, touching the control and moving their finger along a single axis.
@@ -61,8 +61,8 @@
   // Cached display values
   CGFloat _numberOfVisiblePhotos;
   
-  id<NIPhotoScrubberViewDataSource> _dataSource;
-  id<NIPhotoScrubberViewDelegate> _delegate;
+  __unsafe_unretained id<NIPhotoScrubberViewDataSource> _dataSource;
+  __unsafe_unretained id<NIPhotoScrubberViewDelegate> _delegate;
 }
 
 #pragma mark Data Source /** @name Data Source */
@@ -118,7 +118,7 @@
 /**
  * The data source for the photo scrubber.
  *
- *      @ingroup Photos-Protocols
+ *      @ingroup NimbusPhotos
  *
  * <h2>Performance Considerations</h2>
  *
@@ -165,7 +165,7 @@
 /**
  * The delegate for the photo scrubber.
  *
- *      @ingroup Photos-Protocols
+ *      @ingroup NimbusPhotos
  *
  * Sends notifications of state changes.
  *

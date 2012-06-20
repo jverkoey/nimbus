@@ -85,9 +85,6 @@
 
   [array addObject:dictionary];
   STAssertTrue(NIIsArrayWithObjects(array), @"This array should have items.");
-
-  [array release];
-  [dictionary release];
 }
 
 
@@ -104,9 +101,6 @@
 
   [set addObject:dictionary];
   STAssertTrue(NIIsSetWithObjects(set), @"This set should have items.");
-
-  [set release];
-  [dictionary release];
 }
 
 
@@ -123,9 +117,6 @@
 
   STAssertTrue(!NIIsStringWithAnyText(@""), @"This should be an empty string.");
   STAssertTrue(NIIsStringWithAnyText(@"three20"), @"This should be a string with text.");
-
-  [string release];
-  [dictionary release];
 }
 
 

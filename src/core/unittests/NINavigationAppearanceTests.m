@@ -86,7 +86,6 @@
   navigationController.navigationBar.barStyle = UIBarStyleBlack;
   [NINavigationAppearance popAppearanceForNavigationController:navigationController animated:NO];
   STAssertEquals(navigationController.navigationBar.barStyle, UIBarStyleDefault, @"Nav bar style should be UIBarStyleDefault");
-  [navigationController release];
 }
 
 
@@ -98,7 +97,6 @@
   navigationController.navigationBar.translucent = YES;
   [NINavigationAppearance popAppearanceForNavigationController:navigationController animated:NO];
   STAssertEquals(navigationController.navigationBar.translucent, NO, @"Nav bar should not be translucent");
-  [navigationController release];
 }
 
 

@@ -26,7 +26,7 @@
 /**
  * A single photo view that supports zooming and rotation.
  *
- *      @ingroup Photos-Views
+ *      @ingroup NimbusPhotos
  */
 @interface NIPhotoScrollView : UIView <
   UIScrollViewDelegate,
@@ -44,10 +44,11 @@
   // Configurable State
   BOOL _zoomingIsEnabled;
   BOOL _zoomingAboveOriginalSizeIsEnabled;
+  BOOL _doubleTapToZoomIsEnabled;
 
   UITapGestureRecognizer* _doubleTapGestureRecognizer;
 
-  id<NIPhotoScrollViewDelegate> _photoScrollViewDelegate;
+  __unsafe_unretained id<NIPhotoScrollViewDelegate> _photoScrollViewDelegate;
 }
 
 #pragma mark Configuring Functionality

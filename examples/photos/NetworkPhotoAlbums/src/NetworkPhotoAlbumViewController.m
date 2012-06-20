@@ -16,6 +16,17 @@
 
 #import "NetworkPhotoAlbumViewController.h"
 
+#import "NIOverviewMemoryCacheController.h"
+#import "NimbusOverview.h"
+#import "NIOverviewView.h"
+#import "NIOverviewPageView.h"
+
+#ifdef DEBUG
+@interface NetworkPhotoAlbumViewController()
+@property (nonatomic, readwrite, retain) NIOverviewMemoryCachePageView* highQualityPage;
+@property (nonatomic, readwrite, retain) NIOverviewMemoryCachePageView* thumbnailPage;
+@end
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,6 +36,10 @@
 @synthesize highQualityImageCache = _highQualityImageCache;
 @synthesize thumbnailImageCache = _thumbnailImageCache;
 @synthesize queue = _queue;
+#ifdef DEBUG
+@synthesize highQualityPage = _highQualityPage;
+@synthesize thumbnailPage = _thumbnailPage;
+#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,19 +49,16 @@
   }
   [_queue cancelAllOperations];
 
-  NI_RELEASE_SAFELY(_activeRequests);
-
-  NI_RELEASE_SAFELY(_highQualityImageCache);
-  NI_RELEASE_SAFELY(_thumbnailImageCache);
-  NI_RELEASE_SAFELY(_queue);
+#ifdef DEBUG
+  [[NIOverview view] removePageView:self.highQualityPage];
+  [[NIOverview view] removePageView:self.thumbnailPage];
+#endif
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [self shutdown_NetworkPhotoAlbumViewController];
-
-  [super dealloc];
 }
 
 
@@ -86,8 +98,9 @@
 
   NSURL* url = [NSURL URLWithString:source];
 
-  // We must use __block here to avoid creating a retain cycle with the readOp.
-  __block NINetworkRequestOperation* readOp = [[[NINetworkRequestOperation alloc] initWithURL:url] autorelease];
+  // We must use __unsafe_unretained here to avoid creating a retain cycle with the readOp.
+  NINetworkRequestOperation* readOp = [[NINetworkRequestOperation alloc] initWithURL:url];
+  __unsafe_unretained NINetworkRequestOperation* weakOp = readOp;
   readOp.timeout = 30;
 
   // Set an negative index for thumbnail requests so that they don't get cancelled by
@@ -99,7 +112,7 @@
   // The completion block will be executed on the main thread, so we must be careful not
   // to do anything computationally expensive here.
   [readOp setDidFinishBlock:^(NIOperation* operation) {
-    UIImage* image = [UIImage imageWithData:readOp.data];
+    UIImage* image = [UIImage imageWithData:weakOp.data];
 
     // Store the image in the correct image cache.
     if (isThumbnail) {
@@ -174,7 +187,8 @@
   _highQualityImageCache = [[NIImageMemoryCache alloc] init];
   _thumbnailImageCache = [[NIImageMemoryCache alloc] init];
 
-  [_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024*1024*3];
+  [_highQualityImageCache setMaxNumberOfPixels:1024L*1024L*10L];
+  [_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024L*1024L*3L];
 
   _queue = [[NSOperationQueue alloc] init];
   [_queue setMaxConcurrentOperationCount:5];
@@ -182,6 +196,13 @@
   // Set the default loading image.
   self.photoAlbumView.loadingImage = [UIImage imageWithContentsOfFile:
                                       NIPathForBundleResource(nil, @"NimbusPhotos.bundle/gfx/default.png")];
+
+#ifdef DEBUG
+  self.highQualityPage = [NIOverviewMemoryCachePageView pageWithCache:self.highQualityImageCache];
+  [[NIOverview view] addPageView:self.highQualityPage];
+  self.thumbnailPage = [NIOverviewMemoryCachePageView pageWithCache:self.thumbnailImageCache];
+  [[NIOverview view] addPageView:self.thumbnailPage];
+#endif
 }
 
 

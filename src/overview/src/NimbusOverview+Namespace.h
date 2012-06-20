@@ -28,8 +28,14 @@
 #endif
 
 // Classes
+#ifndef NICellFactory
+#define NICellFactory __NIMBUS_NS_SYMBOL(NICellFactory)
+#endif
 #ifndef NIDeviceInfo
 #define NIDeviceInfo __NIMBUS_NS_SYMBOL(NIDeviceInfo)
+#endif
+#ifndef NIImageMemoryCache
+#define NIImageMemoryCache __NIMBUS_NS_SYMBOL(NIImageMemoryCache)
 #endif
 #ifndef NILinkedList
 #define NILinkedList __NIMBUS_NS_SYMBOL(NILinkedList)
@@ -58,6 +64,9 @@
 #ifndef NIOverviewGraphView
 #define NIOverviewGraphView __NIMBUS_NS_SYMBOL(NIOverviewGraphView)
 #endif
+#ifndef NIOverviewImageMemoryCacheEntry
+#define NIOverviewImageMemoryCacheEntry __NIMBUS_NS_SYMBOL(NIOverviewImageMemoryCacheEntry)
+#endif
 #ifndef NIOverviewLogEntry
 #define NIOverviewLogEntry __NIMBUS_NS_SYMBOL(NIOverviewLogEntry)
 #endif
@@ -67,6 +76,15 @@
 #ifndef NIOverviewMaxLogLevelPageView
 #define NIOverviewMaxLogLevelPageView __NIMBUS_NS_SYMBOL(NIOverviewMaxLogLevelPageView)
 #endif
+#ifndef NIOverviewMemoryCacheController
+#define NIOverviewMemoryCacheController __NIMBUS_NS_SYMBOL(NIOverviewMemoryCacheController)
+#endif
+#ifndef NIOverviewMemoryCacheEntry
+#define NIOverviewMemoryCacheEntry __NIMBUS_NS_SYMBOL(NIOverviewMemoryCacheEntry)
+#endif
+#ifndef NIOverviewMemoryCachePageView
+#define NIOverviewMemoryCachePageView __NIMBUS_NS_SYMBOL(NIOverviewMemoryCachePageView)
+#endif
 #ifndef NIOverviewMemoryPageView
 #define NIOverviewMemoryPageView __NIMBUS_NS_SYMBOL(NIOverviewMemoryPageView)
 #endif
@@ -75,6 +93,21 @@
 #endif
 #ifndef NIOverviewView
 #define NIOverviewView __NIMBUS_NS_SYMBOL(NIOverviewView)
+#endif
+#ifndef NISubtitleCellObject
+#define NISubtitleCellObject __NIMBUS_NS_SYMBOL(NISubtitleCellObject)
+#endif
+#ifndef NITableViewModel
+#define NITableViewModel __NIMBUS_NS_SYMBOL(NITableViewModel)
+#endif
+#ifndef NITableViewModelFooter
+#define NITableViewModelFooter __NIMBUS_NS_SYMBOL(NITableViewModelFooter)
+#endif
+#ifndef NITitleCellObject
+#define NITitleCellObject __NIMBUS_NS_SYMBOL(NITitleCellObject)
+#endif
+#ifndef Nimbus
+#define Nimbus __NIMBUS_NS_SYMBOL(Nimbus)
 #endif
 // Functions
 #ifndef NIOverviewLogMethod

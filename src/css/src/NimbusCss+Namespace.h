@@ -52,6 +52,9 @@
 #ifndef NIStylesheetCache
 #define NIStylesheetCache __NIMBUS_NS_SYMBOL(NIStylesheetCache)
 #endif
+#ifndef NI_FIX_CATEGORY_BUG_UIActivityIndicatorView_NIStyleable
+#define NI_FIX_CATEGORY_BUG_UIActivityIndicatorView_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UIActivityIndicatorView_NIStyleable)
+#endif
 #ifndef NI_FIX_CATEGORY_BUG_UIButton_NIStyleable
 #define NI_FIX_CATEGORY_BUG_UIButton_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UIButton_NIStyleable)
 #endif
@@ -60,6 +63,18 @@
 #endif
 #ifndef NI_FIX_CATEGORY_BUG_UINavigationBar_NIStyleable
 #define NI_FIX_CATEGORY_BUG_UINavigationBar_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UINavigationBar_NIStyleable)
+#endif
+#ifndef NI_FIX_CATEGORY_BUG_UIScrollView_NIStyleable
+#define NI_FIX_CATEGORY_BUG_UIScrollView_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UIScrollView_NIStyleable)
+#endif
+#ifndef NI_FIX_CATEGORY_BUG_UISearchBar_NIStyleable
+#define NI_FIX_CATEGORY_BUG_UISearchBar_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UISearchBar_NIStyleable)
+#endif
+#ifndef NI_FIX_CATEGORY_BUG_UITableView_NIStyleable
+#define NI_FIX_CATEGORY_BUG_UITableView_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UITableView_NIStyleable)
+#endif
+#ifndef NI_FIX_CATEGORY_BUG_UIToolbar_NIStyleable
+#define NI_FIX_CATEGORY_BUG_UIToolbar_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UIToolbar_NIStyleable)
 #endif
 #ifndef NI_FIX_CATEGORY_BUG_UIView_NIStyleable
 #define NI_FIX_CATEGORY_BUG_UIView_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UIView_NIStyleable)
@@ -162,9 +177,6 @@
 #ifndef gActiveParser
 #define gActiveParser __NIMBUS_NS_SYMBOL(gActiveParser)
 #endif
-#ifndef NIStylesheetDidChangeNotification
-#define NIStylesheetDidChangeNotification __NIMBUS_NS_SYMBOL(NIStylesheetDidChangeNotification)
-#endif
 #ifndef cssin
 #define cssin __NIMBUS_NS_SYMBOL(cssin)
 #endif
@@ -173,5 +185,8 @@
 #endif
 #ifndef css_flex_debug
 #define css_flex_debug __NIMBUS_NS_SYMBOL(css_flex_debug)
+#endif
+#ifndef NIStylesheetDidChangeNotification
+#define NIStylesheetDidChangeNotification __NIMBUS_NS_SYMBOL(NIStylesheetDidChangeNotification)
 #endif
 #endif

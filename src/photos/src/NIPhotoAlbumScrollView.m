@@ -33,15 +33,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  NI_RELEASE_SAFELY(_loadingImage);
-  NI_RELEASE_SAFELY(_photoViewBackgroundColor);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     // Default state.
@@ -158,7 +149,7 @@
   NSString* reuseIdentifier = @"photo";
   pageView = [pagingScrollView dequeueReusablePageWithIdentifier:reuseIdentifier];
   if (nil == pageView) {
-    pageView = [[[NIPhotoScrollView alloc] init] autorelease];
+    pageView = [[NIPhotoScrollView alloc] init];
     pageView.reuseIdentifier = reuseIdentifier;
     pageView.backgroundColor = self.photoViewBackgroundColor;
   }
@@ -209,8 +200,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setPhotoViewBackgroundColor:(UIColor *)photoViewBackgroundColor {
   if (_photoViewBackgroundColor != photoViewBackgroundColor) {
-    [_photoViewBackgroundColor release];
-    _photoViewBackgroundColor = [photoViewBackgroundColor retain];
+      self.photoViewBackgroundColor = photoViewBackgroundColor;
     
     for (UIView<NIPagingScrollViewPage>* page in self.visiblePages) {
       page.backgroundColor = photoViewBackgroundColor;
@@ -246,8 +236,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id<NIPhotoAlbumScrollViewDelegate>)delegate {
-  NIDASSERT([[super delegate] conformsToProtocol:@protocol(NIPhotoAlbumScrollViewDelegate)]);
-  return (id<NIPhotoAlbumScrollViewDelegate>)[super delegate];
+  id<NIPagingScrollViewDelegate> superDelegate = [super delegate];
+  NIDASSERT(nil == superDelegate
+            || [superDelegate conformsToProtocol:@protocol(NIPhotoAlbumScrollViewDelegate)]);
+  return (id<NIPhotoAlbumScrollViewDelegate>)superDelegate;
 }
 
 

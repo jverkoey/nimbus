@@ -21,7 +21,7 @@
 /**
  * A simple in-memory cache for stylesheets.
  *
- *      @ingroup CSS-Stylesheets
+ *      @ingroup NimbusCSS
  *
  * It is recommended that you use this object to store stylesheets in a centralized location.
  * Ideally you would have one stylesheet cache throughout the lifetime of your application.

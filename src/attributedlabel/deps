@@ -1,2 +1,5 @@
+core
+
 [Frameworks]
 CoreText.framework
+QuartzCore.framework

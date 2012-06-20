@@ -25,7 +25,7 @@
 /**
  * The photo album scroll data source.
  *
- *      @ingroup Photos-Protocols
+ *      @ingroup NimbusPhotos
  *
  * This data source emphasizes speed and memory efficiency by requesting images only when
  * they're needed and encouraging immediate responses from the data source implementation.
