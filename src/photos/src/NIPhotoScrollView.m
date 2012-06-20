@@ -96,6 +96,7 @@
 @synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
 @synthesize photoScrollViewDelegate = _photoScrollViewDelegate;
 @synthesize doubleTapToZoomIsEnabled = _doubleTapToZoomIsEnabled;
+@synthesize imageView = _imageView;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
