@@ -54,12 +54,14 @@
   self.data = nil;
 
   // Slice it, dice it!
-  [self setImageCroppedAndSizedForDisplay:[[self class] imageFromSource:image
-                                                        withContentMode:self.imageContentMode
-                                                               cropRect:self.imageCropRect
-                                                            displaySize:self.imageDisplaySize
-                                                           scaleOptions:self.scaleOptions
-                                                   interpolationQuality:self.interpolationQuality]];
+  if (nil != image) {
+    [self setImageCroppedAndSizedForDisplay:[[self class] imageFromSource:image
+                                                          withContentMode:self.imageContentMode
+                                                                 cropRect:self.imageCropRect
+                                                              displaySize:self.imageDisplaySize
+                                                             scaleOptions:self.scaleOptions
+                                                     interpolationQuality:self.interpolationQuality]];
+  }
 
   [super willFinish];
 }
