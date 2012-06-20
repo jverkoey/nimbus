@@ -25,13 +25,14 @@
   
   NIBadgeView *badge1 = [[NIBadgeView alloc] initWithFrame:CGRectMake(20, 10, 0, 0)];
   badge1.backgroundColor = [UIColor clearColor];
-  badge1.text = @"2";
+  badge1.text = @"1";
   [badge1 sizeToFit];
   [self.view addSubview:badge1];
   
   NIBadgeView *badge2 = [[NIBadgeView alloc] initWithFrame:CGRectMake(20, badge1.frame.size.height + 20, 50, 25)];
   badge2.backgroundColor = [UIColor clearColor];
   badge2.text = @"56";
+  [badge2 sizeToFit];
   [self.view addSubview:badge2];
   
   NIBadgeView *badge3 = [[NIBadgeView alloc] initWithFrame:CGRectMake(20, badge2.frame.origin.y + badge2.frame.size.height + 20, 0, 0)];

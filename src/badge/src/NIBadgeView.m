@@ -23,34 +23,24 @@ static const CGFloat kBadgeLineSize = 2.0f;
 
 @implementation NIBadgeView
 
-@synthesize text      = _text;
+@synthesize text = _text;
 @synthesize tintColor = _tintColor;
-@synthesize font      = _font;
+@synthesize font = _font;
 @synthesize textColor = _textColor;
 
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     self.contentScaleFactor = NIScreenScale();
     self.tintColor = [UIColor redColor];
-    self.font = [UIFont boldSystemFontOfSize:14];
+    self.font = [UIFont boldSystemFontOfSize:17];
     self.textColor = [UIColor whiteColor];
   }
   return self;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-	CGFloat rectWidth, rectHeight;
-	CGSize stringSize = [self.text sizeWithFont:_font];
-
-  CGFloat scaleFactor = _font.pointSize / 14;
-
-	if ([self.text length]>=2) {
-		rectWidth = 10 + (stringSize.width + [self.text length]);
-    rectHeight = 25;
-		
-    return CGSizeMake(rectWidth, rectHeight * scaleFactor);
-	}
-  return CGSizeMake(25 * scaleFactor, 25 * scaleFactor);
+  CGSize stringSize = [self.text sizeWithFont:_font];
+  return CGSizeMake(MAX(30, stringSize.width + 20), stringSize.height + 10);
 }
 
 - (void)setText:(NSString *)text {
@@ -78,12 +68,12 @@ static const CGFloat kBadgeLineSize = 2.0f;
   CGContextRef context = UIGraphicsGetCurrentContext();
   CGContextSaveGState(context);
 
-  CGFloat radius = CGRectGetMaxY(rect)*kBadgeRadius;
-  CGFloat buffer = CGRectGetMaxY(rect)*0.015f;
-	CGFloat maxX = CGRectGetMaxX(rect) - buffer - 2.0f;
-	CGFloat maxY = CGRectGetMaxY(rect) - buffer - 4.0f;
-	CGFloat minX = CGRectGetMinX(rect) + buffer + 2.0f;
-	CGFloat minY = CGRectGetMinY(rect) + buffer + 1.0f;
+  CGFloat radius = 10.5f;
+  CGFloat buffer = 3;
+  CGFloat minX = CGRectGetMinX(rect) + buffer + 1.f;
+  CGFloat maxX = CGRectGetMaxX(rect) - buffer - 2.f;
+  CGFloat minY = CGRectGetMinY(rect) + buffer + 0.5f;
+  CGFloat maxY = CGRectGetMaxY(rect) - buffer - 3.5f;
 
   // Used to suppress warning: Implicit conversion shortens 64-bit value into 32-bit value
   CGFloat pi = (CGFloat)M_PI;
@@ -92,10 +82,10 @@ static const CGFloat kBadgeLineSize = 2.0f;
   CGContextBeginPath(context);
   CGContextSetFillColorWithColor(context, [_tintColor CGColor]);
   CGContextAddArc(context, maxX-radius, minY+radius, radius, pi+(pi/2), 0, 0);
-	CGContextAddArc(context, maxX-radius, maxY-radius, radius, 0, pi/2, 0);
-	CGContextAddArc(context, minX+radius, maxY-radius, radius, pi/2, pi, 0);
-	CGContextAddArc(context, minX+radius, minY+radius, radius, pi, pi+pi/2, 0);
-  CGContextSetShadowWithColor(context, CGSizeMake(0.0f,2.0f), 3.0f, [[UIColor blackColor] CGColor]);
+  CGContextAddArc(context, maxX-radius, maxY-radius, radius, 0, pi/2, 0);
+  CGContextAddArc(context, minX+radius, maxY-radius, radius, pi/2, pi, 0);
+  CGContextAddArc(context, minX+radius, minY+radius, radius, pi, pi+pi/2, 0);
+  CGContextSetShadowWithColor(context, CGSizeMake(0.0f,3.0f), 3.0f, [UIColor colorWithWhite:0 alpha:0.5].CGColor);
   CGContextFillPath(context);
 
   CGContextRestoreGState(context);
@@ -105,28 +95,31 @@ static const CGFloat kBadgeLineSize = 2.0f;
 
   CGContextBeginPath(context);
   CGContextAddArc(context, maxX-radius, minY+radius, radius, pi+(pi/2), 0, 0);
-	CGContextAddArc(context, minX+radius, minY+radius, radius, pi, pi+pi/2, 0);
-  // Gloss should have a bottom curve. Math anyone?
-	CGContextClip(context);
-	
-	size_t num_locations = 2;
-	CGFloat locations[2] = { 0.0f, 0.3f };
-	CGFloat components[8] = {  0.92f, 1.0f, 1.0f, 1.0f, 0.82f, 0.82f, 0.82f, 0.3f };
+  CGContextAddArc(context, minX+radius, minY+radius, radius, pi, pi+pi/2, 0);
+  CGContextAddRect(context, CGRectMake(minX, minY + radius,
+                                       rect.size.width - radius + 1, CGRectGetMidY(rect) - radius));
+  CGContextClip(context);
+  
+  size_t num_locations = 2;
+  CGFloat locations[] = { 0.2f, 1.f };
+  CGFloat components[] = {
+    1.f, 1.f, 1.f, 0.65f,
+    1.f, 1.f, 1.f, 0.0f };
 
-	CGColorSpaceRef cspace;
-	CGGradientRef gradient;
-	cspace = CGColorSpaceCreateDeviceRGB();
-	gradient = CGGradientCreateWithColorComponents (cspace, components, locations, num_locations);
-	
-	CGPoint sPoint, ePoint;
-	sPoint.x = 0;
-	sPoint.y = 1;
-	ePoint.x = 0;
-	ePoint.y = maxY;
-	CGContextDrawLinearGradient (context, gradient, sPoint, ePoint, 0);
-	
-	CGColorSpaceRelease(cspace);
-	CGGradientRelease(gradient);
+  CGColorSpaceRef cspace;
+  CGGradientRef gradient;
+  cspace = CGColorSpaceCreateDeviceRGB();
+  gradient = CGGradientCreateWithColorComponents (cspace, components, locations, num_locations);
+  
+  CGPoint sPoint, ePoint;
+  sPoint.x = 0;
+  sPoint.y = 4;
+  ePoint.x = 0;
+  ePoint.y = CGRectGetMidY(rect) - 2;
+  CGContextDrawLinearGradient (context, gradient, sPoint, ePoint, 0);
+  
+  CGColorSpaceRelease(cspace);
+  CGGradientRelease(gradient);
 
   CGContextRestoreGState(context);
 
@@ -136,20 +129,18 @@ static const CGFloat kBadgeLineSize = 2.0f;
   // Should this be customizable?
   CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
   CGContextAddArc(context, maxX-radius, minY+radius, radius, pi+(pi/2), 0, 0);
-	CGContextAddArc(context, maxX-radius, maxY-radius, radius, 0, pi/2, 0);
-	CGContextAddArc(context, minX+radius, maxY-radius, radius, pi/2, pi, 0);
-	CGContextAddArc(context, minX+radius, minY+radius, radius, pi, pi+pi/2, 0);
-	CGContextClosePath(context);
-	CGContextStrokePath(context);
+  CGContextAddArc(context, maxX-radius, maxY-radius, radius, 0, pi/2, 0);
+  CGContextAddArc(context, minX+radius, maxY-radius, radius, pi/2, pi, 0);
+  CGContextAddArc(context, minX+radius, minY+radius, radius, pi, pi+pi/2, 0);
+  CGContextClosePath(context);
+  CGContextStrokePath(context);
 
   // Draw text
   [self.textColor set];
   CGSize textSize = [self.text sizeWithFont:self.font];
 
-  // We remove 1 point from the y-axis to account for the drop shadow.
-  [self.text drawAtPoint:
-   CGPointMake(floorf(rect.size.width/2-textSize.width/2),
-               floorf(rect.size.height/2-textSize.height/2 - 1))
+  [self.text drawAtPoint:CGPointMake(floorf((rect.size.width - textSize.width) / 2.f) - 0.f,
+                                     floorf((rect.size.height - textSize.height) / 2.f) - 2.f)
                 withFont:self.font];
 }
 
