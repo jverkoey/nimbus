@@ -5665,6 +5665,7 @@
 				66E1CDFF159161EE004DA4A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		66E1CE00159161EE004DA4A2 /* Build configuration list for PBXNativeTarget "NimbusBadgeTests" */ = {
 			isa = XCConfigurationList;
@@ -5673,6 +5674,7 @@
 				66E1CE02159161EE004DA4A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB3A232C13FD4B8F00614220 /* Build configuration list for PBXNativeTarget "NimbusAttributedLabel" */ = {
 			isa = XCConfigurationList;

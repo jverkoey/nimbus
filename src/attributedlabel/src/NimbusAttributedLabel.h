@@ -21,6 +21,8 @@
  * The Nimbus Attributed Label is a UILabel that uses NSAttributedString to render rich text labels
  * with links using CoreText.
  *
+ *  @image html NIAttributedLabelExample1.png "A mashup of possible label styles"
+ *
  * <h2>Minimum Requirements</h2>
  *
  * Required frameworks:
@@ -63,8 +65,6 @@ label.text = @"Nimbus";
  * - Stroking
  * - Kerning
  * - Setting rich text styles at specific ranges
- *
- *  @image html NIAttributedLabelExample1.png "A mashup of possible label styles"
  *
  *
  * <h3>Automatic Link Detection</h3>
