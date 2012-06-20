@@ -43,8 +43,7 @@
   [[CatalogTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
 
   _rootViewController = [[UINavigationController alloc] initWithRootViewController:catalogVC];
-
-  [self.window addSubview:_rootViewController.view];
+  self.window.rootViewController = _rootViewController;
 
   [self.window makeKeyAndVisible];
 

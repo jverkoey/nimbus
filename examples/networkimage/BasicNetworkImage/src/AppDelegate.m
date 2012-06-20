@@ -56,7 +56,7 @@
   //[[Nimbus imageMemoryCache] setMaxNumberOfPixels:94*94];
 
   _rootController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-  [self.window addSubview:_rootController.view];
+  self.window.rootViewController = _rootController;
 
   [self.window makeKeyAndVisible];
 

@@ -164,7 +164,7 @@
                       scaleOptions: (NINetworkImageViewScaleOptions)scaleOptions
                     expirationDate: (NSDate *)expirationDate {
   // Store the result image in the memory cache.
-  if (nil != self.imageMemoryCache) {
+  if (nil != self.imageMemoryCache && nil != image) {
     NSString* cacheKey = [self cacheKeyForCacheIdentifier:cacheIdentifier
                                                 imageSize:displaySize
                                               contentMode:contentMode
@@ -176,8 +176,13 @@
                           expiresAfter: expirationDate];
   }
 
-  // Display the new image.
-  [self setImage:image];
+  if (nil != image) {
+    // Display the new image.
+    [self setImage:image];
+
+  } else {
+    [self setImage:self.initialImage];
+  }
 
   self.operation = nil;
 

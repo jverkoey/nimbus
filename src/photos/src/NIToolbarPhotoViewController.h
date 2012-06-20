@@ -120,6 +120,10 @@
 @property (nonatomic, readonly, retain) UIBarButtonItem* nextButton;
 @property (nonatomic, readonly, retain) UIBarButtonItem* previousButton;
 
+#pragma mark Subclassing
+
+- (void)setChromeVisibility:(BOOL)isVisible animated:(BOOL)animated;
+
 @end
 
 /** @name Configuring Functionality */

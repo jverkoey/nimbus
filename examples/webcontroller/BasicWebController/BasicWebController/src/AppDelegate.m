@@ -43,7 +43,6 @@
   UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:webController];
   nc.navigationBar.barStyle = UIBarStyleBlack;
   self.window.rootViewController = nc;
-  [self.window addSubview:nc.view];
 
   [self.window makeKeyAndVisible];
 

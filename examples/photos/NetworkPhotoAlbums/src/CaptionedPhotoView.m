@@ -19,7 +19,6 @@
 static UIEdgeInsets kWellPadding = {0}; // see +initialize
 
 @interface CaptionedPhotoView ()
-@property (nonatomic, readwrite, retain) UIView* captionWell;
 @property (nonatomic, readwrite, retain) UILabel* captionLabel;
 @end
 
@@ -81,7 +80,7 @@ static UIEdgeInsets kWellPadding = {0}; // see +initialize
                                          constrainedToSize:CGSizeMake(availableWidth, CGFLOAT_MAX)
                                              lineBreakMode:self.captionLabel.lineBreakMode];
   CGFloat wellHeight = labelSize.height + kWellPadding.top + kWellPadding.bottom;
-  self.captionWell.frame = CGRectMake(0, self.bounds.size.height - wellHeight,
+  self.captionWell.frame = CGRectMake(0, self.bounds.size.height - wellHeight - NIToolbarHeightForOrientation(NIInterfaceOrientation()),
                                       self.bounds.size.width, wellHeight);
   self.captionLabel.frame = UIEdgeInsetsInsetRect(self.captionWell.bounds, kWellPadding);
 }
