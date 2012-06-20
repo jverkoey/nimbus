@@ -56,7 +56,7 @@
 @synthesize verticalTextAlignment = _verticalTextAlignment;
 @synthesize underlineStyle = _underlineStyle;
 @synthesize underlineStyleModifier = _underlineStyleModifier;
-@synthesize shadowBlur = _shadowBlur;
+@synthesize shadowBlur;
 @synthesize strokeWidth = _strokeWidth;
 @synthesize strokeColor = _strokeColor;
 @synthesize textKern = _textKern;
