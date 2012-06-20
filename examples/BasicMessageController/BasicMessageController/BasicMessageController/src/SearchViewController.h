@@ -16,11 +16,11 @@
 <UISearchDisplayDelegate,UITableViewDataSource,NITableViewModelDelegate> {
     SearchTableViewModel* _model;
     UISearchDisplayController* _searchController;
-    id<SearchViewControllerDelegate> _delegate;
+    id<SearchViewControllerDelegate> __unsafe_unretained _delegate;
 }
 
-@property (nonatomic, retain) SearchTableViewModel* model;
-@property (nonatomic, assign) id<SearchViewControllerDelegate> delegate;
+@property (nonatomic) SearchTableViewModel* model;
+@property (nonatomic, unsafe_unretained) id<SearchViewControllerDelegate> delegate;
 
 @end
 

@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
 
-    UISearchBar* searchBar = [[[UISearchBar alloc] init] autorelease];
+    UISearchBar* searchBar = [[UISearchBar alloc] init];
     [searchBar sizeToFit];
     _searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     _searchController.delegate = self;
@@ -50,10 +50,7 @@
 
 -(void)setModel:(SearchTableViewModel*)model {
     if (model != _model) {
-        if (_model) {
-            [_model release];
-        }
-        _model = [model retain];
+        _model = model;
         _model.delegate = self;
         self.tableView.dataSource = _model;
     }
@@ -124,9 +121,8 @@
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
     
     if (nil == cell) {
-        cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-                                       reuseIdentifier: @"row"]
-                autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
+                                       reuseIdentifier: @"row"];
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }

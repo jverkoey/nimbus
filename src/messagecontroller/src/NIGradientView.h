@@ -14,7 +14,7 @@
     UIColor* _endColor;
 }
 
-@property (nonatomic, retain) UIColor* startColor;
-@property (nonatomic, retain) UIColor* endColor;
+@property (nonatomic) UIColor* startColor;
+@property (nonatomic) UIColor* endColor;
 
 @end

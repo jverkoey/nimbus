@@ -24,18 +24,12 @@
     return self;
 }
 
--(void)dealloc {
-    NI_RELEASE_SAFELY(_messageController);
-    
-    [super dealloc];
-}
-
 - (void)loadView
 {
     // If you create your views manually, you MUST override this method and use it to create your views.
     // If you use Interface Builder to create your views, then you must NOT override this method.
     CGRect appFrame = [UIScreen mainScreen].applicationFrame;
-    self.view = [[[UIView alloc] initWithFrame:appFrame] autorelease];;
+    self.view = [[UIView alloc] initWithFrame:appFrame];
 	self.view.backgroundColor = [UIColor whiteColor];
     UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:@"Show NIMessageController" forState:UIControlStateNormal];
@@ -63,8 +57,8 @@
 }
 
 - (void)showMessageController:(id)sender {
-    _messageController = [[[NIMessageController alloc]
-                           initWithRecipients:[NSArray arrayWithObjects:@"Jon Abrams", @"Jeremy Nym", nil]] autorelease];
+    _messageController = [[NIMessageController alloc]
+                           initWithRecipients:[NSArray arrayWithObjects:@"Jon Abrams", @"Jeremy Nym", nil]];
     
     if (_messageController) {
         NSArray* tableContents =
@@ -187,7 +181,7 @@
         searchViewController.model = searchModel;
         searchViewController.title = @"Search for recipient";
         searchViewController.delegate = self;
-        UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
+        UINavigationController* navController = [[UINavigationController alloc] init];
         [navController pushViewController:searchViewController animated:NO];
         [self.modalViewController presentModalViewController:navController animated:YES];
     }

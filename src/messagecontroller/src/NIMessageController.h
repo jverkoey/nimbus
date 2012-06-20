@@ -89,7 +89,7 @@
     NSArray*          _initialRecipients;
     
     NIActivityLabel*  _activityView;
-    id<NIMessageControllerDelegate> _delegate;    
+    id<NIMessageControllerDelegate> __unsafe_unretained _delegate;    
     
     UILabel* _charLimitLabel;
     NSInteger _maxCharCount;
@@ -104,14 +104,14 @@
 
 @property (nonatomic, readonly) UITextView* textView;
 
-@property (nonatomic, assign)   id<NIMessageControllerDelegate> delegate;
+@property (nonatomic, unsafe_unretained)   id<NIMessageControllerDelegate> delegate;
 
 /**
  * The datasource used to autocomplete TTMessageRecipientFields. This class is
  * also responsible for determining how cells representing recipients are
  * labeled.
  */
-@property (nonatomic, retain) NITableViewModel* dataSource;
+@property (nonatomic) NITableViewModel* dataSource;
 
 /**
  * The operation queue that runs all of the network and processing operations.

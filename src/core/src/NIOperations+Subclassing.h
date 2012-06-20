@@ -15,9 +15,9 @@
 //
 
 @interface NIOperation()
-@property (readwrite, retain) NSError* lastError;
+@property (readwrite) NSError* lastError;
 @end
 
 @interface NINetworkRequestOperation()
-@property (readwrite, retain) NSData* data;
+@property (readwrite) NSData* data;
 @end

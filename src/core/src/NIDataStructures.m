@@ -21,9 +21,9 @@
 
 // The internal representation of a single node.
 @interface NILinkedListNode : NSObject
-@property (nonatomic, readwrite, retain) id object;
-@property (nonatomic, readwrite, retain) NILinkedListNode* prev;
-@property (nonatomic, readwrite, retain) NILinkedListNode* next;
+@property (nonatomic, readwrite) id object;
+@property (nonatomic, readwrite) NILinkedListNode* prev;
+@property (nonatomic, readwrite) NILinkedListNode* next;
 @end
 
 @implementation NILinkedListNode
@@ -35,7 +35,7 @@
 @interface NILinkedListLocation()
 + (id)locationWithNode:(NILinkedListNode *)node;
 - (id)initWithNode:(NILinkedListNode *)node;
-@property (nonatomic, readwrite, assign) NILinkedListNode* node;
+@property (nonatomic, readwrite, weak) NILinkedListNode* node;
 @end
 
 @implementation NILinkedListLocation
@@ -57,8 +57,8 @@
 
 @interface NILinkedList()
 // Exposed so that the linked list enumerator can iterate over the nodes directly.
-@property (nonatomic, readonly, retain) NILinkedListNode* head;
-@property (nonatomic, readonly, retain) NILinkedListNode* tail;
+@property (nonatomic, readonly) NILinkedListNode* head;
+@property (nonatomic, readonly) NILinkedListNode* tail;
 @property (nonatomic, readwrite, assign) NSUInteger count;
 @property (nonatomic, readwrite, assign) unsigned long modificationNumber;
 @end

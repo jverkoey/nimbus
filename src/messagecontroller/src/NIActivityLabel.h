@@ -39,7 +39,7 @@ typedef enum {
 @property (nonatomic, readonly) NIActivityLabelStyle style;
 
 @property (nonatomic, copy)     NSString* text;
-@property (nonatomic, retain)   UIFont*   font;
+@property (nonatomic)   UIFont*   font;
 
 @property (nonatomic)           float     progress;
 @property (nonatomic)           BOOL      isAnimating;

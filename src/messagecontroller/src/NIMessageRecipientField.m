@@ -31,14 +31,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-    NI_RELEASE_SAFELY(_recipients);
-    
-    [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)description {
     return [NSString stringWithFormat:@"%@ %@", _title, _recipients];
 }
@@ -52,7 +44,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NIPickerTextField*)createViewForController:(NIMessageController*)controller {
-    NIPickerTextField* textField = [[[NIPickerTextField alloc] init] autorelease];
+    NIPickerTextField* textField = [[NIPickerTextField alloc] init];
     textField.dataSource = (NITableViewSearchModel*)controller.dataSource;
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
     textField.autocapitalizationType = UITextAutocapitalizationTypeNone;

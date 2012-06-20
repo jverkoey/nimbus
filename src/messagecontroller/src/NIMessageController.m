@@ -56,24 +56,24 @@ static const CGFloat kMarginY = 6;
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _fields = [[NSArray alloc] initWithObjects:
-                   [[[NIMessageRecipientField alloc] initWithTitle: NSLocalizedString(@"To:", @"")
-                                                          required: YES] autorelease],
-                   [[[NIMessageSubjectField alloc] initWithTitle: NSLocalizedString(@"Subject:", @"")
-                                                        required: NO] autorelease],
+                   [[NIMessageRecipientField alloc] initWithTitle: NSLocalizedString(@"To:", @"")
+                                                          required: YES],
+                   [[NIMessageSubjectField alloc] initWithTitle: NSLocalizedString(@"Subject:", @"")
+                                                        required: NO],
                    nil];
         
         self.title = NSLocalizedString(@"New Message", @"");
         
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
                                                   initWithTitle: NSLocalizedString(@"Cancel", @"")
                                                   style: UIBarButtonItemStyleBordered
                                                   target: self
-                                                  action: @selector(cancel)] autorelease];
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+                                                  action: @selector(cancel)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
                                                    initWithTitle: NSLocalizedString(@"Send", @"")
                                                    style: UIBarButtonItemStyleDone
                                                    target: self
-                                                   action: @selector(send)] autorelease];
+                                                   action: @selector(send)];
         self.navigationItem.rightBarButtonItem.enabled = NO;
     }
     
@@ -85,7 +85,7 @@ static const CGFloat kMarginY = 6;
 - (id)initWithRecipients:(NSArray*)recipients {
 	self = [self initWithNibName:nil bundle:nil];
     if (self) {
-        _initialRecipients = [recipients retain];
+        _initialRecipients = recipients;
     }
     
     return self;
@@ -99,27 +99,6 @@ static const CGFloat kMarginY = 6;
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)releaseObjects {
-    NI_RELEASE_SAFELY(_fieldViews);
-    NI_RELEASE_SAFELY(_scrollView);
-    NI_RELEASE_SAFELY(_fields);
-    NI_RELEASE_SAFELY(_textView);
-    NI_RELEASE_SAFELY(_initialRecipients);
-    NI_RELEASE_SAFELY(_activityView);
-    NI_RELEASE_SAFELY(_delegate);
-    NI_RELEASE_SAFELY(_charLimitLabel);
-    NI_RELEASE_SAFELY(_dataSource);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-    [self releaseObjects];
-    [super dealloc];
 }
 
 
@@ -143,7 +122,6 @@ static const CGFloat kMarginY = 6;
     
     [_textView removeFromSuperview];
     
-    [_fieldViews release];
     _fieldViews = [[NSMutableArray alloc] init];
     
     CGFloat y = 0;
@@ -158,7 +136,7 @@ static const CGFloat kMarginY = 6;
             [textField sizeToFit];
             y += textField.frame.size.height;
             
-            UILabel* label = [[[UILabel alloc] init] autorelease];
+            UILabel* label = [[UILabel alloc] init];
             label.text = field.title;
             label.font = [UIFont systemFontOfSize:15];
             label.textColor = [UIColor colorWithWhite:0.5 alpha:1];
@@ -170,7 +148,7 @@ static const CGFloat kMarginY = 6;
             [_scrollView addSubview:textField];
             [_fieldViews addObject:textField];
             
-            UIView* separator = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)] autorelease];
+            UIView* separator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)];
             separator.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
             separator.autoresizingMask = UIViewAutoresizingFlexibleWidth;
             [_scrollView addSubview:separator];
@@ -376,7 +354,6 @@ static const CGFloat kMarginY = 6;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    [self releaseObjects];
 }
 
 
@@ -388,7 +365,6 @@ static const CGFloat kMarginY = 6;
         for (id recipient in _initialRecipients) {
             [self addRecipient:recipient forFieldAtIndex:0];
         }
-        NI_RELEASE_SAFELY(_initialRecipients);
     }
     
     for (NSInteger i = 0; i < _fields.count+1; ++i) {
@@ -636,8 +612,7 @@ replacementString:(NSString *)string {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setDataSource:(id<UITableViewDataSource>)dataSource {
     if (dataSource != _dataSource) {
-        [_dataSource release];
-        _dataSource = [dataSource retain];
+        _dataSource = dataSource;
         
         for (UITextField* textField in _fieldViews) {
             if ([textField isKindOfClass:[NIPickerTextField class]]) {
@@ -652,8 +627,7 @@ replacementString:(NSString *)string {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFields:(NSArray*)fields {
     if (fields != _fields) {
-        [_fields release];
-        _fields = [fields retain];
+        _fields = fields;
         
         if (_fieldViews) {
             [self createFieldViews];
@@ -746,11 +720,11 @@ replacementString:(NSString *)string {
     if (NIIsStringWithAnyText(trimmedString) &&
         !trimmedString.isWhitespaceAndNewlines) {
         if ([trimmedString length] > _maxCharCount) {
-            UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Alert", @"")
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Alert", @"")
                                                                  message:NSLocalizedString(@"You can only enter a maximum of 140 characters.", @"")
                                                                 delegate:self
                                                        cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
-                                                       otherButtonTitles:nil] autorelease];
+                                                       otherButtonTitles:nil];
             [alertView show];
             return NO;
         }
@@ -761,7 +735,7 @@ replacementString:(NSString *)string {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)send {
-    NSMutableArray* fields = [[_fields mutableCopy] autorelease];
+    NSMutableArray* fields = [_fields mutableCopy];
     for (int i = 0; i < fields.count; ++i) {
         id field = [fields objectAtIndex:i];
         if ([field isKindOfClass:[NIMessageRecipientField class]]) {
@@ -774,8 +748,8 @@ replacementString:(NSString *)string {
         }
     }
     
-    NIMessageTextField* bodyField = [[[NIMessageTextField alloc] initWithTitle:nil
-                                                                      required:NO] autorelease];
+    NIMessageTextField* bodyField = [[NIMessageTextField alloc] initWithTitle:nil
+                                                                      required:NO];
     bodyField.text = _textView.text;
     [fields addObject:bodyField];
     
@@ -808,11 +782,11 @@ replacementString:(NSString *)string {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)confirmCancellation {
-    UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Cancel", @"")
+    UIAlertView* cancelAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Cancel", @"")
                                                                message:NSLocalizedString(@"Are you sure you want to cancel?", @"")
                                                               delegate:self
                                                      cancelButtonTitle:NSLocalizedString(@"Yes", @"")
-                                                     otherButtonTitles:NSLocalizedString(@"No", @""), nil] autorelease];
+                                                     otherButtonTitles:NSLocalizedString(@"No", @""), nil];
     [cancelAlertView show];
 }
 
@@ -832,7 +806,6 @@ replacementString:(NSString *)string {
         
     } else {
         [_activityView removeFromSuperview];
-        NI_RELEASE_SAFELY(_activityView);
     }
 }
 
@@ -882,9 +855,8 @@ replacementString:(NSString *)string {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
     
     if (nil == cell) {
-        cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-                                       reuseIdentifier: @"row"]
-                autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
+                                       reuseIdentifier: @"row"];
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }

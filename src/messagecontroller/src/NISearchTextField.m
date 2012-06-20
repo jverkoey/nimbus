@@ -58,23 +58,9 @@ static const CGFloat kDesiredTableHeight = 150;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-    _tableView.delegate = nil;
-    NI_RELEASE_SAFELY(_dataSource);
-    NI_RELEASE_SAFELY(_searchResults);
-    NI_RELEASE_SAFELY(_internal);
-    NI_RELEASE_SAFELY(_tableView);
-    NI_RELEASE_SAFELY(_shadowView);
-    NI_RELEASE_SAFELY(_screenView);
-    
-    [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showDarkScreen:(BOOL)show {
     if (show && !_screenView) {
-        _screenView = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        _screenView = [UIButton buttonWithType:UIButtonTypeCustom];
         _screenView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
         _screenView.frame = [self rectForSearchResults:NO];
         _screenView.alpha = 0;
@@ -278,8 +264,7 @@ static const CGFloat kDesiredTableHeight = 150;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setDataSource:(NITableViewSearchModel*)dataSource {
     if (dataSource != _dataSource) {
-        [_dataSource release];
-        _dataSource = [dataSource retain];
+        _dataSource = dataSource;
         _dataSource.delegate = self;
     }
 }
@@ -298,7 +283,6 @@ static const CGFloat kDesiredTableHeight = 150;
         UIView *footer =
         [[UIView alloc] initWithFrame:CGRectZero];
         _tableView.tableFooterView = footer;
-        [footer release];
     }
     
     return _tableView;
@@ -329,8 +313,7 @@ static const CGFloat kDesiredTableHeight = 150;
 - (void)search {
     if (_dataSource) {
         NSString* text = self.searchText;
-        NI_RELEASE_SAFELY(_searchResults);
-        _searchResults = [[_dataSource search:text] retain];
+        _searchResults = [_dataSource search:text];
         _searchResults.delegate = self;
         _tableView.dataSource = _searchResults;
         [self reloadTable];
@@ -443,9 +426,8 @@ static const CGFloat kDesiredTableHeight = 150;
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"row"];
     
     if (nil == cell) {
-        cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-                                       reuseIdentifier: @"row"]
-                autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
+                                       reuseIdentifier: @"row"];
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }

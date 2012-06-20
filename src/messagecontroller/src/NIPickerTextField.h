@@ -22,14 +22,14 @@
 
 @interface NIPickerTextField : NISearchTextField {
     NSMutableArray*   _cellViews;
-    NIPickerViewCell* _selectedCell;
+    NIPickerViewCell* __weak _selectedCell;
     int               _lineCount;
     CGPoint           _cursorOrigin;
 }
 
 @property (nonatomic, readonly) NSArray*          cellViews;
-@property (nonatomic, readonly) NSArray*          cells;
-@property (nonatomic, assign)   NIPickerViewCell* selectedCell;
+@property (weak, nonatomic, readonly) NSArray*          cells;
+@property (nonatomic, weak)   NIPickerViewCell* selectedCell;
 @property (nonatomic, readonly) int               lineCount;
 
 - (void)addCellWithObject:(id)object;

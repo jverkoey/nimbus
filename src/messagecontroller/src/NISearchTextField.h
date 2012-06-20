@@ -49,7 +49,7 @@
 @property (nonatomic)           BOOL searchesAutomatically;
 @property (nonatomic)           BOOL showsDarkScreen;
 
-@property (nonatomic, retain)   NITableViewSearchModel* dataSource;
+@property (nonatomic)   NITableViewSearchModel* dataSource;
 
 - (void)search;
 

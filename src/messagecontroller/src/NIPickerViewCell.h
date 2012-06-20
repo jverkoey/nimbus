@@ -27,9 +27,9 @@
     BOOL      _selected;
 }
 
-@property (nonatomic, retain) id        object;
+@property (nonatomic) id        object;
 @property (nonatomic, copy)   NSString* label;
-@property (nonatomic, retain) UIFont*   font;
+@property (nonatomic) UIFont*   font;
 @property (nonatomic)         BOOL      selected;
 
 @end

@@ -66,14 +66,6 @@ static const CGFloat kMinCursorWidth  = 50;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-    NI_RELEASE_SAFELY(_cellViews);
-    
-    [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)layoutCells {
     CGFloat fontHeight = self.font.lineHeight;
     CGFloat lineIncrement = fontHeight + kCellPaddingY*2 + kSpacingY;
@@ -123,9 +115,8 @@ static const CGFloat kMinCursorWidth  = 50;
         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, newHeight);
         [self setNeedsDisplay];
         
-        SEL sel = @selector(textFieldDidResize:);
-        if ([self.delegate respondsToSelector:sel]) {
-            [self.delegate performSelector:sel withObject:self];
+        if ([self.delegate respondsToSelector:@selector(textFieldDidResize:)]) {
+            [self.delegate performSelector:@selector(textFieldDidResize:) withObject:self];
         }
         
         [self scrollToVisibleLine:YES];
@@ -395,7 +386,7 @@ static const CGFloat kMinCursorWidth  = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addCellWithObject:(id)object {
-    NIPickerViewCell* cell = [[[NIPickerViewCell alloc] init] autorelease];
+    NIPickerViewCell* cell = [[NIPickerViewCell alloc] init];
     
     NSString* label = [NSString stringWithFormat:@"%@", object];
     
@@ -408,9 +399,8 @@ static const CGFloat kMinCursorWidth  = 50;
     // Reset text so the cursor moves to be at the end of the cellViews
     self.text = kEmpty;
     
-    SEL sel = @selector(textField:didAddCellAtIndex:);
-    if ([self.delegate respondsToSelector:sel]) {
-        [self.delegate performSelector:sel withObject:self withObject:(id)(_cellViews.count-1)];
+    if ([self.delegate respondsToSelector:@selector(textField:didAddCellAtIndex:)]) {
+        [self.delegate performSelector:@selector(textField:didAddCellAtIndex:) withObject:self withObject:[NSNumber numberWithInt:(_cellViews.count-1)]];
     }
 }
 
@@ -423,9 +413,8 @@ static const CGFloat kMinCursorWidth  = 50;
             [_cellViews removeObjectAtIndex:i];
             [cell removeFromSuperview];
             
-            SEL sel = @selector(textField:didRemoveCellAtIndex:);
-            if ([self.delegate respondsToSelector:sel]) {
-                [self.delegate performSelector:sel withObject:self withObject:(id)i];
+            if ([self.delegate respondsToSelector:@selector(textField:didRemoveCellAtIndex:)]) {
+                [self.delegate performSelector:@selector(textField:didRemoveCellAtIndex:) withObject:self withObject:[NSNumber numberWithInt:i]];
             }
             break;
         }

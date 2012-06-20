@@ -20,15 +20,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)dealloc {
-    NI_RELEASE_SAFELY(_startColor);
-    NI_RELEASE_SAFELY(_endColor);
-    
-    [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)drawRect:(CGRect)rect {
     if (_startColor && _endColor) {
         [(CAGradientLayer*)[self layer] setColors:[NSArray arrayWithObjects:

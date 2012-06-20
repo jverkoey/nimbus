@@ -26,15 +26,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-    [_window release]; _window = nil;
-    [_rootController release]; _rootController = nil;
-    
-    [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Application lifecycle
@@ -43,7 +34,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     MainViewController* mainViewController = [[MainViewController alloc] init];
     UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
