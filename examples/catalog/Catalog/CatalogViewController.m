@@ -22,6 +22,7 @@
 #import "DataTypesAttributedLabelViewController.h"
 #import "PerformanceAttributedLabelViewController.h"
 #import "InterfaceBuilderAttributedLabelViewController.h"
+#import "NimbusModels.h"
 
 //
 // What's going on in this file:
