@@ -120,6 +120,14 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setBackgroundImage:(UIImage *)backgroundImage {
+    UIColor backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
+    
+    [self setBackgroundColor:backgroundColor]
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)pageWidthForLauncherFrame:(CGRect)frame {
   return frame.size.width;
 }
