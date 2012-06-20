@@ -101,9 +101,9 @@ static const CGFloat kBadgeLineSize = 2.0f;
   CGContextClip(context);
   
   size_t num_locations = 2;
-  CGFloat locations[] = { 0.2f, 1.f };
+  CGFloat locations[] = { 0.0f, 1.f };
   CGFloat components[] = {
-    1.f, 1.f, 1.f, 0.65f,
+    1.f, 1.f, 1.f, 0.8f,
     1.f, 1.f, 1.f, 0.0f };
 
   CGColorSpaceRef cspace;
