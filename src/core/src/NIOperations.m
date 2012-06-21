@@ -219,6 +219,7 @@
       // Load the image from the network then.
       [self didStart];
 
+      NINetworkActivityTaskDidStart();
       NSURLRequest* request = [NSURLRequest requestWithURL:self.url
                                                cachePolicy:self.cachePolicy
                                            timeoutInterval:self.timeout];
@@ -239,6 +240,8 @@
                                          userInfo:nil];
         }
       }
+
+      NINetworkActivityTaskDidFinish();
 
       if (nil != networkError) {
         [self didFailWithError:networkError];
