@@ -17,6 +17,28 @@
 #import "InterfaceBuilderBadgeViewController.h"
 #import "NimbusBadge.h"
 
+//
+// What's going on in this file:
+//
+// This controller shows how to add NIBadgeViews to a xib file and configure them from within
+// Interface Builder (IB).
+//
+// To add a NIBadgeView to IB you will need to add a UIView object and specify NIBadgeView as the
+// subclass. You can then modify specific properties from IB by setting them in the "User defined
+// runtime attributes" section. You will see examples of setting the text color and shadow color
+// there.
+//
+// You will find the following Nimbus features used:
+//
+// [badge]
+// NIBadgeView
+//
+// This controller requires the following frameworks:
+//
+// Foundation.framework
+// UIKit.framework
+//
+
 @interface InterfaceBuilderBadgeViewController ()
 @property (nonatomic, readwrite, retain) IBOutlet NIBadgeView* badgeView;
 @property (nonatomic, readwrite, retain) IBOutlet NIBadgeView* badgeView2;
@@ -25,7 +47,7 @@
 @implementation InterfaceBuilderBadgeViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if ((self = [super initWithNibName:@"BadgeMashup" bundle:nibBundleOrNil])) {
+  if ((self = [super initWithNibName:@"ApplicationBadges" bundle:nibBundleOrNil])) {
     self.title = @"Interface Builder";
   }
   return self;

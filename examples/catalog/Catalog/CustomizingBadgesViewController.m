@@ -17,6 +17,22 @@
 #import "CustomizingBadgesViewController.h"
 #import "NimbusBadge.h"
 
+//
+// What's going on in this file:
+//
+// This controller shows how to customize the various NIBadgeView attributes.
+//
+// You will find the following Nimbus features used:
+//
+// [badge]
+// NIBadgeView
+//
+// This controller requires the following frameworks:
+//
+// Foundation.framework
+// UIKit.framework
+//
+
 @implementation CustomizingBadgesViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
