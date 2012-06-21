@@ -15,7 +15,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
 
 /**
  * @defgroup NimbusInterapp Nimbus Interapp
@@ -27,6 +26,18 @@
  * using <code>[[UIApplication sharedApplication] openURL:]</code>. There is no way to
  * ask an application which URLs it implements, so Interapp strives to provide a growing
  * set of implementations for known application interfaces.
+ *
+ * <h2>Minimum Requirements</h2>
+ *
+ * Required frameworks:
+ *
+ * - Foundation.framework
+ * - UIKit.framework
+ * - CoreLocation.framework
+ *
+ * Minimum Operating System: <b>iOS 4.0</b>
+ *
+ * Source located in <code>src/interapp/src</code>
  *
  *
  * <h2>When to Use Interapp</h2>
@@ -92,4 +103,5 @@
  * @endcode
  */
 
+#import "NimbusCore.h"
 #import "NIInterapp.h"

@@ -428,6 +428,10 @@ static NSString* const sInstagramScheme = @"instagram:";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSURL *)urlForInstagramImageAtFilePath:(NSString *)filePath error:(NSError **)error {
+  if (![self instagramIsInstalled]) {
+    return nil;
+  }
+
   UIImage* image = [[UIImage alloc] initWithContentsOfFile:filePath];
 
   // Unable to read the image.
