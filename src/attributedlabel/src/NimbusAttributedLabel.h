@@ -27,6 +27,7 @@
  *
  * Required frameworks:
  *
+ * - UIKit.framework
  * - CoreText.framework
  * - QuartzCore.framework
  *
