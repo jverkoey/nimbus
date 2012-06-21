@@ -32,7 +32,11 @@
 // Interapp
 #import "InterappViewController.h"
 
+// Web Controller
+#import "ExtraActionsWebViewController.h"
+
 #import "NimbusModels.h"
+#import "NimbusWebController.h"
 
 //
 // What's going on in this file:
@@ -162,6 +166,38 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"All Actions"
                                    subtitle:@"A list of all available actions"]],
+     
+     @"Web Controller",
+     [_actions attachNavigationAction:
+      NIPushControllerInstanceAction([[NIWebController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
+                                   subtitle:@"How to create a simple NIWebController"]],
+     [_actions attachNavigationAction:
+      ^(id object, UIViewController* controller) {
+        NIWebController* webController = [[NIWebController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]];
+        webController.toolbarHidden = YES;
+        [controller.navigationController pushViewController:webController
+                                                   animated:YES];
+        
+        return NO;
+      } toObject:[NISubtitleCellObject objectWithTitle:@"Hiding the Toolbar"
+                                              subtitle:@"Showing a web controller without actions"]],
+     [_actions attachNavigationAction:
+      ^(id object, UIViewController* controller) {
+        NIWebController* webController = [[NIWebController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]];
+        webController.toolbarTintColor = [UIColor orangeColor];
+        [controller.navigationController pushViewController:webController
+                                                   animated:YES];
+        
+        return NO;
+      } toObject:[NISubtitleCellObject objectWithTitle:@"Tinting the Toolbar"
+                                              subtitle:@"Tinting a web controller's toolbar"]],
+     [_actions attachNavigationAction:
+      NIPushControllerInstanceAction([[ExtraActionsWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Extra Actions"
+                                   subtitle:@"Subclassing for more actions"]],
 
      nil];
 
