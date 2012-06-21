@@ -29,10 +29,18 @@
  *      @ingroup NimbusBadge
  */
 @interface NIBadgeView : UIView
+
+// Text attributes
 @property (nonatomic, readwrite, copy) NSString* text;
 @property (nonatomic, readwrite, retain) UIFont* font;
 @property (nonatomic, readwrite, retain) UIColor* textColor;
+
+// Badge attributes
 @property (nonatomic, readwrite, retain) UIColor* tintColor;
+@property (nonatomic, readwrite, retain) UIColor* shadowColor;
+@property (nonatomic, readwrite, assign) CGSize shadowOffset;
+@property (nonatomic, readwrite, assign) CGFloat shadowBlur;
+
 @end
 
 /** @name Accessing the Text Attributes */
@@ -63,10 +71,50 @@
  *      @fn NIBadgeView::textColor
  */
 
+/** @name Accessing the Badge Attributes */
+
 /**
  * The tint color of the badge.
+ *
+ * This is the color drawn within the badge's borders.
  *
  * The default color is [UIColor redColor].
  *
  *      @fn NIBadgeView::tintColor
+ */
+
+/**
+ * The shadow color of the badge.
+ *
+ * This is the shadow drawn beneath the badge's outline.
+ *
+ * The default color is [UIColor colorWithWhite:0 alpha:0.5].
+ *
+ *      @sa shadowOffset
+ *      @sa shadowBlur
+ *      @fn NIBadgeView::shadowColor
+ */
+
+/**
+ * The shadow offset (measured in points) for the badge.
+ *
+ * This is the offset of the shadow drawn beneath the badge's outline.
+ *
+ * The default value is CGSizeMake(0, 3.f).
+ *
+ *      @sa shadowColor
+ *      @sa shadowBlur
+ *      @fn NIBadgeView::shadowOffset
+ */
+
+/**
+ * The shadow blur (measured in points) for the badge.
+ *
+ * This is the blur of the shadow drawn beneath the badge's outline.
+ *
+ * The default value is 3.
+ *
+ *      @sa shadowOffset
+ *      @sa shadowColor
+ *      @fn NIBadgeView::shadowBlur
  */

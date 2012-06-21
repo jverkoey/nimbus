@@ -29,12 +29,18 @@ static const CGFloat kBadgeLineSize = 2.0f;
 @synthesize tintColor = _tintColor;
 @synthesize font = _font;
 @synthesize textColor = _textColor;
+@synthesize shadowColor = _shadowColor;
+@synthesize shadowOffset = _shadowOffset;
+@synthesize shadowBlur = _shadowBlur;
 
 - (void)_configureDefaults {
   self.contentScaleFactor = NIScreenScale();
   self.tintColor = [UIColor redColor];
   self.font = [UIFont boldSystemFontOfSize:17];
   self.textColor = [UIColor whiteColor];
+  self.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
+  self.shadowOffset = CGSizeMake(0, 3);
+  self.shadowBlur = 3;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -99,12 +105,12 @@ static const CGFloat kBadgeLineSize = 2.0f;
 
   // Draw the main rounded rectangle
   CGContextBeginPath(context);
-  CGContextSetFillColorWithColor(context, [_tintColor CGColor]);
+  CGContextSetFillColorWithColor(context, self.tintColor.CGColor);
   CGContextAddArc(context, maxX-kRadius, minY+kRadius, kRadius, pi+(pi/2), 0, 0);
   CGContextAddArc(context, maxX-kRadius, maxY-kRadius, kRadius, 0, pi/2, 0);
   CGContextAddArc(context, minX+kRadius, maxY-kRadius, kRadius, pi/2, pi, 0);
   CGContextAddArc(context, minX+kRadius, minY+kRadius, kRadius, pi, pi+pi/2, 0);
-  CGContextSetShadowWithColor(context, CGSizeMake(0.0f,3.0f), 3.0f, [UIColor colorWithWhite:0 alpha:0.5].CGColor);
+  CGContextSetShadowWithColor(context, self.shadowOffset, self.shadowBlur, self.shadowColor.CGColor);
   CGContextFillPath(context);
 
   CGContextRestoreGState(context);
