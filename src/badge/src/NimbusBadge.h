@@ -18,6 +18,8 @@
  * @defgroup NimbusBadge Nimbus Badge
  * @{
  *
+ * <div id="github" feature="badge"></div>
+ *
  * This Nimbus badge view is a UIView that draws a customizable notification badge-like view.
  *
  * @image html badge-iphone-example1.png "Screenshot of a Nimbus badge on the iPhone"

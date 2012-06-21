@@ -18,6 +18,8 @@
  * @defgroup NimbusAttributedLabel Nimbus Attributed Label
  * @{
  *
+ * <div id="github" feature="attributedlabel"></div>
+ *
  * The Nimbus Attributed Label is a UILabel that uses NSAttributedString to render rich text labels
  * with links using CoreText.
  *

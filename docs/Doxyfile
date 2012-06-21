@@ -899,6 +899,7 @@ HTML_STYLESHEET        = docs/stylesheet.css
 
 HTML_EXTRA_FILES       = docs/js/fixed.js \
                          docs/js/cleannavtree.js \
+                         docs/js/widget.js \
                          docs/gfx/nimbus128.png
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. 

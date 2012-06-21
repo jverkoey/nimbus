@@ -20,6 +20,8 @@
  * @defgroup NimbusModels Nimbus Models
  * @{
  *
+ * <div id="github" feature="models"></div>
+ *
  * A model is an implementation of a data source protocol.
  *
  * Data sources are required by various UI components throughout UIKit and Nimbus.

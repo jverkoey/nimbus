@@ -19,6 +19,8 @@
 /**
  * @defgroup NimbusInterapp Nimbus Interapp
  *
+ * <div id="github" feature="interapp"></div>
+ *
  * Nimbus' inter-application communication feature for interacting with other applications
  * installed on the device.
  *

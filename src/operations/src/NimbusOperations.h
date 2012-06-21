@@ -21,6 +21,8 @@
  * @defgroup NimbusOperations Nimbus Operations
  * @{
  *
+ * <div id="github" feature="operations"></div>
+ *
  * Processing data is a potential bottleneck for any application that manipulates it.
  * Older iPhone and iPod touch models get the worst of this with their slower processors
  * and smaller amounts of ram. It's important to pull data processing off of the main UI thread.

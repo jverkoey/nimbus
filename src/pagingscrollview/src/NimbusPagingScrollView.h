@@ -20,6 +20,8 @@
  * @defgroup NimbusPagingScrollView Nimbus Paging Scroll View
  * @{
  *
+ * <div id="github" feature="pagingscrollview"></div>
+ *
  * A paging scroll view is a UIScrollView that scrolls horizontally and shows a series of
  * pages that are efficiently recycled.
  *

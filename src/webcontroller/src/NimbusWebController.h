@@ -18,6 +18,8 @@
  * @defgroup NimbusWebController Nimbus Web Controller
  * @{
  *
+ * <div id="github" feature="webcontroller"></div>
+ *
  * This controller presents a UIWebView with a toolbar containing basic chrome for interacting
  * with it. The chrome shows forward, back, stop and refresh buttons on a toolbar aligned
  * to the bottom of the view controller's view. The toolbar includes an option to open the

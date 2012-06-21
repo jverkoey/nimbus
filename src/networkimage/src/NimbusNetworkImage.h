@@ -15,11 +15,13 @@
 //
 
 /**
- * Image views that load images from the network and efficiently store the result in memory and on
- * disk.
- *
  * @defgroup NimbusNetworkImage Nimbus Network Image
  * @{
+ *
+ * <div id="github" feature="networkimage"></div>
+ *
+ * Image views that load images from the network and efficiently store the result in memory and on
+ * disk.
  *
  * Presented below is an architectural overview of the Nimbus network image library.
  *
