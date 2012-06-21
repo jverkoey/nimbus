@@ -897,8 +897,8 @@ HTML_STYLESHEET        = docs/stylesheet.css
 # files. In the HTML_STYLESHEET file, use the file name only. Also note that 
 # the files will be copied as-is; there are no commands or markers available.
 
-HTML_EXTRA_FILES       = docs/fixed.js \
-                         docs/cleannavtree.js \
+HTML_EXTRA_FILES       = docs/js/fixed.js \
+                         docs/js/cleannavtree.js \
                          docs/gfx/nimbus128.png
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. 
