@@ -388,13 +388,6 @@
 			remoteGlobalIDString = 66FE7D7D13FB90C40061B987;
 			remoteInfo = ModelCatalog;
 		};
-		664EFB1615598A53009826AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 664EFB0E15598A52009826AB /* BasicNetworkImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
-			remoteInfo = BasicNetworkImage;
-		};
 		664EFB2015598A5E009826AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 664EFB1815598A5E009826AB /* NetworkPhotoAlbum.xcodeproj */;
@@ -699,7 +692,6 @@
 		664EFAE215598A07009826AB /* CSSDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CSSDemo.xcodeproj; path = ../examples/css/CSSDemo.xcodeproj; sourceTree = "<group>"; };
 		664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BasicLauncher.xcodeproj; path = ../examples/launcher/BasicLauncher/BasicLauncher.xcodeproj; sourceTree = "<group>"; };
 		664EFB0415598A49009826AB /* ModelCatalog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ModelCatalog.xcodeproj; path = ../examples/models/ModelCatalog/ModelCatalog.xcodeproj; sourceTree = "<group>"; };
-		664EFB0E15598A52009826AB /* BasicNetworkImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BasicNetworkImage.xcodeproj; path = ../examples/networkimage/BasicNetworkImage/BasicNetworkImage.xcodeproj; sourceTree = "<group>"; };
 		664EFB1815598A5E009826AB /* NetworkPhotoAlbum.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NetworkPhotoAlbum.xcodeproj; path = ../examples/photos/NetworkPhotoAlbums/NetworkPhotoAlbum.xcodeproj; sourceTree = "<group>"; };
 		664EFB6015598CDF009826AB /* UIActivityIndicatorView+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+NIStyleable.h"; path = "css/src/UIActivityIndicatorView+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
 		664EFB6115598CDF009826AB /* UIActivityIndicatorView+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+NIStyleable.m"; path = "css/src/UIActivityIndicatorView+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
@@ -1368,7 +1360,6 @@
 				664EFAE215598A07009826AB /* CSSDemo.xcodeproj */,
 				664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */,
 				664EFB0415598A49009826AB /* ModelCatalog.xcodeproj */,
-				664EFB0E15598A52009826AB /* BasicNetworkImage.xcodeproj */,
 				664EFB1815598A5E009826AB /* NetworkPhotoAlbum.xcodeproj */,
 			);
 			name = Examples;
@@ -1394,14 +1385,6 @@
 			isa = PBXGroup;
 			children = (
 				664EFB0D15598A49009826AB /* ModelCatalog.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		664EFB0F15598A52009826AB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				664EFB1715598A53009826AB /* BasicNetworkImage.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2921,10 +2904,6 @@
 					ProjectRef = 664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */;
 				},
 				{
-					ProductGroup = 664EFB0F15598A52009826AB /* Products */;
-					ProjectRef = 664EFB0E15598A52009826AB /* BasicNetworkImage.xcodeproj */;
-				},
-				{
 					ProductGroup = 664EFAE315598A07009826AB /* Products */;
 					ProjectRef = 664EFAE215598A07009826AB /* CSSDemo.xcodeproj */;
 				},
@@ -2997,13 +2976,6 @@
 			fileType = wrapper.application;
 			path = ModelCatalog.app;
 			remoteRef = 664EFB0C15598A49009826AB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		664EFB1715598A53009826AB /* BasicNetworkImage.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = BasicNetworkImage.app;
-			remoteRef = 664EFB1615598A53009826AB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		664EFB2115598A5E009826AB /* NetworkPhotoAlbum.app */ = {
