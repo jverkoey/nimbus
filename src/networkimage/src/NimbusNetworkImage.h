@@ -66,7 +66,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#Import "NimbusCore.h"
+#import "NimbusCore.h"
 #import "NINetworkImageView.h"
 
 /**@}*/
