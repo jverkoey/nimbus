@@ -93,6 +93,8 @@
 
 @end
 
+/** @name Creating a Web Controller */
+
 /**
  * Initializes a newly allocated web controller with a given request.
  *
@@ -111,6 +113,8 @@
  *      @fn NIWebController::initWithURL:
  */
 
+/** @name Accessing the Request Attributes */
+
 /**
  * The current web view URL.
  *
@@ -119,6 +123,8 @@
  *
  *      @fn NIWebController::URL:
  */
+
+/** @name Loading a Request */
 
 /**
  * Loads a request with the given URL in the web view.
@@ -134,6 +140,8 @@
  *      @fn NIWebController::openRequest:
  */
 
+/** @name Accessing the Toolbar */
+
 /**
  * The visibility of the toolbar.
  *
@@ -147,6 +155,8 @@
  *
  *      @fn NIWebController::toolbarTintColor
  */
+
+/** @name Subclassing the Web Controller */
 
 /**
  * This message is called in response to the user clicking the action toolbar button.
