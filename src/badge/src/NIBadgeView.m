@@ -91,10 +91,11 @@ static const CGFloat kBadgeLineSize = 2.0f;
   CGFloat maxX = CGRectGetMaxX(rect) - 5.f;
   CGFloat minY = CGRectGetMinY(rect) + 3.5f;
   CGFloat maxY = CGRectGetMaxY(rect) - 6.5f;
-
+  
+  CGSize textSize = [self.text sizeWithFont:self.font];
   // Used to suppress warning: Implicit conversion shortens 64-bit value into 32-bit value
   const CGFloat pi = (CGFloat)M_PI;
-  const CGFloat kRadius = 10.5f;
+  const CGFloat kRadius = textSize.height / 2.f;
 
   // Draw the main rounded rectangle
   CGContextBeginPath(context);
@@ -155,7 +156,6 @@ static const CGFloat kBadgeLineSize = 2.0f;
 
   // Draw text
   [self.textColor set];
-  CGSize textSize = [self.text sizeWithFont:self.font];
 
   [self.text drawAtPoint:CGPointMake(floorf((rect.size.width - textSize.width) / 2.f) - 0.f,
                                      floorf((rect.size.height - textSize.height) / 2.f) - 2.f)
