@@ -34,6 +34,7 @@
 
 // Network Image
 #import "BasicInstantiationNetworkImageViewController.h"
+#import "ContentModesNetworkImageViewController.h"
 
 // Web Controller
 #import "ExtraActionsWebViewController.h"
@@ -176,6 +177,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
                                    subtitle:@"How to create a NINetworkImageView"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([ContentModesNetworkImageViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Content Modes"
+                                   subtitle:@"Effects of each content mode"]],
      
      @"Web Controller",
      [_actions attachNavigationAction:

@@ -74,6 +74,7 @@
 		66B941561592EB4500AEA1D2 /* dilly.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66B941551592EB4500AEA1D2 /* dilly.jpg */; };
 		66B9415D1593866900AEA1D2 /* NIWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B9415C1593866900AEA1D2 /* NIWebController.m */; };
 		66B9415F159386D300AEA1D2 /* NimbusWebController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66B9415E159386D300AEA1D2 /* NimbusWebController.bundle */; };
+		66D2FDB81593D5D000B2BEFD /* ContentModesNetworkImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDB71593D5D000B2BEFD /* ContentModesNetworkImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -213,6 +214,8 @@
 		66B9415B1593866900AEA1D2 /* NIWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIWebController.h; path = ../../src/webcontroller/src/NIWebController.h; sourceTree = "<group>"; };
 		66B9415C1593866900AEA1D2 /* NIWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIWebController.m; path = ../../src/webcontroller/src/NIWebController.m; sourceTree = "<group>"; };
 		66B9415E159386D300AEA1D2 /* NimbusWebController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusWebController.bundle; path = ../../src/webcontroller/resources/NimbusWebController.bundle; sourceTree = "<group>"; };
+		66D2FDB61593D5D000B2BEFD /* ContentModesNetworkImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentModesNetworkImageViewController.h; sourceTree = "<group>"; };
+		66D2FDB71593D5D000B2BEFD /* ContentModesNetworkImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentModesNetworkImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +272,8 @@
 			children = (
 				668B7671159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.h */,
 				668B7672159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m */,
+				66D2FDB61593D5D000B2BEFD /* ContentModesNetworkImageViewController.h */,
+				66D2FDB71593D5D000B2BEFD /* ContentModesNetworkImageViewController.m */,
 			);
 			name = "Network Image";
 			sourceTree = "<group>";
@@ -642,6 +647,7 @@
 				668B7673159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m in Sources */,
 				668B767B159394EF00EA86F6 /* NINetworkImageRequest.m in Sources */,
 				668B767C159394EF00EA86F6 /* NINetworkImageView.m in Sources */,
+				66D2FDB81593D5D000B2BEFD /* ContentModesNetworkImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
