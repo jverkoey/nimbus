@@ -19,7 +19,6 @@
 #import "NINetworkImageView.h"
 
 #import "NimbusCore.h"
-
 #import "NINetworkImageRequest.h"
 
 

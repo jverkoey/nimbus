@@ -23,6 +23,19 @@
  * Image views that load images from the network and efficiently store the result in memory and on
  * disk.
  *
+ * @image html NINetworkImageViewExample1.png "The various available content modes."
+ *
+ * <h2>Minimum Requirements</h2>
+ *
+ * Required frameworks:
+ *
+ * - UIKit.framework
+ * - CoreText.framework
+ *
+ * Minimum Operating System: <b>iOS 4.0</b>
+ *
+ * Source located in <code>src/networkimage/src</code>
+ *
  * Presented below is an architectural overview of the Nimbus network image library.
  *
  * @image html NINetworkImageDesign1.png "NINetworkImage Design"
@@ -48,20 +61,12 @@
  *    in the future.
  * -# At last, the image view sets the new image and displays it.
  *
- * <h3>Demo Applications</h3>
- *
- * <b>BasicNetworkImage</b> - Demos each of the image content modes. [<a href="https://github.com/jverkoey/nimbus/tree/master/examples/networkimage/BasicNetworkImage/README.mdown">README</a>]
- *
- * This demo sets up a scroll view of network images that each show a different UIViewContentMode
- * of the same image. The in-memory cache size is also displayed as the images are loaded.
- *
- * @image html NINetworkImageViewExample1.png "Screenshots of the BasicNetworkImage demo application."
- *
  */
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#Import "NimbusCore.h"
 #import "NINetworkImageView.h"
 
 /**@}*/
