@@ -29,6 +29,9 @@
 #import "CustomizingBadgesViewController.h"
 #import "InterfaceBuilderBadgeViewController.h"
 
+// Interapp
+#import "InterappViewController.h"
+
 #import "NimbusModels.h"
 
 //
@@ -152,6 +155,13 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Interface Builder"
                                    subtitle:@"Using badges in IB"]],
+
+     @"Interapp",
+     [_actions attachNavigationAction:
+      NIPushControllerAction([InterappViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"All Actions"
+                                   subtitle:@"A list of all available actions"]],
 
      nil];
 

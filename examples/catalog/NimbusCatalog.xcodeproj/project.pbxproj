@@ -64,6 +64,10 @@
 		669A15D0158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15CF158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m */; };
 		669A15D3158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15D2158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m */; };
 		669A15D6158E81D200A0990A /* PerformanceAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15D5158E81D200A0990A /* PerformanceAttributedLabelViewController.m */; };
+		66B9414B1592E30100AEA1D2 /* NIInterapp.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B941481592E30100AEA1D2 /* NIInterapp.m */; };
+		66B941521592E36900AEA1D2 /* InterappViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B941511592E36900AEA1D2 /* InterappViewController.m */; };
+		66B941541592E5EF00AEA1D2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B941531592E5EF00AEA1D2 /* CoreLocation.framework */; };
+		66B941561592EB4500AEA1D2 /* dilly.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66B941551592EB4500AEA1D2 /* dilly.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,6 +184,14 @@
 		669A15D2158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataTypesAttributedLabelViewController.m; sourceTree = "<group>"; };
 		669A15D4158E81D200A0990A /* PerformanceAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformanceAttributedLabelViewController.h; sourceTree = "<group>"; };
 		669A15D5158E81D200A0990A /* PerformanceAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformanceAttributedLabelViewController.m; sourceTree = "<group>"; };
+		66B941471592E30100AEA1D2 /* NIInterapp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIInterapp.h; path = ../../src/interapp/src/NIInterapp.h; sourceTree = "<group>"; };
+		66B941481592E30100AEA1D2 /* NIInterapp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIInterapp.m; path = ../../src/interapp/src/NIInterapp.m; sourceTree = "<group>"; };
+		66B941491592E30100AEA1D2 /* NimbusInterapp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusInterapp.h; path = ../../src/interapp/src/NimbusInterapp.h; sourceTree = "<group>"; };
+		66B9414A1592E30100AEA1D2 /* NimbusInterapp+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusInterapp+Namespace.h"; path = "../../src/interapp/src/NimbusInterapp+Namespace.h"; sourceTree = "<group>"; };
+		66B941501592E36900AEA1D2 /* InterappViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterappViewController.h; sourceTree = "<group>"; };
+		66B941511592E36900AEA1D2 /* InterappViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterappViewController.m; sourceTree = "<group>"; };
+		66B941531592E5EF00AEA1D2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		66B941551592EB4500AEA1D2 /* dilly.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = dilly.jpg; path = ../catalog/Catalog/dilly.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +199,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66B941541592E5EF00AEA1D2 /* CoreLocation.framework in Frameworks */,
 				6693C2EB158AA2BF00950D42 /* CoreText.framework in Frameworks */,
 				6693C0F0158A63E600950D42 /* UIKit.framework in Frameworks */,
 				6693C0F2158A63E600950D42 /* Foundation.framework in Frameworks */,
@@ -247,6 +260,7 @@
 		6693C0EE158A63E600950D42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66B941531592E5EF00AEA1D2 /* CoreLocation.framework */,
 				6693C2EA158AA2BE00950D42 /* CoreText.framework */,
 				6693C0EF158A63E600950D42 /* UIKit.framework */,
 				6693C0F1158A63E600950D42 /* Foundation.framework */,
@@ -258,6 +272,7 @@
 		6693C10C158A63F700950D42 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				66B941551592EB4500AEA1D2 /* dilly.jpg */,
 				6693C0F7158A63E600950D42 /* NimbusCatalog-Info.plist */,
 				6693C0F8158A63E600950D42 /* InfoPlist.strings */,
 			);
@@ -271,6 +286,7 @@
 				6693C2E1158AA13900950D42 /* Attributed Label */,
 				661F28EF159292D900D11FC3 /* Badge */,
 				6693C150158A64C100950D42 /* Core */,
+				66B941461592E2E200AEA1D2 /* Interapp */,
 				6693C1AD158A64CE00950D42 /* Models */,
 			);
 			name = Nimbus;
@@ -360,6 +376,7 @@
 				6693C1D2158A80A000950D42 /* CatalogViewController.m */,
 				6693C2DC158A9A0E00950D42 /* Attributed Label */,
 				661F28EA1592929E00D11FC3 /* Badge */,
+				66B9414C1592E33900AEA1D2 /* Interapp */,
 			);
 			name = Catalog;
 			path = ../catalog/Catalog;
@@ -412,6 +429,26 @@
 				6693C2E7158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m */,
 			);
 			name = "Attributed Label";
+			sourceTree = "<group>";
+		};
+		66B941461592E2E200AEA1D2 /* Interapp */ = {
+			isa = PBXGroup;
+			children = (
+				66B941471592E30100AEA1D2 /* NIInterapp.h */,
+				66B941481592E30100AEA1D2 /* NIInterapp.m */,
+				66B941491592E30100AEA1D2 /* NimbusInterapp.h */,
+				66B9414A1592E30100AEA1D2 /* NimbusInterapp+Namespace.h */,
+			);
+			name = Interapp;
+			sourceTree = "<group>";
+		};
+		66B9414C1592E33900AEA1D2 /* Interapp */ = {
+			isa = PBXGroup;
+			children = (
+				66B941501592E36900AEA1D2 /* InterappViewController.h */,
+				66B941511592E36900AEA1D2 /* InterappViewController.m */,
+			);
+			name = Interapp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,6 +513,7 @@
 				6693C2A0158A8E4000950D42 /* Icon@2x.png in Resources */,
 				6633C7F2158F08EA0054D240 /* AttributedLabelMashup.xib in Resources */,
 				661F293315929E2300D11FC3 /* ApplicationBadges.xib in Resources */,
+				66B941561592EB4500AEA1D2 /* dilly.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +566,8 @@
 				661F28F3159292E800D11FC3 /* NIBadgeView.m in Sources */,
 				661F28F6159299C900D11FC3 /* CustomizingBadgesViewController.m in Sources */,
 				661F293215929E2300D11FC3 /* InterfaceBuilderBadgeViewController.m in Sources */,
+				66B9414B1592E30100AEA1D2 /* NIInterapp.m in Sources */,
+				66B941521592E36900AEA1D2 /* InterappViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

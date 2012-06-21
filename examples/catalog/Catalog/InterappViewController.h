@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,15 +14,8 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface CatalogTableViewController : UITableViewController <
-  UIDocumentInteractionControllerDelegate
-> {
-@private
-  UIDocumentInteractionController* _docController;
-  NSURL* _fileUrl;
-}
-
+// All docs are in the .m.
+@interface InterappViewController : UITableViewController
 @end

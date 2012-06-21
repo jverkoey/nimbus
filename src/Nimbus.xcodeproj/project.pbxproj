@@ -374,13 +374,6 @@
 			remoteGlobalIDString = 66832D2014421450003E413C;
 			remoteInfo = CSSDemo;
 		};
-		664EFAF415598A27009826AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 664EFAEC15598A27009826AB /* InterAppCatalog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 66B4E8D113E4BC290098787F;
-			remoteInfo = InterAppCatalog;
-		};
 		664EFB0215598A40009826AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */;
@@ -711,7 +704,6 @@
 		664D443014993010008B4C42 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = ../thirdparty/JSONKit/JSONKit.h; sourceTree = "<group>"; };
 		664D443114993010008B4C42 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = ../thirdparty/JSONKit/JSONKit.m; sourceTree = "<group>"; };
 		664EFAE215598A07009826AB /* CSSDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CSSDemo.xcodeproj; path = ../examples/css/CSSDemo.xcodeproj; sourceTree = "<group>"; };
-		664EFAEC15598A27009826AB /* InterAppCatalog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = InterAppCatalog.xcodeproj; path = ../examples/interapp/catalog/InterAppCatalog.xcodeproj; sourceTree = "<group>"; };
 		664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BasicLauncher.xcodeproj; path = ../examples/launcher/BasicLauncher/BasicLauncher.xcodeproj; sourceTree = "<group>"; };
 		664EFB0415598A49009826AB /* ModelCatalog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ModelCatalog.xcodeproj; path = ../examples/models/ModelCatalog/ModelCatalog.xcodeproj; sourceTree = "<group>"; };
 		664EFB0E15598A52009826AB /* BasicNetworkImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BasicNetworkImage.xcodeproj; path = ../examples/networkimage/BasicNetworkImage/BasicNetworkImage.xcodeproj; sourceTree = "<group>"; };
@@ -1382,7 +1374,6 @@
 			children = (
 				6693C106158A63E600950D42 /* NimbusCatalog.xcodeproj */,
 				664EFAE215598A07009826AB /* CSSDemo.xcodeproj */,
-				664EFAEC15598A27009826AB /* InterAppCatalog.xcodeproj */,
 				664EFAFA15598A40009826AB /* BasicLauncher.xcodeproj */,
 				664EFB0415598A49009826AB /* ModelCatalog.xcodeproj */,
 				664EFB0E15598A52009826AB /* BasicNetworkImage.xcodeproj */,
@@ -1396,14 +1387,6 @@
 			isa = PBXGroup;
 			children = (
 				664EFAEB15598A07009826AB /* CSSDemo.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		664EFAED15598A27009826AB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				664EFAF515598A27009826AB /* InterAppCatalog.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2967,10 +2950,6 @@
 					ProjectRef = 664EFAE215598A07009826AB /* CSSDemo.xcodeproj */;
 				},
 				{
-					ProductGroup = 664EFAED15598A27009826AB /* Products */;
-					ProjectRef = 664EFAEC15598A27009826AB /* InterAppCatalog.xcodeproj */;
-				},
-				{
 					ProductGroup = 664EFB0515598A49009826AB /* Products */;
 					ProjectRef = 664EFB0415598A49009826AB /* ModelCatalog.xcodeproj */;
 				},
@@ -3025,13 +3004,6 @@
 			fileType = wrapper.application;
 			path = CSSDemo.app;
 			remoteRef = 664EFAEA15598A07009826AB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		664EFAF515598A27009826AB /* InterAppCatalog.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = InterAppCatalog.app;
-			remoteRef = 664EFAF415598A27009826AB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		664EFB0315598A40009826AB /* BasicLauncher.app */ = {
