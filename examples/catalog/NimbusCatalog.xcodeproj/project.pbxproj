@@ -15,6 +15,9 @@
 		6633C7EF158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6633C7EE158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m */; };
 		6633C7F2158F08EA0054D240 /* AttributedLabelMashup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6633C7F1158F08EA0054D240 /* AttributedLabelMashup.xib */; };
 		668B766F15938C8400EA86F6 /* ExtraActionsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B766E15938C8400EA86F6 /* ExtraActionsWebViewController.m */; };
+		668B7673159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B7672159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m */; };
+		668B767B159394EF00EA86F6 /* NINetworkImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B7678159394EF00EA86F6 /* NINetworkImageRequest.m */; };
+		668B767C159394EF00EA86F6 /* NINetworkImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B767A159394EF00EA86F6 /* NINetworkImageView.m */; };
 		6693C0F0158A63E600950D42 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C0EF158A63E600950D42 /* UIKit.framework */; };
 		6693C0F2158A63E600950D42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C0F1158A63E600950D42 /* Foundation.framework */; };
 		6693C0F4158A63E600950D42 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C0F3158A63E600950D42 /* CoreGraphics.framework */; };
@@ -89,6 +92,14 @@
 		6633C7F1158F08EA0054D240 /* AttributedLabelMashup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttributedLabelMashup.xib; sourceTree = "<group>"; };
 		668B766D15938C8400EA86F6 /* ExtraActionsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraActionsWebViewController.h; sourceTree = "<group>"; };
 		668B766E15938C8400EA86F6 /* ExtraActionsWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraActionsWebViewController.m; sourceTree = "<group>"; };
+		668B7671159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInstantiationNetworkImageViewController.h; sourceTree = "<group>"; };
+		668B7672159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicInstantiationNetworkImageViewController.m; sourceTree = "<group>"; };
+		668B7675159394EF00EA86F6 /* NimbusNetworkImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusNetworkImage.h; path = ../../src/networkimage/src/NimbusNetworkImage.h; sourceTree = "<group>"; };
+		668B7676159394EF00EA86F6 /* NimbusNetworkImage+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusNetworkImage+Namespace.h"; path = "../../src/networkimage/src/NimbusNetworkImage+Namespace.h"; sourceTree = "<group>"; };
+		668B7677159394EF00EA86F6 /* NINetworkImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkImageRequest.h; path = ../../src/networkimage/src/NINetworkImageRequest.h; sourceTree = "<group>"; };
+		668B7678159394EF00EA86F6 /* NINetworkImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkImageRequest.m; path = ../../src/networkimage/src/NINetworkImageRequest.m; sourceTree = "<group>"; };
+		668B7679159394EF00EA86F6 /* NINetworkImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkImageView.h; path = ../../src/networkimage/src/NINetworkImageView.h; sourceTree = "<group>"; };
+		668B767A159394EF00EA86F6 /* NINetworkImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkImageView.m; path = ../../src/networkimage/src/NINetworkImageView.m; sourceTree = "<group>"; };
 		6693C0EB158A63E600950D42 /* Nimbus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nimbus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6693C0EF158A63E600950D42 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6693C0F1158A63E600950D42 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -253,6 +264,28 @@
 			name = "Web Controller";
 			sourceTree = "<group>";
 		};
+		668B7670159393B400EA86F6 /* Network Image */ = {
+			isa = PBXGroup;
+			children = (
+				668B7671159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.h */,
+				668B7672159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m */,
+			);
+			name = "Network Image";
+			sourceTree = "<group>";
+		};
+		668B7674159394DE00EA86F6 /* Network Image */ = {
+			isa = PBXGroup;
+			children = (
+				668B7675159394EF00EA86F6 /* NimbusNetworkImage.h */,
+				668B7676159394EF00EA86F6 /* NimbusNetworkImage+Namespace.h */,
+				668B7677159394EF00EA86F6 /* NINetworkImageRequest.h */,
+				668B7678159394EF00EA86F6 /* NINetworkImageRequest.m */,
+				668B7679159394EF00EA86F6 /* NINetworkImageView.h */,
+				668B767A159394EF00EA86F6 /* NINetworkImageView.m */,
+			);
+			name = "Network Image";
+			sourceTree = "<group>";
+		};
 		6693C0E0158A63E600950D42 = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +341,7 @@
 				6693C150158A64C100950D42 /* Core */,
 				66B941461592E2E200AEA1D2 /* Interapp */,
 				6693C1AD158A64CE00950D42 /* Models */,
+				668B7674159394DE00EA86F6 /* Network Image */,
 				66B941581593865E00AEA1D2 /* Web Controller */,
 			);
 			name = Nimbus;
@@ -398,6 +432,7 @@
 				6693C2DC158A9A0E00950D42 /* Attributed Label */,
 				661F28EA1592929E00D11FC3 /* Badge */,
 				66B9414C1592E33900AEA1D2 /* Interapp */,
+				668B7670159393B400EA86F6 /* Network Image */,
 				668B766B15938C6E00EA86F6 /* Web Controller */,
 			);
 			name = Catalog;
@@ -604,6 +639,9 @@
 				66B941521592E36900AEA1D2 /* InterappViewController.m in Sources */,
 				66B9415D1593866900AEA1D2 /* NIWebController.m in Sources */,
 				668B766F15938C8400EA86F6 /* ExtraActionsWebViewController.m in Sources */,
+				668B7673159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m in Sources */,
+				668B767B159394EF00EA86F6 /* NINetworkImageRequest.m in Sources */,
+				668B767C159394EF00EA86F6 /* NINetworkImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

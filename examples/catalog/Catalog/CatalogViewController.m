@@ -32,6 +32,9 @@
 // Interapp
 #import "InterappViewController.h"
 
+// Network Image
+#import "BasicInstantiationNetworkImageViewController.h"
+
 // Web Controller
 #import "ExtraActionsWebViewController.h"
 
@@ -166,6 +169,13 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"All Actions"
                                    subtitle:@"A list of all available actions"]],
+
+     @"Network Image",
+     [_actions attachNavigationAction:
+      NIPushControllerAction([BasicInstantiationNetworkImageViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
+                                   subtitle:@"How to create a NINetworkImageView"]],
      
      @"Web Controller",
      [_actions attachNavigationAction:
