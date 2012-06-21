@@ -26,6 +26,7 @@
 
 // Badge
 #import "BasicInstantiationBadgeViewController.h"
+#import "CustomizingBadgesViewController.h"
 
 #import "NimbusModels.h"
 
@@ -140,6 +141,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
                                    subtitle:@"How to create a simple NIBadgeView"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([CustomizingBadgesViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Customizing Badges"
+                                   subtitle:@"How to customize badges"]],
 
      nil];
 
