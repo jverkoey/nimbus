@@ -27,6 +27,7 @@
 // Badge
 #import "BasicInstantiationBadgeViewController.h"
 #import "CustomizingBadgesViewController.h"
+#import "InterfaceBuilderBadgeViewController.h"
 
 #import "NimbusModels.h"
 
@@ -146,6 +147,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Customizing Badges"
                                    subtitle:@"How to customize badges"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([InterfaceBuilderBadgeViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Interface Builder"
+                                   subtitle:@"Using badges in IB"]],
 
      nil];
 
