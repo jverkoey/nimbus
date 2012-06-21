@@ -35,12 +35,26 @@ static const CGFloat kBadgeLineSize = 2.0f;
 
 - (void)_configureDefaults {
   self.contentScaleFactor = NIScreenScale();
-  self.tintColor = [UIColor redColor];
-  self.font = [UIFont boldSystemFontOfSize:17];
-  self.textColor = [UIColor whiteColor];
-  self.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
-  self.shadowOffset = CGSizeMake(0, 3);
-  self.shadowBlur = 3;
+
+  // We check for nil values so that defaults can be set in IB.
+  if (nil == self.tintColor) {
+    self.tintColor = [UIColor redColor];
+  }
+  if (nil == self.font) {
+    self.font = [UIFont boldSystemFontOfSize:17];
+  }
+  if (nil == self.textColor) {
+    self.textColor = [UIColor whiteColor];
+  }
+  if (nil == self.shadowColor) {
+    self.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
+  }
+  if (CGSizeEqualToSize(self.shadowOffset, CGSizeZero)) {
+    self.shadowOffset = CGSizeMake(0, 3);
+  }
+  if (0 == self.shadowBlur) {
+    self.shadowBlur = 3;
+  }
 }
 
 - (id)initWithFrame:(CGRect)frame {
