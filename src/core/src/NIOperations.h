@@ -45,8 +45,8 @@
  */
 @interface NIOperation : NSOperation
 
-@property (readwrite, unsafe_unretained) id<NIOperationDelegate> delegate;
-@property (readonly) NSError* lastError;
+@property (readwrite, assign) id<NIOperationDelegate> delegate;
+@property (readonly, retain) NSError* lastError;
 @property (readwrite, assign) NSInteger tag;
 
 #if NS_BLOCKS_AVAILABLE
@@ -62,28 +62,6 @@
 - (void)didFinish;
 - (void)didFailWithError:(NSError *)error;
 - (void)willFinish;
-
-@end
-
-/**
- * An operation that makes a network request.
- *
- * Provides asynchronous network request support when added to an NSOperationQueue.
- *
- * If the url provided is a file url, then the file will be loaded from disk instead.
- *
- *      @ingroup Operations
- */
-@interface NINetworkRequestOperation : NIOperation
-
-// Designated initializer.
-- (id)initWithURL:(NSURL *)url;
-
-@property (readwrite, copy) NSURL* url;
-@property (readwrite, assign) NSTimeInterval timeout; // Default: 60
-@property (readwrite, assign) NSURLRequestCachePolicy cachePolicy; // Default: NSURLRequestUseProtocolCachePolicy
-@property (readonly) NSData* data;
-@property (readwrite) id processedObject;
 
 @end
 
@@ -230,57 +208,4 @@
  * In the operation's thread, notify the delegate that the operation will finish successfully.
  *
  *      @fn NIOperation::willFinish
- */
-
-
-// NINetworkRequestOperation
-
-/** @name Creating an Operation */
-
-/**
- * Initializes a newly allocated network operation with a given url.
- *
- *      @fn NINetworkRequestOperation::initWithURL:
- */
-
-
-/** @name Configuring the Operation */
-
-/**
- * The url that will be loaded in the network operation.
- *
- *      @fn NINetworkRequestOperation::url
- */
-
-/**
- * The number of seconds that may pass before a request gives up and fails.
- *
- *      @fn NINetworkRequestOperation::timeout
- */
-
-/**
- * The request cache policy to use.
- *
- *      @fn NINetworkRequestOperation::cachePolicy
- */
-
-
-/** @name Operation Results */
-
-/**
- * The data received from the request.
- *
- * Will be nil if the request failed.
- *
- *      @sa NIOperation::lastError
- *      @fn NINetworkRequestOperation::data
- */
-
-/**
- * An object created from the data that was fetched.
- *
- * Will be nil if the request failed.
- *
- *      @sa NIOperation::lastError
- *      @fn NINetworkRequestOperation::processedObject
  */
