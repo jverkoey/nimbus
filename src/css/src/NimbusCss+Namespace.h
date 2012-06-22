@@ -28,6 +28,39 @@
 #endif
 
 // Classes
+#ifndef AFHTTPClient
+#define AFHTTPClient __NIMBUS_NS_SYMBOL(AFHTTPClient)
+#endif
+#ifndef AFHTTPRequestOperation
+#define AFHTTPRequestOperation __NIMBUS_NS_SYMBOL(AFHTTPRequestOperation)
+#endif
+#ifndef AFImageCache
+#define AFImageCache __NIMBUS_NS_SYMBOL(AFImageCache)
+#endif
+#ifndef AFImageRequestOperation
+#define AFImageRequestOperation __NIMBUS_NS_SYMBOL(AFImageRequestOperation)
+#endif
+#ifndef AFJSONRequestOperation
+#define AFJSONRequestOperation __NIMBUS_NS_SYMBOL(AFJSONRequestOperation)
+#endif
+#ifndef AFMultipartFormData
+#define AFMultipartFormData __NIMBUS_NS_SYMBOL(AFMultipartFormData)
+#endif
+#ifndef AFNetworkActivityIndicatorManager
+#define AFNetworkActivityIndicatorManager __NIMBUS_NS_SYMBOL(AFNetworkActivityIndicatorManager)
+#endif
+#ifndef AFPropertyListRequestOperation
+#define AFPropertyListRequestOperation __NIMBUS_NS_SYMBOL(AFPropertyListRequestOperation)
+#endif
+#ifndef AFQueryStringComponent
+#define AFQueryStringComponent __NIMBUS_NS_SYMBOL(AFQueryStringComponent)
+#endif
+#ifndef AFURLConnectionOperation
+#define AFURLConnectionOperation __NIMBUS_NS_SYMBOL(AFURLConnectionOperation)
+#endif
+#ifndef AFXMLRequestOperation
+#define AFXMLRequestOperation __NIMBUS_NS_SYMBOL(AFXMLRequestOperation)
+#endif
 #ifndef NICSSParser
 #define NICSSParser __NIMBUS_NS_SYMBOL(NICSSParser)
 #endif
@@ -42,9 +75,6 @@
 #endif
 #ifndef NILinkedList
 #define NILinkedList __NIMBUS_NS_SYMBOL(NILinkedList)
-#endif
-#ifndef NINetworkRequestOperation
-#define NINetworkRequestOperation __NIMBUS_NS_SYMBOL(NINetworkRequestOperation)
 #endif
 #ifndef NIStylesheet
 #define NIStylesheet __NIMBUS_NS_SYMBOL(NIStylesheet)
@@ -80,11 +110,38 @@
 #define NI_FIX_CATEGORY_BUG_UIView_NIStyleable __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UIView_NIStyleable)
 #endif
 // Functions
+#ifndef AFContentTypesFromHTTPHeader
+#define AFContentTypesFromHTTPHeader __NIMBUS_NS_SYMBOL(AFContentTypesFromHTTPHeader)
+#endif
+#ifndef AFJSONEncode
+#define AFJSONEncode __NIMBUS_NS_SYMBOL(AFJSONEncode)
+#endif
+#ifndef AFURLEncodedStringFromStringWithEncoding
+#define AFURLEncodedStringFromStringWithEncoding __NIMBUS_NS_SYMBOL(AFURLEncodedStringFromStringWithEncoding)
+#endif
 #ifndef cssConsume
 #define cssConsume __NIMBUS_NS_SYMBOL(cssConsume)
 #endif
 #ifndef csslex
 #define csslex __NIMBUS_NS_SYMBOL(csslex)
+#endif
+#ifndef AFCreateIncompleteDownloadDirectoryPath
+#define AFCreateIncompleteDownloadDirectoryPath __NIMBUS_NS_SYMBOL(AFCreateIncompleteDownloadDirectoryPath)
+#endif
+#ifndef AFQueryStringFromParametersWithEncoding
+#define AFQueryStringFromParametersWithEncoding __NIMBUS_NS_SYMBOL(AFQueryStringFromParametersWithEncoding)
+#endif
+#ifndef AFQueryStringComponentsFromKeyAndValue
+#define AFQueryStringComponentsFromKeyAndValue __NIMBUS_NS_SYMBOL(AFQueryStringComponentsFromKeyAndValue)
+#endif
+#ifndef AFQueryStringComponentsFromKeyAndDictionaryValue
+#define AFQueryStringComponentsFromKeyAndDictionaryValue __NIMBUS_NS_SYMBOL(AFQueryStringComponentsFromKeyAndDictionaryValue)
+#endif
+#ifndef AFQueryStringComponentsFromKeyAndArrayValue
+#define AFQueryStringComponentsFromKeyAndArrayValue __NIMBUS_NS_SYMBOL(AFQueryStringComponentsFromKeyAndArrayValue)
+#endif
+#ifndef AFJSONDecode
+#define AFJSONDecode __NIMBUS_NS_SYMBOL(AFJSONDecode)
 #endif
 #ifndef css_create_buffer
 #define css_create_buffer __NIMBUS_NS_SYMBOL(css_create_buffer)
@@ -177,6 +234,9 @@
 #ifndef gActiveParser
 #define gActiveParser __NIMBUS_NS_SYMBOL(gActiveParser)
 #endif
+#ifndef kAFNetworkingIncompleteDownloadDirectoryName
+#define kAFNetworkingIncompleteDownloadDirectoryName __NIMBUS_NS_SYMBOL(kAFNetworkingIncompleteDownloadDirectoryName)
+#endif
 #ifndef cssin
 #define cssin __NIMBUS_NS_SYMBOL(cssin)
 #endif
@@ -186,7 +246,19 @@
 #ifndef css_flex_debug
 #define css_flex_debug __NIMBUS_NS_SYMBOL(css_flex_debug)
 #endif
+#ifndef AFNetworkingReachabilityDidChangeNotification
+#define AFNetworkingReachabilityDidChangeNotification __NIMBUS_NS_SYMBOL(AFNetworkingReachabilityDidChangeNotification)
+#endif
 #ifndef NIStylesheetDidChangeNotification
 #define NIStylesheetDidChangeNotification __NIMBUS_NS_SYMBOL(NIStylesheetDidChangeNotification)
+#endif
+#ifndef AFNetworkingErrorDomain
+#define AFNetworkingErrorDomain __NIMBUS_NS_SYMBOL(AFNetworkingErrorDomain)
+#endif
+#ifndef AFNetworkingOperationDidStartNotification
+#define AFNetworkingOperationDidStartNotification __NIMBUS_NS_SYMBOL(AFNetworkingOperationDidStartNotification)
+#endif
+#ifndef AFNetworkingOperationDidFinishNotification
+#define AFNetworkingOperationDidFinishNotification __NIMBUS_NS_SYMBOL(AFNetworkingOperationDidFinishNotification)
 #endif
 #endif

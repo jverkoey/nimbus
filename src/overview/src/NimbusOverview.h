@@ -20,6 +20,8 @@
  * @defgroup NimbusOverview Nimbus Overview
  * @{
  *
+ * <div id="github" feature="overview"></div>
+ *
  * The Overview is a debugging tool for quickly understanding the current state of your
  * application. When added to an application, it will insert a paged
  * scroll view beneath the status bar that contains any number of pages of information.

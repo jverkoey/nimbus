@@ -16,12 +16,31 @@
 
 #import "CatalogViewController.h"
 
+// Attributed Label
 #import "BasicInstantiationAttributedLabelViewController.h"
 #import "CustomTextAttributedLabelViewController.h"
 #import "LinksAttributedLabelViewController.h"
 #import "DataTypesAttributedLabelViewController.h"
 #import "PerformanceAttributedLabelViewController.h"
 #import "InterfaceBuilderAttributedLabelViewController.h"
+
+// Badge
+#import "BasicInstantiationBadgeViewController.h"
+#import "CustomizingBadgesViewController.h"
+#import "InterfaceBuilderBadgeViewController.h"
+
+// Interapp
+#import "InterappViewController.h"
+
+// Network Image
+#import "BasicInstantiationNetworkImageViewController.h"
+#import "ContentModesNetworkImageViewController.h"
+
+// Web Controller
+#import "ExtraActionsWebViewController.h"
+
+#import "NimbusModels.h"
+#import "NimbusWebController.h"
 
 //
 // What's going on in this file:
@@ -127,6 +146,75 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Interface Builder"
                                    subtitle:@"Using attributed labels in IB"]],
+
+     @"Badge",
+     [_actions attachNavigationAction:
+      NIPushControllerAction([BasicInstantiationBadgeViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
+                                   subtitle:@"How to create a simple NIBadgeView"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([CustomizingBadgesViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Customizing Badges"
+                                   subtitle:@"How to customize badges"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([InterfaceBuilderBadgeViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Interface Builder"
+                                   subtitle:@"Using badges in IB"]],
+
+     @"Interapp",
+     [_actions attachNavigationAction:
+      NIPushControllerAction([InterappViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"All Actions"
+                                   subtitle:@"A list of all available actions"]],
+
+     @"Network Image",
+     [_actions attachNavigationAction:
+      NIPushControllerAction([BasicInstantiationNetworkImageViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
+                                   subtitle:@"How to create a NINetworkImageView"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([ContentModesNetworkImageViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Content Modes"
+                                   subtitle:@"Effects of each content mode"]],
+     
+     @"Web Controller",
+     [_actions attachNavigationAction:
+      NIPushControllerInstanceAction([[NIWebController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
+                                   subtitle:@"How to create a simple NIWebController"]],
+     [_actions attachNavigationAction:
+      ^(id object, UIViewController* controller) {
+        NIWebController* webController = [[NIWebController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]];
+        webController.toolbarHidden = YES;
+        [controller.navigationController pushViewController:webController
+                                                   animated:YES];
+        
+        return NO;
+      } toObject:[NISubtitleCellObject objectWithTitle:@"Hiding the Toolbar"
+                                              subtitle:@"Showing a web controller without actions"]],
+     [_actions attachNavigationAction:
+      ^(id object, UIViewController* controller) {
+        NIWebController* webController = [[NIWebController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]];
+        webController.toolbarTintColor = [UIColor orangeColor];
+        [controller.navigationController pushViewController:webController
+                                                   animated:YES];
+        
+        return NO;
+      } toObject:[NISubtitleCellObject objectWithTitle:@"Tinting the Toolbar"
+                                              subtitle:@"Tinting a web controller's toolbar"]],
+     [_actions attachNavigationAction:
+      NIPushControllerInstanceAction([[ExtraActionsWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Extra Actions"
+                                   subtitle:@"Subclassing for more actions"]],
+
      nil];
 
     // When we create the model we must provide it with a delegate that implements the

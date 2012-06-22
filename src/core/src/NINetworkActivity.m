@@ -27,6 +27,35 @@
 
 static int              gNetworkTaskCount = 0;
 static pthread_mutex_t  gMutex = PTHREAD_MUTEX_INITIALIZER;
+static const NSTimeInterval kDelayBeforeDisablingActivity = 0.1;
+static NSTimer* gScheduledDelayTimer = nil;
+
+@interface NINetworkActivity : NSObject
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NINetworkActivity
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Called after a certain amount of time has passed since all network activity has stopped.
+// By delaying the turnoff of the network activity we avoid "flickering" effects when network
+// activity is starting and stopping rapidly.
++ (void)disableNetworkActivity {
+  pthread_mutex_lock(&gMutex);
+  if (nil != gScheduledDelayTimer) {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    gScheduledDelayTimer = nil;
+  }
+  pthread_mutex_unlock(&gMutex);
+}
+
+
+@end
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void NINetworkActivityTaskDidStart(void) {
@@ -35,6 +64,8 @@ void NINetworkActivityTaskDidStart(void) {
   BOOL enableNetworkActivityIndicator = (0 == gNetworkTaskCount);
 
   ++gNetworkTaskCount;
+  [gScheduledDelayTimer invalidate];
+  gScheduledDelayTimer = nil;
 
   if (enableNetworkActivityIndicator) {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -54,7 +85,20 @@ void NINetworkActivityTaskDidFinish(void) {
   gNetworkTaskCount = MAX(0, gNetworkTaskCount);
 
   if (gNetworkTaskCount == 0) {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [gScheduledDelayTimer invalidate];
+    gScheduledDelayTimer = nil;
+
+    // Ensure that the timer is scheduled on the main loop, otherwise it will die when the thread
+    // dies.
+    dispatch_async(dispatch_get_main_queue(), ^{
+      pthread_mutex_lock(&gMutex);
+      gScheduledDelayTimer = [NSTimer scheduledTimerWithTimeInterval:kDelayBeforeDisablingActivity
+                                                              target:[NINetworkActivity class]
+                                                            selector:@selector(disableNetworkActivity)
+                                                            userInfo:nil
+                                                             repeats:NO];
+      pthread_mutex_unlock(&gMutex);
+    });
   }
 
   pthread_mutex_unlock(&gMutex);

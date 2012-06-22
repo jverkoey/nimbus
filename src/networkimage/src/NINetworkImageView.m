@@ -19,8 +19,8 @@
 #import "NINetworkImageView.h"
 
 #import "NimbusCore.h"
-
-#import "NINetworkImageRequest.h"
+#import "AFNetworking.h"
+#import "NIImageProcessing.h"
 
 
 
@@ -219,7 +219,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)nimbusOperationDidFinish:(NINetworkImageRequest *)operation {
+- (void)nimbusOperationDidFinish:(NIOperation<NINetworkImageOperation> *)operation {
   [self _didFinishLoadingWithImage:operation.imageCroppedAndSizedForDisplay
                    cacheIdentifier:operation.cacheIdentifier
                        displaySize:operation.imageDisplaySize
@@ -331,9 +331,77 @@
     if (nil == url) {
       return;
     }
+    // We explicitly do not allow negative display sizes. Check the call stack to figure
+    // out who is providing a negative display size. It's possible that displaySize is an
+    // uninitialized CGSize structure.
+    NIDASSERT(displaySize.width >= 0);
+    NIDASSERT(displaySize.height >= 0);
     
-    NINetworkImageRequest* request = [[NINetworkImageRequest alloc] initWithURL:url];
-    [self setNetworkImageOperation:request forDisplaySize:displaySize contentMode:contentMode cropRect:cropRect];
+    // If an invalid display size IS provided, use the image view's frame instead.
+    if (0 >= displaySize.width || 0 >= displaySize.height) {
+      displaySize = self.frame.size;
+    }
+    
+    UIImage* image = nil;
+    
+    // Attempt to load the image from memory first.
+    NSString* cacheKey = nil;
+    if (nil != self.imageMemoryCache) {
+      cacheKey = [self cacheKeyForCacheIdentifier:pathToNetworkImage
+                                        imageSize:displaySize
+                                      contentMode:contentMode
+                                     scaleOptions:self.scaleOptions];
+      image = [self.imageMemoryCache objectWithName:cacheKey];
+    }
+
+    if (nil != image) {
+      // We successfully loaded the image from memory.
+      [self setImage:image];
+      
+      if ([self.delegate respondsToSelector:@selector(networkImageView:didLoadImage:)]) {
+        [self.delegate networkImageView:self didLoadImage:self.image];
+      }
+      
+      [self networkImageViewDidLoadImage:image];
+
+    } else {
+      if (!self.sizeForDisplay) {
+        displaySize = CGSizeZero;
+        contentMode = UIViewContentModeScaleToFill;
+      }
+
+      NSURLRequest *request = [NSURLRequest requestWithURL:url];
+      AFImageRequestOperation *operation =
+      [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:
+       ^UIImage *(UIImage *downloadedImage) {
+         return [NIImageProcessing imageFromSource:downloadedImage
+                                   withContentMode:contentMode
+                                          cropRect:cropRect
+                                       displaySize:displaySize
+                                      scaleOptions:self.scaleOptions
+                              interpolationQuality:self.interpolationQuality];
+
+       } success:^(NSURLRequest *successfulRequest, NSHTTPURLResponse *response, UIImage *processedImage) {
+         [self _didFinishLoadingWithImage:processedImage
+                          cacheIdentifier:cacheKey
+                              displaySize:displaySize
+                              contentMode:contentMode
+                             scaleOptions:self.scaleOptions
+                           expirationDate:nil];
+
+       } failure:^(NSURLRequest *errorRequest, NSHTTPURLResponse *response, NSError *error) {
+         [self _didFailToLoadWithError:error];
+       }];
+
+      // We handle image scaling ourselves in the image processing method, so we need to disable
+      // AFNetworking from doing so as well.
+      operation.imageScale = 1;
+
+      self.operation = operation;
+
+      [self _didStartLoading];
+      [self.networkOperationQueue addOperation:operation];
+    }
   }
 }
 

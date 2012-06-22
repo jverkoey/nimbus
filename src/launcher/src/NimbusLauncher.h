@@ -15,9 +15,12 @@
 //
 
 /**
- * Nimbus' Launcher view and related components.
  * @defgroup NimbusLauncher Nimbus Launcher
  * @{
+ *
+ * <div id="github" feature="launcher"></div>
+ *
+ * Nimbus' Launcher view and related components.
  *
  * A launcher view is best exemplified in Apple's home screen interface. It consists of a set
  * of pages that each contain a set of buttons that the user may tap to access a consistent,

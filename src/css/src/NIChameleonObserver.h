@@ -40,7 +40,7 @@
 @private
   NIStylesheetCache* _stylesheetCache;
   NSMutableArray* _stylesheetPaths;
-  NSOperationQueue* _operations;
+  NSOperationQueue* _queue;
   NSString* _host;
   NSInteger _retryCount;
 }

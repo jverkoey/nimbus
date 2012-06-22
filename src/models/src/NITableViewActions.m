@@ -284,18 +284,23 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NITableViewActionBlock NIPushControllerAction(Class controllerClass) {
+NITableViewActionBlock NIPushControllerInstanceAction(UIViewController* controllerToPush) {
   return [^(id object, UIViewController* controller) {
     // You must initialize the actions object with initWithController: and pass a valid
     // controller.
     NIDASSERT(nil != controller);
 
     if (nil != controller) {
-      id nextController = [[controllerClass alloc] init];
-      [controller.navigationController pushViewController:nextController
+      [controller.navigationController pushViewController:controllerToPush
                                                  animated:YES];
     }
 
     return NO;
   } copy];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NITableViewActionBlock NIPushControllerAction(Class controllerClass) {
+  return NIPushControllerInstanceAction([[controllerClass alloc] init]);
 }

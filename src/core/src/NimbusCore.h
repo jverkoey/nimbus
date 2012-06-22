@@ -17,6 +17,8 @@
 /**
  * @defgroup NimbusCore Nimbus Core
  *
+ * <div id="github" feature="core"></div>
+ *
  * Nimbus' Core defines the foundation upon which all other Nimbus features are built.
  * Within the core you will find common elements used to build iOS applications
  * including in-memory caches, path manipulation, and SDK availability. These features form
