@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,74 +14,11 @@
 // limitations under the License.
 //
 
-#import "NINetworkImageRequest.h"
-
-#import "NIOperations+Subclassing.h"
+#import "NIImageProcessing.h"
 #import "NimbusCore.h"
 
+@implementation NIImageProcessing
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NINetworkImageRequest
-
-@synthesize imageCropRect = _imageCropRect;
-@synthesize imageDisplaySize = _imageDisplaySize;
-@synthesize scaleOptions = _scaleOptions;
-@synthesize interpolationQuality = _interpolationQuality;
-@synthesize imageContentMode = _imageContentMode;
-@synthesize imageCroppedAndSizedForDisplay = _imageCroppedAndSizedForDisplay;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithURL:(NSURL *)newURL {
-  if ((self = [super initWithURL:newURL])) {
-    self.imageCropRect = CGRectZero;
-    self.imageDisplaySize = CGSizeZero;
-    self.interpolationQuality = kCGInterpolationDefault;
-    self.scaleOptions = NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess;
-    self.imageContentMode = UIViewContentModeScaleToFill;
-  }
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)willFinish {
-  NSData* responseData = self.data;
-  UIImage* image = [[UIImage alloc] initWithData:responseData];
-
-  self.data = nil;
-
-  // Slice it, dice it!
-  if (nil != image) {
-    [self setImageCroppedAndSizedForDisplay:[[self class] imageFromSource:image
-                                                          withContentMode:self.imageContentMode
-                                                                 cropRect:self.imageCropRect
-                                                              displaySize:self.imageDisplaySize
-                                                             scaleOptions:self.scaleOptions
-                                                     interpolationQuality:self.interpolationQuality]];
-  }
-
-  [super willFinish];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)cacheIdentifier {
-  return [self.url absoluteString];
-}
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NINetworkImageRequest (ImageModifications)
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Calculate the source rect in the source image from which we'll extract the image before drawing
  * it in the destination image.

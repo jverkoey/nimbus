@@ -105,7 +105,9 @@ static const CGFloat kImageSpacing = 5;
 
   self.view.backgroundColor = [UIColor underPageBackgroundColor];
 
-  // We only want one network request to be able to fire off at a time.
+  // We only want one network request to be able to fire off at a time because we know all of the
+  // requests are going to be for the same image. This way each subsequent request will load the
+  // already downloaded image from the cache.
   [[Nimbus networkOperationQueue] setMaxConcurrentOperationCount:1];
 
   // We're going to create a network image view for each UIViewContentMode that the network image
