@@ -33,6 +33,7 @@
 // Foundation.framework
 // UIKit.framework
 // QuartzCore.framework
+// AFNetworking https://github.com/AFNetworking/AFNetworking
 //
 
 // Various display metrics used through the view. We define them at the top of the file so that

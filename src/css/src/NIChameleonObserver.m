@@ -19,6 +19,7 @@
 #import "NIStylesheet.h"
 #import "NIStylesheetCache.h"
 #import "NimbusCore+Additions.h"
+#import "AFNetworking.h"
 
 static NSString* const kWatchFilenameKey = @"___watch___";
 static const NSTimeInterval kTimeoutInterval = 1000;
@@ -36,7 +37,7 @@ static const NSInteger kMaxNumberOfRetries = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  [_operations cancelAllOperations];
+  [_queue cancelAllOperations];
 }
 
 
@@ -47,7 +48,7 @@ static const NSInteger kMaxNumberOfRetries = 3;
     NIDASSERT(nil != stylesheetCache);
     _stylesheetCache = stylesheetCache;
     _stylesheetPaths = [[NSMutableArray alloc] init];
-    _operations = [[NSOperationQueue alloc] init];
+    _queue = [[NSOperationQueue alloc] init];
 
     if ([host hasSuffix:@"/"]) {
       _host = [host copy];
@@ -83,53 +84,28 @@ static const NSInteger kMaxNumberOfRetries = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)downloadStylesheetWithFilename:(NSString *)path {
   NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:path]];
-  NINetworkRequestOperation* op = [[NINetworkRequestOperation alloc] initWithURL:url];
-  op.delegate = self;
-  [_operations addOperation:op];
-}
+  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
 
+  AFHTTPRequestOperation* requestOp = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)pathFromPath:(NSString *)path {
-  return [path md5Hash];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - NIOperationDelegate
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)nimbusOperationDidFail:(NSOperation *)operation withError:(NSError *)error {
-  if (_retryCount < kMaxNumberOfRetries) {
-    ++_retryCount;
-
-    [self watchSkinChanges];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)nimbusOperationWillFinish:(NINetworkRequestOperation *)operation {
-  if (![operation.url.path isEqualToString:@"/watch"]) {
+  [requestOp setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSMutableArray* changedStylesheets = [NSMutableArray array];
-    NSArray* pathParts = [[operation.url absoluteString] pathComponents];
-    NSString* path = [[pathParts subarrayWithRange:NSMakeRange(2, [pathParts count] - 2)]
-                      componentsJoinedByString:@"/"];
+    NSArray* pathParts = [[operation.request.URL absoluteString] pathComponents];
+    NSString* resultPath = [[pathParts subarrayWithRange:NSMakeRange(2, [pathParts count] - 2)]
+                            componentsJoinedByString:@"/"];
     NSString* rootPath = NIPathForDocumentsResource(nil);
-    NSString* hashedPath = [self pathFromPath:path];
+    NSString* hashedPath = [self pathFromPath:resultPath];
     NSString* diskPath = [rootPath stringByAppendingPathComponent:hashedPath];
-    [operation.data writeToFile:diskPath atomically:YES];
-
-    NIStylesheet* stylesheet = [_stylesheetCache stylesheetWithPath:path loadFromDisk:NO];
-    if ([stylesheet loadFromPath:path pathPrefix:rootPath delegate:self]) {
+    [responseObject writeToFile:diskPath atomically:YES];
+    
+    NIStylesheet* stylesheet = [_stylesheetCache stylesheetWithPath:resultPath loadFromDisk:NO];
+    if ([stylesheet loadFromPath:resultPath pathPrefix:rootPath delegate:self]) {
       [changedStylesheets addObject:stylesheet];
     }
     
     for (NSString* iteratingPath in _stylesheetPaths) {
       stylesheet = [_stylesheetCache stylesheetWithPath:iteratingPath loadFromDisk:NO];
-      if ([stylesheet.dependencies containsObject:path]) {
+      if ([stylesheet.dependencies containsObject:resultPath]) {
         // This stylesheet has the changed stylesheet as a dependency so let's refresh it.
         if ([stylesheet loadFromPath:iteratingPath pathPrefix:rootPath delegate:self]) {
           [changedStylesheets addObject:stylesheet];
@@ -137,33 +113,22 @@ static const NSInteger kMaxNumberOfRetries = 3;
       }
     }
 
-    operation.processedObject = changedStylesheets;
-  }
+    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+    for (NIStylesheet* changedStylesheet in changedStylesheets) {
+      [nc postNotificationName:NIStylesheetDidChangeNotification
+                        object:changedStylesheet
+                      userInfo:nil];
+    }
+
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+  }];
+  [_queue addOperation:requestOp];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)nimbusOperationDidFinish:(NINetworkRequestOperation *)operation {
-  if ([operation.url.path isEqualToString:@"/watch"]) {
-    NSString* stringData = [[NSString alloc] initWithData:operation.data
-                                                 encoding:NSUTF8StringEncoding];
-
-    NSArray* files = [stringData componentsSeparatedByString:@"\n"];
-    for (NSString* filename in files) {
-      [self downloadStylesheetWithFilename:filename];
-    }
-
-    // Immediately start watching for more skin changes.
-    [self watchSkinChanges];
-
-  } else {
-    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-    for (NIStylesheet* stylesheet in operation.processedObject) {
-      [nc postNotificationName:NIStylesheetDidChangeNotification
-                        object:stylesheet
-                      userInfo:nil];
-    }
-  }
+- (NSString *)pathFromPath:(NSString *)path {
+  return [path md5Hash];
 }
 
 
@@ -192,10 +157,32 @@ static const NSInteger kMaxNumberOfRetries = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)watchSkinChanges {
   NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:@"watch"]];
-  NINetworkRequestOperation* op = [[NINetworkRequestOperation alloc] initWithURL:url];
-  op.delegate = self;
-  op.timeout = kTimeoutInterval;
-  [_operations addOperation:op];
+  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+  request.timeoutInterval = kTimeoutInterval;
+  AFHTTPRequestOperation* requestOp = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+
+  [requestOp setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString* stringData = [[NSString alloc] initWithData:responseObject
+                                                 encoding:NSUTF8StringEncoding];
+
+    NSArray* files = [stringData componentsSeparatedByString:@"\n"];
+    for (NSString* filename in files) {
+      [self downloadStylesheetWithFilename:filename];
+    }
+
+    // Immediately start watching for more skin changes.
+    _retryCount = 0;
+    [self watchSkinChanges];
+
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    if (_retryCount < kMaxNumberOfRetries) {
+      ++_retryCount;
+      
+      [self watchSkinChanges];
+    }
+  }];
+
+  [_queue addOperation:requestOp];
 }
 
 

@@ -49,6 +49,12 @@
 #ifndef NIRadioGroupController
 #define NIRadioGroupController __NIMBUS_NS_SYMBOL(NIRadioGroupController)
 #endif
+#ifndef NISliderFormElement
+#define NISliderFormElement __NIMBUS_NS_SYMBOL(NISliderFormElement)
+#endif
+#ifndef NISliderFormElementCell
+#define NISliderFormElementCell __NIMBUS_NS_SYMBOL(NISliderFormElementCell)
+#endif
 #ifndef NISubtitleCellObject
 #define NISubtitleCellObject __NIMBUS_NS_SYMBOL(NISubtitleCellObject)
 #endif
@@ -86,6 +92,9 @@
 #define NITitleCellObject __NIMBUS_NS_SYMBOL(NITitleCellObject)
 #endif
 // Functions
+#ifndef NIPushControllerInstanceAction
+#define NIPushControllerInstanceAction __NIMBUS_NS_SYMBOL(NIPushControllerInstanceAction)
+#endif
 #ifndef NIPushControllerAction
 #define NIPushControllerAction __NIMBUS_NS_SYMBOL(NIPushControllerAction)
 #endif

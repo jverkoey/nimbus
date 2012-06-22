@@ -28,14 +28,14 @@
 #endif
 
 // Classes
-#ifndef NINetworkImageRequest
-#define NINetworkImageRequest __NIMBUS_NS_SYMBOL(NINetworkImageRequest)
+#ifndef AFImageRequestOperation
+#define AFImageRequestOperation __NIMBUS_NS_SYMBOL(AFImageRequestOperation)
+#endif
+#ifndef NIImageProcessing
+#define NIImageProcessing __NIMBUS_NS_SYMBOL(NIImageProcessing)
 #endif
 #ifndef NINetworkImageView
 #define NINetworkImageView __NIMBUS_NS_SYMBOL(NINetworkImageView)
-#endif
-#ifndef NINetworkRequestOperation
-#define NINetworkRequestOperation __NIMBUS_NS_SYMBOL(NINetworkRequestOperation)
 #endif
 #ifndef NIOperation
 #define NIOperation __NIMBUS_NS_SYMBOL(NIOperation)

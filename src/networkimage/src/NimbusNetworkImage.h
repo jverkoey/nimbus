@@ -31,6 +31,7 @@
  *
  * - UIKit.framework
  * - CoreText.framework
+ * - AFNetworking https://github.com/AFNetworking/AFNetworking
  *
  * Minimum Operating System: <b>iOS 4.0</b>
  *

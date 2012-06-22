@@ -373,23 +373,23 @@
       NSURLRequest *request = [NSURLRequest requestWithURL:url];
       AFImageRequestOperation *operation =
       [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:
-       ^UIImage *(UIImage *image) {
-         return [NIImageProcessing imageFromSource:image
+       ^UIImage *(UIImage *downloadedImage) {
+         return [NIImageProcessing imageFromSource:downloadedImage
                                    withContentMode:contentMode
                                           cropRect:cropRect
                                        displaySize:displaySize
                                       scaleOptions:self.scaleOptions
                               interpolationQuality:self.interpolationQuality];
 
-       } success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-         [self _didFinishLoadingWithImage:image
+       } success:^(NSURLRequest *successfulRequest, NSHTTPURLResponse *response, UIImage *processedImage) {
+         [self _didFinishLoadingWithImage:processedImage
                           cacheIdentifier:cacheKey
                               displaySize:displaySize
                               contentMode:contentMode
                              scaleOptions:self.scaleOptions
                            expirationDate:nil];
 
-       } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+       } failure:^(NSURLRequest *errorRequest, NSHTTPURLResponse *response, NSError *error) {
          [self _didFailToLoadWithError:error];
        }];
 

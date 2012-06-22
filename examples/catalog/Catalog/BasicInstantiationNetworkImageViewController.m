@@ -36,6 +36,7 @@
 // Foundation.framework
 // UIKit.framework
 // QuartzCore.framework
+// AFNetworking https://github.com/AFNetworking/AFNetworking
 //
 
 @implementation BasicInstantiationNetworkImageViewController
