@@ -393,6 +393,10 @@
          [self _didFailToLoadWithError:error];
        }];
 
+      // We handle image scaling ourselves in the image processing method, so we need to disable
+      // AFNetworking from doing so as well.
+      operation.imageScale = 1;
+
       self.operation = operation;
 
       [self _didStartLoading];
