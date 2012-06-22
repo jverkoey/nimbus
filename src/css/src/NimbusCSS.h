@@ -20,6 +20,8 @@
  * @defgroup NimbusCSS Nimbus CSS
  * @{
  *
+ * <div id="github" feature="css"></div>
+ *
  * Nimbus CSS allows you to use cascading stylesheets to theme your native iOS application.
  * Stylesheets provide a number of advantages over Interface Builder and native code.
  *

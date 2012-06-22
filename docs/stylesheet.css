@@ -1079,3 +1079,29 @@ h5 {
   font-size: 100%;
   color: black;
 }
+
+#github {
+  float: right;
+  margin-top: 20px;
+}
+
+#github .issues {
+  color: #AAA;
+  padding: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border: 1px solid #EEE;
+  font-size: 2em;
+}
+
+#github .issues.no-issues {
+  background-color: #C9FFD4;
+}
+
+#github .issues.few-issues {
+  background-color: #FFFFC9;
+}
+
+#github .issues.many-issues {
+  background-color: #FFC9C9;
+}

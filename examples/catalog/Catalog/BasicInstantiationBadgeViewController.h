@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,11 +14,8 @@
 // limitations under the License.
 //
 
-#ifdef __OBJC__
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-#import "NimbusCore.h"
-#import "NimbusPhotos.h"
-#import "NimbusModels.h"
-#endif
+
+// All docs are in the .m.
+@interface BasicInstantiationBadgeViewController : UIViewController
+@end

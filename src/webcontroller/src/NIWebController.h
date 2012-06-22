@@ -23,9 +23,6 @@
 /**
  * A simple web view controller implementation with a toolbar.
  *
- *      @ingroup NimbusWebController
- *
- *
  * <h2>Subclassing</h2>
  *
  * This view controller implements UIWebViewDelegate. If you want to
@@ -73,33 +70,64 @@
  * @code
  *  [webController setToolbarTintColor:[UIColor blackColor]];
  * @endcode
+ *
+ *      @ingroup NimbusWebController
  */
 @interface NIWebController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate>
+
+// Designated initializer.
+- (id)initWithRequest:(NSURLRequest *)request;
+- (id)initWithURL:(NSURL *)URL;
 
 - (NSURL *)URL;
 
 - (void)openURL:(NSURL*)URL;
 - (void)openRequest:(NSURLRequest*)request;
 
-- (void)setToolbarHidden:(BOOL)hidden;
-- (void)setToolbarTintColor:(UIColor*)color;
+@property (nonatomic, readwrite, assign, getter = isToolbarHidden) BOOL toolbarHidden;
+@property (nonatomic, readwrite, assign) UIColor* toolbarTintColor;
 
 // Subclassing
-
 - (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet;
+@property (nonatomic, readwrite, retain) NSURL* actionSheetURL;
 
 @end
+
+/** @name Creating a Web Controller */
+
+/**
+ * Initializes a newly allocated web controller with a given request.
+ *
+ * Once the controller is presented it will begin loading the given request.
+ *
+ * This is the designated initializer.
+ *
+ *      @fn NIWebController::initWithRequest:
+ */
+
+/**
+ * Initializes a newly allocated web controller with a given URL to request.
+ *
+ * Once the controller is presented it will begin loading the given URL.
+ *
+ *      @fn NIWebController::initWithURL:
+ */
+
+/** @name Accessing the Request Attributes */
 
 /**
  * The current web view URL.
  *
- * If the web view is currently loading a URL then the loading URL is returned instead.
+ * If the web view is currently loading a URL then the loading URL is returned.
+ * Otherwise this will be the last URL that was loaded.
  *
  *      @fn NIWebController::URL:
  */
 
+/** @name Loading a Request */
+
 /**
- * Opens the given URL in the web view.
+ * Loads a request with the given URL in the web view.
  *
  *      @fn NIWebController::openURL:
  */
@@ -112,19 +140,23 @@
  *      @fn NIWebController::openRequest:
  */
 
+/** @name Accessing the Toolbar */
+
 /**
- * Sets the visibility of the toolbar.
+ * The visibility of the toolbar.
  *
  * If the toolbar is hidden then the web view will take up the controller's entire view.
  *
- *      @fn NIWebController::setToolbarHidden:
+ *      @fn NIWebController::toolbarHidden
  */
 
 /**
- * Sets the toolbar to the given color.
+ * The tint color of the toolbar.
  *
- *      @fn NIWebController::setToolbarTintColor:
+ *      @fn NIWebController::toolbarTintColor
  */
+
+/** @name Subclassing the Web Controller */
 
 /**
  * This message is called in response to the user clicking the action toolbar button.

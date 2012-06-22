@@ -15,6 +15,7 @@
 //
 
 #import "DribbblePhotoAlbumViewController.h"
+#import "AFNetworking.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,6 +50,40 @@
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void (^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))blockForAlbumProcessing {
+  return ^(NSURLRequest *request, NSHTTPURLResponse *response, id object) {
+    NSArray* data = [object objectForKey:@"shots"];
+    
+    NSMutableArray* photoInformation = [NSMutableArray arrayWithCapacity:[data count]];
+    for (NSDictionary* photo in data) {
+      
+      // Gather the high-quality photo information.
+      NSString* originalImageSource = [photo objectForKey:@"image_url"];
+      NSInteger width = [[photo objectForKey:@"width"] intValue];
+      NSInteger height = [[photo objectForKey:@"height"] intValue];
+      
+      // We gather the highest-quality photo's dimensions so that we can size the thumbnails
+      // correctly until the high-quality image is downloaded.
+      CGSize dimensions = CGSizeMake(width, height);
+      
+      NSString* thumbnailImageSource = [photo objectForKey:@"image_teaser_url"];
+      
+      NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       originalImageSource, @"originalSource",
+                                       thumbnailImageSource, @"thumbnailSource",
+                                       [NSValue valueWithCGSize:dimensions], @"dimensions",
+                                       nil];
+      [photoInformation addObject:prunedPhotoInfo];
+    }
+    
+    _photoInformation = photoInformation;
+    
+    [self loadThumbnails];
+    [self.photoAlbumView reloadData];
+    [self.photoScrubberView reloadData];
+  };
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadAlbumInformation {
@@ -58,11 +93,16 @@
   // returning the object to the main thread. This is useful here because we perform sorting
   // operations and pruning on the results.
   NSURL* url = [NSURL URLWithString:albumURLPath];
-  NINetworkRequestOperation* albumRequest = [[NINetworkJSONRequest alloc] initWithURL:url];
-  albumRequest.timeout = 30;
+  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+  
+  AFJSONRequestOperation* albumRequest =
+  [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                  success:[self blockForAlbumProcessing]
+                                                  failure:
+   ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+     
+   }];
 
-  // When the request fully completes we'll be notified via this delegate on the main thread.
-  albumRequest.delegate = self;
 
   [self.queue addOperation:albumRequest];
 }
@@ -97,61 +137,6 @@
   _photoInformation = nil;
 
   [super viewDidUnload];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NIOperationDelegate
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)nimbusOperationWillFinish:(NINetworkRequestOperation *)operation {
-  // This is called from the processing thread in order to allow us to turn the root object
-  // into something more interesting.
-  if (![operation.processedObject isKindOfClass:[NSDictionary class]]) {
-    return;
-  }
-
-  id object = operation.processedObject;
-  NSArray* data = [object objectForKey:@"shots"];
-  
-  NSMutableArray* photoInformation = [NSMutableArray arrayWithCapacity:[data count]];
-  for (NSDictionary* photo in data) {
-    
-    // Gather the high-quality photo information.
-    NSString* originalImageSource = [photo objectForKey:@"image_url"];
-    NSInteger width = [[photo objectForKey:@"width"] intValue];
-    NSInteger height = [[photo objectForKey:@"height"] intValue];
-    
-    // We gather the highest-quality photo's dimensions so that we can size the thumbnails
-    // correctly until the high-quality image is downloaded.
-    CGSize dimensions = CGSizeMake(width, height);
-    
-    NSString* thumbnailImageSource = [photo objectForKey:@"image_teaser_url"];
-    
-    NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     originalImageSource, @"originalSource",
-                                     thumbnailImageSource, @"thumbnailSource",
-                                     [NSValue valueWithCGSize:dimensions], @"dimensions",
-                                     nil];
-    [photoInformation addObject:prunedPhotoInfo];
-  }
-
-  operation.processedObject = photoInformation;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)nimbusOperationDidFinish:(NINetworkRequestOperation *)operation {
-  _photoInformation = operation.processedObject;
-
-  [self.photoAlbumView reloadData];
-
-  [self loadThumbnails];
-  
-  [self.photoScrubberView reloadData];
 }
 
 
@@ -247,14 +232,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
      stopLoadingPhotoAtIndex: (NSInteger)photoIndex {
-  for (NIOperation* op in [self.queue operations]) {
-    if (op.tag == photoIndex) {
-      [op cancel];
-
-      [self didCancelRequestWithPhotoSize:NIPhotoScrollViewPhotoSizeOriginal
-                               photoIndex:photoIndex];
-    }
-  }
+  // TODO: Figure out how to implement this with AFNetworking.
 }
 
 

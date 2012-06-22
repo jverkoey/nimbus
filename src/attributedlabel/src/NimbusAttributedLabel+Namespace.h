@@ -31,9 +31,6 @@
 #ifndef NIAttributedLabel
 #define NIAttributedLabel __NIMBUS_NS_SYMBOL(NIAttributedLabel)
 #endif
-#ifndef NI_FIX_CATEGORY_BUG_NSAttributedStringNimbusAttributedLabel
-#define NI_FIX_CATEGORY_BUG_NSAttributedStringNimbusAttributedLabel __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_NSAttributedStringNimbusAttributedLabel)
-#endif
 // Functions
 // Externs
 #endif

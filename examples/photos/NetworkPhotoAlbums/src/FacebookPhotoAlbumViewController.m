@@ -17,6 +17,7 @@
 #import "FacebookPhotoAlbumViewController.h"
 
 #import "CaptionedPhotoView.h"
+#import "AFNetworking.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,6 +54,65 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void (^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))blockForAlbumProcessing {
+  return ^(NSURLRequest *request, NSHTTPURLResponse *response, id object) {
+    NSArray* data = [object objectForKey:@"data"];
+    
+    NSMutableArray* photoInformation = [NSMutableArray arrayWithCapacity:[data count]];
+    for (NSDictionary* photo in data) {
+      NSArray* images = [photo objectForKey:@"images"];
+      
+      if ([images count] > 0) {
+        // Sort the images in descending order by image size.
+        NSArray* sortedImages =
+        [images sortedArrayUsingDescriptors:
+         [NSArray arrayWithObject:
+          [[NSSortDescriptor alloc] initWithKey:@"width" ascending:NO]]];
+        
+        // Gather the high-quality photo information.
+        NSDictionary* originalImage = [sortedImages objectAtIndex:0];
+        NSString* originalImageSource = [originalImage objectForKey:@"source"];
+        NSInteger width = [[originalImage objectForKey:@"width"] intValue];
+        NSInteger height = [[originalImage objectForKey:@"height"] intValue];
+        
+        // We gather the highest-quality photo's dimensions so that we can size the thumbnails
+        // correctly until the high-quality image is downloaded.
+        CGSize dimensions = CGSizeMake(width, height);
+        
+        NSInteger numberOfImages = [sortedImages count];
+        
+        // 0 being the lowest quality. On larger screens we fetch larger thumbnails.
+        NSInteger qualityLevel = (NIIsPad() || NIScreenScale() > 1) ? 1 : 0;
+        
+        NSInteger thumbnailIndex = ((numberOfImages - 1)
+                                    - MIN(qualityLevel, numberOfImages - 2));
+        
+        NSString* thumbnailImageSource = nil;
+        if (0 < thumbnailIndex) {
+          thumbnailImageSource = [[sortedImages objectAtIndex:thumbnailIndex] objectForKey:@"source"];
+        }
+        
+        NSString* caption = [photo objectForKey:@"name"];
+        NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                         originalImageSource, @"originalSource",
+                                         thumbnailImageSource, @"thumbnailSource",
+                                         [NSValue valueWithCGSize:dimensions], @"dimensions",
+                                         caption, @"caption",
+                                         nil];
+        [photoInformation addObject:prunedPhotoInfo];
+      }
+    }
+    
+    _photoInformation = photoInformation;
+
+    [self loadThumbnails];
+    [self.photoAlbumView reloadData];
+    [self.photoScrubberView reloadData];
+  };
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadAlbumInformation {
   NSString* albumURLPath = [NSString stringWithFormat:
                             @"http://graph.facebook.com/%@/photos?limit=200",
@@ -62,14 +122,19 @@
   // returning the object to the main thread. This is useful here because we perform sorting
   // operations and pruning on the results.
   NSURL* url = [NSURL URLWithString:albumURLPath];
-  NINetworkJSONRequest* albumRequest = [[NINetworkJSONRequest alloc] initWithURL:url];
-
+  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+  
   // Facebook albums are painfully slow to load if they have a lot of comments. Even more
   // frustrating is that you can't ask *not* to receive the comments from the graph API.
-  albumRequest.timeout = 200;
+  request.timeoutInterval = 200;
 
-  // When the request fully completes we'll be notified via this delegate on the main thread.
-  albumRequest.delegate = self;
+  AFJSONRequestOperation* albumRequest =
+  [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                  success:[self blockForAlbumProcessing]
+                                                  failure:
+   ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+     
+   }];
 
   [self.queue addOperation:albumRequest];
 }
@@ -100,83 +165,6 @@
   _photoInformation = nil;
 
   [super viewDidUnload];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NIOperationDelegate
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)nimbusOperationWillFinish:(NINetworkRequestOperation *)operation {
-  // This is called from the processing thread in order to allow us to turn the root object
-  // into something more interesting.
-  if (![operation.processedObject isKindOfClass:[NSDictionary class]]) {
-    return;
-  }
-
-  id object = operation.processedObject;
-  NSArray* data = [object objectForKey:@"data"];
-
-  NSMutableArray* photoInformation = [NSMutableArray arrayWithCapacity:[data count]];
-  for (NSDictionary* photo in data) {
-    NSArray* images = [photo objectForKey:@"images"];
-
-    if ([images count] > 0) {
-      // Sort the images in descending order by image size.
-      NSArray* sortedImages =
-      [images sortedArrayUsingDescriptors:
-       [NSArray arrayWithObject:
-        [[NSSortDescriptor alloc] initWithKey:@"width" ascending:NO]]];
-
-      // Gather the high-quality photo information.
-      NSDictionary* originalImage = [sortedImages objectAtIndex:0];
-      NSString* originalImageSource = [originalImage objectForKey:@"source"];
-      NSInteger width = [[originalImage objectForKey:@"width"] intValue];
-      NSInteger height = [[originalImage objectForKey:@"height"] intValue];
-
-      // We gather the highest-quality photo's dimensions so that we can size the thumbnails
-      // correctly until the high-quality image is downloaded.
-      CGSize dimensions = CGSizeMake(width, height);
-
-      NSInteger numberOfImages = [sortedImages count];
-
-      // 0 being the lowest quality. On larger screens we fetch larger thumbnails.
-      NSInteger qualityLevel = (NIIsPad() || NIScreenScale() > 1) ? 1 : 0;
-
-      NSInteger thumbnailIndex = ((numberOfImages - 1)
-                                  - MIN(qualityLevel, numberOfImages - 2));
-
-      NSString* thumbnailImageSource = nil;
-      if (0 < thumbnailIndex) {
-        thumbnailImageSource = [[sortedImages objectAtIndex:thumbnailIndex] objectForKey:@"source"];
-      }
-
-      NSString* caption = [photo objectForKey:@"name"];
-      NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                       originalImageSource, @"originalSource",
-                                       thumbnailImageSource, @"thumbnailSource",
-                                       [NSValue valueWithCGSize:dimensions], @"dimensions",
-                                       caption, @"caption",
-                                       nil];
-      [photoInformation addObject:prunedPhotoInfo];
-    }
-  }
-  operation.processedObject = photoInformation;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)nimbusOperationDidFinish:(NINetworkRequestOperation *)operation {
-  _photoInformation = operation.processedObject;
-
-  [self.photoAlbumView reloadData];
-
-  [self loadThumbnails];
-
-  [self.photoScrubberView reloadData];
 }
 
 
@@ -286,14 +274,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)photoAlbumScrollView: (NIPhotoAlbumScrollView *)photoAlbumScrollView
      stopLoadingPhotoAtIndex: (NSInteger)photoIndex {
-  for (NIOperation* op in [self.queue operations]) {
-    if (op.tag == photoIndex) {
-      [op cancel];
-
-      [self didCancelRequestWithPhotoSize:NIPhotoScrollViewPhotoSizeOriginal
-                               photoIndex:photoIndex];
-    }
-  }
+  // TODO: Figure out how to implement this with AFNetworking.
 }
 
 

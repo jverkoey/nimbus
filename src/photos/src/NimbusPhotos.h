@@ -18,6 +18,8 @@
  * @defgroup NimbusPhotos Nimbus Photos
  * @{
  *
+ * <div id="github" feature="photos"></div>
+ *
  * Photo viewers are a common, non-trivial feature in many types of iOS apps ranging from
  * simple photo viewers to apps that fetch photos from an API. The Nimbus photo album viewer
  * is designed to consume minimal amounts of memory and encourage the use of threads to provide

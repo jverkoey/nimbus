@@ -18,28 +18,24 @@
  * @defgroup NimbusBadge Nimbus Badge
  * @{
  *
- * This view mimics the red badge view found on iOS springboard icons.
+ * <div id="github" feature="badge"></div>
  *
- * <h2>Example screenshots</h2>
+ * This Nimbus badge view is a UIView that draws a customizable notification badge-like view.
  *
  * @image html badge-iphone-example1.png "Screenshot of a Nimbus badge on the iPhone"
  *
+ * <h2>Minimum Requirements</h2>
  *
- * <h2>Adding the Web Controller to Your Application</h2>
- * 
- * The badge view does not rely on any imagery, so adding it to your application is like
- * adding any other UIView.
+ * Required frameworks:
  *
- * <h2>Example Applications</h2>
+ * - UIKit.framework
  *
- * <h3>Basic Badge View</h3>
+ * Minimum Operating System: <b>iOS 4.0</b>
  *
- * <a
- * href="https://github.com/jverkoey/nimbus/tree/master/examples/badge/BasicBadge">
- * View the README on GitHub</a>
+ * Source located in <code>src/badge/src</code>
  *
- * This sample application demos the use of a badge.
- * @} */
+ * @}
+ */
 
 #import <Foundation/Foundation.h>
 
