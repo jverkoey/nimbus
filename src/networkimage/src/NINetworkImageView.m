@@ -383,7 +383,7 @@
 
        } success:^(NSURLRequest *successfulRequest, NSHTTPURLResponse *response, UIImage *processedImage) {
          [self _didFinishLoadingWithImage:processedImage
-                          cacheIdentifier:cacheKey
+                          cacheIdentifier:pathToNetworkImage
                               displaySize:displaySize
                               contentMode:contentMode
                              scaleOptions:self.scaleOptions
