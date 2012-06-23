@@ -28,15 +28,15 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)viewDidLoad {
-  [super viewDidLoad];
+- (void)loadView {
+  [super loadView];
 
   self.launcherView = [[NILauncherView alloc] initWithFrame:self.view.bounds];
   self.launcherView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
   self.launcherView.dataSource = self;
   self.launcherView.delegate = self;
 
-  [self.view addSubview:self.launcherView];
+  self.view = self.launcherView;
 
   [self.launcherView reloadData];
 }
