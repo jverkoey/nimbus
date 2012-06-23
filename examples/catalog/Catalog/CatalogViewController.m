@@ -36,6 +36,7 @@
 #import "BasicInstantiationLauncherViewController.h"
 #import "ModelLauncherViewController.h"
 #import "ModifyingLauncherViewController.h"
+#import "RestoringLauncherViewController.h"
 
 // Network Image
 #import "BasicInstantiationNetworkImageViewController.h"
@@ -192,6 +193,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Modifying"
                                    subtitle:@"How to add new launcher buttons"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([RestoringLauncherViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Restoring"
+                                   subtitle:@"Saving and loading launcher data"]],
 
      @"Network Image",
      [_actions attachNavigationAction:
@@ -207,8 +213,13 @@
      
      @"Web Controller",
      [_actions attachNavigationAction:
-      NIPushControllerInstanceAction([[NIWebController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]])
-                             toObject:
+      ^(id object, UIViewController* controller) {
+        NIWebController* webController = [[NIWebController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]];
+        [controller.navigationController pushViewController:webController
+                                                   animated:YES];
+        
+        return NO;
+      } toObject:
       [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
                                    subtitle:@"How to create a simple NIWebController"]],
      [_actions attachNavigationAction:
@@ -232,8 +243,13 @@
       } toObject:[NISubtitleCellObject objectWithTitle:@"Tinting the Toolbar"
                                               subtitle:@"Tinting a web controller's toolbar"]],
      [_actions attachNavigationAction:
-      NIPushControllerInstanceAction([[ExtraActionsWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]])
-                             toObject:
+      ^(id object, UIViewController* controller) {
+        NIWebController* webController = [[ExtraActionsWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]];
+        [controller.navigationController pushViewController:webController
+                                                   animated:YES];
+        
+        return NO;
+      } toObject:
       [NISubtitleCellObject objectWithTitle:@"Extra Actions"
                                    subtitle:@"Subclassing for more actions"]],
 
