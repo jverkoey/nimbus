@@ -105,7 +105,6 @@
 		666F739F14BBFE6800D1A32F /* NimbusAttributedLabel+Namespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 666F739E14BBFE6800D1A32F /* NimbusAttributedLabel+Namespace.h */; };
 		666F73A314BBFEA300D1A32F /* NimbusCss+Namespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 666F73A214BBFEA300D1A32F /* NimbusCss+Namespace.h */; };
 		666F73A514BBFEB500D1A32F /* NimbusInterapp+Namespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 666F73A414BBFEB500D1A32F /* NimbusInterapp+Namespace.h */; };
-		666F73A714BBFECD00D1A32F /* NimbusLauncher+Namespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 666F73A614BBFECD00D1A32F /* NimbusLauncher+Namespace.h */; };
 		666F73A914BBFEE300D1A32F /* NimbusModels+Namespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 666F73A814BBFEE300D1A32F /* NimbusModels+Namespace.h */; };
 		666F73AB14BBFEF400D1A32F /* NimbusNetworkImage+Namespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 666F73AA14BBFEF400D1A32F /* NimbusNetworkImage+Namespace.h */; };
 		666F73AF14BBFF4600D1A32F /* NimbusOverview+Namespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 666F73AE14BBFF4600D1A32F /* NimbusOverview+Namespace.h */; };
@@ -249,13 +248,6 @@
 		66A03CCD13E6F0EE00B514F3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66A03CCF13E6F0EE00B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66A03CD313E6F0EE00B514F3 /* libNimbusLauncher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03CBF13E6F0ED00B514F3 /* libNimbusLauncher.a */; };
-		66A03CEF13E6F10C00B514F3 /* NILauncherButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03CE713E6F10C00B514F3 /* NILauncherButton.m */; };
-		66A03CF013E6F10C00B514F3 /* NILauncherItemDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03CE813E6F10C00B514F3 /* NILauncherItemDetails.m */; };
-		66A03CF113E6F10C00B514F3 /* NILauncherView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03CE913E6F10C00B514F3 /* NILauncherView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03CF213E6F10C00B514F3 /* NILauncherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03CEA13E6F10C00B514F3 /* NILauncherView.m */; };
-		66A03CF313E6F10C00B514F3 /* NILauncherViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03CEB13E6F10C00B514F3 /* NILauncherViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66A03CF413E6F10C00B514F3 /* NILauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03CEC13E6F10C00B514F3 /* NILauncherViewController.m */; };
-		66A03CF513E6F10C00B514F3 /* NimbusLauncher.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A03CED13E6F10C00B514F3 /* NimbusLauncher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A03D3513E6F97500B514F3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66A03D3713E6F97500B514F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66A03D3B13E6F97500B514F3 /* libNimbusNetworkImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03D2713E6F97500B514F3 /* libNimbusNetworkImage.a */; };
@@ -276,6 +268,16 @@
 		66B10900144C931F004576D1 /* UIButton+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */; };
 		66B10901144C931F004576D1 /* UIButton+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */; };
 		66BACD1D15857A6200B0B481 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BACD1C15857A6200B0B481 /* CoreGraphics.framework */; };
+		66BB4F5E159575FE00020EE8 /* NILauncherButtonView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66BB4F54159575FE00020EE8 /* NILauncherButtonView.h */; };
+		66BB4F5F159575FE00020EE8 /* NILauncherButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4F55159575FE00020EE8 /* NILauncherButtonView.m */; };
+		66BB4F60159575FE00020EE8 /* NILauncherPageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66BB4F56159575FE00020EE8 /* NILauncherPageView.h */; };
+		66BB4F61159575FE00020EE8 /* NILauncherPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4F57159575FE00020EE8 /* NILauncherPageView.m */; };
+		66BB4F62159575FE00020EE8 /* NILauncherView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66BB4F58159575FE00020EE8 /* NILauncherView.h */; };
+		66BB4F63159575FE00020EE8 /* NILauncherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4F59159575FE00020EE8 /* NILauncherView.m */; };
+		66BB4F64159575FE00020EE8 /* NILauncherViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 66BB4F5A159575FE00020EE8 /* NILauncherViewController.h */; };
+		66BB4F65159575FE00020EE8 /* NILauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4F5B159575FE00020EE8 /* NILauncherViewController.m */; };
+		66BB4F66159575FE00020EE8 /* NimbusLauncher.h in Headers */ = {isa = PBXBuildFile; fileRef = 66BB4F5C159575FE00020EE8 /* NimbusLauncher.h */; };
+		66BB4F67159575FE00020EE8 /* NimbusLauncher+Namespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 66BB4F5D159575FE00020EE8 /* NimbusLauncher+Namespace.h */; };
 		66C113E5147DD0F1003C9AC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
 		66C115411486ACE3003C9AC6 /* NIOperations+Subclassing.h in Headers */ = {isa = PBXBuildFile; fileRef = 66C1153F1486ACDD003C9AC6 /* NIOperations+Subclassing.h */; };
 		66C3A6AF143D61140048542F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
@@ -709,7 +711,6 @@
 		666F739E14BBFE6800D1A32F /* NimbusAttributedLabel+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusAttributedLabel+Namespace.h"; sourceTree = "<group>"; };
 		666F73A214BBFEA300D1A32F /* NimbusCss+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusCss+Namespace.h"; path = "css/src/NimbusCss+Namespace.h"; sourceTree = SOURCE_ROOT; };
 		666F73A414BBFEB500D1A32F /* NimbusInterapp+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusInterapp+Namespace.h"; sourceTree = "<group>"; };
-		666F73A614BBFECD00D1A32F /* NimbusLauncher+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusLauncher+Namespace.h"; sourceTree = "<group>"; };
 		666F73A814BBFEE300D1A32F /* NimbusModels+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusModels+Namespace.h"; sourceTree = "<group>"; };
 		666F73AA14BBFEF400D1A32F /* NimbusNetworkImage+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusNetworkImage+Namespace.h"; sourceTree = "<group>"; };
 		666F73AE14BBFF4600D1A32F /* NimbusOverview+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusOverview+Namespace.h"; sourceTree = "<group>"; };
@@ -870,13 +871,6 @@
 		66A03CBA13E6F03600B514F3 /* Doxygen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Doxygen.h; sourceTree = "<group>"; };
 		66A03CBF13E6F0ED00B514F3 /* libNimbusLauncher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusLauncher.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A03CCC13E6F0EE00B514F3 /* NimbusLauncherTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusLauncherTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		66A03CE713E6F10C00B514F3 /* NILauncherButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NILauncherButton.m; sourceTree = "<group>"; };
-		66A03CE813E6F10C00B514F3 /* NILauncherItemDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NILauncherItemDetails.m; sourceTree = "<group>"; };
-		66A03CE913E6F10C00B514F3 /* NILauncherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NILauncherView.h; sourceTree = "<group>"; };
-		66A03CEA13E6F10C00B514F3 /* NILauncherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NILauncherView.m; sourceTree = "<group>"; };
-		66A03CEB13E6F10C00B514F3 /* NILauncherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NILauncherViewController.h; sourceTree = "<group>"; };
-		66A03CEC13E6F10C00B514F3 /* NILauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NILauncherViewController.m; sourceTree = "<group>"; };
-		66A03CED13E6F10C00B514F3 /* NimbusLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusLauncher.h; sourceTree = "<group>"; };
 		66A03CF613E6F13700B514F3 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = launcher/deps; sourceTree = SOURCE_ROOT; };
 		66A03D2713E6F97500B514F3 /* libNimbusNetworkImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusNetworkImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66A03D3413E6F97500B514F3 /* NimbusNetworkImageTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusNetworkImageTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -905,6 +899,16 @@
 		66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+NIStyleable.m"; path = "css/src/UIButton+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		66B10906144D4C15004576D1 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = css/deps; sourceTree = SOURCE_ROOT; };
 		66BACD1C15857A6200B0B481 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		66BB4F54159575FE00020EE8 /* NILauncherButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NILauncherButtonView.h; sourceTree = "<group>"; };
+		66BB4F55159575FE00020EE8 /* NILauncherButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NILauncherButtonView.m; sourceTree = "<group>"; };
+		66BB4F56159575FE00020EE8 /* NILauncherPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NILauncherPageView.h; sourceTree = "<group>"; };
+		66BB4F57159575FE00020EE8 /* NILauncherPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NILauncherPageView.m; sourceTree = "<group>"; };
+		66BB4F58159575FE00020EE8 /* NILauncherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NILauncherView.h; sourceTree = "<group>"; };
+		66BB4F59159575FE00020EE8 /* NILauncherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NILauncherView.m; sourceTree = "<group>"; };
+		66BB4F5A159575FE00020EE8 /* NILauncherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NILauncherViewController.h; sourceTree = "<group>"; };
+		66BB4F5B159575FE00020EE8 /* NILauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NILauncherViewController.m; sourceTree = "<group>"; };
+		66BB4F5C159575FE00020EE8 /* NimbusLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusLauncher.h; sourceTree = "<group>"; };
+		66BB4F5D159575FE00020EE8 /* NimbusLauncher+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusLauncher+Namespace.h"; sourceTree = "<group>"; };
 		66C1153F1486ACDD003C9AC6 /* NIOperations+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIOperations+Subclassing.h"; sourceTree = "<group>"; };
 		66C3A6A1143D61130048542F /* libNimbusCss.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCss.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C3A6AE143D61140048542F /* NimbusCssTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCssTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1807,14 +1811,16 @@
 		66A03CE613E6F10C00B514F3 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				66A03CED13E6F10C00B514F3 /* NimbusLauncher.h */,
-				666F73A614BBFECD00D1A32F /* NimbusLauncher+Namespace.h */,
-				66A03CE713E6F10C00B514F3 /* NILauncherButton.m */,
-				66A03CE813E6F10C00B514F3 /* NILauncherItemDetails.m */,
-				66A03CE913E6F10C00B514F3 /* NILauncherView.h */,
-				66A03CEA13E6F10C00B514F3 /* NILauncherView.m */,
-				66A03CEB13E6F10C00B514F3 /* NILauncherViewController.h */,
-				66A03CEC13E6F10C00B514F3 /* NILauncherViewController.m */,
+				66BB4F54159575FE00020EE8 /* NILauncherButtonView.h */,
+				66BB4F55159575FE00020EE8 /* NILauncherButtonView.m */,
+				66BB4F56159575FE00020EE8 /* NILauncherPageView.h */,
+				66BB4F57159575FE00020EE8 /* NILauncherPageView.m */,
+				66BB4F58159575FE00020EE8 /* NILauncherView.h */,
+				66BB4F59159575FE00020EE8 /* NILauncherView.m */,
+				66BB4F5A159575FE00020EE8 /* NILauncherViewController.h */,
+				66BB4F5B159575FE00020EE8 /* NILauncherViewController.m */,
+				66BB4F5C159575FE00020EE8 /* NimbusLauncher.h */,
+				66BB4F5D159575FE00020EE8 /* NimbusLauncher+Namespace.h */,
 			);
 			name = src;
 			path = launcher/src;
@@ -2195,10 +2201,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66A03CF113E6F10C00B514F3 /* NILauncherView.h in Headers */,
-				66A03CF313E6F10C00B514F3 /* NILauncherViewController.h in Headers */,
-				66A03CF513E6F10C00B514F3 /* NimbusLauncher.h in Headers */,
-				666F73A714BBFECD00D1A32F /* NimbusLauncher+Namespace.h in Headers */,
+				66BB4F5E159575FE00020EE8 /* NILauncherButtonView.h in Headers */,
+				66BB4F60159575FE00020EE8 /* NILauncherPageView.h in Headers */,
+				66BB4F62159575FE00020EE8 /* NILauncherView.h in Headers */,
+				66BB4F64159575FE00020EE8 /* NILauncherViewController.h in Headers */,
+				66BB4F66159575FE00020EE8 /* NimbusLauncher.h in Headers */,
+				66BB4F67159575FE00020EE8 /* NimbusLauncher+Namespace.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3488,10 +3496,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66A03CEF13E6F10C00B514F3 /* NILauncherButton.m in Sources */,
-				66A03CF013E6F10C00B514F3 /* NILauncherItemDetails.m in Sources */,
-				66A03CF213E6F10C00B514F3 /* NILauncherView.m in Sources */,
-				66A03CF413E6F10C00B514F3 /* NILauncherViewController.m in Sources */,
+				66BB4F5F159575FE00020EE8 /* NILauncherButtonView.m in Sources */,
+				66BB4F61159575FE00020EE8 /* NILauncherPageView.m in Sources */,
+				66BB4F63159575FE00020EE8 /* NILauncherView.m in Sources */,
+				66BB4F65159575FE00020EE8 /* NILauncherViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
