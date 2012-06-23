@@ -8,14 +8,6 @@ Nimbus follows one principle above all others:
 By this principle, any new feature added to Nimbus must be documented. Where possible, examples
 should be provided. When necessary, architectural explanations must be referred to.
 
-The next most important principle is a subset of the above:
-
-              Nimbus may only grow if its unit tests grow at the same rate, or faster.
-
-Any new method should include unit tests that run automatically when Nimbus is built for
-deployment. All unit tests must pass before a new feature may be included in Nimbus. Classes
-and objects must be designed in such a way that they may be independently tested.
-
 
 Taking on Tasks
 ===============
