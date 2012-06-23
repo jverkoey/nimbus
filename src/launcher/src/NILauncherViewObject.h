@@ -21,7 +21,7 @@
  *
  *      @ingroup NimbusLauncherModel
  */
-@interface NILauncherViewObject : NSObject <NILauncherViewObject>
+@interface NILauncherViewObject : NSObject <NILauncherViewObject, NSCoding>
 
 // Designated initializer.
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image;

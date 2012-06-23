@@ -92,7 +92,7 @@
 #pragma mark - NILauncherDelegate
 
 - (void)launcherView:(NILauncherView *)launcher didSelectItemOnPage:(NSInteger)page atIndex:(NSInteger)index {
-  NILauncherViewObject* object = [self.model objectAtIndex:index pageIndex:page];
+  id<NILauncherViewObject> object = [self.model objectAtIndex:index pageIndex:page];
   UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Notice"
                                                   message:[@"Did tap button with title: " stringByAppendingString:object.title]
                                                  delegate:nil

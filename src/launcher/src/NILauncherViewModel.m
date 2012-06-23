@@ -80,6 +80,53 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark NSCoding
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)encodeWithCoder:(NSCoder *)coder {
+  NSUInteger numberOfPages = self.pages.count;
+  [coder encodeValueOfObjCType:@encode(NSUInteger) at:&numberOfPages];
+
+  for (NSArray* page in self.pages) {
+    NSUInteger numberOfObjects = page.count;
+    [coder encodeValueOfObjCType:@encode(NSUInteger) at:&numberOfObjects];
+
+    for (id object in page) {
+      // The object must conform to NSCoding in order to be encoded.
+      NIDASSERT([object conformsToProtocol:@protocol(NSCoding)]);
+      [coder encodeObject:object];
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)decoder {
+  if ((self = [super init])) {
+    NSUInteger numberOfPages = 0;
+    [decoder decodeValueOfObjCType:@encode(NSUInteger) at:&numberOfPages];
+
+    NSMutableArray* pages = [NSMutableArray arrayWithCapacity:numberOfPages];
+    for (NSUInteger ixPage = 0; ixPage < numberOfPages; ++ixPage) {
+      NSUInteger numberOfObjects = 0;
+      [decoder decodeValueOfObjCType:@encode(NSUInteger) at:&numberOfObjects];
+
+      NSMutableArray* objects = [NSMutableArray arrayWithCapacity:numberOfObjects];
+      for (NSUInteger ixObject = 0; ixObject < numberOfObjects; ++ixObject) {
+        [objects addObject:[decoder decodeObject]];
+      }
+      [pages addObject:objects];
+    }
+
+    _pages = pages;
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NILauncherDataSource
 
 

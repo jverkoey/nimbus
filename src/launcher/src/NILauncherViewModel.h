@@ -26,7 +26,7 @@
  *
  *      @ingroup NimbusLauncherModel
  */
-@interface NILauncherViewModel : NSObject <NILauncherDataSource>
+@interface NILauncherViewModel : NSObject <NILauncherDataSource, NSCoding>
 
 // Designated initializer.
 - (id)initWithArrayOfPages:(NSArray *)pages delegate:(id<NILauncherViewModelDelegate>)delegate;
