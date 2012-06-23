@@ -16,6 +16,30 @@
 
 #import "RestoringLauncherViewController.h"
 
+//
+// What's going on in this file:
+//
+// This controller shows how to save and restore a NILauncherViewModel to disk so that its state is
+// persisted across runs of the application and instances of the controller.
+//
+// You will find the following Nimbus features used:
+//
+// [core]
+// NIPathForDocumentsResource
+//
+// [launcher]
+// NILauncherViewController
+// NILauncherViewModel
+// NILauncherViewModelDelegate
+// NILauncherDataSource
+// NILauncherDelegate
+//
+// This controller requires the following frameworks:
+//
+// Foundation.framework
+// UIKit.framework
+//
+
 @interface RestoringLauncherViewController () <NILauncherViewModelDelegate>
 @property (nonatomic, readwrite, retain) NILauncherViewModel* model;
 @end
@@ -24,7 +48,10 @@
 
 @synthesize model = _model;
 
+// We provide a consistent way to fetch the path to the launcher data.
 - (NSString *)pathForLauncherData {
+  // NIPathForDocumentsResource is a handy method for getting a subpath within the user's documents
+  // directory.
   return NIPathForDocumentsResource(@"launcher");
 }
 
@@ -32,11 +59,21 @@
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     self.title = @"Restoring";
 
+    // Get the path to the launcher data.
     NSString* path = [self pathForLauncherData];
+
+    // And then try to load it. Keyed unarchiver makes this super easy because the
+    // NILauncherViewModel implements NSCoding.
     _model = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
     if (nil == _model) {
+      // If model is nil that means we haven't saved any data to disk yet, so let's just create
+      // an empty model.
       _model = [[NILauncherViewModel alloc] initWithArrayOfPages:nil delegate:nil];
     }
+
+    // Assign the delegate regardless of how we create the model. The delegate isn't stored to disk
+    // because the delegate is simply a pointer to this controller and it is incredibly unlikely
+    // that the pointer would be identical between sessions.
     _model.delegate = self;
 
     self.navigationItem.rightBarButtonItem =
@@ -106,6 +143,9 @@
   [self.model appendPage:objects];
   [self.launcherView reloadData];
 
+  // One-line save to disk! So sexy. If we were worried about performance in any way we might do
+  // this only when the app is about to shut down or periodically on a background thread. For the
+  // purposes of this example that would be overkill.
   [NSKeyedArchiver archiveRootObject:self.model toFile:[self pathForLauncherData]];
 }
 
