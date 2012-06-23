@@ -16,6 +16,27 @@
 
 #import "ModifyingLauncherViewController.h"
 
+//
+// What's going on in this file:
+//
+// This controller shows how to modify a NILauncherViewModel by adding new pages every time the +
+// button is tapped.
+//
+// You will find the following Nimbus features used:
+//
+// [launcher]
+// NILauncherViewController
+// NILauncherViewModel
+// NILauncherViewModelDelegate
+// NILauncherDataSource
+// NILauncherDelegate
+//
+// This controller requires the following frameworks:
+//
+// Foundation.framework
+// UIKit.framework
+//
+
 @interface ModifyingLauncherViewController () <NILauncherViewModelDelegate>
 @property (nonatomic, readwrite, retain) NILauncherViewModel* model;
 @end
@@ -28,8 +49,11 @@
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     self.title = @"Modifying";
 
+    // We'll start off with a completely empty model.
     _model = [[NILauncherViewModel alloc] initWithArrayOfPages:nil delegate:self];
 
+    // We want to add a button to the navigation bar that, when tapped, adds a new page of launcher
+    // buttons to the launcher view.
     self.navigationItem.rightBarButtonItem =
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                   target:self
@@ -81,6 +105,10 @@
 #pragma mark - User Actions
 
 - (void)didTapAddButton:(UIBarButtonItem *)barButtonItem {
+  // When the user taps the + button we are going to create a new page filled with a random number
+  // of buttons with random titles.
+
+  // Start by loading the Nimbus app icon.
   NSString* imagePath = NIPathForBundleResource(nil, @"Icon.png");
   UIImage* image = [[Nimbus imageMemoryCache] objectWithName:imagePath];
   if (nil == image) {
@@ -88,12 +116,19 @@
     [[Nimbus imageMemoryCache] storeObject:image withName:imagePath];
   }
 
+  // Now we create a page with 1-9 randomly titled objects.
   NSInteger randomNumberOfItems = arc4random_uniform(8) + 1;
   NSMutableArray* objects = [NSMutableArray array];
   for (NSInteger ix = 0; ix < randomNumberOfItems; ++ix) {
     [objects addObject:[NILauncherViewObject objectWithTitle:[NSString stringWithFormat:@"Nimbus %d", arc4random_uniform(1000)] image:image]];
   }
+
+  // appendPage should be pretty self-explanatory.
   [self.model appendPage:objects];
+
+  // Now that we've modified the model we need to reload the data for our changes to become visible.
+  // The cool thing about Nimbus' launcher view is that it only reloads the visible data, so
+  // reloadData is a relatively lightweight operation, just like UITableView.
   [self.launcherView reloadData];
 }
 

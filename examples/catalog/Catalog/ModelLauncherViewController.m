@@ -16,6 +16,32 @@
 
 #import "ModelLauncherViewController.h"
 
+//
+// What's going on in this file:
+//
+// This controller shows how to use NILauncherViewModel to store the launcher object information.
+// This model object greatly simplifies your interactions with the launcher view data source
+// compared to the BasicIntantiation launcher example.
+//
+// This example shows how to create a model that lasts the lifetime of this controller and never
+// changes. In the Modifying example you will learn how to modify the model by adding more pages to
+// it.
+//
+// You will find the following Nimbus features used:
+//
+// [launcher]
+// NILauncherViewController
+// NILauncherViewModel
+// NILauncherViewModelDelegate
+// NILauncherDataSource
+// NILauncherDelegate
+//
+// This controller requires the following frameworks:
+//
+// Foundation.framework
+// UIKit.framework
+//
+
 @interface ModelLauncherViewController () <NILauncherViewModelDelegate>
 @property (nonatomic, readwrite, retain) NILauncherViewModel* model;
 @end
@@ -48,14 +74,20 @@
       [NILauncherViewObject objectWithTitle:@"Nimbus 5" image:image],
       [NILauncherViewObject objectWithTitle:@"Nimbus 6" image:image],
       nil],
+
+     // A new page.
      [NSArray arrayWithObjects:
       [NILauncherViewObject objectWithTitle:@"Page 2" image:image],
       nil],
+
+     // A third page.
      [NSArray arrayWithObjects:
       [NILauncherViewObject objectWithTitle:@"Page 3" image:image],
       nil],
      nil];
 
+    // Create the model object with the contents array. We provide self as the delegate so that
+    // we can customize what the buttons look like.
     _model = [[NILauncherViewModel alloc] initWithArrayOfPages:contents delegate:self];
   }
   return self;
@@ -66,6 +98,8 @@
   
   self.view.backgroundColor = [UIColor underPageBackgroundColor];
 
+  // Because the model implements the NILauncherViewDataSource protocol we can simply assign the
+  // model to the dataSource property and everything will magically work. Wicked!
   self.launcherView.dataSource = self.model;
 }
 
@@ -81,6 +115,10 @@
                 pageIndex:(NSInteger)pageIndex
               buttonIndex:(NSInteger)buttonIndex
                    object:(id<NILauncherViewObject>)object {
+
+  // The NILauncherViewObject object always creates a NILauncherButtonView so we can safely cast
+  // here and update the label's style to add the nice blurred shadow we saw in the
+  // BasicInstantiation example.
   NILauncherButtonView* launcherButtonView = (NILauncherButtonView *)buttonView;
 
   launcherButtonView.label.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -92,7 +130,10 @@
 #pragma mark - NILauncherDelegate
 
 - (void)launcherView:(NILauncherView *)launcher didSelectItemOnPage:(NSInteger)page atIndex:(NSInteger)index {
+  // Now that we're using a model we can easily refer back to which object was selected when we
+  // receive a selection notification.
   id<NILauncherViewObject> object = [self.model objectAtIndex:index pageIndex:page];
+
   UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Notice"
                                                   message:[@"Did tap button with title: " stringByAppendingString:object.title]
                                                  delegate:nil
