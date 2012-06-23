@@ -44,8 +44,11 @@
 
 // Dependencies
 #import "NimbusCore.h"
+#import "NimbusPagingScrollView.h"
 
 #import "NILauncherButtonView.h"
+#import "NILauncherViewModel.h"
+#import "NILauncherViewObject.h"
 #import "NILauncherViewController.h"
 #import "NILauncherView.h"
 
