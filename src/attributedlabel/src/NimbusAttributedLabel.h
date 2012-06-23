@@ -78,10 +78,14 @@ label.text = @"Nimbus";
  * the types of data that are detected by modifying the
  * @link NIAttributedLabel::dataDetectorTypes dataDetectorTypes@endlink property.
  *
+ *  @image html NIAttributedLabel_autoDetectLinksOff.png "Before enabling autoDetectLinks"
+ *
 @code
 // Enable link detection on the label.
 myLabel.autoDetectLinks = YES;
 @endcode
+ *
+ *  @image html NIAttributedLabel_autoDetectLinksOn.png "After enabling autoDetectLinks"
  *
  * Enabling automatic link detection will enable user interation with the label view so that the
  * user can tap the detected links.
@@ -89,7 +93,10 @@ myLabel.autoDetectLinks = YES;
  * Detected links will use @link NIAttributedLabel::linkColor linkColor@endlink and
  * @link NIAttributedLabel::highlightedLinkColor highlightedLinkColor@endlink to differentiate
  * themselves from standard text. highlightedLinkColor is the color of the highlighting frame
- * around the text.
+ * around the text. You can easily add underlines to links by enabling
+ * @link NIAttributedLabel::linksHaveUnderlines linksHaveUnderlines@endlink. You can customize link
+ * attributes in more detail by directly modifying the
+ * @link NIAttributedLabel::attributesForLinks attributesForLinks@endlink property.
  *
  *
  * <h4>A note on performance</h4>
@@ -105,6 +112,11 @@ myLabel.autoDetectLinks = YES;
  * The NIAttributedLabelDelegate protocol allows you to handle when the user taps on a given link.
  * The protocol methods provide the tap point as well as the data pertaining to the tapped link.
  *
+@code
+- (void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point {
+  [[UIApplication sharedApplication] openURL:result.URL];
+}
+@endcode
  *
  * <h3>Explicit Links</h3>
  *
