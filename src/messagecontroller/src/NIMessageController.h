@@ -111,7 +111,7 @@
  * also responsible for determining how cells representing recipients are
  * labeled.
  */
-@property (nonatomic) NITableViewModel* dataSource;
+@property (nonatomic, copy) NITableViewModel* dataSource;
 
 /**
  * The operation queue that runs all of the network and processing operations.

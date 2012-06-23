@@ -28,16 +28,16 @@ static const CGFloat kMarginY = 6;
         [self.navigationItem setLeftBarButtonItem:nil];
 
         self.navigationItem.leftBarButtonItem =
-        [[[UIBarButtonItem alloc] initWithTitle: NSLocalizedString(@"Cancel", @"")
+        [[UIBarButtonItem alloc] initWithTitle: NSLocalizedString(@"Cancel", @"")
                                           style: UIBarButtonItemStyleBordered
                                          target: self
-                                         action: @selector(cancel)] autorelease];
+                                         action: @selector(cancel)];
         
         self.navigationItem.rightBarButtonItem =
-        [[[UIBarButtonItem alloc] initWithTitle: NSLocalizedString(@"Done", @"")
+        [[UIBarButtonItem alloc] initWithTitle: NSLocalizedString(@"Done", @"")
                                           style: UIBarButtonItemStyleDone
                                          target: self
-                                         action: @selector(post)] autorelease];
+                                         action: @selector(post)];
     }
     return self;
 }
@@ -51,7 +51,7 @@ static const CGFloat kMarginY = 6;
                 _delegate = [query objectForKey:@"delegate"];
             }
             if ([query objectForKey:@"text"]) {
-                _defaultText = [[query objectForKey:@"text"] retain];
+                _defaultText = [[query objectForKey:@"text"] copy];
             }
             if ([query objectForKey:@"rightButtonText"]) {
                 self.navigationItem.rightBarButtonItem.title = [query objectForKey:@"rightButtonText"];
@@ -86,22 +86,11 @@ static const CGFloat kMarginY = 6;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)releaseObjects {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-    NI_RELEASE_SAFELY(_result);
-    NI_RELEASE_SAFELY(_defaultText);
-    NI_RELEASE_SAFELY(_originView);
-    NI_RELEASE_SAFELY(_textView);
-    NI_RELEASE_SAFELY(_navigationBar);
-    NI_RELEASE_SAFELY(_innerView);
-    NI_RELEASE_SAFELY(_activityView);
-    NI_RELEASE_SAFELY(_charLimitLabel);
-    NI_RELEASE_SAFELY(_titleForActivity);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
     [self releaseObjects];
-    
-    [super dealloc];
 }
 
 
@@ -198,14 +187,8 @@ static const CGFloat kMarginY = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showAnimationDidStop {
-    
-    // TODO: Need to figure out how to do this
-//    _textView.hidden = NO;
-//    [self.superController viewDidDisappear:YES];
-    
     if (_charLimitLabel) {
         [_charLimitLabel removeFromSuperview];
-        NI_RELEASE_SAFELY(_charLimitLabel);
     }
     _charLimitLabel = [[UILabel alloc] init];
     _charLimitLabel.backgroundColor = [UIColor clearColor];
@@ -230,7 +213,6 @@ static const CGFloat kMarginY = 6;
         [_delegate postController:self didPostText:_textView.text withResult:_result];
     }
     
-    NI_RELEASE_SAFELY(_originView);
     [self dismissPopupViewControllerAnimated:NO];
 }
 
@@ -240,8 +222,6 @@ static const CGFloat kMarginY = 6;
         [_delegate postController:self didPostText:_textView.text withResult:_result];
     }
     _originView.hidden = NO;
-    NI_RELEASE_SAFELY(_originView);
-//    _backgroundView.hidden = YES;
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDelegate:self];
@@ -286,7 +266,6 @@ static const CGFloat kMarginY = 6;
         
     } else {
         [self.view removeFromSuperview];
-        [self release];
     }
 }
 
@@ -333,9 +312,6 @@ static const CGFloat kMarginY = 6;
     _navigationBar.autoresizesSubviews = YES;
     [_navigationBar pushNavigationItem:self.navigationItem animated:NO];
     [_innerView addSubview:_navigationBar];
-//    _backgroundView = [[UIImageView alloc] initWithFrame:SCREEN_BOUNDS];
-//    _backgroundView.image = [UIImage imageNamed:@"backgroundonly"];
-//    [self.view insertSubview:_backgroundView atIndex:0];
 }
 
 
@@ -391,8 +367,6 @@ static const CGFloat kMarginY = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showInView:(UIView*)view animated:(BOOL)animated {
-    [self retain];
-    
     UIWindow* window = view.window ? view.window : [UIApplication sharedApplication].keyWindow;
     
     self.view.transform = [self transformForOrientation];
@@ -403,7 +377,7 @@ static const CGFloat kMarginY = 6;
         _textView.text = _defaultText;
         
     } else {
-        _defaultText = [_textView.text retain];
+        _defaultText = [_textView.text copy];
     }
     
     _innerView.frame = self.view.bounds;
@@ -517,8 +491,7 @@ static const CGFloat kMarginY = 6;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setOriginView:(UIView*)view {
     if (view != _originView) {
-        [_originView release];
-        _originView = [view retain];
+        _originView = view;
         _originRect = CGRectZero;
     }
 }
@@ -544,11 +517,11 @@ static const CGFloat kMarginY = 6;
     if (NIIsStringWithAnyText(_textView.text)
         && !_textView.text.isWhitespaceAndNewlines
         && !(_defaultText && [_defaultText isEqualToString:_textView.text])) {
-        UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:
-                                         NSLocalizedString(@"Cancel", @"")
-                                                                   message:NSLocalizedString(@"Are you sure you want to cancel?", @"")
-                                                                  delegate:self cancelButtonTitle:NSLocalizedString(@"Yes", @"")
-                                                         otherButtonTitles:NSLocalizedString(@"No", @""), nil] autorelease];
+        UIAlertView* cancelAlertView = [[UIAlertView alloc] initWithTitle:
+                                        NSLocalizedString(@"Cancel", @"")
+                                                                  message:NSLocalizedString(@"Are you sure you want to cancel?", @"")
+                                                                 delegate:self cancelButtonTitle:NSLocalizedString(@"Yes", @"")
+                                                        otherButtonTitles:NSLocalizedString(@"No", @""), nil];
         [cancelAlertView show];
         
     } else {
@@ -559,8 +532,7 @@ static const CGFloat kMarginY = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dismissWithResult:(id)result animated:(BOOL)animated {
-    [_result release];
-    _result = [result retain];
+    _result = [result copy];
     
     if (animated) {
         if ([_delegate respondsToSelector:@selector(postController:willAnimateTowards:)]) {
@@ -611,9 +583,9 @@ static const CGFloat kMarginY = 6;
     
     NSString* title = [self titleForError:error];
     if (title.length) {
-        UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
                                                              message:title delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"")
-                                                   otherButtonTitles:nil] autorelease];
+                                                   otherButtonTitles:nil];
         [alertView show];
     }
 }
@@ -625,7 +597,7 @@ static const CGFloat kMarginY = 6;
     
     if (NIIsStringWithAnyText(trimmedString)) {
         if ([trimmedString length] > _maxCharCount) {
-            UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Alert", @"") message:[NSString stringWithFormat:@"You can only enter a maximum of %i characters.", _maxCharCount] delegate:nil cancelButtonTitle:nil otherButtonTitles:nil] autorelease];
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Alert", @"") message:[NSString stringWithFormat:@"You can only enter a maximum of %i characters.", _maxCharCount] delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
             [alertView show];
             return NO;
         }

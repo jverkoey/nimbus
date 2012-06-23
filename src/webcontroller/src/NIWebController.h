@@ -81,28 +81,6 @@
 
 - (NSURL *)URL;
 
-<<<<<<< HEAD
-@interface NIWebController : UIViewController <
-UIWebViewDelegate,
-UIActionSheetDelegate > {
-@protected
-    // Views
-    UIWebView*        _webView;
-    UIToolbar*        _toolbar;
-    UIActionSheet*    _actionSheet;
-    
-    // Toolbar buttons
-    UIBarButtonItem*  _backButton;
-    UIBarButtonItem*  _forwardButton;
-    UIBarButtonItem*  _refreshButton;
-    UIBarButtonItem*  _stopButton;
-    UIBarButtonItem*  _actionButton;
-    UIBarButtonItem*  _activityItem;
-    
-    NSURL*            _actionSheetURL;
-    NSURL*            _loadingURL;
-}
-=======
 - (void)openURL:(NSURL*)URL;
 - (void)openRequest:(NSURLRequest*)request;
 
@@ -114,7 +92,6 @@ UIActionSheetDelegate > {
 @property (nonatomic, readwrite, retain) NSURL* actionSheetURL;
 
 @end
->>>>>>> upstream/master
 
 /** @name Creating a Web Controller */
 
