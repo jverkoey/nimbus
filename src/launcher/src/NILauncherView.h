@@ -47,8 +47,6 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 
 - (UIView<NILauncherButtonView> *)dequeueReusableViewWithIdentifier:(NSString *)identifier;
 
-#pragma mark Rotating the Scroll View
-
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 
@@ -161,7 +159,7 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 
 @end
 
-/** @name Configurable Content Attributes */
+/** @name Configuring a Launcher View */
 
 /**
  * The maximum number of buttons allowed on a given page.
@@ -196,6 +194,18 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
  * The number of columns to display on each page.
  *
  *      @fn NILauncherView::numberOfColumns
+ */
+
+/**
+ * Returns a reusable launcher button view object located by its identifier.
+ *
+ *      @param identifier A string identifying the launcher button view object to be reused. By
+ *                        default, a reusable view's identifier is its class name, but you can
+ *                        change it to any arbitrary value.
+ *      @returns A UIView object with the associated identifier that conforms to the
+ *               NILauncherButtonView protocol, or nil if no such object exists in the reusable-cell
+ *               queue.
+ *      @fn NILauncherView::dequeueReusableViewWithIdentifier:
  */
 
 /** @name Managing the Delegate and the Data Source */
