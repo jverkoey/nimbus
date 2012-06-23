@@ -77,6 +77,8 @@
 @protocol NILauncherViewObject <NSObject>
 @required
 
+/** @name Accessing the Object Attributes */
+
 /**
  * The title that will be displayed on the launcher view button.
  */
@@ -103,6 +105,8 @@
  */
 @protocol NILauncherViewObjectView <NSObject>
 @required
+
+/** @name Updating a Launcher Button View */
 
 /**
  * Informs the receiver that a new object should be used to configure the view.
