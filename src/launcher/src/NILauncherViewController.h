@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,62 +20,29 @@
 #import "NILauncherView.h"
 
 /**
- * A view controller that displays a launcher view and implements its protocols.
+ * The NILauncherViewController class creates a controller object that manages a launcher view.
+ * It implements the following behavior:
  *
- * @ingroup NimbusLauncher
+ * - It creates an unconfigured NILauncherView object with the correct dimensions and autoresize
+ *   mask. You can access this view through the launcherView property.
+ * - NILauncherViewController sets the data source and the delegate of the launcher view to self.
+ * - When the launcher view is about to appear the first time it’s loaded, the launcher-view
+ *   controller reloads the launcher view’s data.
  *
- * This view controller may be used in production, though you'll likely want to subclass it
- * and internalize the loading of the pages. You can also simply use this controller as an
- * example and write a completely new view controller or add the launcher view to an existing
- * view controller if that suits your situation better.
+ * @image html NILauncherViewControllerExample1.png "Example of an NILauncherViewController."
  *
- *
- * By default this controller implements the numberOfRowsPerPageInLauncherView and
- * numberOfColumnsPerPageInLauncherView methods of the launcher data source. The following
- * values are given depending on the device:
- *
- * @htmlonly
- * <pre>
- * iPhone:
- *   Portrait: 3x3 (row by column)
- *   Landscape: 5x2
- * iPad:
- *   4x5
- * </pre>
- * @endhtmlonly
- *
- * You may choose to allow the launcher to determine the number of icons to be shown on its
- * own. If you choose to do so, make these methods return NILauncherViewDynamic.
- *
- *
- * By default this controller does not allow the launcher to be shown in landscape mode on the
- * iPhone or iPod touches. This is due largely to the complex nature of handling the different
- * number of icons that can be displayed in each orientation. For example, on the iPhone
- * in portrait with the default grid definitions as noted above, you can see 9
- * icons, whereas in landscape you can see 10. There are things you can do to make this
- * work, of course, but barring an elegant solution I've elected to disable this
- * functionality by default in this controller.
- *
- *
- * @image html NILauncherViewControllerExample1.png "Example of an NILauncherViewController as seen in the BasicLauncher demo application."
- *
- *
- *      @todo Implement a reusable means of storing and loading launcher state information.
- *            This can probably be easily accomplished using simple keyed archiving because
- *            NILauncherItem implements the NSCoding protocol.
+ *      @ingroup NimbusLauncher
  */
 @interface NILauncherViewController : UIViewController <NILauncherDelegate, NILauncherDataSource>
+
 @property (nonatomic, readwrite, retain) NILauncherView* launcherView;
+
 @end
 
+/** @name Getting the Launcher View */
+
 /**
- * Access to the internal launcher view.
- *
- * This is exposed primarily for subclasses of this view controller to be able to access the
- * launcher view.
- *
- * You may also use this property from outside of the controller to configure certain aspects of
- * the launcher view.
+ * Returns the launcher view managed by the controller object.
  *
  *      @fn NILauncherViewController::launcherView
  */

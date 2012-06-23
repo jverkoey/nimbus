@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -36,9 +36,9 @@
   self.launcherView.dataSource = self;
   self.launcherView.delegate = self;
 
-  [self.launcherView reloadData];
-
   [self.view addSubview:self.launcherView];
+
+  [self.launcherView reloadData];
 }
 
 
@@ -47,12 +47,6 @@
   self.launcherView = nil;
 
   [super viewDidUnload];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-  return NIIsSupportedOrientation(toInterfaceOrientation);
 }
 
 
@@ -75,12 +69,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NILauncherDataSource
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)numberOfPagesInLauncherView:(NILauncherView *)launcherView {
-  return 0;
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

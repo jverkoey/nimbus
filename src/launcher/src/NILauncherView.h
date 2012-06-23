@@ -133,6 +133,8 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 @protocol NILauncherDelegate <NSObject>
 @optional
 
+/** @name Managing Selections */
+
 /**
  * Informs the delegate that the specified item on the specified page has been selected.
  *
