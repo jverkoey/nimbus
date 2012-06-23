@@ -61,6 +61,9 @@
 #ifndef NIOperation
 #define NIOperation __NIMBUS_NS_SYMBOL(NIOperation)
 #endif
+#ifndef NIRecyclableView
+#define NIRecyclableView __NIMBUS_NS_SYMBOL(NIRecyclableView)
+#endif
 #ifndef NIViewRecycler
 #define NIViewRecycler __NIMBUS_NS_SYMBOL(NIViewRecycler)
 #endif

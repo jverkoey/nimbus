@@ -92,9 +92,6 @@
 #define NITitleCellObject __NIMBUS_NS_SYMBOL(NITitleCellObject)
 #endif
 // Functions
-#ifndef NIPushControllerInstanceAction
-#define NIPushControllerInstanceAction __NIMBUS_NS_SYMBOL(NIPushControllerInstanceAction)
-#endif
 #ifndef NIPushControllerAction
 #define NIPushControllerAction __NIMBUS_NS_SYMBOL(NIPushControllerAction)
 #endif
