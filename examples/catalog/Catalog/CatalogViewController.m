@@ -32,6 +32,9 @@
 // Interapp
 #import "InterappViewController.h"
 
+// Launcher
+#import "BasicInstantiationLauncherViewController.h"
+
 // Network Image
 #import "BasicInstantiationNetworkImageViewController.h"
 #import "ContentModesNetworkImageViewController.h"
@@ -170,6 +173,13 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"All Actions"
                                    subtitle:@"A list of all available actions"]],
+     
+     @"Launcher",
+     [_actions attachNavigationAction:
+      NIPushControllerAction([BasicInstantiationLauncherViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
+                                   subtitle:@"How to subclass a launcher controller"]],
 
      @"Network Image",
      [_actions attachNavigationAction:
@@ -253,6 +263,12 @@
   // both the iPad (where all orientations are supported) and the iPhone (where anything but
   // upside-down is supported). This method will be deprecated in iOS 6.0.
   return NIIsSupportedOrientation(toInterfaceOrientation);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  BasicInstantiationLauncherViewController* c = [[BasicInstantiationLauncherViewController alloc] init];
+  [self.navigationController pushViewController:c animated:YES];
 }
 
 @end

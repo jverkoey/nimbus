@@ -62,17 +62,11 @@
  *
  *      @todo Implement a reusable means of storing and loading launcher state information.
  *            This can probably be easily accomplished using simple keyed archiving because
- *            NILauncherItemDetails implements the NSCoding protocol.
+ *            NILauncherItem implements the NSCoding protocol.
  */
-@interface NILauncherViewController : UIViewController <
-  NILauncherDelegate,
-  NILauncherDataSource
-> {
-@private
-  NILauncherView* _launcherView;
-
-  NSMutableArray* _pages; // Array< Array<NILauncherItemDetails *> >
-}
+@interface NILauncherViewController : UIViewController <NILauncherDelegate, NILauncherDataSource>
+@property (nonatomic, readwrite, retain) NILauncherView* launcherView;
+@end
 
 /**
  * Access to the internal launcher view.
@@ -82,114 +76,6 @@
  *
  * You may also use this property from outside of the controller to configure certain aspects of
  * the launcher view.
+ *
+ *      @fn NILauncherViewController::launcherView
  */
-@property (nonatomic, readonly, retain) NILauncherView* launcherView;
-
-/**
- * An array of arrays of NILauncherItemDetails.
- *
- * These pages are used to populate the launcher view via the NILauncherDataSource protocol.
- *
- * @note This is an NSArray - not an NSMutableArray - because you should not directly modify
- *       the contents of the pages after they have been stored in this view controller.
- *       If you need to modify the pages after assigning them here, you should assign
- *       a new set of pages.
- */
-@property (nonatomic, readwrite, copy) NSArray* pages;
-
-
-/**
- * @name Subclassing
- * @{
- *
- * The following methods are provided to aid in subclassing and are not meant to be
- * used externally.
- */
-#pragma mark Subclassing
-
-/**
- * The launcher button view class.
- *
- * Must be a subclass of UIButton.
- *
- * Provided here for subclasses to use as a convenience for changing the launcher button class.
- *
- * Defaults to NILauncherButton.
- */
-- (Class)launcherButtonClass;
-
-/**@}*/
-
-@end
-
-
-/**
- * A simple launcher button that shows an image and text.
- *
- * @ingroup NimbusLauncher
- *
- * Shows the icon centered in the top portion of the button with the text taking up one
- * line at the bottom.
- *
- * @image html NILauncherButtonExample1.png "Example of an NILauncherButton"
- */
-@interface NILauncherButton : UIButton {
-@private
-  UIEdgeInsets _padding;
-}
-
-/**
- * The padding for the button.
- *
- * This padding is applied on all edges of the button.
- *
- * Defaults to 5px of padding on all sides.
- */
-@property (nonatomic, readwrite, assign) UIEdgeInsets padding;
-
-@end
-
-
-/**
- * A convenience class for managing the data used to create an NILauncherButton.
- *
- * @ingroup NimbusLauncher
- *
- * In your own implementation of a launcher controller you do not need to use this object;
- * it is a trivial convenience object for containing the basic information required to display
- * an NILauncherButton. You may choose to forego the use of a container object altogether and
- * populate your launcher buttons from a data store, or perhaps from a downloaded JSON file.
- */
-@interface NILauncherItemDetails : NSObject <NSCoding> {
-@private
-  NSString* _title;
-  NSString* _imagePath;
-}
-
-/**
- * The title for the launcher button.
- */
-@property (nonatomic, readwrite, copy) NSString* title;
-
-/**
- * The path to the launcher image.
- */
-@property (nonatomic, readwrite, copy) NSString* imagePath;
-
-/**
- * Convenience method for creating a launcher item details object.
- *
- *      @param title       The title for the launcher button.
- *      @param imagePath   The path to the launcher image.
- */
-+ (id)itemDetailsWithTitle:(NSString *)title imagePath:(NSString *)imagePath;
-
-/**
- * The designated initializer.
- *
- *      @param title       The title for the launcher button.
- *      @param imagePath   The path to the launcher image.
- */
-- (id)initWithTitle:(NSString *)title imagePath:(NSString *)imagePath;
-
-@end

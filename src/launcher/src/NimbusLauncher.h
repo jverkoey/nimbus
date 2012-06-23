@@ -63,6 +63,7 @@
 // Dependencies
 #import "NimbusCore.h"
 
+#import "NILauncherButtonView.h"
 #import "NILauncherViewController.h"
 #import "NILauncherView.h"
 
