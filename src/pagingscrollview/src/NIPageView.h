@@ -14,30 +14,25 @@
 // limitations under the License.
 //
 
-#import "NIPagingScrollViewPage.h"
-
 #import <UIKit/UIKit.h>
+
+#import "NIPagingScrollViewPage.h"
 
 /**
  * A skeleton implementation of a page view.
  *
  * This view simply implements the required properties of NIPagingScrollViewPage.
  *
+ * TODO: Rename this to NIPagingScrollViewPage.
+ *
  *      @ingroup NimbusPagingScrollView
  */
-@interface NIPageView : UIView <NIPagingScrollViewPage>
+@interface NIPageView : NIRecyclableView <NIPagingScrollViewPage>
 @property (nonatomic, readwrite, assign) NSInteger pageIndex;
-@property (nonatomic, readwrite, copy) NSString* reuseIdentifier;
 @end
 
 /**
  * The page index.
  *
  *      @fn NIPageView::pageIndex
- */
-
-/**
- * The reuse identifier.
- *
- *      @fn NIPageView::reuseIdentifier
  */

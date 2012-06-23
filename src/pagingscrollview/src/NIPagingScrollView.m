@@ -582,10 +582,10 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated {
+- (BOOL)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated {
   if (_isAnimatingToPage) {
     // Don't allow re-entry for sliding animations.
-    return;
+    return NO;
   }
 
   CGPoint offset = [self frameForPageAtIndex:pageIndex].origin;
@@ -603,13 +603,12 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
     // When the animation is finished we reset the content offset just in case the frame
     // changes while we're animating (like when rotating the device). To do this we need
     // to know the destination index for the animation.
-    [self performSelector: selector
-               withObject: pageIndexNumber
-               afterDelay: 0.4];
+    [self performSelector:selector withObject:pageIndexNumber afterDelay:0.4];
 
   } else {
     [self didAnimateToPage:pageIndexNumber];
   }
+  return YES;
 }
 
 

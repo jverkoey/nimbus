@@ -93,7 +93,7 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 - (BOOL)hasPrevious;
 - (void)moveToNextAnimated:(BOOL)animated;
 - (void)moveToPreviousAnimated:(BOOL)animated;
-- (void)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated;
+- (BOOL)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated;
 
 #pragma mark Rotating the Scroll View
 
@@ -103,7 +103,7 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 #pragma mark Subclassing
 
 @property (nonatomic, readonly, retain) UIScrollView* pagingScrollView;
-@property (nonatomic, readonly, copy) NSMutableSet* visiblePages;
+@property (nonatomic, readonly, copy) NSMutableSet* visiblePages; // Set of UIView<NIPagingScrollViewPage>*
 
 - (void)willDisplayPage:(UIView<NIPagingScrollViewPage> *)pageView;
 - (void)didRecyclePage:(UIView<NIPagingScrollViewPage> *)pageView;
@@ -228,6 +228,8 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 /**
  * Move to the given page index with optional animation.
  *
+ *      @returns NO if a page change animation is already in effect and we couldn't change the page
+ *               again.
  *      @fn NIPagingScrollView::moveToPageAtIndex:animated:
  */
 

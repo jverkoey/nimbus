@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#import "NimbusCore.h"
-
 #import <Foundation/Foundation.h>
+
+#import "NimbusCore.h"
 
 /**
  * The protocol that a paging scroll view page should implement.
