@@ -18,6 +18,8 @@
 
 /**
  * An implementation of the NILauncherViewObject protocol.
+ *
+ *      @ingroup NimbusLauncherModel
  */
 @interface NILauncherViewObject : NSObject <NILauncherViewObject>
 

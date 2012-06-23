@@ -83,6 +83,7 @@
 		66BB4F52159527E200020EE8 /* NILauncherPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4F51159527E200020EE8 /* NILauncherPageView.m */; };
 		66BB4F6A15957E4300020EE8 /* NILauncherViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4F6915957E4300020EE8 /* NILauncherViewModel.m */; };
 		66BB4F6D1595801900020EE8 /* NILauncherViewObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4F6C1595801900020EE8 /* NILauncherViewObject.m */; };
+		66BB4FA815958A6F00020EE8 /* ModelLauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4FA715958A6F00020EE8 /* ModelLauncherViewController.m */; };
 		66D2FDB81593D5D000B2BEFD /* ContentModesNetworkImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDB71593D5D000B2BEFD /* ContentModesNetworkImageViewController.m */; };
 		66D2FDD11593F17800B2BEFD /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDBD1593F17800B2BEFD /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66D2FDD21593F17800B2BEFD /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDBF1593F17800B2BEFD /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -256,8 +257,10 @@
 		66BB4F51159527E200020EE8 /* NILauncherPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherPageView.m; path = ../../src/launcher/src/NILauncherPageView.m; sourceTree = "<group>"; };
 		66BB4F6815957E4300020EE8 /* NILauncherViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NILauncherViewModel.h; path = ../../src/launcher/src/NILauncherViewModel.h; sourceTree = "<group>"; };
 		66BB4F6915957E4300020EE8 /* NILauncherViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherViewModel.m; path = ../../src/launcher/src/NILauncherViewModel.m; sourceTree = "<group>"; };
-		66BB4F6B1595801900020EE8 /* NILauncherViewObject.h */ = {isa = PBXFileReference; fileEncoding = 4; name = NILauncherViewObject.h; path = ../../src/launcher/src/NILauncherViewObject.h; sourceTree = "<group>"; };
-		66BB4F6C1595801900020EE8 /* NILauncherViewObject.m */ = {isa = PBXFileReference; fileEncoding = 4; name = NILauncherViewObject.m; path = ../../src/launcher/src/NILauncherViewObject.m; sourceTree = "<group>"; };
+		66BB4F6B1595801900020EE8 /* NILauncherViewObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NILauncherViewObject.h; path = ../../src/launcher/src/NILauncherViewObject.h; sourceTree = "<group>"; };
+		66BB4F6C1595801900020EE8 /* NILauncherViewObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherViewObject.m; path = ../../src/launcher/src/NILauncherViewObject.m; sourceTree = "<group>"; };
+		66BB4FA615958A6F00020EE8 /* ModelLauncherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLauncherViewController.h; sourceTree = "<group>"; };
+		66BB4FA715958A6F00020EE8 /* ModelLauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelLauncherViewController.m; sourceTree = "<group>"; };
 		66D2FDB61593D5D000B2BEFD /* ContentModesNetworkImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentModesNetworkImageViewController.h; sourceTree = "<group>"; };
 		66D2FDB71593D5D000B2BEFD /* ContentModesNetworkImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentModesNetworkImageViewController.m; sourceTree = "<group>"; };
 		66D2FDBC1593F17800B2BEFD /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -567,6 +570,8 @@
 			children = (
 				66A29F8F1595082C00F6EA64 /* BasicInstantiationLauncherViewController.h */,
 				66A29F901595082C00F6EA64 /* BasicInstantiationLauncherViewController.m */,
+				66BB4FA615958A6F00020EE8 /* ModelLauncherViewController.h */,
+				66BB4FA715958A6F00020EE8 /* ModelLauncherViewController.m */,
 			);
 			name = Launcher;
 			sourceTree = "<group>";
@@ -811,6 +816,7 @@
 				66BB4F52159527E200020EE8 /* NILauncherPageView.m in Sources */,
 				66BB4F6A15957E4300020EE8 /* NILauncherViewModel.m in Sources */,
 				66BB4F6D1595801900020EE8 /* NILauncherViewObject.m in Sources */,
+				66BB4FA815958A6F00020EE8 /* ModelLauncherViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

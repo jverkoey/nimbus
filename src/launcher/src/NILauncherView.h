@@ -67,7 +67,7 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
  *
  *      @param launcherView The launcher-view object requesting this information.
  *      @param page The index locating a page in @c launcherView.
- *      @returs The number of buttons in @c page.
+ *      @returns The number of buttons in @c page.
  */
 - (NSInteger)launcherView:(NILauncherView *)launcherView numberOfButtonsInPage:(NSInteger)page;
 
@@ -136,7 +136,8 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 /**
  * Informs the delegate that the specified item on the specified page has been selected.
  *
- *      @param launcher A launcher-view object informing the delegate about the new item selection.
+ *      @param launcherView A launcher-view object informing the delegate about the new item
+ *                          selection.
  *      @param page A page index locating the selected item in @c launcher.
  *      @param index An index locating the selected item in the given page.
  */

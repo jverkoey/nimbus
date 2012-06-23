@@ -18,6 +18,8 @@
 
 #import "NILauncherButtonView.h"
 
+#import "NILauncherViewObject.h"
+
 // The contentInset around the entire button on the top, left, bottom, and right sides.
 static const CGFloat kDefaultContentInset = 0;
 
@@ -70,6 +72,32 @@ static const CGFloat kImageBottomMargin = 5;
   self.label.frame = CGRectMake(CGRectGetMinX(contentBounds), CGRectGetMaxY(contentBounds) - self.label.font.lineHeight,
                                 CGRectGetWidth(contentBounds), self.label.font.lineHeight);
   self.button.frame = NIRectContract(contentBounds, 0, self.label.bounds.size.height);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NIRecyclableView
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)prepareForReuse {
+  self.label.text = nil;
+  [self.button setImage:nil forState:UIControlStateNormal];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NILauncherModelObjectView
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)shouldUpdateViewWithObject:(NILauncherViewObject *)object {
+  self.label.text = object.title;
+  [self.button setImage:object.image forState:UIControlStateNormal];
+
+  [self setNeedsLayout];
 }
 
 

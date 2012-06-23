@@ -18,6 +18,10 @@
 #import "NILauncherView.h"
 #import "NimbusCore.h"
 
+@interface NILauncherViewController()
+@property (nonatomic, readwrite, assign) BOOL shouldReloadData;
+@end
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,7 +42,7 @@
 
   self.view = self.launcherView;
 
-  [self.launcherView reloadData];
+  self.shouldReloadData = YES;
 }
 
 
@@ -47,6 +51,17 @@
   self.launcherView = nil;
 
   [super viewDidUnload];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+
+  if (self.view && self.shouldReloadData) {
+    [self.launcherView reloadData];
+    self.shouldReloadData = NO;
+  }
 }
 
 

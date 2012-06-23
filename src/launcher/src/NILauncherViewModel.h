@@ -24,7 +24,7 @@
  *
  * This model object allows you to keep all of your launcher view data together in one object.
  *
- *      @ingroup NimbusLauncher
+ *      @ingroup NimbusLauncherModel
  */
 @interface NILauncherViewModel : NSObject <NILauncherDataSource>
 
@@ -43,6 +43,8 @@
  * The delegate for NILauncherViewModel.
  *
  * This delegate allows you to configure the launcher button views before they are displayed.
+ *
+ *      @ingroup NimbusLauncherModel
  */
 @protocol NILauncherViewModelDelegate <NSObject>
 @required
@@ -68,6 +70,8 @@
 
 /**
  * The minimal amount of information required to configure a button view.
+ *
+ *      @ingroup NimbusLauncherModel
  */
 @protocol NILauncherViewObject <NSObject>
 @required
@@ -88,6 +92,21 @@
  * This class must conform to the NILauncherButtonView protocol.
  */
 - (Class)buttonViewClass;
+
+@end
+
+/**
+ * A protocol that a launcher button view can implement to allow itself to be configured.
+ *
+ *      @ingroup NimbusLauncherModel
+ */
+@protocol NILauncherViewObjectView <NSObject>
+@required
+
+/**
+ * Informs the receiver that a new object should be used to configure the view.
+ */
+- (void)shouldUpdateViewWithObject:(id)object;
 
 @end
 

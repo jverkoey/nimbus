@@ -16,7 +16,6 @@
 
 #import "NILauncherViewModel.h"
 
-#import "NILauncherButtonView.h"
 #import "NILauncherView.h"
 #import "NILauncherViewObject.h"
 #import "NimbusCore.h"
@@ -111,9 +110,9 @@
     buttonView = [[buttonViewClass alloc] initWithReuseIdentifier:reuseIdentifier];
   }
 
-  [buttonView.button setImage:object.image forState:UIControlStateNormal];
-  if ([buttonView isKindOfClass:[NILauncherButtonView class]]) {
-    [[(NILauncherButtonView*)buttonView label] setText:object.title];
+  // Give the button view a chance to update itself.
+  if ([buttonView respondsToSelector:@selector(shouldUpdateViewWithObject:)]) {
+    [buttonView performSelector:@selector(shouldUpdateViewWithObject:) withObject:object];
   }
 
   // Give the delegate a chance to customize this button.

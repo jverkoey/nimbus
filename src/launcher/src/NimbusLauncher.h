@@ -39,6 +39,57 @@
  * Source located in <code>src/launcher/src</code>
  */
 
+/**
+ * @defgroup NimbusLauncherModel Nimbus Launcher Model
+ *
+ * The Nimbus Launcher provides a model object that can store all of the launcher data. This model
+ * object works similarly to NITableViewModel.
+ *
+ * Presented below is an example of subclassing a NILauncherViewController and using a
+ * NILauncherViewModel to supply the data source information.
+ *
+@code
+@implementation CustomLauncherViewController()
+@property (nonatomic, readwrite, retain) NILauncherViewModel* model;
+@end
+
+@interface CustomLauncherViewController
+
+@synthesize model = _model;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+    NSArray* contents =
+    [NSArray arrayWithObjects:
+     [NSArray arrayWithObjects:
+      [NILauncherViewObject objectWithTitle:@"Nimbus" image:image],
+      [NILauncherViewObject objectWithTitle:@"Nimbus 2" image:image],
+      [NILauncherViewObject objectWithTitle:@"Nimbus 3" image:image],
+      [NILauncherViewObject objectWithTitle:@"Nimbus 5" image:image],
+      [NILauncherViewObject objectWithTitle:@"Nimbus 6" image:image],
+      nil],
+     [NSArray arrayWithObjects:
+      [NILauncherViewObject objectWithTitle:@"Page 2" image:image],
+      nil],
+     [NSArray arrayWithObjects:
+      [NILauncherViewObject objectWithTitle:@"Page 3" image:image],
+      nil],
+     nil];
+
+    _model = [[NILauncherViewModel alloc] initWithArrayOfPages:contents delegate:nil];
+  }
+  return self;
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+
+  self.launcherView.dataSource = self.model;
+}
+@end
+@endcode
+ */
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 

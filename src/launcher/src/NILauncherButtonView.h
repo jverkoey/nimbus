@@ -15,7 +15,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NiLauncherView.h"
+#import "NILauncherView.h"
+#import "NILauncherViewModel.h"
 
 /**
  * A launcher button view that displays an image and and a label beneath it.
@@ -27,7 +28,7 @@
  *
  *      @ingroup NimbusLauncher
  */
-@interface NILauncherButtonView : NIRecyclableView <NILauncherButtonView>
+@interface NILauncherButtonView : NIRecyclableView <NILauncherButtonView, NILauncherViewObjectView>
 
 @property (nonatomic, readwrite, retain) UIButton* button;
 @property (nonatomic, readwrite, copy) UILabel* label;
