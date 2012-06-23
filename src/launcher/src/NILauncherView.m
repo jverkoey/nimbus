@@ -358,6 +358,7 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
   self.pager.numberOfPages = _numberOfPages;
   [self.pagingScrollView reloadData];
+  [self setNeedsLayout];
 }
 
 
