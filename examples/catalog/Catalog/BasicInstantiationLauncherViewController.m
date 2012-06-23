@@ -15,7 +15,6 @@
 //
 
 #import "BasicInstantiationLauncherViewController.h"
-#import "NimbusLauncher.h"
 
 //
 // What's going on in this file:
