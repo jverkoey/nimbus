@@ -131,6 +131,8 @@
      
    }];
 
+  readOp.imageScale = 1;
+
   // Set the operation priority level.
 
   if (NIPhotoScrollViewPhotoSizeThumbnail == photoSize) {
