@@ -49,7 +49,7 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 @synthesize numberOfPages = _numberOfPages;
 @synthesize viewRecycler = _viewRecycler;
 @synthesize maxNumberOfButtonsPerPage = _maxNumberOfButtonsPerPage;
-@synthesize pageInsets = _pageInsets;
+@synthesize contentInsetForPages = _contentInsetForPages;
 @synthesize buttonSize = _buttonSize;
 @synthesize numberOfRows = _numberOfRows;
 @synthesize numberOfColumns = _numberOfColumns;
@@ -69,7 +69,7 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
   _numberOfRows = NILauncherViewGridBasedOnButtonSize;
 
   _maxNumberOfButtonsPerPage = NSIntegerMax;
-  _pageInsets = UIEdgeInsetsMake(kDefaultPadding, kDefaultPadding, kDefaultPadding, kDefaultPadding);
+  _contentInsetForPages = UIEdgeInsetsMake(kDefaultPadding, kDefaultPadding, kDefaultPadding, kDefaultPadding);
 
   // The paging scroll view.
   _pagingScrollView = [[NIPagingScrollView alloc] initWithFrame:self.bounds];
@@ -161,8 +161,8 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
       || nil == pButtonMargins) {
     return;
   }
-  CGFloat pageWidth = frame.size.width - self.pageInsets.left - self.pageInsets.right;
-  CGFloat pageHeight = frame.size.height - self.pageInsets.top - self.pageInsets.bottom;
+  CGFloat pageWidth = frame.size.width - self.contentInsetForPages.left - self.contentInsetForPages.right;
+  CGFloat pageHeight = frame.size.height - self.contentInsetForPages.top - self.contentInsetForPages.bottom;
 
   CGSize buttonDimensions = self.buttonSize;
   NSInteger numberOfColumns = self.numberOfColumns;
@@ -218,7 +218,7 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
                 numberOfColumns:&numberOfColumns
                   buttonMargins:&buttonMargins];
   
-  page.contentInset = self.pageInsets;
+  page.contentInset = self.contentInsetForPages;
   page.viewSize = buttonDimensions;
   page.viewMargins = buttonMargins;
 }
@@ -286,8 +286,8 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
                             page:&page
                            index:&buttonIndex]) {
 
-    if ([self.delegate respondsToSelector:@selector(launcherView:didSelectButton:onPage:atIndex:)]) {
-      [self.delegate launcherView:self didSelectButton:tappedButton onPage:page atIndex:buttonIndex];
+    if ([self.delegate respondsToSelector:@selector(launcherView:didSelectItemOnPage:atIndex:)]) {
+      [self.delegate launcherView:self didSelectItemOnPage:page atIndex:buttonIndex];
     }
 
   } else {
@@ -323,6 +323,7 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
   for (NSInteger buttonIndex = 0 ; buttonIndex < numberOfButtons; ++buttonIndex) {
     UIView<NILauncherButtonView>* buttonView = [self.dataSource launcherView:self buttonViewForPage:pageIndex atIndex:buttonIndex];
+    NSAssert(nil != buttonView, @"A non-nil UIView must be returned.");
     [buttonView.button addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
     [page addRecyclableView:(UIView<NIRecyclableView> *)buttonView];
   }
@@ -348,7 +349,12 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reloadData {
-  _numberOfPages = [self.dataSource numberOfPagesInLauncherView:self];
+  if ([self.dataSource respondsToSelector:@selector(numberOfPagesInLauncherView:)]) {
+    _numberOfPages = [self.dataSource numberOfPagesInLauncherView:self];
+
+  } else {
+    _numberOfPages = 1;
+  }
 
   self.pager.numberOfPages = _numberOfPages;
   [self.pagingScrollView reloadData];
@@ -367,11 +373,11 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setPageInsets:(UIEdgeInsets)pageInsets {
-  _pageInsets = pageInsets;
+- (void)setcontentInsetForPages:(UIEdgeInsets)contentInsetForPages {
+  _contentInsetForPages = contentInsetForPages;
 
   for (NILauncherPageView* pageView in self.pagingScrollView.visiblePages) {
-    pageView.contentInset = pageInsets;
+    pageView.contentInset = contentInsetForPages;
   }
 }
 

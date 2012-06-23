@@ -26,6 +26,8 @@
  * on the given display attributes.
  *
  * Views will be laid out from left to right and then from top to bottom.
+ *
+ *      @ingroup NimbusLauncher
  */
 @interface NILauncherPageView : NIPageView
 
