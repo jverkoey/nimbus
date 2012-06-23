@@ -19,6 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NimbusCore.h"
+
 @protocol NILauncherDelegate;
 @protocol NILauncherDataSource;
 @protocol NILauncherButtonView;
