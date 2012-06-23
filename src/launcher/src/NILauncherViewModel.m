@@ -60,6 +60,12 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)appendPage:(NSArray *)page {
+  [self.pages addObject:[page mutableCopy]];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)appendObject:(id<NILauncherViewObject>)object toPage:(NSInteger)pageIndex {
   NSAssert(self.pages.count > pageIndex && pageIndex >= 0, @"Page index is out of bounds.");
 

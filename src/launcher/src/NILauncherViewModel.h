@@ -31,6 +31,7 @@
 // Designated initializer.
 - (id)initWithArrayOfPages:(NSArray *)pages delegate:(id<NILauncherViewModelDelegate>)delegate;
 
+- (void)appendPage:(NSArray *)page;
 - (void)appendObject:(id<NILauncherViewObject>)object toPage:(NSInteger)pageIndex;
 
 - (id<NILauncherViewObject>)objectAtIndex:(NSInteger)index pageIndex:(NSInteger)pageIndex;
@@ -126,11 +127,18 @@
 /** @name Accessing Objects */
 
 /**
+ * Appends a page of launcher view objects.
+ *
+ *      @param page An array of launcher view objects to add.
+ *      @fn NILauncherViewModel::appendPage:
+ */
+
+/**
  * Appends a launcher view object to a given page.
  *
  *      @param object The object to add to the page.
  *      @param pageIndex The index of the page to add this object to.
- *      @fn NILauncherViewModel::addObject:toPage:
+ *      @fn NILauncherViewModel::appendObject:toPage:
  */
 
 /**
