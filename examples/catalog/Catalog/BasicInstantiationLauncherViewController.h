@@ -16,5 +16,6 @@
 
 #import "NimbusLauncher.h"
 
+// All docs are in the .m.
 @interface BasicInstantiationLauncherViewController : NILauncherViewController
 @end

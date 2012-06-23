@@ -265,10 +265,4 @@
   return NIIsSupportedOrientation(toInterfaceOrientation);
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  BasicInstantiationLauncherViewController* c = [[BasicInstantiationLauncherViewController alloc] init];
-  [self.navigationController pushViewController:c animated:YES];
-}
-
 @end
