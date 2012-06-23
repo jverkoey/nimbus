@@ -23,6 +23,8 @@
  * A launcher view model that complies to the NILauncherDataSource protocol.
  *
  * This model object allows you to keep all of your launcher view data together in one object.
+ * It also conforms to the NSCoding protocol, allowing you to read and write your model to disk
+ * so that you can store the state of your launcher.
  *
  *      @ingroup NimbusLauncherModel
  */
