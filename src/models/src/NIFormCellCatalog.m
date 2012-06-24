@@ -609,6 +609,7 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
             }
         }];
         _segmentedControl.tag = self.tag;
+        _segmentedControl.selectedSegmentIndex = segmentedControlElement.selectedIndex;
         
         [self setNeedsLayout];
         return YES;
@@ -705,7 +706,6 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
     
     self.textLabel.text = nil;
     _dateField.text = nil;
-    _datePicker.date = nil;
 }
 
 
@@ -732,6 +732,8 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
     _dateField.text = [NSDateFormatter localizedStringFromDate:_datePicker.date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
     
     NIDatePickerFormElement *datePickerElement = (NIDatePickerFormElement *)self.element;
+    datePickerElement.date = _datePicker.date;
+    
     if (nil != datePickerElement.didChangeSelector && nil != datePickerElement.didChangeTarget
         && [datePickerElement.didChangeTarget respondsToSelector:datePickerElement.didChangeSelector]) {
         // [datePickerElement.didChangeTarget performSelector:datePickerElement.didChangeSelector withObject:self.datePicker];
