@@ -404,6 +404,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setAttributesForLinks:(NSDictionary *)attributesForLinks {
+  if (_attributesForLinks != attributesForLinks) {
+    _attributesForLinks = attributesForLinks;
+
+    [self attributedTextDidChange];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)_matchesFromAttributedString:(NSString *)string {
   NSError* error = nil;
   NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:self.dataDetectorTypes
