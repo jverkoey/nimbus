@@ -32,18 +32,18 @@ typedef enum {
 @protocol NIAttributedLabelDelegate;
 
 /**
- * A UILabel that utilizes NSAttributedString to format its text.
+ * The NIAttributedLabel class provides support for displaying rich text with selectable links.
  *
  * Differences between UILabel and NIAttributedLabel:
  *
- * - UILineBreakModeHeadTruncation, UILineBreakModeTailTruncation, and
- *   UILineBreakModeMiddleTruncation only apply to single lines and will not wrap the label
- *   regardless of the numberOfLines property. To wrap liines with any of these line break modes
- *   you must explicitly add \n characters to the string.
+ * - @c UILineBreakModeHeadTruncation, @c UILineBreakModeTailTruncation, and
+ *   @c UILineBreakModeMiddleTruncation only apply to single lines and will not wrap the label
+ *   regardless of the @c numberOfLines property. To wrap lines with any of these line break modes
+ *   you must explicitly add newline characters to the string.
  * - When you assign an NSString to the text property the attributed label will create an
  *   attributed string that inherits all of the label's current styles.
- * - Text is aligned vertically to the top of the bounds rather than centered. You can change this
- *   using @link NIAttributedLabel::verticalTextAlignment verticalTextAlignment@endlink.
+ * - Text is aligned vertically to the top of the bounds by default rather than centered. You can
+ *   change this behavior using @link NIAttributedLabel::verticalTextAlignment verticalTextAlignment@endlink.
  *
  *      @ingroup NimbusAttributedLabel
  */
@@ -59,7 +59,7 @@ typedef enum {
 - (void)removeAllExplicitLinks; // Removes all links that were added by addLink:range:. Does not remove autodetected links.
 
 @property (nonatomic, retain) UIColor* linkColor; // Default: [UIColor blueColor]
-@property (nonatomic, retain) UIColor* highlightedLinkColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
+@property (nonatomic, retain) UIColor* highlightedLinkBackgroundColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
 @property (nonatomic, assign) BOOL linksHaveUnderlines; // Default: NO
 @property (nonatomic, retain) NSDictionary *attributesForLinks; // Default: nil
 
@@ -82,15 +82,22 @@ typedef enum {
 @end
 
 /**
- * The attributed label delegate used to inform of user interactions.
+ * The methods declared by the NIAttributedLabelDelegate protocol allow the adopting delegate to
+ * respond to messages from the NIAttributedLabel class and thus respond to selections.
  *
  * @ingroup NimbusAttributedLabel
  */
 @protocol NIAttributedLabelDelegate <NSObject>
 @optional
 
+/** @name Managing Selections */
+
 /**
- * Called when the user has tapped a link in the attributed label.
+ * Informs the delegate that a data detector result has been selected.
+ *
+ *      @param attributedLabel An attributed label informing the delegate of the selection.
+ *      @param result The data detector result that was selected.
+ *      @param point The point within @c attributedLabel where the result was tapped.
  */
 - (void)attributedLabel:(NIAttributedLabel*)attributedLabel didSelectTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point;
 
@@ -103,10 +110,9 @@ typedef enum {
  *
  * Setting this property explicitly will ignore the UILabel's existing style.
  *
- * If you would like to adopt the existing UILabel style then use setText:. The
- * attributedString will be created with the UILabel's style. You can then create a
- * mutable copy of the attributed string, modify it, and then assign the new attributed
- * string back to this label.
+ * If you would like to adopt the existing UILabel style then use setText: and the attributedString
+ * will be created with the UILabel's style. You can then create a mutable copy of the attributed
+ * string, modify it and assign the new attributed string back to the label.
  *
  *      @fn NIAttributedLabel::attributedString
  */
@@ -123,14 +129,16 @@ typedef enum {
  *
  * Note that link detection is an expensive operation. If you are planning to use attributed labels
  * in table views or similar high-performance situations then you should consider enabling defered
- * link detection by setting deferLinkDetection to YES.
+ * link detection by setting @link NIAttributedLabel::deferLinkDetection deferLinkDetection@endlink
+ * to YES.
  *
  *      @sa NIAttributedLabel::dataDetectorTypes
+ *      @sa NIAttributedLabel::deferLinkDetection
  *      @fn NIAttributedLabel::autoDetectLinks
  */
 
 /**
- * Whether to defer link detection to a separate thread.
+ * A Boolean value indicating whether to defer link detection to a separate thread.
  *
  * By default this is disabled.
  *
@@ -143,7 +151,8 @@ typedef enum {
  */
 
 /**
- * The types of data that will be detected when autoDetectLinks is enabled.
+ * The types of data that will be detected when
+ * @link NIAttributedLabel::autoDetectLinks autoDetectLinks@endlink is enabled.
  *
  * By default this is NSTextCheckingTypeLink. <a href="https://developer.apple.com/library/mac/#documentation/AppKit/Reference/NSTextCheckingResult_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40008798-CH1-DontLinkElementID_50">All available data detector types</a>.
  *
@@ -170,28 +179,32 @@ typedef enum {
 /** @name Accessing Link Display Styles */
 
 /**
- * The color of detected links.
+ * The text color of detected links.
  *
- * If no color is set, the default is [UIColor blueColor].
+ * The default text is [UIColor blueColor]. If linkColor is assigned nil then the link text color
+ * attributes will not be changed.
+ *
+ *  @image html NIAttributedLabelLinkAttributes.png "Link attributes"
  *
  *      @fn NIAttributedLabel::linkColor
  */
 
 /**
- * The color of the link background when the link is highlighted.
+ * The background color of the link's selection frame when the user is touching the link.
  *
  * The default is [UIColor colorWithWhite:0.5 alpha:0.5].
  *
- * If you do not want to highlight links when touched, set this to [UIColor clearColor]
- * or set it to the same color as your view's background color.
+ * If you do not want links to be highlighted when touched, set this to nil.
  *
- *      @fn NIAttributedLabel::highlightedLinkColor
+ *  @image html NIAttributedLabelLinkAttributes.png "Link attributes"
+ *
+ *      @fn NIAttributedLabel::highlightedLinkBackgroundColor
  */
 
 /**
- * Whether or not links should have underlines.
+ * A Boolean value indicating whether links should have underlines.
  *
- * By default this is NO.
+ * By default this is disabled.
  *
  * This affects all links in the label.
  *
@@ -201,7 +214,7 @@ typedef enum {
 /**
  * A dictionary of attributes to apply to links.
  *
- * This dictionary must contain CoreText properties. These attributes are applied after the color
+ * This dictionary must contain CoreText attributes. These attributes are applied after the color
  * and link styles have been applied to the link.
  *
  *      @fn NIAttributedLabel::attributesForLinks
@@ -212,11 +225,11 @@ typedef enum {
 /**
  * The vertical alignment of the text within the label's bounds.
  *
+ * The default is @c NIVerticalTextAlignmentTop. This is for performance reasons because the other
+ * modes require more computation. Aligning to the top is generally what you want anyway.
+ *
  * @c NIVerticalTextAlignmentBottom will align the text to the bottom of the bounds, while
  * @c NIVerticalTextAlignmentMiddle will center the text vertically.
- *
- * The default is @c NIVerticalTextAlignmentTop. This is for performance reasons because the other
- * modes require more computation and aligning to the top is generally what you want anyway.
  *
  *      @fn NIAttributedLabel::verticalTextAlignment
  */
@@ -224,11 +237,9 @@ typedef enum {
 /**
  * The underline style for the whole text.
  *
- * Value:
- * - kCTUnderlineStyleNone (default)
- * - kCTUnderlineStyleSingle
- * - kCTUnderlineStyleThick
- * - kCTUnderlineStyleDouble
+ * By default this is @c kCTUnderlineStyleNone.
+ *
+ * <a href="https://developer.apple.com/library/mac/#documentation/Carbon/Reference/CoreText_StringAttributes_Ref/Reference/reference.html#//apple_ref/c/tdef/CTUnderlineStyle">View all available styles</a>.
  *
  *      @fn NIAttributedLabel::underlineStyle
  */
@@ -236,48 +247,47 @@ typedef enum {
 /**
  * The underline style modifier for the whole text.
  *
- * Value:
- * - kCTUnderlinePatternSolid (default)
- * - kCTUnderlinePatternDot
- * - kCTUnderlinePatternDash
- * - kCTUnderlinePatternDashDot
- * - kCTUnderlinePatternDashDotDot
+ * By default this is @c kCTUnderlinePatternSolid.
+ *
+ * <a href="https://developer.apple.com/library/mac/#documentation/Carbon/Reference/CoreText_StringAttributes_Ref/Reference/reference.html#//apple_ref/c/tdef/CTUnderlineStyleModifiers">View all available style
+ * modifiers</a>.
  *
  *      @fn NIAttributedLabel::underlineStyleModifier
  */
 
 /**
- * A non-negative number specifying the amount of blur to apply to the label's shadow.
+ * A non-negative number specifying the amount of blur to apply to the label's text shadow.
  *
- * By default this is zero. In practice this is often the desired amount of blurring to apply to a
- * label shadow.
+ * By default this is zero.
  *
  *      @fn NIAttributedLabel::shadowBlur
  */
 
 /**
- * The stroke width for the whole text.
+ * Sets the stroke width for the text.
  *
- * Positive numbers will render only the stroke, where as negative numbers are for stroke
- * and fill.
+ * By default this is zero.
+ *
+ * Positive numbers will draw the stroke. Negative numbers will draw the stroke and fill.
  *
  *      @fn NIAttributedLabel::strokeWidth
  */
 
 /**
- * The stroke color for the whole text.
+ * Sets the stroke color for the text.
+ *
+ * By default this is nil.
  *
  *      @fn NIAttributedLabel::strokeColor
  */
 
 /**
- * The text kern for the whole text.
+ * Sets the kern for the text.
  *
- * The text kern indicates how many points the following character should be shifted from
- * its default offset.
+ * By default this is zero.
  *
- * A positive kern indicates a shift farther away from and a negative kern indicates a
- * shift closer.
+ * The text kern indicates how many points each character should be shifted from its default offset.
+ * A positive kern indicates a shift farther away. A negative kern indicates a shift closer.
  *
  *      @fn NIAttributedLabel::textKern
  */
@@ -285,71 +295,47 @@ typedef enum {
 /** @name Modifying Rich Text Styles in Ranges */
 
 /**
- * Sets the text color for a given range.
- *
- * Note that this will not change the overall text Color value
- * and textColor will return the default text color.
+ * Sets the text color for text in a given range.
  *
  *      @fn NIAttributedLabel::setTextColor:range:
  */
 
 /** 
- * Sets the font for a given range.
- *
- * Note that this will not change the default font value and font will return the default font.
+ * Sets the font for text in a given range.
  *
  *      @fn NIAttributedLabel::setFont:range:
  */
 
 /**
- * Sets the underline style and modifier for a given range.
+ * Sets the underline style and modifier for text in a given range.
  *
- * Note that this will not change the default underline style.
+ * <a href="https://developer.apple.com/library/mac/#documentation/Carbon/Reference/CoreText_StringAttributes_Ref/Reference/reference.html#//apple_ref/c/tdef/CTUnderlineStyle">View all available styles</a>.
  *
- * Style Values:
- *
- * - kCTUnderlineStyleNone (default)
- * - kCTUnderlineStyleSingle
- * - kCTUnderlineStyleThick
- * - kCTUnderlineStyleDouble
- *
- * Modifier Values:
- *
- * - kCTUnderlinePatternSolid (default)
- * - kCTUnderlinePatternDot
- * - kCTUnderlinePatternDash
- * - kCTUnderlinePatternDashDot
- * - kCTUnderlinePatternDashDotDot
+ * <a href="https://developer.apple.com/library/mac/#documentation/Carbon/Reference/CoreText_StringAttributes_Ref/Reference/reference.html#//apple_ref/c/tdef/CTUnderlineStyleModifiers">View all available style
+ * modifiers</a>.
  *
  *      @fn NIAttributedLabel::setUnderlineStyle:modifier:range:
  */
 
 /**
- * Modifies the stroke width for a given range.
+ * Sets the stroke width for text in a given range.
  *
- * A positive number will draw only the stroke.
- * A negative number wlll draw the stroke and fill.
+ * Positive numbers will draw the stroke. Negative numbers will draw the stroke and fill.
  *
  *      @fn NIAttributedLabel::setStrokeWidth:range:
  */
 
 /**
- * Modifies the stroke color for a given range.
- *
- * Normally you would use this in conjunction with setStrokeWidth:range:, passing in the same
- * range for both.
+ * Sets the stroke color for text in a given range.
  *
  *      @fn NIAttributedLabel::setStrokeColor:range:
  */
 
 /**
- * Modifies the text kern for a given range.
+ * Sets the kern for text in a given range.
  *
- * The text kern indicates how many points the following character should be shifted from
- * its default offset.
- *
- * A positive kern indicates a shift farther away and a negative kern indicates a
- * shift closer.
+ * The text kern indicates how many points each character should be shifted from its default offset.
+ * A positive kern indicates a shift farther away. A negative kern indicates a shift closer.
  *
  *      @fn NIAttributedLabel::setTextKern:range:
  */
@@ -357,7 +343,10 @@ typedef enum {
 /** @name Accessing the Delegate */
 
 /**
- * The attributed label notifies the delegate of any user interactions.
+ * The delegate of the attributed-label object.
+ *
+ * The delegate must adopt the NIAttributedLabelDelegate protocol. The NIAttributedLabel class,
+ * which does not retain the delegate, invokes each protocol method the delegate implements.
  *
  *      @fn NIAttributedLabel::delegate
  */

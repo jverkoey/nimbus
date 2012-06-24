@@ -37,6 +37,10 @@
  *
  * Source located in <code>src/attributedlabel/src</code>
  *
+@code
+#import "NimbusAttributedLabel.h"
+@endcode
+ *
  * <h2>Basic Use</h2>
  *
  * You can use an NIAttributedLabel just as you would use a UILabel. The attributed label creates
@@ -160,8 +164,7 @@ myLabel.underlineStyleModifier = kCTUnderlinePatternDashDot;
  *
  * @image html NIAttributedLabelExample2.png "Underline styles"
  *
- *    @remarks Underline style kCTUnderlineStyleThick only over renders a single line. It's
- *             possible that it is not supported with Helvetica Neue and is font specific.
+ *    @remarks Underline style kCTUnderlineStyleThick only over renders a single line.
  *
  *
  * <h3>Justifying Paragraphs</h3>

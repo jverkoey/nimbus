@@ -61,7 +61,7 @@
 @synthesize strokeColor = _strokeColor;
 @synthesize textKern = _textKern;
 @synthesize linkColor = _linkColor;
-@synthesize highlightedLinkColor = _highlightedLinkColor;
+@synthesize highlightedLinkBackgroundColor = _highlightedLinkBackgroundColor;
 @synthesize linksHaveUnderlines = _linksHaveUnderlines;
 @synthesize attributesForLinks = _attributesForLinks;
 @synthesize delegate = _delegate;
@@ -80,7 +80,7 @@
   self.verticalTextAlignment = NIVerticalTextAlignmentTop;
   self.linkColor = [UIColor blueColor];
   self.dataDetectorTypes = NSTextCheckingTypeLink;
-  self.highlightedLinkColor = [UIColor colorWithWhite:0.5f alpha:0.5f];
+  self.highlightedLinkBackgroundColor = [UIColor colorWithWhite:0.5f alpha:0.5f];
 }
 
 
@@ -384,9 +384,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setHighlightedLinkColor:(UIColor *)highlightedLinkColor {
-  if (_highlightedLinkColor != highlightedLinkColor) {
-    _highlightedLinkColor = highlightedLinkColor;
+- (void)sethighlightedLinkBackgroundColor:(UIColor *)highlightedLinkBackgroundColor {
+  if (_highlightedLinkBackgroundColor != highlightedLinkBackgroundColor) {
+    _highlightedLinkBackgroundColor = highlightedLinkBackgroundColor;
 
     [self attributedTextDidChange];
   }
@@ -697,8 +697,8 @@
     }
 
     // Draw the tapped link's highlight.
-    if (nil != self.touchedLink && nil != self.highlightedLinkColor) {
-      [self.highlightedLinkColor setFill];
+    if (nil != self.touchedLink && nil != self.highlightedLinkBackgroundColor) {
+      [self.highlightedLinkBackgroundColor setFill];
 
       NSRange linkRange = self.touchedLink.range;
 
