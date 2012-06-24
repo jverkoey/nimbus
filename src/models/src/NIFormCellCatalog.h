@@ -150,11 +150,12 @@
 @interface NIDatePickerFormElement : NIFormElement
 
 // Designated initializer
-+ (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date didChangeTarget:(id)target didChangeSelector:(SEL)selector;
-+ (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date;
++ (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date datePickerMode:(UIDatePickerMode)datePickerMode didChangeTarget:(id)target didChangeSelector:(SEL)selector;
++ (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date datePickerMode:(UIDatePickerMode)datePickerMode;
 
 @property (nonatomic, readwrite, copy) NSString *labelText;
 @property (nonatomic, readwrite, retain) NSDate *date;
+@property (nonatomic, readwrite, assign) UIDatePickerMode datePickerMode;
 @property (nonatomic, readwrite, assign) id didChangeTarget;
 @property (nonatomic, readwrite, assign) SEL didChangeSelector;
 

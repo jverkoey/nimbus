@@ -217,22 +217,24 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
 
 @synthesize labelText = _labelText;
 @synthesize date = _date;
+@synthesize datePickerMode = _datePickerMode;
 @synthesize didChangeTarget = _didChangeTarget;
 @synthesize didChangeSelector = _didChangeSelector;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date didChangeTarget:(id)target didChangeSelector:(SEL)selector {
++ (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date datePickerMode:(UIDatePickerMode)datePickerMode didChangeTarget:(id)target didChangeSelector:(SEL)selector {
     NIDatePickerFormElement *element = [super elementWithID:elementID];
     element.labelText = labelText;
     element.date = date;
+    element.datePickerMode = datePickerMode;
     element.didChangeTarget = target;
     element.didChangeSelector = selector;
     return element;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date {
-    return [self datePickerElementWithID:elementID labelText:labelText date:date didChangeTarget:nil didChangeSelector:nil];
++ (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date datePickerMode:(UIDatePickerMode)datePickerMode {
+    return [self datePickerElementWithID:elementID labelText:labelText date:date datePickerMode:datePickerMode didChangeTarget:nil didChangeSelector:nil];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -655,7 +657,6 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
         
         
         _datePicker = [[UIDatePicker alloc] init];
-        _datePicker.datePickerMode = UIDatePickerModeDateAndTime;
         [_datePicker addTarget:self action:@selector(selectedDateDidChange) forControlEvents:UIControlEventValueChanged];
         
         _dateField = [[UITextField alloc] init];
@@ -715,7 +716,34 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
         NIDatePickerFormElement *datePickerElement = (NIDatePickerFormElement *)self.element;
         
         self.textLabel.text = datePickerElement.labelText;
-        _dateField.text = [NSDateFormatter localizedStringFromDate:datePickerElement.date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+        self.datePicker.datePickerMode = datePickerElement.datePickerMode;
+        
+        switch (self.datePicker.datePickerMode) {
+            case UIDatePickerModeDate:
+                self.dateField.text = [NSDateFormatter localizedStringFromDate:self.datePicker.date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+                break;
+                
+            case UIDatePickerModeTime:
+                self.dateField.text = [NSDateFormatter localizedStringFromDate:self.datePicker.date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+                break;
+                
+            case UIDatePickerModeCountDownTimer:
+                if (self.datePicker.countDownDuration == 0) {
+                    self.dateField.text = NSLocalizedString(@"0 minutes", @"0 minutes");
+                } else {
+                    int hours = self.datePicker.countDownDuration / 3600;
+                    int minutes = (self.datePicker.countDownDuration - hours * 3600) / 60;
+                    
+                    self.dateField.text = [NSString stringWithFormat:NSLocalizedString(@"%d hours, %d min", @"datepicker countdown hours and minutes"), hours, minutes];
+                }
+                break;
+                
+            case UIDatePickerModeDateAndTime:
+            default:
+                self.dateField.text = [NSDateFormatter localizedStringFromDate:self.datePicker.date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+                break;
+        }
+        
         _dateField.tag = self.tag;
         
         _datePicker.date = datePickerElement.date;
@@ -729,8 +757,32 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)selectedDateDidChange {
-    _dateField.text = [NSDateFormatter localizedStringFromDate:_datePicker.date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
-    
+    switch (self.datePicker.datePickerMode) {
+        case UIDatePickerModeDate:
+            self.dateField.text = [NSDateFormatter localizedStringFromDate:_datePicker.date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+            break;
+            
+        case UIDatePickerModeTime:
+            self.dateField.text = [NSDateFormatter localizedStringFromDate:_datePicker.date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+            break;
+            
+        case UIDatePickerModeCountDownTimer:
+            if (self.datePicker.countDownDuration == 0) {
+                self.dateField.text = NSLocalizedString(@"0 minutes", @"0 minutes");
+            } else {
+                int hours = self.datePicker.countDownDuration / 3600;
+                int minutes = (self.datePicker.countDownDuration - hours * 3600) / 60;
+                
+                self.dateField.text = [NSString stringWithFormat:NSLocalizedString(@"%d hours, %d min", @"datepicker countdown hours and minutes"), hours, minutes];
+            }
+            break;
+            
+        case UIDatePickerModeDateAndTime:
+        default:
+            self.dateField.text = [NSDateFormatter localizedStringFromDate:_datePicker.date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+            break;
+    }
+
     NIDatePickerFormElement *datePickerElement = (NIDatePickerFormElement *)self.element;
     datePickerElement.date = _datePicker.date;
     
