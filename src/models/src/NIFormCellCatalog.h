@@ -113,6 +113,53 @@
 
 @end
 
+/**
+ * A segmented control form element.
+ *
+ * This element presents a segmented control. You can initialize it with a label for the cell, an array of NSString or UIImage objects acting as segments for the segmented control and a selectedIndex. The selectedIndex can be -1 if you don't want to preselect a segment.
+ *
+ * A delegate method (didChangeSelector) will be called on the didChangeTarget once a different segment is selected. The segmented control will be passed as an argument to this method.
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NISegmentedControlFormElement : NIFormElement
+
+// Designated initializer
++ (id)segmentedControlElementWithID:(NSInteger)elementID labelText:(NSString *)labelText segments:(NSArray *)segments selectedIndex:(NSInteger)selectedIndex didChangeTarget:(id)target didChangeSelector:(SEL)selector ;
+
++ (id)segmentedControlElementWithID:(NSInteger)elementID labelText:(NSString *)labelText segments:(NSArray *)segments selectedIndex:(NSInteger)selectedIndex;
+
+@property (nonatomic, readwrite, copy) NSString *labelText;
+@property (nonatomic, readwrite, assign) NSInteger selectedIndex;
+@property (nonatomic, readwrite, retain) NSArray *segments;
+@property (nonatomic, readwrite, assign) id didChangeTarget;
+@property (nonatomic, readwrite, assign) SEL didChangeSelector;
+
+@end
+
+/**
+ * A date picker form element.
+ *
+ * This element shows a date and allows to pick one by tapping the row.
+ * You can initialize it with a labelText showing on the left in the table cell, a date that will be used to initialize the date picker and a delegate target and method that gets called when a different date is selected.
+ *
+ * To change the date picker format you can access the datePicker property of the NIDatePickerFormElementCell sibling object.
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NIDatePickerFormElement : NIFormElement
+
+// Designated initializer
++ (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date didChangeTarget:(id)target didChangeSelector:(SEL)selector;
++ (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date;
+
+@property (nonatomic, readwrite, copy) NSString *labelText;
+@property (nonatomic, readwrite, retain) NSDate *date;
+@property (nonatomic, readwrite, assign) id didChangeTarget;
+@property (nonatomic, readwrite, assign) SEL didChangeSelector;
+
+@end
+
 
 #pragma mark -
 #pragma mark Form Element Cells
@@ -173,3 +220,27 @@
 - (id)elementWithID:(NSInteger)elementID;
 
 @end
+
+/**
+ * The cell sibling to NISegmentedControlFormElement.
+ *
+ * Displays a left-aligned label and a right-aligned segmented control.
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NISegmentedControlFormElementCell : NIFormElementCell
+@property (nonatomic, readonly, retain) UISegmentedControl *segmentedControl;
+@end
+
+/**
+ * The cell sibling to NIDatePickerFormElement
+ *
+ * Displays a left-aligned label and a right-aligned date.
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NIDatePickerFormElementCell : NIFormElementCell <UITextFieldDelegate>
+@property (nonatomic, readonly, retain) UITextField *dateField;
+@property (nonatomic, readonly, retain) UIDatePicker *datePicker;
+@end
+

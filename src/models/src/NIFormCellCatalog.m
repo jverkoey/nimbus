@@ -23,6 +23,7 @@
 
 static const CGFloat kSwitchLeftMargin = 10;
 static const CGFloat kImageViewRightMargin = 10;
+static const CGFloat kSegmentedControlVerticalMargin = 5;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -176,6 +177,75 @@ static const CGFloat kImageViewRightMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NISegmentedControlFormElement
+
+@synthesize labelText = _labelText;
+@synthesize selectedIndex = _selectedIndex;
+@synthesize segments = _segments;
+@synthesize didChangeTarget = _didChangeTarget;
+@synthesize didChangeSelector = _didChangeSelector;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)segmentedControlElementWithID:(NSInteger)elementID labelText:(NSString *)labelText segments:(NSArray *)segments selectedIndex:(NSInteger)selectedIndex didChangeTarget:(id)target didChangeSelector:(SEL)selector {
+    NISegmentedControlFormElement *element = [super elementWithID:elementID];
+    element.labelText = labelText;
+    element.selectedIndex = selectedIndex;
+    element.segments = segments;
+    element.didChangeTarget = target;
+    element.didChangeSelector = selector;
+    return element;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)segmentedControlElementWithID:(NSInteger)elementID labelText:(NSString *)labelText segments:(NSArray *)segments selectedIndex:(NSInteger)selectedIndex {
+    return [self segmentedControlElementWithID:elementID labelText:labelText segments:segments selectedIndex:selectedIndex didChangeTarget:nil didChangeSelector:nil];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)cellClass {
+    return [NISegmentedControlFormElementCell class];
+}
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NIDatePickerFormElement
+
+@synthesize labelText = _labelText;
+@synthesize date = _date;
+@synthesize didChangeTarget = _didChangeTarget;
+@synthesize didChangeSelector = _didChangeSelector;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date didChangeTarget:(id)target didChangeSelector:(SEL)selector {
+    NIDatePickerFormElement *element = [super elementWithID:elementID];
+    element.labelText = labelText;
+    element.date = date;
+    element.didChangeTarget = target;
+    element.didChangeSelector = selector;
+    return element;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date {
+    return [self datePickerElementWithID:elementID labelText:labelText date:date didChangeTarget:nil didChangeSelector:nil];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)cellClass {
+    return [NIDatePickerFormElementCell class];
+}
+
+@end
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 #pragma mark -
 #pragma mark Form Element Cells
 
@@ -466,6 +536,219 @@ static const CGFloat kImageViewRightMargin = 10;
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NISegmentedControlFormElementCell
+
+@synthesize segmentedControl = _segmentedControl;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        _segmentedControl = [[UISegmentedControl alloc] init];
+        [_segmentedControl addTarget:self action:@selector(selectedSegmentDidChangeValue) forControlEvents:UIControlEventValueChanged];
+        [self.contentView addSubview:self.segmentedControl];
+    }
+    return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    UIEdgeInsets contentPadding = NICellContentPadding();
+    CGRect contentFrame = UIEdgeInsetsInsetRect(self.contentView.frame, contentPadding);
+    
+    [_segmentedControl sizeToFit];
+    CGRect frame = _segmentedControl.frame;
+    frame.size.height = self.contentView.frame.size.height - (2 * kSegmentedControlVerticalMargin);
+    frame.origin.y = ceilf((self.contentView.frame.size.height - frame.size.height) / 2);
+    frame.origin.x = self.contentView.frame.size.width - frame.size.width - frame.origin.y;
+    _segmentedControl.frame = frame;
+    
+    frame = self.textLabel.frame;
+    CGFloat leftEdge = 0;
+    // Take into account the size of the image view.
+    if (nil != self.imageView.image) {
+        leftEdge = self.imageView.frame.size.width + kImageViewRightMargin;
+    }
+    frame.size.width = (self.contentView.frame.size.width
+                        - contentFrame.origin.x
+                        - _segmentedControl.frame.size.width
+                        - _segmentedControl.frame.origin.y
+                        - kSwitchLeftMargin
+                        - leftEdge);
+    self.textLabel.frame = frame;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    
+    self.textLabel.text = nil;
+    [self.segmentedControl removeAllSegments];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldUpdateCellWithObject:(id)object {
+    if ([super shouldUpdateCellWithObject:object]) {
+        NISegmentedControlFormElement *segmentedControlElement = (NISegmentedControlFormElement *)self.element;
+        
+        self.textLabel.text = segmentedControlElement.labelText;
+        [segmentedControlElement.segments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ([obj isKindOfClass:[NSString class]]) {
+                [_segmentedControl insertSegmentWithTitle:obj atIndex:idx animated:NO];
+            } else if ([obj isKindOfClass:[UIImage class]]) {
+                [_segmentedControl insertSegmentWithImage:obj atIndex:idx animated:NO];
+            }
+        }];
+        _segmentedControl.tag = self.tag;
+        
+        [self setNeedsLayout];
+        return YES;
+    }
+    return NO;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)selectedSegmentDidChangeValue {
+    NISegmentedControlFormElement *segmentedControlElement = (NISegmentedControlFormElement *)self.element;
+    segmentedControlElement.selectedIndex = self.segmentedControl.selectedSegmentIndex;
+    
+    if (nil != segmentedControlElement.didChangeSelector && nil != segmentedControlElement.didChangeTarget
+        && [segmentedControlElement.didChangeTarget respondsToSelector:segmentedControlElement.didChangeSelector]) {
+        
+        // [segmentedControlElement.didChangeTarget performSelector:segmentedControlElement.didChangeSelector
+        //                                               withObject:_segmentedControl];
+
+        
+        // The following is a workaround to supress the warning and requires <objc/message.h>
+        objc_msgSend(segmentedControlElement.didChangeTarget, 
+                     segmentedControlElement.didChangeSelector, _segmentedControl);
+
+    }
+}
+
+@end
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NIDatePickerFormElementCell
+
+@synthesize dateField = _dateField;
+@synthesize datePicker = _datePicker;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        
+        _datePicker = [[UIDatePicker alloc] init];
+        _datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+        [_datePicker addTarget:self action:@selector(selectedDateDidChange) forControlEvents:UIControlEventValueChanged];
+        
+        _dateField = [[UITextField alloc] init];
+        _dateField.delegate = self;
+        _dateField.font = [UIFont systemFontOfSize:16.0f];
+        _dateField.minimumFontSize = 10.0f;
+        _dateField.backgroundColor = [UIColor clearColor];
+        _dateField.adjustsFontSizeToFitWidth = YES;
+        _dateField.textAlignment = UITextAlignmentRight;
+        _dateField.inputView = _datePicker;
+        [self.contentView addSubview:_dateField];
+    }
+    return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    UIEdgeInsets contentPadding = NICellContentPadding();
+    CGRect contentFrame = UIEdgeInsetsInsetRect(self.contentView.frame, contentPadding);
+    
+    [_dateField sizeToFit];
+    CGRect frame = _dateField.frame;
+    frame.origin.y = ceilf((self.contentView.frame.size.height - frame.size.height) / 2);
+    frame.origin.x = self.contentView.frame.size.width - frame.size.width - frame.origin.y;
+    _dateField.frame = frame;
+    
+    frame = self.textLabel.frame;
+    CGFloat leftEdge = 0;
+    // Take into account the size of the image view.
+    if (nil != self.imageView.image) {
+        leftEdge = self.imageView.frame.size.width + kImageViewRightMargin;
+    }
+    frame.size.width = (self.contentView.frame.size.width
+                        - contentFrame.origin.x
+                        - _dateField.frame.size.width
+                        - _dateField.frame.origin.y
+                        - leftEdge);
+    self.textLabel.frame = frame;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    
+    self.textLabel.text = nil;
+    _dateField.text = nil;
+    _datePicker.date = nil;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldUpdateCellWithObject:(id)object {
+    if ([super shouldUpdateCellWithObject:object]) {
+        NIDatePickerFormElement *datePickerElement = (NIDatePickerFormElement *)self.element;
+        
+        self.textLabel.text = datePickerElement.labelText;
+        _dateField.text = [NSDateFormatter localizedStringFromDate:datePickerElement.date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+        _dateField.tag = self.tag;
+        
+        _datePicker.date = datePickerElement.date;
+        _datePicker.tag = self.tag;
+        
+        [self setNeedsLayout];
+        return YES;
+    }
+    return NO;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)selectedDateDidChange {
+    _dateField.text = [NSDateFormatter localizedStringFromDate:_datePicker.date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+    
+    NIDatePickerFormElement *datePickerElement = (NIDatePickerFormElement *)self.element;
+    if (nil != datePickerElement.didChangeSelector && nil != datePickerElement.didChangeTarget
+        && [datePickerElement.didChangeTarget respondsToSelector:datePickerElement.didChangeSelector]) {
+        // [datePickerElement.didChangeTarget performSelector:datePickerElement.didChangeSelector withObject:self.datePicker];
+        // The following is a workaround to supress the warning and requires <objc/message.h>
+        objc_msgSend(datePickerElement.didChangeTarget, 
+                     datePickerElement.didChangeSelector, _datePicker);
+        
+
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return NO;
+}
+
+@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
