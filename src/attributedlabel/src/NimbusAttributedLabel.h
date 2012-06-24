@@ -132,13 +132,9 @@ myLabel.autoDetectLinks = YES;
  * @link NIAttributedLabel::addLink:range: addLink:range:@endlink method.
  * 
 @code
-- (void)viewDidLoad {
-  [super viewDidLoad];
-
-  // Add a custom link to the text 'nimbus'.
-  [myLabel addLink:[NSURL URLWithString:@"nimbus://custom/url"]
-             range:[myLabel.text rangeOfString:@"nimbus"]];
-}
+// Add a custom link to the text 'nimbus'.
+[myLabel addLink:[NSURL URLWithString:@"nimbus://custom/url"]
+           range:[myLabel.text rangeOfString:@"nimbus"]];
 @endcode
  *
  *
