@@ -53,10 +53,12 @@ label.text = @"Nimbus";
  *
  * <h2>Interface Builder</h2>
  *
- * You can use an attributed label within Interface Builder by creating a regualar UILabel and
- * changing its class to NIAttributedLabel. This will allow you to set styles that apply to
+ * You can use an attributed label within Interface Builder by creating a UILabel and changing its
+ * class to NIAttributedLabel. This will allow you to set styles that apply to
  * the entire string. If you want to style specific parts of the string then you will
  * need to do this in code.
+ *
+ *  @image html NIAttributedLabelIB.png "Configuring an attributed label in Interface Builder"
  *
  *
  * <h2>Feature Overview</h2>
@@ -72,11 +74,12 @@ label.text = @"Nimbus";
  *
  * <h3>Automatic Link Detection</h3>
  *
- * Automatic link detection is provided using the NSDataDetector facilities of iOS 4.0.
- * It is off by default and can be enabled by setting
+ * Automatic link detection is provided using <a href="https://developer.apple.com/library/mac/#documentation/Foundation/Reference/NSDataDetector_Class/Reference/Reference.html">NSDataDetector</a>.
+ * Link detection is off by default and can be enabled by setting
  * @link NIAttributedLabel::autoDetectLinks autoDetectLinks@endlink to YES. You may configure
  * the types of data that are detected by modifying the
- * @link NIAttributedLabel::dataDetectorTypes dataDetectorTypes@endlink property.
+ * @link NIAttributedLabel::dataDetectorTypes dataDetectorTypes@endlink property. By default only
+ * urls will be detected.
  *
  *  @image html NIAttributedLabel_autoDetectLinksOff.png "Before enabling autoDetectLinks"
  *
@@ -87,8 +90,8 @@ myLabel.autoDetectLinks = YES;
  *
  *  @image html NIAttributedLabel_autoDetectLinksOn.png "After enabling autoDetectLinks"
  *
- * Enabling automatic link detection will enable user interation with the label view so that the
- * user can tap the detected links.
+ * Enabling automatic link detection will automatically enable user interation with the label view
+ * so that the user can tap the detected links.
  *
  * Detected links will use @link NIAttributedLabel::linkColor linkColor@endlink and
  * @link NIAttributedLabel::highlightedLinkColor highlightedLinkColor@endlink to differentiate
@@ -98,6 +101,7 @@ myLabel.autoDetectLinks = YES;
  * attributes in more detail by directly modifying the
  * @link NIAttributedLabel::attributesForLinks attributesForLinks@endlink property.
  *
+ *  @image html NIAttributedLabelLinkAttributes.png "Link attributes"
  *
  * <h4>A note on performance</h4>
  *
