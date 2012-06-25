@@ -121,11 +121,41 @@ typedef enum {
                                         value:45
                                  minimumValue:0
                                  maximumValue:100],
-     [NISliderFormElement sliderElementWithID:0
-                                    labelText:@"Slider %.2f"
-                                        value:45
-                                 minimumValue:0
-                                 maximumValue:100],
+
+     @"NISegmentedControlFormElement",
+     [NISegmentedControlFormElement segmentedControlElementWithID:0
+                                                        labelText:@"Text segments"
+                                                         segments:[NSArray arrayWithObjects:
+                                                                   @"one", @"two", nil]
+                                                    selectedIndex:0],
+     [NISegmentedControlFormElement segmentedControlElementWithID:0
+                                                        labelText:@"Image segments"
+                                                         segments:[NSArray arrayWithObjects:
+                                                                   [UIImage imageNamed:@"star.png"],
+                                                                   [UIImage imageNamed:@"circle.png"],
+                                                                   nil]
+                                                    selectedIndex:-1 
+                                                  didChangeTarget:self 
+                                                didChangeSelector:@selector(segmentedControlWithImagesDidChangeValue:)],
+     @"NIDatePickerFormElement",
+     [NIDatePickerFormElement datePickerElementWithID:0
+                                            labelText:@"Date and time"
+                                                 date:[NSDate date]
+                                       datePickerMode:UIDatePickerModeDateAndTime],
+     [NIDatePickerFormElement datePickerElementWithID:0
+                                            labelText:@"Date only"
+                                                 date:[NSDate date] 
+                                       datePickerMode:UIDatePickerModeDate],
+     [NIDatePickerFormElement datePickerElementWithID:0
+                                            labelText:@"Time only" 
+                                                 date:[NSDate date]
+                                       datePickerMode:UIDatePickerModeTime 
+                                      didChangeTarget:self 
+                                    didChangeSelector:@selector(datePickerDidChangeValue:)],
+     [NIDatePickerFormElement datePickerElementWithID:0
+                                            labelText:@"Countdown"
+                                                 date:[NSDate date]
+                                       datePickerMode:UIDatePickerModeCountDownTimer],
      nil];
     
     self.radioGroup.selectedIdentifier = RadioOption1;
@@ -169,6 +199,19 @@ typedef enum {
   return NIIsSupportedOrientation(toInterfaceOrientation);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)segmentedControlWithImagesDidChangeValue:(UISegmentedControl *)segmentedControl {
+    NIDPRINT(@"Segmented control changed value to index %d", segmentedControl.selectedSegmentIndex);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)datePickerDidChangeValue:(UIDatePicker *)picker {
+    NIDPRINT(@"Time only date picker changed value to %@", 
+             [NSDateFormatter localizedStringFromDate:picker.date 
+                                            dateStyle:NSDateFormatterNoStyle
+                                            timeStyle:NSDateFormatterShortStyle]);
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
