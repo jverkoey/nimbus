@@ -133,8 +133,8 @@
  *      @param elementID An ID for this element.
  *      @param labelText Text to show on the left side of the form cell.
  *      @param segments An array containing NSString or UIImage objects that will be used as 
- *                       segments of the control. The order in the array is used as order of the 
- *                       segments.
+ *                      segments of the control. The order in the array is used as order of the 
+ *                      segments.
  *      @param selectedIndex Index of the selected segment. -1 if no segment is selected.
  *      @param target Receiver for didChangeSelector calls.
  *      @param selector Method that is called when a segment is selected.
@@ -147,8 +147,8 @@
  *      @param elementID An ID for this element.
  *      @param labelText Text to show on the left side of the form cell.
  *      @param segments An array containing NSString or UIImage objects that will be used as 
- *                       segments of the control. The order in the array is used as order of the 
- *                       segments.
+ *                      segments of the control. The order in the array is used as order of the
+ *                      segments.
  *      @param selectedIndex Index of the selected segment. -1 if no segment is selected.
  */
 + (id)segmentedControlElementWithID:(NSInteger)elementID labelText:(NSString *)labelText segments:(NSArray *)segments selectedIndex:(NSInteger)selectedIndex;
@@ -164,7 +164,8 @@
 /**
  * A date picker form element.
  *
- * This element shows a date and allows to pick one by tapping the row.
+ * This element shows a date that can be modified.
+ *
  * You can initialize it with a labelText showing on the left in the table cell, a date that will 
  * be used to initialize the date picker and a delegate target and method that gets called when a 
  * different date is selected.
