@@ -35,7 +35,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier {
   if ((self = [super initWithReuseIdentifier:reuseIdentifier])) {
-    _mutableRecyclableViews = [[NSMutableArray alloc] init];
+    _mutableRecyclableViews = [NSMutableArray array];
 
     // The view frames are calculated manually in layoutSubviews.
     self.autoresizesSubviews = NO;
