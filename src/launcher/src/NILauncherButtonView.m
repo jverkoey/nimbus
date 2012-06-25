@@ -16,6 +16,7 @@
 // limitations under the License.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "NILauncherButtonView.h"
 
 #import "NILauncherViewObject.h"
