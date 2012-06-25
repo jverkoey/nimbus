@@ -127,9 +127,30 @@
  */
 @interface NISegmentedControlFormElement : NIFormElement
 
-// Designated initializer
+/**
+ * Initializes a segmented control form cell with callback method for value change events.
+ *
+ *      @param elementID An ID for this element.
+ *      @param labelText Text to show on the left side of the form cell.
+ *      @param segments An array containing NSString or UIImage objects that will be used as 
+ *                       segments of the control. The order in the array is used as order of the 
+ *                       segments.
+ *      @param selectedIndex Index of the selected segment. -1 if no segment is selected.
+ *      @param target Receiver for didChangeSelector calls.
+ *      @param selector Method that is called when a segment is selected.
+ */
 + (id)segmentedControlElementWithID:(NSInteger)elementID labelText:(NSString *)labelText segments:(NSArray *)segments selectedIndex:(NSInteger)selectedIndex didChangeTarget:(id)target didChangeSelector:(SEL)selector ;
 
+/**
+ * Initializes a segmented control form cell.
+ *
+ *      @param elementID An ID for this element.
+ *      @param labelText Text to show on the left side of the form cell.
+ *      @param segments An array containing NSString or UIImage objects that will be used as 
+ *                       segments of the control. The order in the array is used as order of the 
+ *                       segments.
+ *      @param selectedIndex Index of the selected segment. -1 if no segment is selected.
+ */
 + (id)segmentedControlElementWithID:(NSInteger)elementID labelText:(NSString *)labelText segments:(NSArray *)segments selectedIndex:(NSInteger)selectedIndex;
 
 @property (nonatomic, readwrite, copy) NSString *labelText;
@@ -155,8 +176,26 @@
  */
 @interface NIDatePickerFormElement : NIFormElement
 
-// Designated initializer
+/**
+ * Initializes a date picker form element with callback method for value changed events.
+ *
+ *      @param elementID An ID for this element.
+ *      @param labelText Text to show on the left side of the form cell.
+ *      @param date Initial date to show in the picker
+ *      @param datePickerMode UIDatePickerMode to user for the date picker
+ *      @param target Receiver for didChangeSelector calls.
+ *      @param selector Method that is called when a segment is selected.
+ */
 + (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date datePickerMode:(UIDatePickerMode)datePickerMode didChangeTarget:(id)target didChangeSelector:(SEL)selector;
+
+/**
+ * Initializes a date picker form element with callback method for value changed events.
+ *
+ *      @param elementID An ID for this element.
+ *      @param labelText Text to show on the left side of the form cell.
+ *      @param date Initial date to show in the picker
+ *      @param datePickerMode UIDatePickerMode to user for the date picker
+ */
 + (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date datePickerMode:(UIDatePickerMode)datePickerMode;
 
 @property (nonatomic, readwrite, copy) NSString *labelText;
