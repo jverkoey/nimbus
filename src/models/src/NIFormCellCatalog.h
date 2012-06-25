@@ -116,9 +116,12 @@
 /**
  * A segmented control form element.
  *
- * This element presents a segmented control. You can initialize it with a label for the cell, an array of NSString or UIImage objects acting as segments for the segmented control and a selectedIndex. The selectedIndex can be -1 if you don't want to preselect a segment.
+ * This element presents a segmented control. You can initialize it with a label for the cell, an 
+ * array of NSString or UIImage objects acting as segments for the segmented control and a 
+ * selectedIndex. The selectedIndex can be -1 if you don't want to preselect a segment.
  *
- * A delegate method (didChangeSelector) will be called on the didChangeTarget once a different segment is selected. The segmented control will be passed as an argument to this method.
+ * A delegate method (didChangeSelector) will be called on the didChangeTarget once a different 
+ * segment is selected. The segmented control will be passed as an argument to this method.
  *
  *      @ingroup TableCellCatalog
  */
@@ -141,9 +144,12 @@
  * A date picker form element.
  *
  * This element shows a date and allows to pick one by tapping the row.
- * You can initialize it with a labelText showing on the left in the table cell, a date that will be used to initialize the date picker and a delegate target and method that gets called when a different date is selected.
+ * You can initialize it with a labelText showing on the left in the table cell, a date that will 
+ * be used to initialize the date picker and a delegate target and method that gets called when a 
+ * different date is selected.
  *
- * To change the date picker format you can access the datePicker property of the NIDatePickerFormElementCell sibling object.
+ * To change the date picker format you can access the datePicker property of the 
+ * NIDatePickerFormElementCell sibling object.
  *
  *      @ingroup TableCellCatalog
  */

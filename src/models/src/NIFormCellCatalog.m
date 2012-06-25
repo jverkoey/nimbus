@@ -326,9 +326,8 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)shouldUpdateCellWithObject:(id)object {
-  if ([super shouldUpdateCellWithObject:object]) {
-    NITextInputFormElement* textInputElement = (NITextInputFormElement *)self.element;
+- (BOOL)shouldUpdateCellWithObject:(NITextInputFormElement *)textInputElement {
+  if ([super shouldUpdateCellWithObject:textInputElement]) {
     _textField.placeholder = textInputElement.placeholderText;
     _textField.text = textInputElement.value;
     _textField.delegate = textInputElement.delegate;
@@ -381,7 +380,7 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
 
   [_switchControl sizeToFit];
   CGRect frame = _switchControl.frame;
-  frame.origin.y = ceilf((self.contentView.frame.size.height - frame.size.height) / 2);
+  frame.origin.y = floorf((self.contentView.frame.size.height - frame.size.height) / 2);
   frame.origin.x = self.contentView.frame.size.width - frame.size.width - frame.origin.y;
   _switchControl.frame = frame;
 
@@ -410,9 +409,8 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)shouldUpdateCellWithObject:(id)object {
-  if ([super shouldUpdateCellWithObject:object]) {
-    NISwitchFormElement* switchElement = (NISwitchFormElement *)self.element;
+- (BOOL)shouldUpdateCellWithObject:(NISwitchFormElement *)switchElement {
+  if ([super shouldUpdateCellWithObject:switchElement]) {
     _switchControl.on = switchElement.value;
     self.textLabel.text = switchElement.labelText;
 
@@ -483,7 +481,7 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
   static const CGFloat kSliderLeftMargin = 8;
   [_sliderControl sizeToFit];
   frame = _sliderControl.frame;
-  frame.origin.y = ceilf((self.contentView.frame.size.height - frame.size.height) / 2);
+  frame.origin.y = floorf((self.contentView.frame.size.height - frame.size.height) / 2);
   frame.origin.x = self.textLabel.frame.origin.x + self.textLabel.frame.size.width + kSliderLeftMargin;
   frame.size.width = contentFrame.size.width - frame.origin.x;
   _sliderControl.frame = frame;
@@ -499,9 +497,8 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)shouldUpdateCellWithObject:(id)object {
-  if ([super shouldUpdateCellWithObject:object]) {
-    NISliderFormElement* sliderElement = (NISliderFormElement *)self.element;
+- (BOOL)shouldUpdateCellWithObject:(NISliderFormElement *)sliderElement {
+  if ([super shouldUpdateCellWithObject:sliderElement]) {
     _sliderControl.minimumValue = sliderElement.minimumValue;
     _sliderControl.maximumValue = sliderElement.maximumValue;
     _sliderControl.value = sliderElement.value;
@@ -568,7 +565,7 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
     [_segmentedControl sizeToFit];
     CGRect frame = _segmentedControl.frame;
     frame.size.height = self.contentView.frame.size.height - (2 * kSegmentedControlVerticalMargin);
-    frame.origin.y = ceilf((self.contentView.frame.size.height - frame.size.height) / 2);
+    frame.origin.y = floorf((self.contentView.frame.size.height - frame.size.height) / 2);
     frame.origin.x = self.contentView.frame.size.width - frame.size.width - frame.origin.y;
     _segmentedControl.frame = frame;
     
@@ -598,10 +595,8 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)shouldUpdateCellWithObject:(id)object {
-    if ([super shouldUpdateCellWithObject:object]) {
-        NISegmentedControlFormElement *segmentedControlElement = (NISegmentedControlFormElement *)self.element;
-        
+- (BOOL)shouldUpdateCellWithObject:(NISegmentedControlFormElement *)segmentedControlElement {
+    if ([super shouldUpdateCellWithObject:segmentedControlElement]) {
         self.textLabel.text = segmentedControlElement.labelText;
         [segmentedControlElement.segments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             if ([obj isKindOfClass:[NSString class]]) {
@@ -682,7 +677,7 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
     
     [_dateField sizeToFit];
     CGRect frame = _dateField.frame;
-    frame.origin.y = ceilf((self.contentView.frame.size.height - frame.size.height) / 2);
+    frame.origin.y = floorf((self.contentView.frame.size.height - frame.size.height) / 2);
     frame.origin.x = self.contentView.frame.size.width - frame.size.width - frame.origin.y;
     _dateField.frame = frame;
     
@@ -711,10 +706,8 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)shouldUpdateCellWithObject:(id)object {
-    if ([super shouldUpdateCellWithObject:object]) {
-        NIDatePickerFormElement *datePickerElement = (NIDatePickerFormElement *)self.element;
-        
+- (BOOL)shouldUpdateCellWithObject:(NIDatePickerFormElement *)datePickerElement {
+    if ([super shouldUpdateCellWithObject:datePickerElement]) {
         self.textLabel.text = datePickerElement.labelText;
         self.datePicker.datePickerMode = datePickerElement.datePickerMode;
         
