@@ -23,7 +23,8 @@
 
 static const CGFloat kSwitchLeftMargin = 10;
 static const CGFloat kImageViewRightMargin = 10;
-static const CGFloat kSegmentedControlVerticalMargin = 5;
+static const CGFloat kSegmentedControlMargin = 5;
+static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -564,9 +565,9 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
     
     [_segmentedControl sizeToFit];
     CGRect frame = _segmentedControl.frame;
-    frame.size.height = self.contentView.frame.size.height - (2 * kSegmentedControlVerticalMargin);
+    frame.size.height = self.contentView.frame.size.height - (2 * kSegmentedControlMargin);
     frame.origin.y = floorf((self.contentView.frame.size.height - frame.size.height) / 2);
-    frame.origin.x = self.contentView.frame.size.width - frame.size.width - frame.origin.y;
+    frame.origin.x = self.contentView.frame.size.width - frame.size.width - kSegmentedControlMargin;
     _segmentedControl.frame = frame;
     
     frame = self.textLabel.frame;
@@ -652,7 +653,9 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
         
         
         _datePicker = [[UIDatePicker alloc] init];
-        [_datePicker addTarget:self action:@selector(selectedDateDidChange) forControlEvents:UIControlEventValueChanged];
+        [_datePicker addTarget:self 
+                        action:@selector(selectedDateDidChange) 
+              forControlEvents:UIControlEventValueChanged];
         
         _dateField = [[UITextField alloc] init];
         _dateField.delegate = self;
@@ -678,7 +681,7 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
     [_dateField sizeToFit];
     CGRect frame = _dateField.frame;
     frame.origin.y = floorf((self.contentView.frame.size.height - frame.size.height) / 2);
-    frame.origin.x = self.contentView.frame.size.width - frame.size.width - frame.origin.y;
+    frame.origin.x = self.contentView.frame.size.width - frame.size.width - kDatePickerTextFieldRightMargin;
     _dateField.frame = frame;
     
     frame = self.textLabel.frame;
@@ -713,11 +716,15 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
         
         switch (self.datePicker.datePickerMode) {
             case UIDatePickerModeDate:
-                self.dateField.text = [NSDateFormatter localizedStringFromDate:self.datePicker.date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+                self.dateField.text = [NSDateFormatter localizedStringFromDate:self.datePicker.date 
+                                                                     dateStyle:NSDateFormatterShortStyle 
+                                                                     timeStyle:NSDateFormatterNoStyle];
                 break;
                 
             case UIDatePickerModeTime:
-                self.dateField.text = [NSDateFormatter localizedStringFromDate:self.datePicker.date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+                self.dateField.text = [NSDateFormatter localizedStringFromDate:self.datePicker.date 
+                                                                     dateStyle:NSDateFormatterNoStyle 
+                                                                     timeStyle:NSDateFormatterShortStyle];
                 break;
                 
             case UIDatePickerModeCountDownTimer:
@@ -727,13 +734,19 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
                     int hours = self.datePicker.countDownDuration / 3600;
                     int minutes = (self.datePicker.countDownDuration - hours * 3600) / 60;
                     
-                    self.dateField.text = [NSString stringWithFormat:NSLocalizedString(@"%d hours, %d min", @"datepicker countdown hours and minutes"), hours, minutes];
+                    self.dateField.text = [NSString stringWithFormat:
+                                           NSLocalizedString(@"%d hours, %d min", 
+                                                             @"datepicker countdown hours and minutes"), 
+                                           hours, 
+                                           minutes];
                 }
                 break;
                 
             case UIDatePickerModeDateAndTime:
             default:
-                self.dateField.text = [NSDateFormatter localizedStringFromDate:self.datePicker.date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+                self.dateField.text = [NSDateFormatter localizedStringFromDate:self.datePicker.date 
+                                                                     dateStyle:NSDateFormatterShortStyle 
+                                                                     timeStyle:NSDateFormatterShortStyle];
                 break;
         }
         
@@ -752,11 +765,15 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
 - (void)selectedDateDidChange {
     switch (self.datePicker.datePickerMode) {
         case UIDatePickerModeDate:
-            self.dateField.text = [NSDateFormatter localizedStringFromDate:_datePicker.date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+            self.dateField.text = [NSDateFormatter localizedStringFromDate:_datePicker.date 
+                                                                 dateStyle:NSDateFormatterShortStyle 
+                                                                 timeStyle:NSDateFormatterNoStyle];
             break;
             
         case UIDatePickerModeTime:
-            self.dateField.text = [NSDateFormatter localizedStringFromDate:_datePicker.date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+            self.dateField.text = [NSDateFormatter localizedStringFromDate:_datePicker.date 
+                                                                 dateStyle:NSDateFormatterNoStyle 
+                                                                 timeStyle:NSDateFormatterShortStyle];
             break;
             
         case UIDatePickerModeCountDownTimer:
@@ -766,13 +783,19 @@ static const CGFloat kSegmentedControlVerticalMargin = 5;
                 int hours = self.datePicker.countDownDuration / 3600;
                 int minutes = (self.datePicker.countDownDuration - hours * 3600) / 60;
                 
-                self.dateField.text = [NSString stringWithFormat:NSLocalizedString(@"%d hours, %d min", @"datepicker countdown hours and minutes"), hours, minutes];
+                self.dateField.text = [NSString stringWithFormat:
+                                       NSLocalizedString(@"%d hours, %d min", 
+                                                         @"datepicker countdown hours and minutes"), 
+                                       hours, 
+                                       minutes];
             }
             break;
             
         case UIDatePickerModeDateAndTime:
         default:
-            self.dateField.text = [NSDateFormatter localizedStringFromDate:_datePicker.date dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+            self.dateField.text = [NSDateFormatter localizedStringFromDate:_datePicker.date 
+                                                                 dateStyle:NSDateFormatterShortStyle 
+                                                                 timeStyle:NSDateFormatterShortStyle];
             break;
     }
 
