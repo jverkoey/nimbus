@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31C6F5A21599044800DD45EF /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F5A01599044800DD45EF /* circle.png */; };
+		31C6F5A31599044800DD45EF /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 31C6F5A11599044800DD45EF /* star.png */; };
 		6601D8E713FC7BB500B884DC /* NIFormCellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6601D8E613FC7BB500B884DC /* NIFormCellCatalog.m */; };
 		6601D8EA13FC87BA00B884DC /* NICellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6601D8E913FC87BA00B884DC /* NICellFactory.m */; };
 		663BF5631587304F0066B814 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 663BF55D1587304F0066B814 /* Icon-72.png */; };
@@ -53,6 +55,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31C6F5A01599044800DD45EF /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		31C6F5A11599044800DD45EF /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		6601D8E513FC7BB500B884DC /* NIFormCellCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIFormCellCatalog.h; path = ../../../../src/models/src/NIFormCellCatalog.h; sourceTree = "<group>"; };
 		6601D8E613FC7BB500B884DC /* NIFormCellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIFormCellCatalog.m; path = ../../../../src/models/src/NIFormCellCatalog.m; sourceTree = "<group>"; };
 		6601D8E813FC87B900B884DC /* NICellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICellFactory.h; path = ../../../../src/models/src/NICellFactory.h; sourceTree = "<group>"; };
@@ -289,6 +293,8 @@
 		66FE7D9013FB90C40061B987 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				31C6F5A01599044800DD45EF /* circle.png */,
+				31C6F5A11599044800DD45EF /* star.png */,
 				66FE7D9113FB90C40061B987 /* ModelCatalog-Info.plist */,
 			);
 			name = Resources;
@@ -427,6 +433,8 @@
 				663BF5681587304F0066B814 /* Icon@2x.png in Resources */,
 				663BF56F1587318A0066B814 /* Default.png in Resources */,
 				663BF5701587318A0066B814 /* Default@2x.png in Resources */,
+				31C6F5A21599044800DD45EF /* circle.png in Resources */,
+				31C6F5A31599044800DD45EF /* star.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
