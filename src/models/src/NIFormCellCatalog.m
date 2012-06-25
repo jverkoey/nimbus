@@ -503,7 +503,7 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
     _sliderControl.minimumValue = sliderElement.minimumValue;
     _sliderControl.maximumValue = sliderElement.maximumValue;
     _sliderControl.value = sliderElement.value;
-    self.textLabel.text = [NSString stringWithFormat:sliderElement.labelText, sliderElement.value];
+    self.textLabel.text = sliderElement.labelText;
 
     _sliderControl.tag = self.tag;
 
@@ -518,7 +518,6 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 - (void)sliderDidChangeValue {
   NISliderFormElement* sliderElement = (NISliderFormElement *)self.element;
   sliderElement.value = _sliderControl.value;
-  self.textLabel.text = [NSString stringWithFormat:sliderElement.labelText, sliderElement.value];
 
   if (nil != sliderElement.didChangeSelector && nil != sliderElement.didChangeTarget
       && [sliderElement.didChangeTarget respondsToSelector:sliderElement.didChangeSelector]) {

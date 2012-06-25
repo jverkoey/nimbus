@@ -121,11 +121,7 @@ typedef enum {
                                         value:45
                                  minimumValue:0
                                  maximumValue:100],
-     [NISliderFormElement sliderElementWithID:0
-                                    labelText:@"Slider %.2f"
-                                        value:45
-                                 minimumValue:0
-                                 maximumValue:100],
+
      @"NISegmentedControlFormElement",
      [NISegmentedControlFormElement segmentedControlElementWithID:0
                                                         labelText:@"Text segments"
