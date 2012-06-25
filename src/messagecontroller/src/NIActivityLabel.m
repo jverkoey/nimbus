@@ -7,7 +7,6 @@
 
 #import "NIActivityLabel.h"
 
-static CGFloat kMargin          = 10;
 static CGFloat kPadding         = 15;
 static CGFloat kBannerPadding   = 8;
 static CGFloat kSpacing         = 6;
@@ -161,25 +160,17 @@ static CGFloat kProgressMargin  = 6;
         contentHeight += _progressView.frame.size.height + kSpacing;
     }
     
-    CGFloat margin, padding, bezelWidth, bezelHeight;
+    CGFloat padding, bezelWidth, bezelHeight;
     if (_style == NIActivityLabelStyleBlackBezel || _style == NIActivityLabelStyleWhiteBezel) {
-        margin = kMargin;
         padding = kPadding;
         bezelWidth = contentWidth + padding*2;
         bezelHeight = contentHeight + padding*2;
         
     } else {
-        margin = 0;
         padding = kBannerPadding;
         bezelWidth = self.frame.size.width;
         bezelHeight = self.frame.size.height;
     }
-    
-//    CGFloat maxBevelWidth = [UIApplication sharedApplication].keyWindow.bounds.size.width - margin*2;
-//    if (bezelWidth > maxBevelWidth) {
-//        bezelWidth = maxBevelWidth;
-//        contentWidth = bezelWidth - (kSpacing + indicatorSize);
-//    }
     
     CGFloat textMaxWidth = (bezelWidth - (indicatorSize + kSpacing)) - padding*2;
     CGFloat textWidth = textSize.width;
