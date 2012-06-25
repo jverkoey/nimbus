@@ -542,95 +542,95 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 @synthesize segmentedControl = _segmentedControl;
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        _segmentedControl = [[UISegmentedControl alloc] init];
-        [_segmentedControl addTarget:self action:@selector(selectedSegmentDidChangeValue) forControlEvents:UIControlEventValueChanged];
-        [self.contentView addSubview:self.segmentedControl];
-    }
-    return self;
+  if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    _segmentedControl = [[UISegmentedControl alloc] init];
+    [_segmentedControl addTarget:self action:@selector(selectedSegmentDidChangeValue) forControlEvents:UIControlEventValueChanged];
+    [self.contentView addSubview:self.segmentedControl];
+  }
+  return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    UIEdgeInsets contentPadding = NICellContentPadding();
-    CGRect contentFrame = UIEdgeInsetsInsetRect(self.contentView.frame, contentPadding);
-    
-    [_segmentedControl sizeToFit];
-    CGRect frame = _segmentedControl.frame;
-    frame.size.height = self.contentView.frame.size.height - (2 * kSegmentedControlMargin);
-    frame.origin.y = floorf((self.contentView.frame.size.height - frame.size.height) / 2);
-    frame.origin.x = self.contentView.frame.size.width - frame.size.width - kSegmentedControlMargin;
-    _segmentedControl.frame = frame;
-    
-    frame = self.textLabel.frame;
-    CGFloat leftEdge = 0;
-    // Take into account the size of the image view.
-    if (nil != self.imageView.image) {
-        leftEdge = self.imageView.frame.size.width + kImageViewRightMargin;
-    }
-    frame.size.width = (self.contentView.frame.size.width
-                        - contentFrame.origin.x
-                        - _segmentedControl.frame.size.width
-                        - _segmentedControl.frame.origin.y
-                        - kSwitchLeftMargin
-                        - leftEdge);
-    self.textLabel.frame = frame;
+  [super layoutSubviews];
+
+  UIEdgeInsets contentPadding = NICellContentPadding();
+  CGRect contentFrame = UIEdgeInsetsInsetRect(self.contentView.frame, contentPadding);
+
+  [_segmentedControl sizeToFit];
+  CGRect frame = _segmentedControl.frame;
+  frame.size.height = self.contentView.frame.size.height - (2 * kSegmentedControlMargin);
+  frame.origin.y = floorf((self.contentView.frame.size.height - frame.size.height) / 2);
+  frame.origin.x = self.contentView.frame.size.width - frame.size.width - kSegmentedControlMargin;
+  _segmentedControl.frame = frame;
+
+  frame = self.textLabel.frame;
+  CGFloat leftEdge = 0;
+  // Take into account the size of the image view.
+  if (nil != self.imageView.image) {
+    leftEdge = self.imageView.frame.size.width + kImageViewRightMargin;
+  }
+  frame.size.width = (self.contentView.frame.size.width
+                      - contentFrame.origin.x
+                      - _segmentedControl.frame.size.width
+                      - kSegmentedControlMargin
+                      - kSwitchLeftMargin
+                      - leftEdge);
+  self.textLabel.frame = frame;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prepareForReuse {
-    [super prepareForReuse];
-    
-    self.textLabel.text = nil;
-    [self.segmentedControl removeAllSegments];
+  [super prepareForReuse];
+
+  self.textLabel.text = nil;
+  [self.segmentedControl removeAllSegments];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldUpdateCellWithObject:(NISegmentedControlFormElement *)segmentedControlElement {
-    if ([super shouldUpdateCellWithObject:segmentedControlElement]) {
-        self.textLabel.text = segmentedControlElement.labelText;
-        [segmentedControlElement.segments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            if ([obj isKindOfClass:[NSString class]]) {
-                [_segmentedControl insertSegmentWithTitle:obj atIndex:idx animated:NO];
-            } else if ([obj isKindOfClass:[UIImage class]]) {
-                [_segmentedControl insertSegmentWithImage:obj atIndex:idx animated:NO];
-            }
-        }];
-        _segmentedControl.tag = self.tag;
-        _segmentedControl.selectedSegmentIndex = segmentedControlElement.selectedIndex;
-        
-        [self setNeedsLayout];
-        return YES;
-    }
-    return NO;
+  if ([super shouldUpdateCellWithObject:segmentedControlElement]) {
+    self.textLabel.text = segmentedControlElement.labelText;
+    [segmentedControlElement.segments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+      if ([obj isKindOfClass:[NSString class]]) {
+        [_segmentedControl insertSegmentWithTitle:obj atIndex:idx animated:NO];
+
+      } else if ([obj isKindOfClass:[UIImage class]]) {
+        [_segmentedControl insertSegmentWithImage:obj atIndex:idx animated:NO];
+      }
+    }];
+    _segmentedControl.tag = self.tag;
+    _segmentedControl.selectedSegmentIndex = segmentedControlElement.selectedIndex;
+
+    [self setNeedsLayout];
+    return YES;
+  }
+  return NO;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)selectedSegmentDidChangeValue {
-    NISegmentedControlFormElement *segmentedControlElement = (NISegmentedControlFormElement *)self.element;
-    segmentedControlElement.selectedIndex = self.segmentedControl.selectedSegmentIndex;
-    
-    if (nil != segmentedControlElement.didChangeSelector && nil != segmentedControlElement.didChangeTarget
-        && [segmentedControlElement.didChangeTarget respondsToSelector:segmentedControlElement.didChangeSelector]) {
-        
-        // [segmentedControlElement.didChangeTarget performSelector:segmentedControlElement.didChangeSelector
-        //                                               withObject:_segmentedControl];
+  NISegmentedControlFormElement *segmentedControlElement = (NISegmentedControlFormElement *)self.element;
+  segmentedControlElement.selectedIndex = self.segmentedControl.selectedSegmentIndex;
 
-        
-        // The following is a workaround to supress the warning and requires <objc/message.h>
-        objc_msgSend(segmentedControlElement.didChangeTarget, 
-                     segmentedControlElement.didChangeSelector, _segmentedControl);
+  if (nil != segmentedControlElement.didChangeSelector && nil != segmentedControlElement.didChangeTarget
+      && [segmentedControlElement.didChangeTarget respondsToSelector:segmentedControlElement.didChangeSelector]) {
 
-    }
+    // [segmentedControlElement.didChangeTarget performSelector:segmentedControlElement.didChangeSelector
+    //                                               withObject:_segmentedControl];
+
+    // The following is a workaround to supress the warning and requires <objc/message.h>
+    objc_msgSend(segmentedControlElement.didChangeTarget, 
+                 segmentedControlElement.didChangeSelector, _segmentedControl);
+  }
 }
 
 @end

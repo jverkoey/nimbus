@@ -153,7 +153,7 @@ typedef enum {
                                       didChangeTarget:self 
                                     didChangeSelector:@selector(datePickerDidChangeValue:)],
      [NIDatePickerFormElement datePickerElementWithID:0
-                                            labelText:@"Countdown" 
+                                            labelText:@"Countdown"
                                                  date:[NSDate date]
                                        datePickerMode:UIDatePickerModeCountDownTimer],
      nil];
