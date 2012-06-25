@@ -17,5 +17,5 @@
 #import "NimbusLauncher.h"
 
 // All docs are in the .m.
-@interface RestoringLauncherViewController : NILauncherViewController
+@interface BadgedLauncherViewController : NILauncherViewController
 @end

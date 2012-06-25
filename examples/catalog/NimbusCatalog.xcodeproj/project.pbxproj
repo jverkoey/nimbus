@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		660C6F2915992B2500209EB3 /* BadgedLauncherButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 660C6F2815992B2500209EB3 /* BadgedLauncherButtonView.m */; };
 		661F28EE159292B800D11FC3 /* BasicInstantiationBadgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 661F28ED159292B800D11FC3 /* BasicInstantiationBadgeViewController.m */; };
 		661F28F3159292E800D11FC3 /* NIBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 661F28F1159292E800D11FC3 /* NIBadgeView.m */; };
 		661F28F6159299C900D11FC3 /* CustomizingBadgesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 661F28F5159299C900D11FC3 /* CustomizingBadgesViewController.m */; };
@@ -18,6 +19,7 @@
 		668B7673159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B7672159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m */; };
 		668B767B159394EF00EA86F6 /* NIImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B7678159394EF00EA86F6 /* NIImageProcessing.m */; };
 		668B767C159394EF00EA86F6 /* NINetworkImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B767A159394EF00EA86F6 /* NINetworkImageView.m */; };
+		6692F58F159920E200FA074E /* BadgedLauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6692F58E159920E200FA074E /* BadgedLauncherViewController.m */; };
 		6693C0F0158A63E600950D42 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C0EF158A63E600950D42 /* UIKit.framework */; };
 		6693C0F2158A63E600950D42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C0F1158A63E600950D42 /* Foundation.framework */; };
 		6693C0F4158A63E600950D42 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C0F3158A63E600950D42 /* CoreGraphics.framework */; };
@@ -100,6 +102,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		660C6F2715992B2500209EB3 /* BadgedLauncherButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgedLauncherButtonView.h; sourceTree = "<group>"; };
+		660C6F2815992B2500209EB3 /* BadgedLauncherButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgedLauncherButtonView.m; sourceTree = "<group>"; };
 		661F28EC159292B800D11FC3 /* BasicInstantiationBadgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInstantiationBadgeViewController.h; sourceTree = "<group>"; };
 		661F28ED159292B800D11FC3 /* BasicInstantiationBadgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicInstantiationBadgeViewController.m; sourceTree = "<group>"; };
 		661F28F0159292E800D11FC3 /* NIBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBadgeView.h; path = ../../src/badge/src/NIBadgeView.h; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 		668B7678159394EF00EA86F6 /* NIImageProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIImageProcessing.m; path = ../../src/networkimage/src/NIImageProcessing.m; sourceTree = "<group>"; };
 		668B7679159394EF00EA86F6 /* NINetworkImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkImageView.h; path = ../../src/networkimage/src/NINetworkImageView.h; sourceTree = "<group>"; };
 		668B767A159394EF00EA86F6 /* NINetworkImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkImageView.m; path = ../../src/networkimage/src/NINetworkImageView.m; sourceTree = "<group>"; };
+		6692F58D159920E200FA074E /* BadgedLauncherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgedLauncherViewController.h; sourceTree = "<group>"; };
+		6692F58E159920E200FA074E /* BadgedLauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgedLauncherViewController.m; sourceTree = "<group>"; };
 		6693C0EB158A63E600950D42 /* Nimbus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nimbus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6693C0EF158A63E600950D42 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6693C0F1158A63E600950D42 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -582,6 +588,10 @@
 				66BB4FAE159594E300020EE8 /* ModifyingLauncherViewController.m */,
 				66BB4FCC15959B5000020EE8 /* RestoringLauncherViewController.h */,
 				66BB4FCD15959B5000020EE8 /* RestoringLauncherViewController.m */,
+				6692F58D159920E200FA074E /* BadgedLauncherViewController.h */,
+				6692F58E159920E200FA074E /* BadgedLauncherViewController.m */,
+				660C6F2715992B2500209EB3 /* BadgedLauncherButtonView.h */,
+				660C6F2815992B2500209EB3 /* BadgedLauncherButtonView.m */,
 			);
 			name = Launcher;
 			sourceTree = "<group>";
@@ -829,6 +839,8 @@
 				66BB4FA815958A6F00020EE8 /* ModelLauncherViewController.m in Sources */,
 				66BB4FAF159594E300020EE8 /* ModifyingLauncherViewController.m in Sources */,
 				66BB4FCE15959B5000020EE8 /* RestoringLauncherViewController.m in Sources */,
+				6692F58F159920E200FA074E /* BadgedLauncherViewController.m in Sources */,
+				660C6F2915992B2500209EB3 /* BadgedLauncherButtonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

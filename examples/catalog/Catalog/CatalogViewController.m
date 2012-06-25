@@ -37,6 +37,7 @@
 #import "ModelLauncherViewController.h"
 #import "ModifyingLauncherViewController.h"
 #import "RestoringLauncherViewController.h"
+#import "BadgedLauncherViewController.h"
 
 // Network Image
 #import "BasicInstantiationNetworkImageViewController.h"
@@ -198,6 +199,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Restoring"
                                    subtitle:@"Saving and loading launcher data"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([BadgedLauncherViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Badges"
+                                   subtitle:@"Adding badges to launcher items"]],
 
      @"Network Image",
      [_actions attachNavigationAction:
