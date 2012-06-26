@@ -660,7 +660,7 @@ static const CGFloat kLongPressGutter = 22;
       self.touchedLink = nil;
       [self setNeedsDisplay];
 
-    } else if (newLink == self.originalLink) {
+    } else {
       self.touchedLink = self.originalLink;
       [self setNeedsDisplay];
     }
