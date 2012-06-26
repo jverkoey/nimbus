@@ -22,6 +22,7 @@
 
 static const NSTimeInterval kLongPressTimeInterval = 0.5;
 static const CGFloat kLongPressGutter = 22;
+static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 
 @interface NIAttributedLabel() <UIActionSheetDelegate>
 @property (nonatomic, readwrite, retain) NSMutableAttributedString* mutableAttributedString;
@@ -157,8 +158,10 @@ static const CGFloat kLongPressGutter = 22;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setBounds:(CGRect)bounds {
-  BOOL boundsDidChange = !CGRectEqualToRect(self.bounds, bounds);
+  bounds = UIEdgeInsetsInsetRect(bounds, kBoundsInsets);
 
+  BOOL boundsDidChange = !CGRectEqualToRect(self.bounds, bounds);
+  
   [super setBounds:bounds];
 
   if (boundsDidChange) {
@@ -832,6 +835,8 @@ static const CGFloat kLongPressGutter = 22;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawTextInRect:(CGRect)rect {
+  rect = UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(-kBoundsInsets.top, -kBoundsInsets.left, -kBoundsInsets.bottom, -kBoundsInsets.right));
+
   if (NIVerticalTextAlignmentTop != self.verticalTextAlignment) {
     rect.origin.y = [self _verticalOffsetForBounds:rect];
   }
@@ -936,7 +941,7 @@ static const CGFloat kLongPressGutter = 22;
         }
 
         if (!CGRectIsEmpty(highlightRect)) {
-          highlightRect = CGRectOffset(highlightRect, 0, -rect.origin.y);
+          highlightRect = CGRectOffset(highlightRect, -kBoundsInsets.left, -rect.origin.y - kBoundsInsets.top - kBoundsInsets.bottom);
 
           CGFloat pi = (CGFloat)M_PI;
 
