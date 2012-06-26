@@ -280,20 +280,40 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 - (void)setTextAlignment:(UITextAlignment)textAlignment {
   // We assume that the UILabel implementation will call setNeedsDisplay. Where we don't call super
   // we call setNeedsDisplay ourselves.
   [super setTextAlignment:textAlignment];
-
+  
   if (nil != self.mutableAttributedString) {
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:textAlignment];
     CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
     [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak];
   }
 }
+#else
+- (void)setTextAlignment:(NSTextAlignment)textAlignment {
+  // We assume that the UILabel implementation will call setNeedsDisplay. Where we don't call super
+  // we call setNeedsDisplay ourselves.
+  if (NSTextAlignmentJustified == textAlignment) {
+    // iOS 6.0 Beta 2 crashes when using justified text alignments for some reason.
+    [super setTextAlignment:NSTextAlignmentLeft];
+  } else {
+    [super setTextAlignment:textAlignment];
+  }
+  
+  if (nil != self.mutableAttributedString) {
+    CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:textAlignment];
+    CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
+    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak];
+  }
+}
+#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 - (void)setLineBreakMode:(UILineBreakMode)lineBreakMode {
   [super setLineBreakMode:lineBreakMode];
 
@@ -303,6 +323,17 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
     [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak];
   }
 }
+#else
+- (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode {
+  [super setLineBreakMode:lineBreakMode];
+  
+  if (nil != self.mutableAttributedString) {
+    CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:self.textAlignment];
+    CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:lineBreakMode];
+    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak];
+  }
+}
+#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
