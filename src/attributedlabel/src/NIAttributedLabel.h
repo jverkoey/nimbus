@@ -108,7 +108,26 @@ typedef enum {
  *      @param result The data detector result that was selected.
  *      @param point The point within @c attributedLabel where the result was tapped.
  */
-- (void)attributedLabel:(NIAttributedLabel*)attributedLabel didSelectTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point;
+- (void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point;
+
+/**
+ * Asks the delegate whether an action sheet should be displayed at the given point.
+ *
+ * If this method is not implemented by the delegate then @c actionSheet will always be displayed.
+ *
+ * @c actionSheet will be populated with actions that match the data type that was selected. For
+ * example, a link will have the actions "Open in Safari" and "Copy URL". A phone number will have
+ * @"Call" and "Copy Phone Number".
+ *
+ *      @param attributedLabel An attributed label asking the delegate whether to display the action
+ *                             sheet.
+ *      @param actionSheet The action sheet that will be displayed if YES is returned.
+ *      @param result The data detector result that was selected.
+ *      @param point The point within @c attributedLabel where the result was tapped.
+ *      @returns YES if @c actionSheet should be displayed. NO if @c actionSheet should not be
+ *               displayed.
+ */
+- (BOOL)attributedLabel:(NIAttributedLabel *)attributedLabel shouldPresentActionSheet:(UIActionSheet *)actionSheet withTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point;
 
 @end
 
