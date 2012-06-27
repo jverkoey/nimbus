@@ -632,6 +632,11 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
   CGAffineTransform transform = [self _transformForCoreText];
   CGFloat verticalOffset = [self _verticalOffsetForBounds:self.bounds];
 
+  // Our bounds may have a non-zero offset, so we must take this into account when doing hit
+  // detection.
+  point.x += kBoundsInsets.left;
+  point.y -= kBoundsInsets.top;
+
   for (int i = 0; i < count; i++) {
 		CGPoint linePoint = origins[i];
 
@@ -964,7 +969,7 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
                                        height);
 
           linkRect = CGRectIntegral(linkRect);
-          linkRect = CGRectInset(linkRect, -2, -1);
+          linkRect = CGRectInset(linkRect, -2, 0);
 
           if (CGRectIsEmpty(highlightRect)) {
             highlightRect = linkRect;
