@@ -22,6 +22,7 @@
 #import "LinksAttributedLabelViewController.h"
 #import "DataTypesAttributedLabelViewController.h"
 #import "PerformanceAttributedLabelViewController.h"
+#import "LongTapAttributedLabelViewController.h"
 #import "InterfaceBuilderAttributedLabelViewController.h"
 
 // Badge
@@ -151,6 +152,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Performance"
                                    subtitle:@"Speeding up attributed labels"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([LongTapAttributedLabelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Long Taps"
+                                   subtitle:@"Configuring long tap action sheets"]],
      [_actions attachNavigationAction:
       NIPushControllerAction([InterfaceBuilderAttributedLabelViewController class])
                              toObject:

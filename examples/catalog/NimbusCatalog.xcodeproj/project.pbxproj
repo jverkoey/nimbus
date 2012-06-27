@@ -77,6 +77,7 @@
 		66A29F911595082C00F6EA64 /* BasicInstantiationLauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A29F901595082C00F6EA64 /* BasicInstantiationLauncherViewController.m */; };
 		66A29F9E15951C0000F6EA64 /* NIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A29F9815951C0000F6EA64 /* NIPageView.m */; };
 		66A29F9F15951C0000F6EA64 /* NIPagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A29F9A15951C0000F6EA64 /* NIPagingScrollView.m */; };
+		66B6692F159BD22500FE4AE8 /* LongTapAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6692E159BD22500FE4AE8 /* LongTapAttributedLabelViewController.m */; };
 		66B9414B1592E30100AEA1D2 /* NIInterapp.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B941481592E30100AEA1D2 /* NIInterapp.m */; };
 		66B941521592E36900AEA1D2 /* InterappViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B941511592E36900AEA1D2 /* InterappViewController.m */; };
 		66B941541592E5EF00AEA1D2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B941531592E5EF00AEA1D2 /* CoreLocation.framework */; };
@@ -251,6 +252,8 @@
 		66A29F9B15951C0000F6EA64 /* NIPagingScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewDataSource.h; path = ../../src/pagingscrollview/src/NIPagingScrollViewDataSource.h; sourceTree = "<group>"; };
 		66A29F9C15951C0000F6EA64 /* NIPagingScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewDelegate.h; path = ../../src/pagingscrollview/src/NIPagingScrollViewDelegate.h; sourceTree = "<group>"; };
 		66A29F9D15951C0000F6EA64 /* NIPagingScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewPage.h; path = ../../src/pagingscrollview/src/NIPagingScrollViewPage.h; sourceTree = "<group>"; };
+		66B6692D159BD22500FE4AE8 /* LongTapAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongTapAttributedLabelViewController.h; sourceTree = "<group>"; };
+		66B6692E159BD22500FE4AE8 /* LongTapAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongTapAttributedLabelViewController.m; sourceTree = "<group>"; };
 		66B941471592E30100AEA1D2 /* NIInterapp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIInterapp.h; path = ../../src/interapp/src/NIInterapp.h; sourceTree = "<group>"; };
 		66B941481592E30100AEA1D2 /* NIInterapp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIInterapp.m; path = ../../src/interapp/src/NIInterapp.m; sourceTree = "<group>"; };
 		66B941491592E30100AEA1D2 /* NimbusInterapp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusInterapp.h; path = ../../src/interapp/src/NimbusInterapp.h; sourceTree = "<group>"; };
@@ -570,6 +573,8 @@
 				669A15D2158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m */,
 				669A15D4158E81D200A0990A /* PerformanceAttributedLabelViewController.h */,
 				669A15D5158E81D200A0990A /* PerformanceAttributedLabelViewController.m */,
+				66B6692D159BD22500FE4AE8 /* LongTapAttributedLabelViewController.h */,
+				66B6692E159BD22500FE4AE8 /* LongTapAttributedLabelViewController.m */,
 				6633C7ED158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.h */,
 				6633C7EE158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m */,
 				6633C7F1158F08EA0054D240 /* AttributedLabelMashup.xib */,
@@ -855,6 +860,7 @@
 				6692F58F159920E200FA074E /* BadgedLauncherViewController.m in Sources */,
 				660C6F2915992B2500209EB3 /* BadgedLauncherButtonView.m in Sources */,
 				44707C77159B06A700B83149 /* BasicInstantiationPagingScrollViewController.m in Sources */,
+				66B6692F159BD22500FE4AE8 /* LongTapAttributedLabelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
