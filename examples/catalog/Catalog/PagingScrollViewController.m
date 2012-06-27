@@ -31,7 +31,6 @@ static NSString* kPageReuseIdentifier = @"SamplePageIdentifier";
 @synthesize reuseIdentifier = _reuseIdentifier;
 
 - (id)initWithFrame:(CGRect)frame {
-  NSLog(@"Initing view %@", self);
   if ((self = [super initWithFrame:frame])) {
     _label = [[UILabel alloc] init];
     _label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -151,11 +150,9 @@ static NSString* kPageReuseIdentifier = @"SamplePageIdentifier";
   SamplePageView *page =
       (SamplePageView*)[pagingScrollView dequeueReusablePageWithIdentifier:kPageReuseIdentifier];
   if (!page) {
-    NSLog(@"Page doesn't exist, creating it");
     page = [[SamplePageView alloc] initWithFrame:CGRectZero];
     page.reuseIdentifier = kPageReuseIdentifier;
   }
-  NSLog(@"Setting page text to %i", pageIndex);
   [page renderForPageIndex:pageIndex];
   return page;
 }
