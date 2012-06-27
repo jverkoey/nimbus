@@ -823,6 +823,9 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
       } else {
         [actionSheet showInView:self];
       }
+
+    } else {
+      self.actionSheetLink = nil;
     }
   }
 }
