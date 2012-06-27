@@ -1,3 +1,7 @@
+//
+// Copyright 2012 Manu Cornet
+// Copyright 2011-2012 Jeff Verkoeyen
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -12,13 +16,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "NimbusPagingScrollView.h"
-
-@interface PagingScrollViewController : UIViewController<
-    NIPagingScrollViewDelegate,
-    NIPagingScrollViewDataSource> {
-@private
-  NIPagingScrollView* _pagingScrollView;
-}
-
+// All docs are in the .m.
+@interface PagingScrollViewController : UIViewController
 @end
