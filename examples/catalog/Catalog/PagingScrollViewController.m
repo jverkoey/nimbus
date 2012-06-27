@@ -50,7 +50,7 @@ static NSString* kPageReuseIdentifier = @"SamplePageIdentifier";
 
   UIColor* bgColor;
   UIColor* textColor;
-  // Change the background color depending on the index.
+  // Change the background and text color depending on the index.
   switch (pageIndex % 4) {
     case 0:
       bgColor = [UIColor redColor];
@@ -87,6 +87,9 @@ static NSString* kPageReuseIdentifier = @"SamplePageIdentifier";
 
 @implementation PagingScrollViewController
 
+#pragma mark -
+#pragma mark UIViewController
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -117,13 +120,28 @@ static NSString* kPageReuseIdentifier = @"SamplePageIdentifier";
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                duration:(NSTimeInterval)duration {
+  [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+  [_pagingScrollView willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                         duration:(NSTimeInterval)duration {
+  [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+  [_pagingScrollView willAnimateRotationToInterfaceOrientation:toInterfaceOrientation
+                                                      duration:duration];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark NIPagingScrollViewDataSource
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)numberOfPagesInPagingScrollView:
-    (NIPagingScrollView *)pagingScrollView {
+- (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView {
   return 10;
 }
 
