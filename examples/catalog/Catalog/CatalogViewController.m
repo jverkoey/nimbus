@@ -49,6 +49,9 @@
 #import "NimbusModels.h"
 #import "NimbusWebController.h"
 
+// Paging Scroll View
+#import "PagingScrollViewController.h"
+
 //
 // What's going on in this file:
 //
@@ -217,6 +220,18 @@
       [NISubtitleCellObject objectWithTitle:@"Content Modes"
                                    subtitle:@"Effects of each content mode"]],
      
+     @"Paging Scroll Views",
+     [_actions attachNavigationAction:
+      ^(id object, UIViewController* controller) {
+        PagingScrollViewController* pagingScrollViewController = [[PagingScrollViewController alloc] initWithNibName:nil bundle:nil];
+        [controller.navigationController pushViewController:pagingScrollViewController
+                                                   animated:YES];
+        
+        return NO;
+      } toObject:
+      [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
+                                   subtitle:@"How to create a paging scroll view"]],
+
      @"Web Controller",
      [_actions attachNavigationAction:
       ^(id object, UIViewController* controller) {
