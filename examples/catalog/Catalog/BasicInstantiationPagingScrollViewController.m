@@ -41,14 +41,15 @@
 //
 // Foundation.framework
 // UIKit.framework
-// QuartzCore.framework
 //
 
 // The reuse identifier for a single page.
-static NSString* kPageReuseIdentifier = @"SamplePageIdentifier";
+// Having the const after NSString* means that we can't assign a new value to kPageReuseIdentifier.
+static NSString* const kPageReuseIdentifier = @"SamplePageIdentifier";
 
-// This is the page view object that we will display for each page of the paging scroll view.
-// It must implement the NIPagingScrollViewPage protocol.
+// This is the page view object that will be displayed for each page of the paging scroll view.
+// Pages that will be displayed in a NIPagingScrollView must implement the NIPagingScrollViewPage
+// protocol.
 @interface SamplePageView : UIView <NIPagingScrollViewPage>
 @property (nonatomic, readwrite, retain) UILabel* label;
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
