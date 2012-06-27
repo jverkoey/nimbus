@@ -78,6 +78,7 @@
 		6693C2E9158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C2E7158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m */; };
 		6693C2EB158AA2BF00950D42 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C2EA158AA2BE00950D42 /* CoreText.framework */; };
 		6693C2EE158AB5B600950D42 /* CustomTextAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C2ED158AB5B600950D42 /* CustomTextAttributedLabelViewController.m */; };
+		669819DF159B953A00C2D3EF /* NISnapshotRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 669819DE159B953A00C2D3EF /* NISnapshotRotation.m */; };
 		669A15CD158D318B00A0990A /* LinksAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15CC158D318B00A0990A /* LinksAttributedLabelViewController.m */; };
 		669A15D0158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15CF158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m */; };
 		669A15D3158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15D2158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m */; };
@@ -259,6 +260,8 @@
 		6693C2EA158AA2BE00950D42 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		6693C2EC158AB5B600950D42 /* CustomTextAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextAttributedLabelViewController.h; sourceTree = "<group>"; };
 		6693C2ED158AB5B600950D42 /* CustomTextAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextAttributedLabelViewController.m; sourceTree = "<group>"; };
+		669819DD159B953A00C2D3EF /* NISnapshotRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NISnapshotRotation.h; path = ../../src/core/src/NISnapshotRotation.h; sourceTree = "<group>"; };
+		669819DE159B953A00C2D3EF /* NISnapshotRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISnapshotRotation.m; path = ../../src/core/src/NISnapshotRotation.m; sourceTree = "<group>"; };
 		669A15CB158D318B00A0990A /* LinksAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinksAttributedLabelViewController.h; sourceTree = "<group>"; };
 		669A15CC158D318B00A0990A /* LinksAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinksAttributedLabelViewController.m; sourceTree = "<group>"; };
 		669A15CF158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicInstantiationAttributedLabelViewController.m; sourceTree = "<group>"; };
@@ -572,6 +575,8 @@
 				6693C1F5158A81D300950D42 /* NIRuntimeClassModifications.m */,
 				6693C1F6158A81D300950D42 /* NISDKAvailability.h */,
 				6693C1F7158A81D300950D42 /* NISDKAvailability.m */,
+				669819DD159B953A00C2D3EF /* NISnapshotRotation.h */,
+				669819DE159B953A00C2D3EF /* NISnapshotRotation.m */,
 				6693C1F8158A81D300950D42 /* NIState.h */,
 				6693C1F9158A81D300950D42 /* NIState.m */,
 				6693C1FA158A81D300950D42 /* NIViewRecycler.h */,
@@ -959,6 +964,7 @@
 				661B9AB615AFF9DC00B743F1 /* NetworkBlockCellsViewController.m in Sources */,
 				66559AFA15C8BE6800ED9047 /* ActionsTableModelViewController.m in Sources */,
 				66559AFE15CC3F9B00ED9047 /* ModalRadioGroupTableModelViewController.m in Sources */,
+				669819DF159B953A00C2D3EF /* NISnapshotRotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

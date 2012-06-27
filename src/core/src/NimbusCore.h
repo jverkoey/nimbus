@@ -114,5 +114,6 @@ view.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin
 #import "NIPreprocessorMacros.h"
 #import "NIRuntimeClassModifications.h"
 #import "NISDKAvailability.h"
+#import "NISnapshotRotation.h"
 #import "NIState.h"
 #import "NIViewRecycler.h"
