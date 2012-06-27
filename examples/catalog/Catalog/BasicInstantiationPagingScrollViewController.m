@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "PagingScrollViewController.h"
+#import "BasicInstantiationPagingScrollViewController.h"
 
 #import "NimbusPagingScrollView.h"
 
@@ -54,12 +54,12 @@ static NSString* kPageReuseIdentifier = @"SamplePageIdentifier";
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
 @end
 
-@interface PagingScrollViewController() <NIPagingScrollViewDataSource>
+@interface BasicInstantiationPagingScrollViewController() <NIPagingScrollViewDataSource>
 // We must retain the paging scroll view in order to autorotate it correctly.
 @property (nonatomic, readwrite, retain) NIPagingScrollView* pagingScrollView;
 @end
 
-@implementation PagingScrollViewController
+@implementation BasicInstantiationPagingScrollViewController
 
 @synthesize pagingScrollView = _pagingScrollView;
 
