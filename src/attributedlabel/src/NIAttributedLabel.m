@@ -209,11 +209,14 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
+// Deprecated method.
 - (NSAttributedString *)attributedString {
   return [self.mutableAttributedString copy];
 }
-#else
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= NIIOS_6_0
 - (NSAttributedString *)attributedText {
   return [self.mutableAttributedString copy];
 }
@@ -221,7 +224,6 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 - (void)setAttributedString:(NSAttributedString *)attributedText {
   if (self.mutableAttributedString != attributedText) {
     self.mutableAttributedString = [attributedText mutableCopy];
@@ -234,7 +236,10 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
     [self attributedTextDidChange];
   }
 }
-#else
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= NIIOS_6_0
 - (void)setAttributedText:(NSAttributedString *)attributedText {
   if (self.mutableAttributedString != attributedText) {
     self.mutableAttributedString = [attributedText mutableCopy];

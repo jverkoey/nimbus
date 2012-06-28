@@ -44,14 +44,20 @@
  *
  * <h2>Basic Use</h2>
  *
- * You can use an NIAttributedLabel just as you would use a UILabel. The attributed label creates
- * an attributed string behind the scenes when you assign a string to the text property. The label
- * then uses this attributed string to maintain and eventually present the rich text properties.
+ * NIAttributedLabel is a subclass of UILabel. The attributed label maintains an <a href="http://developer.apple.com/library/ios/#documentation/Cocoa/Reference/Foundation/Classes/NSAttributedString_Class/Reference/Reference.html"NSAttributedString</a>
+ * object internally which is used in conjunction with CoreText to draw rich-text labels. A number
+ * of helper methods for modifying the text style are provided. If you need to directly modify the
+ * internal NSAttributedString you may do so by accessing the @c attributedString property on iOS 4
+ * through 5.*.
+ *
+ *      @attention iOS 6 Beta note: when building for iOS 6 and higher you must use the
+ *                 @c attributedText property now provided via UILabel.
  *
 @code
 NIAttributedLabel* label = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
 
-// The internal NSAttributedString will inherit all of the UILabel properties when we assign text.
+// The internal NSAttributedString will inherit all of UILabel's text attributes when we assign
+// text.
 label.text = @"Nimbus";
 @endcode
  *

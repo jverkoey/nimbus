@@ -55,10 +55,8 @@ typedef enum {
  */
 @interface NIAttributedLabel : UILabel
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 // When building for iOS 6.0 and higher use attributedText.
-@property (nonatomic, copy) NSAttributedString* attributedString;
-#endif
+@property (nonatomic, copy) NSAttributedString* attributedString NS_DEPRECATED_IOS(2_0, 6_0);
 
 @property (nonatomic, assign) BOOL autoDetectLinks; // Default: NO
 @property (nonatomic, assign) NSTextCheckingType dataDetectorTypes; // Default: NSTextCheckingTypeLink
