@@ -73,6 +73,9 @@
 #ifndef NI_FIX_CATEGORY_BUG_NSStringNimbusCore
 #define NI_FIX_CATEGORY_BUG_NSStringNimbusCore __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_NSStringNimbusCore)
 #endif
+#ifndef NI_FIX_CATEGORY_BUG_UIViewNimbusCore
+#define NI_FIX_CATEGORY_BUG_UIViewNimbusCore __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UIViewNimbusCore)
+#endif
 #ifndef Nimbus
 #define Nimbus __NIMBUS_NS_SYMBOL(Nimbus)
 #endif
@@ -164,8 +167,8 @@
 #ifndef NIDeviceRotationDuration
 #define NIDeviceRotationDuration __NIMBUS_NS_SYMBOL(NIDeviceRotationDuration)
 #endif
-#ifndef NIPathForCachesResource
-#define NIPathForCachesResource __NIMBUS_NS_SYMBOL(NIPathForCachesResource)
+#ifndef NIPathForLibraryResource
+#define NIPathForLibraryResource __NIMBUS_NS_SYMBOL(NIPathForLibraryResource)
 #endif
 #ifndef NICellContentPadding
 #define NICellContentPadding __NIMBUS_NS_SYMBOL(NICellContentPadding)
@@ -178,6 +181,9 @@
 #endif
 #ifndef NIUITapGestureRecognizerClass
 #define NIUITapGestureRecognizerClass __NIMBUS_NS_SYMBOL(NIUITapGestureRecognizerClass)
+#endif
+#ifndef NIPathForCachesResource
+#define NIPathForCachesResource __NIMBUS_NS_SYMBOL(NIPathForCachesResource)
 #endif
 #ifndef boundi
 #define boundi __NIMBUS_NS_SYMBOL(boundi)

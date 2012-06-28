@@ -78,7 +78,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)keyForIdentifier:(NSInteger)identifier {
-  return [NSNumber numberWithInt:identifier];
+  return @(identifier);
 }
 
 

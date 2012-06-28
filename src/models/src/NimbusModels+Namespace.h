@@ -34,6 +34,12 @@
 #ifndef NICellObject
 #define NICellObject __NIMBUS_NS_SYMBOL(NICellObject)
 #endif
+#ifndef NIDatePickerFormElement
+#define NIDatePickerFormElement __NIMBUS_NS_SYMBOL(NIDatePickerFormElement)
+#endif
+#ifndef NIDatePickerFormElementCell
+#define NIDatePickerFormElementCell __NIMBUS_NS_SYMBOL(NIDatePickerFormElementCell)
+#endif
 #ifndef NIFormElement
 #define NIFormElement __NIMBUS_NS_SYMBOL(NIFormElement)
 #endif
@@ -48,6 +54,12 @@
 #endif
 #ifndef NIRadioGroupController
 #define NIRadioGroupController __NIMBUS_NS_SYMBOL(NIRadioGroupController)
+#endif
+#ifndef NISegmentedControlFormElement
+#define NISegmentedControlFormElement __NIMBUS_NS_SYMBOL(NISegmentedControlFormElement)
+#endif
+#ifndef NISegmentedControlFormElementCell
+#define NISegmentedControlFormElementCell __NIMBUS_NS_SYMBOL(NISegmentedControlFormElementCell)
 #endif
 #ifndef NISliderFormElement
 #define NISliderFormElement __NIMBUS_NS_SYMBOL(NISliderFormElement)

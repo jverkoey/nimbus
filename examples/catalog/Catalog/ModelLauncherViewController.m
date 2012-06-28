@@ -66,25 +66,17 @@
     // Each sub array is a single page of the launcher view. The default NILauncherViewObject object
     // allows you to provide a title and image.
     NSArray* contents =
-    [NSArray arrayWithObjects:
-     [NSArray arrayWithObjects:
-      [NILauncherViewObject objectWithTitle:@"Nimbus" image:image],
+    @[@[[NILauncherViewObject objectWithTitle:@"Nimbus" image:image],
       [NILauncherViewObject objectWithTitle:@"Nimbus 2" image:image],
       [NILauncherViewObject objectWithTitle:@"Nimbus 3" image:image],
       [NILauncherViewObject objectWithTitle:@"Nimbus 5" image:image],
-      [NILauncherViewObject objectWithTitle:@"Nimbus 6" image:image],
-      nil],
+      [NILauncherViewObject objectWithTitle:@"Nimbus 6" image:image]],
 
      // A new page.
-     [NSArray arrayWithObjects:
-      [NILauncherViewObject objectWithTitle:@"Page 2" image:image],
-      nil],
+     @[[NILauncherViewObject objectWithTitle:@"Page 2" image:image]],
 
      // A third page.
-     [NSArray arrayWithObjects:
-      [NILauncherViewObject objectWithTitle:@"Page 3" image:image],
-      nil],
-     nil];
+     @[[NILauncherViewObject objectWithTitle:@"Page 3" image:image]]];
 
     // Create the model object with the contents array. We provide self as the delegate so that
     // we can customize what the buttons look like.

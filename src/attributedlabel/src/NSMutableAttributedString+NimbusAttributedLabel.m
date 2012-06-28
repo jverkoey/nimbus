@@ -97,7 +97,7 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
                     range:(NSRange)range {
   [self removeAttribute:(NSString*)kCTUnderlineColorAttributeName range:range]; 
   [self addAttribute:(NSString*)kCTUnderlineStyleAttributeName 
-               value:[NSNumber numberWithInt:(style|modifier)]
+               value:@(style|modifier)
                range:range];
 }
 
@@ -115,7 +115,7 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
 - (void)setStrokeWidth:(CGFloat)width range:(NSRange)range {
   [self removeAttribute:(NSString*)kCTStrokeWidthAttributeName range:range]; 
   [self addAttribute:(NSString*)kCTStrokeWidthAttributeName 
-               value:[NSNumber numberWithFloat:width] 
+               value:@(width) 
                range:range];
 }
 
@@ -148,7 +148,7 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
 - (void)setKern:(CGFloat)kern range:(NSRange)range {
   [self removeAttribute:(NSString*)kCTKernAttributeName range:range]; 
   [self addAttribute:(NSString*)kCTKernAttributeName 
-               value:[NSNumber numberWithFloat:kern] 
+               value:@(kern) 
                range:range];
 }
 
