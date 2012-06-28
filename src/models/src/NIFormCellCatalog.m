@@ -667,7 +667,11 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
     _dateField.minimumFontSize = 10.0f;
     _dateField.backgroundColor = [UIColor clearColor];
     _dateField.adjustsFontSizeToFitWidth = YES;
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
     _dateField.textAlignment = UITextAlignmentRight;
+#else
+    _dateField.textAlignment = NSTextAlignmentRight;
+#endif
     _dateField.inputView = _datePicker;
     [self.contentView addSubview:_dateField];
 
