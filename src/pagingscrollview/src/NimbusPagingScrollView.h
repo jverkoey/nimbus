@@ -52,6 +52,5 @@
 #import "NIPagingScrollViewDelegate.h"
 #import "NIPagingScrollViewPage.h"
 #import "NIPageView.h"
-#import "NIVerticalPagingScrollView.h"
 
 #import "NimbusCore.h"

@@ -29,7 +29,12 @@ extern const NSInteger NIPagingScrollViewUnknownNumberOfPages;
  *
  * Value: 10
  */
-extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
+extern const CGFloat NIPagingScrollViewDefaultPageMargin;
+
+typedef enum {
+  NIPagingScrollViewHorizontal = 0,
+  NIPagingScrollViewVertical,
+} NIPagingScrollViewType;
 
 @protocol NIPagingScrollViewDataSource;
 @protocol NIPagingScrollViewDelegate;
@@ -51,7 +56,7 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
   NIViewRecycler* _viewRecycler;
 
   // Configurable Properties
-  CGFloat _pageHorizontalMargin;
+  CGFloat _pageMargin;
 
   // State Information
   NSInteger _firstVisiblePageIndexBeforeRotation;
@@ -85,7 +90,8 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
 
 #pragma mark Configuring Presentation
 
-@property (nonatomic, readwrite, assign) CGFloat pageHorizontalMargin;
+@property (nonatomic, readwrite, assign) CGFloat pageMargin;
+@property (nonatomic, readwrite, assign) NIPagingScrollViewType type; // Default: NIPagingScrollViewHorizontal
 
 #pragma mark Changing the Visible Page
 
@@ -159,9 +165,9 @@ extern const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin;
  *
  * The space between each page will be 2x this value.
  *
- * By default this is NIPagingScrollViewDefaultPageHorizontalMargin.
+ * By default this is NIPagingScrollViewDefaultPageMargin.
  *
- *      @fn NIPagingScrollView::pageHorizontalMargin
+ *      @fn NIPagingScrollView::pageMargin
  */
 
 

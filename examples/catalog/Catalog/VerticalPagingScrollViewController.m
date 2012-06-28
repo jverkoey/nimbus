@@ -39,7 +39,8 @@ static NSString* const kPageReuseIdentifier = @"SamplePageIdentifier";
 
   self.view.backgroundColor = [UIColor blackColor];
 
-  self.pagingScrollView = [[NIVerticalPagingScrollView alloc] initWithFrame:self.view.bounds];
+  self.pagingScrollView = [[NIPagingScrollView alloc] initWithFrame:self.view.bounds];
+  self.pagingScrollView.type = NIPagingScrollViewVertical;
   self.pagingScrollView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
   self.pagingScrollView.dataSource = self;
   [self.view addSubview:self.pagingScrollView];
