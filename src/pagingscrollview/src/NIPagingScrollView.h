@@ -170,6 +170,17 @@ typedef enum {
  *      @fn NIPagingScrollView::pageMargin
  */
 
+/**
+ * The type of paging scroll view to display.
+ *
+ * This property allows you to configure whether you want a horizontal or vertical paging scroll
+ * view. You should set this property before you present the scroll view and not modify it after.
+ *
+ * By default this is NIPagingScrollViewHorizontal.
+ *
+ *      @fn NIPagingScrollView::type
+ */
+
 
 /** @name State */
 
