@@ -46,6 +46,7 @@
 
 // Paging Scroll View
 #import "BasicInstantiationPagingScrollViewController.h"
+#import "VerticalPagingScrollViewController.h"
 
 // Web Controller
 #import "ExtraActionsWebViewController.h"
@@ -232,6 +233,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
                                    subtitle:@"How to create a paging scroll view"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([VerticalPagingScrollViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Vertical scroll view"
+                                   subtitle:@"Showing a paging scroll view with a vertical layout"]],
 
      @"Web Controller",
      [_actions attachNavigationAction:
