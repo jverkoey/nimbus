@@ -19,6 +19,24 @@
 #import "SamplePageView.h"
 #import "NimbusPagingScrollView.h"
 
+//
+// What's going on in this file:
+//
+// This controller demonstrates how to create a vertical paging scroll view by simply changing the
+// type of the paging scroll view instance to NIPagingScrollViewVertical.
+//
+// You will find the following Nimbus features used:
+//
+// [pagingscrollview]
+// NIPagingScrollView
+// NIPagingScrollViewDataSource
+//
+// This controller requires the following frameworks:
+//
+// Foundation.framework
+// UIKit.framework
+//
+
 static NSString* const kPageReuseIdentifier = @"SamplePageIdentifier";
 
 @interface VerticalPagingScrollViewController () <NIPagingScrollViewDataSource>
@@ -40,7 +58,10 @@ static NSString* const kPageReuseIdentifier = @"SamplePageIdentifier";
   self.view.backgroundColor = [UIColor blackColor];
 
   self.pagingScrollView = [[NIPagingScrollView alloc] initWithFrame:self.view.bounds];
+
+  // This is the only change from the BasicInstantiation example.
   self.pagingScrollView.type = NIPagingScrollViewVertical;
+
   self.pagingScrollView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
   self.pagingScrollView.dataSource = self;
   [self.view addSubview:self.pagingScrollView];
@@ -60,42 +81,27 @@ static NSString* const kPageReuseIdentifier = @"SamplePageIdentifier";
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                 duration:(NSTimeInterval)duration {
   [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-  
-  // The paging scroll view implements autorotation internally so that the current visible page
-  // index is maintained correctly. It also provides an opportunity for each visible page view to
-  // maintain zoom information correctly.
+
   [self.pagingScrollView willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                          duration:(NSTimeInterval)duration {
   [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-  
-  // The second part of the paging scroll view's autorotation functionality. Both of these methods
-  // must be called in order for the paging scroll view to rotate itself correctly.
+
   [self.pagingScrollView willAnimateRotationToInterfaceOrientation:toInterfaceOrientation
                                                           duration:duration];
 }
 
-// The paging scroll view data source works similarly to UITableViewDataSource. We will return
-// the total number of pages in the scroll view as well as each page as it is about to be displayed.
 #pragma mark - NIPagingScrollViewDataSource
 
 - (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView {
-  // For the sake of this example we'll show a fixed number of pages.
   return 10;
 }
 
-// Similar to UITableViewDataSource, we create each page view on demand as the user is scrolling
-// through the page view.
-// Unlike UITableViewDataSource, this method requests a UIView that conforms to a protocol, rather
-// than requiring a specific subclass of a type of view. This allows you to use any UIView as long
-// as it conforms to NIPagingScrollView.
 - (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView
                                     pageViewForIndex:(NSInteger)pageIndex {
-  // Check the reusable page queue.
   SamplePageView *page = (SamplePageView *)[pagingScrollView dequeueReusablePageWithIdentifier:kPageReuseIdentifier];
-  // If no page was in the reusable queue, we need to create one.
   if (nil == page) {
     page = [[SamplePageView alloc] initWithReuseIdentifier:kPageReuseIdentifier];
   }
