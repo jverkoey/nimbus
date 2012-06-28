@@ -97,7 +97,7 @@
 
   NITableViewModelSection* section = [NITableViewModelSection section];
   section.rows = listArray;
-  self.sections = [NSArray arrayWithObject:section];
+  self.sections = @[section];
 }
 
 
@@ -223,7 +223,7 @@
       if ([headerTitle length] > 0) {
         NSString* prefix = [headerTitle substringToIndex:1];
         if (nil == [sectionPrefixToSectionIndex objectForKey:prefix]) {
-          [sectionPrefixToSectionIndex setObject:[NSNumber numberWithInt:sectionIndex] forKey:prefix];
+          [sectionPrefixToSectionIndex setObject:@(sectionIndex) forKey:prefix];
         }
       }
       ++sectionIndex;
@@ -237,7 +237,7 @@
         lastIndex = [[sectionPrefixToSectionIndex objectForKey:prefix] intValue];
         
       } else {
-        [sectionPrefixToSectionIndex setObject:[NSNumber numberWithInt:lastIndex] forKey:prefix];
+        [sectionPrefixToSectionIndex setObject:@(lastIndex) forKey:prefix];
       }
     }
   }

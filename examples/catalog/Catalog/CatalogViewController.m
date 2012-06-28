@@ -109,12 +109,11 @@
     // data source protocols. They encapsulate standard delegate functionality and will make your
     // life a lot easier. In this particular case we're using NITableViewModel with a sectioned
     // array of objects.
-    NSArray* sectionedObjects =
-    [NSArray arrayWithObjects:
+    NSArray* sectionedObjects = @[
 
-     // An NSString in a sectioned array denotes the start of a new section. It's also the label of
-     // the section header.
-     @"Attributed Label",
+    // An NSString in a sectioned array denotes the start of a new section. It's also the label of
+    // the section header.
+    @"Attributed Label",
 
      // Any objects following an NSString will be part of the same group until another NSString
      // is encountered.
@@ -279,9 +278,7 @@
         return NO;
       } toObject:
       [NISubtitleCellObject objectWithTitle:@"Extra Actions"
-                                   subtitle:@"Subclassing for more actions"]],
-
-     nil];
+                                   subtitle:@"Subclassing for more actions"]]];
 
     // When we create the model we must provide it with a delegate that implements the
     // NITableViewModelDelegate protocol. This protocol has a single method that is used to create

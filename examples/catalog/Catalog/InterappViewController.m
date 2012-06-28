@@ -99,9 +99,7 @@
     _actions = [[NITableViewActions alloc] initWithController:self];
 
     NSArray* sectionedObjects =
-    [NSArray arrayWithObjects:
-
-     @"Safari",
+    @[@"Safari",
      [self objectWithAction:^{return [NIInterapp safariWithURL:[NSURL URLWithString:@"http://latest.docs.nimbuskit.info"]];}
                       title:@"Open a URL in Safari" subtitle:@"http://latest.docs.nimbuskit.info"],
 
@@ -173,9 +171,7 @@
                                                                andPath:@"//friends/blah"];} title:@"Custom app with url" subtitle:nil],
      [self objectWithAction:^{return [NIInterapp applicationWithScheme:@"RAWR:"
                                                             appStoreId:@"000000000" 
-                                                               andPath:@"//friends/blah"];} title:@"Custom app with url or AppStore" subtitle:nil],
-     
-     nil];
+                                                               andPath:@"//friends/blah"];} title:@"Custom app with url or AppStore" subtitle:nil]];
 
     _model = [[NITableViewModel alloc] initWithSectionedArray:sectionedObjects
                                                      delegate:(id)[NICellFactory class]];

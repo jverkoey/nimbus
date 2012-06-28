@@ -218,8 +218,8 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 
   // At this point the main parts are the same and both have alpha parts. Compare the alpha parts
   // numerically. If it's not a valid number (including empty string) it's treated as zero.
-  NSNumber *oneAlpha = [NSNumber numberWithInt:[[oneComponents objectAtIndex:1] intValue]];
-  NSNumber *twoAlpha = [NSNumber numberWithInt:[[twoComponents objectAtIndex:1] intValue]];
+  NSNumber *oneAlpha = @([[oneComponents objectAtIndex:1] intValue]);
+  NSNumber *twoAlpha = @([[twoComponents objectAtIndex:1] intValue]);
   return [oneAlpha compare:twoAlpha];
 }
 
