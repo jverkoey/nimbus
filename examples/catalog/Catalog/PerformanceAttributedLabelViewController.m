@@ -66,7 +66,11 @@
   
   self.label = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
   self.label.numberOfLines = 0;
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
   self.label.lineBreakMode = UILineBreakModeWordWrap;
+#else
+  self.label.lineBreakMode = NSLineBreakByWordWrapping;
+#endif
   self.label.font = [UIFont fontWithName:@"Optima-Regular" size:20];
   self.label.autoDetectLinks = YES;
   self.label.dataDetectorTypes = NSTextCheckingAllSystemTypes;
