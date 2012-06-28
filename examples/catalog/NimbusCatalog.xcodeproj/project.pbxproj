@@ -79,6 +79,8 @@
 		66A29F9E15951C0000F6EA64 /* NIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A29F9815951C0000F6EA64 /* NIPageView.m */; };
 		66A29F9F15951C0000F6EA64 /* NIPagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A29F9A15951C0000F6EA64 /* NIPagingScrollView.m */; };
 		66B6692F159BD22500FE4AE8 /* LongTapAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6692E159BD22500FE4AE8 /* LongTapAttributedLabelViewController.m */; };
+		66B67087159CC32D00FE4AE8 /* VerticalPagingScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B67086159CC32D00FE4AE8 /* VerticalPagingScrollViewController.m */; };
+		66B6708B159CC39E00FE4AE8 /* SamplePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6708A159CC39D00FE4AE8 /* SamplePageView.m */; };
 		66B9414B1592E30100AEA1D2 /* NIInterapp.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B941481592E30100AEA1D2 /* NIInterapp.m */; };
 		66B941521592E36900AEA1D2 /* InterappViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B941511592E36900AEA1D2 /* InterappViewController.m */; };
 		66B941541592E5EF00AEA1D2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B941531592E5EF00AEA1D2 /* CoreLocation.framework */; };
@@ -257,6 +259,10 @@
 		66A29F9D15951C0000F6EA64 /* NIPagingScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewPage.h; path = ../../src/pagingscrollview/src/NIPagingScrollViewPage.h; sourceTree = "<group>"; };
 		66B6692D159BD22500FE4AE8 /* LongTapAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongTapAttributedLabelViewController.h; sourceTree = "<group>"; };
 		66B6692E159BD22500FE4AE8 /* LongTapAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongTapAttributedLabelViewController.m; sourceTree = "<group>"; };
+		66B67085159CC32D00FE4AE8 /* VerticalPagingScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalPagingScrollViewController.h; sourceTree = "<group>"; };
+		66B67086159CC32D00FE4AE8 /* VerticalPagingScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalPagingScrollViewController.m; sourceTree = "<group>"; };
+		66B67089159CC39D00FE4AE8 /* SamplePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplePageView.h; sourceTree = "<group>"; };
+		66B6708A159CC39D00FE4AE8 /* SamplePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplePageView.m; sourceTree = "<group>"; };
 		66B941471592E30100AEA1D2 /* NIInterapp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIInterapp.h; path = ../../src/interapp/src/NIInterapp.h; sourceTree = "<group>"; };
 		66B941481592E30100AEA1D2 /* NIInterapp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIInterapp.m; path = ../../src/interapp/src/NIInterapp.m; sourceTree = "<group>"; };
 		66B941491592E30100AEA1D2 /* NimbusInterapp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusInterapp.h; path = ../../src/interapp/src/NimbusInterapp.h; sourceTree = "<group>"; };
@@ -328,6 +334,10 @@
 			children = (
 				44707C75159B06A000B83149 /* BasicInstantiationPagingScrollViewController.h */,
 				44707C76159B06A000B83149 /* BasicInstantiationPagingScrollViewController.m */,
+				66B67085159CC32D00FE4AE8 /* VerticalPagingScrollViewController.h */,
+				66B67086159CC32D00FE4AE8 /* VerticalPagingScrollViewController.m */,
+				66B67089159CC39D00FE4AE8 /* SamplePageView.h */,
+				66B6708A159CC39D00FE4AE8 /* SamplePageView.m */,
 			);
 			name = "Paging Scroll View";
 			sourceTree = "<group>";
@@ -867,6 +877,8 @@
 				44707C77159B06A700B83149 /* BasicInstantiationPagingScrollViewController.m in Sources */,
 				66B6692F159BD22500FE4AE8 /* LongTapAttributedLabelViewController.m in Sources */,
 				441B7FD4159C5A3B002B4C5C /* NIVerticalPagingScrollView.m in Sources */,
+				66B67087159CC32D00FE4AE8 /* VerticalPagingScrollViewController.m in Sources */,
+				66B6708B159CC39E00FE4AE8 /* SamplePageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

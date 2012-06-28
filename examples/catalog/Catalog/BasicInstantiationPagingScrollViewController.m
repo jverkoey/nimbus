@@ -16,6 +16,7 @@
 
 #import "BasicInstantiationPagingScrollViewController.h"
 
+#import "SamplePageView.h"
 #import "NimbusPagingScrollView.h"
 
 //
@@ -47,12 +48,9 @@
 // Having the const after NSString* means that we can't assign a new value to kPageReuseIdentifier.
 static NSString* const kPageReuseIdentifier = @"SamplePageIdentifier";
 
-// This is the page view object that will be displayed for each page of the paging scroll view.
-// Pages that will be displayed in a NIPagingScrollView must implement the NIPagingScrollViewPage
-// protocol.
-@interface SamplePageView : UIView <NIPagingScrollViewPage>
-@property (nonatomic, readwrite, retain) UILabel* label;
-- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
+@interface BasicInstantiationPagingScrollViewController()
+// We must retain the paging scroll view in order to autorotate it correctly.
+@property (nonatomic, readwrite, retain) NIPagingScrollView* pagingScrollView;
 @end
 
 @implementation BasicInstantiationPagingScrollViewController
@@ -137,68 +135,6 @@ static NSString* const kPageReuseIdentifier = @"SamplePageIdentifier";
     page = [[SamplePageView alloc] initWithReuseIdentifier:kPageReuseIdentifier];
   }
   return page;
-}
-
-@end
-
-@implementation SamplePageView
-
-@synthesize label = _label;
-@synthesize pageIndex = _pageIndex;
-@synthesize reuseIdentifier = _reuseIdentifier;
-
-- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier {
-  if ((self = [super initWithFrame:CGRectZero])) {
-    _label = [[UILabel alloc] initWithFrame:self.bounds];
-    _label.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
-    _label.font = [UIFont systemFontOfSize:26];
-    _label.textAlignment = UITextAlignmentCenter;
-    _label.backgroundColor = [UIColor clearColor];
-    
-    [self addSubview:_label];
-  }
-  return self;
-}
-
-- (id)initWithFrame:(CGRect)frame {
-  return [self initWithReuseIdentifier:nil];
-}
-
-- (void)setPageIndex:(NSInteger)pageIndex {
-  _pageIndex = pageIndex;
-
-  self.label.text = [NSString stringWithFormat:@"This is page %i", pageIndex];
-
-  UIColor* bgColor;
-  UIColor* textColor;
-  // Change the background and text color depending on the index.
-  switch (pageIndex % 4) {
-    case 0:
-      bgColor = [UIColor redColor];
-      textColor = [UIColor whiteColor];
-      break;
-    case 1:
-      bgColor = [UIColor blueColor];
-      textColor = [UIColor whiteColor];
-      break;
-    case 2:
-      bgColor = [UIColor yellowColor];
-      textColor = [UIColor blackColor];
-      break;
-    case 3:
-      bgColor = [UIColor greenColor];
-      textColor = [UIColor blackColor];
-      break;
-  }
-
-  self.backgroundColor = bgColor;
-  self.label.textColor = textColor;
-
-  [self setNeedsLayout];
-}
-
-- (void)prepareForReuse {
-  self.label.text = nil;
 }
 
 @end

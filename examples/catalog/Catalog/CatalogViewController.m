@@ -236,8 +236,8 @@
      [_actions attachNavigationAction:
       NIPushControllerAction([VerticalPagingScrollViewController class])
                              toObject:
-      [NISubtitleCellObject objectWithTitle:@"Vertical scroll view"
-                                   subtitle:@"Showing a paging scroll view with a vertical layout"]],
+      [NISubtitleCellObject objectWithTitle:@"Vertical Paging"
+                                   subtitle:@"Using a vertical layout"]],
 
      @"Web Controller",
      [_actions attachNavigationAction:

@@ -16,6 +16,12 @@
 
 #import <UIKit/UIKit.h>
 
-// All docs are in the .m.
-@interface BasicInstantiationPagingScrollViewController : UIViewController
+#import "NimbusPagingScrollView.h"
+
+// This is the page view object that will be displayed for each page of the paging scroll view.
+// Pages that will be displayed in a NIPagingScrollView must implement the NIPagingScrollViewPage
+// protocol.
+@interface SamplePageView : UIView <NIPagingScrollViewPage>
+@property (nonatomic, readwrite, retain) UILabel* label;
+- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
 @end
