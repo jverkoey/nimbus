@@ -99,7 +99,14 @@
   }
 
   if (nil != url) {
-    [[UIApplication sharedApplication] openURL:url];
+    if (![[UIApplication sharedApplication] openURL:url]) {
+      UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:[@"No application was found that could open this url: " stringByAppendingString:url.absoluteString]
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+      [alert show];
+    }
 
   } else {
     NSLog(@"Unsupported data type");
