@@ -44,7 +44,7 @@
  *
  * <h2>Basic Use</h2>
  *
- * NIAttributedLabel is a subclass of UILabel. The attributed label maintains an <a href="http://developer.apple.com/library/ios/#documentation/Cocoa/Reference/Foundation/Classes/NSAttributedString_Class/Reference/Reference.html"NSAttributedString</a>
+ * NIAttributedLabel is a subclass of UILabel. The attributed label maintains an <a href="http://developer.apple.com/library/ios/#documentation/Cocoa/Reference/Foundation/Classes/NSAttributedString_Class/Reference/Reference.html">NSAttributedString</a>
  * object internally which is used in conjunction with CoreText to draw rich-text labels. A number
  * of helper methods for modifying the text style are provided. If you need to directly modify the
  * internal NSAttributedString you may do so by accessing the @c attributedString property on iOS 4
