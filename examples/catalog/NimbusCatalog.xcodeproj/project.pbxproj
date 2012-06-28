@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		441B7FD4159C5A3B002B4C5C /* NIVerticalPagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 441B7FD3159C5A3B002B4C5C /* NIVerticalPagingScrollView.m */; };
 		44707C77159B06A700B83149 /* BasicInstantiationPagingScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44707C76159B06A000B83149 /* BasicInstantiationPagingScrollViewController.m */; };
 		660C6F2915992B2500209EB3 /* BadgedLauncherButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 660C6F2815992B2500209EB3 /* BadgedLauncherButtonView.m */; };
 		661F28EE159292B800D11FC3 /* BasicInstantiationBadgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 661F28ED159292B800D11FC3 /* BasicInstantiationBadgeViewController.m */; };
@@ -104,6 +105,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		441B7FD2159C5A3B002B4C5C /* NIVerticalPagingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIVerticalPagingScrollView.h; path = ../../src/pagingscrollview/src/NIVerticalPagingScrollView.h; sourceTree = "<group>"; };
+		441B7FD3159C5A3B002B4C5C /* NIVerticalPagingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIVerticalPagingScrollView.m; path = ../../src/pagingscrollview/src/NIVerticalPagingScrollView.m; sourceTree = "<group>"; };
 		44707C75159B06A000B83149 /* BasicInstantiationPagingScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicInstantiationPagingScrollViewController.h; sourceTree = "<group>"; };
 		44707C76159B06A000B83149 /* BasicInstantiationPagingScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicInstantiationPagingScrollViewController.m; sourceTree = "<group>"; };
 		660C6F2715992B2500209EB3 /* BadgedLauncherButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgedLauncherButtonView.h; sourceTree = "<group>"; };
@@ -647,6 +650,8 @@
 				66A29F9B15951C0000F6EA64 /* NIPagingScrollViewDataSource.h */,
 				66A29F9C15951C0000F6EA64 /* NIPagingScrollViewDelegate.h */,
 				66A29F9D15951C0000F6EA64 /* NIPagingScrollViewPage.h */,
+				441B7FD2159C5A3B002B4C5C /* NIVerticalPagingScrollView.h */,
+				441B7FD3159C5A3B002B4C5C /* NIVerticalPagingScrollView.m */,
 			);
 			name = "Paging Scroll View";
 			sourceTree = "<group>";
@@ -861,6 +866,7 @@
 				660C6F2915992B2500209EB3 /* BadgedLauncherButtonView.m in Sources */,
 				44707C77159B06A700B83149 /* BasicInstantiationPagingScrollViewController.m in Sources */,
 				66B6692F159BD22500FE4AE8 /* LongTapAttributedLabelViewController.m in Sources */,
+				441B7FD4159C5A3B002B4C5C /* NIVerticalPagingScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

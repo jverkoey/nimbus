@@ -14,14 +14,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import <UIKit/UIKit.h>
+#import "NIPagingScrollView.h"
 
-@class NIPagingScrollView;
+/**
+ * The default number of pixels at the top and bottom of each page.
+ *
+ * Value: 10
+ */
+extern const CGFloat NIPagingScrollViewDefaultPageVerticalMargin;
 
-// All docs are in the .m.
-@interface BasicInstantiationPagingScrollViewController : UIViewController
+/**
+ * A paged scroll view that shows a series of pages with a vertical layout.
+ *
+ *      @ingroup NimbusPagingScrollView
+ */
+@interface NIVerticalPagingScrollView : NIPagingScrollView {
+@private
+  CGFloat _pageVerticalMargin;
+}
 
-// We must retain the paging scroll view in order to autorotate it correctly.
-@property (nonatomic, readwrite, retain) NIPagingScrollView* pagingScrollView;
+@property (nonatomic, readwrite, assign) CGFloat pageVerticalMargin;
 
 @end

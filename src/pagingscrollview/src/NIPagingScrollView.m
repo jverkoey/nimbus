@@ -153,6 +153,26 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   return CGSizeMake(bounds.size.width * _numberOfPages, bounds.size.height);
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGPoint)adjustOffsetWithMargin:(CGPoint)offset {
+  offset.x -= self.pageHorizontalMargin;
+  return offset;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)pageScrollableDimension {
+  return self.pagingScrollView.bounds.size.width;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGPoint)contentOffsetFromOffset:(CGFloat)offset {
+  return CGPointMake(offset, 0);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)scrolledPageOffset {
+  return self.pagingScrollView.contentOffset.x;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -498,7 +518,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
     // The content size is calculated based on the number of pages and the scroll view frame.
     _isModifyingContentOffset = YES;
     CGPoint offset = [self frameForPageAtIndex:_centerPageIndex].origin;
-    offset.x -= self.pageHorizontalMargin;
+    offset = [self adjustOffsetWithMargin:offset];
     self.pagingScrollView.contentOffset = offset;
     _isModifyingContentOffset = NO;
   }
@@ -514,18 +534,18 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   // Here, our pagingScrollView bounds have not yet been updated for the new interface
   // orientation. This is a good place to calculate the content offset that we will
   // need in the new orientation.
-  CGFloat offset = self.pagingScrollView.contentOffset.x;
-  CGFloat pageWidth = self.pagingScrollView.bounds.size.width;
+  CGFloat offset = [self scrolledPageOffset];
+  CGFloat pageScrollableDimension = [self pageScrollableDimension];
 
   if (offset >= 0) {
-    _firstVisiblePageIndexBeforeRotation = floorf(offset / pageWidth);
+    _firstVisiblePageIndexBeforeRotation = floorf(offset / pageScrollableDimension);
     _percentScrolledIntoFirstVisiblePage = ((offset
-                                            - (_firstVisiblePageIndexBeforeRotation * pageWidth))
-                                           / pageWidth);
+        - (_firstVisiblePageIndexBeforeRotation * pageScrollableDimension))
+        / pageScrollableDimension);
 
   } else {
     _firstVisiblePageIndexBeforeRotation = 0;
-    _percentScrolledIntoFirstVisiblePage = offset / pageWidth;
+    _percentScrolledIntoFirstVisiblePage = offset / pageScrollableDimension;
   }
 }
 
@@ -543,11 +563,11 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   [self layoutVisiblePages];
 
   // Adjust contentOffset to preserve page location based on values collected prior to location.
-  CGFloat pageWidth = self.pagingScrollView.bounds.size.width;
-  CGFloat newOffset = ((_firstVisiblePageIndexBeforeRotation * pageWidth)
-                       + (_percentScrolledIntoFirstVisiblePage * pageWidth));
+  CGFloat pageScrollableDimension = [self pageScrollableDimension];
+  CGFloat newOffset = ((_firstVisiblePageIndexBeforeRotation * pageScrollableDimension)
+                       + (_percentScrolledIntoFirstVisiblePage * pageScrollableDimension));
   _isModifyingContentOffset = YES;
-  self.pagingScrollView.contentOffset = CGPointMake(newOffset, 0);
+  self.pagingScrollView.contentOffset = [self contentOffsetFromOffset:newOffset];
   _isModifyingContentOffset = wasModifyingContentOffset;
 }
 
@@ -571,7 +591,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   // Reset the content offset once the animation completes, just to be sure that the
   // viewer sits on a page bounds even if we rotate the device while animating.
   CGPoint offset = [self frameForPageAtIndex:[pageIndex intValue]].origin;
-  offset.x -= self.pageHorizontalMargin;
+  offset = [self adjustOffsetWithMargin:offset];
 
   _isModifyingContentOffset = YES;
   self.pagingScrollView.contentOffset = offset;
@@ -589,7 +609,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   }
 
   CGPoint offset = [self frameForPageAtIndex:pageIndex].origin;
-  offset.x -= self.pageHorizontalMargin;
+  offset = [self adjustOffsetWithMargin:offset];
 
   _isModifyingContentOffset = YES;
   [self.pagingScrollView setContentOffset:offset animated:animated];
