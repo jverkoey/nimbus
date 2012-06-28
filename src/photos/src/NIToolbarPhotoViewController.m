@@ -111,7 +111,9 @@
 
     UIBarButtonItem* scrubberItem =
     [[UIBarButtonItem alloc] initWithCustomView:self.photoScrubberView];
-    self.toolbar.items = @[flexibleSpace, scrubberItem, flexibleSpace];
+    self.toolbar.items = [NSArray arrayWithObjects:
+                          flexibleSpace, scrubberItem, flexibleSpace,
+                          nil];
 
     [_photoScrubberView setSelectedPhotoIndex:self.photoAlbumView.centerPageIndex];
     
@@ -155,9 +157,11 @@
                                                         action: @selector(didTapPreviousButton)];
     }
 
-    self.toolbar.items = @[flexibleSpace, self.previousButton,
+    self.toolbar.items = [NSArray arrayWithObjects:
+                          flexibleSpace, self.previousButton,
                           flexibleSpace, self.nextButton,
-                          flexibleSpace];
+                          flexibleSpace,
+                          nil];
   }
 
 }

@@ -36,7 +36,8 @@
     self.title = NSLocalizedString(@"Indexed Model", @"Controller Title: Indexed Model");
     
     NSArray* tableContents =
-    @[@"A",
+    [NSArray arrayWithObjects:
+     @"A",
      [NITitleCellObject objectWithTitle:@"Jon Abrams"],
      [NITitleCellObject objectWithTitle:@"Crystal Arbor"],
      [NITitleCellObject objectWithTitle:@"Mike Axiom"],
@@ -75,7 +76,9 @@
      [NITitleCellObject objectWithTitle:@"Number 10 Otter"],
      
      @"X",
-     [NITitleCellObject objectWithTitle:@"Charles Xavier"]];
+     [NITitleCellObject objectWithTitle:@"Charles Xavier"],
+
+     nil];
     
     // We use NICellFactory to create the cell views.
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents

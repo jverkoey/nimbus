@@ -68,7 +68,7 @@ NSString* const NIOverviewLoggerDidAddConsoleLog = @"NIOverviewLoggerDidAddConso
   [[NSNotificationCenter defaultCenter] postNotificationName: NIOverviewLoggerDidAddConsoleLog
                                                       object: nil
                                                     userInfo:
-   @{@"entry": logEntry}];
+   [NSDictionary dictionaryWithObject:logEntry forKey:@"entry"]];
 }
 
 

@@ -228,7 +228,9 @@ static const CGFloat kGraphRightMargin = 5;
                        color: (UIColor **)color {
   static NSArray* sEventColors = nil;
   if (nil == sEventColors) {
-    sEventColors = @[[UIColor redColor]];
+    sEventColors = [NSArray arrayWithObjects:
+                     [UIColor redColor], // NIOverviewEventDidReceiveMemoryWarning
+                     nil];
   }
   NIOverviewEventLogEntry* entry = [_eventEnumerator nextObject];
   if (nil != entry) {

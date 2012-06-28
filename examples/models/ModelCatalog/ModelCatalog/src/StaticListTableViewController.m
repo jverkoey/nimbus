@@ -36,9 +36,11 @@
 
     // Each of the cell objects below is mapped to the NITextCell class.
     NSArray* tableContents =
-    @[[NITitleCellObject objectWithTitle:@"Row 1"],
+    [NSArray arrayWithObjects:
+     [NITitleCellObject objectWithTitle:@"Row 1"],
      [NITitleCellObject objectWithTitle:@"Row 2"],
-     [NISubtitleCellObject objectWithTitle:@"Row 3" subtitle:@"Subtitle"]];
+     [NISubtitleCellObject objectWithTitle:@"Row 3" subtitle:@"Subtitle"],
+     nil];
 
     // We use NICellFactory to create the cell views.
     _model = [[NITableViewModel alloc] initWithListArray:tableContents

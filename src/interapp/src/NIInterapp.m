@@ -439,7 +439,8 @@ static NSString* const sInstagramScheme = @"instagram:";
     if (nil != error) {
       *error = [NSError errorWithDomain: NSCocoaErrorDomain
                                    code: NSFileReadUnknownError
-                               userInfo: @{NSFilePathErrorKey: filePath}];
+                               userInfo: [NSDictionary dictionaryWithObject: filePath
+                                                                     forKey: NSFilePathErrorKey]];
     }
     return nil;
   }
@@ -450,7 +451,8 @@ static NSString* const sInstagramScheme = @"instagram:";
     if (nil != error) {
       *error = [NSError errorWithDomain: NINimbusErrorDomain
                                    code: NIImageTooSmall
-                               userInfo: @{NIImageErrorKey: image}];
+                               userInfo: [NSDictionary dictionaryWithObject: image
+                                                                     forKey: NIImageErrorKey]];
     }
     return nil;
   }

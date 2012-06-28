@@ -272,13 +272,15 @@
                                                  target: nil
                                                  action: nil];
 
-  self.toolbar.items = @[self.backButton,
+  self.toolbar.items = [NSArray arrayWithObjects:
+                    self.backButton,
                     flexibleSpace,
                     self.forwardButton,
                     flexibleSpace,
                     self.refreshButton,
                     flexibleSpace,
-                    self.actionButton];
+                    self.actionButton,
+                    nil];
   [self.view addSubview:self.toolbar];
 
   self.webView = [[UIWebView alloc] initWithFrame:CGRectZero];

@@ -594,7 +594,7 @@ const CGFloat NIPagingScrollViewDefaultPageHorizontalMargin = 10;
   _isModifyingContentOffset = YES;
   [self.pagingScrollView setContentOffset:offset animated:animated];
 
-  NSNumber* pageIndexNumber = @(pageIndex);
+  NSNumber* pageIndexNumber = [NSNumber numberWithInt:pageIndex];
   if (animated) {
     _isAnimatingToPage = YES;
     SEL selector = @selector(didAnimateToPage:);

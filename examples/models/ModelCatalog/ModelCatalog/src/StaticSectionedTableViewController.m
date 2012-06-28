@@ -34,7 +34,9 @@
     self.title = NSLocalizedString(@"Sectioned Model", @"Controller Title: Sectioned Model");
 
     NSArray* tableContents =
-    @[[NITableViewModelFooter footerWithTitle:@"Footer only"],
+    [NSArray arrayWithObjects:
+     // This is here to test creating sections without a header.
+     [NITableViewModelFooter footerWithTitle:@"Footer only"],
      
      // This as well.
      [NITitleCellObject objectWithTitle:@"Row only"],
@@ -61,7 +63,8 @@
      [NITitleCellObject objectWithTitle:@"Row"],
      [NITableViewModelFooter footerWithTitle:@"Footer"],
      
-     [NITableViewModelFooter footerWithTitle:@"Footer only"]];
+     [NITableViewModelFooter footerWithTitle:@"Footer only"],
+     nil];
 
     // We use NICellFactory to create the cell views.
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents

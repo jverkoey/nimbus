@@ -73,18 +73,20 @@
     // buttons. In this example we'll mix the default NILauncherViewObject with
     // BadgedLauncherViewObject, which displays a launcher button with a badge number.
     NSArray* contents =
-    @[@[
-    // Shows a button with a badge showing the number 12.
-    [BadgedLauncherViewObject objectWithTitle:@"Nimbus" image:image badgeNumber:12],
-    [NILauncherViewObject objectWithTitle:@"Nimbus 2" image:image],
-    [NILauncherViewObject objectWithTitle:@"Nimbus 3" image:image],
+    [NSArray arrayWithObjects:
+     [NSArray arrayWithObjects:
+      // Shows a button with a badge showing the number 12.
+      [BadgedLauncherViewObject objectWithTitle:@"Nimbus" image:image badgeNumber:12],
+      [NILauncherViewObject objectWithTitle:@"Nimbus 2" image:image],
+      [NILauncherViewObject objectWithTitle:@"Nimbus 3" image:image],
 
-    // Will not display a badge because the number is 0.
-    [BadgedLauncherViewObject objectWithTitle:@"Nimbus 4" image:image badgeNumber:0],
+      // Will not display a badge because the number is 0.
+      [BadgedLauncherViewObject objectWithTitle:@"Nimbus 4" image:image badgeNumber:0],
 
-    // The badge number will become @"99+".
-    [BadgedLauncherViewObject objectWithTitle:@"Nimbus 6" image:image badgeNumber:103]
-    ]];
+      // The badge number will become @"99+".
+      [BadgedLauncherViewObject objectWithTitle:@"Nimbus 6" image:image badgeNumber:103],
+      nil],
+     nil];
 
     _model = [[NILauncherViewModel alloc] initWithArrayOfPages:contents delegate:self];
   }

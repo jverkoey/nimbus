@@ -78,7 +78,8 @@ typedef enum {
                  toIdentifier:SubRadioOption3];
 
     NSArray* tableContents =
-    @[@"Radio Group",
+    [NSArray arrayWithObjects:
+     @"Radio Group",
      [_radioGroup mapObject:[NISubtitleCellObject objectWithTitle:@"Radio 1"
                                                          subtitle:@"First option"]
                toIdentifier:RadioOption1],
@@ -124,12 +125,15 @@ typedef enum {
      @"NISegmentedControlFormElement",
      [NISegmentedControlFormElement segmentedControlElementWithID:0
                                                         labelText:@"Text segments"
-                                                         segments:@[@"one", @"two"]
+                                                         segments:[NSArray arrayWithObjects:
+                                                                   @"one", @"two", nil]
                                                     selectedIndex:0],
      [NISegmentedControlFormElement segmentedControlElementWithID:0
                                                         labelText:@"Image segments"
-                                                         segments:@[[UIImage imageNamed:@"star.png"],
-                                                                   [UIImage imageNamed:@"circle.png"]]
+                                                         segments:[NSArray arrayWithObjects:
+                                                                   [UIImage imageNamed:@"star.png"],
+                                                                   [UIImage imageNamed:@"circle.png"],
+                                                                   nil]
                                                     selectedIndex:-1 
                                                   didChangeTarget:self 
                                                 didChangeSelector:@selector(segmentedControlWithImagesDidChangeValue:)],
@@ -151,7 +155,8 @@ typedef enum {
      [NIDatePickerFormElement datePickerElementWithID:0
                                             labelText:@"Countdown"
                                                  date:[NSDate date]
-                                       datePickerMode:UIDatePickerModeCountDownTimer]];
+                                       datePickerMode:UIDatePickerModeCountDownTimer],
+     nil];
     
     self.radioGroup.selectedIdentifier = RadioOption1;
     self.subRadioGroup.selectedIdentifier = SubRadioOption1;
