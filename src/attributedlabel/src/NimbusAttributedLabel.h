@@ -75,6 +75,7 @@ label.text = @"Nimbus";
  * <h2>Feature Overview</h2>
  *
  * - Automatic link detection using data detectors
+ * - Link attributes
  * - Explicit links
  * - Underlining
  * - Justifying paragraphs
@@ -92,6 +93,10 @@ label.text = @"Nimbus";
  * @link NIAttributedLabel::dataDetectorTypes dataDetectorTypes@endlink property. By default only
  * urls will be detected.
  *
+ *      @attention NIAttributedLabel is not designed to detect html anchor tags (i.e. &lt;a>). If
+ *                 you want to attach a URL to a given range of text you must use
+ *                 @link NIAttributedLabel::addLink:range: addLink:range:@endlink.
+ *
  *  @image html NIAttributedLabel_autoDetectLinksOff.png "Before enabling autoDetectLinks"
  *
 @code
@@ -103,6 +108,8 @@ myLabel.autoDetectLinks = YES;
  *
  * Enabling automatic link detection will automatically enable user interation with the label view
  * so that the user can tap the detected links.
+ *
+ * <h3>Link Attributes</h3>
  *
  * Detected links will use @link NIAttributedLabel::linkColor linkColor@endlink and
  * @link NIAttributedLabel::highlightedLinkColor highlightedLinkColor@endlink to differentiate
@@ -135,11 +142,11 @@ myLabel.autoDetectLinks = YES;
  *
  * <h3>Explicit Links</h3>
  *
- * It is easy to add explicit links by using the
- * @link NIAttributedLabel::addLink:range: addLink:range:@endlink method.
+ * Links can be added explicitly using
+ * @link NIAttributedLabel::addLink:range: addLink:range:@endlink.
  * 
 @code
-// Add a custom link to the text 'nimbus'.
+// Add a link to the string 'nimbus' in myLabel.
 [myLabel addLink:[NSURL URLWithString:@"nimbus://custom/url"]
            range:[myLabel.text rangeOfString:@"nimbus"]];
 @endcode
