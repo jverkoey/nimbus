@@ -16,6 +16,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class NIPagingScrollView;
+
 // All docs are in the .m.
 @interface BasicInstantiationPagingScrollViewController : UIViewController
+
+// We must retain the paging scroll view in order to autorotate it correctly.
+@property (nonatomic, readwrite, retain) NIPagingScrollView* pagingScrollView;
+
 @end
