@@ -18,6 +18,7 @@
 
 #import "NITableViewModel.h"
 #import "NimbusCore.h"
+#import <objc/runtime.h>
 
 @interface NITableViewAction : NSObject
 @property (nonatomic, readwrite, copy) NITableViewActionBlock tapAction;
@@ -92,35 +93,46 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)forwardInvocation:(NSInvocation *)invocation {
-  BOOL didForward = NO;
-
-  for (id delegate in self.forwardDelegates) {
-    if ([delegate respondsToSelector:invocation.selector]) {
-      [invocation invokeWithTarget:delegate];
-      didForward = YES;
-      break;
-    }
-  }
-
-  if (!didForward) {
-    [super forwardInvocation:invocation];
-  }
+- (BOOL)shouldForwardSelector:(SEL)selector {
+  struct objc_method_description description;
+  description = protocol_getMethodDescription(@protocol(UITableViewDelegate), selector, NO, YES);
+  return (description.name != NULL && description.types != NULL);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)respondsToSelector:(SEL)selector {
-  BOOL doesRespond = [super respondsToSelector:selector];
-  if (!doesRespond) {
+  if ([super respondsToSelector:selector]) {
+    return YES;
+    
+  } else if ([self shouldForwardSelector:selector]) {
     for (id delegate in self.forwardDelegates) {
-      doesRespond = [delegate respondsToSelector:selector];
-      if (doesRespond) {
+      if ([delegate respondsToSelector:selector]) {
+        return YES;
+      }
+    }
+  }
+  return NO;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)forwardInvocation:(NSInvocation *)invocation {
+  BOOL didForward = NO;
+  
+  if ([self shouldForwardSelector:invocation.selector]) {
+    for (id delegate in self.forwardDelegates) {
+      if ([delegate respondsToSelector:invocation.selector]) {
+        [invocation invokeWithTarget:delegate];
+        didForward = YES;
         break;
       }
     }
   }
-  return doesRespond;
+  
+  if (!didForward) {
+    [super forwardInvocation:invocation];
+  }
 }
 
 
