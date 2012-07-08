@@ -20,8 +20,14 @@
 #import "NSMutableAttributedString+NimbusAttributedLabel.h"
 #import <QuartzCore/QuartzCore.h>
 
+static const CGFloat kVMargin = 5.0f;
 static const NSTimeInterval kLongPressTimeInterval = 0.5;
 static const CGFloat kLongPressGutter = 22;
+
+// The touch gutter is the amount of space around a link that will still register as tapping
+// "within" the link.
+static const CGFloat kTouchGutter = 22;
+
 static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 
 @interface NIAttributedLabel() <UIActionSheetDelegate>
@@ -129,10 +135,10 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resetTextFrame {
-	if (nil != self.textFrame) {
-		CFRelease(self.textFrame);
-		self.textFrame = nil;
-	}
+  if (nil != self.textFrame) {
+    CFRelease(self.textFrame);
+    self.textFrame = nil;
+  }
 }
 
 
@@ -172,21 +178,21 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)sizeThatFits:(CGSize)size {
-	if (nil == self.mutableAttributedString) {
+  if (nil == self.mutableAttributedString) {
     return CGSizeZero;
   }
 
   CFAttributedStringRef attributedStringRef = (__bridge CFAttributedStringRef)self.mutableAttributedString;
   CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attributedStringRef);
-	CFRange fitCFRange = CFRangeMake(0,0);
-	CGSize newSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0), NULL, size, &fitCFRange);
+  CFRange fitCFRange = CFRangeMake(0,0);
+  CGSize newSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0), NULL, size, &fitCFRange);
 
-	if (nil != framesetter) {
+  if (nil != framesetter) {
     CFRelease(framesetter);
     framesetter = nil;
   }
 
-	return CGSizeMake(ceilf(newSize.width), ceilf(newSize.height));
+  return CGSizeMake(ceilf(newSize.width), ceilf(newSize.height));
 }
 
 
@@ -359,7 +365,7 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFont:(UIFont *)font {
-	[super setFont:font];
+  [super setFont:font];
 
   [self.mutableAttributedString setFont:font];
 }
@@ -554,12 +560,12 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGRect)getLineBounds:(CTLineRef)line point:(CGPoint) point {
   CGFloat ascent = 0.0f;
-	CGFloat descent = 0.0f;
-	CGFloat leading = 0.0f;
-	CGFloat width = (CGFloat)CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
-	CGFloat height = ascent + descent;
-	
-	return CGRectMake(point.x, point.y - descent, width, height);
+  CGFloat descent = 0.0f;
+  CGFloat leading = 0.0f;
+  CGFloat width = (CGFloat)CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
+  CGFloat height = ascent + descent;
+  
+  return CGRectMake(point.x, point.y - descent, width, height);
 }
 
 
@@ -587,7 +593,7 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
     }
   }
 
-	return foundResult;
+  return foundResult;
 }
 
 
@@ -620,19 +626,18 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSTextCheckingResult *)linkAtPoint:(CGPoint)point {
-  static const CGFloat kVMargin = 5.0f;
-	if (!CGRectContainsPoint(CGRectInset(self.bounds, 0, -kVMargin), point)) {
+  if (!CGRectContainsPoint(CGRectInset(self.bounds, 0, -kVMargin), point)) {
     return nil;
   }
 
   CFArrayRef lines = CTFrameGetLines(self.textFrame);
-	if (!lines) return nil;
-	CFIndex count = CFArrayGetCount(lines);
+  if (!lines) return nil;
+  CFIndex count = CFArrayGetCount(lines);
 
   NSTextCheckingResult* foundLink = nil;
 
-	CGPoint origins[count];
-	CTFrameGetLineOrigins(self.textFrame, CFRangeMake(0,0), origins);
+  CGPoint origins[count];
+  CTFrameGetLineOrigins(self.textFrame, CFRangeMake(0,0), origins);
   
   CGAffineTransform transform = [self _transformForCoreText];
   CGFloat verticalOffset = [self _verticalOffsetForBounds:self.bounds];
@@ -643,26 +648,114 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
   point.y -= kBoundsInsets.top;
 
   for (int i = 0; i < count; i++) {
-		CGPoint linePoint = origins[i];
+    CGPoint linePoint = origins[i];
 
-		CTLineRef line = CFArrayGetValueAtIndex(lines, i);
-		CGRect flippedRect = [self getLineBounds:line point:linePoint];
+    CTLineRef line = CFArrayGetValueAtIndex(lines, i);
+    CGRect flippedRect = [self getLineBounds:line point:linePoint];
     CGRect rect = CGRectApplyAffineTransform(flippedRect, transform);
 
-		rect = CGRectInset(rect, 0, -kVMargin);
+    rect = CGRectInset(rect, 0, -kVMargin);
     rect = CGRectOffset(rect, 0, verticalOffset);
 
-		if (CGRectContainsPoint(rect, point)) {
-			CGPoint relativePoint = CGPointMake(point.x-CGRectGetMinX(rect),
+    if (CGRectContainsPoint(rect, point)) {
+      CGPoint relativePoint = CGPointMake(point.x-CGRectGetMinX(rect),
                                           point.y-CGRectGetMinY(rect));
-			CFIndex idx = CTLineGetStringIndexForPosition(line, relativePoint);
-			foundLink = [self linkAtIndex:idx];
-			if (foundLink) {
+      CFIndex idx = CTLineGetStringIndexForPosition(line, relativePoint);
+      foundLink = [self linkAtIndex:idx];
+      if (foundLink) {
         return foundLink;
       }
-		}
-	}
-	return nil;
+    }
+  }
+  return nil;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGRect)_rectForRange:(NSRange)range inLine:(CTLineRef)line lineOrigin:(CGPoint)lineOrigin {
+  CGRect rectForRange = CGRectZero;
+  CFArrayRef runs = CTLineGetGlyphRuns(line);
+  CFIndex runCount = CFArrayGetCount(runs);
+
+  // Iterate through each of the "runs" (i.e. a chunk of text) and find the runs that
+  // intersect with the range.
+  for (CFIndex k = 0; k < runCount; k++) {
+    CTRunRef run = CFArrayGetValueAtIndex(runs, k);
+
+    CFRange stringRunRange = CTRunGetStringRange(run);
+    NSRange lineRunRange = NSMakeRange(stringRunRange.location, stringRunRange.length);
+    NSRange intersectedRunRange = NSIntersectionRange(lineRunRange, range);
+
+    if (intersectedRunRange.length == 0) {
+      // This run doesn't intersect the range, so skip it.
+      continue;
+    }
+
+    CGFloat ascent = 0.0f;
+    CGFloat descent = 0.0f;
+    CGFloat leading = 0.0f;
+    CGFloat width = (CGFloat)CTRunGetTypographicBounds(run,
+                                                       CFRangeMake(0, 0),
+                                                       &ascent,
+                                                       &descent,
+                                                       &leading);
+    CGFloat height = ascent + descent;
+
+    CGFloat xOffset = CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, nil);
+
+    CGRect linkRect = CGRectMake(lineOrigin.x + xOffset - leading, lineOrigin.y - descent, width + leading, height);
+
+    linkRect = CGRectIntegral(linkRect);
+    linkRect = CGRectInset(linkRect, -2, 0);
+
+    if (CGRectIsEmpty(rectForRange)) {
+      rectForRange = linkRect;
+
+    } else {
+      rectForRange = CGRectUnion(rectForRange, linkRect);
+    }
+  }
+  
+  return rectForRange;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)isPoint:(CGPoint)point nearLink:(NSTextCheckingResult *)link {
+  CFArrayRef lines = CTFrameGetLines(self.textFrame);
+  if (!lines) return NO;
+  CFIndex count = CFArrayGetCount(lines);
+  CGPoint lineOrigins[count];
+  CTFrameGetLineOrigins(self.textFrame, CFRangeMake(0, 0), lineOrigins);
+
+  CGAffineTransform transform = [self _transformForCoreText];
+  CGFloat verticalOffset = [self _verticalOffsetForBounds:self.bounds];
+
+  // Our bounds may have a non-zero offset, so we must take this into account when doing hit
+  // detection.
+  point.x += kBoundsInsets.left;
+  point.y -= kBoundsInsets.top;
+
+  NSRange linkRange = link.range;
+
+  BOOL isNearLink = NO;
+  for (int i = 0; i < count; i++) {
+    CTLineRef line = CFArrayGetValueAtIndex(lines, i);
+
+    CGRect linkRect = [self _rectForRange:linkRange inLine:line lineOrigin:lineOrigins[i]];
+
+    if (!CGRectIsEmpty(linkRect)) {
+      linkRect = CGRectApplyAffineTransform(linkRect, transform);
+      linkRect = CGRectOffset(linkRect, 0, verticalOffset);
+      linkRect = CGRectInset(linkRect, -kTouchGutter, -kTouchGutter);
+      if (CGRectContainsPoint(linkRect, point)) {
+        isNearLink = YES;
+        break;
+      }
+    }
+  }
+
+  return isNearLink;
 }
 
 
@@ -671,7 +764,7 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
   [super touchesBegan:touches withEvent:event];
 
   UITouch* touch = [touches anyObject];
-	CGPoint point = [touch locationInView:self];
+  CGPoint point = [touch locationInView:self];
 
   self.touchedLink = [self linkAtPoint:point];
   self.touchPoint = point;
@@ -691,21 +784,25 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
   [super touchesMoved:touches withEvent:event];
   
   UITouch* touch = [touches anyObject];
-	CGPoint point = [touch locationInView:self];
+  CGPoint point = [touch locationInView:self];
 
   // If the user moves their finger away from the original link, deselect it.
   // If the user moves their finger back to the original link, reselect it.
   // Don't allow other links to be selected other than the original link.
-  NSTextCheckingResult* newLink = [self linkAtPoint:point];
-  if (newLink != self.touchedLink) {
-    if (newLink != self.originalLink) {
-      [self.longPressTimer invalidate];
-      self.longPressTimer = nil;
-      self.touchedLink = nil;
-      [self setNeedsDisplay];
+
+  if (nil != self.originalLink) {
+    NSTextCheckingResult* oldTouchedLink = self.touchedLink;
+
+    if ([self isPoint:point nearLink:self.originalLink]) {
+      self.touchedLink = self.originalLink;
 
     } else {
-      self.touchedLink = self.originalLink;
+      self.touchedLink = nil;
+    }
+
+    if (oldTouchedLink != self.touchedLink) {
+      [self.longPressTimer invalidate];
+      self.longPressTimer = nil;
       [self setNeedsDisplay];
     }
   }
@@ -733,20 +830,22 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
   self.longPressTimer = nil;
 
   UITouch* touch = [touches anyObject];
-	CGPoint point = [touch locationInView:self];
+  CGPoint point = [touch locationInView:self];
 
-  NSTextCheckingResult* linkTouched = [self linkAtPoint:point];
+  if (nil != self.originalLink) {
+    if ([self isPoint:point nearLink:self.originalLink]) {
+      // This old-style method is deprecated, please update to the newer delegate method that supports
+      // more data types.
+      NIDASSERT(![self.delegate respondsToSelector:@selector(attributedLabel:didSelectLink:atPoint:)]);
 
-  if ([self.touchedLink isEqual:linkTouched]) {
-    // This old-style method is deprecated, please update to the newer delegate method that supports
-    // more data types.
-    NIDASSERT(![self.delegate respondsToSelector:@selector(attributedLabel:didSelectLink:atPoint:)]);
-    if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectTextCheckingResult:atPoint:)]) {
-      [self.delegate attributedLabel:self didSelectTextCheckingResult:linkTouched atPoint:point];
+      if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectTextCheckingResult:atPoint:)]) {
+        [self.delegate attributedLabel:self didSelectTextCheckingResult:self.originalLink atPoint:point];
+      }
     }
   }
 
   self.touchedLink = nil;
+  self.originalLink = nil;
 
   [self setNeedsDisplay];
 }
@@ -760,6 +859,7 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
   self.longPressTimer = nil;
 
   self.touchedLink = nil;
+  self.originalLink = nil;
 
   [self setNeedsDisplay];
 }
@@ -896,7 +996,7 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 
   if (nil != attributedStringWithLinks) {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-		CGContextSaveGState(ctx);
+    CGContextSaveGState(ctx);
 
     CGAffineTransform transform = [self _transformForCoreText];
     CGContextConcatCTM(ctx, transform);
@@ -908,13 +1008,13 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
       CGMutablePathRef path = CGPathCreateMutable();
       // We must tranform the path rectangle in order to draw the text correctly for bottom/middle
       // vertical alignment modes.
-			CGPathAddRect(path, &transform, rect);
+      CGPathAddRect(path, &transform, rect);
       if (nil != self.shadowColor) {
         CGContextSetShadowWithColor(ctx, self.shadowOffset, self.shadowBlur, self.shadowColor.CGColor);
       }
       self.textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
-			CGPathRelease(path);
-			CFRelease(framesetter);
+      CGPathRelease(path);
+      CFRelease(framesetter);
     }
 
     // Draw the tapped link's highlight.
@@ -938,51 +1038,7 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
           continue;
         }
 
-        // Iterate through each of the "runs" (i.e. a chunk of text) and find the runs that
-        // intersect with the link's range. For each of these runs, draw the highlight frame
-        // around the part of the run that intersects with the link.
-        CGRect highlightRect = CGRectZero;
-        CFArrayRef runs = CTLineGetGlyphRuns(line);
-        CFIndex runCount = CFArrayGetCount(runs);
-        for (CFIndex k = 0; k < runCount; k++) {
-          CTRunRef run = CFArrayGetValueAtIndex(runs, k);
-
-          CFRange stringRunRange = CTRunGetStringRange(run);
-          NSRange lineRunRange = NSMakeRange(stringRunRange.location, stringRunRange.length);
-          NSRange intersectedRunRange = NSIntersectionRange(lineRunRange, linkRange);
-          if (intersectedRunRange.length == 0) {
-            continue;
-          }
-
-          CGFloat ascent = 0.0f;
-          CGFloat descent = 0.0f;
-          CGFloat leading = 0.0f;
-          CGFloat width = (CGFloat)CTRunGetTypographicBounds(run,
-                                                             CFRangeMake(0, 0), 
-                                                             &ascent, 
-                                                             &descent, 
-                                                             &leading);
-          CGFloat height = ascent + descent;
-
-          CGFloat xOffset = CTLineGetOffsetForStringIndex(line, 
-                                                          CTRunGetStringRange(run).location, 
-                                                          nil);
-
-          CGRect linkRect = CGRectMake(lineOrigins[i].x + xOffset - leading,
-                                       lineOrigins[i].y - descent,
-                                       width + leading,
-                                       height);
-
-          linkRect = CGRectIntegral(linkRect);
-          linkRect = CGRectInset(linkRect, -2, 0);
-
-          if (CGRectIsEmpty(highlightRect)) {
-            highlightRect = linkRect;
-
-          } else {
-            highlightRect = CGRectUnion(highlightRect, linkRect);
-          }
-        }
+        CGRect highlightRect = [self _rectForRange:linkRange inLine:line lineOrigin:lineOrigins[i]];
 
         if (!CGRectIsEmpty(highlightRect)) {
           highlightRect = CGRectOffset(highlightRect, -kBoundsInsets.left, -rect.origin.y - kBoundsInsets.top - kBoundsInsets.bottom);
@@ -1010,7 +1066,7 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
     }
 
     CTFrameDraw(self.textFrame, ctx);
-		CGContextRestoreGState(ctx);
+    CGContextRestoreGState(ctx);
 
   } else {
     [super drawTextInRect:rect];
@@ -1088,12 +1144,12 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 + (CTTextAlignment)alignmentFromUITextAlignment:(UITextAlignment)alignment {
   switch (alignment) {
-		case UITextAlignmentLeft: return kCTLeftTextAlignment;
-		case UITextAlignmentCenter: return kCTCenterTextAlignment;
-		case UITextAlignmentRight: return kCTRightTextAlignment;
-		case UITextAlignmentJustify: return kCTJustifiedTextAlignment;
+    case UITextAlignmentLeft: return kCTLeftTextAlignment;
+    case UITextAlignmentCenter: return kCTCenterTextAlignment;
+    case UITextAlignmentRight: return kCTRightTextAlignment;
+    case UITextAlignmentJustify: return kCTJustifiedTextAlignment;
     default: return kCTNaturalTextAlignment;
-	}
+  }
 }
 #else
 + (CTTextAlignment)alignmentFromUITextAlignment:(NSTextAlignment)alignment {
@@ -1103,7 +1159,7 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
     case NSTextAlignmentRight: return kCTRightTextAlignment;
     case NSTextAlignmentJustified: return kCTJustifiedTextAlignment;
     default: return kCTNaturalTextAlignment;
-	}
+  }
 }
 #endif
 
@@ -1111,15 +1167,15 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 + (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(UILineBreakMode)lineBreakMode {
-	switch (lineBreakMode) {
-		case UILineBreakModeWordWrap: return kCTLineBreakByWordWrapping;
-		case UILineBreakModeCharacterWrap: return kCTLineBreakByCharWrapping;
-		case UILineBreakModeClip: return kCTLineBreakByClipping;
-		case UILineBreakModeHeadTruncation: return kCTLineBreakByTruncatingHead;
-		case UILineBreakModeTailTruncation: return kCTLineBreakByTruncatingTail;
-		case UILineBreakModeMiddleTruncation: return kCTLineBreakByTruncatingMiddle;
-		default: return 0;
-	}
+  switch (lineBreakMode) {
+    case UILineBreakModeWordWrap: return kCTLineBreakByWordWrapping;
+    case UILineBreakModeCharacterWrap: return kCTLineBreakByCharWrapping;
+    case UILineBreakModeClip: return kCTLineBreakByClipping;
+    case UILineBreakModeHeadTruncation: return kCTLineBreakByTruncatingHead;
+    case UILineBreakModeTailTruncation: return kCTLineBreakByTruncatingTail;
+    case UILineBreakModeMiddleTruncation: return kCTLineBreakByTruncatingMiddle;
+    default: return 0;
+  }
 }
 #else
 + (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(NSLineBreakMode)lineBreakMode {
