@@ -392,6 +392,12 @@
        } failure:^(NSURLRequest *errorRequest, NSHTTPURLResponse *response, NSError *error) {
          [self _didFailToLoadWithError:error];
        }];
+        
+      [operation setDownloadProgressBlock:^(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+          if ([self.delegate respondsToSelector:@selector(networkImageView:readBytes:totalBytes:)]) {
+              [self.delegate networkImageView:self readBytes:totalBytesRead totalBytes:totalBytesExpectedToRead];
+          }
+      }];
 
       // We handle image scaling ourselves in the image processing method, so we need to disable
       // AFNetworking from doing so as well.

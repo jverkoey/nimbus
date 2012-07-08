@@ -142,6 +142,11 @@ typedef enum {
  */
 - (void)networkImageView:(NINetworkImageView *)imageView didFailWithError:(NSError *)error;
 
+/**
+ * The progress of the download.
+ */
+- (void)networkImageView:(NINetworkImageView *)imageView readBytes:(long long)readBytes totalBytes:(long long)totalBytes;
+
 @end
 
 /**
