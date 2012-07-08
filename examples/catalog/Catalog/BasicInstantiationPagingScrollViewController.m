@@ -48,7 +48,7 @@
 // Having the const after NSString* means that we can't assign a new value to kPageReuseIdentifier.
 static NSString* const kPageReuseIdentifier = @"SamplePageIdentifier";
 
-@interface BasicInstantiationPagingScrollViewController()
+@interface BasicInstantiationPagingScrollViewController() <NIPagingScrollViewDataSource>
 // We must retain the paging scroll view in order to autorotate it correctly.
 @property (nonatomic, readwrite, retain) NIPagingScrollView* pagingScrollView;
 @end

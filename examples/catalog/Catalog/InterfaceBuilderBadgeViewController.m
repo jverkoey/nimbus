@@ -44,6 +44,9 @@
 
 @implementation InterfaceBuilderBadgeViewController
 
+@synthesize badgeView;
+@synthesize badgeView2;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:@"ApplicationBadges" bundle:nibBundleOrNil])) {
     self.title = @"Interface Builder";

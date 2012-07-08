@@ -45,6 +45,8 @@ static NSString* const kPageReuseIdentifier = @"SamplePageIdentifier";
 
 @implementation VerticalPagingScrollViewController
 
+@synthesize pagingScrollView = _pagingScrollView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     self.title = @"Vertical Scroll View";

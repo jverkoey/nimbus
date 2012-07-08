@@ -16,6 +16,8 @@
 
 #import "ModifyingLauncherViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 //
 // What's going on in this file:
 //
@@ -35,6 +37,7 @@
 //
 // Foundation.framework
 // UIKit.framework
+// QuartzCore.framework
 //
 
 @interface ModifyingLauncherViewController () <NILauncherViewModelDelegate>

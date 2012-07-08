@@ -16,6 +16,8 @@
 
 #import "BasicInstantiationLauncherViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 //
 // What's going on in this file:
 //
@@ -34,6 +36,7 @@
 //
 // Foundation.framework
 // UIKit.framework
+// QuartzCore.framework
 //
 
 // The reuse identifier for buttons in the launcher view.
