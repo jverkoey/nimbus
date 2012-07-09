@@ -453,5 +453,4 @@ static const CGSize kCellImageSize = {44, 44};
   }
 }
 
-
 @end
