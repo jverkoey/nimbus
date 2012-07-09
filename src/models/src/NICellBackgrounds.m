@@ -1,0 +1,457 @@
+//
+// Copyright 2012 Jeff Verkoeyen
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+#import "NICellBackgrounds.h"
+
+#import "NimbusCore.h"
+
+static const CGFloat kBorderSize = 1;
+static const CGFloat kBorderRadius = 5;
+static const CGSize kCellImageSize = {44, 44};
+
+@interface NIGroupedCellBackground()
+@property (nonatomic, readwrite, retain) NSMutableDictionary* cachedImages;
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NIGroupedCellBackground
+
+@synthesize innerBackgroundColor = _innerBackgroundColor;
+@synthesize highlightedInnerGradientColors = _highlightedInnerGradientColors;
+@synthesize shadowWidth = _shadowWidth;
+@synthesize shadowColor = _shadowColor;
+@synthesize borderColor = _borderColor;
+@synthesize dividerColor = _dividerColor;
+@synthesize cachedImages = _cachedImages;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)init {
+  if ((self = [super init])) {
+    _innerBackgroundColor = [UIColor whiteColor];
+    _highlightedInnerGradientColors = [NSMutableArray arrayWithObjects:
+                                       (id)RGBCOLOR(53, 141, 245).CGColor,
+                                       (id)RGBCOLOR(16, 93, 230).CGColor,
+                                       nil];
+    _shadowWidth = 4;
+    _shadowColor = RGBACOLOR(0, 0, 0, 0.3);
+    _borderColor = RGBACOLOR(0, 0, 0, 0.07);
+    _dividerColor = RGBCOLOR(230, 230, 230);
+    _cachedImages = [NSMutableDictionary dictionary];
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_applySinglePathToContext:(CGContextRef)c rect:(CGRect)rect {
+  CGFloat minx = CGRectGetMinX(rect) + 0.5f;
+  CGFloat midx = CGRectGetMidX(rect) + 0.5f;
+  CGFloat maxx = CGRectGetMaxX(rect) - 0.5f;
+  CGFloat miny = CGRectGetMinY(rect) - 0.5f;
+  CGFloat midy = CGRectGetMidY(rect) - 0.5f;
+  CGFloat maxy = CGRectGetMaxY(rect) + 0.5f;
+
+  CGContextBeginPath(c);
+
+  CGContextMoveToPoint(c, minx, midy);
+  CGContextAddArcToPoint(c, minx, miny + 1, midx, miny + 1, kBorderRadius);
+  CGContextAddArcToPoint(c, maxx, miny + 1, maxx, midy, kBorderRadius);
+  CGContextAddLineToPoint(c, maxx, midy);
+  CGContextAddArcToPoint(c, maxx, maxy - 1, midx, maxy - 1, kBorderRadius);
+  CGContextAddArcToPoint(c, minx, maxy - 1, minx, midy, kBorderRadius);
+  CGContextAddLineToPoint(c, minx, midy);
+
+  CGContextClosePath(c);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_applyTopPathToContext:(CGContextRef)c rect:(CGRect)rect {
+  CGFloat minx = CGRectGetMinX(rect) + 0.5f;
+  CGFloat midx = CGRectGetMidX(rect) + 0.5f;
+  CGFloat maxx = CGRectGetMaxX(rect) - 0.5f;
+  CGFloat miny = CGRectGetMinY(rect) - 0.5f;
+  CGFloat midy = CGRectGetMidY(rect) - 0.5f;
+  CGFloat maxy = CGRectGetMaxY(rect) + 0.5f;
+
+  CGContextBeginPath(c);
+
+  CGContextMoveToPoint(c, minx, maxy);
+  CGContextAddLineToPoint(c, minx, midy);
+  CGContextAddArcToPoint(c, minx, miny + 1, midx, miny + 1, kBorderRadius);
+  CGContextAddArcToPoint(c, maxx, miny + 1, maxx, midy, kBorderRadius);
+  CGContextAddLineToPoint(c, maxx, maxy);
+
+  CGContextClosePath(c);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_applyBottomPathToContext:(CGContextRef)c rect:(CGRect)rect {
+  CGFloat minx = CGRectGetMinX(rect) + 0.5f;
+  CGFloat midx = CGRectGetMidX(rect) + 0.5f;
+  CGFloat maxx = CGRectGetMaxX(rect) - 0.5f;
+  CGFloat miny = CGRectGetMinY(rect) - 0.5f;
+  CGFloat midy = CGRectGetMidY(rect) - 0.5f;
+  CGFloat maxy = CGRectGetMaxY(rect) + 0.5f;
+
+  CGContextBeginPath(c);
+
+  CGContextMoveToPoint(c, maxx, miny);
+  CGContextAddLineToPoint(c, maxx, midy);
+  CGContextAddArcToPoint(c, maxx, maxy - 1, midx, maxy - 1, kBorderRadius);
+  CGContextAddArcToPoint(c, minx, maxy - 1, minx, midy, kBorderRadius);
+  CGContextAddLineToPoint(c, minx, miny);
+
+  CGContextClosePath(c);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_applyDividerPathToContext:(CGContextRef)c rect:(CGRect)rect {
+  CGFloat minx = CGRectGetMinX(rect) + 0.5f;
+  CGFloat maxx = CGRectGetMaxX(rect) - 0.5f;
+  CGFloat maxy = CGRectGetMaxY(rect) + 0.5f;
+
+  CGContextBeginPath(c);
+
+  CGContextMoveToPoint(c, minx, maxy);
+  CGContextAddLineToPoint(c, maxx, maxy);
+
+  CGContextClosePath(c);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_applyLeftPathToContext:(CGContextRef)c rect:(CGRect)rect {
+  CGFloat minx = CGRectGetMinX(rect) + 0.5f;
+  CGFloat miny = CGRectGetMinY(rect) - 0.5f;
+  CGFloat maxy = CGRectGetMaxY(rect) + 0.5f;
+
+  CGContextBeginPath(c);
+
+  CGContextMoveToPoint(c, minx, miny);
+  CGContextAddLineToPoint(c, minx, maxy);
+
+  CGContextClosePath(c);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_applyRightPathToContext:(CGContextRef)c rect:(CGRect)rect {
+  CGFloat maxx = CGRectGetMaxX(rect) - 0.5f;
+  CGFloat miny = CGRectGetMinY(rect) - 0.5f;
+  CGFloat maxy = CGRectGetMaxY(rect) + 0.5f;
+
+  CGContextBeginPath(c);
+
+  CGContextMoveToPoint(c, maxx, miny);
+  CGContextAddLineToPoint(c, maxx, maxy);
+
+  CGContextClosePath(c);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_applyPathToContext:(CGContextRef)c rect:(CGRect)rect isFirst:(BOOL)isFirst isLast:(BOOL)isLast {
+  CGFloat minx = CGRectGetMinX(rect) + 0.5f;
+  CGFloat midx = CGRectGetMidX(rect) + 0.5f;
+  CGFloat maxx = CGRectGetMaxX(rect) - 0.5f;
+  CGFloat miny = CGRectGetMinY(rect) - 0.5f;
+  CGFloat midy = CGRectGetMidY(rect) - 0.5f;
+  CGFloat maxy = CGRectGetMaxY(rect) + 0.5f;
+
+  CGContextBeginPath(c);
+
+  //
+  // x-> |
+  //
+  CGContextMoveToPoint(c, minx, midy);
+
+  if (isFirst) {
+    // arc
+    //    >/
+    //     |
+    //
+    CGContextAddArcToPoint(c, minx, miny + 1, midx, miny + 1, kBorderRadius);
+
+    //      ______   line and then arc
+    //     /      \ <
+    //     |
+    //
+    CGContextAddArcToPoint(c, maxx, miny + 1, maxx, midy, kBorderRadius);
+
+  } else {
+    // line
+    //    >|
+    //     |
+    //
+    CGContextAddLineToPoint(c, minx, miny);
+
+    //      ______ <- line to here
+    //     |
+    //     |
+    //
+    CGContextAddLineToPoint(c, maxx, miny);
+  }
+
+  //     isSolid?
+  //        vv
+  //      ______
+  //     |      | -
+  //     |      | -\< right edge line
+  //
+  CGContextAddLineToPoint(c, maxx, midy);
+
+  if (isLast) {
+    CGContextAddArcToPoint(c, maxx, maxy - 1, midx, maxy - 1, kBorderRadius);
+    CGContextAddArcToPoint(c, minx, maxy - 1, minx, midy, kBorderRadius);
+
+  } else {
+    //     |      |
+    //     |      |
+    //     -------- <- line to here
+    //
+    CGContextAddLineToPoint(c, maxx, maxy);
+
+    //     |      |
+    //     |      |
+    //     --------
+    //     ^ then to here
+    CGContextAddLineToPoint(c, minx, maxy);
+  }
+
+  // x-> |      |
+  //     |      |
+  //     --------
+  CGContextAddLineToPoint(c, minx, midy);
+
+  CGContextClosePath(c);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIImage *)_imageForHighlight {
+  CGRect imageRect = CGRectMake(0, 0, 1, kCellImageSize.height);
+  UIGraphicsBeginImageContextWithOptions(imageRect.size, NO, 0);
+
+  CGContextRef cx = UIGraphicsGetCurrentContext();
+
+  CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+  CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)self.highlightedInnerGradientColors, nil);
+  CGColorSpaceRelease(colorSpace);
+  colorSpace = nil;
+
+  CGContextDrawLinearGradient(cx, gradient, CGPointZero, CGPointMake(imageRect.size.width, imageRect.size.height), 0);
+  CGGradientRelease(gradient);
+  gradient = nil;
+
+  UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+
+  return image;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIImage *)_imageForFirst:(BOOL)first last:(BOOL)last highlighted:(BOOL)highlighted {
+  CGRect imageRect = CGRectMake(0, 0, kCellImageSize.width, kCellImageSize.height);
+  UIGraphicsBeginImageContextWithOptions(imageRect.size, NO, 0);
+
+  CGContextRef cx = UIGraphicsGetCurrentContext();
+
+  // Create a transparent background.
+  CGContextClearRect(cx, imageRect);
+
+  if (highlighted) {
+    CGContextSetFillColorWithColor(cx, [UIColor colorWithPatternImage:self._imageForHighlight].CGColor);
+
+  } else {
+    CGContextSetFillColorWithColor(cx, self.innerBackgroundColor.CGColor);
+  }
+
+  CGRect contentFrame = CGRectInset(imageRect, self.shadowWidth, 0);
+  if (first) {
+    contentFrame = NIRectShift(contentFrame, 0, self.shadowWidth);
+  }
+  if (last) {
+    contentFrame = NIRectContract(contentFrame, 0, self.shadowWidth);
+  }
+  if (self.shadowWidth > 0 && !highlighted) {
+    // Draw the shadow
+    CGContextSaveGState(cx);
+    CGRect shadowFrame = contentFrame;
+
+    // We want the shadow to clip to the top and bottom edges of the image so that when two cells
+    // are next to each other their shadows line up perfectly.
+    if (!first) {
+      shadowFrame = NIRectShift(shadowFrame, 0, -kBorderRadius);
+    }
+    if (!last) {
+      shadowFrame = NIRectContract(shadowFrame, 0, -kBorderRadius);
+    }
+
+    [self _applyPathToContext:cx rect:shadowFrame isFirst:first isLast:last];
+
+    CGContextSetShadowWithColor(cx, CGSizeMake(0, 1), self.shadowWidth, self.shadowColor.CGColor);
+    CGContextDrawPath(cx, kCGPathFill);
+    CGContextRestoreGState(cx);
+  }
+
+  CGContextSaveGState(cx);
+  [self _applyPathToContext:cx rect:contentFrame isFirst:first isLast:last];
+  CGContextFillPath(cx);
+  CGContextRestoreGState(cx);
+
+  // We want the cell border to overlap the shadow and the content.
+  CGRect borderFrame = CGRectInset(contentFrame, -0.5f, -0.5f);
+  if (!highlighted) {
+    // Draw the cell border.
+    CGContextSaveGState(cx);
+    CGContextSetLineWidth(cx, kBorderSize);
+    CGContextSetStrokeColorWithColor(cx, self.borderColor.CGColor);
+    if (first && last) {
+      [self _applySinglePathToContext:cx rect:borderFrame];
+      CGContextStrokePath(cx);
+
+    } else if (first) {
+      [self _applyTopPathToContext:cx rect:borderFrame];
+      CGContextStrokePath(cx);
+
+    } else if (last) {
+      [self _applyBottomPathToContext:cx rect:borderFrame];
+      CGContextStrokePath(cx);
+
+    } else {
+      [self _applyLeftPathToContext:cx rect:borderFrame];
+      CGContextStrokePath(cx);
+
+      [self _applyRightPathToContext:cx rect:borderFrame];
+      CGContextStrokePath(cx);
+    }
+    CGContextRestoreGState(cx);
+  }
+
+  // Draw the cell divider.
+  if (!last) {
+    CGContextSaveGState(cx);
+    CGContextSetLineWidth(cx, kBorderSize);
+    CGContextSetStrokeColorWithColor(cx, self.dividerColor.CGColor);
+    [self _applyDividerPathToContext:cx rect:NIRectContract(contentFrame, 0, 1)];
+    CGContextStrokePath(cx);
+    CGContextRestoreGState(cx);
+  }
+
+  UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+
+  CGFloat capWidth = floorf(image.size.width / 2);
+  CGFloat capHeight = floorf(image.size.height / 2);
+  return [image resizableImageWithCapInsets:UIEdgeInsetsMake(capHeight, capWidth, capHeight, capWidth)];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)_cacheKeyForFirst:(BOOL)first last:(BOOL)last highlighted:(BOOL)highlighted {
+  NSInteger flags = ((first ? 0x01 : 0)
+                     | (last ? 0x02 : 0)
+                     | (highlighted ? 0x04 : 0));
+  return [NSNumber numberWithInt:flags];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_invalidateCache {
+  [self.cachedImages removeAllObjects];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Public Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIImage *)imageForFirst:(BOOL)first last:(BOOL)last highlighted:(BOOL)highlighted {
+  id cacheKey = [self _cacheKeyForFirst:first last:last highlighted:highlighted];
+  UIImage* image = [self.cachedImages objectForKey:cacheKey];
+  if (nil == image) {
+    image = [self _imageForFirst:first last:last highlighted:highlighted];
+    [self.cachedImages setObject:image forKey:cacheKey];
+  }
+  return image;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setInnerBackgroundColor:(UIColor *)innerBackgroundColor {
+  if (_innerBackgroundColor != innerBackgroundColor) {
+    _innerBackgroundColor = innerBackgroundColor;
+    [self _invalidateCache];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setHighlightedInnerGradientColors:(NSMutableArray *)highlightedInnerGradientColors {
+  if (_highlightedInnerGradientColors != highlightedInnerGradientColors) {
+    _highlightedInnerGradientColors = highlightedInnerGradientColors;
+    [self _invalidateCache];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setShadowWidth:(CGFloat)shadowWidth {
+  if (_shadowWidth != shadowWidth) {
+    _shadowWidth = shadowWidth;
+    [self _invalidateCache];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setShadowColor:(UIColor *)shadowColor {
+  if (_shadowColor != shadowColor) {
+    _shadowColor = shadowColor;
+    [self _invalidateCache];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setBorderColor:(UIColor *)borderColor {
+  if (_borderColor != borderColor) {
+    _borderColor = borderColor;
+    [self _invalidateCache];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setDividerColor:(UIColor *)dividerColor {
+  if (_dividerColor != dividerColor) {
+    _dividerColor = dividerColor;
+    [self _invalidateCache];
+  }
+}
+
+
+@end

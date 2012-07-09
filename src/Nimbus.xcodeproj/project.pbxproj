@@ -267,6 +267,8 @@
 		66A0B0D014BD1635003FA413 /* NimbusNetworkControllers+Namespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A0B0CF14BD1635003FA413 /* NimbusNetworkControllers+Namespace.h */; };
 		66B10900144C931F004576D1 /* UIButton+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */; };
 		66B10901144C931F004576D1 /* UIButton+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */; };
+		66B6710715AA820700FE4AE8 /* NICellBackgrounds.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B6710515AA820700FE4AE8 /* NICellBackgrounds.h */; };
+		66B6710815AA820700FE4AE8 /* NICellBackgrounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6710615AA820700FE4AE8 /* NICellBackgrounds.m */; };
 		66BACD1D15857A6200B0B481 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BACD1C15857A6200B0B481 /* CoreGraphics.framework */; };
 		66BB4F9815958A5800020EE8 /* NILauncherButtonView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66BB4F8A15958A5800020EE8 /* NILauncherButtonView.h */; };
 		66BB4F9915958A5800020EE8 /* NILauncherButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4F8B15958A5800020EE8 /* NILauncherButtonView.m */; };
@@ -894,6 +896,8 @@
 		66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+NIStyleable.h"; path = "css/src/UIButton+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
 		66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+NIStyleable.m"; path = "css/src/UIButton+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		66B10906144D4C15004576D1 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = css/deps; sourceTree = SOURCE_ROOT; };
+		66B6710515AA820700FE4AE8 /* NICellBackgrounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICellBackgrounds.h; sourceTree = "<group>"; };
+		66B6710615AA820700FE4AE8 /* NICellBackgrounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICellBackgrounds.m; sourceTree = "<group>"; };
 		66BACD1C15857A6200B0B481 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		66BB4F8A15958A5800020EE8 /* NILauncherButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NILauncherButtonView.h; sourceTree = "<group>"; };
 		66BB4F8B15958A5800020EE8 /* NILauncherButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NILauncherButtonView.m; sourceTree = "<group>"; };
@@ -1990,6 +1994,8 @@
 				6626330B14995C4600B99898 /* NITableViewModel+Private.h */,
 				6668867D156AD148006E874F /* NICellCatalog.h */,
 				6668867E156AD148006E874F /* NICellCatalog.m */,
+				66B6710515AA820700FE4AE8 /* NICellBackgrounds.h */,
+				66B6710615AA820700FE4AE8 /* NICellBackgrounds.m */,
 				667A749913FE20BD009D277D /* NIFormCellCatalog.h */,
 				667A749A13FE20BD009D277D /* NIFormCellCatalog.m */,
 				667A749B13FE20BD009D277D /* NICellFactory.h */,
@@ -2112,6 +2118,7 @@
 				66688688156ADDB3006E874F /* NIRadioGroup.h in Headers */,
 				6641617B156B516E0018AC1C /* NITableViewActions.h in Headers */,
 				667DD36B156D78980045ABBB /* NIRadioGroupController.h in Headers */,
+				66B6710715AA820700FE4AE8 /* NICellBackgrounds.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3361,6 +3368,7 @@
 				66688689156ADDB3006E874F /* NIRadioGroup.m in Sources */,
 				6641617C156B516E0018AC1C /* NITableViewActions.m in Sources */,
 				667DD36C156D78980045ABBB /* NIRadioGroupController.m in Sources */,
+				66B6710815AA820700FE4AE8 /* NICellBackgrounds.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
