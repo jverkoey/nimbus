@@ -19,6 +19,24 @@
 #import "NimbusModels.h"
 #import "NimbusCore.h"
 
+//
+// What's going on in this file:
+//
+// This is a demo of creating a NITableViewModel and filling it with a list of objects that will
+// be displayed in a table view.
+//
+// You will find the following Nimbus features used:
+//
+// [models]
+// NITableViewModel
+// NICellFactory
+//
+// This controller requires the following frameworks:
+//
+// Foundation.framework
+// UIKit.framework
+//
+
 @interface BasicInstantiationTableModelViewController ()
 @property (nonatomic, readwrite, retain) NITableViewModel* model;
 @end
