@@ -48,6 +48,9 @@
 #import "BasicInstantiationPagingScrollViewController.h"
 #import "VerticalPagingScrollViewController.h"
 
+// Tables
+#import "BasicInstantiationTableModelViewController.h"
+
 // Web Controller
 #import "ExtraActionsWebViewController.h"
 
@@ -239,6 +242,14 @@
       [NISubtitleCellObject objectWithTitle:@"Vertical Paging"
                                    subtitle:@"Using a vertical layout"]],
 
+     @"Table Models",
+     [_actions attachNavigationAction:
+      NIPushControllerAction([BasicInstantiationTableModelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
+                                   subtitle:@"How to create a table view model"]],
+     
+     
      @"Web Controller",
      [_actions attachNavigationAction:
       ^(id object, UIViewController* controller) {
