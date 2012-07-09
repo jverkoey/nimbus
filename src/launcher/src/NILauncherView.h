@@ -24,6 +24,7 @@
 @protocol NILauncherDelegate;
 @protocol NILauncherDataSource;
 @protocol NILauncherButtonView;
+@class NILauncherPageView;
 
 /**
  * Calculate the given field dynamically given the view and button dimensions.
@@ -48,7 +49,7 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 @property (nonatomic, readwrite, assign) id<NILauncherDataSource> dataSource;
 
 - (UIView<NILauncherButtonView> *)dequeueReusableViewWithIdentifier:(NSString *)identifier;
-
+- (void)updateLayoutForPage:(NILauncherPageView *)page;
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 
