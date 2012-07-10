@@ -23,6 +23,7 @@
 		6677FEE515AC8D1600517ABC /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 6677FEE415AC8D1600517ABC /* circle.png */; };
 		6677FEE715AC8D1C00517ABC /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 6677FEE615AC8D1C00517ABC /* star.png */; };
 		6677FEEA15AC92C800517ABC /* RadioGroupTableModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6677FEE915AC92C800517ABC /* RadioGroupTableModelViewController.m */; };
+		6677FEED15ACA60400517ABC /* NestedRadioGroupTableModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6677FEEC15ACA60400517ABC /* NestedRadioGroupTableModelViewController.m */; };
 		668B766F15938C8400EA86F6 /* ExtraActionsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B766E15938C8400EA86F6 /* ExtraActionsWebViewController.m */; };
 		668B7673159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B7672159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m */; };
 		668B767B159394EF00EA86F6 /* NIImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B7678159394EF00EA86F6 /* NIImageProcessing.m */; };
@@ -143,6 +144,8 @@
 		6677FEE615AC8D1C00517ABC /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = ../catalog/Catalog/star.png; sourceTree = "<group>"; };
 		6677FEE815AC92C800517ABC /* RadioGroupTableModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioGroupTableModelViewController.h; sourceTree = "<group>"; };
 		6677FEE915AC92C800517ABC /* RadioGroupTableModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioGroupTableModelViewController.m; sourceTree = "<group>"; };
+		6677FEEB15ACA60300517ABC /* NestedRadioGroupTableModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NestedRadioGroupTableModelViewController.h; sourceTree = "<group>"; };
+		6677FEEC15ACA60400517ABC /* NestedRadioGroupTableModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NestedRadioGroupTableModelViewController.m; sourceTree = "<group>"; };
 		668B766D15938C8400EA86F6 /* ExtraActionsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraActionsWebViewController.h; sourceTree = "<group>"; };
 		668B766E15938C8400EA86F6 /* ExtraActionsWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraActionsWebViewController.m; sourceTree = "<group>"; };
 		668B7671159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInstantiationNetworkImageViewController.h; sourceTree = "<group>"; };
@@ -396,6 +399,8 @@
 				6677FEDF15ABA9A300517ABC /* IndexedTableModelViewController.m */,
 				6677FEE815AC92C800517ABC /* RadioGroupTableModelViewController.h */,
 				6677FEE915AC92C800517ABC /* RadioGroupTableModelViewController.m */,
+				6677FEEB15ACA60300517ABC /* NestedRadioGroupTableModelViewController.h */,
+				6677FEEC15ACA60400517ABC /* NestedRadioGroupTableModelViewController.m */,
 				6677FEE115ABACC500517ABC /* FormCellCatalogViewController.h */,
 				6677FEE215ABACC500517ABC /* FormCellCatalogViewController.m */,
 			);
@@ -925,6 +930,7 @@
 				6677FEE015ABA9A300517ABC /* IndexedTableModelViewController.m in Sources */,
 				6677FEE315ABACC500517ABC /* FormCellCatalogViewController.m in Sources */,
 				6677FEEA15AC92C800517ABC /* RadioGroupTableModelViewController.m in Sources */,
+				6677FEED15ACA60400517ABC /* NestedRadioGroupTableModelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

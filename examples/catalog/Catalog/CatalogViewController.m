@@ -53,6 +53,7 @@
 #import "SectionedTableModelViewController.h"
 #import "IndexedTableModelViewController.h"
 #import "RadioGroupTableModelViewController.h"
+#import "NestedRadioGroupTableModelViewController.h"
 #import "FormCellCatalogViewController.h"
 
 // Web Controller
@@ -267,6 +268,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Radio Group"
                                    subtitle:@"How to use radio groups"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([NestedRadioGroupTableModelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Nested Radio Group"
+                                   subtitle:@"How to nest radio groups"]],
      [_actions attachNavigationAction:
       NIPushControllerAction([FormCellCatalogViewController class])
                              toObject:
