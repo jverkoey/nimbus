@@ -388,13 +388,6 @@
 			remoteGlobalIDString = 66832D2014421450003E413C;
 			remoteInfo = CSSDemo;
 		};
-		664EFB0C15598A49009826AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 664EFB0415598A49009826AB /* ModelCatalog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 66FE7D7D13FB90C40061B987;
-			remoteInfo = ModelCatalog;
-		};
 		664EFB2015598A5E009826AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 664EFB1815598A5E009826AB /* NetworkPhotoAlbum.xcodeproj */;
@@ -676,7 +669,6 @@
 		664D443014993010008B4C42 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = ../thirdparty/JSONKit/JSONKit.h; sourceTree = "<group>"; };
 		664D443114993010008B4C42 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = ../thirdparty/JSONKit/JSONKit.m; sourceTree = "<group>"; };
 		664EFAE215598A07009826AB /* CSSDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CSSDemo.xcodeproj; path = ../examples/css/CSSDemo.xcodeproj; sourceTree = "<group>"; };
-		664EFB0415598A49009826AB /* ModelCatalog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ModelCatalog.xcodeproj; path = ../examples/models/ModelCatalog/ModelCatalog.xcodeproj; sourceTree = "<group>"; };
 		664EFB1815598A5E009826AB /* NetworkPhotoAlbum.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NetworkPhotoAlbum.xcodeproj; path = ../examples/photos/NetworkPhotoAlbums/NetworkPhotoAlbum.xcodeproj; sourceTree = "<group>"; };
 		664EFB6015598CDF009826AB /* UIActivityIndicatorView+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+NIStyleable.h"; path = "css/src/UIActivityIndicatorView+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
 		664EFB6115598CDF009826AB /* UIActivityIndicatorView+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+NIStyleable.m"; path = "css/src/UIActivityIndicatorView+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
@@ -1332,7 +1324,6 @@
 			children = (
 				6693C106158A63E600950D42 /* NimbusCatalog.xcodeproj */,
 				664EFAE215598A07009826AB /* CSSDemo.xcodeproj */,
-				664EFB0415598A49009826AB /* ModelCatalog.xcodeproj */,
 				664EFB1815598A5E009826AB /* NetworkPhotoAlbum.xcodeproj */,
 			);
 			name = Examples;
@@ -1342,14 +1333,6 @@
 			isa = PBXGroup;
 			children = (
 				664EFAEB15598A07009826AB /* CSSDemo.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		664EFB0515598A49009826AB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				664EFB0D15598A49009826AB /* ModelCatalog.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2828,10 +2811,6 @@
 					ProjectRef = 664EFAE215598A07009826AB /* CSSDemo.xcodeproj */;
 				},
 				{
-					ProductGroup = 664EFB0515598A49009826AB /* Products */;
-					ProjectRef = 664EFB0415598A49009826AB /* ModelCatalog.xcodeproj */;
-				},
-				{
 					ProductGroup = 664EFB1915598A5E009826AB /* Products */;
 					ProjectRef = 664EFB1815598A5E009826AB /* NetworkPhotoAlbum.xcodeproj */;
 				},
@@ -2880,13 +2859,6 @@
 			fileType = wrapper.application;
 			path = CSSDemo.app;
 			remoteRef = 664EFAEA15598A07009826AB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		664EFB0D15598A49009826AB /* ModelCatalog.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = ModelCatalog.app;
-			remoteRef = 664EFB0C15598A49009826AB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		664EFB2115598A5E009826AB /* NetworkPhotoAlbum.app */ = {
