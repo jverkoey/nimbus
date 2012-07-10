@@ -57,7 +57,7 @@
      // Try uncommenting the following line to add a section header to the first section.
      //
      // @"Section Header",
-     [NITitleCellObject objectWithTitle:@"Headerless section"],
+     [NITitleCellObject objectWithTitle:@"First section"],
 
      // Each time an NSString is encountered in the table contents a new section will begin. All
      // proceeding objects will be part of this section until another NSString is encountered.
@@ -76,7 +76,7 @@
 
      // To start a new group without providing a section header you use an empty string.
      @"",
-     [NITitleCellObject objectWithTitle:@"Row"],
+     [NITitleCellObject objectWithTitle:@"This section has no header"],
      [NITitleCellObject objectWithTitle:@"Row"],
      nil];
 

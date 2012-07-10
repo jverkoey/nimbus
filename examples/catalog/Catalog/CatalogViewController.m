@@ -51,6 +51,7 @@
 // Tables
 #import "BasicInstantiationTableModelViewController.h"
 #import "SectionedTableModelViewController.h"
+#import "IndexedTableModelViewController.h"
 
 // Web Controller
 #import "ExtraActionsWebViewController.h"
@@ -254,6 +255,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Sectioned Model"
                                    subtitle:@"Sectioned table view models"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([IndexedTableModelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Indexed Model"
+                                   subtitle:@"Indexed table view models"]],
      
      @"Web Controller",
      [_actions attachNavigationAction:

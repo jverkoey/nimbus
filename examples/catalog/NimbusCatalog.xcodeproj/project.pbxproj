@@ -18,6 +18,7 @@
 		6633C7F2158F08EA0054D240 /* AttributedLabelMashup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6633C7F1158F08EA0054D240 /* AttributedLabelMashup.xib */; };
 		6677FEBD15AB8A0300517ABC /* BasicInstantiationTableModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6677FEBC15AB8A0300517ABC /* BasicInstantiationTableModelViewController.m */; };
 		6677FEDC15AB96BF00517ABC /* SectionedTableModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6677FEDB15AB96BF00517ABC /* SectionedTableModelViewController.m */; };
+		6677FEE015ABA9A300517ABC /* IndexedTableModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6677FEDF15ABA9A300517ABC /* IndexedTableModelViewController.m */; };
 		668B766F15938C8400EA86F6 /* ExtraActionsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B766E15938C8400EA86F6 /* ExtraActionsWebViewController.m */; };
 		668B7673159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B7672159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m */; };
 		668B767B159394EF00EA86F6 /* NIImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B7678159394EF00EA86F6 /* NIImageProcessing.m */; };
@@ -130,6 +131,8 @@
 		6677FEBC15AB8A0300517ABC /* BasicInstantiationTableModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicInstantiationTableModelViewController.m; sourceTree = "<group>"; };
 		6677FEDA15AB96BF00517ABC /* SectionedTableModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionedTableModelViewController.h; sourceTree = "<group>"; };
 		6677FEDB15AB96BF00517ABC /* SectionedTableModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionedTableModelViewController.m; sourceTree = "<group>"; };
+		6677FEDE15ABA9A200517ABC /* IndexedTableModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexedTableModelViewController.h; sourceTree = "<group>"; };
+		6677FEDF15ABA9A300517ABC /* IndexedTableModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexedTableModelViewController.m; sourceTree = "<group>"; };
 		668B766D15938C8400EA86F6 /* ExtraActionsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraActionsWebViewController.h; sourceTree = "<group>"; };
 		668B766E15938C8400EA86F6 /* ExtraActionsWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraActionsWebViewController.m; sourceTree = "<group>"; };
 		668B7671159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInstantiationNetworkImageViewController.h; sourceTree = "<group>"; };
@@ -379,6 +382,8 @@
 				6677FEBC15AB8A0300517ABC /* BasicInstantiationTableModelViewController.m */,
 				6677FEDA15AB96BF00517ABC /* SectionedTableModelViewController.h */,
 				6677FEDB15AB96BF00517ABC /* SectionedTableModelViewController.m */,
+				6677FEDE15ABA9A200517ABC /* IndexedTableModelViewController.h */,
+				6677FEDF15ABA9A300517ABC /* IndexedTableModelViewController.m */,
 			);
 			name = "Table Models";
 			sourceTree = "<group>";
@@ -899,6 +904,7 @@
 				66B6714315AB751E00FE4AE8 /* NICellBackgrounds.m in Sources */,
 				6677FEBD15AB8A0300517ABC /* BasicInstantiationTableModelViewController.m in Sources */,
 				6677FEDC15AB96BF00517ABC /* SectionedTableModelViewController.m in Sources */,
+				6677FEE015ABA9A300517ABC /* IndexedTableModelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
