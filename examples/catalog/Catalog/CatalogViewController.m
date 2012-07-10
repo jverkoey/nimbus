@@ -52,6 +52,7 @@
 #import "BasicInstantiationTableModelViewController.h"
 #import "SectionedTableModelViewController.h"
 #import "IndexedTableModelViewController.h"
+#import "RadioGroupTableModelViewController.h"
 #import "FormCellCatalogViewController.h"
 
 // Web Controller
@@ -261,6 +262,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Indexed Model"
                                    subtitle:@"Indexed table view models"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([RadioGroupTableModelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Radio Group"
+                                   subtitle:@"How to use radio groups"]],
      [_actions attachNavigationAction:
       NIPushControllerAction([FormCellCatalogViewController class])
                              toObject:
