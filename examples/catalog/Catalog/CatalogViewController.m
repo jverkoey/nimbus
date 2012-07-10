@@ -55,6 +55,7 @@
 #import "RadioGroupTableModelViewController.h"
 #import "NestedRadioGroupTableModelViewController.h"
 #import "FormCellCatalogViewController.h"
+#import "BlockCellsViewController.h"
 
 // Web Controller
 #import "ExtraActionsWebViewController.h"
@@ -278,6 +279,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Form Cell Catalog"
                                    subtitle:@"Table view cells for forms"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([BlockCellsViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Block Cells"
+                                   subtitle:@"Rendering cells with blocks"]],
      
      @"Web Controller",
      [_actions attachNavigationAction:

@@ -223,6 +223,7 @@
 
     _blockView = [[NIDrawRectBlockView alloc] initWithFrame:self.contentView.bounds];
     _blockView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
+    _blockView.contentMode = UIViewContentModeRedraw;
     [self.contentView addSubview:_blockView];
 
     [self.textLabel removeFromSuperview];
@@ -238,6 +239,7 @@
   _blockView.block = object.block;
   _blockView.object = object.object;
   _blockView.cell = self;
+  [_blockView setNeedsDisplay];
   return YES;
 }
 

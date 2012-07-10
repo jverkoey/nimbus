@@ -101,6 +101,7 @@
 		66BB4FA815958A6F00020EE8 /* ModelLauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4FA715958A6F00020EE8 /* ModelLauncherViewController.m */; };
 		66BB4FAF159594E300020EE8 /* ModifyingLauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4FAE159594E300020EE8 /* ModifyingLauncherViewController.m */; };
 		66BB4FCE15959B5000020EE8 /* RestoringLauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4FCD15959B5000020EE8 /* RestoringLauncherViewController.m */; };
+		66CB01A415ACA85E0048E189 /* BlockCellsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB01A315ACA85E0048E189 /* BlockCellsViewController.m */; };
 		66D2FDB81593D5D000B2BEFD /* ContentModesNetworkImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDB71593D5D000B2BEFD /* ContentModesNetworkImageViewController.m */; };
 		66D2FDD11593F17800B2BEFD /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDBD1593F17800B2BEFD /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66D2FDD21593F17800B2BEFD /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDBF1593F17800B2BEFD /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -310,6 +311,8 @@
 		66BB4FAE159594E300020EE8 /* ModifyingLauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyingLauncherViewController.m; sourceTree = "<group>"; };
 		66BB4FCC15959B5000020EE8 /* RestoringLauncherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestoringLauncherViewController.h; sourceTree = "<group>"; };
 		66BB4FCD15959B5000020EE8 /* RestoringLauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestoringLauncherViewController.m; sourceTree = "<group>"; };
+		66CB01A215ACA85E0048E189 /* BlockCellsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockCellsViewController.h; sourceTree = "<group>"; };
+		66CB01A315ACA85E0048E189 /* BlockCellsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockCellsViewController.m; sourceTree = "<group>"; };
 		66D2FDB61593D5D000B2BEFD /* ContentModesNetworkImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentModesNetworkImageViewController.h; sourceTree = "<group>"; };
 		66D2FDB71593D5D000B2BEFD /* ContentModesNetworkImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentModesNetworkImageViewController.m; sourceTree = "<group>"; };
 		66D2FDBC1593F17800B2BEFD /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -401,6 +404,8 @@
 				6677FEE915AC92C800517ABC /* RadioGroupTableModelViewController.m */,
 				6677FEEB15ACA60300517ABC /* NestedRadioGroupTableModelViewController.h */,
 				6677FEEC15ACA60400517ABC /* NestedRadioGroupTableModelViewController.m */,
+				66CB01A215ACA85E0048E189 /* BlockCellsViewController.h */,
+				66CB01A315ACA85E0048E189 /* BlockCellsViewController.m */,
 				6677FEE115ABACC500517ABC /* FormCellCatalogViewController.h */,
 				6677FEE215ABACC500517ABC /* FormCellCatalogViewController.m */,
 			);
@@ -931,6 +936,7 @@
 				6677FEE315ABACC500517ABC /* FormCellCatalogViewController.m in Sources */,
 				6677FEEA15AC92C800517ABC /* RadioGroupTableModelViewController.m in Sources */,
 				6677FEED15ACA60400517ABC /* NestedRadioGroupTableModelViewController.m in Sources */,
+				66CB01A415ACA85E0048E189 /* BlockCellsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
