@@ -43,7 +43,7 @@ typedef enum {
   RadioGroupOption3,
 } RadioGroup;
 
-@interface RadioGroupTableModelViewController ()
+@interface RadioGroupTableModelViewController () <NIRadioGroupDelegate>
 @property (nonatomic, readwrite, retain) NITableViewModel* model;
 
 // In order to implement the radio group we must create a radio group object. This object will
@@ -64,6 +64,9 @@ typedef enum {
     // This allows the radio group to push new controllers onto the navigation controller when the
     // radio group is added as an object in the table view model.
     _radioGroup = [[NIRadioGroup alloc] initWithController:self];
+
+    // We want to be notified of changes to the radio group selection.
+    _radioGroup.delegate = self;
 
     // When we create the table contents we use the chaining pattern to create the table cell
     // object, map it in the radio group to an identifier, and then add the object to the array.
@@ -112,6 +115,13 @@ typedef enum {
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
   return NIIsSupportedOrientation(toInterfaceOrientation);
+}
+
+#pragma mark - NIRadioGroupDelegate
+
+- (void)radioGroup:(NIRadioGroup *)radioGroup didSelectIdentifier:(NSInteger)identifier {
+  // When the radio group selection changes, this method will be called with the new identifier.
+  NSLog(@"Did select radio group option %d", identifier);
 }
 
 @end
