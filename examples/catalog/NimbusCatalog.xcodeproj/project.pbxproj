@@ -19,6 +19,9 @@
 		6677FEBD15AB8A0300517ABC /* BasicInstantiationTableModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6677FEBC15AB8A0300517ABC /* BasicInstantiationTableModelViewController.m */; };
 		6677FEDC15AB96BF00517ABC /* SectionedTableModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6677FEDB15AB96BF00517ABC /* SectionedTableModelViewController.m */; };
 		6677FEE015ABA9A300517ABC /* IndexedTableModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6677FEDF15ABA9A300517ABC /* IndexedTableModelViewController.m */; };
+		6677FEE315ABACC500517ABC /* FormCellCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6677FEE215ABACC500517ABC /* FormCellCatalogViewController.m */; };
+		6677FEE515AC8D1600517ABC /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 6677FEE415AC8D1600517ABC /* circle.png */; };
+		6677FEE715AC8D1C00517ABC /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 6677FEE615AC8D1C00517ABC /* star.png */; };
 		668B766F15938C8400EA86F6 /* ExtraActionsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B766E15938C8400EA86F6 /* ExtraActionsWebViewController.m */; };
 		668B7673159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B7672159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m */; };
 		668B767B159394EF00EA86F6 /* NIImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B7678159394EF00EA86F6 /* NIImageProcessing.m */; };
@@ -133,6 +136,10 @@
 		6677FEDB15AB96BF00517ABC /* SectionedTableModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionedTableModelViewController.m; sourceTree = "<group>"; };
 		6677FEDE15ABA9A200517ABC /* IndexedTableModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexedTableModelViewController.h; sourceTree = "<group>"; };
 		6677FEDF15ABA9A300517ABC /* IndexedTableModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexedTableModelViewController.m; sourceTree = "<group>"; };
+		6677FEE115ABACC500517ABC /* FormCellCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormCellCatalogViewController.h; sourceTree = "<group>"; };
+		6677FEE215ABACC500517ABC /* FormCellCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormCellCatalogViewController.m; sourceTree = "<group>"; };
+		6677FEE415AC8D1600517ABC /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circle.png; path = ../catalog/Catalog/circle.png; sourceTree = "<group>"; };
+		6677FEE615AC8D1C00517ABC /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = ../catalog/Catalog/star.png; sourceTree = "<group>"; };
 		668B766D15938C8400EA86F6 /* ExtraActionsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraActionsWebViewController.h; sourceTree = "<group>"; };
 		668B766E15938C8400EA86F6 /* ExtraActionsWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraActionsWebViewController.m; sourceTree = "<group>"; };
 		668B7671159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInstantiationNetworkImageViewController.h; sourceTree = "<group>"; };
@@ -384,6 +391,8 @@
 				6677FEDB15AB96BF00517ABC /* SectionedTableModelViewController.m */,
 				6677FEDE15ABA9A200517ABC /* IndexedTableModelViewController.h */,
 				6677FEDF15ABA9A300517ABC /* IndexedTableModelViewController.m */,
+				6677FEE115ABACC500517ABC /* FormCellCatalogViewController.h */,
+				6677FEE215ABACC500517ABC /* FormCellCatalogViewController.m */,
 			);
 			name = "Table Models";
 			sourceTree = "<group>";
@@ -460,6 +469,8 @@
 		6693C10C158A63F700950D42 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6677FEE415AC8D1600517ABC /* circle.png */,
+				6677FEE615AC8D1C00517ABC /* star.png */,
 				66B9415E159386D300AEA1D2 /* NimbusWebController.bundle */,
 				66B941551592EB4500AEA1D2 /* dilly.jpg */,
 				6693C0F7158A63E600950D42 /* NimbusCatalog-Info.plist */,
@@ -813,6 +824,8 @@
 				661F293315929E2300D11FC3 /* ApplicationBadges.xib in Resources */,
 				66B941561592EB4500AEA1D2 /* dilly.jpg in Resources */,
 				66B9415F159386D300AEA1D2 /* NimbusWebController.bundle in Resources */,
+				6677FEE515AC8D1600517ABC /* circle.png in Resources */,
+				6677FEE715AC8D1C00517ABC /* star.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,6 +918,7 @@
 				6677FEBD15AB8A0300517ABC /* BasicInstantiationTableModelViewController.m in Sources */,
 				6677FEDC15AB96BF00517ABC /* SectionedTableModelViewController.m in Sources */,
 				6677FEE015ABA9A300517ABC /* IndexedTableModelViewController.m in Sources */,
+				6677FEE315ABACC500517ABC /* FormCellCatalogViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

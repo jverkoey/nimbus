@@ -52,6 +52,7 @@
 #import "BasicInstantiationTableModelViewController.h"
 #import "SectionedTableModelViewController.h"
 #import "IndexedTableModelViewController.h"
+#import "FormCellCatalogViewController.h"
 
 // Web Controller
 #import "ExtraActionsWebViewController.h"
@@ -260,6 +261,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Indexed Model"
                                    subtitle:@"Indexed table view models"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([FormCellCatalogViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Form Cell Catalog"
+                                   subtitle:@"Table view cells for forms"]],
      
      @"Web Controller",
      [_actions attachNavigationAction:
