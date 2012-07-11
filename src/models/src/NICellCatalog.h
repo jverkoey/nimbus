@@ -85,6 +85,7 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  *      @ingroup TableCellCatalog
  */
 @interface NIDrawRectBlockCell : UITableViewCell <NICell>
+@property (nonatomic, readwrite, retain) UIView* blockView;
 @end
 
 /**
