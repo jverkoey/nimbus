@@ -33,6 +33,9 @@ static NSMutableArray* sAppearanceStack = nil;
   BOOL _navBarTranslucent;
   UIBarStyle _navBarStyle;
   UIStatusBarStyle _statusBarStyle;
+  UIColor* _navBarTintColor;
+  UIImage* _navBarDefaultImage;
+  UIImage* _navBarLandscapePhoneImage;
 }
 
 /**
@@ -50,6 +53,20 @@ static NSMutableArray* sAppearanceStack = nil;
  */
 @property (nonatomic, readonly, assign) UIStatusBarStyle statusBarStyle;
 
+/**
+ * Holds value of UINavigationBar's tintColor property.
+ */
+@property (nonatomic, readonly, strong) UIColor* navBarTintColor;
+
+/**
+ * Holds value of UINavigationBar's UIBarMetricsDefault backgroundImage property.
+ */
+@property (nonatomic, readonly, strong) UIImage* navBarDefaultImage;
+
+/**
+ * Holds value of UINavigationBar's UIBarMetricsLandscapePhone backgroundImage property.
+ */
+@property (nonatomic, readonly, strong) UIImage* navBarLandscapePhoneImage;
 
 /**
  * Create a new snapshot.
@@ -114,7 +131,9 @@ static NSMutableArray* sAppearanceStack = nil;
 @synthesize navBarTranslucent = _navBarTranslucent;
 @synthesize navBarStyle = _navBarStyle;
 @synthesize statusBarStyle = _statusBarStyle;
-
+@synthesize navBarTintColor = _navBarTintColor;
+@synthesize navBarDefaultImage = _navBarDefaultImage;
+@synthesize navBarLandscapePhoneImage = _navBarLandscapePhoneImage;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initForNavigationController:(UINavigationController *)navigationController {
@@ -123,6 +142,14 @@ static NSMutableArray* sAppearanceStack = nil;
     _statusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
     _navBarStyle = navigationController.navigationBar.barStyle;
     _navBarTranslucent = navigationController.navigationBar.translucent;
+    _navBarTintColor = navigationController.navigationBar.tintColor;
+    if ([navigationController.navigationBar respondsToSelector:@selector(backgroundImageForBarMetrics:)])
+    {
+      _navBarDefaultImage = [navigationController.navigationBar 
+                             backgroundImageForBarMetrics:UIBarMetricsDefault];
+      _navBarLandscapePhoneImage = [navigationController.navigationBar
+                                    backgroundImageForBarMetrics:UIBarMetricsLandscapePhone];
+    }
   }
 
   return self;
@@ -134,6 +161,14 @@ static NSMutableArray* sAppearanceStack = nil;
   [[UIApplication sharedApplication] setStatusBarStyle:self.statusBarStyle animated:animated];
   navigationController.navigationBar.barStyle = self.navBarStyle;
   navigationController.navigationBar.translucent = self.navBarTranslucent;
+  navigationController.navigationBar.tintColor = self.navBarTintColor;
+  if ([navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
+  {
+    [navigationController.navigationBar setBackgroundImage:self.navBarDefaultImage
+                                             forBarMetrics:UIBarMetricsDefault];
+    [navigationController.navigationBar setBackgroundImage:self.navBarLandscapePhoneImage 
+                                             forBarMetrics:UIBarMetricsLandscapePhone];
+  }
 }
 
 

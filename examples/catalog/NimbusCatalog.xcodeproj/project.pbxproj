@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B960E8015AE3A3B005714CA /* NavigationAppearanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B960E7F15AE3A3B005714CA /* NavigationAppearanceViewController.m */; };
+		2B960E8415AE41FC005714CA /* navigationbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B960E8315AE41FC005714CA /* navigationbar.png */; };
 		44707C77159B06A700B83149 /* BasicInstantiationPagingScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44707C76159B06A000B83149 /* BasicInstantiationPagingScrollViewController.m */; };
 		660C6F2915992B2500209EB3 /* BadgedLauncherButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 660C6F2815992B2500209EB3 /* BadgedLauncherButtonView.m */; };
 		661F28EE159292B800D11FC3 /* BasicInstantiationBadgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 661F28ED159292B800D11FC3 /* BasicInstantiationBadgeViewController.m */; };
@@ -116,6 +118,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B960E7E15AE3A3B005714CA /* NavigationAppearanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationAppearanceViewController.h; sourceTree = "<group>"; };
+		2B960E7F15AE3A3B005714CA /* NavigationAppearanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationAppearanceViewController.m; sourceTree = "<group>"; };
+		2B960E8315AE41FC005714CA /* navigationbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navigationbar.png; path = Catalog/navigationbar.png; sourceTree = "<group>"; };
 		44707C75159B06A000B83149 /* BasicInstantiationPagingScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicInstantiationPagingScrollViewController.h; sourceTree = "<group>"; };
 		44707C76159B06A000B83149 /* BasicInstantiationPagingScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicInstantiationPagingScrollViewController.m; sourceTree = "<group>"; };
 		660C6F2715992B2500209EB3 /* BadgedLauncherButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgedLauncherButtonView.h; sourceTree = "<group>"; };
@@ -354,6 +359,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B960E7D15AE39DC005714CA /* Navigation Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				2B960E7E15AE3A3B005714CA /* NavigationAppearanceViewController.h */,
+				2B960E7F15AE3A3B005714CA /* NavigationAppearanceViewController.m */,
+			);
+			name = "Navigation Appearance";
+			sourceTree = "<group>";
+		};
 		44707C73159B068400B83149 /* Paging Scroll View */ = {
 			isa = PBXGroup;
 			children = (
@@ -484,6 +498,7 @@
 		6693C10C158A63F700950D42 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2B960E8315AE41FC005714CA /* navigationbar.png */,
 				6677FEE415AC8D1600517ABC /* circle.png */,
 				6677FEE615AC8D1C00517ABC /* star.png */,
 				66B9415E159386D300AEA1D2 /* NimbusWebController.bundle */,
@@ -599,6 +614,7 @@
 				661F28EA1592929E00D11FC3 /* Badge */,
 				66B9414C1592E33900AEA1D2 /* Interapp */,
 				66A29F80159507D700F6EA64 /* Launcher */,
+				2B960E7D15AE39DC005714CA /* Navigation Appearance */,
 				668B7670159393B400EA86F6 /* Network Image */,
 				44707C73159B068400B83149 /* Paging Scroll View */,
 				6677FEB915AB886B00517ABC /* Table Models */,
@@ -841,6 +857,7 @@
 				66B9415F159386D300AEA1D2 /* NimbusWebController.bundle in Resources */,
 				6677FEE515AC8D1600517ABC /* circle.png in Resources */,
 				6677FEE715AC8D1C00517ABC /* star.png in Resources */,
+				2B960E8415AE41FC005714CA /* navigationbar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -937,6 +954,7 @@
 				6677FEEA15AC92C800517ABC /* RadioGroupTableModelViewController.m in Sources */,
 				6677FEED15ACA60400517ABC /* NestedRadioGroupTableModelViewController.m in Sources */,
 				66CB01A415ACA85E0048E189 /* BlockCellsViewController.m in Sources */,
+				2B960E8015AE3A3B005714CA /* NavigationAppearanceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1008,6 +1026,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Catalog/NimbusCatalog-Prefix.pch";
 				INFOPLIST_FILE = "Catalog/NimbusCatalog-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Nimbus;
 				WRAPPER_EXTENSION = app;
@@ -1020,6 +1039,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Catalog/NimbusCatalog-Prefix.pch";
 				INFOPLIST_FILE = "Catalog/NimbusCatalog-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Nimbus;
 				WRAPPER_EXTENSION = app;
