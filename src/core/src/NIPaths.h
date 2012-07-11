@@ -44,6 +44,12 @@ NSString* NIPathForBundleResource(NSBundle* bundle, NSString* relativePath);
  */
 NSString* NIPathForDocumentsResource(NSString* relativePath);
 
+/**
+ * Create a path with the Library directory and the relative path appended.
+ *
+ *      @returns The Library path concatenated with the given relative path.
+ */
+NSString* NIPathForLibraryResource(NSString* relativePath);
 
 /**
  * Create a path with the caches directory and the relative path appended.

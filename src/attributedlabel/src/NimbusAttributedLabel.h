@@ -29,6 +29,7 @@
  *
  * Required frameworks:
  *
+ * - Foundation.framework
  * - UIKit.framework
  * - CoreText.framework
  * - QuartzCore.framework
@@ -37,31 +38,44 @@
  *
  * Source located in <code>src/attributedlabel/src</code>
  *
+@code
+#import "NimbusAttributedLabel.h"
+@endcode
+ *
  * <h2>Basic Use</h2>
  *
- * You can use an NIAttributedLabel just as you would use a UILabel. The attributed label creates
- * an attributed string behind the scenes when you assign a string to the text property. The label
- * then uses this attributed string to maintain and eventually present the rich text properties.
+ * NIAttributedLabel is a subclass of UILabel. The attributed label maintains an <a href="http://developer.apple.com/library/ios/#documentation/Cocoa/Reference/Foundation/Classes/NSAttributedString_Class/Reference/Reference.html">NSAttributedString</a>
+ * object internally which is used in conjunction with CoreText to draw rich-text labels. A number
+ * of helper methods for modifying the text style are provided. If you need to directly modify the
+ * internal NSAttributedString you may do so by accessing the @c attributedString property on iOS 4
+ * through 5.*.
+ *
+ *      @attention iOS 6 Beta note: when building for iOS 6 and higher you must use the
+ *                 @c attributedText property now provided via UILabel.
  *
 @code
 NIAttributedLabel* label = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
 
-// The internal NSAttributedString will inherit all of the UILabel properties when we assign text.
+// The internal NSAttributedString will inherit all of UILabel's text attributes when we assign
+// text.
 label.text = @"Nimbus";
 @endcode
  *
  *
  * <h2>Interface Builder</h2>
  *
- * You can use an attributed label within Interface Builder by creating a regualar UILabel and
- * changing its class to NIAttributedLabel. This will allow you to set styles that apply to
+ * You can use an attributed label within Interface Builder by creating a UILabel and changing its
+ * class to NIAttributedLabel. This will allow you to set styles that apply to
  * the entire string. If you want to style specific parts of the string then you will
  * need to do this in code.
+ *
+ *  @image html NIAttributedLabelIB.png "Configuring an attributed label in Interface Builder"
  *
  *
  * <h2>Feature Overview</h2>
  *
  * - Automatic link detection using data detectors
+ * - Link attributes
  * - Explicit links
  * - Underlining
  * - Justifying paragraphs
@@ -72,25 +86,40 @@ label.text = @"Nimbus";
  *
  * <h3>Automatic Link Detection</h3>
  *
- * Automatic link detection is provided using the NSDataDetector facilities of iOS 4.0.
- * It is off by default and can be enabled by setting
+ * Automatic link detection is provided using <a href="https://developer.apple.com/library/mac/#documentation/Foundation/Reference/NSDataDetector_Class/Reference/Reference.html">NSDataDetector</a>.
+ * Link detection is off by default and can be enabled by setting
  * @link NIAttributedLabel::autoDetectLinks autoDetectLinks@endlink to YES. You may configure
  * the types of data that are detected by modifying the
- * @link NIAttributedLabel::dataDetectorTypes dataDetectorTypes@endlink property.
+ * @link NIAttributedLabel::dataDetectorTypes dataDetectorTypes@endlink property. By default only
+ * urls will be detected.
+ *
+ *      @attention NIAttributedLabel is not designed to detect html anchor tags (i.e. &lt;a>). If
+ *                 you want to attach a URL to a given range of text you must use
+ *                 @link NIAttributedLabel::addLink:range: addLink:range:@endlink.
+ *
+ *  @image html NIAttributedLabel_autoDetectLinksOff.png "Before enabling autoDetectLinks"
  *
 @code
 // Enable link detection on the label.
 myLabel.autoDetectLinks = YES;
 @endcode
  *
- * Enabling automatic link detection will enable user interation with the label view so that the
- * user can tap the detected links.
+ *  @image html NIAttributedLabel_autoDetectLinksOn.png "After enabling autoDetectLinks"
+ *
+ * Enabling automatic link detection will automatically enable user interation with the label view
+ * so that the user can tap the detected links.
+ *
+ * <h3>Link Attributes</h3>
  *
  * Detected links will use @link NIAttributedLabel::linkColor linkColor@endlink and
  * @link NIAttributedLabel::highlightedLinkColor highlightedLinkColor@endlink to differentiate
  * themselves from standard text. highlightedLinkColor is the color of the highlighting frame
- * around the text.
+ * around the text. You can easily add underlines to links by enabling
+ * @link NIAttributedLabel::linksHaveUnderlines linksHaveUnderlines@endlink. You can customize link
+ * attributes in more detail by directly modifying the
+ * @link NIAttributedLabel::attributesForLinks attributesForLinks@endlink property.
  *
+ *  @image html NIAttributedLabelLinkAttributes.png "Link attributes"
  *
  * <h4>A note on performance</h4>
  *
@@ -105,20 +134,21 @@ myLabel.autoDetectLinks = YES;
  * The NIAttributedLabelDelegate protocol allows you to handle when the user taps on a given link.
  * The protocol methods provide the tap point as well as the data pertaining to the tapped link.
  *
+@code
+- (void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point {
+  [[UIApplication sharedApplication] openURL:result.URL];
+}
+@endcode
  *
  * <h3>Explicit Links</h3>
  *
- * It is easy to add explicit links by using the
- * @link NIAttributedLabel::addLink:range: addLink:range:@endlink method.
+ * Links can be added explicitly using
+ * @link NIAttributedLabel::addLink:range: addLink:range:@endlink.
  * 
 @code
-- (void)viewDidLoad {
-  [super viewDidLoad];
-
-  // Add a custom link to the text 'nimbus'.
-  [myLabel addLink:[NSURL URLWithString:@"nimbus://custom/url"]
-             range:[myLabel.text rangeOfString:@"nimbus"]];
-}
+// Add a link to the string 'nimbus' in myLabel.
+[myLabel addLink:[NSURL URLWithString:@"nimbus://custom/url"]
+           range:[myLabel.text rangeOfString:@"nimbus"]];
 @endcode
  *
  *
@@ -144,8 +174,7 @@ myLabel.underlineStyleModifier = kCTUnderlinePatternDashDot;
  *
  * @image html NIAttributedLabelExample2.png "Underline styles"
  *
- *    @remarks Underline style kCTUnderlineStyleThick only over renders a single line. It's
- *             possible that it is not supported with Helvetica Neue and is font specific.
+ *    @remarks Underline style kCTUnderlineStyleThick only over renders a single line.
  *
  *
  * <h3>Justifying Paragraphs</h3>

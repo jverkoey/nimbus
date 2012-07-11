@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,10 +15,12 @@
 //
 
 #import "NILauncherViewController.h"
-
 #import "NILauncherView.h"
-
 #import "NimbusCore.h"
+
+@interface NILauncherViewController()
+@property (nonatomic, readwrite, assign) BOOL shouldReloadData;
+@end
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,160 +28,74 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NILauncherViewController
 
-@synthesize launcherView  = _launcherView;
-@synthesize pages         = _pages;
+@synthesize shouldReloadData = _shouldReloadData;
+@synthesize launcherView = _launcherView;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)viewDidLoad {
-  [super viewDidLoad];
+- (void)loadView {
+  [super loadView];
 
-  _launcherView = [[NILauncherView alloc] initWithFrame:self.view.bounds];
-  _launcherView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
-                                    | UIViewAutoresizingFlexibleHeight);
-  _launcherView.dataSource = self;
-  _launcherView.delegate = self;
-  [_launcherView reloadData];
-  [self.view addSubview:_launcherView];
+  self.launcherView = [[NILauncherView alloc] initWithFrame:self.view.bounds];
+  self.launcherView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
+  self.launcherView.dataSource = self;
+  self.launcherView.delegate = self;
+
+  self.view = self.launcherView;
+
+  self.shouldReloadData = YES;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
-  _launcherView = nil;
+  self.launcherView = nil;
 
   [super viewDidUnload];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-  // Only allow portrait for the iPhone and iPod touch.
-  return NIIsPad() || UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+
+  if (self.view && self.shouldReloadData) {
+    [self.launcherView reloadData];
+    self.shouldReloadData = NO;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+  [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+
+  [self.launcherView willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+  [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+
+  [self.launcherView willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NILauncherDataSource
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)numberOfRowsPerPageInLauncherView:(NILauncherView *)launcherView {
-  // Replace this with NILauncherViewDynamic to allow the launcher view to calculate the number
-  // of rows and columns automatically.
-  return (NIIsPad()
-          ? 4
-          : (UIInterfaceOrientationIsPortrait(NIInterfaceOrientation())
-             ? 3 : 2));
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)numberOfColumnsPerPageInLauncherView:(NILauncherView *)launcherView {
-  return (NIIsPad()
-          ? 5
-          : (UIInterfaceOrientationIsPortrait(NIInterfaceOrientation())
-             ? 3 : 5));
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)numberOfPagesInLauncherView:(NILauncherView *)launcherView {
-  return [_pages count];
-}
+#pragma mark - NILauncherDataSource
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)launcherView:(NILauncherView *)launcherView numberOfButtonsInPage:(NSInteger)page {
-  return [[_pages objectAtIndex:page] count];
+  return 0;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIButton *)launcherView: (NILauncherView *)launcherView
-             buttonForPage: (NSInteger)page
-                   atIndex: (NSInteger)buttonIndex {
-  UIButton* button = [[[self launcherButtonClass] alloc] init];
-
-  // launcherButtonClass must return a class that is a subclass of UIButton.
-  NIDASSERT([button isKindOfClass:[UIButton class]]);
-  if (![button isKindOfClass:[UIButton class]]) {
-    return nil;
-  }
-
-  NILauncherItemDetails* item = [[_pages objectAtIndex:page] objectAtIndex:buttonIndex];
-  [button setTitle:item.title forState:UIControlStateNormal];
-  [button setImage: [UIImage imageWithContentsOfFile:item.imagePath]
-          forState: UIControlStateNormal];
-
-  return button;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NILauncherDelegate
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)launcherView: (NILauncherView *)launcher
-     didSelectButton: (UIButton *)button
-              onPage: (NSInteger)page
-             atIndex: (NSInteger)buttonIndex {
-  // This is purely an example implementation. It is incredibly likely that you will not want to
-  // use this in your production code.
-
-  // If you require access to the launcher item details, you may find the following
-  // to be helpful:
-  //
-  //     NILauncherItemDetails* item = [[_pages objectAtIndex:page] objectAtIndex:index];
-
-  UIAlertView* alert =
-  [[UIAlertView alloc] initWithTitle: @"Launcher button tapped"
-                              message: [button titleForState:UIControlStateNormal]
-                             delegate: nil
-                    cancelButtonTitle: nil
-                    otherButtonTitles: @"OK", nil];
-  [alert show];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Override Methods
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (Class)launcherButtonClass {
-  return [NILauncherButton class];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Properties
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setPages:(NSArray *)pages {
-  if (_pages != pages) {
-    _pages = [pages mutableCopy];
-
-    // If the view hasn't been loaded yet (entirely possible) then this will no-op and the
-    // launcher view will load its data in viewDidLoad.
-    [_launcherView reloadData];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSArray *)pages {
-  return [NSArray arrayWithArray:_pages];
+- (UIView<NILauncherButtonView> *)launcherView:(NILauncherView *)launcherView buttonViewForPage:(NSInteger)page atIndex:(NSInteger)buttonIndex {
+  return nil;
 }
 
 

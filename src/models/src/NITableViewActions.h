@@ -29,13 +29,6 @@ typedef BOOL (^NITableViewActionBlock)(id object, UIViewController* controller);
 NITableViewActionBlock NIPushControllerAction(Class controllerClass);
 
 /**
- * Returns a block that pushes the given controller onto the navigation stack.
- *
- *      @param controller The controller to push.
- */
-NITableViewActionBlock NIPushControllerInstanceAction(UIViewController* controller);
-
-/**
  * An object that can be used to easily implement actions in table view controllers.
  *
  * This object provides support for the three primary types of actions that can be taken on cells

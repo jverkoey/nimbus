@@ -1,10 +1,11 @@
 Nimbus is an iOS framework whose feature set grows only as fast as its documentation.
 
-<h2>Getting Started</h2>
+Getting Started
+---------------
 
-- Visit the Nimbus website at <a href="http://nimbuskit.info">nimbuskit.info</a>.
-- <a href="http://wiki.nimbuskit.info/Add-Nimbus-to-your-project">Add Nimbus to your project</a>.
-- Follow Nimbus' development through its <a href="http://docs.nimbuskit.info/group___version-_history.html">version history</a>.
-- See the <a href="http://docs.nimbuskit.info/group___version-9-3.html">latest API diffs</a>.
-- Read the <a href="http://docs.nimbuskit.info/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
-- Ask questions and get updates via the <a href="http://groups.google.com/group/nimbusios">Nimbus mailing list</a>.
+- Visit the Nimbus website at [nimbuskit.info](http://nimbuskit.info).
+- [Add Nimbus to your project](http://wiki.nimbuskit.info/Add-Nimbus-to-your-project).
+- Follow Nimbus' development through its [version history](http://docs.nimbuskit.info/group___version-_history.html).
+- See the [latest API diffs](http://docs.nimbuskit.info/group___version-9-3.html).
+- Read the [Three20 Migration Guide](http://docs.nimbuskit.info/group___three20-_migration-_guide.html).
+- Ask questions and get updates via the [Nimbus mailing list](http://groups.google.com/group/nimbusios).

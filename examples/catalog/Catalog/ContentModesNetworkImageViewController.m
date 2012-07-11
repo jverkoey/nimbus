@@ -17,6 +17,8 @@
 #import "ContentModesNetworkImageViewController.h"
 #import "NimbusNetworkImage.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 //
 // What's going on in this file:
 //

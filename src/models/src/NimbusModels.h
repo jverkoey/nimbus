@@ -348,6 +348,15 @@ _model.delegate = (id)[NICellFactory class];
  *
  */
 
+#pragma mark * Table Cell Backgrounds
+
+/**
+ * @defgroup TableCellBackgrounds Table Cell Backgrounds
+ *
+ * NICellBackground is a tool for creating backgrounds that can be used to customize cells in
+ * UITableViews.
+ */
+
 #pragma mark * Model Tools
 
 /**
@@ -467,6 +476,7 @@ typedef enum {
 #import <UIKit/UIKit.h>
 
 #import "NITableViewModel.h"
+#import "NICellBackgrounds.h"
 #import "NICellCatalog.h"
 #import "NICellFactory.h"
 #import "NIFormCellCatalog.h"

@@ -20,41 +20,74 @@
  *
  * <div id="github" feature="launcher"></div>
  *
- * Nimbus' Launcher view and related components.
- *
  * A launcher view is best exemplified in Apple's home screen interface. It consists of a set
  * of pages that each contain a set of buttons that the user may tap to access a consistent,
  * focused aspect of the application or operating system. The user may swipe the screen to the
- * left or right or tap the pager control at the bottom of the screen to change pages. A launcher
- * also allows its buttons to be repositioned using a tap and hold gesture (though this has not
- * been implemented yet in Nimbus' launcher, see the <a href="todo.html">todo list</a> for
- * more details).
+ * left or right or tap the pager control at the bottom of the screen to change pages.
  *
  * @image html NILauncherViewControllerExample1.png "Example of an NILauncherViewController as seen in the BasicLauncher demo application."
  *
- * <h2>Overview</h2>
+ * <h2>Minimum Requirements</h2>
  *
- * The Nimbus launcher is composed primarily of the NILauncherView and its
- * @link Launcher-Protocols protocols@endlink. The
- * NILauncherViewController, NILauncherButton, and NILauncherItemDetails objects are all
- * auxiliary objects and exist purely to provide an example implementation of the
- * launcher view.
+ * Required frameworks:
  *
- * <h3>Hacking Notes</h3>
- * As mentioned above, the meat of the launcher is contained in NILauncherView. If you want
- * to customize anything about it, start by subclassing NILauncherView. The launcher view is
- * built to mimic the design of UITableView in its use of a delegate and data source. This
- * design decision is a conscious one because it allows us to maintain the data for the launcher
- * view outside of the view itself. This allows the launcher view to be "dumb" and separates the
- * data used to populate the launcher from the presentation. When we inevitably receive a low
- * memory warning on a view controller that's off screen, we can discard the launcher view and
- * be confident that we won't lose any state information.
+ * - Foundation.framework
+ * - UIKit.framework
  *
- * The launcher is related in spirit to UITableView in its use of protocols to remove much
- * of the heavy data and user interaction logic from the view itself. The NILauncherDelegate
- * protocol defines a small set of methods used for notifications of user interactions and
- * state changes. The NILauncherDataSource protocol defines the set of optional and
- * required methods for populating the launcher with data.
+ * Minimum Operating System: <b>iOS 4.0</b>
+ *
+ * Source located in <code>src/launcher/src</code>
+ */
+
+/**
+ * @defgroup NimbusLauncherModel Nimbus Launcher Model
+ *
+ * The Nimbus Launcher provides a model object that can store all of the launcher data. This model
+ * object works similarly to NITableViewModel.
+ *
+ * Presented below is an example of subclassing a NILauncherViewController and using a
+ * NILauncherViewModel to supply the data source information.
+ *
+@code
+@implementation CustomLauncherViewController()
+@property (nonatomic, readwrite, retain) NILauncherViewModel* model;
+@end
+
+@interface CustomLauncherViewController
+
+@synthesize model = _model;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+    NSArray* contents =
+    [NSArray arrayWithObjects:
+     [NSArray arrayWithObjects:
+      [NILauncherViewObject objectWithTitle:@"Nimbus" image:image],
+      [NILauncherViewObject objectWithTitle:@"Nimbus 2" image:image],
+      [NILauncherViewObject objectWithTitle:@"Nimbus 3" image:image],
+      [NILauncherViewObject objectWithTitle:@"Nimbus 5" image:image],
+      [NILauncherViewObject objectWithTitle:@"Nimbus 6" image:image],
+      nil],
+     [NSArray arrayWithObjects:
+      [NILauncherViewObject objectWithTitle:@"Page 2" image:image],
+      nil],
+     [NSArray arrayWithObjects:
+      [NILauncherViewObject objectWithTitle:@"Page 3" image:image],
+      nil],
+     nil];
+
+    _model = [[NILauncherViewModel alloc] initWithArrayOfPages:contents delegate:nil];
+  }
+  return self;
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+
+  self.launcherView.dataSource = self.model;
+}
+@end
+@endcode
  */
 
 #import <Foundation/Foundation.h>
@@ -62,7 +95,11 @@
 
 // Dependencies
 #import "NimbusCore.h"
+#import "NimbusPagingScrollView.h"
 
+#import "NILauncherButtonView.h"
+#import "NILauncherViewModel.h"
+#import "NILauncherViewObject.h"
 #import "NILauncherViewController.h"
 #import "NILauncherView.h"
 

@@ -40,6 +40,19 @@ NSString* NIPathForDocumentsResource(NSString* relativePath) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+NSString* NIPathForLibraryResource(NSString* relativePath) {
+    static NSString* libraryPath = nil;
+    if (nil == libraryPath) {
+        NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
+                                                            NSUserDomainMask,
+                                                            YES);
+        libraryPath = [dirs objectAtIndex:0];
+    }
+    return [libraryPath stringByAppendingPathComponent:relativePath];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* NIPathForCachesResource(NSString* relativePath) {
   static NSString* cachesPath = nil;
   if (nil == cachesPath) {

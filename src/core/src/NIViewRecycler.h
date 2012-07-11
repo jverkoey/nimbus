@@ -97,6 +97,20 @@ if (nil == view) {
 
 @end
 
+/**
+ * A simple view implementation of the NIRecyclableView protocol.
+ *
+ * This view class can easily be used with a NIViewRecycler.
+ */
+@interface NIRecyclableView : UIView <NIRecyclableView>
+
+// Designated initializer.
+- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
+
+@property (nonatomic, readwrite, copy) NSString* reuseIdentifier;
+
+@end
+
 /**@}*/ // End of View Recyling
 
 /**
@@ -118,4 +132,22 @@ if (nil == view) {
  * Removes all of the views from the recycled views pool.
  *
  *      @fn NIViewRecycler::removeAllViews
+ */
+
+/**
+ * Initializes a newly allocated view with the given reuse identifier.
+ *
+ * This is the designated initializer.
+ *
+ *      @fn NIRecyclableView::initWithReuseIdentifier:
+ *      @param reuseIdentifier  The identifier that will be used to group this view in the view
+ *                              recycler.
+ */
+
+/**
+ * This view's reuse identifier.
+ *
+ * Used by NIViewRecycler to pool this view into a group of similar recycled views.
+ *
+ *      @fn NIRecyclableView::reuseIdentifier
  */

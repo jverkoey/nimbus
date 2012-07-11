@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,176 +20,29 @@
 #import "NILauncherView.h"
 
 /**
- * A view controller that displays a launcher view and implements its protocols.
+ * The NILauncherViewController class creates a controller object that manages a launcher view.
+ * It implements the following behavior:
  *
- * @ingroup NimbusLauncher
+ * - It creates an unconfigured NILauncherView object with the correct dimensions and autoresize
+ *   mask. You can access this view through the launcherView property.
+ * - NILauncherViewController sets the data source and the delegate of the launcher view to self.
+ * - When the launcher view is about to appear the first time it’s loaded, the launcher-view
+ *   controller reloads the launcher view’s data.
  *
- * This view controller may be used in production, though you'll likely want to subclass it
- * and internalize the loading of the pages. You can also simply use this controller as an
- * example and write a completely new view controller or add the launcher view to an existing
- * view controller if that suits your situation better.
+ * @image html NILauncherViewControllerExample1.png "Example of an NILauncherViewController."
  *
- *
- * By default this controller implements the numberOfRowsPerPageInLauncherView and
- * numberOfColumnsPerPageInLauncherView methods of the launcher data source. The following
- * values are given depending on the device:
- *
- * @htmlonly
- * <pre>
- * iPhone:
- *   Portrait: 3x3 (row by column)
- *   Landscape: 5x2
- * iPad:
- *   4x5
- * </pre>
- * @endhtmlonly
- *
- * You may choose to allow the launcher to determine the number of icons to be shown on its
- * own. If you choose to do so, make these methods return NILauncherViewDynamic.
- *
- *
- * By default this controller does not allow the launcher to be shown in landscape mode on the
- * iPhone or iPod touches. This is due largely to the complex nature of handling the different
- * number of icons that can be displayed in each orientation. For example, on the iPhone
- * in portrait with the default grid definitions as noted above, you can see 9
- * icons, whereas in landscape you can see 10. There are things you can do to make this
- * work, of course, but barring an elegant solution I've elected to disable this
- * functionality by default in this controller.
- *
- *
- * @image html NILauncherViewControllerExample1.png "Example of an NILauncherViewController as seen in the BasicLauncher demo application."
- *
- *
- *      @todo Implement a reusable means of storing and loading launcher state information.
- *            This can probably be easily accomplished using simple keyed archiving because
- *            NILauncherItemDetails implements the NSCoding protocol.
+ *      @ingroup NimbusLauncher
  */
-@interface NILauncherViewController : UIViewController <
-  NILauncherDelegate,
-  NILauncherDataSource
-> {
-@private
-  NILauncherView* _launcherView;
+@interface NILauncherViewController : UIViewController <NILauncherDelegate, NILauncherDataSource>
 
-  NSMutableArray* _pages; // Array< Array<NILauncherItemDetails *> >
-}
-
-/**
- * Access to the internal launcher view.
- *
- * This is exposed primarily for subclasses of this view controller to be able to access the
- * launcher view.
- *
- * You may also use this property from outside of the controller to configure certain aspects of
- * the launcher view.
- */
-@property (nonatomic, readonly, retain) NILauncherView* launcherView;
-
-/**
- * An array of arrays of NILauncherItemDetails.
- *
- * These pages are used to populate the launcher view via the NILauncherDataSource protocol.
- *
- * @note This is an NSArray - not an NSMutableArray - because you should not directly modify
- *       the contents of the pages after they have been stored in this view controller.
- *       If you need to modify the pages after assigning them here, you should assign
- *       a new set of pages.
- */
-@property (nonatomic, readwrite, copy) NSArray* pages;
-
-
-/**
- * @name Subclassing
- * @{
- *
- * The following methods are provided to aid in subclassing and are not meant to be
- * used externally.
- */
-#pragma mark Subclassing
-
-/**
- * The launcher button view class.
- *
- * Must be a subclass of UIButton.
- *
- * Provided here for subclasses to use as a convenience for changing the launcher button class.
- *
- * Defaults to NILauncherButton.
- */
-- (Class)launcherButtonClass;
-
-/**@}*/
+@property (nonatomic, readwrite, retain) NILauncherView* launcherView;
 
 @end
 
+/** @name Getting the Launcher View */
 
 /**
- * A simple launcher button that shows an image and text.
+ * Returns the launcher view managed by the controller object.
  *
- * @ingroup NimbusLauncher
- *
- * Shows the icon centered in the top portion of the button with the text taking up one
- * line at the bottom.
- *
- * @image html NILauncherButtonExample1.png "Example of an NILauncherButton"
+ *      @fn NILauncherViewController::launcherView
  */
-@interface NILauncherButton : UIButton {
-@private
-  UIEdgeInsets _padding;
-}
-
-/**
- * The padding for the button.
- *
- * This padding is applied on all edges of the button.
- *
- * Defaults to 5px of padding on all sides.
- */
-@property (nonatomic, readwrite, assign) UIEdgeInsets padding;
-
-@end
-
-
-/**
- * A convenience class for managing the data used to create an NILauncherButton.
- *
- * @ingroup NimbusLauncher
- *
- * In your own implementation of a launcher controller you do not need to use this object;
- * it is a trivial convenience object for containing the basic information required to display
- * an NILauncherButton. You may choose to forego the use of a container object altogether and
- * populate your launcher buttons from a data store, or perhaps from a downloaded JSON file.
- */
-@interface NILauncherItemDetails : NSObject <NSCoding> {
-@private
-  NSString* _title;
-  NSString* _imagePath;
-}
-
-/**
- * The title for the launcher button.
- */
-@property (nonatomic, readwrite, copy) NSString* title;
-
-/**
- * The path to the launcher image.
- */
-@property (nonatomic, readwrite, copy) NSString* imagePath;
-
-/**
- * Convenience method for creating a launcher item details object.
- *
- *      @param title       The title for the launcher button.
- *      @param imagePath   The path to the launcher image.
- */
-+ (id)itemDetailsWithTitle:(NSString *)title imagePath:(NSString *)imagePath;
-
-/**
- * The designated initializer.
- *
- *      @param title       The title for the launcher button.
- *      @param imagePath   The path to the launcher image.
- */
-- (id)initWithTitle:(NSString *)title imagePath:(NSString *)imagePath;
-
-@end

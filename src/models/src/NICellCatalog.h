@@ -16,6 +16,21 @@
 
 #import "NICellFactory.h"
 
+typedef void (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* cell);
+
+/**
+ * An object that will draw the contents of the cell using a provided block.
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NIDrawRectBlockCellObject : NICellObject
+// Designated initializer.
+- (id)initWithBlock:(NICellDrawRectBlock)block object:(id)object;
++ (id)objectWithBlock:(NICellDrawRectBlock)block object:(id)object;
+@property (nonatomic, readwrite, copy) NICellDrawRectBlock block;
+@property (nonatomic, readwrite, retain) id object;
+@end
+
 /**
  * An object for displaying a single-line title in a table view cell.
  *
@@ -62,6 +77,14 @@
  *      @ingroup TableCellCatalog
  */
 @interface NITextCell : UITableViewCell <NICell>
+@end
+
+/**
+ * A cell that renders its contents using a block.
+ *
+ *      @ingroup TableCellCatalog
+ */
+@interface NIDrawRectBlockCell : UITableViewCell <NICell>
 @end
 
 /**
