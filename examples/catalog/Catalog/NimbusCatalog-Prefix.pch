@@ -11,7 +11,4 @@
 #ifdef __OBJC__
   #import <UIKit/UIKit.h>
   #import <Foundation/Foundation.h>
-  #import "NimbusCore.h"
-  #import "NimbusModels.h"
-  #import "NimbusAttributedLabel.h"
 #endif

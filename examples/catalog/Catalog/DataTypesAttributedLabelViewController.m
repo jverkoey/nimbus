@@ -53,7 +53,11 @@
   
   NIAttributedLabel* label = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
   label.numberOfLines = 0;
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
   label.lineBreakMode = UILineBreakModeWordWrap;
+#else
+  label.lineBreakMode = NSLineBreakByWordWrapping;
+#endif
   label.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
   label.frame = CGRectInset(self.view.bounds, 20, 20);
   label.font = [UIFont fontWithName:@"Optima-Regular" size:20];
@@ -99,7 +103,14 @@
   }
 
   if (nil != url) {
-    [[UIApplication sharedApplication] openURL:url];
+    if (![[UIApplication sharedApplication] openURL:url]) {
+      UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:[@"No application was found that could open this url: " stringByAppendingString:url.absoluteString]
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+      [alert show];
+    }
 
   } else {
     NSLog(@"Unsupported data type");

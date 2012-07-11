@@ -28,11 +28,11 @@
 #endif
 
 // Classes
-#ifndef NILauncherButton
-#define NILauncherButton __NIMBUS_NS_SYMBOL(NILauncherButton)
+#ifndef NILauncherButtonView
+#define NILauncherButtonView __NIMBUS_NS_SYMBOL(NILauncherButtonView)
 #endif
-#ifndef NILauncherItemDetails
-#define NILauncherItemDetails __NIMBUS_NS_SYMBOL(NILauncherItemDetails)
+#ifndef NILauncherPageView
+#define NILauncherPageView __NIMBUS_NS_SYMBOL(NILauncherPageView)
 #endif
 #ifndef NILauncherView
 #define NILauncherView __NIMBUS_NS_SYMBOL(NILauncherView)
@@ -40,9 +40,27 @@
 #ifndef NILauncherViewController
 #define NILauncherViewController __NIMBUS_NS_SYMBOL(NILauncherViewController)
 #endif
+#ifndef NILauncherViewModel
+#define NILauncherViewModel __NIMBUS_NS_SYMBOL(NILauncherViewModel)
+#endif
+#ifndef NILauncherViewObject
+#define NILauncherViewObject __NIMBUS_NS_SYMBOL(NILauncherViewObject)
+#endif
+#ifndef NIPageView
+#define NIPageView __NIMBUS_NS_SYMBOL(NIPageView)
+#endif
+#ifndef NIPagingScrollView
+#define NIPagingScrollView __NIMBUS_NS_SYMBOL(NIPagingScrollView)
+#endif
+#ifndef NIRecyclableView
+#define NIRecyclableView __NIMBUS_NS_SYMBOL(NIRecyclableView)
+#endif
+#ifndef NIViewRecycler
+#define NIViewRecycler __NIMBUS_NS_SYMBOL(NIViewRecycler)
+#endif
 // Functions
 // Externs
-#ifndef NILauncherViewDynamic
-#define NILauncherViewDynamic __NIMBUS_NS_SYMBOL(NILauncherViewDynamic)
+#ifndef NILauncherViewGridBasedOnButtonSize
+#define NILauncherViewGridBasedOnButtonSize __NIMBUS_NS_SYMBOL(NILauncherViewGridBasedOnButtonSize)
 #endif
 #endif

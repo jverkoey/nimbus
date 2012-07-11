@@ -34,6 +34,9 @@
 #ifndef NIPagingScrollView
 #define NIPagingScrollView __NIMBUS_NS_SYMBOL(NIPagingScrollView)
 #endif
+#ifndef NIRecyclableView
+#define NIRecyclableView __NIMBUS_NS_SYMBOL(NIRecyclableView)
+#endif
 #ifndef NIViewRecycler
 #define NIViewRecycler __NIMBUS_NS_SYMBOL(NIViewRecycler)
 #endif

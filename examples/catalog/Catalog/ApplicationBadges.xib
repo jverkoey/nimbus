@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12A248</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2541</string>
-		<string key="IBDocument.AppKitVersion">1183</string>
+		<string key="IBDocument.SystemVersion">12A256</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2809</string>
+		<string key="IBDocument.AppKitVersion">1185</string>
 		<string key="IBDocument.HIToolboxVersion">622.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1875</string>
+			<string key="NS.object.0">1884</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -4608,62 +4608,12 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.CustomClassName">NIBadgeView</string>
-				<object class="NSMutableDictionary" key="10.IBAttributePlaceholdersKey">
-					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
-					<object class="IBUIUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
-						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
-						<reference key="object" ref="317764582"/>
-						<array key="userDefinedRuntimeAttributes">
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
-								<string key="keyPath">text</string>
-								<string key="value">22</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.color</string>
-								<string key="keyPath">tintColor</string>
-								<object class="NSColor" key="value">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC44MjEyMDQxNDQgMC4zNDM5MDA4NDc3IDAuNDE5MjM2MzEzAA</bytes>
-								</object>
-							</object>
-						</array>
-					</object>
-				</object>
+				<dictionary class="NSMutableDictionary" key="10.IBAttributePlaceholdersKey"/>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="18.CustomClassName">NIBadgeView</string>
-				<object class="NSMutableDictionary" key="18.IBAttributePlaceholdersKey">
-					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
-					<object class="IBUIUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
-						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
-						<reference key="object" ref="968594341"/>
-						<array key="userDefinedRuntimeAttributes">
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
-								<string key="keyPath">text</string>
-								<string key="value">1</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.color</string>
-								<string key="keyPath">tintColor</string>
-								<object class="NSColor" key="value">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4wODcwNjYzMjg3NSAwLjI1ODM1MjY0MzYgMC44MjEyMDQxNDQAA</bytes>
-								</object>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.color</string>
-								<string key="keyPath">shadowColor</string>
-								<object class="NSColor" key="value">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4wMzU5NzgzNTE4NSAwLjc2MDk3NTcxMzMgMC4wMDA0NjQwODAzNjg0AA</bytes>
-								</object>
-							</object>
-						</array>
-					</object>
-				</object>
+				<dictionary class="NSMutableDictionary" key="18.IBAttributePlaceholdersKey"/>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
@@ -4714,6 +4664,6 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 			<string key="NS.key.0">Icon.png</string>
 			<string key="NS.object.0">{57, 57}</string>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">1875</string>
+		<string key="IBCocoaTouchPluginVersion">1884</string>
 	</data>
 </archive>

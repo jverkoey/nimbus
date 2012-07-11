@@ -57,9 +57,9 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTextColor:(UIColor*)color range:(NSRange)range {
-  [self removeAttribute:(NSString *)kCTForegroundColorAttributeName range:range];
-
   if (nil != color) {
+    [self removeAttribute:(NSString *)kCTForegroundColorAttributeName range:range];
+
     [self addAttribute:(NSString*)kCTForegroundColorAttributeName
                  value:(id)color.CGColor
                  range:range];
@@ -75,9 +75,9 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFont:(UIFont*)font range:(NSRange)range {
-  [self removeAttribute:(NSString*)kCTFontAttributeName range:range];
-
   if (nil != font) {
+    [self removeAttribute:(NSString*)kCTFontAttributeName range:range];
+
     CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, nil);
     [self addAttribute:(__bridge NSString*)kCTFontAttributeName value:(__bridge id)fontRef range:range];
     CFRelease(fontRef);
@@ -128,9 +128,9 @@ NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setStrokeColor:(UIColor *)color range:(NSRange)range {
-  [self removeAttribute:(NSString*)kCTStrokeColorAttributeName range:range];
-
   if (nil != color) {
+    [self removeAttribute:(NSString*)kCTStrokeColorAttributeName range:range];
+
     [self addAttribute:(NSString*)kCTStrokeColorAttributeName
                  value:(id)color.CGColor 
                  range:range];

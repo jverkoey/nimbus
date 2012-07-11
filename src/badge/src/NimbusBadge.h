@@ -28,11 +28,28 @@
  *
  * Required frameworks:
  *
+ * - Foundation.framework
  * - UIKit.framework
  *
  * Minimum Operating System: <b>iOS 4.0</b>
  *
  * Source located in <code>src/badge/src</code>
+ *
+@code
+#import "NimbusBadge.h"
+@endcode
+ *
+ * <h2>Basic Use</h2>
+ *
+ * The badge view works much like UILabel. Once you've assigned text and configured the attributes
+ * you should call sizeToFit to have the badge determine its ideal size.
+ *
+@code
+NIBadgeView* badgeView = [[NIBadgeView alloc] initWithFrame:CGRectZero];
+badgeView.text = @"7";
+[badgeView sizeToFit];
+[self.view addSubview:badgeView];
+@endcode
  *
  * @}
  */

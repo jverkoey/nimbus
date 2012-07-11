@@ -19,67 +19,108 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NimbusCore.h"
+
 @protocol NILauncherDelegate;
 @protocol NILauncherDataSource;
+@protocol NILauncherButtonView;
 
 /**
  * Calculate the given field dynamically given the view and button dimensions.
  */
-extern const NSInteger NILauncherViewDynamic;
+extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 
 /**
  * A launcher view that simulates iOS' home screen launcher functionality.
  *
  *      @ingroup NimbusLauncher
- *
- *      @todo Implement tap-and-hold editing for the launcher button ordering. The Three20
- *            implementation can likely be learned from to implement this, though it's possible that
- *            I could improve on it by writing it from scratch. Care needs to be taken with the fact
- *            that launcher pages can scroll vertically now as well.
  */
-@interface NILauncherView : UIView <
-  UIScrollViewDelegate
-> {
-@private
-  // Views
-  UIScrollView*   _scrollView;
-  UIPageControl*  _pager;
-
-  // Presentation Information
-  NSInteger       _maxNumberOfButtonsPerPage;
-
-  // Display Information
-  UIEdgeInsets    _padding;
-
-  // Cached Data Source Information
-  NSInteger       _numberOfPages;
-
-  NSMutableArray* _pagesOfButtons;      // NSArray< NSArray< UIButton *> >
-  NSMutableArray* _pagesOfScrollViews;  // NSArray< UIScrollView *>
-
-  // Protocols
-  __unsafe_unretained id<NILauncherDelegate>    _delegate;
-  __unsafe_unretained id<NILauncherDataSource>  _dataSource;
-}
-
-#pragma mark Configurable Properties
+@interface NILauncherView : UIView
 
 @property (nonatomic, readwrite, assign) NSInteger maxNumberOfButtonsPerPage; // Default: NSIntegerMax
-@property (nonatomic, readwrite, assign) UIEdgeInsets padding; // Default: 10px on all sides
-
-#pragma mark Delegation
-
-@property (nonatomic, readwrite, assign) id<NILauncherDelegate> delegate;
-
-#pragma mark Data Source
-
-@property (nonatomic, readwrite, assign) id<NILauncherDataSource> dataSource;
+@property (nonatomic, readwrite, assign) UIEdgeInsets contentInsetForPages; // Default: 10px on all sides
+@property (nonatomic, readwrite, assign) CGSize buttonSize; // Default: 80x80
+@property (nonatomic, readwrite, assign) NSInteger numberOfRows; // Default: NILauncherViewGridBasedOnButtonSize
+@property (nonatomic, readwrite, assign) NSInteger numberOfColumns; // Default: NILauncherViewGridBasedOnButtonSize
 
 - (void)reloadData;
+@property (nonatomic, readwrite, assign) id<NILauncherDelegate> delegate;
+@property (nonatomic, readwrite, assign) id<NILauncherDataSource> dataSource;
 
-#pragma mark Subclassing
+- (UIView<NILauncherButtonView> *)dequeueReusableViewWithIdentifier:(NSString *)identifier;
 
-- (void)setFrame:(CGRect)frame;
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
+
+@end
+
+/**
+ * The launcher data source used to populate the view.
+ *
+ * @ingroup NimbusLauncher
+ */
+@protocol NILauncherDataSource <NSObject>
+@required
+
+/** @name Configuring a Launcher View */
+
+/**
+ * Tells the data source to return the number of rows in a given section of a table view (required).
+ *
+ *      @param launcherView The launcher-view object requesting this information.
+ *      @param page The index locating a page in @c launcherView.
+ *      @returns The number of buttons in @c page.
+ */
+- (NSInteger)launcherView:(NILauncherView *)launcherView numberOfButtonsInPage:(NSInteger)page;
+
+/**
+ * Tells the data source to return a button view for inserting into a particular location of a given
+ * page in the launcher view (required).
+ *
+ *      @param launcherView The launcher-view object requesting this information.
+ *      @param page The index locating a page in @c launcherView.
+ *      @param index The index locating a button in a page.
+ *      @returns A UIView that conforms to NILauncherButtonView that the launcher will display on
+                the given page. An assertion is raised if you return nil.
+ */
+- (UIView<NILauncherButtonView> *)launcherView:(NILauncherView *)launcherView buttonViewForPage:(NSInteger)page atIndex:(NSInteger)index;
+
+@optional
+
+/**
+ * Asks the data source to return the number of pages in the launcher view.
+ *
+ *      @param launcherView The launcher-view object requesting this information.
+ *      @returns The number of pages in @c launcherView. The default value is 1.
+ *      @sa NILauncherDataSource::launcherView:numberOfButtonsInPage:
+ */
+- (NSInteger)numberOfPagesInLauncherView:(NILauncherView *)launcherView;
+
+/**
+ * Asks the data source to return the number of rows of buttons each page can display in the
+ * launcher view.
+ *
+ * This method will be called each time the frame of the launcher view changes. Notably, this will
+ * be called when the launcher view has been rotated as a result of a device rotation.
+ *
+ *      @param launcherView The launcher-view object requesting this information.
+ *      @returns The number of rows of buttons each page can display.
+ *      @sa NILauncherDataSource::numberOfColumnsPerPageInLauncherView:
+ */
+- (NSInteger)numberOfRowsPerPageInLauncherView:(NILauncherView *)launcherView;
+
+/**
+ * Asks the data source to return the number of columns of buttons each page can display in the
+ * launcher view.
+ *
+ * This method will be called each time the frame of the launcher view changes. Notably, this will
+ * be called when the launcher view has been rotated as a result of a device rotation.
+ *
+ *      @param launcherView The launcher-view object requesting this information.
+ *      @returns The number of columns of buttons each page can display.
+ *      @sa NILauncherDataSource::numberOfRowsPerPageInLauncherView:
+ */
+- (NSInteger)numberOfColumnsPerPageInLauncherView:(NILauncherView *)launcherView;
 
 @end
 
@@ -90,74 +131,38 @@ extern const NSInteger NILauncherViewDynamic;
  * @ingroup NimbusLauncher
  */
 @protocol NILauncherDelegate <NSObject>
-
 @optional
 
+/** @name Managing Selections */
+
 /**
- * Called when the user taps and releases a launcher button.
+ * Informs the delegate that the specified item on the specified page has been selected.
+ *
+ *      @param launcherView A launcher-view object informing the delegate about the new item
+ *                          selection.
+ *      @param page A page index locating the selected item in @c launcher.
+ *      @param index An index locating the selected item in the given page.
  */
-- (void)launcherView: (NILauncherView *)launcher
-     didSelectButton: (UIButton *)button
-              onPage: (NSInteger)page
-             atIndex: (NSInteger)index;
+- (void)launcherView:(NILauncherView *)launcherView didSelectItemOnPage:(NSInteger)page atIndex:(NSInteger)index;
 
 @end
 
-
 /**
- * The launcher data source used to populate the view.
+ * The launcher delegate used to inform of state changes and user interactions.
  *
  * @ingroup NimbusLauncher
  */
-@protocol NILauncherDataSource <NSObject>
-
-@optional
-
-/**
- * Override the default button dimensions 80x80.
- *
- * The default dimensions will fit the following grids:
- *
- * iPhone within a navigation controller
- *  Portrait: 3x4
- *  Landscape: 5x2
- *
- * The returned dimensions must be positive non-zero values.
- */
-- (CGSize)buttonDimensionsInLauncherView:(NILauncherView *)launcherView;
-
-/**
- * Override the default number of rows which is dynamically calculated.
- */
-- (NSInteger)numberOfRowsPerPageInLauncherView:(NILauncherView *)launcherView;
-
-/**
- * Override the default number of columns which is dynamically calculated.
- */
-- (NSInteger)numberOfColumnsPerPageInLauncherView:(NILauncherView *)launcherView;
-
+@protocol NILauncherButtonView <NIRecyclableView>
 @required
 
 /**
- * The total number of pages to be shown in the launcher view.
+ * Requires the view to contain a button subview.
  */
-- (NSInteger)numberOfPagesInLauncherView:(NILauncherView *)launcherView;
-
-/**
- * The total number of buttons in a given page.
- */
-- (NSInteger)launcherView:(NILauncherView *)launcherView numberOfButtonsInPage:(NSInteger)page;
-
-/**
- * Retrieve the button to be displayed at a given page and index.
- */
-- (UIButton *)launcherView: (NILauncherView *)launcherView
-             buttonForPage: (NSInteger)page
-                   atIndex: (NSInteger)index;
+@property (nonatomic, readwrite, retain) UIButton* button;
 
 @end
 
-/** @name Configurable Properties */
+/** @name Configuring a Launcher View */
 
 /**
  * The maximum number of buttons allowed on a given page.
@@ -168,56 +173,87 @@ extern const NSInteger NILauncherViewDynamic;
  */
 
 /**
- * The amount of padding on each side of the launcher view pages.
+ * The distance that each page view insets its contents.
  *
- * The bottom padding is considered above the page control.
+ * Use this property to add to the area around the content of each page. The unit of size is points.
+ * The default value is 10 points on all sides.
  *
- * Default values are 10 pixels of padding on all sides.
- *
- *      @fn NILauncherView::padding
+ *      @fn NILauncherView::contentInsetForPages
  */
 
-
-/** @name Delegation */
+/**
+ * The size of each launcher button.
+ *
+ *      @fn NILauncherView::buttonSize
+ */
 
 /**
- * The launcher view notifies the delegate of any user interaction or state changes.
+ * The number of rows to display on each page.
+ *
+ *      @fn NILauncherView::numberOfRows
+ */
+
+/**
+ * The number of columns to display on each page.
+ *
+ *      @fn NILauncherView::numberOfColumns
+ */
+
+/**
+ * Returns a reusable launcher button view object located by its identifier.
+ *
+ *      @param identifier A string identifying the launcher button view object to be reused. By
+ *                        default, a reusable view's identifier is its class name, but you can
+ *                        change it to any arbitrary value.
+ *      @returns A UIView object with the associated identifier that conforms to the
+ *               NILauncherButtonView protocol, or nil if no such object exists in the reusable-cell
+ *               queue.
+ *      @fn NILauncherView::dequeueReusableViewWithIdentifier:
+ */
+
+/** @name Managing the Delegate and the Data Source */
+
+/**
+ * The object that acts as the delegate of the receiving launcher view.
+ *
+ * The delegate must adopt the NILauncherDelegate protocol. The delegate is not retained.
  *
  *      @fn NILauncherView::delegate
  */
 
-
-/** @name Data Source */
-
 /**
- * The launcher view populates its pages with information from the data source.
+ * The object that acts as the data source of the receiving table view.
+ *
+ * The data source must adopt the NILauncherDataSource protocol. The data source is not retained.
  *
  *      @fn NILauncherView::dataSource
  */
 
+/** @name Reloading the Table View */
+
 /**
- * Reload the launcher data.
+ * Reloads the pages of the receiver.
  *
- * This will release all of the launcher's buttons and call all necessary data source methods
- * again.
- *
- * Unlike the UITableView's reloadData, this is not a cheap method to call.
+ * Call this method to reload all the data that is used to construct the launcher, including pages
+ * and buttons. For efficiency, the launcher redisplays only those pages that are visible or nearly
+ * visible.
  *
  *      @fn NILauncherView::reloadData
  */
 
-
-/** @name Subclassing */
+/** @name Rotating the Launcher View */
 
 /**
- * Lays out the subviews for this launcher view.
+ * Stores the current state of the launcher view in preparation for rotation.
  *
- * If you subclass this view and implement setFrame, you should either replicate the
- * functionality found within or call [super setFrame:].
+ * This must be called in conjunction with willAnimateRotationToInterfaceOrientation:duration:
+ * in the methods by the same name from the view controller containing this view.
  *
- *      @note Subviews are laid out in this method instead of layoutSubviews due to the fact
- *            that the scroll view offset and content size are modified within this method.
- *            If we modify these values in layoutSubviews then we will end up breaking the
- *            scroll view because whenever the user drags their finger to scroll the scroll
- *            view, layoutSubviews is called on the launcher view.
+ *      @fn NILauncherView::willRotateToInterfaceOrientation:duration:
+ */
+
+/**
+ * Updates the frame of the launcher view while maintaining the current visible page's state.
+ *
+ *      @fn NILauncherView::willAnimateRotationToInterfaceOrientation:duration:
  */
