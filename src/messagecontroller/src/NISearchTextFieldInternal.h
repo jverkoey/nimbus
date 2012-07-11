@@ -23,10 +23,9 @@
 
 @interface NISearchTextFieldInternal : NSObject <NISearchTextFieldDelegate> {
     NISearchTextField*      _textField;
-    id<NISearchTextFieldDelegate> __unsafe_unretained _delegate;
 }
 
-@property (nonatomic, unsafe_unretained) id<NISearchTextFieldDelegate> delegate;
+@property (nonatomic, assign) id<NISearchTextFieldDelegate> delegate;
 
 
 - (id)initWithTextField:(NISearchTextField*)textField;
