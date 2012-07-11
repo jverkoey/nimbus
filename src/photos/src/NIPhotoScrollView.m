@@ -96,6 +96,7 @@
 @synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
 @synthesize photoScrollViewDelegate = _photoScrollViewDelegate;
 @synthesize doubleTapToZoomIsEnabled = _doubleTapToZoomIsEnabled;
+@synthesize maximumScale = _maximumScale;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -464,7 +465,11 @@
   }
   
   // If zooming is disabled then we flatten the range for zooming to only allow the min zoom.
-  _scrollView.maximumZoomScale = [self isZoomingEnabled] ? maxScale : minScale;
+  if (self.isZoomingEnabled && NIPhotoScrollViewPhotoSizeOriginal == self.photoSize && self.maximumScale > 0) {
+    _scrollView.maximumZoomScale = self.maximumScale;
+  } else {
+    _scrollView.maximumZoomScale = self.isZoomingEnabled ? maxScale : minScale;
+  }
   _scrollView.minimumZoomScale = minScale;
 }
 
