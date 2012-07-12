@@ -15,7 +15,8 @@
 // limitations under the License.
 
 #import "NavigationAppearanceViewController.h"
-#import "NINavigationAppearance.h"
+
+#import "NimbusCore.h"
 
 //
 // What's going on in this file:
@@ -38,11 +39,11 @@
 @synthesize changeBackgroundImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-       self.title = @"Navigation Appearance";
-    }
-    return self;
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    self.title = @"Navigation Appearance";
+  }
+  return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -78,7 +79,7 @@
   
   // Restore the original navigation bar appearance by popping the stack
   [NINavigationAppearance popAppearanceForNavigationController:self.navigationController 
-                                                      animated:YES];
+                                                      animated:animated];
 }
 
 @end
