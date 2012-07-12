@@ -86,8 +86,12 @@
   if ([object respondsToSelector:@selector(cellClass)]) {
     Class cellClass = [object cellClass];
     cell = [self cellWithClass:cellClass tableView:tableView object:object];
+  } else if ([object isKindOfClass:[NSManagedObject class]]) {
+    NSLog(@"[[object entity] name]: %@", [[object entity] name]);
+    id objection = [[NSClassFromString([[object entity] name]) alloc] init];
+    Class cellClass = [objection cellClass];
+    cell = [self cellWithClass:cellClass tableView:tableView object:object];
   }
-
   return cell;
 }
 
