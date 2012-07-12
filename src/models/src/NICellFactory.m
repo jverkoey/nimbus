@@ -81,15 +81,17 @@
                         atIndexPath:(NSIndexPath *)indexPath
                          withObject:(id)object {
   UITableViewCell* cell = nil;
+  
+  id _object;
+  if ([object isKindOfClass:[NSManagedObject class]]) {
+    _object = [[NSClassFromString([[object entity] name]) alloc] init];
+  } else {
+    _object = object;
+  }
 
   // Only NICellObject-conformant objects may pass.
-  if ([object respondsToSelector:@selector(cellClass)]) {
-    Class cellClass = [object cellClass];
-    cell = [self cellWithClass:cellClass tableView:tableView object:object];
-  } else if ([object isKindOfClass:[NSManagedObject class]]) {
-    NSLog(@"[[object entity] name]: %@", [[object entity] name]);
-    id objection = [[NSClassFromString([[object entity] name]) alloc] init];
-    Class cellClass = [objection cellClass];
+  if ([_object respondsToSelector:@selector(cellClass)]) {
+    Class cellClass = [_object cellClass];
     cell = [self cellWithClass:cellClass tableView:tableView object:object];
   }
   return cell;
