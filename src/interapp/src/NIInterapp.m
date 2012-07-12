@@ -54,6 +54,56 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
+#pragma mark Google Chrome
+
+/**
+ * Based on https://developers.google.com/chrome/mobile/docs/ios-links
+ */
+
+static NSString* const sGoogleChromeHttpScheme = @"googlechrome:";
+static NSString* const sGoogleChromeHttpsScheme = @"googlechomes:";
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)googleChromeIsInstalled {
+    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:sGoogleChromeHttpScheme]];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)googleChromeWithURL:(NSURL *)url {
+    NSString *chromeScheme = nil;
+    if ([url.scheme isEqualToString:@"http"]) {
+        chromeScheme = sGoogleChromeHttpScheme;
+    } else if ([url.scheme isEqualToString:@"https"]) {
+        chromeScheme = sGoogleChromeHttpsScheme;
+    }
+    
+    if (chromeScheme) {
+        NSRange rangeForScheme = [[url absoluteString] rangeOfString:@":"];
+        NSString *urlNoScheme =  [[url absoluteString] substringFromIndex:rangeForScheme.location + 1];
+        NSString *chromeUrlString = [chromeScheme stringByAppendingString:urlNoScheme];
+        NSURL *chromeUrl = [NSURL URLWithString:chromeUrlString];
+        
+        BOOL didOpen = [[UIApplication sharedApplication] openURL:chromeUrl];
+        if (!didOpen) {
+            didOpen = [self appStoreWithAppId:[self googleChromeAppStoreId]];
+        }
+        
+        return didOpen;
+    }
+
+    return NO;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NSString *)googleChromeAppStoreId {
+    return @"535886823";
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
 #pragma mark Google Maps
 
 /**
