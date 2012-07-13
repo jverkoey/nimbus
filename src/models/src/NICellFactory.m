@@ -73,13 +73,6 @@
                         atIndexPath:(NSIndexPath *)indexPath
                          withObject:(id)object {
   UITableViewCell* cell = nil;
-  
-  id _object;
-  if ([object isKindOfClass:[NSManagedObject class]]) {
-    _object = [[NSClassFromString([[object entity] name]) alloc] init];
-  } else {
-    _object = object;
-  }
 
   // If this assertion fires then your app is about to crash. You need to either add an explicit
   // binding in a NICellFactory object or implement the NICellObject protocol on this object and
@@ -87,10 +80,11 @@
   NIDASSERT([object respondsToSelector:@selector(cellClass)]);
 
   // Only NICellObject-conformant objects may pass.
-  if ([_object respondsToSelector:@selector(cellClass)]) {
-    Class cellClass = [_object cellClass];
+  if ([object respondsToSelector:@selector(cellClass)]) {
+    Class cellClass = [object cellClass];
     cell = [self cellWithClass:cellClass tableView:tableView object:object];
   }
+
   return cell;
 }
 
