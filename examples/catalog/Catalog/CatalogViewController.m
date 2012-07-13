@@ -58,6 +58,7 @@
 #import "RadioGroupTableModelViewController.h"
 #import "NestedRadioGroupTableModelViewController.h"
 #import "FormCellCatalogViewController.h"
+#import "NetworkBlockCellsViewController.h"
 #import "BlockCellsViewController.h"
 
 // Web Controller
@@ -318,6 +319,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Block Cells"
                                    subtitle:@"Rendering cells with blocks"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([NetworkBlockCellsViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Network Block Cells"
+                                   subtitle:@"Rendering network images with blocks"]],
      
      @"Web Controller",
      [_actions attachNavigationAction:
