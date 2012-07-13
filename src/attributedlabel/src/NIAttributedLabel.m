@@ -1147,7 +1147,7 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
     case UITextAlignmentLeft: return kCTLeftTextAlignment;
     case UITextAlignmentCenter: return kCTCenterTextAlignment;
     case UITextAlignmentRight: return kCTRightTextAlignment;
-    case UITextAlignmentJustify: return kCTJustifiedTextAlignment;
+//    case UITextAlignmentJustify: return kCTJustifiedTextAlignment;
     default: return kCTNaturalTextAlignment;
   }
 }
