@@ -40,6 +40,9 @@
 #import "RestoringLauncherViewController.h"
 #import "BadgedLauncherViewController.h"
 
+// Navigation Appearance
+#import "NavigationAppearanceViewController.h"
+
 // Network Image
 #import "BasicInstantiationNetworkImageViewController.h"
 #import "ContentModesNetworkImageViewController.h"
@@ -55,6 +58,7 @@
 #import "RadioGroupTableModelViewController.h"
 #import "NestedRadioGroupTableModelViewController.h"
 #import "FormCellCatalogViewController.h"
+#import "NetworkBlockCellsViewController.h"
 #import "BlockCellsViewController.h"
 
 // Web Controller
@@ -120,7 +124,6 @@
     // array of objects.
     NSArray* sectionedObjects =
     [NSArray arrayWithObjects:
-
      // An NSString in a sectioned array denotes the start of a new section. It's also the label of
      // the section header.
      @"Attributed Label",
@@ -223,6 +226,38 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Badges"
                                    subtitle:@"Adding badges to launcher items"]],
+     
+     @"Navigation Apperance",
+     [_actions attachNavigationAction:
+      ^(id object, UIViewController* controller) {
+        NavigationAppearanceViewController *appearanceController = 
+        [[NavigationAppearanceViewController alloc] init];
+        appearanceController.changeBarStyle = YES;
+        [controller.navigationController pushViewController:appearanceController animated:YES];
+        return NO;
+      } toObject:
+      [NISubtitleCellObject objectWithTitle:@"Bar Style"
+                                   subtitle:@"Modify navigation bar style"]],
+     [_actions attachNavigationAction:
+      ^(id object, UIViewController* controller) {
+        NavigationAppearanceViewController *appearanceController = 
+          [[NavigationAppearanceViewController alloc] init];
+        appearanceController.changeTintColor = YES;
+        [controller.navigationController pushViewController:appearanceController animated:YES];
+        return NO;
+      } toObject:
+      [NISubtitleCellObject objectWithTitle:@"Tint Color"
+                                   subtitle:@"Modify navigation bar tint color"]], 
+     [_actions attachNavigationAction:
+      ^(id object, UIViewController* controller) {
+        NavigationAppearanceViewController *appearanceController = 
+        [[NavigationAppearanceViewController alloc] init];
+        appearanceController.changeBackgroundImage = YES;
+        [controller.navigationController pushViewController:appearanceController animated:YES];
+        return NO;
+      } toObject:
+      [NISubtitleCellObject objectWithTitle:@"Background Image"
+                                   subtitle:@"Modify navigation bar background image"]],
 
      @"Network Image",
      [_actions attachNavigationAction:
@@ -284,6 +319,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Block Cells"
                                    subtitle:@"Rendering cells with blocks"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([NetworkBlockCellsViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Network Block Cells"
+                                   subtitle:@"Rendering network images with blocks"]],
      
      @"Web Controller",
      [_actions attachNavigationAction:
