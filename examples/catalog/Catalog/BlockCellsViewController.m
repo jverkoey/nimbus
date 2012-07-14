@@ -53,7 +53,7 @@
     UIImage* image = [UIImage imageNamed:@"Icon"];
 
     // We create a single block that can render a table view cell given an object.
-    NICellDrawRectBlock drawTextBlock = ^(CGRect rect, id object, UITableViewCell *cell) {
+    NICellDrawRectBlock drawTextBlock = ^CGFloat(CGRect rect, id object, UITableViewCell *cell) {
       // If the cell is tapped or selected we want to draw the text on top of the selection
       // background. This requires that the content's background be clear.
       if (cell.isHighlighted || cell.isSelected) {
@@ -77,6 +77,8 @@
 
       // Draw the Nimbus application icon on the right edge of the cell.
       [image drawAtPoint:CGPointMake(CGRectGetMaxX(rect) - image.size.width - 10, 5)];
+
+      return 0;
     };
 
     // Create 1000 cells that are individually named so that we can show how quickly we can scroll

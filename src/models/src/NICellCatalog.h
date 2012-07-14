@@ -16,7 +16,7 @@
 
 #import "NICellFactory.h"
 
-typedef void (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* cell);
+typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* cell);
 
 /**
  * An object that will draw the contents of the cell using a provided block.
@@ -85,6 +85,7 @@ typedef void (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* cel
  *      @ingroup TableCellCatalog
  */
 @interface NIDrawRectBlockCell : UITableViewCell <NICell>
+@property (nonatomic, readwrite, retain) UIView* blockView;
 @end
 
 /**
