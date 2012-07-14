@@ -28,8 +28,6 @@ static const CGFloat kLongPressGutter = 22;
 // "within" the link.
 static const CGFloat kTouchGutter = 22;
 
-static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
-
 @interface NIAttributedLabel() <UIActionSheetDelegate>
 @property (nonatomic, readwrite, retain) NSMutableAttributedString* mutableAttributedString;
 @property (nonatomic, readwrite, assign) CTFrameRef textFrame;
@@ -157,20 +155,6 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
   [super setFrame:frame];
 
   if (frameDidChange) {
-    [self attributedTextDidChange];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setBounds:(CGRect)bounds {
-  bounds = UIEdgeInsetsInsetRect(bounds, kBoundsInsets);
-
-  BOOL boundsDidChange = !CGRectEqualToRect(self.bounds, bounds);
-  
-  [super setBounds:bounds];
-
-  if (boundsDidChange) {
     [self attributedTextDidChange];
   }
 }
@@ -642,11 +626,6 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
   CGAffineTransform transform = [self _transformForCoreText];
   CGFloat verticalOffset = [self _verticalOffsetForBounds:self.bounds];
 
-  // Our bounds may have a non-zero offset, so we must take this into account when doing hit
-  // detection.
-  point.x += kBoundsInsets.left;
-  point.y -= kBoundsInsets.top;
-
   for (int i = 0; i < count; i++) {
     CGPoint linePoint = origins[i];
 
@@ -730,11 +709,6 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 
   CGAffineTransform transform = [self _transformForCoreText];
   CGFloat verticalOffset = [self _verticalOffsetForBounds:self.bounds];
-
-  // Our bounds may have a non-zero offset, so we must take this into account when doing hit
-  // detection.
-  point.x += kBoundsInsets.left;
-  point.y -= kBoundsInsets.top;
 
   NSRange linkRange = link.range;
 
@@ -979,8 +953,6 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawTextInRect:(CGRect)rect {
-  rect = UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(-kBoundsInsets.top, -kBoundsInsets.left, -kBoundsInsets.bottom, -kBoundsInsets.right));
-
   if (NIVerticalTextAlignmentTop != self.verticalTextAlignment) {
     rect.origin.y = [self _verticalOffsetForBounds:rect];
   }
@@ -1041,8 +1013,6 @@ static UIEdgeInsets kBoundsInsets = {-5, -5, -5, -5};
         CGRect highlightRect = [self _rectForRange:linkRange inLine:line lineOrigin:lineOrigins[i]];
 
         if (!CGRectIsEmpty(highlightRect)) {
-          highlightRect = CGRectOffset(highlightRect, -kBoundsInsets.left, -rect.origin.y - kBoundsInsets.top - kBoundsInsets.bottom);
-
           CGFloat pi = (CGFloat)M_PI;
 
           CGFloat radius = 5.0f;
