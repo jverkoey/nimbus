@@ -66,6 +66,8 @@
 #pragma mark App Store
 
 + (BOOL)appStoreWithAppId:(NSString *)appId;
++ (BOOL)appStoreGiftWithAppId:(NSString *)appId;
++ (BOOL)appStoreReviewWithAppId:(NSString *)appId;
 
 #pragma mark iBooks
 
@@ -410,4 +412,16 @@
  * Opens the App Store page for the app with the given ID.
  *
  *      @fn NIInterapp::appStoreWithAppId:
+ */
+
+/**
+ * Opens the "Gift this app" App Store page for the app with the given ID.
+ *
+ *      @fn NIInterapp::appStoreGiftWithAppId:
+ */
+
+/**
+ * Opens the "Write a review" App Store page for the app with the given ID.
+ *
+ *      @fn NIInterapp::appStoreReviewWithAppId:
  */
