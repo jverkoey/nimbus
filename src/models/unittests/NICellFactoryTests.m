@@ -40,11 +40,11 @@
 
   class = [NICellFactory classFromKeyClass:NSNumber.class map:map];
   STAssertNil(class, @"NSNumber should not be mapped.");
-  STAssertEquals(map.count, (NSUInteger)3, @"Should now be three classes mapped to NSObject.");
+  STAssertEquals(map.count, (NSUInteger)3, @"Should now be three classes mapped.");
 
   class = [NICellFactory classFromKeyClass:NSNumber.class map:map];
   STAssertNil(class, @"NSNumber should still not be mapped.");
-  STAssertEquals(map.count, (NSUInteger)3, @"Should now be three classes mapped to NSObject.");
+  STAssertEquals(map.count, (NSUInteger)3, @"Should now be three classes mapped.");
 }
 
 @end
