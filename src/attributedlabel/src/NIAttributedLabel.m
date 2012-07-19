@@ -978,7 +978,7 @@ static const CGFloat kTouchGutter = 22;
       CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attributedString);
 
       CGMutablePathRef path = CGPathCreateMutable();
-      // We must tranform the path rectangle in order to draw the text correctly for bottom/middle
+      // We must transform the path rectangle in order to draw the text correctly for bottom/middle
       // vertical alignment modes.
       CGPathAddRect(path, &transform, rect);
       self.textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
