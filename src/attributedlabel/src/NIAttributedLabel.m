@@ -277,9 +277,13 @@ static const CGFloat kTouchGutter = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 - (void)setTextAlignment:(UITextAlignment)textAlignment {
-  // We assume that the UILabel implementation will call setNeedsDisplay. Where we don't call super
-  // we call setNeedsDisplay ourselves.
-  [super setTextAlignment:textAlignment];
+  // UILabel doesn't implement UITextAlignmentJustify, so we can't call super when this is the case
+  // or the app will crash.
+  if (textAlignment != UITextAlignmentJustify) {
+    // We assume that the UILabel implementation will call setNeedsDisplay. Where we don't call super
+    // we call setNeedsDisplay ourselves.
+    [super setTextAlignment:textAlignment];
+  }
   
   if (nil != self.mutableAttributedString) {
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:textAlignment];
