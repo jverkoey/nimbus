@@ -90,14 +90,52 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel
-                   cellForTableView: (UITableView *)tableView
-                        atIndexPath: (NSIndexPath *)indexPath
-                         withObject: (id)object {
+- (Class)cellClassFromObjectClass:(Class)objectClass {
+  Class cellClass = [self.objectToCellMap objectForKey:objectClass];
+
+  if (nil == cellClass) {
+    // No mapping found for this object class, but it may be a subclass of another object that does
+    // have a mapping, so let's see what we can find.
+    Class superclass = nil;
+    for (Class class in self.objectToCellMap.allKeys) {
+      // We want to find the lowest node in the class hierarchy so that we pick the lowest ancestor
+      // in the hierarchy tree.
+      if ([objectClass isSubclassOfClass:class]
+          && (nil == superclass || [objectClass isSubclassOfClass:superclass])) {
+        superclass = class;
+      }
+    }
+
+    if (nil != superclass) {
+      cellClass = [self.objectToCellMap objectForKey:superclass];
+
+      // Add this subclass to the map so that next time this result is instant.
+      [self mapObjectClass:objectClass toCellClass:cellClass];
+    }
+  }
+
+  if (nil == cellClass) {
+    // We couldn't find a mapping at all so let's add an empty mapping.
+    [self mapObjectClass:objectClass toCellClass:[NSNull class]];
+
+  } else if (cellClass == [NSNull class]) {
+    // Don't return null mappings.
+    cellClass = nil;
+  }
+
+  return cellClass;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UITableViewCell *)tableViewModel:(NITableViewModel *)tableViewModel
+                   cellForTableView:(UITableView *)tableView
+                        atIndexPath:(NSIndexPath *)indexPath
+                         withObject:(id)object {
   UITableViewCell* cell = nil;
 
   Class objectClass = [object class];
-  Class cellClass = [self.objectToCellMap objectForKey:objectClass];
+  Class cellClass = [self cellClassFromObjectClass:objectClass];
 
   // Explicit mappings override implicit mappings.
   if (nil != cellClass) {
