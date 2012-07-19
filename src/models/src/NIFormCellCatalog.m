@@ -261,6 +261,16 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 @synthesize element = _element;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self.textLabel setAdjustsFontSizeToFitWidth:YES];
+    }
+    return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prepareForReuse {
   [super prepareForReuse];
   
