@@ -981,9 +981,6 @@ static const CGFloat kTouchGutter = 22;
       // We must tranform the path rectangle in order to draw the text correctly for bottom/middle
       // vertical alignment modes.
       CGPathAddRect(path, &transform, rect);
-      if (nil != self.shadowColor) {
-        CGContextSetShadowWithColor(ctx, self.shadowOffset, self.shadowBlur, self.shadowColor.CGColor);
-      }
       self.textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
       CGPathRelease(path);
       CFRelease(framesetter);
@@ -1033,6 +1030,10 @@ static const CGFloat kTouchGutter = 22;
           CGContextFillPath(ctx);
         }
       }
+    }
+
+    if (nil != self.shadowColor) {
+      CGContextSetShadowWithColor(ctx, self.shadowOffset, self.shadowBlur, self.shadowColor.CGColor);
     }
 
     CTFrameDraw(self.textFrame, ctx);
