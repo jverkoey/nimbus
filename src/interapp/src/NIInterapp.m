@@ -552,6 +552,17 @@ static NSString* const sInstagramScheme = @"instagram:";
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)appStoreGiftWithAppId:(NSString *)appId {
+    NSString* urlPath = [NSString stringWithFormat:@"itms-appss://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/giftSongsWizard?gift=1&salableAdamId=%@&productType=C&pricingParameter=STDQ&mt=8&ign-mscache=1", appId];
+    return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)appStoreReviewWithAppId:(NSString *)appId {
+    NSString* urlPath = [@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=" stringByAppendingString:appId];
+    return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
+}
 
 @end
 

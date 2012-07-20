@@ -277,9 +277,13 @@ static const CGFloat kTouchGutter = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 - (void)setTextAlignment:(UITextAlignment)textAlignment {
-  // We assume that the UILabel implementation will call setNeedsDisplay. Where we don't call super
-  // we call setNeedsDisplay ourselves.
-  [super setTextAlignment:textAlignment];
+  // UILabel doesn't implement UITextAlignmentJustify, so we can't call super when this is the case
+  // or the app will crash.
+  if (textAlignment != UITextAlignmentJustify) {
+    // We assume that the UILabel implementation will call setNeedsDisplay. Where we don't call super
+    // we call setNeedsDisplay ourselves.
+    [super setTextAlignment:textAlignment];
+  }
   
   if (nil != self.mutableAttributedString) {
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:textAlignment];
@@ -978,12 +982,9 @@ static const CGFloat kTouchGutter = 22;
       CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attributedString);
 
       CGMutablePathRef path = CGPathCreateMutable();
-      // We must tranform the path rectangle in order to draw the text correctly for bottom/middle
+      // We must transform the path rectangle in order to draw the text correctly for bottom/middle
       // vertical alignment modes.
       CGPathAddRect(path, &transform, rect);
-      if (nil != self.shadowColor) {
-        CGContextSetShadowWithColor(ctx, self.shadowOffset, self.shadowBlur, self.shadowColor.CGColor);
-      }
       self.textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
       CGPathRelease(path);
       CFRelease(framesetter);
@@ -1033,6 +1034,10 @@ static const CGFloat kTouchGutter = 22;
           CGContextFillPath(ctx);
         }
       }
+    }
+
+    if (nil != self.shadowColor) {
+      CGContextSetShadowWithColor(ctx, self.shadowOffset, self.shadowBlur, self.shadowColor.CGColor);
     }
 
     CTFrameDraw(self.textFrame, ctx);
