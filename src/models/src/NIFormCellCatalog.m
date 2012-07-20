@@ -265,6 +265,7 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self.textLabel setAdjustsFontSizeToFitWidth:YES];
+        [self.textLabel setMinimumFontSize:10.0f];
     }
     return self;
 }
@@ -310,6 +311,7 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
     _textField = [[UITextField alloc] init];
     [_textField setTag:self.element.elementID];
     [_textField setAdjustsFontSizeToFitWidth:YES];
+    [_textField setMinimumFontSize:10.0f];
     [_textField addTarget:self action:@selector(textFieldDidChangeValue) forControlEvents:UIControlEventAllEditingEvents];
     [self.contentView addSubview:_textField];
 
