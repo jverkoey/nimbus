@@ -50,6 +50,11 @@ typedef enum {
  *   attributed string that inherits all of the label's current styles.
  * - Text is aligned vertically to the top of the bounds by default rather than centered. You can
  *   change this behavior using @link NIAttributedLabel::verticalTextAlignment verticalTextAlignment@endlink.
+ * - CoreText fills the frame with glyphs until they no longer fit. This is an important difference
+ *   from UILabel because it means that CoreText will not add any glyphs that won't fit in the
+ *   frame, while UILabel does. This can result in empty NIAttributedLabels if your frame is too
+ *   small where UILabel would draw clipped text. It is recommended that you use sizeToFit to get
+ *   the correct dimensions of the attributed label before setting the frame.
  *
  *      @ingroup NimbusAttributedLabel
  */

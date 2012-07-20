@@ -90,6 +90,24 @@ _model.delegate = (id)[NICellFactory class];
 
 @end
 
+@interface NICellFactory (KeyClassMapping)
+
+/**
+ * Returns a mapped class from the given key class.
+ *
+ * If the key class is a subclass of any mapped key classes, the nearest ancestor's mapped class
+ * will be returned and the keyClass will be added to the map for future accesses.
+ *
+ *      @param keyClass The key class that will be used to find the mapping in map.
+ *      @param map A map of key classes to classes. May be modified if keyClass is a subclass of
+ *                 any existing key classes.
+ *      @returns The mapped class if keyClass matches any mappings in the map. nil is returned
+ *               otherwise.
+ */
++ (Class)classFromKeyClass:(Class)keyClass map:(NSMutableDictionary *)map;
+
+@end
+
 /**
  * The protocol for an object that can be used in the NICellFactory.
  *

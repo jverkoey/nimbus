@@ -48,9 +48,9 @@
   _rootViewController = [[UINavigationController alloc] initWithRootViewController:catalogVC];
   self.window.rootViewController = _rootViewController;
 
-  [NIOverview addOverviewToWindow:self.window];
-
   [self.window makeKeyAndVisible];
+
+  [NIOverview addOverviewToWindow:self.window];
   
   return YES;
 }
