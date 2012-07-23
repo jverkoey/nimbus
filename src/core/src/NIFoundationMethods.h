@@ -19,6 +19,10 @@
 
 #import "NIPreprocessorMacros.h"
 
+#if defined __cplusplus
+extern "C" {
+#endif
+
 /**
  * For filling in gaps in Apple's Foundation framework.
  *
@@ -122,6 +126,9 @@ NSInteger boundi(NSInteger value, NSInteger min, NSInteger max);
 
 /**@}*/
 
+#if defined __cplusplus
+};
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Foundation Methods ///////////////////////////////////////////////////////////////

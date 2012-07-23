@@ -19,6 +19,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#if defined __cplusplus
+extern "C" {
+#endif
+
 /**
  * For dealing with device orientations.
  *
@@ -67,6 +71,10 @@ UIInterfaceOrientation NIInterfaceOrientation(void);
  * directly to the window and doesn't automatically have its transformation modified.
  */
 CGAffineTransform NIRotateTransformForOrientation(UIInterfaceOrientation orientation);
+
+#if defined __cplusplus
+};
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Device Orientation ///////////////////////////////////////////////////////////////

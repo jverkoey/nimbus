@@ -19,6 +19,10 @@
 
 typedef BOOL (^NITableViewActionBlock)(id object, UIViewController* controller);
 
+#if defined __cplusplus
+extern "C" {
+#endif
+
 /**
  * Returns a block that pushes an instance of the controllerClass onto the navigation stack.
  *
@@ -27,6 +31,10 @@ typedef BOOL (^NITableViewActionBlock)(id object, UIViewController* controller);
  *      @param controllerClass The class of controller to instantiate.
  */
 NITableViewActionBlock NIPushControllerAction(Class controllerClass);
+
+#if defined __cplusplus
+};
+#endif
 
 /**
  * An object that can be used to easily implement actions in table view controllers.

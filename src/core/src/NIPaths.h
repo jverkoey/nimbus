@@ -18,6 +18,10 @@
 
 #import <Foundation/Foundation.h>
 
+#if defined __cplusplus
+extern "C" {
+#endif
+
 /**
  * For creating standard system paths.
  *
@@ -58,6 +62,9 @@ NSString* NIPathForLibraryResource(NSString* relativePath);
  */
 NSString* NIPathForCachesResource(NSString* relativePath);
 
+#if defined __cplusplus
+};
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Paths ////////////////////////////////////////////////////////////////////////////
