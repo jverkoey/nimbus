@@ -40,6 +40,15 @@
 #ifndef NIDatePickerFormElementCell
 #define NIDatePickerFormElementCell __NIMBUS_NS_SYMBOL(NIDatePickerFormElementCell)
 #endif
+#ifndef NIDrawRectBlockCell
+#define NIDrawRectBlockCell __NIMBUS_NS_SYMBOL(NIDrawRectBlockCell)
+#endif
+#ifndef NIDrawRectBlockCellObject
+#define NIDrawRectBlockCellObject __NIMBUS_NS_SYMBOL(NIDrawRectBlockCellObject)
+#endif
+#ifndef NIDrawRectBlockView
+#define NIDrawRectBlockView __NIMBUS_NS_SYMBOL(NIDrawRectBlockView)
+#endif
 #ifndef NIFormElement
 #define NIFormElement __NIMBUS_NS_SYMBOL(NIFormElement)
 #endif
