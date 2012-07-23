@@ -485,7 +485,7 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
   UIEdgeInsets contentPadding = NICellContentPadding();
   CGRect contentFrame = UIEdgeInsetsInsetRect(self.contentView.frame, contentPadding);
-  CGFloat labelWidth = contentFrame.size.width * 0.5;
+  CGFloat labelWidth = contentFrame.size.width * 0.5f;
 
   CGRect frame = self.textLabel.frame;
   frame.size.width = labelWidth;
@@ -757,8 +757,8 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
         if (self.datePicker.countDownDuration == 0) {
           self.dateField.text = NSLocalizedString(@"0 minutes", @"0 minutes");
         } else {
-          int hours = self.datePicker.countDownDuration / 3600;
-          int minutes = (self.datePicker.countDownDuration - hours * 3600) / 60;
+          int hours = (int)(self.datePicker.countDownDuration / 3600);
+          int minutes = (int)((self.datePicker.countDownDuration - hours * 3600) / 60);
           
           self.dateField.text = [NSString stringWithFormat:
                                  NSLocalizedString(@"%d hours, %d min", 
@@ -809,8 +809,8 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
       if (self.datePicker.countDownDuration == 0) {
         self.dateField.text = NSLocalizedString(@"0 minutes", @"0 minutes");
       } else {
-        int hours = self.datePicker.countDownDuration / 3600;
-        int minutes = (self.datePicker.countDownDuration - hours * 3600) / 60;
+        int hours = (int)(self.datePicker.countDownDuration / 3600);
+        int minutes = (int)((self.datePicker.countDownDuration - hours * 3600) / 60);
         
         self.dateField.text = [NSString stringWithFormat:
                                NSLocalizedString(@"%d hours, %d min", 
