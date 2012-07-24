@@ -20,6 +20,10 @@
 #import "NimbusCore.h"
 #import <objc/runtime.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 @interface NITableViewAction : NSObject
 @property (nonatomic, readwrite, copy) NITableViewActionBlock tapAction;
 @property (nonatomic, readwrite, copy) NITableViewActionBlock detailAction;

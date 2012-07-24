@@ -23,6 +23,10 @@
 #import "NIOverviewGraphView.h"
 #import "NIOverViewLogger.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static UIEdgeInsets kPagePadding;
 static const CGFloat kGraphRightMargin = 5;
 

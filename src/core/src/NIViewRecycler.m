@@ -18,6 +18,10 @@
 
 #import "NimbusCore.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 @interface NIViewRecycler()
 @property (nonatomic, readwrite, retain) NSMutableDictionary* reuseIdentifiersToRecycledViews;
 @end

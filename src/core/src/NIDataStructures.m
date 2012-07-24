@@ -19,6 +19,10 @@
 #import "NIDebuggingTools.h"
 #import "NIPreprocessorMacros.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 // The internal representation of a single node.
 @interface NILinkedListNode : NSObject
 @property (nonatomic, readwrite, retain) id object;

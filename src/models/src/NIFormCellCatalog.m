@@ -21,6 +21,10 @@
 #import "NimbusCore.h"
 #import <objc/message.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static const CGFloat kSwitchLeftMargin = 10;
 static const CGFloat kImageViewRightMargin = 10;
 static const CGFloat kSegmentedControlMargin = 5;

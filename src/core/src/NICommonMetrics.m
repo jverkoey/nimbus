@@ -18,6 +18,9 @@
 
 #import "NISDKAvailability.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat NIToolbarHeightForOrientation(UIInterfaceOrientation orientation) {

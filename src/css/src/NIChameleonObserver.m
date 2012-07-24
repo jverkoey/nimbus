@@ -21,6 +21,10 @@
 #import "NimbusCore+Additions.h"
 #import "AFNetworking.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static NSString* const kWatchFilenameKey = @"___watch___";
 static const NSTimeInterval kTimeoutInterval = 1000;
 static const NSInteger kMaxNumberOfRetries = 3;

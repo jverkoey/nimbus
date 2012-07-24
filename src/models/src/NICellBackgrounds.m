@@ -18,6 +18,10 @@
 
 #import "NimbusCore.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static const CGFloat kBorderSize = 1;
 static const CGFloat kBorderRadius = 5;
 static const CGSize kCellImageSize = {44, 44};

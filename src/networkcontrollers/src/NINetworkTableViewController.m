@@ -18,6 +18,10 @@
 
 #import "NimbusCore+Additions.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 @interface NINetworkTableViewController()
 @property (nonatomic, readwrite, assign) UIActivityIndicatorViewStyle activityIndicatorStyle;
 @property (nonatomic, readwrite, assign) UITableViewStyle tableViewStyle;

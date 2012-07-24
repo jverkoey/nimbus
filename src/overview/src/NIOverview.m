@@ -24,6 +24,10 @@
 #import "NIOverviewSwizzling.h"
 #import "NIOverviewLogger.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 // Static state.
 static CGFloat  sOverviewHeight   = 60;
 static BOOL     sOverviewIsAwake  = NO;

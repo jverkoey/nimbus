@@ -18,6 +18,10 @@
 
 #import "NIInMemoryCache.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static NIImageMemoryCache* sNimbusGlobalMemoryCache = nil;
 static NSOperationQueue* sNimbusGlobalOperationQueue = nil;
 
