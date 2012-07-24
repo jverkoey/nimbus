@@ -18,6 +18,7 @@
 
 #import "UIView+NimbusCore.h"
 
+#import "NIFoundationMethods.h"
 #import "NIPreprocessorMacros.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
@@ -34,11 +35,7 @@ NI_FIX_CATEGORY_BUG(UIViewNimbusCore)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)centerWithin:(UIView *)otherView {
-  CGSize otherSize = otherView.frame.size;
-  CGSize size = self.frame.size;
-  self.frame = CGRectMake(floorf((otherSize.width - size.width) / 2.f),
-                          floorf((otherSize.height - size.height) / 2.f),
-                          size.width, size.height);
+  self.frame = NIFrameOfCenteredViewWithinView(self, otherView);
 }
 
 @end

@@ -40,6 +40,17 @@ CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy) {
 }
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+CGRect NIFrameOfCenteredViewWithinView(UIView* viewToCenter, UIView* containerView) {
+  CGPoint origin;
+  CGSize containerViewSize = containerView.bounds.size;
+  CGSize viewSize = viewToCenter.frame.size;
+  origin.x = floorf((containerViewSize.width - viewSize.width) / 2.f);
+  origin.y = floorf((containerViewSize.height - viewSize.height) / 2.f);
+  return CGRectMake(origin.x, origin.y, viewSize.width, viewSize.height);
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -

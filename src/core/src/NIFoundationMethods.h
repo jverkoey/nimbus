@@ -67,6 +67,13 @@ CGRect NIRectContract(CGRect rect, CGFloat dx, CGFloat dy);
  */
 CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy);
 
+/**
+ * Returns a rect that will center viewToCenter within containerView.
+ *
+ *      @return a CGPoint that will center viewToCenter within containerView.
+ */
+CGRect NIFrameOfCenteredViewWithinView(UIView* viewToCenter, UIView* containerView);
+
 /**@}*/
 
 
