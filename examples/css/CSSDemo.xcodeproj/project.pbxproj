@@ -85,7 +85,6 @@
 		66832D3414421450003E413C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		66832D9714421530003E413C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		66832D9814421530003E413C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		66832DAD14434FB2003E413C /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = ../../src/core/src/NIBlocks.h; sourceTree = "<group>"; };
 		66832DAE14434FB2003E413C /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../../src/core/src/NICommonMetrics.h; sourceTree = "<group>"; };
 		66832DAF14434FB2003E413C /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../../src/core/src/NICommonMetrics.m; sourceTree = "<group>"; };
 		66832DB014434FB2003E413C /* NIDataStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDataStructures.h; path = ../../src/core/src/NIDataStructures.h; sourceTree = "<group>"; };
@@ -275,7 +274,6 @@
 		66832D41144214DA003E413C /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				66832DAD14434FB2003E413C /* NIBlocks.h */,
 				66832DAE14434FB2003E413C /* NICommonMetrics.h */,
 				66832DAF14434FB2003E413C /* NICommonMetrics.m */,
 				66832DB014434FB2003E413C /* NIDataStructures.h */,

@@ -128,7 +128,6 @@
 		66409FA713E25C5E00E9BA5A /* NimbusOverviewer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusOverviewer.bundle; path = ../../../src/overview/resources/NimbusOverviewer.bundle; sourceTree = "<group>"; };
 		665648381418638700EB5960 /* NINavigationAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINavigationAppearance.h; path = ../../../src/core/src/NINavigationAppearance.h; sourceTree = "<group>"; };
 		665648391418638700EB5960 /* NINavigationAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINavigationAppearance.m; path = ../../../src/core/src/NINavigationAppearance.m; sourceTree = "<group>"; };
-		665E0B9713CE815D008A1D21 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = ../../../src/core/src/NIBlocks.h; sourceTree = SOURCE_ROOT; };
 		665E0B9813CE815D008A1D21 /* NIDataStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDataStructures.h; path = ../../../src/core/src/NIDataStructures.h; sourceTree = SOURCE_ROOT; };
 		665E0B9913CE815D008A1D21 /* NIDataStructures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIDataStructures.m; path = ../../../src/core/src/NIDataStructures.m; sourceTree = SOURCE_ROOT; };
 		665E0B9A13CE815D008A1D21 /* NIDebuggingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDebuggingTools.h; path = ../../../src/core/src/NIDebuggingTools.h; sourceTree = SOURCE_ROOT; };
@@ -356,7 +355,6 @@
 		665E0B9513CE814D008A1D21 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				665E0B9713CE815D008A1D21 /* NIBlocks.h */,
 				66EAC64B13D28D9A00BDFF34 /* NICommonMetrics.h */,
 				66EAC64C13D28D9A00BDFF34 /* NICommonMetrics.m */,
 				665E0B9813CE815D008A1D21 /* NIDataStructures.h */,
