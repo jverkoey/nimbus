@@ -18,7 +18,7 @@
 
 #import "NSString+NimbusCore.h"
 
-#import "NSData+NimbusCore.h"
+#import "NIFoundationMethods.h"
 #import "NIPreprocessorMacros.h"
 
 #import <UIKit/UIKit.h>
@@ -218,7 +218,7 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
  * @returns md5 hash of this string.
  */
 - (NSString*)md5Hash {
-  return [[self dataUsingEncoding:NSUTF8StringEncoding] md5Hash];
+  return NIMD5HashFromData([self dataUsingEncoding:NSUTF8StringEncoding]);
 }
 
 
@@ -229,7 +229,7 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
  * @returns SHA1 hash of this string.
  */
 - (NSString*)sha1Hash {
-  return [[self dataUsingEncoding:NSUTF8StringEncoding] sha1Hash];
+  return NISHA1HashFromData([self dataUsingEncoding:NSUTF8StringEncoding]);
 }
 
 @end

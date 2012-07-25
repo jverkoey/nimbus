@@ -104,6 +104,29 @@ NSRange NIMakeNSRangeFromCFRange(CFRange range);
 
 
 #pragma mark -
+#pragma mark NSData Methods
+
+/**
+ * For manipulating NSData.
+ *
+ * @defgroup NSData-Methods NSData Methods
+ * @{
+ */
+
+/**
+ * Calculates an md5 hash of the data using CC_MD5.
+ */
+NSString* NIMD5HashFromData(NSData* data);
+
+/**
+ * Calculates a sha1 hash of the data using CC_SHA1.
+ */
+NSString* NISHA1HashFromData(NSData* data);
+
+/**@}*/
+
+
+#pragma mark -
 #pragma mark NSString Methods
 
 /**

@@ -67,9 +67,6 @@
 #ifndef NIViewRecycler
 #define NIViewRecycler __NIMBUS_NS_SYMBOL(NIViewRecycler)
 #endif
-#ifndef NI_FIX_CATEGORY_BUG_NSDataNimbusCore
-#define NI_FIX_CATEGORY_BUG_NSDataNimbusCore __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_NSDataNimbusCore)
-#endif
 #ifndef NI_FIX_CATEGORY_BUG_NSStringNimbusCore
 #define NI_FIX_CATEGORY_BUG_NSStringNimbusCore __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_NSStringNimbusCore)
 #endif
@@ -176,8 +173,8 @@
 #ifndef NIUIPopoverControllerClass
 #define NIUIPopoverControllerClass __NIMBUS_NS_SYMBOL(NIUIPopoverControllerClass)
 #endif
-#ifndef NIIsStringWithWhitespaceAndNewlines
-#define NIIsStringWithWhitespaceAndNewlines __NIMBUS_NS_SYMBOL(NIIsStringWithWhitespaceAndNewlines)
+#ifndef NIMD5HashFromData
+#define NIMD5HashFromData __NIMBUS_NS_SYMBOL(NIMD5HashFromData)
 #endif
 #ifndef NIUITapGestureRecognizerClass
 #define NIUITapGestureRecognizerClass __NIMBUS_NS_SYMBOL(NIUITapGestureRecognizerClass)
@@ -185,11 +182,8 @@
 #ifndef NIPathForCachesResource
 #define NIPathForCachesResource __NIMBUS_NS_SYMBOL(NIPathForCachesResource)
 #endif
-#ifndef boundf
-#define boundf __NIMBUS_NS_SYMBOL(boundf)
-#endif
-#ifndef boundi
-#define boundi __NIMBUS_NS_SYMBOL(boundi)
+#ifndef NISHA1HashFromData
+#define NISHA1HashFromData __NIMBUS_NS_SYMBOL(NISHA1HashFromData)
 #endif
 #ifndef NISwizzleMethodsForNetworkActivityDebugging
 #define NISwizzleMethodsForNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NISwizzleMethodsForNetworkActivityDebugging)
@@ -199,6 +193,15 @@
 #endif
 #ifndef NIDisableNetworkActivityDebugging
 #define NIDisableNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NIDisableNetworkActivityDebugging)
+#endif
+#ifndef NIIsStringWithWhitespaceAndNewlines
+#define NIIsStringWithWhitespaceAndNewlines __NIMBUS_NS_SYMBOL(NIIsStringWithWhitespaceAndNewlines)
+#endif
+#ifndef boundf
+#define boundf __NIMBUS_NS_SYMBOL(boundf)
+#endif
+#ifndef boundi
+#define boundi __NIMBUS_NS_SYMBOL(boundi)
 #endif
 // Externs
 #ifndef NIMaxLogLevel
