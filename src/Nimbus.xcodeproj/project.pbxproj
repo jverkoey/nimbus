@@ -239,7 +239,6 @@
 		66A03CAD13E6E90500B514F3 /* NIMemoryCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03CA313E6E90500B514F3 /* NIMemoryCacheTests.m */; };
 		66A03CAE13E6E90500B514F3 /* NINonEmptyCollectionTestingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03CA413E6E90500B514F3 /* NINonEmptyCollectionTestingTests.m */; };
 		66A03CAF13E6E90500B514F3 /* NINonRetainingCollectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03CA513E6E90500B514F3 /* NINonRetainingCollectionsTests.m */; };
-		66A03CB013E6E90500B514F3 /* NIOperationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03CA613E6E90500B514F3 /* NIOperationsTests.m */; };
 		66A03CB113E6E90500B514F3 /* NIRuntimeClassModificationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03CA713E6E90500B514F3 /* NIRuntimeClassModificationsTests.m */; };
 		66A03CB213E6E90500B514F3 /* NSDate+UnitTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A03CA913E6E90500B514F3 /* NSDate+UnitTesting.m */; };
 		66A03CB413E6EF1F00B514F3 /* nimbus64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A03CB313E6EF1F00B514F3 /* nimbus64x64.png */; };
@@ -850,7 +849,6 @@
 		66A03CA313E6E90500B514F3 /* NIMemoryCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIMemoryCacheTests.m; sourceTree = "<group>"; };
 		66A03CA413E6E90500B514F3 /* NINonEmptyCollectionTestingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINonEmptyCollectionTestingTests.m; sourceTree = "<group>"; };
 		66A03CA513E6E90500B514F3 /* NINonRetainingCollectionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINonRetainingCollectionsTests.m; sourceTree = "<group>"; };
-		66A03CA613E6E90500B514F3 /* NIOperationsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOperationsTests.m; sourceTree = "<group>"; };
 		66A03CA713E6E90500B514F3 /* NIRuntimeClassModificationsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIRuntimeClassModificationsTests.m; sourceTree = "<group>"; };
 		66A03CA813E6E90500B514F3 /* NSDate+UnitTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+UnitTesting.h"; sourceTree = "<group>"; };
 		66A03CA913E6E90500B514F3 /* NSDate+UnitTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+UnitTesting.m"; sourceTree = "<group>"; };
@@ -1753,7 +1751,6 @@
 				6607851B14D245BE00FE3283 /* NINetworkActivityTests.m */,
 				66A03CA413E6E90500B514F3 /* NINonEmptyCollectionTestingTests.m */,
 				66A03CA513E6E90500B514F3 /* NINonRetainingCollectionsTests.m */,
-				66A03CA613E6E90500B514F3 /* NIOperationsTests.m */,
 				66A03CA713E6E90500B514F3 /* NIRuntimeClassModificationsTests.m */,
 				6607851F14D33EA900FE3283 /* NIStateTests.m */,
 				6675E4B914560397007D172F /* NIViewRecyclerTests.m */,
@@ -3445,7 +3442,6 @@
 				66A03CAD13E6E90500B514F3 /* NIMemoryCacheTests.m in Sources */,
 				66A03CAE13E6E90500B514F3 /* NINonEmptyCollectionTestingTests.m in Sources */,
 				66A03CAF13E6E90500B514F3 /* NINonRetainingCollectionsTests.m in Sources */,
-				66A03CB013E6E90500B514F3 /* NIOperationsTests.m in Sources */,
 				66A03CB113E6E90500B514F3 /* NIRuntimeClassModificationsTests.m in Sources */,
 				66A03CB213E6E90500B514F3 /* NSDate+UnitTesting.m in Sources */,
 				FD01BED814179AB60023D783 /* NINavigationAppearanceTests.m in Sources */,

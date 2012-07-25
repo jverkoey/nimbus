@@ -75,6 +75,36 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
+#pragma mark NSString Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testNIIsStringWithWhitespaceAndNewlines {
+  STAssertTrue(NIIsStringWithWhitespaceAndNewlines(@""), @"Empty string should be whitespace and newlines.");
+  STAssertTrue(NIIsStringWithWhitespaceAndNewlines(@" "), @"Space should be whitespace and newlines.");
+  STAssertTrue(NIIsStringWithWhitespaceAndNewlines(@"    \n\r"), @"Whitespace and newlines should be whitespace and newlines.");
+  STAssertFalse(NIIsStringWithWhitespaceAndNewlines(nil), @"nil is not a string");
+  STAssertFalse(NIIsStringWithWhitespaceAndNewlines(@"cat"), @"Words are not whitespace and newlines");
+
+  for (unsigned short unicode = 0x000A; unicode <= 0x000D; ++unicode) {
+    NSString* str = [NSString stringWithFormat:@"%C", unicode];
+    STAssertTrue(NIIsStringWithWhitespaceAndNewlines(str),
+                 @"Unicode string #%X should be whitespace.", unicode);
+  }
+
+  NSString* str = [NSString stringWithFormat:@"%C", (unsigned short)0x0085];
+  STAssertTrue(NIIsStringWithWhitespaceAndNewlines(str), @"Unicode string should be whitespace.");
+  
+  STAssertTrue(NIIsStringWithWhitespaceAndNewlines(@" \t\r\n"), @"Empty string should be whitespace.");
+  
+  STAssertTrue(!NIIsStringWithWhitespaceAndNewlines(@"a"), @"Text should not be whitespace.");
+  STAssertTrue(!NIIsStringWithWhitespaceAndNewlines(@" \r\n\ta\r\n "), @"Text should not be whitespace.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
 #pragma mark General Purpose Methods
 
 

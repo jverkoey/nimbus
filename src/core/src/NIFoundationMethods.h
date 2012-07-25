@@ -104,6 +104,25 @@ NSRange NIMakeNSRangeFromCFRange(CFRange range);
 
 
 #pragma mark -
+#pragma mark NSString Methods
+
+/**
+ * For manipulating NSStrings.
+ *
+ * @defgroup NSString-Methods NSString Methods
+ * @{
+ */
+
+/**
+ * Returns a Boolean value indicating whether the string is a NSString object that contains only
+ * whitespace and newlines.
+ */
+BOOL NIIsStringWithWhitespaceAndNewlines(NSString* string);
+
+/**@}*/
+
+
+#pragma mark -
 #pragma mark General Purpose Methods
 
 /**

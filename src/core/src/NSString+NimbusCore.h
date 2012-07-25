@@ -22,10 +22,6 @@
 // Documentation for these additions is found in the .m file.
 @interface NSString (NimbusCore)
 
-#pragma mark Checking String Contents
-
-- (BOOL)isWhitespaceAndNewlines;
-
 #pragma mark Display
 
 - (CGFloat)heightWithFont: (UIFont*)font

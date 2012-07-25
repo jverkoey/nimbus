@@ -67,34 +67,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNSString_isWhitespace {
-  // From the Apple docs:
-  // Returns a character set containing only the whitespace characters space (U+0020) and tab
-  // (U+0009) and the newline and nextline characters (U+000A–U+000D, U+0085).
-  STAssertTrue([@"" isWhitespaceAndNewlines], @"Empty string should be whitespace.");
-  STAssertTrue([@" " isWhitespaceAndNewlines], @"Space character should be whitespace.");
-  STAssertTrue([@"\t" isWhitespaceAndNewlines], @"Tab character should be whitespace.");
-  STAssertTrue([@"\n" isWhitespaceAndNewlines], @"Newline character should be whitespace.");
-  STAssertTrue([@"\r" isWhitespaceAndNewlines], @"Carriage return character should be whitespace.");
-
-  // Unicode whitespace
-  for (unsigned short unicode = 0x000A; unicode <= 0x000D; ++unicode) {
-    NSString* str = [NSString stringWithFormat:@"%C", unicode];
-    STAssertTrue([str isWhitespaceAndNewlines],
-                 @"Unicode string #%X should be whitespace.", unicode);
-  }
-
-  NSString* str = [NSString stringWithFormat:@"%C", (unsigned short)0x0085];
-  STAssertTrue([str isWhitespaceAndNewlines], @"Unicode string should be whitespace.");
-
-  STAssertTrue([@" \t\r\n" isWhitespaceAndNewlines], @"Empty string should be whitespace.");
-
-  STAssertTrue(![@"a" isWhitespaceAndNewlines], @"Text should not be whitespace.");
-  STAssertTrue(![@" \r\n\ta\r\n " isWhitespaceAndNewlines], @"Text should not be whitespace.");
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testNSString_queryContentsUsingEncoding {
 	NSDictionary* query;
 
