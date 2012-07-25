@@ -24,4 +24,3 @@
 
 // Additions
 #import "NSString+NimbusCore.h"
-#import "UIView+NimbusCore.h"

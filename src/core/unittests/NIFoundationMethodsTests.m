@@ -54,6 +54,18 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testCGRectCenterWithin {
+  UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+  UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+  
+  CGRect centeredFrame = NIFrameOfCenteredViewWithinView(subview, containerView);
+  
+  STAssertTrue(CGRectEqualToRect(centeredFrame, CGRectMake(45, 45, 10, 10)), @"Rect should be centered.");
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark NSRange Methods

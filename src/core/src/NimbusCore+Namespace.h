@@ -70,9 +70,6 @@
 #ifndef NI_FIX_CATEGORY_BUG_NSStringNimbusCore
 #define NI_FIX_CATEGORY_BUG_NSStringNimbusCore __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_NSStringNimbusCore)
 #endif
-#ifndef NI_FIX_CATEGORY_BUG_UIViewNimbusCore
-#define NI_FIX_CATEGORY_BUG_UIViewNimbusCore __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_UIViewNimbusCore)
-#endif
 #ifndef Nimbus
 #define Nimbus __NIMBUS_NS_SYMBOL(Nimbus)
 #endif
@@ -152,8 +149,8 @@
 #ifndef NIScreenScale
 #define NIScreenScale __NIMBUS_NS_SYMBOL(NIScreenScale)
 #endif
-#ifndef NIMakeNSRangeFromCFRange
-#define NIMakeNSRangeFromCFRange __NIMBUS_NS_SYMBOL(NIMakeNSRangeFromCFRange)
+#ifndef NIFrameOfCenteredViewWithinView
+#define NIFrameOfCenteredViewWithinView __NIMBUS_NS_SYMBOL(NIFrameOfCenteredViewWithinView)
 #endif
 #ifndef NIIsStringWithAnyText
 #define NIIsStringWithAnyText __NIMBUS_NS_SYMBOL(NIIsStringWithAnyText)
@@ -173,17 +170,17 @@
 #ifndef NIUIPopoverControllerClass
 #define NIUIPopoverControllerClass __NIMBUS_NS_SYMBOL(NIUIPopoverControllerClass)
 #endif
-#ifndef NIMD5HashFromData
-#define NIMD5HashFromData __NIMBUS_NS_SYMBOL(NIMD5HashFromData)
-#endif
 #ifndef NIUITapGestureRecognizerClass
 #define NIUITapGestureRecognizerClass __NIMBUS_NS_SYMBOL(NIUITapGestureRecognizerClass)
 #endif
 #ifndef NIPathForCachesResource
 #define NIPathForCachesResource __NIMBUS_NS_SYMBOL(NIPathForCachesResource)
 #endif
-#ifndef NISHA1HashFromData
-#define NISHA1HashFromData __NIMBUS_NS_SYMBOL(NISHA1HashFromData)
+#ifndef NIMakeNSRangeFromCFRange
+#define NIMakeNSRangeFromCFRange __NIMBUS_NS_SYMBOL(NIMakeNSRangeFromCFRange)
+#endif
+#ifndef NIMD5HashFromData
+#define NIMD5HashFromData __NIMBUS_NS_SYMBOL(NIMD5HashFromData)
 #endif
 #ifndef NISwizzleMethodsForNetworkActivityDebugging
 #define NISwizzleMethodsForNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NISwizzleMethodsForNetworkActivityDebugging)
@@ -193,6 +190,9 @@
 #endif
 #ifndef NIDisableNetworkActivityDebugging
 #define NIDisableNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NIDisableNetworkActivityDebugging)
+#endif
+#ifndef NISHA1HashFromData
+#define NISHA1HashFromData __NIMBUS_NS_SYMBOL(NISHA1HashFromData)
 #endif
 #ifndef NIIsStringWithWhitespaceAndNewlines
 #define NIIsStringWithWhitespaceAndNewlines __NIMBUS_NS_SYMBOL(NIIsStringWithWhitespaceAndNewlines)

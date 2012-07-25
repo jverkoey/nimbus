@@ -173,21 +173,4 @@
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark UIView Additions
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testCenterWithin {
-  UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-  UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-  
-  [subview centerWithin:containerView];
-  
-  STAssertTrue(CGRectEqualToRect(subview.frame, CGRectMake(45, 45, 10, 10)), @"Rect should be centered.");
-}
-
-
 @end
