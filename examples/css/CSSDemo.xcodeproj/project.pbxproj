@@ -37,7 +37,6 @@
 		66832DE214434FB2003E413C /* NIRuntimeClassModifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832DCC14434FB2003E413C /* NIRuntimeClassModifications.m */; };
 		66832DE314434FB2003E413C /* NISDKAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832DCE14434FB2003E413C /* NISDKAvailability.m */; };
 		66832DE414434FB2003E413C /* NIState.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832DD014434FB2003E413C /* NIState.m */; };
-		66832DE514434FB2003E413C /* NSData+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832DD214434FB2003E413C /* NSData+NimbusCore.m */; };
 		66832DE614434FB2003E413C /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832DD414434FB2003E413C /* NSString+NimbusCore.m */; };
 		66832DFA14434FBE003E413C /* NIDOM.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832DEA14434FBE003E413C /* NIDOM.m */; };
 		66832DFB14434FBE003E413C /* NIStylesheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832DEC14434FBE003E413C /* NIStylesheet.m */; };
@@ -120,8 +119,6 @@
 		66832DCE14434FB2003E413C /* NISDKAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISDKAvailability.m; path = ../../src/core/src/NISDKAvailability.m; sourceTree = "<group>"; };
 		66832DCF14434FB2003E413C /* NIState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIState.h; path = ../../src/core/src/NIState.h; sourceTree = "<group>"; };
 		66832DD014434FB2003E413C /* NIState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIState.m; path = ../../src/core/src/NIState.m; sourceTree = "<group>"; };
-		66832DD114434FB2003E413C /* NSData+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+NimbusCore.h"; path = "../../src/core/src/NSData+NimbusCore.h"; sourceTree = "<group>"; };
-		66832DD214434FB2003E413C /* NSData+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+NimbusCore.m"; path = "../../src/core/src/NSData+NimbusCore.m"; sourceTree = "<group>"; };
 		66832DD314434FB2003E413C /* NSString+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+NimbusCore.h"; path = "../../src/core/src/NSString+NimbusCore.h"; sourceTree = "<group>"; };
 		66832DD414434FB2003E413C /* NSString+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NimbusCore.m"; path = "../../src/core/src/NSString+NimbusCore.m"; sourceTree = "<group>"; };
 		66832DE714434FBE003E413C /* NimbusCSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusCSS.h; path = ../../src/css/src/NimbusCSS.h; sourceTree = "<group>"; };
@@ -309,8 +306,6 @@
 				66832DCE14434FB2003E413C /* NISDKAvailability.m */,
 				66832DCF14434FB2003E413C /* NIState.h */,
 				66832DD014434FB2003E413C /* NIState.m */,
-				66832DD114434FB2003E413C /* NSData+NimbusCore.h */,
-				66832DD214434FB2003E413C /* NSData+NimbusCore.m */,
 				66832DD314434FB2003E413C /* NSString+NimbusCore.h */,
 				66832DD414434FB2003E413C /* NSString+NimbusCore.m */,
 			);
@@ -476,7 +471,6 @@
 				66832DE214434FB2003E413C /* NIRuntimeClassModifications.m in Sources */,
 				66832DE314434FB2003E413C /* NISDKAvailability.m in Sources */,
 				66832DE414434FB2003E413C /* NIState.m in Sources */,
-				66832DE514434FB2003E413C /* NSData+NimbusCore.m in Sources */,
 				66832DE614434FB2003E413C /* NSString+NimbusCore.m in Sources */,
 				66832DFA14434FBE003E413C /* NIDOM.m in Sources */,
 				66832DFB14434FBE003E413C /* NIStylesheet.m in Sources */,
