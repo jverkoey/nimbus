@@ -336,6 +336,7 @@
 		66FE7D6B13FB83620061B987 /* NimbusModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6413FB83620061B987 /* NimbusModels.h */; };
 		66FE7D6C13FB83620061B987 /* NITableViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6513FB83620061B987 /* NITableViewModel.h */; };
 		66FE7D6D13FB83620061B987 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FE7D6613FB83620061B987 /* NITableViewModel.m */; };
+		8E99FC72153F0AB5004ADD0A /* exception.css in Resources */ = {isa = PBXBuildFile; fileRef = 8E99FC71153F0AB5004ADD0A /* exception.css */; };
 		DB3A231713FD4B8E00614220 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		DB3A231913FD4B8E00614220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		DB3A231D13FD4B8E00614220 /* libNimbusAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB3A230913FD4B8E00614220 /* libNimbusAttributedLabel.a */; };
@@ -945,6 +946,7 @@
 		66FE7D6513FB83620061B987 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITableViewModel.h; sourceTree = "<group>"; };
 		66FE7D6613FB83620061B987 /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewModel.m; sourceTree = "<group>"; };
 		66FE7D6813FB83620061B987 /* NimbusModelsTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NimbusModelsTests-Info.plist"; sourceTree = "<group>"; };
+		8E99FC71153F0AB5004ADD0A /* exception.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = exception.css; path = css/unittests/exception.css; sourceTree = SOURCE_ROOT; };
 		DB3A230913FD4B8E00614220 /* libNimbusAttributedLabel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusAttributedLabel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3A231613FD4B8E00614220 /* NimbusAttributedLabelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusAttributedLabelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3A233213FD4BE500614220 /* NIAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIAttributedLabel.h; sourceTree = "<group>"; };
@@ -1524,6 +1526,7 @@
 				66FCC632144FB42E0029F1A6 /* includee.css */,
 				66FCC633144FB42E0029F1A6 /* includer.css */,
 				66832CC9143D7994003E413C /* NimbusCSSTests-Info.plist */,
+				8E99FC71153F0AB5004ADD0A /* exception.css */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -2936,6 +2939,7 @@
 				66832CFF143E3294003E413C /* UILabel.css in Resources */,
 				66FCC634144FB42E0029F1A6 /* includee.css in Resources */,
 				66FCC635144FB42E0029F1A6 /* includer.css in Resources */,
+				8E99FC72153F0AB5004ADD0A /* exception.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
