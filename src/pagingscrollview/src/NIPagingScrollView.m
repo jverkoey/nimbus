@@ -371,7 +371,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
       
     // Add missing pages.
     for (int pageIndex = visiblePageRange.location;
-         pageIndex < NSMaxRange(visiblePageRange); ++pageIndex) {
+         pageIndex < (NSInteger)NSMaxRange(visiblePageRange); ++pageIndex) {
       if (![self isDisplayingPageForIndex:pageIndex]) {
         [self displayPageAtIndex:pageIndex];
       }
@@ -597,7 +597,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   CGFloat pageScrollableDimension = [self pageScrollableDimension];
 
   if (offset >= 0) {
-    _firstVisiblePageIndexBeforeRotation = floorf(offset / pageScrollableDimension);
+    _firstVisiblePageIndexBeforeRotation = (NSInteger)floorf(offset / pageScrollableDimension);
     _percentScrolledIntoFirstVisiblePage = ((offset
         - (_firstVisiblePageIndexBeforeRotation * pageScrollableDimension))
         / pageScrollableDimension);
@@ -714,12 +714,6 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setCenterPageIndex:(NSInteger)centerPageIndex {
   [self moveToPageAtIndex:centerPageIndex animated:NO];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setCenterPageIndex:(NSInteger)centerPageIndex animated:(BOOL)animated {
-  [self moveToPageAtIndex:centerPageIndex animated:animated];
 }
 
 
