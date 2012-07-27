@@ -1122,7 +1122,9 @@ static const CGFloat kTouchGutter = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 + (CTTextAlignment)alignmentFromUITextAlignment:(UITextAlignment)alignment {
-  switch (alignment) {
+  // UITextAlignmentJustify is not part of the UITextAlignment enumeration, so we cast to NSInteger
+  // to tell Xcode not to coerce us into only using real UITextAlignment valus.
+  switch ((NSInteger)alignment) {
     case UITextAlignmentLeft: return kCTLeftTextAlignment;
     case UITextAlignmentCenter: return kCTCenterTextAlignment;
     case UITextAlignmentRight: return kCTRightTextAlignment;
