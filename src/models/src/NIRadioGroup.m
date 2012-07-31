@@ -304,12 +304,15 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
       NIRadioGroupController* controller = [[NIRadioGroupController alloc] initWithRadioGroup:self tappedCell:(id<NICell>)[tableView cellForRowAtIndexPath:indexPath]];
       controller.title = self.controllerTitle;
 
+      BOOL shouldPush = YES;
       // Notify the delegate that the controller is about to appear.
       if ([self.delegate respondsToSelector:@selector(radioGroup:radioGroupController:willAppear:)]) {
-        [self.delegate radioGroup:self radioGroupController:controller willAppear:YES];
+        shouldPush = ![self.delegate radioGroup:self radioGroupController:controller willAppear:YES];
       }
 
-      [self.controller.navigationController pushViewController:controller animated:YES];
+      if (shouldPush) {
+        [self.controller.navigationController pushViewController:controller animated:YES];
+      }
 
     } else if ([self isObjectInRadioGroup:object]) {
       NSInteger newSelection = [self identifierForObject:object];
