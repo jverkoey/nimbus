@@ -343,7 +343,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)updateVisiblePages {
+- (void)updateVisiblePagesAnimated:(BOOL)animated {
   NSRange visiblePageRange = [self visiblePageRange];
 
   // Recycle no-longer-visible pages. We copy _visiblePages because we may modify it while we're
@@ -380,7 +380,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     _centerPageIndex = -1;
   }
 
-  if (oldCenterPageIndex != _centerPageIndex
+  if (!animated && oldCenterPageIndex != _centerPageIndex
       && [self.delegate respondsToSelector:@selector(pagingScrollViewDidChangePages:)]) {
     [self.delegate pagingScrollViewDidChangePages:self];
   }
@@ -437,7 +437,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   if (!_isModifyingContentOffset) {
     // This method is called repeatedly as the user scrolls so updateVisiblePages must be
     // light-weight enough not to noticeably impact performance.
-    [self updateVisiblePages];
+    [self updateVisiblePagesAnimated:NO];
 
     if ([self.delegate respondsToSelector:@selector(pagingScrollViewDidScroll:)]) {
       [self.delegate pagingScrollViewDidScroll:self];
@@ -583,7 +583,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   }
 
   // Begin requesting the page information from the data source.
-  [self updateVisiblePages];
+  [self updateVisiblePagesAnimated:NO];
 }
 
 
@@ -656,7 +656,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   self.pagingScrollView.contentOffset = offset;
   _isModifyingContentOffset = NO;
 
-  [self updateVisiblePages];
+  [self updateVisiblePagesAnimated:YES];
 }
 
 
@@ -677,7 +677,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   if (animated) {
     _isAnimatingToPage = YES;
     SEL selector = @selector(didAnimateToPage:);
-    [NSObject cancelPreviousPerformRequestsWithTarget: self];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
 
     // When the animation is finished we reset the content offset just in case the frame
     // changes while we're animating (like when rotating the device). To do this we need
