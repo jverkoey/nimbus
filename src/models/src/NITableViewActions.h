@@ -65,9 +65,9 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
 
 #pragma mark Mapping Classes
 
-- (void)attachTapAction:(NITableViewActionBlock)action toClass:(Class)class;
-- (void)attachDetailAction:(NITableViewActionBlock)action toClass:(Class)class;
-- (void)attachNavigationAction:(NITableViewActionBlock)action toClass:(Class)class;
+- (void)attachTapAction:(NITableViewActionBlock)action toClass:(Class)aClass;
+- (void)attachDetailAction:(NITableViewActionBlock)action toClass:(Class)aClass;
+- (void)attachNavigationAction:(NITableViewActionBlock)action toClass:(Class)aClass;
 
 #pragma mark Object State
 

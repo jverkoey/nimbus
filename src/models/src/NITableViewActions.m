@@ -213,20 +213,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachTapAction:(NITableViewActionBlock)action toClass:(Class)class {
-  [self actionForClass:class].tapAction = action;
+- (void)attachTapAction:(NITableViewActionBlock)action toClass:(Class)aClass {
+  [self actionForClass:aClass].tapAction = action;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachDetailAction:(NITableViewActionBlock)action toClass:(Class)class {
-  [self actionForClass:class].detailAction = action;
+- (void)attachDetailAction:(NITableViewActionBlock)action toClass:(Class)aClass {
+  [self actionForClass:aClass].detailAction = action;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachNavigationAction:(NITableViewActionBlock)action toClass:(Class)class {
-  [self actionForClass:class].navigateAction = action;
+- (void)attachNavigationAction:(NITableViewActionBlock)action toClass:(Class)aClass {
+  [self actionForClass:aClass].navigateAction = action;
 }
 
 
