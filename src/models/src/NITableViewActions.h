@@ -59,19 +59,28 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
 
 #pragma mark Mapping Objects 
 
-- (id)attachTapAction:(NITableViewActionBlock)action toObject:(id)object;
-- (id)attachDetailAction:(NITableViewActionBlock)action toObject:(id)object;
-- (id)attachNavigationAction:(NITableViewActionBlock)action toObject:(id)object;
+- (id)attachTapAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object;
+- (id)attachDetailAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object;
+- (id)attachNavigationAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object;
+
+#pragma mark Mapping Classes
+
+- (void)attachTapAction:(NITableViewActionBlock)action toClass:(Class)class;
+- (void)attachDetailAction:(NITableViewActionBlock)action toClass:(Class)class;
+- (void)attachNavigationAction:(NITableViewActionBlock)action toClass:(Class)class;
 
 #pragma mark Object State
 
-- (BOOL)isObjectActionable:(id)object;
+- (BOOL)isObjectActionable:(id<NSObject>)object;
 
 #pragma mark Forwarding
 
-@property (nonatomic, readwrite, assign) UITableViewCellSelectionStyle tableViewCellSelectionStyle;
 - (id<UITableViewDelegate>)forwardingTo:(id<UITableViewDelegate>)forwardDelegate;
 - (void)removeForwarding:(id<UITableViewDelegate>)forwardDelegate;
+
+#pragma mark Configurable Properties
+
+@property (nonatomic, assign) UITableViewCellSelectionStyle tableViewCellSelectionStyle;
 
 @end
 
@@ -107,9 +116,9 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
  * If a navigation action also exists for this object then the tap action will be executed first,
  * followed by the navigation action.
  *
+ *      @param action The tap action block.
  *      @param object The object to attach the action to. This object must be contained within
  *                    an NITableViewModel.
- *      @param action The tap action block.
  *      @returns The object that you attached this action to.
  *      @fn NITableViewActions::attachTapAction:toObject:
  */
@@ -123,9 +132,9 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
  * When a cell's detail button is tapped, the detail action block will be executed. The return
  * value of the block is ignored.
  *
+ *      @param action The detail action block.
  *      @param object The object to attach the action to. This object must be contained within
  *                    an NITableViewModel.
- *      @param action The detail action block.
  *      @returns The object that you attached this action to.
  *      @fn NITableViewActions::attachDetailAction:toObject:
  */
@@ -142,11 +151,46 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
  * If a tap action also exists for this object then the tap action will be executed first, followed
  * by the navigation action.
  *
+ *      @param action The navigation action block.
  *      @param object The object to attach the action to. This object must be contained within
  *                    an NITableViewModel.
- *      @param action The navigation action block.
  *      @returns The object that you attached this action to.
  *      @fn NITableViewActions::attachNavigationAction:toObject:
+ */
+
+/** @name Mapping Classes */
+
+/**
+ * Attaches a tap action to a class.
+ *
+ * This method behaves similarly to attachTapAction:toObject: except it attaches a tap action to
+ * all instances and subclassed instances of a given class.
+ *
+ *      @param action The tap action block.
+ *      @param object The class to attach the action to.
+ *      @fn NITableViewActions::attachTapAction:toClass:
+ */
+
+/**
+ * Attaches a detail action to a class.
+ *
+ * This method behaves similarly to attachDetailAction:toObject: except it attaches a tap action to
+ * all instances and subclassed instances of a given class.
+ *
+ *      @param action The detail action block.
+ *      @param class The class to attach the action to.
+ *      @fn NITableViewActions::attachDetailAction:toClass:
+ */
+
+/**
+ * Attaches a navigation action to a class.
+ *
+ * This method behaves similarly to attachNavigationAction:toObject: except it attaches a tap action
+ * to all instances and subclassed instances of a given class.
+ *
+ *      @param action The navigation action block.
+ *      @param class The class to attach the action to.
+ *      @fn NITableViewActions::attachNavigationAction:toClass:
  */
 
 /** @name Object State */

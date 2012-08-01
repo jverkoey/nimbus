@@ -55,6 +55,7 @@
 #import "BasicInstantiationTableModelViewController.h"
 #import "SectionedTableModelViewController.h"
 #import "IndexedTableModelViewController.h"
+#import "ActionsTableModelViewController.h"
 #import "RadioGroupTableModelViewController.h"
 #import "NestedRadioGroupTableModelViewController.h"
 #import "FormCellCatalogViewController.h"
@@ -299,6 +300,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Indexed Model"
                                    subtitle:@"Indexed table view models"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([ActionsTableModelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Actions"
+                                   subtitle:@"Handling actions in table views"]],
      [_actions attachNavigationAction:
       NIPushControllerAction([RadioGroupTableModelViewController class])
                              toObject:

@@ -101,7 +101,7 @@
   UITableViewCell* cell = nil;
 
   Class objectClass = [object class];
-  Class cellClass = [self.class classFromKeyClass:objectClass map:self.objectToCellMap];
+  Class cellClass = [self.class objectFromKeyClass:objectClass map:self.objectToCellMap];
 
   // Explicit mappings override implicit mappings.
   if (nil != cellClass) {
@@ -122,7 +122,6 @@
   [self.objectToCellMap setObject:cellClass forKey:(id<NSCopying>)objectClass];
 }
 
-
 @end
 
 
@@ -133,10 +132,10 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (Class)classFromKeyClass:(Class)keyClass map:(NSMutableDictionary *)map {
-  Class mappedClass = [map objectForKey:keyClass];
++ (id)objectFromKeyClass:(Class)keyClass map:(NSMutableDictionary *)map {
+  id object = [map objectForKey:keyClass];
 
-  if (nil == mappedClass) {
+  if (nil == object) {
     // No mapping found for this key class, but it may be a subclass of another object that does
     // have a mapping, so let's see what we can find.
     Class superClass = nil;
@@ -150,23 +149,23 @@
     }
 
     if (nil != superClass) {
-      mappedClass = [map objectForKey:superClass];
+      object = [map objectForKey:superClass];
 
       // Add this subclass to the map so that next time this result is instant.
-      [map setObject:mappedClass forKey:(id<NSCopying>)keyClass];
+      [map setObject:object forKey:(id<NSCopying>)keyClass];
     }
   }
 
-  if (nil == mappedClass) {
+  if (nil == object) {
     // We couldn't find a mapping at all so let's add an empty mapping.
     [map setObject:[NSNull class] forKey:(id<NSCopying>)keyClass];
 
-  } else if (mappedClass == [NSNull class]) {
+  } else if (object == [NSNull class]) {
     // Don't return null mappings.
-    mappedClass = nil;
+    object = nil;
   }
 
-  return mappedClass;
+  return object;
 }
 
 @end
