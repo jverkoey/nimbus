@@ -101,7 +101,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NITableViewAction *)actionForClass:(Class)class {
-  NITableViewAction* action = [NICellFactory objectFromKeyClass:class map:self.classMap];
+  NITableViewAction* action = [self.classMap objectForKey:class];
   if (nil == action) {
     action = [[NITableViewAction alloc] init];
     [self.classMap setObject:action forKey:(id<NSCopying>)class];
