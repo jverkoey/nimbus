@@ -29,6 +29,7 @@
 //
 // [models]
 // NIRadioGroup
+// NIRadioGroupDelegate
 // NITableViewModel
 // NICellFactory
 //
@@ -108,6 +109,9 @@ typedef enum {
   return nil;
 }
 
+// This method will be called immediately before the radio group controller is presented and gives
+// us the opportunity to present the controller ourselves, rather than simply pushing the radio
+// group controller onto the current navigation controller stack.
 - (BOOL)radioGroup:(NIRadioGroup *)radioGroup radioGroupController:(NIRadioGroupController *)radioGroupController willAppear:(BOOL)animated {
   // We wrap the radio controller in a navigation controller so that it has a navbar when
   // presented.
