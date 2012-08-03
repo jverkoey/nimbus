@@ -307,7 +307,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
       BOOL shouldPush = YES;
       // Notify the delegate that the controller is about to appear.
       if ([self.delegate respondsToSelector:@selector(radioGroup:radioGroupController:willAppear:)]) {
-        shouldPush = ![self.delegate radioGroup:self radioGroupController:controller willAppear:YES];
+        shouldPush = [self.delegate radioGroup:self radioGroupController:controller willAppear:YES];
       }
 
       if (shouldPush) {
