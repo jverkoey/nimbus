@@ -58,6 +58,7 @@
 #import "ActionsTableModelViewController.h"
 #import "RadioGroupTableModelViewController.h"
 #import "NestedRadioGroupTableModelViewController.h"
+#import "ModalRadioGroupTableModelViewController.h"
 #import "FormCellCatalogViewController.h"
 #import "NetworkBlockCellsViewController.h"
 #import "BlockCellsViewController.h"
@@ -315,6 +316,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Nested Radio Group"
                                    subtitle:@"How to nest radio groups"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([ModalRadioGroupTableModelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Modal Radio Group"
+                                   subtitle:@"Customizing presentation"]],
      [_actions attachNavigationAction:
       NIPushControllerAction([FormCellCatalogViewController class])
                              toObject:
