@@ -71,7 +71,7 @@
   self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorStyle];
   self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleMargins;
   [self.activityIndicator sizeToFit];
-  [self.activityIndicator centerWithin:self.view];
+  self.activityIndicator.frame = NIFrameOfCenteredViewWithinView(self.activityIndicator, self.view);
   [self.view addSubview:self.activityIndicator];
 }
 
