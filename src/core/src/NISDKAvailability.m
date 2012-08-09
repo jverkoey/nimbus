@@ -22,6 +22,10 @@
 #error "Nimbus requires ARC support."
 #endif
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < NIIOS_6_0
+const UIImageResizingMode UIImageResizingModeStretch = -1;
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL NIIsPad(void) {
 #ifdef UI_USER_INTERFACE_IDIOM
