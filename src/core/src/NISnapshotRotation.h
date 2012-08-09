@@ -35,7 +35,7 @@
  *      @{
  */
 
-@protocol NISnapshotRotation;
+@protocol NISnapshotRotationDelegate;
 
 /**
  * The NISnapshotRotation class provides support for implementing snapshot-based rotations on views.
@@ -46,9 +46,9 @@
 @interface NISnapshotRotation : NSObject
 
 // Designated initializer.
-- (id)initWithDelegate:(id<NISnapshotRotation>)delegate;
+- (id)initWithDelegate:(id<NISnapshotRotationDelegate>)delegate;
 
-@property (nonatomic, readwrite, assign) id<NISnapshotRotation> delegate;
+@property (nonatomic, readwrite, assign) id<NISnapshotRotationDelegate> delegate;
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
@@ -75,7 +75,7 @@
  * The methods declared by the NISnapshotRotation protocol allow the adopting delegate to respond to
  * messages from the NISnapshotRotation class and thus implement snapshot rotations.
  */
-@protocol NISnapshotRotation <NSObject>
+@protocol NISnapshotRotationDelegate <NSObject>
 @required
 
 /** @name Accessing Rotation Views */

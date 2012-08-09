@@ -81,7 +81,7 @@ UIImageView* NISnapshotViewOfView(UIView* view) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithDelegate:(id<NISnapshotRotation>)delegate {
+- (id)initWithDelegate:(id<NISnapshotRotationDelegate>)delegate {
   if ((self = [super init])) {
     _delegate = delegate;
 
@@ -209,8 +209,8 @@ UIImageView* NISnapshotViewOfView(UIView* view) {
 @end
 
 
-@interface NITableViewSnapshotRotation() <NISnapshotRotation>
-@property (nonatomic, readwrite, assign) id<NISnapshotRotation> forwardingDelegate;
+@interface NITableViewSnapshotRotation() <NISnapshotRotationDelegate>
+@property (nonatomic, readwrite, assign) id<NISnapshotRotationDelegate> forwardingDelegate;
 @end
 
 
@@ -223,7 +223,7 @@ UIImageView* NISnapshotViewOfView(UIView* view) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setDelegate:(id<NISnapshotRotation>)delegate {
+- (void)setDelegate:(id<NISnapshotRotationDelegate>)delegate {
   if (delegate == self) {
     [super setDelegate:delegate];
 
@@ -251,7 +251,7 @@ UIImageView* NISnapshotViewOfView(UIView* view) {
 - (BOOL)shouldForwardSelectorToDelegate:(SEL)selector {
   struct objc_method_description description;
   // Only forward the selector if it's part of the protocol.
-  description = protocol_getMethodDescription(@protocol(NISnapshotRotation), selector, NO, YES);
+  description = protocol_getMethodDescription(@protocol(NISnapshotRotationDelegate), selector, NO, YES);
 
   BOOL isSelectorInProtocol = (description.name != NULL && description.types != NULL);
   return (isSelectorInProtocol && [self.forwardingDelegate respondsToSelector:selector]);
