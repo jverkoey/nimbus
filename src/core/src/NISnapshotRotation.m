@@ -20,6 +20,7 @@
 #import "NISnapshotRotation.h"
 
 #import "NIDebuggingTools.h"
+#import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
 
@@ -149,15 +150,17 @@ UIImageView* NISnapshotViewOfView(UIView* view) {
   UIImage* imageBeforeRotation = self.snapshotViewBeforeRotation.image;
   UIImage* imageAfterRotation = self.snapshotViewAfterRotation.image;
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= NIIOS_6_0
   if ([self.delegate respondsToSelector:@selector(fixedInsetsForSnapshotRotation:)]) {
     UIEdgeInsets fixedInsets = [self.delegate fixedInsetsForSnapshotRotation:self];
 
     imageBeforeRotation = [imageBeforeRotation resizableImageWithCapInsets:fixedInsets resizingMode:UIImageResizingModeStretch];
     imageAfterRotation = [imageAfterRotation resizableImageWithCapInsets:fixedInsets resizingMode:UIImageResizingModeStretch];
-
-    self.snapshotViewBeforeRotation.image = imageBeforeRotation;
-    self.snapshotViewAfterRotation.image = imageAfterRotation;
   }
+#endif
+
+  self.snapshotViewBeforeRotation.image = imageBeforeRotation;
+  self.snapshotViewAfterRotation.image = imageAfterRotation;
 
   [UIView setAnimationsEnabled:YES];
 
