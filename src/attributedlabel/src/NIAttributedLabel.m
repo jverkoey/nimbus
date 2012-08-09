@@ -1121,7 +1121,8 @@ static const CGFloat kTouchGutter = 22;
 
   NSMutableArray* accessibleElements = [NSMutableArray array];
 
-  NSArray* allLinks = [self.detectedlinkLocations arrayByAddingObjectsFromArray:self.explicitLinkLocations];
+  NSArray* allLinks = [[NSArray arrayWithArray:self.detectedlinkLocations]
+                       arrayByAddingObjectsFromArray:self.explicitLinkLocations];
 
   for (NSTextCheckingResult* result in allLinks) {
     NSArray* rectsForLink = [self _rectsForLink:result];
