@@ -255,6 +255,7 @@ Class NIUITapGestureRecognizerClass(void);
 
 @interface UIImage (Nimbus6SDKAvailability)
 
+typedef NSInteger UIImageResizingMode;
 - (UIImage *)resizableImageWithCapInsets:(UIEdgeInsets)capInsets resizingMode:(UIImageResizingMode)resizingMode;
 
 @end
