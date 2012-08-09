@@ -11,6 +11,7 @@
 		2B960E8415AE41FC005714CA /* navigationbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B960E8315AE41FC005714CA /* navigationbar.png */; };
 		44707C77159B06A700B83149 /* BasicInstantiationPagingScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44707C76159B06A000B83149 /* BasicInstantiationPagingScrollViewController.m */; };
 		660C6F2915992B2500209EB3 /* BadgedLauncherButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 660C6F2815992B2500209EB3 /* BadgedLauncherButtonView.m */; };
+		6613335E15D3A66B00369333 /* SnapshotRotationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6613335D15D3A66B00369333 /* SnapshotRotationTableViewController.m */; };
 		661B9AB615AFF9DC00B743F1 /* NetworkBlockCellsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 661B9AB515AFF9DC00B743F1 /* NetworkBlockCellsViewController.m */; };
 		661F28EE159292B800D11FC3 /* BasicInstantiationBadgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 661F28ED159292B800D11FC3 /* BasicInstantiationBadgeViewController.m */; };
 		661F28F3159292E800D11FC3 /* NIBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 661F28F1159292E800D11FC3 /* NIBadgeView.m */; };
@@ -127,6 +128,8 @@
 		44707C76159B06A000B83149 /* BasicInstantiationPagingScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicInstantiationPagingScrollViewController.m; sourceTree = "<group>"; };
 		660C6F2715992B2500209EB3 /* BadgedLauncherButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgedLauncherButtonView.h; sourceTree = "<group>"; };
 		660C6F2815992B2500209EB3 /* BadgedLauncherButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgedLauncherButtonView.m; sourceTree = "<group>"; };
+		6613335C15D3A66B00369333 /* SnapshotRotationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapshotRotationTableViewController.h; sourceTree = "<group>"; };
+		6613335D15D3A66B00369333 /* SnapshotRotationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnapshotRotationTableViewController.m; sourceTree = "<group>"; };
 		661B9AB415AFF9DC00B743F1 /* NetworkBlockCellsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkBlockCellsViewController.h; sourceTree = "<group>"; };
 		661B9AB515AFF9DC00B743F1 /* NetworkBlockCellsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkBlockCellsViewController.m; sourceTree = "<group>"; };
 		661F28EC159292B800D11FC3 /* BasicInstantiationBadgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInstantiationBadgeViewController.h; sourceTree = "<group>"; };
@@ -433,6 +436,8 @@
 				66CB01A315ACA85E0048E189 /* BlockCellsViewController.m */,
 				661B9AB415AFF9DC00B743F1 /* NetworkBlockCellsViewController.h */,
 				661B9AB515AFF9DC00B743F1 /* NetworkBlockCellsViewController.m */,
+				6613335C15D3A66B00369333 /* SnapshotRotationTableViewController.h */,
+				6613335D15D3A66B00369333 /* SnapshotRotationTableViewController.m */,
 			);
 			name = "Table Models";
 			sourceTree = "<group>";
@@ -965,6 +970,7 @@
 				66559AFA15C8BE6800ED9047 /* ActionsTableModelViewController.m in Sources */,
 				66559AFE15CC3F9B00ED9047 /* ModalRadioGroupTableModelViewController.m in Sources */,
 				669819DF159B953A00C2D3EF /* NISnapshotRotation.m in Sources */,
+				6613335E15D3A66B00369333 /* SnapshotRotationTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

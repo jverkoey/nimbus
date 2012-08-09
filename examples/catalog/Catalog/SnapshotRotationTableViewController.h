@@ -17,5 +17,5 @@
 #import <UIKit/UIKit.h>
 
 // All docs are in the .m.
-@interface NetworkBlockCellsViewController : UITableViewController
+@interface SnapshotRotationTableViewController : UIViewController
 @end

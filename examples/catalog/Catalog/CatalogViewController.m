@@ -62,6 +62,7 @@
 #import "FormCellCatalogViewController.h"
 #import "NetworkBlockCellsViewController.h"
 #import "BlockCellsViewController.h"
+#import "SnapshotRotationTableViewController.h"
 
 // Web Controller
 #import "ExtraActionsWebViewController.h"
@@ -336,6 +337,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Network Block Cells"
                                    subtitle:@"Rendering network images with blocks"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([SnapshotRotationTableViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Snapshot Rotation"
+                                   subtitle:@"Rotating table views with snapshots"]],
      
      @"Web Controller",
      [_actions attachNavigationAction:
