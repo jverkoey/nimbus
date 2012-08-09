@@ -195,6 +195,8 @@
 		66832E0714435071003E413C /* NIChameleonObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832E0514435071003E413C /* NIChameleonObserver.m */; };
 		668ECDC71455C17200455266 /* NIStylesheetCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 668ECDC51455C17100455266 /* NIStylesheetCache.h */; };
 		668ECDC81455C17200455266 /* NIStylesheetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 668ECDC61455C17100455266 /* NIStylesheetCache.m */; };
+		669819DB159B927B00C2D3EF /* NISnapshotRotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 669819D9159B927B00C2D3EF /* NISnapshotRotation.h */; };
+		669819DC159B927B00C2D3EF /* NISnapshotRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 669819DA159B927B00C2D3EF /* NISnapshotRotation.m */; };
 		669F0CFF158000810069B972 /* NIOverviewMemoryCacheController.h in Headers */ = {isa = PBXBuildFile; fileRef = 669F0CFD158000810069B972 /* NIOverviewMemoryCacheController.h */; };
 		669F0D00158000810069B972 /* NIOverviewMemoryCacheController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669F0CFE158000810069B972 /* NIOverviewMemoryCacheController.m */; };
 		66A03C1B13E6E85E00B514F3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
@@ -797,6 +799,8 @@
 		6693C2F3158BB8E900950D42 /* NSMutableAttributedString+NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+NimbusAttributedLabel.h"; sourceTree = "<group>"; };
 		6693C2F4158BB8E900950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+NimbusAttributedLabel.m"; sourceTree = "<group>"; };
 		6693C3AC158BFC7E00950D42 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = attributedlabel/deps; sourceTree = SOURCE_ROOT; };
+		669819D9159B927B00C2D3EF /* NISnapshotRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NISnapshotRotation.h; sourceTree = "<group>"; };
+		669819DA159B927B00C2D3EF /* NISnapshotRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NISnapshotRotation.m; sourceTree = "<group>"; };
 		669E98AD13E9EA1F00D99140 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		669F0CFD158000810069B972 /* NIOverviewMemoryCacheController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOverviewMemoryCacheController.h; sourceTree = "<group>"; };
 		669F0CFE158000810069B972 /* NIOverviewMemoryCacheController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOverviewMemoryCacheController.m; sourceTree = "<group>"; };
@@ -1716,6 +1720,8 @@
 				66A03C5D13E6E8D100B514F3 /* NIRuntimeClassModifications.m */,
 				66A03C5E13E6E8D100B514F3 /* NISDKAvailability.h */,
 				66A03C5F13E6E8D100B514F3 /* NISDKAvailability.m */,
+				669819D9159B927B00C2D3EF /* NISnapshotRotation.h */,
+				669819DA159B927B00C2D3EF /* NISnapshotRotation.m */,
 				66A03C6013E6E8D100B514F3 /* NIState.h */,
 				66A03C6113E6E8D100B514F3 /* NIState.m */,
 				6675E4B11455FCC5007D172F /* NIViewRecycler.h */,
@@ -2160,6 +2166,7 @@
 				66C115411486ACE3003C9AC6 /* NIOperations+Subclassing.h in Headers */,
 				666F738014BBC65A00D1A32F /* NimbusCore+Namespace.h in Headers */,
 				66E8CEE414D08F8200600592 /* NINonEmptyCollectionTesting.h in Headers */,
+				669819DB159B927B00C2D3EF /* NISnapshotRotation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3414,6 +3421,7 @@
 				66A03C9313E6E8D100B514F3 /* NSString+NimbusCore.m in Sources */,
 				FD01BEDC14179D940023D783 /* NINavigationAppearance.m in Sources */,
 				6675E4B41455FCC5007D172F /* NIViewRecycler.m in Sources */,
+				669819DC159B927B00C2D3EF /* NISnapshotRotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
