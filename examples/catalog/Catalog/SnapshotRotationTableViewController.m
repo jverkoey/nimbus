@@ -80,6 +80,11 @@
 
     // We must provide the snapshot rotation object a delegate so that it knows which view to
     // snapshot rotate.
+    // Note here that we're creating a NITableViewSnapshotRotation version of NISnapshotRotation.
+    // This subclass of NISnapshotRotation handles UITableViews specifically by creating a resizing
+    // snapshot that cuts off along a vertical line between the contentView and the accessoryView.
+    // The standard NISnapshotRotation object, on the other hand, will simply snapshot the entire
+    // rotating view without a vertical divider.
     _snapshotRotation = [[NITableViewSnapshotRotation alloc] initWithDelegate:self];
 
     NICellDrawRectBlock drawTextBlock = ^CGFloat(CGRect rect, id object, UITableViewCell *cell) {
