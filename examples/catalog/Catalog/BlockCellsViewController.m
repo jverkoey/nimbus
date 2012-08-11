@@ -78,6 +78,8 @@
       // Draw the Nimbus application icon on the right edge of the cell.
       [image drawAtPoint:CGPointMake(CGRectGetMaxX(rect) - image.size.width - 10, 5)];
 
+      // We can optionally return the height of the cell if we want to support variable-height
+      // custom-drawn cells.
       return 0;
     };
 

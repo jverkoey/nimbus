@@ -25,6 +25,10 @@
 #import <pthread.h>
 #import <UIKit/UIKit.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static int              gNetworkTaskCount = 0;
 static pthread_mutex_t  gMutex = PTHREAD_MUTEX_INITIALIZER;
 static const NSTimeInterval kDelayBeforeDisablingActivity = 0.1;

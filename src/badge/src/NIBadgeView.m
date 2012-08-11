@@ -18,6 +18,10 @@
 
 #import "NimbusCore.h" // For NIScreenScale
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static const CGFloat kMinimumWidth = 30.f;
 static const CGFloat kHorizontalMargins = 20.f;
 static const CGFloat kVerticalMargins = 10.f;

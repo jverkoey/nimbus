@@ -22,6 +22,10 @@
 
 #import <UIKit/UIKit.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 @interface NIMemoryCache()
 // Mapping from a name (usually a URL) to an internal object.
 @property (nonatomic, readwrite, retain) NSMutableDictionary* cacheMap;

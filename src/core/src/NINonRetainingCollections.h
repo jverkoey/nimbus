@@ -18,6 +18,10 @@
 
 #import <Foundation/Foundation.h>
 
+#if defined __cplusplus
+extern "C" {
+#endif
+
 /**
  * For collections that don't retain their objects.
  *
@@ -54,6 +58,9 @@ NSMutableDictionary* NICreateNonRetainingMutableDictionary(void);
  */
 NSMutableSet* NICreateNonRetainingMutableSet(void);
 
+#if defined __cplusplus
+};
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Non-Retaining Collections ////////////////////////////////////////////////////////

@@ -1,7 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
-//
-// Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
+// Copyright 2011-2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,8 +16,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (NimbusCore)
-
-- (void)centerWithin:(UIView *)otherView;
-
+// All docs are in the .m.
+@interface SnapshotRotationTableViewController : UIViewController
 @end

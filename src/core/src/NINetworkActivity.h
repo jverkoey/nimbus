@@ -18,6 +18,10 @@
 
 #import <Foundation/Foundation.h>
 
+#if defined __cplusplus
+extern "C" {
+#endif
+
 /**
  * For showing network activity in the device's status bar.
  *
@@ -88,6 +92,9 @@ void NIDisableNetworkActivityDebugging(void);
 
 /**@}*/// End of For Debugging Only
 
+#if defined __cplusplus
+};
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Network Activity /////////////////////////////////////////////////////////////////

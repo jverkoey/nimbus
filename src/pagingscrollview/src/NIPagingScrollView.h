@@ -85,7 +85,6 @@ typedef enum {
 #pragma mark State
 
 @property (nonatomic, readwrite, assign) NSInteger centerPageIndex; // Use moveToPageAtIndex:animated: to animate to a given page.
-- (void)setCenterPageIndex:(NSInteger)centerPageIndex animated:(BOOL)animated __NI_DEPRECATED_METHOD;
 
 @property (nonatomic, readonly, assign) NSInteger numberOfPages;
 

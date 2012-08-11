@@ -18,5 +18,4 @@
 
 // All docs are in the .m.
 @interface NetworkBlockCellsViewController : UITableViewController
-
 @end

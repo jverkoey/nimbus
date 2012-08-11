@@ -56,6 +56,9 @@ typedef enum {
  *   small where UILabel would draw clipped text. It is recommended that you use sizeToFit to get
  *   the correct dimensions of the attributed label before setting the frame.
  *
+ * NIAttributedLabel implements the UIAccessibilityContainer methods to expose each link as an
+ * accessibility item.
+ *
  *      @ingroup NimbusAttributedLabel
  */
 @interface NIAttributedLabel : UILabel

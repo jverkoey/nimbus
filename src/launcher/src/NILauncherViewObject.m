@@ -17,6 +17,10 @@
 #import "NILauncherViewObject.h"
 #import "NILauncherButtonView.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static NSString* const kTitleCodingKey = @"title";
 static NSString* const kImageCodingKey = @"image";
 

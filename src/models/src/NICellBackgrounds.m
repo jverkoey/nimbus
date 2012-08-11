@@ -18,6 +18,10 @@
 
 #import "NimbusCore.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static const CGFloat kBorderSize = 1;
 static const CGFloat kBorderRadius = 5;
 static const CGSize kCellImageSize = {44, 44};
@@ -50,8 +54,8 @@ static const CGSize kCellImageSize = {44, 44};
                                        (id)RGBCOLOR(16, 93, 230).CGColor,
                                        nil];
     _shadowWidth = 4;
-    _shadowColor = RGBACOLOR(0, 0, 0, 0.3);
-    _borderColor = RGBACOLOR(0, 0, 0, 0.07);
+    _shadowColor = RGBACOLOR(0, 0, 0, 0.3f);
+    _borderColor = RGBACOLOR(0, 0, 0, 0.07f);
     _dividerColor = RGBCOLOR(230, 230, 230);
     _cachedImages = [NSMutableDictionary dictionary];
   }

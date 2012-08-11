@@ -20,6 +20,9 @@
 #import "NIPreprocessorMacros.h"
 #import "NIOperations+Subclassing.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,7 +33,6 @@
 @synthesize tag = _tag;
 @synthesize lastError = _lastError;
 
-#if NS_BLOCKS_AVAILABLE
 @synthesize didStartBlock         = _didStartBlock;
 @synthesize didFinishBlock        = _didFinishBlock;
 @synthesize didFailWithErrorBlock = _didFailWithErrorBlock;
@@ -38,7 +40,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#if __has_feature(objc_arc)
 - (void)dealloc {
   // For an unknown reason these block objects are not released when the NIOperation is deallocated
   // with ARC enabled.
@@ -47,8 +48,6 @@
   _didFailWithErrorBlock = nil;
   _willFinishBlock = nil;
 }
-#endif // #if __has_feature(objc_arc)
-#endif // #if NS_BLOCKS_AVAILABLE
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,11 +88,9 @@
     [self.delegate nimbusOperationWillFinish:self];
   }
 
-#if NS_BLOCKS_AVAILABLE
   if (nil != self.willFinishBlock) {
     self.willFinishBlock(self);
   }
-#endif // #if NS_BLOCKS_AVAILABLE
 }
 
 
@@ -112,11 +109,9 @@
     [self.delegate nimbusOperationDidStart:self];
   }
 
-#if NS_BLOCKS_AVAILABLE
   if (nil != self.didStartBlock) {
     self.didStartBlock(self);
   }
-#endif // #if NS_BLOCKS_AVAILABLE
 }
 
 
@@ -129,11 +124,9 @@
     [self.delegate nimbusOperationDidFinish:self];
   }
 
-#if NS_BLOCKS_AVAILABLE
   if (nil != self.didFinishBlock) {
     self.didFinishBlock(self);
   }
-#endif // #if NS_BLOCKS_AVAILABLE
 }
 
 
@@ -146,11 +139,9 @@
     [self.delegate nimbusOperationDidFail:self withError:error];
   }
 
-#if NS_BLOCKS_AVAILABLE
   if (nil != self.didFailWithErrorBlock) {
     self.didFailWithErrorBlock(self, error);
   }
-#endif // #if NS_BLOCKS_AVAILABLE
 }
 
 

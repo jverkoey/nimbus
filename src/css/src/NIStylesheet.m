@@ -21,6 +21,10 @@
 #import "NIStyleable.h"
 #import "NimbusCore.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotification";
 
 @interface NIStylesheet()

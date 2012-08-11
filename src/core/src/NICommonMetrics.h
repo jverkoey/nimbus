@@ -17,6 +17,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#if defined __cplusplus
+extern "C" {
+#endif
+
 /**
  * For common system metrics.
  *
@@ -154,6 +158,10 @@ NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown);
  * Value: 10 pixels on all sides.
  */
 UIEdgeInsets NICellContentPadding(void);
+
+#if defined __cplusplus
+};
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Common Metrics ///////////////////////////////////////////////////////////////////

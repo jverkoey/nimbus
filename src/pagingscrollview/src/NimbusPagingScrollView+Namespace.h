@@ -45,7 +45,7 @@
 #ifndef NIPagingScrollViewUnknownNumberOfPages
 #define NIPagingScrollViewUnknownNumberOfPages __NIMBUS_NS_SYMBOL(NIPagingScrollViewUnknownNumberOfPages)
 #endif
-#ifndef NIPagingScrollViewDefaultPageHorizontalMargin
-#define NIPagingScrollViewDefaultPageHorizontalMargin __NIMBUS_NS_SYMBOL(NIPagingScrollViewDefaultPageHorizontalMargin)
+#ifndef NIPagingScrollViewDefaultPageMargin
+#define NIPagingScrollViewDefaultPageMargin __NIMBUS_NS_SYMBOL(NIPagingScrollViewDefaultPageMargin)
 #endif
 #endif

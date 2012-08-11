@@ -21,6 +21,10 @@
 
 #import "NILauncherViewObject.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 // The contentInset around the entire button on the top, left, bottom, and right sides.
 static const CGFloat kDefaultContentInset = 0;
 
