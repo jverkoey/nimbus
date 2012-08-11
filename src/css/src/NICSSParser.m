@@ -21,6 +21,10 @@
 
 #import <pthread.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static pthread_mutex_t gMutex = PTHREAD_MUTEX_INITIALIZER;
 NSString* const kPropertyOrderKey = @"__kRuleSetOrder__";
 NSString* const kDependenciesSelectorKey = @"__kDependencies__";

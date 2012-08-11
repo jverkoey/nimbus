@@ -67,9 +67,6 @@
 #ifndef NIViewRecycler
 #define NIViewRecycler __NIMBUS_NS_SYMBOL(NIViewRecycler)
 #endif
-#ifndef NI_FIX_CATEGORY_BUG_NSDataNimbusCore
-#define NI_FIX_CATEGORY_BUG_NSDataNimbusCore __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_NSDataNimbusCore)
-#endif
 #ifndef NI_FIX_CATEGORY_BUG_NSStringNimbusCore
 #define NI_FIX_CATEGORY_BUG_NSStringNimbusCore __NIMBUS_NS_SYMBOL(NI_FIX_CATEGORY_BUG_NSStringNimbusCore)
 #endif
@@ -152,8 +149,8 @@
 #ifndef NIScreenScale
 #define NIScreenScale __NIMBUS_NS_SYMBOL(NIScreenScale)
 #endif
-#ifndef NIMakeNSRangeFromCFRange
-#define NIMakeNSRangeFromCFRange __NIMBUS_NS_SYMBOL(NIMakeNSRangeFromCFRange)
+#ifndef NIFrameOfCenteredViewWithinView
+#define NIFrameOfCenteredViewWithinView __NIMBUS_NS_SYMBOL(NIFrameOfCenteredViewWithinView)
 #endif
 #ifndef NIIsStringWithAnyText
 #define NIIsStringWithAnyText __NIMBUS_NS_SYMBOL(NIIsStringWithAnyText)
@@ -164,8 +161,8 @@
 #ifndef NIDeviceRotationDuration
 #define NIDeviceRotationDuration __NIMBUS_NS_SYMBOL(NIDeviceRotationDuration)
 #endif
-#ifndef NIPathForCachesResource
-#define NIPathForCachesResource __NIMBUS_NS_SYMBOL(NIPathForCachesResource)
+#ifndef NIPathForLibraryResource
+#define NIPathForLibraryResource __NIMBUS_NS_SYMBOL(NIPathForLibraryResource)
 #endif
 #ifndef NICellContentPadding
 #define NICellContentPadding __NIMBUS_NS_SYMBOL(NICellContentPadding)
@@ -173,14 +170,17 @@
 #ifndef NIUIPopoverControllerClass
 #define NIUIPopoverControllerClass __NIMBUS_NS_SYMBOL(NIUIPopoverControllerClass)
 #endif
-#ifndef boundf
-#define boundf __NIMBUS_NS_SYMBOL(boundf)
-#endif
 #ifndef NIUITapGestureRecognizerClass
 #define NIUITapGestureRecognizerClass __NIMBUS_NS_SYMBOL(NIUITapGestureRecognizerClass)
 #endif
-#ifndef boundi
-#define boundi __NIMBUS_NS_SYMBOL(boundi)
+#ifndef NIPathForCachesResource
+#define NIPathForCachesResource __NIMBUS_NS_SYMBOL(NIPathForCachesResource)
+#endif
+#ifndef NIMakeNSRangeFromCFRange
+#define NIMakeNSRangeFromCFRange __NIMBUS_NS_SYMBOL(NIMakeNSRangeFromCFRange)
+#endif
+#ifndef NIMD5HashFromData
+#define NIMD5HashFromData __NIMBUS_NS_SYMBOL(NIMD5HashFromData)
 #endif
 #ifndef NISwizzleMethodsForNetworkActivityDebugging
 #define NISwizzleMethodsForNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NISwizzleMethodsForNetworkActivityDebugging)
@@ -190,6 +190,18 @@
 #endif
 #ifndef NIDisableNetworkActivityDebugging
 #define NIDisableNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NIDisableNetworkActivityDebugging)
+#endif
+#ifndef NISHA1HashFromData
+#define NISHA1HashFromData __NIMBUS_NS_SYMBOL(NISHA1HashFromData)
+#endif
+#ifndef NIIsStringWithWhitespaceAndNewlines
+#define NIIsStringWithWhitespaceAndNewlines __NIMBUS_NS_SYMBOL(NIIsStringWithWhitespaceAndNewlines)
+#endif
+#ifndef boundf
+#define boundf __NIMBUS_NS_SYMBOL(boundf)
+#endif
+#ifndef boundi
+#define boundi __NIMBUS_NS_SYMBOL(boundi)
 #endif
 // Externs
 #ifndef NIMaxLogLevel

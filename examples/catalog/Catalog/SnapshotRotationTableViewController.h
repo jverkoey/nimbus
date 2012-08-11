@@ -1,7 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
-//
-// Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
+// Copyright 2011-2012 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,13 +14,8 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-// Documentation for these additions is found in the .m file.
-@interface NSData (NimbusCore)
-
-@property (nonatomic, readonly) NSString* md5Hash;
-
-@property (nonatomic, readonly) NSString* sha1Hash;
-
+// All docs are in the .m.
+@interface SnapshotRotationTableViewController : UIViewController
 @end

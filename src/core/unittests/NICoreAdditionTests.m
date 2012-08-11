@@ -37,61 +37,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark NSData Additions
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNSData_md5Hash {
-  const char* bytes = "nimbus";
-  NSData* data = [[NSData alloc] initWithBytes:bytes length:strlen(bytes)];
-
-  STAssertTrue([[data md5Hash] isEqualToString:@"0e78d66f33c484a3c3b36d69bd3114cf"],
-               @"MD5 hashes don't match.");
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNSData_sha1Hash {
-  const char* bytes = "nimbus";
-  NSData* data = [[NSData alloc] initWithBytes:bytes length:strlen(bytes)];
-
-  STAssertTrue([[data sha1Hash] isEqualToString:@"c1b42d95fd18ad8a56d4fd7bbb4105952620d857"],
-               @"SHA1 hashes don't match.");
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
 #pragma mark NSString Additions
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNSString_isWhitespace {
-  // From the Apple docs:
-  // Returns a character set containing only the whitespace characters space (U+0020) and tab
-  // (U+0009) and the newline and nextline characters (U+000A–U+000D, U+0085).
-  STAssertTrue([@"" isWhitespaceAndNewlines], @"Empty string should be whitespace.");
-  STAssertTrue([@" " isWhitespaceAndNewlines], @"Space character should be whitespace.");
-  STAssertTrue([@"\t" isWhitespaceAndNewlines], @"Tab character should be whitespace.");
-  STAssertTrue([@"\n" isWhitespaceAndNewlines], @"Newline character should be whitespace.");
-  STAssertTrue([@"\r" isWhitespaceAndNewlines], @"Carriage return character should be whitespace.");
-
-  // Unicode whitespace
-  for (unsigned short unicode = 0x000A; unicode <= 0x000D; ++unicode) {
-    NSString* str = [NSString stringWithFormat:@"%C", unicode];
-    STAssertTrue([str isWhitespaceAndNewlines],
-                 @"Unicode string #%X should be whitespace.", unicode);
-  }
-
-  NSString* str = [NSString stringWithFormat:@"%C", (unsigned short)0x0085];
-  STAssertTrue([str isWhitespaceAndNewlines], @"Unicode string should be whitespace.");
-
-  STAssertTrue([@" \t\r\n" isWhitespaceAndNewlines], @"Empty string should be whitespace.");
-
-  STAssertTrue(![@"a" isWhitespaceAndNewlines], @"Text should not be whitespace.");
-  STAssertTrue(![@" \r\n\ta\r\n " isWhitespaceAndNewlines], @"Text should not be whitespace.");
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -224,23 +170,6 @@
 - (void)testNSString_sha1Hash {
   STAssertTrue([[@"nimbus" sha1Hash] isEqualToString:@"c1b42d95fd18ad8a56d4fd7bbb4105952620d857"],
                @"SHA1 hashes don't match.");
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark UIView Additions
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testCenterWithin {
-  UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-  UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-  
-  [subview centerWithin:containerView];
-  
-  STAssertTrue(CGRectEqualToRect(subview.frame, CGRectMake(45, 45, 10, 10)), @"Rect should be centered.");
 }
 
 

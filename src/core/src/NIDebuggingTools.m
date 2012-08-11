@@ -17,6 +17,10 @@
 
 #import "NIDebuggingTools.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 NSInteger NIMaxLogLevel = NILOGLEVEL_WARNING;
 BOOL NIDebugAssertionsShouldBreak = YES;
 

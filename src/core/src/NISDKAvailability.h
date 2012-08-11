@@ -233,7 +233,7 @@ Class NIUITapGestureRecognizerClass(void);
 // Define methods that were introduced in iOS 4.0.
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < NIIOS_4_0
 
-@interface UIImage (NimbusSDKAvailability)
+@interface UIImage (Nimbus4SDKAvailability)
 
 + (UIImage *)imageWithCGImage:(CGImageRef)imageRef scale:(CGFloat)scale orientation:(UIImageOrientation)orientation;
 
@@ -241,9 +241,23 @@ Class NIUITapGestureRecognizerClass(void);
 
 @end
 
-@interface UIScreen (NimbusSDKAvailability)
+@interface UIScreen (Nimbus4SDKAvailability)
 
 - (CGFloat)scale;
+
+@end
+
+#endif
+
+
+// Define methods that were introduced in iOS 6.0.
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < NIIOS_6_0
+
+@interface UIImage (Nimbus6SDKAvailability)
+
+typedef NSInteger UIImageResizingMode;
+extern const UIImageResizingMode UIImageResizingModeStretch;
+- (UIImage *)resizableImageWithCapInsets:(UIEdgeInsets)capInsets resizingMode:(UIImageResizingMode)resizingMode;
 
 @end
 

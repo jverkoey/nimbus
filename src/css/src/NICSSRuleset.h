@@ -15,6 +15,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * A simple translator from raw CSS rulesets to Objective-C values.

@@ -20,6 +20,10 @@
 #import "NSMutableAttributedString+NimbusAttributedLabel.h"
 #import <QuartzCore/QuartzCore.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static const CGFloat kVMargin = 5.0f;
 static const NSTimeInterval kLongPressTimeInterval = 0.5;
 static const CGFloat kLongPressGutter = 22;
@@ -40,6 +44,7 @@ static const CGFloat kTouchGutter = 22;
 @property (nonatomic, readwrite, retain) NSTimer* longPressTimer;
 @property (nonatomic, readwrite, assign) CGPoint touchPoint;
 @property (nonatomic, readwrite, retain) NSTextCheckingResult* actionSheetLink;
+@property (nonatomic, readwrite, retain) NSArray *accessibleElements;
 @end
 
 
@@ -71,6 +76,7 @@ static const CGFloat kTouchGutter = 22;
 @synthesize longPressTimer = _longPressTimer;
 @synthesize touchPoint = _touchPoint;
 @synthesize actionSheetLink = _actionSheetLink;
+@synthesize accessibleElements = _accessibleElements;
 @synthesize autoDetectLinks = _autoDetectLinks;
 @synthesize deferLinkDetection = _deferLinkDetection;
 @synthesize dataDetectorTypes = _dataDetectorTypes;
@@ -137,6 +143,7 @@ static const CGFloat kTouchGutter = 22;
     CFRelease(self.textFrame);
     self.textFrame = nil;
   }
+  self.accessibleElements = nil;
 }
 
 
@@ -464,7 +471,7 @@ static const CGFloat kTouchGutter = 22;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)sethighlightedLinkBackgroundColor:(UIColor *)highlightedLinkBackgroundColor {
+- (void)setHighlightedLinkBackgroundColor:(UIColor *)highlightedLinkBackgroundColor {
   if (_highlightedLinkBackgroundColor != highlightedLinkBackgroundColor) {
     _highlightedLinkBackgroundColor = highlightedLinkBackgroundColor;
 
@@ -489,6 +496,24 @@ static const CGFloat kTouchGutter = 22;
     _attributesForLinks = attributesForLinks;
 
     [self attributedTextDidChange];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setExplicitLinkLocations:(NSMutableArray *)explicitLinkLocations {
+  if (_explicitLinkLocations != explicitLinkLocations) {
+    _explicitLinkLocations = explicitLinkLocations;
+    self.accessibleElements = nil;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setDetectedlinkLocations:(NSArray *)detectedlinkLocations{
+  if (_detectedlinkLocations != detectedlinkLocations) {
+    _detectedlinkLocations = detectedlinkLocations;
+    self.accessibleElements = nil;
   }
 }
 
@@ -706,7 +731,9 @@ static const CGFloat kTouchGutter = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)isPoint:(CGPoint)point nearLink:(NSTextCheckingResult *)link {
   CFArrayRef lines = CTFrameGetLines(self.textFrame);
-  if (!lines) return NO;
+  if (nil == lines) {
+    return NO;
+  }
   CFIndex count = CFArrayGetCount(lines);
   CGPoint lineOrigins[count];
   CTFrameGetLineOrigins(self.textFrame, CFRangeMake(0, 0), lineOrigins);
@@ -734,6 +761,38 @@ static const CGFloat kTouchGutter = 22;
   }
 
   return isNearLink;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSArray *)_rectsForLink:(NSTextCheckingResult *)link {
+  CFArrayRef lines = CTFrameGetLines(self.textFrame);
+  if (nil == lines) {
+    return nil;
+  }
+  CFIndex count = CFArrayGetCount(lines);
+  CGPoint lineOrigins[count];
+  CTFrameGetLineOrigins(self.textFrame, CFRangeMake(0, 0), lineOrigins);
+
+  CGAffineTransform transform = [self _transformForCoreText];
+  CGFloat verticalOffset = [self _verticalOffsetForBounds:self.bounds];
+
+  NSRange linkRange = link.range;
+
+  NSMutableArray* rects = [NSMutableArray array];
+  for (int i = 0; i < count; i++) {
+    CTLineRef line = CFArrayGetValueAtIndex(lines, i);
+
+    CGRect linkRect = [self _rectForRange:linkRange inLine:line lineOrigin:lineOrigins[i]];
+
+    if (!CGRectIsEmpty(linkRect)) {
+      linkRect = CGRectApplyAffineTransform(linkRect, transform);
+      linkRect = CGRectOffset(linkRect, 0, verticalOffset);
+      [rects addObject:[NSValue valueWithCGRect:linkRect]];
+    }
+  }
+
+  return [rects copy];
 }
 
 
@@ -1051,6 +1110,67 @@ static const CGFloat kTouchGutter = 22;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Accessibility
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSArray *)accessibleElements {
+  if (nil != _accessibleElements) {
+    return _accessibleElements;
+  }
+
+  NSMutableArray* accessibleElements = [NSMutableArray array];
+
+  NSArray* allLinks = [[NSArray arrayWithArray:self.detectedlinkLocations]
+                       arrayByAddingObjectsFromArray:self.explicitLinkLocations];
+
+  for (NSTextCheckingResult* result in allLinks) {
+    NSArray* rectsForLink = [self _rectsForLink:result];
+    if (!NIIsArrayWithObjects(rectsForLink)) {
+      continue;
+    }
+
+    NSString* label = [self.mutableAttributedString.string substringWithRange:result.range];
+    for (NSValue* rectValue in rectsForLink) {
+      UIAccessibilityElement* element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
+      element.accessibilityLabel = label;
+      element.accessibilityFrame = [self convertRect:rectValue.CGRectValue toView:self.window];
+      element.accessibilityTraits = UIAccessibilityTraitLink;
+      [accessibleElements addObject:element];
+    }
+  }
+
+  _accessibleElements = [accessibleElements copy];
+  return _accessibleElements;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)isAccessibilityElement {
+  return NO;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)accessibilityElementCount  {
+  return self.accessibleElements.count;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)accessibilityElementAtIndex:(NSInteger)index {
+  return [self.accessibleElements objectAtIndex:index];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)indexOfAccessibilityElement:(id)element {
+  return [self.accessibleElements indexOfObject:element];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIActionSheetDelegate
 
 
@@ -1118,7 +1238,9 @@ static const CGFloat kTouchGutter = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 + (CTTextAlignment)alignmentFromUITextAlignment:(UITextAlignment)alignment {
-  switch (alignment) {
+  // UITextAlignmentJustify is not part of the UITextAlignment enumeration, so we cast to NSInteger
+  // to tell Xcode not to coerce us into only using real UITextAlignment valus.
+  switch ((NSInteger)alignment) {
     case UITextAlignmentLeft: return kCTLeftTextAlignment;
     case UITextAlignmentCenter: return kCTCenterTextAlignment;
     case UITextAlignmentRight: return kCTRightTextAlignment;

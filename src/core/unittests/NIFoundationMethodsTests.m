@@ -54,6 +54,18 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testCGRectCenterWithin {
+  UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+  UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+  
+  CGRect centeredFrame = NIFrameOfCenteredViewWithinView(subview, containerView);
+  
+  STAssertTrue(CGRectEqualToRect(centeredFrame, CGRectMake(45, 45, 10, 10)), @"Rect should be centered.");
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark NSRange Methods
@@ -69,6 +81,54 @@
 
   STAssertEquals(nsRange.length, (NSUInteger)cfRange.length,
                  @"The two lengths should be equal.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NSData Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testNSDataHashing {
+  const char* bytes = "nimbus";
+  NSData* data = [[NSData alloc] initWithBytes:bytes length:strlen(bytes)];
+  
+  STAssertTrue([NIMD5HashFromData(data) isEqualToString:@"0e78d66f33c484a3c3b36d69bd3114cf"],
+               @"MD5 hashes don't match.");
+  STAssertTrue([NISHA1HashFromData(data) isEqualToString:@"c1b42d95fd18ad8a56d4fd7bbb4105952620d857"],
+               @"SHA1 hashes don't match.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NSString Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testNIIsStringWithWhitespaceAndNewlines {
+  STAssertTrue(NIIsStringWithWhitespaceAndNewlines(@""), @"Empty string should be whitespace and newlines.");
+  STAssertTrue(NIIsStringWithWhitespaceAndNewlines(@" "), @"Space should be whitespace and newlines.");
+  STAssertTrue(NIIsStringWithWhitespaceAndNewlines(@"    \n\r"), @"Whitespace and newlines should be whitespace and newlines.");
+  STAssertFalse(NIIsStringWithWhitespaceAndNewlines(nil), @"nil is not a string");
+  STAssertFalse(NIIsStringWithWhitespaceAndNewlines(@"cat"), @"Words are not whitespace and newlines");
+
+  for (unsigned short unicode = 0x000A; unicode <= 0x000D; ++unicode) {
+    NSString* str = [NSString stringWithFormat:@"%C", unicode];
+    STAssertTrue(NIIsStringWithWhitespaceAndNewlines(str),
+                 @"Unicode string #%X should be whitespace.", unicode);
+  }
+
+  NSString* str = [NSString stringWithFormat:@"%C", (unsigned short)0x0085];
+  STAssertTrue(NIIsStringWithWhitespaceAndNewlines(str), @"Unicode string should be whitespace.");
+  
+  STAssertTrue(NIIsStringWithWhitespaceAndNewlines(@" \t\r\n"), @"Empty string should be whitespace.");
+  
+  STAssertTrue(!NIIsStringWithWhitespaceAndNewlines(@"a"), @"Text should not be whitespace.");
+  STAssertTrue(!NIIsStringWithWhitespaceAndNewlines(@" \r\n\ta\r\n "), @"Text should not be whitespace.");
 }
 
 

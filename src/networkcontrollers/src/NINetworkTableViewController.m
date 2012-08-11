@@ -18,6 +18,10 @@
 
 #import "NimbusCore+Additions.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 @interface NINetworkTableViewController()
 @property (nonatomic, readwrite, assign) UIActivityIndicatorViewStyle activityIndicatorStyle;
 @property (nonatomic, readwrite, assign) UITableViewStyle tableViewStyle;
@@ -67,7 +71,7 @@
   self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorStyle];
   self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleMargins;
   [self.activityIndicator sizeToFit];
-  [self.activityIndicator centerWithin:self.view];
+  self.activityIndicator.frame = NIFrameOfCenteredViewWithinView(self.activityIndicator, self.view);
   [self.view addSubview:self.activityIndicator];
 }
 

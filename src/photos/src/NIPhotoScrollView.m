@@ -20,6 +20,10 @@
 
 #import "NimbusCore.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 /**
  * A UIScrollView that centers the zooming view's frame as the user zooms.
  *

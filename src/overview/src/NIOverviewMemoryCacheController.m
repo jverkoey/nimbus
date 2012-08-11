@@ -20,6 +20,10 @@
 #import "NimbusModels.h"
 #import "NimbusCore.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 @interface NIMemoryCache(Private)
 @property (nonatomic, readwrite, retain) NILinkedList* lruCacheObjects;
 @end

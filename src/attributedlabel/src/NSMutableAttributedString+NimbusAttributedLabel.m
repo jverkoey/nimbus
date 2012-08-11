@@ -18,6 +18,10 @@
 
 #import "NimbusCore.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 NI_FIX_CATEGORY_BUG(NSAttributedStringNimbusAttributedLabel)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

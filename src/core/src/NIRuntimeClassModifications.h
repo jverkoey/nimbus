@@ -18,6 +18,10 @@
 
 #import <Foundation/Foundation.h>
 
+#if defined __cplusplus
+extern "C" {
+#endif
+
 /**
  * For modifying class implementations at runtime.
  *
@@ -63,6 +67,9 @@ void NISwapInstanceMethods(Class cls, SEL originalSel, SEL newSel);
  */
 void NISwapClassMethods(Class cls, SEL originalSel, SEL newSel);
 
+#if defined __cplusplus
+};
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Runtime Class Modifications //////////////////////////////////////////////////////

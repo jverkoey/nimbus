@@ -21,6 +21,10 @@
 #import "NimbusCore.h"
 #import <objc/message.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static const CGFloat kSwitchLeftMargin = 10;
 static const CGFloat kImageViewRightMargin = 10;
 static const CGFloat kSegmentedControlMargin = 5;
@@ -261,6 +265,17 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 @synthesize element = _element;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self.textLabel setAdjustsFontSizeToFitWidth:YES];
+        [self.textLabel setMinimumFontSize:10.0f];
+    }
+    return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prepareForReuse {
   [super prepareForReuse];
   
@@ -300,6 +315,7 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
     _textField = [[UITextField alloc] init];
     [_textField setTag:self.element.elementID];
     [_textField setAdjustsFontSizeToFitWidth:YES];
+    [_textField setMinimumFontSize:10.0f];
     [_textField addTarget:self action:@selector(textFieldDidChangeValue) forControlEvents:UIControlEventAllEditingEvents];
     [self.contentView addSubview:_textField];
 
@@ -473,7 +489,7 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
   UIEdgeInsets contentPadding = NICellContentPadding();
   CGRect contentFrame = UIEdgeInsetsInsetRect(self.contentView.frame, contentPadding);
-  CGFloat labelWidth = contentFrame.size.width * 0.5;
+  CGFloat labelWidth = contentFrame.size.width * 0.5f;
 
   CGRect frame = self.textLabel.frame;
   frame.size.width = labelWidth;
@@ -745,8 +761,8 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
         if (self.datePicker.countDownDuration == 0) {
           self.dateField.text = NSLocalizedString(@"0 minutes", @"0 minutes");
         } else {
-          int hours = self.datePicker.countDownDuration / 3600;
-          int minutes = (self.datePicker.countDownDuration - hours * 3600) / 60;
+          int hours = (int)(self.datePicker.countDownDuration / 3600);
+          int minutes = (int)((self.datePicker.countDownDuration - hours * 3600) / 60);
           
           self.dateField.text = [NSString stringWithFormat:
                                  NSLocalizedString(@"%d hours, %d min", 
@@ -797,8 +813,8 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
       if (self.datePicker.countDownDuration == 0) {
         self.dateField.text = NSLocalizedString(@"0 minutes", @"0 minutes");
       } else {
-        int hours = self.datePicker.countDownDuration / 3600;
-        int minutes = (self.datePicker.countDownDuration - hours * 3600) / 60;
+        int hours = (int)(self.datePicker.countDownDuration / 3600);
+        int minutes = (int)((self.datePicker.countDownDuration - hours * 3600) / 60);
         
         self.dateField.text = [NSString stringWithFormat:
                                NSLocalizedString(@"%d hours, %d min", 

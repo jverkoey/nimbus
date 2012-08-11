@@ -23,6 +23,10 @@
 #import "NIDeviceInfo.h"
 #import "NIOverviewPageView.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 @interface NIOverviewView()
 
 - (CGFloat)pageHorizontalMargin;

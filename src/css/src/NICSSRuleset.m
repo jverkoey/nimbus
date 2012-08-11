@@ -19,6 +19,10 @@
 #import "NICSSParser.h"
 #import "NimbusCore.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 static NSString* const kTextColorKey = @"color";
 static NSString* const kTextAlignmentKey = @"text-align";
 static NSString* const kFontKey = @"font";

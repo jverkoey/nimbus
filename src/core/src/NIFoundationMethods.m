@@ -17,7 +17,11 @@
 #import "NIFoundationMethods.h"
 
 #import "NIDebuggingTools.h"
+#import <CommonCrypto/CommonDigest.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +41,17 @@ CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy) {
 }
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+CGRect NIFrameOfCenteredViewWithinView(UIView* viewToCenter, UIView* containerView) {
+  CGPoint origin;
+  CGSize containerViewSize = containerView.bounds.size;
+  CGSize viewSize = viewToCenter.frame.size;
+  origin.x = floorf((containerViewSize.width - viewSize.width) / 2.f);
+  origin.y = floorf((containerViewSize.height - viewSize.height) / 2.f);
+  return CGRectMake(origin.x, origin.y, viewSize.width, viewSize.height);
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -50,6 +65,53 @@ NSRange NIMakeNSRangeFromCFRange(CFRange range) {
   NIDASSERT(range.location >= 0 && range.location <= NSIntegerMax);
   NIDASSERT(range.length >= 0 && range.length <= NSIntegerMax);
   return NSMakeRange(range.location, range.length);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NSData Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NSString* NIMD5HashFromData(NSData* data) {
+  unsigned char result[CC_MD5_DIGEST_LENGTH];
+  CC_MD5(data.bytes, data.length, result);
+
+  return [NSString stringWithFormat:
+          @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+          result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
+          result[8], result[9], result[10], result[11], result[12], result[13], result[14],
+          result[15]
+          ];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NSString* NISHA1HashFromData(NSData* data) {
+  unsigned char result[CC_SHA1_DIGEST_LENGTH];
+  CC_SHA1(data.bytes, data.length, result);
+
+  return [NSString stringWithFormat:
+          @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+          result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
+          result[8], result[9], result[10], result[11], result[12], result[13], result[14],
+          result[15], result[16], result[17], result[18], result[19]
+          ];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NSString Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL NIIsStringWithWhitespaceAndNewlines(NSString* string) {
+  NSCharacterSet* notWhitespaceAndNewlines = [[NSCharacterSet whitespaceAndNewlineCharacterSet] invertedSet];
+  return [string isKindOfClass:[NSString class]] && [string rangeOfCharacterFromSet:notWhitespaceAndNewlines].length == 0;
 }
 
 

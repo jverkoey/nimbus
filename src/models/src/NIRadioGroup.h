@@ -107,8 +107,11 @@
  * The radio group controller is about to appear.
  *
  * This method provides a customization point for the radio group view controller.
+ *
+ *      @return YES if controller should be pushed onto the current navigation stack.
+ *              NO if you are going to present the controller yourself.
  */
-- (void)radioGroup:(NIRadioGroup *)radioGroup radioGroupController:(NIRadioGroupController *)radioGroupController willAppear:(BOOL)animated;
+- (BOOL)radioGroup:(NIRadioGroup *)radioGroup radioGroupController:(NIRadioGroupController *)radioGroupController willAppear:(BOOL)animated;
 
 @end
 

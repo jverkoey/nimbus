@@ -24,6 +24,10 @@
 
 #import <objc/runtime.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 const NSInteger NIPagingScrollViewUnknownNumberOfPages = -1;
 const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
@@ -339,7 +343,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)updateVisiblePages {
+- (void)updateVisiblePagesAnimated:(BOOL)animated {
   NSRange visiblePageRange = [self visiblePageRange];
 
   // Recycle no-longer-visible pages. We copy _visiblePages because we may modify it while we're
@@ -367,7 +371,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
       
     // Add missing pages.
     for (int pageIndex = visiblePageRange.location;
-         pageIndex < NSMaxRange(visiblePageRange); ++pageIndex) {
+         pageIndex < (NSInteger)NSMaxRange(visiblePageRange); ++pageIndex) {
       if (![self isDisplayingPageForIndex:pageIndex]) {
         [self displayPageAtIndex:pageIndex];
       }
@@ -376,7 +380,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     _centerPageIndex = -1;
   }
 
-  if (oldCenterPageIndex != _centerPageIndex
+  if (!animated && oldCenterPageIndex != _centerPageIndex
       && [self.delegate respondsToSelector:@selector(pagingScrollViewDidChangePages:)]) {
     [self.delegate pagingScrollViewDidChangePages:self];
   }
@@ -433,7 +437,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   if (!_isModifyingContentOffset) {
     // This method is called repeatedly as the user scrolls so updateVisiblePages must be
     // light-weight enough not to noticeably impact performance.
-    [self updateVisiblePages];
+    [self updateVisiblePagesAnimated:NO];
 
     if ([self.delegate respondsToSelector:@selector(pagingScrollViewDidScroll:)]) {
       [self.delegate pagingScrollViewDidScroll:self];
@@ -579,7 +583,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   }
 
   // Begin requesting the page information from the data source.
-  [self updateVisiblePages];
+  [self updateVisiblePagesAnimated:NO];
 }
 
 
@@ -593,7 +597,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   CGFloat pageScrollableDimension = [self pageScrollableDimension];
 
   if (offset >= 0) {
-    _firstVisiblePageIndexBeforeRotation = floorf(offset / pageScrollableDimension);
+    _firstVisiblePageIndexBeforeRotation = (NSInteger)floorf(offset / pageScrollableDimension);
     _percentScrolledIntoFirstVisiblePage = ((offset
         - (_firstVisiblePageIndexBeforeRotation * pageScrollableDimension))
         / pageScrollableDimension);
@@ -652,7 +656,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   self.pagingScrollView.contentOffset = offset;
   _isModifyingContentOffset = NO;
 
-  [self updateVisiblePages];
+  [self updateVisiblePagesAnimated:YES];
 }
 
 
@@ -673,7 +677,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   if (animated) {
     _isAnimatingToPage = YES;
     SEL selector = @selector(didAnimateToPage:);
-    [NSObject cancelPreviousPerformRequestsWithTarget: self];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
 
     // When the animation is finished we reset the content offset just in case the frame
     // changes while we're animating (like when rotating the device). To do this we need
@@ -710,12 +714,6 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setCenterPageIndex:(NSInteger)centerPageIndex {
   [self moveToPageAtIndex:centerPageIndex animated:NO];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setCenterPageIndex:(NSInteger)centerPageIndex animated:(BOOL)animated {
-  [self moveToPageAtIndex:centerPageIndex animated:animated];
 }
 
 

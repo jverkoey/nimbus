@@ -55,11 +55,14 @@
 #import "BasicInstantiationTableModelViewController.h"
 #import "SectionedTableModelViewController.h"
 #import "IndexedTableModelViewController.h"
+#import "ActionsTableModelViewController.h"
 #import "RadioGroupTableModelViewController.h"
 #import "NestedRadioGroupTableModelViewController.h"
+#import "ModalRadioGroupTableModelViewController.h"
 #import "FormCellCatalogViewController.h"
 #import "NetworkBlockCellsViewController.h"
 #import "BlockCellsViewController.h"
+#import "SnapshotRotationTableViewController.h"
 
 // Web Controller
 #import "ExtraActionsWebViewController.h"
@@ -300,6 +303,11 @@
       [NISubtitleCellObject objectWithTitle:@"Indexed Model"
                                    subtitle:@"Indexed table view models"]],
      [_actions attachNavigationAction:
+      NIPushControllerAction([ActionsTableModelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Actions"
+                                   subtitle:@"Handling actions in table views"]],
+     [_actions attachNavigationAction:
       NIPushControllerAction([RadioGroupTableModelViewController class])
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Radio Group"
@@ -309,6 +317,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Nested Radio Group"
                                    subtitle:@"How to nest radio groups"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([ModalRadioGroupTableModelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Modal Radio Group"
+                                   subtitle:@"Customizing presentation"]],
      [_actions attachNavigationAction:
       NIPushControllerAction([FormCellCatalogViewController class])
                              toObject:
@@ -324,6 +337,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Network Block Cells"
                                    subtitle:@"Rendering network images with blocks"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([SnapshotRotationTableViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Snapshot Rotation"
+                                   subtitle:@"Rotating table views with snapshots"]],
      
      @"Web Controller",
      [_actions attachNavigationAction:

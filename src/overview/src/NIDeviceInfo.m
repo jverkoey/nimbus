@@ -21,6 +21,10 @@
 #import <mach/mach.h>
 #import <mach/mach_host.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
+
 // Static local state.
 static BOOL                 sIsCaching = NO;
 static BOOL                 sLastUpdateResult = NO;

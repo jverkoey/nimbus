@@ -14,13 +14,8 @@
 // limitations under the License.
 //
 
-/**
- * @ingroup NimbusCore
- * @{
- *
- * All category documentation is found in the source files due to limitations of Doxygen.
- * Look for the documentation in the Classes tab of the documentation.
- */
+// All category documentation is found in the source files due to limitations of Doxygen.
+// Look for the documentation in the Classes tab of the documentation.
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -28,8 +23,4 @@
 #import "NimbusCore.h"
 
 // Additions
-#import "NSData+NimbusCore.h"
 #import "NSString+NimbusCore.h"
-#import "UIView+NimbusCore.h"
-
-/**@}*/

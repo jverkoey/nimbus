@@ -20,6 +20,9 @@
 
 #import <objc/runtime.h>
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "Nimbus requires ARC support."
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void NISwapInstanceMethods(Class cls, SEL originalSel, SEL newSel) {
