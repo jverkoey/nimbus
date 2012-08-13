@@ -28,15 +28,11 @@ const UIImageResizingMode UIImageResizingModeStretch = -1;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL NIIsPad(void) {
-#ifdef UI_USER_INTERFACE_IDIOM
   static NSInteger isPad = -1;
   if (isPad < 0) {
-    isPad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
+    isPad = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) ? 1 : 0;
   }
   return isPad > 0;
-#else
-  return NO;
-#endif
 }
 
 
