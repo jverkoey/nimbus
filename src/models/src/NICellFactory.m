@@ -23,7 +23,7 @@
 #endif
 
 @interface NICellFactory()
-@property (nonatomic, readwrite, copy) NSMutableDictionary* objectToCellMap;
+@property (nonatomic, copy) NSMutableDictionary* objectToCellMap;
 @end
 
 
@@ -175,8 +175,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NICellObject()
-@property (nonatomic, readwrite, assign) Class cellClass;
-@property (nonatomic, readwrite, retain) id userInfo;
+@property (nonatomic, assign) Class cellClass;
+@property (nonatomic, retain) id userInfo;
 @end
 
 
