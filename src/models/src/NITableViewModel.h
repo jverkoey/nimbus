@@ -120,17 +120,6 @@ typedef enum {
 
 @end
 
-
-@interface NITableViewModelSection : NSObject
-
-+ (id)section;
-
-@property (nonatomic, copy) NSString* headerTitle;
-@property (nonatomic, copy) NSString* footerTitle;
-@property (nonatomic, copy) NSArray* rows;
-
-@end
-
 /** @name Creating Table View Models */
 
 /**
