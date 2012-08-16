@@ -46,7 +46,7 @@
 // Designated initializer.
 - (id)initWithController:(UIViewController *)controller;
 
-@property (nonatomic, readwrite, assign) id<NIRadioGroupDelegate> delegate;
+@property (nonatomic, assign) id<NIRadioGroupDelegate> delegate;
 
 #pragma mark Mapping Objects
 
@@ -55,7 +55,7 @@
 #pragma mark Selection
 
 - (BOOL)hasSelection;
-@property (nonatomic, readwrite, assign) NSInteger selectedIdentifier;
+@property (nonatomic, assign) NSInteger selectedIdentifier;
 - (void)clearSelection;
 
 #pragma mark Object State
@@ -66,14 +66,14 @@
 
 #pragma mark Forwarding
 
-@property (nonatomic, readwrite, assign) UITableViewCellSelectionStyle tableViewCellSelectionStyle;
+@property (nonatomic, assign) UITableViewCellSelectionStyle tableViewCellSelectionStyle;
 - (id<UITableViewDelegate>)forwardingTo:(id<UITableViewDelegate>)forwardDelegate;
 - (void)removeForwarding:(id<UITableViewDelegate>)forwardDelegate;
 
 #pragma mark Sub Radio Groups
 
-@property (nonatomic, readwrite, copy) NSString* cellTitle;
-@property (nonatomic, readwrite, copy) NSString* controllerTitle;
+@property (nonatomic, copy) NSString* cellTitle;
+@property (nonatomic, copy) NSString* controllerTitle;
 - (NSArray *)allObjects;
 
 @end

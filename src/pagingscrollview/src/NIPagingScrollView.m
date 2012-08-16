@@ -31,9 +31,18 @@
 const NSInteger NIPagingScrollViewUnknownNumberOfPages = -1;
 const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
-@interface NIPagingScrollView()
+@interface NIPagingScrollView()  {
+@private
+  NIViewRecycler* _viewRecycler;
 
-@property (nonatomic, readwrite, retain) UIScrollView* pagingScrollView;
+  // State Information
+  NSInteger _firstVisiblePageIndexBeforeRotation;
+  CGFloat _percentScrolledIntoFirstVisiblePage;
+  BOOL _isModifyingContentOffset;
+  BOOL _isAnimatingToPage;
+}
+
+@property (nonatomic, retain) UIScrollView* pagingScrollView;
 
 @end
 
@@ -98,14 +107,6 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     [self commonInit];
   }
   return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didMoveToSuperview {
-  [super didMoveToSuperview];
-
-  self.pagingScrollView.backgroundColor = self.superview.backgroundColor;
 }
 
 

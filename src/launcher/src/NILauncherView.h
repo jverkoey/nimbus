@@ -65,7 +65,7 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 /** @name Configuring a Launcher View */
 
 /**
- * Tells the data source to return the number of rows in a given section of a table view (required).
+ * Tells the receiver to return the number of rows in a given section of a table view (required).
  *
  *      @param launcherView The launcher-view object requesting this information.
  *      @param page The index locating a page in @c launcherView.
@@ -74,7 +74,7 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 - (NSInteger)launcherView:(NILauncherView *)launcherView numberOfButtonsInPage:(NSInteger)page;
 
 /**
- * Tells the data source to return a button view for inserting into a particular location of a given
+ * Tells the receiver to return a button view for inserting into a particular location of a given
  * page in the launcher view (required).
  *
  *      @param launcherView The launcher-view object requesting this information.
@@ -88,7 +88,9 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 @optional
 
 /**
- * Asks the data source to return the number of pages in the launcher view.
+ * Asks the receiver to return the number of pages in the launcher view.
+ *
+ * It is assumed that the launcher view has one page if this method is not implemented.
  *
  *      @param launcherView The launcher-view object requesting this information.
  *      @returns The number of pages in @c launcherView. The default value is 1.
@@ -97,7 +99,7 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 - (NSInteger)numberOfPagesInLauncherView:(NILauncherView *)launcherView;
 
 /**
- * Asks the data source to return the number of rows of buttons each page can display in the
+ * Asks the receiver to return the number of rows of buttons each page can display in the
  * launcher view.
  *
  * This method will be called each time the frame of the launcher view changes. Notably, this will
@@ -110,7 +112,7 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 - (NSInteger)numberOfRowsPerPageInLauncherView:(NILauncherView *)launcherView;
 
 /**
- * Asks the data source to return the number of columns of buttons each page can display in the
+ * Asks the receiver to return the number of columns of buttons each page can display in the
  * launcher view.
  *
  * This method will be called each time the frame of the launcher view changes. Notably, this will
@@ -136,7 +138,7 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 /** @name Managing Selections */
 
 /**
- * Informs the delegate that the specified item on the specified page has been selected.
+ * Informs the receiver that the specified item on the specified page has been selected.
  *
  *      @param launcherView A launcher-view object informing the delegate about the new item
  *                          selection.

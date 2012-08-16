@@ -27,12 +27,12 @@
 
 - (UIImage *)imageForFirst:(BOOL)first last:(BOOL)last highlighted:(BOOL)highlighted;
 
-@property (nonatomic, readwrite, retain) UIColor* innerBackgroundColor; // Default: [UIColor whiteColor]
-@property (nonatomic, readwrite, retain) NSMutableArray* highlightedInnerGradientColors; // Default: RGBCOLOR(53, 141, 245), RGBCOLOR(16, 93, 230)
-@property (nonatomic, readwrite, assign) CGFloat shadowWidth; // Default: 4
-@property (nonatomic, readwrite, retain) UIColor* shadowColor; // Default: RGBACOLOR(0, 0, 0, 0.3)
-@property (nonatomic, readwrite, retain) UIColor* borderColor; // Default: RGBACOLOR(0, 0, 0, 0.07)
-@property (nonatomic, readwrite, retain) UIColor* dividerColor; // Default: RGBCOLOR(230, 230, 230)
+@property (nonatomic, retain) UIColor* innerBackgroundColor; // Default: [UIColor whiteColor]
+@property (nonatomic, retain) NSMutableArray* highlightedInnerGradientColors; // Default: RGBCOLOR(53, 141, 245), RGBCOLOR(16, 93, 230)
+@property (nonatomic, assign) CGFloat shadowWidth; // Default: 4
+@property (nonatomic, retain) UIColor* shadowColor; // Default: RGBACOLOR(0, 0, 0, 0.3)
+@property (nonatomic, retain) UIColor* borderColor; // Default: RGBACOLOR(0, 0, 0, 0.07)
+@property (nonatomic, retain) UIColor* dividerColor; // Default: RGBCOLOR(230, 230, 230)
 
 @end
 

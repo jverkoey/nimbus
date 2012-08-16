@@ -47,51 +47,27 @@ typedef enum {
  *
  *      @ingroup NimbusPagingScrollView
  */
-@interface NIPagingScrollView : UIView <UIScrollViewDelegate> {
-@private
-  // Views
-  UIScrollView* _pagingScrollView;
-
-  // Pages
-  NSMutableSet* _visiblePages;
-  NIViewRecycler* _viewRecycler;
-
-  // Configurable Properties
-  CGFloat _pageMargin;
-
-  // State Information
-  NSInteger _firstVisiblePageIndexBeforeRotation;
-  CGFloat _percentScrolledIntoFirstVisiblePage;
-  BOOL _isModifyingContentOffset;
-  BOOL _isAnimatingToPage;
-  NSInteger _centerPageIndex;
-
-  // Cached Data Source Information
-  NSInteger _numberOfPages;
-
-  __unsafe_unretained id<NIPagingScrollViewDataSource> _dataSource;
-  __unsafe_unretained id<NIPagingScrollViewDelegate> _delegate;
-}
+@interface NIPagingScrollView : UIView <UIScrollViewDelegate>
 
 #pragma mark Data Source
 
 - (void)reloadData;
-@property (nonatomic, readwrite, assign) id<NIPagingScrollViewDataSource> dataSource;
-@property (nonatomic, readwrite, assign) id<NIPagingScrollViewDelegate> delegate;
+@property (nonatomic, assign) id<NIPagingScrollViewDataSource> dataSource;
+@property (nonatomic, assign) id<NIPagingScrollViewDelegate> delegate;
 
 // It is highly recommended that you use this method to manage view recycling.
 - (UIView<NIPagingScrollViewPage> *)dequeueReusablePageWithIdentifier:(NSString *)identifier;
 
 #pragma mark State
 
-@property (nonatomic, readwrite, assign) NSInteger centerPageIndex; // Use moveToPageAtIndex:animated: to animate to a given page.
+@property (nonatomic, assign) NSInteger centerPageIndex; // Use moveToPageAtIndex:animated: to animate to a given page.
 
 @property (nonatomic, readonly, assign) NSInteger numberOfPages;
 
 #pragma mark Configuring Presentation
 
-@property (nonatomic, readwrite, assign) CGFloat pageMargin;
-@property (nonatomic, readwrite, assign) NIPagingScrollViewType type; // Default: NIPagingScrollViewHorizontal
+@property (nonatomic, assign) CGFloat pageMargin;
+@property (nonatomic, assign) NIPagingScrollViewType type; // Default: NIPagingScrollViewHorizontal
 
 #pragma mark Changing the Visible Page
 

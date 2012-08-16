@@ -64,6 +64,12 @@
 #ifndef NIRecyclableView
 #define NIRecyclableView __NIMBUS_NS_SYMBOL(NIRecyclableView)
 #endif
+#ifndef NISnapshotRotation
+#define NISnapshotRotation __NIMBUS_NS_SYMBOL(NISnapshotRotation)
+#endif
+#ifndef NITableViewSnapshotRotation
+#define NITableViewSnapshotRotation __NIMBUS_NS_SYMBOL(NITableViewSnapshotRotation)
+#endif
 #ifndef NIViewRecycler
 #define NIViewRecycler __NIMBUS_NS_SYMBOL(NIViewRecycler)
 #endif
@@ -94,6 +100,9 @@
 #endif
 #ifndef NIRectContract
 #define NIRectContract __NIMBUS_NS_SYMBOL(NIRectContract)
+#endif
+#ifndef NISnapshotOfView
+#define NISnapshotOfView __NIMBUS_NS_SYMBOL(NISnapshotOfView)
 #endif
 #ifndef NISwapInstanceMethods
 #define NISwapInstanceMethods __NIMBUS_NS_SYMBOL(NISwapInstanceMethods)
@@ -169,6 +178,9 @@
 #endif
 #ifndef NIUIPopoverControllerClass
 #define NIUIPopoverControllerClass __NIMBUS_NS_SYMBOL(NIUIPopoverControllerClass)
+#endif
+#ifndef NISnapshotViewOfView
+#define NISnapshotViewOfView __NIMBUS_NS_SYMBOL(NISnapshotViewOfView)
 #endif
 #ifndef NIUITapGestureRecognizerClass
 #define NIUITapGestureRecognizerClass __NIMBUS_NS_SYMBOL(NIUITapGestureRecognizerClass)

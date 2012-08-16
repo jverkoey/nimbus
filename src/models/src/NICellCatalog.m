@@ -179,9 +179,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NIDrawRectBlockView : UIView
-@property (nonatomic, readwrite, copy) NICellDrawRectBlock block;
-@property (nonatomic, readwrite, retain) id object;
-@property (nonatomic, readwrite, assign) UITableViewCell* cell;
+@property (nonatomic, copy) NICellDrawRectBlock block;
+@property (nonatomic, retain) id object;
+@property (nonatomic, assign) UITableViewCell* cell;
 @end
 
 
