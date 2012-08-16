@@ -20,7 +20,6 @@
 
 #import "NimbusCore.h"
 #import "NITableViewSearchModel.h"
-#import "UIView+NimbusCore.h"
 #import "NIGradientView.h"
 
 @class NISearchTextFieldInternal;

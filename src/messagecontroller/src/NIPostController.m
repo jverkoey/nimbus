@@ -460,7 +460,7 @@ static const CGFloat kMarginY = 6;
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     if (!NIIsStringWithAnyText(textView.text)
-        && !textView.text.isWhitespaceAndNewlines) {
+        && !NIIsStringWithWhitespaceAndNewlines(textView.text)) {
         self.navigationItem.rightBarButtonItem.enabled = NO;
     }
 }
@@ -515,7 +515,7 @@ static const CGFloat kMarginY = 6;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cancel {
     if (NIIsStringWithAnyText(_textView.text)
-        && !_textView.text.isWhitespaceAndNewlines
+        && !NIIsStringWithWhitespaceAndNewlines(_textView.text)
         && !(_defaultText && [_defaultText isEqualToString:_textView.text])) {
         UIAlertView* cancelAlertView = [[UIAlertView alloc] initWithTitle:
                                         NSLocalizedString(@"Cancel", @"")

@@ -16,7 +16,6 @@
 
 // UI
 #import "NISearchTextField.h"
-#import "UIView+NimbusCore.h"
 
 @class NIPickerViewCell;
 

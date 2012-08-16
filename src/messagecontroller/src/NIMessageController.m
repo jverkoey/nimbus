@@ -200,7 +200,7 @@ static const CGFloat kMarginY = 6;
             } else if ([field isKindOfClass:[NIMessageTextField class]]) {
                 UITextField* textField = [_fieldViews objectAtIndex:i];
                 if (NIIsStringWithAnyText(textField.text) &&
-                    !textField.text.isWhitespaceAndNewlines) {
+                    !NIIsStringWithWhitespaceAndNewlines(textField.text)) {
                     return YES;
                 }
             }
@@ -215,7 +215,7 @@ static const CGFloat kMarginY = 6;
 - (BOOL)hasRequiredText {
     if (_requireNonEmptyMessageBody &&
         (!NIIsStringWithAnyText(_textView.text) &&
-         !_textView.text.isWhitespaceAndNewlines)) {
+         !NIIsStringWithWhitespaceAndNewlines(_textView.text))) {
             return NO;
         }
     
@@ -231,7 +231,7 @@ static const CGFloat kMarginY = 6;
             } else if ([field isKindOfClass:[NIMessageTextField class]]) {
                 UITextField* textField = [_fieldViews objectAtIndex:i];
                 if (!NIIsStringWithAnyText(textField.text) &&
-                    !textField.text.isWhitespaceAndNewlines) {
+                    !NIIsStringWithWhitespaceAndNewlines(textField.text)) {
                     return NO;
                 }
             }
@@ -691,11 +691,11 @@ replacementString:(NSString *)string {
         if ([field isKindOfClass:[NIMessageRecipientField class]]) {
             NIPickerTextField* pickerTextField = [_fieldViews objectAtIndex:fieldIndex];
             return ((NIIsStringWithAnyText(pickerTextField.text) &&
-                     !pickerTextField.text.isWhitespaceAndNewlines)
+                     !NIIsStringWithWhitespaceAndNewlines(pickerTextField.text))
                     || pickerTextField.cellViews.count > 0);
         } else {
             UITextField* textField = [_fieldViews objectAtIndex:fieldIndex];
-            return (NIIsStringWithAnyText(textField.text) && !textField.text.isWhitespaceAndNewlines);
+            return (NIIsStringWithAnyText(textField.text) && !NIIsStringWithWhitespaceAndNewlines(textField.text));
         }
     }
 }
@@ -718,7 +718,7 @@ replacementString:(NSString *)string {
                                [NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if (NIIsStringWithAnyText(trimmedString) &&
-        !trimmedString.isWhitespaceAndNewlines) {
+        !NIIsStringWithWhitespaceAndNewlines(trimmedString)) {
         if ([trimmedString length] > _maxCharCount) {
             UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Alert", @"")
                                                                  message:NSLocalizedString(@"You can only enter a maximum of 140 characters.", @"")
