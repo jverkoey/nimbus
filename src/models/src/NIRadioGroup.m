@@ -32,7 +32,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 @property (nonatomic, readonly, retain) NSMutableDictionary* objectMap;
 @property (nonatomic, readonly, retain) NSMutableSet* objectSet;
 @property (nonatomic, readonly, retain) NSMutableArray* objectOrder;
-@property (nonatomic, readwrite, assign) BOOL hasSelection;
+@property (nonatomic, assign) BOOL hasSelection;
 @property (nonatomic, readonly, retain) NSMutableSet* forwardDelegates;
 @end
 

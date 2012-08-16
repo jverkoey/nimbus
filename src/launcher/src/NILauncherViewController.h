@@ -39,7 +39,7 @@
 
 @end
 
-/** @name Getting the Launcher View */
+/** @name Accessing the Launcher View */
 
 /**
  * Returns the launcher view managed by the controller object.

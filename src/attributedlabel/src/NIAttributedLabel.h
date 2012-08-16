@@ -73,17 +73,17 @@ typedef enum {
 - (void)addLink:(NSURL *)urlLink range:(NSRange)range;
 - (void)removeAllExplicitLinks; // Removes all links that were added by addLink:range:. Does not remove autodetected links.
 
-@property (nonatomic, retain) UIColor* linkColor; // Default: [UIColor blueColor]
-@property (nonatomic, retain) UIColor* highlightedLinkBackgroundColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
+@property (nonatomic, strong) UIColor* linkColor; // Default: [UIColor blueColor]
+@property (nonatomic, strong) UIColor* highlightedLinkBackgroundColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
 @property (nonatomic, assign) BOOL linksHaveUnderlines; // Default: NO
-@property (nonatomic, retain) NSDictionary *attributesForLinks; // Default: nil
+@property (nonatomic, strong) NSDictionary *attributesForLinks; // Default: nil
 
 @property (nonatomic, assign) NIVerticalTextAlignment verticalTextAlignment; // Default: NIVerticalTextAlignmentTop
 @property (nonatomic, assign) CTUnderlineStyle underlineStyle;
 @property (nonatomic, assign) CTUnderlineStyleModifiers underlineStyleModifier;
 @property (nonatomic, assign) CGFloat shadowBlur; // Default: 0
 @property (nonatomic, assign) CGFloat strokeWidth;
-@property (nonatomic, retain) UIColor* strokeColor;
+@property (nonatomic, strong) UIColor* strokeColor;
 @property (nonatomic, assign) CGFloat textKern;
 
 - (void)setTextColor:(UIColor *)textColor range:(NSRange)range;
@@ -108,18 +108,18 @@ typedef enum {
 /** @name Managing Selections */
 
 /**
- * Informs the delegate that a data detector result has been selected.
+ * Informs the receiver that a data detector result has been selected.
  *
- *      @param attributedLabel An attributed label informing the delegate of the selection.
+ *      @param attributedLabel An attributed label informing the receiver of the selection.
  *      @param result The data detector result that was selected.
  *      @param point The point within @c attributedLabel where the result was tapped.
  */
 - (void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point;
 
 /**
- * Asks the delegate whether an action sheet should be displayed at the given point.
+ * Asks the receiver whether an action sheet should be displayed at the given point.
  *
- * If this method is not implemented by the delegate then @c actionSheet will always be displayed.
+ * If this method is not implemented by the receiver then @c actionSheet will always be displayed.
  *
  * @c actionSheet will be populated with actions that match the data type that was selected. For
  * example, a link will have the actions "Open in Safari" and "Copy URL". A phone number will have
@@ -158,7 +158,7 @@ typedef enum {
 /** @name Accessing and Detecting Links */
 
 /**
- * Whether to automatically detect links in the string.
+ * A Booelan value indicating whether to automatically detect links in the string.
  *
  * By default this is disabled.
  *
@@ -219,8 +219,8 @@ typedef enum {
 /**
  * The text color of detected links.
  *
- * The default text is [UIColor blueColor]. If linkColor is assigned nil then the link text color
- * attributes will not be changed.
+ * The default color is [UIColor blueColor]. If linkColor is assigned nil then the link attributes
+ * will not be changed.
  *
  *  @image html NIAttributedLabelLinkAttributes.png "Link attributes"
  *
@@ -250,7 +250,7 @@ typedef enum {
  */
 
 /**
- * A dictionary of attributes to apply to links.
+ * A dictionary of CoreText attributes to apply to links.
  *
  * This dictionary must contain CoreText attributes. These attributes are applied after the color
  * and link styles have been applied to the link.
@@ -273,7 +273,7 @@ typedef enum {
  */
 
 /**
- * The underline style for the whole text.
+ * The underline style for the entire label.
  *
  * By default this is @c kCTUnderlineStyleNone.
  *
@@ -283,7 +283,7 @@ typedef enum {
  */
 
 /**
- * The underline style modifier for the whole text.
+ * The underline style modifier for the entire label.
  *
  * By default this is @c kCTUnderlinePatternSolid.
  *
@@ -384,7 +384,7 @@ typedef enum {
  * The delegate of the attributed-label object.
  *
  * The delegate must adopt the NIAttributedLabelDelegate protocol. The NIAttributedLabel class,
- * which does not retain the delegate, invokes each protocol method the delegate implements.
+ * which does not strong the delegate, invokes each protocol method the delegate implements.
  *
  *      @fn NIAttributedLabel::delegate
  */

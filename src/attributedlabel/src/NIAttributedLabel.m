@@ -33,18 +33,18 @@ static const CGFloat kLongPressGutter = 22;
 static const CGFloat kTouchGutter = 22;
 
 @interface NIAttributedLabel() <UIActionSheetDelegate>
-@property (nonatomic, readwrite, retain) NSMutableAttributedString* mutableAttributedString;
-@property (nonatomic, readwrite, assign) CTFrameRef textFrame;
-@property (readwrite, assign) BOOL detectingLinks; // Atomic.
-@property (nonatomic, readwrite, assign) BOOL linksHaveBeenDetected;
-@property (nonatomic, readwrite, copy) NSArray* detectedlinkLocations;
-@property (nonatomic, readwrite, retain) NSMutableArray* explicitLinkLocations;
-@property (nonatomic, readwrite, retain) NSTextCheckingResult* originalLink;
-@property (nonatomic, readwrite, retain) NSTextCheckingResult* touchedLink;
-@property (nonatomic, readwrite, retain) NSTimer* longPressTimer;
-@property (nonatomic, readwrite, assign) CGPoint touchPoint;
-@property (nonatomic, readwrite, retain) NSTextCheckingResult* actionSheetLink;
-@property (nonatomic, readwrite, retain) NSArray *accessibleElements;
+@property (nonatomic, strong) NSMutableAttributedString* mutableAttributedString;
+@property (nonatomic, assign) CTFrameRef textFrame;
+@property (assign) BOOL detectingLinks; // Atomic.
+@property (nonatomic, assign) BOOL linksHaveBeenDetected;
+@property (nonatomic, copy) NSArray* detectedlinkLocations;
+@property (nonatomic, strong) NSMutableArray* explicitLinkLocations;
+@property (nonatomic, strong) NSTextCheckingResult* originalLink;
+@property (nonatomic, strong) NSTextCheckingResult* touchedLink;
+@property (nonatomic, strong) NSTimer* longPressTimer;
+@property (nonatomic, assign) CGPoint touchPoint;
+@property (nonatomic, strong) NSTextCheckingResult* actionSheetLink;
+@property (nonatomic, strong) NSArray *accessibleElements;
 @end
 
 

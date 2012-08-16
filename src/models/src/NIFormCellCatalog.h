@@ -34,7 +34,7 @@
 // Designated initializer
 + (id)elementWithID:(NSInteger)elementID;
 
-@property (nonatomic, readwrite, assign) NSInteger elementID;
+@property (nonatomic, assign) NSInteger elementID;
 
 @end
 
@@ -58,10 +58,10 @@
 + (id)passwordInputElementWithID:(NSInteger)elementID placeholderText:(NSString *)placeholderText value:(NSString *)value delegate:(id<UITextFieldDelegate>)delegate;
 + (id)passwordInputElementWithID:(NSInteger)elementID placeholderText:(NSString *)placeholderText value:(NSString *)value;
 
-@property (nonatomic, readwrite, copy) NSString* placeholderText;
-@property (nonatomic, readwrite, copy) NSString* value;
-@property (nonatomic, readwrite, assign) BOOL isPassword;
-@property (nonatomic, readwrite, assign) id<UITextFieldDelegate> delegate;
+@property (nonatomic, copy) NSString* placeholderText;
+@property (nonatomic, copy) NSString* value;
+@property (nonatomic, assign) BOOL isPassword;
+@property (nonatomic, assign) id<UITextFieldDelegate> delegate;
 
 @end
 
@@ -81,10 +81,10 @@
 + (id)switchElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(BOOL)value didChangeTarget:(id)target didChangeSelector:(SEL)selector;
 + (id)switchElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(BOOL)value;
 
-@property (nonatomic, readwrite, copy) NSString* labelText;
-@property (nonatomic, readwrite, assign) BOOL value;
-@property (nonatomic, readwrite, assign) id didChangeTarget;
-@property (nonatomic, readwrite, assign) SEL didChangeSelector;
+@property (nonatomic, copy) NSString* labelText;
+@property (nonatomic, assign) BOOL value;
+@property (nonatomic, assign) id didChangeTarget;
+@property (nonatomic, assign) SEL didChangeSelector;
 
 @end
 
@@ -104,12 +104,12 @@
 + (id)sliderElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(float)value minimumValue:(float)minimumValue maximumValue:(float)maximumValue didChangeTarget:(id)target didChangeSelector:(SEL)selector;
 + (id)sliderElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(float)value minimumValue:(float)minimumValue maximumValue:(float)maximumValue;
 
-@property (nonatomic, readwrite, copy) NSString* labelText;
-@property (nonatomic, readwrite, assign) float value;
-@property (nonatomic, readwrite, assign) float minimumValue;
-@property (nonatomic, readwrite, assign) float maximumValue;
-@property (nonatomic, readwrite, assign) id didChangeTarget;
-@property (nonatomic, readwrite, assign) SEL didChangeSelector;
+@property (nonatomic, copy) NSString* labelText;
+@property (nonatomic, assign) float value;
+@property (nonatomic, assign) float minimumValue;
+@property (nonatomic, assign) float maximumValue;
+@property (nonatomic, assign) id didChangeTarget;
+@property (nonatomic, assign) SEL didChangeSelector;
 
 @end
 
@@ -153,11 +153,11 @@
  */
 + (id)segmentedControlElementWithID:(NSInteger)elementID labelText:(NSString *)labelText segments:(NSArray *)segments selectedIndex:(NSInteger)selectedIndex;
 
-@property (nonatomic, readwrite, copy) NSString *labelText;
-@property (nonatomic, readwrite, assign) NSInteger selectedIndex;
-@property (nonatomic, readwrite, retain) NSArray *segments;
-@property (nonatomic, readwrite, assign) id didChangeTarget;
-@property (nonatomic, readwrite, assign) SEL didChangeSelector;
+@property (nonatomic, copy) NSString *labelText;
+@property (nonatomic, assign) NSInteger selectedIndex;
+@property (nonatomic, retain) NSArray *segments;
+@property (nonatomic, assign) id didChangeTarget;
+@property (nonatomic, assign) SEL didChangeSelector;
 
 @end
 
@@ -199,11 +199,11 @@
  */
 + (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date datePickerMode:(UIDatePickerMode)datePickerMode;
 
-@property (nonatomic, readwrite, copy) NSString *labelText;
-@property (nonatomic, readwrite, retain) NSDate *date;
-@property (nonatomic, readwrite, assign) UIDatePickerMode datePickerMode;
-@property (nonatomic, readwrite, assign) id didChangeTarget;
-@property (nonatomic, readwrite, assign) SEL didChangeSelector;
+@property (nonatomic, copy) NSString *labelText;
+@property (nonatomic, retain) NSDate *date;
+@property (nonatomic, assign) UIDatePickerMode datePickerMode;
+@property (nonatomic, assign) id didChangeTarget;
+@property (nonatomic, assign) SEL didChangeSelector;
 
 @end
 

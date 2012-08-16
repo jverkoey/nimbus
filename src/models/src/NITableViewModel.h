@@ -71,12 +71,12 @@ typedef enum {
 
 #pragma mark Creating Table View Cells
 
-@property (nonatomic, readwrite, assign) id<NITableViewModelDelegate> delegate;
+@property (nonatomic, assign) id<NITableViewModelDelegate> delegate;
 
 #if NS_BLOCKS_AVAILABLE
 // If both the delegate and this block are provided, cells returned by this block will be used
 // and the delegate will not be called.
-@property (nonatomic, readwrite, copy) NITableViewModelCellForIndexPathBlock createCellBlock;
+@property (nonatomic, copy) NITableViewModelCellForIndexPathBlock createCellBlock;
 #endif // #if NS_BLOCKS_AVAILABLE
 
 @end
@@ -116,18 +116,7 @@ typedef enum {
 + (id)footerWithTitle:(NSString *)title;
 - (id)initWithTitle:(NSString *)title;
 
-@property (nonatomic, readwrite, copy) NSString* title;
-
-@end
-
-
-@interface NITableViewModelSection : NSObject
-
-+ (id)section;
-
-@property (nonatomic, readwrite, copy) NSString* headerTitle;
-@property (nonatomic, readwrite, copy) NSString* footerTitle;
-@property (nonatomic, readwrite, copy) NSArray* rows;
+@property (nonatomic, copy) NSString* title;
 
 @end
 

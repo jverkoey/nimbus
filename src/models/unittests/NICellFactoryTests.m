@@ -31,18 +31,18 @@
   [map setObject:[NSObject class] forKey:(id<NSCopying>)[NSString class]];
 
   // @"" is the constant NSString class, which is a subclass of NSString.
-  Class class = [NICellFactory classFromKeyClass:[@"" class] map:map];
+  Class class = [NICellFactory objectFromKeyClass:[@"" class] map:map];
   STAssertNotNil(class, @"NSString constant should be a subclass of NSString, but no class returned from the map.");
   STAssertEquals(map.count, (NSUInteger)2, @"Should be two classes mapped to NSObject now.");
   for (class in map.allValues) {
     STAssertEquals(class, [NSObject class], @"All the mappings should be to NSObject.");
   }
 
-  class = [NICellFactory classFromKeyClass:NSNumber.class map:map];
+  class = [NICellFactory objectFromKeyClass:NSNumber.class map:map];
   STAssertNil(class, @"NSNumber should not be mapped.");
   STAssertEquals(map.count, (NSUInteger)3, @"Should now be three classes mapped.");
 
-  class = [NICellFactory classFromKeyClass:NSNumber.class map:map];
+  class = [NICellFactory objectFromKeyClass:NSNumber.class map:map];
   STAssertNil(class, @"NSNumber should still not be mapped.");
   STAssertEquals(map.count, (NSUInteger)3, @"Should now be three classes mapped.");
 }
