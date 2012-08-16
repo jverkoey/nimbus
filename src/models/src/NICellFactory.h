@@ -183,7 +183,7 @@ _model.delegate = (id)[NICellFactory class];
 + (id)objectWithCellClass:(Class)cellClass userInfo:(id)userInfo;
 + (id)objectWithCellClass:(Class)cellClass;
 
-@property (nonatomic, readonly, retain) id userInfo;
+@property (nonatomic, readonly) id userInfo;
 
 @end
 

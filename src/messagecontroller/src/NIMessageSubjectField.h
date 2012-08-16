@@ -1,5 +1,5 @@
 //
-// Copyright 2011-2012 Jeff Verkoeyen
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,17 +14,14 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+// UI
+#import "NIMessageTextField.h"
 
-<<<<<<< HEAD:src/core/src/UIView+NimbusCore.h
-@interface UIView (NimbusCore)
+/**
+ * A field for the subject of the message. This field's value is used to set
+ * the title in the navigation bar. You should only have one of these fields
+ * in your fields array.
+ */
+@interface NIMessageSubjectField : NIMessageTextField
 
-- (void)centerWithin:(UIView *)otherView;
-- (UIView*)descendantOrSelfWithClass:(Class)cls;
-- (UIView*)ancestorOrSelfWithClass:(Class)cls;
-
-=======
-// All docs are in the .m.
-@interface ActionsTableModelViewController : UITableViewController
->>>>>>> master:examples/catalog/Catalog/ActionsTableModelViewController.h
 @end

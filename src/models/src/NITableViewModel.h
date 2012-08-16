@@ -71,7 +71,11 @@ typedef enum {
 
 #pragma mark Creating Table View Cells
 
+<<<<<<< HEAD
+@property (nonatomic, readwrite, unsafe_unretained) id<NITableViewModelDelegate> delegate;
+=======
 @property (nonatomic, assign) id<NITableViewModelDelegate> delegate;
+>>>>>>> master
 
 #if NS_BLOCKS_AVAILABLE
 // If both the delegate and this block are provided, cells returned by this block will be used

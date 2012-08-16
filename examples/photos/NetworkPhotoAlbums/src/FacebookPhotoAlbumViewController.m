@@ -55,7 +55,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void (^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))blockForAlbumProcessing {
-  return ^(NSURLRequest *request, NSHTTPURLResponse *response, id object) {
+  return [^(NSURLRequest *request, NSHTTPURLResponse *response, id object) {
     NSArray* data = [object objectForKey:@"data"];
     
     NSMutableArray* photoInformation = [NSMutableArray arrayWithCapacity:[data count]];
@@ -108,7 +108,7 @@
     [self loadThumbnails];
     [self.photoAlbumView reloadData];
     [self.photoScrubberView reloadData];
-  };
+  } copy];
 }
 
 

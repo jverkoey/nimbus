@@ -175,8 +175,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NICellObject()
+<<<<<<< HEAD
+@property (nonatomic, readwrite, unsafe_unretained) Class cellClass;
+@property (nonatomic, readwrite) id userInfo;
+=======
 @property (nonatomic, assign) Class cellClass;
 @property (nonatomic, retain) id userInfo;
+>>>>>>> master
 @end
 
 

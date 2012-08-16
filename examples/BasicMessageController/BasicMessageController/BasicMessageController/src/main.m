@@ -1,5 +1,5 @@
 //
-// Copyright 2011-2012 Jeff Verkoeyen
+// Copyright 2012 Taknology, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,15 +16,9 @@
 
 #import <UIKit/UIKit.h>
 
-<<<<<<< HEAD:src/core/src/UIView+NimbusCore.h
-@interface UIView (NimbusCore)
-
-- (void)centerWithin:(UIView *)otherView;
-- (UIView*)descendantOrSelfWithClass:(Class)cls;
-- (UIView*)ancestorOrSelfWithClass:(Class)cls;
-
-=======
-// All docs are in the .m.
-@interface ActionsTableModelViewController : UITableViewController
->>>>>>> master:examples/catalog/Catalog/ActionsTableModelViewController.h
-@end
+int main(int argc, char *argv[]) {
+  @autoreleasepool {
+    int retVal = UIApplicationMain(argc, argv, nil, @"AppDelegate");
+    return retVal;
+  }
+}

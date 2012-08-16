@@ -1,5 +1,5 @@
 //
-// Copyright 2011-2012 Jeff Verkoeyen
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,17 +14,20 @@
 // limitations under the License.
 //
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-<<<<<<< HEAD:src/core/src/UIView+NimbusCore.h
-@interface UIView (NimbusCore)
+#import "NISearchTextField.h"
 
-- (void)centerWithin:(UIView *)otherView;
-- (UIView*)descendantOrSelfWithClass:(Class)cls;
-- (UIView*)ancestorOrSelfWithClass:(Class)cls;
+//@class NISearchTextField;
 
-=======
-// All docs are in the .m.
-@interface ActionsTableModelViewController : UITableViewController
->>>>>>> master:examples/catalog/Catalog/ActionsTableModelViewController.h
+@interface NISearchTextFieldInternal : NSObject <NISearchTextFieldDelegate> {
+    NISearchTextField*      _textField;
+}
+
+@property (nonatomic, assign) id<NISearchTextFieldDelegate> delegate;
+
+
+- (id)initWithTextField:(NISearchTextField*)textField;
+
 @end

@@ -58,10 +58,17 @@
 + (id)passwordInputElementWithID:(NSInteger)elementID placeholderText:(NSString *)placeholderText value:(NSString *)value delegate:(id<UITextFieldDelegate>)delegate;
 + (id)passwordInputElementWithID:(NSInteger)elementID placeholderText:(NSString *)placeholderText value:(NSString *)value;
 
+<<<<<<< HEAD
+@property (nonatomic, readwrite, copy) NSString* placeholderText;
+@property (nonatomic, readwrite, copy) NSString* value;
+@property (nonatomic, readwrite, assign) BOOL isPassword;
+@property (nonatomic, readwrite, unsafe_unretained) id<UITextFieldDelegate> delegate;
+=======
 @property (nonatomic, copy) NSString* placeholderText;
 @property (nonatomic, copy) NSString* value;
 @property (nonatomic, assign) BOOL isPassword;
 @property (nonatomic, assign) id<UITextFieldDelegate> delegate;
+>>>>>>> master
 
 @end
 
@@ -81,10 +88,17 @@
 + (id)switchElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(BOOL)value didChangeTarget:(id)target didChangeSelector:(SEL)selector;
 + (id)switchElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(BOOL)value;
 
+<<<<<<< HEAD
+@property (nonatomic, readwrite, copy) NSString* labelText;
+@property (nonatomic, readwrite, assign) BOOL value;
+@property (nonatomic, readwrite, unsafe_unretained) id didChangeTarget;
+@property (nonatomic, readwrite, assign) SEL didChangeSelector;
+=======
 @property (nonatomic, copy) NSString* labelText;
 @property (nonatomic, assign) BOOL value;
 @property (nonatomic, assign) id didChangeTarget;
 @property (nonatomic, assign) SEL didChangeSelector;
+>>>>>>> master
 
 @end
 
@@ -104,12 +118,21 @@
 + (id)sliderElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(float)value minimumValue:(float)minimumValue maximumValue:(float)maximumValue didChangeTarget:(id)target didChangeSelector:(SEL)selector;
 + (id)sliderElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(float)value minimumValue:(float)minimumValue maximumValue:(float)maximumValue;
 
+<<<<<<< HEAD
+@property (nonatomic, readwrite, copy) NSString* labelText;
+@property (nonatomic, readwrite, assign) float value;
+@property (nonatomic, readwrite, assign) float minimumValue;
+@property (nonatomic, readwrite, assign) float maximumValue;
+@property (nonatomic, readwrite, unsafe_unretained) id didChangeTarget;
+@property (nonatomic, readwrite, assign) SEL didChangeSelector;
+=======
 @property (nonatomic, copy) NSString* labelText;
 @property (nonatomic, assign) float value;
 @property (nonatomic, assign) float minimumValue;
 @property (nonatomic, assign) float maximumValue;
 @property (nonatomic, assign) id didChangeTarget;
 @property (nonatomic, assign) SEL didChangeSelector;
+>>>>>>> master
 
 @end
 
@@ -219,7 +242,7 @@
  *      @ingroup TableCellCatalog
  */
 @interface NIFormElementCell : UITableViewCell <NICell>
-@property (nonatomic, readonly, retain) NIFormElement* element;
+@property (nonatomic, readonly) NIFormElement* element;
 @end
 
 /**
@@ -232,7 +255,7 @@
  *      @ingroup TableCellCatalog
  */
 @interface NITextInputFormElementCell : NIFormElementCell <UITextFieldDelegate>
-@property (nonatomic, readonly, retain) UITextField* textField;
+@property (nonatomic, readonly) UITextField* textField;
 @end
 
 /**
@@ -245,7 +268,7 @@
  *      @ingroup TableCellCatalog
  */
 @interface NISwitchFormElementCell : NIFormElementCell <UITextFieldDelegate>
-@property (nonatomic, readonly, retain) UISwitch* switchControl;
+@property (nonatomic, readonly) UISwitch* switchControl;
 @end
 
 /**
@@ -258,7 +281,7 @@
  *      @ingroup TableCellCatalog
  */
 @interface NISliderFormElementCell : NIFormElementCell <UITextFieldDelegate>
-@property (nonatomic, readonly, retain) UISlider* sliderControl;
+@property (nonatomic, readonly) UISlider* sliderControl;
 @end
 
 @interface NITableViewModel (NIFormElementSearch)
