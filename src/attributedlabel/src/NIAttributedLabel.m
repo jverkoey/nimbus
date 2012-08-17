@@ -109,6 +109,7 @@ static const CGFloat kTouchGutter = 22;
 @synthesize highlightedLinkBackgroundColor = _highlightedLinkBackgroundColor;
 @synthesize linksHaveUnderlines = _linksHaveUnderlines;
 @synthesize attributesForLinks = _attributesForLinks;
+@synthesize images;
 @synthesize delegate = _delegate;
 
 
@@ -1058,7 +1059,7 @@ static const CGFloat kTouchGutter = 22;
       CTRunDelegateRef delegate = CTRunDelegateCreate(&callbacks, (__bridge void *)labelImage);
 
       NSMutableAttributedString* space = [[NSMutableAttributedString alloc] initWithString:@" "];
-      CFAttributedStringSetAttribute((CFMutableAttributedStringRef)space, CFRangeMake(0, 1), kCTRunDelegateAttributeName, delegate);
+      CFAttributedStringSetAttribute((__bridge CFMutableAttributedStringRef)space, CFRangeMake(0, 1), kCTRunDelegateAttributeName, delegate);
       [attributedString insertAttributedString:space atIndex:labelImage.index];
     }
   }
