@@ -366,7 +366,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     if (![self isDisplayingPageForIndex:_centerPageIndex]) {
       [self displayPageAtIndex:_centerPageIndex];
     }
-      
+
     // Add missing pages.
     for (int pageIndex = visiblePageRange.location;
          pageIndex < (NSInteger)NSMaxRange(visiblePageRange); ++pageIndex) {
@@ -431,12 +431,14 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+  [self updateVisiblePagesAnimated:NO];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
   if (!_isModifyingContentOffset) {
-    // This method is called repeatedly as the user scrolls so updateVisiblePages must be
-    // light-weight enough not to noticeably impact performance.
-    [self updateVisiblePagesAnimated:NO];
-
     if ([self.delegate respondsToSelector:@selector(pagingScrollViewDidScroll:)]) {
       [self.delegate pagingScrollViewDidScroll:self];
     }
@@ -451,6 +453,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
   if (!decelerate) {
+    [self updateVisiblePagesAnimated:NO];
     [self resetSurroundingPages];
   }
 
@@ -462,6 +465,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+  [self updateVisiblePagesAnimated:NO];
   [self resetSurroundingPages];
   
   if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
