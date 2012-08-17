@@ -800,7 +800,7 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTap:(UIGestureRecognizer *)gesture {
   UIViewController* rootController = [UIApplication sharedApplication].keyWindow.rootViewController;
-  if ([rootController isKindOfClass:[UINavigationController class]]) {
+  if ([rootController respondsToSelector:@selector(pushViewController:animated:)]) {
     // We want a weak dependency on the overview memory cache controller so that we don't force
     // a dependency on the models feature.
     Class class = NSClassFromString(@"NIOverviewMemoryCacheController");
@@ -813,7 +813,7 @@ static const CGFloat kGraphRightMargin = 5;
       UIViewController* controller = [instance performSelector:initSelector withObject:self.cache];
 #pragma clang diagnostic pop
       controller.title = @"Memory Cache";
-      [(UINavigationController *)rootController pushViewController:controller animated:YES];
+      [(id)rootController pushViewController:controller animated:YES];
     }
   }
 }
