@@ -93,6 +93,10 @@ typedef enum {
 - (void)setStrokeColor:(UIColor *)color range:(NSRange)range;
 - (void)setTextKern:(CGFloat)kern range:(NSRange)range;
 
+- (void)insertImage:(UIImage *)image atIndex:(NSInteger)index;
+- (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins;
+- (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins verticalTextAlignment:(NIVerticalTextAlignment)verticalTextAlignment;
+
 @property (nonatomic, assign) IBOutlet id<NIAttributedLabelDelegate> delegate;
 @end
 
@@ -376,6 +380,44 @@ typedef enum {
  * A positive kern indicates a shift farther away. A negative kern indicates a shift closer.
  *
  *      @fn NIAttributedLabel::setTextKern:range:
+ */
+
+/** @name Adding Inline Images */
+
+/**
+ * Inserts the given image inline at the given index in the receiver's text.
+ *
+ * The image will have no margins.
+ * The image's vertical text alignment will be NIVerticalTextAlignmentBottom.
+ *
+ *      @param image The image to add to the receiver.
+ *      @param index The index into the receiver's text at which to insert the image.
+ *      @fn NIAttributedLabel::insertImage:atIndex:
+ */
+
+/**
+ * Inserts the given image inline at the given index in the receiver's text.
+ *
+ * The image's vertical text alignment will be NIVerticalTextAlignmentBottom.
+ *
+ *      @param image The image to add to the receiver.
+ *      @param index The index into the receiver's text at which to insert the image.
+ *      @param margins The space around the image on all sides in points.
+ *      @fn NIAttributedLabel::insertImage:atIndex:margins:
+ */
+
+/**
+ * Inserts the given image inline at the given index in the receiver's text.
+ *
+ *      @attention
+ *      Images do not currently support NIVerticalTextAlignmentTop and the receiver will fire
+ *      multiple debug assertions if you attempt to use it.
+ *
+ *      @param image The image to add to the receiver.
+ *      @param index The index into the receiver's text at which to insert the image.
+ *      @param margins The space around the image on all sides in points.
+ *      @param verticalTextAlignment The position of the text relative to the image.
+ *      @fn NIAttributedLabel::insertImage:atIndex:margins:verticalTextAlignment:
  */
 
 /** @name Accessing the Delegate */

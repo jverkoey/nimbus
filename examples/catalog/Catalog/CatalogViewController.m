@@ -21,6 +21,7 @@
 #import "CustomTextAttributedLabelViewController.h"
 #import "LinksAttributedLabelViewController.h"
 #import "DataTypesAttributedLabelViewController.h"
+#import "ImagesAttributedLabelViewController.h"
 #import "PerformanceAttributedLabelViewController.h"
 #import "LongTapAttributedLabelViewController.h"
 #import "InterfaceBuilderAttributedLabelViewController.h"
@@ -163,6 +164,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Data Types"
                                    subtitle:@"Detecting different data types"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([ImagesAttributedLabelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Images"
+                                   subtitle:@"Adding inline images"]],
      [_actions attachNavigationAction:
       NIPushControllerAction([PerformanceAttributedLabelViewController class])
                              toObject:

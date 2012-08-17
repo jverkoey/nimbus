@@ -20,6 +20,7 @@
 		661F293315929E2300D11FC3 /* ApplicationBadges.xib in Resources */ = {isa = PBXBuildFile; fileRef = 661F293115929E2300D11FC3 /* ApplicationBadges.xib */; };
 		6633C7EF158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6633C7EE158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m */; };
 		6633C7F2158F08EA0054D240 /* AttributedLabelMashup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6633C7F1158F08EA0054D240 /* AttributedLabelMashup.xib */; };
+		6633D21F15DDBD4100A4B07E /* ImagesAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6633D21E15DDBD4100A4B07E /* ImagesAttributedLabelViewController.m */; };
 		66559AFA15C8BE6800ED9047 /* ActionsTableModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66559AF915C8BE6800ED9047 /* ActionsTableModelViewController.m */; };
 		66559AFE15CC3F9B00ED9047 /* ModalRadioGroupTableModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66559AFD15CC3F9B00ED9047 /* ModalRadioGroupTableModelViewController.m */; };
 		6677FEBD15AB8A0300517ABC /* BasicInstantiationTableModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6677FEBC15AB8A0300517ABC /* BasicInstantiationTableModelViewController.m */; };
@@ -145,6 +146,8 @@
 		6633C7ED158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterfaceBuilderAttributedLabelViewController.h; sourceTree = "<group>"; };
 		6633C7EE158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterfaceBuilderAttributedLabelViewController.m; sourceTree = "<group>"; };
 		6633C7F1158F08EA0054D240 /* AttributedLabelMashup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttributedLabelMashup.xib; sourceTree = "<group>"; };
+		6633D21D15DDBD4100A4B07E /* ImagesAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesAttributedLabelViewController.h; sourceTree = "<group>"; };
+		6633D21E15DDBD4100A4B07E /* ImagesAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesAttributedLabelViewController.m; sourceTree = "<group>"; };
 		66559AF815C8BE6800ED9047 /* ActionsTableModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionsTableModelViewController.h; sourceTree = "<group>"; };
 		66559AF915C8BE6800ED9047 /* ActionsTableModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionsTableModelViewController.m; sourceTree = "<group>"; };
 		66559AFC15CC3F9B00ED9047 /* ModalRadioGroupTableModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalRadioGroupTableModelViewController.h; sourceTree = "<group>"; };
@@ -664,6 +667,8 @@
 				669A15CC158D318B00A0990A /* LinksAttributedLabelViewController.m */,
 				669A15D1158E6C7C00A0990A /* DataTypesAttributedLabelViewController.h */,
 				669A15D2158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m */,
+				6633D21D15DDBD4100A4B07E /* ImagesAttributedLabelViewController.h */,
+				6633D21E15DDBD4100A4B07E /* ImagesAttributedLabelViewController.m */,
 				669A15D4158E81D200A0990A /* PerformanceAttributedLabelViewController.h */,
 				669A15D5158E81D200A0990A /* PerformanceAttributedLabelViewController.m */,
 				66B6692D159BD22500FE4AE8 /* LongTapAttributedLabelViewController.h */,
@@ -971,6 +976,7 @@
 				66559AFE15CC3F9B00ED9047 /* ModalRadioGroupTableModelViewController.m in Sources */,
 				669819DF159B953A00C2D3EF /* NISnapshotRotation.m in Sources */,
 				6613335E15D3A66B00369333 /* SnapshotRotationTableViewController.m in Sources */,
+				6633D21F15DDBD4100A4B07E /* ImagesAttributedLabelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
