@@ -28,6 +28,11 @@
 @property (nonatomic, readwrite, retain) NILinkedList* lruCacheObjects;
 @end
 
+// Anonymous private category for LRU cache objects.
+@interface NSObject(Private)
+- (NSDate *)lastAccessTime;
+@end
+
 @interface NIOverviewMemoryCacheController()
 @property (nonatomic, readonly, retain) NIMemoryCache* cache;
 @property (nonatomic, readwrite, retain) NITableViewModel* model;
