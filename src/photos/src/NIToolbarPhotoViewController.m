@@ -174,6 +174,8 @@
 - (void)loadView {
   [super loadView];
 
+  self.view.backgroundColor = [UIColor blackColor];
+
   CGRect bounds = self.view.bounds;
 
   // Toolbar Setup

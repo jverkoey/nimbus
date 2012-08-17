@@ -82,9 +82,6 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
   self.pagingScrollView.delegate = self;
 
-  // Ensure that empty areas of the scroll view are draggable.
-  self.pagingScrollView.backgroundColor = [UIColor blackColor];
-
   self.pagingScrollView.showsVerticalScrollIndicator = NO;
   self.pagingScrollView.showsHorizontalScrollIndicator = NO;
 
