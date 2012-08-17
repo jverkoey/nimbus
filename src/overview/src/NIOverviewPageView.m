@@ -553,8 +553,8 @@ static const CGFloat kGraphRightMargin = 5;
   static NSDateFormatter* formatter = nil;
   if (nil == formatter) {
     formatter = [[NSDateFormatter alloc] init];
-    [formatter setTimeStyle:kCFDateFormatterShortStyle];
-    [formatter setDateStyle:kCFDateFormatterNoStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateStyle:NSDateFormatterNoStyle];
   }
 
   NSString* formattedLog = [NSString stringWithFormat:@"%@: %@",
