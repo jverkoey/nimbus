@@ -122,6 +122,45 @@
   [self.objectToCellMap setObject:cellClass forKey:(id<NSCopying>)objectClass];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath model:(NITableViewModel *)model {
+  CGFloat height = tableView.rowHeight;
+  id object = [model objectAtIndexPath:indexPath];
+  Class objectClass = [object class];
+  Class cellClass = [self.class objectFromKeyClass:objectClass map:self.objectToCellMap];
+  if (nil == cellClass && [object respondsToSelector:@selector(cellClass)]) {
+    cellClass = [object cellClass];
+  }
+  if ([cellClass respondsToSelector:@selector(heightForObject:atIndexPath:tableView:)]) {
+    CGFloat cellHeight = [cellClass heightForObject:object
+                                        atIndexPath:indexPath tableView:tableView];
+    if (cellHeight > 0) {
+      height = cellHeight;
+    }
+  }
+  return height;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath model:(NITableViewModel *)model {
+  CGFloat height = tableView.rowHeight;
+  id object = [model objectAtIndexPath:indexPath];
+  Class cellClass = nil;
+  if ([object respondsToSelector:@selector(cellClass)]) {
+    cellClass = [object cellClass];
+  }
+  if ([cellClass respondsToSelector:@selector(heightForObject:atIndexPath:tableView:)]) {
+    CGFloat cellHeight = [cellClass heightForObject:object
+                                        atIndexPath:indexPath tableView:tableView];
+    if (cellHeight > 0) {
+      height = cellHeight;
+    }
+  }
+  return height;
+}
+
 @end
 
 
