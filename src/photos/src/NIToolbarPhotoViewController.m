@@ -507,12 +507,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTapNextButton {
   [self.photoAlbumView moveToNextAnimated:self.animateMovingToNextAndPreviousPhotos];
+  
+  [self refreshChromeState];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTapPreviousButton {
   [self.photoAlbumView moveToPreviousAnimated:self.animateMovingToNextAndPreviousPhotos];
+
+  [self refreshChromeState];
 }
 
 
