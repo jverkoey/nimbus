@@ -476,6 +476,7 @@ typedef enum {
 #import <UIKit/UIKit.h>
 
 #import "NITableViewModel.h"
+#import "NIMutableTableViewModel.h"
 #import "NICellBackgrounds.h"
 #import "NICellCatalog.h"
 #import "NICellFactory.h"

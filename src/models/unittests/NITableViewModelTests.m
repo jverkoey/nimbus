@@ -20,6 +20,7 @@
 
 #import "NimbusCore.h"
 #import "NimbusModels.h"
+#import "NITableViewModel+Private.h"
 
 @interface NITableViewModelTests : SenTestCase {
 }
@@ -38,27 +39,28 @@
   NITableViewModel* model = [[NITableViewModel alloc] init];
 
   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should always be at least 1 section.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
+  STAssertEquals(model.sections.count, 0U, @"Should have zero sections.");
   
   model = [[NITableViewModel alloc] initWithListArray:nil delegate:nil];
   
   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should always be at least 1 section.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
   
   model = [[NITableViewModel alloc] initWithSectionedArray:nil delegate:nil];
   
   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should always be at least 1 section.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
   
   model = [[NITableViewModel alloc] initWithListArray:[NSArray array] delegate:nil];
   
   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should always be at least 1 section.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should be one empty section.");
   
   model = [[NITableViewModel alloc] initWithSectionedArray:[NSArray array] delegate:nil];
   
   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should be empty.");
-  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should always be at least 1 section.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
 }
 
 

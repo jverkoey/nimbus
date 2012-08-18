@@ -64,6 +64,7 @@
 #import "NetworkBlockCellsViewController.h"
 #import "BlockCellsViewController.h"
 #import "SnapshotRotationTableViewController.h"
+#import "MutableTableModelViewController.h"
 
 // Web Controller
 #import "ExtraActionsWebViewController.h"
@@ -348,6 +349,11 @@
                              toObject:
       [NISubtitleCellObject objectWithTitle:@"Snapshot Rotation"
                                    subtitle:@"Rotating table views with snapshots"]],
+     [_actions attachNavigationAction:
+      NIPushControllerAction([MutableTableModelViewController class])
+                             toObject:
+      [NISubtitleCellObject objectWithTitle:@"Mutable Models"
+                                   subtitle:@"Mutating table view models"]],
      
      @"Web Controller",
      [_actions attachNavigationAction:
@@ -422,6 +428,11 @@
   // Cool, eh? That this functionality is all provided to you in one line should make you
   // heel-click.
   self.tableView.delegate = [self.actions forwardingTo:self];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  NIPushControllerAction([MutableTableModelViewController class])(nil, self);
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
