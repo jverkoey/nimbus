@@ -30,7 +30,7 @@
 static UIEdgeInsets kPagePadding;
 static const CGFloat kGraphRightMargin = 5;
 
-@interface NSObject (Private)
+@interface NSObject ()
 - (id)initWithMemoryCache:(NIMemoryCache *)memoryCache;
 @end
 
