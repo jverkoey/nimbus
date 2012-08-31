@@ -77,6 +77,10 @@
   // If, however, you do wish to show underlines, you can enable them like so:
   label.linksHaveUnderlines = YES;
 
+  // Bug test code
+  label.linksHaveUnderlines = NO;
+  label.textColor = label.linkColor;
+    
   label.text =
   @"A screen on the dash flickers and displays an artist's rendition of the planet."
   // We can use \n characters to separate lines of text.
