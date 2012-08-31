@@ -83,7 +83,7 @@
   @"\nSigned beneath the image: tenach.deviantart.com"
   
   // Japanese
-  @"\n\n\nこんにちは、ニンバス！これはBugテストです。";
+  @"\n\n\nこんにちは、ニンバス！これはテストです。";
 
   NSRange linkRange = [label.text rangeOfString:@"an artist's rendition of the planet"];
 

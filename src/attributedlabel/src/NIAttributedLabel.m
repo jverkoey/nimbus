@@ -727,11 +727,13 @@ static const CGFloat kTouchGutter = 22;
     CGFloat ascent = 0.0f;
     CGFloat descent = 0.0f;
     CGFloat leading = 0.0f;
+    
+    // Use of 'leading' doesn't properly highlight Japanese-character link.
     CGFloat width = (CGFloat)CTRunGetTypographicBounds(run,
                                                        CFRangeMake(0, 0),
                                                        &ascent,
                                                        &descent,
-                                                       &leading);
+                                                       NULL); //&leading);
     CGFloat height = ascent + descent;
 
     CGFloat xOffset = CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, nil);
