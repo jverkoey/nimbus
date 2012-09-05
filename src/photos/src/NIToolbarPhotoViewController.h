@@ -123,6 +123,8 @@
 #pragma mark Subclassing
 
 - (void)setChromeVisibility:(BOOL)isVisible animated:(BOOL)animated;
+- (void)setChromeTitle;
+
 
 @end
 
