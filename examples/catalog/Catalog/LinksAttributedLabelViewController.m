@@ -80,7 +80,10 @@
   label.text =
   @"A screen on the dash flickers and displays an artist's rendition of the planet."
   // We can use \n characters to separate lines of text.
-  @"\nSigned beneath the image: tenach.deviantart.com";
+  @"\nSigned beneath the image: tenach.deviantart.com"
+  
+  // Japanese
+  @"\n\n\nこんにちは、ニンバス！これはテストです。";
 
   NSRange linkRange = [label.text rangeOfString:@"an artist's rendition of the planet"];
 
@@ -88,6 +91,10 @@
   [label addLink:[NSURL URLWithString:@"http://th04.deviantart.net/fs71/300W/f/2010/145/c/9/Planet_Concept_1_by_Tenach.jpg"]
            range:linkRange];
 
+  linkRange = [label.text rangeOfString:@"ニンバス"];
+  [label addLink:[NSURL URLWithString:@"https://github.com/jverkoey/nimbus"]
+           range:linkRange];
+    
   [self.view addSubview:label];
 }
 

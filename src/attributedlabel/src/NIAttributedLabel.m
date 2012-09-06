@@ -27,6 +27,7 @@
 static const CGFloat kVMargin = 5.0f;
 static const NSTimeInterval kLongPressTimeInterval = 0.5;
 static const CGFloat kLongPressGutter = 22;
+static NSString* const kLinkAttributedName = @"NIAttributedLabel:Link";
 
 // The touch gutter is the amount of space around a link that will still register as tapping
 // "within" the link.
@@ -727,11 +728,13 @@ static const CGFloat kTouchGutter = 22;
     CGFloat ascent = 0.0f;
     CGFloat descent = 0.0f;
     CGFloat leading = 0.0f;
+    
+    // Use of 'leading' doesn't properly highlight Japanese-character link.
     CGFloat width = (CGFloat)CTRunGetTypographicBounds(run,
                                                        CFRangeMake(0, 0),
                                                        &ascent,
                                                        &descent,
-                                                       &leading);
+                                                       NULL); //&leading);
     CGFloat height = ascent + descent;
 
     CGFloat xOffset = CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, nil);
@@ -1007,6 +1010,14 @@ static const CGFloat kTouchGutter = 22;
 - (void)_applyLinkStyleWithResults:(NSArray *)results toAttributedString:(NSMutableAttributedString *)attributedString {
   for (NSTextCheckingResult* result in results) {
     [attributedString setTextColor:self.linkColor range:result.range];
+
+    // We add a no-op attribute in order to force a run to exist for each link. Otherwise the
+    // runCount will be one in this line, causing the entire line to be highlighted rather than
+    // just the link when when no special attributes are set.
+    [attributedString addAttribute:kLinkAttributedName
+                             value:[NSNumber numberWithBool:YES]
+                             range:result.range];
+
     if (self.linksHaveUnderlines) {
       [attributedString setUnderlineStyle:kCTUnderlineStyleSingle
                                  modifier:kCTUnderlinePatternSolid
