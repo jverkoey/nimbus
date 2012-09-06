@@ -27,6 +27,7 @@
 static const CGFloat kVMargin = 5.0f;
 static const NSTimeInterval kLongPressTimeInterval = 0.5;
 static const CGFloat kLongPressGutter = 22;
+static NSString* const kLinkAttributedName = @"NIAttributedLabel:Link";
 
 // The touch gutter is the amount of space around a link that will still register as tapping
 // "within" the link.
@@ -1009,13 +1010,14 @@ static const CGFloat kTouchGutter = 22;
 - (void)_applyLinkStyleWithResults:(NSArray *)results toAttributedString:(NSMutableAttributedString *)attributedString {
   for (NSTextCheckingResult* result in results) {
     [attributedString setTextColor:self.linkColor range:result.range];
-      
-    // Adding custom attribute is required to count runCount correctly,
-    // or runCount will be 1 (highlighting whole sentence)
-    // when self.textColor is equal to self.linkColor, and
-    // none of the below attribute-adding methods are getting called.
-    [attributedString addAttribute:@"LINK" value:[NSNumber numberWithBool:YES] range:result.range];
-      
+
+    // We add a no-op attribute in order to force a run to exist for each link. Otherwise the
+    // runCount will be one in this line, causing the entire line to be highlighted rather than
+    // just the link when when no special attributes are set.
+    [attributedString addAttribute:kLinkAttributedName
+                             value:[NSNumber numberWithBool:YES]
+                             range:result.range];
+
     if (self.linksHaveUnderlines) {
       [attributedString setUnderlineStyle:kCTUnderlineStyleSingle
                                  modifier:kCTUnderlinePatternSolid

@@ -92,7 +92,6 @@
            range:linkRange];
 
   linkRange = [label.text rangeOfString:@"ニンバス"];
-  
   [label addLink:[NSURL URLWithString:@"https://github.com/jverkoey/nimbus"]
            range:linkRange];
     
