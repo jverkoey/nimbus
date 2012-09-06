@@ -80,10 +80,7 @@
   label.text =
   @"A screen on the dash flickers and displays an artist's rendition of the planet."
   // We can use \n characters to separate lines of text.
-  @"\nSigned beneath the image: tenach.deviantart.com"
-  
-  // Japanese
-  @"\n\n\nこんにちは、ニンバス！これはテストです。";
+  @"\nSigned beneath the image: tenach.deviantart.com";
 
   NSRange linkRange = [label.text rangeOfString:@"an artist's rendition of the planet"];
 
