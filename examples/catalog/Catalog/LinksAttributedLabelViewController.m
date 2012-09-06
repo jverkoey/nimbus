@@ -88,10 +88,6 @@
   [label addLink:[NSURL URLWithString:@"http://th04.deviantart.net/fs71/300W/f/2010/145/c/9/Planet_Concept_1_by_Tenach.jpg"]
            range:linkRange];
 
-  linkRange = [label.text rangeOfString:@"ニンバス"];
-  [label addLink:[NSURL URLWithString:@"https://github.com/jverkoey/nimbus"]
-           range:linkRange];
-    
   [self.view addSubview:label];
 }
 
