@@ -144,7 +144,7 @@
   }
 
   // Start the operation.
-
+  [_activeRequests addObject:identifierKey];
   [_queue addOperation:readOp];
 }
 
