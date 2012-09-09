@@ -53,7 +53,36 @@
 
   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 1, @"The model should have one row.");
   STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should only be one section.");
-  
+  STAssertEquals(model.sections.count, 1U, @"Should have one section.");
+
+  [model addObject:[NSNumber numberWithBool:NO]];
+
+  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 2, @"The model should have two rows.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should only be one section.");
+  STAssertEquals(model.sections.count, 1U, @"Should have one section.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testAddingObjects {
+  NIMutableTableViewModel* model = [[NIMutableTableViewModel alloc] initWithDelegate:nil];
+
+  [model addObjectsFromArray:[NSArray arrayWithObjects:
+                              [NSNumber numberWithBool:YES],
+                              [NSNumber numberWithBool:NO],
+                              nil]];
+
+  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 2, @"The model should have two rows.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should only be one section.");
+  STAssertEquals(model.sections.count, 1U, @"Should have one section.");
+
+  [model addObjectsFromArray:[NSArray arrayWithObjects:
+                              [NSNumber numberWithBool:YES],
+                              [NSNumber numberWithBool:NO],
+                              nil]];
+
+  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 4, @"The model should have four rows.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should only be one section.");
   STAssertEquals(model.sections.count, 1U, @"Should have one section.");
 }
 
@@ -71,6 +100,32 @@
   
   [model removeObjectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
   STAssertEquals([model tableView:nil numberOfRowsInSection:0], 2, @"The model should have two rows.");
+
+  [model removeObjectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+  [model removeObjectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The model should have zero rows.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 1, @"There should still be one section.");
+  STAssertEquals(model.sections.count, 1U, @"Should have one section.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testAddingSection {
+  NIMutableTableViewModel* model = [[NIMutableTableViewModel alloc] initWithDelegate:nil];
+
+  [model addObject:[NSNumber numberWithBool:YES]];
+  [model addSectionWithTitle:@"Section 2"];
+
+  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 1, @"The first section should have one row.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 2, @"There should be two sections.");
+  STAssertEquals(model.sections.count, 2U, @"Should have two sections.");
+  STAssertEquals([model tableView:nil numberOfRowsInSection:1], 0, @"The second section should have no rows.");
+
+  [model addObject:[NSNumber numberWithBool:YES]];
+
+  STAssertEquals([model tableView:nil numberOfRowsInSection:1], 1, @"The second section should have one row.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 2, @"There should be two sections.");
+  STAssertEquals(model.sections.count, 2U, @"Should have two sections.");
 }
 
 @end
