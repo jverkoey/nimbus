@@ -76,8 +76,8 @@ typedef enum {
 @property (nonatomic, strong) UIColor* linkColor; // Default: [UIColor blueColor]
 @property (nonatomic, strong) UIColor* highlightedLinkBackgroundColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
 @property (nonatomic, assign) BOOL linksHaveUnderlines; // Default: NO
-@property (nonatomic, strong) NSDictionary *attributesForLinks; // Default: nil
-@property (nonatomic, strong) NSDictionary *attributesForHighlightedLink; // Default: nil
+@property (nonatomic, copy) NSDictionary *attributesForLinks; // Default: nil
+@property (nonatomic, copy) NSDictionary *attributesForHighlightedLink; // Default: nil
 
 @property (nonatomic, assign) NIVerticalTextAlignment verticalTextAlignment; // Default: NIVerticalTextAlignmentTop
 @property (nonatomic, assign) CTUnderlineStyle underlineStyle;
