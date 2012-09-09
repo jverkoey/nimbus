@@ -42,6 +42,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSArray *)addObjectsFromArray:(NSArray *)array {
+  NSMutableArray* indices = [NSMutableArray array];
+  for (id object in array) {
+    [indices addObject:[self addObject:object]];
+  }
+  return indices;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)removeObjectAtIndexPath:(NSIndexPath *)indexPath {
   NIDASSERT(indexPath.section < self.sections.count);
   NITableViewModelSection* section = [self.sections objectAtIndex:indexPath.section];

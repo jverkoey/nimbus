@@ -16,9 +16,13 @@
 
 #import "NITableViewModel.h"
 
+/**
+ * The NIMutableTableViewModel class is a mutable table view model.
+ */
 @interface NIMutableTableViewModel : NITableViewModel
 
 - (NSArray *)addObject:(id)object;
+- (NSArray *)addObjectsFromArray:(NSArray *)array;
 - (NSArray *)removeObjectAtIndexPath:(NSIndexPath *)indexPath;
 
 - (NSIndexSet *)addSectionWithTitle:(NSString *)title;
