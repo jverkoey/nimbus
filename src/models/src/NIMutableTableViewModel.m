@@ -54,8 +54,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)removeObjectAtIndexPath:(NSIndexPath *)indexPath {
   NIDASSERT(indexPath.section < self.sections.count);
+  if (indexPath.section >= self.sections.count) {
+    return nil;
+  }
   NITableViewModelSection* section = [self.sections objectAtIndex:indexPath.section];
   NIDASSERT(indexPath.row < section.mutableRows.count);
+  if (indexPath.row >= section.mutableRows.count) {
+    return nil;
+  }
   [section.mutableRows removeObjectAtIndex:indexPath.row];
   return [NSArray arrayWithObject:indexPath];
 }
