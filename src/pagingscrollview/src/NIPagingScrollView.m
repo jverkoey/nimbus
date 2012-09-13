@@ -714,6 +714,17 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIView<NIPagingScrollViewPage> *)centerPageView {
+  for (UIView<NIPagingScrollViewPage>* page in _visiblePages) {
+    if (page.pageIndex == self.centerPageIndex) {
+      return page;
+    }
+  }
+  return nil;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setCenterPageIndex:(NSInteger)centerPageIndex {
   [self moveToPageAtIndex:centerPageIndex animated:NO];
 }
