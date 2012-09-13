@@ -321,7 +321,13 @@ static const CGSize kCellImageSize = {44, 44};
   }
 
   CGContextSaveGState(cx);
-  [self _applyPathToContext:cx rect:contentFrame isFirst:first isLast:last];
+  if (highlighted && !last) {
+    CGRect noBorderContentFrame = NIRectContract(contentFrame, 0, 1);
+    [self _applyPathToContext:cx rect:noBorderContentFrame isFirst:first isLast:last];
+
+  } else {
+    [self _applyPathToContext:cx rect:contentFrame isFirst:first isLast:last];
+  }
   CGContextFillPath(cx);
   CGContextRestoreGState(cx);
 
