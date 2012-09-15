@@ -556,6 +556,28 @@ static const CGFloat kTouchGutter = 22;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setHighlighted:(BOOL)highlighted {
+  BOOL didChange = self.highlighted != highlighted;
+  [super setHighlighted:highlighted];
+
+  if (didChange) {
+    [self attributedTextDidChange];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setHighlightedTextColor:(UIColor *)highlightedTextColor {
+  BOOL didChange = self.highlightedTextColor != highlightedTextColor;
+  [super setHighlightedTextColor:highlightedTextColor];
+
+  if (didChange) {
+    [self attributedTextDidChange];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)_matchesFromAttributedString:(NSString *)string {
   NSError* error = nil;
   NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:self.dataDetectorTypes
@@ -1099,6 +1121,10 @@ static const CGFloat kTouchGutter = 22;
       CFAttributedStringSetAttribute((__bridge CFMutableAttributedStringRef)space, CFRangeMake(0, 1), kCTRunDelegateAttributeName, delegate);
       [attributedString insertAttributedString:space atIndex:labelImage.index];
     }
+  }
+
+  if (self.isHighlighted) {
+    [attributedString setTextColor:self.highlightedTextColor];
   }
 
   return attributedString;
