@@ -40,6 +40,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   CGFloat _percentScrolledIntoFirstVisiblePage;
   BOOL _isModifyingContentOffset;
   BOOL _isAnimatingToPage;
+  BOOL _isKillingAnimation;
 }
 
 @property (nonatomic, retain) UIScrollView* pagingScrollView;
@@ -433,6 +434,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
   [self updateVisiblePagesAnimated:NO];
+  _isKillingAnimation = NO;
 }
 
 
@@ -447,11 +449,22 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   if ([self.delegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
     [self.delegate scrollViewDidScroll:scrollView];
   }
+
+  if (_isKillingAnimation) {
+    // The content size is calculated based on the number of pages and the scroll view frame.
+    _isModifyingContentOffset = YES;
+    CGPoint offset = [self frameForPageAtIndex:_centerPageIndex].origin;
+    offset = [self adjustOffsetWithMargin:offset];
+    self.pagingScrollView.contentOffset = offset;
+    _isModifyingContentOffset = NO;
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+  _isKillingAnimation = NO;
+
   if (!decelerate) {
     [self updateVisiblePagesAnimated:NO];
     [self resetSurroundingPages];
@@ -582,6 +595,8 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     offset = [self adjustOffsetWithMargin:offset];
     self.pagingScrollView.contentOffset = offset;
     _isModifyingContentOffset = NO;
+
+    _isKillingAnimation = YES;
   }
 
   // Begin requesting the page information from the data source.
