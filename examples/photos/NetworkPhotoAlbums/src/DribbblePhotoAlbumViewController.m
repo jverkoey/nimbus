@@ -82,6 +82,8 @@
     [self loadThumbnails];
     [self.photoAlbumView reloadData];
     [self.photoScrubberView reloadData];
+
+    [self refreshChromeState];
   };
 }
 

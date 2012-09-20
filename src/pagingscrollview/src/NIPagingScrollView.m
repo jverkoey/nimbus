@@ -343,7 +343,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)updateVisiblePagesAnimated:(BOOL)animated {
+- (void)updateVisiblePagesShouldNotifyDelegate:(BOOL)shouldNotifyDelegate {
   NSRange visiblePageRange = [self visiblePageRange];
 
   // Recycle no-longer-visible pages. We copy _visiblePages because we may modify it while we're
@@ -380,7 +380,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     _centerPageIndex = -1;
   }
 
-  if (!animated && oldCenterPageIndex != _centerPageIndex
+  if (shouldNotifyDelegate && oldCenterPageIndex != _centerPageIndex
       && [self.delegate respondsToSelector:@selector(pagingScrollViewDidChangePages:)]) {
     [self.delegate pagingScrollViewDidChangePages:self];
   }
@@ -434,7 +434,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-  [self updateVisiblePagesAnimated:NO];
+  [self updateVisiblePagesShouldNotifyDelegate:YES];
   _isKillingAnimation = NO;
 }
 
@@ -467,7 +467,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   _isKillingAnimation = NO;
 
   if (!decelerate) {
-    [self updateVisiblePagesAnimated:NO];
+    [self updateVisiblePagesShouldNotifyDelegate:YES];
     [self resetSurroundingPages];
   }
 
@@ -479,7 +479,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-  [self updateVisiblePagesAnimated:NO];
+  [self updateVisiblePagesShouldNotifyDelegate:YES];
   [self resetSurroundingPages];
   
   if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
@@ -601,7 +601,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   }
 
   // Begin requesting the page information from the data source.
-  [self updateVisiblePagesAnimated:NO];
+  [self updateVisiblePagesShouldNotifyDelegate:NO];
 }
 
 
@@ -678,7 +678,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   self.pagingScrollView.contentOffset = offset;
   _isModifyingContentOffset = NO;
 
-  [self updateVisiblePagesAnimated:YES];
+  [self updateVisiblePagesShouldNotifyDelegate:NO];
 }
 
 
