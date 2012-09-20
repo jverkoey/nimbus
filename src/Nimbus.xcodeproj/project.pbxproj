@@ -644,10 +644,10 @@
 		443589C21551909E00757E50 /* UIToolbar+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIToolbar+NIStyleable.m"; path = "css/src/UIToolbar+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		6607851B14D245BE00FE3283 /* NINetworkActivityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINetworkActivityTests.m; sourceTree = "<group>"; };
 		6607851F14D33EA900FE3283 /* NIStateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIStateTests.m; sourceTree = "<group>"; };
+		661BC070160B95120049E5B7 /* CONTRIBUTING.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = CONTRIBUTING.mdown; path = ../CONTRIBUTING.mdown; sourceTree = "<group>"; };
 		661F28AA1591B03400D11FC3 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = badge/deps; sourceTree = SOURCE_ROOT; };
 		6623EB6C1402ECE400E0E61A /* NITableViewModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewModelTests.m; sourceTree = "<group>"; };
 		6626330B14995C4600B99898 /* NITableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NITableViewModel+Private.h"; sourceTree = "<group>"; };
-		66325D5613EB0301008D6EAD /* HACKERS.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = HACKERS.mdown; path = ../HACKERS.mdown; sourceTree = "<group>"; };
 		66325D5713EB0302008D6EAD /* README.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.mdown; path = ../README.mdown; sourceTree = "<group>"; };
 		663B523F1445052700CC26DF /* libNimbusPagingScrollView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusPagingScrollView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		663B524C1445052800CC26DF /* NimbusPagingScrollViewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusPagingScrollViewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1590,7 +1590,7 @@
 			isa = PBXGroup;
 			children = (
 				66325D5713EB0302008D6EAD /* README.mdown */,
-				66325D5613EB0301008D6EAD /* HACKERS.mdown */,
+				661BC070160B95120049E5B7 /* CONTRIBUTING.mdown */,
 				66A03CBA13E6F03600B514F3 /* Doxygen.h */,
 				66A03DFB13E6FE1700B514F3 /* AUTHORS */,
 				66A03DFC13E6FE1800B514F3 /* DONORS */,
