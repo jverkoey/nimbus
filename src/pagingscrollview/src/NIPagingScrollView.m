@@ -41,6 +41,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   BOOL _isModifyingContentOffset;
   BOOL _isAnimatingToPage;
   BOOL _isKillingAnimation;
+  NSInteger _animatingToPageIndex;
 }
 
 @property (nonatomic, retain) UIScrollView* pagingScrollView;
@@ -663,6 +664,10 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didAnimateToPage:(NSNumber *)pageIndex {
   _isAnimatingToPage = NO;
+  if (_animatingToPageIndex != -1 && _animatingToPageIndex != [pageIndex integerValue]) {
+    [self moveToPageAtIndex:_animatingToPageIndex animated:YES];
+    return;
+  }
 
   // Reset the content offset once the animation completes, just to be sure that the
   // viewer sits on a page bounds even if we rotate the device while animating.
@@ -681,8 +686,10 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 - (BOOL)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated {
   if (_isAnimatingToPage) {
     // Don't allow re-entry for sliding animations.
+    _animatingToPageIndex = pageIndex;
     return NO;
   }
+  _animatingToPageIndex = -1;
 
   CGPoint offset = [self frameForPageAtIndex:pageIndex].origin;
   offset = [self adjustOffsetWithMargin:offset];
