@@ -110,6 +110,7 @@ static const CGFloat kTouchGutter = 22;
 @synthesize highlightedLinkBackgroundColor = _highlightedLinkBackgroundColor;
 @synthesize linksHaveUnderlines = _linksHaveUnderlines;
 @synthesize attributesForLinks = _attributesForLinks;
+@synthesize attributesForHighlightedLink = _attributesForHighlightedLink;
 @synthesize images;
 @synthesize delegate = _delegate;
 
@@ -527,6 +528,16 @@ static const CGFloat kTouchGutter = 22;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setAttributesForHighlightedLink:(NSDictionary *)attributesForHighlightedLink {
+  if (_attributesForHighlightedLink != attributesForHighlightedLink) {
+    _attributesForHighlightedLink = attributesForHighlightedLink;
+
+    [self attributedTextDidChange];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setExplicitLinkLocations:(NSMutableArray *)explicitLinkLocations {
   if (_explicitLinkLocations != explicitLinkLocations) {
     _explicitLinkLocations = explicitLinkLocations;
@@ -540,6 +551,28 @@ static const CGFloat kTouchGutter = 22;
   if (_detectedlinkLocations != detectedlinkLocations) {
     _detectedlinkLocations = detectedlinkLocations;
     self.accessibleElements = nil;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setHighlighted:(BOOL)highlighted {
+  BOOL didChange = self.highlighted != highlighted;
+  [super setHighlighted:highlighted];
+
+  if (didChange) {
+    [self attributedTextDidChange];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setHighlightedTextColor:(UIColor *)highlightedTextColor {
+  BOOL didChange = self.highlightedTextColor != highlightedTextColor;
+  [super setHighlightedTextColor:highlightedTextColor];
+
+  if (didChange) {
+    [self attributedTextDidChange];
   }
 }
 
@@ -825,6 +858,18 @@ static const CGFloat kTouchGutter = 22;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setTouchedLink:(NSTextCheckingResult *)touchedLink {
+  if (_touchedLink != touchedLink) {
+    _touchedLink = touchedLink;
+
+    if (self.attributesForHighlightedLink.count > 0) {
+      [self attributedTextDidChange];
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesBegan:touches withEvent:event];
 
@@ -1027,6 +1072,9 @@ static const CGFloat kTouchGutter = 22;
     if (self.attributesForLinks.count > 0) {
       [attributedString addAttributes:self.attributesForLinks range:result.range];
     }
+    if (self.attributesForHighlightedLink.count > 0 && result == self.touchedLink) {
+      [attributedString addAttributes:self.attributesForHighlightedLink range:result.range];
+    }
   }
 }
 
@@ -1073,6 +1121,10 @@ static const CGFloat kTouchGutter = 22;
       CFAttributedStringSetAttribute((__bridge CFMutableAttributedStringRef)space, CFRangeMake(0, 1), kCTRunDelegateAttributeName, delegate);
       [attributedString insertAttributedString:space atIndex:labelImage.index];
     }
+  }
+
+  if (self.isHighlighted) {
+    [attributedString setTextColor:self.highlightedTextColor];
   }
 
   return attributedString;
