@@ -689,6 +689,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     _animatingToPageIndex = pageIndex;
     return NO;
   }
+  _isKillingAnimation = NO;
   _animatingToPageIndex = -1;
 
   CGPoint offset = [self frameForPageAtIndex:pageIndex].origin;
