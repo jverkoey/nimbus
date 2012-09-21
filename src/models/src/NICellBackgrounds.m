@@ -355,7 +355,7 @@ static const CGSize kCellImageSize = {44, 44};
   }
 
   // Draw the cell divider.
-  if (!highlighted && !last) {
+  if (!last) {
     CGContextSaveGState(cx);
     CGContextSetLineWidth(cx, kBorderSize);
     CGContextSetStrokeColorWithColor(cx, self.dividerColor.CGColor);
