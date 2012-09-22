@@ -310,7 +310,7 @@
         if ([[UIImage class] respondsToSelector:@selector(imageWithCGImage:scale:orientation:)]) {
           resultImage = [UIImage imageWithCGImage: resultImageRef
                                             scale: screenScale
-                                      orientation: UIImageOrientationUp];
+                                      orientation: src.imageOrientation];
 
         } else {
           resultImage = [UIImage imageWithCGImage: resultImageRef];

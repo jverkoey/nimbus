@@ -60,6 +60,7 @@ typedef enum {
 
 #pragma mark State
 
+- (UIView<NIPagingScrollViewPage> *)centerPageView;
 @property (nonatomic, assign) NSInteger centerPageIndex; // Use moveToPageAtIndex:animated: to animate to a given page.
 
 @property (nonatomic, readonly, assign) NSInteger numberOfPages;
@@ -159,6 +160,14 @@ typedef enum {
 
 
 /** @name State */
+
+/**
+ * The current center page view.
+ *
+ * If no pages exist then this will return nil.
+ *
+ *      @fn NIPagingScrollView::centerPageView
+ */
 
 /**
  * The current center page index.

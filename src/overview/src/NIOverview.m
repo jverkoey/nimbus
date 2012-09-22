@@ -75,8 +75,8 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
   static NSDateFormatter* formatter = nil;
   if (nil == formatter) {
     formatter = [[NSDateFormatter alloc] init];
-    [formatter setTimeStyle:kCFDateFormatterMediumStyle];
-    [formatter setDateStyle:kCFDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterMediumStyle];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
   }
 
   // Don't autorelease here in an attempt to minimize autorelease thrashing in tight
