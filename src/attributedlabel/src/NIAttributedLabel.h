@@ -76,7 +76,8 @@ typedef enum {
 @property (nonatomic, strong) UIColor* linkColor; // Default: [UIColor blueColor]
 @property (nonatomic, strong) UIColor* highlightedLinkBackgroundColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
 @property (nonatomic, assign) BOOL linksHaveUnderlines; // Default: NO
-@property (nonatomic, strong) NSDictionary *attributesForLinks; // Default: nil
+@property (nonatomic, copy) NSDictionary *attributesForLinks; // Default: nil
+@property (nonatomic, copy) NSDictionary *attributesForHighlightedLink; // Default: nil
 
 @property (nonatomic, assign) NIVerticalTextAlignment verticalTextAlignment; // Default: NIVerticalTextAlignmentTop
 @property (nonatomic, assign) CTUnderlineStyle underlineStyle;
@@ -92,6 +93,10 @@ typedef enum {
 - (void)setStrokeWidth:(CGFloat)width range:(NSRange)range;
 - (void)setStrokeColor:(UIColor *)color range:(NSRange)range;
 - (void)setTextKern:(CGFloat)kern range:(NSRange)range;
+
+- (void)insertImage:(UIImage *)image atIndex:(NSInteger)index;
+- (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins;
+- (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins verticalTextAlignment:(NIVerticalTextAlignment)verticalTextAlignment;
 
 @property (nonatomic, assign) IBOutlet id<NIAttributedLabelDelegate> delegate;
 @end
@@ -253,9 +258,18 @@ typedef enum {
  * A dictionary of CoreText attributes to apply to links.
  *
  * This dictionary must contain CoreText attributes. These attributes are applied after the color
- * and link styles have been applied to the link.
+ * and underline styles have been applied to the link.
  *
  *      @fn NIAttributedLabel::attributesForLinks
+ */
+
+/**
+ * A dictionary of CoreText attributes to apply to the highlighted link.
+ *
+ * This dictionary must contain CoreText attributes. These attributes are applied after
+ * attributesForLinks have been applied to the highlighted link.
+ *
+ *      @fn NIAttributedLabel::attributesForHighlightedLink
  */
 
 /** @name Modifying Rich Text Styles for All Text */
@@ -376,6 +390,44 @@ typedef enum {
  * A positive kern indicates a shift farther away. A negative kern indicates a shift closer.
  *
  *      @fn NIAttributedLabel::setTextKern:range:
+ */
+
+/** @name Adding Inline Images */
+
+/**
+ * Inserts the given image inline at the given index in the receiver's text.
+ *
+ * The image will have no margins.
+ * The image's vertical text alignment will be NIVerticalTextAlignmentBottom.
+ *
+ *      @param image The image to add to the receiver.
+ *      @param index The index into the receiver's text at which to insert the image.
+ *      @fn NIAttributedLabel::insertImage:atIndex:
+ */
+
+/**
+ * Inserts the given image inline at the given index in the receiver's text.
+ *
+ * The image's vertical text alignment will be NIVerticalTextAlignmentBottom.
+ *
+ *      @param image The image to add to the receiver.
+ *      @param index The index into the receiver's text at which to insert the image.
+ *      @param margins The space around the image on all sides in points.
+ *      @fn NIAttributedLabel::insertImage:atIndex:margins:
+ */
+
+/**
+ * Inserts the given image inline at the given index in the receiver's text.
+ *
+ *      @attention
+ *      Images do not currently support NIVerticalTextAlignmentTop and the receiver will fire
+ *      multiple debug assertions if you attempt to use it.
+ *
+ *      @param image The image to add to the receiver.
+ *      @param index The index into the receiver's text at which to insert the image.
+ *      @param margins The space around the image on all sides in points.
+ *      @param verticalTextAlignment The position of the text relative to the image.
+ *      @fn NIAttributedLabel::insertImage:atIndex:margins:verticalTextAlignment:
  */
 
 /** @name Accessing the Delegate */

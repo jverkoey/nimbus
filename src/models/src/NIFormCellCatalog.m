@@ -743,6 +743,7 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
   if ([super shouldUpdateCellWithObject:datePickerElement]) {
     self.textLabel.text = datePickerElement.labelText;
     self.datePicker.datePickerMode = datePickerElement.datePickerMode;
+    self.datePicker.date = datePickerElement.date;
     
     switch (self.datePicker.datePickerMode) {
       case UIDatePickerModeDate:

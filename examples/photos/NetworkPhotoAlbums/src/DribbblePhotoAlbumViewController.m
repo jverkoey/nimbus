@@ -82,7 +82,13 @@
     [self loadThumbnails];
     [self.photoAlbumView reloadData];
     [self.photoScrubberView reloadData];
+<<<<<<< HEAD
   } copy];
+=======
+
+    [self refreshChromeState];
+  };
+>>>>>>> master
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

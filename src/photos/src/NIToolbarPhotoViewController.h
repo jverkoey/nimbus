@@ -113,6 +113,7 @@
 @property (nonatomic, readonly, retain) UIToolbar* toolbar;
 @property (nonatomic, readonly, retain) NIPhotoAlbumScrollView* photoAlbumView;
 @property (nonatomic, readonly, retain) NIPhotoScrubberView* photoScrubberView;
+- (void)refreshChromeState;
 
 
 #pragma mark Toolbar Buttons

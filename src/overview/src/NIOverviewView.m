@@ -120,7 +120,7 @@
 - (void)layoutPages {
   _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
 
-  for (NSInteger ix = 0; ix < [_pageViews count]; ++ix) {
+  for (NSUInteger ix = 0; ix < [_pageViews count]; ++ix) {
     UIView* pageView = [_pageViews objectAtIndex:ix];
     pageView.frame = [self frameForPageAtIndex:ix];
   }
@@ -132,7 +132,7 @@
   CGFloat offset = _pagingScrollView.contentOffset.x;
   CGFloat pageWidth = _pagingScrollView.bounds.size.width;
 
-  return floorf(offset / pageWidth);
+  return (NSInteger)(offset / pageWidth);
 }
 
 

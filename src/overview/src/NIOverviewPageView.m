@@ -21,7 +21,7 @@
 #import "NIOverview.h"
 #import "NIDeviceInfo.h"
 #import "NIOverviewGraphView.h"
-#import "NIOverViewLogger.h"
+#import "NIOverviewLogger.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
@@ -29,6 +29,10 @@
 
 static UIEdgeInsets kPagePadding;
 static const CGFloat kGraphRightMargin = 5;
+
+@interface NSObject ()
+- (id)initWithMemoryCache:(NIMemoryCache *)memoryCache;
+@end
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -549,8 +553,8 @@ static const CGFloat kGraphRightMargin = 5;
   static NSDateFormatter* formatter = nil;
   if (nil == formatter) {
     formatter = [[NSDateFormatter alloc] init];
-    [formatter setTimeStyle:kCFDateFormatterShortStyle];
-    [formatter setDateStyle:kCFDateFormatterNoStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateStyle:NSDateFormatterNoStyle];
   }
 
   NSString* formattedLog = [NSString stringWithFormat:@"%@: %@",
@@ -796,7 +800,7 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTap:(UIGestureRecognizer *)gesture {
   UIViewController* rootController = [UIApplication sharedApplication].keyWindow.rootViewController;
-  if ([rootController isKindOfClass:[UINavigationController class]]) {
+  if ([rootController respondsToSelector:@selector(pushViewController:animated:)]) {
     // We want a weak dependency on the overview memory cache controller so that we don't force
     // a dependency on the models feature.
     Class class = NSClassFromString(@"NIOverviewMemoryCacheController");
@@ -809,7 +813,7 @@ static const CGFloat kGraphRightMargin = 5;
       UIViewController* controller = [instance performSelector:initSelector withObject:self.cache];
 #pragma clang diagnostic pop
       controller.title = @"Memory Cache";
-      [(UINavigationController *)rootController pushViewController:controller animated:YES];
+      [(id)rootController pushViewController:controller animated:YES];
     }
   }
 }

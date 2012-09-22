@@ -23,7 +23,6 @@
 #endif
 
 static const CGFloat kBorderSize = 1;
-static const CGFloat kBorderRadius = 5;
 static const CGSize kCellImageSize = {44, 44};
 
 @interface NIGroupedCellBackground()
@@ -42,6 +41,7 @@ static const CGSize kCellImageSize = {44, 44};
 @synthesize shadowColor = _shadowColor;
 @synthesize borderColor = _borderColor;
 @synthesize dividerColor = _dividerColor;
+@synthesize borderRadius = _borderRadius;
 @synthesize cachedImages = _cachedImages;
 
 
@@ -57,6 +57,7 @@ static const CGSize kCellImageSize = {44, 44};
     _shadowColor = RGBACOLOR(0, 0, 0, 0.3f);
     _borderColor = RGBACOLOR(0, 0, 0, 0.07f);
     _dividerColor = RGBCOLOR(230, 230, 230);
+    _borderRadius = 5;
     _cachedImages = [NSMutableDictionary dictionary];
   }
   return self;
@@ -75,11 +76,11 @@ static const CGSize kCellImageSize = {44, 44};
   CGContextBeginPath(c);
 
   CGContextMoveToPoint(c, minx, midy);
-  CGContextAddArcToPoint(c, minx, miny + 1, midx, miny + 1, kBorderRadius);
-  CGContextAddArcToPoint(c, maxx, miny + 1, maxx, midy, kBorderRadius);
+  CGContextAddArcToPoint(c, minx, miny + 1, midx, miny + 1, self.borderRadius);
+  CGContextAddArcToPoint(c, maxx, miny + 1, maxx, midy, self.borderRadius);
   CGContextAddLineToPoint(c, maxx, midy);
-  CGContextAddArcToPoint(c, maxx, maxy - 1, midx, maxy - 1, kBorderRadius);
-  CGContextAddArcToPoint(c, minx, maxy - 1, minx, midy, kBorderRadius);
+  CGContextAddArcToPoint(c, maxx, maxy - 1, midx, maxy - 1, self.borderRadius);
+  CGContextAddArcToPoint(c, minx, maxy - 1, minx, midy, self.borderRadius);
   CGContextAddLineToPoint(c, minx, midy);
 
   CGContextClosePath(c);
@@ -99,8 +100,8 @@ static const CGSize kCellImageSize = {44, 44};
 
   CGContextMoveToPoint(c, minx, maxy);
   CGContextAddLineToPoint(c, minx, midy);
-  CGContextAddArcToPoint(c, minx, miny + 1, midx, miny + 1, kBorderRadius);
-  CGContextAddArcToPoint(c, maxx, miny + 1, maxx, midy, kBorderRadius);
+  CGContextAddArcToPoint(c, minx, miny + 1, midx, miny + 1, self.borderRadius);
+  CGContextAddArcToPoint(c, maxx, miny + 1, maxx, midy, self.borderRadius);
   CGContextAddLineToPoint(c, maxx, maxy);
 
   CGContextClosePath(c);
@@ -120,8 +121,8 @@ static const CGSize kCellImageSize = {44, 44};
 
   CGContextMoveToPoint(c, maxx, miny);
   CGContextAddLineToPoint(c, maxx, midy);
-  CGContextAddArcToPoint(c, maxx, maxy - 1, midx, maxy - 1, kBorderRadius);
-  CGContextAddArcToPoint(c, minx, maxy - 1, minx, midy, kBorderRadius);
+  CGContextAddArcToPoint(c, maxx, maxy - 1, midx, maxy - 1, self.borderRadius);
+  CGContextAddArcToPoint(c, minx, maxy - 1, minx, midy, self.borderRadius);
   CGContextAddLineToPoint(c, minx, miny);
 
   CGContextClosePath(c);
@@ -194,13 +195,13 @@ static const CGSize kCellImageSize = {44, 44};
     //    >/
     //     |
     //
-    CGContextAddArcToPoint(c, minx, miny + 1, midx, miny + 1, kBorderRadius);
+    CGContextAddArcToPoint(c, minx, miny + 1, midx, miny + 1, self.borderRadius);
 
     //      ______   line and then arc
     //     /      \ <
     //     |
     //
-    CGContextAddArcToPoint(c, maxx, miny + 1, maxx, midy, kBorderRadius);
+    CGContextAddArcToPoint(c, maxx, miny + 1, maxx, midy, self.borderRadius);
 
   } else {
     // line
@@ -225,8 +226,8 @@ static const CGSize kCellImageSize = {44, 44};
   CGContextAddLineToPoint(c, maxx, midy);
 
   if (isLast) {
-    CGContextAddArcToPoint(c, maxx, maxy - 1, midx, maxy - 1, kBorderRadius);
-    CGContextAddArcToPoint(c, minx, maxy - 1, minx, midy, kBorderRadius);
+    CGContextAddArcToPoint(c, maxx, maxy - 1, midx, maxy - 1, self.borderRadius);
+    CGContextAddArcToPoint(c, minx, maxy - 1, minx, midy, self.borderRadius);
 
   } else {
     //     |      |
@@ -306,10 +307,10 @@ static const CGSize kCellImageSize = {44, 44};
     // We want the shadow to clip to the top and bottom edges of the image so that when two cells
     // are next to each other their shadows line up perfectly.
     if (!first) {
-      shadowFrame = NIRectShift(shadowFrame, 0, -kBorderRadius);
+      shadowFrame = NIRectShift(shadowFrame, 0, -self.borderRadius);
     }
     if (!last) {
-      shadowFrame = NIRectContract(shadowFrame, 0, -kBorderRadius);
+      shadowFrame = NIRectContract(shadowFrame, 0, -self.borderRadius);
     }
 
     [self _applyPathToContext:cx rect:shadowFrame isFirst:first isLast:last];
@@ -390,6 +391,21 @@ static const CGSize kCellImageSize = {44, 44};
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+  NSInteger numberOfRowsInSection = [tableView.dataSource tableView:tableView numberOfRowsInSection:indexPath.section];
+  BOOL isFirst = (0 == indexPath.row);
+  BOOL isLast = (indexPath.row == numberOfRowsInSection - 1);
+  cell.backgroundView = [[UIImageView alloc] initWithImage:[self imageForFirst:isFirst
+                                                                          last:isLast
+                                                                   highlighted:NO]];
+  cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[self imageForFirst:isFirst
+                                                                                  last:isLast
+                                                                           highlighted:YES]];
+  cell.backgroundView.tag = (isFirst ? 1 << 1 : 0) | (isLast ? 1 : 0);
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

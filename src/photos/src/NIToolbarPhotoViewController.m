@@ -174,6 +174,8 @@
 - (void)loadView {
   [super loadView];
 
+  self.view.backgroundColor = [UIColor blackColor];
+
   CGRect bounds = self.view.bounds;
 
   // Toolbar Setup
@@ -507,12 +509,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTapNextButton {
   [self.photoAlbumView moveToNextAnimated:self.animateMovingToNextAndPreviousPhotos];
+  
+  [self refreshChromeState];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTapPreviousButton {
   [self.photoAlbumView moveToPreviousAnimated:self.animateMovingToNextAndPreviousPhotos];
+
+  [self refreshChromeState];
 }
 
 

@@ -99,14 +99,18 @@
     [page setImage:self.loadingImage photoSize:NIPhotoScrollViewPhotoSizeUnknown];
 
   } else {
+    BOOL updateImage = photoSize > page.photoSize;
+    if (updateImage) {
+      [page setImage:image photoSize:photoSize];
+    }
+
+    // Configure this after the image is set otherwise if the page's image isn't there
+	// e.g. (after prepareForReuse), zooming will always be disabled
     page.zoomingIsEnabled = ([self isZoomingEnabled]
                              && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
-    if (photoSize > page.photoSize) {
-      [page setImage:image photoSize:photoSize];
 
-      if (NIPhotoScrollViewPhotoSizeOriginal == photoSize) {
-        [self notifyDelegatePhotoDidLoadAtIndex:page.pageIndex];
-      }
+    if (updateImage && NIPhotoScrollViewPhotoSizeOriginal == photoSize) {
+      [self notifyDelegatePhotoDidLoadAtIndex:page.pageIndex];
     }
   }
 }

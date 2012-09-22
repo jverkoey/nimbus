@@ -40,6 +40,8 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   CGFloat _percentScrolledIntoFirstVisiblePage;
   BOOL _isModifyingContentOffset;
   BOOL _isAnimatingToPage;
+  BOOL _isKillingAnimation;
+  NSInteger _animatingToPageIndex;
 }
 
 @property (nonatomic, retain) UIScrollView* pagingScrollView;
@@ -81,9 +83,6 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
                                             | UIViewAutoresizingFlexibleHeight);
 
   self.pagingScrollView.delegate = self;
-
-  // Ensure that empty areas of the scroll view are draggable.
-  self.pagingScrollView.backgroundColor = [UIColor blackColor];
 
   self.pagingScrollView.showsVerticalScrollIndicator = NO;
   self.pagingScrollView.showsHorizontalScrollIndicator = NO;
@@ -344,7 +343,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)updateVisiblePagesAnimated:(BOOL)animated {
+- (void)updateVisiblePagesShouldNotifyDelegate:(BOOL)shouldNotifyDelegate {
   NSRange visiblePageRange = [self visiblePageRange];
 
   // Recycle no-longer-visible pages. We copy _visiblePages because we may modify it while we're
@@ -369,7 +368,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     if (![self isDisplayingPageForIndex:_centerPageIndex]) {
       [self displayPageAtIndex:_centerPageIndex];
     }
-      
+
     // Add missing pages.
     for (int pageIndex = visiblePageRange.location;
          pageIndex < (NSInteger)NSMaxRange(visiblePageRange); ++pageIndex) {
@@ -381,7 +380,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     _centerPageIndex = -1;
   }
 
-  if (!animated && oldCenterPageIndex != _centerPageIndex
+  if (shouldNotifyDelegate && oldCenterPageIndex != _centerPageIndex
       && [self.delegate respondsToSelector:@selector(pagingScrollViewDidChangePages:)]) {
     [self.delegate pagingScrollViewDidChangePages:self];
   }
@@ -434,12 +433,15 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+  [self updateVisiblePagesShouldNotifyDelegate:YES];
+  _isKillingAnimation = NO;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
   if (!_isModifyingContentOffset) {
-    // This method is called repeatedly as the user scrolls so updateVisiblePages must be
-    // light-weight enough not to noticeably impact performance.
-    [self updateVisiblePagesAnimated:NO];
-
     if ([self.delegate respondsToSelector:@selector(pagingScrollViewDidScroll:)]) {
       [self.delegate pagingScrollViewDidScroll:self];
     }
@@ -448,12 +450,24 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   if ([self.delegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
     [self.delegate scrollViewDidScroll:scrollView];
   }
+
+  if (_isKillingAnimation) {
+    // The content size is calculated based on the number of pages and the scroll view frame.
+    _isModifyingContentOffset = YES;
+    CGPoint offset = [self frameForPageAtIndex:_centerPageIndex].origin;
+    offset = [self adjustOffsetWithMargin:offset];
+    self.pagingScrollView.contentOffset = offset;
+    _isModifyingContentOffset = NO;
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+  _isKillingAnimation = NO;
+
   if (!decelerate) {
+    [self updateVisiblePagesShouldNotifyDelegate:YES];
     [self resetSurroundingPages];
   }
 
@@ -465,6 +479,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+  [self updateVisiblePagesShouldNotifyDelegate:YES];
   [self resetSurroundingPages];
   
   if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
@@ -581,10 +596,12 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     offset = [self adjustOffsetWithMargin:offset];
     self.pagingScrollView.contentOffset = offset;
     _isModifyingContentOffset = NO;
+
+    _isKillingAnimation = YES;
   }
 
   // Begin requesting the page information from the data source.
-  [self updateVisiblePagesAnimated:NO];
+  [self updateVisiblePagesShouldNotifyDelegate:NO];
 }
 
 
@@ -647,6 +664,10 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didAnimateToPage:(NSNumber *)pageIndex {
   _isAnimatingToPage = NO;
+  if (_animatingToPageIndex != -1 && _animatingToPageIndex != [pageIndex integerValue]) {
+    [self moveToPageAtIndex:_animatingToPageIndex animated:YES];
+    return;
+  }
 
   // Reset the content offset once the animation completes, just to be sure that the
   // viewer sits on a page bounds even if we rotate the device while animating.
@@ -657,7 +678,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   self.pagingScrollView.contentOffset = offset;
   _isModifyingContentOffset = NO;
 
-  [self updateVisiblePagesAnimated:YES];
+  [self updateVisiblePagesShouldNotifyDelegate:NO];
 }
 
 
@@ -665,8 +686,11 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 - (BOOL)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated {
   if (_isAnimatingToPage) {
     // Don't allow re-entry for sliding animations.
+    _animatingToPageIndex = pageIndex;
     return NO;
   }
+  _isKillingAnimation = NO;
+  _animatingToPageIndex = -1;
 
   CGPoint offset = [self frameForPageAtIndex:pageIndex].origin;
   offset = [self adjustOffsetWithMargin:offset];
@@ -709,6 +733,17 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
     [self moveToPageAtIndex:pageIndex animated:animated];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIView<NIPagingScrollViewPage> *)centerPageView {
+  for (UIView<NIPagingScrollViewPage>* page in _visiblePages) {
+    if (page.pageIndex == self.centerPageIndex) {
+      return page;
+    }
+  }
+  return nil;
 }
 
 

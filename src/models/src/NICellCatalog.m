@@ -239,4 +239,10 @@
   return YES;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (CGFloat)heightForObject:(NIDrawRectBlockCellObject *)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
+  return object.block(tableView.bounds, object.object, nil);
+}
+
 @end
