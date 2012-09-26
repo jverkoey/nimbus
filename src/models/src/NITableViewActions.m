@@ -151,6 +151,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector {
+  NSMethodSignature *signature = [super methodSignatureForSelector:selector];
+  if (signature == nil) {
+    for (id delegate in self.forwardDelegates) {
+      if ([delegate respondsToSelector:selector]) {
+        signature = [delegate methodSignatureForSelector:selector];
+      }
+    }
+  }
+  return signature;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)forwardInvocation:(NSInvocation *)invocation {
   BOOL didForward = NO;
   
