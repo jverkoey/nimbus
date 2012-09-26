@@ -94,25 +94,42 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)cellClassFromObject:(id)object {
+  Class objectClass = [object class];
+  Class cellClass = [self.objectToCellMap objectForKey:objectClass];
+
+  BOOL hasExplicitMapping = (nil != cellClass && cellClass != [NSNull class]);
+
+  if (!hasExplicitMapping && [object respondsToSelector:@selector(cellClass)]) {
+    cellClass = [object cellClass];
+  }
+
+  if (nil == cellClass) {
+    cellClass = [self.class objectFromKeyClass:objectClass map:self.objectToCellMap];
+  }
+
+  return cellClass;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableViewCell *)tableViewModel:(NITableViewModel *)tableViewModel
                    cellForTableView:(UITableView *)tableView
                         atIndexPath:(NSIndexPath *)indexPath
                          withObject:(id)object {
   UITableViewCell* cell = nil;
 
-  Class objectClass = [object class];
-  Class cellClass = [self.class objectFromKeyClass:objectClass map:self.objectToCellMap];
+  Class cellClass = [self cellClassFromObject:object];
 
-  // Explicit mappings override implicit mappings.
+  // If this assertion fires then your app is about to crash. You need to either add an explicit
+  // binding in a NICellFactory object or implement the NICellObject protocol on this object and
+  // return a cell class.
+  NIDASSERT(nil != cellClass);
+
   if (nil != cellClass) {
     cell = [[self class] cellWithClass:cellClass tableView:tableView object:object];
-
-  } else {
-    cell = [[self class] tableViewModel:tableViewModel
-                       cellForTableView:tableView
-                            atIndexPath:indexPath
-                             withObject:object];
   }
+  
   return cell;
 }
 
@@ -127,11 +144,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath model:(NITableViewModel *)model {
   CGFloat height = tableView.rowHeight;
   id object = [model objectAtIndexPath:indexPath];
-  Class objectClass = [object class];
-  Class cellClass = [self.class objectFromKeyClass:objectClass map:self.objectToCellMap];
-  if (nil == cellClass && [object respondsToSelector:@selector(cellClass)]) {
-    cellClass = [object cellClass];
-  }
+  Class cellClass = [self cellClassFromObject:object];
   if ([cellClass respondsToSelector:@selector(heightForObject:atIndexPath:tableView:)]) {
     CGFloat cellHeight = [cellClass heightForObject:object
                                         atIndexPath:indexPath tableView:tableView];
