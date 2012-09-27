@@ -194,7 +194,7 @@ static const CGFloat kTouchGutter = 22;
     return CGSizeZero;
   }
 
-  CFAttributedStringRef attributedStringRef = (__bridge CFAttributedStringRef)self.mutableAttributedString;
+  CFAttributedStringRef attributedStringRef = (__bridge CFAttributedStringRef)[self mutableAttributedStringWithAdditions];
   CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attributedStringRef);
   CFRange fitCFRange = CFRangeMake(0,0);
   CGSize newSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0), NULL, size, &fitCFRange);
