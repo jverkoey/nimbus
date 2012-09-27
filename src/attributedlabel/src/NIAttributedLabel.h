@@ -28,6 +28,17 @@
 // UITextAlignmentJustify is deprecated in iOS 6.0. Please use NSTextAlignmentJustified instead.
 #endif
 
+/**
+ * Calculates the ideal dimensions of an attributed string fitting a given size.
+ *
+ * This calculation is performed off the raw attributed string so this calculation may differ
+ * slightly from NIAttributedLabel's use of it due to lack of link and image attributes.
+ *
+ * This method is used in NIAttributedLabel to calculate its size after all additional
+ * styling attributes have been set.
+ */
+CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedString, CGSize size);
+
 // Vertical alignments for NIAttributedLabel.
 typedef enum {
   NIVerticalTextAlignmentTop = 0,
