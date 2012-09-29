@@ -39,7 +39,7 @@
 @interface NILinkedListLocation()
 + (id)locationWithNode:(NILinkedListNode *)node;
 - (id)initWithNode:(NILinkedListNode *)node;
-@property (nonatomic, readwrite, assign) NILinkedListNode* node;
+@property (nonatomic, readwrite, weak) NILinkedListNode* node;
 @end
 
 @implementation NILinkedListLocation
