@@ -73,11 +73,13 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   _percentScrolledIntoFirstVisiblePage = -1;
   _centerPageIndex = -1;
   _numberOfPages = NIPagingScrollViewUnknownNumberOfPages;
+  _type = NIPagingScrollViewHorizontal;
 
   _viewRecycler = [[NIViewRecycler alloc] init];
 
   self.pagingScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
   self.pagingScrollView.pagingEnabled = YES;
+  self.pagingScrollView.scrollsToTop = NO;
 
   self.pagingScrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                             | UIViewAutoresizingFlexibleHeight);
@@ -750,6 +752,15 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setCenterPageIndex:(NSInteger)centerPageIndex {
   [self moveToPageAtIndex:centerPageIndex animated:NO];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setType:(NIPagingScrollViewType)type {
+  if (_type != type) {
+    _type = type;
+    self.pagingScrollView.scrollsToTop = (type == NIPagingScrollViewVertical);
+  }
 }
 
 
