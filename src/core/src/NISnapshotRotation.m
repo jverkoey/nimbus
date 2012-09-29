@@ -212,7 +212,7 @@ UIImageView* NISnapshotViewOfView(UIView* view) {
 
 
 @interface NITableViewSnapshotRotation() <NISnapshotRotationDelegate>
-@property (nonatomic, readwrite, assign) id<NISnapshotRotationDelegate> forwardingDelegate;
+@property (nonatomic, readwrite, weak) id<NISnapshotRotationDelegate> forwardingDelegate;
 @end
 
 

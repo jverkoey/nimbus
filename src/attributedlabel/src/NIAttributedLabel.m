@@ -52,7 +52,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 @property (nonatomic, strong) UIImage* image;
 @property (nonatomic, assign) UIEdgeInsets margins;
 @property (nonatomic, assign) NIVerticalTextAlignment verticalTextAlignment;
-@property (nonatomic, assign) NIAttributedLabel* label;
+@property (nonatomic, weak) NIAttributedLabel* label;
 @end
 
 @implementation NIAttributedLabelImage

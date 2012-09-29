@@ -61,7 +61,7 @@
 @property (nonatomic, copy) NSString* placeholderText;
 @property (nonatomic, copy) NSString* value;
 @property (nonatomic, assign) BOOL isPassword;
-@property (nonatomic, assign) id<UITextFieldDelegate> delegate;
+@property (nonatomic, weak) id<UITextFieldDelegate> delegate;
 
 @end
 
@@ -83,7 +83,7 @@
 
 @property (nonatomic, copy) NSString* labelText;
 @property (nonatomic, assign) BOOL value;
-@property (nonatomic, assign) id didChangeTarget;
+@property (nonatomic, weak) id didChangeTarget;
 @property (nonatomic, assign) SEL didChangeSelector;
 
 @end
@@ -108,7 +108,7 @@
 @property (nonatomic, assign) float value;
 @property (nonatomic, assign) float minimumValue;
 @property (nonatomic, assign) float maximumValue;
-@property (nonatomic, assign) id didChangeTarget;
+@property (nonatomic, weak) id didChangeTarget;
 @property (nonatomic, assign) SEL didChangeSelector;
 
 @end
@@ -156,7 +156,7 @@
 @property (nonatomic, copy) NSString *labelText;
 @property (nonatomic, assign) NSInteger selectedIndex;
 @property (nonatomic, retain) NSArray *segments;
-@property (nonatomic, assign) id didChangeTarget;
+@property (nonatomic, weak) id didChangeTarget;
 @property (nonatomic, assign) SEL didChangeSelector;
 
 @end
@@ -202,7 +202,7 @@
 @property (nonatomic, copy) NSString *labelText;
 @property (nonatomic, retain) NSDate *date;
 @property (nonatomic, assign) UIDatePickerMode datePickerMode;
-@property (nonatomic, assign) id didChangeTarget;
+@property (nonatomic, weak) id didChangeTarget;
 @property (nonatomic, assign) SEL didChangeSelector;
 
 @end

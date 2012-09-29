@@ -52,8 +52,8 @@ typedef enum {
 #pragma mark Data Source
 
 - (void)reloadData;
-@property (nonatomic, assign) id<NIPagingScrollViewDataSource> dataSource;
-@property (nonatomic, assign) id<NIPagingScrollViewDelegate> delegate;
+@property (nonatomic, weak) id<NIPagingScrollViewDataSource> dataSource;
+@property (nonatomic, weak) id<NIPagingScrollViewDelegate> delegate;
 
 // It is highly recommended that you use this method to manage view recycling.
 - (UIView<NIPagingScrollViewPage> *)dequeueReusablePageWithIdentifier:(NSString *)identifier;

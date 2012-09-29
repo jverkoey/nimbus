@@ -25,13 +25,13 @@
  */
 @interface NIOverviewGraphView : UIView {
 @private
-  __unsafe_unretained id<NIOverviewGraphViewDataSource> _dataSource;
+  __weak id<NIOverviewGraphViewDataSource> _dataSource;
 }
 
 /**
  * The data source for this graph view.
  */
-@property (nonatomic, readwrite, assign) id<NIOverviewGraphViewDataSource> dataSource;
+@property (nonatomic, readwrite, weak) id<NIOverviewGraphViewDataSource> dataSource;
 
 @end
 
