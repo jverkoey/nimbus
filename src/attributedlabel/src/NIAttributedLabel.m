@@ -1247,6 +1247,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
         }
 
         CGRect highlightRect = [self _rectForRange:linkRange inLine:line lineOrigin:lineOrigins[i]];
+        highlightRect = CGRectOffset(highlightRect, 0, -rect.origin.y);
 
         if (!CGRectIsEmpty(highlightRect)) {
           CGFloat pi = (CGFloat)M_PI;
