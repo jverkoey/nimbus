@@ -268,17 +268,14 @@
 
     if ([self isObjectActionable:object]) {
       NITableViewAction* action = [self actionForObjectOrClassOfObject:object];
-      UITableViewCellAccessoryType accessoryType = UITableViewCellAccessoryNone;
 
       // Detail disclosure indicator takes precedence over regular disclosure indicator.
       if (nil != action.detailAction) {
-        accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 
       } else if (nil != action.navigateAction) {
-        accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
       }
-
-      cell.accessoryType = accessoryType;
 
       // If the cell is tappable, reflect that in the selection style.
       if (action.navigateAction || action.tapAction) {
