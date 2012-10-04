@@ -128,4 +128,19 @@
   STAssertEquals(model.sections.count, 2U, @"Should have two sections.");
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testInsertingSection {
+  NIMutableTableViewModel* model = [[NIMutableTableViewModel alloc] initWithDelegate:nil];
+
+  [model addObject:[NSNumber numberWithBool:YES]];
+  [model insertSectionWithTitle:@"Section 0" atIndex:0];
+
+  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 0, @"The first section should have zero rows.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 2, @"There should be two sections.");
+  STAssertEquals(model.sections.count, 2U, @"Should have two sections.");
+  STAssertEquals([model tableView:nil numberOfRowsInSection:1], 1, @"The second section should have one row.");
+  STAssertTrue([[model tableView:nil titleForHeaderInSection:0] isEqual:@"Section 0"], @"The section title should have been set.");
+}
+
 @end

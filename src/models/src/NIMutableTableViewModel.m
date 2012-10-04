@@ -76,6 +76,14 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSIndexSet *)insertSectionWithTitle:(NSString *)title atIndex:(NSInteger)index {
+  NITableViewModelSection* section = [self _insertSectionAtIndex:index];
+  section.headerTitle = title;
+  return [NSIndexSet indexSetWithIndex:index];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private Methods
 
@@ -89,6 +97,20 @@
   section = [[NITableViewModelSection alloc] init];
   section.rows = [NSMutableArray array];
   [self.sections addObject:section];
+  return section;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NITableViewModelSection *)_insertSectionAtIndex:(NSInteger)index {
+  if (nil == self.sections) {
+    self.sections = [NSMutableArray array];
+  }
+  NITableViewModelSection* section = nil;
+  section = [[NITableViewModelSection alloc] init];
+  section.rows = [NSMutableArray array];
+  NIDASSERT(index >= 0 && index <= self.sections.count);
+  [self.sections insertObject:section atIndex:index];
   return section;
 }
 

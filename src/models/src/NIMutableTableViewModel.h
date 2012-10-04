@@ -19,8 +19,27 @@
 /**
  * The NIMutableTableViewModel class is a mutable table view model.
  *
- * TODO: Comment about how modifying the model requires informing the table view of changes
- * accordingly or simply calling reloadData.
+ * When modifications are made to the model there are two ways to reflect the changes in the table
+ * view.
+ *
+ * 1) Call reloadData on the table view. This is the most destructive way to update the table view.
+ * 2) Call insert/delete/reload methods on the table view with the retuned index path arrays.
+ *
+ * The latter option is the recommended approach to adding new cells to a table view. Each method in
+ * the mutable table view model returns a data structure that can be used to inform the table view
+ * of the exact modifications that have been made to the model.
+ *
+ * Example of adding a new section:
+@code
+// Appends a new section to the end of the model.
+NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
+
+// Appends a cell to the last section in the model (in this case, the new section we just created).
+[self.model addObject:[NITitleCellObject objectWithTitle:@"A cell"]];
+
+// Inform the table view that we've modified the model.
+[self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+@endcode
  */
 @interface NIMutableTableViewModel : NITableViewModel
 
@@ -29,6 +48,7 @@
 - (NSArray *)removeObjectAtIndexPath:(NSIndexPath *)indexPath;
 
 - (NSIndexSet *)addSectionWithTitle:(NSString *)title;
+- (NSIndexSet *)insertSectionWithTitle:(NSString *)title atIndex:(NSInteger)index;
 
 @end
 
@@ -74,4 +94,13 @@
  *      @param title The title of the new section.
  *      @returns An index set with a single index representing the index of the new section.
  *      @fn NIMutableTableViewModel::addSectionWithTitle:
+ */
+
+/**
+ * Inserts a section with a given title to the model at the given index.
+ *
+ *      @param title The title of the new section.
+ *      @param title The index in the model at which to add the new section.
+ *      @returns An index set with a single index representing the index of the new section.
+ *      @fn NIMutableTableViewModel::insertSectionWithTitle:atIndex:
  */
