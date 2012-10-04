@@ -58,6 +58,9 @@
 #ifndef NIGroupedCellBackground
 #define NIGroupedCellBackground __NIMBUS_NS_SYMBOL(NIGroupedCellBackground)
 #endif
+#ifndef NIMutableTableViewModel
+#define NIMutableTableViewModel __NIMBUS_NS_SYMBOL(NIMutableTableViewModel)
+#endif
 #ifndef NIRadioGroup
 #define NIRadioGroup __NIMBUS_NS_SYMBOL(NIRadioGroup)
 #endif

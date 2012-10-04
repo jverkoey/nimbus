@@ -108,6 +108,8 @@
 		66BB4FAF159594E300020EE8 /* ModifyingLauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4FAE159594E300020EE8 /* ModifyingLauncherViewController.m */; };
 		66BB4FCE15959B5000020EE8 /* RestoringLauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4FCD15959B5000020EE8 /* RestoringLauncherViewController.m */; };
 		66CB01A415ACA85E0048E189 /* BlockCellsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CB01A315ACA85E0048E189 /* BlockCellsViewController.m */; };
+		66D2E54B15D9613800281511 /* NIMutableTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2E54915D9613800281511 /* NIMutableTableViewModel.m */; };
+		66D2E54F15D9616500281511 /* MutableTableModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2E54E15D9616500281511 /* MutableTableModelViewController.m */; };
 		66D2FDB81593D5D000B2BEFD /* ContentModesNetworkImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDB71593D5D000B2BEFD /* ContentModesNetworkImageViewController.m */; };
 		66D2FDD11593F17800B2BEFD /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDBD1593F17800B2BEFD /* AFHTTPClient.m */; };
 		66D2FDD21593F17800B2BEFD /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDBF1593F17800B2BEFD /* AFHTTPRequestOperation.m */; };
@@ -328,6 +330,11 @@
 		66BB4FCD15959B5000020EE8 /* RestoringLauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestoringLauncherViewController.m; sourceTree = "<group>"; };
 		66CB01A215ACA85E0048E189 /* BlockCellsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockCellsViewController.h; sourceTree = "<group>"; };
 		66CB01A315ACA85E0048E189 /* BlockCellsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockCellsViewController.m; sourceTree = "<group>"; };
+		66D2E54815D9613700281511 /* NIMutableTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIMutableTableViewModel.h; path = ../../src/models/src/NIMutableTableViewModel.h; sourceTree = "<group>"; };
+		66D2E54915D9613800281511 /* NIMutableTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIMutableTableViewModel.m; path = ../../src/models/src/NIMutableTableViewModel.m; sourceTree = "<group>"; };
+		66D2E54A15D9613800281511 /* NIMutableTableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NIMutableTableViewModel+Private.h"; path = "../../src/models/src/NIMutableTableViewModel+Private.h"; sourceTree = "<group>"; };
+		66D2E54D15D9616500281511 /* MutableTableModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableTableModelViewController.h; sourceTree = "<group>"; };
+		66D2E54E15D9616500281511 /* MutableTableModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableTableModelViewController.m; sourceTree = "<group>"; };
 		66D2FDB61593D5D000B2BEFD /* ContentModesNetworkImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentModesNetworkImageViewController.h; sourceTree = "<group>"; };
 		66D2FDB71593D5D000B2BEFD /* ContentModesNetworkImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentModesNetworkImageViewController.m; sourceTree = "<group>"; };
 		66D2FDBC1593F17800B2BEFD /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -440,6 +447,8 @@
 				661B9AB515AFF9DC00B743F1 /* NetworkBlockCellsViewController.m */,
 				6613335C15D3A66B00369333 /* SnapshotRotationTableViewController.h */,
 				6613335D15D3A66B00369333 /* SnapshotRotationTableViewController.m */,
+				66D2E54D15D9616500281511 /* MutableTableModelViewController.h */,
+				66D2E54E15D9616500281511 /* MutableTableModelViewController.m */,
 			);
 			name = "Table Models";
 			sourceTree = "<group>";
@@ -616,6 +625,9 @@
 				6693C224158A81DD00950D42 /* NITableViewModel.h */,
 				6693C225158A81DD00950D42 /* NITableViewModel.m */,
 				6693C226158A81DD00950D42 /* NITableViewModel+Private.h */,
+				66D2E54815D9613700281511 /* NIMutableTableViewModel.h */,
+				66D2E54915D9613800281511 /* NIMutableTableViewModel.m */,
+				66D2E54A15D9613800281511 /* NIMutableTableViewModel+Private.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -975,6 +987,8 @@
 				669819DF159B953A00C2D3EF /* NISnapshotRotation.m in Sources */,
 				6613335E15D3A66B00369333 /* SnapshotRotationTableViewController.m in Sources */,
 				6633D21F15DDBD4100A4B07E /* ImagesAttributedLabelViewController.m in Sources */,
+				66D2E54B15D9613800281511 /* NIMutableTableViewModel.m in Sources */,
+				66D2E54F15D9616500281511 /* MutableTableModelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

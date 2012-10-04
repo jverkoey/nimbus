@@ -98,9 +98,11 @@
 - (void)_compileDataWithListArray:(NSArray *)listArray {
   [self _resetCompiledData];
 
-  NITableViewModelSection* section = [NITableViewModelSection section];
-  section.rows = listArray;
-  self.sections = [NSArray arrayWithObject:section];
+  if (nil != listArray) {
+    NITableViewModelSection* section = [NITableViewModelSection section];
+    section.rows = listArray;
+    self.sections = [NSArray arrayWithObject:section];
+  }
 }
 
 
@@ -258,7 +260,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return MAX(1U, self.sections.count);
+  return self.sections.count;
 }
 
 

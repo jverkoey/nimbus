@@ -287,6 +287,10 @@
 		66C3A6AF143D61140048542F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66C3A6B1143D61140048542F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66C3A6B4143D61140048542F /* libNimbusCss.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C3A6A1143D61130048542F /* libNimbusCss.a */; };
+		66D2E53F15D9432000281511 /* NIMutableTableViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 66D2E53D15D9432000281511 /* NIMutableTableViewModel.h */; };
+		66D2E54015D9432000281511 /* NIMutableTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2E53E15D9432000281511 /* NIMutableTableViewModel.m */; };
+		66D2E54315D9438D00281511 /* NIMutableTableViewModel+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 66D2E54115D9438D00281511 /* NIMutableTableViewModel+Private.h */; };
+		66D2E54715D9503100281511 /* NIMutableTableViewModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2E54615D9503100281511 /* NIMutableTableViewModelTests.m */; };
 		66D2FDDD1593F3A600B2BEFD /* NIImageProcessing.h in Headers */ = {isa = PBXBuildFile; fileRef = 66D2FDDB1593F3A600B2BEFD /* NIImageProcessing.h */; };
 		66D2FDDE1593F3A600B2BEFD /* NIImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDDC1593F3A600B2BEFD /* NIImageProcessing.m */; };
 		66D2FDF61594083800B2BEFD /* AFHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 66D2FDE11594083800B2BEFD /* AFHTTPClient.h */; };
@@ -902,6 +906,10 @@
 		66C1153F1486ACDD003C9AC6 /* NIOperations+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIOperations+Subclassing.h"; sourceTree = "<group>"; };
 		66C3A6A1143D61130048542F /* libNimbusCss.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCss.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C3A6AE143D61140048542F /* NimbusCssTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCssTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66D2E53D15D9432000281511 /* NIMutableTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIMutableTableViewModel.h; sourceTree = "<group>"; };
+		66D2E53E15D9432000281511 /* NIMutableTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIMutableTableViewModel.m; sourceTree = "<group>"; };
+		66D2E54115D9438D00281511 /* NIMutableTableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIMutableTableViewModel+Private.h"; sourceTree = "<group>"; };
+		66D2E54615D9503100281511 /* NIMutableTableViewModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIMutableTableViewModelTests.m; sourceTree = "<group>"; };
 		66D2FDDB1593F3A600B2BEFD /* NIImageProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIImageProcessing.h; sourceTree = "<group>"; };
 		66D2FDDC1593F3A600B2BEFD /* NIImageProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIImageProcessing.m; sourceTree = "<group>"; };
 		66D2FDE11594083800B2BEFD /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -1964,6 +1972,9 @@
 				66FE7D6513FB83620061B987 /* NITableViewModel.h */,
 				66FE7D6613FB83620061B987 /* NITableViewModel.m */,
 				6626330B14995C4600B99898 /* NITableViewModel+Private.h */,
+				66D2E53D15D9432000281511 /* NIMutableTableViewModel.h */,
+				66D2E53E15D9432000281511 /* NIMutableTableViewModel.m */,
+				66D2E54115D9438D00281511 /* NIMutableTableViewModel+Private.h */,
 				6668867D156AD148006E874F /* NICellCatalog.h */,
 				6668867E156AD148006E874F /* NICellCatalog.m */,
 				66B6710515AA820700FE4AE8 /* NICellBackgrounds.h */,
@@ -1988,6 +1999,7 @@
 			children = (
 				66FE7D6813FB83620061B987 /* NimbusModelsTests-Info.plist */,
 				6623EB6C1402ECE400E0E61A /* NITableViewModelTests.m */,
+				66D2E54615D9503100281511 /* NIMutableTableViewModelTests.m */,
 				6672DAB415B87E4B00DFE81F /* NICellFactoryTests.m */,
 			);
 			name = unittests;
@@ -2092,6 +2104,8 @@
 				6641617B156B516E0018AC1C /* NITableViewActions.h in Headers */,
 				667DD36B156D78980045ABBB /* NIRadioGroupController.h in Headers */,
 				66B6710715AA820700FE4AE8 /* NICellBackgrounds.h in Headers */,
+				66D2E53F15D9432000281511 /* NIMutableTableViewModel.h in Headers */,
+				66D2E54315D9438D00281511 /* NIMutableTableViewModel+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3329,6 +3343,7 @@
 				6641617C156B516E0018AC1C /* NITableViewActions.m in Sources */,
 				667DD36C156D78980045ABBB /* NIRadioGroupController.m in Sources */,
 				66B6710815AA820700FE4AE8 /* NICellBackgrounds.m in Sources */,
+				66D2E54015D9432000281511 /* NIMutableTableViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3338,6 +3353,7 @@
 			files = (
 				6623EB6D1402ECE400E0E61A /* NITableViewModelTests.m in Sources */,
 				6672DAB515B87E4B00DFE81F /* NICellFactoryTests.m in Sources */,
+				66D2E54715D9503100281511 /* NIMutableTableViewModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4297,7 +4313,7 @@
 				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = YES;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "\"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib\"";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -4325,7 +4341,7 @@
 				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = YES;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "\"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib\"";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;

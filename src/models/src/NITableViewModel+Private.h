@@ -34,6 +34,6 @@
 
 @property (nonatomic, copy) NSString* headerTitle;
 @property (nonatomic, copy) NSString* footerTitle;
-@property (nonatomic, copy) NSArray* rows;
+@property (nonatomic, strong) NSArray* rows;
 
 @end
