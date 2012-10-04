@@ -116,17 +116,20 @@
 #ifndef NISwapClassMethods
 #define NISwapClassMethods __NIMBUS_NS_SYMBOL(NISwapClassMethods)
 #endif
-#ifndef NICreateNonRetainingMutableSet
-#define NICreateNonRetainingMutableSet __NIMBUS_NS_SYMBOL(NICreateNonRetainingMutableSet)
-#endif
 #ifndef NIInterfaceOrientation
 #define NIInterfaceOrientation __NIMBUS_NS_SYMBOL(NIInterfaceOrientation)
+#endif
+#ifndef NICreateNonRetainingMutableSet
+#define NICreateNonRetainingMutableSet __NIMBUS_NS_SYMBOL(NICreateNonRetainingMutableSet)
 #endif
 #ifndef NIStatusBarAnimationCurve
 #define NIStatusBarAnimationCurve __NIMBUS_NS_SYMBOL(NIStatusBarAnimationCurve)
 #endif
 #ifndef NIStatusBarAnimationDuration
 #define NIStatusBarAnimationDuration __NIMBUS_NS_SYMBOL(NIStatusBarAnimationDuration)
+#endif
+#ifndef NIDeviceOSVersionIsAtLeast
+#define NIDeviceOSVersionIsAtLeast __NIMBUS_NS_SYMBOL(NIDeviceOSVersionIsAtLeast)
 #endif
 #ifndef NIStatusBarBoundsChangeAnimationCurve
 #define NIStatusBarBoundsChangeAnimationCurve __NIMBUS_NS_SYMBOL(NIStatusBarBoundsChangeAnimationCurve)
@@ -143,20 +146,17 @@
 #ifndef NIRectShift
 #define NIRectShift __NIMBUS_NS_SYMBOL(NIRectShift)
 #endif
+#ifndef NIScreenScale
+#define NIScreenScale __NIMBUS_NS_SYMBOL(NIScreenScale)
+#endif
 #ifndef NIStatusBarHeight
 #define NIStatusBarHeight __NIMBUS_NS_SYMBOL(NIStatusBarHeight)
 #endif
 #ifndef NIPathForDocumentsResource
 #define NIPathForDocumentsResource __NIMBUS_NS_SYMBOL(NIPathForDocumentsResource)
 #endif
-#ifndef NIDeviceOSVersionIsAtLeast
-#define NIDeviceOSVersionIsAtLeast __NIMBUS_NS_SYMBOL(NIDeviceOSVersionIsAtLeast)
-#endif
 #ifndef NIRotateTransformForOrientation
 #define NIRotateTransformForOrientation __NIMBUS_NS_SYMBOL(NIRotateTransformForOrientation)
-#endif
-#ifndef NIScreenScale
-#define NIScreenScale __NIMBUS_NS_SYMBOL(NIScreenScale)
 #endif
 #ifndef NIFrameOfCenteredViewWithinView
 #define NIFrameOfCenteredViewWithinView __NIMBUS_NS_SYMBOL(NIFrameOfCenteredViewWithinView)
@@ -173,17 +173,17 @@
 #ifndef NIPathForLibraryResource
 #define NIPathForLibraryResource __NIMBUS_NS_SYMBOL(NIPathForLibraryResource)
 #endif
-#ifndef NICellContentPadding
-#define NICellContentPadding __NIMBUS_NS_SYMBOL(NICellContentPadding)
-#endif
 #ifndef NIUIPopoverControllerClass
 #define NIUIPopoverControllerClass __NIMBUS_NS_SYMBOL(NIUIPopoverControllerClass)
 #endif
-#ifndef NISnapshotViewOfView
-#define NISnapshotViewOfView __NIMBUS_NS_SYMBOL(NISnapshotViewOfView)
+#ifndef NICellContentPadding
+#define NICellContentPadding __NIMBUS_NS_SYMBOL(NICellContentPadding)
 #endif
 #ifndef NIUITapGestureRecognizerClass
 #define NIUITapGestureRecognizerClass __NIMBUS_NS_SYMBOL(NIUITapGestureRecognizerClass)
+#endif
+#ifndef NISnapshotViewOfView
+#define NISnapshotViewOfView __NIMBUS_NS_SYMBOL(NISnapshotViewOfView)
 #endif
 #ifndef NIPathForCachesResource
 #define NIPathForCachesResource __NIMBUS_NS_SYMBOL(NIPathForCachesResource)
