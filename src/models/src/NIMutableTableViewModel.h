@@ -22,8 +22,8 @@
  * When modifications are made to the model there are two ways to reflect the changes in the table
  * view.
  *
- * 1) Call reloadData on the table view. This is the most destructive way to update the table view.
- * 2) Call insert/delete/reload methods on the table view with the retuned index path arrays.
+ * * Call reloadData on the table view. This is the most destructive way to update the table view.
+ * * Call insert/delete/reload methods on the table view with the retuned index path arrays.
  *
  * The latter option is the recommended approach to adding new cells to a table view. Each method in
  * the mutable table view model returns a data structure that can be used to inform the table view
