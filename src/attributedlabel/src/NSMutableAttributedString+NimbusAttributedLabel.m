@@ -31,32 +31,58 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setTextAlignment:(CTTextAlignment)textAlignment 
-           lineBreakMode:(CTLineBreakMode)lineBreakMode 
+- (void)setTextAlignment:(CTTextAlignment)textAlignment
+           lineBreakMode:(CTLineBreakMode)lineBreakMode
+              lineHeight:(CGFloat)lineHeight
                    range:(NSRange)range {
-  CTParagraphStyleSetting paragraphStyles[2] = {
-		{.spec = kCTParagraphStyleSpecifierAlignment,
-      .valueSize = sizeof(CTTextAlignment),
-      .value = (const void*)&textAlignment},
-		{.spec = kCTParagraphStyleSpecifierLineBreakMode,
-      .valueSize = sizeof(CTLineBreakMode),
-      .value = (const void*)&lineBreakMode},
-	};
-	CTParagraphStyleRef style = CTParagraphStyleCreate(paragraphStyles, 2);
-  [self addAttribute:(NSString*)kCTParagraphStyleAttributeName
-               value:(__bridge id)style 
-               range:range];
-  CFRelease(style);
+    
+    CTParagraphStyleRef style;
+    
+    if ( lineHeight == 0 ) {
+        CTParagraphStyleSetting paragraphStyles[2] = {
+            {.spec = kCTParagraphStyleSpecifierAlignment,
+                .valueSize = sizeof(CTTextAlignment),
+                .value = (const void*)&textAlignment},
+            {.spec = kCTParagraphStyleSpecifierLineBreakMode,
+                .valueSize = sizeof(CTLineBreakMode),
+                .value = (const void*)&lineBreakMode},
+        };
+        style = CTParagraphStyleCreate(paragraphStyles, 2);
+    } else {
+        CTParagraphStyleSetting paragraphStyles[4] = {
+            {.spec = kCTParagraphStyleSpecifierAlignment,
+                .valueSize = sizeof(CTTextAlignment),
+                .value = (const void*)&textAlignment},
+            {.spec = kCTParagraphStyleSpecifierLineBreakMode,
+                .valueSize = sizeof(CTLineBreakMode),
+                .value = (const void*)&lineBreakMode},
+            {.spec = kCTParagraphStyleSpecifierMinimumLineHeight,
+                .valueSize = sizeof(lineHeight),
+                .value = (const void*)&lineHeight},
+            {.spec = kCTParagraphStyleSpecifierMaximumLineHeight,
+                .valueSize = sizeof(lineHeight),
+                .value = (const void*)&lineHeight},
+        };
+        style = CTParagraphStyleCreate(paragraphStyles, 4);
+    }
+    [self addAttribute:(NSString*)kCTParagraphStyleAttributeName
+                 value:(__bridge id)style
+                 range:range];
+    CFRelease(style);
 }
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setTextAlignment:(CTTextAlignment)textAlignment 
-           lineBreakMode:(CTLineBreakMode)lineBreakMode {
-  [self setTextAlignment:textAlignment 
-           lineBreakMode:lineBreakMode 
-                   range:NSMakeRange(0, self.length)];
+- (void)setTextAlignment:(CTTextAlignment)textAlignment
+           lineBreakMode:(CTLineBreakMode)lineBreakMode
+              lineHeight:(CGFloat)lineHeight {
+    [self setTextAlignment:textAlignment
+             lineBreakMode:lineBreakMode
+                lineHeight:lineHeight
+                     range:NSMakeRange(0, self.length)];
 }
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
