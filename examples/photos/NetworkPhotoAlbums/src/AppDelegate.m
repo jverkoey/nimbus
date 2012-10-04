@@ -38,7 +38,7 @@
 - (BOOL)              application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-  [NIOverview applicationDidFinishLaunching];
+  //[NIOverview applicationDidFinishLaunching];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
@@ -50,7 +50,7 @@
 
   [self.window makeKeyAndVisible];
 
-  [NIOverview addOverviewToWindow:self.window];
+  //[NIOverview addOverviewToWindow:self.window];
   
   return YES;
 }

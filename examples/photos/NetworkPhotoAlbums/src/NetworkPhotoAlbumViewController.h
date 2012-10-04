@@ -101,4 +101,7 @@
                      photoSize: (NIPhotoScrollViewPhotoSize)photoSize
                     photoIndex: (NSInteger)photoIndex;
 
+- (void)requestImageFromAssetsLibrary:(NSString *)source
+                            photoSize:(NIPhotoScrollViewPhotoSize)photoSize
+                           photoIndex:(NSInteger)photoIndex;
 @end

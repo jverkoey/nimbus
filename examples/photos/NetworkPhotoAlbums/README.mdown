@@ -1,3 +1,6 @@
+Update by: Brett Spurrier (brett.spurrier (at) gmail (dot) com)
+This fork add extends the NetworkPhotoAlbum example to include reading
+
 Network Photo Albums Sample Application
 =======================================
 

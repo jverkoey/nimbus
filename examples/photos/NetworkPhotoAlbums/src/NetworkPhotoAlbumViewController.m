@@ -15,6 +15,7 @@
 //
 
 #import "NetworkPhotoAlbumViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 #import "NIOverviewMemoryCacheController.h"
 #import "NimbusOverview.h"
@@ -146,6 +147,59 @@
   // Start the operation.
 
   [_queue addOperation:readOp];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)requestImageFromAssetsLibrary:(NSString *)source
+                            photoSize:(NIPhotoScrollViewPhotoSize)photoSize
+                           photoIndex:(NSInteger)photoIndex {
+  
+  NSInteger identifier = [self identifierWithPhotoSize:photoSize photoIndex:photoIndex];
+  id identifierKey = [self identifierKeyFromIdentifier:identifier];
+  
+  // Avoid duplicating requests.
+  if ([_activeRequests containsObject:identifierKey]) {
+    return;
+  }
+  
+  NSString* photoIndexKey = [self cacheKeyForPhotoIndex:photoIndex];
+  
+  // Success Block
+  ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset) {
+    UIImage *image = nil;
+    ALAssetRepresentation *rep = [myasset defaultRepresentation];
+    CGImageRef imageRef = [rep fullResolutionImage];
+    if (imageRef) {
+      NSNumber *orientation = [myasset valueForProperty:ALAssetPropertyOrientation];
+      image = [UIImage imageWithCGImage:imageRef scale:1.0 orientation:[orientation intValue]];
+      [_highQualityImageCache storeObject: image
+                                 withName: photoIndexKey];
+      
+      [self.photoAlbumView didLoadPhoto: image
+                                atIndex: photoIndex
+                              photoSize: photoSize];
+      
+      [_activeRequests removeObject:identifierKey];
+    }
+  };
+  
+
+  // Failure Block
+  ALAssetsLibraryAccessFailureBlock failureblock  = ^(NSError *myerror) {
+    NSLog(@"Cant get image - %@",[myerror localizedDescription]);
+  };
+  
+  
+  // Grab the image  
+  if(source) {
+    NSString *assetsUrlString = [NSString stringWithFormat:@"%@", source];
+    NSURL *asseturl = [NSURL URLWithString:assetsUrlString];
+    ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
+    [assetslibrary assetForURL:asseturl
+                   resultBlock:resultblock
+                  failureBlock:failureblock];
+  }
+  
 }
 
 

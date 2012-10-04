@@ -16,6 +16,7 @@
 
 #import "CatalogTableViewController.h"
 
+#import "LocalPhotoAlbumViewController.h"
 #import "FacebookPhotoAlbumViewController.h"
 #import "DribbblePhotoAlbumViewController.h"
 #import "AFNetworking.h"
@@ -34,6 +35,13 @@
 
     NSArray* tableContents =
     [NSArray arrayWithObjects:
+     @"Local Photos",
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [LocalPhotoAlbumViewController class], @"class",
+      @"Browse Device Photos", @"title",
+      @"/local", @"initWith",
+      nil],
+     
      @"Dribbble",
      [NSDictionary dictionaryWithObjectsAndKeys:
       [DribbblePhotoAlbumViewController class], @"class",

@@ -79,6 +79,8 @@
 		66EAC64D13D28D9A00BDFF34 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EAC64C13D28D9A00BDFF34 /* NICommonMetrics.m */; };
 		66EAC7DC13D2A77D00BDFF34 /* NimbusPhotos.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66EAC7DB13D2A77D00BDFF34 /* NimbusPhotos.bundle */; };
 		66F27D5D145B7DF500AFCA08 /* NIViewRecycler.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F27D5C145B7DF500AFCA08 /* NIViewRecycler.m */; };
+		8B701B2B161DD2AB00AA3580 /* LocalPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B701B2A161DD2AB00AA3580 /* LocalPhotoAlbumViewController.m */; };
+		8B701B66161DD50B00AA3580 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B701B65161DD50B00AA3580 /* AssetsLibrary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -227,6 +229,9 @@
 		66EAC7DB13D2A77D00BDFF34 /* NimbusPhotos.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusPhotos.bundle; path = ../../../src/photos/resources/NimbusPhotos.bundle; sourceTree = SOURCE_ROOT; };
 		66F27D5B145B7DF500AFCA08 /* NIViewRecycler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIViewRecycler.h; path = ../../../src/core/src/NIViewRecycler.h; sourceTree = "<group>"; };
 		66F27D5C145B7DF500AFCA08 /* NIViewRecycler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIViewRecycler.m; path = ../../../src/core/src/NIViewRecycler.m; sourceTree = "<group>"; };
+		8B701B29161DD2AB00AA3580 /* LocalPhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalPhotoAlbumViewController.h; path = src/LocalPhotoAlbumViewController.h; sourceTree = "<group>"; };
+		8B701B2A161DD2AB00AA3580 /* LocalPhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalPhotoAlbumViewController.m; path = src/LocalPhotoAlbumViewController.m; sourceTree = "<group>"; };
+		8B701B65161DD50B00AA3580 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +239,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B701B66161DD50B00AA3580 /* AssetsLibrary.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -258,6 +264,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				8B701B65161DD50B00AA3580 /* AssetsLibrary.framework */,
 				66EAC47F13D2368100BDFF34 /* README.mdown */,
 				66EA058213C011D6004FFE1A /* NetworkPhotoAlbum_Prefix.pch */,
 				66EA057A13C011C0004FFE1A /* Source */,
@@ -292,6 +299,7 @@
 			children = (
 				6631671513D680A500FF0CBE /* NetworkPhotoAlbumViewController.h */,
 				6631671613D680A500FF0CBE /* NetworkPhotoAlbumViewController.m */,
+				8B701B28161DD27600AA3580 /* Local */,
 				6631680213D688FC00FF0CBE /* Dribbble */,
 				6631673813D6826600FF0CBE /* Facebook */,
 			);
@@ -531,6 +539,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		8B701B28161DD27600AA3580 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				8B701B29161DD2AB00AA3580 /* LocalPhotoAlbumViewController.h */,
+				8B701B2A161DD2AB00AA3580 /* LocalPhotoAlbumViewController.m */,
+			);
+			name = Local;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -658,6 +675,7 @@
 				66D2FE491594202500B2BEFD /* AFURLConnectionOperation.m in Sources */,
 				66D2FE4A1594202500B2BEFD /* AFXMLRequestOperation.m in Sources */,
 				66D2FE4B1594202500B2BEFD /* UIImageView+AFNetworking.m in Sources */,
+				8B701B2B161DD2AB00AA3580 /* LocalPhotoAlbumViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,7 +694,7 @@
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = DEBUG;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "resources/NetworkPhotoAlbum-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = NetworkPhotoAlbum;
 				SDKROOT = iphoneos;
 			};
@@ -691,7 +709,7 @@
 				GCC_PREFIX_HEADER = src/NetworkPhotoAlbum_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "resources/NetworkPhotoAlbum-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = NetworkPhotoAlbum;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

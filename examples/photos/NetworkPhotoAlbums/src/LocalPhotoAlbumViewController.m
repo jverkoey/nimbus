@@ -1,5 +1,6 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2012 Brett Spurrier
+// Extended from DribblePhotoAlbumViewController (Copyright 2011 Jeff Verkoeyen)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,14 +15,15 @@
 // limitations under the License.
 //
 
-#import "DribbblePhotoAlbumViewController.h"
+#import "LocalPhotoAlbumViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 #import "AFNetworking.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation DribbblePhotoAlbumViewController
+@implementation LocalPhotoAlbumViewController
 
 @synthesize apiPath = _apiPath;
 
@@ -37,9 +39,9 @@
 - (void)loadThumbnails {
   for (NSInteger ix = 0; ix < [_photoInformation count]; ++ix) {
     NSDictionary* photo = [_photoInformation objectAtIndex:ix];
-
+    
     NSString* photoIndexKey = [self cacheKeyForPhotoIndex:ix];
-
+    
     // Don't load the thumbnail if it's already in memory.
     if (![self.thumbnailImageCache containsObjectWithName:photoIndexKey]) {
       NSString* source = [photo objectForKey:@"thumbnailSource"];
@@ -51,6 +53,47 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) processAlbum:(NSMutableArray *)photos {
+  
+/*
+  //NSMutableArray* photoInformation = [NSMutableArray arrayWithCapacity:[data count]];
+  for (NSString* photoAssetsUrl in _photoInformation) {
+    
+    // Gather the high-quality photo information.
+    NSString* originalImageSource = [photo objectForKey:@"image_url"];
+    NSInteger width = [[photo objectForKey:@"width"] intValue];
+    NSInteger height = [[photo objectForKey:@"height"] intValue];
+    
+    // We gather the highest-quality photo's dimensions so that we can size the thumbnails
+    // correctly until the high-quality image is downloaded.
+    CGSize dimensions = CGSizeMake(width, height);
+    
+    NSString* thumbnailImageSource = [photo objectForKey:@"image_teaser_url"];
+    
+    NSDictionary* prunedPhotoInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     originalImageSource, @"originalSource",
+                                     thumbnailImageSource, @"thumbnailSource",
+                                     [NSValue valueWithCGSize:dimensions], @"dimensions",
+                                     nil];
+    [photoInformation addObject:prunedPhotoInfo];
+  }
+  
+  _photoInformation = photoInformation;
+  */
+  
+  //[self loadThumbnails];
+  [self.photoAlbumView reloadData];
+  //[self.photoScrubberView reloadData];
+  
+  [self refreshChromeState];
+
+
+
+
+}
+
+
+
 - (void (^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))blockForAlbumProcessing {
   return ^(NSURLRequest *request, NSHTTPURLResponse *response, id object) {
     NSArray* data = [object objectForKey:@"shots"];
@@ -82,15 +125,51 @@
     [self loadThumbnails];
     [self.photoAlbumView reloadData];
     [self.photoScrubberView reloadData];
-
+    
     [self refreshChromeState];
   };
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadAlbumInformation {
-  NSString* albumURLPath = [@"http://api.dribbble.com" stringByAppendingString:self.apiPath];
+  
+  // NOTE: Accessing the AssetsLibrary will require the user to grant Location Services access.
+  
+  ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+  [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+    if (group == nil) {
+      return;
+    }
+    NSMutableArray *localPhotos = [[NSMutableArray alloc] initWithCapacity:[group numberOfAssets]];
+    [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+      
+      if(result) {
+        NSURL *loc = [result valueForProperty:ALAssetPropertyURLs];
+        [localPhotos addObject:loc];
+      }
+      if(index == [group numberOfAssets] - 1) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+          NSLog(@"Finished enumerating %d photos\n", [localPhotos count]);
+          _photoInformation = localPhotos;
+          [self.photoAlbumView reloadData];
+          //[self blockForAlbumProcessing];
+        });
+        
+      }
+    }];
+    
+    
+  } failureBlock:^(NSError *error)
+   {
+     
+   }];
+  
 
+  
+  /*
+  NSString* albumURLPath = [@"http://api.dribbble.com" stringByAppendingString:self.apiPath];
+  
   // Nimbus processors allow us to perform complex computations on a separate thread before
   // returning the object to the main thread. This is useful here because we perform sorting
   // operations and pruning on the results.
@@ -104,9 +183,10 @@
    ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
      
    }];
-
-
+  
+  
   [self.queue addOperation:albumRequest];
+   */
 }
 
 
@@ -119,17 +199,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
   [super loadView];
-
+  
   self.photoAlbumView.dataSource = self;
   self.photoScrubberView.dataSource = self;
 
-  // Dribbble is for mockups and designs, so we don't want to allow the photos to be zoomed
-  // in and become blurry.
-  self.photoAlbumView.zoomingAboveOriginalSizeIsEnabled = YES;
-
   // This title will be displayed until we get the results back for the album information.
   self.title = NSLocalizedString(@"Loading...", @"Navigation bar title - Loading a photo album");
-
+  
   [self loadAlbumInformation];
 }
 
@@ -137,7 +213,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
   _photoInformation = nil;
-
+  
   [super viewDidUnload];
 }
 
@@ -192,41 +268,32 @@
                         isLoading: (BOOL *)isLoading
           originalPhotoDimensions: (CGSize *)originalPhotoDimensions {
   UIImage* image = nil;
-
+  
   NSString* photoIndexKey = [self cacheKeyForPhotoIndex:photoIndex];
-
-  NSDictionary* photo = [_photoInformation objectAtIndex:photoIndex];
-
-  // Let the photo album view know how large the photo will be once it's fully loaded.
-  *originalPhotoDimensions = [[photo objectForKey:@"dimensions"] CGSizeValue];
-
+  
   image = [self.highQualityImageCache objectWithName:photoIndexKey];
   if (nil != image) {
     *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
-
+    
   } else {
-    NSString* source = [photo objectForKey:@"originalSource"];
-    [self requestImageFromSource: source
-                       photoSize: NIPhotoScrollViewPhotoSizeOriginal
-                      photoIndex: photoIndex];
-
-    *isLoading = YES;
-
-    // Try to return the thumbnail image if we can.
-    image = [self.thumbnailImageCache objectWithName:photoIndexKey];
-    if (nil != image) {
-      *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
-
-    } else {
-      // Load the thumbnail as well.
-      NSString* thumbnailSource = [photo objectForKey:@"thumbnailSource"];
-      [self requestImageFromSource: thumbnailSource
-                         photoSize: NIPhotoScrollViewPhotoSizeThumbnail
-                        photoIndex: photoIndex];
-
+    NSDictionary* sourceDictionary = [_photoInformation objectAtIndex:photoIndex];
+    
+    NSString* assetsUrl = nil;
+    if([sourceDictionary objectForKey:@"public.jpeg"]) {
+      assetsUrl = [sourceDictionary objectForKey:@"public.jpeg"];
     }
-  }
+    else if([sourceDictionary objectForKey:@"public.png"]) {
+      assetsUrl = [sourceDictionary objectForKey:@"public.png"];
+    }
 
+    [self requestImageFromAssetsLibrary: assetsUrl
+                              photoSize: NIPhotoScrollViewPhotoSizeOriginal
+                             photoIndex: photoIndex];
+    
+    *isLoading = YES;
+    
+  }
+  
   return image;
 }
 
