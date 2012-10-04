@@ -40,6 +40,8 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
 // Inform the table view that we've modified the model.
 [self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
 @endcode
+ *
+ *      @ingroup TableViewModels
  */
 @interface NIMutableTableViewModel : NITableViewModel
 
