@@ -42,6 +42,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSArray *)addObject:(id)object toSection:(NSInteger)sectionIndex {
+  NIDASSERT(sectionIndex >= 0 && sectionIndex < self.sections.count);
+  NITableViewModelSection *section = [self.sections objectAtIndex:sectionIndex];
+  [section.mutableRows addObject:object];
+  return [NSArray arrayWithObject:[NSIndexPath indexPathForRow:section.mutableRows.count - 1
+                                                     inSection:sectionIndex]];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)addObjectsFromArray:(NSArray *)array {
   NSMutableArray* indices = [NSMutableArray array];
   for (id object in array) {

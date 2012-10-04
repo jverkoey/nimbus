@@ -64,6 +64,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testAddingObjectToSection {
+  NIMutableTableViewModel* model = [[NIMutableTableViewModel alloc] initWithDelegate:nil];
+
+  [model addObject:[NSNumber numberWithBool:YES]];
+  [model addSectionWithTitle:@""];
+  [model addObject:[NSNumber numberWithBool:NO] toSection:0];
+
+  STAssertEquals([model tableView:nil numberOfRowsInSection:0], 2, @"The section should have two rows.");
+  STAssertEquals([model numberOfSectionsInTableView:nil], 2, @"There should be two sections.");
+  STAssertEquals(model.sections.count, 2U, @"Should have two sections.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testAddingObjects {
   NIMutableTableViewModel* model = [[NIMutableTableViewModel alloc] initWithDelegate:nil];
 
