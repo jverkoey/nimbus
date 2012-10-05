@@ -53,6 +53,8 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
 - (NSIndexSet *)addSectionWithTitle:(NSString *)title;
 - (NSIndexSet *)insertSectionWithTitle:(NSString *)title atIndex:(NSUInteger)index;
 
+- (void)updateSectionIndex;
+
 @end
 
 /** @name Modifying Objects */
@@ -120,4 +122,14 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
  *      @param index The index in the model at which to add the new section.
  *      @returns An index set with a single index representing the index of the new section.
  *      @fn NIMutableTableViewModel::insertSectionWithTitle:atIndex:
+ */
+
+/** @name Updating the Section Index */
+
+/**
+ * Updates the section index with the current section index settings.
+ *
+ * This method should be called after modifying the model if a section index is being used.
+ *
+ *      @fn NIMutableTableViewModel::updateSectionIndex
  */

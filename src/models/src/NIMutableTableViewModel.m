@@ -55,7 +55,7 @@
 - (NSArray *)addObjectsFromArray:(NSArray *)array {
   NSMutableArray* indices = [NSMutableArray array];
   for (id object in array) {
-    [indices addObject:[self addObject:object]];
+    [indices addObject:[[self addObject:object] objectAtIndex:0]];
   }
   return indices;
 }
@@ -90,6 +90,12 @@
   NITableViewModelSection* section = [self _insertSectionAtIndex:index];
   section.headerTitle = title;
   return [NSIndexSet indexSetWithIndex:index];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)updateSectionIndex {
+  [self _compileSectionIndex];
 }
 
 
