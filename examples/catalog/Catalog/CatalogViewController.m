@@ -430,11 +430,6 @@
   self.tableView.delegate = [self.actions forwardingTo:self];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  NIPushControllerAction([MutableTableModelViewController class])(nil, self);
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
   // This is a core Nimbus method that simplifies the logic required to display a controller on
   // both the iPad (where all orientations are supported) and the iPhone (where anything but
