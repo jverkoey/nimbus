@@ -46,12 +46,12 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
 @interface NIMutableTableViewModel : NITableViewModel
 
 - (NSArray *)addObject:(id)object;
-- (NSArray *)addObject:(id)object toSection:(NSInteger)section;
+- (NSArray *)addObject:(id)object toSection:(NSUInteger)section;
 - (NSArray *)addObjectsFromArray:(NSArray *)array;
 - (NSArray *)removeObjectAtIndexPath:(NSIndexPath *)indexPath;
 
 - (NSIndexSet *)addSectionWithTitle:(NSString *)title;
-- (NSIndexSet *)insertSectionWithTitle:(NSString *)title atIndex:(NSInteger)index;
+- (NSIndexSet *)insertSectionWithTitle:(NSString *)title atIndex:(NSUInteger)index;
 
 @end
 
