@@ -346,6 +346,16 @@ typedef enum {
  */
 
 /**
+ * Sets the lineheight for the text.
+ *
+ * By default this is zero.
+ *
+ * Setting this value to zero will set the lineheight of to the default height. 
+ *
+ *      @fn NIAttributedLabel::lineHeight
+ */
+
+/**
  * Sets the kern for the text.
  *
  * By default this is zero.
