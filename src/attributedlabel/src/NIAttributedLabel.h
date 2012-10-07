@@ -350,7 +350,7 @@ typedef enum {
  *
  * By default this is zero.
  *
- * Setting this value to zero will set the lineheight of to the default height. 
+ * Setting this value to zero will make the label use the default line height for the text's font.
  *
  *      @fn NIAttributedLabel::lineHeight
  */
