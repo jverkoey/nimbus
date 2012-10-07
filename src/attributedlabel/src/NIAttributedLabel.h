@@ -346,7 +346,7 @@ typedef enum {
  */
 
 /**
- * Sets the lineheight for the text.
+ * Sets the line height for the text.
  *
  * By default this is zero.
  *
