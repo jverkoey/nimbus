@@ -46,7 +46,8 @@
  * _ kCTLineBreakByTruncatingMiddle
  */
 - (void)setTextAlignment:(CTTextAlignment)textAlignment 
-           lineBreakMode:(CTLineBreakMode)lineBreakMode 
+           lineBreakMode:(CTLineBreakMode)lineBreakMode
+              lineHeight:(CGFloat) lineHeight
                    range:(NSRange)range;
 
 
@@ -70,7 +71,8 @@
 
  */
 - (void)setTextAlignment:(CTTextAlignment)textAlignment 
-           lineBreakMode:(CTLineBreakMode)lineBreakMode;
+           lineBreakMode:(CTLineBreakMode)lineBreakMode
+              lineHeight:(CGFloat) lineHeight;
 
 
 /**
