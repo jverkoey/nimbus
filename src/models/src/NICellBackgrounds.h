@@ -17,6 +17,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+// Flags set on the cell's backgroundView's tag property to indicate placement of the cell.
+typedef enum {
+  NIGroupedCellBackgroundFlagIsLast       = (1 << 0),
+  NIGroupedCellBackgroundFlagIsFirst      = (1 << 1),
+  NIGroupedCellBackgroundFlagInitialized  = (1 << 2),
+} NIGroupedCellBackgroundFlag;
+
 /**
  * The NIGroupedCellBackground class provides support for generating grouped UITableView cell
  * backgrounds.

@@ -398,13 +398,18 @@ static const CGSize kCellImageSize = {44, 44};
   NSInteger numberOfRowsInSection = [tableView.dataSource tableView:tableView numberOfRowsInSection:indexPath.section];
   BOOL isFirst = (0 == indexPath.row);
   BOOL isLast = (indexPath.row == numberOfRowsInSection - 1);
-  cell.backgroundView = [[UIImageView alloc] initWithImage:[self imageForFirst:isFirst
-                                                                          last:isLast
-                                                                   highlighted:NO]];
-  cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[self imageForFirst:isFirst
-                                                                                  last:isLast
-                                                                           highlighted:YES]];
-  cell.backgroundView.tag = (isFirst ? 1 << 1 : 0) | (isLast ? 1 : 0);
+  NSInteger backgroundTag = ((isFirst ? NIGroupedCellBackgroundFlagIsFirst : 0)
+                             | (isLast ? NIGroupedCellBackgroundFlagIsLast : 0)
+                             | NIGroupedCellBackgroundFlagInitialized);
+  if (cell.backgroundView.tag != backgroundTag) {
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[self imageForFirst:isFirst
+                                                                            last:isLast
+                                                                     highlighted:NO]];
+    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[self imageForFirst:isFirst
+                                                                                    last:isLast
+                                                                             highlighted:YES]];
+    cell.backgroundView.tag = backgroundTag;
+  }
 }
 
 
