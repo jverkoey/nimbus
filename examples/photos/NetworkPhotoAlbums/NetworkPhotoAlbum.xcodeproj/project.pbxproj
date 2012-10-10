@@ -676,7 +676,7 @@
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = DEBUG;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "resources/NetworkPhotoAlbum-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = NetworkPhotoAlbum;
 				SDKROOT = iphoneos;
 			};
@@ -691,7 +691,7 @@
 				GCC_PREFIX_HEADER = src/NetworkPhotoAlbum_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "resources/NetworkPhotoAlbum-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = NetworkPhotoAlbum;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
