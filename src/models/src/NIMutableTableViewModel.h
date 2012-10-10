@@ -48,6 +48,7 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
 - (NSArray *)addObject:(id)object;
 - (NSArray *)addObject:(id)object toSection:(NSUInteger)section;
 - (NSArray *)addObjectsFromArray:(NSArray *)array;
+- (NSArray *)insertObject:(id)object atRow:(NSUInteger)row inSection:(NSUInteger)section;
 - (NSArray *)removeObjectAtIndexPath:(NSIndexPath *)indexPath;
 
 - (NSIndexSet *)addSectionWithTitle:(NSString *)title;
@@ -92,6 +93,17 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
  *      @returns An array of NSIndexPath objects representing the index paths of the objects in the
  *               model.
  *      @fn NIMutableTableViewModel::addObjectsFromArray:
+ */
+
+/**
+ * Inserts an object into the given section at the given row.
+ *
+ *      @param object The object to append to the section.
+ *      @param row The row within the section at which to insert the object.
+ *      @param section The index of the section in which the object should be inserted.
+ *      @returns An array with a single NSIndexPath representing the index path of the new object
+ *               in the model.
+ *      @fn NIMutableTableViewModel::insertObject:atRow:inSection:
  */
 
 /**

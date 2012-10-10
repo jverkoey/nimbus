@@ -62,6 +62,15 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSArray *)insertObject:(id)object atRow:(NSUInteger)row inSection:(NSUInteger)sectionIndex {
+  NIDASSERT(sectionIndex >= 0 && sectionIndex < self.sections.count);
+  NITableViewModelSection *section = [self.sections objectAtIndex:sectionIndex];
+  [section.mutableRows insertObject:object atIndex:row];
+  return [NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:sectionIndex]];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)removeObjectAtIndexPath:(NSIndexPath *)indexPath {
   NIDASSERT(indexPath.section < (NSInteger)self.sections.count);
   if (indexPath.section >= (NSInteger)self.sections.count) {
@@ -95,6 +104,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSIndexSet *)removeSectionAtIndex:(NSUInteger)index {
+  NIDASSERT(index >= 0 && index < self.sections.count);
   [self.sections removeObjectAtIndex:index];
   return [NSIndexSet indexSetWithIndex:index];
 }
