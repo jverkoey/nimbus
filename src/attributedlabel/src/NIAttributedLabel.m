@@ -1568,7 +1568,11 @@ CGFloat ImageDelegateGetWidthCallback(void* refCon) {
     CTTextAlignment textAlignment = [self alignmentFromUITextAlignment:label.textAlignment];
     CTLineBreakMode lineBreak = [self lineBreakModeFromUILineBreakMode:label.lineBreakMode];
 
-    [attributedString setTextAlignment:textAlignment lineBreakMode:lineBreak  lineHeight:0];
+    CGFloat lineHeight = 0;
+    if ([label isKindOfClass:[NIAttributedLabel class]]) {
+      lineHeight = [(NIAttributedLabel *)label lineHeight];
+    }
+    [attributedString setTextAlignment:textAlignment lineBreakMode:lineBreak lineHeight:lineHeight];
   }
 
   return attributedString;
