@@ -26,6 +26,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIMutableTableViewModel
 
+@synthesize delegate = _delegate;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -145,6 +147,42 @@
   NIDASSERT(index >= 0 && index <= self.sections.count);
   [self.sections insertObject:section atIndex:index];
   return section;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UITableViewDataSource
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+  if ([self.delegate respondsToSelector:@selector(tableViewModel:canEditObject:atIndexPath:inTableView:)]) {
+    id object = [self objectAtIndexPath:indexPath];
+    return [self.delegate tableViewModel:self canEditObject:object atIndexPath:indexPath inTableView:tableView];
+  } else {
+    return NO;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  id object = [self objectAtIndexPath:indexPath];
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    BOOL shouldDelete = YES;
+    if ([self.delegate respondsToSelector:@selector(tableViewModel:shouldDeleteObject:atIndexPath:inTableView:)]) {
+      shouldDelete = [self.delegate tableViewModel:self shouldDeleteObject:object atIndexPath:indexPath inTableView:tableView];
+    }
+    if (shouldDelete) {
+      NSArray *indexPaths = [self removeObjectAtIndexPath:indexPath];
+      UITableViewRowAnimation animation = UITableViewRowAnimationAutomatic;
+      if ([self.delegate respondsToSelector:@selector(tableViewModel:deleteRowAnimationForObject:atIndexPath:inTableView:)]) {
+        animation = [self.delegate tableViewModel:self deleteRowAnimationForObject:object atIndexPath:indexPath inTableView:tableView];
+      }
+      [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+    }
+  }
 }
 
 @end

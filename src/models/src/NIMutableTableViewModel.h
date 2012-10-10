@@ -16,6 +16,58 @@
 
 #import "NITableViewModel.h"
 
+@class NIMutableTableViewModel;
+
+/**
+ * A protocol for NIMutableTableViewModel to handle editing states for objects.
+ */
+@protocol NIMutableTableViewModelDelegate <NSObject, NITableViewModelDelegate>
+
+@optional
+
+/**
+ * Asks the receiver whether the object at the given index path should be editable.
+ *
+ * If this method is not implemented, the default response is assumed to be NO.
+ */
+- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+         canEditObject:(id)object
+           atIndexPath:(NSIndexPath *)indexPath
+           inTableView:(UITableView *)tableView;
+
+/**
+ * Asks the receiver what animation should be used when deleting the object at the given index path.
+ *
+ * If this method is not implemented, the default response is assumed to be
+ * UITableViewRowAnimationAutomatic.
+ */
+- (UITableViewRowAnimation)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+              deleteRowAnimationForObject:(id)object
+                              atIndexPath:(NSIndexPath *)indexPath
+                              inTableView:(UITableView *)tableView;
+
+/**
+ * Asks the receiver whether the given object should be deleted.
+ *
+ * If this method is not implemented, the default response is assumed to be YES.
+ *
+ * Returning NO will stop the model from handling the deletion logic. This is a good opportunity for
+ * you to show a UIAlertView or similar feedback prompt to the user before initiating the deletion
+ * yourself.
+ *
+ * If you implement the deletion of the object yourself, your code may resemble the following:
+@code
+NSArray *indexPaths = [self removeObjectAtIndexPath:indexPath];
+[tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+@endcode
+ */
+- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+    shouldDeleteObject:(id)object
+           atIndexPath:(NSIndexPath *)indexPath
+           inTableView:(UITableView *)tableView;
+
+@end
+
 /**
  * The NIMutableTableViewModel class is a mutable table view model.
  *
@@ -56,6 +108,8 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
 - (NSIndexSet *)removeSectionAtIndex:(NSUInteger)index;
 
 - (void)updateSectionIndex;
+
+@property (nonatomic, weak) id<NIMutableTableViewModelDelegate> delegate;
 
 @end
 

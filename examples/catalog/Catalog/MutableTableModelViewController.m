@@ -38,14 +38,17 @@
 // UIKit.framework
 //
 
-@interface MutableTableModelViewController ()
+@interface MutableTableModelViewController () <NIMutableTableViewModelDelegate>
 @property (nonatomic, strong) NIMutableTableViewModel* model;
 @property (nonatomic, strong) NIMutableTableViewModel* actions;
+@property (nonatomic, strong) NSIndexPath* indexPathForDeletion;
 @end
 
 @implementation MutableTableModelViewController
 
 @synthesize model = _model;
+@synthesize actions = _actions;
+@synthesize indexPathForDeletion = _indexPathForDeletion;
 
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
@@ -54,7 +57,7 @@
     // In order to be able to modify a model we must create an instance of NIMutableTableViewModel.
     // This object differs from NITableViewModel in that it exposes methods for modifying the
     // contents of the model, similarly to the differences between NSArray and NSMutableArray.
-    _model = [[NIMutableTableViewModel alloc] initWithDelegate:(id)[NICellFactory class]];
+    _model = [[NIMutableTableViewModel alloc] initWithDelegate:self];
 
     // We are going to show how to recompile the section index so we provide the settings here.
     [_model setSectionIndexType:NITableViewModelSectionIndexDynamic
@@ -109,6 +112,59 @@
 
   // Scroll the table view such that the last object is in view.
   [self.tableView scrollToRowAtIndexPath:indexPaths.lastObject atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return UITableViewCellEditingStyleDelete;
+}
+
+#pragma mark - NIMutableTableViewModelDelegate
+
+- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+         canEditObject:(id)object
+           atIndexPath:(NSIndexPath *)indexPath
+           inTableView:(UITableView *)tableView {
+  // We want every cell to be editable.
+  return YES;
+}
+
+- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+    shouldDeleteObject:(id)object
+           atIndexPath:(NSIndexPath *)indexPath
+           inTableView:(UITableView *)tableView {
+  // We're going to store the index path that wants to be deleted so that we can delete the correct
+  // cell after the alert view has been dismissed.
+  self.indexPathForDeletion = indexPath;
+
+  // Rather than allow the model to simply delete the object, we're going to present a prompt that
+  // confirms with the user that they want to delete this object.
+  UIAlertView *confirmationAlertView = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you that sure you want to delete this cell?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+  [confirmationAlertView show];
+  return NO;
+}
+
+- (UITableViewCell *)tableViewModel:(NITableViewModel *)tableViewModel
+                   cellForTableView:(UITableView *)tableView
+                        atIndexPath:(NSIndexPath *)indexPath
+                         withObject:(id)object {
+  return [NICellFactory tableViewModel:tableViewModel cellForTableView:tableView atIndexPath:indexPath withObject:object];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  if (alertView.cancelButtonIndex != buttonIndex) {
+    // If the user hits "OK" then let's delete the object from the model.
+    NSArray *indexPaths = [self.model removeObjectAtIndexPath:self.indexPathForDeletion];
+
+    // And then notify the table view of the deletion.
+    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+
+    // Now that we've deleted the object we no longer need this index path.
+    self.indexPathForDeletion = nil;
+  }
 }
 
 @end
