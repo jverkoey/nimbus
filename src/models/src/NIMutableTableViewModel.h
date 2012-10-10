@@ -20,6 +20,8 @@
 
 /**
  * A protocol for NIMutableTableViewModel to handle editing states for objects.
+ *
+ *      @ingroup TableViewModels
  */
 @protocol NIMutableTableViewModelDelegate <NSObject, NITableViewModelDelegate>
 
