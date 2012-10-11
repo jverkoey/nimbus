@@ -1320,7 +1320,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     if (truncatesLastLine && lineIndex == numberOfLines - 1) {
       // Does the last line need truncation?
       CFRange lastLineRange = CTLineGetStringRange(line);
-      if (lastLineRange.location + lastLineRange.length < attributedString.length) {
+      if (lastLineRange.location + lastLineRange.length < (CFIndex)attributedString.length) {
         CTLineTruncationType truncationType = kCTLineTruncationEnd;
         NSUInteger truncationAttributePosition = lastLineRange.location + lastLineRange.length - 1;
 
