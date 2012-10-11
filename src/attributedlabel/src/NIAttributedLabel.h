@@ -37,7 +37,7 @@
  * This method is used in NIAttributedLabel to calculate its size after all additional
  * styling attributes have been set.
  */
-CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedString, CGSize size);
+CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedString, CGSize size, NSInteger numberOfLines);
 
 // Vertical alignments for NIAttributedLabel.
 typedef enum {
@@ -53,10 +53,9 @@ typedef enum {
  *
  * Differences between UILabel and NIAttributedLabel:
  *
- * - @c UILineBreakModeHeadTruncation, @c UILineBreakModeTailTruncation, and
- *   @c UILineBreakModeMiddleTruncation only apply to single lines and will not wrap the label
- *   regardless of the @c numberOfLines property. To wrap lines with any of these line break modes
- *   you must explicitly add newline characters to the string.
+ * - @c UILineBreakModeHeadTruncation and @c UILineBreakModeMiddleTruncation only apply to single
+ *   lines and will not wrap the label regardless of the @c numberOfLines property. To wrap lines
+ *   with any of these line break modes you must explicitly add newline characters to the string.
  * - When you assign an NSString to the text property the attributed label will create an
  *   attributed string that inherits all of the label's current styles.
  * - Text is aligned vertically to the top of the bounds by default rather than centered. You can

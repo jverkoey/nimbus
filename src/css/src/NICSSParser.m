@@ -350,8 +350,8 @@ int cssConsume(char* text, int token) {
 
             } else {
               // Append the property order.
-                NSMutableArray* order = [mergedScopeProperties objectForKey:kPropertyOrderKey];
-                [order addObjectsFromArray:[properties objectForKey:kPropertyOrderKey]];
+              NSMutableArray *order = [mergedScopeProperties objectForKey:kPropertyOrderKey];
+              [order addObjectsFromArray:[properties objectForKey:kPropertyOrderKey]];
             }
           }
         }

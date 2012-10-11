@@ -16,6 +16,60 @@
 
 #import "NITableViewModel.h"
 
+@class NIMutableTableViewModel;
+
+/**
+ * A protocol for NIMutableTableViewModel to handle editing states for objects.
+ *
+ *      @ingroup TableViewModels
+ */
+@protocol NIMutableTableViewModelDelegate <NSObject, NITableViewModelDelegate>
+
+@optional
+
+/**
+ * Asks the receiver whether the object at the given index path should be editable.
+ *
+ * If this method is not implemented, the default response is assumed to be NO.
+ */
+- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+         canEditObject:(id)object
+           atIndexPath:(NSIndexPath *)indexPath
+           inTableView:(UITableView *)tableView;
+
+/**
+ * Asks the receiver what animation should be used when deleting the object at the given index path.
+ *
+ * If this method is not implemented, the default response is assumed to be
+ * UITableViewRowAnimationAutomatic.
+ */
+- (UITableViewRowAnimation)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+              deleteRowAnimationForObject:(id)object
+                              atIndexPath:(NSIndexPath *)indexPath
+                              inTableView:(UITableView *)tableView;
+
+/**
+ * Asks the receiver whether the given object should be deleted.
+ *
+ * If this method is not implemented, the default response is assumed to be YES.
+ *
+ * Returning NO will stop the model from handling the deletion logic. This is a good opportunity for
+ * you to show a UIAlertView or similar feedback prompt to the user before initiating the deletion
+ * yourself.
+ *
+ * If you implement the deletion of the object yourself, your code may resemble the following:
+@code
+NSArray *indexPaths = [self removeObjectAtIndexPath:indexPath];
+[tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+@endcode
+ */
+- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+    shouldDeleteObject:(id)object
+           atIndexPath:(NSIndexPath *)indexPath
+           inTableView:(UITableView *)tableView;
+
+@end
+
 /**
  * The NIMutableTableViewModel class is a mutable table view model.
  *
@@ -48,12 +102,16 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
 - (NSArray *)addObject:(id)object;
 - (NSArray *)addObject:(id)object toSection:(NSUInteger)section;
 - (NSArray *)addObjectsFromArray:(NSArray *)array;
+- (NSArray *)insertObject:(id)object atRow:(NSUInteger)row inSection:(NSUInteger)section;
 - (NSArray *)removeObjectAtIndexPath:(NSIndexPath *)indexPath;
 
 - (NSIndexSet *)addSectionWithTitle:(NSString *)title;
 - (NSIndexSet *)insertSectionWithTitle:(NSString *)title atIndex:(NSUInteger)index;
+- (NSIndexSet *)removeSectionAtIndex:(NSUInteger)index;
 
 - (void)updateSectionIndex;
+
+@property (nonatomic, weak) id<NIMutableTableViewModelDelegate> delegate;
 
 @end
 
@@ -94,6 +152,17 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
  */
 
 /**
+ * Inserts an object into the given section at the given row.
+ *
+ *      @param object The object to append to the section.
+ *      @param row The row within the section at which to insert the object.
+ *      @param section The index of the section in which the object should be inserted.
+ *      @returns An array with a single NSIndexPath representing the index path of the new object
+ *               in the model.
+ *      @fn NIMutableTableViewModel::insertObject:atRow:inSection:
+ */
+
+/**
  * Removes an object at the given index path.
  *
  * If the index path does not represent a valid object then a debug assertion will fire and the
@@ -122,6 +191,14 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
  *      @param index The index in the model at which to add the new section.
  *      @returns An index set with a single index representing the index of the new section.
  *      @fn NIMutableTableViewModel::insertSectionWithTitle:atIndex:
+ */
+
+/**
+ * Removes a section at the given index.
+ *
+ *      @param index The index in the model of the section to remove.
+ *      @returns An index set with a single index representing the index of the removed section.
+ *      @fn NIMutableTableViewModel::removeSectionAtIndex:
  */
 
 /** @name Updating the Section Index */

@@ -59,6 +59,7 @@
 
   label.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
   label.lineBreakMode = UILineBreakModeWordWrap;
+  label.numberOfLines = 0;
   label.font = [UIFont systemFontOfSize:20];
   label.textColor = [UIColor blackColor];
   label.frame = CGRectInset(self.view.bounds, 20, 20);

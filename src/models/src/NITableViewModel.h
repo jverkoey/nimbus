@@ -83,6 +83,8 @@ typedef enum {
 
 /**
  * A protocol for NITableViewModel to fetch rows to be displayed for the table view.
+ *
+ *      @ingroup TableViewModels
  */
 @protocol NITableViewModelDelegate <NSObject>
 
