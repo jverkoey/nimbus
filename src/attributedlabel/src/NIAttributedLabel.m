@@ -36,11 +36,40 @@ static NSString* const kEllipsesCharacter = @"\u2026";
 // "within" the link.
 static const CGFloat kTouchGutter = 22;
 
-CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedString, CGSize size) {
+CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedString, CGSize size, NSInteger numberOfLines) {
   CFAttributedStringRef attributedStringRef = (__bridge CFAttributedStringRef)attributedString;
   CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attributedStringRef);
-  CFRange fitCFRange = CFRangeMake(0,0);
-  CGSize newSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0), NULL, size, &fitCFRange);
+  CFRange range = CFRangeMake(0, 0);
+
+  // This logic adapted from @mattt's TTTAttributedLabel
+  // https://github.com/mattt/TTTAttributedLabel
+
+  if (numberOfLines == 1) {
+    size = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
+
+  } else if (numberOfLines == 0) {
+    size = CGSizeMake(size.width, CGFLOAT_MAX);
+
+  } else if (numberOfLines > 0) {
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, NULL, CGRectMake(0, 0, size.width, CGFLOAT_MAX));
+    CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
+    CFArrayRef lines = CTFrameGetLines(frame);
+
+    if (CFArrayGetCount(lines) > 0) {
+      NSInteger lastVisibleLineIndex = MIN(numberOfLines, CFArrayGetCount(lines)) - 1;
+      CTLineRef lastVisibleLine = CFArrayGetValueAtIndex(lines, lastVisibleLineIndex);
+
+      CFRange rangeToLayout = CTLineGetStringRange(lastVisibleLine);
+      range = CFRangeMake(0, rangeToLayout.location + rangeToLayout.length);
+    }
+
+    CFRelease(frame);
+    CFRelease(path);
+  }
+
+  CFRange fitCFRange = CFRangeMake(0, 0);
+  CGSize newSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, range, NULL, size, &fitCFRange);
 
   if (nil != framesetter) {
     CFRelease(framesetter);
@@ -212,7 +241,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     return CGSizeZero;
   }
 
-  return NISizeOfAttributedStringConstrainedToSize([self mutableAttributedStringWithAdditions], size);
+  return NISizeOfAttributedStringConstrainedToSize([self mutableAttributedStringWithAdditions], size, self.numberOfLines);
 }
 
 
