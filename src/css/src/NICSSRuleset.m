@@ -47,6 +47,7 @@ static NSString* const kActivityIndicatorStyleKey = @"-ios-activity-indicator-st
 static NSString* const kAutoresizingKey = @"-ios-autoresizing";
 static NSString* const kTableViewCellSeparatorStyleKey = @"-ios-table-view-cell-separator-style";
 static NSString* const kScrollViewIndicatorStyleKey = @"-ios-scroll-view-indicator-style";
+static NSString* const kImageCapInsetsKey = @"-ios-image-capinsets";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -692,6 +693,28 @@ static NSDictionary* sColorTable = nil;
   return _scrollViewIndicatorStyle;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasImageCapInsets
+{
+    return nil != [_ruleset objectForKey:kImageCapInsetsKey];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIEdgeInsets)imageCapInsets // -ios-scroll-view-indicator-style
+{
+    NIDASSERT([self hasImageCapInsets]);
+    if (!_is.cached.ImageCapInsets)
+    {
+        NSArray* values = [_ruleset objectForKey:kImageCapInsetsKey];
+        NIDASSERT([values count] == 4);
+    
+        _imageCapInsets = UIEdgeInsetsMake([[values objectAtIndex:0] intValue], [[values objectAtIndex:1] intValue],
+                                           [[values objectAtIndex:2] intValue], [[values objectAtIndex:3] intValue]);
+            
+        _is.cached.ImageCapInsets = YES;
+    }
+    return _imageCapInsets;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1011,5 +1034,6 @@ static NSDictionary* sColorTable = nil;
 
   return textAlignment;
 }
+
 
 @end

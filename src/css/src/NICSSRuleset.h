@@ -50,6 +50,7 @@
   UIViewAutoresizing _autoresizing;
   UITableViewCellSeparatorStyle _tableViewCellSeparatorStyle;
   UIScrollViewIndicatorStyle _scrollViewIndicatorStyle;
+  UIEdgeInsets _imageCapInsets;
 
   union {
     struct {
@@ -73,6 +74,7 @@
       int Autoresizing : 1;
       int TableViewCellSeparatorStyle : 1;
       int ScrollViewIndicatorStyle : 1;
+      int ImageCapInsets : 1;
     } cached;
     int _data;
   } _is;
@@ -139,6 +141,9 @@
 
 - (BOOL)hasScrollViewIndicatorStyle;
 - (UIScrollViewIndicatorStyle)scrollViewIndicatorStyle; // -ios-scroll-view-indicator-style
+
+- (BOOL)hasImageCapInsets;
+- (UIEdgeInsets)imageCapInsets; // -ios-scroll-view-indicator-style
 
 @end
 

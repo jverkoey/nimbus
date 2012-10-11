@@ -36,6 +36,13 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 - (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet {
   if ([ruleSet hasTextColor]) { [self setTitleColor:ruleSet.textColor forState:UIControlStateNormal]; } else { [self setTitleColor:nil forState:UIControlStateNormal]; }
   if ([ruleSet hasTextShadowColor]) { [self setTitleShadowColor:ruleSet.textShadowColor forState:UIControlStateNormal]; } else { [self setTitleShadowColor:nil forState:UIControlStateNormal]; }
+  if ([ruleSet hasTextShadowOffset]) { self.titleLabel.shadowOffset = ruleSet.textShadowOffset; }
+  if ([ruleSet hasFont]) { self.titleLabel.font = ruleSet.font; }
+    if ([ruleSet hasImageCapInsets])
+    {
+        UIImage *image = [self backgroundImageForState:UIControlStateNormal];
+        [self setBackgroundImage:[image resizableImageWithCapInsets:ruleSet.imageCapInsets] forState:UIControlStateNormal];
+    }
 }
 
 
