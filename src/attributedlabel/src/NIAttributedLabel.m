@@ -164,7 +164,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)awakeFromNib {
   [super awakeFromNib];
-  
+
   [self _configureDefaults];
 
   NSMutableAttributedString* attributedText = [[self class] mutableAttributedStringFromLabel:self];
@@ -253,15 +253,15 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 - (void)setAttributedString:(NSAttributedString *)attributedText {
   if (self.mutableAttributedString != attributedText) {
     self.mutableAttributedString = [attributedText mutableCopy];
-    
+
     // Clear the link caches.
     self.detectedlinkLocations = nil;
     self.linksHaveBeenDetected = NO;
     [self removeAllExplicitLinks];
-    
+
     // Remove all images.
     self.images = nil;
-    
+
     [self attributedTextDidChange];
   }
 }
@@ -272,15 +272,15 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 - (void)setAttributedText:(NSAttributedString *)attributedText {
   if (self.mutableAttributedString != attributedText) {
     self.mutableAttributedString = [attributedText mutableCopy];
-    
+
     // Clear the link caches.
     self.detectedlinkLocations = nil;
     self.linksHaveBeenDetected = NO;
     [self removeAllExplicitLinks];
-    
+
     // Remove all images.
     self.images = nil;
-    
+
     [self attributedTextDidChange];
   }
 }
@@ -326,7 +326,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     // we call setNeedsDisplay ourselves.
     [super setTextAlignment:textAlignment];
   }
-  
+
   if (nil != self.mutableAttributedString) {
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:textAlignment];
     CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
@@ -343,7 +343,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   } else {
     [super setTextAlignment:textAlignment];
   }
-  
+
   if (nil != self.mutableAttributedString) {
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:textAlignment];
     CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
@@ -367,7 +367,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 #else
 - (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode {
   [super setLineBreakMode:lineBreakMode];
-  
+
   if (nil != self.mutableAttributedString) {
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:self.textAlignment];
     CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:lineBreakMode];
@@ -604,7 +604,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:self.dataDetectorTypes
                                                                  error:&error];
   NSRange range = NSMakeRange(0, string.length);
-  
+
   return [linkDetector matchesInString:string options:0 range:range];
 }
 
@@ -657,7 +657,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   CGFloat leading = 0.0f;
   CGFloat width = (CGFloat)CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
   CGFloat height = ascent + descent;
-  
+
   return CGRectMake(point.x, point.y - descent, width, height);
 }
 
@@ -701,7 +701,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
     if (NIVerticalTextAlignmentMiddle == self.verticalTextAlignment) {
       verticalOffset = floorf((bounds.size.height - textSize.height) / 2.f);
-      
+
     } else if (NIVerticalTextAlignmentBottom == self.verticalTextAlignment) {
       verticalOffset = bounds.size.height - textSize.height;
     }
@@ -731,7 +731,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
   CGPoint origins[count];
   CTFrameGetLineOrigins(self.textFrame, CFRangeMake(0,0), origins);
-  
+
   CGAffineTransform transform = [self _transformForCoreText];
   CGFloat verticalOffset = [self _verticalOffsetForBounds:self.bounds];
 
@@ -782,7 +782,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     CGFloat ascent = 0.0f;
     CGFloat descent = 0.0f;
     CGFloat leading = 0.0f;
-    
+
     // Use of 'leading' doesn't properly highlight Japanese-character link.
     CGFloat width = (CGFloat)CTRunGetTypographicBounds(run,
                                                        CFRangeMake(0, 0),
@@ -805,7 +805,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
       rectForRange = CGRectUnion(rectForRange, linkRect);
     }
   }
-  
+
   return rectForRange;
 }
 
@@ -913,7 +913,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesMoved:touches withEvent:event];
-  
+
   UITouch* touch = [touches anyObject];
   CGPoint point = [touch locationInView:self];
 
@@ -985,7 +985,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesCancelled:touches withEvent:event];
-  
+
   [self.longPressTimer invalidate];
   self.longPressTimer = nil;
 
@@ -1042,7 +1042,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   return actionSheet;
 }
 
-  
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_longPressTimerDidFire:(NSTimer *)timer {
   self.longPressTimer = nil;
@@ -1178,7 +1178,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     CFArrayRef runs = CTLineGetGlyphRuns(line);
     CFIndex runCount = CFArrayGetCount(runs);
     CGPoint lineOrigin = lineOrigins[i];
-    
+
     // Iterate through each of the "runs" (i.e. a chunk of text) and find the runs that
     // intersect with the range.
     for (CFIndex k = 0; k < runCount; k++) {
@@ -1199,9 +1199,9 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
                                                          &descent,
                                                          &leading);
       CGFloat height = ascent + descent;
-      
+
       CGFloat xOffset = CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, nil);
-      
+
       CGRect rect = CGRectMake(lineOrigin.x + xOffset - leading, lineOrigin.y - descent, width + leading, height);
       UIEdgeInsets flippedMargins = labelImage.margins;
       CGFloat top = flippedMargins.top;
@@ -1249,17 +1249,17 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
       CGFloat radius = 5.0f;
       CGContextMoveToPoint(ctx, highlightRect.origin.x, highlightRect.origin.y + radius);
       CGContextAddLineToPoint(ctx, highlightRect.origin.x, highlightRect.origin.y + highlightRect.size.height - radius);
-      CGContextAddArc(ctx, highlightRect.origin.x + radius, highlightRect.origin.y + highlightRect.size.height - radius, 
+      CGContextAddArc(ctx, highlightRect.origin.x + radius, highlightRect.origin.y + highlightRect.size.height - radius,
                       radius, pi, pi / 2.0f, 1.0f);
-      CGContextAddLineToPoint(ctx, highlightRect.origin.x + highlightRect.size.width - radius, 
+      CGContextAddLineToPoint(ctx, highlightRect.origin.x + highlightRect.size.width - radius,
                               highlightRect.origin.y + highlightRect.size.height);
-      CGContextAddArc(ctx, highlightRect.origin.x + highlightRect.size.width - radius, 
+      CGContextAddArc(ctx, highlightRect.origin.x + highlightRect.size.width - radius,
                       highlightRect.origin.y + highlightRect.size.height - radius, radius, pi / 2, 0.0f, 1.0f);
       CGContextAddLineToPoint(ctx, highlightRect.origin.x + highlightRect.size.width, highlightRect.origin.y + radius);
-      CGContextAddArc(ctx, highlightRect.origin.x + highlightRect.size.width - radius, highlightRect.origin.y + radius, 
+      CGContextAddArc(ctx, highlightRect.origin.x + highlightRect.size.width - radius, highlightRect.origin.y + radius,
                       radius, 0.0f, -pi / 2.0f, 1.0f);
       CGContextAddLineToPoint(ctx, highlightRect.origin.x + radius, highlightRect.origin.y);
-      CGContextAddArc(ctx, highlightRect.origin.x + radius, highlightRect.origin.y + radius, radius, 
+      CGContextAddArc(ctx, highlightRect.origin.x + radius, highlightRect.origin.y + radius, radius,
                       -pi / 2, pi, 1);
       CGContextFillPath(ctx);
     }
@@ -1368,7 +1368,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
       CGPathRelease(path);
       CFRelease(framesetter);
     }
-    
+
     [self drawImages];
     [self drawHighlightWithRect:rect];
 
@@ -1479,7 +1479,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     NSString* address = [self.mutableAttributedString.string substringWithRange:self.actionSheetLink.range];
     if (buttonIndex == 0) {
       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[@"http://maps.google.com/maps?q=" stringByAppendingString:address] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
-      
+
     } else if (buttonIndex == 1) {
       [[UIPasteboard generalPasteboard] setString:address];
     }
@@ -1496,7 +1496,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   [self setNeedsDisplay];
 }
 
-  
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet {
   self.actionSheetLink = nil;
