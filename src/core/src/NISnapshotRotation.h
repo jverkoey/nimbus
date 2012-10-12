@@ -50,6 +50,9 @@
 
 @property (nonatomic, readwrite, weak) id<NISnapshotRotationDelegate> delegate;
 
+@property (nonatomic, readonly, assign) CGRect frameBeforeRotation;
+@property (nonatomic, readonly, assign) CGRect frameAfterRotation;
+
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation;
