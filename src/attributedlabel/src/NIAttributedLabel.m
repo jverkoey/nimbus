@@ -44,15 +44,9 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   // This logic adapted from @mattt's TTTAttributedLabel
   // https://github.com/mattt/TTTAttributedLabel
 
-  if (numberOfLines == 1) {
-    size = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
-
-  } else if (numberOfLines == 0) {
-    size = CGSizeMake(size.width, CGFLOAT_MAX);
-
-  } else if (numberOfLines > 0) {
+  if (numberOfLines > 1) {
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddRect(path, NULL, CGRectMake(0, 0, size.width, CGFLOAT_MAX));
+    CGPathAddRect(path, NULL, CGRectMake(0, 0, size.width, size.height));
     CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
     CFArrayRef lines = CTFrameGetLines(frame);
 
