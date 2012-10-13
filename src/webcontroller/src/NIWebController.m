@@ -485,6 +485,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)openHTMLString:(NSString*)htmlString baseURL:(NSURL*)baseUrl {
+	NIDASSERT([self isViewLoaded]);
+	[_webView loadHTMLString:htmlString baseURL:baseUrl];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setToolbarHidden:(BOOL)hidden {
   _toolbarHidden = hidden;
   if ([self isViewLoaded]) {
