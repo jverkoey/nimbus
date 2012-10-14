@@ -18,9 +18,9 @@
 
 @interface NIMutableTableViewModel (Private)
 
-@property (nonatomic, strong) NSMutableArray* sections; // Array of NITableViewModelSection
-@property (nonatomic, strong) NSMutableArray* sectionIndexTitles;
-@property (nonatomic, strong) NSMutableDictionary* sectionPrefixToSectionIndex;
+@property (nonatomic, retain) NSMutableArray* sections; // Array of NITableViewModelSection
+@property (nonatomic, retain) NSMutableArray* sectionIndexTitles;
+@property (nonatomic, retain) NSMutableDictionary* sectionPrefixToSectionIndex;
 
 @end
 

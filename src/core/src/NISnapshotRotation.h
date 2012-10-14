@@ -48,7 +48,7 @@
 // Designated initializer.
 - (id)initWithDelegate:(id<NISnapshotRotationDelegate>)delegate;
 
-@property (nonatomic, readwrite, weak) id<NISnapshotRotationDelegate> delegate;
+@property (nonatomic, readwrite, assign) id<NISnapshotRotationDelegate> delegate;
 
 @property (nonatomic, readonly, assign) CGRect frameBeforeRotation;
 @property (nonatomic, readonly, assign) CGRect frameAfterRotation;

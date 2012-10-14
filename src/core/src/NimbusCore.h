@@ -94,6 +94,13 @@ view.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin
                          | UIViewAutoresizingFlexibleBottomMargin);
 @endcode
  */
+#if __has_feature(objc_arc_weak)
+    #define YT_WEAK weak
+#elif __has_feature(objc_arc)
+    #define YT_WEAK __unsafe_unretained
+#else
+    #define YT_WEEK assign
+#endif
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>

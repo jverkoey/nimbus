@@ -111,7 +111,7 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
 
 - (void)updateSectionIndex;
 
-@property (nonatomic, weak) id<NIMutableTableViewModelDelegate> delegate;
+@property (nonatomic, assign) id<NIMutableTableViewModelDelegate> delegate;
 
 @end
 
