@@ -26,7 +26,7 @@ static const CGFloat kBorderSize = 1;
 static const CGSize kCellImageSize = {44, 44};
 
 @interface NIGroupedCellBackground()
-@property (nonatomic, retain) NSMutableDictionary* cachedImages;
+@property (nonatomic, NI_STRONG) NSMutableDictionary* cachedImages;
 @end
 
 

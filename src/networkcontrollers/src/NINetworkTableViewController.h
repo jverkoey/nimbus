@@ -16,6 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "NIPreprocessorMacros.h" /* for NI_WEAK */
 /**
  * A table view controller that has a loading state.
  *
@@ -27,8 +28,8 @@
 // Designated initializer.
 - (id)initWithStyle:(UITableViewStyle)style activityIndicatorStyle:(UIActivityIndicatorViewStyle)activityIndicatorStyle;
 
-@property (nonatomic, readwrite, retain) UITableView* tableView;
-@property (nonatomic, readwrite, retain) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, readwrite, NI_STRONG) UITableView* tableView;
+@property (nonatomic, readwrite, NI_STRONG) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, readwrite, assign) BOOL clearsSelectionOnViewWillAppear; // Default: YES
 
 - (void)setIsLoading:(BOOL)isLoading;

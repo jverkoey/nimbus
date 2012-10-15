@@ -18,9 +18,9 @@
 
 @interface NITableViewModel()
 
-@property (nonatomic, retain) NSArray* sections; // Array of NITableViewModelSection
-@property (nonatomic, retain) NSArray* sectionIndexTitles;
-@property (nonatomic, retain) NSDictionary* sectionPrefixToSectionIndex;
+@property (nonatomic, NI_STRONG) NSArray* sections; // Array of NITableViewModelSection
+@property (nonatomic, NI_STRONG) NSArray* sectionIndexTitles;
+@property (nonatomic, NI_STRONG) NSDictionary* sectionPrefixToSectionIndex;
 
 - (void)_resetCompiledData;
 - (void)_compileDataWithListArray:(NSArray *)listArray;
@@ -35,6 +35,6 @@
 
 @property (nonatomic, copy) NSString* headerTitle;
 @property (nonatomic, copy) NSString* footerTitle;
-@property (nonatomic, retain) NSArray* rows;
+@property (nonatomic, NI_STRONG) NSArray* rows;
 
 @end
