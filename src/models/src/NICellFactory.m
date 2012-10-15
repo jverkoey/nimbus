@@ -228,7 +228,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NICellObject()
 @property (nonatomic, assign) Class cellClass;
-@property (nonatomic, retain) id userInfo;
+@property (nonatomic, NI_STRONG) id userInfo;
 @end
 
 

@@ -18,6 +18,8 @@
 #import "NIDebuggingTools.h"
 #import "NISDKAvailability.h"
 
+#import "NIPreprocessorMacros.h" /* for NI_WEAK */
+
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
 #endif
@@ -60,17 +62,17 @@ static NSMutableArray* sAppearanceStack = nil;
 /**
  * Holds value of UINavigationBar's tintColor property.
  */
-@property (nonatomic, readonly, strong) UIColor* navBarTintColor;
+@property (nonatomic, readonly, NI_STRONG) UIColor* navBarTintColor;
 
 /**
  * Holds value of UINavigationBar's UIBarMetricsDefault backgroundImage property.
  */
-@property (nonatomic, readonly, strong) UIImage* navBarDefaultImage;
+@property (nonatomic, readonly, NI_STRONG) UIImage* navBarDefaultImage;
 
 /**
  * Holds value of UINavigationBar's UIBarMetricsLandscapePhone backgroundImage property.
  */
-@property (nonatomic, readonly, strong) UIImage* navBarLandscapePhoneImage;
+@property (nonatomic, readonly, NI_STRONG) UIImage* navBarLandscapePhoneImage;
 
 /**
  * Create a new snapshot.

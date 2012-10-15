@@ -28,9 +28,9 @@
 
 @interface NIMemoryCache()
 // Mapping from a name (usually a URL) to an internal object.
-@property (nonatomic, readwrite, retain) NSMutableDictionary* cacheMap;
+@property (nonatomic, readwrite, NI_STRONG) NSMutableDictionary* cacheMap;
 // A linked list of least recently used cache objects. Most recently used is the tail.
-@property (nonatomic, readwrite, retain) NILinkedList* lruCacheObjects;
+@property (nonatomic, readwrite, NI_STRONG) NILinkedList* lruCacheObjects;
 @end
 
 
@@ -49,12 +49,12 @@
 /**
  * @brief The object stored in the cache.
  */
-@property (nonatomic, readwrite, retain) id object;
+@property (nonatomic, readwrite, NI_STRONG) id object;
 
 /**
  * @brief The date after which the image is no longer valid and should be removed from the cache.
  */
-@property (nonatomic, readwrite, retain) NSDate* expirationDate;
+@property (nonatomic, readwrite, NI_STRONG) NSDate* expirationDate;
 
 /**
  * @brief The last time this image was accessed.
@@ -64,12 +64,12 @@
  * images. When the memory limit is reached, we sort the cache based on the last access times and
  * then prune images until we're under the memory limit again.
  */
-@property (nonatomic, readwrite, retain) NSDate* lastAccessTime;
+@property (nonatomic, readwrite, NI_STRONG) NSDate* lastAccessTime;
 
 /**
  * @brief The location of this object in the least-recently used linked list.
  */
-@property (nonatomic, readwrite, retain) NILinkedListLocation* lruLocation;
+@property (nonatomic, readwrite, NI_STRONG) NILinkedListLocation* lruLocation;
 
 /**
  * @brief Determine whether this cache entry has past its expiration date.

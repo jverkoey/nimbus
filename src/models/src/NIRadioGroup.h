@@ -46,7 +46,7 @@
 // Designated initializer.
 - (id)initWithController:(UIViewController *)controller;
 
-@property (nonatomic, weak) id<NIRadioGroupDelegate> delegate;
+@property (nonatomic, NI_WEAK) id<NIRadioGroupDelegate> delegate;
 
 #pragma mark Mapping Objects
 

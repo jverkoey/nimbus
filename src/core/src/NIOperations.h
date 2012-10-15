@@ -17,6 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NIPreprocessorMacros.h" /* for NI_WEAK */
+
 @class NIOperation;
 
 typedef void (^NIOperationBlock)(NIOperation* operation);
@@ -48,8 +50,8 @@ typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
  */
 @interface NIOperation : NSOperation
 
-@property (readwrite, weak) id<NIOperationDelegate> delegate;
-@property (readonly, retain) NSError* lastError;
+@property (readwrite, NI_WEAK) id<NIOperationDelegate> delegate;
+@property (readonly,  NI_STRONG) NSError* lastError;
 @property (readwrite, assign) NSInteger tag;
 
 @property (readwrite, copy) NIOperationBlock didStartBlock;

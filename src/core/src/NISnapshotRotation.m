@@ -64,8 +64,8 @@ UIImageView* NISnapshotViewOfView(UIView* view) {
 @property (nonatomic, readwrite, assign) CGRect frameBeforeRotation;
 @property (nonatomic, readwrite, assign) CGRect frameAfterRotation;
 
-@property (nonatomic, readwrite, retain) UIImageView* snapshotViewBeforeRotation;
-@property (nonatomic, readwrite, retain) UIImageView* snapshotViewAfterRotation;
+@property (nonatomic, readwrite, NI_STRONG) UIImageView* snapshotViewBeforeRotation;
+@property (nonatomic, readwrite, NI_STRONG) UIImageView* snapshotViewAfterRotation;
 @end
 
 
@@ -212,7 +212,7 @@ UIImageView* NISnapshotViewOfView(UIView* view) {
 
 
 @interface NITableViewSnapshotRotation() <NISnapshotRotationDelegate>
-@property (nonatomic, readwrite, weak) id<NISnapshotRotationDelegate> forwardingDelegate;
+@property (nonatomic, readwrite, NI_WEAK) id<NISnapshotRotationDelegate> forwardingDelegate;
 @end
 
 
