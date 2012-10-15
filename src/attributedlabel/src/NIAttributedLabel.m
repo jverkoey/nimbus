@@ -75,10 +75,10 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 @interface NIAttributedLabelImage : NSObject
 @property (nonatomic, assign) NSInteger index;
-@property (nonatomic, strong) UIImage* image;
+@property (nonatomic, NI_STRONG) UIImage* image;
 @property (nonatomic, assign) UIEdgeInsets margins;
 @property (nonatomic, assign) NIVerticalTextAlignment verticalTextAlignment;
-@property (nonatomic, weak) NIAttributedLabel* label;
+@property (nonatomic, NI_WEAK) NIAttributedLabel* label;
 @end
 
 @implementation NIAttributedLabelImage
@@ -91,19 +91,19 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 
 @interface NIAttributedLabel() <UIActionSheetDelegate>
-@property (nonatomic, strong) NSMutableAttributedString* mutableAttributedString;
+@property (nonatomic, NI_STRONG) NSMutableAttributedString* mutableAttributedString;
 @property (nonatomic, assign) CTFrameRef textFrame;
 @property (assign) BOOL detectingLinks; // Atomic.
 @property (nonatomic, assign) BOOL linksHaveBeenDetected;
 @property (nonatomic, copy) NSArray* detectedlinkLocations;
-@property (nonatomic, strong) NSMutableArray* explicitLinkLocations;
-@property (nonatomic, strong) NSTextCheckingResult* originalLink;
-@property (nonatomic, strong) NSTextCheckingResult* touchedLink;
-@property (nonatomic, strong) NSTimer* longPressTimer;
+@property (nonatomic, NI_STRONG) NSMutableArray* explicitLinkLocations;
+@property (nonatomic, NI_STRONG) NSTextCheckingResult* originalLink;
+@property (nonatomic, NI_STRONG) NSTextCheckingResult* touchedLink;
+@property (nonatomic, NI_STRONG) NSTimer* longPressTimer;
 @property (nonatomic, assign) CGPoint touchPoint;
-@property (nonatomic, strong) NSTextCheckingResult* actionSheetLink;
-@property (nonatomic, strong) NSArray *accessibleElements;
-@property (nonatomic, strong) NSMutableArray *images;
+@property (nonatomic, NI_STRONG) NSTextCheckingResult* actionSheetLink;
+@property (nonatomic, NI_STRONG) NSArray *accessibleElements;
+@property (nonatomic, NI_STRONG) NSMutableArray *images;
 @end
 
 

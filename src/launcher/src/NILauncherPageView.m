@@ -21,7 +21,7 @@
 #endif
 
 @interface NILauncherPageView()
-@property (nonatomic, readwrite, retain) NSMutableArray* mutableRecyclableViews;
+@property (nonatomic, readwrite, NI_STRONG) NSMutableArray* mutableRecyclableViews;
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

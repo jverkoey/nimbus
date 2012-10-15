@@ -70,7 +70,7 @@
  *
  * By default this label will be placed flush to the bottom middle of the page.
  */
-@property (nonatomic, readonly, retain) UILabel* titleLabel;
+@property (nonatomic, readonly, NI_STRONG) UILabel* titleLabel;
 
 /**
  * Creates a generic label for use in the page.
@@ -95,9 +95,9 @@
   NSEnumerator* _eventEnumerator;
 }
 
-@property (nonatomic, readonly, retain) UILabel* label1;
-@property (nonatomic, readonly, retain) UILabel* label2;
-@property (nonatomic, readonly, retain) NIOverviewGraphView* graphView;
+@property (nonatomic, readonly, NI_STRONG) UILabel* label1;
+@property (nonatomic, readonly, NI_STRONG) UILabel* label2;
+@property (nonatomic, readonly, NI_STRONG) NIOverviewGraphView* graphView;
 
 @end
 
@@ -180,7 +180,7 @@
  */
 + (id)pageWithCache:(NIMemoryCache *)cache;
 
-@property (nonatomic, readwrite, retain) NIMemoryCache* cache;
+@property (nonatomic, readwrite, NI_STRONG) NIMemoryCache* cache;
 @end
 
 #endif

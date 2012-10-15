@@ -16,6 +16,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "NIPreprocessorMacros.h" /* for NI_WEAK */
+
 /**
  * A view that mimics the iOS notification badge style.
  *
@@ -32,12 +34,12 @@
 
 // Text attributes
 @property (nonatomic, readwrite, copy) NSString* text;
-@property (nonatomic, readwrite, retain) UIFont* font;
-@property (nonatomic, readwrite, retain) UIColor* textColor;
+@property (nonatomic, readwrite, NI_STRONG) UIFont* font;
+@property (nonatomic, readwrite, NI_STRONG) UIColor* textColor;
 
 // Badge attributes
-@property (nonatomic, readwrite, retain) UIColor* tintColor;
-@property (nonatomic, readwrite, retain) UIColor* shadowColor;
+@property (nonatomic, readwrite, NI_STRONG) UIColor* tintColor;
+@property (nonatomic, readwrite, NI_STRONG) UIColor* shadowColor;
 @property (nonatomic, readwrite, assign) CGSize shadowOffset;
 @property (nonatomic, readwrite, assign) CGFloat shadowBlur;
 
