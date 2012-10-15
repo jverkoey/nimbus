@@ -85,21 +85,21 @@ extern NSString* const NIOverviewLoggerDidAddConsoleLog;
  *
  * Log entries are in increasing chronological order.
  */
-@property (nonatomic, readonly, retain) NILinkedList* deviceLogs;
+@property (nonatomic, readonly, NI_STRONG) NILinkedList* deviceLogs;
 
 /**
  * The linked list of console logs.
  *
  * Log entries are in increasing chronological order.
  */
-@property (nonatomic, readonly, retain) NILinkedList* consoleLogs;
+@property (nonatomic, readonly, NI_STRONG) NILinkedList* consoleLogs;
 
 /**
  * The linked list of events.
  *
  * Log entries are in increasing chronological order.
  */
-@property (nonatomic, readonly, retain) NILinkedList* eventLogs;
+@property (nonatomic, readonly, NI_STRONG) NILinkedList* eventLogs;
 
 @end
 

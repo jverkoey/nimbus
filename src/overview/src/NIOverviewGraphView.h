@@ -16,6 +16,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "NIPreprocessorMacros.h" /* for NI_WEAK */
+
 @protocol NIOverviewGraphViewDataSource;
 
 /**
@@ -31,7 +33,7 @@
 /**
  * The data source for this graph view.
  */
-@property (nonatomic, readwrite, weak) id<NIOverviewGraphViewDataSource> dataSource;
+@property (nonatomic, readwrite, NI_WEAK) id<NIOverviewGraphViewDataSource> dataSource;
 
 @end
 

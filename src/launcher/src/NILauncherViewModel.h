@@ -38,7 +38,7 @@
 
 - (id<NILauncherViewObject>)objectAtIndex:(NSInteger)index pageIndex:(NSInteger)pageIndex;
 
-@property (nonatomic, readwrite, assign) id<NILauncherViewModelDelegate> delegate;
+@property (nonatomic, readwrite, NI_WEAK) id<NILauncherViewModelDelegate> delegate;
 
 @end
 
@@ -89,7 +89,7 @@
 /**
  * The image that will be displayed on the launcher view button.
  */
-@property (nonatomic, readwrite, retain) UIImage* image;
+@property (nonatomic, readwrite, NI_STRONG) UIImage* image;
 
 /**
  * The class of button view that should be used to display this object.

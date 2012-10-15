@@ -61,7 +61,7 @@
 @property (nonatomic, copy) NSString* placeholderText;
 @property (nonatomic, copy) NSString* value;
 @property (nonatomic, assign) BOOL isPassword;
-@property (nonatomic, weak) id<UITextFieldDelegate> delegate;
+@property (nonatomic, assign) id<UITextFieldDelegate> delegate;
 
 @end
 
@@ -83,7 +83,7 @@
 
 @property (nonatomic, copy) NSString* labelText;
 @property (nonatomic, assign) BOOL value;
-@property (nonatomic, weak) id didChangeTarget;
+@property (nonatomic, assign) id didChangeTarget;
 @property (nonatomic, assign) SEL didChangeSelector;
 
 @end
@@ -108,7 +108,7 @@
 @property (nonatomic, assign) float value;
 @property (nonatomic, assign) float minimumValue;
 @property (nonatomic, assign) float maximumValue;
-@property (nonatomic, weak) id didChangeTarget;
+@property (nonatomic, NI_WEAK) id didChangeTarget;
 @property (nonatomic, assign) SEL didChangeSelector;
 
 @end
@@ -155,8 +155,8 @@
 
 @property (nonatomic, copy) NSString *labelText;
 @property (nonatomic, assign) NSInteger selectedIndex;
-@property (nonatomic, retain) NSArray *segments;
-@property (nonatomic, weak) id didChangeTarget;
+@property (nonatomic, NI_STRONG) NSArray *segments;
+@property (nonatomic, NI_WEAK) id didChangeTarget;
 @property (nonatomic, assign) SEL didChangeSelector;
 
 @end
@@ -200,9 +200,9 @@
 + (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date datePickerMode:(UIDatePickerMode)datePickerMode;
 
 @property (nonatomic, copy) NSString *labelText;
-@property (nonatomic, retain) NSDate *date;
+@property (nonatomic, NI_STRONG) NSDate *date;
 @property (nonatomic, assign) UIDatePickerMode datePickerMode;
-@property (nonatomic, weak) id didChangeTarget;
+@property (nonatomic, NI_WEAK) id didChangeTarget;
 @property (nonatomic, assign) SEL didChangeSelector;
 
 @end
@@ -219,7 +219,7 @@
  *      @ingroup TableCellCatalog
  */
 @interface NIFormElementCell : UITableViewCell <NICell>
-@property (nonatomic, readonly, retain) NIFormElement* element;
+@property (nonatomic, readonly, NI_STRONG) NIFormElement* element;
 @end
 
 /**
@@ -232,7 +232,7 @@
  *      @ingroup TableCellCatalog
  */
 @interface NITextInputFormElementCell : NIFormElementCell <UITextFieldDelegate>
-@property (nonatomic, readonly, retain) UITextField* textField;
+@property (nonatomic, readonly, NI_STRONG) UITextField* textField;
 @end
 
 /**
@@ -245,7 +245,7 @@
  *      @ingroup TableCellCatalog
  */
 @interface NISwitchFormElementCell : NIFormElementCell <UITextFieldDelegate>
-@property (nonatomic, readonly, retain) UISwitch* switchControl;
+@property (nonatomic, readonly, NI_STRONG) UISwitch* switchControl;
 @end
 
 /**
@@ -258,7 +258,7 @@
  *      @ingroup TableCellCatalog
  */
 @interface NISliderFormElementCell : NIFormElementCell <UITextFieldDelegate>
-@property (nonatomic, readonly, retain) UISlider* sliderControl;
+@property (nonatomic, readonly, NI_STRONG) UISlider* sliderControl;
 @end
 
 @interface NITableViewModel (NIFormElementSearch)
@@ -276,7 +276,7 @@
  *      @ingroup TableCellCatalog
  */
 @interface NISegmentedControlFormElementCell : NIFormElementCell
-@property (nonatomic, readonly, retain) UISegmentedControl *segmentedControl;
+@property (nonatomic, readonly, NI_STRONG) UISegmentedControl *segmentedControl;
 @end
 
 /**
@@ -287,7 +287,7 @@
  *      @ingroup TableCellCatalog
  */
 @interface NIDatePickerFormElementCell : NIFormElementCell <UITextFieldDelegate>
-@property (nonatomic, readonly, retain) UITextField *dateField;
-@property (nonatomic, readonly, retain) UIDatePicker *datePicker;
+@property (nonatomic, readonly, NI_STRONG) UITextField *dateField;
+@property (nonatomic, readonly, NI_STRONG) UIDatePicker *datePicker;
 @end
 

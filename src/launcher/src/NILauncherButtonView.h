@@ -30,7 +30,7 @@
  */
 @interface NILauncherButtonView : NIRecyclableView <NILauncherButtonView, NILauncherViewObjectView>
 
-@property (nonatomic, readwrite, retain) UIButton* button;
+@property (nonatomic, readwrite, NI_STRONG) UIButton* button;
 @property (nonatomic, readwrite, copy) UILabel* label;
 
 @property (nonatomic, readwrite, assign) UIEdgeInsets contentInset;

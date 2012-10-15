@@ -23,7 +23,7 @@
 #endif
 
 @interface NIViewRecycler()
-@property (nonatomic, readwrite, retain) NSMutableDictionary* reuseIdentifiersToRecycledViews;
+@property (nonatomic, readwrite, NI_STRONG) NSMutableDictionary* reuseIdentifiersToRecycledViews;
 @end
 
 

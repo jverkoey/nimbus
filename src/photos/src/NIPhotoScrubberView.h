@@ -17,6 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NIPreprocessorMacros.h" /* for NI_WEAK */
+
 @protocol NIPhotoScrubberViewDataSource;
 @protocol NIPhotoScrubberViewDelegate;
 
@@ -61,7 +63,6 @@
   // Cached display values
   CGFloat _numberOfVisiblePhotos;
   
-  __unsafe_unretained id<NIPhotoScrubberViewDataSource> _dataSource;
   __unsafe_unretained id<NIPhotoScrubberViewDelegate> _delegate;
 }
 
@@ -70,7 +71,7 @@
 /**
  * The data source for this scrubber view.
  */
-@property (nonatomic, readwrite, assign) id<NIPhotoScrubberViewDataSource> dataSource;
+@property (nonatomic, readwrite, NI_WEAK) id<NIPhotoScrubberViewDataSource> dataSource;
 
 /**
  * Forces the scrubber view to reload all of its data.

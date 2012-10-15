@@ -126,6 +126,23 @@ NI_FIX_CATEGORY_BUG(UIViewController_MyCustomCategory);
  */
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
+/**
+ * A helper macro to keep the interfaces compatiable with pre ARC compilers.
+ * Useful when you put nimbus in a library and link it to a GCC LLVM compiler.
+ */
+
+#if defined(__has_feature) && __has_feature(objc_arc_weak)
+    #define NI_WEAK weak
+    #define NI_STRONG strong
+#elif defined(__has_feature)  && __has_feature(objc_arc)
+    #define NI_WEAK __unsafe_unretained
+    #define NI_STRONG retain
+#else
+    #define NI_WEAK assign
+    #define NI_STRONG retain
+#endif
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Preprocessor Macros //////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////

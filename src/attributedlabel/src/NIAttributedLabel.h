@@ -83,8 +83,8 @@ typedef enum {
 - (void)addLink:(NSURL *)urlLink range:(NSRange)range;
 - (void)removeAllExplicitLinks; // Removes all links that were added by addLink:range:. Does not remove autodetected links.
 
-@property (nonatomic, strong) UIColor* linkColor; // Default: [UIColor blueColor]
-@property (nonatomic, strong) UIColor* highlightedLinkBackgroundColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
+@property (nonatomic, NI_STRONG) UIColor* linkColor; // Default: [UIColor blueColor]
+@property (nonatomic, NI_STRONG) UIColor* highlightedLinkBackgroundColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
 @property (nonatomic, assign) BOOL linksHaveUnderlines; // Default: NO
 @property (nonatomic, copy) NSDictionary *attributesForLinks; // Default: nil
 @property (nonatomic, copy) NSDictionary *attributesForHighlightedLink; // Default: nil
@@ -95,7 +95,7 @@ typedef enum {
 @property (nonatomic, assign) CTUnderlineStyleModifiers underlineStyleModifier;
 @property (nonatomic, assign) CGFloat shadowBlur; // Default: 0
 @property (nonatomic, assign) CGFloat strokeWidth;
-@property (nonatomic, strong) UIColor* strokeColor;
+@property (nonatomic, NI_STRONG) UIColor* strokeColor;
 @property (nonatomic, assign) CGFloat textKern;
 
 - (void)setTextColor:(UIColor *)textColor range:(NSRange)range;
@@ -109,7 +109,7 @@ typedef enum {
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins;
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins verticalTextAlignment:(NIVerticalTextAlignment)verticalTextAlignment;
 
-@property (nonatomic, assign) IBOutlet id<NIAttributedLabelDelegate> delegate;
+@property (nonatomic, NI_WEAK) IBOutlet id<NIAttributedLabelDelegate> delegate;
 @end
 
 /**

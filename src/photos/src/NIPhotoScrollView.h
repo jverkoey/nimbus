@@ -48,7 +48,6 @@
 
   UITapGestureRecognizer* _doubleTapGestureRecognizer;
 
-  __unsafe_unretained id<NIPhotoScrollViewDelegate> _photoScrollViewDelegate;
 }
 
 #pragma mark Configuring Functionality
@@ -57,7 +56,7 @@
 @property (nonatomic, readwrite, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled; // default: yes
 @property (nonatomic, readwrite, assign, getter=isDoubleTapToZoomEnabled) BOOL doubleTapToZoomIsEnabled; // default: yes
 @property (nonatomic, readwrite, assign) CGFloat maximumScale; // default: 0 (autocalculate)
-@property (nonatomic, readwrite, assign) id<NIPhotoScrollViewDelegate> photoScrollViewDelegate;
+@property (nonatomic, readwrite, NI_WEAK) id<NIPhotoScrollViewDelegate> photoScrollViewDelegate;
 
 #pragma mark State
 

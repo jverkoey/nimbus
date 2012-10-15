@@ -17,6 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NIPreprocessorMacros.h" /* for NI_WEAK */
+
 // Flags set on the cell's backgroundView's tag property to indicate placement of the cell.
 typedef enum {
   NIGroupedCellBackgroundFlagIsLast       = (1 << 0),
@@ -36,12 +38,12 @@ typedef enum {
 
 - (UIImage *)imageForFirst:(BOOL)first last:(BOOL)last highlighted:(BOOL)highlighted;
 
-@property (nonatomic, retain) UIColor* innerBackgroundColor; // Default: [UIColor whiteColor]
-@property (nonatomic, retain) NSMutableArray* highlightedInnerGradientColors; // Default: RGBCOLOR(53, 141, 245), RGBCOLOR(16, 93, 230)
+@property (nonatomic, NI_STRONG) UIColor* innerBackgroundColor; // Default: [UIColor whiteColor]
+@property (nonatomic, NI_STRONG) NSMutableArray* highlightedInnerGradientColors; // Default: RGBCOLOR(53, 141, 245), RGBCOLOR(16, 93, 230)
 @property (nonatomic, assign) CGFloat shadowWidth; // Default: 4
-@property (nonatomic, retain) UIColor* shadowColor; // Default: RGBACOLOR(0, 0, 0, 0.3)
-@property (nonatomic, retain) UIColor* borderColor; // Default: RGBACOLOR(0, 0, 0, 0.07)
-@property (nonatomic, retain) UIColor* dividerColor; // Default: RGBCOLOR(230, 230, 230)
+@property (nonatomic, NI_STRONG) UIColor* shadowColor; // Default: RGBACOLOR(0, 0, 0, 0.3)
+@property (nonatomic, NI_STRONG) UIColor* borderColor; // Default: RGBACOLOR(0, 0, 0, 0.07)
+@property (nonatomic, NI_STRONG) UIColor* dividerColor; // Default: RGBCOLOR(230, 230, 230)
 @property (nonatomic, assign) CGFloat borderRadius; // Default: 5
 
 @end

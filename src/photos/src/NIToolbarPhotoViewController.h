@@ -110,16 +110,16 @@
 
 #pragma mark Views
 
-@property (nonatomic, readonly, retain) UIToolbar* toolbar;
-@property (nonatomic, readonly, retain) NIPhotoAlbumScrollView* photoAlbumView;
-@property (nonatomic, readonly, retain) NIPhotoScrubberView* photoScrubberView;
+@property (nonatomic, readonly, NI_STRONG) UIToolbar* toolbar;
+@property (nonatomic, readonly, NI_STRONG) NIPhotoAlbumScrollView* photoAlbumView;
+@property (nonatomic, readonly, NI_STRONG) NIPhotoScrubberView* photoScrubberView;
 - (void)refreshChromeState;
 
 
 #pragma mark Toolbar Buttons
 
-@property (nonatomic, readonly, retain) UIBarButtonItem* nextButton;
-@property (nonatomic, readonly, retain) UIBarButtonItem* previousButton;
+@property (nonatomic, readonly, NI_STRONG) UIBarButtonItem* nextButton;
+@property (nonatomic, readonly, NI_STRONG) UIBarButtonItem* previousButton;
 
 #pragma mark Subclassing
 
