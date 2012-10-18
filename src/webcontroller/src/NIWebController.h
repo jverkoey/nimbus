@@ -90,7 +90,7 @@
 @property (nonatomic, readwrite, assign, getter = isToolbarHidden) BOOL toolbarHidden;
 @property (nonatomic, readwrite, NI_WEAK) UIColor* toolbarTintColor;
 
-@property (nonatomic, readonly, retain) UIWebView* webView;
+@property (nonatomic, readonly, NI_STRONG) UIWebView* webView;
 
 // Subclassing
 - (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet;
