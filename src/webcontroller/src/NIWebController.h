@@ -90,6 +90,8 @@
 @property (nonatomic, readwrite, assign, getter = isToolbarHidden) BOOL toolbarHidden;
 @property (nonatomic, readwrite, NI_WEAK) UIColor* toolbarTintColor;
 
+@property (nonatomic, readonly, retain) UIWebView* webView;
+
 // Subclassing
 - (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet;
 @property (nonatomic, readwrite, NI_STRONG) NSURL* actionSheetURL;
@@ -166,6 +168,14 @@
  * The tint color of the toolbar.
  *
  *      @fn NIWebController::toolbarTintColor
+ */
+
+/** @name Accessing the Web View */
+
+/**
+ * The internal web view.
+ *
+ *      @fn NIWebController::webView
  */
 
 /** @name Subclassing the Web Controller */
