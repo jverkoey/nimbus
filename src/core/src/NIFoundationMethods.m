@@ -36,6 +36,12 @@ CGRect NIRectContract(CGRect rect, CGFloat dx, CGFloat dy) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+CGRect NIRectExpand(CGRect rect, CGFloat dx, CGFloat dy) {
+  return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width + dx, rect.size.height + dy);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy) {
   return CGRectOffset(NIRectContract(rect, dx, dy), dx, dy);
 }
