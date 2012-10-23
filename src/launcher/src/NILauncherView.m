@@ -20,6 +20,18 @@
 
 #import "NimbusCore.h"
 
+static BOOL IS_GIRAFFE(void){
+  CGRect screenBounds = [[UIScreen mainScreen] bounds];
+  CGFloat screenScale = [[UIScreen mainScreen] scale];
+  CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+  
+  if (screenSize.height > 960.) {
+    return YES;
+  }
+  
+  return NO;
+}
+
 const NSInteger NILauncherViewDynamic = -1;
 
 static const CGFloat kDefaultButtonDimensions = 80;
@@ -58,52 +70,87 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
   [super dealloc];
 }
 
+- (void)sharedInitSetup {
+  _maxNumberOfButtonsPerPage = NSIntegerMax;
+  _padding = UIEdgeInsetsMake(kDefaultPadding, kDefaultPadding,
+                              kDefaultPadding, kDefaultPadding);
+  if (!IS_GIRAFFE()) {
+    [self setPadding:UIEdgeInsetsMake(1, 1, 1, 1)];
+  }
+  else {
+    [self setPadding:UIEdgeInsetsMake(0, 1, 0, 1)];
+  }
+
+  // The paging scroll view.
+  _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+  
+  if (IS_GIRAFFE()) {
+    CGRect frame = _scrollView.frame;
+    frame.size.height -= 40;
+    frame.origin.y -= 20;
+    _scrollView.frame = frame;
+    
+  }
+  
+  _scrollView.delegate = self;
+  _scrollView.pagingEnabled = YES;
+  
+  // We don't need scroll indicators because we have a pager. Vertical scrolling is handled
+  // by each page's scroll view.
+  _scrollView.showsVerticalScrollIndicator = NO;
+  _scrollView.showsHorizontalScrollIndicator = NO;
+  
+  [self addSubview:_scrollView];
+  
+  // The pager displayed at the bottom of the scroll view.
+  _pager = [[DDPageControl alloc] init];
+  [_pager setOffColor:[UIColor lightGrayColor]];
+  [_pager setOnColor:[UIColor darkGrayColor]];
+  [_pager setIndicatorDiameter:6];
+  [_pager setIndicatorSpace:20];
+  [_pager setDefersCurrentPageDisplay:NO];
+  
+  _pager.hidesForSinglePage = YES;
+  
+  // So, this is weird. Apparently if you don't set a background color on the pager control
+  // then taps won't be handled anywhere but within the dot area. If you do set a background
+  // color, however, then taps outside of the dot area DO change the selected page.
+  //                                  \(o.o)/
+  _pager.backgroundColor = [UIColor blackColor];
+  // Similarly for the scroll view anywhere there isn't a subview.
+  _scrollView.backgroundColor = [UIColor blackColor];
+  // We update these background colors when the launcher view's own background color is set.
+  
+  // Don't update the pager when the user taps until we've handled the tap ourselves.
+  // This allows us to reset the page index forcefully if necessary without flickering the
+  // pager's current selection.
+  _pager.defersCurrentPageDisplay = YES;
+  
+  // When the user taps the pager control it fires a UIControlEventValueChanged notification.
+  [_pager addTarget: self
+             action: @selector(pageChanged:)
+   forControlEvents: UIControlEventValueChanged];
+  
+  [self addSubview:_pager];
+  //[self setFrame:frame];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
-    _maxNumberOfButtonsPerPage = NSIntegerMax;
-    _padding = UIEdgeInsetsMake(kDefaultPadding, kDefaultPadding,
-                                kDefaultPadding, kDefaultPadding);
-
-    // The paging scroll view.
-    _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
-    _scrollView.delegate = self;
-    _scrollView.pagingEnabled = YES;
-
-    // We don't need scroll indicators because we have a pager. Vertical scrolling is handled
-    // by each page's scroll view.
-    _scrollView.showsVerticalScrollIndicator = NO;
-    _scrollView.showsHorizontalScrollIndicator = NO;
-
-    [self addSubview:_scrollView];
-
-    // The pager displayed at the bottom of the scroll view.
-    _pager = [[UIPageControl alloc] init];
-    _pager.hidesForSinglePage = YES;
-
-    // So, this is weird. Apparently if you don't set a background color on the pager control
-    // then taps won't be handled anywhere but within the dot area. If you do set a background
-    // color, however, then taps outside of the dot area DO change the selected page.
-    //                                  \(o.o)/
-    _pager.backgroundColor = [UIColor blackColor];
-    // Similarly for the scroll view anywhere there isn't a subview.
-    _scrollView.backgroundColor = [UIColor blackColor];
-    // We update these background colors when the launcher view's own background color is set.
-
-    // Don't update the pager when the user taps until we've handled the tap ourselves.
-    // This allows us to reset the page index forcefully if necessary without flickering the
-    // pager's current selection.
-    _pager.defersCurrentPageDisplay = YES;
-
-    // When the user taps the pager control it fires a UIControlEventValueChanged notification.
-    [_pager addTarget: self
-               action: @selector(pageChanged:)
-     forControlEvents: UIControlEventValueChanged];
-
-    [self addSubview:_pager];
+    [self sharedInitSetup];
   }
   return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    
+    if (self) {
+      [self sharedInitSetup];
+    }
+
+    return self;
 }
 
 
@@ -128,17 +175,25 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
   // Lay out the pager first. The remaining space is used for the launcher scroll view.
   [_pager sizeToFit];
-  _pager.frame = CGRectMake(0, self.frame.size.height - _pager.frame.size.height,
+  _pager.frame = CGRectMake((self.frame.size.width/2) - (_pager.frame.size.width/2), self.frame.size.height - _pager.frame.size.height,
                             self.frame.size.width,
                             _pager.frame.size.height);
 
   CGFloat pageWidth = [self pageWidthForLauncherFrame:self.frame];
 
   // The scroll view frame takes up the entire launcher view, minus the pager.
-  _scrollView.frame = CGRectMake(0, 0,
-                                 pageWidth,
-                                 self.frame.size.height - _pager.frame.size.height);
-
+  if (IS_GIRAFFE()) {
+    _scrollView.frame = CGRectMake(0, 10,
+                                   pageWidth,
+                                   self.frame.size.height - _pager.frame.size.height - 20);
+  }
+  else{
+    _scrollView.frame = CGRectMake(0, 0,
+                                   pageWidth,
+                                   self.frame.size.height - _pager.frame.size.height);
+  }
+  
+  
   // We never want the paging scroll view to scroll vertically, so make sure the content size
   // is always exactly the scroll view height.
   _scrollView.contentSize = CGSizeMake(pageWidth * _numberOfPages,
@@ -172,6 +227,7 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
   NSInteger pageIndex = roundf(_scrollView.contentOffset.x / pageWidth);
   if (_pager.currentPage != pageIndex) {
     _pager.currentPage = pageIndex;
+    [_pager setNeedsDisplay];
 
     [[_pagesOfScrollViews objectAtIndex:pageIndex] flashScrollIndicators];
   }
@@ -197,6 +253,7 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
       || nil == pButtonVerticalSpacing) {
     return;
   }
+  [_pager sizeToFit];
   CGFloat pageWidth = frame.size.width - _padding.left - _padding.right;
   CGFloat pageHeight = frame.size.height - _padding.top - _padding.bottom;
 
@@ -239,9 +296,8 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
   CGFloat totalButtonHeight = numberOfRows * buttonDimensions.height;
   CGFloat buttonVerticalSpacing = 0;
   if (numberOfRows > 1) {
-    buttonVerticalSpacing = floorf((pageHeight - totalButtonHeight) / (numberOfRows - 1));
+    buttonVerticalSpacing = floorf((pageHeight - (totalButtonHeight+_pager.frame.size.height)) / (numberOfRows-1));
   }
-
   *pButtonDimensions = buttonDimensions;
   *pNumberOfRows = numberOfRows;
   *pNumberOfColumns = numberOfColumns;
@@ -268,7 +324,6 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
                 numberOfColumns: &numberOfColumns
         buttonHorizontalSpacing: &buttonHorizontalSpacing
           buttonVerticalSpacing: &buttonVerticalSpacing];
-
   NIDASSERT(numberOfRows > 0);
   NIDASSERT(numberOfColumns > 0);
 
@@ -291,7 +346,6 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
                                 _padding.top + row * buttonDimensions.height
                                 + (row * buttonVerticalSpacing),
                                 buttonDimensions.width, buttonDimensions.height);
-
       pageBottom = MAX(pageBottom, CGRectGetMaxY(button.frame));
     }
 
@@ -299,6 +353,24 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
     pageScrollView.frame = CGRectMake(pageOffset, 0, pageWidth, _scrollView.frame.size.height);
     pageScrollView.contentSize = CGSizeMake(pageWidth, pageBottom + _padding.bottom);
   }
+  [_pager sizeToFit];
+  
+  float bottomOfButtons = (numberOfRows * buttonDimensions.height) + (buttonVerticalSpacing * (numberOfRows-1));
+  float topOfPager = (bottomOfButtons + (_pager.superview.frame.size.height - bottomOfButtons)/2) - (_pager.frame.size.height/2);
+  
+  if (!IS_GIRAFFE()) {
+    _pager.frame = CGRectMake((self.frame.size.width/2) - (_pager.frame.size.width/2),
+                              topOfPager,
+                              self.frame.size.width,
+                              _pager.frame.size.height);
+  }
+  else {
+    _pager.frame = CGRectMake((self.frame.size.width/2) - (_pager.frame.size.width/2),
+                              topOfPager + 10,
+                              self.frame.size.width,
+                              _pager.frame.size.height);
+  }
+  
 }
 
 
@@ -430,6 +502,7 @@ static const NSTimeInterval kAnimateToPageDuration = 0.2;
   _numberOfPages = [self.dataSource numberOfPagesInLauncherView:self];
 
   _pager.numberOfPages = _numberOfPages;
+  
 
   // FEATURE: Remember the current page?
 

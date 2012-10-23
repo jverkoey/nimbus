@@ -18,6 +18,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "DDPageControl.h"
 
 @protocol NILauncherDelegate;
 @protocol NILauncherDataSource;
@@ -43,7 +44,7 @@ extern const NSInteger NILauncherViewDynamic;
 @private
   // Views
   UIScrollView*   _scrollView;
-  UIPageControl*  _pager;
+  DDPageControl*  _pager;
 
   // Presentation Information
   NSInteger       _maxNumberOfButtonsPerPage;
