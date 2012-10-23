@@ -32,6 +32,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3A9A688B1636FA0600EBB38E /* DDPageControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A9A68891636FA0600EBB38E /* DDPageControl.h */; };
+		3A9A688C1636FA0600EBB38E /* DDPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9A688A1636FA0600EBB38E /* DDPageControl.m */; };
 		6607851C14D245BF00FE3283 /* NINetworkActivityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6607851B14D245BE00FE3283 /* NINetworkActivityTests.m */; };
 		6607852014D33EAA00FE3283 /* NIStateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6607851F14D33EA900FE3283 /* NIStateTests.m */; };
 		6623EB6D1402ECE400E0E61A /* NITableViewModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6623EB6C1402ECE400E0E61A /* NITableViewModelTests.m */; };
@@ -584,6 +586,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A9A68891636FA0600EBB38E /* DDPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPageControl.h; sourceTree = "<group>"; };
+		3A9A688A1636FA0600EBB38E /* DDPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPageControl.m; sourceTree = "<group>"; };
 		6607851B14D245BE00FE3283 /* NINetworkActivityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NINetworkActivityTests.m; sourceTree = "<group>"; };
 		6607851F14D33EA900FE3283 /* NIStateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIStateTests.m; sourceTree = "<group>"; };
 		6623EB6C1402ECE400E0E61A /* NITableViewModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewModelTests.m; sourceTree = "<group>"; };
@@ -1666,6 +1670,8 @@
 		66A03CE613E6F10C00B514F3 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				3A9A68891636FA0600EBB38E /* DDPageControl.h */,
+				3A9A688A1636FA0600EBB38E /* DDPageControl.m */,
 				66A03CED13E6F10C00B514F3 /* NimbusLauncher.h */,
 				666F73A614BBFECD00D1A32F /* NimbusLauncher+Namespace.h */,
 				66A03CE713E6F10C00B514F3 /* NILauncherButton.m */,
@@ -2070,6 +2076,7 @@
 				DB3A233813FD4BE500614220 /* NimbusAttributedLabel.h in Headers */,
 				DB6AADF61407A5FF0003CB63 /* NSAttributedString+NimbusAttributedLabel.h in Headers */,
 				666F739F14BBFE6800D1A32F /* NimbusAttributedLabel+Namespace.h in Headers */,
+				3A9A688B1636FA0600EBB38E /* DDPageControl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3340,6 +3347,7 @@
 			files = (
 				DB3A233713FD4BE500614220 /* NIAttributedLabel.m in Sources */,
 				DB6AADF71407A5FF0003CB63 /* NSAttributedString+NimbusAttributedLabel.m in Sources */,
+				3A9A688C1636FA0600EBB38E /* DDPageControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
