@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'Nimbus'
-  s.version  = 'tr-0.9.2'
+  s.version  = 'it-0.9.2'
   s.license  = 'Apache License, Version 2.0'
   s.summary  = 'An iOS framework whose growth is bounded by O(documentation).'
   s.homepage = 'http://docs.nimbuskit.info/index.html'
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
                  'Peter Steinberger' => 'me@petersteinberger.com',
                  'Hwee-Boon Yar'     => 'hboon@motionobj.com' }
 
-  s.source   = { :git => 'https://github.com/healthagen/nimbus.git', :tag => 'tr-0.9.2' }
+  s.source   = { :git => 'https://github.com/healthagen/nimbus.git', :tag => 'it-0.9.2' }
 
   s.description = 'Nimbus is an iOS framework whose feature set grows only as fast as its documentation. '  \
                   'By focusing on documentation first and features second, Nimbus hopes to be a framework ' \
