@@ -1163,6 +1163,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
       NSMutableAttributedString* space = [[NSMutableAttributedString alloc] initWithString:@" "];
       CFAttributedStringSetAttribute((__bridge CFMutableAttributedStringRef)space, CFRangeMake(0, 1), kCTRunDelegateAttributeName, delegate);
+      CFRelease(delegate);
       [attributedString insertAttributedString:space atIndex:labelImage.index];
     }
   }
