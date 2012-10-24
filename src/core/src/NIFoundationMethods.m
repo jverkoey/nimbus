@@ -58,6 +58,29 @@ CGRect NIFrameOfCenteredViewWithinView(UIView* viewToCenter, UIView* containerVi
 }
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+CGSize NISizeOfStringWithLabelProperties(NSString *string, CGSize constrainedToSize, UIFont *font, UILineBreakMode lineBreakMode, NSInteger numberOfLines) {
+  if (string.length == 0) {
+    return CGSizeZero;
+  }
+
+  CGFloat lineHeight = font.lineHeight;
+  CGSize size = CGSizeZero;
+
+  if (numberOfLines == 1) {
+    size = [string sizeWithFont:font forWidth:constrainedToSize.width lineBreakMode:lineBreakMode];
+
+  } else {
+    size = [string sizeWithFont:font constrainedToSize:constrainedToSize lineBreakMode:lineBreakMode];
+    if (numberOfLines > 0) {
+      size.height = MIN(size.height, numberOfLines * lineHeight);
+    }
+  }
+
+  return size;
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -

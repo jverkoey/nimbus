@@ -143,8 +143,8 @@
 #ifndef NINetworkActivityTaskDidStart
 #define NINetworkActivityTaskDidStart __NIMBUS_NS_SYMBOL(NINetworkActivityTaskDidStart)
 #endif
-#ifndef NIRectShift
-#define NIRectShift __NIMBUS_NS_SYMBOL(NIRectShift)
+#ifndef NIRectExpand
+#define NIRectExpand __NIMBUS_NS_SYMBOL(NIRectExpand)
 #endif
 #ifndef NIScreenScale
 #define NIScreenScale __NIMBUS_NS_SYMBOL(NIScreenScale)
@@ -158,11 +158,14 @@
 #ifndef NIRotateTransformForOrientation
 #define NIRotateTransformForOrientation __NIMBUS_NS_SYMBOL(NIRotateTransformForOrientation)
 #endif
-#ifndef NIFrameOfCenteredViewWithinView
-#define NIFrameOfCenteredViewWithinView __NIMBUS_NS_SYMBOL(NIFrameOfCenteredViewWithinView)
+#ifndef NIRectShift
+#define NIRectShift __NIMBUS_NS_SYMBOL(NIRectShift)
 #endif
 #ifndef NIIsStringWithAnyText
 #define NIIsStringWithAnyText __NIMBUS_NS_SYMBOL(NIIsStringWithAnyText)
+#endif
+#ifndef NIFrameOfCenteredViewWithinView
+#define NIFrameOfCenteredViewWithinView __NIMBUS_NS_SYMBOL(NIFrameOfCenteredViewWithinView)
 #endif
 #ifndef NINetworkActivityTaskDidFinish
 #define NINetworkActivityTaskDidFinish __NIMBUS_NS_SYMBOL(NINetworkActivityTaskDidFinish)
@@ -188,20 +191,23 @@
 #ifndef NIPathForCachesResource
 #define NIPathForCachesResource __NIMBUS_NS_SYMBOL(NIPathForCachesResource)
 #endif
-#ifndef NIMakeNSRangeFromCFRange
-#define NIMakeNSRangeFromCFRange __NIMBUS_NS_SYMBOL(NIMakeNSRangeFromCFRange)
-#endif
-#ifndef NIMD5HashFromData
-#define NIMD5HashFromData __NIMBUS_NS_SYMBOL(NIMD5HashFromData)
+#ifndef NISizeOfStringWithLabelProperties
+#define NISizeOfStringWithLabelProperties __NIMBUS_NS_SYMBOL(NISizeOfStringWithLabelProperties)
 #endif
 #ifndef NISwizzleMethodsForNetworkActivityDebugging
 #define NISwizzleMethodsForNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NISwizzleMethodsForNetworkActivityDebugging)
+#endif
+#ifndef NIMakeNSRangeFromCFRange
+#define NIMakeNSRangeFromCFRange __NIMBUS_NS_SYMBOL(NIMakeNSRangeFromCFRange)
 #endif
 #ifndef NIEnableNetworkActivityDebugging
 #define NIEnableNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NIEnableNetworkActivityDebugging)
 #endif
 #ifndef NIDisableNetworkActivityDebugging
 #define NIDisableNetworkActivityDebugging __NIMBUS_NS_SYMBOL(NIDisableNetworkActivityDebugging)
+#endif
+#ifndef NIMD5HashFromData
+#define NIMD5HashFromData __NIMBUS_NS_SYMBOL(NIMD5HashFromData)
 #endif
 #ifndef NISHA1HashFromData
 #define NISHA1HashFromData __NIMBUS_NS_SYMBOL(NISHA1HashFromData)

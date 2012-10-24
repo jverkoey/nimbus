@@ -83,6 +83,11 @@ CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy);
  */
 CGRect NIFrameOfCenteredViewWithinView(UIView* viewToCenter, UIView* containerView);
 
+/**
+ * Returns the size of the string with given UILabel properties.
+ */
+CGSize NISizeOfStringWithLabelProperties(NSString *string, CGSize constrainedToSize, UIFont *font, UILineBreakMode lineBreakMode, NSInteger numberOfLines);
+
 /**@}*/
 
 
