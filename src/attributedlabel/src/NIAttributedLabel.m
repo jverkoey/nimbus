@@ -1154,8 +1154,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
     for (NIAttributedLabelImage *labelImage in self.images) {
       CTRunDelegateCallbacks callbacks;
+      memset(&callbacks, 0, sizeof(CTRunDelegateCallbacks));
       callbacks.version = kCTRunDelegateVersion1;
-      callbacks.dealloc = ImageDelegateDeallocCallback;
       callbacks.getAscent = ImageDelegateGetAscentCallback;
       callbacks.getDescent = ImageDelegateGetDescentCallback;
       callbacks.getWidth = ImageDelegateGetWidthCallback;
@@ -1525,13 +1525,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet {
   self.actionSheetLink = nil;
   [self setNeedsDisplay];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-void ImageDelegateDeallocCallback(void* refCon) {
-  NIAttributedLabelImage *labelImage = (__bridge NIAttributedLabelImage *)refCon;
-  [labelImage.label.images removeObject:labelImage];
 }
 
 
