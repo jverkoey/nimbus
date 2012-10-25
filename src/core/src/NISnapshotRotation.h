@@ -124,7 +124,7 @@
 @end
 
 /**
- * Returns a UIImage snapshot of the given view.
+ * Returns an opaque UIImage snapshot of the given view.
  *
  * This method takes into account the offset of scrollable views and captures whatever is currently
  * in the frame of the view.
@@ -143,6 +143,27 @@ UIImage* NISnapshotOfView(UIView* view);
  *      @returns A UIImageView with the snapshot of @c view and matching frame.
  */
 UIImageView* NISnapshotViewOfView(UIView* view);
+
+/**
+ * Returns a UIImage snapshot of the given view with transparency.
+ *
+ * This method takes into account the offset of scrollable views and captures whatever is currently
+ * in the frame of the view.
+ *
+ *      @param view A snapshot will be taken of this view.
+ *      @returns A UIImage with the snapshot of @c view.
+ */
+UIImage* NISnapshotOfViewWithTransparency(UIView* view);
+
+/**
+ * Returns a UIImageView with an image snapshot with transparency of the given view.
+ *
+ * The frame of the returned view is set to match the frame of @c view.
+ *
+ *      @param view A snapshot will be taken of this view.
+ *      @returns A UIImageView with the snapshot of @c view and matching frame.
+ */
+UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view);
 
 /**
  * @}

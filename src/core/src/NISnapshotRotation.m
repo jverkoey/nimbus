@@ -26,10 +26,10 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-UIImage* NISnapshotOfView(UIView* view) {
+UIImage* NISnapshotOfViewWithTransparencyOption(UIView* view, BOOL transparency) {
   // Passing 0 as the last argument ensures that the image context will match the current device's
   // scaling mode.
-  UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, 0);
+  UIGraphicsBeginImageContextWithOptions(view.bounds.size, !transparency, 0);
 
   CGContextRef cx = UIGraphicsGetCurrentContext();
 
@@ -47,8 +47,31 @@ UIImage* NISnapshotOfView(UIView* view) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+UIImage* NISnapshotOfView(UIView* view) {
+  return NISnapshotOfViewWithTransparencyOption(view, NO);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 UIImageView* NISnapshotViewOfView(UIView* view) {
   UIImage* image = NISnapshotOfView(view);
+
+  UIImageView* snapshotView = [[UIImageView alloc] initWithImage:image];
+  snapshotView.frame = view.frame;
+
+  return snapshotView;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+UIImage* NISnapshotOfViewWithTransparency(UIView* view) {
+  return NISnapshotOfViewWithTransparencyOption(view, YES);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view) {
+  UIImage* image = NISnapshotOfViewWithTransparency(view);
 
   UIImageView* snapshotView = [[UIImageView alloc] initWithImage:image];
   snapshotView.frame = view.frame;
