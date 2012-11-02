@@ -103,14 +103,14 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
 /**
  * Convenience method for initWithTitle:image:.
  *
- *      @fn NITitleCellObject::cellWithTitle:image:
+ *      @fn NITitleCellObject::objectWithTitle:image:
  *      @returns Autoreleased instance of NITitleCellObject.
  */
 
 /**
  * Convenience method for initWithTitle:.
  *
- *      @fn NITitleCellObject::cellWithTitle:
+ *      @fn NITitleCellObject::objectWithTitle:
  *      @returns Autoreleased instance of NITitleCellObject.
  */
 
@@ -130,7 +130,7 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
 /**
  * Convenience method for initWithTitle:subtitle:.
  *
- *      @fn NISubtitleCellObject::cellWithTitle:subtitle:
+ *      @fn NISubtitleCellObject::objectWithTitle:subtitle:
  *      @returns Autoreleased instance of NISubtitleCellObject.
  */
 

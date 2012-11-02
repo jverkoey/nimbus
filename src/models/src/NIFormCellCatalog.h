@@ -41,7 +41,7 @@
 /**
  * A text input form element.
  *
- * This element is similar to HTML's <input type="text">. It presents a simple text field
+ * This element is similar to HTML's &lt;input type="text">. It presents a simple text field
  * control with optional placeholder text. You can assign a delegate to this object that will
  * be assigned to the text field, allowing you to receive text field delegate notifications.
  *

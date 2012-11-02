@@ -59,14 +59,14 @@ _model.delegate = (id)[NICellFactory class];
  * the object to a cell it will return nil.
  *
  * @code
-- (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel
-                   cellForTableView: (UITableView *)tableView
-                        atIndexPath: (NSIndexPath *)indexPath
-                         withObject: (id)object {
-  UITableViewCell* cell = [NICellFactory tableViewModel: tableViewModel
-                                       cellForTableView: tableView
-                                            atIndexPath: indexPath
-                                             withObject: object];
+- (UITableViewCell *)tableViewModel:(NITableViewModel *)tableViewModel
+                   cellForTableView:(UITableView *)tableView
+                        atIndexPath:(NSIndexPath *)indexPath
+                         withObject:(id)object {
+  UITableViewCell* cell = [NICellFactory tableViewModel:tableViewModel
+                                       cellForTableView:tableView
+                                            atIndexPath:indexPath
+                                             withObject:object];
   if (nil == cell) {
     // Custom cell creation here.
   }
@@ -74,10 +74,7 @@ _model.delegate = (id)[NICellFactory class];
 }
  * @endcode
  */
-+ (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel
-                   cellForTableView: (UITableView *)tableView
-                        atIndexPath: (NSIndexPath *)indexPath
-                         withObject: (id)object;
++ (UITableViewCell *)tableViewModel:(NITableViewModel *)tableViewModel cellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath withObject:(id)object;
 
 /**
  * Map an object's class to a cell's class.

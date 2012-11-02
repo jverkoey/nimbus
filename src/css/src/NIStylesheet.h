@@ -71,7 +71,7 @@ extern NSString* const NIStylesheetDidChangeNotification;
 /** @name Properties */
 
 /**
- * A set of NSString filenames for the @imports in this stylesheet.
+ * A set of NSString filenames for the @htmlonly@imports@endhtmlonly in this stylesheet.
  *
  *      @fn NIStylesheet::dependencies
  */
