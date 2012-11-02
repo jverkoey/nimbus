@@ -87,8 +87,13 @@ div.navtab {
 
 /* @group Link Styling */
 
+#nav-tree .label a,
+#nav-tree .selected a {
+  padding: 0;
+}
+
 a {
-	color: #3D578C;
+	color: #36C;
 	font-weight: normal;
 	text-decoration: none;
 }
@@ -116,10 +121,6 @@ a.qindexHL {
         color: #ffffff;
 }
 
-a.el {
-	font-weight: bold;
-}
-
 a.elRef {
 }
 
@@ -139,14 +140,12 @@ dl.el {
 
 .fragment {
 	font-family: monospace, fixed;
-	font-size: 105%;
+	margin: 1em;
 }
 
 pre.fragment {
-	border: 1px solid #C4CFE5;
-	background-color: #FBFCFD;
-	padding: 4px 6px;
-	margin: 4px 8px 4px 2px;
+  background-color: ghostWhite;
+	padding: 1em;
 	overflow: auto;
 	word-wrap: break-word;
 	font-size:  9pt;
@@ -348,8 +347,7 @@ table.memberdecls {
 
 .declaration {
   font: 104% Courier,Consolas,monospace;
-  margin-top: 1.182em;
-  margin-bottom: .909em;
+  margin: 1em 0;
 }
 
 .mdescLeft, .mdescRight,
@@ -371,6 +369,7 @@ table.memberdecls {
 
 .memItemLeft, .memTemplItemLeft {
         white-space: nowrap;
+        color: #666;
 }
 
 .memItemRight {
@@ -442,7 +441,6 @@ table.memberdecls {
 }
 
 .paramname {
-	color: #602020;
 	white-space: nowrap;
 }
 .paramname em {
@@ -701,6 +699,7 @@ dl.note, dl.warning, dl.attention, dl.pre, dl.post, dl.invariant, dl.deprecated,
 {
         border-left:4px solid;
         padding: 0 0 0 6px;
+        margin-left: -10px;
 }
 
 dl.note
@@ -752,21 +751,21 @@ dl.bug
  
 #projectname
 {
-	font: 300% Tahoma, Arial,sans-serif;
+	font: 300% HelveticaNeue,Helvetica,Arial,sans-serif;
 	margin: 0px;
 	padding: 2px 0px;
 }
     
 #projectbrief
 {
-	font: 120% Tahoma, Arial,sans-serif;
+	font: 120% HelveticaNeue,Helvetica,Arial,sans-serif;
 	margin: 0px;
 	padding: 0px;
 }
 
 #projectnumber
 {
-	font: 50% Tahoma, Arial,sans-serif;
+	font: 50% HelveticaNeue,Helvetica,Arial,sans-serif;
 	margin: 0px;
 	padding: 0px;
 }
@@ -833,7 +832,7 @@ div.ingroups {
 }
 
 .headertitle .title {
-  font: 215% 'Lucida Grande',Geneva,Helvetica,Arial,sans-serif;
+  font: 215% HelveticaNeue,Helvetica,Arial,sans-serif;
 }
 
 h2 {
@@ -851,11 +850,6 @@ p {
 p.abstract {
   margin-top: 1.083em;
   margin-bottom: .833em;
-}
-
-pre.fragment {
-  background-color: #F1F5F9;
-  border: 1px solid #C7CFD5;
 }
 
 .contents hr {
@@ -891,18 +885,20 @@ div.groupText {
   font-style: italic;
 }
 
-.memItemRight a.el {
-  font-weight: normal;
-  color: #36C;
-  font-family: Courier,Consolas,monospace;
-}
-
 .mdescLeft, .mdescRight, .memItemLeft, .memItemRight, .memTemplItemLeft, .memTemplItemRight, .memTemplParams {
   padding-left: 0;
 }
 
 .mdescLeft, .mdescRight {
   padding-bottom: 0.3em;
+}
+
+.memItemRight {
+       padding-left: 20px;
+}
+
+.mdescRight {
+  padding-left: 40px;
 }
 
 dl {
@@ -927,11 +923,6 @@ dl {
 
 div.groupHeader {
   margin-top: 0.6em;
-}
-
-a.el {
-  font-weight: normal;
-  font-family: Courier, Consolas, monospace;
 }
 
 table.modificationtable {
@@ -1024,10 +1015,6 @@ table.modificationtable td {
   clear: both;
 }
 
-.contents li {
-  margin: 5px 0;
-}
-
 .side-by-side-compare {
   float: left;
   width: 45%;
@@ -1038,17 +1025,9 @@ table.modificationtable td {
   font-size: 0.5em;
 }
 
-.memItemRight {
-	padding-left: 20px;
-}
-
-.mdescRight {
-  padding-left: 40px;
-}
-
 #nav-tree {
   background:none;
-  background-color: #E4EBF7;
+  background-color: ghostWhite;
   border-right: 1px solid #ACACAC;
 }
 
@@ -1105,3 +1084,9 @@ h5 {
 #github .issues.many-issues {
   background-color: #FFC9C9;
 }
+
+ul {
+  padding-left: 1.3em;
+  list-style-type: circle;
+}
+
