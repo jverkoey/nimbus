@@ -95,6 +95,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)cellClassFromObject:(id)object {
+  if (nil == object) {
+    return nil;
+  }
   Class objectClass = [object class];
   Class cellClass = [self.objectToCellMap objectForKey:objectClass];
 
