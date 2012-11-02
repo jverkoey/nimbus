@@ -436,7 +436,7 @@
           char *buffer = (void *)malloc(length);
           memset(buffer, 0, sizeof(char) * length);
           [invocation getReturnValue:buffer];
-          for (int index = 0; index < length; ++index) {
+          for (NSUInteger index = 0; index < length; ++index) {
             if (buffer[index]) {
               shouldDeselect = YES;
               break;
