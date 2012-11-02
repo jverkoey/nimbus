@@ -121,7 +121,7 @@
     // controller. This value is passed to the action blocks so that we can easily navigate to new
     // controllers without introducing retain cycles by otherwise having to access self in the
     // block.
-    _actions = [[NITableViewActions alloc] initWithController:self];
+    _actions = [[NITableViewActions alloc] initWithTarget:self];
 
     // This controller uses the Nimbus table view model. In loose terms, Nimbus models implement
     // data source protocols. They encapsulate standard delegate functionality and will make your
@@ -139,263 +139,270 @@
      // We attach actions to objects using the chaining pattern. The "attach" methods of
      // NITableViewActions will return the object we pass to them, allowing us to create an object,
      // attach an action to it, and then add the object to the sectioned array in one statement.
-     [_actions attachNavigationAction:
-
-      // NIPushControllerAction is a helper method that instantiates the controller class and then
-      // pushes it onto the current view controller's navigation stack.
-      NIPushControllerAction([BasicInstantiationAttributedLabelViewController class])
+     [_actions attachBlockToObject:
 
       // A subtitle cell object will eventually display a NITextCell in the table view. A NITextCell
       // is a simple UITableViewCell built to work with Nimbus' cell architecture.
-      toObject:[NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
-                                            subtitle:@"How to create a simple NIAttributedLabel"]],
+      [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
+                                   subtitle:@"How to create a simple NIAttributedLabel"]
 
-     [_actions attachNavigationAction:
-      NIPushControllerAction([CustomTextAttributedLabelViewController class])
-                             toObject:
+                        navigation:
+      // NIPushControllerAction is a helper method that instantiates the controller class and then
+      // pushes it onto the current view controller's navigation stack.
+      NIPushControllerAction([BasicInstantiationAttributedLabelViewController class])],
+
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Customizing Text"
-                                   subtitle:@"How to use NSAttributedString"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([LinksAttributedLabelViewController class])
-                             toObject:
+                                   subtitle:@"How to use NSAttributedString"]
+                          navigation:
+      NIPushControllerAction([CustomTextAttributedLabelViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Links"
-                                   subtitle:@"Automatic and explicit links"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([DataTypesAttributedLabelViewController class])
-                             toObject:
+                                   subtitle:@"Automatic and explicit links"]
+                          navigation:
+      NIPushControllerAction([LinksAttributedLabelViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Data Types"
-                                   subtitle:@"Detecting different data types"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([ImagesAttributedLabelViewController class])
-                             toObject:
+                                   subtitle:@"Detecting different data types"]
+                          navigation:
+      NIPushControllerAction([DataTypesAttributedLabelViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Images"
-                                   subtitle:@"Adding inline images"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([PerformanceAttributedLabelViewController class])
-                             toObject:
+                                   subtitle:@"Adding inline images"]
+                          navigation:
+      NIPushControllerAction([ImagesAttributedLabelViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Performance"
-                                   subtitle:@"Speeding up attributed labels"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([LongTapAttributedLabelViewController class])
-                             toObject:
+                                   subtitle:@"Speeding up attributed labels"]
+                          navigation:
+      NIPushControllerAction([PerformanceAttributedLabelViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Long Taps"
-                                   subtitle:@"Configuring long tap action sheets"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([InterfaceBuilderAttributedLabelViewController class])
-                             toObject:
+                                   subtitle:@"Configuring long tap action sheets"]
+                          navigation:
+      NIPushControllerAction([LongTapAttributedLabelViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Interface Builder"
-                                   subtitle:@"Using attributed labels in IB"]],
+                                   subtitle:@"Using attributed labels in IB"]
+                          navigation:
+      NIPushControllerAction([InterfaceBuilderAttributedLabelViewController class])],
 
      @"Badge",
-     [_actions attachNavigationAction:
-      NIPushControllerAction([BasicInstantiationBadgeViewController class])
-                             toObject:
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
-                                   subtitle:@"How to create a simple NIBadgeView"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([CustomizingBadgesViewController class])
-                             toObject:
+                                   subtitle:@"How to create a simple NIBadgeView"]
+                          navigation:
+      NIPushControllerAction([BasicInstantiationBadgeViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Customizing Badges"
-                                   subtitle:@"How to customize badges"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([InterfaceBuilderBadgeViewController class])
-                             toObject:
+                                   subtitle:@"How to customize badges"]
+                          navigation:
+      NIPushControllerAction([CustomizingBadgesViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Interface Builder"
-                                   subtitle:@"Using badges in IB"]],
+                                   subtitle:@"Using badges in IB"]
+                          navigation:
+      NIPushControllerAction([InterfaceBuilderBadgeViewController class])],
 
      @"Interapp",
-     [_actions attachNavigationAction:
-      NIPushControllerAction([InterappViewController class])
-                             toObject:
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"All Actions"
-                                   subtitle:@"A list of all available actions"]],
+                                   subtitle:@"A list of all available actions"]
+                          navigation:
+      NIPushControllerAction([InterappViewController class])],
      
      @"Launcher",
-     [_actions attachNavigationAction:
-      NIPushControllerAction([BasicInstantiationLauncherViewController class])
-                             toObject:
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
-                                   subtitle:@"How to subclass a launcher controller"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([ModelLauncherViewController class])
-                             toObject:
+                                   subtitle:@"How to subclass a launcher controller"]
+                          navigation:
+      NIPushControllerAction([BasicInstantiationLauncherViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Model"
-                                   subtitle:@"Using a model to manage data"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([ModifyingLauncherViewController class])
-                             toObject:
+                                   subtitle:@"Using a model to manage data"]
+                          navigation:
+      NIPushControllerAction([ModelLauncherViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Modifying"
-                                   subtitle:@"How to add new launcher buttons"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([RestoringLauncherViewController class])
-                             toObject:
+                                   subtitle:@"How to add new launcher buttons"]
+                          navigation:
+      NIPushControllerAction([ModifyingLauncherViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Restoring"
-                                   subtitle:@"Saving and loading launcher data"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([BadgedLauncherViewController class])
-                             toObject:
+                                   subtitle:@"Saving and loading launcher data"]
+                          navigation:
+      NIPushControllerAction([RestoringLauncherViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Badges"
-                                   subtitle:@"Adding badges to launcher items"]],
+                                   subtitle:@"Adding badges to launcher items"]
+                          navigation:
+      NIPushControllerAction([BadgedLauncherViewController class])],
      
      @"Navigation Apperance",
-     [_actions attachNavigationAction:
+     [_actions attachBlockToObject:
+      [NISubtitleCellObject objectWithTitle:@"Bar Style"
+                                   subtitle:@"Modify navigation bar style"]
+                          navigation:
       ^(id object, UIViewController* controller) {
-        NavigationAppearanceViewController *appearanceController = 
-        [[NavigationAppearanceViewController alloc] init];
+        NavigationAppearanceViewController *appearanceController = [[NavigationAppearanceViewController alloc] init];
         appearanceController.changeBarStyle = YES;
         [controller.navigationController pushViewController:appearanceController animated:YES];
         return NO;
-      } toObject:
-      [NISubtitleCellObject objectWithTitle:@"Bar Style"
-                                   subtitle:@"Modify navigation bar style"]],
-     [_actions attachNavigationAction:
+      }],
+     [_actions attachBlockToObject:
+      [NISubtitleCellObject objectWithTitle:@"Tint Color"
+                                   subtitle:@"Modify navigation bar tint color"]
+                          navigation:
       ^(id object, UIViewController* controller) {
-        NavigationAppearanceViewController *appearanceController = 
-          [[NavigationAppearanceViewController alloc] init];
+        NavigationAppearanceViewController *appearanceController = [[NavigationAppearanceViewController alloc] init];
         appearanceController.changeTintColor = YES;
         [controller.navigationController pushViewController:appearanceController animated:YES];
         return NO;
-      } toObject:
-      [NISubtitleCellObject objectWithTitle:@"Tint Color"
-                                   subtitle:@"Modify navigation bar tint color"]], 
-     [_actions attachNavigationAction:
+      }], 
+     [_actions attachBlockToObject:
+      [NISubtitleCellObject objectWithTitle:@"Background Image"
+                                   subtitle:@"Modify navigation bar background image"]
+                          navigation:
       ^(id object, UIViewController* controller) {
-        NavigationAppearanceViewController *appearanceController = 
-        [[NavigationAppearanceViewController alloc] init];
+        NavigationAppearanceViewController *appearanceController = [[NavigationAppearanceViewController alloc] init];
         appearanceController.changeBackgroundImage = YES;
         [controller.navigationController pushViewController:appearanceController animated:YES];
         return NO;
-      } toObject:
-      [NISubtitleCellObject objectWithTitle:@"Background Image"
-                                   subtitle:@"Modify navigation bar background image"]],
+      }],
 
      @"Network Image",
-     [_actions attachNavigationAction:
-      NIPushControllerAction([BasicInstantiationNetworkImageViewController class])
-                             toObject:
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
-                                   subtitle:@"How to create a NINetworkImageView"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([ContentModesNetworkImageViewController class])
-                             toObject:
+                                   subtitle:@"How to create a NINetworkImageView"]
+                          navigation:
+      NIPushControllerAction([BasicInstantiationNetworkImageViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Content Modes"
-                                   subtitle:@"Effects of each content mode"]],
+                                   subtitle:@"Effects of each content mode"]
+                          navigation:
+      NIPushControllerAction([ContentModesNetworkImageViewController class])],
      
      @"Paging Scroll Views",
-     [_actions attachNavigationAction:
-      NIPushControllerAction([BasicInstantiationPagingScrollViewController class])
-                             toObject:
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
-                                   subtitle:@"How to create a paging scroll view"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([VerticalPagingScrollViewController class])
-                             toObject:
+                                   subtitle:@"How to create a paging scroll view"]
+                          navigation:
+      NIPushControllerAction([BasicInstantiationPagingScrollViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Vertical Paging"
-                                   subtitle:@"Using a vertical layout"]],
+                                   subtitle:@"Using a vertical layout"]
+                          navigation:
+      NIPushControllerAction([VerticalPagingScrollViewController class])],
 
      @"Table Models",
-     [_actions attachNavigationAction:
-      NIPushControllerAction([BasicInstantiationTableModelViewController class])
-                             toObject:
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
-                                   subtitle:@"How to create a table view model"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([SectionedTableModelViewController class])
-                             toObject:
+                                   subtitle:@"How to create a table view model"]
+                          navigation:
+      NIPushControllerAction([BasicInstantiationTableModelViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Sectioned Model"
-                                   subtitle:@"Sectioned table view models"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([IndexedTableModelViewController class])
-                             toObject:
+                                   subtitle:@"Sectioned table view models"]
+                          navigation:
+      NIPushControllerAction([SectionedTableModelViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Indexed Model"
-                                   subtitle:@"Indexed table view models"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([ActionsTableModelViewController class])
-                             toObject:
+                                   subtitle:@"Indexed table view models"]
+                          navigation:
+      NIPushControllerAction([IndexedTableModelViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Actions"
-                                   subtitle:@"Handling actions in table views"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([RadioGroupTableModelViewController class])
-                             toObject:
+                                   subtitle:@"Handling actions in table views"]
+                          navigation:
+      NIPushControllerAction([ActionsTableModelViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Radio Group"
-                                   subtitle:@"How to use radio groups"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([NestedRadioGroupTableModelViewController class])
-                             toObject:
+                                   subtitle:@"How to use radio groups"]
+                          navigation:
+      NIPushControllerAction([RadioGroupTableModelViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Nested Radio Group"
-                                   subtitle:@"How to nest radio groups"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([ModalRadioGroupTableModelViewController class])
-                             toObject:
+                                   subtitle:@"How to nest radio groups"]
+                          navigation:
+      NIPushControllerAction([NestedRadioGroupTableModelViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Modal Radio Group"
-                                   subtitle:@"Customizing presentation"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([FormCellCatalogViewController class])
-                             toObject:
+                                   subtitle:@"Customizing presentation"]
+                          navigation:
+      NIPushControllerAction([ModalRadioGroupTableModelViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Form Cell Catalog"
-                                   subtitle:@"Table view cells for forms"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([BlockCellsViewController class])
-                             toObject:
+                                   subtitle:@"Table view cells for forms"]
+                          navigation:
+      NIPushControllerAction([FormCellCatalogViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Block Cells"
-                                   subtitle:@"Rendering cells with blocks"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([NetworkBlockCellsViewController class])
-                             toObject:
+                                   subtitle:@"Rendering cells with blocks"]
+                          navigation:
+      NIPushControllerAction([BlockCellsViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Network Block Cells"
-                                   subtitle:@"Rendering network images with blocks"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([SnapshotRotationTableViewController class])
-                             toObject:
+                                   subtitle:@"Rendering network images with blocks"]
+                          navigation:
+      NIPushControllerAction([NetworkBlockCellsViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Snapshot Rotation"
-                                   subtitle:@"Rotating table views with snapshots"]],
-     [_actions attachNavigationAction:
-      NIPushControllerAction([MutableTableModelViewController class])
-                             toObject:
+                                   subtitle:@"Rotating table views with snapshots"]
+                          navigation:
+      NIPushControllerAction([SnapshotRotationTableViewController class])],
+     [_actions attachBlockToObject:
       [NISubtitleCellObject objectWithTitle:@"Mutable Models"
-                                   subtitle:@"Mutating table view models"]],
+                                   subtitle:@"Mutating table view models"]
+                          navigation:
+      NIPushControllerAction([MutableTableModelViewController class])],
      
      @"Web Controller",
-     [_actions attachNavigationAction:
+     [_actions attachBlockToObject:
+      [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
+                                   subtitle:@"How to create a simple NIWebController"]
+                          navigation:
       ^(id object, UIViewController* controller) {
         NIWebController* webController = [[NIWebController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]];
         [controller.navigationController pushViewController:webController
                                                    animated:YES];
-        
+
         return NO;
-      } toObject:
-      [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
-                                   subtitle:@"How to create a simple NIWebController"]],
-     [_actions attachNavigationAction:
+      }],
+     [_actions attachBlockToObject:
+      [NISubtitleCellObject objectWithTitle:@"Hiding the Toolbar"
+                                   subtitle:@"Showing a web controller without actions"]
+                          navigation:
       ^(id object, UIViewController* controller) {
         NIWebController* webController = [[NIWebController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]];
         webController.toolbarHidden = YES;
         [controller.navigationController pushViewController:webController
                                                    animated:YES];
-        
+
         return NO;
-      } toObject:[NISubtitleCellObject objectWithTitle:@"Hiding the Toolbar"
-                                              subtitle:@"Showing a web controller without actions"]],
-     [_actions attachNavigationAction:
+      }],
+     [_actions attachBlockToObject:
+      [NISubtitleCellObject objectWithTitle:@"Tinting the Toolbar"
+                                   subtitle:@"Tinting a web controller's toolbar"]
+                          navigation:
       ^(id object, UIViewController* controller) {
         NIWebController* webController = [[NIWebController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]];
         webController.toolbarTintColor = [UIColor orangeColor];
         [controller.navigationController pushViewController:webController
                                                    animated:YES];
-        
+
         return NO;
-      } toObject:[NISubtitleCellObject objectWithTitle:@"Tinting the Toolbar"
-                                              subtitle:@"Tinting a web controller's toolbar"]],
-     [_actions attachNavigationAction:
+      }],
+     [_actions attachBlockToObject:
+      [NISubtitleCellObject objectWithTitle:@"Extra Actions"
+                                   subtitle:@"Subclassing for more actions"]
+                          navigation:
       ^(id object, UIViewController* controller) {
         NIWebController* webController = [[ExtraActionsWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]];
         [controller.navigationController pushViewController:webController
                                                    animated:YES];
-        
+
         return NO;
-      } toObject:
-      [NISubtitleCellObject objectWithTitle:@"Extra Actions"
-                                   subtitle:@"Subclassing for more actions"]],
+      }],
 
      nil];
 

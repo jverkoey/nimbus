@@ -364,7 +364,7 @@ _model.delegate = (id)[NICellFactory class];
  *
  * Model tools are objects that abstract common functionality used in view controllers.
  *
- * <h1>Radio Groups</h1>
+ * <h2>Radio Groups</h2>
  *
  * One commonly-required feature for table views is radio button functionality. This is useful when
  * you need the user to make a choice from a set of options. Implementing this is trivial with the
@@ -424,7 +424,7 @@ typedef enum {
 }
 @endcode
  *
- * <h1>Table View Actions</h1>
+ * <h2>Table View Actions</h2>
  *
  * Separating actions from presentation is an important aspect in simplifying table view cell
  * design. It can be tempting to add delegate and selector properties to cells, but this ends up
