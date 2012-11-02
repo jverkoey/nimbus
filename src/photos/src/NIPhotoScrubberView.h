@@ -61,7 +61,7 @@
   NSInteger _numberOfPhotos;
 
   // Cached display values
-  CGFloat _numberOfVisiblePhotos;
+  NSInteger _numberOfVisiblePhotos;
   
   __unsafe_unretained id<NIPhotoScrubberViewDelegate> _delegate;
 }

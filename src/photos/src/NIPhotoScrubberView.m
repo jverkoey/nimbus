@@ -300,7 +300,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   }
 
   // Lay out the visible photos.
-  for (NSInteger ix = 0; ix < _numberOfVisiblePhotos; ++ix) {
+  for (NSUInteger ix = 0; ix < _numberOfVisiblePhotos; ++ix) {
     UIImageView* photoView = nil;
 
     // We must first get the photo view at this index.
