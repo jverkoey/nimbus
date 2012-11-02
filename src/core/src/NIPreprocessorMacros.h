@@ -90,6 +90,11 @@ NI_FIX_CATEGORY_BUG(UIViewController_MyCustomCategory);
  * @{
  */
 
+// Define NI_IGNORE_DEPRECATIONS in your preprocessor macros to ignore deprecation
+// notices throughout the Nimbus codebase.
+#ifdef NI_IGNORE_DEPRECATIONS
+#define __NI_DEPRECATED_METHOD
+#else
 /**
  * Mark a method or property as deprecated to the compiler.
  *
@@ -104,6 +109,7 @@ NI_FIX_CATEGORY_BUG(UIViewController_MyCustomCategory);
  * @endhtmlonly
  */
 #define __NI_DEPRECATED_METHOD __attribute__((deprecated))
+#endif
 
 /**
  * Force a category to be loaded when an app starts up.
