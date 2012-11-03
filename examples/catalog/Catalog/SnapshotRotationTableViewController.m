@@ -135,8 +135,8 @@
     // Experiment: try changing the action type to attachDetailAction to see what snapshot rotation
     // looks like with larger accessory types.
     _actions = [[NITableViewActions alloc] initWithTarget:self];
-    [_actions attachBlockToClass:[NIDrawRectBlockCellObject class]
-                      navigation:NIPushControllerAction([self class])];
+    [_actions attachToClass:[NIDrawRectBlockCellObject class]
+            navigationBlock:NIPushControllerAction([self class])];
   }
   return self;
 }

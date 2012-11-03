@@ -219,37 +219,37 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)attachTapAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object {
-  return [self attachBlockToObject:object tap:action];
+  return [self attachToObject:object tapBlock:action];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)attachDetailAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object {
-  return [self attachBlockToObject:object detail:action];
+  return [self attachToObject:object detailBlock:action];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)attachNavigationAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object {
-  return [self attachBlockToObject:object navigation:action];
+  return [self attachToObject:object navigationBlock:action];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)attachTapAction:(NITableViewActionBlock)action toClass:(Class)aClass {
-  [self attachBlockToClass:aClass tap:action];
+  [self attachToClass:aClass tapBlock:action];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)attachDetailAction:(NITableViewActionBlock)action toClass:(Class)aClass {
-  [self attachBlockToClass:aClass detail:action];
+  [self attachToClass:aClass detailBlock:action];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)attachNavigationAction:(NITableViewActionBlock)action toClass:(Class)aClass {
-  [self attachBlockToClass:aClass navigation:action];
+  [self attachToClass:aClass navigationBlock:action];
 }
 
 #pragma clang diagnostic pop
@@ -260,7 +260,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachBlockToObject:(id<NSObject>)object tap:(NITableViewActionBlock)action {
+- (id)attachToObject:(id<NSObject>)object tapBlock:(NITableViewActionBlock)action {
   [self.objectSet addObject:object];
   [self actionForObject:object].tapAction = action;
   return object;
@@ -268,7 +268,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachBlockToObject:(id<NSObject>)object detail:(NITableViewActionBlock)action {
+- (id)attachToObject:(id<NSObject>)object detailBlock:(NITableViewActionBlock)action {
   [self.objectSet addObject:object];
   [self actionForObject:object].detailAction = action;
   return object;
@@ -276,7 +276,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachBlockToObject:(id<NSObject>)object navigation:(NITableViewActionBlock)action {
+- (id)attachToObject:(id<NSObject>)object navigationBlock:(NITableViewActionBlock)action {
   [self.objectSet addObject:object];
   [self actionForObject:object].navigateAction = action;
   return object;
@@ -284,7 +284,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachSelectorToObject:(id<NSObject>)object tap:(SEL)selector {
+- (id)attachToObject:(id<NSObject>)object tapSelector:(SEL)selector {
   [self.objectSet addObject:object];
   [self actionForObject:object].tapSelector = selector;
   return object;
@@ -292,7 +292,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachSelectorToObject:(id<NSObject>)object detail:(SEL)selector {
+- (id)attachToObject:(id<NSObject>)object detailSelector:(SEL)selector {
   [self.objectSet addObject:object];
   [self actionForObject:object].detailSelector = selector;
   return object;
@@ -300,7 +300,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachSelectorToObject:(id<NSObject>)object navigation:(SEL)selector {
+- (id)attachToObject:(id<NSObject>)object navigationSelector:(SEL)selector {
   [self.objectSet addObject:object];
   [self actionForObject:object].navigateSelector = selector;
   return object;
@@ -308,37 +308,37 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachBlockToClass:(Class)aClass tap:(NITableViewActionBlock)action {
+- (void)attachToClass:(Class)aClass tapBlock:(NITableViewActionBlock)action {
   [self actionForClass:aClass].tapAction = action;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachBlockToClass:(Class)aClass detail:(NITableViewActionBlock)action {
+- (void)attachToClass:(Class)aClass detailBlock:(NITableViewActionBlock)action {
   [self actionForClass:aClass].detailAction = action;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachBlockToClass:(Class)aClass navigation:(NITableViewActionBlock)action {
+- (void)attachToClass:(Class)aClass navigationBlock:(NITableViewActionBlock)action {
   [self actionForClass:aClass].navigateAction = action;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachSelectorToClass:(Class)aClass tap:(SEL)selector {
+- (void)attachToClass:(Class)aClass tapSelector:(SEL)selector {
   [self actionForClass:aClass].tapSelector = selector;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachSelectorToClass:(Class)aClass detail:(SEL)selector {
+- (void)attachToClass:(Class)aClass detailSelector:(SEL)selector {
   [self actionForClass:aClass].detailSelector = selector;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachSelectorToClass:(Class)aClass navigation:(SEL)selector {
+- (void)attachToClass:(Class)aClass navigationSelector:(SEL)selector {
   [self actionForClass:aClass].navigateSelector = selector;
 }
 

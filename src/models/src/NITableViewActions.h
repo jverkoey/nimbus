@@ -67,15 +67,15 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass);
 @code
 NSArray *objects = @[
   [NITitleCellObject objectWithTitle:@"Implicit tap handler"],
-  [self.actions attachBlockToObject:[NITitleCellObject objectWithTitle:@"Explicit tap handler"]
-                                tap:
+  [self.actions attachToObject:[NITitleCellObject objectWithTitle:@"Explicit tap handler"]
+                      tapBlock:
    ^BOOL(id object, id target) {
      NSLog(@"Object was tapped with an explicit action: %@", object);
    }]
 ];
 
-[self.actions attachBlockToClass:[NITitleCellObject class]
-                             tap:
+[self.actions attachToClass:[NITitleCellObject class]
+                   tapBlock:
  ^BOOL(id object, id target) {
    NSLog(@"Object was tapped: %@", object);
  }];
@@ -117,13 +117,13 @@ tableView.delegate = [self.actions forwardingTo:self];
 - (id)attachDetailAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object __NI_DEPRECATED_METHOD;
 - (id)attachNavigationAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object __NI_DEPRECATED_METHOD;
 
-- (id)attachBlockToObject:(id<NSObject>)object tap:(NITableViewActionBlock)action;
-- (id)attachBlockToObject:(id<NSObject>)object detail:(NITableViewActionBlock)action;
-- (id)attachBlockToObject:(id<NSObject>)object navigation:(NITableViewActionBlock)action;
+- (id)attachToObject:(id<NSObject>)object tapBlock:(NITableViewActionBlock)action;
+- (id)attachToObject:(id<NSObject>)object detailBlock:(NITableViewActionBlock)action;
+- (id)attachToObject:(id<NSObject>)object navigationBlock:(NITableViewActionBlock)action;
 
-- (id)attachSelectorToObject:(id<NSObject>)object tap:(SEL)selector;
-- (id)attachSelectorToObject:(id<NSObject>)object detail:(SEL)selector;
-- (id)attachSelectorToObject:(id<NSObject>)object navigation:(SEL)selector;
+- (id)attachToObject:(id<NSObject>)object tapSelector:(SEL)selector;
+- (id)attachToObject:(id<NSObject>)object detailSelector:(SEL)selector;
+- (id)attachToObject:(id<NSObject>)object navigationSelector:(SEL)selector;
 
 #pragma mark Mapping Classes
 
@@ -131,13 +131,13 @@ tableView.delegate = [self.actions forwardingTo:self];
 - (void)attachDetailAction:(NITableViewActionBlock)action toClass:(Class)aClass __NI_DEPRECATED_METHOD;
 - (void)attachNavigationAction:(NITableViewActionBlock)action toClass:(Class)aClass __NI_DEPRECATED_METHOD;
 
-- (void)attachBlockToClass:(Class)aClass tap:(NITableViewActionBlock)action;
-- (void)attachBlockToClass:(Class)aClass detail:(NITableViewActionBlock)action;
-- (void)attachBlockToClass:(Class)aClass navigation:(NITableViewActionBlock)action;
+- (void)attachToClass:(Class)aClass tapBlock:(NITableViewActionBlock)action;
+- (void)attachToClass:(Class)aClass detailBlock:(NITableViewActionBlock)action;
+- (void)attachToClass:(Class)aClass navigationBlock:(NITableViewActionBlock)action;
 
-- (void)attachSelectorToClass:(Class)aClass tap:(SEL)selector;
-- (void)attachSelectorToClass:(Class)aClass detail:(SEL)selector;
-- (void)attachSelectorToClass:(Class)aClass navigation:(SEL)selector;
+- (void)attachToClass:(Class)aClass tapSelector:(SEL)selector;
+- (void)attachToClass:(Class)aClass detailSelector:(SEL)selector;
+- (void)attachToClass:(Class)aClass navigationSelector:(SEL)selector;
 
 #pragma mark Object State
 
@@ -202,8 +202,8 @@ tableView.delegate = [self.actions forwardingTo:self];
  *                    an NITableViewModel.
  *      @param action The tap action block.
  *      @returns The object that you attached this action to.
- *      @fn NITableViewActions::attachBlockToObject:tap:
- *      @sa NITableViewActions::attachSelectorToObject:tap:
+ *      @fn NITableViewActions::attachToObject:tapBlock:
+ *      @sa NITableViewActions::attachToObject:tapSelector:
  */
 
 /**
@@ -219,7 +219,7 @@ tableView.delegate = [self.actions forwardingTo:self];
  *                    an NITableViewModel.
  *      @param action The detail action block.
  *      @returns The object that you attached this action to.
- *      @fn NITableViewActions::attachBlockToObject:detail:
+ *      @fn NITableViewActions::attachToObject:detailBlock:
  */
 
 /**
@@ -238,7 +238,7 @@ tableView.delegate = [self.actions forwardingTo:self];
  *                    an NITableViewModel.
  *      @param action The navigation action block.
  *      @returns The object that you attached this action to.
- *      @fn NITableViewActions::attachBlockToObject:navigation:
+ *      @fn NITableViewActions::attachToObject:navigationBlock:
  */
 
 /**
@@ -268,8 +268,8 @@ tableView.delegate = [self.actions forwardingTo:self];
  *                    an NITableViewModel.
  *      @param selector The selector that will be invoked by this action.
  *      @returns The object that you attached this action to.
- *      @fn NITableViewActions::attachSelectorToObject:tap:
- *      @sa NITableViewActions::attachBlockToObject:tap:
+ *      @fn NITableViewActions::attachToObject:tapSelector:
+ *      @sa NITableViewActions::attachToObject:tapBlock:
  */
 
 /**
@@ -292,8 +292,8 @@ tableView.delegate = [self.actions forwardingTo:self];
  *                    an NITableViewModel.
  *      @param selector The selector that will be invoked by this action.
  *      @returns The object that you attached this action to.
- *      @fn NITableViewActions::attachSelectorToObject:detail:
- *      @sa NITableViewActions::attachBlockToObject:detail:
+ *      @fn NITableViewActions::attachToObject:detailSelector:
+ *      @sa NITableViewActions::attachToObject:detailBlock:
  */
 
 /**
@@ -318,8 +318,8 @@ tableView.delegate = [self.actions forwardingTo:self];
  *                    an NITableViewModel.
  *      @param selector The selector that will be invoked by this action.
  *      @returns The object that you attached this action to.
- *      @fn NITableViewActions::attachSelectorToObject:navigation:
- *      @sa NITableViewActions::attachBlockToObject:navigation:
+ *      @fn NITableViewActions::attachToObject:navigationSelector:
+ *      @sa NITableViewActions::attachToObject:navigationBlock:
  */
 
 /** @name Mapping Classes */
@@ -327,67 +327,67 @@ tableView.delegate = [self.actions forwardingTo:self];
 /**
  * Attaches a tap block to a class.
  *
- * This method behaves similarly to attachBlockToObject:tap: except it attaches a tap action to
+ * This method behaves similarly to attachToObject:tapBlock: except it attaches a tap action to
  * all instances and subclassed instances of a given class.
  *
  *      @param aClass The class to attach the action to.
  *      @param action The tap action block.
- *      @fn NITableViewActions::attachBlockToClass:tap:
+ *      @fn NITableViewActions::attachToClass:tapBlock:
  */
 
 /**
  * Attaches a detail block to a class.
  *
- * This method behaves similarly to attachBlockToObject:detail: except it attaches a detail action
+ * This method behaves similarly to attachToObject:detailBlock: except it attaches a detail action
  * to all instances and subclassed instances of a given class.
  *
  *      @param aClass The class to attach the action to.
  *      @param action The detail action block.
- *      @fn NITableViewActions::attachBlockToClass:detail:
+ *      @fn NITableViewActions::attachToClass:detailBlock:
  */
 
 /**
  * Attaches a navigation block to a class.
  *
- * This method behaves similarly to attachBlockToObject:navigation: except it attaches a navigation
+ * This method behaves similarly to attachToObject:navigationBlock: except it attaches a navigation
  * action to all instances and subclassed instances of a given class.
  *
  *      @param aClass The class to attach the action to.
  *      @param action The navigation action block.
- *      @fn NITableViewActions::attachBlockToClass:navigation:
+ *      @fn NITableViewActions::attachToClass:navigationBlock:
  */
 
 /**
  * Attaches a tap selector to a class.
  *
- * This method behaves similarly to attachBlockToObject:tap: except it attaches a tap action to
+ * This method behaves similarly to attachToObject:tapBlock: except it attaches a tap action to
  * all instances and subclassed instances of a given class.
  *
  *      @param aClass The class to attach the action to.
  *      @param selector The tap selector.
- *      @fn NITableViewActions::attachSelectorToClass:tap:
+ *      @fn NITableViewActions::attachToClass:tapSelector:
  */
 
 /**
  * Attaches a detail selector to a class.
  *
- * This method behaves similarly to attachBlockToObject:detail: except it attaches a detail action
+ * This method behaves similarly to attachToObject:detailBlock: except it attaches a detail action
  * to all instances and subclassed instances of a given class.
  *
  *      @param aClass The class to attach the action to.
  *      @param selector The tap selector.
- *      @fn NITableViewActions::attachSelectorToClass:detail:
+ *      @fn NITableViewActions::attachToClass:detailSelector:
  */
 
 /**
  * Attaches a navigation selector to a class.
  *
- * This method behaves similarly to attachBlockToObject:navigation: except it attaches a navigation
+ * This method behaves similarly to attachToObject:navigationBlock: except it attaches a navigation
  * action to all instances and subclassed instances of a given class.
  *
  *      @param aClass The class to attach the action to.
  *      @param selector The tap selector.
- *      @fn NITableViewActions::attachSelectorToClass:navigation:
+ *      @fn NITableViewActions::attachToClass:navigationSelector:
  */
 
 /** @name Mapping Objects (Deprecated) */
@@ -396,7 +396,7 @@ tableView.delegate = [self.actions forwardingTo:self];
  * Attaches a tap action to the given object.
  *
  * @attention This method is deprecated. Use the new form
- *            @link NITableViewActions::attachBlockToObject:tap: attachBlockToObject:tap:@endlink.
+ *            @link NITableViewActions::attachToObject:tapBlock: attachToObject:tapBlock:@endlink.
  *
  * When a cell with a tap action is displayed, its selectionStyle will be set to
  * tableViewCellSelectionStyle.
@@ -423,7 +423,7 @@ tableView.delegate = [self.actions forwardingTo:self];
  * Attaches a detail action to the given object.
  *
  * @attention This method is deprecated. Use the new form
- *            @link NITableViewActions::attachBlockToObject:detail: attachBlockToObject:detail:@endlink.
+ *            @link NITableViewActions::attachToObject:detailBlock: attachToObject:detailBlock:@endlink.
  *
  * When a cell with a detail action is displayed, its accessoryType will be set to
  * UITableViewCellAccessoryDetailDisclosureButton.
@@ -442,7 +442,7 @@ tableView.delegate = [self.actions forwardingTo:self];
  * Attaches a navigation action to the given object.
  *
  * @attention This method is deprecated. Use the new form
- *            @link NITableViewActions::attachBlockToObject:navigation: attachBlockToObject:navigation:@endlink.
+ *            @link NITableViewActions::attachToObject:navigationBlock: attachToObject:navigationBlock:@endlink.
  *
  * When a cell with a navigation action is displayed, its accessoryType will be set to
  * UITableViewCellAccessoryDisclosureIndicator if there is no detail action, otherwise the
@@ -466,9 +466,9 @@ tableView.delegate = [self.actions forwardingTo:self];
  * Attaches a tap action to a class.
  *
  * @attention This method is deprecated. Use the new form
- *            @link NITableViewActions::attachBlockToClass:tap: attachBlockToClass:tap:@endlink.
+ *            @link NITableViewActions::attachToClass:tapBlock: attachToClass:tapBlock:@endlink.
  *
- * This method behaves similarly to attachBlockToObject:tap: except it attaches a tap action to
+ * This method behaves similarly to attachToObject:tapBlock: except it attaches a tap action to
  * all instances and subclassed instances of a given class.
  *
  *      @param action The tap action block.
@@ -480,9 +480,9 @@ tableView.delegate = [self.actions forwardingTo:self];
  * Attaches a detail action to a class.
  *
  * @attention This method is deprecated. Use the new form
- *            @link NITableViewActions::attachBlockToClass:detail: attachBlockToClass:detail:@endlink.
+ *            @link NITableViewActions::attachToClass:detailBlock: attachToClass:detailBlock:@endlink.
  *
- * This method behaves similarly to attachBlockToObject:detail: except it attaches a detail action
+ * This method behaves similarly to attachToObject:detailBlock: except it attaches a detail action
  * to all instances and subclassed instances of a given class.
  *
  *      @param action The detail action block.
@@ -494,9 +494,9 @@ tableView.delegate = [self.actions forwardingTo:self];
  * Attaches a navigation action to a class.
  *
  * @attention This method is deprecated. Use the new form
- *            @link NITableViewActions::attachBlockToClass:navigation: attachBlockToClass:navigation:@endlink.
+ *            @link NITableViewActions::attachToClass:navigationBlock: attachToClass:navigationBlock:@endlink.
  *
- * This method behaves similarly to attachBlockToObject:navigation: except it attaches a navigation
+ * This method behaves similarly to attachToObject:navigationBlock: except it attaches a navigation
  * action to all instances and subclassed instances of a given class.
  *
  *      @param action The navigation action block.

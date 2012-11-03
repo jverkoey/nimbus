@@ -57,8 +57,8 @@
 
 // This method is the short form of adding a cell object with an action.
 - (id)objectWithAction:(BOOL (^)())action title:(NSString *)title subtitle:(NSString *)subtitle {
-  return [self.actions attachBlockToObject:[NISubtitleCellObject objectWithTitle:title subtitle:subtitle]
-                                       tap:
+  return [self.actions attachToObject:[NISubtitleCellObject objectWithTitle:title subtitle:subtitle]
+                             tapBlock:
           ^BOOL(id object, UIViewController *controller) {
             if (!action()) {
               UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"We've givin' her all she's got, cap'n!"

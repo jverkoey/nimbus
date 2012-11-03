@@ -98,8 +98,8 @@
      // using the return value of attachTapAction:toObject: here. The attach:toObject: methods all
      // return the object that was passed in, allowing you to simultaneously add an object to a
      // table model and attach an action to it.
-     [_actions attachBlockToObject:[NITitleCellObject objectWithTitle:@"Tap me"]
-                               tap:tapAction],
+     [_actions attachToObject:[NITitleCellObject objectWithTitle:@"Tap me"]
+                     tapBlock:tapAction],
 
      @"",
      // This attaches a navigation action to the object. We use a standard method,
@@ -107,35 +107,35 @@
      // to the current navigation controller. This method does not work in all situations, in which
      // cases you should implement your own block. When this cell appears it will automatically be
      // assigned a navigation accessory type.
-     [_actions attachBlockToObject:[NITitleCellObject objectWithTitle:@"Navigate elsewhere"]
-                        navigation:NIPushControllerAction([ActionsTableModelViewController class])],
+     [_actions attachToObject:[NITitleCellObject objectWithTitle:@"Navigate elsewhere"]
+              navigationBlock:NIPushControllerAction([ActionsTableModelViewController class])],
 
      // This attaches a detail action to the object, displaying a detail accessory on the cell that
      // can be tapped. When the detail accessory is tapped, this action is executed.
-     [_actions attachBlockToObject:[NITitleCellObject objectWithTitle:@"Detail action"]
-                            detail:NIPushControllerAction([ActionsTableModelViewController class])],
+     [_actions attachToObject:[NITitleCellObject objectWithTitle:@"Detail action"]
+                  detailBlock:NIPushControllerAction([ActionsTableModelViewController class])],
 
      // It is possible to attach multiple types of actions to a single object. In the next three
      // examples we show attaching different types of actions to objects.
-     [_actions attachBlockToObject:
-      [_actions attachBlockToObject:[NITitleCellObject objectWithTitle:@"Navigate and detail"]
-                         navigation:NIPushControllerAction([ActionsTableModelViewController class])]
-                             detail:NIPushControllerAction([ActionsTableModelViewController class])],
-     
-     [_actions attachBlockToObject:
-      [_actions attachBlockToObject:[NITitleCellObject objectWithTitle:@"Tap and detail"]
-                                tap:tapAction]
-                             detail:NIPushControllerAction([ActionsTableModelViewController class])],
+     [_actions attachToObject:
+      [_actions attachToObject:[NITitleCellObject objectWithTitle:@"Navigate and detail"]
+               navigationBlock:NIPushControllerAction([ActionsTableModelViewController class])]
+                   detailBlock:NIPushControllerAction([ActionsTableModelViewController class])],
+
+     [_actions attachToObject:
+      [_actions attachToObject:[NITitleCellObject objectWithTitle:@"Tap and detail"]
+                      tapBlock:tapAction]
+                   detailBlock:NIPushControllerAction([ActionsTableModelViewController class])],
 
      // When you have a tap and navigation action attached to an object, both will be executed when
      // you tap the cell. Try tapping this cell and you will see that it navigates and shows an
      // alert view simultaneously.
-     [_actions attachBlockToObject:
-      [_actions attachBlockToObject:
-       [_actions attachBlockToObject:[NITitleCellObject objectWithTitle:@"All actions"]
-                          navigation:NIPushControllerAction([ActionsTableModelViewController class])]
-                                tap:tapAction]
-                            detail:NIPushControllerAction([ActionsTableModelViewController class])],
+     [_actions attachToObject:
+      [_actions attachToObject:
+       [_actions attachToObject:[NITitleCellObject objectWithTitle:@"All actions"]
+                navigationBlock:NIPushControllerAction([ActionsTableModelViewController class])]
+                       tapBlock:tapAction]
+                    detailBlock:NIPushControllerAction([ActionsTableModelViewController class])],
 
      @"Implicit Actions",
      // It is possible to set up implicit actions by attaching an action to a class. When such an
@@ -147,21 +147,21 @@
 
      // You can also explicitly override the implicit action by attaching an action directly to
      // the object.
-     [_actions attachBlockToObject:[NISubtitleCellObject objectWithTitle:@"Override" subtitle:@"Explicit tap action"]
-                               tap:tapAction2],
+     [_actions attachToObject:[NISubtitleCellObject objectWithTitle:@"Override" subtitle:@"Explicit tap action"]
+                     tapBlock:tapAction2],
 
      @"Selector Actions",
      // Consider attaching a selector to an object instead of a block when an action requires
      // complex logic. The selector will be performed on the NITableViewActions target and the
      // attached object will be provided as the first argument.
-     [_actions attachSelectorToObject:[NITitleCellObject objectWithTitle:@"Tap me"]
-                                  tap:@selector(didTapObject:)],
+     [_actions attachToObject:[NITitleCellObject objectWithTitle:@"Tap me"]
+                  tapSelector:@selector(didTapObject:)],
 
      nil];
 
     // This attaches a tap action to all instances of NISubtitleCellObject and is a great way to
     // handle common cells.
-    [_actions attachBlockToClass:[NISubtitleCellObject class] tap:tapAction];
+    [_actions attachToClass:[NISubtitleCellObject class] tapBlock:tapAction];
 
     _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
                                                      delegate:(id)[NICellFactory class]];
