@@ -290,7 +290,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   [self layoutIfNeeded];
 
   // Recycle any views that we no longer need.
-  while ([_visiblePhotoViews count] > _numberOfVisiblePhotos) {
+  while ([_visiblePhotoViews count] > (NSUInteger)_numberOfVisiblePhotos) {
     UIView* photoView = [_visiblePhotoViews lastObject];
     [photoView removeFromSuperview];
 
@@ -300,7 +300,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   }
 
   // Lay out the visible photos.
-  for (NSUInteger ix = 0; ix < _numberOfVisiblePhotos; ++ix) {
+  for (NSUInteger ix = 0; ix < (NSUInteger)_numberOfVisiblePhotos; ++ix) {
     UIImageView* photoView = nil;
 
     // We must first get the photo view at this index.
