@@ -173,6 +173,15 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)prependPageView:(NIOverviewPageView *)page {
+  [_pageViews insertObject:page atIndex:0];
+  [_pagingScrollView addSubview:page];
+
+  [self layoutPages];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addPageView:(NIOverviewPageView *)page {
   [_pageViews addObject:page];
   [_pagingScrollView addSubview:page];

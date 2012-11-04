@@ -43,6 +43,11 @@
 @property (nonatomic, readwrite, assign) BOOL translucent;
 
 /**
+ * Prepends a new page to the Overview.
+ */
+- (void)prependPageView:(NIOverviewPageView *)page;
+
+/**
  * Adds a new page to the Overview.
  */
 - (void)addPageView:(NIOverviewPageView *)page;
