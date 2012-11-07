@@ -37,6 +37,10 @@ static NSString* const kEllipsesCharacter = @"\u2026";
 static const CGFloat kTouchGutter = 22;
 
 CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedString, CGSize size, NSInteger numberOfLines) {
+  if (nil == attributedString) {
+    return CGSizeZero;
+  }
+
   CFAttributedStringRef attributedStringRef = (__bridge CFAttributedStringRef)attributedString;
   CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attributedStringRef);
   CFRange range = CFRangeMake(0, 0);
@@ -44,13 +48,13 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   // This logic adapted from @mattt's TTTAttributedLabel
   // https://github.com/mattt/TTTAttributedLabel
 
-  if (numberOfLines > 0) {
+  if (numberOfLines > 0 && nil != framesetter) {
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddRect(path, NULL, CGRectMake(0, 0, size.width, size.height));
     CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
     CFArrayRef lines = CTFrameGetLines(frame);
 
-    if (CFArrayGetCount(lines) > 0) {
+    if (nil != lines && CFArrayGetCount(lines) > 0) {
       NSInteger lastVisibleLineIndex = MIN(numberOfLines, CFArrayGetCount(lines)) - 1;
       CTLineRef lastVisibleLine = CFArrayGetValueAtIndex(lines, lastVisibleLineIndex);
 
