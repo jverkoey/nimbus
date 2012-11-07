@@ -346,8 +346,14 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateVisiblePagesShouldNotifyDelegate:(BOOL)shouldNotifyDelegate {
-  NSRange visiblePageRange = [self visiblePageRange];
+  // Before updating _centerPageIndex, notify delegate
+  if (shouldNotifyDelegate && (_numberOfPages > 0) &&
+      ([self currentVisiblePageIndex] != self.centerPageIndex) &&
+      [self.delegate respondsToSelector:@selector(pagingScrollViewWillChangePages:)]) {
+    [self.delegate pagingScrollViewWillChangePages:self];
+  }
 
+  NSRange visiblePageRange = [self visiblePageRange];
   // Recycle no-longer-visible pages. We copy _visiblePages because we may modify it while we're
   // iterating over it.
   for (UIView<NIPagingScrollViewPage>* page in [_visiblePages copy]) {

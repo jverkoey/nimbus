@@ -36,6 +36,14 @@
 #pragma mark Changing Pages /** @name [NIPagingScrollViewDelegate] Changing Pages */
 
 /**
+ * The current page will change.
+ *
+ * pagingScrollView.centerPageIndex will reflect the old page index, not the new
+ * page index.
+ */
+- (void)pagingScrollViewWillChangePages:(NIPagingScrollView *)pagingScrollView;
+
+/**
  * The current page has changed.
  *
  * pagingScrollView.centerPageIndex will reflect the changed page index.
