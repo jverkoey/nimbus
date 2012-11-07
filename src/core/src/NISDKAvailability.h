@@ -185,6 +185,11 @@ BOOL NIDeviceOSVersionIsAtLeast(double versionNumber);
 CGFloat NIScreenScale(void);
 
 /**
+ * Returns YES if the screen is a retina display, NO otherwise.
+ */
+BOOL NIIsRetina(void);
+
+/**
  * Safely fetch the UIPopoverController class if it is available.
  *
  * The class is cached to avoid repeated lookups.
