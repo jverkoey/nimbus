@@ -101,6 +101,7 @@
 @synthesize photoScrollViewDelegate = _photoScrollViewDelegate;
 @synthesize doubleTapToZoomIsEnabled = _doubleTapToZoomIsEnabled;
 @synthesize maximumScale = _maximumScale;
+@synthesize loading = _loading;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
