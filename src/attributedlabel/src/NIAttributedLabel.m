@@ -1163,7 +1163,10 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
       callbacks.getWidth = ImageDelegateGetWidthCallback;
       CTRunDelegateRef delegate = CTRunDelegateCreate(&callbacks, (__bridge void *)labelImage);
 
-      NSMutableAttributedString* space = [[NSMutableAttributedString alloc] initWithString:@" "];
+      // Character to use as recommended by kCTRunDelegateAttributeName documentation.
+      unichar objectReplacementChar = 0xFFFC;
+      NSString *objectReplacementString = [NSString stringWithCharacters:&objectReplacementChar length:1];
+      NSMutableAttributedString* space = [[NSMutableAttributedString alloc] initWithString:objectReplacementString];
       CFAttributedStringSetAttribute((__bridge CFMutableAttributedStringRef)space, CFRangeMake(0, 1), kCTRunDelegateAttributeName, delegate);
       CFRelease(delegate);
       [attributedString insertAttributedString:space atIndex:labelImage.index];
@@ -1204,6 +1207,10 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     CFArrayRef runs = CTLineGetGlyphRuns(line);
     CFIndex runCount = CFArrayGetCount(runs);
     CGPoint lineOrigin = lineOrigins[i];
+    CGFloat lineAscent;
+    CGFloat lineDescent;
+    CTLineGetTypographicBounds(line, &lineAscent, &lineDescent, NULL);
+    CGFloat lineHeight = lineAscent + lineDescent;
 
     // Iterate through each of the "runs" (i.e. a chunk of text) and find the runs that
     // intersect with the range.
@@ -1218,17 +1225,34 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
       CGFloat ascent = 0.0f;
       CGFloat descent = 0.0f;
-      CGFloat leading = 0.0f;
       CGFloat width = (CGFloat)CTRunGetTypographicBounds(run,
                                                          CFRangeMake(0, 0),
                                                          &ascent,
                                                          &descent,
-                                                         &leading);
+                                                         NULL);
+      CTFontRef font = (__bridge CTFontRef)[runAttributes valueForKey:(__bridge id)kCTFontAttributeName];
+      if (font) {
+        descent = MAX(descent, CTFontGetDescent(font));
+      }
+
       CGFloat height = ascent + descent;
 
       CGFloat xOffset = CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, nil);
 
-      CGRect rect = CGRectMake(lineOrigin.x + xOffset - leading, lineOrigin.y - descent, width + leading, height);
+      CGFloat baseY = 0.0f;
+      switch (labelImage.verticalTextAlignment) {
+        case NIVerticalTextAlignmentTop:
+          baseY = lineOrigin.y + ascent - height;
+          break;
+        case NIVerticalTextAlignmentMiddle:
+          baseY = lineOrigin.y + lineAscent - (lineHeight * 0.5f) - (height * 0.5f);
+          break;
+        case NIVerticalTextAlignmentBottom:
+          baseY = lineOrigin.y - descent;
+          break;
+      }
+      CGFloat imageHeight = labelImage.image.size.height;
+      CGRect rect = CGRectMake(lineOrigin.x + xOffset, baseY, width, imageHeight);
       UIEdgeInsets flippedMargins = labelImage.margins;
       CGFloat top = flippedMargins.top;
       flippedMargins.top = flippedMargins.bottom;
@@ -1533,36 +1557,30 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat ImageDelegateGetAscentCallback(void* refCon) {
   NIAttributedLabelImage *labelImage = (__bridge NIAttributedLabelImage *)refCon;
-  switch (labelImage.verticalTextAlignment) {
-    case NIVerticalTextAlignmentTop:
-      // Top alignment is unsupported, using bottom alignment instead.
-      NIDASSERT(labelImage.verticalTextAlignment != NIVerticalTextAlignmentTop);
-    case NIVerticalTextAlignmentBottom: {
-    default:
-      return labelImage.image.size.height + labelImage.margins.top;
-    }
-    case NIVerticalTextAlignmentMiddle: {
-      return floorf(labelImage.image.size.height / 2) + labelImage.margins.top;
-    }
-  }
+  return labelImage.image.size.height + labelImage.margins.top;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat ImageDelegateGetDescentCallback(void* refCon) {
   NIAttributedLabelImage *labelImage = (__bridge NIAttributedLabelImage *)refCon;
-  switch (labelImage.verticalTextAlignment) {
-    case NIVerticalTextAlignmentTop:
-      // Top alignment is unsupported, using bottom alignment instead.
-      NIDASSERT(labelImage.verticalTextAlignment != NIVerticalTextAlignmentTop);
-    case NIVerticalTextAlignmentBottom: {
-    default:
-      return labelImage.margins.bottom;
-    }
-    case NIVerticalTextAlignmentMiddle: {
-      return ceilf(labelImage.image.size.height / 2) + labelImage.margins.bottom;
+  CGFloat offset = 0.0f;
+  if (labelImage.verticalTextAlignment == NIVerticalTextAlignmentMiddle) {
+    // If we have middle alignment we want to get the descent of the image
+    // based on the image height. Descent is measured from the baseline of
+    // the current font.
+    NSAttributedString *string = labelImage.label.attributedString;
+    NSDictionary *attributes = [string attributesAtIndex:labelImage.index effectiveRange:NULL];
+    CTFontRef font = (__bridge CTFontRef)[attributes valueForKey:(__bridge id)kCTFontAttributeName];
+    if (font != NULL) {
+      CGFloat ascent = CTFontGetAscent(font);
+      CGFloat descent = CTFontGetDescent(font);
+      CGFloat baselineFromMid = (ascent + descent) / 2 - descent;
+      offset = labelImage.image.size.height / 2 - baselineFromMid;
+      offset = MAX(offset, 0);
     }
   }
+  return offset + labelImage.margins.bottom;
 }
 
 
@@ -1591,6 +1609,7 @@ CGFloat ImageDelegateGetWidthCallback(void* refCon) {
   labelImage.index = index;
   labelImage.image = image;
   labelImage.margins = margins;
+  labelImage.label = self;
   labelImage.verticalTextAlignment = verticalTextAlignment;
   if (nil == self.images) {
     self.images = [NSMutableArray array];
