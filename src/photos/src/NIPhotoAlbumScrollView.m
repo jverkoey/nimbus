@@ -93,6 +93,7 @@
                                  originalPhotoDimensions: &originalPhotoDimensions];
 
   page.photoDimensions = originalPhotoDimensions;
+  page.loading = isLoading;
 
   if (nil == image) {
     page.zoomingIsEnabled = NO;
@@ -178,6 +179,7 @@
 
       // Only replace the photo if it's of a higher quality than one we're already showing.
       if (photoSize > page.photoSize) {
+        page.loading = NO;
         [page setImage:image photoSize:photoSize];
 
         page.zoomingIsEnabled = ([self isZoomingEnabled]

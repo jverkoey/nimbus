@@ -36,6 +36,7 @@
   UIImageView* _imageView;
   // The scroll view.
   NICenteringScrollView* _scrollView;
+  UIActivityIndicatorView* _loadingView;
 
   // Photo Information
   NIPhotoScrollViewPhotoSize _photoSize;
@@ -63,6 +64,7 @@
 - (UIImage *)image;
 - (NIPhotoScrollViewPhotoSize)photoSize;
 - (void)setImage:(UIImage *)image photoSize:(NIPhotoScrollViewPhotoSize)photoSize;
+@property (nonatomic, assign, getter = isLoading) BOOL loading;
 
 @property (nonatomic, readwrite, assign) NSInteger pageIndex;
 @property (nonatomic, readwrite, assign) CGSize photoDimensions;
