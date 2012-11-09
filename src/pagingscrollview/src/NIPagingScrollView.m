@@ -686,7 +686,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   self.pagingScrollView.contentOffset = offset;
   _isModifyingContentOffset = NO;
 
-  [self updateVisiblePagesShouldNotifyDelegate:NO];
+  [self updateVisiblePagesShouldNotifyDelegate:YES];
 }
 
 
