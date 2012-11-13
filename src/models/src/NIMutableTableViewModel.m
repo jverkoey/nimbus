@@ -185,6 +185,32 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(tableViewModel:canMoveObject:atIndexPath:inTableView:)]) {
+        id object = [self objectAtIndexPath:indexPath];
+        return [self.delegate tableViewModel:self canMoveObject:object atIndexPath:indexPath inTableView:tableView];
+    } else {
+        return NO;
+    }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    id object = [self objectAtIndexPath:sourceIndexPath];
+    BOOL shouldMove = YES;
+    if ([self.delegate respondsToSelector:@selector(tableViewModel:shouldMoveObject:atIndexPath:toIndexPath:inTableView:)]) {
+        shouldMove = [self.delegate tableViewModel:self shouldMoveObject:object atIndexPath:sourceIndexPath toIndexPath:destinationIndexPath inTableView:tableView];
+    }
+    if (shouldMove) {
+        id object = [self objectAtIndexPath:sourceIndexPath];
+        [self removeObjectAtIndexPath:sourceIndexPath];
+        [self insertObject:object atRow:destinationIndexPath.row inSection:destinationIndexPath.section];
+    }
+}
+
 @end
 
 
