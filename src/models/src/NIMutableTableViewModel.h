@@ -38,6 +38,29 @@
            inTableView:(UITableView *)tableView;
 
 /**
+ * Asks the receiver whether the object at the given index path should be moveable.
+ *
+ * If this method is not implemented, the default response is assumed to be NO.
+ */
+- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+         canMoveObject:(id)object
+           atIndexPath:(NSIndexPath *)indexPath
+           inTableView:(UITableView *)tableView;
+
+/**
+ * Asks the receiver whether the given object should be moved.
+ *
+ * If this method is not implemented, the default response is assumed to be YES.
+ *
+ * Returning NO will stop the model from handling the move logic.
+ */
+- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+      shouldMoveObject:(id)object
+           atIndexPath:(NSIndexPath *)indexPath
+           toIndexPath:(NSIndexPath *)toIndexPath
+           inTableView:(UITableView *)tableView;
+
+/**
  * Asks the receiver what animation should be used when deleting the object at the given index path.
  *
  * If this method is not implemented, the default response is assumed to be
