@@ -24,6 +24,7 @@
 #endif
 
 static NSString* const kTextColorKey = @"color";
+static NSString* const kHighlightedTextColorKey = @"-ios-highlighted-color";
 static NSString* const kTextAlignmentKey = @"text-align";
 static NSString* const kFontKey = @"font";
 static NSString* const kFontSizeKey = @"font-size";
@@ -118,6 +119,24 @@ static NSDictionary* sColorTable = nil;
     _is.cached.TextColor = YES;
   }
   return _textColor;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasHighlightedTextColor {
+    return nil != [_ruleset objectForKey:kHighlightedTextColorKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor *)highlightedTextColor {
+  NIDASSERT([self hasHighlightedTextColor]);
+  if (!_is.cached.HighlightedTextColor) {
+    _highlightedTextColor = [[self class] colorFromCssValues:[_ruleset objectForKey:kHighlightedTextColorKey]
+                                      numberOfConsumedTokens:nil];
+    _is.cached.HighlightedTextColor = YES;
+  }
+  return _highlightedTextColor;
 }
 
 
