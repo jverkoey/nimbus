@@ -85,10 +85,12 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
   NSString* formattedLogMessage = [[NSString alloc] initWithCString: message
                                                            encoding: NSUTF8StringEncoding];
 
-  NIOverviewConsoleLogEntry* entry = [[NIOverviewConsoleLogEntry alloc]
-                                      initWithLog:formattedLogMessage];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    NIOverviewConsoleLogEntry* entry = [[NIOverviewConsoleLogEntry alloc]
+                                        initWithLog:formattedLogMessage];
 
-  [[NIOverview logger] addConsoleLog:entry];
+    [[NIOverview logger] addConsoleLog:entry];
+  });
 
   formattedLogMessage = [[NSString alloc] initWithFormat:
                          @"%@: %s\n", [formatter stringFromDate:[NSDate date]], message];
