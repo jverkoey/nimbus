@@ -16,6 +16,7 @@
 
 #import "NIPagingScrollView.h"
 
+// Methods that are meant to be subclassed.
 @interface NIPagingScrollView (Subclassing)
 
 // Meant to be subclassed. Default implementations are stubs.
@@ -25,9 +26,13 @@
 - (void)didChangeCenterPageIndexFrom:(NSInteger)from to:(NSInteger)to;
 
 // Meant to be subclassed.
-- (UIView<NIPagingScrollViewPage>* )loadPageAtIndex:(NSInteger)pageIndex;
+- (UIView<NIPagingScrollViewPage> *)loadPageAtIndex:(NSInteger)pageIndex;
 
-// Not meant to be subclassed.
+@end
+
+// Methods that are not meant to be subclassed.
+@interface NIPagingScrollView (ProtectedMethods)
+
 - (void)setCenterPageIndexIvar:(NSInteger)centerPageIndex;
 - (void)recyclePageAtIndex:(NSInteger)pageIndex;
 - (void)displayPageAtIndex:(NSInteger)pageIndex;
