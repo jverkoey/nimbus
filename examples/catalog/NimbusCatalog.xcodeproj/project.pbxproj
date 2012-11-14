@@ -330,6 +330,7 @@
 		66BB4FCD15959B5000020EE8 /* RestoringLauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestoringLauncherViewController.m; sourceTree = "<group>"; };
 		66CB01A215ACA85E0048E189 /* BlockCellsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockCellsViewController.h; sourceTree = "<group>"; };
 		66CB01A315ACA85E0048E189 /* BlockCellsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockCellsViewController.m; sourceTree = "<group>"; };
+		66CB9A1E1654306E00FFB4BF /* NIPagingScrollView+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NIPagingScrollView+Subclassing.h"; path = "../../src/pagingscrollview/src/NIPagingScrollView+Subclassing.h"; sourceTree = "<group>"; };
 		66D2E54815D9613700281511 /* NIMutableTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIMutableTableViewModel.h; path = ../../src/models/src/NIMutableTableViewModel.h; sourceTree = "<group>"; };
 		66D2E54915D9613800281511 /* NIMutableTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIMutableTableViewModel.m; path = ../../src/models/src/NIMutableTableViewModel.m; sourceTree = "<group>"; };
 		66D2E54A15D9613800281511 /* NIMutableTableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NIMutableTableViewModel+Private.h"; path = "../../src/models/src/NIMutableTableViewModel+Private.h"; sourceTree = "<group>"; };
@@ -753,6 +754,7 @@
 				66A29F9815951C0000F6EA64 /* NIPageView.m */,
 				66A29F9915951C0000F6EA64 /* NIPagingScrollView.h */,
 				66A29F9A15951C0000F6EA64 /* NIPagingScrollView.m */,
+				66CB9A1E1654306E00FFB4BF /* NIPagingScrollView+Subclassing.h */,
 				66A29F9B15951C0000F6EA64 /* NIPagingScrollViewDataSource.h */,
 				66A29F9C15951C0000F6EA64 /* NIPagingScrollViewDelegate.h */,
 				66A29F9D15951C0000F6EA64 /* NIPagingScrollViewPage.h */,

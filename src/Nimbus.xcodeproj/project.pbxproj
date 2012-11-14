@@ -287,6 +287,7 @@
 		66C3A6AF143D61140048542F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66C3A6B1143D61140048542F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66C3A6B4143D61140048542F /* libNimbusCss.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C3A6A1143D61130048542F /* libNimbusCss.a */; };
+		66CB9A211654307A00FFB4BF /* NIPagingScrollView+Subclassing.h in Headers */ = {isa = PBXBuildFile; fileRef = 66CB9A201654307A00FFB4BF /* NIPagingScrollView+Subclassing.h */; };
 		66D2E53F15D9432000281511 /* NIMutableTableViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 66D2E53D15D9432000281511 /* NIMutableTableViewModel.h */; };
 		66D2E54015D9432000281511 /* NIMutableTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2E53E15D9432000281511 /* NIMutableTableViewModel.m */; };
 		66D2E54315D9438D00281511 /* NIMutableTableViewModel+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 66D2E54115D9438D00281511 /* NIMutableTableViewModel+Private.h */; };
@@ -906,6 +907,7 @@
 		66C1153F1486ACDD003C9AC6 /* NIOperations+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIOperations+Subclassing.h"; sourceTree = "<group>"; };
 		66C3A6A1143D61130048542F /* libNimbusCss.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCss.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C3A6AE143D61140048542F /* NimbusCssTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCssTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66CB9A201654307A00FFB4BF /* NIPagingScrollView+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIPagingScrollView+Subclassing.h"; sourceTree = "<group>"; };
 		66D2E53D15D9432000281511 /* NIMutableTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIMutableTableViewModel.h; sourceTree = "<group>"; };
 		66D2E53E15D9432000281511 /* NIMutableTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIMutableTableViewModel.m; sourceTree = "<group>"; };
 		66D2E54115D9438D00281511 /* NIMutableTableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIMutableTableViewModel+Private.h"; sourceTree = "<group>"; };
@@ -1293,6 +1295,7 @@
 				666F73B014BBFF6300D1A32F /* NimbusPagingScrollView+Namespace.h */,
 				663B52681445070100CC26DF /* NIPagingScrollView.h */,
 				663B52691445070100CC26DF /* NIPagingScrollView.m */,
+				66CB9A201654307A00FFB4BF /* NIPagingScrollView+Subclassing.h */,
 				663B527014450CC100CC26DF /* NIPagingScrollViewPage.h */,
 				663B527214450CEF00CC26DF /* NIPagingScrollViewDelegate.h */,
 				663B527414450D1C00CC26DF /* NIPagingScrollViewDataSource.h */,
@@ -2086,6 +2089,7 @@
 				663B527514450D1C00CC26DF /* NIPagingScrollViewDataSource.h in Headers */,
 				66F27D55145B7A5F00AFCA08 /* NIPageView.h in Headers */,
 				666F73B114BBFF6300D1A32F /* NimbusPagingScrollView+Namespace.h in Headers */,
+				66CB9A211654307A00FFB4BF /* NIPagingScrollView+Subclassing.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

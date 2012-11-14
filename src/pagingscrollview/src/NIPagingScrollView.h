@@ -88,9 +88,6 @@ typedef enum {
 @property (nonatomic, readonly, NI_STRONG) UIScrollView* pagingScrollView;
 @property (nonatomic, readonly, copy) NSMutableSet* visiblePages; // Set of UIView<NIPagingScrollViewPage>*
 
-- (void)willDisplayPage:(UIView<NIPagingScrollViewPage> *)pageView;
-- (void)didRecyclePage:(UIView<NIPagingScrollViewPage> *)pageView;
-
 @end
 
 /** @name Data Source */
@@ -270,20 +267,4 @@ typedef enum {
  * Meant to be used by subclasses only.
  *
  *      @fn NIPagingScrollView::visiblePages
- */
-
-/**
- * Called before the page is about to be shown and after its frame has been set.
- *
- * Meant to be subclassed. By default this method does nothing.
- *
- *      @fn NIPagingScrollView::willDisplayPage:
- */
-
-/**
- * Called immediately after the page is removed from the paging scroll view.
- *
- * Meant to be subclassed. By default this method does nothing.
- *
- *      @fn NIPagingScrollView::didRecyclePage:
  */
