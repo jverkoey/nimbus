@@ -31,6 +31,7 @@
   NSMutableDictionary* _ruleset;
 
   UIColor* _textColor;
+  UIColor* _highlightedTextColor;
   UITextAlignment _textAlignment;
   UIFont* _font;
   UIColor* _textShadowColor;
@@ -54,6 +55,7 @@
   union {
     struct {
       int TextColor : 1;
+      int HighlightedTextColor: 1;
       int TextAlignment : 1;
       int Font : 1;
       int TextShadowColor : 1;
@@ -82,6 +84,9 @@
 
 - (BOOL)hasTextColor;
 - (UIColor *)textColor; // color
+
+- (BOOL)hasHighlightedTextColor;
+- (UIColor *)highlightedTextColor;
 
 - (BOOL)hasTextAlignment;
 - (UITextAlignment)textAlignment; // text-align

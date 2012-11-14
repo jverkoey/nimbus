@@ -35,6 +35,7 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyLabelStyleWithRuleSet:(NICSSRuleset *)ruleSet {
   if ([ruleSet hasTextColor]) { self.textColor = ruleSet.textColor; }
+  if ([ruleSet hasHighlightedTextColor]) { self.highlightedTextColor = ruleSet.highlightedTextColor; }
   if ([ruleSet hasTextAlignment]) { self.textAlignment = ruleSet.textAlignment; }
   if ([ruleSet hasFont]) { self.font = ruleSet.font; }
   if ([ruleSet hasTextShadowColor]) { self.shadowColor = ruleSet.textShadowColor; }

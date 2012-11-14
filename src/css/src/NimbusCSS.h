@@ -164,6 +164,7 @@ UILabel {
 
   text-shadow: <color> <x-offset> <y-offset> {label.shadowColor label.shadowOffset}
 
+  -ios-highlighted-color: <color>      {label.highlightedTextColor}
   -ios-line-break-mode: [wrap|character-wrap|clip|head-truncate|tail-truncate|middle-truncate] [label.lineBreakMode]
   -ios-number-of-lines: xx             {label.numberOfLines}
   -ios-minimum-font-size: <font-size>  {label.minimumFontSize}
