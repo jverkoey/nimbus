@@ -135,7 +135,7 @@ NI_FIX_CATEGORY_BUG(UIViewController_MyCustomCategory);
     #define NI_WEAK weak
     #define NI_STRONG strong
 #elif defined(__has_feature)  && __has_feature(objc_arc)
-    #define NI_WEAK __unsafe_unretained
+    #define NI_WEAK unsafe_unretained
     #define NI_STRONG retain
 #else
     #define NI_WEAK assign
