@@ -92,6 +92,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 @synthesize image;
 @synthesize margins;
 @synthesize verticalTextAlignment;
+@synthesize fontAscent;
+@synthesize fontDescent;
 
 - (CGSize)boxSize
 {
