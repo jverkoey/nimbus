@@ -1432,9 +1432,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
       CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attributedString);
 
       CGMutablePathRef path = CGPathCreateMutable();
-      // We must transform the path rectangle in order to draw the text correctly for bottom/middle
-      // vertical alignment modes.
-      CGPathAddRect(path, &transform, rect);
+      CGPathAddRect(path, nil, rect);
       self.textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
       CGPathRelease(path);
       CFRelease(framesetter);
