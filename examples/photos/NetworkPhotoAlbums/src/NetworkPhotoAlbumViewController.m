@@ -144,7 +144,7 @@
   }
 
   // Start the operation.
-
+  [_activeRequests addObject:identifierKey];
   [_queue addOperation:readOp];
 }
 
@@ -165,7 +165,7 @@
   _thumbnailImageCache = [[NIImageMemoryCache alloc] init];
 
   [_highQualityImageCache setMaxNumberOfPixels:1024L*1024L*10L];
-  [_highQualityImageCache setMaxNumberOfPixelsUnderStress:1024L*1024L*3L];
+  [_thumbnailImageCache setMaxNumberOfPixelsUnderStress:1024L*1024L*3L];
 
   _queue = [[NSOperationQueue alloc] init];
   [_queue setMaxConcurrentOperationCount:5];
