@@ -62,6 +62,12 @@ NSString* NIStringFromBytes(unsigned long long bytes);
  */
 + (unsigned long long)bytesOfTotalMemory;
 
+/**
+ * Simulate low memory warning
+ *
+ * Don't use this in production because it uses private API
+ */
++ (void)simulateLowMemoryWarning;
 
 #pragma mark Disk Space /** @name Disk Space */
 
@@ -119,5 +125,6 @@ NSString* NIStringFromBytes(unsigned long long bytes);
  * Stop using the cache for the device info methods.
  */
 + (void)endCachedDeviceInfo;
+
 
 @end
