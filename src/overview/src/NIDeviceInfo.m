@@ -134,6 +134,24 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)simulateLowMemoryWarning
+{
+  SEL memoryWarningSel =  NSSelectorFromString(@"_performMemoryWarning");
+  if ([[UIApplication sharedApplication] respondsToSelector:memoryWarningSel]) {
+    NIDINFO(@"Simulate low memory warning");
+    // Supress the warning. -Wundeclared-selector was used while ARC is enabled.
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    [[UIApplication sharedApplication] performSelector:memoryWarningSel];
+#pragma clang diagnostic pop
+  } else {
+    // UIApplication no loger responds to _performMemoryWarning
+    exit(1);
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (unsigned long long)bytesOfFreeDiskSpace {
   if (!sIsCaching && ![self updateFileSystemAttributes]) {
     return 0;
