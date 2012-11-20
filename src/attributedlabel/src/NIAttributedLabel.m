@@ -830,8 +830,10 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
     CGRect linkRect = CGRectMake(lineOrigin.x + xOffset - leading, lineOrigin.y - descent, width + leading, height);
 
-    linkRect = CGRectIntegral(linkRect);
-    linkRect = CGRectInset(linkRect, -2, 0);
+    linkRect.origin.y = roundf(linkRect.origin.y);
+    linkRect.origin.x = roundf(linkRect.origin.x);
+    linkRect.size.width = roundf(linkRect.size.width);
+    linkRect.size.height = roundf(linkRect.size.height);
 
     if (CGRectIsEmpty(rectForRange)) {
       rectForRange = linkRect;
@@ -1319,7 +1321,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     if (!CGRectIsEmpty(highlightRect)) {
       CGFloat pi = (CGFloat)M_PI;
 
-      CGFloat radius = 5.0f;
+      CGFloat radius = 1.0f;
       CGContextMoveToPoint(ctx, highlightRect.origin.x, highlightRect.origin.y + radius);
       CGContextAddLineToPoint(ctx, highlightRect.origin.x, highlightRect.origin.y + highlightRect.size.height - radius);
       CGContextAddArc(ctx, highlightRect.origin.x + radius, highlightRect.origin.y + highlightRect.size.height - radius,
