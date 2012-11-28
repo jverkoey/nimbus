@@ -87,6 +87,13 @@ extern "C" {
 #endif
 
 /**
+ * The recommended number of points for a minimum tappable area.
+ *
+ * Value: 44
+ */
+CGFloat NIMinimumTapDimension(void);
+
+/**
  * Fetch the height of a toolbar in a given orientation.
  *
  * On the iPhone:
