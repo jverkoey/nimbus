@@ -32,10 +32,7 @@
 static CGFloat  sOverviewHeight   = 60;
 static BOOL     sOverviewIsAwake  = NO;
 
-static NSTimer* sOverviewHeartbeatTimer = nil;
-
 static NIOverviewView* sOverviewView = nil;
-static NIOverviewLogger* sOverviewLogger = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -186,27 +183,8 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)didReceiveMemoryWarning {
-  [sOverviewLogger addEventLog:
+  [[NIOverview logger] addEventLog:
    [[NIOverviewEventLogEntry alloc] initWithType:NIOverviewEventDidReceiveMemoryWarning]];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)heartbeat {
-  [NIDeviceInfo beginCachedDeviceInfo];
-  NIOverviewDeviceLogEntry* logEntry =
-  [[NIOverviewDeviceLogEntry alloc] initWithTimestamp:[NSDate date]];
-  logEntry.bytesOfTotalDiskSpace = [NIDeviceInfo bytesOfTotalDiskSpace];
-  logEntry.bytesOfFreeDiskSpace = [NIDeviceInfo bytesOfFreeDiskSpace];
-  logEntry.bytesOfFreeMemory = [NIDeviceInfo bytesOfFreeMemory];
-  logEntry.bytesOfTotalMemory = [NIDeviceInfo bytesOfTotalMemory];
-  logEntry.batteryLevel = [NIDeviceInfo batteryLevel];
-  logEntry.batteryState = [NIDeviceInfo batteryState];
-  [NIDeviceInfo endCachedDeviceInfo];
-
-  [sOverviewLogger addDeviceLog:logEntry];
-  
-  [sOverviewView updatePages];
 }
 
 
@@ -229,8 +207,6 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
     // overview.
     _NSSetLogCStringFunction(NIOverviewLogMethod);
 
-    sOverviewLogger = [[NIOverviewLogger alloc] init];
-
     NIOverviewSwizzleMethods();
 
     [[NSNotificationCenter defaultCenter] addObserver: self
@@ -246,11 +222,6 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
                                                  name: UIApplicationDidReceiveMemoryWarningNotification
                                                object: nil];
 
-    sOverviewHeartbeatTimer = [NSTimer scheduledTimerWithTimeInterval: 0.5
-                                                                  target: self
-                                                                selector: @selector(heartbeat)
-                                                                userInfo: nil
-                                                                 repeats: YES];
   }
 #endif
 }
@@ -288,7 +259,7 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NIOverviewLogger *)logger {
 #ifdef DEBUG
-  return sOverviewLogger;
+  return [NIOverviewLogger sharedLogger];
 #else
   return nil;
 #endif

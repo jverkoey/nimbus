@@ -15,12 +15,15 @@
 //
 
 #import "NIOverviewLogger.h"
+#import "NIDeviceInfo.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
 #endif
 
+NSString* const NIOverviewLoggerDidAddDeviceLog = @"NIOverviewLoggerDidAddDeviceLog";
 NSString* const NIOverviewLoggerDidAddConsoleLog = @"NIOverviewLoggerDidAddConsoleLog";
+NSString* const NIOverviewLoggerDidAddEventLog = @"NIOverviewLoggerDidAddEventLog";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,6 +37,20 @@ NSString* const NIOverviewLoggerDidAddConsoleLog = @"NIOverviewLoggerDidAddConso
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NIOverviewLogger*)sharedLogger
+{
+  static dispatch_once_t pred = 0;
+  static NIOverviewLogger* instance = nil;
+  
+  dispatch_once(&pred, ^{
+    instance = [[NIOverviewLogger alloc] init];
+  });
+  
+  return instance;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
   if ((self = [super init])) {
     _deviceLogs = [[NILinkedList alloc] init];
@@ -41,8 +58,37 @@ NSString* const NIOverviewLoggerDidAddConsoleLog = @"NIOverviewLoggerDidAddConso
     _eventLogs = [[NILinkedList alloc] init];
     
     _oldestLogAge = 60;
+    
+    _heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval: 0.5
+                                                       target: self
+                                                     selector: @selector(heartbeat)
+                                                     userInfo: nil
+                                                      repeats: YES];
   }
   return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  [_heartbeatTimer invalidate];
+  _heartbeatTimer = nil;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)heartbeat {
+  [NIDeviceInfo beginCachedDeviceInfo];
+  NIOverviewDeviceLogEntry* logEntry =
+  [[NIOverviewDeviceLogEntry alloc] initWithTimestamp:[NSDate date]];
+  logEntry.bytesOfTotalDiskSpace = [NIDeviceInfo bytesOfTotalDiskSpace];
+  logEntry.bytesOfFreeDiskSpace = [NIDeviceInfo bytesOfFreeDiskSpace];
+  logEntry.bytesOfFreeMemory = [NIDeviceInfo bytesOfFreeMemory];
+  logEntry.bytesOfTotalMemory = [NIDeviceInfo bytesOfTotalMemory];
+  logEntry.batteryLevel = [NIDeviceInfo batteryLevel];
+  logEntry.batteryState = [NIDeviceInfo batteryState];
+  [NIDeviceInfo endCachedDeviceInfo];
+  
+  [self addDeviceLog:logEntry];
 }
 
 
@@ -61,6 +107,11 @@ NSString* const NIOverviewLoggerDidAddConsoleLog = @"NIOverviewLoggerDidAddConso
   [self pruneEntriesFromLinkedList:_deviceLogs];
 
   [_deviceLogs addObject:logEntry];
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName: NIOverviewLoggerDidAddDeviceLog
+                                                      object: nil
+                                                    userInfo:
+   [NSDictionary dictionaryWithObject:logEntry forKey:@"entry"]];
 }
 
 
@@ -80,6 +131,11 @@ NSString* const NIOverviewLoggerDidAddConsoleLog = @"NIOverviewLoggerDidAddConso
   [self pruneEntriesFromLinkedList:_eventLogs];
 
   [_eventLogs addObject:logEntry];
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName: NIOverviewLoggerDidAddEventLog
+                                                      object: nil
+                                                    userInfo:
+   [NSDictionary dictionaryWithObject:logEntry forKey:@"entry"]];
 }
 
 

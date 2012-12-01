@@ -20,6 +20,7 @@
 
 #import "NimbusCore.h"
 
+#import "NIOverviewLogger.h"
 #import "NIDeviceInfo.h"
 #import "NIOverviewPageView.h"
 
@@ -60,10 +61,22 @@
                                           | UIViewAutoresizingFlexibleHeight);
 
     [self addSubview:_pagingScrollView];
+    
+    self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updatePages)
+                                                 name:NIOverviewLoggerDidAddDeviceLog
+                                               object:nil];
   }
   return self;
 }
 
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:NIOverviewLoggerDidAddDeviceLog
+                                                object:nil];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -144,6 +157,20 @@
 
   [self layoutPages];
 
+  CGFloat pageWidth = _pagingScrollView.bounds.size.width;
+  CGFloat newOffset = (visiblePageIndex * pageWidth);
+  _pagingScrollView.contentOffset = CGPointMake(newOffset, 0);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setFrame:(CGRect)frame {
+  NSInteger visiblePageIndex = [self visiblePageIndex];
+  
+  [super setFrame:frame];
+  
+  [self layoutPages];
+  
   CGFloat pageWidth = _pagingScrollView.bounds.size.width;
   CGFloat newOffset = (visiblePageIndex * pageWidth);
   _pagingScrollView.contentOffset = CGPointMake(newOffset, 0);
