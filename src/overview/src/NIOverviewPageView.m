@@ -455,7 +455,7 @@ static const CGFloat kGraphRightMargin = 5;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  [[NSOperationQueue mainQueue] removeObserver:self];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
