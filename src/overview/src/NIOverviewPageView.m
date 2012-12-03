@@ -16,7 +16,7 @@
 
 #import "NIOverviewPageView.h"
 
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
 
 #import "NIOverview.h"
 #import "NIDeviceInfo.h"

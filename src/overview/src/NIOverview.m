@@ -16,7 +16,7 @@
 
 #import "NIOverview.h"
 
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
 
 #import "NIDeviceInfo.h"
 #import "NIOverviewView.h"
@@ -108,7 +108,7 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 #pragma mark -
 #pragma mark Device Orientation Changes
 
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)didChangeOrientation {
@@ -199,7 +199,7 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)applicationDidFinishLaunching {
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
   if (!sOverviewIsAwake) {
     sOverviewIsAwake = YES;
 
@@ -229,7 +229,7 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)addOverviewToWindow:(UIWindow *)window {
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
   if (nil != sOverviewView) {
     // Remove the old overview in case this gets called multiple times (not sure why you would
     // though).
@@ -258,7 +258,7 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NIOverviewLogger *)logger {
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
   return [NIOverviewLogger sharedLogger];
 #else
   return nil;
@@ -268,7 +268,7 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)height {
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
   return sOverviewHeight;
 #else
   return 0;
@@ -278,7 +278,7 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGRect)frame {
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
   UIInterfaceOrientation orient = NIInterfaceOrientation();
   CGFloat overviewWidth;
   CGRect frame;
@@ -342,7 +342,7 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (UIView *)view {
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
   return sOverviewView;
 #else
   return nil;

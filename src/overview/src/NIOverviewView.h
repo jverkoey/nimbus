@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
 
 @class NIOverviewPageView;
 

@@ -25,7 +25,7 @@
 #error "Nimbus requires ARC support."
 #endif
 
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
 
 @interface UIApplication (Private)
 - (CGRect)_statusBarFrame;

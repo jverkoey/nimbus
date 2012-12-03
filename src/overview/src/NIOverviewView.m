@@ -16,7 +16,7 @@
 
 #import "NIOverviewView.h"
 
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
 
 #import "NimbusCore.h"
 

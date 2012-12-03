@@ -18,7 +18,7 @@
 
 #import "NIDebuggingTools.h"
 
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
 #import "NIRuntimeClassModifications.h"
 #endif
 
@@ -112,7 +112,7 @@ void NINetworkActivityTaskDidFinish(void) {
 #pragma mark -
 #pragma mark Network Activity Debugging
 
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
 
 static BOOL gNetworkActivityDebuggingEnabled = NO;
 
@@ -191,4 +191,4 @@ void NIDisableNetworkActivityDebugging(void) {
 }
 
 
-#endif // #ifdef DEBUG
+#endif // #if defined(DEBUG) || defined(NI_DEBUG)
