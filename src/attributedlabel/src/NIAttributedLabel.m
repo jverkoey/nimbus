@@ -27,7 +27,7 @@
 static const CGFloat kVMargin = 5.0f;
 static const NSTimeInterval kLongPressTimeInterval = 0.5;
 static const CGFloat kLongPressGutter = 22;
-static NSString* const kLinkAttributedName = @"NIAttributedLabel:Link";
+static NSString* const kLinkAttributedNameFormat = @"NIAttributedLabel:Link_%@";
 
 // \u2026 is the Unicode horizontal ellipsis character code
 static NSString* const kEllipsesCharacter = @"\u2026";
@@ -1114,10 +1114,16 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   for (NSTextCheckingResult* result in results) {
     [attributedString setTextColor:self.linkColor range:result.range];
 
-    // We add a no-op attribute in order to force a run to exist for each link. Otherwise the
+    CFUUIDRef uuid = CFUUIDCreate(NULL);
+    NSString* uuidString = (__bridge NSString*)CFUUIDCreateString(NULL, uuid);
+    CFRelease(uuid);
+    
+    NSString* uniqueLinkAttributeName = [NSString stringWithFormat:kLinkAttributedNameFormat,uuidString];
+    
+    // We add a no-op "unique" attribute in order to force a run to exist for each link. Otherwise the
     // runCount will be one in this line, causing the entire line to be highlighted rather than
     // just the link when when no special attributes are set.
-    [attributedString addAttribute:kLinkAttributedName
+    [attributedString addAttribute:uniqueLinkAttributeName
                              value:[NSNumber numberWithBool:YES]
                              range:result.range];
 
