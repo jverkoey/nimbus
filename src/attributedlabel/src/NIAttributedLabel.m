@@ -1160,53 +1160,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   [self _applyLinkStyleWithResults:self.explicitLinkLocations
                 toAttributedString:attributedString];
 
-  if (self.images.count > 0) {
-    // Sort the label images in reverse order by index so that when we add them the string's indices
-    // remain relatively accurate to the original string. This is necessary because we're inserting
-    // spaces into the string.
-    [self.images sortUsingComparator:^NSComparisonResult(NIAttributedLabelImage* obj1, NIAttributedLabelImage*  obj2) {
-      if (obj1.index < obj2.index) {
-        return NSOrderedDescending;
-      } else if (obj1.index > obj2.index) {
-        return NSOrderedAscending;
-      } else {
-        return NSOrderedSame;
-      }
-    }];
-
-    for (NIAttributedLabelImage *labelImage in self.images) {
-      CTRunDelegateCallbacks callbacks;
-      memset(&callbacks, 0, sizeof(CTRunDelegateCallbacks));
-      callbacks.version = kCTRunDelegateVersion1;
-      callbacks.getAscent = ImageDelegateGetAscentCallback;
-      callbacks.getDescent = ImageDelegateGetDescentCallback;
-      callbacks.getWidth = ImageDelegateGetWidthCallback;
-        
-      NSUInteger index = labelImage.index;
-      if (index >= attributedString.length) {
-        index = attributedString.length - 1;
-      }
-    
-      NSDictionary *attributes = [attributedString attributesAtIndex:index effectiveRange:NULL];
-      CTFontRef font = (__bridge CTFontRef)[attributes valueForKey:(__bridge id)kCTFontAttributeName];
-    
-      if (font != NULL) {
-        labelImage.fontAscent = CTFontGetAscent(font);
-        labelImage.fontDescent = CTFontGetDescent(font);
-      }
-        
-      CTRunDelegateRef delegate = CTRunDelegateCreate(&callbacks, (__bridge void *)labelImage);
-
-      // Character to use as recommended by kCTRunDelegateAttributeName documentation.
-      unichar objectReplacementChar = 0xFFFC;
-      NSString *objectReplacementString = [NSString stringWithCharacters:&objectReplacementChar length:1];
-      NSMutableAttributedString* space = [[NSMutableAttributedString alloc] initWithString:objectReplacementString];
-      CFAttributedStringSetAttribute((__bridge CFMutableAttributedStringRef)space, CFRangeMake(0, 1), kCTRunDelegateAttributeName, delegate);
-      CFRelease(delegate);
-      [attributedString insertAttributedString:space atIndex:labelImage.index];
-    }
-  }
-
   if (self.isHighlighted) {
     [attributedString setTextColor:self.highlightedTextColor];
   }
@@ -1659,6 +1612,32 @@ CGFloat ImageDelegateGetWidthCallback(void* refCon) {
     self.images = [NSMutableArray array];
   }
   [self.images addObject:labelImage];
+  
+  CTRunDelegateCallbacks callbacks;
+  memset(&callbacks, 0, sizeof(CTRunDelegateCallbacks));
+  callbacks.version = kCTRunDelegateVersion1;
+  callbacks.getAscent = ImageDelegateGetAscentCallback;
+  callbacks.getDescent = ImageDelegateGetDescentCallback;
+  callbacks.getWidth = ImageDelegateGetWidthCallback;
+  
+  NSDictionary *attributes = [self.mutableAttributedString attributesAtIndex:index effectiveRange:NULL];
+  CTFontRef font = (__bridge CTFontRef)[attributes valueForKey:(__bridge id)kCTFontAttributeName];
+  
+  if (font != NULL) {
+    labelImage.fontAscent = CTFontGetAscent(font);
+    labelImage.fontDescent = CTFontGetDescent(font);
+  }
+  
+  CTRunDelegateRef delegate = CTRunDelegateCreate(&callbacks, (__bridge void *)labelImage);
+  
+  // Character to use as recommended by kCTRunDelegateAttributeName documentation.
+  unichar objectReplacementChar = 0xFFFC;
+  NSString *objectReplacementString = [NSString stringWithCharacters:&objectReplacementChar length:1];
+  NSMutableAttributedString* space = [[NSMutableAttributedString alloc] initWithString:objectReplacementString];
+  CFAttributedStringSetAttribute((__bridge CFMutableAttributedStringRef)space, CFRangeMake(0, 1), kCTRunDelegateAttributeName, delegate);
+  CFRelease(delegate);
+  [self.mutableAttributedString insertAttributedString:space atIndex:labelImage.index];
+
 }
 
 @end
