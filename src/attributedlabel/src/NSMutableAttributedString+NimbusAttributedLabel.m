@@ -34,22 +34,29 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
 - (void)setTextAlignment:(CTTextAlignment)textAlignment
            lineBreakMode:(CTLineBreakMode)lineBreakMode
               lineHeight:(CGFloat)lineHeight
+             lineSpacing:(CGFloat)lineSpacing
                    range:(NSRange)range {
     
     CTParagraphStyleRef style;
     
     if ( lineHeight == 0 ) {
-        CTParagraphStyleSetting paragraphStyles[2] = {
+        CTParagraphStyleSetting paragraphStyles[4] = {
             {.spec = kCTParagraphStyleSpecifierAlignment,
                 .valueSize = sizeof(CTTextAlignment),
                 .value = (const void*)&textAlignment},
             {.spec = kCTParagraphStyleSpecifierLineBreakMode,
                 .valueSize = sizeof(CTLineBreakMode),
                 .value = (const void*)&lineBreakMode},
+            {.spec = kCTParagraphStyleSpecifierMinimumLineSpacing,
+                .valueSize = sizeof(CGFloat),
+                .value = (const void*)&lineSpacing},
+            {.spec = kCTParagraphStyleSpecifierMaximumLineSpacing,
+                .valueSize = sizeof(CGFloat),
+                .value = (const void*)&lineSpacing}
         };
-        style = CTParagraphStyleCreate(paragraphStyles, 2);
+        style = CTParagraphStyleCreate(paragraphStyles, 4);
     } else {
-        CTParagraphStyleSetting paragraphStyles[4] = {
+        CTParagraphStyleSetting paragraphStyles[6] = {
             {.spec = kCTParagraphStyleSpecifierAlignment,
                 .valueSize = sizeof(CTTextAlignment),
                 .value = (const void*)&textAlignment},
@@ -62,8 +69,14 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
             {.spec = kCTParagraphStyleSpecifierMaximumLineHeight,
                 .valueSize = sizeof(lineHeight),
                 .value = (const void*)&lineHeight},
+            {.spec = kCTParagraphStyleSpecifierMinimumLineSpacing,
+                .valueSize = sizeof(CGFloat),
+                .value = (const void*)&lineSpacing},
+            {.spec = kCTParagraphStyleSpecifierMaximumLineSpacing,
+                .valueSize = sizeof(CGFloat),
+                .value = (const void*)&lineSpacing}
         };
-        style = CTParagraphStyleCreate(paragraphStyles, 4);
+        style = CTParagraphStyleCreate(paragraphStyles, 6);
     }
     [self addAttribute:(NSString*)kCTParagraphStyleAttributeName
                  value:(__bridge id)style
@@ -76,13 +89,14 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTextAlignment:(CTTextAlignment)textAlignment
            lineBreakMode:(CTLineBreakMode)lineBreakMode
-              lineHeight:(CGFloat)lineHeight {
+              lineHeight:(CGFloat)lineHeight
+             lineSpacing:(CGFloat)lineSpacing {
     [self setTextAlignment:textAlignment
              lineBreakMode:lineBreakMode
                 lineHeight:lineHeight
+               lineSpacing:lineSpacing
                      range:NSMakeRange(0, self.length)];
 }
-
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

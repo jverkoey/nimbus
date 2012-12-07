@@ -166,6 +166,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 @synthesize attributesForLinks = _attributesForLinks;
 @synthesize attributesForHighlightedLink = _attributesForHighlightedLink;
 @synthesize lineHeight = _lineHeight;
+@synthesize lineSpacing = _lineSpacing;
 @synthesize images;
 @synthesize delegate = _delegate;
 
@@ -367,7 +368,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   if (nil != self.mutableAttributedString) {
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:textAlignment];
     CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
-    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight];
+    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight lineSpacing:self.lineSpacing];
   }
 }
 #else
@@ -384,7 +385,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   if (nil != self.mutableAttributedString) {
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:textAlignment];
     CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
-    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight];
+    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight lineSpacing:self.lineSpacing];
   }
 }
 #endif
@@ -398,7 +399,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   if (nil != self.mutableAttributedString) {
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:self.textAlignment];
     CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:lineBreakMode];
-    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight];
+    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight lineSpacing:self.lineSpacing];
   }
 }
 #else
@@ -408,10 +409,34 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   if (nil != self.mutableAttributedString) {
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:self.textAlignment];
     CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:lineBreakMode];
-    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight];
+    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight lineSpacing:self.lineSpacing];
   }
 }
 #endif
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setLineHeight:(CGFloat)lineHeight {
+  _lineHeight = lineHeight;
+  
+  if (nil != self.mutableAttributedString) {
+    CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:self.textAlignment];
+    CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
+    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight lineSpacing:self.lineSpacing];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setLineSpacing:(CGFloat)lineSpacing {
+  _lineSpacing = lineSpacing;
+  
+  if (nil != self.mutableAttributedString) {
+    CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:self.textAlignment];
+    CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
+    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight lineSpacing:self.lineSpacing];
+  }
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -538,17 +563,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     _linkColor = linkColor;
 
     [self attributedTextDidChange];
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setLineHeight:(CGFloat)lineHeight {
-  _lineHeight = lineHeight;
-
-  if (nil != self.mutableAttributedString) {
-    CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:self.textAlignment];
-    CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
-    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight];
   }
 }
 
@@ -1156,6 +1170,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 // makes it possible to turn off links or remove them altogether without losing the existing
 // style information.
 - (NSMutableAttributedString *)mutableAttributedStringWithAdditions {
+  
   NSMutableAttributedString* attributedString = [self.mutableAttributedString mutableCopy];
   if (self.autoDetectLinks) {
     [self _applyLinkStyleWithResults:self.detectedlinkLocations
@@ -1719,13 +1734,15 @@ CGFloat ImageDelegateGetWidthCallback(void* refCon) {
     [attributedString setTextColor:label.textColor];
 
     CTTextAlignment textAlignment = [self alignmentFromUITextAlignment:label.textAlignment];
-    CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:label.lineBreakMode];
+    CTLineBreakMode lineBreak = [self lineBreakModeFromUILineBreakMode:label.lineBreakMode];
 
     CGFloat lineHeight = 0;
+    CGFloat lineSpacing = 0;
     if ([label isKindOfClass:[NIAttributedLabel class]]) {
       lineHeight = [(NIAttributedLabel *)label lineHeight];
+      lineSpacing = [(NIAttributedLabel *)label lineSpacing];
     }
-    [attributedString setTextAlignment:textAlignment lineBreakMode:lineBreak lineHeight:lineHeight];
+    [attributedString setTextAlignment:textAlignment lineBreakMode:lineBreak lineHeight:lineHeight lineSpacing:lineSpacing];
   }
 
   return attributedString;
