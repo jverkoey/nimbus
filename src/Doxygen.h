@@ -47,9 +47,9 @@
  * 
  * - <a href="http://wiki.nimbuskit.info/Add-Nimbus-to-your-project">Add Nimbus to your project</a>.
  * - Learn about Nimbus' features by checking out the Catalog app in the examples folder.
- * - Follow Nimbus' development through its <a href="http://docs.nimbuskit.info/group___version-_history.html">version history</a>.
- * - See the <a href="http://docs.nimbuskit.info/group___version-9-3.html">latest API diffs</a>.
- * - Read the <a href="http://docs.nimbuskit.info/group___three20-_migration-_guide.html">Three20 Migration Guide</a>.
+ * - Follow Nimbus' development through its <a href="http://docs.nimbuskit.info/Version-History.html">version history</a>.
+ * - See the <a href="http://docs.nimbuskit.info/Version-1-0-0.html">latest API diffs</a>.
+ * - Read the <a href="http://wiki.nimbuskit.info/Three20-Migration-Guide">Three20 Migration Guide</a>.
  * - Ask questions and get updates via the <a href="http://groups.google.com/group/nimbusios">Nimbus mailing list</a>.
  * 
  * <h2>Nimbus' Development Roadmap</h2>
@@ -64,6 +64,64 @@
  * @defgroup Version-History Version History
  *
  * Presented here are the API diffs for each major release of Nimbus.
+ */
+
+/**
+ * @defgroup Version-1-0-0 Version 1.0.0 Release
+ * @ingroup Version-1-0-0
+ *
+ * Version 1.0.0 of Nimbus was released on December 10, 2012. This first major release includes
+ * major improvements to the Nimbus documentation formatting, ARC support, and numerous API changes
+ * and deprecations.
+ *
+ * Due to the incredibly large number of changes that have gone into this release we will not be
+ * providing the hand-crafted API diffs as per previous versions. You can see a list of all changes
+ * by running the command
+ *
+ * git log 0.9.3-arc...master
+ *
+ * from the command line.
+ *
+ * <h2>Notable Changes</h2>
+ *
+ * <h3>Example Apps</h3>
+ *
+ * - New Nimbus Catalog sample app demoing a variety of Nimbus' features.
+ *
+ * <h3>Core</h3>
+ *
+ * - Snapshot rotation via NISnapshotRotation.
+ * - Removed a few category methods in favor of C-style methods.
+ *
+ * <h3>Attributed Label</h3>
+ *
+ * - Substantial improvements to the NIAttributedLabel, including inline image support.
+ * - Accessibility for NIAttributedLabel links.
+ * - Improvements to NIAttributedLabel link interactions.
+ * - New method for calculating the size of NSAttributedStrings:
+ *   NISizeOfAttributedStringConstrainedToSize.
+ *
+ * <h3>Badge (New!)</h3>
+ *
+ * - A new badge feature for creating NIBadgeView views to display notification-style badges.
+ *
+ * <h3>CSS</h3>
+ *
+ * - New selectors added to the CSS feature.
+ *
+ * <h3>Models</h3>
+ *
+ * - NITableViewActions' interface has changed substantially from 0.9.3. All of the original methods
+ *   have been deprecated in favor of an improved syntax. Support for attaching selectors to objects
+ *   has been added. Selectors are often much cleaner than blocks when implementing complex actions.
+ * - New table view cells.
+ * - Standardized dynamic cell height calculation via NICellFactory.
+ * - NIMutableTableViewModel :)
+ *
+ * <h3>Paging Scroll View</h3>
+ *
+ * - Vertical paging scroll views.
+ * - Numerous bug fixes and improvements to the paging scroll view.
  */
 
 /**
