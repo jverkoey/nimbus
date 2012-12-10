@@ -68,7 +68,7 @@
 
 /**
  * @defgroup Version-1-0-0 Version 1.0.0 Release
- * @ingroup Version-1-0-0
+ * @ingroup Version-History
  *
  * Version 1.0.0 of Nimbus was released on December 10, 2012. This first major release includes
  * major improvements to the Nimbus documentation formatting, ARC support, and numerous API changes
