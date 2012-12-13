@@ -345,6 +345,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)isObjectActionable:(id<NSObject>)object {
+  if (nil == object) {
+    return NO;
+  }
+
   BOOL objectIsActionable = [self.objectSet containsObject:object];
   if (!objectIsActionable) {
     objectIsActionable = (nil != [NICellFactory objectFromKeyClass:object.class map:self.classMap]);
