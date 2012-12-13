@@ -111,8 +111,8 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
     CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, nil);
     if (nil != fontRef) {
       [self addAttribute:(__bridge NSString *)kCTFontAttributeName value:(__bridge id)fontRef range:range];
+      CFRelease(fontRef);
     }
-    CFRelease(fontRef);
   }
 }
 
