@@ -26,6 +26,12 @@
  */
 @interface NIInterapp : NSObject
 
+#pragma mark Chrome vs Safari
+
++ (void)setPreferGoogleChrome:(BOOL)preferGoogleChromeOverSafari;
++ (BOOL)preferGoogleChrome;
++ (BOOL)openPreferredBrowserWithURL:(NSURL *)url;
+
 #pragma mark Safari
 
 + (BOOL)safariWithURL:(NSURL *)url;
@@ -38,11 +44,22 @@
 
 #pragma mark Google Maps
 
++ (BOOL)googleMapsIsInstalled;
++ (BOOL)googleMaps;
++ (NSString *)googleMapsAppStoreId;
+
 + (BOOL)googleMapAtLocation:(CLLocationCoordinate2D)location;
-+ (BOOL)googleMapAtLocation: (CLLocationCoordinate2D)location
-                      title: (NSString *)title;
-+ (BOOL)googleMapDirectionsFromLocation: (CLLocationCoordinate2D)fromLocation
-                             toLocation: (CLLocationCoordinate2D)toLocation;
++ (BOOL)googleMapAtLocation: (CLLocationCoordinate2D)location title: (NSString *)title;
++ (BOOL)googleMapDirectionsFromLocation: (CLLocationCoordinate2D)fromLocation toLocation: (CLLocationCoordinate2D)toLocation;
+
+// directionsMode can be nil. @"driving", @"transit", or @"walking".
++ (BOOL)googleMapDirectionsFromLocation: (CLLocationCoordinate2D)fromLocation toLocation: (CLLocationCoordinate2D)toLocation withMode:(NSString*)directionsMode;
++ (BOOL)googleMapDirectionsFromSourceAddress: (NSString*)srcAddr toDestAddress: (NSString*)destAddr withMode:(NSString*)directionsMode;
+
+// these just use the user's current location (even if your application doesn't have locations services on, the google maps site/app MIGHT
++ (BOOL)googleMapDirectionsToDestAddress: (NSString*)destAddr withMode:(NSString*)directionsMode;
++ (BOOL)googleMapDirectionsToLocation: (CLLocationCoordinate2D)toLocation withMode:(NSString*)directionsMode;
+
 + (BOOL)googleMapWithQuery:(NSString *)query;
 
 #pragma mark Phone
