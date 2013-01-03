@@ -153,9 +153,9 @@ UILabel {
 
   font: <font-size> <font-name>   {label.font}
   font-size: <font-size>          {label.font}
-  font-name: <font-name>          {label.font}
+  font-family: <font-name>        {label.font}
 
-  Can not be used in conjunction with font/font-name properties. Use the italic/bold font
+  Can not be used in conjunction with font/font-family properties. Use the italic/bold font
   name instead.
   font-style: [italic|normal]     {label.font}
   font-weight: [bold|normal]      {label.font}
