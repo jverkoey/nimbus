@@ -25,6 +25,7 @@
 #import "PerformanceAttributedLabelViewController.h"
 #import "LongTapAttributedLabelViewController.h"
 #import "InterfaceBuilderAttributedLabelViewController.h"
+#import "AlignmentAttributedLabelViewController.h"
 
 // Badge
 #import "BasicInstantiationBadgeViewController.h"
@@ -186,6 +187,11 @@
                                    subtitle:@"Using attributed labels in IB"]
               navigationBlock:
       NIPushControllerAction([InterfaceBuilderAttributedLabelViewController class])],
+     [_actions attachToObject:
+      [NISubtitleCellObject objectWithTitle:@"Alignment"
+                                   subtitle:@"Verical alignment in attributed labels"]
+              navigationBlock:
+      NIPushControllerAction([AlignmentAttributedLabelViewController class])],
 
      @"Badge",
      [_actions attachToObject:

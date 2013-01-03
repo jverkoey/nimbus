@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2B960E8015AE3A3B005714CA /* NavigationAppearanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B960E7F15AE3A3B005714CA /* NavigationAppearanceViewController.m */; };
 		2B960E8415AE41FC005714CA /* navigationbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B960E8315AE41FC005714CA /* navigationbar.png */; };
+		3616212C16812222002A9078 /* AlignmentAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3616212A16812222002A9078 /* AlignmentAttributedLabelViewController.m */; };
+		3616212D16812222002A9078 /* AlignmentAttributedLabelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3616212B16812222002A9078 /* AlignmentAttributedLabelViewController.xib */; };
 		44707C77159B06A700B83149 /* BasicInstantiationPagingScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44707C76159B06A000B83149 /* BasicInstantiationPagingScrollViewController.m */; };
 		660C6F2915992B2500209EB3 /* BadgedLauncherButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 660C6F2815992B2500209EB3 /* BadgedLauncherButtonView.m */; };
 		6613335E15D3A66B00369333 /* SnapshotRotationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6613335D15D3A66B00369333 /* SnapshotRotationTableViewController.m */; };
@@ -126,6 +128,9 @@
 		2B960E7E15AE3A3B005714CA /* NavigationAppearanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationAppearanceViewController.h; sourceTree = "<group>"; };
 		2B960E7F15AE3A3B005714CA /* NavigationAppearanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationAppearanceViewController.m; sourceTree = "<group>"; };
 		2B960E8315AE41FC005714CA /* navigationbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navigationbar.png; path = Catalog/navigationbar.png; sourceTree = "<group>"; };
+		3616212916812222002A9078 /* AlignmentAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlignmentAttributedLabelViewController.h; sourceTree = "<group>"; };
+		3616212A16812222002A9078 /* AlignmentAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlignmentAttributedLabelViewController.m; sourceTree = "<group>"; };
+		3616212B16812222002A9078 /* AlignmentAttributedLabelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlignmentAttributedLabelViewController.xib; sourceTree = "<group>"; };
 		44707C75159B06A000B83149 /* BasicInstantiationPagingScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicInstantiationPagingScrollViewController.h; sourceTree = "<group>"; };
 		44707C76159B06A000B83149 /* BasicInstantiationPagingScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicInstantiationPagingScrollViewController.m; sourceTree = "<group>"; };
 		660C6F2715992B2500209EB3 /* BadgedLauncherButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgedLauncherButtonView.h; sourceTree = "<group>"; };
@@ -687,6 +692,9 @@
 				66B6692E159BD22500FE4AE8 /* LongTapAttributedLabelViewController.m */,
 				6633C7ED158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.h */,
 				6633C7EE158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m */,
+				3616212916812222002A9078 /* AlignmentAttributedLabelViewController.h */,
+				3616212A16812222002A9078 /* AlignmentAttributedLabelViewController.m */,
+				3616212B16812222002A9078 /* AlignmentAttributedLabelViewController.xib */,
 				6633C7F1158F08EA0054D240 /* AttributedLabelMashup.xib */,
 			);
 			name = "Attributed Label";
@@ -889,6 +897,7 @@
 				6677FEE515AC8D1600517ABC /* circle.png in Resources */,
 				6677FEE715AC8D1C00517ABC /* star.png in Resources */,
 				2B960E8415AE41FC005714CA /* navigationbar.png in Resources */,
+				3616212D16812222002A9078 /* AlignmentAttributedLabelViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -991,6 +1000,7 @@
 				6633D21F15DDBD4100A4B07E /* ImagesAttributedLabelViewController.m in Sources */,
 				66D2E54B15D9613800281511 /* NIMutableTableViewModel.m in Sources */,
 				66D2E54F15D9616500281511 /* MutableTableModelViewController.m in Sources */,
+				3616212C16812222002A9078 /* AlignmentAttributedLabelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
