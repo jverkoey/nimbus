@@ -195,6 +195,14 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithFrame:(CGRect)frame {
+    if ((self = [super initWithFrame:frame])) {
+        self.backgroundColor = [UIColor clearColor];
+    }
+    return self;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawRect:(CGRect)rect {
   if (nil != self.block) {
     self.block(rect, self.object, self.cell);
