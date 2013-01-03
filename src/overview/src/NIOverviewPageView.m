@@ -16,7 +16,7 @@
 
 #import "NIOverviewPageView.h"
 
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
 
 #import "NIOverview.h"
 #import "NIDeviceInfo.h"
@@ -455,7 +455,7 @@ static const CGFloat kGraphRightMargin = 5;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  [[NSOperationQueue mainQueue] removeObserver:self];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

@@ -18,7 +18,9 @@
 
 #import "NimbusCore.h"
 
+extern NSString* const NIOverviewLoggerDidAddDeviceLog;
 extern NSString* const NIOverviewLoggerDidAddConsoleLog;
+extern NSString* const NIOverviewLoggerDidAddEventLog;
 
 @class NIOverviewDeviceLogEntry;
 @class NIOverviewConsoleLogEntry;
@@ -40,6 +42,7 @@ extern NSString* const NIOverviewLoggerDidAddConsoleLog;
   NILinkedList* _consoleLogs;
   NILinkedList* _eventLogs;
   NSTimeInterval _oldestLogAge;
+  NSTimer* _heartbeatTimer;
 }
 
 #pragma mark Configuration Settings /** @name Configuration Settings */
@@ -52,6 +55,9 @@ extern NSString* const NIOverviewLoggerDidAddConsoleLog;
  * By default this is 1 minute.
  */
 @property (nonatomic, readwrite, assign) NSTimeInterval oldestLogAge;
+
+
++ (NIOverviewLogger*)sharedLogger;
 
 
 #pragma mark Adding Log Entries /** @name Adding Log Entries */
