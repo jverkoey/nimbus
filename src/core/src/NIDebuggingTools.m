@@ -24,7 +24,7 @@
 NSInteger NIMaxLogLevel = NILOGLEVEL_WARNING;
 BOOL NIDebugAssertionsShouldBreak = YES;
 
-#ifdef DEBUG
+#if defined(DEBUG) || defined(NI_DEBUG)
 
 #import <unistd.h>
 #import <sys/sysctl.h>
@@ -58,4 +58,4 @@ int NIIsInDebugger(void) {
   return (info.kp_proc.p_flag & P_TRACED) != 0;
 }
 
-#endif // #ifdef DEBUG
+#endif // #if defined(DEBUG) || defined(NI_DEBUG)
