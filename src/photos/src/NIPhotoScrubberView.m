@@ -34,6 +34,13 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
 /**
  * @internal
  *
+ * A method to encapsulate initilization logic that can be shared by different init methods.
+ */
+- (void)initializeScrubber;
+
+/**
+ * @internal
+ *
  * A lightweight method for updating all of the visible thumbnails in the scrubber.
  *
  * This method will force the scrubber to lay itself out, calculate how many thumbnails might
@@ -68,9 +75,24 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
+      [self initializeScrubber];
+  }
+
+  return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if ((self = [super initWithCoder:aDecoder])) {
+        [self initializeScrubber];
+    }
+    
+    return self;
+}
+
+- (void)initializeScrubber {
     // Only one finger should be allowed to interact with the scrubber at a time.
     self.multipleTouchEnabled = NO;
-
+    
     _containerView = [[UIView alloc] init];
     _containerView.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.1f].CGColor;
     _containerView.layer.borderWidth = 1;
@@ -80,13 +102,9 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
     
     _selectionView = [self photoView];
     [self addSubview:_selectionView];
-
+    
     _selectedPhotoIndex = -1;
-  }
-
-  return self;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
