@@ -48,7 +48,7 @@
   return [[self alloc] initWithNode:node];
 }
 - (id)initWithNode:(NILinkedListNode *)node {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _node = node;
   }
   return self;
@@ -107,7 +107,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithLinkedList:(NILinkedList *)ll {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _ll = ll;
     _iterator = ll.head;
   }

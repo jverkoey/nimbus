@@ -24,6 +24,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
+UIImage* NISnapshotOfViewWithTransparencyOption(UIView* view, BOOL transparency);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 UIImage* NISnapshotOfViewWithTransparencyOption(UIView* view, BOOL transparency) {
