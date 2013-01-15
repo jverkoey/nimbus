@@ -28,6 +28,10 @@
 // UITextAlignmentJustify is deprecated in iOS 6.0. Please use NSTextAlignmentJustified instead.
 #endif
 
+#if defined __cplusplus
+extern "C" {
+#endif
+
 /**
  * Calculates the ideal dimensions of an attributed string fitting a given size.
  *
@@ -38,6 +42,10 @@
  * styling attributes have been set.
  */
 CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedString, CGSize size, NSInteger numberOfLines);
+
+#if defined __cplusplus
+};
+#endif
 
 // Vertical alignments for NIAttributedLabel.
 typedef enum {
