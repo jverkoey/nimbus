@@ -86,32 +86,35 @@
   NIPhotoScrollViewPhotoSize photoSize = NIPhotoScrollViewPhotoSizeUnknown;
   BOOL isLoading = NO;
   CGSize originalPhotoDimensions = CGSizeZero;
-  UIImage* image = [self.dataSource photoAlbumScrollView: self
-                                            photoAtIndex: page.pageIndex
-                                               photoSize: &photoSize
-                                               isLoading: &isLoading
-                                 originalPhotoDimensions: &originalPhotoDimensions];
-
-  page.photoDimensions = originalPhotoDimensions;
-  page.loading = isLoading;
-
-  if (nil == image) {
-    page.zoomingIsEnabled = NO;
-    [page setImage:self.loadingImage photoSize:NIPhotoScrollViewPhotoSizeUnknown];
-
-  } else {
-    BOOL updateImage = photoSize > page.photoSize;
-    if (updateImage) {
-      [page setImage:image photoSize:photoSize];
-    }
-
-    // Configure this after the image is set otherwise if the page's image isn't there
-	// e.g. (after prepareForReuse), zooming will always be disabled
-    page.zoomingIsEnabled = ([self isZoomingEnabled]
-                             && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
-
-    if (updateImage && NIPhotoScrollViewPhotoSizeOriginal == photoSize) {
-      [self notifyDelegatePhotoDidLoadAtIndex:page.pageIndex];
+  
+  @synchronized(page){
+    UIImage* image = [self.dataSource photoAlbumScrollView: self
+                                              photoAtIndex: page.pageIndex
+                                                 photoSize: &photoSize
+                                                 isLoading: &isLoading
+                                   originalPhotoDimensions: &originalPhotoDimensions];
+    
+    page.photoDimensions = originalPhotoDimensions;
+    page.loading = isLoading;
+    
+    if (nil == image) {
+      page.zoomingIsEnabled = NO;
+      [page setImage:self.loadingImage photoSize:NIPhotoScrollViewPhotoSizeUnknown];
+      
+    } else {
+      BOOL updateImage = photoSize > page.photoSize;
+      if (updateImage) {
+        [page setImage:image photoSize:photoSize];
+      }
+      
+      // Configure this after the image is set otherwise if the page's image isn't there
+      // e.g. (after prepareForReuse), zooming will always be disabled
+      page.zoomingIsEnabled = ([self isZoomingEnabled]
+                               && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
+      
+      if (updateImage && NIPhotoScrollViewPhotoSizeOriginal == photoSize) {
+        [self notifyDelegatePhotoDidLoadAtIndex:page.pageIndex];
+      }
     }
   }
 }
@@ -174,25 +177,27 @@
 - (void)didLoadPhoto: (UIImage *)image
              atIndex: (NSInteger)pageIndex
            photoSize: (NIPhotoScrollViewPhotoSize)photoSize {
-  for (NIPhotoScrollView* page in self.visiblePages) {
-    if (page.pageIndex == pageIndex) {
+	for (NIPhotoScrollView* page in self.visiblePages) {
+		if (page.pageIndex == pageIndex) {
 
-      // Only replace the photo if it's of a higher quality than one we're already showing.
-      if (photoSize > page.photoSize) {
-        page.loading = NO;
-        [page setImage:image photoSize:photoSize];
+			@synchronized(page){
+				// Only replace the photo if it's of a higher quality than one we're already showing.
+				if (photoSize > page.photoSize) {
+					page.loading = NO;
+					[page setImage:image photoSize:photoSize];
 
-        page.zoomingIsEnabled = ([self isZoomingEnabled]
-                                 && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
+					page.zoomingIsEnabled = ([self isZoomingEnabled]
+																	 && (NIPhotoScrollViewPhotoSizeOriginal == photoSize));
 
-        // Notify the delegate that the photo has been loaded.
-        if (NIPhotoScrollViewPhotoSizeOriginal == photoSize) {
-          [self notifyDelegatePhotoDidLoadAtIndex:pageIndex];
-        }
-      }
-      break;
-    }
-  }
+					// Notify the delegate that the photo has been loaded.
+					if (NIPhotoScrollViewPhotoSizeOriginal == photoSize) {
+						[self notifyDelegatePhotoDidLoadAtIndex:pageIndex];
+					}
+				}
+				break;
+			}
+		}
+	}
 }
 
 

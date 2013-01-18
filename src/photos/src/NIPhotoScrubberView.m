@@ -347,11 +347,13 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
     if (photoView.tag != photoIndex) {
       photoView.tag = photoIndex;
 
-      UIImage* image = [self.dataSource photoScrubberView:self thumbnailAtIndex:photoIndex];
-      photoView.image = image;
-
-      if (_selectedPhotoIndex == photoIndex) {
-        _selectionView.image = image;
+      @synchronized(photoView) {
+        UIImage* image = [self.dataSource photoScrubberView:self thumbnailAtIndex:photoIndex];
+        photoView.image = image;
+        
+        if (_selectedPhotoIndex == photoIndex) {
+          _selectionView.image = image;
+        }
       }
     }
 
@@ -441,7 +443,9 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
                  atIndex: (NSInteger)photoIndex {
   for (UIImageView* thumbView in _visiblePhotoViews) {
     if (thumbView.tag == photoIndex) {
-      thumbView.image = image;
+      @synchronized(thumbView) {
+        thumbView.image = image;
+      }
       break;
     }
   }
