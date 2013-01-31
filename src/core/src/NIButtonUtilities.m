@@ -60,21 +60,21 @@ void NIApplyBackgroundImageSelectorToButton(SEL selector, id target, UIButton* b
 
 void NIApplyTitleColorSelectorToButton(SEL selector, id target, UIButton* button) {
   IMP method = [target methodForSelector:selector];
-  UIImage* image = nil;
+  UIColor* color = nil;
 
-  image = method(target, selector, UIControlStateNormal);
-  [button setTitleColor:image forState:UIControlStateNormal];
+  color = method(target, selector, UIControlStateNormal);
+  [button setTitleColor:color forState:UIControlStateNormal];
 
-  image = method(target, selector, UIControlStateHighlighted);
-  [button setTitleColor:image forState:UIControlStateHighlighted];
+  color = method(target, selector, UIControlStateHighlighted);
+  [button setTitleColor:color forState:UIControlStateHighlighted];
 
-  image = method(target, selector, UIControlStateDisabled);
-  [button setTitleColor:image forState:UIControlStateDisabled];
+  color = method(target, selector, UIControlStateDisabled);
+  [button setTitleColor:color forState:UIControlStateDisabled];
 
-  image = method(target, selector, UIControlStateSelected);
-  [button setTitleColor:image forState:UIControlStateSelected];
+  color = method(target, selector, UIControlStateSelected);
+  [button setTitleColor:color forState:UIControlStateSelected];
 
   UIControlState selectedHighlightState = UIControlStateSelected | UIControlStateHighlighted;
-  image = method(target, selector, selectedHighlightState);
-  [button setTitleColor:image forState:selectedHighlightState];
+  color = method(target, selector, selectedHighlightState);
+  [button setTitleColor:color forState:selectedHighlightState];
 }
