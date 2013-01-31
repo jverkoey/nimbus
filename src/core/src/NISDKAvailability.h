@@ -165,6 +165,14 @@ extern "C" {
 BOOL NIIsPad(void);
 
 /**
+ * Checks whether the device the app is currently running on is an
+ * iPhone/iPod touch or not.
+ *
+ *      @returns YES if the device is an iPhone or iPod touch.
+ */
+BOOL NIIsPhone(void);
+
+/**
  * Checks whether the device's OS version is at least the given version number.
  *
  * Useful for runtime checks of the device's version number.
