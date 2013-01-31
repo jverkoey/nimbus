@@ -61,6 +61,12 @@ UIInterfaceOrientation NIInterfaceOrientation(void) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL NIIsLandscapePhoneOrientation(UIInterfaceOrientation orientation) {
+  return NIIsPhone() && UIInterfaceOrientationIsLandscape(orientation);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 CGAffineTransform NIRotateTransformForOrientation(UIInterfaceOrientation orientation) {
   if (orientation == UIInterfaceOrientationLandscapeLeft) {
     return CGAffineTransformMakeRotation((CGFloat)(M_PI * 1.5));
