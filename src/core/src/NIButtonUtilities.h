@@ -35,7 +35,7 @@ extern "C" {
 @code
 @implementation Stylesheet
 
-- (UIImage *)backgroundImageForButtonWithState:(UIControlState)state {
++ (UIImage *)backgroundImageForButtonWithState:(UIControlState)state {
   if (state & UIControlStateHighlighted) {
     return [UIImage imageNamed:@"button_highlighted"];
 
