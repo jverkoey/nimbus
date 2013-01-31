@@ -56,13 +56,25 @@ CGRect NIEdgeInsetsOutsetRect(CGRect rect, UIEdgeInsets outsets) {
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+CGFloat NICenterX(CGSize containerSize, CGSize size) {
+  return floorf((containerSize.width - size.width) / 2.f);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+CGFloat NICenterY(CGSize containerSize, CGSize size) {
+  return floorf((containerSize.height - size.height) / 2.f);
+}
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 CGRect NIFrameOfCenteredViewWithinView(UIView* viewToCenter, UIView* containerView) {
   CGPoint origin;
   CGSize containerViewSize = containerView.bounds.size;
   CGSize viewSize = viewToCenter.frame.size;
-  origin.x = floorf((containerViewSize.width - viewSize.width) / 2.f);
-  origin.y = floorf((containerViewSize.height - viewSize.height) / 2.f);
+  origin.x = NICenterX(containerViewSize, viewSize);
+  origin.y = NICenterY(containerViewSize, viewSize);
   return CGRectMake(origin.x, origin.y, viewSize.width, viewSize.height);
 }
 
