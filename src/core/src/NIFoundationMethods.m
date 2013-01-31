@@ -47,6 +47,15 @@ CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy) {
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+CGRect NIEdgeInsetsOutsetRect(UIEdgeInsets outsets, CGRect rect) {
+  return CGRectMake(rect.origin.x - outsets.left,
+                    rect.origin.y - outsets.top,
+                    rect.size.width + outsets.left + outsets.right,
+                    rect.size.height + outsets.top + outsets.bottom);
+}
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 CGRect NIFrameOfCenteredViewWithinView(UIView* viewToCenter, UIView* containerView) {
   CGPoint origin;

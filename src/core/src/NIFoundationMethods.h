@@ -77,6 +77,14 @@ CGRect NIRectExpand(CGRect rect, CGFloat dx, CGFloat dy);
 CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy);
 
 /**
+ * Inverse of UIEdgeInsetsInsetRect.
+ *
+ *      Example result: CGRectMake(x - left, y - top,
+ *                                 w + left + right, h + top + bottom)
+ */
+CGRect NIEdgeInsetsOutsetRect(UIEdgeInsets outsets, CGRect rect);
+
+/**
  * Returns a rect that will center viewToCenter within containerView.
  *
  *      @return a CGPoint that will center viewToCenter within containerView.
