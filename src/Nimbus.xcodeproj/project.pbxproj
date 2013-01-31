@@ -286,6 +286,8 @@
 		66C115411486ACE3003C9AC6 /* NIOperations+Subclassing.h in Headers */ = {isa = PBXBuildFile; fileRef = 66C1153F1486ACDD003C9AC6 /* NIOperations+Subclassing.h */; };
 		66C1D83D16B9CE90003E855B /* NIImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 66C1D83B16B9CE90003E855B /* NIImageUtilities.h */; };
 		66C1D83E16B9CE90003E855B /* NIImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C1D83C16B9CE90003E855B /* NIImageUtilities.m */; };
+		66C1D8C116B9ED65003E855B /* NIButtonUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 66C1D8BF16B9ED65003E855B /* NIButtonUtilities.h */; };
+		66C1D8C216B9ED65003E855B /* NIButtonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C1D8C016B9ED65003E855B /* NIButtonUtilities.m */; };
 		66C3A6AF143D61140048542F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66C3A6B1143D61140048542F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66C3A6B4143D61140048542F /* libNimbusCss.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C3A6A1143D61130048542F /* libNimbusCss.a */; };
@@ -908,6 +910,8 @@
 		66C1153F1486ACDD003C9AC6 /* NIOperations+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIOperations+Subclassing.h"; sourceTree = "<group>"; };
 		66C1D83B16B9CE90003E855B /* NIImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIImageUtilities.h; sourceTree = "<group>"; };
 		66C1D83C16B9CE90003E855B /* NIImageUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIImageUtilities.m; sourceTree = "<group>"; };
+		66C1D8BF16B9ED65003E855B /* NIButtonUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIButtonUtilities.h; sourceTree = "<group>"; };
+		66C1D8C016B9ED65003E855B /* NIButtonUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIButtonUtilities.m; sourceTree = "<group>"; };
 		66C3A6A1143D61130048542F /* libNimbusCss.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusCss.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C3A6AE143D61140048542F /* NimbusCssTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusCssTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CB9A201654307A00FFB4BF /* NIPagingScrollView+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIPagingScrollView+Subclassing.h"; sourceTree = "<group>"; };
@@ -1702,6 +1706,8 @@
 				66A03C5013E6E8D100B514F3 /* NimbusCore.h */,
 				66A03C4F13E6E8D100B514F3 /* NimbusCore+Additions.h */,
 				666F737F14BBC65A00D1A32F /* NimbusCore+Namespace.h */,
+				66C1D8BF16B9ED65003E855B /* NIButtonUtilities.h */,
+				66C1D8C016B9ED65003E855B /* NIButtonUtilities.m */,
 				66A03C4113E6E8D100B514F3 /* NICommonMetrics.h */,
 				66A03C4213E6E8D100B514F3 /* NICommonMetrics.m */,
 				66A03C4313E6E8D100B514F3 /* NIDataStructures.h */,
@@ -2191,6 +2197,7 @@
 				66E8CEE414D08F8200600592 /* NINonEmptyCollectionTesting.h in Headers */,
 				669819DB159B927B00C2D3EF /* NISnapshotRotation.h in Headers */,
 				66C1D83D16B9CE90003E855B /* NIImageUtilities.h in Headers */,
+				66C1D8C116B9ED65003E855B /* NIButtonUtilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3449,6 +3456,7 @@
 				6675E4B41455FCC5007D172F /* NIViewRecycler.m in Sources */,
 				669819DC159B927B00C2D3EF /* NISnapshotRotation.m in Sources */,
 				66C1D83E16B9CE90003E855B /* NIImageUtilities.m in Sources */,
+				66C1D8C216B9ED65003E855B /* NIButtonUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
