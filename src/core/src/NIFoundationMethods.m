@@ -48,7 +48,7 @@ CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CGRect NIEdgeInsetsOutsetRect(UIEdgeInsets outsets, CGRect rect) {
+CGRect NIEdgeInsetsOutsetRect(CGRect rect, UIEdgeInsets outsets) {
   return CGRectMake(rect.origin.x - outsets.left,
                     rect.origin.y - outsets.top,
                     rect.size.width + outsets.left + outsets.right,
