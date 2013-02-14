@@ -9,8 +9,12 @@ UINavigationBar {
 
 .noticeBox {
   background-color: rgba(32, 32, 32, 0.5);
-  border-radius: 10px;
+  border-radius: 20px;
   border: none;
+  width: -300px;
+  height: -400px;
+  top: 10px;
+  -ios-halign: center;
 }
 
 UIActivityIndicatorView {
@@ -26,4 +30,19 @@ UILabel {
   text-shadow: rgba(0, 0, 0, 0.5) 0 -1;
   text-align: center;
   font-size: 17;
+}
+
+.rightMiddleLabel
+{
+  width: auto;
+  height: auto;
+  -ios-valign: middle;
+  -ios-halign: right;
+}
+
+.bottomLabel
+{
+  width: auto;
+  height: auto;
+  bottom: 0px;
 }

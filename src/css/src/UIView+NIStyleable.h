@@ -28,4 +28,16 @@
  */
 - (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// View frame and bounds manipulation helpers
+////////////////////////////////////////////////////////////////////////////////////////////////////
+@property (nonatomic) CGFloat frameWidth;
+@property (nonatomic) CGFloat frameHeight;
+@property (nonatomic) CGFloat frameMinX;
+@property (nonatomic) CGFloat frameMidX;
+@property (nonatomic) CGFloat frameMaxX;
+@property (nonatomic) CGFloat frameMinY;
+@property (nonatomic) CGFloat frameMidY;
+@property (nonatomic) CGFloat frameMaxY;
+
 @end

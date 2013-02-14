@@ -22,6 +22,8 @@
   UIView* _backgroundView;
   UIActivityIndicatorView* _activityIndicator;
   UILabel* _testLabel;
+  UILabel* _bottomLabel;
+  UILabel* _rightMiddleLabel;
 }
 
 @end

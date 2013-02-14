@@ -19,6 +19,8 @@
 #import "NICSSParser.h"
 #import "NimbusCore.h"
 
+// TODO selected/highlighted states for buttons
+
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
 #endif
@@ -59,6 +61,21 @@ static NSDictionary* sColorTable = nil;
 + (UITextAlignment)textAlignmentFromCssValues:(NSArray *)cssValues;
 @end
 
+
+// Maintain sanity with a preprocessor macro for the common cases
+#define RULE_ELEMENT(name,Name,cssKey,type,converter) \
+static NSString* const k ## Name ## Key = cssKey; \
+-(BOOL)has ## Name { \
+return nil != [_ruleset objectForKey: k ## Name ## Key]; \
+} \
+-(type)name { \
+NIDASSERT([self has ## Name]); \
+if (!_is.cached.Name) { \
+_##name = [[self class] converter:[_ruleset objectForKey:k##Name##Key]]; \
+_is.cached.Name = YES; \
+} \
+return _##name; \
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -575,6 +592,14 @@ static NSDictionary* sColorTable = nil;
   return _borderWidth;
 }
 
+RULE_ELEMENT(width,Width,@"width",NICSSUnit,unitFromCssValues)
+RULE_ELEMENT(height,Height,@"height",NICSSUnit,unitFromCssValues)
+RULE_ELEMENT(top,Top,@"top",NICSSUnit,unitFromCssValues)
+RULE_ELEMENT(bottom,Bottom,@"bottom",NICSSUnit,unitFromCssValues)
+RULE_ELEMENT(right,Right,@"right",NICSSUnit,unitFromCssValues)
+RULE_ELEMENT(left,Left,@"left",NICSSUnit,unitFromCssValues)
+RULE_ELEMENT(frameHorizontalAlign,FrameHorizontalAlign,@"-ios-halign",UITextAlignment,textAlignmentFromCssValues)
+RULE_ELEMENT(frameVerticalAlign,FrameVerticalAlign,@"-ios-valign",UIViewContentMode,verticalAlignFromCssValues)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTintColor {
@@ -954,6 +979,42 @@ static NSDictionary* sColorTable = nil;
   return sColorTable;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NICSSUnit)unitFromCssValues:(NSArray*)cssValues {
+  NICSSUnit returnUnits;
+  NSString *unitValue = [cssValues objectAtIndex:0];
+	if ([unitValue caseInsensitiveCompare:@"auto"] == NSOrderedSame) {
+    returnUnits.type = CSS_AUTO_UNIT;
+    returnUnits.value = 0;
+  } else if ([unitValue hasSuffix:@"%"]) {
+    returnUnits.type = CSS_PERCENTAGE_UNIT;
+    NSDecimalNumber *nv = [NSDecimalNumber decimalNumberWithString: [unitValue substringToIndex:unitValue.length-1]];
+    returnUnits.value = [nv decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithMantissa:1 exponent:2 isNegative:NO]].floatValue;
+  } else if ([unitValue hasSuffix:@"px"]) {
+    returnUnits.type = CSS_PIXEL_UNIT;
+    returnUnits.value = [NSDecimalNumber decimalNumberWithString: [unitValue substringToIndex:unitValue.length-1]].floatValue;
+  } else if ([unitValue isEqualToString:@"0"]) {
+    returnUnits.type = CSS_PIXEL_UNIT;
+    returnUnits.value = 0;
+  } else {
+    NIDERROR(@"Unknown unit: %@", unitValue);
+  }
+  return returnUnits;
+}
+
++(UIViewContentMode) verticalAlignFromCssValues:(NSArray*)cssValues
+{
+  NSString *unitValue = [cssValues objectAtIndex:0];
+	if ([unitValue caseInsensitiveCompare:@"middle"] == NSOrderedSame) {
+    return UIViewContentModeCenter;
+  } else if ([unitValue caseInsensitiveCompare:@"top"] == NSOrderedSame) {
+    return UIViewContentModeTop;
+  }  else if ([unitValue caseInsensitiveCompare:@"bottom"] == NSOrderedSame) {
+    return UIViewContentModeBottom;
+  } else {
+    NIDERROR(@"Unknown vertical alignment: %@", unitValue);
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (UIColor *)colorFromCssValues:(NSArray *)cssValues numberOfConsumedTokens:(NSInteger *)pNumberOfConsumedTokens {
@@ -1023,9 +1084,12 @@ static NSDictionary* sColorTable = nil;
   
   if ([value isEqualToString:@"center"]) {
     textAlignment = UITextAlignmentCenter;
-
   } else if ([value isEqualToString:@"right"]) {
     textAlignment = UITextAlignmentRight;
+  } else if ([value isEqualToString:@"left"]) {
+    textAlignment = UITextAlignmentLeft;
+  } else {
+    NIDERROR(@"Unknown horizontal alignment %@", value);
   }
 
   return textAlignment;
