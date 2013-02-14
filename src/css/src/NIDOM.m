@@ -63,7 +63,7 @@
 - (id)initWithStylesheet:(NIStylesheet *)stylesheet {
   if ((self = [super init])) {
     _stylesheet = stylesheet;
-    _registeredViews = [[NSMutableSet alloc] init];
+    _registeredViews = [[NSMutableArray alloc] init];
     _viewToSelectorsMap = [[NSMutableDictionary alloc] init];
   }
   return self;
