@@ -2320,8 +2320,8 @@
 			buildPhases = (
 				663B523B1445052700CC26DF /* Sources */,
 				663B523C1445052700CC26DF /* Frameworks */,
+				666F739914BBFD6400D1A32F /* Run Script Generate Namespace Header */,
 				663B523D1445052700CC26DF /* Headers */,
-				666F739914BBFD6400D1A32F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2358,8 +2358,8 @@
 			buildPhases = (
 				6661BBC813F1A3BB00D14F92 /* Sources */,
 				6661BBC913F1A3BB00D14F92 /* Frameworks */,
+				666F739C14BBFD7400D1A32F /* Run Script Generate Namespace Header */,
 				6661BBCA13F1A3BB00D14F92 /* Headers */,
-				666F739C14BBFD7400D1A32F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2396,8 +2396,8 @@
 			buildPhases = (
 				6675722513E765BF0076F555 /* Sources */,
 				6675722613E765BF0076F555 /* Frameworks */,
+				666F739814BBFD5F00D1A32F /* Run Script Generate Namespace Header */,
 				6675722713E765BF0076F555 /* Headers */,
-				666F739814BBFD5F00D1A32F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2434,8 +2434,8 @@
 			buildPhases = (
 				6675727613E769150076F555 /* Sources */,
 				6675727713E769150076F555 /* Frameworks */,
+				666F739A14BBFD6900D1A32F /* Run Script Generate Namespace Header */,
 				6675727813E769150076F555 /* Headers */,
-				666F739A14BBFD6900D1A32F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2473,8 +2473,8 @@
 			buildPhases = (
 				6675730E13E771380076F555 /* Sources */,
 				6675730F13E771380076F555 /* Frameworks */,
+				666F739514BBFD4F00D1A32F /* Run Script Generate Namespace Header */,
 				6675731013E771380076F555 /* Headers */,
-				666F739514BBFD4F00D1A32F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2511,8 +2511,8 @@
 			buildPhases = (
 				66A03C0513E6E85E00B514F3 /* Sources */,
 				66A03C0613E6E85E00B514F3 /* Frameworks */,
+				666F736214BBBFF300D1A32F /* Run Script Generate Namespace Header */,
 				66A03C0713E6E85E00B514F3 /* Headers */,
-				666F736214BBBFF300D1A32F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2548,8 +2548,8 @@
 			buildPhases = (
 				66A03CBB13E6F0ED00B514F3 /* Sources */,
 				66A03CBC13E6F0ED00B514F3 /* Frameworks */,
+				666F739614BBFD5500D1A32F /* Run Script Generate Namespace Header */,
 				66A03CBD13E6F0ED00B514F3 /* Headers */,
-				666F739614BBFD5500D1A32F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2586,8 +2586,8 @@
 			buildPhases = (
 				66A03D2313E6F97500B514F3 /* Sources */,
 				66A03D2413E6F97500B514F3 /* Frameworks */,
+				666F739714BBFD5A00D1A32F /* Run Script Generate Namespace Header */,
 				66A03D2513E6F97500B514F3 /* Headers */,
-				666F739714BBFD5A00D1A32F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2624,8 +2624,8 @@
 			buildPhases = (
 				66A0B09514BD1069003FA413 /* Sources */,
 				66A0B09614BD1069003FA413 /* Frameworks */,
+				66A0B0CE14BD1625003FA413 /* Run Script Generate Namespace Header */,
 				66A0B09714BD1069003FA413 /* Headers */,
-				66A0B0CE14BD1625003FA413 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2661,8 +2661,8 @@
 			buildPhases = (
 				66C3A69D143D61130048542F /* Sources */,
 				66C3A69E143D61130048542F /* Frameworks */,
+				666F739214BBFD3D00D1A32F /* Run Script Generate Namespace Header */,
 				66C3A69F143D61130048542F /* Headers */,
-				666F739214BBFD3D00D1A32F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2735,8 +2735,8 @@
 			buildPhases = (
 				DB3A230513FD4B8E00614220 /* Sources */,
 				DB3A230613FD4B8E00614220 /* Frameworks */,
+				666F739414BBFD4800D1A32F /* Run Script Generate Namespace Header */,
 				DB3A230713FD4B8E00614220 /* Headers */,
-				666F739414BBFD4800D1A32F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2773,8 +2773,8 @@
 			buildPhases = (
 				DB84BD7013EFDDC900DACCFE /* Sources */,
 				DB84BD7113EFDDC900DACCFE /* Frameworks */,
+				666F739D14BBFD7B00D1A32F /* Run Script Generate Namespace Header */,
 				DB84BD7213EFDDC900DACCFE /* Headers */,
-				666F739D14BBFD7B00D1A32F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3029,143 +3029,154 @@
 			shellPath = "/bin/sh ../scripts/run_unit_test.sh";
 			shellScript = "";
 		};
-		666F736214BBBFF300D1A32F /* ShellScript */ = {
+		666F736214BBBFF300D1A32F /* Run Script Generate Namespace Header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script Generate Namespace Header";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
-		666F739214BBFD3D00D1A32F /* ShellScript */ = {
+		666F739214BBFD3D00D1A32F /* Run Script Generate Namespace Header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script Generate Namespace Header";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
-		666F739414BBFD4800D1A32F /* ShellScript */ = {
+		666F739414BBFD4800D1A32F /* Run Script Generate Namespace Header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script Generate Namespace Header";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
-		666F739514BBFD4F00D1A32F /* ShellScript */ = {
+		666F739514BBFD4F00D1A32F /* Run Script Generate Namespace Header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script Generate Namespace Header";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
-		666F739614BBFD5500D1A32F /* ShellScript */ = {
+		666F739614BBFD5500D1A32F /* Run Script Generate Namespace Header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script Generate Namespace Header";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
-		666F739714BBFD5A00D1A32F /* ShellScript */ = {
+		666F739714BBFD5A00D1A32F /* Run Script Generate Namespace Header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script Generate Namespace Header";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
-		666F739814BBFD5F00D1A32F /* ShellScript */ = {
+		666F739814BBFD5F00D1A32F /* Run Script Generate Namespace Header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script Generate Namespace Header";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
-		666F739914BBFD6400D1A32F /* ShellScript */ = {
+		666F739914BBFD6400D1A32F /* Run Script Generate Namespace Header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script Generate Namespace Header";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
-		666F739A14BBFD6900D1A32F /* ShellScript */ = {
+		666F739A14BBFD6900D1A32F /* Run Script Generate Namespace Header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script Generate Namespace Header";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
-		666F739C14BBFD7400D1A32F /* ShellScript */ = {
+		666F739C14BBFD7400D1A32F /* Run Script Generate Namespace Header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script Generate Namespace Header";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh ../scripts/generate_namespace_header";
 			shellScript = "";
 		};
-		666F739D14BBFD7B00D1A32F /* ShellScript */ = {
+		666F739D14BBFD7B00D1A32F /* Run Script Generate Namespace Header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script Generate Namespace Header";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3263,13 +3274,14 @@
 			shellPath = "/bin/sh ../scripts/run_unit_test.sh";
 			shellScript = "";
 		};
-		66A0B0CE14BD1625003FA413 /* ShellScript */ = {
+		66A0B0CE14BD1625003FA413 /* Run Script Generate Namespace Header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script Generate Namespace Header";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
