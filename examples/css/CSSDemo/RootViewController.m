@@ -72,18 +72,34 @@ static CGFloat squareSize = 200;
   _testLabel = [[UILabel alloc] init];
   _testLabel.text = @"Chameleon changes skins in real time.\n\nStop compiling.\nStart building.";
   _testLabel.frame = NIRectShift(_backgroundView.bounds, 0, CGRectGetMaxY(_activityIndicator.frame));
+  
+  _rightMiddleLabel = [[UILabel alloc] init];
+  _rightMiddleLabel.text = @"Right Middle Label";
+
+  _bottomLabel = [[UILabel alloc] init];
+  _bottomLabel.text = @"Bottom Left Label";
+
+  [self.view addSubview:_rightMiddleLabel];
+  [self.view addSubview:_backgroundView];
+  [self.view addSubview:_bottomLabel];
+  [_backgroundView addSubview:_activityIndicator];
+  [_backgroundView addSubview:_testLabel];
 
   // Register our views with the DOM.
   [_dom registerView:self.view withCSSClass:@"background"];
   [_dom registerView:_activityIndicator];
   [_dom registerView:_testLabel];
   [_dom registerView:_backgroundView withCSSClass:@"noticeBox"];
+  [_dom registerView:_rightMiddleLabel withCSSClass:@"rightMiddleLabel"];
+  [_dom registerView:_bottomLabel withCSSClass:@"bottomLabel"];
 
-  [self.view addSubview:_backgroundView];
-  [_backgroundView addSubview:_activityIndicator];
-  [_backgroundView addSubview:_testLabel];
 }
 
+-(void)viewWillLayoutSubviews
+{
+  [super viewWillLayoutSubviews];
+  [_dom refresh];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
