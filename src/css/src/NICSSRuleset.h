@@ -18,6 +18,24 @@
 #import <UIKit/UIKit.h>
 
 /**
+ * Currently, for size units we only support pixels (resolution independent)
+ * and percentage (of superview)
+ */
+typedef enum {
+	CSS_PIXEL_UNIT,
+	CSS_PERCENTAGE_UNIT,
+  CSS_AUTO_UNIT
+} NICSSUnitType;
+
+/**
+ * Width, height, top, left, right, bottom can be expressed in various units.
+ */
+typedef struct {
+	NICSSUnitType type;
+	CGFloat value;
+} NICSSUnit;
+
+/**
  * A simple translator from raw CSS rulesets to Objective-C values.
  *
  *      @ingroup NimbusCSS
@@ -29,7 +47,7 @@
 @interface NICSSRuleset : NSObject {
 @private
   NSMutableDictionary* _ruleset;
-
+  
   UIColor* _textColor;
   UIColor* _highlightedTextColor;
   UITextAlignment _textAlignment;
@@ -52,7 +70,16 @@
   UIViewAutoresizing _autoresizing;
   UITableViewCellSeparatorStyle _tableViewCellSeparatorStyle;
   UIScrollViewIndicatorStyle _scrollViewIndicatorStyle;
-
+  UITextAlignment _frameHorizontalAlign;
+  UIViewContentMode _frameVerticalAlign;
+  
+  NICSSUnit _width;
+  NICSSUnit _height;
+  NICSSUnit _top;
+  NICSSUnit _bottom;
+  NICSSUnit _left;
+  NICSSUnit _right;
+  
   union {
     struct {
       int TextColor : 1;
@@ -76,8 +103,16 @@
       int Autoresizing : 1;
       int TableViewCellSeparatorStyle : 1;
       int ScrollViewIndicatorStyle : 1;
+      int Width : 1;
+      int Height : 1;
+      int Top : 1;
+      int Bottom : 1;
+      int Left : 1;
+      int Right : 1;
+      int FrameHorizontalAlign: 1;
+      int FrameVerticalAlign: 1;
     } cached;
-    int _data;
+    int64_t _data;
   } _is;
 }
 
@@ -130,6 +165,30 @@
 
 - (BOOL)hasBorderWidth;
 - (CGFloat)borderWidth; // border, border-width
+
+- (BOOL)hasWidth;
+- (NICSSUnit)width; // width
+
+- (BOOL)hasHeight;
+- (NICSSUnit)height; // height
+
+- (BOOL)hasTop;
+- (NICSSUnit)top; // top
+
+- (BOOL)hasBottom;
+- (NICSSUnit)bottom; // bottom
+
+- (BOOL)hasLeft;
+- (NICSSUnit)left; // left
+
+- (BOOL)hasRight;
+- (NICSSUnit)right; // right
+
+- (BOOL)hasFrameHorizontalAlign;
+- (UITextAlignment)frameHorizontalAlign; // -ios-halign
+
+- (BOOL)hasFrameVerticalAlign;
+- (UIViewContentMode)frameVerticalAlign; // -ios-valign
 
 - (BOOL)hasTintColor;
 - (UIColor *)tintColor; // -ios-tint-color
@@ -351,3 +410,16 @@
  *
  *      @fn NICSSRuleset::tintColor
  */
+
+/**
+ * Returns YES if the ruleset has a 'width' property.
+ *
+ *      @fn NICSSRuleset::hasWidth
+ */
+
+/**
+ * Returns the width.
+ *
+ *      @fn NICSSRuleset::width
+ */
+
