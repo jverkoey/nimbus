@@ -185,10 +185,10 @@ typedef struct {
 - (NICSSUnit)right; // right
 
 - (BOOL)hasFrameHorizontalAlign;
-- (UITextAlignment)frameHorizontalAlign; // -ios-halign
+- (UITextAlignment)frameHorizontalAlign; // -mobile-halign
 
 - (BOOL)hasFrameVerticalAlign;
-- (UIViewContentMode)frameVerticalAlign; // -ios-valign
+- (UIViewContentMode)frameVerticalAlign; // -mobile-valign
 
 - (BOOL)hasTintColor;
 - (UIColor *)tintColor; // -ios-tint-color

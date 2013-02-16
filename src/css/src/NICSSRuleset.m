@@ -598,8 +598,8 @@ RULE_ELEMENT(top,Top,@"top",NICSSUnit,unitFromCssValues)
 RULE_ELEMENT(bottom,Bottom,@"bottom",NICSSUnit,unitFromCssValues)
 RULE_ELEMENT(right,Right,@"right",NICSSUnit,unitFromCssValues)
 RULE_ELEMENT(left,Left,@"left",NICSSUnit,unitFromCssValues)
-RULE_ELEMENT(frameHorizontalAlign,FrameHorizontalAlign,@"-ios-halign",UITextAlignment,textAlignmentFromCssValues)
-RULE_ELEMENT(frameVerticalAlign,FrameVerticalAlign,@"-ios-valign",UIViewContentMode,verticalAlignFromCssValues)
+RULE_ELEMENT(frameHorizontalAlign,FrameHorizontalAlign,@"-mobile-halign",UITextAlignment,textAlignmentFromCssValues)
+RULE_ELEMENT(frameVerticalAlign,FrameVerticalAlign,@"-mobile-valign",UIViewContentMode,verticalAlignFromCssValues)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTintColor {
