@@ -1111,7 +1111,9 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_applyLinkStyleWithResults:(NSArray *)results toAttributedString:(NSMutableAttributedString *)attributedString {
   for (NSTextCheckingResult* result in results) {
-    [attributedString setTextColor:self.linkColor range:result.range];
+    if (self.linkColor) {
+      [attributedString setTextColor:self.linkColor range:result.range];
+    }
 
     // We add a no-op attribute in order to force a run to exist for each link. Otherwise the
     // runCount will be one in this line, causing the entire line to be highlighted rather than
