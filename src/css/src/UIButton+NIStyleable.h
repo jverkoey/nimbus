@@ -28,4 +28,21 @@
  */
 - (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet;
 
+/**
+ * Tells the CSS engine a set of pseudo classes that apply to views of this class.
+ * In the case of UIButton, this includes :active (selected), :focus (highlighted), and inactive (disabled).
+ * In CSS, you specify these with selectors like UIButton:active. If you implement this you need to respond
+ * to applyStyleWithRuleSet:forPseudoClass:
+ *
+ * Make sure to include the leading colon.
+ */
+- (NSArray*) pseudoClasses
+
+/**
+ * Applies the given rule set to this button but for a pseudo class. Thus it only supports the subset of
+ * properties that can be set on states of the button. (There's no fancy stuff that applies the styles
+ * manually on state transitions.
+ */
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass: (NSString*) pseudo;
+
 @end

@@ -43,6 +43,7 @@
   UIBaselineAdjustment _baselineAdjustment;
   CGFloat _opacity;
   UIColor* _backgroundColor;
+  NSString* _backgroundImage;
   CGFloat _borderRadius;
   UIColor *_borderColor;
   CGFloat _borderWidth;

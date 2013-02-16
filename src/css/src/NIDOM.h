@@ -59,12 +59,7 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 }
 @endcode
  */
-@interface NIDOM : NSObject {
-@private
-  NIStylesheet* _stylesheet;
-  NSMutableSet* _registeredViews;
-  NSMutableDictionary* _viewToSelectorsMap;
-}
+@interface NIDOM : NSObject
 
 // Designated initializer.
 

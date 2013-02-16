@@ -242,35 +242,43 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className {
   NICSSRuleset *ruleset = [self rulesetForClassName:className];
+  // Id based selectors should run second to take priority
+  if (NIIsStringWithAnyText(view.accessibilityLabel)) {
+    NSString *idstring = [@"#" stringByAppendingString: view.accessibilityLabel]; // TODO cleanout characters that aren't valid CSS ids
+    ruleset = [self addSelectors:[_significantScopeToScopes objectForKey:idstring] toRuleset:ruleset];
+  }
   if (nil != ruleset) {
     [self applyRuleSet:ruleset toView:view];
   }
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NICSSRuleset *)rulesetForClassName:(NSString *)className {
-  NICSSRuleset* ruleSet = nil;
-
-  NSArray* selectors = [_significantScopeToScopes objectForKey:className];
+- (NICSSRuleset*) addSelectors: (NSArray*) selectors toRuleset: (NICSSRuleset*) ruleSet
+{
   if ([selectors count] > 0) {
     // Gather all of the rule sets for this view into a composite rule set.
-    ruleSet = [_ruleSets objectForKey:className];
-
+    ruleSet = ruleSet ?: [_ruleSets objectForKey:className];
+    
     if (nil == ruleSet) {
       ruleSet = [[NICSSRuleset alloc] init];
-
+      
       // Composite the rule sets into one.
       for (NSString* selector in selectors) {
         [ruleSet addEntriesFromDictionary:[_rawRulesets objectForKey:selector]];
       }
-
+      
       NIDASSERT(nil != _ruleSets);
       [_ruleSets setObject:ruleSet forKey:className];
     }
   }
-
+  
   return ruleSet;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NICSSRuleset *)rulesetForClassName:(NSString *)className {
+  NSArray* selectors = [_significantScopeToScopes objectForKey:className];
+  return [self addSelectors:selectors toRuleset:nil];
 }
 
 

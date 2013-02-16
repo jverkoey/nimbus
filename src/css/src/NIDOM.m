@@ -23,6 +23,12 @@
 #error "Nimbus requires ARC support."
 #endif
 
+@interface NIDOM ()
+@property (nonatomic,strong) NIStylesheet* stylesheet;
+@property (nonatomic,strong) NSMutableSet* registeredViews;
+@property (nonatomic,strong) NSMutableDictionary* viewToSelectorsMap;
+@end
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,19 +115,52 @@
   NSString* selector = NSStringFromClass([view class]);
   [self registerSelector:selector withView:view];
 
+  NSArray *pseudos = nil;
+  if ([view respondsToSelector:@(pseudoClasses)]) {
+    *pseudos = [view pseudoClasses];
+    if (pseudos) {
+      for (NSString *ps in pseudos) {
+        [self registerSelector:[selector stringByAppendingString:ps] withView:view];
+      }
+    }
+  }
+  
   [_registeredViews addObject:view];
   [self refreshStyleForView:view withSelectorName:selector];
+  if (pseudos) {
+    for (NSString *ps in pseudos) {
+      [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
+    }
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass {
+  // This registers both the UIKit class name and the css class name for this view
+  // Now, we also want to register the 'state based' selectors. Fun.
   [self registerView:view];
 
   NSString* selector = [@"." stringByAppendingString:cssClass];
   [self registerSelector:selector withView:view];
 
+  NSArray *pseudos = nil;
+  if ([view respondsToSelector:@(pseudoClasses)]) {
+    *pseudos = [view pseudoClasses];
+    if (pseudos) {
+      for (NSString *ps in pseudos) {
+        [self registerSelector:[selector stringByAppendingString:ps] withView:view];
+      }
+    }
+  }
+
   [self refreshStyleForView:view withSelectorName:selector];
+  if (pseudos) {
+    for (NSString *ps in pseudos) {
+      [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
+    }
+  }
+  
 }
 
 

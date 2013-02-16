@@ -31,7 +31,6 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation UIButton (NIStyleable)
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet {
   if ([ruleSet hasTextColor]) { [self setTitleColor:ruleSet.textColor forState:UIControlStateNormal]; } else { [self setTitleColor:nil forState:UIControlStateNormal]; }
@@ -45,4 +44,13 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
   [self applyButtonStyleWithRuleSet:ruleSet];
 }
 
+-(NSArray *)pseudoClasses
+{
+  static dispatch_once_t onceToken;
+  static NSArray *buttonPseudos;
+  dispatch_once(&onceToken, ^{
+    buttonPseudos = @[@":active", @":focus", @":inactive"];
+  });
+  return buttonPseudos;
+}
 @end
