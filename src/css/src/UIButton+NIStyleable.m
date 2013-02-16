@@ -44,12 +44,17 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
   [self applyButtonStyleWithRuleSet:ruleSet];
 }
 
+-(void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass:(NSString *)pseudo
+{
+  NIDASSERT(@"Not implemented");
+}
+
 -(NSArray *)pseudoClasses
 {
   static dispatch_once_t onceToken;
   static NSArray *buttonPseudos;
   dispatch_once(&onceToken, ^{
-    buttonPseudos = @[@":active", @":focus", @":inactive"];
+    buttonPseudos = @[@":selected", @":highlighted", @":disabled"];
   });
   return buttonPseudos;
 }

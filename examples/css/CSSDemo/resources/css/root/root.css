@@ -46,3 +46,30 @@ UILabel {
   height: auto;
   bottom: 0px;
 }
+
+#TestButton {
+  left: 0px;
+  -mobile-valign: middle;
+  width: 200px;
+  height: 100px;
+}
+
+UIButton
+{
+  color: white;
+}
+
+UIButton:selected
+{
+  color: blue;
+}
+
+UIButton:disabled
+{
+  color: black;
+}
+
+UIButton:highlighted
+{
+  color: green;
+}

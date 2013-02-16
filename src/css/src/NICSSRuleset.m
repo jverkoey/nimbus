@@ -600,6 +600,9 @@ RULE_ELEMENT(right,Right,@"right",NICSSUnit,unitFromCssValues)
 RULE_ELEMENT(left,Left,@"left",NICSSUnit,unitFromCssValues)
 RULE_ELEMENT(frameHorizontalAlign,FrameHorizontalAlign,@"-mobile-halign",UITextAlignment,textAlignmentFromCssValues)
 RULE_ELEMENT(frameVerticalAlign,FrameVerticalAlign,@"-mobile-valign",UIViewContentMode,verticalAlignFromCssValues)
+RULE_ELEMENT(backgroundStretchInsets,BackgroundStretchInsets,@"-mobile-background-stretch",UIEdgeInsets,edgeInsetsFromCssValues)
+RULE_ELEMENT(backgroundImage,BackgroundImage,@"background-image", NSString*,imageStringFromCssValues)
+RULE_ELEMENT(image, Image, @"-mobile-image", NSString*, imageStringFromCssValues)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTintColor {
@@ -1070,6 +1073,31 @@ RULE_ELEMENT(frameVerticalAlign,FrameVerticalAlign,@"-mobile-valign",UIViewConte
   return color;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
++(NSString*)imageStringFromCssValues:(NSArray*) cssValues
+{
+  return [cssValues objectAtIndex:0];
+}
+
++(UIEdgeInsets)edgeInsetsFromCssValues: (NSArray*) cssValues
+{
+  // top, left, bottom, right
+  NSString *top = [cssValues objectAtIndex:0], *left, *right, *bottom;
+  if (cssValues.count > 1) {
+    left = [cssValues objectAtIndex:1];
+    if (cssValues.count > 2) {
+      bottom = [cssValues objectAtIndex:2];
+      if (cssValues.count > 3) {
+        right = [cssValues objectAtIndex:3];
+      }
+    } else {
+      bottom = top;
+      right = left;
+    }
+  } else {
+    left = right = bottom = top;
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (UITextAlignment)textAlignmentFromCssValues:(NSArray *)cssValues {

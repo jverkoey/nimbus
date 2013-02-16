@@ -62,6 +62,8 @@ typedef struct {
   CGFloat _opacity;
   UIColor* _backgroundColor;
   NSString* _backgroundImage;
+  UIEdgeInsets _backgroundStretchInsets;
+  NSString* _image;
   CGFloat _borderRadius;
   UIColor *_borderColor;
   CGFloat _borderWidth;
@@ -95,6 +97,9 @@ typedef struct {
       int BaselineAdjustment : 1;
       int Opacity : 1;
       int BackgroundColor : 1;
+      int BackgroundImage: 1;
+      int BackgroundStretchInsets: 1;
+      int Image: 1;
       int BorderRadius : 1;
       int BorderColor : 1;
       int BorderWidth : 1;
@@ -156,6 +161,15 @@ typedef struct {
 
 - (BOOL)hasBackgroundColor;
 - (UIColor *)backgroundColor; // background-color
+
+- (BOOL)hasBackgroundImage;
+- (NSString*)backgroundImage; // background-image
+
+- (BOOL)hasBackgroundStretchInsets;
+- (UIEdgeInsets)backgroundStretchInsets; // -mobile-background-stretch
+
+- (BOOL)hasImage;
+- (NSString*)image; // -mobile-image
 
 - (BOOL)hasBorderRadius;
 - (CGFloat)borderRadius; // border-radius

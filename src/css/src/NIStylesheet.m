@@ -238,22 +238,20 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className {
   NICSSRuleset *ruleset = [self rulesetForClassName:className];
-  // Id based selectors should run second to take priority
-  if (NIIsStringWithAnyText(view.accessibilityLabel)) {
-    NSString *idstring = [@"#" stringByAppendingString: view.accessibilityLabel]; // TODO cleanout characters that aren't valid CSS ids
-    ruleset = [self addSelectors:[_significantScopeToScopes objectForKey:idstring] toRuleset:ruleset];
-  }
   if (nil != ruleset) {
-    [self applyRuleSet:ruleset toView:view];
+    NSRange r = [className rangeOfString:@":"];
+    if (r.location != NSNotFound && [view respondsToSelector:@selector(applyStyleWithRuleSet:forPseudoClass:)]) {
+      [(id<NIStyleable>)view applyStyleWithRuleSet:ruleset forPseudoClass: [className substringFromIndex:r.location+1]];
+    } else {
+      [self applyRuleSet:ruleset toView:view];
+    }
   }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NICSSRuleset*) addSelectors: (NSArray*) selectors toRuleset: (NICSSRuleset*) ruleSet
+- (NICSSRuleset*) addSelectors: (NSArray*) selectors toRuleset: (NICSSRuleset*) ruleSet forClassName: (NSString*) className
 {
   if ([selectors count] > 0) {
     // Gather all of the rule sets for this view into a composite rule set.
@@ -278,7 +276,7 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NICSSRuleset *)rulesetForClassName:(NSString *)className {
   NSArray* selectors = [_significantScopeToScopes objectForKey:className];
-  return [self addSelectors:selectors toRuleset:nil];
+  return [self addSelectors:selectors toRuleset:nil forClassName:className];
 }
 
 

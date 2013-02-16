@@ -79,12 +79,18 @@ static CGFloat squareSize = 200;
   _bottomLabel = [[UILabel alloc] init];
   _bottomLabel.text = @"Bottom Left Label";
 
+  _button = [UIButton buttonWithType:UIButtonTypeCustom];
+  _button.accessibilityLabel = @"TestButton";
+  [_button addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
+  [_button setTitle:@"Test Button" forState:UIControlStateNormal];
+
+  [self.view addSubview:_button];
   [self.view addSubview:_rightMiddleLabel];
   [self.view addSubview:_backgroundView];
   [self.view addSubview:_bottomLabel];
   [_backgroundView addSubview:_activityIndicator];
   [_backgroundView addSubview:_testLabel];
-
+  
   // Register our views with the DOM.
   [_dom registerView:self.view withCSSClass:@"background"];
   [_dom registerView:_activityIndicator];
@@ -92,7 +98,7 @@ static CGFloat squareSize = 200;
   [_dom registerView:_backgroundView withCSSClass:@"noticeBox"];
   [_dom registerView:_rightMiddleLabel withCSSClass:@"rightMiddleLabel"];
   [_dom registerView:_bottomLabel withCSSClass:@"bottomLabel"];
-
+  [_dom registerView:_button];
 }
 
 -(void)viewWillLayoutSubviews
@@ -110,6 +116,10 @@ static CGFloat squareSize = 200;
   _testLabel = nil;
 }
 
+-(void)buttonPress
+{
+  [_dom refresh];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)stylesheetDidChange {

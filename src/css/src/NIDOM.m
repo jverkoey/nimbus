@@ -25,7 +25,7 @@
 
 @interface NIDOM ()
 @property (nonatomic,strong) NIStylesheet* stylesheet;
-@property (nonatomic,strong) NSMutableSet* registeredViews;
+@property (nonatomic,strong) NSMutableArray* registeredViews;
 @property (nonatomic,strong) NSMutableDictionary* viewToSelectorsMap;
 @end
 
@@ -115,21 +115,38 @@
   NSString* selector = NSStringFromClass([view class]);
   [self registerSelector:selector withView:view];
 
+  // If this view has an id, register that selector
+  // TODO probably should make this optional to avoid memory footprint bloat
+  NSString *idstring = nil;
+  if (view.accessibilityLabel) {
+    idstring = [@"#" stringByAppendingString: view.accessibilityLabel]; // TODO cleanout characters that aren't valid CSS ids
+    [self registerSelector:idstring withView:view];
+  }
+
   NSArray *pseudos = nil;
-  if ([view respondsToSelector:@(pseudoClasses)]) {
-    *pseudos = [view pseudoClasses];
+  if ([view respondsToSelector:@selector(pseudoClasses)]) {
+    pseudos = (NSArray*) [view performSelector:@selector(pseudoClasses)];
     if (pseudos) {
       for (NSString *ps in pseudos) {
         [self registerSelector:[selector stringByAppendingString:ps] withView:view];
+        if (idstring) {
+          [self registerSelector:[idstring stringByAppendingString:ps] withView:view];
+        }
       }
     }
   }
   
   [_registeredViews addObject:view];
   [self refreshStyleForView:view withSelectorName:selector];
+  if (idstring) {
+    [self refreshStyleForView:view withSelectorName:idstring];
+  }
   if (pseudos) {
     for (NSString *ps in pseudos) {
       [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
+      if (idstring) {
+        [self refreshStyleForView:view withSelectorName:[idstring stringByAppendingString:ps]];
+      }
     }
   }
 }
@@ -145,8 +162,8 @@
   [self registerSelector:selector withView:view];
 
   NSArray *pseudos = nil;
-  if ([view respondsToSelector:@(pseudoClasses)]) {
-    *pseudos = [view pseudoClasses];
+  if ([view respondsToSelector:@selector(pseudoClasses)]) {
+    pseudos = (NSArray*) [view performSelector:@selector(pseudoClasses)];
     if (pseudos) {
       for (NSString *ps in pseudos) {
         [self registerSelector:[selector stringByAppendingString:ps] withView:view];
