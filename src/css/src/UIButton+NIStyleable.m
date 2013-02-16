@@ -46,7 +46,30 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 
 -(void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass:(NSString *)pseudo
 {
-  NIDASSERT(@"Not implemented");
+  UIControlState state = UIControlStateNormal;
+  if ([pseudo caseInsensitiveCompare:@"selected"] == NSOrderedSame) {
+    state = UIControlStateSelected;
+  } else if ([pseudo caseInsensitiveCompare:@"highlighted"] == NSOrderedSame) {
+    state = UIControlStateHighlighted;
+  } else if ([pseudo caseInsensitiveCompare:@"disabled"] == NSOrderedSame) {
+    state = UIControlStateDisabled;
+  }
+  if (ruleSet.hasTextColor) {
+    [self setTitleColor:ruleSet.textColor forState:state];
+  }
+  if (ruleSet.hasTextShadowColor) {
+    [self setTitleShadowColor:ruleSet.textShadowColor forState:state];
+  }
+  if (ruleSet.hasImage) {
+    [self setImage:[UIImage imageNamed:ruleSet.image] forState:state];
+  }
+  if (ruleSet.hasBackgroundImage) {
+    UIImage *backImage = [UIImage imageNamed:ruleSet.backgroundImage];
+    if (ruleSet.hasBackgroundStretchInsets) {
+      backImage = [backImage resizableImageWithCapInsets:ruleSet.backgroundStretchInsets];
+    }
+    [self setBackgroundImage:backImage forState:state];
+  }
 }
 
 -(NSArray *)pseudoClasses
