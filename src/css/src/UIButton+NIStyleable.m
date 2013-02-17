@@ -33,8 +33,17 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  if ([ruleSet hasTextColor]) { [self setTitleColor:ruleSet.textColor forState:UIControlStateNormal]; } else { [self setTitleColor:nil forState:UIControlStateNormal]; }
-  if ([ruleSet hasTextShadowColor]) { [self setTitleShadowColor:ruleSet.textShadowColor forState:UIControlStateNormal]; } else { [self setTitleShadowColor:nil forState:UIControlStateNormal]; }
+  if ([ruleSet hasTextColor]) {
+    // If you want to reset this color, set none as the color
+    [self setTitleColor:ruleSet.textColor forState:UIControlStateNormal];
+  }
+  if ([ruleSet hasTextShadowColor]) {
+    // If you want to reset this color, set none as the color
+    [self setTitleShadowColor:ruleSet.textShadowColor forState:UIControlStateNormal];
+  }
+  if ([ruleSet hasTitleInsets]) { self.titleEdgeInsets = ruleSet.titleInsets; }
+  if ([ruleSet hasContentInsets]) { self.contentEdgeInsets = ruleSet.contentInsets; }
+  if ([ruleSet hasImageInsets]) { self.imageEdgeInsets = ruleSet.imageInsets; }
 }
 
 
