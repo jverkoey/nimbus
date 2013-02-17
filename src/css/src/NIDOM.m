@@ -27,6 +27,7 @@
 @property (nonatomic,strong) NIStylesheet* stylesheet;
 @property (nonatomic,strong) NSMutableArray* registeredViews;
 @property (nonatomic,strong) NSMutableDictionary* viewToSelectorsMap;
+@property (nonatomic,strong) NSMutableDictionary* idToViewMap;
 @property (nonatomic,strong) NIDOM *parent;
 @end
 
@@ -46,12 +47,12 @@
 + (id)domWithStylesheetWithPathPrefix:(NSString *)pathPrefix paths:(NSString *)path, ... {
   va_list ap;
   va_start(ap, path);
-
+  
   NIStylesheet* compositeStylesheet = [[NIStylesheet alloc] init];
-
+  
   while (nil != path) {
     NIDASSERT([path isKindOfClass:[NSString class]]);
-
+    
     if ([path isKindOfClass:[NSString class]]) {
       NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
       if ([stylesheet loadFromPath:path pathPrefix:pathPrefix]) {
@@ -61,7 +62,7 @@
     path = va_arg(ap, NSString*);
   }
   va_end(ap);
-
+  
   return [[self alloc] initWithStylesheet:compositeStylesheet];
 }
 
@@ -130,43 +131,59 @@
   }
   NSString* selector = NSStringFromClass([view class]);
   [self registerSelector:selector withView:view];
-
-  // If this view has an id, register that selector
-  // TODO probably should make this optional to avoid memory footprint bloat
-  NSString *idstring = nil;
-  if (view.accessibilityLabel) {
-    idstring = [@"#" stringByAppendingString: view.accessibilityLabel]; // TODO cleanout characters that aren't valid CSS ids
-    [self registerSelector:idstring withView:view];
-  }
-
+  
   NSArray *pseudos = nil;
   if ([view respondsToSelector:@selector(pseudoClasses)]) {
     pseudos = (NSArray*) [view performSelector:@selector(pseudoClasses)];
     if (pseudos) {
       for (NSString *ps in pseudos) {
         [self registerSelector:[selector stringByAppendingString:ps] withView:view];
-        if (idstring) {
-          [self registerSelector:[idstring stringByAppendingString:ps] withView:view];
-        }
       }
     }
   }
   
   [_registeredViews addObject:view];
   [self refreshStyleForView:view withSelectorName:selector];
-  if (idstring) {
-    [self refreshStyleForView:view withSelectorName:idstring];
-  }
   if (pseudos) {
     for (NSString *ps in pseudos) {
       [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
-      if (idstring) {
-        [self refreshStyleForView:view withSelectorName:[idstring stringByAppendingString:ps]];
-      }
     }
   }
 }
 
+- (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass andId:(NSString *)viewId
+{
+  NSArray *pseudos = nil;
+  if (viewId) {
+    if (![viewId hasPrefix:@"#"]) { viewId = [@"#" stringByAppendingString:viewId]; }
+    if (self.parent) {
+      [self.parent registerSelector:viewId withView:view];
+    }
+    [self registerSelector:viewId withView:view];
+
+    if ([view respondsToSelector:@selector(pseudoClasses)]) {
+      pseudos = (NSArray*) [view performSelector:@selector(pseudoClasses)];
+      if (pseudos) {
+        for (NSString *ps in pseudos) {
+          if (self.parent) {
+            [self.parent registerSelector:[viewId stringByAppendingString:ps] withView:view];
+          }
+          [self registerSelector:[viewId stringByAppendingString:ps] withView:view];
+        }
+      }
+    }
+  }
+  [self registerView:view withCSSClass:cssClass];
+  // Run the id selectors last so they take precedence
+  if (viewId) {
+    [self refreshStyleForView:view withSelectorName:viewId];
+    if (pseudos) {
+      for (NSString *ps in pseudos) {
+        [self refreshStyleForView:view withSelectorName:[viewId stringByAppendingString:ps]];
+      }
+    }
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass registerMainView: (BOOL) registerMainView
@@ -178,25 +195,27 @@
     [self registerView:view];
   }
   
-  NSString* selector = [@"." stringByAppendingString:cssClass];
-  [self registerSelector:selector withView:view];
-  
-  // This registers both the UIKit class name and the css class name for this view
-  // Now, we also want to register the 'state based' selectors. Fun.
-  NSArray *pseudos = nil;
-  if ([view respondsToSelector:@selector(pseudoClasses)]) {
-    pseudos = (NSArray*) [view performSelector:@selector(pseudoClasses)];
-    if (pseudos) {
-      for (NSString *ps in pseudos) {
-        [self registerSelector:[selector stringByAppendingString:ps] withView:view];
+  if (cssClass) {
+    NSString* selector = [@"." stringByAppendingString:cssClass];
+    [self registerSelector:selector withView:view];
+    
+    // This registers both the UIKit class name and the css class name for this view
+    // Now, we also want to register the 'state based' selectors. Fun.
+    NSArray *pseudos = nil;
+    if ([view respondsToSelector:@selector(pseudoClasses)]) {
+      pseudos = (NSArray*) [view performSelector:@selector(pseudoClasses)];
+      if (pseudos) {
+        for (NSString *ps in pseudos) {
+          [self registerSelector:[selector stringByAppendingString:ps] withView:view];
+        }
       }
     }
-  }
-  
-  [self refreshStyleForView:view withSelectorName:selector];
-  if (pseudos) {
-    for (NSString *ps in pseudos) {
-      [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
+    
+    [self refreshStyleForView:view withSelectorName:selector];
+    if (pseudos) {
+      for (NSString *ps in pseudos) {
+        [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
+      }
     }
   }
 }
@@ -210,6 +229,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)unregisterView:(UIView *)view {
   [_registeredViews removeObject:view];
+  NSArray *selectors = [_viewToSelectorsMap objectForKey:[self keyForView:view]];
+  if (selectors) {
+    for (NSString *s in selectors) {
+      if ([s characterAtIndex:0] == '#') {
+        [_idToViewMap removeObjectForKey:s];
+      }
+    }
+  }
   [_viewToSelectorsMap removeObjectForKey:[self keyForView:view]];
 }
 
@@ -218,6 +245,7 @@
 - (void)unregisterAllViews {
   [_registeredViews removeAllObjects];
   [_viewToSelectorsMap removeAllObjects];
+  [_idToViewMap removeAllObjects];
 }
 
 

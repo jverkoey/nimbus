@@ -77,6 +77,8 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 
 - (void)registerView:(UIView *)view;
 - (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass;
+- (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass andId: (NSString*) viewId;
+
 - (void)unregisterView:(UIView *)view;
 - (void)unregisterAllViews;
 - (void)refresh;

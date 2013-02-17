@@ -81,7 +81,6 @@ static CGFloat squareSize = 200;
   _bottomLabel.text = @"Bottom Left Label";
 
   _button = [UIButton buttonWithType:UIButtonTypeCustom];
-  _button.accessibilityLabel = @"TestButton";
   [_button addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
   [_button setTitle:@"Test Button" forState:UIControlStateNormal];
 
@@ -99,7 +98,7 @@ static CGFloat squareSize = 200;
   [_dom registerView:_backgroundView withCSSClass:@"noticeBox"];
   [_dom registerView:_rightMiddleLabel withCSSClass:@"rightMiddleLabel"];
   [_dom registerView:_bottomLabel withCSSClass:@"bottomLabel"];
-  [_dom registerView:_button];
+  [_dom registerView:_button withCSSClass:nil andId:@"TestButton"];
 }
 
 -(void)viewWillLayoutSubviews
