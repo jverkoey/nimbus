@@ -27,6 +27,7 @@
 @property (nonatomic,strong) NIStylesheet* stylesheet;
 @property (nonatomic,strong) NSMutableArray* registeredViews;
 @property (nonatomic,strong) NSMutableDictionary* viewToSelectorsMap;
+@property (nonatomic,strong) NIDOM *parent;
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -64,6 +65,15 @@
   return [[self alloc] initWithStylesheet:compositeStylesheet];
 }
 
++(id)domWithStylesheet:(NIStylesheet *)stylesheet andParentStyles:(NIStylesheet *)parentStyles
+{
+  NIDOM *dom = [[self alloc] initWithStylesheet:stylesheet];
+  if (parentStyles) {
+    dom.parent = [NIDOM domWithStylesheet:parentStyles andParentStyles:nil];
+  }
+  return dom;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStylesheet:(NIStylesheet *)stylesheet {
@@ -83,6 +93,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)refreshStyleForView:(UIView *)view withSelectorName:(NSString *)selectorName {
+  if (self.parent) {
+    [self.parent.stylesheet applyStyleToView:view withClassName:selectorName];
+  }
   [_stylesheet applyStyleToView:view withClassName:selectorName];
 }
 
@@ -112,6 +125,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)registerView:(UIView *)view {
+  if (self.parent) {
+    [self.parent registerView:view];
+  }
   NSString* selector = NSStringFromClass([view class]);
   [self registerSelector:selector withView:view];
 
@@ -153,14 +169,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass {
-  // This registers both the UIKit class name and the css class name for this view
-  // Now, we also want to register the 'state based' selectors. Fun.
-  [self registerView:view];
-
+- (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass registerMainView: (BOOL) registerMainView
+{
+  if (registerMainView) {
+    if (self.parent) {
+      [self.parent registerView:view withCSSClass:cssClass registerMainView:NO];
+    }
+    [self registerView:view];
+  }
+  
   NSString* selector = [@"." stringByAppendingString:cssClass];
   [self registerSelector:selector withView:view];
-
+  
+  // This registers both the UIKit class name and the css class name for this view
+  // Now, we also want to register the 'state based' selectors. Fun.
   NSArray *pseudos = nil;
   if ([view respondsToSelector:@selector(pseudoClasses)]) {
     pseudos = (NSArray*) [view performSelector:@selector(pseudoClasses)];
@@ -170,14 +192,18 @@
       }
     }
   }
-
+  
   [self refreshStyleForView:view withSelectorName:selector];
   if (pseudos) {
     for (NSString *ps in pseudos) {
       [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
     }
   }
-  
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass {
+  [self registerView:view withCSSClass:cssClass registerMainView:YES];
 }
 
 

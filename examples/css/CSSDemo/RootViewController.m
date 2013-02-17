@@ -39,7 +39,8 @@ static CGFloat squareSize = 200;
     NIStylesheetCache* stylesheetCache =
     [(AppDelegate *)[UIApplication sharedApplication].delegate stylesheetCache];
     NIStylesheet* stylesheet = [stylesheetCache stylesheetWithPath:@"root/root.css"];
-    _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
+    NIStylesheet* common = [stylesheetCache stylesheetWithPath:@"common.css"];
+    _dom = [NIDOM domWithStylesheet:stylesheet andParentStyles:common];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(stylesheetDidChange)
                                                  name:NIStylesheetDidChangeNotification
