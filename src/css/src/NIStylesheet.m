@@ -26,6 +26,7 @@
 #endif
 
 NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotification";
+static Class _rulesetClass;
 
 @interface NIStylesheet()
 @property (nonatomic, readonly, copy) NSDictionary* rawRulesets;
@@ -238,45 +239,63 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className {
   NICSSRuleset *ruleset = [self rulesetForClassName:className];
   if (nil != ruleset) {
-    [self applyRuleSet:ruleset toView:view];
+    NSRange r = [className rangeOfString:@":"];
+    if (r.location != NSNotFound && [view respondsToSelector:@selector(applyStyleWithRuleSet:forPseudoClass:)]) {
+      [(id<NIStyleable>)view applyStyleWithRuleSet:ruleset forPseudoClass: [className substringFromIndex:r.location+1]];
+    } else {
+      [self applyRuleSet:ruleset toView:view];
+    }
   }
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NICSSRuleset *)rulesetForClassName:(NSString *)className {
-  NICSSRuleset* ruleSet = nil;
-
-  NSArray* selectors = [_significantScopeToScopes objectForKey:className];
+- (NICSSRuleset*) addSelectors: (NSArray*) selectors toRuleset: (NICSSRuleset*) ruleSet forClassName: (NSString*) className
+{
   if ([selectors count] > 0) {
     // Gather all of the rule sets for this view into a composite rule set.
-    ruleSet = [_ruleSets objectForKey:className];
-
+    ruleSet = ruleSet ?: [_ruleSets objectForKey:className];
+    
     if (nil == ruleSet) {
-      ruleSet = [[NICSSRuleset alloc] init];
-
+      ruleSet = [[[NIStylesheet rulesetClass] alloc] init];
+      
       // Composite the rule sets into one.
       for (NSString* selector in selectors) {
         [ruleSet addEntriesFromDictionary:[_rawRulesets objectForKey:selector]];
       }
-
+      
       NIDASSERT(nil != _ruleSets);
       [_ruleSets setObject:ruleSet forKey:className];
     }
   }
-
+  
   return ruleSet;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NICSSRuleset *)rulesetForClassName:(NSString *)className {
+  NSArray* selectors = [_significantScopeToScopes objectForKey:className];
+  return [self addSelectors:selectors toRuleset:nil forClassName:className];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSSet *)dependencies {
   return [_rawRulesets objectForKey:kDependenciesSelectorKey];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++(Class)rulesetClass
+{
+  return _rulesetClass ?: [NICSSRuleset class];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++(void)setRulesetClass:(Class)rulesetClass
+{
+  _rulesetClass = rulesetClass;
 }
 
 @end

@@ -23,6 +23,14 @@
 #error "Nimbus requires ARC support."
 #endif
 
+@interface NIDOM ()
+@property (nonatomic,strong) NIStylesheet* stylesheet;
+@property (nonatomic,strong) NSMutableArray* registeredViews;
+@property (nonatomic,strong) NSMutableDictionary* viewToSelectorsMap;
+@property (nonatomic,strong) NSMutableDictionary* idToViewMap;
+@property (nonatomic,strong) NIDOM *parent;
+@end
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,12 +47,12 @@
 + (id)domWithStylesheetWithPathPrefix:(NSString *)pathPrefix paths:(NSString *)path, ... {
   va_list ap;
   va_start(ap, path);
-
+  
   NIStylesheet* compositeStylesheet = [[NIStylesheet alloc] init];
-
+  
   while (nil != path) {
     NIDASSERT([path isKindOfClass:[NSString class]]);
-
+    
     if ([path isKindOfClass:[NSString class]]) {
       NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
       if ([stylesheet loadFromPath:path pathPrefix:pathPrefix]) {
@@ -54,8 +62,17 @@
     path = va_arg(ap, NSString*);
   }
   va_end(ap);
-
+  
   return [[self alloc] initWithStylesheet:compositeStylesheet];
+}
+
++(id)domWithStylesheet:(NIStylesheet *)stylesheet andParentStyles:(NIStylesheet *)parentStyles
+{
+  NIDOM *dom = [[self alloc] initWithStylesheet:stylesheet];
+  if (parentStyles) {
+    dom.parent = [NIDOM domWithStylesheet:parentStyles andParentStyles:nil];
+  }
+  return dom;
 }
 
 
@@ -77,6 +94,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)refreshStyleForView:(UIView *)view withSelectorName:(NSString *)selectorName {
+  if (self.parent) {
+    [self.parent.stylesheet applyStyleToView:view withClassName:selectorName];
+  }
   [_stylesheet applyStyleToView:view withClassName:selectorName];
 }
 
@@ -106,28 +126,117 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)registerView:(UIView *)view {
+  if (self.parent) {
+    [self.parent registerView:view];
+  }
   NSString* selector = NSStringFromClass([view class]);
   [self registerSelector:selector withView:view];
-
+  
+  NSArray *pseudos = nil;
+  if ([view respondsToSelector:@selector(pseudoClasses)]) {
+    pseudos = (NSArray*) [view performSelector:@selector(pseudoClasses)];
+    if (pseudos) {
+      for (NSString *ps in pseudos) {
+        [self registerSelector:[selector stringByAppendingString:ps] withView:view];
+      }
+    }
+  }
+  
   [_registeredViews addObject:view];
   [self refreshStyleForView:view withSelectorName:selector];
+  if (pseudos) {
+    for (NSString *ps in pseudos) {
+      [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
+    }
+  }
 }
 
+- (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass andId:(NSString *)viewId
+{
+  NSArray *pseudos = nil;
+  if (viewId) {
+    if (![viewId hasPrefix:@"#"]) { viewId = [@"#" stringByAppendingString:viewId]; }
+    if (self.parent) {
+      [self.parent registerSelector:viewId withView:view];
+    }
+    [self registerSelector:viewId withView:view];
+
+    if ([view respondsToSelector:@selector(pseudoClasses)]) {
+      pseudos = (NSArray*) [view performSelector:@selector(pseudoClasses)];
+      if (pseudos) {
+        for (NSString *ps in pseudos) {
+          if (self.parent) {
+            [self.parent registerSelector:[viewId stringByAppendingString:ps] withView:view];
+          }
+          [self registerSelector:[viewId stringByAppendingString:ps] withView:view];
+        }
+      }
+    }
+  }
+  [self registerView:view withCSSClass:cssClass];
+  // Run the id selectors last so they take precedence
+  if (viewId) {
+    [self refreshStyleForView:view withSelectorName:viewId];
+    if (pseudos) {
+      for (NSString *ps in pseudos) {
+        [self refreshStyleForView:view withSelectorName:[viewId stringByAppendingString:ps]];
+      }
+    }
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass registerMainView: (BOOL) registerMainView
+{
+  if (registerMainView) {
+    if (self.parent) {
+      [self.parent registerView:view withCSSClass:cssClass registerMainView:NO];
+    }
+    [self registerView:view];
+  }
+  
+  if (cssClass) {
+    NSString* selector = [@"." stringByAppendingString:cssClass];
+    [self registerSelector:selector withView:view];
+    
+    // This registers both the UIKit class name and the css class name for this view
+    // Now, we also want to register the 'state based' selectors. Fun.
+    NSArray *pseudos = nil;
+    if ([view respondsToSelector:@selector(pseudoClasses)]) {
+      pseudos = (NSArray*) [view performSelector:@selector(pseudoClasses)];
+      if (pseudos) {
+        for (NSString *ps in pseudos) {
+          [self registerSelector:[selector stringByAppendingString:ps] withView:view];
+        }
+      }
+    }
+    
+    [self refreshStyleForView:view withSelectorName:selector];
+    if (pseudos) {
+      for (NSString *ps in pseudos) {
+        [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
+      }
+    }
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass {
-  [self registerView:view];
-
-  NSString* selector = [@"." stringByAppendingString:cssClass];
-  [self registerSelector:selector withView:view];
-
-  [self refreshStyleForView:view withSelectorName:selector];
+  [self registerView:view withCSSClass:cssClass registerMainView:YES];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)unregisterView:(UIView *)view {
   [_registeredViews removeObject:view];
+  NSArray *selectors = [_viewToSelectorsMap objectForKey:[self keyForView:view]];
+  if (selectors) {
+    for (NSString *s in selectors) {
+      if ([s characterAtIndex:0] == '#') {
+        [_idToViewMap removeObjectForKey:s];
+      }
+    }
+  }
   [_viewToSelectorsMap removeObjectForKey:[self keyForView:view]];
 }
 
@@ -136,6 +245,7 @@
 - (void)unregisterAllViews {
   [_registeredViews removeAllObjects];
   [_viewToSelectorsMap removeAllObjects];
+  [_idToViewMap removeAllObjects];
 }
 
 

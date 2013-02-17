@@ -24,6 +24,7 @@
   UILabel* _testLabel;
   UILabel* _bottomLabel;
   UILabel* _rightMiddleLabel;
+  UIButton* _button;
 }
 
 @end

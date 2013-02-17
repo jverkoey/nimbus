@@ -36,4 +36,21 @@
  */
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet;
 
+@optional
+/**
+ * Tells the CSS engine a set of pseudo classes that apply to views of this class.
+ * In the case of UIButton, for example, this includes :selected, :highlighted, and :disabled.
+ * In CSS, you specify these with selectors like UIButton:active. If you implement this you need to respond
+ * to applyStyleWithRuleSet:forPseudoClass:
+ *
+ * Make sure to include the leading colon.
+ */
+- (NSArray*) pseudoClasses;
+
+/**
+ * Applies the given rule set to this view but for a pseudo class. Thus it only supports the subset of
+ * properties that can be set on states of the view. (e.g. UIButton textColor or background)
+ */
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass: (NSString*) pseudo;
+
 @end

@@ -40,6 +40,7 @@ NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
   if ([ruleSet hasBorderWidth]) { self.layer.borderWidth = ruleSet.borderWidth; }
   if ([ruleSet hasBorderColor]) { self.layer.borderColor = ruleSet.borderColor.CGColor; }
   if ([ruleSet hasAutoresizing]) { self.autoresizingMask = ruleSet.autoresizing; }
+  if ([ruleSet hasVisible]) { self.hidden = !ruleSet.visible; }
   
   // Special case auto/auto height and width
   if ([ruleSet hasWidth] && [ruleSet hasHeight] &&
