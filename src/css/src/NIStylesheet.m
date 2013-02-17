@@ -26,6 +26,7 @@
 #endif
 
 NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotification";
+static Class _rulesetClass;
 
 @interface NIStylesheet()
 @property (nonatomic, readonly, copy) NSDictionary* rawRulesets;
@@ -258,7 +259,7 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
     ruleSet = ruleSet ?: [_ruleSets objectForKey:className];
     
     if (nil == ruleSet) {
-      ruleSet = [[NICSSRuleset alloc] init];
+      ruleSet = [[[NIStylesheet rulesetClass] alloc] init];
       
       // Composite the rule sets into one.
       for (NSString* selector in selectors) {
@@ -283,6 +284,18 @@ NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotif
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSSet *)dependencies {
   return [_rawRulesets objectForKey:kDependenciesSelectorKey];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++(Class)rulesetClass
+{
+  return _rulesetClass ?: [NICSSRuleset class];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++(void)setRulesetClass:(Class)rulesetClass
+{
+  _rulesetClass = rulesetClass;
 }
 
 @end
