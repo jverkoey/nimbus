@@ -603,6 +603,10 @@ RULE_ELEMENT(frameVerticalAlign,FrameVerticalAlign,@"-mobile-valign",UIViewConte
 RULE_ELEMENT(backgroundStretchInsets,BackgroundStretchInsets,@"-mobile-background-stretch",UIEdgeInsets,edgeInsetsFromCssValues)
 RULE_ELEMENT(backgroundImage,BackgroundImage,@"background-image", NSString*,imageStringFromCssValues)
 RULE_ELEMENT(image, Image, @"-mobile-image", NSString*, imageStringFromCssValues)
+RULE_ELEMENT(visible, Visible, @"visibility", BOOL, visibilityFromCssValues)
+RULE_ELEMENT(titleInsets, TitleInsets, @"-mobile-title-insets", UIEdgeInsets, edgeInsetsFromCssValues)
+RULE_ELEMENT(contentInsets, ContentInsets, @"-mobile-content-insets", UIEdgeInsets, edgeInsetsFromCssValues)
+RULE_ELEMENT(imageInsets, ImageInsets, @"-mobile-image-insets", UIEdgeInsets, edgeInsetsFromCssValues)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTintColor {
@@ -1016,6 +1020,7 @@ RULE_ELEMENT(image, Image, @"-mobile-image", NSString*, imageStringFromCssValues
     return UIViewContentModeBottom;
   } else {
     NIDERROR(@"Unknown vertical alignment: %@", unitValue);
+    return UIViewContentModeCenter;
   }
 }
 
@@ -1063,7 +1068,9 @@ RULE_ELEMENT(image, Image, @"-mobile-image", NSString*, imageStringFromCssValues
       color = RGBCOLOR(((colorValue & 0xFF0000) >> 16),
                        ((colorValue & 0xFF00) >> 8),
                        (colorValue & 0xFF));
-
+    } else if ([cssString caseInsensitiveCompare:@"none"] == NSOrderedSame) {
+      // Special case to "undo" a color that was set by some other rule
+      color = nil;
     } else {
       color = [[self colorTable] objectForKey:cssString];
     }
@@ -1071,6 +1078,16 @@ RULE_ELEMENT(image, Image, @"-mobile-image", NSString*, imageStringFromCssValues
     *pNumberOfConsumedTokens = 1;
   }
   return color;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++(BOOL)visibilityFromCssValues: (NSArray*) values
+{
+  NSString *v = [values objectAtIndex:0];
+  if ([v caseInsensitiveCompare:@"hidden"] == NSOrderedSame) {
+    return NO;
+  }
+  return YES;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1097,6 +1114,12 @@ RULE_ELEMENT(image, Image, @"-mobile-image", NSString*, imageStringFromCssValues
   } else {
     left = right = bottom = top;
   }
+  return UIEdgeInsetsMake(
+                          [NSDecimalNumber decimalNumberWithString:top].floatValue,
+                          [NSDecimalNumber decimalNumberWithString:left].floatValue,
+                          [NSDecimalNumber decimalNumberWithString:bottom].floatValue,
+                          [NSDecimalNumber decimalNumberWithString:right].floatValue
+                          );
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

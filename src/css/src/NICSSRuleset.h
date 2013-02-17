@@ -74,6 +74,10 @@ typedef struct {
   UIScrollViewIndicatorStyle _scrollViewIndicatorStyle;
   UITextAlignment _frameHorizontalAlign;
   UIViewContentMode _frameVerticalAlign;
+  BOOL _visible;
+  UIEdgeInsets _titleInsets;
+  UIEdgeInsets _contentInsets;
+  UIEdgeInsets _imageInsets;
   
   NICSSUnit _width;
   NICSSUnit _height;
@@ -116,6 +120,10 @@ typedef struct {
       int Right : 1;
       int FrameHorizontalAlign: 1;
       int FrameVerticalAlign: 1;
+      int Visible: 1;
+      int TitleInsets: 1;
+      int ContentInsets: 1;
+      int ImageInsets: 1;
     } cached;
     int64_t _data;
   } _is;
@@ -218,6 +226,18 @@ typedef struct {
 
 - (BOOL)hasScrollViewIndicatorStyle;
 - (UIScrollViewIndicatorStyle)scrollViewIndicatorStyle; // -ios-scroll-view-indicator-style
+
+- (BOOL)hasVisible;
+- (BOOL)visible; // visibility
+
+- (BOOL)hasTitleInsets;
+- (UIEdgeInsets)titleInsets; // -mobile-title-insets
+
+- (BOOL)hasContentInsets;
+- (UIEdgeInsets)contentInsets; // -mobile-content-insets
+
+- (BOOL)hasImageInsets;
+- (UIEdgeInsets)imageInsets; // -mobile-image-insets
 
 @end
 
