@@ -95,9 +95,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)refreshStyleForView:(UIView *)view withSelectorName:(NSString *)selectorName {
   if (self.parent) {
-    [self.parent.stylesheet applyStyleToView:view withClassName:selectorName];
+    [self.parent.stylesheet applyStyleToView:view withClassName:selectorName inDOM:self];
   }
-  [_stylesheet applyStyleToView:view withClassName:selectorName];
+  [_stylesheet applyStyleToView:view withClassName:selectorName inDOM:self];
 }
 
 
@@ -174,6 +174,11 @@
     }
   }
   [self registerView:view withCSSClass:cssClass];
+  
+  if (!_idToViewMap) {
+    _idToViewMap = [[NSMutableDictionary alloc] init];
+  }
+  [_idToViewMap setObject:view forKey:viewId];
   // Run the id selectors last so they take precedence
   if (viewId) {
     [self refreshStyleForView:view withSelectorName:viewId];
@@ -258,4 +263,10 @@
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(UIView *)viewById:(NSString *)viewId
+{
+  if (![viewId hasPrefix:@"#"]) { viewId = [@"#" stringByAppendingString:viewId]; }
+  return [_idToViewMap objectForKey:viewId];
+}
 @end

@@ -18,3 +18,7 @@ UILabel {
   font-size: 17;
 }
 
+.colorBox {
+  width: 20px;
+  height: 20px;
+}

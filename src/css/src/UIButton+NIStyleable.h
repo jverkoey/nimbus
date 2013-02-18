@@ -21,12 +21,20 @@
 @interface UIButton (NIStyleable)
 
 /**
+ * Applies the given rule set to this button. Call applyButtonStyleWithRuleSet:inDOM:
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet DEPRECATED_ATTRIBUTE;
+
+/**
  * Applies the given rule set to this button.
  *
  * This method is exposed primarily for subclasses to use when implementing the
  * applyStyleWithRuleSet: method from NIStyleable.
  */
-- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet;
+- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
 
 /**
  * Tells the CSS engine a set of pseudo classes that apply to views of this class.
@@ -43,6 +51,6 @@
  * properties that can be set on states of the button. (There's no fancy stuff that applies the styles
  * manually on state transitions.
  */
-- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass: (NSString*) pseudo;
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass: (NSString*) pseudo inDOM: (NIDOM*) dom;
 
 @end

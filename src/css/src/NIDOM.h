@@ -83,6 +83,8 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 - (void)unregisterAllViews;
 - (void)refresh;
 
+-(UIView*)viewById: (NSString*) viewId;
+
 @end
 
 /** @name Creating NIDOMs */

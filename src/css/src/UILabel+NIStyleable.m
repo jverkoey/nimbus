@@ -34,6 +34,11 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyLabelStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+  [self applyLabelStyleWithRuleSet:ruleSet inDOM:nil];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applyLabelStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
   if ([ruleSet hasTextColor]) { self.textColor = ruleSet.textColor; }
   if ([ruleSet hasHighlightedTextColor]) { self.highlightedTextColor = ruleSet.highlightedTextColor; }
   if ([ruleSet hasTextAlignment]) { self.textAlignment = ruleSet.textAlignment; }
@@ -50,8 +55,13 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  [self applyViewStyleWithRuleSet:ruleSet];
-  [self applyLabelStyleWithRuleSet:ruleSet];
+  [self applyStyleWithRuleSet:ruleSet inDOM:nil];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
+  [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
+  [self applyLabelStyleWithRuleSet:ruleSet inDOM:dom];
 }
 
 @end

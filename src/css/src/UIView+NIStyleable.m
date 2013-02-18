@@ -26,14 +26,20 @@
 
 NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
 
+CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation UIView (NIStyleable)
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+  [self applyViewStyleWithRuleSet:ruleSet inDOM:nil];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
   if ([ruleSet hasBackgroundColor]) { self.backgroundColor = ruleSet.backgroundColor; }
   if ([ruleSet hasOpacity]) { self.alpha = ruleSet.opacity; }
   if ([ruleSet hasBorderRadius]) { self.layer.cornerRadius = ruleSet.borderRadius; }
@@ -42,6 +48,9 @@ NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
   if ([ruleSet hasAutoresizing]) { self.autoresizingMask = ruleSet.autoresizing; }
   if ([ruleSet hasVisible]) { self.hidden = !ruleSet.visible; }
   
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+  // View sizing
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
   // Special case auto/auto height and width
   if ([ruleSet hasWidth] && [ruleSet hasHeight] &&
       ruleSet.width.type == CSS_AUTO_UNIT && ruleSet.height.type == CSS_AUTO_UNIT) {
@@ -96,6 +105,30 @@ NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
       }
     }
   }
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+  // Min/Max width/height enforcement
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+  if ([ruleSet hasMaxWidth]) {
+    CGFloat max = NICSSUnitToPixels(ruleSet.maxWidth,self.frameWidth);
+    if (self.frameWidth > max) { self.frameWidth = max; }
+  }
+  if ([ruleSet hasMaxHeight]) {
+    CGFloat max = NICSSUnitToPixels(ruleSet.maxHeight,self.frameHeight);
+    if (self.frameHeight > max) { self.frameHeight = max; }
+  }
+  if ([ruleSet hasMinWidth]) {
+    CGFloat min = NICSSUnitToPixels(ruleSet.minWidth,self.frameWidth);
+    if (self.frameWidth < min) { self.frameWidth = min; }
+  }
+  if ([ruleSet hasMinHeight]) {
+    CGFloat min = NICSSUnitToPixels(ruleSet.minHeight,self.frameHeight);
+    if (self.frameHeight < min) { self.frameHeight = min; }
+  }
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+  // "Absolute" position in superview
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
   if ([ruleSet hasTop]) {
     NICSSUnit u = ruleSet.top;
     switch (u.type) {
@@ -183,12 +216,122 @@ NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
         break;
     }
   }
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+  // Relative positioning to other identified views
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+  if (ruleSet.hasRelativeToId) {
+    NSString *viewSpec = ruleSet.relativeToId;
+    UIView* relative = nil;
+    if ([viewSpec characterAtIndex:0] == ':') {
+      if ([viewSpec caseInsensitiveCompare:@":next"] == NSOrderedSame) {
+      } else if ([viewSpec caseInsensitiveCompare:@":prev"] == NSOrderedSame) {
+        
+      } else if ([viewSpec caseInsensitiveCompare:@":first"] == NSOrderedSame) {
+        
+      }
+    } else {
+      // For performance, I'm not going to try and fix up your bad selectors. Start with a # or it will fail.
+      relative = [dom viewById:ruleSet.relativeToId];
+    }
+    if (relative) {
+      CGPoint anchor;
+
+      if (ruleSet.hasMarginTop) {
+        NICSSUnit top = ruleSet.marginTop;
+        switch (top.type) {
+          case CSS_AUTO_UNIT:
+            // Align y center
+            anchor = CGPointMake(0, relative.frameMidY);
+            if (self.superview != relative.superview) {
+              anchor = [self convertPoint:anchor fromView:relative.superview];
+            }
+            self.frameMidY = anchor.y;
+            break;
+          case CSS_PERCENTAGE_UNIT:
+          case CSS_PIXEL_UNIT:
+            // relative.frameMaxY + relative.frameHeight * unit
+            anchor = CGPointMake(0, relative.frameMaxY);
+            if (self.superview != relative.superview) {
+              anchor = [self convertPoint:anchor fromView:relative.superview];
+            }
+            self.frameMinY = anchor.y + NICSSUnitToPixels(top, relative.frameHeight);
+            break;
+        }
+      } else if (ruleSet.hasMarginBottom) {
+        NICSSUnit bottom = ruleSet.marginBottom;
+        switch (bottom.type) {
+          case CSS_AUTO_UNIT:
+            // Align y center
+            anchor = CGPointMake(0, relative.frameMidY);
+            if (self.superview != relative.superview) {
+              anchor = [self convertPoint:anchor fromView:relative.superview];
+            }
+            self.frameMidY = anchor.y;
+            break;
+          case CSS_PERCENTAGE_UNIT:
+          case CSS_PIXEL_UNIT:
+            // relative.frameMinY - (relative.frameHeight * unit)
+            anchor = CGPointMake(0, relative.frameMinY);
+            if (self.superview != relative.superview) {
+              anchor = [self convertPoint:anchor fromView:relative.superview];
+            }
+            self.frameMaxY = anchor.y - NICSSUnitToPixels(bottom, relative.frameHeight);
+            break;
+        }        
+      }
+      
+      if (ruleSet.hasMarginLeft) {
+        NICSSUnit left = ruleSet.marginLeft;
+        switch (left.type) {
+          case CSS_AUTO_UNIT:
+            // Align x center
+            anchor = CGPointMake(relative.frameMidX, 0);
+            if (self.superview != relative.superview) {
+              anchor = [self convertPoint:anchor fromView:relative.superview];
+            }
+            self.frameMidX = anchor.x;
+            break;
+          case CSS_PERCENTAGE_UNIT:
+          case CSS_PIXEL_UNIT:
+            // relative.frameMaxX + (relative.frameHeight * unit)
+            anchor = CGPointMake(relative.frameMaxX, 0);
+            if (self.superview != relative.superview) {
+              anchor = [self convertPoint:anchor fromView:relative.superview];
+            }
+            self.frameMinX = anchor.x + NICSSUnitToPixels(left, relative.frameWidth);
+            break;
+        }        
+      } else if (ruleSet.hasMarginRight) {
+        NICSSUnit right = ruleSet.marginRight;
+        switch (right.type) {
+          case CSS_AUTO_UNIT:
+            // Align x center
+            anchor = CGPointMake(relative.frameMidX, 0);
+            if (self.superview != relative.superview) {
+              anchor = [self convertPoint:anchor fromView:relative.superview];
+            }
+            self.frameMidX = anchor.x;
+            break;
+          case CSS_PERCENTAGE_UNIT:
+          case CSS_PIXEL_UNIT:
+            // relative.frameMinX - (relative.frameHeight * unit)
+            anchor = CGPointMake(relative.frameMinX, 0);
+            if (self.superview != relative.superview) {
+              anchor = [self convertPoint:anchor fromView:relative.superview];
+            }
+            self.frameMaxX = anchor.x - NICSSUnitToPixels(right, relative.frameWidth);
+            break;
+        }        
+      }
+    }
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  [self applyViewStyleWithRuleSet:ruleSet];
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
+  [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
 }
 
 - (CGFloat)frameWidth
@@ -284,3 +427,12 @@ NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
 }
 
 @end
+
+CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
+{
+  if (unit.type == CSS_PERCENTAGE_UNIT) {
+    return unit.value * container;
+  }
+  return unit.value;
+}
+

@@ -26,6 +26,14 @@
  * This method is exposed primarily for subclasses to use when implementing the
  * applyStyleWithRuleSet: method from NIStyleable.
  */
-- (void)applyLabelStyleWithRuleSet:(NICSSRuleset *)ruleSet;
+- (void)applyLabelStyleWithRuleSet:(NICSSRuleset *)ruleSet DEPRECATED_ATTRIBUTE;
+
+/**
+ * Applies the given rule set to this label.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applyLabelStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
 
 @end

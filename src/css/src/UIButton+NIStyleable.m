@@ -33,6 +33,11 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+  [self applyButtonStyleWithRuleSet:ruleSet inDOM:nil];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
   if ([ruleSet hasTextColor]) {
     // If you want to reset this color, set none as the color
     [self setTitleColor:ruleSet.textColor forState:UIControlStateNormal];
@@ -41,19 +46,36 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
     // If you want to reset this color, set none as the color
     [self setTitleShadowColor:ruleSet.textShadowColor forState:UIControlStateNormal];
   }
+  if (ruleSet.hasImage) {
+    [self setImage:[UIImage imageNamed:ruleSet.image] forState:UIControlStateNormal];
+  }
+  if (ruleSet.hasBackgroundImage) {
+    UIImage *backImage = [UIImage imageNamed:ruleSet.backgroundImage];
+    if (ruleSet.hasBackgroundStretchInsets) {
+      backImage = [backImage resizableImageWithCapInsets:ruleSet.backgroundStretchInsets];
+    }
+    [self setBackgroundImage:backImage forState:UIControlStateNormal];
+  }
+  if ([ruleSet hasTextShadowOffset]) {
+    self.titleLabel.shadowOffset = ruleSet.textShadowOffset;
+  }
   if ([ruleSet hasTitleInsets]) { self.titleEdgeInsets = ruleSet.titleInsets; }
   if ([ruleSet hasContentInsets]) { self.contentEdgeInsets = ruleSet.contentInsets; }
   if ([ruleSet hasImageInsets]) { self.imageEdgeInsets = ruleSet.imageInsets; }
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  [self applyViewStyleWithRuleSet:ruleSet];
-  [self applyButtonStyleWithRuleSet:ruleSet];
+  [self applyStyleWithRuleSet:ruleSet inDOM:nil];
 }
 
--(void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass:(NSString *)pseudo
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
+  [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
+  [self applyButtonStyleWithRuleSet:ruleSet inDOM:dom];
+}
+
+-(void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass:(NSString *)pseudo inDOM:(NIDOM *)dom
 {
   UIControlState state = UIControlStateNormal;
   if ([pseudo caseInsensitiveCompare:@"selected"] == NSOrderedSame) {

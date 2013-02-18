@@ -21,12 +21,20 @@
 @interface UIView (NIStyleable)
 
 /**
- * Applies the given rule set to this view.
+ * Applies the given rule set to this view. Call applyViewStyleWithRuleSet:inDOM: instead.
  *
  * This method is exposed primarily for subclasses to use when implementing the
  * applyStyleWithRuleSet: method from NIStyleable.
  */
-- (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet;
+- (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet DEPRECATED_ATTRIBUTE;
+
+/**
+ * Applies the given rule set to this view. Call applyViewStyleWithRuleSet:inDOM: instead.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // View frame and bounds manipulation helpers

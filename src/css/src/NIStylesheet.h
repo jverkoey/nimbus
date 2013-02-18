@@ -61,7 +61,7 @@ extern NSString* const NIStylesheetDidChangeNotification;
 
 - (void)addStylesheet:(NIStylesheet *)stylesheet;
 
-- (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className;
+- (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className inDOM: (NIDOM*)dom;
 
 - (NICSSRuleset *)rulesetForClassName:(NSString *)className;
 
@@ -130,6 +130,7 @@ extern NSString* const NIStylesheetDidChangeNotification;
  *      @param view       The view for which styles should be applied.
  *      @param className  Either the view's class as a string using NSStringFromClass([view class]);
  *                        or a CSS class selector such as ".myClassSelector".
+ *      @param dom        The DOM responsible for applying this style
  */
 
 /**

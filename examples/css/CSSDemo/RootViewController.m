@@ -99,6 +99,12 @@ static CGFloat squareSize = 200;
   [_dom registerView:_rightMiddleLabel withCSSClass:@"rightMiddleLabel"];
   [_dom registerView:_bottomLabel withCSSClass:@"bottomLabel"];
   [_dom registerView:_button withCSSClass:nil andId:@"TestButton"];
+  
+  for (int i = 1; i <= 7; i++) {
+    UIView *box = [[UIView alloc] init];
+    [self.view addSubview:box];
+    [_dom registerView:box withCSSClass:@"colorBox" andId:[NSString stringWithFormat:@"box%d",i]];
+  }
 }
 
 -(void)viewWillLayoutSubviews

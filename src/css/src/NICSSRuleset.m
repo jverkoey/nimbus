@@ -598,6 +598,10 @@ RULE_ELEMENT(top,Top,@"top",NICSSUnit,unitFromCssValues)
 RULE_ELEMENT(bottom,Bottom,@"bottom",NICSSUnit,unitFromCssValues)
 RULE_ELEMENT(right,Right,@"right",NICSSUnit,unitFromCssValues)
 RULE_ELEMENT(left,Left,@"left",NICSSUnit,unitFromCssValues)
+RULE_ELEMENT(minWidth, MinWidth, @"min-width", NICSSUnit, unitFromCssValues)
+RULE_ELEMENT(minHeight, MinHeight, @"min-height", NICSSUnit, unitFromCssValues)
+RULE_ELEMENT(maxWidth, MaxWidth, @"max-width", NICSSUnit, unitFromCssValues)
+RULE_ELEMENT(maxHeight, MaxHeight, @"max-height", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(frameHorizontalAlign,FrameHorizontalAlign,@"-mobile-halign",UITextAlignment,textAlignmentFromCssValues)
 RULE_ELEMENT(frameVerticalAlign,FrameVerticalAlign,@"-mobile-valign",UIViewContentMode,verticalAlignFromCssValues)
 RULE_ELEMENT(backgroundStretchInsets,BackgroundStretchInsets,@"-mobile-background-stretch",UIEdgeInsets,edgeInsetsFromCssValues)
@@ -607,6 +611,11 @@ RULE_ELEMENT(visible, Visible, @"visibility", BOOL, visibilityFromCssValues)
 RULE_ELEMENT(titleInsets, TitleInsets, @"-mobile-title-insets", UIEdgeInsets, edgeInsetsFromCssValues)
 RULE_ELEMENT(contentInsets, ContentInsets, @"-mobile-content-insets", UIEdgeInsets, edgeInsetsFromCssValues)
 RULE_ELEMENT(imageInsets, ImageInsets, @"-mobile-image-insets", UIEdgeInsets, edgeInsetsFromCssValues)
+RULE_ELEMENT(relativeToId, RelativeToId, @"-mobile-relative", NSString*, stringFromCssValue)
+RULE_ELEMENT(marginTop, MarginTop, @"margin-top", NICSSUnit, unitFromCssValues)
+RULE_ELEMENT(marginBottom, MarginBottom, @"margin-bottom", NICSSUnit, unitFromCssValues)
+RULE_ELEMENT(marginLeft, MarginLeft, @"margin-left", NICSSUnit, unitFromCssValues)
+RULE_ELEMENT(marginRight, MarginRight, @"margin-right", NICSSUnit, unitFromCssValues)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTintColor {
@@ -1093,9 +1102,23 @@ RULE_ELEMENT(imageInsets, ImageInsets, @"-mobile-image-insets", UIEdgeInsets, ed
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 +(NSString*)imageStringFromCssValues:(NSArray*) cssValues
 {
+  NSString *bg = [cssValues objectAtIndex:0];
+  if ([bg hasPrefix:@"url("]) {
+    bg = [bg substringWithRange: NSMakeRange(4, bg.length - 5)];
+  }
+  if ([bg characterAtIndex:0] == '\'' || [bg characterAtIndex:0] == '"') {
+    bg = [bg substringWithRange:NSMakeRange(1, bg.length-2)];
+  }
+  return bg;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++(NSString*)stringFromCssValue:(NSArray*) cssValues
+{
   return [cssValues objectAtIndex:0];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 +(UIEdgeInsets)edgeInsetsFromCssValues: (NSArray*) cssValues
 {
   // top, left, bottom, right
@@ -1120,6 +1143,12 @@ RULE_ELEMENT(imageInsets, ImageInsets, @"-mobile-image-insets", UIEdgeInsets, ed
                           [NSDecimalNumber decimalNumberWithString:bottom].floatValue,
                           [NSDecimalNumber decimalNumberWithString:right].floatValue
                           );
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++(CGFloat)pixelsFromCssValue: (NSArray*) cssValues
+{
+  return [[cssValues objectAtIndex:0] floatValue];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
