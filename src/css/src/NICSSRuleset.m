@@ -269,7 +269,7 @@ return _##name; \
   } else if (fontIsItalic && fontIsBold) {
     // There is no easy way to create a bold italic font using the exposed UIFont methods.
     // Please consider using the exact font name instead. E.g. font-name: Helvetica-BoldObliquei
-    NIDASSERT(NO);
+    NIDASSERT(!(fontIsItalic && fontIsBold));
     font = [UIFont systemFontOfSize:fontSize];
 
   } else if (fontIsItalic) {
@@ -617,6 +617,7 @@ RULE_ELEMENT(marginBottom, MarginBottom, @"margin-bottom", NICSSUnit, unitFromCs
 RULE_ELEMENT(marginLeft, MarginLeft, @"margin-left", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(marginRight, MarginRight, @"margin-right", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(textKey, TextKey, @"-mobile-text-key", NSString*, stringFromCssValue)
+RULE_ELEMENT(buttonAdjust, ButtonAdjust, @"-ios-button-adjust", NICSSButtonAdjust, buttonAdjustFromCssValue)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTintColor {
@@ -1154,6 +1155,20 @@ RULE_ELEMENT(textKey, TextKey, @"-mobile-text-key", NSString*, stringFromCssValu
 +(CGFloat)pixelsFromCssValue: (NSArray*) cssValues
 {
   return [[cssValues objectAtIndex:0] floatValue];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++(NICSSButtonAdjust)buttonAdjustFromCssValue: (NSArray*) cssValues
+{
+  NICSSButtonAdjust a = BUTTON_ADJUST_NONE;
+  for (NSString* token in cssValues) {
+    if ([token caseInsensitiveCompare:@"highlighted"] == NSOrderedSame) {
+      a |= BUTTON_ADJUST_HIGHLIGHTED;
+    } else if ([token caseInsensitiveCompare:@"disabled"] == NSOrderedSame) {
+      a |= BUTTON_ADJUST_DISABLED;
+    }
+  }
+  return a;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

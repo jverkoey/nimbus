@@ -35,6 +35,12 @@ typedef struct {
 	CGFloat value;
 } NICSSUnit;
 
+typedef enum {
+  BUTTON_ADJUST_NONE = 0,
+  BUTTON_ADJUST_HIGHLIGHTED = 1,
+  BUTTON_ADJUST_DISABLED = 2
+} NICSSButtonAdjust;
+
 /**
  * A simple translator from raw CSS rulesets to Objective-C values.
  *
@@ -75,6 +81,7 @@ typedef struct {
   UITextAlignment _frameHorizontalAlign;
   UIViewContentMode _frameVerticalAlign;
   BOOL _visible;
+  NICSSButtonAdjust _buttonAdjust;
   UIEdgeInsets _titleInsets;
   UIEdgeInsets _contentInsets;
   UIEdgeInsets _imageInsets;
@@ -144,6 +151,7 @@ typedef struct {
       int MaxWidth: 1;
       int MaxHeight: 1;
       int TextKey: 1;
+      int ButtonAdjust: 1;
     } cached;
     int64_t _data;
   } _is;
@@ -261,6 +269,9 @@ typedef struct {
 
 - (BOOL)hasVisible;
 - (BOOL)visible; // visibility
+
+- (BOOL)hasButtonAdjust;
+- (NICSSButtonAdjust)buttonAdjust; // -ios-button-adjust
 
 - (BOOL)hasTitleInsets;
 - (UIEdgeInsets)titleInsets; // -mobile-title-insets
@@ -510,7 +521,7 @@ typedef struct {
 /**
  * When relativeToId is set, a view will be positioned using margin-* directives relative to the view
  * identified by relativeToId. You can use id notation, e.g. #MyButton, or a few selectors:
- * :next, :prev, :first and :last which find the obviously named siblings. Note that the mechanics or
+ * .next, .prev, .first and .last which find the obviously named siblings. Note that the mechanics or
  * margin are not the same as CSS, which is of course a flow layout. So you cannot, for example,
  * combine margin-top and margin-bottom as only margin-top will be executed.
  *
