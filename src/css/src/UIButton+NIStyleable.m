@@ -19,6 +19,7 @@
 #import "UIView+NIStyleable.h"
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
+#import "NIUserInterfaceString.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
@@ -34,6 +35,14 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet {
   [self applyButtonStyleWithRuleSet:ruleSet inDOM:nil];
+}
+
+-(void)applyButtonStyleBeforeViewWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom
+{
+  if (ruleSet.hasTextKey) {
+    NIUserInterfaceString *nis = [[NIUserInterfaceString alloc] initWithKey:ruleSet.textKey];
+    [nis attach:self withSelector:@selector(setTitle:forState:) forControlState:UIControlStateNormal];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,6 +80,7 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
+  [self applyButtonStyleBeforeViewWithRuleSet:ruleSet inDOM:dom];
   [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
   [self applyButtonStyleWithRuleSet:ruleSet inDOM:dom];
 }
@@ -84,6 +94,10 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
     state = UIControlStateHighlighted;
   } else if ([pseudo caseInsensitiveCompare:@"disabled"] == NSOrderedSame) {
     state = UIControlStateDisabled;
+  }
+  if (ruleSet.hasTextKey) {
+      NIUserInterfaceString *nis = [[NIUserInterfaceString alloc] initWithKey:ruleSet.textKey];
+      [nis attach:self withSelector:@selector(setTitle:forState:) forControlState:state];
   }
   if (ruleSet.hasTextColor) {
     [self setTitleColor:ruleSet.textColor forState:state];

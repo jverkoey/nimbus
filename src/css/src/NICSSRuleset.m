@@ -616,6 +616,7 @@ RULE_ELEMENT(marginTop, MarginTop, @"margin-top", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(marginBottom, MarginBottom, @"margin-bottom", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(marginLeft, MarginLeft, @"margin-left", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(marginRight, MarginRight, @"margin-right", NICSSUnit, unitFromCssValues)
+RULE_ELEMENT(textKey, TextKey, @"-mobile-text-key", NSString*, stringFromCssValue)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTintColor {
@@ -1115,7 +1116,11 @@ RULE_ELEMENT(marginRight, MarginRight, @"margin-right", NICSSUnit, unitFromCssVa
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 +(NSString*)stringFromCssValue:(NSArray*) cssValues
 {
-  return [cssValues objectAtIndex:0];
+  NSString *s = [cssValues objectAtIndex:0];
+  if ([s characterAtIndex:0] == '\"') {
+    s = [s substringWithRange:NSMakeRange(1, s.length-2)];
+  }
+  return s;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

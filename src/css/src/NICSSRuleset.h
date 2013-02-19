@@ -78,6 +78,7 @@ typedef struct {
   UIEdgeInsets _titleInsets;
   UIEdgeInsets _contentInsets;
   UIEdgeInsets _imageInsets;
+  NSString *_textKey;
   NSString* _relativeToId;
   NICSSUnit _marginTop;
   NICSSUnit _marginLeft;
@@ -142,6 +143,7 @@ typedef struct {
       int MinHeight: 1;
       int MaxWidth: 1;
       int MaxHeight: 1;
+      int TextKey: 1;
     } cached;
     int64_t _data;
   } _is;
@@ -283,6 +285,9 @@ typedef struct {
 
 - (BOOL)hasMarginRight;
 - (NICSSUnit)marginRight; // margin-bottom
+
+- (BOOL)hasTextKey;
+- (NSString*)textKey; // -mobile-text-key
 
 @end
 

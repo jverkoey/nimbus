@@ -18,6 +18,7 @@
 
 #import "NIStylesheet.h"
 #import "NIStylesheetCache.h"
+#import "NIUserInterfaceString.h"
 #import "NimbusCore+Additions.h"
 #import "AFNetworking.h"
 
@@ -129,6 +130,31 @@ static const NSInteger kMaxNumberOfRetries = 3;
   [_queue addOperation:requestOp];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)downloadStringsWithFilename:(NSString *)path {
+  NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:path]];
+  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+  
+  AFHTTPRequestOperation* requestOp = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+  
+  [requestOp setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSArray* pathParts = [[operation.request.URL absoluteString] pathComponents];
+    NSString* resultPath = [[pathParts subarrayWithRange:NSMakeRange(2, [pathParts count] - 2)]
+                            componentsJoinedByString:@"/"];
+    NSString* rootPath = NIPathForDocumentsResource(nil);
+    NSString* hashedPath = [self pathFromPath:resultPath];
+    NSString* diskPath = [rootPath stringByAppendingPathComponent:hashedPath];
+    [responseObject writeToFile:diskPath atomically:YES];
+    
+    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+    [nc postNotificationName:NIStringsDidChangeNotification object:nil userInfo:@{
+        NIStringsDidChangeFilePathKey: diskPath
+     }];
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+  }];
+  [_queue addOperation:requestOp];
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)pathFromPath:(NSString *)path {
@@ -171,7 +197,11 @@ static const NSInteger kMaxNumberOfRetries = 3;
 
     NSArray* files = [stringData componentsSeparatedByString:@"\n"];
     for (NSString* filename in files) {
-      [self downloadStylesheetWithFilename:filename];
+      if ([[filename lowercaseString] hasSuffix:@".strings"]) {
+        [self downloadStringsWithFilename: filename];
+      } else {
+        [self downloadStylesheetWithFilename:filename];
+      }
     }
 
     // Immediately start watching for more skin changes.

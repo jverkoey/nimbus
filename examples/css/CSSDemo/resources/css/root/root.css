@@ -12,10 +12,15 @@
   -mobile-halign: center;
 }
 
+.titleLabel {
+  -mobile-text-key: "RootViewTitle";
+}
+
 .rightMiddleLabel
 {
   width: auto;
   height: auto;
+  -ios-autoresizing: none;
   -mobile-valign: middle;
   -mobile-halign: right;
 }
@@ -24,6 +29,7 @@
 {
   width: auto;
   height: auto;
+  -ios-autoresizing: none;
   bottom: 0px;
 }
 

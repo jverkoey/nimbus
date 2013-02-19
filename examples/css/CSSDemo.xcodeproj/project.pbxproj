@@ -64,6 +64,8 @@
 		C743F6E516D1F4EB00A933B7 /* btn_blue_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C743F6E116D1F4EB00A933B7 /* btn_blue_active@2x.png */; };
 		C743F6E616D1F4EB00A933B7 /* btn_blue_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = C743F6E216D1F4EB00A933B7 /* btn_blue_inactive.png */; };
 		C743F6E716D1F4EB00A933B7 /* btn_blue_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C743F6E316D1F4EB00A933B7 /* btn_blue_inactive@2x.png */; };
+		C743F6F416D29F2500A933B7 /* NIUserInterfaceString.m in Sources */ = {isa = PBXBuildFile; fileRef = C743F6F316D29F2500A933B7 /* NIUserInterfaceString.m */; };
+		C7B9283F16D2B45A001BF61C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7B9283D16D2B45A001BF61C /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -175,6 +177,9 @@
 		C743F6E116D1F4EB00A933B7 /* btn_blue_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_blue_active@2x.png"; path = "resources/btn_blue_active@2x.png"; sourceTree = "<group>"; };
 		C743F6E216D1F4EB00A933B7 /* btn_blue_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_blue_inactive.png; path = resources/btn_blue_inactive.png; sourceTree = "<group>"; };
 		C743F6E316D1F4EB00A933B7 /* btn_blue_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_blue_inactive@2x.png"; path = "resources/btn_blue_inactive@2x.png"; sourceTree = "<group>"; };
+		C743F6F316D29F2500A933B7 /* NIUserInterfaceString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIUserInterfaceString.m; path = ../../src/css/src/NIUserInterfaceString.m; sourceTree = "<group>"; };
+		C743F6F516D2AAC200A933B7 /* NIUserInterfaceString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIUserInterfaceString.h; path = ../../src/css/src/NIUserInterfaceString.h; sourceTree = "<group>"; };
+		C7B9283E16D2B45A001BF61C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +252,7 @@
 		66832D2B14421450003E413C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C7B9283D16D2B45A001BF61C /* Localizable.strings */,
 				C743F6E016D1F4EB00A933B7 /* btn_blue_active.png */,
 				C743F6E116D1F4EB00A933B7 /* btn_blue_active@2x.png */,
 				C743F6E216D1F4EB00A933B7 /* btn_blue_inactive.png */,
@@ -353,6 +359,8 @@
 				66832DF914434FBE003E413C /* CSSTokens.m */,
 				66832E0814435A07003E413C /* NIChameleonObserver.h */,
 				66832E0914435A07003E413C /* NIChameleonObserver.m */,
+				C743F6F516D2AAC200A933B7 /* NIUserInterfaceString.h */,
+				C743F6F316D29F2500A933B7 /* NIUserInterfaceString.m */,
 			);
 			name = CSS;
 			sourceTree = "<group>";
@@ -457,6 +465,7 @@
 				C743F6E516D1F4EB00A933B7 /* btn_blue_active@2x.png in Resources */,
 				C743F6E616D1F4EB00A933B7 /* btn_blue_inactive.png in Resources */,
 				C743F6E716D1F4EB00A933B7 /* btn_blue_inactive@2x.png in Resources */,
+				C7B9283F16D2B45A001BF61C /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +518,7 @@
 				66D2FE2815941EEB00B2BEFD /* AFURLConnectionOperation.m in Sources */,
 				66D2FE2915941EEB00B2BEFD /* AFXMLRequestOperation.m in Sources */,
 				66D2FE2A15941EEB00B2BEFD /* UIImageView+AFNetworking.m in Sources */,
+				C743F6F416D29F2500A933B7 /* NIUserInterfaceString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +531,14 @@
 				66832D2E14421450003E413C /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C7B9283D16D2B45A001BF61C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C7B9283E16D2B45A001BF61C /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -577,6 +595,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jeffrey Verkoeyen (MCEM7RED85)";
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSSDemo/CSSDemo-Prefix.pch";
 				INFOPLIST_FILE = "CSSDemo/CSSDemo-Info.plist";
@@ -591,6 +610,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jeffrey Verkoeyen (MCEM7RED85)";
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSSDemo/CSSDemo-Prefix.pch";
 				INFOPLIST_FILE = "CSSDemo/CSSDemo-Info.plist";

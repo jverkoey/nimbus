@@ -38,8 +38,8 @@ static CGFloat squareSize = 200;
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     NIStylesheetCache* stylesheetCache =
     [(AppDelegate *)[UIApplication sharedApplication].delegate stylesheetCache];
-    NIStylesheet* stylesheet = [stylesheetCache stylesheetWithPath:@"root/root.css"];
-    NIStylesheet* common = [stylesheetCache stylesheetWithPath:@"common.css"];
+    NIStylesheet* stylesheet = [stylesheetCache stylesheetWithPath:@"css/root/root.css"];
+    NIStylesheet* common = [stylesheetCache stylesheetWithPath:@"css/common.css"];
     _dom = [NIDOM domWithStylesheet:stylesheet andParentStyles:common];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(stylesheetDidChange)
@@ -71,7 +71,6 @@ static CGFloat squareSize = 200;
                                         _activityIndicator.bounds.size.height);
 
   _testLabel = [[UILabel alloc] init];
-  _testLabel.text = @"Chameleon changes skins in real time.\n\nStop compiling.\nStart building.";
   _testLabel.frame = NIRectShift(_backgroundView.bounds, 0, CGRectGetMaxY(_activityIndicator.frame));
   
   _rightMiddleLabel = [[UILabel alloc] init];
@@ -94,7 +93,7 @@ static CGFloat squareSize = 200;
   // Register our views with the DOM.
   [_dom registerView:self.view withCSSClass:@"background"];
   [_dom registerView:_activityIndicator];
-  [_dom registerView:_testLabel];
+  [_dom registerView:_testLabel withCSSClass:@"titleLabel"];
   [_dom registerView:_backgroundView withCSSClass:@"noticeBox"];
   [_dom registerView:_rightMiddleLabel withCSSClass:@"rightMiddleLabel"];
   [_dom registerView:_bottomLabel withCSSClass:@"bottomLabel"];
