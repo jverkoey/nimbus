@@ -12,8 +12,17 @@
   -mobile-halign: center;
 }
 
+/* This is used in an animation block to move the view down */
+.noticeBoxEndpoint {
+  bottom: 10px;
+}
+
 .titleLabel {
   -mobile-text-key: "RootViewTitle";
+  width: 100%;
+  height: auto;
+  -mobile-relative: .prev;
+  margin-top: 100px;
 }
 
 .rightMiddleLabel
@@ -38,6 +47,7 @@
   -mobile-valign: middle;
   width: 200px;
   border-radius: 20px;
+  -ios-button-adjust: none;
 }
 
 UIButton

@@ -15,17 +15,19 @@
 //
 
 #import "RootViewController.h"
+#import "UIView+NIStyleable.h"
+#import "NIUserInterfaceString.h"
+#import "NSInvocation+NimbusCore.h"
 
 #import "AppDelegate.h"
-
-static CGFloat squareSize = 200;
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation RootViewController
-
+{
+  BOOL animationToggle;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
@@ -55,55 +57,24 @@ static CGFloat squareSize = 200;
 - (void)loadView {
   [super loadView];
 
-  _backgroundView = [[UIView alloc] init];
-  CGSize boundsSize = self.view.bounds.size;
-  _backgroundView.frame = CGRectMake(floorf((boundsSize.width - squareSize) / 2),
-                                     floorf((boundsSize.height - squareSize) / 2),
-                                     squareSize, squareSize);
-
-  _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-                        UIActivityIndicatorViewStyleWhiteLarge];
-  [_activityIndicator sizeToFit];
-  [_activityIndicator startAnimating];
-  _activityIndicator.frame = CGRectMake(floorf((_backgroundView.bounds.size.width - _activityIndicator.bounds.size.width) / 2.f),
-                                        10,
-                                        _activityIndicator.bounds.size.width,
-                                        _activityIndicator.bounds.size.height);
-
-  _testLabel = [[UILabel alloc] init];
-  _testLabel.frame = NIRectShift(_backgroundView.bounds, 0, CGRectGetMaxY(_activityIndicator.frame));
-  
-  _rightMiddleLabel = [[UILabel alloc] init];
-  _rightMiddleLabel.text = @"Right Middle Label";
-
-  _bottomLabel = [[UILabel alloc] init];
-  _bottomLabel.text = @"Bottom Left Label";
-
-  _button = [UIButton buttonWithType:UIButtonTypeCustom];
-  [_button addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
-  [_button setTitle:@"Test Button" forState:UIControlStateNormal];
-
-  [self.view addSubview:_button];
-  [self.view addSubview:_rightMiddleLabel];
-  [self.view addSubview:_backgroundView];
-  [self.view addSubview:_bottomLabel];
-  [_backgroundView addSubview:_activityIndicator];
-  [_backgroundView addSubview:_testLabel];
-  
-  // Register our views with the DOM.
   [_dom registerView:self.view withCSSClass:@"background"];
-  [_dom registerView:_activityIndicator];
-  [_dom registerView:_testLabel withCSSClass:@"titleLabel"];
-  [_dom registerView:_backgroundView withCSSClass:@"noticeBox"];
-  [_dom registerView:_rightMiddleLabel withCSSClass:@"rightMiddleLabel"];
-  [_dom registerView:_bottomLabel withCSSClass:@"bottomLabel"];
-  [_dom registerView:_button withCSSClass:nil andId:@"TestButton"];
+  [self.view buildSubviews:@[
+   _backgroundView = [[UIView alloc] init], @".noticeBox",
+   @[
+      _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge],
+      [[UILabel alloc] init], @".titleLabel"
+   ],
+   [[UILabel alloc] init], @".rightMiddleLabel", NILocalizedStringWithDefault(@"RightLabel", @"Right Middle Label"),
+   [[UILabel alloc] init], @".bottomLabel", NILocalizedStringWithDefault(@"BottomLabel", @"Bottom Left Label"),
+   _button = [UIButton buttonWithType:UIButtonTypeCustom], [NSInvocation invocationWithTarget: self selector: @selector(buttonPress)], NILocalizedStringWithDefault(@"TestButton", @"Test Button"), @"#TestButton"
+   ] inDOM:_dom];
   
   for (int i = 1; i <= 7; i++) {
     UIView *box = [[UIView alloc] init];
     [self.view addSubview:box];
     [_dom registerView:box withCSSClass:@"colorBox" andId:[NSString stringWithFormat:@"box%d",i]];
   }
+  [_activityIndicator startAnimating];
 }
 
 -(void)viewWillLayoutSubviews
@@ -115,7 +86,7 @@ static CGFloat squareSize = 200;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
   [_dom unregisterAllViews];
-
+  
   _activityIndicator = nil;
   _backgroundView = nil;
   _testLabel = nil;
@@ -123,7 +94,11 @@ static CGFloat squareSize = 200;
 
 -(void)buttonPress
 {
-  [_dom refresh];
+  animationToggle = !animationToggle;
+  [_dom removeCssClass:animationToggle?@"noticeBox":@"noticeBoxEndpoint" fromView: _backgroundView];
+  [UIView animateWithDuration:.5 animations:^{
+    [_dom addCssClass:animationToggle?@"noticeBoxEndpoint":@"noticeBox" toView:_backgroundView];
+  }];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

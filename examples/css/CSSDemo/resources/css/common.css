@@ -6,6 +6,10 @@ UINavigationBar {
 UIActivityIndicatorView {
   -ios-activity-indicator-style: white-large;
   -ios-autoresizing: left right bottom;
+  width: auto;
+  height: auto;
+  -mobile-halign: center;
+  top: 50px;
 }
 
 UILabel {
