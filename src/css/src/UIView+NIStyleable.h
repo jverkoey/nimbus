@@ -17,6 +17,7 @@
 #import <UIKit/UIKit.h>
 
 @class NICSSRuleset;
+@class NIDOM;
 
 @interface UIView (NIStyleable)
 
@@ -35,6 +36,34 @@
  * applyStyleWithRuleSet: method from NIStyleable.
  */
 - (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
+
+/**
+ * Convenience method to add a set of views to this view
+ */
+- (void)addSubviews: (NSArray*) views;
+
+/**
+ * Build a view hierarchy. The array is a list of view specs, where viewSpec is a loosely formatted
+ * sequence delineated by UIViews. After a UIView, the type of the next object determines what is done
+ * with it:
+ *   UIView instance - following values will be applied to this UIView (other than Class, which "starts anew")
+ *   Class - a UIView subclass that will be alloc'ed and init'ed
+ *   NSString starting with a hash - view id (for style application)
+ *   NSString starting with a dot - CSS Class (for style application)
+ *   NSString - accessibility label for the view.
+ *   NIUserInterfaceString - .text or .title(normal) on a button. Asserts otherwise
+ *   NSNumber - tag
+ *   NSInvocation - selector for TouchUpInside (e.g. on a UIButton)
+ *   NSArray - passed to build on the active UIView and results added as subviews
+ *
+ *   Example (including inline setting of self properties):
+ *    [self.view buildSubviews: @[
+ *       self.buttonContainer = UIView.alloc.init, @"#LoginContainer", @[
+ *         self.myButton = UIButton.alloc.init, @"#Login", @".primary"
+ *       ]
+ *    ]];
+ */
+- (NSArray*) buildSubviews: (NSArray*) viewSpecs inDOM: (NIDOM*) dom;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // View frame and bounds manipulation helpers

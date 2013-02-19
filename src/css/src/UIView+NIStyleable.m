@@ -18,13 +18,31 @@
 
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
+#import "NIUserInterfaceString.h"
 #import <QuartzCore/QuartzCore.h>
+#import <objc/runtime.h>
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
 #endif
 
+/**
+ * Private class for storing info during view creation
+ */
+@interface NIPrivateViewInfo : NSObject
+@property (nonatomic,strong) NSString *cssClass;
+@property (nonatomic,strong) NSString *viewId;
+@property (nonatomic,strong) UIView *view;
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// We split this up because we want to add all the subviews to the DOM in the order they were created
+@interface UIView (NIStyleablePrivate)
+-(void)_buildSubviews:(NSArray *)viewSpecs inDOM:(NIDOM *)dom withViewArray: (NSMutableArray*) subviews;
+@end
+
 NI_FIX_CATEGORY_BUG(UIView_NIStyleable)
+NI_FIX_CATEGORY_BUG(UIView_NIStyleablePrivate)
 
 CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
 
@@ -139,7 +157,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
         self.frameMinY = u.value;
         break;
       default:
-        NIDASSERT(NO);
+        NIDASSERT(u.type == CSS_PERCENTAGE_UNIT || u.type == CSS_PIXEL_UNIT);
         break;
     }
   }
@@ -153,7 +171,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
         self.frameMinX = u.value;
         break;
       default:
-        NIDASSERT(NO);
+        NIDASSERT(u.type == CSS_PERCENTAGE_UNIT || u.type == CSS_PIXEL_UNIT);
         break;
     }
   }
@@ -168,7 +186,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
         self.frameMaxX = self.superview.bounds.size.width - u.value;
         break;
       default:
-        NIDASSERT(NO);
+        NIDASSERT(u.type == CSS_PERCENTAGE_UNIT || u.type == CSS_PIXEL_UNIT);
         break;
     }
   }
@@ -182,7 +200,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
         self.frameMaxY = self.superview.bounds.size.height - u.value;
         break;
       default:
-        NIDASSERT(NO);
+        NIDASSERT(u.type == CSS_PERCENTAGE_UNIT || u.type == CSS_PIXEL_UNIT);
         break;
     }
   }
@@ -223,12 +241,23 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   if (ruleSet.hasRelativeToId) {
     NSString *viewSpec = ruleSet.relativeToId;
     UIView* relative = nil;
-    if ([viewSpec characterAtIndex:0] == ':') {
-      if ([viewSpec caseInsensitiveCompare:@":next"] == NSOrderedSame) {
-      } else if ([viewSpec caseInsensitiveCompare:@":prev"] == NSOrderedSame) {
-        
-      } else if ([viewSpec caseInsensitiveCompare:@":first"] == NSOrderedSame) {
-        
+    if ([viewSpec characterAtIndex:0] == '.') {
+      if ([viewSpec caseInsensitiveCompare:@".next"] == NSOrderedSame) {
+        NSInteger ix = [self.superview.subviews indexOfObject:self];
+        if (++ix < self.superview.subviews.count) {
+          relative = [self.superview.subviews objectAtIndex:ix];
+        }
+      } else if ([viewSpec caseInsensitiveCompare:@".prev"] == NSOrderedSame) {
+        NSInteger ix = [self.superview.subviews indexOfObject:self];
+        if (ix > 0) {
+          relative = [self.superview.subviews objectAtIndex:ix-1];
+        }
+      } else if ([viewSpec caseInsensitiveCompare:@".first"] == NSOrderedSame) {
+        relative = [self.superview.subviews objectAtIndex:0];
+        if (relative == self) { relative = nil; }
+      } else if ([viewSpec caseInsensitiveCompare:@".last"] == NSOrderedSame) {
+        relative = [self.superview.subviews lastObject];
+        if (relative == self) { relative = nil; }        
       }
     } else {
       // For performance, I'm not going to try and fix up your bad selectors. Start with a # or it will fail.
@@ -328,6 +357,19 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(NSArray *)buildSubviews:(NSArray *)viewSpecs inDOM:(NIDOM *)dom
+{
+  NSMutableArray *subviews = [[NSMutableArray alloc] init];
+  [self _buildSubviews:viewSpecs inDOM:dom withViewArray:subviews];
+  
+  for (int ix = 0, ct = subviews.count; ix < ct; ix++) {
+    NIPrivateViewInfo *viewInfo = [subviews objectAtIndex:ix];
+    [dom registerView:viewInfo.view withCSSClass:viewInfo.cssClass andId:viewInfo.viewId];
+    [subviews replaceObjectAtIndex:ix withObject:viewInfo.view];
+  }
+  return subviews;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
@@ -435,4 +477,66 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
   }
   return unit.value;
 }
+
+
+@implementation UIView (NIStyleablePrivate)
+-(void)_buildSubviews:(NSArray *)viewSpecs inDOM:(NIDOM *)dom withViewArray:(NSMutableArray *)subviews
+{
+  NIPrivateViewInfo *active = nil;
+	for (id directive in viewSpecs) {
+		// This first element in a "segment" of the array must be a view or a class object that we will make into a view
+		// You can do things like UIView.alloc.init, UIView.class, [[UIView alloc] init]...
+		if ([directive isKindOfClass: [UIView class]]) {
+      active = [[NIPrivateViewInfo alloc] init];
+      active.view = (UIView*) directive;
+			[self addSubview:active.view];
+			[subviews addObject: active];
+			continue;
+		} else if (class_isMetaClass(object_getClass(directive))) {
+      active = [[NIPrivateViewInfo alloc] init];
+			active.view = [[directive alloc] init];
+			[self addSubview:active.view];
+			[subviews addObject: active];
+			continue;
+		} else if (!active) {
+			NSAssert(NO, @"UIView::build expected UIView or Class to start a directive.");
+			continue;
+		}
+    
+		if ([directive isKindOfClass:[NIUserInterfaceString class]]) {
+      [((NIUserInterfaceString*)directive) attach:active.view];
+		} else if ([directive isKindOfClass:[NSString class]]) {
+			// Strings are either a cssClass or an accessibility label
+			NSString *d = (NSString*) directive;
+			if ([d hasPrefix:@"."]) {
+				active.cssClass = [d substringFromIndex:1];
+			} else if ([d hasPrefix:@"#"]) {
+				active.viewId = d;
+			} else {
+        active.view.accessibilityLabel = d;
+      }
+		} else if ([directive isKindOfClass:[NSNumber class]]) {
+			// NSNumber means tag
+			active.view.tag = [directive integerValue];
+		} else if ([directive isKindOfClass:[NSArray class]]) {
+			// NSArray means recursive call to build
+      [active.view _buildSubviews:directive inDOM:dom withViewArray:subviews];
+		} else if ([directive isKindOfClass:[NSInvocation class]]) {
+			NSInvocation *n = (NSInvocation*) directive;
+			if ([active.view respondsToSelector:@selector(addTarget:action:forControlEvents:)]) {
+				[((id)active.view) addTarget: n.target action: n.selector forControlEvents: UIControlEventTouchUpInside];
+			} else {
+				NSString *error = [NSString stringWithFormat:@"Cannot apply NSInvocation to class %@", NSStringFromClass(active.class)];
+				NSAssert(NO, error);
+			}
+		} else {
+			NSAssert(NO, @"Unknown directive in build specifier");
+		}
+	}
+}
+@end
+
+@implementation NIPrivateViewInfo
+@end
+
 
