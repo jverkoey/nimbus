@@ -71,6 +71,10 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
   if ([ruleSet hasTitleInsets]) { self.titleEdgeInsets = ruleSet.titleInsets; }
   if ([ruleSet hasContentInsets]) { self.contentEdgeInsets = ruleSet.contentInsets; }
   if ([ruleSet hasImageInsets]) { self.imageEdgeInsets = ruleSet.imageInsets; }
+  if ([ruleSet hasButtonAdjust]) {
+    self.adjustsImageWhenDisabled = ((ruleSet.buttonAdjust & BUTTON_ADJUST_DISABLED) != 0);
+    self.adjustsImageWhenHighlighted = ((ruleSet.buttonAdjust & BUTTON_ADJUST_HIGHLIGHTED) != 0);
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,6 +89,7 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
   [self applyButtonStyleWithRuleSet:ruleSet inDOM:dom];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass:(NSString *)pseudo inDOM:(NIDOM *)dom
 {
   UIControlState state = UIControlStateNormal;
