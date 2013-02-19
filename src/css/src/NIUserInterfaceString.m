@@ -46,6 +46,9 @@ NIUserInterfaceStringResolver
 // The path of a file that was loaded from Chameleon that should be checked first
 // before the built in bundle
 @property (nonatomic,strong) NSDictionary *overrides;
+// For dev/debug purposes, if we read "/* SHOW KEYS */" at the front of the file, we'll
+// just return all keys in the UI
+@property (nonatomic,assign) BOOL returnKeys;
 @end
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -95,8 +98,12 @@ NIUserInterfaceStringResolver
   if ([view respondsToSelector:@selector(setText:)]) {
     // UILabel
     [self attach: view withSelector:@selector(setText:)];
+  } else if ([view respondsToSelector:@selector(setTitle:forState:)]) {
+    [self attach:view withSelector:@selector(setTitle:forState:) withControlState:UIControlStateNormal hasControlState:YES];
   } else if ([view respondsToSelector:@selector(setTitle:)]) {
     [self attach: view withSelector:@selector(setTitle:)];
+  } else {
+    NIDASSERT([view respondsToSelector:@selector(setText:)] || [view respondsToSelector:@selector(setTitle:)]);
   }
 }
 
@@ -150,22 +157,33 @@ NIUserInterfaceStringResolver
 ////////////////////////////////////////////////////////////////////////////////
 -(void)detach:(UIView *)view
 {
+  if ([view respondsToSelector:@selector(setText:)]) {
+    // UILabel
+    [self detach: view withSelector:@selector(setText:) withControlState:UIControlStateNormal hasControlState:NO];
+  } else if ([view respondsToSelector:@selector(setTitle:)]) {
+    [self detach: view withSelector:@selector(setTitle:) withControlState:UIControlStateNormal hasControlState:NO];
+  } else {
+    NIDASSERT([view respondsToSelector:@selector(setText:)] || [view respondsToSelector:@selector(setTitle:)]);
+  }
   
 }
 
 -(void)detach:(id)element withSelector:(SEL)selector
 {
-  
+  [self detach:element withSelector:selector withControlState:UIControlStateNormal hasControlState:NO];
 }
 
 -(void)detach:(UIView *)element withSelector:(SEL)selector forControlState:(UIControlState)state
 {
-  
+  [self detach:element withSelector:selector withControlState:state hasControlState:YES];
 }
 
 -(void)detach:(id)element withSelector:(SEL)selector withControlState: (UIControlState) state hasControlState: (BOOL) hasControlState
 {
-  
+  NSMutableDictionary *viewMap = self.viewMap;
+  @synchronized (viewMap) {
+    
+  }
 }
 
 @end
@@ -190,11 +208,18 @@ NIUserInterfaceStringResolver
 -(void)stringsDidChange: (NSNotification*) notification
 {
   NSString *path = [notification.userInfo objectForKey:NIStringsDidChangeFilePathKey];
+  NSString *content = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+
+  if ([content hasPrefix:@"/* SHOW KEYS */"]) {
+    self.returnKeys = YES;
+  } else {
+    self.returnKeys = NO;
+  }
   self.overrides = [[NSDictionary alloc] initWithContentsOfFile:path];
   if (sStringToViewMap && self.overrides.count > 0) {
     @synchronized (sStringToViewMap) {
       [sStringToViewMap enumerateKeysAndObjectsUsingBlock:^(NSString* key, id obj, BOOL *stop) {
-        NSString *o = [self.overrides objectForKey:key];
+        NSString *o = self.returnKeys ? key : [self.overrides objectForKey:key];
         if (o) {
           if ([obj isKindOfClass:[NIUserInterfaceStringAttachment class]]) {
             [((NIUserInterfaceStringAttachment*)obj) attach: o];
@@ -212,6 +237,9 @@ NIUserInterfaceStringResolver
 
 -(NSString *)stringForKey:(NSString *)key withDefaultValue:(NSString *)value
 {
+  if (self.returnKeys) {
+    return key; // TODO should we maybe return 
+  }
   if (self.overrides) {
     NSString *overridden = [self.overrides objectForKey:key];
     if (overridden) {
