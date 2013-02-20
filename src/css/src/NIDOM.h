@@ -88,6 +88,7 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 
 -(UIView*)viewById: (NSString*) viewId;
 
+@property (nonatomic,unsafe_unretained) id target;
 @end
 
 /** @name Creating NIDOMs */
@@ -176,4 +177,18 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  * immediately.
  *
  *      @fn NIDOM::addCssClass:toView:
+ */
+
+/** @name Dynamic View Construction */
+
+/**
+ * Using the [UIView buildSubviews:inDOM:] extension allows you to build view
+ * hierarchies from JSON (or anything able to convert to NSDictionary/NSArray
+ * of simple types) documents, mostly for prototyping. Those documents can
+ * specify selectors, and those selectors need a target. This target property
+ * will be the target for all selectors in a given DOM. Truth is it only matters
+ * during buildSubviews, so in theory you could set and reset it across multiple
+ * build calls if you wanted to.
+ *
+ *      @fn NIDOM::target
  */

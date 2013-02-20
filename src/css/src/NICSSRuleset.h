@@ -36,9 +36,9 @@ typedef struct {
 } NICSSUnit;
 
 typedef enum {
-  BUTTON_ADJUST_NONE = 0,
-  BUTTON_ADJUST_HIGHLIGHTED = 1,
-  BUTTON_ADJUST_DISABLED = 2
+  NICSSButtonAdjustNone = 0,
+  NICSSButtonAdjustHighlighted = 1,
+  NICSSButtonAdjustDisabled = 2
 } NICSSButtonAdjust;
 
 /**

@@ -1160,12 +1160,12 @@ RULE_ELEMENT(buttonAdjust, ButtonAdjust, @"-ios-button-adjust", NICSSButtonAdjus
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 +(NICSSButtonAdjust)buttonAdjustFromCssValue: (NSArray*) cssValues
 {
-  NICSSButtonAdjust a = BUTTON_ADJUST_NONE;
+  NICSSButtonAdjust a = NICSSButtonAdjustNone;
   for (NSString* token in cssValues) {
     if ([token caseInsensitiveCompare:@"highlighted"] == NSOrderedSame) {
-      a |= BUTTON_ADJUST_HIGHLIGHTED;
+      a |= NICSSButtonAdjustHighlighted;
     } else if ([token caseInsensitiveCompare:@"disabled"] == NSOrderedSame) {
-      a |= BUTTON_ADJUST_DISABLED;
+      a |= NICSSButtonAdjustDisabled;
     }
   }
   return a;

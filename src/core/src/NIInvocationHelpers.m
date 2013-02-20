@@ -5,14 +5,10 @@
 //  Copyright (c) 2013 Jeff Verkoeyen. All rights reserved.
 //
 
-#import "NSInvocation+NimbusCore.h"
+#import "NIInvocationHelpers.h"
 #import <objc/runtime.h>
 
-NI_FIX_CATEGORY_BUG(NSInvocation_NimbusCore)
-
-@implementation NSInvocation (NimbusCore)
-
-+ (id)invocationWithTarget:(NSObject*)targetObject selector:(SEL)selector {
+NSInvocation *NIInvocationWithInstanceTarget(NSObject *targetObject, SEL selector) {
   NSMethodSignature* sig = [targetObject methodSignatureForSelector:selector];
   NSInvocation* inv = [NSInvocation invocationWithMethodSignature:sig];
   [inv setTarget:targetObject];
@@ -20,7 +16,7 @@ NI_FIX_CATEGORY_BUG(NSInvocation_NimbusCore)
   return inv;
 }
 
-+ (id)invocationWithClass:(Class)targetClass selector:(SEL)selector {
+NSInvocation* NIInvocationWithClassTarget(Class targetClass, SEL selector) {
   Method method = class_getInstanceMethod(targetClass, selector);
   struct objc_method_description* desc = method_getDescription(method);
   if (desc == NULL || desc->name == NULL)
@@ -31,5 +27,3 @@ NI_FIX_CATEGORY_BUG(NSInvocation_NimbusCore)
   [inv setSelector:selector];
   return inv;
 }
-
-@end

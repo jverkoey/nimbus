@@ -19,6 +19,7 @@
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
 #import "NIUserInterfaceString.h"
+#import "NIInvocationHelpers.h"
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
@@ -26,11 +27,20 @@
 #error "Nimbus requires ARC support."
 #endif
 
+NSString* const NICSSViewKey = @"view";
+NSString* const NICSSViewIdKey = @"id";
+NSString* const NICSSViewCssClassKey = @"cssClass";
+NSString* const NICSSViewTextKey = @"text";
+NSString* const NICSSViewTagKey = @"tag";
+NSString* const NICSSViewTargetSelectorKey = @"selector";
+NSString* const NICSSViewSubviewsKey = @"subviews";
+NSString* const NICSSViewAccessibilityLabelKey = @"label";
+
 /**
  * Private class for storing info during view creation
  */
 @interface NIPrivateViewInfo : NSObject
-@property (nonatomic,strong) NSString *cssClass;
+@property (nonatomic,strong) NSMutableArray *cssClasses;
 @property (nonatomic,strong) NSString *viewId;
 @property (nonatomic,strong) UIView *view;
 @end
@@ -257,7 +267,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
         if (relative == self) { relative = nil; }
       } else if ([viewSpec caseInsensitiveCompare:@".last"] == NSOrderedSame) {
         relative = [self.superview.subviews lastObject];
-        if (relative == self) { relative = nil; }        
+        if (relative == self) { relative = nil; }
       }
     } else {
       // For performance, I'm not going to try and fix up your bad selectors. Start with a # or it will fail.
@@ -265,7 +275,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     }
     if (relative) {
       CGPoint anchor;
-
+      
       if (ruleSet.hasMarginTop) {
         NICSSUnit top = ruleSet.marginTop;
         switch (top.type) {
@@ -307,7 +317,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             }
             self.frameMaxY = anchor.y - NICSSUnitToPixels(bottom, relative.frameHeight);
             break;
-        }        
+        }
       }
       
       if (ruleSet.hasMarginLeft) {
@@ -330,7 +340,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             }
             self.frameMinX = anchor.x + NICSSUnitToPixels(left, relative.frameWidth);
             break;
-        }        
+        }
       } else if (ruleSet.hasMarginRight) {
         NICSSUnit right = ruleSet.marginRight;
         switch (right.type) {
@@ -351,7 +361,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             }
             self.frameMaxX = anchor.x - NICSSUnitToPixels(right, relative.frameWidth);
             break;
-        }        
+        }
       }
     }
   }
@@ -365,7 +375,11 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   
   for (int ix = 0, ct = subviews.count; ix < ct; ix++) {
     NIPrivateViewInfo *viewInfo = [subviews objectAtIndex:ix];
-    [dom registerView:viewInfo.view withCSSClass:viewInfo.cssClass andId:viewInfo.viewId];
+    if (viewInfo.cssClasses) {
+      for (NSString *cssclass in viewInfo.cssClasses) {
+        [dom registerView:viewInfo.view withCSSClass:cssclass andId:viewInfo.viewId];
+      }
+    }
     [subviews replaceObjectAtIndex:ix withObject:viewInfo.view];
   }
   return subviews;
@@ -484,55 +498,148 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
 {
   NIPrivateViewInfo *active = nil;
 	for (id directive in viewSpecs) {
-		// This first element in a "segment" of the array must be a view or a class object that we will make into a view
-		// You can do things like UIView.alloc.init, UIView.class, [[UIView alloc] init]...
-		if ([directive isKindOfClass: [UIView class]]) {
+    
+    if ([directive isKindOfClass:[NSDictionary class]]) {
+      // Process the key value pairs rather than trying to determine intent
+      // from the type
+      NSDictionary *kv = (NSDictionary*) directive;
+      if (!active) {
+        NSAssert([kv objectForKey:NICSSViewKey], @"The first NSDictionary passed to build subviews must contain the NICSSViewKey");
+      }
+      id directiveValue = [kv objectForKey:NICSSViewKey];
+      if (directiveValue) {
+        // I have a dream that you can instantiate this whole thing from JSON.
+        // So the dictionary version endeavors to make NSString/NSNumber work for every directive
+        if ([directiveValue isKindOfClass:[NSString class]]) {
+          directiveValue = [[NSClassFromString(directiveValue) alloc] init];
+        }
+        if ([directiveValue isKindOfClass:[UIView class]]) {
+          active = [[NIPrivateViewInfo alloc] init];
+          active.view = (UIView*) directiveValue;
+          [self addSubview:active.view];
+          [subviews addObject: active];
+        } else if (class_isMetaClass(object_getClass(directiveValue))) {
+          active = [[NIPrivateViewInfo alloc] init];
+          active.view = [[directive alloc] init];
+          NSAssert([active.view isKindOfClass:[UIView class]], @"View must inherit from UIView. %@ does not.", NSStringFromClass([active class]));
+          [self addSubview:active.view];
+          [subviews addObject: active];
+        } else {
+          NSAssert(NO, @"NICSSViewKey directive does not identify a UIView or UIView class.");
+        }
+      }
+      directiveValue = [kv objectForKey:NICSSViewIdKey];
+      if (directiveValue) {
+        NSAssert([directiveValue isKindOfClass:[NSString class]], @"The value of NICSSViewIdKey must be an NSString*");
+        active.viewId = directiveValue;
+      }
+      directiveValue = [kv objectForKey:NICSSViewCssClassKey];
+      if (directiveValue) {
+        NSAssert([directiveValue isKindOfClass:[NSString class]] || [directiveValue isKindOfClass:[NSArray class]], @"The value of NICSSViewCssClassKey must be an NSString* or NSArray*");
+        active.cssClasses = active.cssClasses ?: [[NSMutableArray alloc] init];
+        if ([directiveValue isKindOfClass:[NSString class]]) {
+          [active.cssClasses addObject:directiveValue];
+        } else {
+          [active.cssClasses addObjectsFromArray:directiveValue];
+        }
+      }
+      directiveValue = [kv objectForKey:NICSSViewTextKey];
+      if (directiveValue) {
+        NSAssert([directiveValue isKindOfClass:[NSString class]] || [directiveValue isKindOfClass:[NIUserInterfaceString class]], @"The value of NICSSViewCssClassKey must be an NSString* or NIUserInterfaceString*");
+        if ([directiveValue isKindOfClass:[NIUserInterfaceString class]]) {
+          [((NIUserInterfaceString*)directive) attach:active.view];
+        }
+      }
+      directiveValue = [kv objectForKey:NICSSViewTagKey];
+      if (directiveValue) {
+        NSAssert([directiveValue isKindOfClass:[NSNumber class]], @"The value of NICSSViewTagKey must be an NSNumber*");
+        active.view.tag = [directiveValue integerValue];
+      }
+      directiveValue = [kv objectForKey:NICSSViewTargetSelectorKey];
+      if (directiveValue) {
+        NSAssert([directiveValue isKindOfClass:[NSInvocation class]] || [directiveValue isKindOfClass:[NSString class]], @"NICSSViewTargetSelectorKey must be an NSInvocation*, or an NSString* if you're adventurous and NI_DYNAMIC_VIEWS is defined.");
+
+#ifdef NI_DYNAMIC_VIEWS
+        // NSSelectorFromString has Apple rejection written all over it, even though it's documented. Since its intended
+        // use is primarily rapid development right now, use the #ifdef to turn it on.
+        if ([directiveValue isKindOfClass:[NSString class]]) {
+          // Let's make an invocation out of this puppy.
+          SEL selector = NSSelectorFromString(directiveValue);
+          directiveValue = NIInvocationWithInstanceTarget(dom.target, selector);
+        }
+#endif
+
+        NSInvocation *n = (NSInvocation*) directiveValue;
+        if ([active.view respondsToSelector:@selector(addTarget:action:forControlEvents:)]) {
+          [((id)active.view) addTarget: n.target action: n.selector forControlEvents: UIControlEventTouchUpInside];
+        } else {
+          NSString *error = [NSString stringWithFormat:@"Cannot apply NSInvocation to class %@", NSStringFromClass(active.class)];
+          NSAssert(NO, error);
+        }
+      }
+      directiveValue = [kv objectForKey:NICSSViewSubviewsKey];
+      if (directiveValue) {
+        NSAssert([directiveValue isKindOfClass: [NSArray class]], @"NICSSViewSubviewsKey must be an NSArray*");
+        [active.view _buildSubviews:directiveValue inDOM:dom withViewArray:subviews];
+      } else if (directiveValue)
+      directiveValue = [kv objectForKey:NICSSViewAccessibilityLabelKey];
+      if (directiveValue) {
+        NSAssert([directiveValue isKindOfClass:[NSString class]], @"NICSSViewAccessibilityLabelKey must be an NSString*");
+        active.view.accessibilityLabel = directiveValue;
+      }
+      continue;
+    }
+    
+    // This first element in a "segment" of the array must be a view or a class object that we will make into a view
+    // You can do things like UIView.alloc.init, UIView.class, [[UIView alloc] init]...
+    if ([directive isKindOfClass: [UIView class]]) {
       active = [[NIPrivateViewInfo alloc] init];
       active.view = (UIView*) directive;
-			[self addSubview:active.view];
-			[subviews addObject: active];
-			continue;
-		} else if (class_isMetaClass(object_getClass(directive))) {
+      [self addSubview:active.view];
+      [subviews addObject: active];
+      continue;
+    } else if (class_isMetaClass(object_getClass(directive))) {
       active = [[NIPrivateViewInfo alloc] init];
-			active.view = [[directive alloc] init];
-			[self addSubview:active.view];
-			[subviews addObject: active];
-			continue;
-		} else if (!active) {
-			NSAssert(NO, @"UIView::build expected UIView or Class to start a directive.");
-			continue;
-		}
+      active.view = [[directive alloc] init];
+      [self addSubview:active.view];
+      [subviews addObject: active];
+      continue;
+    } else if (!active) {
+      NSAssert(NO, @"UIView::buildSubviews expected UIView or Class to start a directive.");
+      continue;
+    }
     
-		if ([directive isKindOfClass:[NIUserInterfaceString class]]) {
+    if ([directive isKindOfClass:[NIUserInterfaceString class]]) {
       [((NIUserInterfaceString*)directive) attach:active.view];
-		} else if ([directive isKindOfClass:[NSString class]]) {
-			// Strings are either a cssClass or an accessibility label
-			NSString *d = (NSString*) directive;
-			if ([d hasPrefix:@"."]) {
-				active.cssClass = [d substringFromIndex:1];
-			} else if ([d hasPrefix:@"#"]) {
-				active.viewId = d;
-			} else {
+    } else if ([directive isKindOfClass:[NSString class]]) {
+      // Strings are either a cssClass or an accessibility label
+      NSString *d = (NSString*) directive;
+      if ([d hasPrefix:@"."]) {
+        active.cssClasses = active.cssClasses ?: [[NSMutableArray alloc] init];
+        [active.cssClasses addObject: [d substringFromIndex:1]];
+      } else if ([d hasPrefix:@"#"]) {
+        active.viewId = d;
+      } else {
         active.view.accessibilityLabel = d;
       }
-		} else if ([directive isKindOfClass:[NSNumber class]]) {
-			// NSNumber means tag
-			active.view.tag = [directive integerValue];
-		} else if ([directive isKindOfClass:[NSArray class]]) {
-			// NSArray means recursive call to build
+    } else if ([directive isKindOfClass:[NSNumber class]]) {
+      // NSNumber means tag
+      active.view.tag = [directive integerValue];
+    } else if ([directive isKindOfClass:[NSArray class]]) {
+      // NSArray means recursive call to build
       [active.view _buildSubviews:directive inDOM:dom withViewArray:subviews];
-		} else if ([directive isKindOfClass:[NSInvocation class]]) {
-			NSInvocation *n = (NSInvocation*) directive;
-			if ([active.view respondsToSelector:@selector(addTarget:action:forControlEvents:)]) {
-				[((id)active.view) addTarget: n.target action: n.selector forControlEvents: UIControlEventTouchUpInside];
-			} else {
-				NSString *error = [NSString stringWithFormat:@"Cannot apply NSInvocation to class %@", NSStringFromClass(active.class)];
-				NSAssert(NO, error);
-			}
-		} else {
-			NSAssert(NO, @"Unknown directive in build specifier");
-		}
-	}
+    } else if ([directive isKindOfClass:[NSInvocation class]]) {
+      NSInvocation *n = (NSInvocation*) directive;
+      if ([active.view respondsToSelector:@selector(addTarget:action:forControlEvents:)]) {
+        [((id)active.view) addTarget: n.target action: n.selector forControlEvents: UIControlEventTouchUpInside];
+      } else {
+        NSString *error = [NSString stringWithFormat:@"Cannot apply NSInvocation to class %@", NSStringFromClass(active.class)];
+        NSAssert(NO, error);
+      }
+    } else {
+      NSAssert(NO, @"Unknown directive in build specifier");
+    }
+  }
 }
 @end
 
