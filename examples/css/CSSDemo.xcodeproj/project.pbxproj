@@ -66,7 +66,7 @@
 		C743F6E716D1F4EB00A933B7 /* btn_blue_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C743F6E316D1F4EB00A933B7 /* btn_blue_inactive@2x.png */; };
 		C743F6F416D29F2500A933B7 /* NIUserInterfaceString.m in Sources */ = {isa = PBXBuildFile; fileRef = C743F6F316D29F2500A933B7 /* NIUserInterfaceString.m */; };
 		C7B9283F16D2B45A001BF61C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7B9283D16D2B45A001BF61C /* Localizable.strings */; };
-		C7B9284B16D2F736001BF61C /* NIInvocationHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B9284A16D2F736001BF61C /* NIInvocationHelpers.m */; };
+		C7B9284B16D2F736001BF61C /* NIInvocationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B9284A16D2F736001BF61C /* NIInvocationMethods.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -181,8 +181,8 @@
 		C743F6F316D29F2500A933B7 /* NIUserInterfaceString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIUserInterfaceString.m; path = ../../src/css/src/NIUserInterfaceString.m; sourceTree = "<group>"; };
 		C743F6F516D2AAC200A933B7 /* NIUserInterfaceString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIUserInterfaceString.h; path = ../../src/css/src/NIUserInterfaceString.h; sourceTree = "<group>"; };
 		C7B9283E16D2B45A001BF61C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C7B9284916D2F736001BF61C /* NIInvocationHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIInvocationHelpers.h; path = ../../src/core/src/NIInvocationHelpers.h; sourceTree = "<group>"; };
-		C7B9284A16D2F736001BF61C /* NIInvocationHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIInvocationHelpers.m; path = ../../src/core/src/NIInvocationHelpers.m; sourceTree = "<group>"; };
+		C7B9284916D2F736001BF61C /* NIInvocationMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIInvocationMethods.h; path = ../../src/core/src/NIInvocationMethods.h; sourceTree = "<group>"; };
+		C7B9284A16D2F736001BF61C /* NIInvocationMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIInvocationMethods.m; path = ../../src/core/src/NIInvocationMethods.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,8 +291,8 @@
 		66832D41144214DA003E413C /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				C7B9284916D2F736001BF61C /* NIInvocationHelpers.h */,
-				C7B9284A16D2F736001BF61C /* NIInvocationHelpers.m */,
+				C7B9284916D2F736001BF61C /* NIInvocationMethods.h */,
+				C7B9284A16D2F736001BF61C /* NIInvocationMethods.m */,
 				66832DAE14434FB2003E413C /* NICommonMetrics.h */,
 				66832DAF14434FB2003E413C /* NICommonMetrics.m */,
 				66832DB014434FB2003E413C /* NIDataStructures.h */,
@@ -524,7 +524,7 @@
 				66D2FE2915941EEB00B2BEFD /* AFXMLRequestOperation.m in Sources */,
 				66D2FE2A15941EEB00B2BEFD /* UIImageView+AFNetworking.m in Sources */,
 				C743F6F416D29F2500A933B7 /* NIUserInterfaceString.m in Sources */,
-				C7B9284B16D2F736001BF61C /* NIInvocationHelpers.m in Sources */,
+				C7B9284B16D2F736001BF61C /* NIInvocationMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

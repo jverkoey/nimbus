@@ -5,7 +5,7 @@
 //  Copyright (c) 2013 Jeff Verkoeyen. All rights reserved.
 //
 
-#import "NIInvocationHelpers.h"
+#import "NIInvocationMethods.h"
 #import <objc/runtime.h>
 
 NSInvocation *NIInvocationWithInstanceTarget(NSObject *targetObject, SEL selector) {

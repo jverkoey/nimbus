@@ -19,7 +19,7 @@
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
 #import "NIUserInterfaceString.h"
-#import "NIInvocationHelpers.h"
+#import "NIInvocationMethods.h"
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 

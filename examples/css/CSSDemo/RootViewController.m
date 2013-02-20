@@ -17,7 +17,7 @@
 #import "RootViewController.h"
 #import "UIView+NIStyleable.h"
 #import "NIUserInterfaceString.h"
-#import "NIInvocationHelpers.h"
+#import "NIInvocationMethods.h"
 
 #import "AppDelegate.h"
 
