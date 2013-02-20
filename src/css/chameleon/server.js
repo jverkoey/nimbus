@@ -34,7 +34,6 @@ function start(watchPath) {
      * Load a file from disk and pipe it down.
      */
     function onServeFile(request, response, pathname) {
-        console.log(pathname);
         var localFile = path.join(watchPath, pathname);
 
         if (!path.existsSync(localFile)) {
