@@ -35,6 +35,12 @@ typedef struct {
 	CGFloat value;
 } NICSSUnit;
 
+typedef enum {
+  NICSSButtonAdjustNone = 0,
+  NICSSButtonAdjustHighlighted = 1,
+  NICSSButtonAdjustDisabled = 2
+} NICSSButtonAdjust;
+
 /**
  * A simple translator from raw CSS rulesets to Objective-C values.
  *
@@ -75,9 +81,16 @@ typedef struct {
   UITextAlignment _frameHorizontalAlign;
   UIViewContentMode _frameVerticalAlign;
   BOOL _visible;
+  NICSSButtonAdjust _buttonAdjust;
   UIEdgeInsets _titleInsets;
   UIEdgeInsets _contentInsets;
   UIEdgeInsets _imageInsets;
+  NSString *_textKey;
+  NSString* _relativeToId;
+  NICSSUnit _marginTop;
+  NICSSUnit _marginLeft;
+  NICSSUnit _marginRight;
+  NICSSUnit _marginBottom;
   
   NICSSUnit _width;
   NICSSUnit _height;
@@ -85,6 +98,10 @@ typedef struct {
   NICSSUnit _bottom;
   NICSSUnit _left;
   NICSSUnit _right;
+  NICSSUnit _minHeight;
+  NICSSUnit _minWidth;
+  NICSSUnit _maxHeight;
+  NICSSUnit _maxWidth;
   
   union {
     struct {
@@ -124,6 +141,17 @@ typedef struct {
       int TitleInsets: 1;
       int ContentInsets: 1;
       int ImageInsets: 1;
+      int RelativeToId: 1;
+      int MarginTop: 1;
+      int MarginLeft: 1;
+      int MarginRight: 1;
+      int MarginBottom: 1;
+      int MinWidth: 1;
+      int MinHeight: 1;
+      int MaxWidth: 1;
+      int MaxHeight: 1;
+      int TextKey: 1;
+      int ButtonAdjust: 1;
     } cached;
     int64_t _data;
   } _is;
@@ -206,6 +234,18 @@ typedef struct {
 - (BOOL)hasRight;
 - (NICSSUnit)right; // right
 
+- (BOOL)hasMinWidth;
+- (NICSSUnit)minWidth; // min-width
+
+- (BOOL)hasMinHeight;
+- (NICSSUnit)minHeight; // min-height
+
+- (BOOL)hasMaxWidth;
+- (NICSSUnit)maxWidth; // max-width
+
+- (BOOL)hasMaxHeight;
+- (NICSSUnit)maxHeight; // max-height
+
 - (BOOL)hasFrameHorizontalAlign;
 - (UITextAlignment)frameHorizontalAlign; // -mobile-halign
 
@@ -230,6 +270,9 @@ typedef struct {
 - (BOOL)hasVisible;
 - (BOOL)visible; // visibility
 
+- (BOOL)hasButtonAdjust;
+- (NICSSButtonAdjust)buttonAdjust; // -ios-button-adjust
+
 - (BOOL)hasTitleInsets;
 - (UIEdgeInsets)titleInsets; // -mobile-title-insets
 
@@ -238,6 +281,24 @@ typedef struct {
 
 - (BOOL)hasImageInsets;
 - (UIEdgeInsets)imageInsets; // -mobile-image-insets
+
+- (BOOL)hasRelativeToId;
+- (NSString*)relativeToId; // -mobile-relative
+
+- (BOOL)hasMarginTop;
+- (NICSSUnit)marginTop; // margin-top
+
+- (BOOL)hasMarginBottom;
+- (NICSSUnit)marginBottom; // margin-bottom
+
+- (BOOL)hasMarginLeft;
+- (NICSSUnit)marginLeft; // margin-left
+
+- (BOOL)hasMarginRight;
+- (NICSSUnit)marginRight; // margin-bottom
+
+- (BOOL)hasTextKey;
+- (NSString*)textKey; // -mobile-text-key
 
 @end
 
@@ -457,3 +518,59 @@ typedef struct {
  *      @fn NICSSRuleset::width
  */
 
+/**
+ * When relativeToId is set, a view will be positioned using margin-* directives relative to the view
+ * identified by relativeToId. You can use id notation, e.g. #MyButton, or a few selectors:
+ * .next, .prev, .first and .last which find the obviously named siblings. Note that the mechanics or
+ * margin are not the same as CSS, which is of course a flow layout. So you cannot, for example,
+ * combine margin-top and margin-bottom as only margin-top will be executed.
+ *
+ * Relative positioning also requires that you're careful about the order in which you register views
+ * in the engine (for now), since we will evaluate the rules immediately. TODO add some simple dependency
+ * management to make sure we've run the right views first.
+ *
+ *      @fn NICSSRuleset::relativeToId
+ */
+
+/**
+ * In combination with relativeToId, the margin fields control how a view is positioned relative to another.
+ * margin-top: 0 means the top of this view will be aligned to the bottom of the view identified by relativeToId.
+ * A positive number will move this further down, and a negative number further up. A *percentage* will operate
+ * off the height of relativeToId and modify the position relative to margin-top:0. So -100% means "align top".
+ * A value of auto means we will align the center y of relativeToId with the center y of this view.
+ *
+ *      @fn NICSSRuleset::margin-top
+ */
+
+/**
+ * In combination with relativeToId, the margin fields control how a view is positioned relative to another.
+ * margin-bottom: 0 means the bottom of this view will be aligned to the bottom of the view identified by relativeToId.
+ * A positive number will move this further down, and a negative number further up. A *percentage* will operate
+ * off the height of relativeToId and modify the position relative to margin-bottom:0. So -100% means line up the bottom
+ * of this view with the top of relativeToId.
+ * A value of auto means we will align the center y of relativeToId with the center y of this view.
+ *
+ *      @fn NICSSRuleset::margin-bottom
+ */
+
+/**
+ * In combination with relativeToId, the margin fields control how a view is positioned relative to another.
+ * margin-left: 0 means the left of this view will be aligned to the right of the view identified by relativeToId.
+ * A positive number will move this further right, and a negative number further left. A *percentage* will operate
+ * off the width of relativeToId and modify the position relative to margin-left:0. So -100% means line up the left
+ * of this view with the left of relativeToId.
+ * A value of auto means we will align the center x of relativeToId with the center x of this view.
+ *
+ *      @fn NICSSRuleset::margin-left
+ */
+
+/**
+ * In combination with relativeToId, the margin fields control how a view is positioned relative to another.
+ * margin-right: 0 means the right of this view will be aligned to the right of the view identified by relativeToId.
+ * A positive number will move this further right, and a negative number further left. A *percentage* will operate
+ * off the width of relativeToId and modify the position relative to margin-left:0. So -100% means line up the right
+ * of this view with the left of relativeToId.
+ * A value of auto means we will align the center x of relativeToId with the center x of this view.
+ *
+ *      @fn NICSSRuleset::margin-right
+ */

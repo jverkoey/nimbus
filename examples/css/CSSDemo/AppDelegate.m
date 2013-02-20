@@ -40,7 +40,7 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
-  NSString* pathPrefix = NIPathForBundleResource(nil, @"css");
+  NSString* pathPrefix = NIPathForBundleResource(nil, @"");
   NSString* host = @"http://localhost:8888/";
   
   _stylesheetCache = [[NIStylesheetCache alloc] initWithPathPrefix:pathPrefix];

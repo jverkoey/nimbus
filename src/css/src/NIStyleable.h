@@ -17,6 +17,7 @@
 #import <Foundation/Foundation.h>
 
 @class NICSSRuleset;
+@class NIDOM;
 
 /**
  * The protocol used by the NIStylesheet to apply NICSSRuleSets to views.
@@ -31,10 +32,16 @@
 @required
 
 /**
+ * Please implement applyStyleWithRuleSet:inDOM: instead to support relative positioning. The deprecated
+ * warning will only catch calls to super rather than implementors, but not sure what else to do.
+ */
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet DEPRECATED_ATTRIBUTE;
+
+/**
  * The given ruleset should be applied to the view. The ruleset represents a composite of all
  * rulesets in the applicable stylesheet.
  */
-- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet;
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
 
 @optional
 /**
@@ -51,6 +58,6 @@
  * Applies the given rule set to this view but for a pseudo class. Thus it only supports the subset of
  * properties that can be set on states of the view. (e.g. UIButton textColor or background)
  */
-- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass: (NSString*) pseudo;
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass: (NSString*) pseudo inDOM: (NIDOM*) dom;
 
 @end

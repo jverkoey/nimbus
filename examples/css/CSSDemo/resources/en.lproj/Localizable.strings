@@ -1,0 +1,6 @@
+/* Remove this comment while chameleon is running and you will see string keys instead of values */
+/* SHOW KEYS */
+/*
+ Localizable.strings
+ */
+"RootViewTitle" = "Chameleon changes skins in real time.\n\nStop compiling.\nStart building.";
