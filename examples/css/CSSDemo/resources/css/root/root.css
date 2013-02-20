@@ -1,8 +1,3 @@
-
-UINavigationBar {
-  -ios-tint-color: orange;
-}
-
 .background {
   background-color: blue;
 }
@@ -14,30 +9,15 @@ UINavigationBar {
   width: -300px;
   height: -400px;
   top: 10px;
-  -ios-halign: center;
-}
-
-UIActivityIndicatorView {
-  -ios-activity-indicator-style: white-large;
-  -ios-autoresizing: left right bottom;
-}
-
-UILabel {
-  -ios-autoresizing: left right height width;
-  background-color: clear;
-  -ios-number-of-lines: 0;
-  color: white;
-  text-shadow: rgba(0, 0, 0, 0.5) 0 -1;
-  text-align: center;
-  font-size: 17;
+  -mobile-halign: center;
 }
 
 .rightMiddleLabel
 {
   width: auto;
   height: auto;
-  -ios-valign: middle;
-  -ios-halign: right;
+  -mobile-valign: middle;
+  -mobile-halign: right;
 }
 
 .bottomLabel
@@ -45,4 +25,33 @@ UILabel {
   width: auto;
   height: auto;
   bottom: 0px;
+}
+
+#TestButton {
+  left: 0px;
+  -mobile-valign: middle;
+  width: 200px;
+  height: 100px;
+  border-radius: 20px;
+}
+
+UIButton
+{
+  color: brown;
+  background-color: white;
+}
+
+UIButton:disabled
+{
+  color: black;
+}
+
+UIButton:selected
+{
+  color: blue;
+}
+
+UIButton:highlighted
+{
+  color: green;
 }

@@ -31,11 +31,19 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation UIButton (NIStyleable)
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  if ([ruleSet hasTextColor]) { [self setTitleColor:ruleSet.textColor forState:UIControlStateNormal]; } else { [self setTitleColor:nil forState:UIControlStateNormal]; }
-  if ([ruleSet hasTextShadowColor]) { [self setTitleShadowColor:ruleSet.textShadowColor forState:UIControlStateNormal]; } else { [self setTitleShadowColor:nil forState:UIControlStateNormal]; }
+  if ([ruleSet hasTextColor]) {
+    // If you want to reset this color, set none as the color
+    [self setTitleColor:ruleSet.textColor forState:UIControlStateNormal];
+  }
+  if ([ruleSet hasTextShadowColor]) {
+    // If you want to reset this color, set none as the color
+    [self setTitleShadowColor:ruleSet.textShadowColor forState:UIControlStateNormal];
+  }
+  if ([ruleSet hasTitleInsets]) { self.titleEdgeInsets = ruleSet.titleInsets; }
+  if ([ruleSet hasContentInsets]) { self.contentEdgeInsets = ruleSet.contentInsets; }
+  if ([ruleSet hasImageInsets]) { self.imageEdgeInsets = ruleSet.imageInsets; }
 }
 
 
@@ -45,4 +53,41 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
   [self applyButtonStyleWithRuleSet:ruleSet];
 }
 
+-(void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass:(NSString *)pseudo
+{
+  UIControlState state = UIControlStateNormal;
+  if ([pseudo caseInsensitiveCompare:@"selected"] == NSOrderedSame) {
+    state = UIControlStateSelected;
+  } else if ([pseudo caseInsensitiveCompare:@"highlighted"] == NSOrderedSame) {
+    state = UIControlStateHighlighted;
+  } else if ([pseudo caseInsensitiveCompare:@"disabled"] == NSOrderedSame) {
+    state = UIControlStateDisabled;
+  }
+  if (ruleSet.hasTextColor) {
+    [self setTitleColor:ruleSet.textColor forState:state];
+  }
+  if (ruleSet.hasTextShadowColor) {
+    [self setTitleShadowColor:ruleSet.textShadowColor forState:state];
+  }
+  if (ruleSet.hasImage) {
+    [self setImage:[UIImage imageNamed:ruleSet.image] forState:state];
+  }
+  if (ruleSet.hasBackgroundImage) {
+    UIImage *backImage = [UIImage imageNamed:ruleSet.backgroundImage];
+    if (ruleSet.hasBackgroundStretchInsets) {
+      backImage = [backImage resizableImageWithCapInsets:ruleSet.backgroundStretchInsets];
+    }
+    [self setBackgroundImage:backImage forState:state];
+  }
+}
+
+-(NSArray *)pseudoClasses
+{
+  static dispatch_once_t onceToken;
+  static NSArray *buttonPseudos;
+  dispatch_once(&onceToken, ^{
+    buttonPseudos = @[@":selected", @":highlighted", @":disabled"];
+  });
+  return buttonPseudos;
+}
 @end

@@ -65,6 +65,15 @@ extern NSString* const NIStylesheetDidChangeNotification;
 
 - (NICSSRuleset *)rulesetForClassName:(NSString *)className;
 
+/**
+ * The class to create for rule sets. Default is NICSSRuleset
+ */
++(Class)rulesetClass;
+/**
+ * Set the class created to hold rule sets. Default is NICSSRuleset
+ */
++(void)setRulesetClass: (Class) rulesetClass;
+
 @end
 
 
