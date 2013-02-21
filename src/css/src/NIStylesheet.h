@@ -19,6 +19,7 @@
 
 @protocol NICSSParserDelegate;
 @class NICSSRuleset;
+@class NIDOM;
 
 /**
  * The notification key for when a stylesheet has changed.
