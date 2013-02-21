@@ -15,6 +15,7 @@
 //
 
 #import "NIUserInterfaceString.h"
+#import "NIDebuggingTools.h"
 #import <objc/runtime.h>
 
 static NSMutableDictionary*               sStringToViewMap;
