@@ -17,6 +17,7 @@
 #import <UIKit/UIKit.h>
 
 @class NICSSRuleset;
+@class NIDOM;
 
 @interface UIButton (NIStyleable)
 

@@ -16,6 +16,7 @@
 
 #import "UIView+NIStyleable.h"
 
+#import "NIDOM.h"
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
 #import "NIUserInterfaceString.h"
@@ -508,11 +509,13 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
       }
       id directiveValue = [kv objectForKey:NICSSViewKey];
       if (directiveValue) {
+#ifdef NI_DYNAMIC_VIEWS
         // I have a dream that you can instantiate this whole thing from JSON.
         // So the dictionary version endeavors to make NSString/NSNumber work for every directive
         if ([directiveValue isKindOfClass:[NSString class]]) {
           directiveValue = [[NSClassFromString(directiveValue) alloc] init];
         }
+#endif
         if ([directiveValue isKindOfClass:[UIView class]]) {
           active = [[NIPrivateViewInfo alloc] init];
           active.view = (UIView*) directiveValue;
