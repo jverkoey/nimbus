@@ -95,9 +95,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)refreshStyleForView:(UIView *)view withSelectorName:(NSString *)selectorName {
   if (self.parent) {
-    [self.parent.stylesheet applyStyleToView:view withClassName:selectorName];
+    [self.parent.stylesheet applyStyleToView:view withClassName:selectorName inDOM:self];
   }
-  [_stylesheet applyStyleToView:view withClassName:selectorName];
+  [_stylesheet applyStyleToView:view withClassName:selectorName inDOM:self];
 }
 
 
@@ -160,7 +160,7 @@
       [self.parent registerSelector:viewId withView:view];
     }
     [self registerSelector:viewId withView:view];
-
+    
     if ([view respondsToSelector:@selector(pseudoClasses)]) {
       pseudos = (NSArray*) [view performSelector:@selector(pseudoClasses)];
       if (pseudos) {
@@ -174,12 +174,19 @@
     }
   }
   [self registerView:view withCSSClass:cssClass];
-  // Run the id selectors last so they take precedence
+  
   if (viewId) {
-    [self refreshStyleForView:view withSelectorName:viewId];
-    if (pseudos) {
-      for (NSString *ps in pseudos) {
-        [self refreshStyleForView:view withSelectorName:[viewId stringByAppendingString:ps]];
+    if (!_idToViewMap) {
+      _idToViewMap = [[NSMutableDictionary alloc] init];
+    }
+    [_idToViewMap setObject:view forKey:viewId];
+    // Run the id selectors last so they take precedence
+    if (viewId) {
+      [self refreshStyleForView:view withSelectorName:viewId];
+      if (pseudos) {
+        for (NSString *ps in pseudos) {
+          [self refreshStyleForView:view withSelectorName:[viewId stringByAppendingString:ps]];
+        }
       }
     }
   }
@@ -196,27 +203,7 @@
   }
   
   if (cssClass) {
-    NSString* selector = [@"." stringByAppendingString:cssClass];
-    [self registerSelector:selector withView:view];
-    
-    // This registers both the UIKit class name and the css class name for this view
-    // Now, we also want to register the 'state based' selectors. Fun.
-    NSArray *pseudos = nil;
-    if ([view respondsToSelector:@selector(pseudoClasses)]) {
-      pseudos = (NSArray*) [view performSelector:@selector(pseudoClasses)];
-      if (pseudos) {
-        for (NSString *ps in pseudos) {
-          [self registerSelector:[selector stringByAppendingString:ps] withView:view];
-        }
-      }
-    }
-    
-    [self refreshStyleForView:view withSelectorName:selector];
-    if (pseudos) {
-      for (NSString *ps in pseudos) {
-        [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
-      }
-    }
+    [self addCssClass:cssClass toView:view];
   }
 }
 
@@ -225,12 +212,57 @@
   [self registerView:view withCSSClass:cssClass registerMainView:YES];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)addCssClass:(NSString *)cssClass toView:(UIView *)view
+{
+  NSString* selector = [@"." stringByAppendingString:cssClass];
+  [self registerSelector:selector withView:view];
+  
+  // This registers both the UIKit class name and the css class name for this view
+  // Now, we also want to register the 'state based' selectors. Fun.
+  NSArray *pseudos = nil;
+  if ([view respondsToSelector:@selector(pseudoClasses)]) {
+    pseudos = (NSArray*) [view performSelector:@selector(pseudoClasses)];
+    if (pseudos) {
+      for (NSString *ps in pseudos) {
+        [self registerSelector:[selector stringByAppendingString:ps] withView:view];
+      }
+    }
+  }
+  
+  [self refreshStyleForView:view withSelectorName:selector];
+  if (pseudos) {
+    for (NSString *ps in pseudos) {
+      [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
+    }
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)removeCssClass:(NSString *)cssClass fromView:(UIView *)view
+{
+  NSString* selector = [@"." stringByAppendingString:cssClass];
+  NSString* pseudoBase = [selector stringByAppendingString:@":"];
+  NSMutableArray *selectors = [_viewToSelectorsMap objectForKey:[self keyForView:view]];
+  if (selectors) {
+    // Iterate over the selectors finding the id selector (if any) so we can
+    // also remove it from the id map
+    for (int i = selectors.count-1; i >= 0; i--) {
+      NSString *s = [selectors objectAtIndex:i];
+      if ([s isEqualToString:selector] && [s hasPrefix:pseudoBase]) {
+        [selectors removeObjectAtIndex:i];
+      }
+    }
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)unregisterView:(UIView *)view {
   [_registeredViews removeObject:view];
   NSArray *selectors = [_viewToSelectorsMap objectForKey:[self keyForView:view]];
   if (selectors) {
+    // Iterate over the selectors finding the id selector (if any) so we can
+    // also remove it from the id map
     for (NSString *s in selectors) {
       if ([s characterAtIndex:0] == '#') {
         [_idToViewMap removeObjectForKey:s];
@@ -256,6 +288,13 @@
       [self refreshStyleForView:view withSelectorName:selector];
     }
   }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(UIView *)viewById:(NSString *)viewId
+{
+  if (![viewId hasPrefix:@"#"]) { viewId = [@"#" stringByAppendingString:viewId]; }
+  return [_idToViewMap objectForKey:viewId];
 }
 
 @end

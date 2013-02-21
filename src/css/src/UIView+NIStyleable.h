@@ -17,16 +17,61 @@
 #import <UIKit/UIKit.h>
 
 @class NICSSRuleset;
+@class NIDOM;
+
+extern NSString* const NICSSViewKey;
+extern NSString* const NICSSViewIdKey;
+extern NSString* const NICSSViewCssClassKey;
+extern NSString* const NICSSViewTextKey;
+extern NSString* const NICSSViewTagKey;
+extern NSString* const NICSSViewTargetSelectorKey;
+extern NSString* const NICSSViewSubviewsKey;
+extern NSString* const NICSSViewAccessibilityLabelKey;
 
 @interface UIView (NIStyleable)
 
 /**
- * Applies the given rule set to this view.
+ * Applies the given rule set to this view. Call applyViewStyleWithRuleSet:inDOM: instead.
  *
  * This method is exposed primarily for subclasses to use when implementing the
  * applyStyleWithRuleSet: method from NIStyleable.
  */
-- (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet;
+- (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet DEPRECATED_ATTRIBUTE;
+
+/**
+ * Applies the given rule set to this view. Call applyViewStyleWithRuleSet:inDOM: instead.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
+
+/**
+ * Build a view hierarchy. The array is a list of view specs, where viewSpec is a loosely formatted
+ * sequence delineated by UIViews. After a UIView, the type of the next object determines what is done
+ * with it:
+ *   UIView instance - following values will be applied to this UIView (other than Class, which "starts anew")
+ *   Class - a UIView subclass that will be alloc'ed and init'ed
+ *   NSString starting with a hash - view id (for style application)
+ *   NSString starting with a dot - CSS Class (for style application) (you can do this multiple times per view)
+ *   NSString - accessibility label for the view.
+ *   NIUserInterfaceString - .text or .title(normal) on a button. Asserts otherwise
+ *   NSNumber - tag
+ *   NSInvocation - selector for TouchUpInside (e.g. on a UIButton)
+ *   NSArray - passed to build on the active UIView and results added as subviews
+ *   NSDictionary - if you're squeamish about this whole Javascript duck typing auto detecting fancyness
+ *        you can pass a boring old dictionary with named values: 
+ *        NICSSViewKey, NICSSViewIdKey, NICSSViewCssClassKey, NICSSViewTextKey, NICSSViewTagKey, 
+ *        NICSSViewTargetSelectorKey, NICSSViewSubviewsKey, NICSSViewAccessibilityLabelKey
+ *
+ *   Example (including inline setting of self properties):
+ *    [self.view buildSubviews: @[
+ *       self.buttonContainer = UIView.alloc.init, @"#LoginContainer", @[
+ *         self.myButton = UIButton.alloc.init, @"#Login", @".primary"
+ *       ]
+ *    ]];
+ */
+- (NSArray*) buildSubviews: (NSArray*) viewSpecs inDOM: (NIDOM*) dom;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // View frame and bounds manipulation helpers

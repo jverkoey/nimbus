@@ -22,10 +22,19 @@
 
 /**
  * Applies the given rule set to this acitivity indicator view.
+ * Use applyActivityIndicatorStyleWithRuleSet:inDOM: instead.
  *
  * This method is exposed primarily for subclasses to use when implementing the
  * applyStyleWithRuleSet: method from NIStyleable.
  */
-- (void)applyActivityIndicatorStyleWithRuleSet:(NICSSRuleset *)ruleSet;
+- (void)applyActivityIndicatorStyleWithRuleSet:(NICSSRuleset *)ruleSet DEPRECATED_ATTRIBUTE;
+
+/**
+ * Applies the given rule set to this acitivity indicator view.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * applyStyleWithRuleSet: method from NIStyleable.
+ */
+- (void)applyActivityIndicatorStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM*) dom;
 
 @end

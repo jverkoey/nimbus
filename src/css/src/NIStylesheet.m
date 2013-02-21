@@ -233,20 +233,26 @@ static Class _rulesetClass;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyRuleSet:(NICSSRuleset *)ruleSet toView:(UIView *)view {
+- (void)applyRuleSet:(NICSSRuleset *)ruleSet toView:(UIView *)view inDOM: (NIDOM*)dom {
+  if ([view respondsToSelector:@selector(applyStyleWithRuleSet:inDOM:)]) {
+    [(id<NIStyleable>)view applyStyleWithRuleSet:ruleSet inDOM:dom];
+  }
   if ([view respondsToSelector:@selector(applyStyleWithRuleSet:)]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [(id<NIStyleable>)view applyStyleWithRuleSet:ruleSet];
+#pragma clang diagnostic pop
   }
 }
 
-- (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className {
+- (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className inDOM:(NIDOM *)dom {
   NICSSRuleset *ruleset = [self rulesetForClassName:className];
   if (nil != ruleset) {
     NSRange r = [className rangeOfString:@":"];
-    if (r.location != NSNotFound && [view respondsToSelector:@selector(applyStyleWithRuleSet:forPseudoClass:)]) {
-      [(id<NIStyleable>)view applyStyleWithRuleSet:ruleset forPseudoClass: [className substringFromIndex:r.location+1]];
+    if (r.location != NSNotFound && [view respondsToSelector:@selector(applyStyleWithRuleSet:forPseudoClass:inDOM:)]) {
+      [(id<NIStyleable>)view applyStyleWithRuleSet:ruleset forPseudoClass: [className substringFromIndex:r.location+1] inDOM:dom];
     } else {
-      [self applyRuleSet:ruleset toView:view];
+      [self applyRuleSet:ruleset toView:view inDOM:dom];
     }
   }
 }
