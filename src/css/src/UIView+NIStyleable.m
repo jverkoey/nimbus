@@ -19,9 +19,9 @@
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
 #import "NIUserInterfaceString.h"
-#import "NIInvocationMethods.h"
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
+#import "NIDOM.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
