@@ -76,7 +76,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   if ([ruleSet hasBorderColor]) { self.layer.borderColor = ruleSet.borderColor.CGColor; }
   if ([ruleSet hasAutoresizing]) { self.autoresizingMask = ruleSet.autoresizing; }
   if ([ruleSet hasVisible]) { self.hidden = !ruleSet.visible; }
-  
+
   ///////////////////////////////////////////////////////////////////////////////////////////////////
   // View sizing
   ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -371,26 +371,21 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(NSArray *)buildSubviews:(NSArray *)viewSpecs inDOM:(NIDOM *)dom
 {
-    @try {
-        NSMutableArray *subviews = [[NSMutableArray alloc] init];
-        [self _buildSubviews:viewSpecs inDOM:dom withViewArray:subviews];
-        
-        for (int ix = 0, ct = subviews.count; ix < ct; ix++) {
-            NIPrivateViewInfo *viewInfo = [subviews objectAtIndex:ix];
-            NSString *firstClass = [viewInfo.cssClasses count] ? [viewInfo.cssClasses objectAtIndex:0] : nil;
-            [dom registerView:viewInfo.view withCSSClass:firstClass andId:viewInfo.viewId];
-            if (viewInfo.cssClasses.count > 1) {
-                for (int i = 1, cct = viewInfo.cssClasses.count; i < cct; i++) {
-                    [dom addCssClass:[viewInfo.cssClasses objectAtIndex:i] toView:viewInfo.view];
-                }
-            }
-            [subviews replaceObjectAtIndex:ix withObject:viewInfo.view];
-        }
-        return subviews;
+  NSMutableArray *subviews = [[NSMutableArray alloc] init];
+  [self _buildSubviews:viewSpecs inDOM:dom withViewArray:subviews];
+  
+  for (int ix = 0, ct = subviews.count; ix < ct; ix++) {
+    NIPrivateViewInfo *viewInfo = [subviews objectAtIndex:ix];
+    NSString *firstClass = [viewInfo.cssClasses count] ? [viewInfo.cssClasses objectAtIndex:0] : nil;
+    [dom registerView:viewInfo.view withCSSClass:firstClass andId:viewInfo.viewId];
+    if (viewInfo.cssClasses.count > 1) {
+      for (int i = 1, cct = viewInfo.cssClasses.count; i < cct; i++) {
+        [dom addCssClass:[viewInfo.cssClasses objectAtIndex:i] toView:viewInfo.view];
+      }
     }
-    @catch (NSException *exception) {
-        return nil;
-    }
+    [subviews replaceObjectAtIndex:ix withObject:viewInfo.view];
+  }
+  return subviews;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

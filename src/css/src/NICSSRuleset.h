@@ -80,6 +80,8 @@ typedef enum {
   UIScrollViewIndicatorStyle _scrollViewIndicatorStyle;
   UITextAlignment _frameHorizontalAlign;
   UIViewContentMode _frameVerticalAlign;
+  UIControlContentVerticalAlignment _verticalAlign;
+  UIControlContentHorizontalAlignment _horizontalAlign;
   BOOL _visible;
   NICSSButtonAdjust _buttonAdjust;
   UIEdgeInsets _titleInsets;
@@ -129,6 +131,8 @@ typedef enum {
       int Autoresizing : 1;
       int TableViewCellSeparatorStyle : 1;
       int ScrollViewIndicatorStyle : 1;
+      int VerticalAlign: 1;
+      int HorizontalAlign: 1;
       int Width : 1;
       int Height : 1;
       int Top : 1;
@@ -245,6 +249,12 @@ typedef enum {
 
 - (BOOL)hasMaxHeight;
 - (NICSSUnit)maxHeight; // max-height
+
+- (BOOL)hasVerticalAlign;
+- (UIControlContentVerticalAlignment)verticalAlign; // -mobile-content-valign
+
+- (BOOL)hasHorizontalAlign;
+- (UIControlContentHorizontalAlignment)horizontalAlign; // -mobile-content-halign
 
 - (BOOL)hasFrameHorizontalAlign;
 - (UITextAlignment)frameHorizontalAlign; // -mobile-halign

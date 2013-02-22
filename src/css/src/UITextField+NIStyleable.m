@@ -53,6 +53,7 @@ NI_FIX_CATEGORY_BUG(UITextField_NIStyleable)
     if ([ruleSet hasFont]) { self.font = ruleSet.font; }
     if ([ruleSet hasMinimumFontSize]) { self.minimumFontSize = ruleSet.minimumFontSize; }
     if ([ruleSet hasAdjustsFontSize]) { self.adjustsFontSizeToFitWidth = ruleSet.adjustsFontSize; }
+    if ([ruleSet hasVerticalAlign]) { self.contentVerticalAlignment = ruleSet.verticalAlign; }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

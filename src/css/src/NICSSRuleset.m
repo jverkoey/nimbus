@@ -618,6 +618,8 @@ RULE_ELEMENT(marginLeft, MarginLeft, @"margin-left", NICSSUnit, unitFromCssValue
 RULE_ELEMENT(marginRight, MarginRight, @"margin-right", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(textKey, TextKey, @"-mobile-text-key", NSString*, stringFromCssValue)
 RULE_ELEMENT(buttonAdjust, ButtonAdjust, @"-ios-button-adjust", NICSSButtonAdjust, buttonAdjustFromCssValue)
+RULE_ELEMENT(verticalAlign, VerticalAlign, @"-mobile-content-valign", UIControlContentVerticalAlignment, controlVerticalAlignFromCssValues)
+RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UIControlContentHorizontalAlignment, controlHorizontalAlignFromCssValues)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTintColor {
@@ -1036,6 +1038,42 @@ RULE_ELEMENT(buttonAdjust, ButtonAdjust, @"-ios-button-adjust", NICSSButtonAdjus
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++(UIControlContentVerticalAlignment) controlVerticalAlignFromCssValues:(NSArray*)cssValues
+{
+  NSString *unitValue = [cssValues objectAtIndex:0];
+	if ([unitValue caseInsensitiveCompare:@"middle"] == NSOrderedSame) {
+    return UIControlContentVerticalAlignmentCenter;
+  } else if ([unitValue caseInsensitiveCompare:@"top"] == NSOrderedSame) {
+    return UIControlContentVerticalAlignmentTop;
+  }  else if ([unitValue caseInsensitiveCompare:@"bottom"] == NSOrderedSame) {
+    return UIControlContentVerticalAlignmentBottom;
+  } else if ([unitValue caseInsensitiveCompare:@"fill"] == NSOrderedSame) {
+    return UIControlContentVerticalAlignmentFill;
+  } else {
+    NIDERROR(@"Unknown content vertical alignment: %@", unitValue);
+    return UIViewContentModeCenter;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++(UIControlContentHorizontalAlignment) controlHorizontalAlignFromCssValues:(NSArray*)cssValues
+{
+  NSString *unitValue = [cssValues objectAtIndex:0];
+	if ([unitValue caseInsensitiveCompare:@"center"] == NSOrderedSame) {
+    return UIControlContentHorizontalAlignmentCenter;
+  } else if ([unitValue caseInsensitiveCompare:@"left"] == NSOrderedSame) {
+    return UIControlContentHorizontalAlignmentLeft;
+  }  else if ([unitValue caseInsensitiveCompare:@"right"] == NSOrderedSame) {
+    return UIControlContentHorizontalAlignmentRight;
+  } else if ([unitValue caseInsensitiveCompare:@"fill"] == NSOrderedSame) {
+    return UIControlContentHorizontalAlignmentFill;
+  } else {
+    NIDERROR(@"Unknown content horizontal alignment: %@", unitValue);
+    return UIViewContentModeCenter;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (UIColor *)colorFromCssValues:(NSArray *)cssValues numberOfConsumedTokens:(NSInteger *)pNumberOfConsumedTokens {
   NSInteger bogus = 0;
   if (nil == pNumberOfConsumedTokens) {
@@ -1198,6 +1236,11 @@ RULE_ELEMENT(buttonAdjust, ButtonAdjust, @"-ios-button-adjust", NICSSButtonAdjus
   }
 
   return textAlignment;
+}
+
+-(NSString *)description
+{
+    return [_ruleset description];
 }
 
 @end

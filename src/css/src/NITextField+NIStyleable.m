@@ -58,7 +58,7 @@ NI_FIX_CATEGORY_BUG(NITextField_NIStyleable)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)applyNITextFieldStyleWithRuleSet:(NICSSRuleset*)ruleSet inDOM:(NIDOM*)dom
 {
-    [self applyTextFieldStyleBeforeViewWithRuleSet:ruleSet inDOM:dom];
+    [self applyTextFieldStyleWithRuleSet:ruleSet inDOM:dom];
 }
 
 @end
