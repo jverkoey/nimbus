@@ -1058,6 +1058,11 @@ RULE_ELEMENT(buttonAdjust, ButtonAdjust, @"-ios-button-adjust", NICSSButtonAdjus
                      [[cssValues objectAtIndex:3] floatValue]);
     *pNumberOfConsumedTokens = 5;
     
+  } else if ([cssValues count] == 1 && [[cssValues objectAtIndex:0] hasPrefix:@"url("]) {
+      NSString *image = [cssValues objectAtIndex:0];
+      image = [image substringWithRange:NSMakeRange(4, image.length - 5)];
+      image = [image stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" '\""]];
+      color = [UIColor colorWithPatternImage:[UIImage imageNamed:image]];
   } else if ([cssValues count] >= 1) {
     NSString* cssString = [cssValues objectAtIndex:0];
 
