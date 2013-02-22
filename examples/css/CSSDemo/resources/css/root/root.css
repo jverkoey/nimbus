@@ -74,6 +74,18 @@ UIButton:highlighted
   color: green;
 }
 
+.textField {
+    height: 50px;
+    width: 200px;
+    bottom: 30px;
+    right: 30px;
+}
+
+.textField:empty {
+  -mobile-text-key: "This is blue";
+  color: blue;
+}
+
 #box1 {
   background-color: white;
   bottom: 180px;
