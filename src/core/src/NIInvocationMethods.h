@@ -47,10 +47,14 @@ extern NSInvocation* NIInvocationWithInstanceTarget(NSObject* target, SEL select
  */
 extern NSInvocation* NIInvocationWithClassTarget(Class targetClass, SEL selector);
 
-
 #if defined __cplusplus
 };
 #endif
+
+/**
+ * Compact version of instance/target invoke for self.
+ */
+#define NI_INVOKE(sel)  NIInvocationWithInstanceTarget(self, @selector(sel))
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Foundation Methods ///////////////////////////////////////////////////////////////
