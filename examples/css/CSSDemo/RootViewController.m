@@ -67,7 +67,7 @@
    ],
    [[UILabel alloc] init], @".rightMiddleLabel", NILocalizedStringWithDefault(@"RightLabel", @"Right Middle Label"),
    [[UILabel alloc] init], @".bottomLabel", NILocalizedStringWithDefault(@"BottomLabel", @"Bottom Left Label"),
-   _button = [UIButton buttonWithType:UIButtonTypeCustom], NI_INVOKE(buttonPress), NILocalizedStringWithDefault(@"TestButton", @"Test Button"), @"#TestButton",
+   _button = [UIButton buttonWithType:UIButtonTypeCustom], NIInvocationWithInstanceTarget(self,@selector(buttonPress)), NILocalizedStringWithDefault(@"TestButton", @"Test Button"), @"#TestButton",
    [[NITextField alloc] init], @".textField"
    ]
    inDOM:_dom];
