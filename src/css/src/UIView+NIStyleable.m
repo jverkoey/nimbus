@@ -371,19 +371,21 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(NSArray *)buildSubviews:(NSArray *)viewSpecs inDOM:(NIDOM *)dom
 {
-  NSMutableArray *subviews = [[NSMutableArray alloc] init];
-  [self _buildSubviews:viewSpecs inDOM:dom withViewArray:subviews];
-  
-  for (int ix = 0, ct = subviews.count; ix < ct; ix++) {
-    NIPrivateViewInfo *viewInfo = [subviews objectAtIndex:ix];
-    if (viewInfo.cssClasses) {
-      for (NSString *cssclass in viewInfo.cssClasses) {
-        [dom registerView:viewInfo.view withCSSClass:cssclass andId:viewInfo.viewId];
-      }
+    NSMutableArray *subviews = [[NSMutableArray alloc] init];
+    [self _buildSubviews:viewSpecs inDOM:dom withViewArray:subviews];
+    
+    for (int ix = 0, ct = subviews.count; ix < ct; ix++) {
+        NIPrivateViewInfo *viewInfo = [subviews objectAtIndex:ix];
+        NSString *firstClass = [viewInfo.cssClasses count] ? [viewInfo.cssClasses objectAtIndex:0] : nil;
+        [dom registerView:viewInfo.view withCSSClass:firstClass andId:viewInfo.viewId];
+        if (viewInfo.cssClasses.count > 1) {
+            for (int i = 1, cct = viewInfo.cssClasses.count; i < cct; i++) {
+                [dom addCssClass:[viewInfo.cssClasses objectAtIndex:i] toView:viewInfo.view];
+            }
+        }
+        [subviews replaceObjectAtIndex:ix withObject:viewInfo.view];
     }
-    [subviews replaceObjectAtIndex:ix withObject:viewInfo.view];
-  }
-  return subviews;
+    return subviews;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
