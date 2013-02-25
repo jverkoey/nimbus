@@ -559,7 +559,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
             directiveValue = [[NIUserInterfaceString alloc] initWithKey:directiveValue defaultValue:directiveValue];
         }
         if ([directiveValue isKindOfClass:[NIUserInterfaceString class]]) {
-          [((NIUserInterfaceString*)directive) attach:active.view];
+          [((NIUserInterfaceString*)directiveValue) attach:active.view];
         }
       }
       directiveValue = [kv objectForKey:NICSSViewBackgroundColorKey];
