@@ -36,6 +36,7 @@ NSString* const NICSSViewTagKey = @"tag";
 NSString* const NICSSViewTargetSelectorKey = @"selector";
 NSString* const NICSSViewSubviewsKey = @"subviews";
 NSString* const NICSSViewAccessibilityLabelKey = @"label";
+NSString* const NICSSViewBackgroundColorKey = @"bg";
 
 /**
  * Private class for storing info during view creation

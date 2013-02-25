@@ -27,6 +27,7 @@ extern NSString* const NICSSViewTagKey;
 extern NSString* const NICSSViewTargetSelectorKey;
 extern NSString* const NICSSViewSubviewsKey;
 extern NSString* const NICSSViewAccessibilityLabelKey;
+extern NSString* const NICSSViewBackgroundColorKey;
 
 @interface UIView (NIStyleable)
 
