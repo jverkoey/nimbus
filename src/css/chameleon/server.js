@@ -49,6 +49,9 @@ function start(watchPath) {
             } else if (path.extname(localFile).toLowerCase() == ".strings") {
                 response.writeHead(200, { 'Content-Type':'text/plain' });
                 response.end(content, 'utf-8');
+            } else if (path.extname(localFile).toLowerCase() == ".json") {
+                response.writeHead(200, { 'Content-Type':'application/json' });
+                response.end(content, 'utf-8');
             } else {
                 response.writeHead(200, { 'Content-Type':'text/css' });
                 response.end(content, 'utf-8');
@@ -161,6 +164,11 @@ function start(watchPath) {
             }
             // And strings files
             else if (path.extname(shortName).toLowerCase() == '.strings') {
+                console.log("Watching", fullPath);
+                watchFileAtPath(fullPath, shortName);
+            }
+            // And json files
+            else if (path.extname(shortName).toLowerCase() == ".json") {
                 console.log("Watching", fullPath);
                 watchFileAtPath(fullPath, shortName);
             }
