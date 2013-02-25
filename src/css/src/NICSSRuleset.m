@@ -1056,7 +1056,7 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
     return UIControlContentVerticalAlignmentFill;
   } else {
     NIDERROR(@"Unknown content vertical alignment: %@", unitValue);
-    return UIViewContentModeCenter;
+    return UIControlContentVerticalAlignmentCenter;
   }
 }
 
@@ -1074,7 +1074,7 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
     return UIControlContentHorizontalAlignmentFill;
   } else {
     NIDERROR(@"Unknown content horizontal alignment: %@", unitValue);
-    return UIViewContentModeCenter;
+    return UIControlContentHorizontalAlignmentCenter;
   }
 }
 
