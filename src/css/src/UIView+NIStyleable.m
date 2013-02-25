@@ -536,6 +536,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
       directiveValue = [kv objectForKey:NICSSViewIdKey];
       if (directiveValue) {
         NSAssert([directiveValue isKindOfClass:[NSString class]], @"The value of NICSSViewIdKey must be an NSString*");
+          if (![directiveValue hasPrefix:@"#"]) {
+              directiveValue = [@"#" stringByAppendingString:directiveValue];
+          }
         active.viewId = directiveValue;
       }
       directiveValue = [kv objectForKey:NICSSViewCssClassKey];
@@ -551,6 +554,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
       directiveValue = [kv objectForKey:NICSSViewTextKey];
       if (directiveValue) {
         NSAssert([directiveValue isKindOfClass:[NSString class]] || [directiveValue isKindOfClass:[NIUserInterfaceString class]], @"The value of NICSSViewCssClassKey must be an NSString* or NIUserInterfaceString*");
+        if ([directiveValue isKindOfClass:[NSString class]]) {
+            directiveValue = [[NIUserInterfaceString alloc] initWithKey:directiveValue defaultValue:directiveValue];
+        }
         if ([directiveValue isKindOfClass:[NIUserInterfaceString class]]) {
           [((NIUserInterfaceString*)directive) attach:active.view];
         }
