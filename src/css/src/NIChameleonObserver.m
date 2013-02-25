@@ -229,6 +229,8 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
     for (NSString* filename in files) {
       if ([[filename lowercaseString] hasSuffix:@".strings"]) {
         [self downloadStringsWithFilename: filename];
+      } else if ([[filename lowercaseString] hasSuffix:@".json"]) {
+        [self downloadJSONWithFilename:filename];
       } else {
         [self downloadStylesheetWithFilename:filename];
       }
