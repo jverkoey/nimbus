@@ -26,6 +26,6 @@
  * This method is exposed primarily for subclasses to use when implementing the
  * applyStyleWithRuleSet: method from NIStyleable.
  */
-- (void)applyScrollViewStyleWithRuleSet:(NICSSRuleset *)ruleSet;
+- (void)applyScrollViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM*) dom;
 
 @end
