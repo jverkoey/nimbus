@@ -162,6 +162,7 @@ typedef enum {
 }
 
 - (void)addEntriesFromDictionary:(NSDictionary *)dictionary;
+- (id)cssRuleForKey: (NSString*)key;
 
 - (BOOL)hasTextColor;
 - (UIColor *)textColor; // color
@@ -583,4 +584,12 @@ typedef enum {
  * A value of auto means we will align the center x of relativeToId with the center x of this view.
  *
  *      @fn NICSSRuleset::margin-right
+ */
+
+/**
+ * Return the rule values for a particular key, such as margin-top or width. Exposing this allows you, among
+ * other things, use the CSS to hold variable information that has an effect on the layout of the views that
+ * cannot be expressed as a style - such as padding.
+ *
+ *      @fn NICSSRuleset::cssRuleForKey
  */
