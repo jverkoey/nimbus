@@ -562,6 +562,15 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
           [((NIUserInterfaceString*)directive) attach:active.view];
         }
       }
+      directiveValue = [kv objectForKey:NICSSViewBackgroundColorKey];
+      if (directiveValue) {
+        NSAssert([directiveValue isKindOfClass:[UIColor class]] || [directiveValue isKindOfClass:[NSNumber class]], @"The value of NICSSViewBackgroundColorKey must be NSNumber* or UIColor*");
+        if ([directiveValue isKindOfClass:[NSNumber class]]) {
+          long rgbValue = [directiveValue longValue];
+          directiveValue = [UIColor colorWithRed:((float)((rgbValue & 0xFF000000) >> 24))/255.0 green:((float)((rgbValue & 0xFF0000) >> 16))/255.0 blue:((float)((rgbValue & 0xFF00) >> 8))/255.0 alpha:((float)(rgbValue & 0xFF))/255.0];
+        }
+        self.backgroundColor = directiveValue;
+      }
       directiveValue = [kv objectForKey:NICSSViewTagKey];
       if (directiveValue) {
         NSAssert([directiveValue isKindOfClass:[NSNumber class]], @"The value of NICSSViewTagKey must be an NSNumber*");
@@ -640,6 +649,8 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
     } else if ([directive isKindOfClass:[NSArray class]]) {
       // NSArray means recursive call to build
       [active.view _buildSubviews:directive inDOM:dom withViewArray:subviews];
+    } else if ([directive isKindOfClass:[UIColor class]]) {
+      active.view.backgroundColor = directive;
     } else if ([directive isKindOfClass:[NSInvocation class]]) {
       NSInvocation *n = (NSInvocation*) directive;
       if ([active.view respondsToSelector:@selector(addTarget:action:forControlEvents:)]) {
