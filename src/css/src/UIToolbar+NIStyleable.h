@@ -16,6 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class NIDOM;
 @class NICSSRuleset;
 
 @interface UIToolbar (NIStyleable)
