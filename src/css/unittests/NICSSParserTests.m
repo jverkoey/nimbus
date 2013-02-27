@@ -115,6 +115,47 @@
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testMediaRulesets {
+    NICSSParser* parser = [[NICSSParser alloc] init];
+    
+    NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"media-rulesets.css");
+    
+    NSDictionary* rulesets = [parser dictionaryForPath:pathToFile];
+   // STAssertNotNil([rulesets objectForKey:@"UIView"], @"@media tag with all known combinations didn't match one.");
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        if ([UIScreen mainScreen].scale == 1.0) {
+            STAssertNotNil([rulesets objectForKey:@"UINavigationBar"], @"@media tag didn't match properly.");
+            STAssertNotNil([rulesets objectForKey:@"#UINavigationBar"], @"@media tag didn't match properly.");
+            STAssertNil([rulesets objectForKey:@"#UITextField"], @"@media tag shouldn't have matched.");
+            STAssertNil([rulesets objectForKey:@"UIButton"], @"@media tag shouldn't have matched.");
+            STAssertNil([rulesets objectForKey:@"#UIButton"], @"@media tag shouldn't have matched.");
+            STAssertNil([rulesets objectForKey:@"#UILabel"], @"@media tag shouldn't have matched.");
+        } else {
+            STAssertNotNil([rulesets objectForKey:@"UINavigationBar"], @"@media tag didn't match properly.");
+            STAssertNotNil([rulesets objectForKey:@"#UITextField"], @"@media tag didn't match properly.");            
+            STAssertNil([rulesets objectForKey:@"#UINavigationBar"], @"@media tag shouldn't have matched.");
+            STAssertNil([rulesets objectForKey:@"UIButton"], @"@media tag shouldn't have matched.");
+            STAssertNil([rulesets objectForKey:@"#UIButton"], @"@media tag shouldn't have matched.");
+            STAssertNil([rulesets objectForKey:@"#UILabel"], @"@media tag shouldn't have matched.");
+        }
+    } else {
+        if ([UIScreen mainScreen].scale == 1.0) {
+            STAssertNotNil([rulesets objectForKey:@"UIButton"], @"@media tag didn't match properly.");
+            STAssertNotNil([rulesets objectForKey:@"#UIButton"], @"@media tag didn't match properly.");
+            STAssertNil([rulesets objectForKey:@"UINavigationBar"], @"@media tag shouldn't have matched.");
+            STAssertNil([rulesets objectForKey:@"#UINavigationBar"], @"@media tag shouldn't have matched.");
+            STAssertNil([rulesets objectForKey:@"#UITextField"], @"@media tag shouldn't have matched.");
+            STAssertNil([rulesets objectForKey:@"#UILabel"], @"@media tag shouldn't have matched.");
+        } else {
+            STAssertNotNil([rulesets objectForKey:@"UIButton"], @"@media tag didn't match properly.");
+            STAssertNotNil([rulesets objectForKey:@"#UILabel"], @"@media tag didn't match properly.");
+            STAssertNil([rulesets objectForKey:@"UINavigationBar"], @"@media tag shouldn't have matched.");
+            STAssertNil([rulesets objectForKey:@"#UINavigationBar"], @"@media tag shouldn't have matched.");
+            STAssertNil([rulesets objectForKey:@"#UITextField"], @"@media tag shouldn't have matched.");
+        }
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testRulesets {
