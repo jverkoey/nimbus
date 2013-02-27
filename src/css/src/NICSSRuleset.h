@@ -80,6 +80,8 @@ typedef enum {
   UIScrollViewIndicatorStyle _scrollViewIndicatorStyle;
   UITextAlignment _frameHorizontalAlign;
   UIViewContentMode _frameVerticalAlign;
+  UIControlContentVerticalAlignment _verticalAlign;
+  UIControlContentHorizontalAlignment _horizontalAlign;
   BOOL _visible;
   NICSSButtonAdjust _buttonAdjust;
   UIEdgeInsets _titleInsets;
@@ -129,6 +131,8 @@ typedef enum {
       int Autoresizing : 1;
       int TableViewCellSeparatorStyle : 1;
       int ScrollViewIndicatorStyle : 1;
+      int VerticalAlign: 1;
+      int HorizontalAlign: 1;
       int Width : 1;
       int Height : 1;
       int Top : 1;
@@ -158,6 +162,7 @@ typedef enum {
 }
 
 - (void)addEntriesFromDictionary:(NSDictionary *)dictionary;
+- (id)cssRuleForKey: (NSString*)key;
 
 - (BOOL)hasTextColor;
 - (UIColor *)textColor; // color
@@ -245,6 +250,12 @@ typedef enum {
 
 - (BOOL)hasMaxHeight;
 - (NICSSUnit)maxHeight; // max-height
+
+- (BOOL)hasVerticalAlign;
+- (UIControlContentVerticalAlignment)verticalAlign; // -mobile-content-valign
+
+- (BOOL)hasHorizontalAlign;
+- (UIControlContentHorizontalAlignment)horizontalAlign; // -mobile-content-halign
 
 - (BOOL)hasFrameHorizontalAlign;
 - (UITextAlignment)frameHorizontalAlign; // -mobile-halign
@@ -573,4 +584,12 @@ typedef enum {
  * A value of auto means we will align the center x of relativeToId with the center x of this view.
  *
  *      @fn NICSSRuleset::margin-right
+ */
+
+/**
+ * Return the rule values for a particular key, such as margin-top or width. Exposing this allows you, among
+ * other things, use the CSS to hold variable information that has an effect on the layout of the views that
+ * cannot be expressed as a style - such as padding.
+ *
+ *      @fn NICSSRuleset::cssRuleForKey
  */

@@ -27,6 +27,7 @@ extern NSString* const NICSSViewTagKey;
 extern NSString* const NICSSViewTargetSelectorKey;
 extern NSString* const NICSSViewSubviewsKey;
 extern NSString* const NICSSViewAccessibilityLabelKey;
+extern NSString* const NICSSViewBackgroundColorKey;
 
 @interface UIView (NIStyleable)
 
@@ -39,12 +40,20 @@ extern NSString* const NICSSViewAccessibilityLabelKey;
 - (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet DEPRECATED_ATTRIBUTE;
 
 /**
- * Applies the given rule set to this view. Call applyViewStyleWithRuleSet:inDOM: instead.
+ * Applies the given rule set to this view.
  *
  * This method is exposed primarily for subclasses to use when implementing the
  * applyStyleWithRuleSet: method from NIStyleable.
  */
 - (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
+
+/**
+ * Describes the given rule set when applied to this view.
+ *
+ * This method is exposed primarily for subclasses to use when implementing the
+ * descriptionWithRuleSetFor:forPseudoClass:inDOM:withViewName: method from NIStyleable.
+ */
+- (NSString*) descriptionWithRuleSetForView: (NICSSRuleset*) ruleSet forPseudoClass: (NSString*) pseudo inDOM: (NIDOM*) dom withViewName: (NSString*) name;
 
 /**
  * Build a view hierarchy. The array is a list of view specs, where viewSpec is a loosely formatted

@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011 Max Metral
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,28 +14,20 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import "NITextField.h"
 
 @class NICSSRuleset;
 @class NIDOM;
 
-@interface UIButton (NIStyleable)
+@interface NITextField (NIStyleable)
 
 /**
- * Applies the given rule set to this button. Call applyButtonStyleWithRuleSet:inDOM:
+ * Applies the given rule set to this text field.
  *
  * This method is exposed primarily for subclasses to use when implementing the
  * applyStyleWithRuleSet: method from NIStyleable.
  */
-- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet DEPRECATED_ATTRIBUTE;
-
-/**
- * Applies the given rule set to this button.
- *
- * This method is exposed primarily for subclasses to use when implementing the
- * applyStyleWithRuleSet: method from NIStyleable.
- */
-- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
+- (void)applyNITextFieldStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
 
 /**
  * Applies the given rule set to this label.
@@ -45,20 +37,10 @@
  * styles (e.g. positioning) may rely on some label elements (like text), this is called
  * before the view styling is done.
  */
-- (void)applyButtonStyleBeforeViewWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
+- (void)applyNITextFieldStyleBeforeViewWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
 
 /**
- * Tells the CSS engine a set of pseudo classes that apply to views of this class.
- * In the case of UIButton, this includes :selected, :highlighted, and :disabled.
- * In CSS, you specify these with selectors like UIButton:active. If you implement this you need to respond
- * to applyStyleWithRuleSet:forPseudoClass:inDOM:
- *
- * Make sure to include the leading colon.
- */
-- (NSArray*) pseudoClasses;
-
-/**
- * Applies the given rule set to this button but for a pseudo class. Thus it only supports the subset of
+ * Applies the given rule set to this text field but for a pseudo class. Thus it only supports the subset of
  * properties that can be set on states of the button. (There's no fancy stuff that applies the styles
  * manually on state transitions.
  *
@@ -66,5 +48,6 @@
  * applyButtonStyleWithRuleSet.
  */
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass: (NSString*) pseudo inDOM: (NIDOM*) dom;
+
 
 @end

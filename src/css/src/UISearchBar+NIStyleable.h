@@ -16,6 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class NIDOM;
 @class NICSSRuleset;
 
 @interface UISearchBar (NIStyleable)
@@ -26,7 +27,7 @@
  * This method is exposed primarily for subclasses to use when implementing the
  * applyStyleWithRuleSet: method from NIStyleable.
  */
-- (void)applySearchBarStyleWithRuleSet:(NICSSRuleset *)ruleSet;
+- (void)applySearchBarStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM*) dom;
 
 @end
 

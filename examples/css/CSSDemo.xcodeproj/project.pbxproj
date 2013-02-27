@@ -65,8 +65,15 @@
 		C743F6E616D1F4EB00A933B7 /* btn_blue_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = C743F6E216D1F4EB00A933B7 /* btn_blue_inactive.png */; };
 		C743F6E716D1F4EB00A933B7 /* btn_blue_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C743F6E316D1F4EB00A933B7 /* btn_blue_inactive@2x.png */; };
 		C743F6F416D29F2500A933B7 /* NIUserInterfaceString.m in Sources */ = {isa = PBXBuildFile; fileRef = C743F6F316D29F2500A933B7 /* NIUserInterfaceString.m */; };
+		C7A8793316D7C8EC00A0C23F /* NITextField+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8792816D7C8E900A0C23F /* NITextField+NIStyleable.m */; };
+		C7A8793416D7C8EC00A0C23F /* UIScrollView+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8792A16D7C8EA00A0C23F /* UIScrollView+NIStyleable.m */; };
+		C7A8793516D7C8EC00A0C23F /* UISearchBar+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8792C16D7C8EB00A0C23F /* UISearchBar+NIStyleable.m */; };
+		C7A8793616D7C8EC00A0C23F /* UITableView+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8792E16D7C8EB00A0C23F /* UITableView+NIStyleable.m */; };
+		C7A8793716D7C8EC00A0C23F /* UITextField+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8793016D7C8EC00A0C23F /* UITextField+NIStyleable.m */; };
+		C7A8793816D7C8EC00A0C23F /* UIToolbar+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8793216D7C8EC00A0C23F /* UIToolbar+NIStyleable.m */; };
 		C7B9283F16D2B45A001BF61C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7B9283D16D2B45A001BF61C /* Localizable.strings */; };
 		C7B9284B16D2F736001BF61C /* NIInvocationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B9284A16D2F736001BF61C /* NIInvocationMethods.m */; };
+		C7BBC70816DDC2A600833DC9 /* NITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BBC70716DDC2A600833DC9 /* NITextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,9 +187,23 @@
 		C743F6E316D1F4EB00A933B7 /* btn_blue_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_blue_inactive@2x.png"; path = "resources/btn_blue_inactive@2x.png"; sourceTree = "<group>"; };
 		C743F6F316D29F2500A933B7 /* NIUserInterfaceString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIUserInterfaceString.m; path = ../../src/css/src/NIUserInterfaceString.m; sourceTree = "<group>"; };
 		C743F6F516D2AAC200A933B7 /* NIUserInterfaceString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIUserInterfaceString.h; path = ../../src/css/src/NIUserInterfaceString.h; sourceTree = "<group>"; };
+		C7A8792716D7C8E900A0C23F /* NITextField+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NITextField+NIStyleable.h"; path = "../../src/css/src/NITextField+NIStyleable.h"; sourceTree = "<group>"; };
+		C7A8792816D7C8E900A0C23F /* NITextField+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NITextField+NIStyleable.m"; path = "../../src/css/src/NITextField+NIStyleable.m"; sourceTree = "<group>"; };
+		C7A8792916D7C8EA00A0C23F /* UIScrollView+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+NIStyleable.h"; path = "../../src/css/src/UIScrollView+NIStyleable.h"; sourceTree = "<group>"; };
+		C7A8792A16D7C8EA00A0C23F /* UIScrollView+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+NIStyleable.m"; path = "../../src/css/src/UIScrollView+NIStyleable.m"; sourceTree = "<group>"; };
+		C7A8792B16D7C8EA00A0C23F /* UISearchBar+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UISearchBar+NIStyleable.h"; path = "../../src/css/src/UISearchBar+NIStyleable.h"; sourceTree = "<group>"; };
+		C7A8792C16D7C8EB00A0C23F /* UISearchBar+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UISearchBar+NIStyleable.m"; path = "../../src/css/src/UISearchBar+NIStyleable.m"; sourceTree = "<group>"; };
+		C7A8792D16D7C8EB00A0C23F /* UITableView+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+NIStyleable.h"; path = "../../src/css/src/UITableView+NIStyleable.h"; sourceTree = "<group>"; };
+		C7A8792E16D7C8EB00A0C23F /* UITableView+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+NIStyleable.m"; path = "../../src/css/src/UITableView+NIStyleable.m"; sourceTree = "<group>"; };
+		C7A8792F16D7C8EB00A0C23F /* UITextField+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+NIStyleable.h"; path = "../../src/css/src/UITextField+NIStyleable.h"; sourceTree = "<group>"; };
+		C7A8793016D7C8EC00A0C23F /* UITextField+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+NIStyleable.m"; path = "../../src/css/src/UITextField+NIStyleable.m"; sourceTree = "<group>"; };
+		C7A8793116D7C8EC00A0C23F /* UIToolbar+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIToolbar+NIStyleable.h"; path = "../../src/css/src/UIToolbar+NIStyleable.h"; sourceTree = "<group>"; };
+		C7A8793216D7C8EC00A0C23F /* UIToolbar+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIToolbar+NIStyleable.m"; path = "../../src/css/src/UIToolbar+NIStyleable.m"; sourceTree = "<group>"; };
 		C7B9283E16D2B45A001BF61C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C7B9284916D2F736001BF61C /* NIInvocationMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIInvocationMethods.h; path = ../../src/core/src/NIInvocationMethods.h; sourceTree = "<group>"; };
 		C7B9284A16D2F736001BF61C /* NIInvocationMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIInvocationMethods.m; path = ../../src/core/src/NIInvocationMethods.m; sourceTree = "<group>"; };
+		C7BBC70616DDC2A600833DC9 /* NITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITextField.h; path = ../../src/textfield/src/NITextField.h; sourceTree = "<group>"; };
+		C7BBC70716DDC2A600833DC9 /* NITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITextField.m; path = ../../src/textfield/src/NITextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +302,7 @@
 		66832D40144214CD003E413C /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
+				C7BBC70516DDC20100833DC9 /* TextField */,
 				663BF6041587339A0066B814 /* Resources */,
 				66832D41144214DA003E413C /* Core */,
 				66832D7C144214EF003E413C /* CSS */,
@@ -337,6 +359,18 @@
 		66832D7C144214EF003E413C /* CSS */ = {
 			isa = PBXGroup;
 			children = (
+				C7A8792716D7C8E900A0C23F /* NITextField+NIStyleable.h */,
+				C7A8792816D7C8E900A0C23F /* NITextField+NIStyleable.m */,
+				C7A8792916D7C8EA00A0C23F /* UIScrollView+NIStyleable.h */,
+				C7A8792A16D7C8EA00A0C23F /* UIScrollView+NIStyleable.m */,
+				C7A8792B16D7C8EA00A0C23F /* UISearchBar+NIStyleable.h */,
+				C7A8792C16D7C8EB00A0C23F /* UISearchBar+NIStyleable.m */,
+				C7A8792D16D7C8EB00A0C23F /* UITableView+NIStyleable.h */,
+				C7A8792E16D7C8EB00A0C23F /* UITableView+NIStyleable.m */,
+				C7A8792F16D7C8EB00A0C23F /* UITextField+NIStyleable.h */,
+				C7A8793016D7C8EC00A0C23F /* UITextField+NIStyleable.m */,
+				C7A8793116D7C8EC00A0C23F /* UIToolbar+NIStyleable.h */,
+				C7A8793216D7C8EC00A0C23F /* UIToolbar+NIStyleable.m */,
 				66832DE714434FBE003E413C /* NimbusCSS.h */,
 				66832DE814434FBE003E413C /* NIStyleable.h */,
 				66832DED14434FBE003E413C /* NICSSRuleSet.h */,
@@ -406,6 +440,15 @@
 			);
 			name = AFNetworking;
 			path = ../../thirdparty/AFNetworking/AFNetworking;
+			sourceTree = "<group>";
+		};
+		C7BBC70516DDC20100833DC9 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				C7BBC70616DDC2A600833DC9 /* NITextField.h */,
+				C7BBC70716DDC2A600833DC9 /* NITextField.m */,
+			);
+			name = TextField;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -525,6 +568,13 @@
 				66D2FE2A15941EEB00B2BEFD /* UIImageView+AFNetworking.m in Sources */,
 				C743F6F416D29F2500A933B7 /* NIUserInterfaceString.m in Sources */,
 				C7B9284B16D2F736001BF61C /* NIInvocationMethods.m in Sources */,
+				C7A8793316D7C8EC00A0C23F /* NITextField+NIStyleable.m in Sources */,
+				C7A8793416D7C8EC00A0C23F /* UIScrollView+NIStyleable.m in Sources */,
+				C7A8793516D7C8EC00A0C23F /* UISearchBar+NIStyleable.m in Sources */,
+				C7A8793616D7C8EC00A0C23F /* UITableView+NIStyleable.m in Sources */,
+				C7A8793716D7C8EC00A0C23F /* UITextField+NIStyleable.m in Sources */,
+				C7A8793816D7C8EC00A0C23F /* UIToolbar+NIStyleable.m in Sources */,
+				C7BBC70816DDC2A600833DC9 /* NITextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,15 +33,19 @@ NI_FIX_CATEGORY_BUG(UIToolbar_NIStyleable)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyToolbarStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+- (void)applyToolbarStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom {
   if ([ruleSet hasTintColor]) { self.tintColor = ruleSet.tintColor; }
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  [self applyViewStyleWithRuleSet:ruleSet];
-  [self applyToolbarStyleWithRuleSet:ruleSet];
+  [self applyStyleWithRuleSet:ruleSet inDOM:nil];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
+  [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
+  [self applyToolbarStyleWithRuleSet:ruleSet inDOM:dom];
 }
 
 

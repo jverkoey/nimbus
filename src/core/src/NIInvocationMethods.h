@@ -47,7 +47,6 @@ extern NSInvocation* NIInvocationWithInstanceTarget(NSObject* target, SEL select
  */
 extern NSInvocation* NIInvocationWithClassTarget(Class targetClass, SEL selector);
 
-
 #if defined __cplusplus
 };
 #endif

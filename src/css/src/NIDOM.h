@@ -88,6 +88,9 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 
 -(UIView*)viewById: (NSString*) viewId;
 
+-(NSString*) descriptionForView: (UIView*) view withName: (NSString*) viewName;
+-(NSString*) descriptionForAllViews;
+
 @property (nonatomic,unsafe_unretained) id target;
 @end
 
@@ -191,4 +194,22 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  * build calls if you wanted to.
  *
  *      @fn NIDOM::target
+ */
+
+/** @name Debugging */
+
+/**
+ * Describe what would be done to view given the existing registrations for it. In other words, you
+ * must call one of the register view variants first before asking for a description. The current
+ * implementations return actual objective-c code, using viewName as the target. This allows you to
+ * theoretically replace the CSS infrastructure with generated code, if you choose to. More importantly,
+ * it allows you to debug what's happening with view styling.
+ *
+ *      @fn NIDOM::descriptionForView:withName:
+ */
+
+/**
+ * Call descriptionForView for all registered views, in the order they would be applied during refresh
+ *
+ *      @fn NIDOM::descriptionForAllViews
  */

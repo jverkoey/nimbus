@@ -16,6 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class NIDOM;
 @class NICSSRuleset;
 
 @interface UITableView (NIStyleable)
@@ -26,6 +27,6 @@
  * This method is exposed primarily for subclasses to use when implementing the
  * applyStyleWithRuleSet: method from NIStyleable.
  */
-- (void)applyTableViewStyleWithRuleSet:(NICSSRuleset *)ruleSet;
+- (void)applyTableViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
 
 @end
