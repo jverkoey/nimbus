@@ -317,7 +317,7 @@
     additional = [_stylesheet descriptionForView:view withClassName: selector inDOM:self andViewName: viewName];
     if (additional && additional.length) {
       if (!appendedStyleInfo) { appendedStyleInfo = YES; [description appendFormat:@"// Styles for %@\n", viewName]; }
-      if (!appendedSelectorInfo) { appendedSelectorInfo = YES; [description appendFormat:@"// Selector %@\n", selector]; }
+      if (!appendedSelectorInfo) { [description appendFormat:@"// Selector %@\n", selector]; }
       [description appendString:additional];
     }
   }
