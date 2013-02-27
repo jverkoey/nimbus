@@ -30,6 +30,10 @@ static NSString* const kWatchFilenameKey = @"___watch___";
 static const NSTimeInterval kTimeoutInterval = 1000;
 static const NSInteger kMaxNumberOfRetries = 3;
 
+NSString* const NIJSONDidChangeNotification = @"NIJSONDidChangeNotification";
+NSString* const NIJSONDidChangeFilePathKey = @"NIJSONPathKey";
+NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
+
 @interface NIChameleonObserver()
 - (NSString *)pathFromPath:(NSString *)path;
 @end
@@ -155,6 +159,32 @@ static const NSInteger kMaxNumberOfRetries = 3;
   [_queue addOperation:requestOp];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)downloadJSONWithFilename:(NSString *)path {
+    NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:path]];
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation* requestOp = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [requestOp setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray* pathParts = [[operation.request.URL absoluteString] pathComponents];
+        NSString* resultPath = [[pathParts subarrayWithRange:NSMakeRange(2, [pathParts count] - 2)]
+                                componentsJoinedByString:@"/"];
+        NSString* rootPath = NIPathForDocumentsResource(nil);
+        NSString* hashedPath = [self pathFromPath:resultPath];
+        NSString* diskPath = [rootPath stringByAppendingPathComponent:hashedPath];
+        [responseObject writeToFile:diskPath atomically:YES];
+        
+        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:NIStringsDidChangeNotification object:nil userInfo:@{
+            NIJSONDidChangeFilePathKey: diskPath,
+            NIJSONDidChangeNameKey: path
+         }];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    }];
+    [_queue addOperation:requestOp];
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)pathFromPath:(NSString *)path {
@@ -199,6 +229,8 @@ static const NSInteger kMaxNumberOfRetries = 3;
     for (NSString* filename in files) {
       if ([[filename lowercaseString] hasSuffix:@".strings"]) {
         [self downloadStringsWithFilename: filename];
+      } else if ([[filename lowercaseString] hasSuffix:@".json"]) {
+        [self downloadJSONWithFilename:filename];
       } else {
         [self downloadStylesheetWithFilename:filename];
       }

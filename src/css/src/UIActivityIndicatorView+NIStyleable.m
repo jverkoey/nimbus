@@ -40,6 +40,7 @@ NI_FIX_CATEGORY_BUG(UIActivityIndicatorView_NIStyleable)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyActivityIndicatorStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
   if ([ruleSet hasActivityIndicatorStyle]) { [self setActivityIndicatorViewStyle:ruleSet.activityIndicatorStyle]; } else { [self setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge]; }
+  if ([ruleSet hasTextColor]) { [self setColor:ruleSet.textColor]; }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

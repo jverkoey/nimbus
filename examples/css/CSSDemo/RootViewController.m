@@ -18,6 +18,7 @@
 #import "UIView+NIStyleable.h"
 #import "NIUserInterfaceString.h"
 #import "NIInvocationMethods.h"
+#import "NITextField.h"
 
 #import "AppDelegate.h"
 
@@ -66,8 +67,10 @@
    ],
    [[UILabel alloc] init], @".rightMiddleLabel", NILocalizedStringWithDefault(@"RightLabel", @"Right Middle Label"),
    [[UILabel alloc] init], @".bottomLabel", NILocalizedStringWithDefault(@"BottomLabel", @"Bottom Left Label"),
-   _button = [UIButton buttonWithType:UIButtonTypeCustom], NIInvocationWithInstanceTarget(self, @selector(buttonPress)), NILocalizedStringWithDefault(@"TestButton", @"Test Button"), @"#TestButton"
-   ] inDOM:_dom];
+   _button = [UIButton buttonWithType:UIButtonTypeCustom], NIInvocationWithInstanceTarget(self,@selector(buttonPress)), NILocalizedStringWithDefault(@"TestButton", @"Test Button"), @"#TestButton",
+   [[NITextField alloc] init], @".textField"
+   ]
+   inDOM:_dom];
   
   for (int i = 1; i <= 7; i++) {
     UIView *box = [[UIView alloc] init];
@@ -75,6 +78,8 @@
     [_dom registerView:box withCSSClass:@"colorBox" andId:[NSString stringWithFormat:@"box%d",i]];
   }
   [_activityIndicator startAnimating];
+  
+  NSLog(@"%@", [_dom descriptionForAllViews]);
 }
 
 -(void)viewWillLayoutSubviews

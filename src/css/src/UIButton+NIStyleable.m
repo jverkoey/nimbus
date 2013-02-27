@@ -39,6 +39,9 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 
 -(void)applyButtonStyleBeforeViewWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom
 {
+  if (ruleSet.hasFont) {
+    self.titleLabel.font = ruleSet.font;
+  }
   if (ruleSet.hasTextKey) {
     NIUserInterfaceString *nis = [[NIUserInterfaceString alloc] initWithKey:ruleSet.textKey];
     [nis attach:self withSelector:@selector(setTitle:forState:) forControlState:UIControlStateNormal];

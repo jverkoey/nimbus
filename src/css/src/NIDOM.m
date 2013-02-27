@@ -297,4 +297,53 @@
   return [_idToViewMap objectForKey:viewId];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(NSString *)descriptionForView:(UIView *)view withName:(NSString *)viewName
+{
+  NSMutableString *description = [[NSMutableString alloc] init];
+  BOOL appendedStyleInfo = NO;
+  
+  for (NSString *selector in [_viewToSelectorsMap objectForKey:[self keyForView:view]]) {
+    BOOL appendedSelectorInfo = NO;
+    NSString *additional = nil;
+    if (self.parent) {
+      additional = [self.parent.stylesheet descriptionForView: view withClassName: selector inDOM:self andViewName: viewName];
+      if (additional && additional.length) {
+        if (!appendedStyleInfo) { appendedStyleInfo = YES; [description appendFormat:@"// Styles for %@\n", viewName]; }
+        if (!appendedSelectorInfo) { appendedSelectorInfo = YES; [description appendFormat:@"// Selector %@\n", selector]; }
+        [description appendString:additional];
+      }
+    }
+    additional = [_stylesheet descriptionForView:view withClassName: selector inDOM:self andViewName: viewName];
+    if (additional && additional.length) {
+      if (!appendedStyleInfo) { appendedStyleInfo = YES; [description appendFormat:@"// Styles for %@\n", viewName]; }
+      if (!appendedSelectorInfo) { appendedSelectorInfo = YES; [description appendFormat:@"// Selector %@\n", selector]; }
+      [description appendString:additional];
+    }
+  }
+  return description;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(NSString *)descriptionForAllViews {
+  NSMutableString *description = [[NSMutableString alloc] init];
+  int viewCount = 0;
+  for (UIView *view in _registeredViews) {
+    [description appendString:@"\n///////////////////////////////////////////////////////////////////////////////////////////////////\n"];
+    viewCount++;
+    // This is a little hokey - because we don't get individual view names we have to come up with some.
+    __block NSString *vid = nil;
+    [[_viewToSelectorsMap objectForKey:[self keyForView:view]] enumerateObjectsUsingBlock:^(NSString *selector, NSUInteger idx, BOOL *stop) {
+      if ([selector hasPrefix:@"#"]) {
+        vid = [selector substringFromIndex:1];
+        *stop = YES;
+      }
+    }];
+    if (vid) {
+      [description appendFormat:@"UIView *%@_%d = [dom viewById: @\"#%@\"];\n", [view class], viewCount, vid];
+    }
+    [description appendString:[self descriptionForView:view withName:[NSString stringWithFormat:@"%@_%d", [view class], viewCount]]];
+  }
+  return description;
+}
 @end
