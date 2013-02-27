@@ -71,9 +71,9 @@
 		C7A8793616D7C8EC00A0C23F /* UITableView+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8792E16D7C8EB00A0C23F /* UITableView+NIStyleable.m */; };
 		C7A8793716D7C8EC00A0C23F /* UITextField+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8793016D7C8EC00A0C23F /* UITextField+NIStyleable.m */; };
 		C7A8793816D7C8EC00A0C23F /* UIToolbar+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8793216D7C8EC00A0C23F /* UIToolbar+NIStyleable.m */; };
-		C7A8793B16D7C99800A0C23F /* NITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8793A16D7C99800A0C23F /* NITextField.m */; };
 		C7B9283F16D2B45A001BF61C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7B9283D16D2B45A001BF61C /* Localizable.strings */; };
 		C7B9284B16D2F736001BF61C /* NIInvocationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B9284A16D2F736001BF61C /* NIInvocationMethods.m */; };
+		C7BBC70816DDC2A600833DC9 /* NITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BBC70716DDC2A600833DC9 /* NITextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -199,11 +199,11 @@
 		C7A8793016D7C8EC00A0C23F /* UITextField+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+NIStyleable.m"; path = "../../src/css/src/UITextField+NIStyleable.m"; sourceTree = "<group>"; };
 		C7A8793116D7C8EC00A0C23F /* UIToolbar+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIToolbar+NIStyleable.h"; path = "../../src/css/src/UIToolbar+NIStyleable.h"; sourceTree = "<group>"; };
 		C7A8793216D7C8EC00A0C23F /* UIToolbar+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIToolbar+NIStyleable.m"; path = "../../src/css/src/UIToolbar+NIStyleable.m"; sourceTree = "<group>"; };
-		C7A8793916D7C99800A0C23F /* NITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITextField.h; path = ../../src/core/src/NITextField.h; sourceTree = "<group>"; };
-		C7A8793A16D7C99800A0C23F /* NITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITextField.m; path = ../../src/core/src/NITextField.m; sourceTree = "<group>"; };
 		C7B9283E16D2B45A001BF61C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C7B9284916D2F736001BF61C /* NIInvocationMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIInvocationMethods.h; path = ../../src/core/src/NIInvocationMethods.h; sourceTree = "<group>"; };
 		C7B9284A16D2F736001BF61C /* NIInvocationMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIInvocationMethods.m; path = ../../src/core/src/NIInvocationMethods.m; sourceTree = "<group>"; };
+		C7BBC70616DDC2A600833DC9 /* NITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITextField.h; path = ../../src/textfield/src/NITextField.h; sourceTree = "<group>"; };
+		C7BBC70716DDC2A600833DC9 /* NITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITextField.m; path = ../../src/textfield/src/NITextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +302,7 @@
 		66832D40144214CD003E413C /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
+				C7BBC70516DDC20100833DC9 /* TextField */,
 				663BF6041587339A0066B814 /* Resources */,
 				66832D41144214DA003E413C /* Core */,
 				66832D7C144214EF003E413C /* CSS */,
@@ -312,8 +313,6 @@
 		66832D41144214DA003E413C /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				C7A8793916D7C99800A0C23F /* NITextField.h */,
-				C7A8793A16D7C99800A0C23F /* NITextField.m */,
 				C7B9284916D2F736001BF61C /* NIInvocationMethods.h */,
 				C7B9284A16D2F736001BF61C /* NIInvocationMethods.m */,
 				66832DAE14434FB2003E413C /* NICommonMetrics.h */,
@@ -443,6 +442,15 @@
 			path = ../../thirdparty/AFNetworking/AFNetworking;
 			sourceTree = "<group>";
 		};
+		C7BBC70516DDC20100833DC9 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				C7BBC70616DDC2A600833DC9 /* NITextField.h */,
+				C7BBC70716DDC2A600833DC9 /* NITextField.m */,
+			);
+			name = TextField;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -566,7 +574,7 @@
 				C7A8793616D7C8EC00A0C23F /* UITableView+NIStyleable.m in Sources */,
 				C7A8793716D7C8EC00A0C23F /* UITextField+NIStyleable.m in Sources */,
 				C7A8793816D7C8EC00A0C23F /* UIToolbar+NIStyleable.m in Sources */,
-				C7A8793B16D7C99800A0C23F /* NITextField.m in Sources */,
+				C7BBC70816DDC2A600833DC9 /* NITextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

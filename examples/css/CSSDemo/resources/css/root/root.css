@@ -83,6 +83,7 @@ UIButton:highlighted
   right: 30px;
   -mobile-content-valign: middle;
   -mobile-content-halign: center;
+  -mobile-title-insets: 20px;
 }
 
 .textField:empty {

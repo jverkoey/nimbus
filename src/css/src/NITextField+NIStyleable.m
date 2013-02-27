@@ -53,6 +53,9 @@ NI_FIX_CATEGORY_BUG(NITextField_NIStyleable)
 -(void)applyNITextFieldStyleBeforeViewWithRuleSet:(NICSSRuleset*)ruleSet inDOM:(NIDOM*)dom
 {
     [self applyTextFieldStyleBeforeViewWithRuleSet:ruleSet inDOM:dom];
+    if (ruleSet.hasTitleInsets) {
+        self.textInsets = ruleSet.titleInsets;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

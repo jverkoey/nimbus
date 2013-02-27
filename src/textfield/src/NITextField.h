@@ -35,4 +35,9 @@
  */
 @property (nonatomic,strong) UIFont *placeholderFont;
 
+/**
+ * The amount to inset the text by, or zero to use default behavior
+ */
+@property (nonatomic,assign) UIEdgeInsets textInsets;
+
 @end
