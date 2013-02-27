@@ -32,6 +32,16 @@
     }
 }
 
+-(CGRect)editingRectForBounds:(CGRect)bounds
+{
+    if (UIEdgeInsetsEqualToEdgeInsets(UIEdgeInsetsZero, self.textInsets)) {
+        return [super editingRectForBounds:bounds];
+    }
+    UIEdgeInsets i = self.textInsets;
+    return CGRectMake(bounds.origin.x + i.left, bounds.origin.y + i.top,
+                      bounds.size.width - i.left - i.right, bounds.size.height - i.top - i.bottom);
+}
+
 -(CGRect)textRectForBounds:(CGRect)bounds
 {
     if (UIEdgeInsetsEqualToEdgeInsets(UIEdgeInsetsZero, self.textInsets)) {
