@@ -68,34 +68,109 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   [self applyViewStyleWithRuleSet:ruleSet inDOM:nil];
 }
 
+-(NSString *)descriptionWithRuleSetForView:(NICSSRuleset *)ruleSet forPseudoClass:(NSString *)pseudo inDOM:(NIDOM *)dom withViewName:(NSString *)name
+{
+  return [self applyOrDescribe:NO ruleSet:ruleSet inDOM:dom withViewName:name];
+}
+
+-(NSString *)descriptionWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass:(NSString *)pseudo inDOM:(NIDOM *)dom withViewName:(NSString *)name
+{
+  return [self descriptionWithRuleSetForView:ruleSet forPseudoClass:pseudo inDOM:dom withViewName:name];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
-  if ([ruleSet hasBackgroundColor]) { self.backgroundColor = ruleSet.backgroundColor; }
-  if ([ruleSet hasOpacity]) { self.alpha = ruleSet.opacity; }
-  if ([ruleSet hasBorderRadius]) { self.layer.cornerRadius = ruleSet.borderRadius; }
-  if ([ruleSet hasBorderWidth]) { self.layer.borderWidth = ruleSet.borderWidth; }
-  if ([ruleSet hasBorderColor]) { self.layer.borderColor = ruleSet.borderColor.CGColor; }
-  if ([ruleSet hasAutoresizing]) { self.autoresizingMask = ruleSet.autoresizing; }
-  if ([ruleSet hasVisible]) { self.hidden = !ruleSet.visible; }
+  [self applyOrDescribe:YES ruleSet:ruleSet inDOM:dom withViewName:nil];
+}
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)applyOrDescribe: (BOOL) apply ruleSet: (NICSSRuleset*) ruleSet inDOM: (NIDOM*)dom withViewName: (NSString*) name {
+  NSMutableString *desc = apply ? nil : [[NSMutableString alloc] init];
+  //      [desc appendFormat:@"%@. = %f;\n"];
+  if ([ruleSet hasBackgroundColor]) {
+    if (apply) {
+      self.backgroundColor = ruleSet.backgroundColor;
+    } else {
+      CGFloat r,g,b,a;
+      [ruleSet.backgroundColor getRed:&r green:&g blue:&b alpha:&a];
+      [desc appendFormat:@"%@.backgroundColor = [UIColor colorWithRed: %f green: %f blue: %f alpha: %f];\n", name, r, g, b, a];
+    }
+  }
+  if ([ruleSet hasOpacity]) {
+    if (apply) {
+      self.alpha = ruleSet.opacity;
+    } else {
+      [desc appendFormat:@"%@.alpha = %f;", name, ruleSet.opacity];
+    }
+  }
+  if ([ruleSet hasBorderRadius]) {
+    if (apply) {
+      self.layer.cornerRadius = ruleSet.borderRadius;
+    } else {
+      [desc appendFormat:@"%@.layer.cornerRadius = %f;\n", name, ruleSet.borderRadius];
+    }
+  }
+  if ([ruleSet hasBorderWidth]) {
+    if (apply) {
+      self.layer.borderWidth = ruleSet.borderWidth;
+    } else {
+      [desc appendFormat:@"%@.layer.borderWidth = %f;\n", name, ruleSet.borderWidth];
+    }
+  }
+  if ([ruleSet hasBorderColor]) {
+    if (apply) {
+      self.layer.borderColor = ruleSet.borderColor.CGColor;
+    } else {
+      CGFloat r,g,b,a;
+      [ruleSet.borderColor getRed:&r green:&g blue:&b alpha:&a];
+      [desc appendFormat:@"%@.layer.borderColor = [UIColor colorWithRed: %f green: %f blue: %f alpha: %f].CGColor;\n", name, r, g, b, a];
+    }
+  }
+  if ([ruleSet hasAutoresizing]) {
+    if (apply) {
+      self.autoresizingMask = ruleSet.autoresizing;
+    } else {
+      [desc appendFormat:@"%@.autoresizingMask = (UIViewAutoresizing) %d;\n", name, ruleSet.autoresizing];
+    }
+  }
+  if ([ruleSet hasVisible]) {
+    if (apply) {
+      self.hidden = !ruleSet.visible;
+    } else {
+      [desc appendFormat:@"%@.hidden = %@;\n", name, ruleSet.visible ? @"NO" : @"YES"];
+    }
+  }
+  
   ///////////////////////////////////////////////////////////////////////////////////////////////////
   // View sizing
   ///////////////////////////////////////////////////////////////////////////////////////////////////
   // Special case auto/auto height and width
   if ([ruleSet hasWidth] && [ruleSet hasHeight] &&
       ruleSet.width.type == CSS_AUTO_UNIT && ruleSet.height.type == CSS_AUTO_UNIT) {
-    [self sizeToFit];
+    if (apply) {
+      [self sizeToFit];
+    } else {
+      [desc appendFormat:@"[%@ sizeToFit];\n", name];
+    }
   } else {
     if ([ruleSet hasWidth]) {
       NICSSUnit u = ruleSet.width;
       CGFloat startHeight = self.frameHeight;
       switch (u.type) {
         case CSS_AUTO_UNIT:
-          [self sizeToFit]; // sizeToFit the width, but retain height. Behavior somewhat undefined...
-          self.frameHeight = startHeight;
+          if (apply) {
+            [self sizeToFit]; // sizeToFit the width, but retain height. Behavior somewhat undefined...
+            self.frameHeight = startHeight;
+          } else {
+            [desc appendFormat:@"[%@ sizeToFit];\n%@.frameHeight = %f;\n", name, name, startHeight];
+          }
           break;
         case CSS_PERCENTAGE_UNIT:
-          self.frameWidth = self.superview.bounds.size.width * u.value;
+          if (apply) {
+            self.frameWidth = self.superview.bounds.size.width * u.value;
+          } else {
+            [desc appendFormat:@"%@.frameWidth = %f;\n", name, self.superview.bounds.size.width * u.value];
+          }
           break;
         case CSS_PIXEL_UNIT:
           // Because padding and margin are (a) complicated to implement and (b) not relevant in a non-flow layout,
@@ -103,9 +178,17 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
           // it's very useful. If someone wants to layer on padding primitives to deal with this in a more CSSy way,
           // go for it.
           if (u.value < 0) {
-            self.frameWidth = self.superview.frameWidth + u.value;
+            if (apply) {
+              self.frameWidth = self.superview.frameWidth + u.value;
+            } else {
+              [desc appendFormat:@"%@.frameWidth = %f;\n", name, self.superview.frameWidth + u.value];
+            }
           } else {
-            self.frameWidth = u.value;
+            if (apply) {
+              self.frameWidth = u.value;
+            } else {
+              [desc appendFormat:@"%@.frameWidth = %f;\n", name, u.value];
+            }
           }
           break;
       }
@@ -115,11 +198,19 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
       CGFloat startWidth = self.frameWidth;
       switch (u.type) {
         case CSS_AUTO_UNIT:
-          [self sizeToFit];
-          self.frameWidth = startWidth;
+          if (apply) {
+            [self sizeToFit];
+            self.frameWidth = startWidth;
+          } else {
+            [desc appendFormat:@"[%@ sizeToFit];\n%@.frameWidth = %f;\n", name, name, startWidth];
+          }
           break;
         case CSS_PERCENTAGE_UNIT:
-          self.frameHeight = self.superview.bounds.size.height * u.value;
+          if (apply) {
+            self.frameHeight = self.superview.bounds.size.height * u.value;
+          } else {
+            [desc appendFormat:@"%@.frameHeight = %f;\n", name, self.superview.bounds.size.height * u.value];
+          }
           break;
         case CSS_PIXEL_UNIT:
           // Because padding and margin are (a) complicated to implement and (b) not relevant in a non-flow layout,
@@ -127,9 +218,17 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
           // it's very useful. If someone wants to layer on padding primitives to deal with this in a more CSSy way,
           // go for it.
           if (u.value < 0) {
-            self.frameHeight = self.superview.frameHeight + u.value;
+            if (apply) {
+              self.frameHeight = self.superview.frameHeight + u.value;
+            } else {
+              [desc appendFormat:@"%@.frameHeight = %f;\n", name, self.superview.frameHeight + u.value];
+            }
           } else {
-            self.frameHeight = u.value;
+            if (apply) {
+              self.frameHeight = u.value;
+            } else {
+              [desc appendFormat:@"%@.frameHeight = %f;\n", name, u.value];
+            }
           }
           break;
       }
@@ -141,19 +240,27 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   ///////////////////////////////////////////////////////////////////////////////////////////////////
   if ([ruleSet hasMaxWidth]) {
     CGFloat max = NICSSUnitToPixels(ruleSet.maxWidth,self.frameWidth);
-    if (self.frameWidth > max) { self.frameWidth = max; }
+    if (self.frameWidth > max) {
+      if (apply) { self.frameWidth = max; } else { [desc appendFormat:@"%@.frameWidth = %f;\n", name, max]; }
+    }
   }
   if ([ruleSet hasMaxHeight]) {
     CGFloat max = NICSSUnitToPixels(ruleSet.maxHeight,self.frameHeight);
-    if (self.frameHeight > max) { self.frameHeight = max; }
+    if (self.frameHeight > max) {
+      if (apply) { self.frameHeight = max; } else { [desc appendFormat:@"%@.frameHeight = %f;\n", name, max]; }
+    }
   }
   if ([ruleSet hasMinWidth]) {
     CGFloat min = NICSSUnitToPixels(ruleSet.minWidth,self.frameWidth);
-    if (self.frameWidth < min) { self.frameWidth = min; }
+    if (self.frameWidth < min) {
+      if (apply) { self.frameWidth = min; } else { [desc appendFormat:@"%@.frameWidth = %f;\n", name, min]; }
+    }
   }
   if ([ruleSet hasMinHeight]) {
     CGFloat min = NICSSUnitToPixels(ruleSet.minHeight,self.frameHeight);
-    if (self.frameHeight < min) { self.frameHeight = min; }
+    if (self.frameHeight < min) {
+      if (apply) { self.frameHeight = min; } else { [desc appendFormat:@"%@.frameHeight = %f;\n", name, min]; }
+    }
   }
   
   ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -163,10 +270,18 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     NICSSUnit u = ruleSet.top;
     switch (u.type) {
       case CSS_PERCENTAGE_UNIT:
-        self.frameMinY = self.superview.bounds.size.height * u.value;
+        if (apply) {
+          self.frameMinY = self.superview.bounds.size.height * u.value;
+        } else {
+          [desc appendFormat:@"%@.frameMinY = %f;\n", name, self.superview.bounds.size.height * u.value];
+        }
         break;
       case CSS_PIXEL_UNIT:
-        self.frameMinY = u.value;
+        if (apply) {
+          self.frameMinY = u.value;
+        } else {
+          [desc appendFormat:@"%@.frameMinY = %f;\n", name, u.value];
+        }
         break;
       default:
         NIDASSERT(u.type == CSS_PERCENTAGE_UNIT || u.type == CSS_PIXEL_UNIT);
@@ -177,10 +292,18 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     NICSSUnit u = ruleSet.left;
     switch (u.type) {
       case CSS_PERCENTAGE_UNIT:
-        self.frameMinX = self.superview.bounds.size.width * u.value;
+        if (apply) {
+          self.frameMinX = self.superview.bounds.size.width * u.value;
+        } else {
+          [desc appendFormat:@"%@.frameMinX = %f;\n", name, self.superview.bounds.size.width * u.value];
+        }
         break;
       case CSS_PIXEL_UNIT:
-        self.frameMinX = u.value;
+        if (apply) {
+          self.frameMinX = u.value;
+        } else {
+          [desc appendFormat:@"%@.frameMinX = %f;\n", name, u.value];
+        }
         break;
       default:
         NIDASSERT(u.type == CSS_PERCENTAGE_UNIT || u.type == CSS_PIXEL_UNIT);
@@ -192,10 +315,18 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     NICSSUnit u = ruleSet.right;
     switch (u.type) {
       case CSS_PERCENTAGE_UNIT:
-        self.frameMaxX = self.superview.bounds.size.width * u.value;
+        if (apply) {
+          self.frameMaxX = self.superview.bounds.size.width * u.value;
+        } else {
+          [desc appendFormat:@"%@.frameMaxX = %f;\n", name, self.superview.bounds.size.width * u.value];
+        }
         break;
       case CSS_PIXEL_UNIT:
-        self.frameMaxX = self.superview.bounds.size.width - u.value;
+        if (apply) {
+          self.frameMaxX = self.superview.bounds.size.width - u.value;
+        } else {
+          [desc appendFormat:@"%@.frameMaxX = %f;\n", name, self.superview.bounds.size.width - u.value];
+        }
         break;
       default:
         NIDASSERT(u.type == CSS_PERCENTAGE_UNIT || u.type == CSS_PIXEL_UNIT);
@@ -206,10 +337,18 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     NICSSUnit u = ruleSet.bottom;
     switch (u.type) {
       case CSS_PERCENTAGE_UNIT:
-        self.frameMaxY = self.superview.bounds.size.height * u.value;
+        if (apply) {
+          self.frameMaxY = self.superview.bounds.size.height * u.value;
+        } else {
+          [desc appendFormat:@"%@.frameMaxY = %f;\n", name, self.superview.bounds.size.height * u.value];
+        }
         break;
       case CSS_PIXEL_UNIT:
-        self.frameMaxY = self.superview.bounds.size.height - u.value;
+        if (apply) {
+          self.frameMaxY = self.superview.bounds.size.height - u.value;
+        } else {
+          [desc appendFormat:@"%@.frameMaxY = %f;\n", name, self.superview.bounds.size.height - u.value];
+        }
         break;
       default:
         NIDASSERT(u.type == CSS_PERCENTAGE_UNIT || u.type == CSS_PIXEL_UNIT);
@@ -219,10 +358,19 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   if ([ruleSet hasFrameHorizontalAlign]) {
     switch (ruleSet.frameHorizontalAlign) {
       case UITextAlignmentCenter:
-        self.frameMidX = self.superview.bounds.size.width / 2.0;
+        if (apply) {
+          self.frameMidX = self.superview.bounds.size.width / 2.0;
+        } else {
+          [desc appendFormat:@"%@.frameMidX = %f;\n", name, self.superview.bounds.size.width / 2.0];
+        }
         break;
       case UITextAlignmentLeft:
-        self.frameMinX = 0;
+        if (apply) {
+          self.frameMinX = 0;
+        } else {
+          [desc appendFormat:@"%@.frameMinX = 0;\n", name];
+        }
+        break;
       case UITextAlignmentRight:
         self.frameMaxX = self.superview.bounds.size.width;
         break;
@@ -234,12 +382,25 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   if ([ruleSet hasFrameVerticalAlign]) {
     switch (ruleSet.frameVerticalAlign) {
       case UIViewContentModeCenter:
-        self.frameMidY = self.superview.bounds.size.height / 2.0;
+        if (apply) {
+          self.frameMidY = self.superview.bounds.size.height / 2.0;
+        } else {
+          [desc appendFormat:@"%@.frameMidY = %f;\n", name, self.superview.bounds.size.height / 2.0];
+        }
         break;
       case UIViewContentModeTop:
-        self.frameMinY = 0;
+        if (apply) {
+          self.frameMinY = 0;
+        } else {
+          [desc appendFormat:@"%@.frameMinY = 0;\n", name];
+        }
+        break;
       case UIViewContentModeBottom:
-        self.frameMaxY = self.superview.bounds.size.height;
+        if (apply) {
+          self.frameMaxY = self.superview.bounds.size.height;
+        } else {
+          [desc appendFormat:@"%@.frameMaxY = %f;\n", name, self.superview.bounds.size.height];
+        }
         break;
       default:
         NIDASSERT(NO);
@@ -287,7 +448,11 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             if (self.superview != relative.superview) {
               anchor = [self convertPoint:anchor fromView:relative.superview];
             }
-            self.frameMidY = anchor.y;
+            if (apply) {
+              self.frameMidY = anchor.y;
+            } else {
+              [desc appendFormat:@"%@.frameMidY = %f;\n", name, anchor.y];
+            }
             break;
           case CSS_PERCENTAGE_UNIT:
           case CSS_PIXEL_UNIT:
@@ -296,7 +461,11 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             if (self.superview != relative.superview) {
               anchor = [self convertPoint:anchor fromView:relative.superview];
             }
-            self.frameMinY = anchor.y + NICSSUnitToPixels(top, relative.frameHeight);
+            if (apply) {
+              self.frameMinY = anchor.y + NICSSUnitToPixels(top, relative.frameHeight);
+            } else {
+              [desc appendFormat:@"%@.frameMinY = %f;\n", name, anchor.y + NICSSUnitToPixels(top, relative.frameHeight)];
+            }
             break;
         }
       } else if (ruleSet.hasMarginBottom) {
@@ -308,7 +477,11 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             if (self.superview != relative.superview) {
               anchor = [self convertPoint:anchor fromView:relative.superview];
             }
-            self.frameMidY = anchor.y;
+            if (apply) {
+              self.frameMidY = anchor.y;
+            } else {
+              [desc appendFormat:@"%@.frameMidY = %f;\n", name, anchor.y];
+            }
             break;
           case CSS_PERCENTAGE_UNIT:
           case CSS_PIXEL_UNIT:
@@ -317,7 +490,11 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             if (self.superview != relative.superview) {
               anchor = [self convertPoint:anchor fromView:relative.superview];
             }
-            self.frameMaxY = anchor.y - NICSSUnitToPixels(bottom, relative.frameHeight);
+            if (apply) {
+              self.frameMaxY = anchor.y - NICSSUnitToPixels(bottom, relative.frameHeight);
+            } else {
+              [desc appendFormat:@"%@.frameMaxY = %f;", name, anchor.y - NICSSUnitToPixels(bottom, relative.frameHeight)];
+            }
             break;
         }
       }
@@ -331,7 +508,11 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             if (self.superview != relative.superview) {
               anchor = [self convertPoint:anchor fromView:relative.superview];
             }
-            self.frameMidX = anchor.x;
+            if (apply) {
+              self.frameMidX = anchor.x;
+            } else {
+              [desc appendFormat:@"%@.frameMidX = %f;\n", name, anchor.x];
+            }
             break;
           case CSS_PERCENTAGE_UNIT:
           case CSS_PIXEL_UNIT:
@@ -340,7 +521,11 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             if (self.superview != relative.superview) {
               anchor = [self convertPoint:anchor fromView:relative.superview];
             }
-            self.frameMinX = anchor.x + NICSSUnitToPixels(left, relative.frameWidth);
+            if (apply) {
+              self.frameMinX = anchor.x + NICSSUnitToPixels(left, relative.frameWidth);
+            } else {
+              [desc appendFormat:@"%@.frameMinX = %f;\n", name, anchor.x + NICSSUnitToPixels(left, relative.frameWidth)];
+            }
             break;
         }
       } else if (ruleSet.hasMarginRight) {
@@ -352,7 +537,11 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             if (self.superview != relative.superview) {
               anchor = [self convertPoint:anchor fromView:relative.superview];
             }
-            self.frameMidX = anchor.x;
+            if (apply) {
+              self.frameMidX = anchor.x;
+            } else {
+              [desc appendFormat:@"%@.frameMidX = %f;\n", name, anchor.x];
+            }
             break;
           case CSS_PERCENTAGE_UNIT:
           case CSS_PIXEL_UNIT:
@@ -361,12 +550,18 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             if (self.superview != relative.superview) {
               anchor = [self convertPoint:anchor fromView:relative.superview];
             }
-            self.frameMaxX = anchor.x - NICSSUnitToPixels(right, relative.frameWidth);
+            if (apply) {
+              self.frameMaxX = anchor.x - NICSSUnitToPixels(right, relative.frameWidth);
+            } else {
+              [desc appendFormat:@"%@.frameMaxX = %f;", name, anchor.x - NICSSUnitToPixels(right, relative.frameWidth)];
+              
+            }
             break;
         }
       }
     }
   }
+  return desc;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -537,9 +732,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
       directiveValue = [kv objectForKey:NICSSViewIdKey];
       if (directiveValue) {
         NSAssert([directiveValue isKindOfClass:[NSString class]], @"The value of NICSSViewIdKey must be an NSString*");
-          if (![directiveValue hasPrefix:@"#"]) {
-              directiveValue = [@"#" stringByAppendingString:directiveValue];
-          }
+        if (![directiveValue hasPrefix:@"#"]) {
+          directiveValue = [@"#" stringByAppendingString:directiveValue];
+        }
         active.viewId = directiveValue;
       }
       directiveValue = [kv objectForKey:NICSSViewCssClassKey];
@@ -556,7 +751,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
       if (directiveValue) {
         NSAssert([directiveValue isKindOfClass:[NSString class]] || [directiveValue isKindOfClass:[NIUserInterfaceString class]], @"The value of NICSSViewCssClassKey must be an NSString* or NIUserInterfaceString*");
         if ([directiveValue isKindOfClass:[NSString class]]) {
-            directiveValue = [[NIUserInterfaceString alloc] initWithKey:directiveValue defaultValue:directiveValue];
+          directiveValue = [[NIUserInterfaceString alloc] initWithKey:directiveValue defaultValue:directiveValue];
         }
         if ([directiveValue isKindOfClass:[NIUserInterfaceString class]]) {
           [((NIUserInterfaceString*)directiveValue) attach:active.view];
@@ -579,23 +774,32 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
       directiveValue = [kv objectForKey:NICSSViewTargetSelectorKey];
       if (directiveValue) {
         NSAssert([directiveValue isKindOfClass:[NSInvocation class]] || [directiveValue isKindOfClass:[NSString class]], @"NICSSViewTargetSelectorKey must be an NSInvocation*, or an NSString* if you're adventurous and NI_DYNAMIC_VIEWS is defined.");
-
+        
 #ifdef NI_DYNAMIC_VIEWS
         // NSSelectorFromString has Apple rejection written all over it, even though it's documented. Since its intended
         // use is primarily rapid development right now, use the #ifdef to turn it on.
         if ([directiveValue isKindOfClass:[NSString class]]) {
           // Let's make an invocation out of this puppy.
-          SEL selector = NSSelectorFromString(directiveValue);
-          directiveValue = NIInvocationWithInstanceTarget(dom.target, selector);
+          @try {
+            SEL selector = NSSelectorFromString(directiveValue);
+            directiveValue = NIInvocationWithInstanceTarget(dom.target, selector);
+          }
+          @catch (NSException *exception) {
+#ifdef DEBUG
+            NIDPRINT(@"Unknown selector %@ specified on %@.", directiveValue, dom.target);
+#endif
+          }
         }
 #endif
-
-        NSInvocation *n = (NSInvocation*) directiveValue;
-        if ([active.view respondsToSelector:@selector(addTarget:action:forControlEvents:)]) {
-          [((id)active.view) addTarget: n.target action: n.selector forControlEvents: UIControlEventTouchUpInside];
-        } else {
-          NSString *error = [NSString stringWithFormat:@"Cannot apply NSInvocation to class %@", NSStringFromClass(active.class)];
-          NSAssert(NO, error);
+        
+        if ([directiveValue isKindOfClass:[NSInvocation class]]) {
+          NSInvocation *n = (NSInvocation*) directiveValue;
+          if ([active.view respondsToSelector:@selector(addTarget:action:forControlEvents:)]) {
+            [((id)active.view) addTarget: n.target action: n.selector forControlEvents: UIControlEventTouchUpInside];
+          } else {
+            NSString *error = [NSString stringWithFormat:@"Cannot apply NSInvocation to class %@", NSStringFromClass(active.class)];
+            NSAssert(NO, error);
+          }
         }
       }
       directiveValue = [kv objectForKey:NICSSViewSubviewsKey];
@@ -603,7 +807,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
         NSAssert([directiveValue isKindOfClass: [NSArray class]], @"NICSSViewSubviewsKey must be an NSArray*");
         [active.view _buildSubviews:directiveValue inDOM:dom withViewArray:subviews];
       } else if (directiveValue)
-      directiveValue = [kv objectForKey:NICSSViewAccessibilityLabelKey];
+        directiveValue = [kv objectForKey:NICSSViewAccessibilityLabelKey];
       if (directiveValue) {
         NSAssert([directiveValue isKindOfClass:[NSString class]], @"NICSSViewAccessibilityLabelKey must be an NSString*");
         active.view.accessibilityLabel = directiveValue;

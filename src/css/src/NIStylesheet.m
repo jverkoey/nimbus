@@ -226,6 +226,24 @@ static Class _rulesetClass;
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)descriptionForView:(UIView *)view withClassName:(NSString *)className inDOM:(NIDOM *)dom andViewName:(NSString *)viewName {
+  NSMutableString *description = [[NSMutableString alloc] init];
+  NICSSRuleset *ruleset = [self rulesetForClassName:className];
+  if (nil != ruleset) {
+    NSRange r = [className rangeOfString:@":"];
+    if ([view respondsToSelector:@selector(descriptionWithRuleSet:forPseudoClass:inDOM:withViewName:)]) {
+      if (r.location != NSNotFound) {
+        [description appendString:[(id<NIStyleable>)view descriptionWithRuleSet:ruleset forPseudoClass:[className substringFromIndex:r.location+1] inDOM:dom withViewName:viewName]];
+      } else {
+        [description appendString:[(id<NIStyleable>)view descriptionWithRuleSet:ruleset forPseudoClass:nil inDOM:dom withViewName:viewName]];
+      }
+    } else {
+      [description appendFormat:@"// Description not supported for %@ with selector %@\n", view, className];
+    }
+  }
+  return description;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////

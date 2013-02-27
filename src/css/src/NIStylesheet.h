@@ -64,6 +64,8 @@ extern NSString* const NIStylesheetDidChangeNotification;
 
 - (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className inDOM: (NIDOM*)dom;
 
+- (NSString*)descriptionForView:(UIView *)view withClassName:(NSString *)className inDOM: (NIDOM*)dom andViewName: (NSString*) viewName;
+
 - (NICSSRuleset *)rulesetForClassName:(NSString *)className;
 
 /**
@@ -140,4 +142,13 @@ extern NSString* const NIStylesheetDidChangeNotification;
  *      @fn NIStylesheet::rulesetForClassName:
  *      @param className  Either the view's class as a string using NSStringFromClass([view class]);
  *                        or a CSS class selector such as ".myClassSelector".
+ */
+
+/** @name Debugging */
+
+/**
+ * Build a string describing the rules that would be applied to the view given a css class name in a DOM.
+ * Current implementations output Objective-C code that use viewName as the target.
+ *
+ *      @fn NIStylesheet::descriptionForView:withClassName:inDOM:andViewName:
  */

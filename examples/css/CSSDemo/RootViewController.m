@@ -78,6 +78,8 @@
     [_dom registerView:box withCSSClass:@"colorBox" andId:[NSString stringWithFormat:@"box%d",i]];
   }
   [_activityIndicator startAnimating];
+  
+  NSLog(@"%@", [_dom descriptionForAllViews]);
 }
 
 -(void)viewWillLayoutSubviews

@@ -60,4 +60,11 @@
  */
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass: (NSString*) pseudo inDOM: (NIDOM*) dom;
 
+/**
+ * Return a string describing what would be done with the view. The current implementations return actual
+ * Objective-C using the view name as the message target. The intent is to allow developers to debug
+ * the logic, but also to be able to strip out the CSS infrastructure if desired and replace it with manual code.
+ */
+- (NSString*) descriptionWithRuleSet: (NICSSRuleset*) ruleSet forPseudoClass: (NSString*) pseudo inDOM: (NIDOM*) dom withViewName: (NSString*) name;
+
 @end
