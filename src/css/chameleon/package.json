@@ -6,6 +6,7 @@
     "npm":  "1.1.x"
   },
   "dependencies": {
-    "optimist": "0.3.4"
+    "optimist": "0.3.4",
+    "mdns": "1.1.0"
   }
 }
