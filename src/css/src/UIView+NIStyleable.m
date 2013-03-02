@@ -574,6 +574,16 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     NIPrivateViewInfo *viewInfo = [subviews objectAtIndex:ix];
     NSString *firstClass = [viewInfo.cssClasses count] ? [viewInfo.cssClasses objectAtIndex:0] : nil;
     [dom registerView:viewInfo.view withCSSClass:firstClass andId:viewInfo.viewId];
+    if (viewInfo.viewId && dom.target) {
+      NSString *selectorName = [NSString stringWithFormat:@"set%@%@:", [viewInfo.viewId substringWithRange:NSMakeRange(1, 1)], [viewInfo.viewId substringFromIndex:2]];
+      SEL selector = NSSelectorFromString(selectorName);
+      if ([dom.target respondsToSelector:selector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [dom.target performSelector:selector withObject:viewInfo.view];
+#pragma clang diagnostic pop
+      }
+    }
     if (viewInfo.cssClasses.count > 1) {
       for (int i = 1, cct = viewInfo.cssClasses.count; i < cct; i++) {
         [dom addCssClass:[viewInfo.cssClasses objectAtIndex:i] toView:viewInfo.view];
