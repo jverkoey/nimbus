@@ -37,7 +37,7 @@
 @optional
 - (void)tableSystem:(NITableViewSystem *)tableSystem didSelectObject:(id)object
         atIndexPath:(NSIndexPath *)indexPath;
-- (void)tableSystem:(NITableViewSystem *)tableSystem didAssignCell:(id)object toTableItem: (id)tableItem
+- (void)tableSystem:(NITableViewSystem *)tableSystem didAssignCell:(id)object toTableItem:(id)tableItem
 		atIndexPath:(NSIndexPath *)indexPath;
 @end
 
