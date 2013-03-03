@@ -153,6 +153,9 @@
 
 - (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass andId:(NSString *)viewId
 {
+  // These are basically the least specific selectors (by our simple rules), so this needs to get registered first
+  [self registerView:view withCSSClass:cssClass];
+
   NSArray *pseudos = nil;
   if (viewId) {
     if (![viewId hasPrefix:@"#"]) { viewId = [@"#" stringByAppendingString:viewId]; }
@@ -172,21 +175,16 @@
         }
       }
     }
-  }
-  [self registerView:view withCSSClass:cssClass];
-  
-  if (viewId) {
+
     if (!_idToViewMap) {
       _idToViewMap = [[NSMutableDictionary alloc] init];
     }
     [_idToViewMap setObject:view forKey:viewId];
     // Run the id selectors last so they take precedence
-    if (viewId) {
-      [self refreshStyleForView:view withSelectorName:viewId];
-      if (pseudos) {
-        for (NSString *ps in pseudos) {
-          [self refreshStyleForView:view withSelectorName:[viewId stringByAppendingString:ps]];
-        }
+    [self refreshStyleForView:view withSelectorName:viewId];
+    if (pseudos) {
+      for (NSString *ps in pseudos) {
+        [self refreshStyleForView:view withSelectorName:[viewId stringByAppendingString:ps]];
       }
     }
   }
