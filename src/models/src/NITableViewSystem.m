@@ -125,54 +125,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setDataSourceWithListArray:(NSArray *)listArray reloadTableView:(BOOL)reloadTableView {
-    /*
-     // Custom logic for cell position of custom grouped cells.
-    {
-        // Set the cell positions for all KBTableItems so view controllers don't need to worry about it.
-        KBTableItem *lastKBItem = nil;
-        for (id item in listArray) {
-            BOOL reachedEndOfSection = NO;
-
-            if ([item isKindOfClass:[KBTableItem class]]) {
-                KBTableItem *kbItem = (KBTableItem *)item;
-                if (kbItem.doesPositionMatter && kbItem.cellPosition == KBTableCellBackgroundViewPositionUnspecified) {
-
-                    if (lastKBItem != nil) {
-                        kbItem.cellPosition = KBTableCellBackgroundViewPositionMiddle;
-                    } else {
-                        kbItem.cellPosition = KBTableCellBackgroundViewPositionTop;
-                    }
-
-                    lastKBItem = kbItem;
-                } else {
-                    reachedEndOfSection = YES;
-                }
-            } else {
-                reachedEndOfSection = YES;
-            }
-
-            if (reachedEndOfSection && lastKBItem != nil) {
-                if (lastKBItem.cellPosition == KBTableCellBackgroundViewPositionMiddle) {
-                    lastKBItem.cellPosition = KBTableCellBackgroundViewPositionBottom;
-                } else if (lastKBItem.cellPosition == KBTableCellBackgroundViewPositionTop) {
-                    lastKBItem.cellPosition = KBTableCellBackgroundViewPositionSingle;
-                } else {
-                    NSAssert(NO, @"Unexpected situation while trying to figure out cell positions. Must be a bug in this code.");
-                }
-                lastKBItem = nil;
-            }
-        }
-
-        if (lastKBItem.cellPosition == KBTableCellBackgroundViewPositionMiddle) {
-            lastKBItem.cellPosition = KBTableCellBackgroundViewPositionBottom;
-        } else if (lastKBItem.cellPosition == KBTableCellBackgroundViewPositionTop) {
-            lastKBItem.cellPosition = KBTableCellBackgroundViewPositionSingle;
-        } else if (lastKBItem != nil) {
-            NSAssert(NO, @"Unexpected situation while trying to figure out cell positions. Must be a bug in this code.");
-        }
-    }
-     */
-
     [self setDataSource:[[NITableViewModel alloc] initWithListArray:listArray delegate:self]
         reloadTableView:reloadTableView];
 }
