@@ -311,6 +311,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     }
   }
   // TODO - should specifying both left/right or top/bottom set the width instead?
+  // TODO - how does left/right/top/bottom interact with relative positioning if at all?
   if ([ruleSet hasRight]) {
     NICSSUnit u = ruleSet.right;
     switch (u.type) {

@@ -289,6 +289,13 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)refreshView:(UIView *)view {
+    for (NSString* selector in [_viewToSelectorsMap objectForKey:[self keyForView:view]]) {
+        [self refreshStyleForView:view withSelectorName:selector];
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(UIView *)viewById:(NSString *)viewId
 {
   if (![viewId hasPrefix:@"#"]) { viewId = [@"#" stringByAppendingString:viewId]; }
