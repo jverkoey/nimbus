@@ -24,9 +24,6 @@
 @property (nonatomic, strong) UITableView *myTableView;
 @property (nonatomic, assign) UITableViewStyle tableViewStyle;
 
-// Data
-@property (nonatomic, strong) NICellFactory *cellFactory;
-
 @end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,11 +45,11 @@
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-+ (NITableViewSystem *)tableSystemWithFrame:(CGRect)frame style:(UITableViewStyle)tableStyle delegate:(id<NITableViewSystemDelegate, UIScrollViewDelegate>)delegate {
-    NITableViewSystem *result = [[NITableViewSystem alloc] init];
++ (id)tableSystemWithFrame:(CGRect)frame style:(UITableViewStyle)tableStyle delegate:(id<NITableViewSystemDelegate, UIScrollViewDelegate>)delegate {
+    NITableViewSystem *result = [[self alloc] init];
     result.delegate = delegate;
     result.tableViewStyle = tableStyle;
-    [result createTableViewWithFrame:frame];
+    result.myTableView = [result createTableViewWithFrame:frame withStyle:result.tableViewStyle];
 
     return result;
 }
@@ -67,23 +64,28 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableView *)tableView {
     if (self.myTableView == nil) {
-        [self createTableView];
+        self.myTableView = [self createTableView];
     }
 
     return self.myTableView;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)createTableView {
+- (UITableView *)createTableView {
     // Picks an effectively random size
-    [self createTableViewWithFrame:CGRectMake(0, 0, 320, 416)];
+    return [self createTableViewWithFrame:CGRectMake(0, 0, 320, 416) withStyle:UITableViewStylePlain];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)createTableViewWithFrame:(CGRect)frame {
-    self.myTableView = [[UITableView alloc] initWithFrame:frame style:self.tableViewStyle];
+- (UITableView *)createTableViewWithFrame:(CGRect)frame withStyle:(UITableViewStyle)tableStyle {
+    UITableView *result = [[UITableView alloc] initWithFrame:frame style:tableStyle];
 
-    // TODO: Ask the delete for some default styling to the tableview?
+    return result;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setDataSource:(NITableViewModel *)newDataSource {
+    [self setDataSource:newDataSource reloadTableView:YES];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

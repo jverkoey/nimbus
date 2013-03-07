@@ -23,6 +23,7 @@
 
 @class NITableViewDelegate;
 @class NITableViewSystem;
+@class NICellFactory;
 
 /**
  * NITableViewSystemDelegates receive messages from the tableViewDelegate, including:
@@ -51,10 +52,11 @@
 
 // Data & Logic
 @property (nonatomic, strong) NITableViewModel *dataSource;
+@property (nonatomic, strong) NICellFactory *cellFactory;
 @property (nonatomic, strong) NITableViewDelegate *tableViewDelegate;
 @property (nonatomic, unsafe_unretained) id<NITableViewSystemDelegate, UIScrollViewDelegate> delegate;
 
-+ (NITableViewSystem *)tableSystemWithFrame:(CGRect)frame style:(UITableViewStyle)tableStyle delegate:(id<NITableViewSystemDelegate, UIScrollViewDelegate>)delegate;
++ (id)tableSystemWithFrame:(CGRect)frame style:(UITableViewStyle)tableStyle delegate:(id<NITableViewSystemDelegate, UIScrollViewDelegate>)delegate;
 
 /**
  *  A convenience method. Sets the datasource and reloads _tableView if specified.
@@ -67,6 +69,10 @@
 - (void)setDataSourceWithListArray:(NSArray *)listArray;
 - (void)setDataSourceWithListArray:(NSArray *)listArray reloadTableView:(BOOL)reloadTableView;
 
+/**
+ *  Returns a UITableView with the given frame. Subclasses can return table view preconfigured with more custom view tweaks.
+ */
+- (UITableView *)createTableViewWithFrame:(CGRect)frame withStyle:(UITableViewStyle)tableStyle;
 
 - (NSIndexPath *)indexPathForTableItem:(id)object;
 
