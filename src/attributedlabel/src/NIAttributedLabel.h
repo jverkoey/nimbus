@@ -17,7 +17,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
 #import "NimbusCore.h"
-//
+
 // In UITextAlignment prior to iOS 6.0 we do not have justify, so we add support for it when
 // building for pre-iOS 6.0.
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
