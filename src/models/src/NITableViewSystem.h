@@ -54,7 +54,7 @@
 @property (nonatomic, strong) NITableViewModel *dataSource;
 @property (nonatomic, strong) NICellFactory *cellFactory;
 @property (nonatomic, strong) NITableViewDelegate *tableViewDelegate;
-@property (nonatomic, unsafe_unretained) id<NITableViewSystemDelegate, UIScrollViewDelegate> delegate;
+@property (nonatomic, weak) id<NITableViewSystemDelegate, UIScrollViewDelegate> delegate;
 
 + (id)tableSystemWithFrame:(CGRect)frame style:(UITableViewStyle)tableStyle delegate:(id<NITableViewSystemDelegate, UIScrollViewDelegate>)delegate;
 
