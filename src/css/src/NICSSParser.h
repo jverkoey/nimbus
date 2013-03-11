@@ -44,12 +44,15 @@ extern NSString* const kDependenciesSelectorKey;
   NSMutableArray* _scopesForActiveRuleset;
   NSString* _currentPropertyName;
   NSMutableArray* _importedFilenames;
+  BOOL droppingCurrentRules;
 
   union {
     struct {
       int InsideRuleset : 1; // Within `ruleset {...}`
       int InsideProperty : 1; // Defining a `property: ...`
       int InsideFunction : 1; // Within a `function(...)`
+      int InsideMedia : 1; // within `@media {}`
+      int ReadingMedia : 1; // got @media start, waiting for rules and a brace
     } Flags;
     int _data;
   } _state;

@@ -1,0 +1,49 @@
+@media iPad-retina,iPad-nonretina,iPhone-retina,iPhone-nonretina {
+UIView {
+}
+}
+
+@media iPad
+{
+UIButton {
+}
+}
+
+@media iPhone
+{
+UINavigationBar {
+}
+}
+
+@media nonRetina {
+UILabel {
+}
+}
+
+@media retina {
+UITextField {
+}
+}
+
+@media iPad-nonRetina
+{
+#UIButton {
+}
+}
+
+@media iPhone-nonRetina
+{
+#UINavigationBar {
+}
+}
+
+@media iPad-retina {
+#UILabel {
+}
+}
+
+@media iPhone-retina {
+#UITextField {
+}
+}
+
