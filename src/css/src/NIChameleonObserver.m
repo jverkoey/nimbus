@@ -182,7 +182,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
         [responseObject writeToFile:diskPath atomically:YES];
         
         NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName:NIStringsDidChangeNotification object:nil userInfo:@{
+        [nc postNotificationName:NIJSONDidChangeNotification object:nil userInfo:@{
             NIJSONDidChangeFilePathKey: diskPath,
             NIJSONDidChangeNameKey: path
          }];
