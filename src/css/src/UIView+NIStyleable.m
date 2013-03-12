@@ -857,10 +857,12 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
       }
       directiveValue = [kv objectForKey:NICSSViewBackgroundColorKey];
       if (directiveValue) {
-        NSAssert([directiveValue isKindOfClass:[UIColor class]] || [directiveValue isKindOfClass:[NSNumber class]], @"The value of NICSSViewBackgroundColorKey must be NSNumber* or UIColor*");
+        NSAssert([directiveValue isKindOfClass:[UIColor class]] || [directiveValue isKindOfClass:[NSNumber class]] || [directiveValue isKindOfClass:[NSString class]], @"The value of NICSSViewBackgroundColorKey must be NSString*, NSNumber* or UIColor*");
         if ([directiveValue isKindOfClass:[NSNumber class]]) {
           long rgbValue = [directiveValue longValue];
           directiveValue = [UIColor colorWithRed:((float)((rgbValue & 0xFF000000) >> 24))/255.0 green:((float)((rgbValue & 0xFF0000) >> 16))/255.0 blue:((float)((rgbValue & 0xFF00) >> 8))/255.0 alpha:((float)(rgbValue & 0xFF))/255.0];
+        } else if ([directiveValue isKindOfClass:[NSString class]]) {
+          directiveValue = [NICSSRuleset colorFromString:directiveValue];
         }
         self.backgroundColor = directiveValue;
       }

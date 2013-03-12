@@ -168,6 +168,8 @@ typedef enum {
   } _is;
 }
 
++ (UIColor*) colorFromString: (NSString*) colorValue;
+
 - (void)addEntriesFromDictionary:(NSDictionary *)dictionary;
 - (id)cssRuleForKey: (NSString*)key;
 
@@ -324,6 +326,13 @@ typedef enum {
 - (BOOL) hasVerticalPadding;
 - (NICSSUnit) verticalPadding; // padding or -mobile-vPadding
 @end
+
+/**
+ * Returns a UIColor given a string in CSS-compatible form, which can be useful
+ * for specifying colors "elsewhere" with the rich support of CSS names and behaviors
+ *
+ *      @fn NICSSRuleset::colorFromString:
+ */
 
 /**
  * Adds a raw CSS ruleset to this ruleset object.

@@ -1136,6 +1136,11 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (UIColor*) colorFromString: (NSString*) colorValue {
+  return [self colorFromCssValues:[NSArray arrayWithObject:colorValue] numberOfConsumedTokens:nil];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (UIColor *)colorFromCssValues:(NSArray *)cssValues numberOfConsumedTokens:(NSInteger *)pNumberOfConsumedTokens {
   NSInteger bogus = 0;
   if (nil == pNumberOfConsumedTokens) {
