@@ -22,9 +22,9 @@
 @class NIStylesheet;
 @class NIStylesheetCache;
 
-extern NSString* const NIJSONDidChangeNotification;
-extern NSString* const NIJSONDidChangeFilePathKey;
-extern NSString* const NIJSONDidChangeNameKey;
+extern NSString* const NIGenericResourceDidChangeNotification;
+extern NSString* const NIGenericResourceDidChangeFilePathKey;
+extern NSString* const NIGenericResourceDidChangeNameKey;
 
 /**
  * An observer for the Chameleon server.
