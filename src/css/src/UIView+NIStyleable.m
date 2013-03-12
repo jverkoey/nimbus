@@ -904,8 +904,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
       if (directiveValue) {
         NSAssert([directiveValue isKindOfClass: [NSArray class]], @"NICSSViewSubviewsKey must be an NSArray*");
         [active.view _buildSubviews:directiveValue inDOM:dom withViewArray:subviews];
-      } else if (directiveValue)
-        directiveValue = [kv objectForKey:NICSSViewAccessibilityLabelKey];
+      }
+      
+      directiveValue = [kv objectForKey:NICSSViewAccessibilityLabelKey];
       if (directiveValue) {
         NSAssert([directiveValue isKindOfClass:[NSString class]], @"NICSSViewAccessibilityLabelKey must be an NSString*");
         active.view.accessibilityLabel = directiveValue;
