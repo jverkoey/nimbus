@@ -813,7 +813,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
         if ([directiveValue isKindOfClass:[UIView class]]) {
           active = [[NIPrivateViewInfo alloc] init];
           active.view = (UIView*) directiveValue;
-          [self addSubview:active.view];
+          if (self != active.view) {
+            [self addSubview:active.view];
+          }
           [subviews addObject: active];
         } else if (class_isMetaClass(object_getClass(directiveValue))) {
           active = [[NIPrivateViewInfo alloc] init];
@@ -916,7 +918,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
     if ([directive isKindOfClass: [UIView class]]) {
       active = [[NIPrivateViewInfo alloc] init];
       active.view = (UIView*) directive;
-      [self addSubview:active.view];
+      if (self != directive) {
+        [self addSubview:active.view];
+      }
       [subviews addObject: active];
       continue;
     } else if (class_isMetaClass(object_getClass(directive))) {
