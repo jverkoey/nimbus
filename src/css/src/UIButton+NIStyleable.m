@@ -59,15 +59,15 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
     [self setTitleShadowColor:ruleSet.textShadowColor forState:UIControlStateNormal];
   }
   if (ruleSet.hasImage) {
-    [self setImage:[UIImage imageNamed:ruleSet.image] forState:UIControlStateNormal];
+    [self setImage:[UIImage imageNamed:[[NICSSRuleset pathPrefixForImages] stringByAppendingPathComponent:ruleSet.image]] forState:UIControlStateNormal];
   }
   if (ruleSet.hasBackgroundImage) {
-    UIImage *backImage = [UIImage imageNamed:ruleSet.backgroundImage];
-    if (ruleSet.hasBackgroundStretchInsets) {
-      backImage = [backImage resizableImageWithCapInsets:ruleSet.backgroundStretchInsets];
-    }
-    [self setBackgroundImage:backImage forState:UIControlStateNormal];
+    [self setBackgroundImage:[ruleSet prepareImageFromBackground] forState:UIControlStateNormal];
   }
+  else if (ruleSet.hasBorderImage) { // this else means that background image has priority over border-top
+	[self setBackgroundImage:[ruleSet prepareImageFromBorder] forState:UIControlStateNormal];
+  }
+
   if ([ruleSet hasTextShadowOffset]) {
     self.titleLabel.shadowOffset = ruleSet.textShadowOffset;
   }
@@ -114,13 +114,14 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
     [self setTitleShadowColor:ruleSet.textShadowColor forState:state];
   }
   if (ruleSet.hasImage) {
-    [self setImage:[UIImage imageNamed:ruleSet.image] forState:state];
+    [self setImage:[UIImage imageNamed:[[NICSSRuleset pathPrefixForImages] stringByAppendingPathComponent:ruleSet.image]] forState:state];
   }
   if (ruleSet.hasBackgroundImage) {
-    UIImage *backImage = [UIImage imageNamed:ruleSet.backgroundImage];
+    UIImage *backImage = [UIImage imageNamed:[[NICSSRuleset pathPrefixForImages] stringByAppendingPathComponent:ruleSet.backgroundImage]];
     if (ruleSet.hasBackgroundStretchInsets) {
       backImage = [backImage resizableImageWithCapInsets:ruleSet.backgroundStretchInsets];
     }
+	  
     [self setBackgroundImage:backImage forState:state];
   }
 }

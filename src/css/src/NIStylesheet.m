@@ -14,6 +14,7 @@
 // limitations under the License.
 //
 
+#import "NIStylesheetCache.h"
 #import "NIStylesheet.h"
 
 #import "NICSSParser.h"
@@ -26,6 +27,7 @@
 #endif
 
 NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotification";
+
 static Class _rulesetClass;
 
 @interface NIStylesheet()
@@ -61,6 +63,23 @@ static Class _rulesetClass;
   }
 
   return self;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Returns the 'main' stylesheet - the one declared in the application's Info.plist
++ (NIStylesheet*)mainSheet
+{
+	static NIStylesheet* _mainSheet = nil;
+	if (nil == _mainSheet) {
+		NSString* cssPath = [[NSBundle mainBundle] objectForInfoDictionaryKey:kNIMainCSSPathKey];
+		if (cssPath) {
+			_mainSheet = [[NIStylesheet alloc] init];
+			cssPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:cssPath];
+			if (![_mainSheet loadFromPath:[cssPath lastPathComponent] pathPrefix:[cssPath stringByDeletingLastPathComponent]])
+				_mainSheet = nil;
+		}
+	}
+	return _mainSheet;
 }
 
 
@@ -162,6 +181,7 @@ static Class _rulesetClass;
   @synchronized(self) {
     _rawRulesets = nil;
     _significantScopeToScopes = nil;
+	  
 
     _ruleSets = [[NSMutableDictionary alloc] init];
 

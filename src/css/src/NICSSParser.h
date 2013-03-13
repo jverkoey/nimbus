@@ -19,6 +19,8 @@
 extern NSString* const kPropertyOrderKey;
 extern NSString* const kDependenciesSelectorKey;
 
+static NSString* const kNIMainCSSPathKey = @"NIMainCSSPath";
+
 @protocol NICSSParserDelegate;
 
 /**
@@ -43,6 +45,7 @@ extern NSString* const kDependenciesSelectorKey;
   NSMutableArray* _mutatingScope;
   NSMutableArray* _scopesForActiveRuleset;
   NSString* _currentPropertyName;
+	
   NSMutableArray* _importedFilenames;
 
   union {

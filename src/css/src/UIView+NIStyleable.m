@@ -16,6 +16,7 @@
 
 #import "UIView+NIStyleable.h"
 
+#import "NIStylesheet.h"
 #import "NIDOM.h"
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
@@ -78,6 +79,18 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   return [self descriptionWithRuleSetForView:ruleSet forPseudoClass:pseudo inDOM:dom withViewName:name];
 }
 
+- (void)setCssStyles:(NSString*)styles
+{
+	NIStylesheet* sheet = [NIStylesheet mainSheet];
+	if (nil != sheet) {
+		for (NSString* style in [styles componentsSeparatedByString:@" "]) {
+			NICSSRuleset* ruleset = [sheet rulesetForClassName:style];
+			if (nil != ruleset)
+				[self applyStyleWithRuleSet:ruleset inDOM:nil];
+		}
+	}
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
   [self applyOrDescribe:YES ruleSet:ruleSet inDOM:dom withViewName:nil];
@@ -96,6 +109,13 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
       [desc appendFormat:@"%@.backgroundColor = [UIColor colorWithRed: %f green: %f blue: %f alpha: %f];\n", name, r, g, b, a];
     }
   }
+  else if ([ruleSet hasBackgroundImage]) {
+	if (apply) {
+	  self.backgroundColor = [UIColor colorWithPatternImage:[ruleSet prepareImageFromBackground]];
+	} else {
+	  [desc appendFormat:@"%@.backgroundColo = [UIColor colorWithPatternImage:[UIImage imageNames:%@]];\n", name, ruleSet.backgroundImage];
+	}
+  }
   if ([ruleSet hasOpacity]) {
     if (apply) {
       self.alpha = ruleSet.opacity;
@@ -103,29 +123,38 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
       [desc appendFormat:@"%@.alpha = %f;", name, ruleSet.opacity];
     }
   }
-  if ([ruleSet hasBorderRadius]) {
-    if (apply) {
-      self.layer.cornerRadius = ruleSet.borderRadius;
-    } else {
-      [desc appendFormat:@"%@.layer.cornerRadius = %f;\n", name, ruleSet.borderRadius];
-    }
-  }
-  if ([ruleSet hasBorderWidth]) {
-    if (apply) {
-      self.layer.borderWidth = ruleSet.borderWidth;
-    } else {
-      [desc appendFormat:@"%@.layer.borderWidth = %f;\n", name, ruleSet.borderWidth];
-    }
-  }
-  if ([ruleSet hasBorderColor]) {
-    if (apply) {
-      self.layer.borderColor = ruleSet.borderColor.CGColor;
-    } else {
-      CGFloat r,g,b,a;
-      [ruleSet.borderColor getRed:&r green:&g blue:&b alpha:&a];
-      [desc appendFormat:@"%@.layer.borderColor = [UIColor colorWithRed: %f green: %f blue: %f alpha: %f].CGColor;\n", name, r, g, b, a];
-    }
-  }
+  if ([ruleSet hasBorderImage]) {
+	  if (apply) {
+		  self.backgroundColor = [UIColor colorWithPatternImage:[ruleSet prepareImageFromBorder]];
+	  } else {
+		  [desc appendFormat:@"%@.backgroundColo = [UIColor colorWithPatternImage:[UIImage imageNamed:%@]];\n", name, ruleSet.borderImage];
+	  }
+  } else {
+	  if ([ruleSet hasBorderRadius]) {
+		if (apply) {
+		  self.layer.cornerRadius = ruleSet.borderRadius;
+		} else {
+		  [desc appendFormat:@"%@.layer.cornerRadius = %f;\n", name, ruleSet.borderRadius];
+		}
+	  }
+	  if ([ruleSet hasBorderWidth]) {
+		if (apply) {
+		  self.layer.borderWidth = ruleSet.borderWidth;
+		} else {
+		  [desc appendFormat:@"%@.layer.borderWidth = %f;\n", name, ruleSet.borderWidth];
+		}
+	  }
+	  if ([ruleSet hasBorderColor]) {
+		if (apply) {
+		  self.layer.borderColor = ruleSet.borderColor.CGColor;
+		} else {
+		  CGFloat r,g,b,a;
+		  [ruleSet.borderColor getRed:&r green:&g blue:&b alpha:&a];
+		  [desc appendFormat:@"%@.layer.borderColor = [UIColor colorWithRed: %f green: %f blue: %f alpha: %f].CGColor;\n", name, r, g, b, a];
+		}
+	  }
+  } // hasBorderImage end-else
+	
   if ([ruleSet hasAutoresizing]) {
     if (apply) {
       self.autoresizingMask = ruleSet.autoresizing;
