@@ -48,6 +48,15 @@ extern NSString* const NICSSViewBackgroundColorKey;
 - (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
 
 /**
+ * Takes a list (space separated string) of styles to apply. Invoked from
+ * Interface Buildier when custom key 'cssStyles' of the the view is set.
+ * In order for this to work you need to the 'main' css files in the 
+ * application's Info.plist with an attribute named: NIMainCSSPath
+ */
+
+- (void)setCssStyles:(NSString*)styles;
+
+/**
  * Describes the given rule set when applied to this view.
  *
  * This method is exposed primarily for subclasses to use when implementing the

@@ -50,6 +50,7 @@ static NSString* const kActivityIndicatorStyleKey = @"-ios-activity-indicator-st
 static NSString* const kAutoresizingKey = @"-ios-autoresizing";
 static NSString* const kTableViewCellSeparatorStyleKey = @"-ios-table-view-cell-separator-style";
 static NSString* const kScrollViewIndicatorStyleKey = @"-ios-scroll-view-indicator-style";
+static NSString* const kBorderImageStyleKey = @"border-image";
 
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
@@ -118,6 +119,38 @@ return _##name; \
     [order addObjectsFromArray:[dictionary objectForKey:kPropertyOrderKey]];
     [_ruleset setObject:order forKey:kPropertyOrderKey];
   }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Useful to be here, since they are used from many places...
++ (NSString*)pathPrefixForImages
+{
+	return [[[NSBundle mainBundle] objectForInfoDictionaryKey:kNIMainCSSPathKey] stringByDeletingLastPathComponent];
+}
+
+- (UIImage*)prepareImageFromBackground
+{
+	NIDASSERT([self hasBackgroundImage]);
+    UIImage *backImage = [UIImage imageNamed:[[[self class] pathPrefixForImages] stringByAppendingPathComponent:self.backgroundImage]];
+    if ([self hasBackgroundStretchInsets]) {
+		backImage = [backImage resizableImageWithCapInsets:self.backgroundStretchInsets];
+    }
+	return backImage;
+}
+
+- (UIImage*)prepareImageFromBorder
+{
+	NIDASSERT([self hasBorderImage]);
+    UIImage *backImage = [UIImage imageNamed:[[[self class] pathPrefixForImages] stringByAppendingPathComponent:self.borderImage]];
+	if ([self hasBorderImageInsets]) {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
+		if ([self hasBorderImageMode])
+			backImage = [backImage resizableImageWithCapInsets:self.borderStretchInsets resizingMode:_imageResizeMode];
+		else
+#endif
+			backImage = [backImage resizableImageWithCapInsets:_backgroundStretchInsets];
+	}
+	return backImage;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -518,6 +551,71 @@ return _##name; \
           || nil != [_ruleset objectForKey:kBorderKey]);
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasBorderImage {
+	return (nil != [_ruleset objectForKey:kBorderImageStyleKey]);
+}
+
+
+- (NSString*)borderImage {
+	NIDASSERT([self hasBorderImage]);
+	if (!_is.cached.BorderImage) {
+		[self cacheBorderImage];
+		_is.cached.BorderImage = YES;
+	}
+	return _backgroundImage;
+}
+
+- (BOOL)hasBorderImageInsets {
+	return (nil != [_ruleset objectForKey:kBorderImageStyleKey]);
+}
+
+- (UIEdgeInsets)borderImageInsets {
+	NIDASSERT([self hasBorderImageInsets]);
+	if (!_is.cached.BorderImage) {
+		[self cacheBorderImage];
+		_is.cached.BorderImage = YES;
+	}
+	return _backgroundStretchInsets;
+}
+
+- (BOOL)hasBorderImageMode {
+	return (nil != [_ruleset objectForKey:kBorderImageStyleKey]);
+}
+
+- (UIImageResizingMode)borderImageMode {
+	NIDASSERT([self hasBorderImageMode]);
+	if (!_is.cached.BorderImage) {
+		[self cacheBorderImage];
+		_is.cached.BorderImage = YES;
+	}
+	return _imageResizeMode;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)cacheBorderImage {
+	NSArray* cssValues = [_ruleset objectForKey:kBorderImageStyleKey];
+	
+	// first read the image reference and store it in _backgroundImage.
+	_backgroundImage = [[self class] imageStringFromCssValues:cssValues];
+	
+	// now see how many number do we have to pass them for inset parsing.
+	NSRange edgeRange = NSMakeRange(1, 0);
+	for (int i = 1;i < cssValues.count; ++i, edgeRange.length++)
+		if (![[NSScanner scannerWithString:[cssValues objectAtIndex:i]] scanFloat:NULL])
+			break;
+
+	if (edgeRange.length > 0)
+		_backgroundStretchInsets = [[self class] edgeInsetsFromCssValues:[cssValues subarrayWithRange:edgeRange]];
+	else
+		_backgroundStretchInsets = UIEdgeInsetsZero;
+	
+	// and finally parse the repeat | stretch parameter, after jumping over 'fill'
+	if (cssValues.count > edgeRange.length + 2) // the initial url and the fill
+		_imageResizeMode = [[self class] resizeModeFromCssValues:[cssValues subarrayWithRange:NSMakeRange(cssValues.count + 2, 1)]];
+	else
+		_imageResizeMode = UIImageResizingModeTile;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cacheBorderValues {
@@ -616,6 +714,7 @@ RULE_ELEMENT(visible, Visible, @"visibility", BOOL, visibilityFromCssValues)
 RULE_ELEMENT(titleInsets, TitleInsets, @"-mobile-title-insets", UIEdgeInsets, edgeInsetsFromCssValues)
 RULE_ELEMENT(contentInsets, ContentInsets, @"-mobile-content-insets", UIEdgeInsets, edgeInsetsFromCssValues)
 RULE_ELEMENT(imageInsets, ImageInsets, @"-mobile-image-insets", UIEdgeInsets, edgeInsetsFromCssValues)
+RULE_ELEMENT(imageResizeMode, ImageResizeMode, @"-mobile-image-stretchmode", UIImageResizingMode, resizeModeFromCssValues)
 RULE_ELEMENT(relativeToId, RelativeToId, @"-mobile-relative", NSString*, stringFromCssValue)
 RULE_ELEMENT(marginTop, MarginTop, @"margin-top", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(marginBottom, MarginBottom, @"margin-bottom", NICSSUnit, unitFromCssValues)
@@ -1105,7 +1204,8 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
       NSString *image = [cssValues objectAtIndex:0];
       image = [image substringWithRange:NSMakeRange(4, image.length - 5)];
       image = [image stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" '\""]];
-      color = [UIColor colorWithPatternImage:[UIImage imageNamed:image]];
+
+      color = [UIColor colorWithPatternImage:[UIImage imageNamed:[[[self class] pathPrefixForImages] stringByAppendingPathComponent:image]]];
   } else if ([cssValues count] >= 1) {
     NSString* cssString = [cssValues objectAtIndex:0];
 
@@ -1197,6 +1297,17 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
                           [NSDecimalNumber decimalNumberWithString:bottom].floatValue,
                           [NSDecimalNumber decimalNumberWithString:right].floatValue
                           );
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (UIImageResizingMode)resizeModeFromCssValues: (NSArray*) cssValues
+{
+	// stretch | repeat | round (ignored)
+	NSString* cssMode = [cssValues objectAtIndex:0];
+	UIImageResizingMode mode = UIImageResizingModeTile;
+	if ([cssMode caseInsensitiveCompare:@"stretch"] == NSOrderedSame)
+		mode = UIImageResizingModeStretch;
+	return mode;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
