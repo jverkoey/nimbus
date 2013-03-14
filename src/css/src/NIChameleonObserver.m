@@ -28,14 +28,20 @@
 
 static NSString* const kWatchFilenameKey = @"___watch___";
 static const NSTimeInterval kTimeoutInterval = 1000;
+static const NSTimeInterval kRetryInterval = 10000;
 static const NSInteger kMaxNumberOfRetries = 3;
 
 NSString* const NIJSONDidChangeNotification = @"NIJSONDidChangeNotification";
 NSString* const NIJSONDidChangeFilePathKey = @"NIJSONPathKey";
 NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
 
-@interface NIChameleonObserver()
+@interface NIChameleonObserver() <
+    NSNetServiceBrowserDelegate,
+    NSNetServiceDelegate
+>
 - (NSString *)pathFromPath:(NSString *)path;
+@property (nonatomic,strong) NSNetServiceBrowser *netBrowser;
+@property (nonatomic,strong) NSNetService *netService;
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +68,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
     if ([host hasSuffix:@"/"]) {
       _host = [host copy];
 
-    } else {
+    } else if (host) {
       _host = [[host stringByAppendingString:@"/"] copy];
     }
 
@@ -176,7 +182,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
         [responseObject writeToFile:diskPath atomically:YES];
         
         NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName:NIStringsDidChangeNotification object:nil userInfo:@{
+        [nc postNotificationName:NIJSONDidChangeNotification object:nil userInfo:@{
             NIJSONDidChangeFilePathKey: diskPath,
             NIJSONDidChangeNameKey: path
          }];
@@ -244,12 +250,38 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
     if (_retryCount < kMaxNumberOfRetries) {
       ++_retryCount;
       
-      [self watchSkinChanges];
+      dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kRetryInterval * NSEC_PER_MSEC));
+      dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self watchSkinChanges];
+      });
     }
   }];
 
   [_queue addOperation:requestOp];
 }
 
+-(void)enableBonjourDiscovery:(NSString *)serviceName
+{
+    self.netBrowser = [[NSNetServiceBrowser alloc] init];
+    self.netBrowser.delegate = self;
+    [self.netBrowser searchForServicesOfType:[NSString stringWithFormat:@"_%@._tcp", serviceName] inDomain:@""];
+}
+
+-(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindService:(NSNetService *)aNetService moreComing:(BOOL)moreComing
+{
+    [self.netBrowser stop];
+    self.netBrowser = nil;
+
+    self.netService = aNetService;
+    aNetService.delegate = self;
+    [aNetService resolveWithTimeout:15.0];
+}
+
+-(void)netServiceDidResolveAddress:(NSNetService *)sender
+{
+    _host = [NSString stringWithFormat:@"http://%@:%d/", [sender hostName], [sender port]];
+    self.netService = nil;
+    [self watchSkinChanges];
+}
 
 @end

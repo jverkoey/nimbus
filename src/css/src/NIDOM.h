@@ -85,6 +85,7 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 - (void)unregisterView:(UIView *)view;
 - (void)unregisterAllViews;
 - (void)refresh;
+- (void)refreshView: (UIView*) view;
 
 -(UIView*)viewById: (NSString*) viewId;
 
@@ -160,11 +161,17 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 /** @name Re-Applying All Styles */
 
 /**
- * Reapplies the stylesheet to all views.
- *
- * This only needs to be called if the stylesheet has changed.
+ * Reapplies the stylesheet to all views. Since there may be positioning involved,
+ * you may need to reapply if layout or sizes change.
  *
  *      @fn NIDOM::refresh
+ */
+
+/**
+ * Reapplies the stylesheet to a single view. Since there may be positioning involved,
+ * you may need to reapply if layout or sizes change.
+ *
+ *      @fn NIDOM::refreshView:
  */
 
 /**

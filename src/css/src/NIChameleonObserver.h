@@ -56,6 +56,8 @@ extern NSString* const NIJSONDidChangeNameKey;
 
 - (void)watchSkinChanges;
 
+- (void)enableBonjourDiscovery: (NSString*) serviceName;
+
 @end
 
 /**
@@ -77,4 +79,11 @@ extern NSString* const NIJSONDidChangeNameKey;
  * and then fires the appropriate notifications.
  *
  *      @fn NIChameleonObserver::watchSkinChanges
+ */
+
+/**
+ * Browses Bonjour for services with the given name (e.g. your username) and sets the host
+ * automatically.
+ *
+ *      @fn NIChameleonObserver::enableBonjourDiscovery:
  */

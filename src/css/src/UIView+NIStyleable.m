@@ -152,6 +152,49 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     } else {
       [desc appendFormat:@"[%@ sizeToFit];\n", name];
     }
+    if (ruleSet.hasVerticalPadding) {
+      NICSSUnit vPadding = ruleSet.verticalPadding;
+      switch (vPadding.type) {
+        case CSS_AUTO_UNIT:
+          break;
+        case CSS_PERCENTAGE_UNIT:
+          if (apply) {
+            self.frameHeight += (self.frameHeight * vPadding.value);
+          } else {
+            [desc appendFormat:@"%@.frameHeight += (%@.frameHeight * %f);", name, name, vPadding.value];
+          }
+          break;
+        case CSS_PIXEL_UNIT:
+          if (apply) {
+            self.frameHeight += vPadding.value;
+          } else {
+            [desc appendFormat:@"%@.frameHeight += %f;", name, vPadding.value];
+          }
+          break;
+      }
+    }
+    if (ruleSet.hasHorizontalPadding) {
+      NICSSUnit hPadding = ruleSet.horizontalPadding;
+      switch (hPadding.type) {
+        case CSS_AUTO_UNIT:
+          break;
+        case CSS_PERCENTAGE_UNIT:
+          if (apply) {
+            self.frameWidth += (self.frameWidth * hPadding.value);
+          } else {
+            [desc appendFormat:@"%@.frameWidth += (%@.frameWidth * %f);", name, name, hPadding.value];
+          }
+          break;
+        case CSS_PIXEL_UNIT:
+          if (apply) {
+            self.frameWidth += hPadding.value;
+          } else {
+            [desc appendFormat:@"%@.frameWidth += %f;", name, hPadding.value];
+          }
+          break;
+      }
+    }
+
   } else {
     if ([ruleSet hasWidth]) {
       NICSSUnit u = ruleSet.width;
@@ -192,6 +235,27 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
           }
           break;
       }
+      if (ruleSet.hasHorizontalPadding) {
+        NICSSUnit hPadding = ruleSet.horizontalPadding;
+        switch (hPadding.type) {
+          case CSS_AUTO_UNIT:
+            break;
+          case CSS_PERCENTAGE_UNIT:
+            if (apply) {
+              self.frameWidth += (self.frameWidth * hPadding.value);
+            } else {
+              [desc appendFormat:@"%@.frameWidth += (%@.frameWidth * %f);", name, name, hPadding.value];
+            }
+            break;
+          case CSS_PIXEL_UNIT:
+            if (apply) {
+              self.frameWidth += hPadding.value;
+            } else {
+              [desc appendFormat:@"%@.frameWidth += %f;", name, hPadding.value];
+            }
+            break;
+        }
+      }
     }
     if ([ruleSet hasHeight]) {
       NICSSUnit u = ruleSet.height;
@@ -231,6 +295,27 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             }
           }
           break;
+      }
+      if (ruleSet.hasVerticalPadding) {
+        NICSSUnit vPadding = ruleSet.verticalPadding;
+        switch (vPadding.type) {
+          case CSS_AUTO_UNIT:
+            break;
+          case CSS_PERCENTAGE_UNIT:
+            if (apply) {
+              self.frameHeight += (self.frameHeight * vPadding.value);
+            } else {
+              [desc appendFormat:@"%@.frameHeight += (%@.frameHeight * %f);", name, name, vPadding.value];
+            }
+            break;
+          case CSS_PIXEL_UNIT:
+            if (apply) {
+              self.frameHeight += vPadding.value;
+            } else {
+              [desc appendFormat:@"%@.frameHeight += %f;", name, vPadding.value];
+            }
+            break;
+        }
       }
     }
   }
@@ -311,6 +396,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     }
   }
   // TODO - should specifying both left/right or top/bottom set the width instead?
+  // TODO - how does left/right/top/bottom interact with relative positioning if at all?
   if ([ruleSet hasRight]) {
     NICSSUnit u = ruleSet.right;
     switch (u.type) {
@@ -574,6 +660,16 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     NIPrivateViewInfo *viewInfo = [subviews objectAtIndex:ix];
     NSString *firstClass = [viewInfo.cssClasses count] ? [viewInfo.cssClasses objectAtIndex:0] : nil;
     [dom registerView:viewInfo.view withCSSClass:firstClass andId:viewInfo.viewId];
+    if (viewInfo.viewId && dom.target) {
+      NSString *selectorName = [NSString stringWithFormat:@"set%@%@:", [[viewInfo.viewId substringWithRange:NSMakeRange(1, 1)] uppercaseString], [viewInfo.viewId substringFromIndex:2]];
+      SEL selector = NSSelectorFromString(selectorName);
+      if ([dom.target respondsToSelector:selector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [dom.target performSelector:selector withObject:viewInfo.view];
+#pragma clang diagnostic pop
+      }
+    }
     if (viewInfo.cssClasses.count > 1) {
       for (int i = 1, cct = viewInfo.cssClasses.count; i < cct; i++) {
         [dom addCssClass:[viewInfo.cssClasses objectAtIndex:i] toView:viewInfo.view];

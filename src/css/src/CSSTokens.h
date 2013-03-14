@@ -35,7 +35,7 @@ typedef enum {
   CSSUNICODERANGE,
   CSSIMPORT,
   CSSUNKNOWN,
-
+  CSSMEDIA
 } CssParserCodes;
 
 extern const char* cssnames[];

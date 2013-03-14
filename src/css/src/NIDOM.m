@@ -153,6 +153,9 @@
 
 - (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass andId:(NSString *)viewId
 {
+  // These are basically the least specific selectors (by our simple rules), so this needs to get registered first
+  [self registerView:view withCSSClass:cssClass];
+
   NSArray *pseudos = nil;
   if (viewId) {
     if (![viewId hasPrefix:@"#"]) { viewId = [@"#" stringByAppendingString:viewId]; }
@@ -172,21 +175,16 @@
         }
       }
     }
-  }
-  [self registerView:view withCSSClass:cssClass];
-  
-  if (viewId) {
+
     if (!_idToViewMap) {
       _idToViewMap = [[NSMutableDictionary alloc] init];
     }
     [_idToViewMap setObject:view forKey:viewId];
     // Run the id selectors last so they take precedence
-    if (viewId) {
-      [self refreshStyleForView:view withSelectorName:viewId];
-      if (pseudos) {
-        for (NSString *ps in pseudos) {
-          [self refreshStyleForView:view withSelectorName:[viewId stringByAppendingString:ps]];
-        }
+    [self refreshStyleForView:view withSelectorName:viewId];
+    if (pseudos) {
+      for (NSString *ps in pseudos) {
+        [self refreshStyleForView:view withSelectorName:[viewId stringByAppendingString:ps]];
       }
     }
   }
@@ -291,6 +289,13 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)refreshView:(UIView *)view {
+    for (NSString* selector in [_viewToSelectorsMap objectForKey:[self keyForView:view]]) {
+        [self refreshStyleForView:view withSelectorName:selector];
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(UIView *)viewById:(NSString *)viewId
 {
   if (![viewId hasPrefix:@"#"]) { viewId = [@"#" stringByAppendingString:viewId]; }
@@ -317,7 +322,7 @@
     additional = [_stylesheet descriptionForView:view withClassName: selector inDOM:self andViewName: viewName];
     if (additional && additional.length) {
       if (!appendedStyleInfo) { appendedStyleInfo = YES; [description appendFormat:@"// Styles for %@\n", viewName]; }
-      if (!appendedSelectorInfo) { appendedSelectorInfo = YES; [description appendFormat:@"// Selector %@\n", selector]; }
+      if (!appendedSelectorInfo) { [description appendFormat:@"// Selector %@\n", selector]; }
       [description appendString:additional];
     }
   }
