@@ -484,5 +484,7 @@ typedef enum {
 #import "NIRadioGroup.h"
 #import "NIRadioGroupController.h"
 #import "NITableViewActions.h"
+#import "NITableViewSystem.h"
+#import "NITableViewDelegate.h"
 
 /**@}*/

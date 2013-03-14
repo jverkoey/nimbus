@@ -66,6 +66,7 @@
 #import "BlockCellsViewController.h"
 #import "SnapshotRotationTableViewController.h"
 #import "MutableTableModelViewController.h"
+#import "TableSystemViewController.h"
 
 // Web Controller
 #import "ExtraActionsWebViewController.h"
@@ -361,6 +362,11 @@
                                    subtitle:@"Mutating table view models"]
               navigationBlock:
       NIPushControllerAction([MutableTableModelViewController class])],
+     [_actions attachToObject:
+      [NISubtitleCellObject objectWithTitle:@"TableViewSystem"
+                                   subtitle:@"Simplifying table view creation"]
+              navigationBlock:
+      NIPushControllerAction([TableSystemViewController class])],
 
      @"Web Controller",
      [_actions attachToObject:

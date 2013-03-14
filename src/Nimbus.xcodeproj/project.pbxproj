@@ -347,6 +347,12 @@
 		66FE7D6B13FB83620061B987 /* NimbusModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6413FB83620061B987 /* NimbusModels.h */; };
 		66FE7D6C13FB83620061B987 /* NITableViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6513FB83620061B987 /* NITableViewModel.h */; };
 		66FE7D6D13FB83620061B987 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FE7D6613FB83620061B987 /* NITableViewModel.m */; };
+		7FE1B74416DF1A3B005B62A3 /* NITableViewSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FE1B74216DF1A3B005B62A3 /* NITableViewSystem.h */; };
+		7FE1B74516DF1A3B005B62A3 /* NITableViewSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1B74316DF1A3B005B62A3 /* NITableViewSystem.m */; };
+		7FE1B74616DF1A3B005B62A3 /* NITableViewSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1B74316DF1A3B005B62A3 /* NITableViewSystem.m */; };
+		7FE1B74916DF1D53005B62A3 /* NITableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FE1B74716DF1D53005B62A3 /* NITableViewDelegate.h */; };
+		7FE1B74A16DF1D53005B62A3 /* NITableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1B74816DF1D53005B62A3 /* NITableViewDelegate.m */; };
+		7FE1B74B16DF1D53005B62A3 /* NITableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1B74816DF1D53005B62A3 /* NITableViewDelegate.m */; };
 		C743F6EA16D2652F00A933B7 /* NIUserInterfaceString.h in Headers */ = {isa = PBXBuildFile; fileRef = C743F6E816D2652F00A933B7 /* NIUserInterfaceString.h */; };
 		C743F6EB16D2652F00A933B7 /* NIUserInterfaceString.m in Sources */ = {isa = PBXBuildFile; fileRef = C743F6E916D2652F00A933B7 /* NIUserInterfaceString.m */; };
 		C7A8791D16D7348700A0C23F /* NITextField+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = C7A8791B16D7348700A0C23F /* NITextField+NIStyleable.h */; };
@@ -982,6 +988,10 @@
 		66FE7D6513FB83620061B987 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITableViewModel.h; sourceTree = "<group>"; };
 		66FE7D6613FB83620061B987 /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewModel.m; sourceTree = "<group>"; };
 		66FE7D6813FB83620061B987 /* NimbusModelsTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NimbusModelsTests-Info.plist"; sourceTree = "<group>"; };
+		7FE1B74216DF1A3B005B62A3 /* NITableViewSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITableViewSystem.h; sourceTree = "<group>"; };
+		7FE1B74316DF1A3B005B62A3 /* NITableViewSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewSystem.m; sourceTree = "<group>"; };
+		7FE1B74716DF1D53005B62A3 /* NITableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITableViewDelegate.h; sourceTree = "<group>"; };
+		7FE1B74816DF1D53005B62A3 /* NITableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewDelegate.m; sourceTree = "<group>"; };
 		C743F6E816D2652F00A933B7 /* NIUserInterfaceString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIUserInterfaceString.h; path = css/src/NIUserInterfaceString.h; sourceTree = SOURCE_ROOT; };
 		C743F6E916D2652F00A933B7 /* NIUserInterfaceString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIUserInterfaceString.m; path = css/src/NIUserInterfaceString.m; sourceTree = SOURCE_ROOT; };
 		C7A8791B16D7348700A0C23F /* NITextField+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NITextField+NIStyleable.h"; path = "css/src/NITextField+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
@@ -2050,6 +2060,10 @@
 				667DD36A156D78980045ABBB /* NIRadioGroupController.m */,
 				66416179156B516E0018AC1C /* NITableViewActions.h */,
 				6641617A156B516E0018AC1C /* NITableViewActions.m */,
+				7FE1B74716DF1D53005B62A3 /* NITableViewDelegate.h */,
+				7FE1B74816DF1D53005B62A3 /* NITableViewDelegate.m */,
+				7FE1B74216DF1A3B005B62A3 /* NITableViewSystem.h */,
+				7FE1B74316DF1A3B005B62A3 /* NITableViewSystem.m */,
 			);
 			name = src;
 			path = models/src;
@@ -2196,6 +2210,8 @@
 				66B6710715AA820700FE4AE8 /* NICellBackgrounds.h in Headers */,
 				66D2E53F15D9432000281511 /* NIMutableTableViewModel.h in Headers */,
 				66D2E54315D9438D00281511 /* NIMutableTableViewModel+Private.h in Headers */,
+				7FE1B74416DF1A3B005B62A3 /* NITableViewSystem.h in Headers */,
+				7FE1B74916DF1D53005B62A3 /* NITableViewDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3495,6 +3511,8 @@
 				667DD36C156D78980045ABBB /* NIRadioGroupController.m in Sources */,
 				66B6710815AA820700FE4AE8 /* NICellBackgrounds.m in Sources */,
 				66D2E54015D9432000281511 /* NIMutableTableViewModel.m in Sources */,
+				7FE1B74516DF1A3B005B62A3 /* NITableViewSystem.m in Sources */,
+				7FE1B74A16DF1D53005B62A3 /* NITableViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3505,6 +3523,8 @@
 				6623EB6D1402ECE400E0E61A /* NITableViewModelTests.m in Sources */,
 				6672DAB515B87E4B00DFE81F /* NICellFactoryTests.m in Sources */,
 				66D2E54715D9503100281511 /* NIMutableTableViewModelTests.m in Sources */,
+				7FE1B74616DF1A3B005B62A3 /* NITableViewSystem.m in Sources */,
+				7FE1B74B16DF1D53005B62A3 /* NITableViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
