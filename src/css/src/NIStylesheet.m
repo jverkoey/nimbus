@@ -14,6 +14,7 @@
 // limitations under the License.
 //
 
+#import "NIStylesheetCache.h"
 #import "NIStylesheet.h"
 
 #import "NICSSParser.h"

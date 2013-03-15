@@ -20,6 +20,7 @@
 #import "NIStylesheetCache.h"
 #import "NIUserInterfaceString.h"
 #import "NimbusCore+Additions.h"
+
 #if !defined(NI_SKIP_AFNETWORKING)
 #import "AFNetworking.h"
 #endif
@@ -289,6 +290,5 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
 }
 
 #endif // !NI_SKIP_AFNETWORKING
-
 
 @end

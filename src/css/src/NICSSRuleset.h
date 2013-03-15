@@ -87,6 +87,7 @@ typedef enum {
   UIEdgeInsets _titleInsets;
   UIEdgeInsets _contentInsets;
   UIEdgeInsets _imageInsets;
+  UIImageResizingMode _imageResizeMode;
   NSString *_textKey;
   NSString* _relativeToId;
   NICSSUnit _marginTop;
@@ -149,6 +150,8 @@ typedef enum {
       int TitleInsets: 1;
       int ContentInsets: 1;
       int ImageInsets: 1;
+	  int ImageResizeMode: 1;
+	  int BorderImage:1;
       int RelativeToId: 1;
       int MarginTop: 1;
       int MarginLeft: 1;
@@ -170,6 +173,10 @@ typedef enum {
 
 - (void)addEntriesFromDictionary:(NSDictionary *)dictionary;
 - (id)cssRuleForKey: (NSString*)key;
++ (NSString*)pathPrefixForImages;
+
+- (UIImage*)prepareImageFromBackground;
+- (UIImage*)prepareImageFromBorder;
 
 - (BOOL)hasTextColor;
 - (UIColor *)textColor; // color
@@ -227,6 +234,16 @@ typedef enum {
 
 - (BOOL)hasBorderWidth;
 - (CGFloat)borderWidth; // border, border-width
+
+- (BOOL)hasBorderImage;
+- (NSString*)borderImage;
+
+- (BOOL)hasBorderImageInsets;
+- (UIEdgeInsets)borderImageInsets;
+
+- (BOOL)hasBorderImageMode;
+- (UIImageResizingMode)borderImageMode;
+
 
 - (BOOL)hasWidth;
 - (NICSSUnit)width; // width
@@ -299,6 +316,9 @@ typedef enum {
 
 - (BOOL)hasImageInsets;
 - (UIEdgeInsets)imageInsets; // -mobile-image-insets
+
+- (BOOL)hasImageResizeMode;
+- (UIImageResizingMode)imageResizeMode;
 
 - (BOOL)hasRelativeToId;
 - (NSString*)relativeToId; // -mobile-relative
