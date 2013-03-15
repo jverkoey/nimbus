@@ -113,7 +113,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
 	if (apply) {
 	  self.backgroundColor = [UIColor colorWithPatternImage:[ruleSet prepareImageFromBackground]];
 	} else {
-	  [desc appendFormat:@"%@.backgroundColo = [UIColor colorWithPatternImage:[UIImage imageNames:%@]];\n", name, ruleSet.backgroundImage];
+	  [desc appendFormat:@"%@.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNames:%@]];\n", name, ruleSet.backgroundImage];
 	}
   }
   if ([ruleSet hasOpacity]) {
@@ -127,7 +127,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
 	  if (apply) {
 		  self.backgroundColor = [UIColor colorWithPatternImage:[ruleSet prepareImageFromBorder]];
 	  } else {
-		  [desc appendFormat:@"%@.backgroundColo = [UIColor colorWithPatternImage:[UIImage imageNamed:%@]];\n", name, ruleSet.borderImage];
+		  [desc appendFormat:@"%@.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:%@]];\n", name, ruleSet.borderImage];
 	  }
   } else {
 	  if ([ruleSet hasBorderRadius]) {
