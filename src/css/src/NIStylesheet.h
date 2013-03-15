@@ -68,6 +68,11 @@ extern NSString* const NIStylesheetDidChangeNotification;
 
 - (NICSSRuleset *)rulesetForClassName:(NSString *)className;
 
+/* Returns the 'main' stylesheet - the one which path is declared in applicaton's Info.plist
+ * under the key named: NIMainCSSPath
+ */
++ (NIStylesheet*)mainSheet;
+
 /**
  * The class to create for rule sets. Default is NICSSRuleset
  */
