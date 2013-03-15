@@ -20,7 +20,9 @@
 #import "NIStylesheetCache.h"
 #import "NIUserInterfaceString.h"
 #import "NimbusCore+Additions.h"
+#if defined(NIMBUS_AFNETWORKING)
 #import "AFNetworking.h"
+#endif
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
@@ -97,6 +99,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#if defined(NIMBUS_AFNETWORKING)
 - (void)downloadStylesheetWithFilename:(NSString *)path {
   NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:path]];
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
@@ -190,7 +193,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
     }];
     [_queue addOperation:requestOp];
 }
-
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)pathFromPath:(NSString *)path {
@@ -221,6 +224,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#if defined(NIMBUS_AFNETWORKING)
 - (void)watchSkinChanges {
   NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:@"watch"]];
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
@@ -283,5 +287,8 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
     self.netService = nil;
     [self watchSkinChanges];
 }
+
+#endif
+
 
 @end
