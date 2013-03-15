@@ -20,7 +20,7 @@
 #import "NIStylesheetCache.h"
 #import "NIUserInterfaceString.h"
 #import "NimbusCore+Additions.h"
-#if defined(NIMBUS_AFNETWORKING)
+#if !defined(NI_SKIP_AFNETWORKING)
 #import "AFNetworking.h"
 #endif
 
@@ -99,7 +99,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#if defined(NIMBUS_AFNETWORKING)
+#if !defined(NI_SKIP_AFNETWORKING)
 - (void)downloadStylesheetWithFilename:(NSString *)path {
   NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:path]];
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
@@ -193,7 +193,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
     }];
     [_queue addOperation:requestOp];
 }
-#endif
+#endif // !NI_SKIP_AFNETWORKING
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)pathFromPath:(NSString *)path {
@@ -224,7 +224,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#if defined(NIMBUS_AFNETWORKING)
+#if !defined(NI_SKIP_AFNETWORKING)
 - (void)watchSkinChanges {
   NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:@"watch"]];
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
@@ -288,7 +288,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
     [self watchSkinChanges];
 }
 
-#endif
+#endif // !NI_SKIP_AFNETWORKING
 
 
 @end
