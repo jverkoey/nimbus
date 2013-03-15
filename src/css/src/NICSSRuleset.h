@@ -93,6 +93,8 @@ typedef enum {
   NICSSUnit _marginLeft;
   NICSSUnit _marginRight;
   NICSSUnit _marginBottom;
+  NICSSUnit _verticalPadding;
+  NICSSUnit _horizontalPadding;
   
   NICSSUnit _width;
   NICSSUnit _height;
@@ -122,6 +124,7 @@ typedef enum {
       int BackgroundColor : 1;
       int BackgroundImage: 1;
       int BackgroundStretchInsets: 1;
+      //16
       int Image: 1;
       int BorderRadius : 1;
       int BorderColor : 1;
@@ -138,6 +141,7 @@ typedef enum {
       int Top : 1;
       int Bottom : 1;
       int Left : 1;
+      // 32
       int Right : 1;
       int FrameHorizontalAlign: 1;
       int FrameVerticalAlign: 1;
@@ -154,8 +158,11 @@ typedef enum {
       int MinHeight: 1;
       int MaxWidth: 1;
       int MaxHeight: 1;
+      // 48
       int TextKey: 1;
       int ButtonAdjust: 1;
+      int HorizontalPadding: 1;
+      int VerticalPadding: 1;
     } cached;
     int64_t _data;
   } _is;
@@ -311,6 +318,11 @@ typedef enum {
 - (BOOL)hasTextKey;
 - (NSString*)textKey; // -mobile-text-key
 
+- (BOOL) hasHorizontalPadding;
+- (NICSSUnit) horizontalPadding; // padding or -mobile-hPadding
+
+- (BOOL) hasVerticalPadding;
+- (NICSSUnit) verticalPadding; // padding or -mobile-vPadding
 @end
 
 /**
@@ -592,4 +604,16 @@ typedef enum {
  * cannot be expressed as a style - such as padding.
  *
  *      @fn NICSSRuleset::cssRuleForKey
+ */
+
+/**
+ * For views that support sizeToFit, padding will add a value to the computed size
+ *
+ *      @fn NICSSRuleset::horizontalPadding
+ */
+
+/**
+ * For views that support sizeToFit, padding will add a value to the computed size
+ *
+ *      @fn NICSSRuleset::verticalPadding
  */

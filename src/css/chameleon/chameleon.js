@@ -22,7 +22,7 @@ var server = require("./server");
 
 // Only accept strings.
 if (typeof argv.watch != 'string') {
-  console.log("Usage:\n  node chameleon.js --watch <path to watch changes in>");
+  console.log("Usage:\n  node chameleon.js --watch <path to watch changes in> --bonjour <service_identifier>");
   return;
 }
 
@@ -35,4 +35,4 @@ if (!path.existsSync(argv.watch)) { // it's interesting that methods are assumed
 console.log("Starting chameleon...");
 console.log("  Watching "+argv.watch);
 
-server.start(argv.watch);
+server.start(argv.watch,argv.bonjour);

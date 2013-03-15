@@ -162,9 +162,12 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
   sOverviewView.center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
 
   CGRect bounds = sOverviewView.bounds;
-  bounds.size.width = (UIInterfaceOrientationIsLandscape(NIInterfaceOrientation())
-                       ? frame.size.height
-                       : frame.size.width);
+  if (UIInterfaceOrientationIsLandscape(NIInterfaceOrientation())) {
+    bounds.size.width = frame.size.height;
+    bounds.size.height = frame.size.width;
+  } else {
+    bounds.size = frame.size;
+  }
   sOverviewView.bounds = bounds;
 
   // Get ready to fade the overview back in.

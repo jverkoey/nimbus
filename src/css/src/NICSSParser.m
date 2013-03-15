@@ -92,10 +92,47 @@ int cssConsume(char* text, int token) {
   NSString* lowercaseTextAsString = [textAsString lowercaseString];
 
   switch (token) {
+    case CSSMEDIA: // @media { }
+      if (_state.Flags.InsideMedia || _state.Flags.ReadingMedia) {
+        [self setFailFlag];
+      }
+      _state.Flags.ReadingMedia = YES;
+      droppingCurrentRules = YES; // at least one must match to undo this
+      break;
     case CSSHASH: // #{name}
     case CSSIDENT: { // {ident}(:{ident})?
 
-      if (_state.Flags.InsideRuleset) {
+      if (_state.Flags.ReadingMedia) {
+        if (!droppingCurrentRules) {
+          // No point in running these checks if we've already decided
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"ipad"] == NSOrderedSame) {
+          if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"iphone"] == NSOrderedSame) {
+          if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"retina"] == NSOrderedSame) {
+          if ([UIScreen mainScreen].scale != 1.0) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"nonretina"] == NSOrderedSame) {
+          if ([UIScreen mainScreen].scale == 1.0) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"ipad-retina"] == NSOrderedSame) {
+          if ([UIScreen mainScreen].scale != 1.0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"ipad-nonretina"] == NSOrderedSame) {
+          if ([UIScreen mainScreen].scale == 1.0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"iphone-retina"] == NSOrderedSame) {
+          if ([UIScreen mainScreen].scale != 1.0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"iphone-nonretina"] == NSOrderedSame) {
+          if ([UIScreen mainScreen].scale == 1.0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) { droppingCurrentRules = NO; }
+          break;
+        }
+      }
+      else if (_state.Flags.InsideRuleset) {
         NIDASSERT(nil != _mutatingRuleset);
         if (nil == _mutatingRuleset) {
           [self setFailFlag];
@@ -190,7 +227,9 @@ int cssConsume(char* text, int token) {
 
         // Commit the current selector and start a new one.
         case ',': {
-          if (!_state.Flags.InsideRuleset) {
+          if (_state.Flags.ReadingMedia) {
+            // Ignore, more media coming
+          } else if (!_state.Flags.InsideRuleset) {
             [self commitCurrentSelector];
           }
           break;
@@ -198,6 +237,11 @@ int cssConsume(char* text, int token) {
 
         // Start a new rule set.
         case '{': {
+          if (_state.Flags.ReadingMedia) {
+            _state.Flags.InsideMedia = YES;
+            _state.Flags.ReadingMedia = NO;
+            break;
+          }
           NIDASSERT(nil != _mutatingScope);
           if ([_mutatingScope count] > 0
               && !_state.Flags.InsideRuleset && !_state.Flags.InsideFunction) {
@@ -217,36 +261,45 @@ int cssConsume(char* text, int token) {
 
         // Commit an existing rule set.
         case '}': {
-          for (NSString* name in _scopesForActiveRuleset) {
-            NSMutableDictionary* existingProperties = [_rulesets objectForKey:name];
-
-            if (nil == existingProperties) {
-              NSMutableDictionary* ruleSet = [_mutatingRuleset mutableCopy];
-              [_rulesets setObject:ruleSet forKey:name];
-
-            } else {
-              // Properties already exist, so overwrite them.
-              // Merge the orders.
-              {
-                NSMutableArray* order = [existingProperties objectForKey:kPropertyOrderKey];
-                [order addObjectsFromArray:[_mutatingRuleset objectForKey:kPropertyOrderKey]];
-                [_mutatingRuleset setObject:order forKey:kPropertyOrderKey];
+          
+          if (_state.Flags.InsideMedia && !_mutatingRuleset) {
+            // End of a media tag
+            _state.Flags.InsideMedia = NO;
+            droppingCurrentRules = NO;
+          } else {
+            if (!droppingCurrentRules) {
+              for (NSString* name in _scopesForActiveRuleset) {
+                NSMutableDictionary* existingProperties = [_rulesets objectForKey:name];
+                
+                if (nil == existingProperties) {
+                  NSMutableDictionary* ruleSet = [_mutatingRuleset mutableCopy];
+                  [_rulesets setObject:ruleSet forKey:name];
+                  
+                } else {
+                  // Properties already exist, so overwrite them.
+                  // Merge the orders.
+                  {
+                    NSMutableArray* order = [existingProperties objectForKey:kPropertyOrderKey];
+                    [order addObjectsFromArray:[_mutatingRuleset objectForKey:kPropertyOrderKey]];
+                    [_mutatingRuleset setObject:order forKey:kPropertyOrderKey];
+                  }
+                  
+                  for (NSString* key in _mutatingRuleset) {
+                    [existingProperties setObject:[_mutatingRuleset objectForKey:key] forKey:key];
+                  }
+                  // Add the order of the new properties.
+                  NSMutableArray* order = [existingProperties objectForKey:kPropertyOrderKey];
+                  [order addObjectsFromArray:[_mutatingRuleset objectForKey:kPropertyOrderKey]];
+                }
               }
-
-              for (NSString* key in _mutatingRuleset) {
-                [existingProperties setObject:[_mutatingRuleset objectForKey:key] forKey:key];
-              }
-              // Add the order of the new properties.
-              NSMutableArray* order = [existingProperties objectForKey:kPropertyOrderKey];
-              [order addObjectsFromArray:[_mutatingRuleset objectForKey:kPropertyOrderKey]];
             }
-          }
-
+            
           _mutatingRuleset = nil;
           [_scopesForActiveRuleset removeAllObjects];
           _state.Flags.InsideRuleset = NO;
           _state.Flags.InsideProperty = NO;
           _state.Flags.InsideFunction = NO;
+          }
           break;
         }
 

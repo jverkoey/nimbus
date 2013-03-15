@@ -18,6 +18,7 @@ var http = require("http");
 var url = require("url");
 var path = require('path');
 var fs = require('fs');
+var mdns = null;
 
 var changeSet = {};
 var activeWatcher = null;
@@ -28,8 +29,11 @@ var watchInterval = 500; // 500 ms makes it effectively instant.
 /**
  * Starts the Chameleon HTTP server and file watcher on the given path.
  */
-function start(watchPath) {
+function start(watchPath,bonjour) {
 
+    if (bonjour) {
+	mdns = require('mdns');
+    }
     /**
      * Load a file from disk and pipe it down.
      */
@@ -66,6 +70,7 @@ function start(watchPath) {
      * Otherwise the consume method will be stowed away until a file does change.
      */
     function onWatch(request, response) {
+	console.log("Client connected from", request.connection.remoteAddress);
         var sendResponse = function () {
             response.writeHead(200, { 'Content-Type':'text/plain' });
             var changed = [];
@@ -177,6 +182,11 @@ function start(watchPath) {
 
     http.createServer(onRequest).listen(port);
     console.log("  Server: http://localhost:" + port + "/");
+
+    if (bonjour) {
+	var ad = mdns.createAdvertisement(mdns.tcp(bonjour), port);
+	ad.start();
+    }
 }
 
 // This allows us to call server.start from the chameleon.js file.
