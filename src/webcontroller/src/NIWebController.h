@@ -95,6 +95,8 @@
 // Subclassing
 - (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet;
 @property (nonatomic, readwrite, NI_STRONG) NSURL* actionSheetURL;
+@property (nonatomic, readwrite, NI_STRONG) UIActionSheet* actionSheet;
+@property (nonatomic, readwrite, NI_STRONG) UIBarButtonItem* actionButton;
 
 @end
 

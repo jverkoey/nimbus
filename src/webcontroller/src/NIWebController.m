@@ -28,13 +28,11 @@
 @interface NIWebController()
 @property (nonatomic, readwrite, NI_STRONG) UIWebView* webView;
 @property (nonatomic, readwrite, NI_STRONG) UIToolbar* toolbar;
-@property (nonatomic, readwrite, NI_STRONG) UIActionSheet* actionSheet;
 
 @property (nonatomic, readwrite, NI_STRONG) UIBarButtonItem* backButton;
 @property (nonatomic, readwrite, NI_STRONG) UIBarButtonItem* forwardButton;
 @property (nonatomic, readwrite, NI_STRONG) UIBarButtonItem* refreshButton;
 @property (nonatomic, readwrite, NI_STRONG) UIBarButtonItem* stopButton;
-@property (nonatomic, readwrite, NI_STRONG) UIBarButtonItem* actionButton;
 @property (nonatomic, readwrite, NI_STRONG) UIBarButtonItem* activityItem;
 
 @property (nonatomic, readwrite, NI_STRONG) NSURL* loadingURL;
