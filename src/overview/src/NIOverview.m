@@ -240,7 +240,8 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
   }
 
   sOverviewView = [[NIOverviewView alloc] initWithFrame:[self frame]];
-  
+
+  [sOverviewView addPageView:[NIInspectionOverviewPageView page]];
   [sOverviewView addPageView:[NIOverviewMemoryPageView page]];
   [sOverviewView addPageView:[NIOverviewDiskPageView page]];
   [sOverviewView addPageView:[NIOverviewMemoryCachePageView page]];

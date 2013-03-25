@@ -183,4 +183,14 @@
 @property (nonatomic, readwrite, NI_STRONG) NIMemoryCache* cache;
 @end
 
+
+/**
+ * A page that adds run-time inspection features.
+ *
+ *      @ingroup Overview-Pages
+ */
+@interface NIInspectionOverviewPageView : NIOverviewPageView
+@end
+
+
 #endif
