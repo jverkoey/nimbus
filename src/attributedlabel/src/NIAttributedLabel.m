@@ -27,7 +27,7 @@
 static const CGFloat kVMargin = 5.0f;
 static const NSTimeInterval kLongPressTimeInterval = 0.5;
 static const CGFloat kLongPressGutter = 22;
-static NSString* const kLinkAttributedName = @"NIAttributedLabel:Link";
+static NSString* const kLinkAttributedNameFormat = @"NIAttributedLabel:Link_%@";
 
 CGFloat ImageDelegateGetAscentCallback(void* refCon);
 CGFloat ImageDelegateGetDescentCallback(void* refCon);
@@ -170,6 +170,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 @synthesize attributesForLinks = _attributesForLinks;
 @synthesize attributesForHighlightedLink = _attributesForHighlightedLink;
 @synthesize lineHeight = _lineHeight;
+@synthesize lineSpacing = _lineSpacing;
 @synthesize images;
 @synthesize delegate = _delegate;
 
@@ -371,7 +372,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   if (nil != self.mutableAttributedString) {
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:textAlignment];
     CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
-    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight];
+    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight lineSpacing:self.lineSpacing];
   }
 }
 #else
@@ -388,7 +389,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   if (nil != self.mutableAttributedString) {
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:textAlignment];
     CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
-    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight];
+    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight lineSpacing:self.lineSpacing];
   }
 }
 #endif
@@ -402,7 +403,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   if (nil != self.mutableAttributedString) {
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:self.textAlignment];
     CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:lineBreakMode];
-    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight];
+    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight lineSpacing:self.lineSpacing];
   }
 }
 #else
@@ -412,10 +413,34 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   if (nil != self.mutableAttributedString) {
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:self.textAlignment];
     CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:lineBreakMode];
-    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight];
+    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight lineSpacing:self.lineSpacing];
   }
 }
 #endif
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setLineHeight:(CGFloat)lineHeight {
+  _lineHeight = lineHeight;
+  
+  if (nil != self.mutableAttributedString) {
+    CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:self.textAlignment];
+    CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
+    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight lineSpacing:self.lineSpacing];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setLineSpacing:(CGFloat)lineSpacing {
+  _lineSpacing = lineSpacing;
+  
+  if (nil != self.mutableAttributedString) {
+    CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:self.textAlignment];
+    CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
+    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight lineSpacing:self.lineSpacing];
+  }
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -542,17 +567,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     _linkColor = linkColor;
 
     [self attributedTextDidChange];
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setLineHeight:(CGFloat)lineHeight {
-  _lineHeight = lineHeight;
-
-  if (nil != self.mutableAttributedString) {
-    CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:self.textAlignment];
-    CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
-    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight];
   }
 }
 
@@ -709,7 +723,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     [self detectLinks];
 
     for (NSTextCheckingResult* result in self.detectedlinkLocations) {
-      if (NSLocationInRange(i, result.range)) {
+      NSRange widerRange = NSMakeRange(result.range.location, result.range.length+1);
+      if (NSLocationInRange(i, widerRange)) {
         foundResult = result;
         break;
       }
@@ -718,7 +733,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
   if (nil == foundResult) {
     for (NSTextCheckingResult* result in self.explicitLinkLocations) {
-      if (NSLocationInRange(i, result.range)) {
+      NSRange widerRange = NSMakeRange(result.range.location, result.range.length+1);
+      if (NSLocationInRange(i, widerRange)) {
         foundResult = result;
         break;
       }
@@ -833,11 +849,16 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     CGFloat xOffset = CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, nil);
 
     CGRect linkRect = CGRectMake(lineOrigin.x + xOffset - leading, lineOrigin.y - descent, width + leading, height);
-
     linkRect.origin.y = roundf(linkRect.origin.y);
     linkRect.origin.x = roundf(linkRect.origin.x);
     linkRect.size.width = roundf(linkRect.size.width);
     linkRect.size.height = roundf(linkRect.size.height);
+    if (linkRect.origin.x > 0 && linkRect.origin.x + linkRect.size.width < self.bounds.size.width) {
+      linkRect = CGRectInset(linkRect, -2, 0);
+    }
+    if (linkRect.origin.y > 0 && linkRect.origin.y + linkRect.size.height < self.bounds.size.height) {
+      linkRect = CGRectInset(linkRect, 0, -2);
+    }
 
     if (CGRectIsEmpty(rectForRange)) {
       rectForRange = linkRect;
@@ -1115,10 +1136,16 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
       [attributedString setTextColor:self.linkColor range:result.range];
     }
 
-    // We add a no-op attribute in order to force a run to exist for each link. Otherwise the
+    CFUUIDRef uuid = CFUUIDCreate(NULL);
+    NSString* uuidString = (__bridge NSString*)CFUUIDCreateString(NULL, uuid);
+    CFRelease(uuid);
+    
+    NSString* uniqueLinkAttributeName = [NSString stringWithFormat:kLinkAttributedNameFormat,uuidString];
+    
+    // We add a no-op "unique" attribute in order to force a run to exist for each link. Otherwise the
     // runCount will be one in this line, causing the entire line to be highlighted rather than
     // just the link when when no special attributes are set.
-    [attributedString addAttribute:kLinkAttributedName
+    [attributedString addAttribute:uniqueLinkAttributeName
                              value:[NSNumber numberWithBool:YES]
                              range:result.range];
 
@@ -1144,6 +1171,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 // makes it possible to turn off links or remove them altogether without losing the existing
 // style information.
 - (NSMutableAttributedString *)mutableAttributedStringWithAdditions {
+  
   NSMutableAttributedString* attributedString = [self.mutableAttributedString mutableCopy];
   if (self.autoDetectLinks) {
     [self _applyLinkStyleWithResults:self.detectedlinkLocations
@@ -1152,53 +1180,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
   [self _applyLinkStyleWithResults:self.explicitLinkLocations
                 toAttributedString:attributedString];
-
-  if (self.images.count > 0) {
-    // Sort the label images in reverse order by index so that when we add them the string's indices
-    // remain relatively accurate to the original string. This is necessary because we're inserting
-    // spaces into the string.
-    [self.images sortUsingComparator:^NSComparisonResult(NIAttributedLabelImage* obj1, NIAttributedLabelImage*  obj2) {
-      if (obj1.index < obj2.index) {
-        return NSOrderedDescending;
-      } else if (obj1.index > obj2.index) {
-        return NSOrderedAscending;
-      } else {
-        return NSOrderedSame;
-      }
-    }];
-
-    for (NIAttributedLabelImage *labelImage in self.images) {
-      CTRunDelegateCallbacks callbacks;
-      memset(&callbacks, 0, sizeof(CTRunDelegateCallbacks));
-      callbacks.version = kCTRunDelegateVersion1;
-      callbacks.getAscent = ImageDelegateGetAscentCallback;
-      callbacks.getDescent = ImageDelegateGetDescentCallback;
-      callbacks.getWidth = ImageDelegateGetWidthCallback;
-        
-      NSUInteger index = labelImage.index;
-      if (index >= attributedString.length) {
-        index = attributedString.length - 1;
-      }
-    
-      NSDictionary *attributes = [attributedString attributesAtIndex:index effectiveRange:NULL];
-      CTFontRef font = (__bridge CTFontRef)[attributes valueForKey:(__bridge id)kCTFontAttributeName];
-    
-      if (font != NULL) {
-        labelImage.fontAscent = CTFontGetAscent(font);
-        labelImage.fontDescent = CTFontGetDescent(font);
-      }
-        
-      CTRunDelegateRef delegate = CTRunDelegateCreate(&callbacks, (__bridge void *)labelImage);
-
-      // Character to use as recommended by kCTRunDelegateAttributeName documentation.
-      unichar objectReplacementChar = 0xFFFC;
-      NSString *objectReplacementString = [NSString stringWithCharacters:&objectReplacementChar length:1];
-      NSMutableAttributedString* space = [[NSMutableAttributedString alloc] initWithString:objectReplacementString];
-      CFAttributedStringSetAttribute((__bridge CFMutableAttributedStringRef)space, CFRangeMake(0, 1), kCTRunDelegateAttributeName, delegate);
-      CFRelease(delegate);
-      [attributedString insertAttributedString:space atIndex:labelImage.index];
-    }
-  }
 
   if (self.isHighlighted) {
     [attributedString setTextColor:self.highlightedTextColor];
@@ -1322,7 +1303,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     if (!CGRectIsEmpty(highlightRect)) {
       CGFloat pi = (CGFloat)M_PI;
 
-      CGFloat radius = 1.0f;
+      CGFloat radius = 5.0f;
       CGContextMoveToPoint(ctx, highlightRect.origin.x, highlightRect.origin.y + radius);
       CGContextAddLineToPoint(ctx, highlightRect.origin.x, highlightRect.origin.y + highlightRect.size.height - radius);
       CGContextAddArc(ctx, highlightRect.origin.x + radius, highlightRect.origin.y + highlightRect.size.height - radius,
@@ -1652,6 +1633,32 @@ CGFloat ImageDelegateGetWidthCallback(void* refCon) {
     self.images = [NSMutableArray array];
   }
   [self.images addObject:labelImage];
+  
+  CTRunDelegateCallbacks callbacks;
+  memset(&callbacks, 0, sizeof(CTRunDelegateCallbacks));
+  callbacks.version = kCTRunDelegateVersion1;
+  callbacks.getAscent = ImageDelegateGetAscentCallback;
+  callbacks.getDescent = ImageDelegateGetDescentCallback;
+  callbacks.getWidth = ImageDelegateGetWidthCallback;
+  
+  NSDictionary *attributes = [self.mutableAttributedString attributesAtIndex:index effectiveRange:NULL];
+  CTFontRef font = (__bridge CTFontRef)[attributes valueForKey:(__bridge id)kCTFontAttributeName];
+  
+  if (font != NULL) {
+    labelImage.fontAscent = CTFontGetAscent(font);
+    labelImage.fontDescent = CTFontGetDescent(font);
+  }
+  
+  CTRunDelegateRef delegate = CTRunDelegateCreate(&callbacks, (__bridge void *)labelImage);
+  
+  // Character to use as recommended by kCTRunDelegateAttributeName documentation.
+  unichar objectReplacementChar = 0xFFFC;
+  NSString *objectReplacementString = [NSString stringWithCharacters:&objectReplacementChar length:1];
+  NSMutableAttributedString* space = [[NSMutableAttributedString alloc] initWithString:objectReplacementString];
+  CFAttributedStringSetAttribute((__bridge CFMutableAttributedStringRef)space, CFRangeMake(0, 1), kCTRunDelegateAttributeName, delegate);
+  CFRelease(delegate);
+  [self.mutableAttributedString insertAttributedString:space atIndex:labelImage.index];
+
 }
 
 @end
@@ -1728,13 +1735,15 @@ CGFloat ImageDelegateGetWidthCallback(void* refCon) {
     [attributedString setTextColor:label.textColor];
 
     CTTextAlignment textAlignment = [self alignmentFromUITextAlignment:label.textAlignment];
-    CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:label.lineBreakMode];
+    CTLineBreakMode lineBreak = [self lineBreakModeFromUILineBreakMode:label.lineBreakMode];
 
     CGFloat lineHeight = 0;
+    CGFloat lineSpacing = 0;
     if ([label isKindOfClass:[NIAttributedLabel class]]) {
       lineHeight = [(NIAttributedLabel *)label lineHeight];
+      lineSpacing = [(NIAttributedLabel *)label lineSpacing];
     }
-    [attributedString setTextAlignment:textAlignment lineBreakMode:lineBreak lineHeight:lineHeight];
+    [attributedString setTextAlignment:textAlignment lineBreakMode:lineBreak lineHeight:lineHeight lineSpacing:lineSpacing];
   }
 
   return attributedString;

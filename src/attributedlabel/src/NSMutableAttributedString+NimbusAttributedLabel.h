@@ -47,7 +47,8 @@
  */
 - (void)setTextAlignment:(CTTextAlignment)textAlignment 
            lineBreakMode:(CTLineBreakMode)lineBreakMode
-              lineHeight:(CGFloat) lineHeight
+              lineHeight:(CGFloat)lineHeight
+             lineSpacing:(CGFloat)lineSpacing
                    range:(NSRange)range;
 
 
@@ -72,8 +73,8 @@
  */
 - (void)setTextAlignment:(CTTextAlignment)textAlignment 
            lineBreakMode:(CTLineBreakMode)lineBreakMode
-              lineHeight:(CGFloat) lineHeight;
-
+              lineHeight:(CGFloat) lineHeight
+             lineSpacing:(CGFloat)lineSpacing;
 
 /**
  * Sets the text color for a given range.
