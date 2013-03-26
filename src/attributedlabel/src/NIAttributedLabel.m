@@ -788,9 +788,20 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
       CGPoint relativePoint = CGPointMake(point.x-CGRectGetMinX(rect),
                                           point.y-CGRectGetMinY(rect));
       CFIndex idx = CTLineGetStringIndexForPosition(line, relativePoint);
-      foundLink = [self linkAtIndex:idx];
+        
+      NSUInteger offset = 0;
+      for (NIAttributedLabelImage *labelImage in self.images) {
+        if (labelImage.index < idx) {
+          offset++;
+        }
+            
+      }
+        
+      foundLink = [self linkAtIndex:idx - offset];;
       if (foundLink) {
-        return foundLink;
+        NSTextCheckingResult *result = [NSTextCheckingResult linkCheckingResultWithRange:NSMakeRange(foundLink.range.location + offset, foundLink.range.length) URL:foundLink.URL];
+
+        return result;
       }
     }
   }
