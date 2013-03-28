@@ -55,6 +55,8 @@
 
   NSString* identifier = NSStringFromClass(collectionViewCellClass);
 
+  [collectionView registerClass:collectionViewCellClass forCellWithReuseIdentifier:identifier];
+
   cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 
   // Allow the cell to configure itself with the object's information.

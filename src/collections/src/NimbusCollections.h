@@ -28,7 +28,6 @@
 
 #import "NICollectionViewModel.h"
 #import "NIMutableCollectionViewModel.h"
-#import "NICollectionViewCellBackgrounds.h"
 #import "NICollectionViewCellFactory.h"
 
 /**@}*/

@@ -83,7 +83,7 @@
  * If you implement the deletion of the object yourself, your code may resemble the following:
 @code
 NSArray *indexPaths = [self removeObjectAtIndexPath:indexPath];
-[tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+[collectionView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 @endcode
  */
 - (BOOL)collectionViewModel:(NIMutableCollectionViewModel *)collectionViewModel
@@ -115,7 +115,7 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
 [self.model addObject:[NITitleCellObject objectWithTitle:@"A cell"]];
 
 // Inform the table view that we've modified the model.
-[self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+[self.collectionView insertSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
 @endcode
  *
  *      @ingroup TableViewModels

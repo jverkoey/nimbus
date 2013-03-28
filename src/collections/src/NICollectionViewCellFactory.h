@@ -64,7 +64,7 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
                         atIndexPath:(NSIndexPath *)indexPath
                          withObject:(id)object {
   UICollectionViewCell* cell = [NICollectionViewCellFactory collectionViewModel:collectionViewModel
-                                       cellForCollectionView:tableView
+                                       cellForCollectionView:collectionView
                                             atIndexPath:indexPath
                                              withObject:object];
   if (nil == cell) {
@@ -139,26 +139,26 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
 /**
  * Asks the receiver to calculate its height.
  *
- * The following is an appropiate implementation in your tableView's delegate:
+ * The following is an appropiate implementation in your collectionView's delegate:
  *
 @code
--(CGFloat)tableView:(UICollectionView *)collectionView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  CGFloat height = tableView.rowHeight;
-  id object = [(NICollectionViewModel *)tableView.dataSource objectAtIndexPath:indexPath];
+-(CGFloat)collectionView:(UICollectionView *)collectionView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  CGFloat height = collectionView.rowHeight;
+  id object = [(NICollectionViewModel *)collectionView.dataSource objectAtIndexPath:indexPath];
   id class = [object collectionViewCellClass];
-  if ([class respondsToSelector:@selector(heightForObject:atIndexPath:tableView:)]) {
-    height = [class heightForObject:object atIndexPath:indexPath tableView:tableView];
+  if ([class respondsToSelector:@selector(heightForObject:atIndexPath:collectionView:)]) {
+    height = [class heightForObject:object atIndexPath:indexPath collectionView:collectionView];
   }
   return height;
 }
 @endcode
  *
  * You may also use the
- * @link NICollectionViewCellFactory::tableView:heightForRowAtIndexPath:model: tableView:heightForRowAtIndexPath:model:@endlink
+ * @link NICollectionViewCellFactory::collectionView:heightForRowAtIndexPath:model: collectionView:heightForRowAtIndexPath:model:@endlink
  * methods on NICollectionViewCellFactory to achieve the same result. Using the above example allows you to
  * customize the logic according to your specific needs.
  */
-+ (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UICollectionView *)collectionView;
++ (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView;
 
 @end
 
