@@ -149,67 +149,6 @@
   return section;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - UITableViewDataSource
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-  if ([self.delegate respondsToSelector:@selector(tableViewModel:canEditObject:atIndexPath:inTableView:)]) {
-    id object = [self objectAtIndexPath:indexPath];
-    return [self.delegate tableViewModel:self canEditObject:object atIndexPath:indexPath inTableView:tableView];
-  } else {
-    return NO;
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-  id object = [self objectAtIndexPath:indexPath];
-  if (editingStyle == UITableViewCellEditingStyleDelete) {
-    BOOL shouldDelete = YES;
-    if ([self.delegate respondsToSelector:@selector(tableViewModel:shouldDeleteObject:atIndexPath:inTableView:)]) {
-      shouldDelete = [self.delegate tableViewModel:self shouldDeleteObject:object atIndexPath:indexPath inTableView:tableView];
-    }
-    if (shouldDelete) {
-      NSArray *indexPaths = [self removeObjectAtIndexPath:indexPath];
-      UITableViewRowAnimation animation = UITableViewRowAnimationAutomatic;
-      if ([self.delegate respondsToSelector:@selector(tableViewModel:deleteRowAnimationForObject:atIndexPath:inTableView:)]) {
-        animation = [self.delegate tableViewModel:self deleteRowAnimationForObject:object atIndexPath:indexPath inTableView:tableView];
-      }
-      [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:animation];
-    }
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-  if ([self.delegate respondsToSelector:@selector(tableViewModel:canMoveObject:atIndexPath:inTableView:)]) {
-    id object = [self objectAtIndexPath:indexPath];
-    return [self.delegate tableViewModel:self canMoveObject:object atIndexPath:indexPath inTableView:tableView];
-  } else {
-    return NO;
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
-  id object = [self objectAtIndexPath:sourceIndexPath];
-  BOOL shouldMove = YES;
-  if ([self.delegate respondsToSelector:@selector(tableViewModel:shouldMoveObject:atIndexPath:toIndexPath:inTableView:)]) {
-    shouldMove = [self.delegate tableViewModel:self shouldMoveObject:object atIndexPath:sourceIndexPath toIndexPath:destinationIndexPath inTableView:tableView];
-  }
-  if (shouldMove) {
-    [self removeObjectAtIndexPath:sourceIndexPath];
-    [self insertObject:object atRow:destinationIndexPath.row inSection:destinationIndexPath.section];
-  }
-}
-
 @end
 
 

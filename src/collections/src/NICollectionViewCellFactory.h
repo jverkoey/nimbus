@@ -59,12 +59,12 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
  * the object to a cell it will return nil.
  *
  * @code
-- (UITableViewCell *)tableViewModel:(NICollectionViewModel *)tableViewModel
-                   cellForTableView:(UITableView *)tableView
+- (UICollectionViewCell *)collectionViewModel:(NICollectionViewModel *)collectionViewModel
+                   cellForCollectionView:(UICollectionView *)collectionView
                         atIndexPath:(NSIndexPath *)indexPath
                          withObject:(id)object {
-  UITableViewCell* cell = [NICollectionViewCellFactory tableViewModel:tableViewModel
-                                       cellForTableView:tableView
+  UICollectionViewCell* cell = [NICollectionViewCellFactory collectionViewModel:collectionViewModel
+                                       cellForCollectionView:tableView
                                             atIndexPath:indexPath
                                              withObject:object];
   if (nil == cell) {
@@ -74,7 +74,7 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
 }
  * @endcode
  */
-+ (UITableViewCell *)tableViewModel:(NICollectionViewModel *)tableViewModel cellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath withObject:(id)object;
++ (UICollectionViewCell *)collectionViewModel:(NICollectionViewModel *)collectionViewModel cellForCollectionView:(UICollectionView *)collectionView atIndexPath:(NSIndexPath *)indexPath withObject:(id)object;
 
 /**
  * Map an object's class to a cell's class.
@@ -83,59 +83,7 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
  * mapping, the factory mapping will take precedence. This allows you to
  * explicitly override the mapping on a case-by-case basis.
  */
-- (void)mapObjectClass:(Class)objectClass toCellClass:(Class)cellClass;
-
-/**
- * Returns the height for a row at a given index path.
- *
- * Uses the heightForObject:atIndexPath:tableView: selector from the NICollectionViewCell protocol to ask the
- * object at indexPath in the model what its height should be. If a class mapping has been made for
- * the given object in this factory then that class mapping will be used over the result of
- * cellClass from the NICollectionViewCellObject protocol.
- *
- * If the cell returns a height of zero then tableView.rowHeight will be used.
- *
- * Example implementation:
- *
-@code
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return [self.cellFactory tableView:tableView heightForRowAtIndexPath:indexPath model:self.model];
-}
-@endcode
- *
- *      @param tableView The table view within which the cell exists.
- *      @param indexPath The location of the cell in the table view.
- *      @param model The backing model being used by the table view.
- *      @returns The height of the cell mapped to the object at indexPath, if it implements
- *               heightForObject:atIndexPath:tableView:; otherwise, returns tableView.rowHeight.
- */
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath model:(NICollectionViewModel *)model;
-
-/**
- * Returns the height for a row at a given index path.
- *
- * Uses the heightForObject:atIndexPath:tableView: selector from the NICollectionViewCell protocol to ask the
- * object at indexPath in the model what its height should be. Only implicit mappings will be
- * checked with this static implementation. If you would like to provide explicit mappings you must
- * create an instance of NICollectionViewCellFactory.
- *
- * If the cell returns a height of zero then tableView.rowHeight will be used.
- *
- * Example implementation:
- *
-@code
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return [NICollectionViewCellFactory tableView:tableView heightForRowAtIndexPath:indexPath model:self.model];
-}
-@endcode
- *
- *      @param tableView The table view within which the cell exists.
- *      @param indexPath The location of the cell in the table view.
- *      @param model The backing model being used by the table view.
- *      @returns The height of the cell mapped to the object at indexPath, if it implements
- *               heightForObject:atIndexPath:tableView:; otherwise, returns tableView.rowHeight.
- */
-+ (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath model:(NICollectionViewModel *)model;
+- (void)mapObjectClass:(Class)objectClass toCellClass:(Class)collectionViewCellClass;
 
 @end
 
@@ -165,18 +113,15 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
 @protocol NICollectionViewCellObject <NSObject>
 @required
 /** The class of cell to be created when this object is passed to the cell factory. */
-- (Class)cellClass;
+- (Class)collectionViewCellClass;
 
-@optional
-/** The style of UITableViewCell to be used when initializing the cell for the first time. */
-- (UITableViewCellStyle)cellStyle;
 @end
 
 /**
  * The protocol for a cell created in the NICollectionViewCellFactory.
  *
  * Cells that implement this protocol are given the object that implemented the NICollectionViewCellObject
- * protocol and returned this cell's class name in @link NICollectionViewCellObject::cellClass cellClass@endlink.
+ * protocol and returned this cell's class name in @link NICollectionViewCellObject::collectionViewCellClass collectionViewCellClass@endlink.
  *
  *      @ingroup TableCellFactory
  */
@@ -197,10 +142,10 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
  * The following is an appropiate implementation in your tableView's delegate:
  *
 @code
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(CGFloat)tableView:(UICollectionView *)collectionView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   CGFloat height = tableView.rowHeight;
   id object = [(NICollectionViewModel *)tableView.dataSource objectAtIndexPath:indexPath];
-  id class = [object cellClass];
+  id class = [object collectionViewCellClass];
   if ([class respondsToSelector:@selector(heightForObject:atIndexPath:tableView:)]) {
     height = [class heightForObject:object atIndexPath:indexPath tableView:tableView];
   }
@@ -213,7 +158,7 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
  * methods on NICollectionViewCellFactory to achieve the same result. Using the above example allows you to
  * customize the logic according to your specific needs.
  */
-+ (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView;
++ (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UICollectionView *)collectionView;
 
 @end
 
@@ -234,11 +179,11 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
 @interface NICollectionViewCellObject : NSObject <NICollectionViewCellObject>
 
 // Designated initializer.
-- (id)initWithCellClass:(Class)cellClass userInfo:(id)userInfo;
-- (id)initWithCellClass:(Class)cellClass;
+- (id)initWithCellClass:(Class)collectionViewCellClass userInfo:(id)userInfo;
+- (id)initWithCellClass:(Class)collectionViewCellClass;
 
-+ (id)objectWithCellClass:(Class)cellClass userInfo:(id)userInfo;
-+ (id)objectWithCellClass:(Class)cellClass;
++ (id)objectWithCellClass:(Class)collectionViewCellClass userInfo:(id)userInfo;
++ (id)objectWithCellClass:(Class)collectionViewCellClass;
 
 @property (nonatomic, readonly, NI_STRONG) id userInfo;
 

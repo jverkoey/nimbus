@@ -24,6 +24,7 @@
 
 @interface NICollectionViewCellFactory()
 @property (nonatomic, copy) NSMutableDictionary* objectToCellMap;
+@property (nonatomic, copy) NSMutableSet* registeredObjectClasses;
 @end
 
 
@@ -39,28 +40,22 @@
 - (id)init {
   if ((self = [super init])) {
     _objectToCellMap = [[NSMutableDictionary alloc] init];
+    _registeredObjectClasses = [[NSMutableSet alloc] init];
   }
   return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (UITableViewCell *)cellWithClass:(Class)cellClass
-                         tableView:(UITableView *)tableView
-                            object:(id)object {
-  UITableViewCell* cell = nil;
++ (UICollectionViewCell *)cellWithClass:(Class)collectionViewCellClass
+                         collectionView:(UICollectionView *)collectionView
+                              indexPath:(NSIndexPath *)indexPath
+                                 object:(id)object {
+  UICollectionViewCell* cell = nil;
 
-  NSString* identifier = NSStringFromClass(cellClass);
+  NSString* identifier = NSStringFromClass(collectionViewCellClass);
 
-  cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-
-  if (nil == cell) {
-    UITableViewCellStyle style = UITableViewCellStyleDefault;
-    if ([object respondsToSelector:@selector(cellStyle)]) {
-      style = [object cellStyle];
-    }
-    cell = [[cellClass alloc] initWithStyle:style reuseIdentifier:identifier];
-  }
+  cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 
   // Allow the cell to configure itself with the object's information.
   if ([cell respondsToSelector:@selector(shouldUpdateCellWithObject:)]) {
@@ -72,21 +67,21 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (UITableViewCell *)tableViewModel:(NICollectionViewModel *)tableViewModel
-                   cellForTableView:(UITableView *)tableView
++ (UICollectionViewCell *)collectionViewModel:(NICollectionViewModel *)collectionViewModel
+                   cellForCollectionView:(UICollectionView *)collectionView
                         atIndexPath:(NSIndexPath *)indexPath
                          withObject:(id)object {
-  UITableViewCell* cell = nil;
+  UICollectionViewCell* cell = nil;
 
   // If this assertion fires then your app is about to crash. You need to either add an explicit
   // binding in a NICollectionViewCellFactory object or implement the NICollectionViewCellObject protocol on this object and
   // return a cell class.
-  NIDASSERT([object respondsToSelector:@selector(cellClass)]);
+  NIDASSERT([object respondsToSelector:@selector(collectionViewCellClass)]);
 
   // Only NICollectionViewCellObject-conformant objects may pass.
-  if ([object respondsToSelector:@selector(cellClass)]) {
-    Class cellClass = [object cellClass];
-    cell = [self cellWithClass:cellClass tableView:tableView object:object];
+  if ([object respondsToSelector:@selector(collectionViewCellClass)]) {
+    Class collectionViewCellClass = [object collectionViewCellClass];
+    cell = [self cellWithClass:collectionViewCellClass collectionView:collectionView indexPath:indexPath object:object];
   }
 
   return cell;
@@ -94,43 +89,43 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (Class)cellClassFromObject:(id)object {
+- (Class)collectionViewCellClassFromObject:(id)object {
   if (nil == object) {
     return nil;
   }
   Class objectClass = [object class];
-  Class cellClass = [self.objectToCellMap objectForKey:objectClass];
+  Class collectionViewCellClass = [self.objectToCellMap objectForKey:objectClass];
 
-  BOOL hasExplicitMapping = (nil != cellClass && cellClass != [NSNull class]);
+  BOOL hasExplicitMapping = (nil != collectionViewCellClass && collectionViewCellClass != [NSNull class]);
 
-  if (!hasExplicitMapping && [object respondsToSelector:@selector(cellClass)]) {
-    cellClass = [object cellClass];
+  if (!hasExplicitMapping && [object respondsToSelector:@selector(collectionViewCellClass)]) {
+    collectionViewCellClass = [object collectionViewCellClass];
   }
 
-  if (nil == cellClass) {
-    cellClass = [self.class objectFromKeyClass:objectClass map:self.objectToCellMap];
+  if (nil == collectionViewCellClass) {
+    collectionViewCellClass = [self.class objectFromKeyClass:objectClass map:self.objectToCellMap];
   }
 
-  return cellClass;
+  return collectionViewCellClass;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UITableViewCell *)tableViewModel:(NICollectionViewModel *)tableViewModel
-                   cellForTableView:(UITableView *)tableView
+- (UICollectionViewCell *)collectionViewModel:(NICollectionViewModel *)collectionViewModel
+                   cellForCollectionView:(UICollectionView *)collectionView
                         atIndexPath:(NSIndexPath *)indexPath
                          withObject:(id)object {
-  UITableViewCell* cell = nil;
+  UICollectionViewCell* cell = nil;
 
-  Class cellClass = [self cellClassFromObject:object];
+  Class collectionViewCellClass = [self collectionViewCellClassFromObject:object];
 
   // If this assertion fires then your app is about to crash. You need to either add an explicit
   // binding in a NICollectionViewCellFactory object or implement the NICollectionViewCellObject protocol on this object and
   // return a cell class.
-  NIDASSERT(nil != cellClass);
+  NIDASSERT(nil != collectionViewCellClass);
 
-  if (nil != cellClass) {
-    cell = [[self class] cellWithClass:cellClass tableView:tableView object:object];
+  if (nil != collectionViewCellClass) {
+    cell = [[self class] cellWithClass:collectionViewCellClass collectionView:collectionView indexPath:indexPath object:object];
   }
   
   return cell;
@@ -138,43 +133,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)mapObjectClass:(Class)objectClass toCellClass:(Class)cellClass {
-  [self.objectToCellMap setObject:cellClass forKey:(id<NSCopying>)objectClass];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath model:(NICollectionViewModel *)model {
-  CGFloat height = tableView.rowHeight;
-  id object = [model objectAtIndexPath:indexPath];
-  Class cellClass = [self cellClassFromObject:object];
-  if ([cellClass respondsToSelector:@selector(heightForObject:atIndexPath:tableView:)]) {
-    CGFloat cellHeight = [cellClass heightForObject:object
-                                        atIndexPath:indexPath tableView:tableView];
-    if (cellHeight > 0) {
-      height = cellHeight;
-    }
-  }
-  return height;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath model:(NICollectionViewModel *)model {
-  CGFloat height = tableView.rowHeight;
-  id object = [model objectAtIndexPath:indexPath];
-  Class cellClass = nil;
-  if ([object respondsToSelector:@selector(cellClass)]) {
-    cellClass = [object cellClass];
-  }
-  if ([cellClass respondsToSelector:@selector(heightForObject:atIndexPath:tableView:)]) {
-    CGFloat cellHeight = [cellClass heightForObject:object
-                                        atIndexPath:indexPath tableView:tableView];
-    if (cellHeight > 0) {
-      height = cellHeight;
-    }
-  }
-  return height;
+- (void)mapObjectClass:(Class)objectClass toCellClass:(Class)collectionViewCellClass {
+  [self.objectToCellMap setObject:collectionViewCellClass forKey:(id<NSCopying>)objectClass];
 }
 
 @end
@@ -230,7 +190,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NICollectionViewCellObject()
-@property (nonatomic, assign) Class cellClass;
+@property (nonatomic, assign) Class collectionViewCellClass;
 @property (nonatomic, NI_STRONG) id userInfo;
 @end
 
@@ -240,14 +200,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NICollectionViewCellObject
 
-@synthesize cellClass = _cellClass;
+@synthesize collectionViewCellClass = _collectionViewCellClass;
 @synthesize userInfo = _userInfo;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithCellClass:(Class)cellClass userInfo:(id)userInfo {
+- (id)initWithCellClass:(Class)collectionViewCellClass userInfo:(id)userInfo {
   if ((self = [super init])) {
-    _cellClass = cellClass;
+    _collectionViewCellClass = collectionViewCellClass;
     _userInfo = userInfo;
   }
   return self;
@@ -255,20 +215,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithCellClass:(Class)cellClass {
-  return [self initWithCellClass:cellClass userInfo:nil];
+- (id)initWithCellClass:(Class)collectionViewCellClass {
+  return [self initWithCellClass:collectionViewCellClass userInfo:nil];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)objectWithCellClass:(Class)cellClass userInfo:(id)userInfo {
-  return [[self alloc] initWithCellClass:cellClass userInfo:userInfo];
++ (id)objectWithCellClass:(Class)collectionViewCellClass userInfo:(id)userInfo {
+  return [[self alloc] initWithCellClass:collectionViewCellClass userInfo:userInfo];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)objectWithCellClass:(Class)cellClass {
-  return [[self alloc] initWithCellClass:cellClass userInfo:nil];
++ (id)objectWithCellClass:(Class)collectionViewCellClass {
+  return [[self alloc] initWithCellClass:collectionViewCellClass userInfo:nil];
 }
 
 

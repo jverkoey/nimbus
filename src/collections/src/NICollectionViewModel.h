@@ -44,13 +44,13 @@ typedef enum {
  *
  *      @ingroup TableViewModels
  */
-@interface NICollectionViewModel : NSObject <UITableViewDataSource>
+@interface NICollectionViewModel : NSObject <UICollectionViewDataSource>
 
 #pragma mark Creating Table View Models
 
 // Designated initializer.
 - (id)initWithDelegate:(id<NICollectionViewModelDelegate>)delegate;
-- (id)initWithListArray:(NSArray *)sectionedArray delegate:(id<NICollectionViewModelDelegate>)delegate;
+- (id)initWithListArray:(NSArray *)listArray delegate:(id<NICollectionViewModelDelegate>)delegate;
 // Each NSString in the array starts a new section. Any other object is a new row (with exception of certain model-specific objects).
 - (id)initWithSectionedArray:(NSArray *)sectionedArray delegate:(id<NICollectionViewModelDelegate>)delegate;
 
@@ -87,10 +87,10 @@ typedef enum {
  *
  * The implementation of this method will generally use object to customize the cell.
  */
-- (UITableViewCell *)tableViewModel: (NICollectionViewModel *)tableViewModel
-                   cellForTableView: (UITableView *)tableView
-                        atIndexPath: (NSIndexPath *)indexPath
-                         withObject: (id)object;
+- (UICollectionViewCell *)collectionViewModel:(NICollectionViewModel *)collectionViewModel
+                        cellForCollectionView:(UICollectionView *)collectionView
+                                  atIndexPath:(NSIndexPath *)indexPath
+                                   withObject:(id)object;
 
 @end
 
@@ -236,7 +236,7 @@ typedef enum {
 #if NS_BLOCKS_AVAILABLE
 
 /**
- * A block used to create a UITableViewCell for a given object.
+ * A block used to create a UICollectionViewCell for a given object.
  *
  *      @fn NICollectionViewModel::createCellBlock
  */

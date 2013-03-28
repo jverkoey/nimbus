@@ -252,73 +252,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark UITableViewDataSource
+#pragma mark UICollectionViewDataSource
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
   return self.sections.count;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-  NIDASSERT((section >= 0 && (NSUInteger)section < self.sections.count) || 0 == self.sections.count);
-  if (section >= 0 && (NSUInteger)section < self.sections.count) {
-    return [[self.sections objectAtIndex:section] headerTitle];
-
-  } else {
-    return nil;
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-  NIDASSERT((section >= 0 && (NSUInteger)section < self.sections.count) || 0 == self.sections.count);
-  if (section >= 0 && (NSUInteger)section < self.sections.count) {
-    return [[self.sections objectAtIndex:section] footerTitle];
-    
-  } else {
-    return nil;
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-  // This is a static model; nothing can be edited.
-  return NO;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-  return self.sectionIndexTitles;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-  if (tableView.tableHeaderView) {
-    if (index == 0 && [self.sectionIndexTitles count] > 0
-        && [self.sectionIndexTitles objectAtIndex:0] == UITableViewIndexSearch)  {
-      // This is a hack to get the table header to appear when the user touches the
-      // first row in the section index.  By default, it shows the first row, which is
-      // not usually what you want.
-      [tableView scrollRectToVisible:tableView.tableHeaderView.bounds animated:NO];
-      return -1;
-    }
-  }
-
-  NSString* letter = [title substringToIndex:1];
-  NSNumber* sectionIndex = [self.sectionPrefixToSectionIndex objectForKey:letter];
-  return (nil != sectionIndex) ? [sectionIndex intValue] : -1;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
   NIDASSERT((NSUInteger)section < self.sections.count || 0 == self.sections.count);
   if ((NSUInteger)section < self.sections.count) {
     return [[[self.sections objectAtIndex:section] rows] count];
@@ -330,14 +274,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UITableViewCell *)tableView: (UITableView *)tableView
-         cellForRowAtIndexPath: (NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   id object = [self objectAtIndexPath:indexPath];
 
-  return [self.delegate tableViewModel:self
-                      cellForTableView:tableView
-                           atIndexPath:indexPath
-                            withObject:object];
+  return [self.delegate collectionViewModel:self
+                      cellForCollectionView:collectionView
+                                atIndexPath:indexPath
+                                 withObject:object];
 }
 
 

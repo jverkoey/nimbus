@@ -32,20 +32,20 @@
  *
  * If this method is not implemented, the default response is assumed to be NO.
  */
-- (BOOL)tableViewModel:(NIMutableCollectionViewModel *)tableViewModel
+- (BOOL)collectionViewModel:(NIMutableCollectionViewModel *)collectionViewModel
          canEditObject:(id)object
            atIndexPath:(NSIndexPath *)indexPath
-           inTableView:(UITableView *)tableView;
+           inTableView:(UICollectionView *)collectionView;
 
 /**
  * Asks the receiver whether the object at the given index path should be moveable.
  *
  * If this method is not implemented, the default response is assumed to be NO.
  */
-- (BOOL)tableViewModel:(NIMutableCollectionViewModel *)tableViewModel
+- (BOOL)collectionViewModel:(NIMutableCollectionViewModel *)collectionViewModel
          canMoveObject:(id)object
            atIndexPath:(NSIndexPath *)indexPath
-           inTableView:(UITableView *)tableView;
+           inTableView:(UICollectionView *)collectionView;
 
 /**
  * Asks the receiver whether the given object should be moved.
@@ -54,11 +54,11 @@
  *
  * Returning NO will stop the model from handling the move logic.
  */
-- (BOOL)tableViewModel:(NIMutableCollectionViewModel *)tableViewModel
+- (BOOL)collectionViewModel:(NIMutableCollectionViewModel *)collectionViewModel
       shouldMoveObject:(id)object
            atIndexPath:(NSIndexPath *)indexPath
            toIndexPath:(NSIndexPath *)toIndexPath
-           inTableView:(UITableView *)tableView;
+           inTableView:(UICollectionView *)collectionView;
 
 /**
  * Asks the receiver what animation should be used when deleting the object at the given index path.
@@ -66,10 +66,10 @@
  * If this method is not implemented, the default response is assumed to be
  * UITableViewRowAnimationAutomatic.
  */
-- (UITableViewRowAnimation)tableViewModel:(NIMutableCollectionViewModel *)tableViewModel
+- (UITableViewRowAnimation)collectionViewModel:(NIMutableCollectionViewModel *)collectionViewModel
               deleteRowAnimationForObject:(id)object
                               atIndexPath:(NSIndexPath *)indexPath
-                              inTableView:(UITableView *)tableView;
+                              inTableView:(UICollectionView *)collectionView;
 
 /**
  * Asks the receiver whether the given object should be deleted.
@@ -86,10 +86,10 @@ NSArray *indexPaths = [self removeObjectAtIndexPath:indexPath];
 [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 @endcode
  */
-- (BOOL)tableViewModel:(NIMutableCollectionViewModel *)tableViewModel
+- (BOOL)collectionViewModel:(NIMutableCollectionViewModel *)collectionViewModel
     shouldDeleteObject:(id)object
            atIndexPath:(NSIndexPath *)indexPath
-           inTableView:(UITableView *)tableView;
+           inTableView:(UICollectionView *)collectionView;
 
 @end
 
