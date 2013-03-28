@@ -141,41 +141,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath model:(NICollectionViewModel *)model {
-  CGSize size = CGSizeZero;
-  if ([collectionViewLayout respondsToSelector:@selector(itemSize)]) {
-    size = [(id)collectionViewLayout itemSize];
-  }
+- (Class)collectionViewCellClassForItemAtIndexPath:(NSIndexPath *)indexPath model:(NICollectionViewModel *)model {
   id object = [model objectAtIndexPath:indexPath];
-  Class collectionViewCellClass = [self collectionViewCellClassFromObject:object];
-  if ([collectionViewCellClass respondsToSelector:@selector(sizeForObject:atIndexPath:collectionView:)]) {
-    CGSize cellSize = [collectionViewCellClass sizeForObject:object atIndexPath:indexPath collectionView:collectionView];
-    if (cellSize.width > 0 && cellSize.height > 0) {
-      size = cellSize;
-    }
-  }
-  return size;
+  return [self collectionViewCellClassFromObject:object];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath model:(NICollectionViewModel *)model {
-  CGSize size = CGSizeZero;
-  if ([collectionViewLayout respondsToSelector:@selector(itemSize)]) {
-    size = [(id)collectionViewLayout itemSize];
-  }
++ (Class)collectionViewCellClassForItemAtIndexPath:(NSIndexPath *)indexPath model:(NICollectionViewModel *)model {
   id object = [model objectAtIndexPath:indexPath];
   Class collectionViewCellClass = nil;
   if ([object respondsToSelector:@selector(collectionViewCellClass)]) {
     collectionViewCellClass = [object collectionViewCellClass];
   }
-  if ([collectionViewCellClass respondsToSelector:@selector(sizeForObject:atIndexPath:collectionView:)]) {
-    CGSize cellSize = [collectionViewCellClass sizeForObject:object atIndexPath:indexPath collectionView:collectionView];
-    if (cellSize.width > 0 && cellSize.height > 0) {
-      size = cellSize;
-    }
-  }
-  return size;
+  return collectionViewCellClass;
 }
 
 @end
