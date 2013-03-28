@@ -85,6 +85,34 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
  */
 - (void)mapObjectClass:(Class)objectClass toCellClass:(Class)collectionViewCellClass;
 
+/**
+ * Returns the size for a view at a given index path.
+ *
+ * Uses the sizeForObject:atIndexPath:collectionView: selector from the NICollectionViewCell
+ * protocol to ask the object at indexPath in the model what its size should be. If a class mapping
+ * has been made for the given object in this factory then that class mapping will be used over the
+ * result of cellClass from the NICollectionViewCellObject protocol.
+ *
+ * If the cell returns a size of zero then collectionViewLayout.itemSize will be used.
+ *
+ * Example implementation:
+ *
+@code
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout*)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+  return [self.cellFactory tableView:tableView heightForRowAtIndexPath:indexPath model:self.model];
+}
+@endcode
+ *
+ *      @param tableView The table view within which the cell exists.
+ *      @param indexPath The location of the cell in the table view.
+ *      @param model The backing model being used by the table view.
+ *      @returns The height of the cell mapped to the object at indexPath, if it implements
+ *               heightForObject:atIndexPath:tableView:; otherwise, returns tableView.rowHeight.
+ */
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForRowAtIndexPath:(NSIndexPath *)indexPath model:(NICollectionViewModel *)model;
+
 @end
 
 @interface NICollectionViewCellFactory (KeyClassMapping)
@@ -127,6 +155,7 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
  */
 @protocol NICollectionViewCell <NSObject>
 @required
+
 /**
  * Called when a cell is created and reused.
  *
@@ -137,28 +166,30 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
 @optional
 
 /**
- * Asks the receiver to calculate its height.
+ * Asks the receiver to calculate its size.
  *
  * The following is an appropiate implementation in your collectionView's delegate:
  *
 @code
--(CGFloat)collectionView:(UICollectionView *)collectionView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  CGFloat height = collectionView.rowHeight;
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout*)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+  CGFloat size = collectionViewLayout.itemSize;
   id object = [(NICollectionViewModel *)collectionView.dataSource objectAtIndexPath:indexPath];
   id class = [object collectionViewCellClass];
   if ([class respondsToSelector:@selector(heightForObject:atIndexPath:collectionView:)]) {
-    height = [class heightForObject:object atIndexPath:indexPath collectionView:collectionView];
+    size = [class sizeForObject:object atIndexPath:indexPath collectionView:collectionView];
   }
-  return height;
+  return size;
 }
 @endcode
  *
  * You may also use the
- * @link NICollectionViewCellFactory::collectionView:heightForRowAtIndexPath:model: collectionView:heightForRowAtIndexPath:model:@endlink
+ * @link NICollectionViewCellFactory::collectionView:sizeForRowAtIndexPath:model: collectionView:sizeForRowAtIndexPath:model:@endlink
  * methods on NICollectionViewCellFactory to achieve the same result. Using the above example allows you to
  * customize the logic according to your specific needs.
  */
-+ (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView;
++ (CGSize)sizeForObject:(id)object atIndexPath:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView;
 
 @end
 
