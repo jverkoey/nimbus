@@ -31,7 +31,7 @@
  *
  * This factory is designed to be used with NICollectionViewModel, though one could easily use
  * it with other collection view data source implementations simply by providing nil for the
- * collection view model.
+ * collection view model argument.
  *
  * If you instantiate an NICollectionViewCellFactory then you can provide explicit mappings from
  * objects to cells. This is helpful if the effort required to implement the NICollectionViewCell
@@ -43,8 +43,8 @@
 @interface NICollectionViewCellFactory : NSObject <NICollectionViewModelDelegate>
 
 /**
- * Creates a cell from a given object if and only if the object conforms to the NICollectionViewCellObject
- * protocol.
+ * Creates a cell from a given object if and only if the object conforms to the
+ * NICollectionViewCellObject protocol.
  *
  * This method signature matches the NICollectionViewModelDelegate method so that you can
  * set this factory as the model's delegate:
@@ -60,13 +60,13 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
  *
  * @code
 - (UICollectionViewCell *)collectionViewModel:(NICollectionViewModel *)collectionViewModel
-                   cellForCollectionView:(UICollectionView *)collectionView
-                        atIndexPath:(NSIndexPath *)indexPath
-                         withObject:(id)object {
+                        cellForCollectionView:(UICollectionView *)collectionView
+                                  atIndexPath:(NSIndexPath *)indexPath
+                                   withObject:(id)object {
   UICollectionViewCell* cell = [NICollectionViewCellFactory collectionViewModel:collectionViewModel
-                                       cellForCollectionView:collectionView
-                                            atIndexPath:indexPath
-                                             withObject:object];
+                                                          cellForCollectionView:collectionView
+                                                                    atIndexPath:indexPath
+                                                                     withObject:object];
   if (nil == cell) {
     // Custom cell creation here.
   }
@@ -85,8 +85,24 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
  */
 - (void)mapObjectClass:(Class)objectClass toCellClass:(Class)collectionViewCellClass;
 
+/**
+ * Returns the mapped cell class for an object at a given index path.
+ *
+ * Explicitly mapped classes in the receiver take precedence over implicitly mapped classes.
+ *
+ * This method is helpful when implementing layout calculation methods for your collection view. You
+ * can fetch the cell class and then perform any selectors that are necessary for calculating the
+ * dimensions of the cell before it is instantiated.
+ */
 - (Class)collectionViewCellClassForItemAtIndexPath:(NSIndexPath *)indexPath model:(NICollectionViewModel *)model;
 
+/**
+ * Returns the mapped cell class for an object at a given index path.
+ *
+ * This method is helpful when implementing layout calculation methods for your collection view. You
+ * can fetch the cell class and then perform any selectors that are necessary for calculating the
+ * dimensions of the cell before it is instantiated.
+ */
 + (Class)collectionViewCellClassForItemAtIndexPath:(NSIndexPath *)indexPath model:(NICollectionViewModel *)model;
 
 @end
@@ -112,10 +128,11 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
 /**
  * The protocol for an object that can be used in the NICollectionViewCellFactory.
  *
- *      @ingroup TableCellFactory
+ *      @ingroup CollectionViewCellFactory
  */
 @protocol NICollectionViewCellObject <NSObject>
 @required
+
 /** The class of cell to be created when this object is passed to the cell factory. */
 - (Class)collectionViewCellClass;
 
@@ -124,16 +141,17 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
 /**
  * The protocol for a cell created in the NICollectionViewCellFactory.
  *
- * Cells that implement this protocol are given the object that implemented the NICollectionViewCellObject
- * protocol and returned this cell's class name in @link NICollectionViewCellObject::collectionViewCellClass collectionViewCellClass@endlink.
+ * Cells that implement this protocol are given the object that implemented the
+ * NICollectionViewCellObject protocol and returned this cell's class name in
+ * @link NICollectionViewCellObject::collectionViewCellClass collectionViewCellClass@endlink.
  *
- *      @ingroup TableCellFactory
+ *      @ingroup CollectionViewCellFactory
  */
 @protocol NICollectionViewCell <NSObject>
 @required
 
 /**
- * Called when a cell is created and reused.
+ * Called both when a cell is created and when it is reused.
  *
  * Implement this method to customize the cell's properties for display using the given object.
  */
@@ -152,7 +170,7 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
  * to the cell view, you can create an NICollectionViewCellObject and pass the class name of the cell.
  *
 @code
-[tableContents addObject:[NICollectionViewCellObject objectWithCellClass:[LoadMoreCell class]]];
+[contents addObject:[NICollectionViewCellObject objectWithCellClass:[LoadMoreCell class]]];
 @endcode
  */
 @interface NICollectionViewCellObject : NSObject <NICollectionViewCellObject>

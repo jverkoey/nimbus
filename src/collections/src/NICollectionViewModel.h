@@ -27,26 +27,23 @@
 // Classes used when creating NICollectionViewModels.
 @class NICollectionViewModelFooter;  // Provides the information for a footer.
 
-typedef enum {
-  NICollectionViewModelSectionIndexNone, // Displays no section index.
-  NICollectionViewModelSectionIndexDynamic, // Generates a section index from the first letters of the section titles.
-  NICollectionViewModelSectionIndexAlphabetical, // Generates an alphabetical section index.
-} NICollectionViewModelSectionIndex;
-
 /**
- * A non-mutable table view model that complies to the UITableViewDataSource protocol.
+ * A non-mutable collection view model that complies to the UICollectionViewDataSource protocol.
  *
- * This model allows you to easily create a data source for a UITableView without having to
- * implement the UITableViewDataSource methods in your UITableViewController.
+ * This model allows you to easily create a data source for a UICollectionView without having to
+ * implement the UICollectionViewDataSource methods in your controller.
  *
  * This base class is non-mutable, much like an NSArray. You must initialize this model with
  * the contents when you create it.
  *
- *      @ingroup TableViewModels
+ * This model simply manages the data relationship with your collection view. It is up to you to
+ * implement the collection view's layout object.
+ *
+ *      @ingroup CollectionViewModels
  */
 @interface NICollectionViewModel : NSObject <UICollectionViewDataSource>
 
-#pragma mark Creating Table View Models
+#pragma mark Creating Collection View Models
 
 // Designated initializer.
 - (id)initWithDelegate:(id<NICollectionViewModelDelegate>)delegate;
@@ -58,32 +55,22 @@ typedef enum {
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
 
-#pragma mark Configuration
-
-// Immediately compiles the section index.
-- (void)setSectionIndexType:(NICollectionViewModelSectionIndex)sectionIndexType showsSearch:(BOOL)showsSearch showsSummary:(BOOL)showsSummary;
-
-@property (nonatomic, readonly, assign) NICollectionViewModelSectionIndex sectionIndexType; // Default: NICollectionViewModelSectionIndexNone
-@property (nonatomic, readonly, assign) BOOL sectionIndexShowsSearch; // Default: NO
-@property (nonatomic, readonly, assign) BOOL sectionIndexShowsSummary; // Default: NO
-
-#pragma mark Creating Table View Cells
+#pragma mark Creating Collection View Cells
 
 @property (nonatomic, NI_WEAK) id<NICollectionViewModelDelegate> delegate;
 
 @end
 
 /**
- * A protocol for NICollectionViewModel to fetch rows to be displayed for the table view.
+ * A protocol for NICollectionViewModel to fetch rows to be displayed for the collection view.
  *
- *      @ingroup TableViewModels
+ *      @ingroup CollectionViewModels
  */
 @protocol NICollectionViewModelDelegate <NSObject>
-
 @required
 
 /**
- * Fetches a table view cell at a given index path with a given object.
+ * Fetches a collection view cell at a given index path with a given object.
  *
  * The implementation of this method will generally use object to customize the cell.
  */
@@ -114,7 +101,7 @@ typedef enum {
 
 @end
 
-/** @name Creating Table View Models */
+/** @name Creating Collection View Models */
 
 /**
  * Initializes a newly allocated static model with the given delegate and empty contents.
@@ -139,7 +126,7 @@ typedef enum {
  *  [NSDictionary dictionaryWithObject:@"Row 2" forKey:@"title"],
  *  [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
  *  nil];
- * [[NIStaticTableViewModel alloc] initWithListArray:contents delegate:self];
+ * [[NICollectionViewModel alloc] initWithListArray:contents delegate:self];
  * @endcode
  *
  *      @fn NICollectionViewModel::initWithListArray:delegate:
@@ -166,7 +153,7 @@ typedef enum {
  *  [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
  *  [NICollectionViewModelFooter footerWithTitle:@"Footer"],
  *  nil];
- * [[NIStaticTableViewModel alloc] initWithSectionedArray:contents delegate:self];
+ * [[NICollectionViewModel alloc] initWithSectionedArray:contents delegate:self];
  * @endcode
  *
  *      @fn NICollectionViewModel::initWithSectionedArray:delegate:
@@ -185,60 +172,10 @@ typedef enum {
  */
 
 
-/** @name Configuration */
+/** @name Creating Collection View Cells */
 
 /**
- * Configures the model's section index properties.
- *
- * Calling this method will compile the section index depending on the index type chosen.
- *
- *      @param sectionIndexType The type of section index to display.
- *      @param showsSearch      Whether or not to show the search icon at the top of the index.
- *      @param showsSummary     Whether or not to show the summary icon at the bottom of the index.
- *      @fn NICollectionViewModel::setSectionIndexType:showsSearch:showsSummary:
- */
-
-/**
- * The section index type.
- *
- * You will likely use NICollectionViewModelSectionIndexAlphabetical in practice.
- *
- * NICollectionViewModelSectionIndexNone by default.
- *
- *      @fn NICollectionViewModel::sectionIndexType
- */
-
-/**
- * Whether or not the search symbol will be shown in the section index.
- *
- * NO by default.
- *
- *      @fn NICollectionViewModel::sectionIndexShowsSearch
- */
-
-/**
- * Whether or not the summary symbol will be shown in the section index.
- *
- * NO by default.
- *
- *      @fn NICollectionViewModel::sectionIndexShowsSummary
- */
-
-
-/** @name Creating Table View Cells */
-
-/**
- * A delegate used to fetch table view cells for the data source.
+ * A delegate used to fetch collection view cells for the data source.
  *
  *      @fn NICollectionViewModel::delegate
  */
-
-#if NS_BLOCKS_AVAILABLE
-
-/**
- * A block used to create a UICollectionViewCell for a given object.
- *
- *      @fn NICollectionViewModel::createCellBlock
- */
-
-#endif // #if NS_BLOCKS_AVAILABLE

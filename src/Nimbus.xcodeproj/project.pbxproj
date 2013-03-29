@@ -5668,6 +5668,7 @@
 				66FC98541703F9D8004E8FB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C7BBC6FF16DDC0E700833DC9 /* Build configuration list for PBXNativeTarget "NimbusTextField" */ = {
 			isa = XCConfigurationList;

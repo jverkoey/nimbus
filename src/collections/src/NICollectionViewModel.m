@@ -32,9 +32,6 @@
 @synthesize sections = _sections;
 @synthesize sectionIndexTitles = _sectionIndexTitles;
 @synthesize sectionPrefixToSectionIndex = _sectionPrefixToSectionIndex;
-@synthesize sectionIndexType = _sectionIndexType;
-@synthesize sectionIndexShowsSearch = _sectionIndexShowsSearch;
-@synthesize sectionIndexShowsSummary = _sectionIndexShowsSummary;
 @synthesize delegate = _delegate;
 
 
@@ -42,10 +39,6 @@
 - (id)initWithDelegate:(id<NICollectionViewModelDelegate>)delegate {
   if ((self = [super init])) {
     self.delegate = delegate;
-
-    _sectionIndexType = NICollectionViewModelSectionIndexNone;
-    _sectionIndexShowsSearch = NO;
-    _sectionIndexShowsSummary = NO;
 
     [self _resetCompiledData];
   }
@@ -167,89 +160,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)_compileSectionIndex {
-  _sectionIndexTitles = nil;
-
-  // Prime the section index and the map
-  NSMutableArray* titles = nil;
-  NSMutableDictionary* sectionPrefixToSectionIndex = nil;
-  if (NICollectionViewModelSectionIndexNone != _sectionIndexType) {
-    titles = [NSMutableArray array];
-    sectionPrefixToSectionIndex = [NSMutableDictionary dictionary];
-
-    // The search symbol is always first in the index.
-    if (_sectionIndexShowsSearch) {
-      [titles addObject:UITableViewIndexSearch];
-    }
-  }
-
-  // A dynamic index shows the first letter of every section in the index in whatever order the
-  // sections are ordered (this may not be alphabetical).
-  if (NICollectionViewModelSectionIndexDynamic == _sectionIndexType) {
-    for (NICollectionViewModelSection* section in _sections) {
-      NSString* headerTitle = section.headerTitle;
-      if ([headerTitle length] > 0) {
-        NSString* prefix = [headerTitle substringToIndex:1];
-        [titles addObject:prefix];
-      }
-    }
-
-  } else if (NICollectionViewModelSectionIndexAlphabetical == _sectionIndexType) {
-    // Use the localized indexed collation to create the index. In English, this will always be
-    // the entire alphabet.
-    NSArray* sectionIndexTitles = [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
-
-    // The localized indexed collection sometimes includes a # for summaries, but we might
-    // not want to show a summary in the index, so prune it out. It's not guaranteed that
-    // a # will actually be included in the section index titles, so we always attempt to
-    // remove it for consistency's sake and then add it back down below if it is requested.
-    for (NSString* letter in sectionIndexTitles) {
-      if (![letter isEqualToString:@"#"]) {
-        [titles addObject:letter];
-      }
-    }
-  }
-
-  // Add the section summary symbol if it was requested.
-  if (_sectionIndexShowsSummary) {
-    [titles addObject:@"#"];
-  }
-
-  // Build the prefix => section index map.
-  if (NICollectionViewModelSectionIndexNone != _sectionIndexType) {
-
-    // Map all of the sections to indices.
-    NSInteger sectionIndex = 0;
-    for (NICollectionViewModelSection* section in _sections) {
-      NSString* headerTitle = section.headerTitle;
-      if ([headerTitle length] > 0) {
-        NSString* prefix = [headerTitle substringToIndex:1];
-        if (nil == [sectionPrefixToSectionIndex objectForKey:prefix]) {
-          [sectionPrefixToSectionIndex setObject:[NSNumber numberWithInt:sectionIndex] forKey:prefix];
-        }
-      }
-      ++sectionIndex;
-    }
-
-    // Map the unmapped section titles to the next closest earlier section.
-    NSInteger lastIndex = 0;
-    for (NSString* title in titles) {
-      NSString* prefix = [title substringToIndex:1];
-      if (nil != [sectionPrefixToSectionIndex objectForKey:prefix]) {
-        lastIndex = [[sectionPrefixToSectionIndex objectForKey:prefix] intValue];
-        
-      } else {
-        [sectionPrefixToSectionIndex setObject:[NSNumber numberWithInt:lastIndex] forKey:prefix];
-      }
-    }
-  }
-
-  self.sectionIndexTitles = titles;
-  self.sectionPrefixToSectionIndex = sectionPrefixToSectionIndex;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark UICollectionViewDataSource
@@ -312,20 +222,6 @@
   }
 
   return object;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setSectionIndexType:(NICollectionViewModelSectionIndex)sectionIndexType showsSearch:(BOOL)showsSearch showsSummary:(BOOL)showsSummary {
-  if (_sectionIndexType != sectionIndexType
-      || _sectionIndexShowsSearch != showsSearch
-      || _sectionIndexShowsSummary != showsSummary) {
-    _sectionIndexType = sectionIndexType;
-    _sectionIndexShowsSearch = showsSearch;
-    _sectionIndexShowsSummary = showsSummary;
-
-    [self _compileSectionIndex];
-  }
 }
 
 
