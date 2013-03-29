@@ -344,7 +344,6 @@
 		66F27D66145BA56400AFCA08 /* NIPhotoScrollViewPhotoSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F27D65145BA56400AFCA08 /* NIPhotoScrollViewPhotoSize.h */; };
 		66FC984B1703F9D7004E8FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66FC98631703FA51004E8FB8 /* NICollectionViewCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FC985B1703FA51004E8FB8 /* NICollectionViewCellFactory.m */; };
-		66FC98641703FA51004E8FB8 /* NIMutableCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FC985E1703FA51004E8FB8 /* NIMutableCollectionViewModel.m */; };
 		66FC98651703FA51004E8FB8 /* NICollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FC98611703FA51004E8FB8 /* NICollectionViewModel.m */; };
 		66FCC634144FB42E0029F1A6 /* includee.css in Resources */ = {isa = PBXBuildFile; fileRef = 66FCC632144FB42E0029F1A6 /* includee.css */; };
 		66FCC635144FB42E0029F1A6 /* includer.css in Resources */ = {isa = PBXBuildFile; fileRef = 66FCC633144FB42E0029F1A6 /* includer.css */; };
@@ -990,9 +989,6 @@
 		66FC985A1703FA51004E8FB8 /* NICollectionViewCellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICollectionViewCellFactory.h; sourceTree = "<group>"; };
 		66FC985B1703FA51004E8FB8 /* NICollectionViewCellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICollectionViewCellFactory.m; sourceTree = "<group>"; };
 		66FC985C1703FA51004E8FB8 /* NimbusCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusCollections.h; sourceTree = "<group>"; };
-		66FC985D1703FA51004E8FB8 /* NIMutableCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIMutableCollectionViewModel.h; sourceTree = "<group>"; };
-		66FC985E1703FA51004E8FB8 /* NIMutableCollectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIMutableCollectionViewModel.m; sourceTree = "<group>"; };
-		66FC985F1703FA51004E8FB8 /* NIMutableCollectionViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIMutableCollectionViewModel+Private.h"; sourceTree = "<group>"; };
 		66FC98601703FA51004E8FB8 /* NICollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICollectionViewModel.h; sourceTree = "<group>"; };
 		66FC98611703FA51004E8FB8 /* NICollectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICollectionViewModel.m; sourceTree = "<group>"; };
 		66FC98621703FA51004E8FB8 /* NICollectionViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NICollectionViewModel+Private.h"; sourceTree = "<group>"; };
@@ -2058,9 +2054,6 @@
 				66FC98611703FA51004E8FB8 /* NICollectionViewModel.m */,
 				66FC98621703FA51004E8FB8 /* NICollectionViewModel+Private.h */,
 				66FC985C1703FA51004E8FB8 /* NimbusCollections.h */,
-				66FC985D1703FA51004E8FB8 /* NIMutableCollectionViewModel.h */,
-				66FC985E1703FA51004E8FB8 /* NIMutableCollectionViewModel.m */,
-				66FC985F1703FA51004E8FB8 /* NIMutableCollectionViewModel+Private.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -3812,7 +3805,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				66FC98631703FA51004E8FB8 /* NICollectionViewCellFactory.m in Sources */,
-				66FC98641703FA51004E8FB8 /* NIMutableCollectionViewModel.m in Sources */,
 				66FC98651703FA51004E8FB8 /* NICollectionViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
