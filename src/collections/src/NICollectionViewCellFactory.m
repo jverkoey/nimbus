@@ -70,9 +70,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (UICollectionViewCell *)collectionViewModel:(NICollectionViewModel *)collectionViewModel
-                   cellForCollectionView:(UICollectionView *)collectionView
-                        atIndexPath:(NSIndexPath *)indexPath
-                         withObject:(id)object {
+                        cellForCollectionView:(UICollectionView *)collectionView
+                                  atIndexPath:(NSIndexPath *)indexPath
+                                   withObject:(id)object {
   UICollectionViewCell* cell = nil;
 
   // If this assertion fires then your app is about to crash. You need to either add an explicit

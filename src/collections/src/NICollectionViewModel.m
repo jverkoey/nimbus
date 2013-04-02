@@ -195,6 +195,19 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+  if ([self.delegate respondsToSelector:
+       @selector(collectionViewModel:collectionView:viewForSupplementaryElementOfKind:atIndexPath:)]) {
+    return [self.delegate collectionViewModel:self
+                               collectionView:collectionView
+            viewForSupplementaryElementOfKind:kind
+                                  atIndexPath:indexPath];
+  }
+  return nil;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Public Methods

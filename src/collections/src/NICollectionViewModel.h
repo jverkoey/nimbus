@@ -79,6 +79,19 @@
                                   atIndexPath:(NSIndexPath *)indexPath
                                    withObject:(id)object;
 
+@optional
+
+/**
+ * Fetches a supplementary collection view element at a given indexPath.
+ *
+ * The value of the kind property and indexPath are implementation-dependent
+ * based on the type of UICollectionViewLayout being used.
+ */
+- (UICollectionReusableView *)collectionViewModel:(NICollectionViewModel *)collectionViewModel
+                                   collectionView:(UICollectionView *)collectionView
+                viewForSupplementaryElementOfKind:(NSString *)kind
+                                      atIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 /**
