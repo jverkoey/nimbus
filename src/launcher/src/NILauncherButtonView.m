@@ -55,7 +55,7 @@ static const CGFloat kImageBottomMargin = 5;
     _label.numberOfLines = 1;
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
     _label.textAlignment = UITextAlignmentCenter;
-    _label.lineBreakMode = UILineBreakModeTailTruncation;
+    _label.lineBreakMode = NSLineBreakByTruncatingTail;
 #else
     _label.textAlignment = NSTextAlignmentCenter;
     _label.lineBreakMode = NSLineBreakByTruncatingTail;

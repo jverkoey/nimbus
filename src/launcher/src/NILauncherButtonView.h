@@ -22,7 +22,7 @@
  * A launcher button view that displays an image and and a label beneath it.
  *
  * This view shows the icon anchored to the top middle of the view and the label anchored to the
- * bottom middle. By default the label is a single line label with UILineBreakModeTailTruncation.
+ * bottom middle. By default the label is a single line label with NSLineBreakByTruncatingTail.
  *
  * @image html NILauncherButtonExample1.png "Example of an NILauncherButton"
  *

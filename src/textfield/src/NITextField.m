@@ -24,7 +24,7 @@
         if (self.placeholderTextColor) {
             [self.placeholderTextColor setFill];
         }
-        [self.placeholder drawInRect:rect withFont:(self.placeholderFont != nil ? self.placeholderFont : self.font) lineBreakMode:UILineBreakModeClip alignment:self.textAlignment];
+        [self.placeholder drawInRect:rect withFont:(self.placeholderFont != nil ? self.placeholderFont : self.font) lineBreakMode:NSLineBreakByClipping alignment:self.textAlignment];
     }
     else
     {

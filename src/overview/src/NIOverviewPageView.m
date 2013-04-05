@@ -470,7 +470,7 @@ static const CGFloat kGraphRightMargin = 5;
   label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
   label.shadowOffset = CGSizeMake(0, 1);
   label.backgroundColor = [UIColor clearColor];
-  label.lineBreakMode = UILineBreakModeWordWrap;
+  label.lineBreakMode = NSLineBreakByWordWrapping;
   label.numberOfLines = 0;
   
   return label;
@@ -603,7 +603,7 @@ static const CGFloat kGraphRightMargin = 5;
   label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
   label.shadowOffset = CGSizeMake(0, 1);
   label.backgroundColor = [UIColor clearColor];
-  label.lineBreakMode = UILineBreakModeWordWrap;
+  label.lineBreakMode = NSLineBreakByWordWrapping;
   label.numberOfLines = 0;
   
   return label;
@@ -1019,7 +1019,7 @@ static NIViewInspectionView *visibleInspectionView = nil;
       withFont:infoFont
       minFontSize:kMinimumFontSize
       actualFontSize:nil
-      lineBreakMode:UILineBreakModeMiddleTruncation
+      lineBreakMode:NSLineBreakByTruncatingMiddle
       baselineAdjustment:UIBaselineAdjustmentAlignBaselines];
   return size.height;
 }

@@ -26,7 +26,7 @@
 
 - (CGFloat)heightWithFont: (UIFont*)font
        constrainedToWidth: (CGFloat)width
-            lineBreakMode: (UILineBreakMode)lineBreakMode;
+            lineBreakMode: (NSLineBreakMode)lineBreakMode;
 
 #pragma mark URL queries
 

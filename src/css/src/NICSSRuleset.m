@@ -399,26 +399,26 @@ return _##name; \
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UILineBreakMode)lineBreakMode {
+- (NSLineBreakMode)lineBreakMode {
   NIDASSERT([self hasLineBreakMode]);
   if (!_is.cached.LineBreakMode) {
     NSArray* values = [_ruleset objectForKey:kLineBreakModeKey];
     NIDASSERT([values count] == 1);
     NSString* value = [values objectAtIndex:0];
     if ([value isEqualToString:@"wrap"]) {
-      _lineBreakMode = UILineBreakModeWordWrap;
+      _lineBreakMode = NSLineBreakByWordWrapping;
     } else if ([value isEqualToString:@"character-wrap"]) {
-      _lineBreakMode = UILineBreakModeCharacterWrap;
+      _lineBreakMode = NSLineBreakByCharWrapping;
     } else if ([value isEqualToString:@"clip"]) {
-      _lineBreakMode = UILineBreakModeClip;
+      _lineBreakMode = NSLineBreakByClipping;
     } else if ([value isEqualToString:@"head-truncate"]) {
-      _lineBreakMode = UILineBreakModeHeadTruncation;
+      _lineBreakMode = NSLineBreakByTruncatingHead;
     } else if ([value isEqualToString:@"tail-truncate"]) {
-      _lineBreakMode = UILineBreakModeTailTruncation;
+      _lineBreakMode = NSLineBreakByTruncatingTail;
     } else if ([value isEqualToString:@"middle-truncate"]) {
-      _lineBreakMode = UILineBreakModeMiddleTruncation;
+      _lineBreakMode = NSLineBreakByTruncatingMiddle;
     } else {
-      _lineBreakMode = UILineBreakModeWordWrap;
+      _lineBreakMode = NSLineBreakByWordWrapping;
     }
     _is.cached.LineBreakMode = YES;
   }

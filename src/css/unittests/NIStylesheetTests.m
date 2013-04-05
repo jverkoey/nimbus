@@ -93,7 +93,7 @@
   STAssertEquals(label.textAlignment, UITextAlignmentRight, @"Alignment should match.");
   STAssertEquals(label.shadowOffset.width, 20.f, @"Shadow offset should match.");
   STAssertEquals(label.shadowOffset.height, -30.f, @"Shadow offset should match.");
-  STAssertEquals(label.lineBreakMode, UILineBreakModeTailTruncation, @"Should match.");
+  STAssertEquals(label.lineBreakMode, NSLineBreakByTruncatingTail, @"Should match.");
   STAssertEquals(label.numberOfLines, 5, @"Should match.");
   STAssertEquals(label.minimumFontSize, 5.f, @"Should match.");
   STAssertTrue(label.adjustsFontSizeToFitWidth, @"Should match.");

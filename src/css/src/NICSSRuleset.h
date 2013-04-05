@@ -60,7 +60,7 @@ typedef enum {
   UIFont* _font;
   UIColor* _textShadowColor;
   CGSize _textShadowOffset;
-  UILineBreakMode _lineBreakMode;
+  NSLineBreakMode _lineBreakMode;
   NSInteger _numberOfLines;
   CGFloat _minimumFontSize;
   BOOL _adjustsFontSize;
@@ -190,7 +190,7 @@ typedef enum {
 - (CGSize)textShadowOffset; // text-shadow
 
 - (BOOL)hasLineBreakMode;
-- (UILineBreakMode)lineBreakMode; // -ios-line-break-mode
+- (NSLineBreakMode)lineBreakMode; // -ios-line-break-mode
 
 - (BOOL)hasNumberOfLines;
 - (NSInteger)numberOfLines; // -ios-number-of-lines

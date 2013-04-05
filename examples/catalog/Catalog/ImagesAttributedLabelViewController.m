@@ -58,7 +58,7 @@
   label.text = @"This is Nimbus:He's a red panda.\nThis is a star:";
 
   label.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
-  label.lineBreakMode = UILineBreakModeWordWrap;
+  label.lineBreakMode = NSLineBreakByWordWrapping;
   label.numberOfLines = 0;
   label.font = [UIFont systemFontOfSize:20];
   label.textColor = [UIColor blackColor];

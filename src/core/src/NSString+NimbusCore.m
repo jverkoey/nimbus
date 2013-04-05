@@ -46,7 +46,7 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 // COV_NF_START
 - (CGFloat)heightWithFont:(UIFont*)font
        constrainedToWidth:(CGFloat)width
-            lineBreakMode:(UILineBreakMode)lineBreakMode {
+            lineBreakMode:(NSLineBreakMode)lineBreakMode {
   return [self sizeWithFont:font
           constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
               lineBreakMode:lineBreakMode].height;
