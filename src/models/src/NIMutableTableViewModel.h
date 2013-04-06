@@ -91,6 +91,38 @@ NSArray *indexPaths = [self removeObjectAtIndexPath:indexPath];
            atIndexPath:(NSIndexPath *)indexPath
            inTableView:(UITableView *)tableView;
 
+
+/**
+ * Asks the receiver what animation should be used when inserting the object at the given index path.
+ *
+ * If this method is not implemented, the default response is assumed to be
+ * UITableViewRowAnimationAutomatic.
+ */
+- (UITableViewRowAnimation)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+              insertRowAnimationForObject:(id)object
+                              atIndexPath:(NSIndexPath *)indexPath
+                              inTableView:(UITableView *)tableView;
+
+/**
+ * Notifies the receiver that the green insert + icon has been pressed on the object. 
+ * The receiver should perform whatever action desired on this object 
+ * (i.e. inserting a new row).
+ *
+ * Return a single object to let the model update insert the object into the model
+ * and update the table view.
+ *
+ * If you are doing more complex model manipulation (i.e. inserting multiple rows, 
+ * adding/removing rows), update the model and table view yourself and return nil.
+ *
+ * Return nil if you are not changing the model (i.e. opening a new screen, etc).
+ *
+ * If this method is not implemented, the default response is assumed to be nil.
+ *
+ */
+- (id)tableViewModel:(NIMutableTableViewModel *)tableViewModel shouldInsertAtIndexPath:(NSIndexPath *)indexPath
+              object:(id)object
+         inTableView:(UITableView *)tableView;
+
 @end
 
 /**
@@ -126,6 +158,7 @@ NSIndexSet* indexSet = [self.model addSectionWithTitle:@"New section"];
 - (NSArray *)addObject:(id)object toSection:(NSUInteger)section;
 - (NSArray *)addObjectsFromArray:(NSArray *)array;
 - (NSArray *)insertObject:(id)object atRow:(NSUInteger)row inSection:(NSUInteger)section;
+- (NSArray *)insertObject:(id)object atIndexPath:(NSIndexPath *)indexPath;
 - (NSArray *)removeObjectAtIndexPath:(NSIndexPath *)indexPath;
 
 - (NSIndexSet *)addSectionWithTitle:(NSString *)title;
