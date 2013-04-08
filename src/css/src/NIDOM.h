@@ -18,6 +18,7 @@
 #import <UIKit/UIKit.h>
 
 @class NIStylesheet;
+@protocol NIDOMResourceResolverDelegate;
 
 /**
  * A leight-weight DOM-like object to which you attach views and stylesheets.

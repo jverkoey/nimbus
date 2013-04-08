@@ -20,6 +20,7 @@
 #import "NICSSRuleset.h"
 #import "NIStyleable.h"
 #import "NimbusCore.h"
+#import "NICSSResourceResolverDelegate.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
@@ -27,6 +28,7 @@
 
 NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotification";
 static Class _rulesetClass;
+static id<NICSSResourceResolverDelegate> _resolver;
 
 @interface NIStylesheet()
 @property (nonatomic, readonly, copy) NSDictionary* rawRulesets;
@@ -311,15 +313,24 @@ static Class _rulesetClass;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+(Class)rulesetClass
-{
++(Class)rulesetClass {
   return _rulesetClass ?: [NICSSRuleset class];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+(void)setRulesetClass:(Class)rulesetClass
-{
++(void)setRulesetClass:(Class)rulesetClass {
   _rulesetClass = rulesetClass;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++(id<NICSSResourceResolverDelegate>)resourceResolver {
+    return _resolver;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++(void)setResourceResolver: (id<NICSSResourceResolverDelegate>) resolver {
+    _resolver = resolver;
+}
+
 
 @end

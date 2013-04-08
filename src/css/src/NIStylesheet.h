@@ -17,7 +17,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NICSSResourceResolverDelegate.h"
+
 @protocol NICSSParserDelegate;
+
 @class NICSSRuleset;
 @class NIDOM;
 
@@ -68,14 +71,11 @@ extern NSString* const NIStylesheetDidChangeNotification;
 
 - (NICSSRuleset *)rulesetForClassName:(NSString *)className;
 
-/**
- * The class to create for rule sets. Default is NICSSRuleset
- */
 +(Class)rulesetClass;
-/**
- * Set the class created to hold rule sets. Default is NICSSRuleset
- */
 +(void)setRulesetClass: (Class) rulesetClass;
+
++(id<NICSSResourceResolverDelegate>)resourceResolver;
++(void)setResourceResolver: (id<NICSSResourceResolverDelegate>) resolver;
 
 @end
 
@@ -142,6 +142,22 @@ extern NSString* const NIStylesheetDidChangeNotification;
  *      @fn NIStylesheet::rulesetForClassName:
  *      @param className  Either the view's class as a string using NSStringFromClass([view class]);
  *                        or a CSS class selector such as ".myClassSelector".
+ */
+
+/** @name Process Wide Configuration */
+
+/**
+ * The class to create for rule sets. Default is NICSSRuleset
+ *
+ *      @fn NIStylesheet::rulesetClass
+ */
+
+/**
+ * When applying styles that use resources (currently only images in buttons and backgrounds),
+ * it can be advantageous to resolve the images to bits yourself (e.g. updated images from Chameleon).
+ * If nil, resources will be accessed directly.
+ *
+ *      @fn NIStylesheet::resourceResolver
  */
 
 /** @name Debugging */

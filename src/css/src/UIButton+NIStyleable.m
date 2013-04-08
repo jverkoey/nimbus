@@ -16,6 +16,7 @@
 
 #import "UIButton+NIStyleable.h"
 
+#import "NIStylesheet.h"
 #import "UIView+NIStyleable.h"
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
@@ -59,14 +60,26 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
     [self setTitleShadowColor:ruleSet.textShadowColor forState:UIControlStateNormal];
   }
   if (ruleSet.hasImage) {
-    [self setImage:[UIImage imageNamed:ruleSet.image] forState:UIControlStateNormal];
+    UIImage *uiImage;
+    if ([NIStylesheet resourceResolver] && [[NIStylesheet resourceResolver] respondsToSelector: @selector(imageNamed:)]) {
+        uiImage = [[NIStylesheet resourceResolver] imageNamed:ruleSet.image];
+    } else {
+        uiImage = [UIImage imageNamed:ruleSet.image];
+    }
+
+    [self setImage:uiImage forState:UIControlStateNormal];
   }
   if (ruleSet.hasBackgroundImage) {
-    UIImage *backImage = [UIImage imageNamed:ruleSet.backgroundImage];
-    if (ruleSet.hasBackgroundStretchInsets) {
-      backImage = [backImage resizableImageWithCapInsets:ruleSet.backgroundStretchInsets];
+    UIImage *uiImage;
+    if ([NIStylesheet resourceResolver] && [[NIStylesheet resourceResolver] respondsToSelector: @selector(imageNamed:)]) {
+        uiImage = [[NIStylesheet resourceResolver] imageNamed:ruleSet.backgroundImage];
+    } else {
+        uiImage = [UIImage imageNamed:ruleSet.backgroundImage];
     }
-    [self setBackgroundImage:backImage forState:UIControlStateNormal];
+    if (ruleSet.hasBackgroundStretchInsets) {
+      uiImage = [uiImage resizableImageWithCapInsets:ruleSet.backgroundStretchInsets];
+    }
+    [self setBackgroundImage:uiImage forState:UIControlStateNormal];
   }
   if ([ruleSet hasTextShadowOffset]) {
     self.titleLabel.shadowOffset = ruleSet.textShadowOffset;
