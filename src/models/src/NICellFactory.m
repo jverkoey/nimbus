@@ -52,6 +52,11 @@
 
   NSString* identifier = NSStringFromClass(cellClass);
 
+  if ([cellClass respondsToSelector:@selector(shouldAppendObjectClassToReuseIdentifier)]
+      && [cellClass shouldAppendObjectClassToReuseIdentifier]) {
+    identifier = [identifier stringByAppendingFormat:@".%@", NSStringFromClass([object class])];
+  }
+
   cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 
   if (nil == cell) {
