@@ -83,16 +83,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)viewDidUnload {
-  [self.radioGroup removeForwarding:self];
-
-  [super viewDidUnload];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+  return NIIsSupportedOrientation(toInterfaceOrientation);
 }
+#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-  return NIIsSupportedOrientation(toInterfaceOrientation);
+- (NSUInteger)supportedInterfaceOrientations {
+  return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 

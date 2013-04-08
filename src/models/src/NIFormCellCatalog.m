@@ -269,7 +269,13 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self.textLabel setAdjustsFontSizeToFitWidth:YES];
-        [self.textLabel setMinimumFontSize:10.0f];
+        if ([self.textLabel respondsToSelector:@selector(minimumScaleFactor)]) {
+          self.textLabel.minimumScaleFactor = 0.5;
+        } else {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
+          [self.textLabel setMinimumFontSize:10.0f];
+#endif
+        }
     }
     return self;
 }
