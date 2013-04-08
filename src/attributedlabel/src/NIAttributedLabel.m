@@ -128,7 +128,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 @interface NIAttributedLabel(ConversionUtilities)
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
 + (CTTextAlignment)alignmentFromUITextAlignment:(UITextAlignment)alignment;
-+ (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(UILineBreakMode)lineBreakMode;
++ (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(NSLineBreakMode)lineBreakMode;
 #else
 + (CTTextAlignment)alignmentFromUITextAlignment:(NSTextAlignment)alignment;
 + (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(NSLineBreakMode)lineBreakMode;
@@ -396,7 +396,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
-- (void)setLineBreakMode:(UILineBreakMode)lineBreakMode {
+- (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode {
   [super setLineBreakMode:lineBreakMode];
 
   if (nil != self.mutableAttributedString) {
@@ -788,9 +788,20 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
       CGPoint relativePoint = CGPointMake(point.x-CGRectGetMinX(rect),
                                           point.y-CGRectGetMinY(rect));
       CFIndex idx = CTLineGetStringIndexForPosition(line, relativePoint);
-      foundLink = [self linkAtIndex:idx];
+        
+      NSUInteger offset = 0;
+      for (NIAttributedLabelImage *labelImage in self.images) {
+        if (labelImage.index < idx) {
+          offset++;
+        }
+            
+      }
+        
+      foundLink = [self linkAtIndex:idx - offset];;
       if (foundLink) {
-        return foundLink;
+        NSTextCheckingResult *result = [NSTextCheckingResult linkCheckingResultWithRange:NSMakeRange(foundLink.range.location + offset, foundLink.range.length) URL:foundLink.URL];
+
+        return result;
       }
     }
   }
@@ -1353,7 +1364,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   CFArrayRef lines = CTFrameGetLines(self.textFrame);
   NSInteger numberOfLines = [self numberOfDisplayedLines];
 
-  BOOL truncatesLastLine = (self.lineBreakMode == UILineBreakModeTailTruncation);
+  BOOL truncatesLastLine = (self.lineBreakMode == NSLineBreakByTruncatingTail);
   CGPoint lineOrigins[numberOfLines];
   CTFrameGetLineOrigins(self.textFrame, CFRangeMake(0, numberOfLines), lineOrigins);
 
@@ -1691,14 +1702,14 @@ CGFloat ImageDelegateGetWidthCallback(void* refCon) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
-+ (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(UILineBreakMode)lineBreakMode {
++ (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(NSLineBreakMode)lineBreakMode {
   switch (lineBreakMode) {
-    case UILineBreakModeWordWrap: return kCTLineBreakByWordWrapping;
-    case UILineBreakModeCharacterWrap: return kCTLineBreakByCharWrapping;
-    case UILineBreakModeClip: return kCTLineBreakByClipping;
-    case UILineBreakModeHeadTruncation: return kCTLineBreakByTruncatingHead;
-    case UILineBreakModeTailTruncation: return kCTLineBreakByWordWrapping; // We handle truncation ourself.
-    case UILineBreakModeMiddleTruncation: return kCTLineBreakByTruncatingMiddle;
+    case NSLineBreakByWordWrapping: return kCTLineBreakByWordWrapping;
+    case NSLineBreakByCharWrapping: return kCTLineBreakByCharWrapping;
+    case NSLineBreakByClipping: return kCTLineBreakByClipping;
+    case NSLineBreakByTruncatingHead: return kCTLineBreakByTruncatingHead;
+    case NSLineBreakByTruncatingTail: return kCTLineBreakByWordWrapping; // We handle truncation ourself.
+    case NSLineBreakByTruncatingMiddle: return kCTLineBreakByTruncatingMiddle;
     default: return 0;
   }
 }

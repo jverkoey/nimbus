@@ -192,6 +192,15 @@ _model.delegate = (id)[NICellFactory class];
 @optional
 
 /**
+ * Asks the receiver whether the mapped object class should be appended to the reuse identifier
+ * in order to create a unique cell.object identifier key.
+ *
+ * This is useful when you have a cell that is intended to be used by a variety of different
+ * objects.
+ */
++ (BOOL)shouldAppendObjectClassToReuseIdentifier;
+
+/**
  * Asks the receiver to calculate its height.
  *
  * The following is an appropiate implementation in your tableView's delegate:

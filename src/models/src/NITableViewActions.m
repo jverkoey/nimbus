@@ -433,6 +433,9 @@
         if (methodSignature.numberOfArguments >= 3) {
           [invocation setArgument:&object atIndex:2];
         }
+        if (methodSignature.numberOfArguments >= 4) {
+          [invocation setArgument:&indexPath atIndex:3];
+        }
         [invocation invokeWithTarget:self.target];
 
         NSUInteger length = invocation.methodSignature.methodReturnLength;

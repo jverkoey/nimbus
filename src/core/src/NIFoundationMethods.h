@@ -108,7 +108,7 @@ CGRect NIFrameOfCenteredViewWithinView(UIView* viewToCenter, UIView* containerVi
 /**
  * Returns the size of the string with given UILabel properties.
  */
-CGSize NISizeOfStringWithLabelProperties(NSString *string, CGSize constrainedToSize, UIFont *font, UILineBreakMode lineBreakMode, NSInteger numberOfLines);
+CGSize NISizeOfStringWithLabelProperties(NSString *string, CGSize constrainedToSize, UIFont *font, NSLineBreakMode lineBreakMode, NSInteger numberOfLines);
 
 /**@}*/
 

@@ -57,7 +57,7 @@
   NIAttributedLabel* label = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
   label.numberOfLines = 0;
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
-  label.lineBreakMode = UILineBreakModeWordWrap;
+  label.lineBreakMode = NSLineBreakByWordWrapping;
 #else
   label.lineBreakMode = NSLineBreakByWordWrapping;
 #endif

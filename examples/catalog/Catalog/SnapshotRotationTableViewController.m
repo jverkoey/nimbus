@@ -102,9 +102,9 @@
 
       // We're drawing variable height cells in this example to show how the table view smoothly
       // animates between the two very different states of the table view.
-      CGSize size = [text sizeWithFont:titleFont constrainedToSize:CGSizeMake(titleWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+      CGSize size = [text sizeWithFont:titleFont constrainedToSize:CGSizeMake(titleWidth, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
       if (nil != cell) {
-        [text drawInRect:CGRectMake(10, 5, size.width, size.height) withFont:titleFont lineBreakMode:UILineBreakModeWordWrap];
+        [text drawInRect:CGRectMake(10, 5, size.width, size.height) withFont:titleFont lineBreakMode:NSLineBreakByWordWrapping];
       }
 
       return size.height + 10;

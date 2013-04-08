@@ -61,7 +61,7 @@ typedef enum {
  *
  * Differences between UILabel and NIAttributedLabel:
  *
- * - @c UILineBreakModeHeadTruncation and @c UILineBreakModeMiddleTruncation only apply to single
+ * - @c NSLineBreakByTruncatingHead and @c NSLineBreakByTruncatingMiddle only apply to single
  *   lines and will not wrap the label regardless of the @c numberOfLines property. To wrap lines
  *   with any of these line break modes you must explicitly add newline characters to the string.
  * - When you assign an NSString to the text property the attributed label will create an
