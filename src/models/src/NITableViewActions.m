@@ -205,7 +205,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)removeForwarding:(id<UITableViewDelegate>)forwardDelegate; {
+- (void)removeForwarding:(id<UITableViewDelegate>)forwardDelegate {
   [self.forwardDelegates removeObject:forwardDelegate];
 }
 
