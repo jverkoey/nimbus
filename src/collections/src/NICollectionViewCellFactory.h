@@ -157,6 +157,17 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
  */
 - (BOOL)shouldUpdateCellWithObject:(id)object;
 
+@optional
+
+/**
+ * Asks the receiver whether the mapped object class should be appended to the reuse identifier
+ * in order to create a unique cell.object identifier key.
+ *
+ * This is useful when you have a cell that is intended to be used by a variety of different
+ * objects.
+ */
++ (BOOL)shouldAppendObjectClassToReuseIdentifier;
+
 @end
 
 /**
