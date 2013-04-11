@@ -318,6 +318,7 @@
 		66D2FE081594083800B2BEFD /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDF31594083800B2BEFD /* AFXMLRequestOperation.m */; };
 		66D2FE091594083800B2BEFD /* UIImageView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 66D2FDF41594083800B2BEFD /* UIImageView+AFNetworking.h */; };
 		66D2FE0A1594083800B2BEFD /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDF51594083800B2BEFD /* UIImageView+AFNetworking.m */; };
+		66DCB78B1717755B00205745 /* NICollectionViewActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DCB78A1717755B00205745 /* NICollectionViewActions.m */; };
 		66E1CDE0159161ED004DA4A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C0C13E6E85E00B514F3 /* Foundation.framework */; };
 		66E1CDEE159161EE004DA4A2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A03C1A13E6E85E00B514F3 /* SenTestingKit.framework */; };
 		66E1CDEF159161EE004DA4A2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66832D00143E38E6003E413C /* UIKit.framework */; };
@@ -969,6 +970,8 @@
 		66D2FDF31594083800B2BEFD /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		66D2FDF41594083800B2BEFD /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		66D2FDF51594083800B2BEFD /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		66DCB7891717755B00205745 /* NICollectionViewActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICollectionViewActions.h; sourceTree = "<group>"; };
+		66DCB78A1717755B00205745 /* NICollectionViewActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICollectionViewActions.m; sourceTree = "<group>"; };
 		66E1CDDF159161ED004DA4A2 /* libNimbusBadge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNimbusBadge.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E1CDED159161EE004DA4A2 /* NimbusBadgeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbusBadgeTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E1CE0315916220004DA4A2 /* NIBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBadgeView.h; path = badge/src/NIBadgeView.h; sourceTree = SOURCE_ROOT; };
@@ -2048,6 +2051,8 @@
 		66FC98591703F9F5004E8FB8 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				66DCB7891717755B00205745 /* NICollectionViewActions.h */,
+				66DCB78A1717755B00205745 /* NICollectionViewActions.m */,
 				66FC985A1703FA51004E8FB8 /* NICollectionViewCellFactory.h */,
 				66FC985B1703FA51004E8FB8 /* NICollectionViewCellFactory.m */,
 				66FC98601703FA51004E8FB8 /* NICollectionViewModel.h */,
@@ -3806,6 +3811,7 @@
 			files = (
 				66FC98631703FA51004E8FB8 /* NICollectionViewCellFactory.m in Sources */,
 				66FC98651703FA51004E8FB8 /* NICollectionViewModel.m in Sources */,
+				66DCB78B1717755B00205745 /* NICollectionViewActions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
