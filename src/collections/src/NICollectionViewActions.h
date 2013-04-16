@@ -42,24 +42,9 @@ typedef BOOL (^NICollectionViewActionBlock)(id object, id target, NSIndexPath* i
  * for each type of action and both will be executed, with the block being executed first. Blocks
  * should be used for simple executions while selectors should be used when the action is complex.
  *
- * <h3>Delegate Forwarding</h3>
- *
- * NICollectionViewActions will intercept taps on a collection view using a mechanism known as
- * <i>delegate chaining</i>. This effect is achieved by invoking
- * @link NICollectionViewActions::forwardingTo: forwardingTo:@endlink on the
- * NICollectionViewActions instance and providing the appropriate object to forward to (generally
- * @c self).
- *
-@code
-collectionView.delegate = [self.actions forwardingTo:self];
-@endcode
- *
- * The dataSource property of the collection view must be an instance of NICollectionViewModel when
- * using delegate chaining.
- *
  *      @ingroup CollectionViewTools
  */
-@interface NICollectionViewActions : NSObject <UICollectionViewDelegate>
+@interface NICollectionViewActions : NSObject
 
 // Designated initializer.
 - (id)initWithTarget:(id)target;
@@ -78,10 +63,8 @@ collectionView.delegate = [self.actions forwardingTo:self];
 
 - (BOOL)isObjectActionable:(id<NSObject>)object;
 
-#pragma mark Forwarding
-
-- (id<UICollectionViewDelegate>)forwardingTo:(id<UICollectionViewDelegate>)forwardDelegate;
-- (void)removeForwarding:(id<UICollectionViewDelegate>)forwardDelegate;
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -178,35 +161,4 @@ collectionView.delegate = [self.actions forwardingTo:self];
  * Returns whether or not the object has any actions attached to it.
  *
  *      @fn NICollectionViewActions::isObjectActionable:
- */
-
-/** @name Forwarding */
-
-/**
- * Sets the delegate that collection view methods should be forwarded to.
- *
- * This method allows you to insert the actions into the call chain for the collection view's
- * delegate methods.
- *
- * Example:
- *
-@code
-// Let the actions handle delegate methods and then forward them to whatever delegate was
-// already assigned.
-self.collectionView.delegate = [self.actions forwardingTo:self.collectionView.delegate];
-@endcode
- *
- *      @param forwardDelegate The delegate to forward invocations to.
- *      @returns self so that this method can be chained.
- *      @fn NICollectionViewActions::forwardingTo:
- */
-
-/**
- * Removes the delegate from the forwarding chain.
- *
- * If a forwared delegate is about to be released but this object may live on, you must remove the
- * forwarding in order to avoid invalid access errors at runtime.
- *
- *      @param forwardDelegate The delegate to stop forwarding invocations to.
- *      @fn NICollectionViewActions::removeForwarding:
  */

@@ -34,7 +34,6 @@
 @interface NICollectionViewActions()
 
 @property (nonatomic, NI_WEAK) id target;
-@property (nonatomic, NI_STRONG) NSMutableSet* forwardDelegates;
 @property (nonatomic, NI_STRONG) NSMutableDictionary* objectMap;
 @property (nonatomic, NI_STRONG) NSMutableSet* objectSet;
 @property (nonatomic, NI_STRONG) NSMutableDictionary* classMap;
@@ -47,7 +46,6 @@
 @implementation NICollectionViewActions
 
 @synthesize target = _target;
-@synthesize forwardDelegates = _forwardDelegates;
 @synthesize objectMap = _objectMap;
 @synthesize objectSet = _objectSet;
 @synthesize classMap = _classMap;
@@ -60,7 +58,6 @@
     _objectMap = [[NSMutableDictionary alloc] init];
     _objectSet = [[NSMutableSet alloc] init];
     _classMap = [[NSMutableDictionary alloc] init];
-    _forwardDelegates = NICreateNonRetainingMutableSet();
   }
   return self;
 }
@@ -119,82 +116,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Forward Invocations
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)shouldForwardSelector:(SEL)selector {
-  struct objc_method_description description;
-  description = protocol_getMethodDescription(@protocol(UICollectionViewDelegate), selector, NO, YES);
-  return (description.name != NULL && description.types != NULL);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)respondsToSelector:(SEL)selector {
-  if ([super respondsToSelector:selector]) {
-    return YES;
-    
-  } else if ([self shouldForwardSelector:selector]) {
-    for (id delegate in self.forwardDelegates) {
-      if ([delegate respondsToSelector:selector]) {
-        return YES;
-      }
-    }
-  }
-  return NO;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector {
-  NSMethodSignature *signature = [super methodSignatureForSelector:selector];
-  if (signature == nil) {
-    for (id delegate in self.forwardDelegates) {
-      if ([delegate respondsToSelector:selector]) {
-        signature = [delegate methodSignatureForSelector:selector];
-      }
-    }
-  }
-  return signature;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)forwardInvocation:(NSInvocation *)invocation {
-  BOOL didForward = NO;
-  
-  if ([self shouldForwardSelector:invocation.selector]) {
-    for (id delegate in self.forwardDelegates) {
-      if ([delegate respondsToSelector:invocation.selector]) {
-        [invocation invokeWithTarget:delegate];
-        didForward = YES;
-        break;
-      }
-    }
-  }
-  
-  if (!didForward) {
-    [super forwardInvocation:invocation];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id<UICollectionViewDelegate>)forwardingTo:(id<UICollectionViewDelegate>)forwardDelegate {
-  [self.forwardDelegates addObject:forwardDelegate];
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)removeForwarding:(id<UICollectionViewDelegate>)forwardDelegate {
-  [self.forwardDelegates removeObject:forwardDelegate];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public Methods
 
 
@@ -247,16 +168,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-  BOOL shouldHighlight = YES;
-
-  // Forward the invocation along.
-  for (id<UICollectionViewDelegate> delegate in self.forwardDelegates) {
-    if ([delegate respondsToSelector:_cmd]) {
-      if (![delegate collectionView:collectionView shouldHighlightItemAtIndexPath:indexPath]) {
-        shouldHighlight = NO;
-      }
-    }
-  }
+  BOOL shouldHighlight = NO;
 
   NIDASSERT([collectionView.dataSource isKindOfClass:[NICollectionViewModel class]]);
   if ([collectionView.dataSource isKindOfClass:[NICollectionViewModel class]]
@@ -268,8 +180,8 @@
       NICollectionViewAction* action = [self actionForObjectOrClassOfObject:object];
 
       // If the cell is tappable, reflect that in the selection style.
-      if (!action.tapAction && !action.tapSelector) {
-        shouldHighlight = NO;
+      if (nil != action.tapAction || nil != action.tapSelector) {
+        shouldHighlight = YES;
       }
     }
   }
@@ -322,13 +234,6 @@
       if (shouldDeselect) {
         [collectionView deselectItemAtIndexPath:indexPath animated:YES];
       }
-    }
-  }
-
-  // Forward the invocation along.
-  for (id<UICollectionViewDelegate> delegate in self.forwardDelegates) {
-    if ([delegate respondsToSelector:_cmd]) {
-      [delegate collectionView:collectionView didSelectItemAtIndexPath:indexPath];
     }
   }
 }
