@@ -171,8 +171,7 @@
   BOOL shouldHighlight = NO;
 
   NIDASSERT([collectionView.dataSource isKindOfClass:[NICollectionViewModel class]]);
-  if ([collectionView.dataSource isKindOfClass:[NICollectionViewModel class]]
-      && shouldHighlight) {
+  if ([collectionView.dataSource isKindOfClass:[NICollectionViewModel class]]) {
     NICollectionViewModel* model = (NICollectionViewModel *)collectionView.dataSource;
     id object = [model objectAtIndexPath:indexPath];
 
