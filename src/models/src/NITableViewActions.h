@@ -108,14 +108,7 @@ tableView.delegate = [self.actions forwardingTo:self];
 // Designated initializer.
 - (id)initWithTarget:(id)target;
 
-// Deprecated designated initializer. Use initWithTarget: instead.
-- (id)initWithController:(UIViewController *)controller __NI_DEPRECATED_METHOD;
-
 #pragma mark Mapping Objects
-
-- (id)attachTapAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object __NI_DEPRECATED_METHOD;
-- (id)attachDetailAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object __NI_DEPRECATED_METHOD;
-- (id)attachNavigationAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object __NI_DEPRECATED_METHOD;
 
 - (id)attachToObject:(id<NSObject>)object tapBlock:(NITableViewActionBlock)action;
 - (id)attachToObject:(id<NSObject>)object detailBlock:(NITableViewActionBlock)action;
@@ -126,10 +119,6 @@ tableView.delegate = [self.actions forwardingTo:self];
 - (id)attachToObject:(id<NSObject>)object navigationSelector:(SEL)selector;
 
 #pragma mark Mapping Classes
-
-- (void)attachTapAction:(NITableViewActionBlock)action toClass:(Class)aClass __NI_DEPRECATED_METHOD;
-- (void)attachDetailAction:(NITableViewActionBlock)action toClass:(Class)aClass __NI_DEPRECATED_METHOD;
-- (void)attachNavigationAction:(NITableViewActionBlock)action toClass:(Class)aClass __NI_DEPRECATED_METHOD;
 
 - (void)attachToClass:(Class)aClass tapBlock:(NITableViewActionBlock)action;
 - (void)attachToClass:(Class)aClass detailBlock:(NITableViewActionBlock)action;
@@ -388,120 +377,6 @@ tableView.delegate = [self.actions forwardingTo:self];
  *      @param aClass The class to attach the action to.
  *      @param selector The tap selector.
  *      @fn NITableViewActions::attachToClass:navigationSelector:
- */
-
-/** @name Mapping Objects (Deprecated) */
-
-/**
- * Attaches a tap action to the given object.
- *
- * @attention This method is deprecated. Use the new form
- *            @link NITableViewActions::attachToObject:tapBlock: attachToObject:tapBlock:@endlink.
- *
- * When a cell with a tap action is displayed, its selectionStyle will be set to
- * tableViewCellSelectionStyle.
- *
- * When a cell with a tap action is tapped, the action block will be executed. If the action block
- * returns YES then the cell will be deselected immediately after the block completes execution.
- * If NO is returned then the selection will remain.
- *
- * You should return NO if you use the tap action to present a modal view controller. This will
- * ensure that the cell selection remains when the modal controller is dismissed, providing a visual
- * cue to the user as to which cell was tapped.
- *
- * If a navigation action also exists for this object then the tap action will be executed first,
- * followed by the navigation action.
- *
- *      @param action The tap action block.
- *      @param object The object to attach the action to. This object must be contained within
- *                    an NITableViewModel.
- *      @returns The object that you attached this action to.
- *      @fn NITableViewActions::attachTapAction:toObject:
- */
-
-/**
- * Attaches a detail action to the given object.
- *
- * @attention This method is deprecated. Use the new form
- *            @link NITableViewActions::attachToObject:detailBlock: attachToObject:detailBlock:@endlink.
- *
- * When a cell with a detail action is displayed, its accessoryType will be set to
- * UITableViewCellAccessoryDetailDisclosureButton.
- *
- * When a cell's detail button is tapped, the detail action block will be executed. The return
- * value of the block is ignored.
- *
- *      @param action The detail action block.
- *      @param object The object to attach the action to. This object must be contained within
- *                    an NITableViewModel.
- *      @returns The object that you attached this action to.
- *      @fn NITableViewActions::attachDetailAction:toObject:
- */
-
-/**
- * Attaches a navigation action to the given object.
- *
- * @attention This method is deprecated. Use the new form
- *            @link NITableViewActions::attachToObject:navigationBlock: attachToObject:navigationBlock:@endlink.
- *
- * When a cell with a navigation action is displayed, its accessoryType will be set to
- * UITableViewCellAccessoryDisclosureIndicator if there is no detail action, otherwise the
- * detail disclosure indicator takes precedence.
- *
- * When a cell with a navigation action is tapped the navigation block will be executed.
- *
- * If a tap action also exists for this object then the tap action will be executed first, followed
- * by the navigation action.
- *
- *      @param action The navigation action block.
- *      @param object The object to attach the action to. This object must be contained within
- *                    an NITableViewModel.
- *      @returns The object that you attached this action to.
- *      @fn NITableViewActions::attachNavigationAction:toObject:
- */
-
-/** @name Mapping Classes (Deprecated) */
-
-/**
- * Attaches a tap action to a class.
- *
- * @attention This method is deprecated. Use the new form
- *            @link NITableViewActions::attachToClass:tapBlock: attachToClass:tapBlock:@endlink.
- *
- * This method behaves similarly to attachToObject:tapBlock: except it attaches a tap action to
- * all instances and subclassed instances of a given class.
- *
- *      @param action The tap action block.
- *      @param aClass The class to attach the action to.
- *      @fn NITableViewActions::attachTapAction:toClass:
- */
-
-/**
- * Attaches a detail action to a class.
- *
- * @attention This method is deprecated. Use the new form
- *            @link NITableViewActions::attachToClass:detailBlock: attachToClass:detailBlock:@endlink.
- *
- * This method behaves similarly to attachToObject:detailBlock: except it attaches a detail action
- * to all instances and subclassed instances of a given class.
- *
- *      @param action The detail action block.
- *      @param aClass The class to attach the action to.
- *      @fn NITableViewActions::attachDetailAction:toClass:
- */
-
-/**
- * Attaches a navigation action to a class.
- *
- * @attention This method is deprecated. Use the new form
- *            @link NITableViewActions::attachToClass:navigationBlock: attachToClass:navigationBlock:@endlink.
- *
- * This method behaves similarly to attachToObject:navigationBlock: except it attaches a navigation
- * action to all instances and subclassed instances of a given class.
- *
- *      @param action The navigation action block.
- *      @param aClass The class to attach the action to.
- *      @fn NITableViewActions::attachNavigationAction:toClass:
  */
 
 /** @name Object State */

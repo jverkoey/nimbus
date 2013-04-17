@@ -61,15 +61,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-implementations"
-- (id)initWithController:(UIViewController *)controller {
-  return [self initWithTarget:controller];
-}
-#pragma clang diagnostic pop
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTarget:(id)target {
   if ((self = [super init])) {
     _target = target;
@@ -209,50 +200,6 @@
   [self.forwardDelegates removeObject:forwardDelegate];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Deprecated Public Methods
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-implementations"
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachTapAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object {
-  return [self attachToObject:object tapBlock:action];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachDetailAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object {
-  return [self attachToObject:object detailBlock:action];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachNavigationAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object {
-  return [self attachToObject:object navigationBlock:action];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachTapAction:(NITableViewActionBlock)action toClass:(Class)aClass {
-  [self attachToClass:aClass tapBlock:action];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachDetailAction:(NITableViewActionBlock)action toClass:(Class)aClass {
-  [self attachToClass:aClass detailBlock:action];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachNavigationAction:(NITableViewActionBlock)action toClass:(Class)aClass {
-  [self attachToClass:aClass navigationBlock:action];
-}
-
-#pragma clang diagnostic pop
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -535,6 +482,10 @@ NITableViewActionBlock NIPushControllerAction(Class controllerClass) {
     UIViewController *controller = target;
 
     if (nil != controller && [controller isKindOfClass:[UIViewController class]]) {
+      // No navigation controller to push this new controller; this controller
+      // is going to be lost.
+      NIDASSERT(nil != controller.navigationController);
+
       UIViewController* controllerToPush = [[controllerClass alloc] init];
       [controller.navigationController pushViewController:controllerToPush
                                                  animated:YES];
