@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NimbusCore.h" // For 
+#import "NimbusCore.h"
 
 typedef BOOL (^NITableViewActionBlock)(id object, id target);
 
