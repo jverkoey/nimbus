@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef BOOL (^NICollectionViewActionBlock)(id object, id target, NSIndexPath* indexPath);
+#import "NimbusCore.h"
 
 /**
  * The NICollectionViewActions class provides an interface for attaching actions to objects in a
@@ -44,24 +44,7 @@ typedef BOOL (^NICollectionViewActionBlock)(id object, id target, NSIndexPath* i
  *
  *      @ingroup CollectionViewTools
  */
-@interface NICollectionViewActions : NSObject
-
-// Designated initializer.
-- (id)initWithTarget:(id)target;
-
-#pragma mark Mapping Objects
-
-- (id)attachToObject:(id<NSObject>)object tapBlock:(NICollectionViewActionBlock)action;
-- (id)attachToObject:(id<NSObject>)object tapSelector:(SEL)selector;
-
-#pragma mark Mapping Classes
-
-- (void)attachToClass:(Class)aClass tapBlock:(NICollectionViewActionBlock)action;
-- (void)attachToClass:(Class)aClass tapSelector:(SEL)selector;
-
-#pragma mark Object State
-
-- (BOOL)isObjectActionable:(id<NSObject>)object;
+@interface NICollectionViewActions : NIActions
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;

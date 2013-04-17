@@ -25,103 +25,18 @@
 #error "Nimbus requires ARC support."
 #endif
 
-@interface NITableViewAction : NSObject
-
-@property (nonatomic, copy) NITableViewActionBlock tapAction;
-@property (nonatomic, copy) NITableViewActionBlock detailAction;
-@property (nonatomic, copy) NITableViewActionBlock navigateAction;
-
-@property (nonatomic, assign) SEL tapSelector;
-@property (nonatomic, assign) SEL detailSelector;
-@property (nonatomic, assign) SEL navigateSelector;
-
-@end
-
-@interface NITableViewActions()
-
-@property (nonatomic, NI_WEAK) id target;
-@property (nonatomic, NI_STRONG) NSMutableSet* forwardDelegates;
-@property (nonatomic, NI_STRONG) NSMutableDictionary* objectMap;
-@property (nonatomic, NI_STRONG) NSMutableSet* objectSet;
-@property (nonatomic, NI_STRONG) NSMutableDictionary* classMap;
-
-@end
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NITableViewActions
 
-@synthesize target = _target;
-@synthesize forwardDelegates = _forwardDelegates;
-@synthesize objectMap = _objectMap;
-@synthesize objectSet = _objectSet;
-@synthesize tableViewCellSelectionStyle = _tableViewCellSelectionStyle;
-@synthesize classMap = _classMap;
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTarget:(id)target {
   if ((self = [super init])) {
-    _target = target;
-    _objectMap = [[NSMutableDictionary alloc] init];
-    _objectSet = [[NSMutableSet alloc] init];
-    _classMap = [[NSMutableDictionary alloc] init];
-    _forwardDelegates = NICreateNonRetainingMutableSet();
     _tableViewCellSelectionStyle = UITableViewCellSelectionStyleBlue;
   }
   return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  return [self initWithTarget:nil];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private Methods
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)keyForObject:(id<NSObject>)object {
-  return [NSNumber numberWithInteger:object.hash];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NITableViewAction *)actionForObject:(id<NSObject>)object {
-  id key = [self keyForObject:object];
-  NITableViewAction* action = [self.objectMap objectForKey:key];
-  if (nil == action) {
-    action = [[NITableViewAction alloc] init];
-    [self.objectMap setObject:action forKey:key];
-  }
-  return action;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NITableViewAction *)actionForClass:(Class)class {
-  NITableViewAction* action = [self.classMap objectForKey:class];
-  if (nil == action) {
-    action = [[NITableViewAction alloc] init];
-    [self.classMap setObject:action forKey:(id<NSCopying>)class];
-  }
-  return action;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NITableViewAction *)actionForObjectOrClassOfObject:(id<NSObject>)object {
-  id key = [self keyForObject:object];
-  NITableViewAction* action = [self.objectMap objectForKey:key];
-  if (nil == action) {
-    action = [NICellFactory objectFromKeyClass:object.class map:self.classMap];
-  }
-  return action;
 }
 
 
@@ -455,42 +370,3 @@
 }
 
 @end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NITableViewAction
-
-@synthesize tapAction;
-@synthesize detailAction;
-@synthesize navigateAction;
-@synthesize tapSelector;
-@synthesize detailSelector;
-@synthesize navigateSelector;
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-NITableViewActionBlock NIPushControllerAction(Class controllerClass) {
-  return [^(id object, id target) {
-    // You must initialize the actions object with initWithTarget: and pass a valid
-    // controller.
-    NIDASSERT(nil != target);
-    NIDASSERT([target isKindOfClass:[UIViewController class]]);
-    UIViewController *controller = target;
-
-    if (nil != controller && [controller isKindOfClass:[UIViewController class]]) {
-      // No navigation controller to push this new controller; this controller
-      // is going to be lost.
-      NIDASSERT(nil != controller.navigationController);
-
-      UIViewController* controllerToPush = [[controllerClass alloc] init];
-      [controller.navigationController pushViewController:controllerToPush
-                                                 animated:YES];
-    }
-
-    return NO;
-  } copy];
-}
