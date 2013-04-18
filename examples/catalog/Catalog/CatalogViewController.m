@@ -249,7 +249,7 @@
       [NISubtitleCellObject objectWithTitle:@"Bar Style"
                                    subtitle:@"Modify navigation bar style"]
               navigationBlock:
-      ^(id object, UIViewController* controller) {
+      ^(id object, UIViewController* controller, NSIndexPath* indexPath) {
         NavigationAppearanceViewController *appearanceController = [[NavigationAppearanceViewController alloc] init];
         appearanceController.changeBarStyle = YES;
         [controller.navigationController pushViewController:appearanceController animated:YES];
@@ -259,7 +259,7 @@
       [NISubtitleCellObject objectWithTitle:@"Tint Color"
                                    subtitle:@"Modify navigation bar tint color"]
               navigationBlock:
-      ^(id object, UIViewController* controller) {
+      ^(id object, UIViewController* controller, NSIndexPath* indexPath) {
         NavigationAppearanceViewController *appearanceController = [[NavigationAppearanceViewController alloc] init];
         appearanceController.changeTintColor = YES;
         [controller.navigationController pushViewController:appearanceController animated:YES];
@@ -269,7 +269,7 @@
       [NISubtitleCellObject objectWithTitle:@"Background Image"
                                    subtitle:@"Modify navigation bar background image"]
               navigationBlock:
-      ^(id object, UIViewController* controller) {
+      ^(id object, UIViewController* controller, NSIndexPath* indexPath) {
         NavigationAppearanceViewController *appearanceController = [[NavigationAppearanceViewController alloc] init];
         appearanceController.changeBackgroundImage = YES;
         [controller.navigationController pushViewController:appearanceController animated:YES];
@@ -367,7 +367,7 @@
       [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
                                    subtitle:@"How to create a simple NIWebController"]
               navigationBlock:
-      ^(id object, UIViewController* controller) {
+      ^(id object, UIViewController* controller, NSIndexPath* indexPath) {
         NIWebController* webController = [[NIWebController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]];
         [controller.navigationController pushViewController:webController
                                                    animated:YES];
@@ -378,7 +378,7 @@
       [NISubtitleCellObject objectWithTitle:@"Hiding the Toolbar"
                                    subtitle:@"Showing a web controller without actions"]
               navigationBlock:
-      ^(id object, UIViewController* controller) {
+      ^(id object, UIViewController* controller, NSIndexPath* indexPath) {
         NIWebController* webController = [[NIWebController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]];
         webController.toolbarHidden = YES;
         [controller.navigationController pushViewController:webController
@@ -390,7 +390,7 @@
       [NISubtitleCellObject objectWithTitle:@"Tinting the Toolbar"
                                    subtitle:@"Tinting a web controller's toolbar"]
               navigationBlock:
-      ^(id object, UIViewController* controller) {
+      ^(id object, UIViewController* controller, NSIndexPath* indexPath) {
         NIWebController* webController = [[NIWebController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]];
         webController.toolbarTintColor = [UIColor orangeColor];
         [controller.navigationController pushViewController:webController
@@ -402,7 +402,7 @@
       [NISubtitleCellObject objectWithTitle:@"Extra Actions"
                                    subtitle:@"Subclassing for more actions"]
               navigationBlock:
-      ^(id object, UIViewController* controller) {
+      ^(id object, UIViewController* controller, NSIndexPath* indexPath) {
         NIWebController* webController = [[ExtraActionsWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://nimbuskit.info"]];
         [controller.navigationController pushViewController:webController
                                                    animated:YES];

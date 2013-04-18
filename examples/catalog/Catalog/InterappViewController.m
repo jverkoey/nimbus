@@ -59,7 +59,7 @@
 - (id)objectWithAction:(BOOL (^)())action title:(NSString *)title subtitle:(NSString *)subtitle {
   return [self.actions attachToObject:[NISubtitleCellObject objectWithTitle:title subtitle:subtitle]
                              tapBlock:
-          ^BOOL(id object, UIViewController *controller) {
+          ^BOOL(id object, UIViewController *controller, NSIndexPath* indexPath) {
             if (!action()) {
               UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"We've givin' her all she's got, cap'n!"
                                                               message:@"The app you tried to open does not appear to be installed on this device."

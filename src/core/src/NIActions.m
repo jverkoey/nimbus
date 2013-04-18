@@ -15,27 +15,14 @@
 //
 
 #import "NIActions.h"
+#import "NIActions+Subclassing.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
 #endif
 
-@interface NIObjectActions : NSObject
-
-@property (nonatomic, copy) NITableViewActionBlock tapAction;
-@property (nonatomic, copy) NITableViewActionBlock detailAction;
-@property (nonatomic, copy) NITableViewActionBlock navigateAction;
-
-@property (nonatomic, assign) SEL tapSelector;
-@property (nonatomic, assign) SEL detailSelector;
-@property (nonatomic, assign) SEL navigateSelector;
-
-@end
-
 @interface NIActions()
 
-@property (nonatomic, NI_WEAK) id target;
-@property (nonatomic, NI_STRONG) NSMutableSet* forwardDelegates;
 @property (nonatomic, NI_STRONG) NSMutableDictionary* objectMap;
 @property (nonatomic, NI_STRONG) NSMutableSet* objectSet;
 @property (nonatomic, NI_STRONG) NSMutableDictionary* classMap;
@@ -56,7 +43,6 @@
     _objectMap = [[NSMutableDictionary alloc] init];
     _objectSet = [[NSMutableSet alloc] init];
     _classMap = [[NSMutableDictionary alloc] init];
-    _forwardDelegates = NICreateNonRetainingMutableSet();
   }
   return self;
 }
@@ -107,10 +93,152 @@
   id key = [self keyForObject:object];
   NIObjectActions* action = [self.objectMap objectForKey:key];
   if (nil == action) {
-    action = [NICellFactory objectFromKeyClass:object.class map:self.classMap];
+    action = [self.class objectFromKeyClass:object.class map:self.classMap];
   }
   return action;
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Public Methods
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)attachToObject:(id<NSObject>)object tapBlock:(NIActionBlock)action {
+  [self.objectSet addObject:object];
+  [self actionForObject:object].tapAction = action;
+  return object;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)attachToObject:(id<NSObject>)object detailBlock:(NIActionBlock)action {
+  [self.objectSet addObject:object];
+  [self actionForObject:object].detailAction = action;
+  return object;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)attachToObject:(id<NSObject>)object navigationBlock:(NIActionBlock)action {
+  [self.objectSet addObject:object];
+  [self actionForObject:object].navigateAction = action;
+  return object;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)attachToObject:(id<NSObject>)object tapSelector:(SEL)selector {
+  [self.objectSet addObject:object];
+  [self actionForObject:object].tapSelector = selector;
+  return object;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)attachToObject:(id<NSObject>)object detailSelector:(SEL)selector {
+  [self.objectSet addObject:object];
+  [self actionForObject:object].detailSelector = selector;
+  return object;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)attachToObject:(id<NSObject>)object navigationSelector:(SEL)selector {
+  [self.objectSet addObject:object];
+  [self actionForObject:object].navigateSelector = selector;
+  return object;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)attachToClass:(Class)aClass tapBlock:(NIActionBlock)action {
+  [self actionForClass:aClass].tapAction = action;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)attachToClass:(Class)aClass detailBlock:(NIActionBlock)action {
+  [self actionForClass:aClass].detailAction = action;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)attachToClass:(Class)aClass navigationBlock:(NIActionBlock)action {
+  [self actionForClass:aClass].navigateAction = action;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)attachToClass:(Class)aClass tapSelector:(SEL)selector {
+  [self actionForClass:aClass].tapSelector = selector;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)attachToClass:(Class)aClass detailSelector:(SEL)selector {
+  [self actionForClass:aClass].detailSelector = selector;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)attachToClass:(Class)aClass navigationSelector:(SEL)selector {
+  [self actionForClass:aClass].navigateSelector = selector;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)isObjectActionable:(id<NSObject>)object {
+  if (nil == object) {
+    return NO;
+  }
+
+  BOOL objectIsActionable = [self.objectSet containsObject:object];
+  if (!objectIsActionable) {
+    objectIsActionable = (nil != [self.class objectFromKeyClass:object.class map:self.classMap]);
+  }
+  return objectIsActionable;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)objectFromKeyClass:(Class)keyClass map:(NSMutableDictionary *)map {
+  id object = [map objectForKey:keyClass];
+
+  if (nil == object) {
+    // No mapping found for this key class, but it may be a subclass of another object that does
+    // have a mapping, so let's see what we can find.
+    Class superClass = nil;
+    for (Class class in map.allKeys) {
+      // We want to find the lowest node in the class hierarchy so that we pick the lowest ancestor
+      // in the hierarchy tree.
+      if ([keyClass isSubclassOfClass:class]
+          && (nil == superClass || [keyClass isSubclassOfClass:superClass])) {
+        superClass = class;
+      }
+    }
+
+    if (nil != superClass) {
+      object = [map objectForKey:superClass];
+
+      // Add this subclass to the map so that next time this result is instant.
+      [map setObject:object forKey:(id<NSCopying>)keyClass];
+    }
+  }
+
+  if (nil == object) {
+    // We couldn't find a mapping at all so let's add an empty mapping.
+    [map setObject:[NSNull class] forKey:(id<NSCopying>)keyClass];
+
+  } else if (object == [NSNull class]) {
+    // Don't return null mappings.
+    object = nil;
+  }
+
+  return object;
+}
+
 
 @end
 

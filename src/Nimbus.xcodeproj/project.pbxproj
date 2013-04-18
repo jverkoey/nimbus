@@ -185,6 +185,7 @@
 		66832DA314421B4A003E413C /* UINavigationBar+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832DA114421B4A003E413C /* UINavigationBar+NIStyleable.m */; };
 		66832E0614435071003E413C /* NIChameleonObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 66832E0414435071003E413C /* NIChameleonObserver.h */; };
 		66832E0714435071003E413C /* NIChameleonObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832E0514435071003E413C /* NIChameleonObserver.m */; };
+		668EA9BD17206DF70056C8C3 /* NIActions+Subclassing.h in Headers */ = {isa = PBXBuildFile; fileRef = 668EA9BC17206DF70056C8C3 /* NIActions+Subclassing.h */; };
 		668ECDC71455C17200455266 /* NIStylesheetCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 668ECDC51455C17100455266 /* NIStylesheetCache.h */; };
 		668ECDC81455C17200455266 /* NIStylesheetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 668ECDC61455C17100455266 /* NIStylesheetCache.m */; };
 		669819DB159B927B00C2D3EF /* NISnapshotRotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 669819D9159B927B00C2D3EF /* NISnapshotRotation.h */; };
@@ -809,6 +810,7 @@
 		66832DA114421B4A003E413C /* UINavigationBar+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationBar+NIStyleable.m"; path = "css/src/UINavigationBar+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		66832E0414435071003E413C /* NIChameleonObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIChameleonObserver.h; path = css/src/NIChameleonObserver.h; sourceTree = SOURCE_ROOT; };
 		66832E0514435071003E413C /* NIChameleonObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIChameleonObserver.m; path = css/src/NIChameleonObserver.m; sourceTree = SOURCE_ROOT; };
+		668EA9BC17206DF70056C8C3 /* NIActions+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIActions+Subclassing.h"; sourceTree = "<group>"; };
 		668ECDC51455C17100455266 /* NIStylesheetCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIStylesheetCache.h; path = css/src/NIStylesheetCache.h; sourceTree = SOURCE_ROOT; };
 		668ECDC61455C17100455266 /* NIStylesheetCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIStylesheetCache.m; path = css/src/NIStylesheetCache.m; sourceTree = SOURCE_ROOT; };
 		668ECDCF14565AB200455266 /* README.mdown */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.mdown; path = css/chameleon/README.mdown; sourceTree = SOURCE_ROOT; };
@@ -1759,6 +1761,7 @@
 				66A03C4F13E6E8D100B514F3 /* NimbusCore+Additions.h */,
 				6617FD08171F6A92006E0DF8 /* NIActions.h */,
 				6617FD09171F6A92006E0DF8 /* NIActions.m */,
+				668EA9BC17206DF70056C8C3 /* NIActions+Subclassing.h */,
 				66C1D8BF16B9ED65003E855B /* NIButtonUtilities.h */,
 				66C1D8C016B9ED65003E855B /* NIButtonUtilities.m */,
 				66A03C4113E6E8D100B514F3 /* NICommonMetrics.h */,
@@ -2296,6 +2299,7 @@
 				C7B9284316D2F563001BF61C /* NIInvocationMethods.h in Headers */,
 				C7A8791D16D7348700A0C23F /* NITextField+NIStyleable.h in Headers */,
 				6617FD0A171F6A92006E0DF8 /* NIActions.h in Headers */,
+				668EA9BD17206DF70056C8C3 /* NIActions+Subclassing.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

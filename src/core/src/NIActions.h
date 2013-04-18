@@ -30,9 +30,9 @@ typedef BOOL (^NIActionBlock)(id object, id target, NSIndexPath* indexPath);
 
 #pragma mark Mapping Objects
 
-- (id)attachToObject:(id<NSObject>)object tapBlock:(NITableViewActionBlock)action;
-- (id)attachToObject:(id<NSObject>)object detailBlock:(NITableViewActionBlock)action;
-- (id)attachToObject:(id<NSObject>)object navigationBlock:(NITableViewActionBlock)action;
+- (id)attachToObject:(id<NSObject>)object tapBlock:(NIActionBlock)action;
+- (id)attachToObject:(id<NSObject>)object detailBlock:(NIActionBlock)action;
+- (id)attachToObject:(id<NSObject>)object navigationBlock:(NIActionBlock)action;
 
 - (id)attachToObject:(id<NSObject>)object tapSelector:(SEL)selector;
 - (id)attachToObject:(id<NSObject>)object detailSelector:(SEL)selector;
@@ -40,9 +40,9 @@ typedef BOOL (^NIActionBlock)(id object, id target, NSIndexPath* indexPath);
 
 #pragma mark Mapping Classes
 
-- (void)attachToClass:(Class)aClass tapBlock:(NITableViewActionBlock)action;
-- (void)attachToClass:(Class)aClass detailBlock:(NITableViewActionBlock)action;
-- (void)attachToClass:(Class)aClass navigationBlock:(NITableViewActionBlock)action;
+- (void)attachToClass:(Class)aClass tapBlock:(NIActionBlock)action;
+- (void)attachToClass:(Class)aClass detailBlock:(NIActionBlock)action;
+- (void)attachToClass:(Class)aClass navigationBlock:(NIActionBlock)action;
 
 - (void)attachToClass:(Class)aClass tapSelector:(SEL)selector;
 - (void)attachToClass:(Class)aClass detailSelector:(SEL)selector;
@@ -51,6 +51,8 @@ typedef BOOL (^NIActionBlock)(id object, id target, NSIndexPath* indexPath);
 #pragma mark Object State
 
 - (BOOL)isObjectActionable:(id<NSObject>)object;
+
++ (id)objectFromKeyClass:(Class)keyClass map:(NSMutableDictionary *)map;
 
 @end
 
@@ -316,4 +318,18 @@ NIActionBlock NIPushControllerAction(Class controllerClass);
  * Returns whether or not the object has any actions attached to it.
  *
  *      @fn NIActions::isObjectActionable:
+ */
+
+/**
+ * Returns a mapped object from the given key class.
+ *
+ * If the key class is a subclass of any mapped key classes, the nearest ancestor class's mapped
+ * object will be returned and keyClass will be added to the map for future accesses.
+ *
+ *      @param keyClass The key class that will be used to find the mapping in map.
+ *      @param map A map of key classes to classes. May be modified if keyClass is a subclass of
+ *                 any existing key classes.
+ *      @returns The mapped object if a match for keyClass was found in map. nil is returned
+ *               otherwise.
+ *      @fn NIActions::objectFromKeyClass:map:
  */
