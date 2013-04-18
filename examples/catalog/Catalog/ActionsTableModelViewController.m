@@ -63,7 +63,7 @@
 
     // This is what an action block looks like. The block is given the object that was tapped and
     // the containing controller. In the following two blocks we simply show an alert view.
-    NITableViewActionBlock tapAction = ^BOOL(id object, UIViewController *controller) {
+    NIActionBlock tapAction = ^BOOL(id object, UIViewController *controller, NSIndexPath* indexPath) {
       UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Notice"
                                                       message:@"You tapped a cell!"
                                                      delegate:nil
@@ -76,7 +76,7 @@
       return YES;
     };
     
-    NITableViewActionBlock tapAction2 = ^BOOL(id object, UIViewController *controller) {
+    NIActionBlock tapAction2 = ^BOOL(id object, UIViewController *controller, NSIndexPath* indexPath) {
       UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Notice"
                                                       message:@"Alternative tap action"
                                                      delegate:nil

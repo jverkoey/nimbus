@@ -37,6 +37,7 @@
 		668B7673159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B7672159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m */; };
 		668B767B159394EF00EA86F6 /* NIImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B7678159394EF00EA86F6 /* NIImageProcessing.m */; };
 		668B767C159394EF00EA86F6 /* NINetworkImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 668B767A159394EF00EA86F6 /* NINetworkImageView.m */; };
+		668EA9C417206F640056C8C3 /* NIActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 668EA9C217206F640056C8C3 /* NIActions.m */; };
 		6692F58F159920E200FA074E /* BadgedLauncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6692F58E159920E200FA074E /* BadgedLauncherViewController.m */; };
 		6693C0F0158A63E600950D42 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C0EF158A63E600950D42 /* UIKit.framework */; };
 		6693C0F2158A63E600950D42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C0F1158A63E600950D42 /* Foundation.framework */; };
@@ -182,6 +183,9 @@
 		668B7678159394EF00EA86F6 /* NIImageProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIImageProcessing.m; path = ../../src/networkimage/src/NIImageProcessing.m; sourceTree = "<group>"; };
 		668B7679159394EF00EA86F6 /* NINetworkImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkImageView.h; path = ../../src/networkimage/src/NINetworkImageView.h; sourceTree = "<group>"; };
 		668B767A159394EF00EA86F6 /* NINetworkImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkImageView.m; path = ../../src/networkimage/src/NINetworkImageView.m; sourceTree = "<group>"; };
+		668EA9C117206F640056C8C3 /* NIActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIActions.h; path = ../../src/core/src/NIActions.h; sourceTree = "<group>"; };
+		668EA9C217206F640056C8C3 /* NIActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIActions.m; path = ../../src/core/src/NIActions.m; sourceTree = "<group>"; };
+		668EA9C317206F640056C8C3 /* NIActions+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NIActions+Subclassing.h"; path = "../../src/core/src/NIActions+Subclassing.h"; sourceTree = "<group>"; };
 		6692F58D159920E200FA074E /* BadgedLauncherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgedLauncherViewController.h; sourceTree = "<group>"; };
 		6692F58E159920E200FA074E /* BadgedLauncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgedLauncherViewController.m; sourceTree = "<group>"; };
 		6693C0EB158A63E600950D42 /* Nimbus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nimbus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,7 +216,6 @@
 		6693C1E2158A81D300950D42 /* NIInMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIInMemoryCache.m; path = ../../src/core/src/NIInMemoryCache.m; sourceTree = "<group>"; };
 		6693C1E3158A81D300950D42 /* NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusCore.h; path = ../../src/core/src/NimbusCore.h; sourceTree = "<group>"; };
 		6693C1E4158A81D300950D42 /* NimbusCore+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusCore+Additions.h"; path = "../../src/core/src/NimbusCore+Additions.h"; sourceTree = "<group>"; };
-		6693C1E5158A81D300950D42 /* NimbusCore+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusCore+Namespace.h"; path = "../../src/core/src/NimbusCore+Namespace.h"; sourceTree = "<group>"; };
 		6693C1E6158A81D300950D42 /* NINavigationAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINavigationAppearance.h; path = ../../src/core/src/NINavigationAppearance.h; sourceTree = "<group>"; };
 		6693C1E7158A81D300950D42 /* NINavigationAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINavigationAppearance.m; path = ../../src/core/src/NINavigationAppearance.m; sourceTree = "<group>"; };
 		6693C1E8158A81D300950D42 /* NINetworkActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkActivity.h; path = ../../src/core/src/NINetworkActivity.h; sourceTree = "<group>"; };
@@ -562,6 +565,9 @@
 		6693C150158A64C100950D42 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				668EA9C117206F640056C8C3 /* NIActions.h */,
+				668EA9C217206F640056C8C3 /* NIActions.m */,
+				668EA9C317206F640056C8C3 /* NIActions+Subclassing.h */,
 				6693C1D5158A81D300950D42 /* NICommonMetrics.h */,
 				6693C1D6158A81D300950D42 /* NICommonMetrics.m */,
 				6693C1D7158A81D300950D42 /* NIDataStructures.h */,
@@ -578,7 +584,6 @@
 				6693C1E2158A81D300950D42 /* NIInMemoryCache.m */,
 				6693C1E3158A81D300950D42 /* NimbusCore.h */,
 				6693C1E4158A81D300950D42 /* NimbusCore+Additions.h */,
-				6693C1E5158A81D300950D42 /* NimbusCore+Namespace.h */,
 				6693C1E6158A81D300950D42 /* NINavigationAppearance.h */,
 				6693C1E7158A81D300950D42 /* NINavigationAppearance.m */,
 				6693C1E8158A81D300950D42 /* NINetworkActivity.h */,
@@ -1001,6 +1006,7 @@
 				66D2E54B15D9613800281511 /* NIMutableTableViewModel.m in Sources */,
 				66D2E54F15D9616500281511 /* MutableTableModelViewController.m in Sources */,
 				3616212C16812222002A9078 /* AlignmentAttributedLabelViewController.m in Sources */,
+				668EA9C417206F640056C8C3 /* NIActions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

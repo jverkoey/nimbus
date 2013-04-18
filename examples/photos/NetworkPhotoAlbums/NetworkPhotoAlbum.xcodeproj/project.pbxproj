@@ -52,6 +52,7 @@
 		665E0C0813CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0C0713CE82A1008A1D21 /* FacebookPhotoAlbumViewController.m */; };
 		667A89FA148C60FF000779BD /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A89F9148C60FF000779BD /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		667DC2BE13D89FD100C1B0ED /* NIPhotoScrubberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 667DC2BD13D89FD100C1B0ED /* NIPhotoScrubberView.m */; };
+		668EA9C81720714D0056C8C3 /* NIActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 668EA9C61720714D0056C8C3 /* NIActions.m */; };
 		668FD7AD1482C1A600BA7009 /* CaptionedPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 668FD7AC1482C1A600BA7009 /* CaptionedPhotoView.m */; };
 		669815F613D5082E00417E8B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 669815F513D5082E00417E8B /* libz.dylib */; };
 		669815F813D5083200417E8B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669815F713D5083200417E8B /* MobileCoreServices.framework */; };
@@ -170,6 +171,9 @@
 		667A89FE148C65F3000779BD /* NIOperations+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NIOperations+Subclassing.h"; path = "../../../src/core/src/NIOperations+Subclassing.h"; sourceTree = "<group>"; };
 		667DC2BC13D89FD100C1B0ED /* NIPhotoScrubberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPhotoScrubberView.h; path = ../../../src/photos/src/NIPhotoScrubberView.h; sourceTree = "<group>"; };
 		667DC2BD13D89FD100C1B0ED /* NIPhotoScrubberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPhotoScrubberView.m; path = ../../../src/photos/src/NIPhotoScrubberView.m; sourceTree = "<group>"; };
+		668EA9C51720714D0056C8C3 /* NIActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIActions.h; path = ../../../src/core/src/NIActions.h; sourceTree = "<group>"; };
+		668EA9C61720714D0056C8C3 /* NIActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIActions.m; path = ../../../src/core/src/NIActions.m; sourceTree = "<group>"; };
+		668EA9C71720714D0056C8C3 /* NIActions+Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NIActions+Subclassing.h"; path = "../../../src/core/src/NIActions+Subclassing.h"; sourceTree = "<group>"; };
 		668FD7AB1482C1A600BA7009 /* CaptionedPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptionedPhotoView.h; path = src/CaptionedPhotoView.h; sourceTree = "<group>"; };
 		668FD7AC1482C1A600BA7009 /* CaptionedPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptionedPhotoView.m; path = src/CaptionedPhotoView.m; sourceTree = "<group>"; };
 		669815F513D5082E00417E8B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -352,6 +356,9 @@
 		665E0B9513CE814D008A1D21 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				668EA9C51720714D0056C8C3 /* NIActions.h */,
+				668EA9C61720714D0056C8C3 /* NIActions.m */,
+				668EA9C71720714D0056C8C3 /* NIActions+Subclassing.h */,
 				66EAC64B13D28D9A00BDFF34 /* NICommonMetrics.h */,
 				66EAC64C13D28D9A00BDFF34 /* NICommonMetrics.m */,
 				665E0B9813CE815D008A1D21 /* NIDataStructures.h */,
@@ -658,6 +665,7 @@
 				66D2FE491594202500B2BEFD /* AFURLConnectionOperation.m in Sources */,
 				66D2FE4A1594202500B2BEFD /* AFXMLRequestOperation.m in Sources */,
 				66D2FE4B1594202500B2BEFD /* UIImageView+AFNetworking.m in Sources */,
+				668EA9C81720714D0056C8C3 /* NIActions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
