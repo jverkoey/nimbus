@@ -29,18 +29,15 @@
  * NICollectionViewActions maintains a mapping of actions to these objects. The object's attached
  * actions are executed when the user interacts with the cell representing an object.
  *
- * <h3>Attaching Actions</h3>
+ * <h2>Delegate Forwarding</h2>
  *
- * Actions may be attached to specific instances of objects or to entire classes of objects. When
- * an action is attached to both a class of object and an instance of that class, only the instance
- * action will be executed.
+ * Your delegate implementation can call the listed collectionView: methods in order for the
+ * collection view to respond to user actions. Notably shouldHighlightItemAtIndexPath: allows
+ * cells to be highlighted only if the cell's object has an attached action.
+ * didSelectItemAtIndexPath: will execute the object's attached tap actions.
  *
- * All attachment methods return the object that was provided. This makes it simple to attach
- * actions within an array creation statement.
- *
- * Actions come in two forms: blocks and selector invocations. Both can be attached to an object
- * for each type of action and both will be executed, with the block being executed first. Blocks
- * should be used for simple executions while selectors should be used when the action is complex.
+ * If you use the delegate forwarders your collection view's data source must be an instance of
+ * NICollectionViewModel.
  *
  *      @ingroup CollectionViewTools
  */
@@ -51,97 +48,19 @@
 
 @end
 
-/** @name Creating Collection View Actions */
-
 /**
- * Initializes a newly allocated collection view actions object with the given target.
+ * Asks the receiver whether the object at the given index path is actionable.
  *
- * This is the designated initializer.
+ * collectionView.dataSource must be a NICollectionViewModel.
  *
- * The target is stored as a weak reference internally.
- *
- *      @param target The target that will be provided to action blocks and on which selectors will
- *                    be performed.
- *      @fn NICollectionViewActions::initWithTarget:
- */
-
-/** @name Mapping Objects */
-
-/**
- * Attaches a tap action to the given object.
- *
- * The action will be executed when the object's corresponding cell is tapped. The object argument
- * of the block will be the object to which this action was attached. The target argument of the
- * block will be this receiver's @c target.
- *
- * Return NO if the tap action is used to present a modal view controller. This provides a visual
- * reminder to the user when the modal controller is dismissed as to which cell was tapped to invoke
- * the modal controller.
- *
- *      @param object The object to attach the action to. This object must be contained within
- *                    an NICollectionViewModel.
- *      @param action The tap action block.
- *      @returns The object that you attached this action to.
- *      @fn NICollectionViewActions::attachToObject:tapBlock:
- *      @sa NICollectionViewActions::attachToObject:tapSelector:
+ *    @returns YES if the object at the given index path is actionable.
+ *    @fn NICollectionViewActions::collectionView:shouldHighlightItemAtIndexPath:
  */
 
 /**
- * Attaches a tap selector to the given object.
+ * Asks the receiver to perform the tap action for an object at the given indexPath.
  *
- * The method signature for the selector is:
-@code
-- (BOOL)didTapObject:(id)object atIndexPath:(NSIndexPath *)indexPath;
-@endcode
+ * collectionView.dataSource must be a NICollectionViewModel.
  *
- * The selector will be performed on the action object's target when a cell with a tap selector is
- * tapped, unless that selector does not exist on the @c target in which case nothing happens.
- *
- * If the selector invocation returns YES then the cell will be deselected immediately after the
- * invocation completes its execution. If NO is returned then the cell's selection will remain.
- *
- * Return NO if the tap action is used to present a modal view controller. This provides a visual
- * reminder to the user when the modal controller is dismissed as to which cell was tapped to invoke
- * the modal controller.
- *
- * The tap action will be invoked first, followed by the navigation action if one is attached.
- *
- *      @param object The object to attach the selector to. This object must be contained within
- *                    an NICollectionViewModel.
- *      @param selector The selector that will be invoked by this action.
- *      @returns The object that you attached this action to.
- *      @fn NICollectionViewActions::attachToObject:tapSelector:
- *      @sa NICollectionViewActions::attachToObject:tapBlock:
- */
-
-/** @name Mapping Classes */
-
-/**
- * Attaches a tap block to a class.
- *
- * This method behaves similarly to attachToObject:tapBlock: except it attaches a tap action to
- * all instances and subclassed instances of a given class.
- *
- *      @param aClass The class to attach the action to.
- *      @param action The tap action block.
- *      @fn NICollectionViewActions::attachToClass:tapBlock:
- */
-
-/**
- * Attaches a tap selector to a class.
- *
- * This method behaves similarly to attachToObject:tapBlock: except it attaches a tap action to
- * all instances and subclassed instances of a given class.
- *
- *      @param aClass The class to attach the action to.
- *      @param selector The tap selector.
- *      @fn NICollectionViewActions::attachToClass:tapSelector:
- */
-
-/** @name Object State */
-
-/**
- * Returns whether or not the object has any actions attached to it.
- *
- *      @fn NICollectionViewActions::isObjectActionable:
+ *    @fn NICollectionViewActions::collectionView:didSelectItemAtIndexPath:
  */

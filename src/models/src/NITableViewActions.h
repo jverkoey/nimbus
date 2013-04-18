@@ -23,50 +23,12 @@
  * The NITableViewActions class provides an interface for attaching actions to objects in a
  * NITableViewModel.
  *
- * The three primary types of table view actions are supported for tapping
- *
- * - a button,
- * - the details button,
- * - and with the intent of pushing a new controller onto the navigation controller.
- *
  * <h2>Basic Use</h2>
  *
  * NITableViewModel and NITableViewActions cooperate to solve two related tasks: data
  * representation and user actions, respectively. A NITableViewModel is composed of objects and
  * NITableViewActions maintains a mapping of actions to these objects. The object's attached actions
  * are executed when the user interacts with the cell representing an object.
- *
- * <h3>Attaching Actions</h3>
- *
- * Actions may be attached to specific instances of objects or to entire classes of objects. When
- * an action is attached to both a class of object and an instance of that class, only the instance
- * action will be executed.
- *
- * All attachment methods return the object that was provided. This makes it simple to attach
- * actions within an array creation statement.
- *
-@code
-NSArray *objects = @[
-  [NITitleCellObject objectWithTitle:@"Implicit tap handler"],
-  [self.actions attachToObject:[NITitleCellObject objectWithTitle:@"Explicit tap handler"]
-                      tapBlock:
-   ^BOOL(id object, id target) {
-     NSLog(@"Object was tapped with an explicit action: %@", object);
-   }]
-];
-
-[self.actions attachToClass:[NITitleCellObject class]
-                   tapBlock:
- ^BOOL(id object, id target) {
-   NSLog(@"Object was tapped: %@", object);
- }];
-@endcode
- *
- * This array may then be used to create the NITableViewModel object.
- *
- * Actions come in two forms: blocks and selector invocations. Both can be attached to an object
- * for each type of action and both will be executed, with the block being executed first. Blocks
- * should be used for simple executions while selectors should be used when the action is complex.
  *
  * <h3>Delegate Forwarding</h3>
  *

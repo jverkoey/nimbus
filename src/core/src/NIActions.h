@@ -17,12 +17,62 @@
 #import <Foundation/Foundation.h>
 
 /**
+ * For attaching actions to objects.
+ *
+ * @ingroup NimbusCore
+ * @defgroup Actions Actions
+ * @{
+ *
+
+/**
  * @param object An action was performed on this object.
  * @param target The target that was attached to the NIActions instance.
  * @param indexPath The index path of the object.
  */
 typedef BOOL (^NIActionBlock)(id object, id target, NSIndexPath* indexPath);
 
+/**
+ * The NIActions class provides a generic interface for attaching actions to objects.
+ *
+ * The three primary types of actions are:
+ *
+ * - buttons,
+ * - detail views,
+ * - and pushing a new controller onto the navigation controller.
+ *
+ * <h3>Attaching Actions</h3>
+ *
+ * Actions may be attached to specific instances of objects or to entire classes of objects. When
+ * an action is attached to both a class of object and an instance of that class, only the instance
+ * action should be executed.
+ *
+ * All attachment methods return the object that was provided. This makes it simple to attach
+ * actions within an array creation statement.
+ *
+ * Actions come in two forms: blocks and selector invocations. Both can be attached to an object
+ * for each type of action and both will be executed, with the block being executed first. Blocks
+ * should be used for simple executions while selectors should be used when the action is complex.
+ *
+ * The following is an example of using NITableViewActions:
+ *
+@code
+NSArray *objects = @[
+  [NITitleCellObject objectWithTitle:@"Implicit tap handler"],
+  [self.actions attachToObject:[NITitleCellObject objectWithTitle:@"Explicit tap handler"]
+                      tapBlock:
+   ^BOOL(id object, id target) {
+     NSLog(@"Object was tapped with an explicit action: %@", object);
+   }]
+];
+
+[self.actions attachToClass:[NITitleCellObject class]
+                   tapBlock:
+ ^BOOL(id object, id target) {
+   NSLog(@"Object was tapped: %@", object);
+ }];
+@endcode
+ *
+ */
 @interface NIActions : NSObject
 
 // Designated initializer.
@@ -333,3 +383,7 @@ NIActionBlock NIPushControllerAction(Class controllerClass);
  *               otherwise.
  *      @fn NIActions::objectFromKeyClass:map:
  */
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**@}*/// End of Actions //////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
