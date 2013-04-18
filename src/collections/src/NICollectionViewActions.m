@@ -49,7 +49,9 @@
       NIObjectActions* action = [self actionForObjectOrClassOfObject:object];
 
       // If the cell is tappable, reflect that in the selection style.
-      if (nil != action.tapAction || nil != action.tapSelector) {
+      if (nil != action.tapAction || nil != action.tapSelector
+          || nil != action.detailAction || nil != action.detailSelector
+          || nil != action.navigationAction || nil != action.navigationSelector) {
         shouldHighlight = YES;
       }
     }
@@ -100,6 +102,29 @@
           free(buffer);
         }
       }
+
+      if (action.detailAction) {
+        // Tap actions can deselect the cell if they return YES.
+        action.detailAction(object, self.target, indexPath);
+      }
+      if (action.detailSelector && [self.target respondsToSelector:action.detailSelector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [self.target performSelector:action.detailSelector withObject:object withObject:indexPath];
+#pragma clang diagnostic pop
+      }
+
+      if (action.navigateAction) {
+        // Tap actions can deselect the cell if they return YES.
+        action.navigateAction(object, self.target, indexPath);
+      }
+      if (action.navigateSelector && [self.target respondsToSelector:action.navigateSelector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [self.target performSelector:action.navigateSelector withObject:object withObject:indexPath];
+#pragma clang diagnostic pop
+      }
+
       if (shouldDeselect) {
         [collectionView deselectItemAtIndexPath:indexPath animated:YES];
       }
