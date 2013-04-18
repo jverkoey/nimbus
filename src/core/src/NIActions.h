@@ -22,7 +22,7 @@
  * @ingroup NimbusCore
  * @defgroup Actions Actions
  * @{
- *
+ */
 
 /**
  * @param object An action was performed on this object.
