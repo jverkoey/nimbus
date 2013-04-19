@@ -51,7 +51,7 @@
       // If the cell is tappable, reflect that in the selection style.
       if (nil != action.tapAction || nil != action.tapSelector
           || nil != action.detailAction || nil != action.detailSelector
-          || nil != action.navigationAction || nil != action.navigationSelector) {
+          || nil != action.navigateAction || nil != action.navigateSelector) {
         shouldHighlight = YES;
       }
     }
