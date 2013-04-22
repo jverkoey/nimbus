@@ -342,6 +342,7 @@
 		66FE7D6B13FB83620061B987 /* NimbusModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6413FB83620061B987 /* NimbusModels.h */; };
 		66FE7D6C13FB83620061B987 /* NITableViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6513FB83620061B987 /* NITableViewModel.h */; };
 		66FE7D6D13FB83620061B987 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FE7D6613FB83620061B987 /* NITableViewModel.m */; };
+		9B22BD991725E75E000FDB01 /* NIMutableCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B22BD981725E75E000FDB01 /* NIMutableCollectionViewModel.m */; };
 		C743F6EA16D2652F00A933B7 /* NIUserInterfaceString.h in Headers */ = {isa = PBXBuildFile; fileRef = C743F6E816D2652F00A933B7 /* NIUserInterfaceString.h */; };
 		C743F6EB16D2652F00A933B7 /* NIUserInterfaceString.m in Sources */ = {isa = PBXBuildFile; fileRef = C743F6E916D2652F00A933B7 /* NIUserInterfaceString.m */; };
 		C7A8791D16D7348700A0C23F /* NITextField+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = C7A8791B16D7348700A0C23F /* NITextField+NIStyleable.h */; };
@@ -986,6 +987,9 @@
 		66FE7D6513FB83620061B987 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITableViewModel.h; sourceTree = "<group>"; };
 		66FE7D6613FB83620061B987 /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewModel.m; sourceTree = "<group>"; };
 		66FE7D6813FB83620061B987 /* NimbusModelsTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NimbusModelsTests-Info.plist"; sourceTree = "<group>"; };
+		9B22BD971725E75E000FDB01 /* NIMutableCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIMutableCollectionViewModel.h; sourceTree = "<group>"; };
+		9B22BD981725E75E000FDB01 /* NIMutableCollectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIMutableCollectionViewModel.m; sourceTree = "<group>"; };
+		9B22BD9B1725ECB4000FDB01 /* NIMutableCollectionViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIMutableCollectionViewModel+Private.h"; sourceTree = "<group>"; };
 		C743F6E816D2652F00A933B7 /* NIUserInterfaceString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIUserInterfaceString.h; path = css/src/NIUserInterfaceString.h; sourceTree = SOURCE_ROOT; };
 		C743F6E916D2652F00A933B7 /* NIUserInterfaceString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIUserInterfaceString.m; path = css/src/NIUserInterfaceString.m; sourceTree = SOURCE_ROOT; };
 		C7A8791B16D7348700A0C23F /* NITextField+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NITextField+NIStyleable.h"; path = "css/src/NITextField+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
@@ -2035,6 +2039,9 @@
 				66FC98611703FA51004E8FB8 /* NICollectionViewModel.m */,
 				66FC98621703FA51004E8FB8 /* NICollectionViewModel+Private.h */,
 				66FC985C1703FA51004E8FB8 /* NimbusCollections.h */,
+				9B22BD971725E75E000FDB01 /* NIMutableCollectionViewModel.h */,
+				9B22BD981725E75E000FDB01 /* NIMutableCollectionViewModel.m */,
+				9B22BD9B1725ECB4000FDB01 /* NIMutableCollectionViewModel+Private.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -3776,6 +3783,7 @@
 				66FC98631703FA51004E8FB8 /* NICollectionViewCellFactory.m in Sources */,
 				66FC98651703FA51004E8FB8 /* NICollectionViewModel.m in Sources */,
 				66DCB78B1717755B00205745 /* NICollectionViewActions.m in Sources */,
+				9B22BD991725E75E000FDB01 /* NIMutableCollectionViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
