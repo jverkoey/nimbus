@@ -55,5 +55,6 @@
 #import "NICollectionViewActions.h"
 #import "NICollectionViewCellFactory.h"
 #import "NICollectionViewModel.h"
+#import "NIMutableCollectionViewModel.h"
 
 /**@}*/
