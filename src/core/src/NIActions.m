@@ -68,8 +68,19 @@
   return [NSNumber numberWithInteger:object.hash];
 }
 
+//
+// actionForObject: and actionForClass: are used when attaching actions to objects and classes and
+// will always return an NIObjectActions object. These methods should not be used for determining
+// whether an action is attached to a given object or class.
+//
+// actionForObjectOrClassOfObject: determines whether an action has been attached to an object
+// or class of object and then returns the NIObjectActions or nil if no actions have been attached.
+//
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Retrieves an NIObjectActions object for the given object or creates one if it doesn't yet exist
+// so that actions may be attached.
 - (NIObjectActions *)actionForObject:(id<NSObject>)object {
   id key = [self keyForObject:object];
   NIObjectActions* action = [self.objectMap objectForKey:key];
@@ -82,6 +93,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Retrieves an NIObjectActions object for the given class or creates one if it doesn't yet exist
+// so that actions may be attached.
 - (NIObjectActions *)actionForClass:(Class)class {
   NIObjectActions* action = [self.classMap objectForKey:class];
   if (nil == action) {
@@ -93,6 +106,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Fetches any attached actions for a given object.
 - (NIObjectActions *)actionForObjectOrClassOfObject:(id<NSObject>)object {
   id key = [self keyForObject:object];
   NIObjectActions* action = [self.objectMap objectForKey:key];
