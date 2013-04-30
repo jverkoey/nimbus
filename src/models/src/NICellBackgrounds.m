@@ -39,6 +39,7 @@ static const CGSize kCellImageSize = {44, 44};
 @synthesize highlightedInnerGradientColors = _highlightedInnerGradientColors;
 @synthesize shadowWidth = _shadowWidth;
 @synthesize shadowColor = _shadowColor;
+@synthesize shadowOffset = _shadowOffset;
 @synthesize borderColor = _borderColor;
 @synthesize dividerColor = _dividerColor;
 @synthesize borderRadius = _borderRadius;
@@ -54,6 +55,7 @@ static const CGSize kCellImageSize = {44, 44};
                                        (id)RGBCOLOR(16, 93, 230).CGColor,
                                        nil];
     _shadowWidth = 4;
+    _shadowOffset = CGSizeMake(0, 1);
     _shadowColor = RGBACOLOR(0, 0, 0, 0.3f);
     _borderColor = RGBACOLOR(0, 0, 0, 0.07f);
     _dividerColor = RGBCOLOR(230, 230, 230);
@@ -315,7 +317,7 @@ static const CGSize kCellImageSize = {44, 44};
 
     [self _applyPathToContext:cx rect:shadowFrame isFirst:first isLast:last];
 
-    CGContextSetShadowWithColor(cx, CGSizeMake(0, 1), self.shadowWidth, self.shadowColor.CGColor);
+    CGContextSetShadowWithColor(cx, self.shadowOffset, self.shadowWidth, self.shadowColor.CGColor);
     CGContextDrawPath(cx, kCGPathFill);
     CGContextRestoreGState(cx);
   }
