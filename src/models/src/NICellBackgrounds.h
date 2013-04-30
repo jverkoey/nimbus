@@ -41,6 +41,7 @@ typedef enum {
 @property (nonatomic, NI_STRONG) UIColor* innerBackgroundColor; // Default: [UIColor whiteColor]
 @property (nonatomic, NI_STRONG) NSMutableArray* highlightedInnerGradientColors; // Default: RGBCOLOR(53, 141, 245), RGBCOLOR(16, 93, 230)
 @property (nonatomic, assign) CGFloat shadowWidth; // Default: 4
+@property (nonatomic, assign) CGSize shadowOffset; // Default: CGSizeMake(0, 1)
 @property (nonatomic, NI_STRONG) UIColor* shadowColor; // Default: RGBACOLOR(0, 0, 0, 0.3)
 @property (nonatomic, NI_STRONG) UIColor* borderColor; // Default: RGBACOLOR(0, 0, 0, 0.07)
 @property (nonatomic, NI_STRONG) UIColor* dividerColor; // Default: RGBCOLOR(230, 230, 230)
