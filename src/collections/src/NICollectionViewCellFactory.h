@@ -107,24 +107,6 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
 
 @end
 
-@interface NICollectionViewCellFactory (KeyClassMapping)
-
-/**
- * Returns a mapped object from the given key class.
- *
- * If the key class is a subclass of any mapped key classes, the nearest ancestor class's mapped
- * object will be returned and keyClass will be added to the map for future accesses.
- *
- *      @param keyClass The key class that will be used to find the mapping in map.
- *      @param map A map of key classes to classes. May be modified if keyClass is a subclass of
- *                 any existing key classes.
- *      @returns The mapped object if a match for keyClass was found in map. nil is returned
- *               otherwise.
- */
-+ (id)objectFromKeyClass:(Class)keyClass map:(NSMutableDictionary *)map;
-
-@end
-
 /**
  * The protocol for an object that can be used in the NICollectionViewCellFactory.
  *
@@ -156,6 +138,17 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
  * Implement this method to customize the cell's properties for display using the given object.
  */
 - (BOOL)shouldUpdateCellWithObject:(id)object;
+
+@optional
+
+/**
+ * Asks the receiver whether the mapped object class should be appended to the reuse identifier
+ * in order to create a unique cell.object identifier key.
+ *
+ * This is useful when you have a cell that is intended to be used by a variety of different
+ * objects.
+ */
++ (BOOL)shouldAppendObjectClassToReuseIdentifier;
 
 @end
 

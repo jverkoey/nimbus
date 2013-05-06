@@ -19,32 +19,15 @@
 #import "NICellFactory.h"
 #import "NITableViewModel.h"
 #import "NimbusCore.h"
+#import "NIActions+Subclassing.h"
 #import <objc/runtime.h>
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
 #endif
 
-@interface NITableViewAction : NSObject
-
-@property (nonatomic, copy) NITableViewActionBlock tapAction;
-@property (nonatomic, copy) NITableViewActionBlock detailAction;
-@property (nonatomic, copy) NITableViewActionBlock navigateAction;
-
-@property (nonatomic, assign) SEL tapSelector;
-@property (nonatomic, assign) SEL detailSelector;
-@property (nonatomic, assign) SEL navigateSelector;
-
-@end
-
 @interface NITableViewActions()
-
-@property (nonatomic, NI_WEAK) id target;
 @property (nonatomic, NI_STRONG) NSMutableSet* forwardDelegates;
-@property (nonatomic, NI_STRONG) NSMutableDictionary* objectMap;
-@property (nonatomic, NI_STRONG) NSMutableSet* objectSet;
-@property (nonatomic, NI_STRONG) NSMutableDictionary* classMap;
-
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,85 +35,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NITableViewActions
 
-@synthesize target = _target;
 @synthesize forwardDelegates = _forwardDelegates;
-@synthesize objectMap = _objectMap;
-@synthesize objectSet = _objectSet;
 @synthesize tableViewCellSelectionStyle = _tableViewCellSelectionStyle;
-@synthesize classMap = _classMap;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-implementations"
-- (id)initWithController:(UIViewController *)controller {
-  return [self initWithTarget:controller];
-}
-#pragma clang diagnostic pop
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTarget:(id)target {
-  if ((self = [super init])) {
-    _target = target;
-    _objectMap = [[NSMutableDictionary alloc] init];
-    _objectSet = [[NSMutableSet alloc] init];
-    _classMap = [[NSMutableDictionary alloc] init];
+  if ((self = [super initWithTarget:target])) {
     _forwardDelegates = NICreateNonRetainingMutableSet();
     _tableViewCellSelectionStyle = UITableViewCellSelectionStyleBlue;
   }
   return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  return [self initWithTarget:nil];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private Methods
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)keyForObject:(id<NSObject>)object {
-  return [NSNumber numberWithInteger:object.hash];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NITableViewAction *)actionForObject:(id<NSObject>)object {
-  id key = [self keyForObject:object];
-  NITableViewAction* action = [self.objectMap objectForKey:key];
-  if (nil == action) {
-    action = [[NITableViewAction alloc] init];
-    [self.objectMap setObject:action forKey:key];
-  }
-  return action;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NITableViewAction *)actionForClass:(Class)class {
-  NITableViewAction* action = [self.classMap objectForKey:class];
-  if (nil == action) {
-    action = [[NITableViewAction alloc] init];
-    [self.classMap setObject:action forKey:(id<NSCopying>)class];
-  }
-  return action;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NITableViewAction *)actionForObjectOrClassOfObject:(id<NSObject>)object {
-  id key = [self keyForObject:object];
-  NITableViewAction* action = [self.objectMap objectForKey:key];
-  if (nil == action) {
-    action = [NICellFactory objectFromKeyClass:object.class map:self.classMap];
-  }
-  return action;
 }
 
 
@@ -205,155 +120,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)removeForwarding:(id<UITableViewDelegate>)forwardDelegate; {
+- (void)removeForwarding:(id<UITableViewDelegate>)forwardDelegate {
   [self.forwardDelegates removeObject:forwardDelegate];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Deprecated Public Methods
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-implementations"
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachTapAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object {
-  return [self attachToObject:object tapBlock:action];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachDetailAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object {
-  return [self attachToObject:object detailBlock:action];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachNavigationAction:(NITableViewActionBlock)action toObject:(id<NSObject>)object {
-  return [self attachToObject:object navigationBlock:action];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachTapAction:(NITableViewActionBlock)action toClass:(Class)aClass {
-  [self attachToClass:aClass tapBlock:action];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachDetailAction:(NITableViewActionBlock)action toClass:(Class)aClass {
-  [self attachToClass:aClass detailBlock:action];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachNavigationAction:(NITableViewActionBlock)action toClass:(Class)aClass {
-  [self attachToClass:aClass navigationBlock:action];
-}
-
-#pragma clang diagnostic pop
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Public Methods
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachToObject:(id<NSObject>)object tapBlock:(NITableViewActionBlock)action {
-  [self.objectSet addObject:object];
-  [self actionForObject:object].tapAction = action;
-  return object;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachToObject:(id<NSObject>)object detailBlock:(NITableViewActionBlock)action {
-  [self.objectSet addObject:object];
-  [self actionForObject:object].detailAction = action;
-  return object;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachToObject:(id<NSObject>)object navigationBlock:(NITableViewActionBlock)action {
-  [self.objectSet addObject:object];
-  [self actionForObject:object].navigateAction = action;
-  return object;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachToObject:(id<NSObject>)object tapSelector:(SEL)selector {
-  [self.objectSet addObject:object];
-  [self actionForObject:object].tapSelector = selector;
-  return object;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachToObject:(id<NSObject>)object detailSelector:(SEL)selector {
-  [self.objectSet addObject:object];
-  [self actionForObject:object].detailSelector = selector;
-  return object;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)attachToObject:(id<NSObject>)object navigationSelector:(SEL)selector {
-  [self.objectSet addObject:object];
-  [self actionForObject:object].navigateSelector = selector;
-  return object;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachToClass:(Class)aClass tapBlock:(NITableViewActionBlock)action {
-  [self actionForClass:aClass].tapAction = action;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachToClass:(Class)aClass detailBlock:(NITableViewActionBlock)action {
-  [self actionForClass:aClass].detailAction = action;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachToClass:(Class)aClass navigationBlock:(NITableViewActionBlock)action {
-  [self actionForClass:aClass].navigateAction = action;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachToClass:(Class)aClass tapSelector:(SEL)selector {
-  [self actionForClass:aClass].tapSelector = selector;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachToClass:(Class)aClass detailSelector:(SEL)selector {
-  [self actionForClass:aClass].detailSelector = selector;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachToClass:(Class)aClass navigationSelector:(SEL)selector {
-  [self actionForClass:aClass].navigateSelector = selector;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)isObjectActionable:(id<NSObject>)object {
-  if (nil == object) {
-    return NO;
-  }
-
-  BOOL objectIsActionable = [self.objectSet containsObject:object];
-  if (!objectIsActionable) {
-    objectIsActionable = (nil != [NICellFactory objectFromKeyClass:object.class map:self.classMap]);
-  }
-  return objectIsActionable;
 }
 
 
@@ -370,7 +138,7 @@
     id object = [model objectAtIndexPath:indexPath];
 
     if ([self isObjectActionable:object]) {
-      NITableViewAction* action = [self actionForObjectOrClassOfObject:object];
+      NIObjectActions* action = [self actionForObjectOrClassOfObject:object];
 
       // Detail disclosure indicator takes precedence over regular disclosure indicator.
       if (nil != action.detailAction || nil != action.detailSelector) {
@@ -419,12 +187,12 @@
     id object = [model objectAtIndexPath:indexPath];
 
     if ([self isObjectActionable:object]) {
-      NITableViewAction* action = [self actionForObjectOrClassOfObject:object];
+      NIObjectActions* action = [self actionForObjectOrClassOfObject:object];
 
       BOOL shouldDeselect = NO;
       if (action.tapAction) {
         // Tap actions can deselect the row if they return YES.
-        shouldDeselect = action.tapAction(object, self.target);
+        shouldDeselect = action.tapAction(object, self.target, indexPath);
       }
       if (action.tapSelector && [self.target respondsToSelector:action.tapSelector]) {
         NSMethodSignature *methodSignature = [self.target methodSignatureForSelector:action.tapSelector];
@@ -457,12 +225,12 @@
       }
 
       if (action.navigateAction) {
-        action.navigateAction(object, self.target);
+        action.navigateAction(object, self.target, indexPath);
       }
       if (action.navigateSelector && [self.target respondsToSelector:action.navigateSelector]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [self.target performSelector:action.navigateSelector withObject:object];
+        [self.target performSelector:action.navigateSelector withObject:object withObject:indexPath];
 #pragma clang diagnostic pop
       }
     }
@@ -485,15 +253,15 @@
     id object = [model objectAtIndexPath:indexPath];
 
     if ([self isObjectActionable:object]) {
-      NITableViewAction* action = [self actionForObjectOrClassOfObject:object];
+      NIObjectActions* action = [self actionForObjectOrClassOfObject:object];
 
       if (action.detailAction) {
-        action.detailAction(object, self.target);
+        action.detailAction(object, self.target, indexPath);
       }
       if (action.detailSelector && [self.target respondsToSelector:action.detailSelector]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [self.target performSelector:action.detailSelector withObject:object];
+        [self.target performSelector:action.detailSelector withObject:object withObject:indexPath];
 #pragma clang diagnostic pop
       }
     }
@@ -508,38 +276,3 @@
 }
 
 @end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation NITableViewAction
-
-@synthesize tapAction;
-@synthesize detailAction;
-@synthesize navigateAction;
-@synthesize tapSelector;
-@synthesize detailSelector;
-@synthesize navigateSelector;
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-NITableViewActionBlock NIPushControllerAction(Class controllerClass) {
-  return [^(id object, id target) {
-    // You must initialize the actions object with initWithTarget: and pass a valid
-    // controller.
-    NIDASSERT(nil != target);
-    NIDASSERT([target isKindOfClass:[UIViewController class]]);
-    UIViewController *controller = target;
-
-    if (nil != controller && [controller isKindOfClass:[UIViewController class]]) {
-      UIViewController* controllerToPush = [[controllerClass alloc] init];
-      [controller.navigationController pushViewController:controllerToPush
-                                                 animated:YES];
-    }
-
-    return NO;
-  } copy];
-}
