@@ -21,10 +21,23 @@
 #import "NIStyleable.h"
 #import "NimbusCore.h"
 #import "NICSSResourceResolverDelegate.h"
+#import "NIDOM.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
 #endif
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@interface NICSSScopeDefinition : NSObject
+@property (nonatomic,strong) NSString *fullScope;
+@property (nonatomic,strong) NSArray *orderedList;
+@end
+@implementation NICSSScopeDefinition
+-(NSString *)description { return self.fullScope; }
+@end
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 NSString* const NIStylesheetDidChangeNotification = @"NIStylesheetDidChangeNotification";
 static Class _rulesetClass;
@@ -101,13 +114,17 @@ static id<NICSSResourceResolverDelegate> _resolver;
     // TODO (jverkoey Oct 6, 2011): We should respect CSS specificity. Right now this will
     // give higher precedance to newer styles. Instead, we should prefer styles that have more
     // selectors.
+    NICSSScopeDefinition *scopeDef = [[NICSSScopeDefinition alloc] init];
+    scopeDef.fullScope = scope;
+    scopeDef.orderedList = parts;
+    
     NSMutableArray* scopes = [significantScopeToScopes objectForKey:mostSignificantScopePart];
     if (nil == scopes) {
-      scopes = [[NSMutableArray alloc] initWithObjects:scope, nil];
+      scopes = [[NSMutableArray alloc] initWithObjects:scopeDef, nil];
       [significantScopeToScopes setObject:scopes forKey:mostSignificantScopePart];
       
     } else {
-      [scopes addObject:scope];
+      [scopes addObject:scopeDef];
     }
   }
 
@@ -231,7 +248,8 @@ static id<NICSSResourceResolverDelegate> _resolver;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)descriptionForView:(UIView *)view withClassName:(NSString *)className inDOM:(NIDOM *)dom andViewName:(NSString *)viewName {
   NSMutableString *description = [[NSMutableString alloc] init];
-  NICSSRuleset *ruleset = [self rulesetForClassName:className];
+  
+  NICSSRuleset *ruleset = [self rulesetForView: (UIView*) view withClassName:className inDOM:dom];
   if (nil != ruleset) {
     NSRange r = [className rangeOfString:@":"];
     if ([view respondsToSelector:@selector(descriptionWithRuleSet:forPseudoClass:inDOM:withViewName:)]) {
@@ -266,7 +284,7 @@ static id<NICSSResourceResolverDelegate> _resolver;
 }
 
 - (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className inDOM:(NIDOM *)dom {
-  NICSSRuleset *ruleset = [self rulesetForClassName:className];
+  NICSSRuleset *ruleset = [self rulesetForView: (UIView*) view withClassName:className inDOM:dom];
   if (nil != ruleset) {
     NSRange r = [className rangeOfString:@":"];
     if (r.location != NSNotFound && [view respondsToSelector:@selector(applyStyleWithRuleSet:forPseudoClass:inDOM:)]) {
@@ -289,6 +307,7 @@ static id<NICSSResourceResolverDelegate> _resolver;
       
       // Composite the rule sets into one.
       for (NSString* selector in selectors) {
+        // TODO the array coming in is now style definitions, we need to figure out if the view being asked matches...
         [ruleSet addEntriesFromDictionary:[_rawRulesets objectForKey:selector]];
       }
       
@@ -302,10 +321,38 @@ static id<NICSSResourceResolverDelegate> _resolver;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NICSSRuleset *)rulesetForClassName:(NSString *)className {
-  NSArray* selectors = [_significantScopeToScopes objectForKey:className];
-  return [self addSelectors:selectors toRuleset:nil forClassName:className];
+  return [self addSelectors: @[[_rawRulesets objectForKey:className]] toRuleset:nil forClassName:className];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NICSSRuleset*) rulesetForView: (UIView*) view withClassName: (NSString*) className inDOM: (NIDOM*) dom {
+  NSArray* selectors = [_significantScopeToScopes objectForKey:className];
+  NSMutableArray *matchingSelectors = [[NSMutableArray alloc] init];
+  for (NICSSScopeDefinition *sd in selectors) {
+    if (sd.orderedList == nil || sd.orderedList.count == 1) {
+      [matchingSelectors addObject:sd.fullScope];
+    } else {
+      // Ok, now we've got to walk the hierarchy looking for a match. lastObject is className, but the others are unknown
+      UIView *matchView = [view superview];
+      int ruleIx = sd.orderedList.count - 2;
+      while (matchView && ruleIx >= 0) {
+        NSString *currentMatch = [sd.orderedList objectAtIndex:ruleIx];
+        char first = [currentMatch characterAtIndex:0];
+        BOOL isId = first == '#', isCssClass = first == '.', isObjCClass = !isId && !isCssClass;
+        if ((isId && [dom viewById: currentMatch] == matchView) ||
+            (isCssClass && [dom view: matchView hasCssClass: currentMatch]) ||
+            (isObjCClass && [NSStringFromClass([matchView class]) isEqualToString:currentMatch])) {
+          ruleIx--;
+        }
+        matchView = [matchView superview];
+      }
+      if (ruleIx < 0) {
+        [matchingSelectors addObject:sd.fullScope];
+      }
+    }
+  }
+  return [self addSelectors:matchingSelectors toRuleset:nil forClassName:className];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSSet *)dependencies {

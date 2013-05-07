@@ -211,6 +211,23 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+-(BOOL)view:(UIView *)view hasCssClass:(NSString *)cssClass
+{
+  if ([cssClass characterAtIndex:0] != '.') {
+    cssClass = [@"." stringByAppendingString: cssClass];
+  }
+  NSMutableArray *selectors = [_viewToSelectorsMap objectForKey:[self keyForView:view]];
+  if (selectors) {
+    for (NSString *candidate in selectors) {
+      if ([candidate isEqualToString:cssClass]) {
+        return YES;
+      }
+    }
+  }
+  return NO;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)addCssClass:(NSString *)cssClass toView:(UIView *)view
 {
   NSString* selector = [@"." stringByAppendingString:cssClass];

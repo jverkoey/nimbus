@@ -116,6 +116,16 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testHierarchy {
+    NICSSParser* parser = [[NICSSParser alloc] init];
+    
+    NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"hierarchical.css");
+    
+    NSDictionary* rulesets = [parser dictionaryForPath:pathToFile];
+    STAssertNotNil([rulesets objectForKey: @"UIViewController UILabel"], @"UILabel should return a ruleset.");
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testMediaRulesets {
     NICSSParser* parser = [[NICSSParser alloc] init];
     

@@ -82,6 +82,7 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 
 - (void)addCssClass: (NSString *) cssClass toView: (UIView*) view;
 - (void)removeCssClass: (NSString*) cssClass fromView: (UIView*) view;
+- (BOOL)view: (UIView*) view hasCssClass: (NSString*) cssClass;
 
 - (void)unregisterView:(UIView *)view;
 - (void)unregisterAllViews;
@@ -188,6 +189,12 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  * immediately.
  *
  *      @fn NIDOM::addCssClass:toView:
+ */
+
+/**
+ * Returns YES if the view has been registered with a specified CSS class
+ *
+ *      @fn NIDOM::view:hasCssClass:
  */
 
 /** @name Dynamic View Construction */
