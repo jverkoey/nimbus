@@ -53,6 +53,11 @@ tableView.delegate = [self.actions forwardingTo:self];
 - (id<UITableViewDelegate>)forwardingTo:(id<UITableViewDelegate>)forwardDelegate;
 - (void)removeForwarding:(id<UITableViewDelegate>)forwardDelegate;
 
+#pragma mark Object state
+
+- (UITableViewCellAccessoryType)accessoryTypeForObject:(id)object;
+- (UITableViewCellSelectionStyle)selectionStyleForObject:(id)object;
+
 #pragma mark Configurable Properties
 
 @property (nonatomic, assign) UITableViewCellSelectionStyle tableViewCellSelectionStyle;
@@ -88,6 +93,26 @@ self.tableView.delegate = [self.actions forwardingTo:self.tableView.delegate];
  *
  *      @param forwardDelegate The delegate to stop forwarding invocations to.
  *      @fn NITableViewActions::removeForwarding:
+ */
+
+/** @name Object State */
+
+/**
+ * Returns the accessory type this actions object will apply to a cell for the
+ * given object when it is displayed.
+ *
+ *      @param object The object to determine the accessory type for.
+ *      @returns the accessory type this object's cell will have.
+ *      @fn NITableViewActions::accessoryTypeForObject:
+ */
+
+/**
+ * Returns the cell selection style this actions object will apply to a cell
+ * for the given object when it is displayed.
+ *
+ *      @param object The object to determine the selection style for.
+ *      @returns the selection style this object's cell will have.
+ *      @fn NITableViewActions::selectionStyleForObject:
  */
 
 /** @name Configurable Properties */
