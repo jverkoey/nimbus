@@ -40,10 +40,11 @@ NI_FIX_CATEGORY_BUG(UIScrollView_NIStyleable)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-    [self applyViewStyleWithRuleSet:ruleSet inDOM:nil];
+    [self applyStyleWithRuleSet:ruleSet inDOM:nil];
 }
 
-- (void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
   [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
   [self applyScrollViewStyleWithRuleSet:ruleSet inDOM: dom];
 }
