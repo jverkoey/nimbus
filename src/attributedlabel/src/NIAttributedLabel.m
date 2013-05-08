@@ -172,6 +172,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 @synthesize lineHeight = _lineHeight;
 @synthesize images;
 @synthesize delegate = _delegate;
+@synthesize tailTruncationAttributedString = _tailTruncationAttributedString;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -632,6 +633,15 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   [super setHighlightedTextColor:highlightedTextColor];
 
   if (didChange) {
+    [self attributedTextDidChange];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setTailTruncationAttributedString:(NSAttributedString *)tailTruncationAttributedString {
+  if (_tailTruncationAttributedString != tailTruncationAttributedString) {
+    _tailTruncationAttributedString = [tailTruncationAttributedString copy];
     [self attributedTextDidChange];
   }
 }
@@ -1382,10 +1392,14 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
         CTLineTruncationType truncationType = kCTLineTruncationEnd;
         NSUInteger truncationAttributePosition = lastLineRange.location + lastLineRange.length - 1;
 
-        NSDictionary *tokenAttributes = [attributedString attributesAtIndex:truncationAttributePosition
-                                                             effectiveRange:NULL];
-        NSAttributedString *tokenString = [[NSAttributedString alloc] initWithString:kEllipsesCharacter
-                                                                          attributes:tokenAttributes];
+        NSAttributedString *tokenString = self.tailTruncationAttributedString;
+        if (tokenString == nil)
+        {
+          NSDictionary *tokenAttributes = [attributedString attributesAtIndex:truncationAttributePosition
+                                                               effectiveRange:NULL];
+          tokenString = [[NSAttributedString alloc] initWithString:kEllipsesCharacter
+                                                        attributes:tokenAttributes];
+        }
         CTLineRef truncationToken = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)tokenString);
 
         NSMutableAttributedString *truncationString = [[attributedString attributedSubstringFromRange:NSMakeRange(lastLineRange.location, lastLineRange.length)] mutableCopy];

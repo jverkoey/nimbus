@@ -118,6 +118,8 @@ typedef enum {
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins verticalTextAlignment:(NIVerticalTextAlignment)verticalTextAlignment;
 
 @property (nonatomic, NI_WEAK) IBOutlet id<NIAttributedLabelDelegate> delegate;
+
+@property (nonatomic, copy) NSAttributedString *tailTruncationAttributedString;
 @end
 
 /**
@@ -468,4 +470,14 @@ typedef enum {
  * which does not strong the delegate, invokes each protocol method the delegate implements.
  *
  *      @fn NIAttributedLabel::delegate
+ */
+
+/** @name Modifying the String Used for Tail Truncation */
+
+/**
+ * The attributed string to use for tail truncation.
+ *
+ * By default this is nil and tail trunction will use the standard ellipses character.
+ *
+ *      @fn NIAttributedLabel::tailTruncationAttributedString
  */
