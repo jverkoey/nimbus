@@ -121,6 +121,10 @@
 @property (nonatomic, readonly, NI_STRONG) UIBarButtonItem* nextButton;
 @property (nonatomic, readonly, NI_STRONG) UIBarButtonItem* previousButton;
 
+#pragma mark Gesture Recognizer
+
+@property (nonatomic, readonly, NI_STRONG) UITapGestureRecognizer* tapGestureRecognizer;
+
 #pragma mark Subclassing
 
 - (void)setChromeVisibility:(BOOL)isVisible animated:(BOOL)animated;
