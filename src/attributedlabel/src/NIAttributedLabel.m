@@ -304,25 +304,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     self.images = nil;
 
     // Pull any explicit links from the attributed string itself
-    __block NSMutableArray *links = [NSMutableArray array];
-    [self.mutableAttributedString enumerateAttribute:kNILinkAttributeName
-                                             inRange:NSMakeRange(0, self.mutableAttributedString.length)
-                                             options:0
-                                          usingBlock:^(id value, NSRange range, BOOL *stop) {
-                                              if (value != nil)
-                                              {
-                                                  if ([value isKindOfClass:[NSURL class]])
-                                                  {
-                                                      [links addObject:[NSTextCheckingResult linkCheckingResultWithRange:range URL:value]];
-                                                  }
-                                                  else if ([value isKindOfClass:[NSString class]])
-                                                  {
-                                                      NSURL *url = [NSURL URLWithString:value];
-                                                      [links addObject:[NSTextCheckingResult linkCheckingResultWithRange:range URL:url]];
-                                                  }
-                                              }
-                                          }];
-    self.explicitLinkLocations = links;
+    [self _processLinksInAttributedString:self.mutableAttributedString];
 
     [self attributedTextDidChange];
   }
@@ -344,25 +326,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     self.images = nil;
 
     // Pull any explicit links from the attributed string itself
-    __block NSMutableArray *links = [NSMutableArray array];
-    [self.mutableAttributedString enumerateAttribute:kNILinkAttributeName
-                                             inRange:NSMakeRange(0, self.mutableAttributedString.length)
-                                             options:0
-                                          usingBlock:^(id value, NSRange range, BOOL *stop) {
-                                              if (value != nil)
-                                              {
-                                                  if ([value isKindOfClass:[NSURL class]])
-                                                  {
-                                                      [links addObject:[NSTextCheckingResult linkCheckingResultWithRange:range URL:value]];
-                                                  }
-                                                  else if ([value isKindOfClass:[NSString class]])
-                                                  {
-                                                      NSURL *url = [NSURL URLWithString:value];
-                                                      [links addObject:[NSTextCheckingResult linkCheckingResultWithRange:range URL:url]];
-                                                  }
-                                              }
-                                          }];
-    self.explicitLinkLocations = links;
+    [self _processLinksInAttributedString:self.mutableAttributedString];
 
     [self attributedTextDidChange];
   }
@@ -768,6 +732,33 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   }
 
   return foundResult;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_processLinksInAttributedString:(NSAttributedString *)attributedString {
+  // Pull any attributes matching the link attribute from the attributed string and store them as
+  // the current set of explicit links. This properly handles the value of the attribute being
+  // either an NSURL or an NSString.
+  __block NSMutableArray *links = [NSMutableArray array];
+  [attributedString enumerateAttribute:kNILinkAttributeName
+                               inRange:NSMakeRange(0, attributedString.length)
+                               options:0
+                            usingBlock:^(id value, NSRange range, BOOL *stop) {
+                                if (value != nil)
+                                {
+                                  if ([value isKindOfClass:[NSURL class]])
+                                  {
+                                    [links addObject:[NSTextCheckingResult linkCheckingResultWithRange:range URL:value]];
+                                  }
+                                  else if ([value isKindOfClass:[NSString class]])
+                                  {
+                                    NSURL *url = [NSURL URLWithString:value];
+                                    [links addObject:[NSTextCheckingResult linkCheckingResultWithRange:range URL:url]];
+                                  }
+                                }
+                            }];
+  self.explicitLinkLocations = links;
 }
 
 
