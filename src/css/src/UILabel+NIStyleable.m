@@ -42,15 +42,9 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
 - (void)applyLabelStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
   if ([ruleSet hasTextColor]) { self.textColor = ruleSet.textColor; }
   if ([ruleSet hasHighlightedTextColor]) { self.highlightedTextColor = ruleSet.highlightedTextColor; }
-  if ([ruleSet hasTextAlignment]) { self.textAlignment = ruleSet.textAlignment; }
   if ([ruleSet hasFont]) { self.font = ruleSet.font; }
   if ([ruleSet hasTextShadowColor]) { self.shadowColor = ruleSet.textShadowColor; }
   if ([ruleSet hasTextShadowOffset]) { self.shadowOffset = ruleSet.textShadowOffset; }
-  if ([ruleSet hasLineBreakMode]) { self.lineBreakMode = ruleSet.lineBreakMode; }
-  if ([ruleSet hasNumberOfLines]) { self.numberOfLines = ruleSet.numberOfLines; }
-  if ([ruleSet hasMinimumFontSize]) { self.minimumFontSize = ruleSet.minimumFontSize; }
-  if ([ruleSet hasAdjustsFontSize]) { self.adjustsFontSizeToFitWidth = ruleSet.adjustsFontSize; }
-  if ([ruleSet hasBaselineAdjustment]) { self.baselineAdjustment = ruleSet.baselineAdjustment; }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,6 +54,12 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
     NIUserInterfaceString *nis = [[NIUserInterfaceString alloc] initWithKey:ruleSet.textKey];
     [nis attach:self withSelector:@selector(setText:)];
   }
+  if ([ruleSet hasLineBreakMode]) { self.lineBreakMode = ruleSet.lineBreakMode; }
+  if ([ruleSet hasNumberOfLines]) { self.numberOfLines = ruleSet.numberOfLines; }
+  if ([ruleSet hasMinimumFontSize]) { self.minimumFontSize = ruleSet.minimumFontSize; }
+  if ([ruleSet hasAdjustsFontSize]) { self.adjustsFontSizeToFitWidth = ruleSet.adjustsFontSize; }
+  if ([ruleSet hasTextAlignment]) { self.textAlignment = ruleSet.textAlignment; }
+  if ([ruleSet hasBaselineAdjustment]) { self.baselineAdjustment = ruleSet.baselineAdjustment; }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
