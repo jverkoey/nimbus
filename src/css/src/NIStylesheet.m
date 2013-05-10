@@ -321,7 +321,7 @@ static id<NICSSResourceResolverDelegate> _resolver;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NICSSRuleset *)rulesetForClassName:(NSString *)className {
-  return [self addSelectors: @[[_rawRulesets objectForKey:className]] toRuleset:nil forClassName:className];
+  return [self addSelectors: @[className] toRuleset:nil forClassName:className];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
