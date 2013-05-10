@@ -1016,6 +1016,7 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
      [UIColor darkTextColor],                 @"darkTextColor",
      [UIColor groupTableViewBackgroundColor], @"groupTableViewBackgroundColor",
      [UIColor viewFlipsideBackgroundColor],   @"viewFlipsideBackgroundColor",
+     [UIColor clearColor],                    @"transparent",
      nil];
     
     if ([UIColor respondsToSelector:@selector(scrollViewTexturedBackgroundColor)]) {
