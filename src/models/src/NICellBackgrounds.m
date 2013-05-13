@@ -278,7 +278,7 @@ static const CGSize kCellImageSize = {44, 44};
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIImage *)_imageForFirst:(BOOL)first last:(BOOL)last highlighted:(BOOL)highlighted {
+- (UIImage *)_imageForFirst:(BOOL)first last:(BOOL)last highlighted:(BOOL)highlighted drawDivider:(BOOL)drawDivider {
   CGRect imageRect = CGRectMake(0, 0, kCellImageSize.width, kCellImageSize.height);
   UIGraphicsBeginImageContextWithOptions(imageRect.size, NO, 0);
 
@@ -357,7 +357,7 @@ static const CGSize kCellImageSize = {44, 44};
   }
 
   // Draw the cell divider.
-  if (!last) {
+  if (!last && drawDivider) {
     CGContextSaveGState(cx);
     CGContextSetLineWidth(cx, kBorderSize);
     CGContextSetStrokeColorWithColor(cx, self.dividerColor.CGColor);
@@ -376,10 +376,11 @@ static const CGSize kCellImageSize = {44, 44};
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)_cacheKeyForFirst:(BOOL)first last:(BOOL)last highlighted:(BOOL)highlighted {
+- (id)_cacheKeyForFirst:(BOOL)first last:(BOOL)last highlighted:(BOOL)highlighted drawDivider:(BOOL)drawDivider {
   NSInteger flags = ((first ? 0x01 : 0)
                      | (last ? 0x02 : 0)
-                     | (highlighted ? 0x04 : 0));
+                     | (highlighted ? 0x04 : 0)
+                     | (drawDivider ? 0x08 : 0));
   return [NSNumber numberWithInt:flags];
 }
 
@@ -400,16 +401,25 @@ static const CGSize kCellImageSize = {44, 44};
   NSInteger numberOfRowsInSection = [tableView.dataSource tableView:tableView numberOfRowsInSection:indexPath.section];
   BOOL isFirst = (0 == indexPath.row);
   BOOL isLast = (indexPath.row == numberOfRowsInSection - 1);
+  BOOL drawDivider = YES;
+  if ([cell conformsToProtocol:@protocol(NIGroupedCellAppearance)]
+      && [cell respondsToSelector:@selector(drawsCellDivider)]) {
+    id<NIGroupedCellAppearance> groupedCell = (id<NIGroupedCellAppearance>)cell;
+    drawDivider = [groupedCell drawsCellDivider];
+  }
   NSInteger backgroundTag = ((isFirst ? NIGroupedCellBackgroundFlagIsFirst : 0)
                              | (isLast ? NIGroupedCellBackgroundFlagIsLast : 0)
-                             | NIGroupedCellBackgroundFlagInitialized);
+                             | NIGroupedCellBackgroundFlagInitialized
+                             | drawDivider ? 0 : NIGroupedCellBackgroundFlagNoDivider);
   if (cell.backgroundView.tag != backgroundTag) {
     cell.backgroundView = [[UIImageView alloc] initWithImage:[self imageForFirst:isFirst
                                                                             last:isLast
-                                                                     highlighted:NO]];
+                                                                     highlighted:NO
+                                                                     drawDivider:drawDivider]];
     cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[self imageForFirst:isFirst
                                                                                     last:isLast
-                                                                             highlighted:YES]];
+                                                                             highlighted:YES
+                                                                             drawDivider:drawDivider]];
     cell.backgroundView.tag = backgroundTag;
   }
 }
@@ -417,10 +427,16 @@ static const CGSize kCellImageSize = {44, 44};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIImage *)imageForFirst:(BOOL)first last:(BOOL)last highlighted:(BOOL)highlighted {
-  id cacheKey = [self _cacheKeyForFirst:first last:last highlighted:highlighted];
+  return [self imageForFirst:first last:last highlighted:highlighted drawDivider:YES];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIImage *)imageForFirst:(BOOL)first last:(BOOL)last highlighted:(BOOL)highlighted drawDivider:(BOOL)drawDivider {
+  id cacheKey = [self _cacheKeyForFirst:first last:last highlighted:highlighted drawDivider:drawDivider];
   UIImage* image = [self.cachedImages objectForKey:cacheKey];
   if (nil == image) {
-    image = [self _imageForFirst:first last:last highlighted:highlighted];
+    image = [self _imageForFirst:first last:last highlighted:highlighted drawDivider:drawDivider];
     [self.cachedImages setObject:image forKey:cacheKey];
   }
   return image;
