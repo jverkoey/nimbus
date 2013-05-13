@@ -31,11 +31,20 @@
 #pragma mark -
 #pragma mark Init & Factory
 ////////////////////////////////////////////////////////////////////////////////////////////////////
--(id)initWithDelegate: (id<NITableViewSystemDelegate,UIScrollViewDelegate>)delegate {
+-(id)init {
   self = [super init];
-  
+
   if (self) {
     self.cellFactory = [[NICellFactory alloc] init];
+  }
+  
+  return self;  
+}
+
+-(id)initWithDelegate: (id<NITableViewSystemDelegate,UIScrollViewDelegate>)delegate {
+  self = [self init];
+  
+  if (self) {
     self.delegate = delegate;
   }
   
