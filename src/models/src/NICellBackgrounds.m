@@ -403,9 +403,9 @@ static const CGSize kCellImageSize = {44, 44};
   BOOL isLast = (indexPath.row == numberOfRowsInSection - 1);
   BOOL drawDivider = YES;
   if ([cell conformsToProtocol:@protocol(NIGroupedCellAppearance)]
-      && [cell respondsToSelector:@selector(drawCellDivider)]) {
+      && [cell respondsToSelector:@selector(drawsCellDivider)]) {
     id<NIGroupedCellAppearance> groupedCell = (id<NIGroupedCellAppearance>)cell;
-    drawDivider = [groupedCell drawCellDivider];
+    drawDivider = [groupedCell drawsCellDivider];
   }
   NSInteger backgroundTag = ((isFirst ? NIGroupedCellBackgroundFlagIsFirst : 0)
                              | (isLast ? NIGroupedCellBackgroundFlagIsLast : 0)

@@ -27,7 +27,9 @@
 @protocol NIGroupedCellAppearance <NSObject>
 
 @optional
-- (BOOL)drawCellDivider; // True if not implmenented.
+// Determines whether or not to draw a divider between cells. If the cell does not implement this
+// method, a cell divider will be provided.
+- (BOOL)drawsCellDivider;
 
 @end
 
