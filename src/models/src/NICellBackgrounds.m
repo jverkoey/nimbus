@@ -401,7 +401,12 @@ static const CGSize kCellImageSize = {44, 44};
   NSInteger numberOfRowsInSection = [tableView.dataSource tableView:tableView numberOfRowsInSection:indexPath.section];
   BOOL isFirst = (0 == indexPath.row);
   BOOL isLast = (indexPath.row == numberOfRowsInSection - 1);
-  BOOL drawDivider = [cell drawCellDivider];
+  BOOL drawDivider = YES;
+  if ([cell conformsToProtocol:@protocol(NIGroupedCellAppearance)]
+      && [cell respondsToSelector:@selector(drawCellDivider)]) {
+    id<NIGroupedCellAppearance> groupedCell = (id<NIGroupedCellAppearance>)cell;
+    drawDivider = [groupedCell drawCellDivider];
+  }
   NSInteger backgroundTag = ((isFirst ? NIGroupedCellBackgroundFlagIsFirst : 0)
                              | (isLast ? NIGroupedCellBackgroundFlagIsLast : 0)
                              | NIGroupedCellBackgroundFlagInitialized
@@ -489,18 +494,6 @@ static const CGSize kCellImageSize = {44, 44};
     _dividerColor = dividerColor;
     [self _invalidateCache];
   }
-}
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation UITableViewCell (NIGroupedCellBackground)
-
-- (BOOL)drawCellDivider {
-  return YES;
 }
 
 @end

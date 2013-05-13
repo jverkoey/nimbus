@@ -20,13 +20,14 @@
 #import "NIPreprocessorMacros.h" /* for NI_WEAK */
 
 /**
- * The NIGroupedCellBackground category provides support for each cell to suppress the cell divider.
+ * The NIGroupedCellAppearance protocol provides support for each cell to adjust their appearance.
  *
  *      @ingroup TableCellBackgrounds
  */
-@interface UITableViewCell (NIGroupedCellBackground)
+@protocol NIGroupedCellAppearance <NSObject>
 
-- (BOOL)drawCellDivider; // Default: True
+@optional
+- (BOOL)drawCellDivider; // True if not implmenented.
 
 @end
 
