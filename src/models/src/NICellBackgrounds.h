@@ -19,12 +19,12 @@
 
 #import "NIPreprocessorMacros.h" /* for NI_WEAK */
 
-// Flags set on the cell's backgroundView's tag property to indicate placement of the cell.
+// Flags set on the cell's backgroundView's tag property.
 typedef enum {
   NIGroupedCellBackgroundFlagIsLast       = (1 << 0),
   NIGroupedCellBackgroundFlagIsFirst      = (1 << 1),
   NIGroupedCellBackgroundFlagInitialized  = (1 << 2),
-  NIGroupedCellBackgroundFlagCustomized   = (1 << 3), // Force to set the background image everytime.
+  NIGroupedCellBackgroundFlagIgnoreCache  = (1 << 3), // Force reseting the background image everytime.
 } NIGroupedCellBackgroundFlag;
 
 /**

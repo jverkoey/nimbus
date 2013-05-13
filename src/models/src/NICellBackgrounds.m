@@ -380,7 +380,7 @@ static const CGSize kCellImageSize = {44, 44};
   NSInteger flags = ((first ? 0x01 : 0)
                      | (last ? 0x02 : 0)
                      | (highlighted ? 0x04 : 0)
-                     | (drawDivider ? 0x05 : 0));
+                     | (drawDivider ? 0x08 : 0));
   return [NSNumber numberWithInt:flags];
 }
 
@@ -405,7 +405,7 @@ static const CGSize kCellImageSize = {44, 44};
                              | (isLast ? NIGroupedCellBackgroundFlagIsLast : 0)
                              | NIGroupedCellBackgroundFlagInitialized);
   if (cell.backgroundView.tag != backgroundTag
-      || cell.backgroundView.tag == NIGroupedCellBackgroundFlagCustomized) {
+      || cell.backgroundView.tag == NIGroupedCellBackgroundFlagIgnoreCache) {
     cell.backgroundView = [[UIImageView alloc] initWithImage:[self imageForFirst:isFirst
                                                                             last:isLast
                                                                      highlighted:NO]];
