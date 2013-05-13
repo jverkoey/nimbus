@@ -24,6 +24,7 @@ typedef enum {
   NIGroupedCellBackgroundFlagIsLast       = (1 << 0),
   NIGroupedCellBackgroundFlagIsFirst      = (1 << 1),
   NIGroupedCellBackgroundFlagInitialized  = (1 << 2),
+  NIGroupedCellBackgroundFlagCustomized   = (1 << 3), // Force to set the background image everytime.
 } NIGroupedCellBackgroundFlag;
 
 /**

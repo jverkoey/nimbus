@@ -404,7 +404,8 @@ static const CGSize kCellImageSize = {44, 44};
   NSInteger backgroundTag = ((isFirst ? NIGroupedCellBackgroundFlagIsFirst : 0)
                              | (isLast ? NIGroupedCellBackgroundFlagIsLast : 0)
                              | NIGroupedCellBackgroundFlagInitialized);
-  if (cell.backgroundView.tag != backgroundTag) {
+  if (cell.backgroundView.tag != backgroundTag
+      || cell.backgroundView.tag == NIGroupedCellBackgroundFlagCustomized) {
     cell.backgroundView = [[UIImageView alloc] initWithImage:[self imageForFirst:isFirst
                                                                             last:isLast
                                                                      highlighted:NO]];
