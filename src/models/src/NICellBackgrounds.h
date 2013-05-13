@@ -19,11 +19,12 @@
 
 #import "NIPreprocessorMacros.h" /* for NI_WEAK */
 
-// Flags set on the cell's backgroundView's tag property to indicate placement of the cell.
+// Flags set on the cell's backgroundView's tag property.
 typedef enum {
   NIGroupedCellBackgroundFlagIsLast       = (1 << 0),
   NIGroupedCellBackgroundFlagIsFirst      = (1 << 1),
   NIGroupedCellBackgroundFlagInitialized  = (1 << 2),
+  NIGroupedCellBackgroundFlagIgnoreCache  = (1 << 3), // Force reseting the background image everytime.
 } NIGroupedCellBackgroundFlag;
 
 /**
@@ -36,7 +37,8 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 
-- (UIImage *)imageForFirst:(BOOL)first last:(BOOL)last highlighted:(BOOL)highlighted;
+- (UIImage *)imageForFirst:(BOOL)first last:(BOOL)last highlighted:(BOOL)highlighted; // Default: drawDivider: True
+- (UIImage *)imageForFirst:(BOOL)first last:(BOOL)last highlighted:(BOOL)highlighted drawDivider:(BOOL)drawDivider;
 
 @property (nonatomic, NI_STRONG) UIColor* innerBackgroundColor; // Default: [UIColor whiteColor]
 @property (nonatomic, NI_STRONG) NSMutableArray* highlightedInnerGradientColors; // Default: RGBCOLOR(53, 141, 245), RGBCOLOR(16, 93, 230)
