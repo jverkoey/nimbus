@@ -102,3 +102,4 @@ NSDictionary* NIViewDictionaryFromXmlFile(NSString *xmlPath) {
   }
 }
 @end
+
