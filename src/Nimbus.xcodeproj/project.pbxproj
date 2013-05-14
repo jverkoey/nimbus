@@ -351,6 +351,11 @@
 		C778BED3173E66DA00965988 /* NITableViewSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = C778BED1173E66DA00965988 /* NITableViewSystem.h */; };
 		C778BED4173E66DA00965988 /* NITableViewSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = C778BED2173E66DA00965988 /* NITableViewSystem.m */; };
 		C778BED5173E66DA00965988 /* NITableViewSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = C778BED2173E66DA00965988 /* NITableViewSystem.m */; };
+		C778BF1E1742937F00965988 /* NIXmlViewBuilderMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = C778BF1C1742937E00965988 /* NIXmlViewBuilderMethods.h */; };
+		C778BF1F1742937F00965988 /* NIXmlViewBuilderMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = C778BF1C1742937E00965988 /* NIXmlViewBuilderMethods.h */; };
+		C778BF201742937F00965988 /* NIXmlViewBuilderMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = C778BF1D1742937F00965988 /* NIXmlViewBuilderMethods.m */; };
+		C778BF211742937F00965988 /* NIXmlViewBuilderMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = C778BF1D1742937F00965988 /* NIXmlViewBuilderMethods.m */; };
+		C778BF221742937F00965988 /* NIXmlViewBuilderMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = C778BF1D1742937F00965988 /* NIXmlViewBuilderMethods.m */; };
 		C7A8791D16D7348700A0C23F /* NITextField+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = C7A8791B16D7348700A0C23F /* NITextField+NIStyleable.h */; };
 		C7A8791F16D7348C00A0C23F /* NITextField+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8791C16D7348700A0C23F /* NITextField+NIStyleable.m */; };
 		C7A8792216D7B96200A0C23F /* UITextField+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = C7A8792016D7B96200A0C23F /* UITextField+NIStyleable.h */; };
@@ -1004,6 +1009,8 @@
 		C778BECA173E623600965988 /* NITableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewDelegate.m; sourceTree = "<group>"; };
 		C778BED1173E66DA00965988 /* NITableViewSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITableViewSystem.h; sourceTree = "<group>"; };
 		C778BED2173E66DA00965988 /* NITableViewSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewSystem.m; sourceTree = "<group>"; };
+		C778BF1C1742937E00965988 /* NIXmlViewBuilderMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIXmlViewBuilderMethods.h; path = css/src/NIXmlViewBuilderMethods.h; sourceTree = SOURCE_ROOT; };
+		C778BF1D1742937F00965988 /* NIXmlViewBuilderMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIXmlViewBuilderMethods.m; path = css/src/NIXmlViewBuilderMethods.m; sourceTree = SOURCE_ROOT; };
 		C7A8791B16D7348700A0C23F /* NITextField+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NITextField+NIStyleable.h"; path = "css/src/NITextField+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
 		C7A8791C16D7348700A0C23F /* NITextField+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NITextField+NIStyleable.m"; path = "css/src/NITextField+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		C7A8792016D7B96200A0C23F /* UITextField+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+NIStyleable.h"; path = "css/src/UITextField+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
@@ -1568,6 +1575,8 @@
 				668ECDC61455C17100455266 /* NIStylesheetCache.m */,
 				C743F6E816D2652F00A933B7 /* NIUserInterfaceString.h */,
 				C743F6E916D2652F00A933B7 /* NIUserInterfaceString.m */,
+				C778BF1C1742937E00965988 /* NIXmlViewBuilderMethods.h */,
+				C778BF1D1742937F00965988 /* NIXmlViewBuilderMethods.m */,
 				C7A8791A16D7344F00A0C23F /* Styleable Nimbus Views */,
 				668ECDD014565AB800455266 /* Chameleon */,
 				66832D0C143E3C1C003E413C /* Styleable UIKit Views */,
@@ -2252,6 +2261,7 @@
 				66D2E54315D9438D00281511 /* NIMutableTableViewModel+Private.h in Headers */,
 				C778BECB173E623600965988 /* NITableViewDelegate.h in Headers */,
 				C778BED3173E66DA00965988 /* NITableViewSystem.h in Headers */,
+				C778BF1F1742937F00965988 /* NIXmlViewBuilderMethods.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2402,6 +2412,7 @@
 				C7A8792216D7B96200A0C23F /* UITextField+NIStyleable.h in Headers */,
 				C7BBC6B916DDC0DB00833DC9 /* NITextField.h in Headers */,
 				C7DF950517134C7900E8B786 /* NICSSResourceResolverDelegate.h in Headers */,
+				C778BF1E1742937F00965988 /* NIXmlViewBuilderMethods.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3565,6 +3576,7 @@
 				66D2E54015D9432000281511 /* NIMutableTableViewModel.m in Sources */,
 				C778BECC173E623600965988 /* NITableViewDelegate.m in Sources */,
 				C778BED4173E66DA00965988 /* NITableViewSystem.m in Sources */,
+				C778BF211742937F00965988 /* NIXmlViewBuilderMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3577,6 +3589,7 @@
 				66D2E54715D9503100281511 /* NIMutableTableViewModelTests.m in Sources */,
 				C778BECD173E623600965988 /* NITableViewDelegate.m in Sources */,
 				C778BED5173E66DA00965988 /* NITableViewSystem.m in Sources */,
+				C778BF221742937F00965988 /* NIXmlViewBuilderMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3777,6 +3790,7 @@
 				C7A8791F16D7348C00A0C23F /* NITextField+NIStyleable.m in Sources */,
 				C7A8792316D7B96200A0C23F /* UITextField+NIStyleable.m in Sources */,
 				C7BBC6BA16DDC0DB00833DC9 /* NITextField.m in Sources */,
+				C778BF201742937F00965988 /* NIXmlViewBuilderMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
