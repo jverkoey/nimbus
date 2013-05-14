@@ -127,6 +127,41 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Object State
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UITableViewCellAccessoryType)accessoryTypeForObject:(id)object {
+  NIObjectActions* action = [self actionForObjectOrClassOfObject:object];
+  // Detail disclosure indicator takes precedence over regular disclosure indicator.
+  if (nil != action.detailAction || nil != action.detailSelector) {
+    return UITableViewCellAccessoryDetailDisclosureButton;
+
+  } else if (nil != action.navigateAction || nil != action.navigateSelector) {
+    return  UITableViewCellAccessoryDisclosureIndicator;
+
+  }
+  // We must maintain consistency of modifications to the accessoryType within this call due
+  // to the fact that cells will be reused.
+  return UITableViewCellAccessoryNone;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UITableViewCellSelectionStyle)selectionStyleForObject:(id)object {
+  // If the cell is tappable, reflect that in the selection style.
+  NIObjectActions* action = [self actionForObjectOrClassOfObject:object];
+  if (action.navigateAction || action.tapAction
+      || action.navigateSelector || action.tapSelector) {
+    return self.tableViewCellSelectionStyle;
+
+  }
+  return UITableViewCellSelectionStyleNone;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UITableViewDelegate
 
 
@@ -136,34 +171,9 @@
   if ([tableView.dataSource isKindOfClass:[NITableViewModel class]]) {
     NITableViewModel* model = (NITableViewModel *)tableView.dataSource;
     id object = [model objectAtIndexPath:indexPath];
-
     if ([self isObjectActionable:object]) {
-      NIObjectActions* action = [self actionForObjectOrClassOfObject:object];
-
-      // Detail disclosure indicator takes precedence over regular disclosure indicator.
-      if (nil != action.detailAction || nil != action.detailSelector) {
-        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-
-      } else if (nil != action.navigateAction || nil != action.navigateSelector) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-      } else {
-        // We must maintain consistency of modifications to the accessoryType within this call due
-        // to the fact that cells will be reused.
-        cell.accessoryType = UITableViewCellAccessoryNone;
-      }
-
-      // If the cell is tappable, reflect that in the selection style.
-      if (action.navigateAction || action.tapAction
-          || action.navigateSelector || action.tapSelector) {
-        cell.selectionStyle = self.tableViewCellSelectionStyle;
-
-      } else {
-        // We must maintain consistency of modifications to the selectionStyle within this call due
-        // to the fact that cells will be reused.
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-      }
-
+      cell.accessoryType = [self accessoryTypeForObject:object];
+      cell.selectionStyle = [self selectionStyleForObject:object];
     } else {
       cell.accessoryType = UITableViewCellAccessoryNone;
       cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -177,7 +187,6 @@
     }
   }
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
