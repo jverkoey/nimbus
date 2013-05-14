@@ -90,6 +90,14 @@
 
 @property (nonatomic, NI_STRONG) NICellFactory          *cellFactory;
 @property (nonatomic, NI_STRONG) NITableViewDelegate    *tableViewDelegate;
+
+/**
+ * We don't acutally do ANYTHING with this actions object, but you typically need it to be retained
+ * while the array/datasource you're using is active. Rather than littering your table views with
+ * a property that exists solely for memory lifecycle purposes, you can use the table systems
+ * "container." Because we don't access the property, there are no timing issues with setting
+ * this while setting the datasource/array.
+ */
 @property (nonatomic, NI_STRONG) NITableViewActions     *actions;
 
 @property (nonatomic, NI_WEAK) id<NITableViewSystemDelegate, UIScrollViewDelegate> delegate;
