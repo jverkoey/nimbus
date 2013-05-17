@@ -286,11 +286,11 @@
   [self.view addSubview:self.toolbar];
 
   self.webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-  [self updateWebViewFrame];
   self.webView.delegate = self;
   self.webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                | UIViewAutoresizingFlexibleHeight);
   self.webView.scalesPageToFit = YES;
+  [self updateWebViewFrame];
 
   if ([UIColor respondsToSelector:@selector(underPageBackgroundColor)]) {
     self.webView.backgroundColor = [UIColor underPageBackgroundColor];
