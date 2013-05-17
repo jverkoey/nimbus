@@ -315,24 +315,31 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setZoomingIsEnabled:(BOOL)enabled {
-  _zoomingIsEnabled = enabled;
-
-  if (nil != _imageView.image) {
-    [self setMaxMinZoomScalesForCurrentBounds];
-
-    // Fit the image on screen.
-    _scrollView.zoomScale = _scrollView.minimumZoomScale;
-
-    // Disable zoom bouncing if zooming is disabled, otherwise the view will allow pinching.
-    _scrollView.bouncesZoom = enabled;
-
-  } else {
-    // Reset to the defaults if there is no set image yet.
-    _scrollView.zoomScale = 1;
-    _scrollView.minimumZoomScale = 1;
-    _scrollView.maximumZoomScale = 1;
-    _scrollView.bouncesZoom = NO;
-  }
+    _zoomingIsEnabled = enabled;
+    
+    if (nil != _imageView.image) {
+        [self setMaxMinZoomScalesForCurrentBounds];
+        
+        // Fit the image on screen.
+        //_scrollView.zoomScale = _scrollView.minimumZoomScale;
+        
+        // Aspect to Fit the image on screen by Albert Tong - may do a pull request in the future
+        CGFloat xScale = _scrollView.bounds.size.width / _imageView.image.size.width;
+        CGFloat yScale = _scrollView.bounds.size.height / _imageView.image.size.height;
+        CGFloat aspectToFitScale = MIN(xScale, yScale);
+        _scrollView.zoomScale = boundf(aspectToFitScale,
+                                       _scrollView.minimumZoomScale, _scrollView.maximumZoomScale);
+        
+        // Disable zoom bouncing if zooming is disabled, otherwise the view will allow pinching.
+        _scrollView.bouncesZoom = enabled;
+        
+    } else {
+        // Reset to the defaults if there is no set image yet.
+        _scrollView.zoomScale = 1;
+        _scrollView.minimumZoomScale = 1;
+        _scrollView.maximumZoomScale = 1;
+        _scrollView.bouncesZoom = NO;
+    }
 }
 
 
