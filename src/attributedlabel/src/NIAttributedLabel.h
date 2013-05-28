@@ -477,7 +477,9 @@ typedef enum {
 /**
  * The attributed string to use for tail truncation.
  *
- * By default this is nil and tail trunction will use the standard ellipses character.
+ * By default this is nil.
+ * 
+ * If this is nil then the standard ellipses character will be used for tail truncation.
  *
  *      @fn NIAttributedLabel::tailTruncationAttributedString
  */
