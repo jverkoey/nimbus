@@ -211,6 +211,8 @@ void NISetValuesForKeys(NSObject *target, NSDictionary* keyedValues, NSDateForma
   unsigned int propertyCount;
 	objc_property_t *properties = class_copyPropertyList([target class], &propertyCount);
 	
+  NSMutableSet *unusedValueKeys = [[NSMutableSet alloc] initWithArray:keyedValues.allKeys];
+  
 	/*
 	 This code iterates over self's properties instead of ivars because the backing ivar might have a different name
 	 than the property, for example if the class includes something like:
@@ -227,6 +229,7 @@ void NISetValuesForKeys(NSObject *target, NSDictionary* keyedValues, NSDateForma
 		
 		id value = [keyedValues objectForKey:keyName];
 		if (value != nil) {
+      [unusedValueKeys removeObject:keyName];
 			char *typeEncoding = NULL;
 			typeEncoding = property_copyAttributeValue(property, "T");
 			
@@ -298,4 +301,13 @@ void NISetValuesForKeys(NSObject *target, NSDictionary* keyedValues, NSDateForma
 		}
 	}
 	free(properties);
+  if ([unusedValueKeys count]) {
+    for (NSString *key in unusedValueKeys) {
+      @try {
+        [target setValue:[keyedValues objectForKey:key] forUndefinedKey:key];
+      }
+      @catch (NSException *exception) {
+      }
+    }
+  }
 }
