@@ -120,6 +120,8 @@ extern NSString * const kNILinkAttributeName;
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins verticalTextAlignment:(NIVerticalTextAlignment)verticalTextAlignment;
 
 @property (nonatomic, NI_WEAK) IBOutlet id<NIAttributedLabelDelegate> delegate;
+
+@property (nonatomic, copy) NSAttributedString *tailTruncationAttributedString;
 @end
 
 /**
@@ -470,4 +472,16 @@ extern NSString * const kNILinkAttributeName;
  * which does not strong the delegate, invokes each protocol method the delegate implements.
  *
  *      @fn NIAttributedLabel::delegate
+ */
+
+/** @name Modifying the String Used for Tail Truncation */
+
+/**
+ * The attributed string to use for tail truncation.
+ *
+ * By default this is nil.
+ * 
+ * If this is nil then the standard ellipses character will be used for tail truncation.
+ *
+ *      @fn NIAttributedLabel::tailTruncationAttributedString
  */
