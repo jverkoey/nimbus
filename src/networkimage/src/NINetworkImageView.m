@@ -322,7 +322,7 @@
     // Check for file URLs.
     if ([pathToNetworkImage hasPrefix:@"/"]) {
       // If the url starts with / then it's likely a file URL, so treat it accordingly.
-      url = [NSURL fileURLWithPath:[pathToNetworkImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+      url = [NSURL fileURLWithPath:pathToNetworkImage];
 
     } else {
       // Otherwise we assume it's a regular URL.
