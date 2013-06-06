@@ -66,7 +66,7 @@ static const CGSize kCellImageSize = {44, 44};
 }
 
 // We want to draw the borders and shadows on single retina-pixel boundaries if possible, but
-// but we need to avoid doing this on non-retina devices because it'll look blurry.
+// we need to avoid doing this on non-retina devices because it'll look blurry.
 + (CGFloat)minPixelOffset {
   if (NIIsRetina()) {
     return 0.5f;
