@@ -1176,7 +1176,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     if (self.attributesForLinks.count > 0) {
       [attributedString addAttributes:self.attributesForLinks range:result.range];
     }
-    if (self.attributesForHighlightedLink.count > 0 && result == self.touchedLink) {
+    if (self.attributesForHighlightedLink.count > 0 && NSEqualRanges(result.range, self.touchedLink.range)) {
       [attributedString addAttributes:self.attributesForHighlightedLink range:result.range];
     }
   }
