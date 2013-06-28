@@ -27,7 +27,7 @@
 static const CGFloat kVMargin = 5.0f;
 static const NSTimeInterval kLongPressTimeInterval = 0.5;
 static const CGFloat kLongPressGutter = 22;
-static NSString* const kLinkAttributedName = @"NIAttributedLabel:Link";
+NSString * const kNILinkAttributeName = @"NIAttributedLabel:Link";
 
 CGFloat ImageDelegateGetAscentCallback(void* refCon);
 CGFloat ImageDelegateGetDescentCallback(void* refCon);
@@ -303,6 +303,9 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     // Remove all images.
     self.images = nil;
 
+    // Pull any explicit links from the attributed string itself
+    [self _processLinksInAttributedString:self.mutableAttributedString];
+
     [self attributedTextDidChange];
   }
 }
@@ -321,6 +324,9 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
     // Remove all images.
     self.images = nil;
+
+    // Pull any explicit links from the attributed string itself
+    [self _processLinksInAttributedString:self.mutableAttributedString];
 
     [self attributedTextDidChange];
   }
@@ -730,6 +736,33 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)_processLinksInAttributedString:(NSAttributedString *)attributedString {
+  // Pull any attributes matching the link attribute from the attributed string and store them as
+  // the current set of explicit links. This properly handles the value of the attribute being
+  // either an NSURL or an NSString.
+  __block NSMutableArray *links = [NSMutableArray array];
+  [attributedString enumerateAttribute:kNILinkAttributeName
+                               inRange:NSMakeRange(0, attributedString.length)
+                               options:0
+                            usingBlock:^(id value, NSRange range, BOOL *stop) {
+                                if (value != nil)
+                                {
+                                  if ([value isKindOfClass:[NSURL class]])
+                                  {
+                                    [links addObject:[NSTextCheckingResult linkCheckingResultWithRange:range URL:value]];
+                                  }
+                                  else if ([value isKindOfClass:[NSString class]])
+                                  {
+                                    NSURL *url = [NSURL URLWithString:value];
+                                    [links addObject:[NSTextCheckingResult linkCheckingResultWithRange:range URL:url]];
+                                  }
+                                }
+                            }];
+  self.explicitLinkLocations = links;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)_verticalOffsetForBounds:(CGRect)bounds {
   CGFloat verticalOffset = 0;
   if (NIVerticalTextAlignmentTop != self.verticalTextAlignment) {
@@ -788,15 +821,15 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
       CGPoint relativePoint = CGPointMake(point.x-CGRectGetMinX(rect),
                                           point.y-CGRectGetMinY(rect));
       CFIndex idx = CTLineGetStringIndexForPosition(line, relativePoint);
-        
+
       NSUInteger offset = 0;
       for (NIAttributedLabelImage *labelImage in self.images) {
         if (labelImage.index < idx) {
           offset++;
         }
-            
+
       }
-        
+
       foundLink = [self linkAtIndex:idx - offset];;
       if (foundLink) {
         NSTextCheckingResult *result = [NSTextCheckingResult linkCheckingResultWithRange:NSMakeRange(foundLink.range.location + offset, foundLink.range.length) URL:foundLink.URL];
@@ -1129,8 +1162,9 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     // We add a no-op attribute in order to force a run to exist for each link. Otherwise the
     // runCount will be one in this line, causing the entire line to be highlighted rather than
     // just the link when when no special attributes are set.
-    [attributedString addAttribute:kLinkAttributedName
-                             value:[NSNumber numberWithBool:YES]
+    [attributedString removeAttribute:kNILinkAttributeName range:result.range];
+    [attributedString addAttribute:kNILinkAttributeName
+                             value:result.URL
                              range:result.range];
 
     if (self.linksHaveUnderlines) {
@@ -1142,7 +1176,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     if (self.attributesForLinks.count > 0) {
       [attributedString addAttributes:self.attributesForLinks range:result.range];
     }
-    if (self.attributesForHighlightedLink.count > 0 && result == self.touchedLink) {
+    if (self.attributesForHighlightedLink.count > 0 && NSEqualRanges(result.range, self.touchedLink.range)) {
       [attributedString addAttributes:self.attributesForHighlightedLink range:result.range];
     }
   }
@@ -1185,20 +1219,20 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
       callbacks.getAscent = ImageDelegateGetAscentCallback;
       callbacks.getDescent = ImageDelegateGetDescentCallback;
       callbacks.getWidth = ImageDelegateGetWidthCallback;
-        
+
       NSUInteger index = labelImage.index;
       if (index >= attributedString.length) {
         index = attributedString.length - 1;
       }
-    
+
       NSDictionary *attributes = [attributedString attributesAtIndex:index effectiveRange:NULL];
       CTFontRef font = (__bridge CTFontRef)[attributes valueForKey:(__bridge id)kCTFontAttributeName];
-    
+
       if (font != NULL) {
         labelImage.fontAscent = CTFontGetAscent(font);
         labelImage.fontDescent = CTFontGetDescent(font);
       }
-        
+
       CTRunDelegateRef delegate = CTRunDelegateCreate(&callbacks, (__bridge void *)labelImage);
 
       // Character to use as recommended by kCTRunDelegateAttributeName documentation.
@@ -1271,9 +1305,9 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
                                                          NULL);
 
       CGFloat imageBoxHeight = labelImage.boxSize.height;
-      
+
       CGFloat xOffset = CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, nil);
-      
+
       CGFloat imageBoxOriginY = 0.0f;
       switch (labelImage.verticalTextAlignment) {
         case NIVerticalTextAlignmentTop:
@@ -1286,13 +1320,13 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
           imageBoxOriginY = lineBottomY;
           break;
       }
-      
+
       CGRect rect = CGRectMake(lineOrigin.x + xOffset, imageBoxOriginY, width, imageBoxHeight);
       UIEdgeInsets flippedMargins = labelImage.margins;
       CGFloat top = flippedMargins.top;
       flippedMargins.top = flippedMargins.bottom;
       flippedMargins.bottom = top;
-      
+
       CGRect imageRect = UIEdgeInsetsInsetRect(rect, flippedMargins);
       CGContextDrawImage(ctx, imageRect, labelImage.image.CGImage);
     }
@@ -1592,14 +1626,14 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat ImageDelegateGetAscentCallback(void* refCon) {
   NIAttributedLabelImage *labelImage = (__bridge NIAttributedLabelImage *)refCon;
-  
+
   switch (labelImage.verticalTextAlignment) {
     case NIVerticalTextAlignmentMiddle:
     {
       CGFloat ascent = labelImage.fontAscent;
       CGFloat descent = labelImage.fontDescent;
       CGFloat baselineFromMid = (ascent + descent) / 2 - descent;
-      
+
       return labelImage.boxSize.height / 2 + baselineFromMid;
     }
     case NIVerticalTextAlignmentTop:
@@ -1614,14 +1648,14 @@ CGFloat ImageDelegateGetAscentCallback(void* refCon) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat ImageDelegateGetDescentCallback(void* refCon) {
   NIAttributedLabelImage *labelImage = (__bridge NIAttributedLabelImage *)refCon;
-  
+
   switch (labelImage.verticalTextAlignment) {
     case NIVerticalTextAlignmentMiddle:
     {
       CGFloat ascent = labelImage.fontAscent;
       CGFloat descent = labelImage.fontDescent;
       CGFloat baselineFromMid = (ascent + descent) / 2 - descent;
-      
+
       return labelImage.boxSize.height / 2 - baselineFromMid;
     }
     case NIVerticalTextAlignmentTop:

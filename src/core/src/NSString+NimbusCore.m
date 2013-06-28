@@ -106,7 +106,7 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
   CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                           (__bridge CFStringRef)self,
                                           NULL,
-                                          (__bridge CFStringRef)@";/?:@&=+$,",
+                                          (__bridge CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                           kCFStringEncodingUTF8);
   
   NSString *result = [NSString stringWithString:(__bridge NSString *)buffer];
