@@ -13,6 +13,7 @@
 @interface NIUIXMLParser : NSObject <NSXMLParserDelegate>
 @property (nonatomic,strong) NSMutableDictionary *result;
 @property (nonatomic,strong) NSMutableArray *elementStack;
+@property (nonatomic,assign) BOOL isInProperties;
 @end
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -48,6 +49,11 @@ NSDictionary* NIViewDictionaryFromXmlFile(NSString *xmlPath) {
   
   if (!self.result) {
     self.result = nd;
+  } else {
+    // This has to be inside a view.
+    if ([elementName isEqualToString:@"Properties"]) {
+      
+    }
   }
   
   if (self.elementStack.count) {
@@ -98,6 +104,9 @@ NSDictionary* NIViewDictionaryFromXmlFile(NSString *xmlPath) {
     text = [[NSMutableString alloc] initWithString:string];
     [inProgress setObject:text forKey:NICSSViewTextKey];
   } else {
+    if (![text isKindOfClass:[NSMutableString class]]) {
+      text = [text mutableCopy];
+    }
     [text appendString:string];
   }
 }

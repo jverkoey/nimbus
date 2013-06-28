@@ -661,6 +661,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     NSString *firstClass = [viewInfo.cssClasses count] ? [viewInfo.cssClasses objectAtIndex:0] : nil;
     [dom registerView:viewInfo.view withCSSClass:firstClass andId:viewInfo.viewId];
     if (viewInfo.viewId && dom.target) {
+      // This sets the property on a container corresponding to the id of a contained view
       NSString *selectorName = [NSString stringWithFormat:@"set%@%@:", [[viewInfo.viewId substringWithRange:NSMakeRange(1, 1)] uppercaseString], [viewInfo.viewId substringFromIndex:2]];
       SEL selector = NSSelectorFromString(selectorName);
       if ([dom.target respondsToSelector:selector]) {
@@ -927,7 +928,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
       
       if (kv.count) {
         // The rest go to kv setters
-        [active.view setValuesForKeysWithDictionary:kv];
+        NISetValuesForKeys(active.view, kv, nil);
       }
       
       continue;

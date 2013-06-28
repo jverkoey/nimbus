@@ -179,7 +179,7 @@
     if (!_idToViewMap) {
       _idToViewMap = [[NSMutableDictionary alloc] init];
     }
-    [_idToViewMap setObject:view forKey:viewId];
+    [_idToViewMap setObject:view forKey:viewId.lowercaseString];
     // Run the id selectors last so they take precedence
     [self refreshStyleForView:view withSelectorName:viewId];
     if (pseudos) {
@@ -280,7 +280,7 @@
     // also remove it from the id map
     for (NSString *s in selectors) {
       if ([s characterAtIndex:0] == '#') {
-        [_idToViewMap removeObjectForKey:s];
+        [_idToViewMap removeObjectForKey:s.lowercaseString];
       }
     }
   }
@@ -316,7 +316,7 @@
 -(UIView *)viewById:(NSString *)viewId
 {
   if (![viewId hasPrefix:@"#"]) { viewId = [@"#" stringByAppendingString:viewId]; }
-  return [_idToViewMap objectForKey:viewId];
+  return [_idToViewMap objectForKey:viewId.lowercaseString];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
