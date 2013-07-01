@@ -22,7 +22,7 @@
 @class NITableViewDelegate;
 @class NITableViewSystem;
 @class NICellFactory;
-@class NITableViewActions;
+@class NITableViewSystemActions;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +32,7 @@
  * - table row selection
  * - Forwarding some UIScrollViewDelegate messages, so UIViewControllers can do neat things.
 */
-@protocol NITableViewSystemDelegate <NSObject>
+@protocol NITableViewSystemDelegate <NSObject, UITableViewDelegate>
 
 @optional
 - (void)tableSystem:(NITableViewSystem *)tableSystem didSelectObject:(id)object
@@ -41,12 +41,21 @@
     atIndexPath:(NSIndexPath *)indexPath;
 @end
 
+#import "NITableViewSystemActions.h"
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NITableViewSystem : NSObject <NITableViewModelDelegate>
 
-- (id) initWithDelegate: (id<NITableViewSystemDelegate, UIScrollViewDelegate>) delegate;
+- (id) initWithTableView: (UITableView*) tableView andDelegate: (id<NITableViewSystemDelegate>) delegate;
+- (id) initWithDelegate: (id<NITableViewSystemDelegate>) delegate;
+
+/**
+ * Given a table object, return the index path if any.
+ *
+ * @param object The table object
+ */
 - (NSIndexPath *)indexPathForTableItem:(id)object;
 
 /**
@@ -88,17 +97,17 @@
  */
 @property (nonatomic, NI_STRONG) NITableViewModel       *dataSource;
 
+/**
+ * Generally you can use the default cell factory, since it will use the cellClass of the table object.
+ */
 @property (nonatomic, NI_STRONG) NICellFactory          *cellFactory;
-@property (nonatomic, NI_STRONG) NITableViewDelegate    *tableViewDelegate;
 
 /**
- * We don't acutally do ANYTHING with this actions object, but you typically need it to be retained
- * while the array/datasource you're using is active. Rather than littering your table views with
- * a property that exists solely for memory lifecycle purposes, you can use the table systems
- * "container." Because we don't access the property, there are no timing issues with setting
- * this while setting the datasource/array.
+ * Table view systems do fancy footwork with the table view delegates to make things easier. As a result,
+ * you can't be the table view's delegate. Instead, you should use this actions object to assign
+ * actions to your table cell objects. See the NimbusCatalog TableSystemViewController example.
  */
-@property (nonatomic, NI_STRONG) NITableViewActions     *actions;
+@property (nonatomic, readonly, NI_STRONG) NITableViewSystemActions     *actions;
 
 @property (nonatomic, NI_WEAK) id<NITableViewSystemDelegate, UIScrollViewDelegate> delegate;
 

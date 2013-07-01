@@ -17,11 +17,9 @@
 #import "NITableViewSystem.h"
 
 #import "NICellFactory.h"
-#import "NITableViewDelegate.h"
 
 #import "NITableViewModel.h"
 #import "NITableViewModel+Private.h"
-#import "NITableViewDelegate.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,14 +39,25 @@
   return self;  
 }
 
--(id)initWithDelegate: (id<NITableViewSystemDelegate,UIScrollViewDelegate>)delegate {
+-(id)initWithDelegate: (id<NITableViewSystemDelegate>)delegate {
   self = [self init];
   
   if (self) {
-    self.delegate = delegate;
+    _actions = [[NITableViewSystemActions alloc] initWithTarget:delegate];
   }
   
   return self;
+}
+
+-(id)initWithTableView:(UITableView *)tableView andDelegate:(id<NITableViewSystemDelegate>)delegate {
+    self = [self initWithDelegate:delegate];
+    
+    if (self) {
+        _tableView = tableView;
+        // No need to set anything else because the table is empty right now anyways
+    }
+    
+    return self;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,29 +66,13 @@
     _dataSource = dataSource;
     
     self.tableView.dataSource = self.dataSource;
-    
-    // Create delegate
-    self.tableViewDelegate = [self createTableViewDelegate];
-    
-    if ([self.tableViewDelegate isKindOfClass:[NITableViewDelegate class]]) {
-      [(NITableViewDelegate *)self.tableViewDelegate setDataSource:self.dataSource];
-      [(NITableViewDelegate *)self.tableViewDelegate setTableSystem:self];
-    }
-    
-    self.tableView.delegate = self.tableViewDelegate;
+    self.tableView.delegate = self.actions;
   }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setDataSourceWithArray:(NSArray *)listArray {
   [self setDataSource:[[NITableViewModel alloc] initWithListArray:listArray delegate:self]];
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-- (id<UITableViewDelegate>)createTableViewDelegate {
-  // You may want to override this for custom views. You could subclass it,
-  // or we find some other way to customize it.
-  return [[NITableViewDelegate alloc] initWithDataSource:nil delegate:self.delegate];
 }
 
 #pragma mark -
