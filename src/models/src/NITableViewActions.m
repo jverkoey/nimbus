@@ -234,7 +234,9 @@
       }
 
       if (action.navigateAction) {
-        action.navigateAction(object, self.target, indexPath);
+        if (action.navigateAction(object, self.target, indexPath) && !shouldDeselect) {
+          [tableView deselectRowAtIndexPath:indexPath animated:YES];          
+        }
       }
       if (action.navigateSelector && [self.target respondsToSelector:action.navigateSelector]) {
 #pragma clang diagnostic push
