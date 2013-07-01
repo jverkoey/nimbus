@@ -110,6 +110,11 @@
  */
 #define NIIOS_6_1     60100
 
+/**
+ * Release unknown
+ */
+#define NIIOS_7_0     70000
+
 #ifndef kCFCoreFoundationVersionNumber_iPhoneOS_2_0
 #define kCFCoreFoundationVersionNumber_iPhoneOS_2_0 478.23
 #endif
