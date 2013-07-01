@@ -1162,9 +1162,21 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     // We add a no-op attribute in order to force a run to exist for each link. Otherwise the
     // runCount will be one in this line, causing the entire line to be highlighted rather than
     // just the link when when no special attributes are set.
+	NSURL * URL = nil;
+	switch ([result resultType]) {
+	  case NSTextCheckingTypeLink:
+		  URL = [result URL];
+		  break;
+	  case NSTextCheckingTypePhoneNumber:
+		  URL = [NSURL URLWithString:[@"tel://" stringByAppendingString:[result phoneNumber]]];
+		  break;
+		  
+	  default:
+		  break;
+	}
     [attributedString removeAttribute:kNILinkAttributeName range:result.range];
     [attributedString addAttribute:kNILinkAttributeName
-                             value:result.URL
+                             value:URL
                              range:result.range];
 
     if (self.linksHaveUnderlines) {
