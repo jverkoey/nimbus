@@ -824,6 +824,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
       foundLink = [self linkAtIndex:idx - offset];;
       if (foundLink) {
+          if (foundLink.resultType == NSTextCheckingTypePhoneNumber) {
+              NSTextCheckingResult *result = [NSTextCheckingResult linkCheckingResultWithRange:NSMakeRange(foundLink.range.location + offset, foundLink.range.length) URL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", [foundLink.phoneNumber stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
+              
+              return result;
+          }
+          
         NSTextCheckingResult *result = [NSTextCheckingResult linkCheckingResultWithRange:NSMakeRange(foundLink.range.location + offset, foundLink.range.length) URL:foundLink.URL];
 
         return result;
@@ -1118,6 +1124,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     NIDASSERT(NO);
     [actionSheet addButtonWithTitle:NSLocalizedString(@"Copy", @"")];
   }
+    
+  actionSheet.title = [title stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
   actionSheet.title = title;
 
   if (!NIIsPad()) {
@@ -1167,9 +1175,19 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     // We add a no-op attribute in order to force a run to exist for each link. Otherwise the
     // runCount will be one in this line, causing the entire line to be highlighted rather than
     // just the link when when no special attributes are set.
+    id value = nil;
+    if (result.resultType == NSTextCheckingTypePhoneNumber) {
+        value = result.phoneNumber;
+    } else {
+        value = result.URL;
+    }
+    if (!value) {
+        return;
+    }
+      
     [attributedString removeAttribute:kNILinkAttributeName range:result.range];
     [attributedString addAttribute:kNILinkAttributeName
-                             value:result.URL
+                             value:value
                              range:result.range];
 
     if (self.linksHaveUnderlines) {
