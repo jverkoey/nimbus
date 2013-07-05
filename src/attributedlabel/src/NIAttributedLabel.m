@@ -968,9 +968,28 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-  [super touchesBegan:touches withEvent:event];
+-(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+	// never return self. always return the result of [super hitTest..].
+	// this takes userInteraction state, enabled, alpha values etc. into account
+	UIView *hitResult = [super hitTest:point withEvent:event];
+	
+	// don't check for links if the event was handled by one of the subviews
+	if (hitResult != self) {
+		return hitResult;
+	}
+	
+	if (self.explicitLinkLocations || self.detectedlinkLocations) {
+		BOOL didHitLink = ([self linkAtPoint:point] != nil);
+		if (!didHitLink) {
+			// not catch the touch if it didn't hit a link
+			return nil;
+		}
+	}
+	return hitResult;
+}
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   UITouch* touch = [touches anyObject];
   CGPoint point = [touch locationInView:self];
 
@@ -989,8 +1008,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-  [super touchesMoved:touches withEvent:event];
-
   UITouch* touch = [touches anyObject];
   CGPoint point = [touch locationInView:self];
 
@@ -1032,8 +1049,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-  [super touchesEnded:touches withEvent:event];
-
   [self.longPressTimer invalidate];
   self.longPressTimer = nil;
 
@@ -1056,8 +1071,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-  [super touchesCancelled:touches withEvent:event];
-
   [self.longPressTimer invalidate];
   self.longPressTimer = nil;
 
