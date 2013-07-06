@@ -832,7 +832,17 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
       foundLink = [self linkAtIndex:idx - offset];;
       if (foundLink) {
-        NSTextCheckingResult *result = [NSTextCheckingResult linkCheckingResultWithRange:NSMakeRange(foundLink.range.location + offset, foundLink.range.length) URL:foundLink.URL];
+        NSTextCheckingResult *result = nil;
+				switch ([foundLink resultType]) {
+					case NSTextCheckingTypePhoneNumber:
+						result = [NSTextCheckingResult phoneNumberCheckingResultWithRange:NSMakeRange(foundLink.range.location + offset, foundLink.range.length)
+																																	phoneNumber:[foundLink phoneNumber]];
+						break;
+						
+					default:
+						result = [NSTextCheckingResult linkCheckingResultWithRange:NSMakeRange(foundLink.range.location + offset, foundLink.range.length) URL:foundLink.URL];
+						break;
+				}
 
         return result;
       }
@@ -1155,25 +1165,29 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_applyLinkStyleWithResults:(NSArray *)results toAttributedString:(NSMutableAttributedString *)attributedString {
   for (NSTextCheckingResult* result in results) {
-    if (self.linkColor) {
-      [attributedString setTextColor:self.linkColor range:result.range];
-    }
-
     // We add a no-op attribute in order to force a run to exist for each link. Otherwise the
     // runCount will be one in this line, causing the entire line to be highlighted rather than
     // just the link when when no special attributes are set.
-	NSURL * URL = nil;
-	switch ([result resultType]) {
-	  case NSTextCheckingTypeLink:
-		  URL = [result URL];
-		  break;
-	  case NSTextCheckingTypePhoneNumber:
-		  URL = [NSURL URLWithString:[@"tel://" stringByAppendingString:[result phoneNumber]]];
-		  break;
-		  
-	  default:
-		  break;
-	}
+		NSURL * URL = nil;
+		switch ([result resultType]) {
+			case NSTextCheckingTypeLink:
+				URL = [result URL];
+				break;
+			case NSTextCheckingTypePhoneNumber:
+				URL = [NSURL URLWithString:[@"tel:" stringByAppendingString:[result phoneNumber]]];
+				break;
+				
+			default:
+				break;
+		}
+		
+		// Avoid crashing for not supported links
+		if (nil == URL) continue;
+		
+		if (self.linkColor) {
+      [attributedString setTextColor:self.linkColor range:result.range];
+    }
+		
     [attributedString removeAttribute:kNILinkAttributeName range:result.range];
     [attributedString addAttribute:kNILinkAttributeName
                              value:URL
