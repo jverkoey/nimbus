@@ -72,6 +72,28 @@ NSArray *objects = @[
  }];
 @endcode
  *
+ * <h3>Setting a Custom Accessory View</h3>
+ * For either tap block or selector invocations, there is an option to set a custom accessoryView.
+ *
+ * The following is an example of setting an accessoryView:
+ *
+ @code
+ UISwitch *switchControl = [[UISwitch alloc] init];
+ switchControl.tag = 1;
+ [switchControl addTarget:self action:@selector(switched:) forControlEvents:UIControlEventValueChanged];
+
+ NSArray *objects = @[
+    [NITitleCellObject objectWithTitle:@"Custom Accessory View"],
+    [self.actions attachToObject:[NITitleCellObject objectWithTitle:@"UISwitch Cell"]
+                   accessoryView:switchControl
+                     tapSelector:nil]
+ ];
+
+ - (void)switched:(id)switchControl {
+    NSLog(@"Switch %i is now %@.", switchControl.tag, (switchControl.on) ? @"on" : @"off");
+ }
+ @endcode
+ *
  */
 @interface NIActions : NSObject
 
@@ -83,24 +105,29 @@ NSArray *objects = @[
 - (id)attachToObject:(id<NSObject>)object tapBlock:(NIActionBlock)action;
 - (id)attachToObject:(id<NSObject>)object detailBlock:(NIActionBlock)action;
 - (id)attachToObject:(id<NSObject>)object navigationBlock:(NIActionBlock)action;
+- (id)attachToObject:(id<NSObject>)object accessoryView:(UIView *)accessoryView tapBlock:(NIActionBlock)action;
 
 - (id)attachToObject:(id<NSObject>)object tapSelector:(SEL)selector;
 - (id)attachToObject:(id<NSObject>)object detailSelector:(SEL)selector;
 - (id)attachToObject:(id<NSObject>)object navigationSelector:(SEL)selector;
+- (id)attachToObject:(id<NSObject>)object accessoryView:(UIView *)accessoryView tapSelector:(SEL)selector;
 
 #pragma mark Mapping Classes
 
 - (void)attachToClass:(Class)aClass tapBlock:(NIActionBlock)action;
 - (void)attachToClass:(Class)aClass detailBlock:(NIActionBlock)action;
 - (void)attachToClass:(Class)aClass navigationBlock:(NIActionBlock)action;
+- (void)attachToClass:(Class)aClass accessoryView:(UIView *)accessoryView tapBlock:(NIActionBlock)action;
 
 - (void)attachToClass:(Class)aClass tapSelector:(SEL)selector;
 - (void)attachToClass:(Class)aClass detailSelector:(SEL)selector;
 - (void)attachToClass:(Class)aClass navigationSelector:(SEL)selector;
+- (void)attachToClass:(Class)aClass accessoryView:(UIView *)accessoryView tapSelector:(SEL)selector;
 
 #pragma mark Object State
 
 - (BOOL)isObjectActionable:(id<NSObject>)object;
+- (BOOL)objectHasAccessoryView:(id<NSObject>)object;
 
 + (id)objectFromKeyClass:(Class)keyClass map:(NSMutableDictionary *)map;
 
@@ -214,6 +241,31 @@ NIActionBlock NIPushControllerAction(Class controllerClass);
  */
 
 /**
+ * Attaches a tap action with an accessory view to the given object.
+ *
+ * A cell with an attached tap action will have its selectionStyle set to
+ * @c tableViewCellSelectionStyle when the cell is displayed.
+ *
+ * The action will be executed when the object's corresponding cell is tapped. The object argument
+ * of the block will be the object to which this action was attached. The target argument of the
+ * block will be this receiver's @c target.
+ *
+ * Return NO if the tap action is used to present a modal view controller. This provides a visual
+ * reminder to the user when the modal controller is dismissed as to which cell was tapped to invoke
+ * the modal controller.
+ *
+ * The tap action will be invoked first, followed by the navigation action if one is attached.
+ *
+ *      @param object The object to attach the action to. This object must be contained within
+ *                    an NITableViewModel.
+ *      @param accessoryView The custom accessoryView to be added. If set, ignore cell accessoryType.
+ *      @param action The tap action block.
+ *      @returns The object that you attached this action to.
+ *      @fn NIActions::attachToObject:accessoryView:tapBlock:
+ *      @sa NIActions::attachToObject:accessoryView:tapSelector:
+*/
+
+/**
  * Attaches a tap selector to the given object.
  *
  * The method signature for the selector is:
@@ -294,6 +346,38 @@ NIActionBlock NIPushControllerAction(Class controllerClass);
  *      @sa NIActions::attachToObject:navigationBlock:
  */
 
+/**
+ * Attaches a tap selector with an accessory view to the given object.
+ *
+ * The method signature for the selector is:
+ @code
+ - (BOOL)didTapObject:(id)object;
+ @endcode
+ *
+ * A cell with an attached tap action will have its selectionStyle set to
+ * @c tableViewCellSelectionStyle when the cell is displayed.
+ *
+ * The selector will be performed on the action object's target when a cell with a tap selector is
+ * tapped, unless that selector does not exist on the @c target in which case nothing happens.
+ *
+ * If the selector invocation returns YES then the cell will be deselected immediately after the
+ * invocation completes its execution. If NO is returned then the cell's selection will remain.
+ *
+ * Return NO if the tap action is used to present a modal view controller. This provides a visual
+ * reminder to the user when the modal controller is dismissed as to which cell was tapped to invoke
+ * the modal controller.
+ *
+ * The tap action will be invoked first, followed by the navigation action if one is attached.
+ *
+ *      @param object The object to attach the selector to. This object must be contained within
+ *                    an NITableViewModel.
+ *      @param accessoryView The custom accessoryView to be added. If set, ignore cell accessoryType.
+ *      @param selector The selector that will be invoked by this action.
+ *      @returns The object that you attached this action to.
+ *      @fn NIActions::attachToObject:accessoryView:tapSelector:
+ *      @sa NIActions::attachToObject:accessoryView:tapBlock:
+ */
+
 /** @name Mapping Classes */
 
 /**
@@ -330,6 +414,18 @@ NIActionBlock NIPushControllerAction(Class controllerClass);
  */
 
 /**
+ * Attaches a tap block with an accessory view to a class.
+ *
+ * This method behaves similarly to attachToObject:tapBlock: except it attaches a tap action to
+ * all instances and subclassed instances of a given class.
+ *
+ *      @param aClass The class to attach the action to.
+ *      @param accessoryView The custom accessoryView to be added. If set, ignore cell accessoryType.
+ *      @param action The tap action block.
+ *      @fn NIActions::attachToClass:accessoryView:tapBlock:
+*/
+
+/**
  * Attaches a tap selector to a class.
  *
  * This method behaves similarly to attachToObject:tapBlock: except it attaches a tap action to
@@ -361,6 +457,18 @@ NIActionBlock NIPushControllerAction(Class controllerClass);
  *      @param selector The tap selector.
  *      @fn NIActions::attachToClass:navigationSelector:
  */
+
+/**
+ * Attaches a tap selector with an accessory view to a class.
+ *
+ * This method behaves similarly to attachToObject:tapBlock: except it attaches a tap action to
+ * all instances and subclassed instances of a given class.
+ *
+ *      @param aClass The class to attach the action to.
+ *      @param accessoryView The custom accessoryView to be added. If set, ignore cell accessoryType.
+ *      @param selector The tap selector.
+ *      @fn NIActions::attachToClass:accessoryView:tapSelector:
+*/
 
 /** @name Object State */
 
