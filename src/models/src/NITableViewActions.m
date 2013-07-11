@@ -173,7 +173,7 @@
     id object = [model objectAtIndexPath:indexPath];
     if ([self isObjectActionable:object]) {
       if ([self objectHasAccessoryView:object]) {
-        cell.accessoryView = [self accessoryViewForObjectOrClassOfObject:object];
+        cell.accessoryView = [self accessoryViewForObject:object];
       } else {
         cell.accessoryView = nil;
         cell.accessoryType = [self accessoryTypeForObject:object];

@@ -117,12 +117,10 @@ NSArray *objects = @[
 - (void)attachToClass:(Class)aClass tapBlock:(NIActionBlock)action;
 - (void)attachToClass:(Class)aClass detailBlock:(NIActionBlock)action;
 - (void)attachToClass:(Class)aClass navigationBlock:(NIActionBlock)action;
-- (void)attachToClass:(Class)aClass accessoryView:(UIView *)accessoryView tapBlock:(NIActionBlock)action;
 
 - (void)attachToClass:(Class)aClass tapSelector:(SEL)selector;
 - (void)attachToClass:(Class)aClass detailSelector:(SEL)selector;
 - (void)attachToClass:(Class)aClass navigationSelector:(SEL)selector;
-- (void)attachToClass:(Class)aClass accessoryView:(UIView *)accessoryView tapSelector:(SEL)selector;
 
 #pragma mark Object State
 
@@ -414,18 +412,6 @@ NIActionBlock NIPushControllerAction(Class controllerClass);
  */
 
 /**
- * Attaches a tap block with an accessory view to a class.
- *
- * This method behaves similarly to attachToObject:tapBlock: except it attaches a tap action to
- * all instances and subclassed instances of a given class.
- *
- *      @param aClass The class to attach the action to.
- *      @param accessoryView The custom accessoryView to be added. If set, ignore cell accessoryType.
- *      @param action The tap action block.
- *      @fn NIActions::attachToClass:accessoryView:tapBlock:
-*/
-
-/**
  * Attaches a tap selector to a class.
  *
  * This method behaves similarly to attachToObject:tapBlock: except it attaches a tap action to
@@ -457,18 +443,6 @@ NIActionBlock NIPushControllerAction(Class controllerClass);
  *      @param selector The tap selector.
  *      @fn NIActions::attachToClass:navigationSelector:
  */
-
-/**
- * Attaches a tap selector with an accessory view to a class.
- *
- * This method behaves similarly to attachToObject:tapBlock: except it attaches a tap action to
- * all instances and subclassed instances of a given class.
- *
- *      @param aClass The class to attach the action to.
- *      @param accessoryView The custom accessoryView to be added. If set, ignore cell accessoryType.
- *      @param selector The tap selector.
- *      @fn NIActions::attachToClass:accessoryView:tapSelector:
-*/
 
 /** @name Object State */
 

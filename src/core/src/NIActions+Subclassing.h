@@ -34,6 +34,6 @@
 @property (nonatomic, NI_WEAK) id target;
 
 - (NIObjectActions *)actionForObjectOrClassOfObject:(id<NSObject>)object;
-- (UIView *)accessoryViewForObjectOrClassOfObject:(id<NSObject>)object;
+- (UIView *)accessoryViewForObject:(id<NSObject>)object;
 
 @end
