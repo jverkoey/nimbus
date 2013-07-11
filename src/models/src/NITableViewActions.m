@@ -175,12 +175,15 @@
       if ([self objectHasAccessoryView:object]) {
         cell.accessoryView = [self accessoryViewForObject:object];
       } else {
-        cell.accessoryView = nil;
+        // TODO: Need to ensure accessoryView is cleared if this cell
+        //       is being re-used, but cell.accessoryView = nil will
+        //       override legitimate uses of the accessoryView. Maybe this
+        //       accessoryType should be set elsewhere.
         cell.accessoryType = [self accessoryTypeForObject:object];
       }
       cell.selectionStyle = [self selectionStyleForObject:object];
     } else {
-      cell.accessoryView = nil;
+      // TODO: same here as above in for setting accessoryView to nil.
       cell.accessoryType = UITableViewCellAccessoryNone;
       cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
