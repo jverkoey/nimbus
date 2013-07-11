@@ -172,9 +172,15 @@
     NITableViewModel* model = (NITableViewModel *)tableView.dataSource;
     id object = [model objectAtIndexPath:indexPath];
     if ([self isObjectActionable:object]) {
-      cell.accessoryType = [self accessoryTypeForObject:object];
+      if ([self objectHasAccessoryView:object]) {
+        cell.accessoryView = [self accessoryViewForObject:object];
+      } else {
+        cell.accessoryView = nil;
+        cell.accessoryType = [self accessoryTypeForObject:object];
+      }
       cell.selectionStyle = [self selectionStyleForObject:object];
     } else {
+      cell.accessoryView = nil;
       cell.accessoryType = UITableViewCellAccessoryNone;
       cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
