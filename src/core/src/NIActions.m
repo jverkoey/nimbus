@@ -25,7 +25,9 @@
 
 @property (nonatomic, NI_STRONG) NSMutableDictionary* objectMap;
 @property (nonatomic, NI_STRONG) NSMutableSet* objectSet;
-@property (nonatomic, NI_STRONG) NSMutableDictionary* classMap;
+@property (nonatomic, NI_STRONG) NSMutableDictionary* objectClassMap;
+@property (nonatomic, NI_STRONG) NSMutableDictionary* accessoryMap;
+@property (nonatomic, NI_STRONG) NSMutableSet* accessorySet;
 
 @end
 
@@ -37,7 +39,9 @@
 
 @synthesize objectMap = _objectMap;
 @synthesize objectSet = _objectSet;
-@synthesize classMap = _classMap;
+@synthesize objectClassMap = _objectClassMap;
+@synthesize accessoryMap = _accessoryMap;
+@synthesize accessorySet = _accessorySet;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,7 +50,9 @@
     _target = target;
     _objectMap = [[NSMutableDictionary alloc] init];
     _objectSet = [[NSMutableSet alloc] init];
-    _classMap = [[NSMutableDictionary alloc] init];
+    _objectClassMap = [[NSMutableDictionary alloc] init];
+    _accessoryMap = [[NSMutableDictionary alloc] init];
+    _accessorySet = [[NSMutableSet alloc] init];
   }
   return self;
 }
@@ -76,6 +82,9 @@
 // actionForObjectOrClassOfObject: determines whether an action has been attached to an object
 // or class of object and then returns the NIObjectActions or nil if no actions have been attached.
 //
+// accessoryViewForObject: determines whether an accessoryView has been attached to an object
+// and then returns the UIView or nil if no accessoryView has been attached.
+//
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,10 +105,10 @@
 // Retrieves an NIObjectActions object for the given class or creates one if it doesn't yet exist
 // so that actions may be attached.
 - (NIObjectActions *)actionForClass:(Class)class {
-  NIObjectActions* action = [self.classMap objectForKey:class];
+  NIObjectActions* action = [self.objectClassMap objectForKey:class];
   if (nil == action) {
     action = [[NIObjectActions alloc] init];
-    [self.classMap setObject:action forKey:(id<NSCopying>)class];
+    [self.objectClassMap setObject:action forKey:(id<NSCopying>)class];
   }
   return action;
 }
@@ -111,9 +120,17 @@
   id key = [self keyForObject:object];
   NIObjectActions* action = [self.objectMap objectForKey:key];
   if (nil == action) {
-    action = [self.class objectFromKeyClass:object.class map:self.classMap];
+    action = [self.class objectFromKeyClass:object.class map:self.objectClassMap];
   }
   return action;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Fetches any accessoryView for a given object.
+- (UIView *)accessoryViewForObject:(id<NSObject>)object {
+  id key = [self keyForObject:object];
+  return [self.accessoryMap objectForKey:key];
 }
 
 
@@ -147,6 +164,17 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)attachToObject:(id<NSObject>)object accessoryView:(UIView *)accessoryView tapBlock:(NIActionBlock)action {
+  [self attachToObject:object tapBlock:action];
+  if (accessoryView) {
+    [self.accessorySet addObject:object];
+    [self.accessoryMap setObject:accessoryView forKey:[self keyForObject:object]];
+  }
+  return object;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)attachToObject:(id<NSObject>)object tapSelector:(SEL)selector {
   [self.objectSet addObject:object];
   [self actionForObject:object].tapSelector = selector;
@@ -166,6 +194,17 @@
 - (id)attachToObject:(id<NSObject>)object navigationSelector:(SEL)selector {
   [self.objectSet addObject:object];
   [self actionForObject:object].navigateSelector = selector;
+  return object;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)attachToObject:(id<NSObject>)object accessoryView:(UIView *)accessoryView tapSelector:(SEL)selector {
+  [self attachToObject:object tapSelector:selector];
+  if (accessoryView) {
+    [self.accessorySet addObject:object];
+    [self.accessoryMap setObject:accessoryView forKey:[self keyForObject:object]];
+  }
   return object;
 }
 
@@ -214,9 +253,19 @@
 
   BOOL objectIsActionable = [self.objectSet containsObject:object];
   if (!objectIsActionable) {
-    objectIsActionable = (nil != [self.class objectFromKeyClass:object.class map:self.classMap]);
+    objectIsActionable = (nil != [self.class objectFromKeyClass:object.class map:self.objectClassMap]);
   }
   return objectIsActionable;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)objectHasAccessoryView:(id<NSObject>)object {
+  if (nil == object) {
+    return NO;
+  }
+
+  return [self.accessorySet containsObject:object];
 }
 
 
