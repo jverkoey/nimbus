@@ -28,7 +28,6 @@
 @property (nonatomic, NI_STRONG) NSMutableDictionary* objectClassMap;
 @property (nonatomic, NI_STRONG) NSMutableDictionary* accessoryMap;
 @property (nonatomic, NI_STRONG) NSMutableSet* accessorySet;
-@property (nonatomic, NI_STRONG) NSMutableDictionary* accessoryClassMap;
 
 @end
 
@@ -43,7 +42,6 @@
 @synthesize objectClassMap = _objectClassMap;
 @synthesize accessoryMap = _accessoryMap;
 @synthesize accessorySet = _accessorySet;
-@synthesize accessoryClassMap = _accessoryClassMap;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -55,7 +53,6 @@
     _objectClassMap = [[NSMutableDictionary alloc] init];
     _accessoryMap = [[NSMutableDictionary alloc] init];
     _accessorySet = [[NSMutableSet alloc] init];
-    _accessoryClassMap = [[NSMutableDictionary alloc] init];
   }
   return self;
 }
@@ -85,9 +82,8 @@
 // actionForObjectOrClassOfObject: determines whether an action has been attached to an object
 // or class of object and then returns the NIObjectActions or nil if no actions have been attached.
 //
-// accessoryViewForObjectOrClassOfObject: determines whether an accessoryView has been attached to
-// an object or class of object and then returns the UIView or nil if no accessoryView has been
-// attached.
+// accessoryViewForObject: determines whether an accessoryView has been attached to an object
+// and then returns the UIView or nil if no accessoryView has been attached.
 //
 
 
@@ -132,13 +128,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Fetches any accessoryView for a given object.
-- (UIView *)accessoryViewForObjectOrClassOfObject:(id<NSObject>)object {
+- (UIView *)accessoryViewForObject:(id<NSObject>)object {
   id key = [self keyForObject:object];
-  UIView* accessoryView = [self.accessoryMap objectForKey:key];
-  if (nil == accessoryView) {
-    accessoryView = [self.class objectFromKeyClass:object.class map:self.accessoryClassMap];
-  }
-  return accessoryView;
+  return [self.accessoryMap objectForKey:key];
 }
 
 
@@ -173,10 +165,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)attachToObject:(id<NSObject>)object accessoryView:(UIView *)accessoryView tapBlock:(NIActionBlock)action {
-  [self.objectSet addObject:object];
-  [self actionForObject:object].tapAction = action;
-  [self.accessorySet addObject:object];
-  [self.accessoryMap setObject:accessoryView forKey:[self keyForObject:object]];
+  [self attachToObject:object tapBlock:action];
+  if (accessoryView) {
+    [self.accessorySet addObject:object];
+    [self.accessoryMap setObject:accessoryView forKey:[self keyForObject:object]];
+  }
   return object;
 }
 
@@ -207,10 +200,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)attachToObject:(id<NSObject>)object accessoryView:(UIView *)accessoryView tapSelector:(SEL)selector {
-  [self.objectSet addObject:object];
-  [self actionForObject:object].tapSelector = selector;
-  [self.accessorySet addObject:object];
-  [self.accessoryMap setObject:accessoryView forKey:[self keyForObject:object]];
+  [self attachToObject:object tapSelector:selector];
+  if (accessoryView) {
+    [self.accessorySet addObject:object];
+    [self.accessoryMap setObject:accessoryView forKey:[self keyForObject:object]];
+  }
   return object;
 }
 
@@ -234,13 +228,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachToClass:(Class)aClass accessoryView:(UIView *)accessoryView tapBlock:(NIActionBlock)action {
-  [self.accessoryClassMap setObject:accessoryView forKey:(id<NSCopying>)aClass];
-  [self actionForClass:aClass].tapAction = action;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)attachToClass:(Class)aClass tapSelector:(SEL)selector {
   [self actionForClass:aClass].tapSelector = selector;
 }
@@ -255,13 +242,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)attachToClass:(Class)aClass navigationSelector:(SEL)selector {
   [self actionForClass:aClass].navigateSelector = selector;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)attachToClass:(Class)aClass accessoryView:(UIView *)accessoryView tapSelector:(SEL)selector {
-  [self.accessoryClassMap setObject:accessoryView forKey:(id<NSCopying>)aClass];
-  [self actionForClass:aClass].tapSelector = selector;
 }
 
 
@@ -285,11 +265,7 @@
     return NO;
   }
 
-  BOOL objectHasAccessory = [self.accessorySet containsObject:object];
-  if (!objectHasAccessory) {
-    objectHasAccessory = (nil != [self.class objectFromKeyClass:object.class map:self.accessoryClassMap]);
-  }
-  return objectHasAccessory;
+  return [self.accessorySet containsObject:object];
 }
 
 
