@@ -172,18 +172,9 @@
     NITableViewModel* model = (NITableViewModel *)tableView.dataSource;
     id object = [model objectAtIndexPath:indexPath];
     if ([self isObjectActionable:object]) {
-      if ([self objectHasAccessoryView:object]) {
-        cell.accessoryView = [self accessoryViewForObject:object];
-      } else {
-        // TODO: Need to ensure accessoryView is cleared if this cell
-        //       is being re-used, but cell.accessoryView = nil will
-        //       override legitimate uses of the accessoryView. Maybe this
-        //       accessoryType should be set elsewhere.
-        cell.accessoryType = [self accessoryTypeForObject:object];
-      }
+      cell.accessoryType = [self accessoryTypeForObject:object];
       cell.selectionStyle = [self selectionStyleForObject:object];
     } else {
-      // TODO: same here as above in for setting accessoryView to nil.
       cell.accessoryType = UITableViewCellAccessoryNone;
       cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
