@@ -808,10 +808,37 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
       if (directiveValue) {
         [kv removeObjectForKey:NICSSViewKey];
 #ifdef NI_DYNAMIC_VIEWS
-        // I have a dream that you can instantiate this whole thing from JSON.
-        // So the dictionary version endeavors to make NSString/NSNumber work for every directive
+        // Let's see if this is a UIView subclass. If NOT, let the normal string property handling take over
         if ([directiveValue isKindOfClass:[NSString class]]) {
-          directiveValue = [[NSClassFromString(directiveValue) alloc] init];
+          id classFromString = [[NSClassFromString(directiveValue) alloc] init];
+          if (classFromString) {
+            directiveValue = [[NSClassFromString(directiveValue) alloc] init];
+          }
+        }
+        // See if we support this property and if so, pass it the dictionary itself (optionally the DOM). This allows extensions
+        // of the parser for things like table rows. It's mainly in concert with the XML parser, otherwise the syntax would just be odd.
+        if ([directiveValue isKindOfClass:[NSString class]]) {
+          NSString *targetSelectorStr = [NSString stringWithFormat:@"set%@:inDOM:",directiveValue];
+          SEL targetSelector = NSSelectorFromString(targetSelectorStr);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+          if (targetSelector && [self respondsToSelector:targetSelector])
+          {
+            [self performSelector:targetSelector withObject:viewSpecs withObject:dom];
+            return;
+          }
+#pragma clang diagnostic pop
+          
+          targetSelectorStr = [NSString stringWithFormat:@"set%@:",directiveValue];
+          targetSelector = NSSelectorFromString(targetSelectorStr);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+          if (targetSelector && [self respondsToSelector:targetSelector])
+          {
+            [self performSelector:targetSelector withObject:viewSpecs];
+            return;
+          }
+#pragma clang diagnostic pop
         }
 #endif
         if ([directiveValue isKindOfClass:[UIView class]]) {
