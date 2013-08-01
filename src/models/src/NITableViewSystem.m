@@ -44,6 +44,7 @@
   
   if (self) {
     _actions = [[NITableViewSystemActions alloc] initWithTarget:delegate];
+    _delegate = delegate;
   }
   
   return self;
@@ -54,6 +55,7 @@
     
     if (self) {
         _tableView = tableView;
+        _delegate = delegate;
         // No need to set anything else because the table is empty right now anyways
     }
     
