@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 
 #import "NIPreprocessorMacros.h"
-#import "NITableViewModel.h"
+#import "NIMutableTableViewModel.h"
 
 @class NITableViewDelegate;
 @class NITableViewSystem;
@@ -39,6 +39,10 @@
         atIndexPath:(NSIndexPath *)indexPath;
 - (void)tableSystem:(NITableViewSystem *)tableSystem didAssignCell:(id)object toTableItem:(id)tableItem
     atIndexPath:(NSIndexPath *)indexPath;
+
+- (BOOL)tableSystem:(NITableViewSystem *)tableSystem canEditObject:(id)object atIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)tableSystem:(NITableViewSystem *)tableSystem shouldDeleteObject:(id)object atIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewRowAnimation)tableSystem:(NITableViewSystem *)tableSystem deleteRowAnimationForObject:(id)object atIndexPath:(NSIndexPath *)indexPath;
 @end
 
 #import "NITableViewSystemActions.h"
@@ -46,7 +50,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-@interface NITableViewSystem : NSObject <NITableViewModelDelegate>
+@interface NITableViewSystem : NSObject <NIMutableTableViewModelDelegate>
 
 - (id) initWithTableView: (UITableView*) tableView andDelegate: (id<NITableViewSystemDelegate>) delegate;
 - (id) initWithDelegate: (id<NITableViewSystemDelegate>) delegate;
@@ -95,7 +99,7 @@
  * Generally you don't have to worry about this, we'll manage it for you via the array data setters.
  * That's pretty much the point of using the NITableViewSystem.
  */
-@property (nonatomic, NI_STRONG) NITableViewModel       *dataSource;
+@property (nonatomic, NI_STRONG) NIMutableTableViewModel *dataSource;
 
 /**
  * Generally you can use the default cell factory, since it will use the cellClass of the table object.
