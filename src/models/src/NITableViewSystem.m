@@ -44,6 +44,7 @@
   
   if (self) {
     _actions = [[NITableViewSystemActions alloc] initWithTarget:delegate];
+    _delegate = delegate;
   }
   
   return self;
@@ -54,6 +55,7 @@
     
     if (self) {
         _tableView = tableView;
+        _delegate = delegate;
         // No need to set anything else because the table is empty right now anyways
     }
     
@@ -61,7 +63,7 @@
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
--(void)setDataSource:(NITableViewModel *) dataSource {
+-(void)setDataSource:(NIMutableTableViewModel *) dataSource {
   if (_dataSource != dataSource) {
     _dataSource = dataSource;
     
@@ -72,7 +74,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setDataSourceWithArray:(NSArray *)listArray {
-  [self setDataSource:[[NITableViewModel alloc] initWithListArray:listArray delegate:self]];
+  [self setDataSource:[[NIMutableTableViewModel alloc] initWithListArray:listArray delegate:self]];
 }
 
 #pragma mark -
@@ -93,6 +95,47 @@
 	}
   
 	return tableViewCell;
+}
+
+#pragma mark -
+#pragma mark NIMutableTableViewModelDelegate
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+         canEditObject:(id)object
+           atIndexPath:(NSIndexPath *)indexPath
+           inTableView:(UITableView *)tableView {
+    
+    if ([self.delegate respondsToSelector:@selector(tableSystem:canEditObject:atIndexPath:)]) {
+        return [self.delegate tableSystem:self canEditObject:object atIndexPath:indexPath];
+    }
+    
+    return NO;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+    shouldDeleteObject:(id)object
+           atIndexPath:(NSIndexPath *)indexPath
+           inTableView:(UITableView *)tableView {
+    
+    if ([self.delegate respondsToSelector:@selector(tableSystem:shouldDeleteObject:atIndexPath:)]) {
+        return [self.delegate tableSystem:self shouldDeleteObject:object atIndexPath:indexPath];
+    }
+    
+    return NO;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (UITableViewRowAnimation)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+              deleteRowAnimationForObject:(id)object
+                              atIndexPath:(NSIndexPath *)indexPath
+                              inTableView:(UITableView *)tableView {
+    
+    if ([self.delegate respondsToSelector:@selector(tableSystem:deleteRowAnimationForObject:atIndexPath:)]) {
+        return [self.delegate tableSystem:self deleteRowAnimationForObject:object atIndexPath:indexPath];
+    }
+    
+    return UITableViewRowAnimationAutomatic;
 }
 
 #pragma mark -
@@ -154,19 +197,12 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)insertTableItem:(id)object atIndexPath:(NSIndexPath *)indexPath withRowAnimation:(UITableViewRowAnimation)animation {
-  
-  // Update the datasource
-  NITableViewModelSection *section = [self.dataSource.sections objectAtIndex:indexPath.section];
-  
-  NSMutableArray *newRows = [NSMutableArray arrayWithArray:section.rows];
-  [newRows insertObject:object atIndex:indexPath.row];
-  section.rows = newRows;
+    
+  NSArray *indexPaths = [self.dataSource insertObject:object atRow:indexPath.row inSection:indexPath.section];
   
   // Update the table
   [self.tableView beginUpdates];
-  [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                        withRowAnimation:animation];
-  
+  [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
   [self.tableView endUpdates];
 }
 
@@ -180,19 +216,12 @@
     // Can't find object, so it must be gone already. Nothing to do.
     return NO;
   }
-  
-  // Update the datasource
-  NITableViewModelSection *section = [self.dataSource.sections objectAtIndex:indexPath.section];
-  
-  NSMutableArray *newRows = [NSMutableArray arrayWithArray:section.rows];
-  [newRows removeObject:object];
-  section.rows = newRows;
+    
+  NSArray *indexPaths = [self.dataSource removeObjectAtIndexPath:indexPath];
   
   // Update the table
   [self.tableView beginUpdates];
-  [self.tableView deleteRowsAtIndexPaths:@[indexPath]
-                        withRowAnimation:animation];
-  
+  [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:animation];
   [self.tableView endUpdates];
   
   return YES;
