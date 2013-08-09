@@ -80,7 +80,8 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 - (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass;
 - (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass andId: (NSString*) viewId;
 
-- (void)addCssClass: (NSString *) cssClass toView: (UIView*) view;
+- (void)addCssClass:(NSString *)cssClass toView:(UIView*) view;
+- (void)addCssClasses:(NSArray *)cssClasses toView:(UIView *)view;
 - (void)removeCssClass: (NSString*) cssClass fromView: (UIView*) view;
 - (BOOL)view: (UIView*) view hasCssClass: (NSString*) cssClass;
 
@@ -189,6 +190,13 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  * immediately.
  *
  *      @fn NIDOM::addCssClass:toView:
+ */
+
+/**
+ * Create an association of a view with an array of CSS classes and apply
+ * relevant styles immediately.
+ *
+ *      @fn NIDOM::addCssClasses:toView:
  */
 
 /**

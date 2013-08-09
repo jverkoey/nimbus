@@ -228,9 +228,19 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)addCssClasses:(NSArray *)cssClasses toView:(UIView *)view {
+  for (NSString *cssClass in cssClasses) {
+    [self addCssClass:cssClass toView:view];
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)addCssClass:(NSString *)cssClass toView:(UIView *)view
 {
-  NSString* selector = [@"." stringByAppendingString:cssClass];
+  NSString *selector = cssClass;
+  if (![selector hasPrefix:@"."]) {
+    selector = [@"." stringByAppendingString:cssClass];
+  }
   [self registerSelector:selector withView:view];
   
   // This registers both the UIKit class name and the css class name for this view
