@@ -55,7 +55,11 @@
     
     if (self) {
         _tableView = tableView;
-        _delegate = delegate;
+        if (_tableView.delegate) {
+            _tableView.delegate = [_actions forwardingTo:_tableView.delegate];
+        } else {
+            _tableView.delegate = _actions;
+        }
         // No need to set anything else because the table is empty right now anyways
     }
     
@@ -68,7 +72,6 @@
     _dataSource = dataSource;
     
     self.tableView.dataSource = self.dataSource;
-    self.tableView.delegate = self.actions;
   }
 }
 
