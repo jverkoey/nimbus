@@ -118,6 +118,10 @@
   return [self initWithTitle:title subtitle:subtitle image:nil];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithTitle:(NSString *)title image:(UIImage *)image {
+  return [self initWithTitle:title subtitle:nil image:image];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image {
