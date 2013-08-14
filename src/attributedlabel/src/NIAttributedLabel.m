@@ -1475,7 +1475,9 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
       CGMutablePathRef path = CGPathCreateMutable();
       CGPathAddRect(path, nil, rect);
-      self.textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
+      CTFrameRef textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
+      self.textFrame = textFrame;
+      CFRelease(textFrame);
       CGPathRelease(path);
       CFRelease(framesetter);
     }
