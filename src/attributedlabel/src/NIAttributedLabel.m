@@ -110,7 +110,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 @interface NIAttributedLabel() <UIActionSheetDelegate>
 @property (nonatomic, NI_STRONG) NSMutableAttributedString* mutableAttributedString;
-@property (nonatomic, assign) CTFrameRef textFrame;
+@property (nonatomic, assign) CTFrameRef textFrame; // CFType, manually manged lifetime, see setter.
 @property (assign) BOOL detectingLinks; // Atomic.
 @property (nonatomic, assign) BOOL linksHaveBeenDetected;
 @property (nonatomic, copy) NSArray* detectedlinkLocations;
@@ -179,8 +179,25 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 - (void)dealloc {
   [_longPressTimer invalidate];
 
+  // The property is marked 'assign', but retain count for this CFType is managed here and via
+  // the setter.
   if (nil != _textFrame) {
     CFRelease(_textFrame);
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setTextFrame:(CTFrameRef)textFrame {
+  // The property is marked 'assign', but retain count for this CFType is managed via this setter
+  // and -dealloc.
+  if (nil != _textFrame) {
+    CFRelease(_textFrame);
+    _textFrame = nil;
+  }
+  if (nil != textFrame) {
+    _textFrame = textFrame;
+    CFRetain(_textFrame);
   }
 }
 
@@ -220,10 +237,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resetTextFrame {
-  if (nil != self.textFrame) {
-    CFRelease(self.textFrame);
-    self.textFrame = nil;
-  }
+  self.textFrame = nil;
   self.accessibleElements = nil;
 }
 
@@ -1475,7 +1489,9 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
       CGMutablePathRef path = CGPathCreateMutable();
       CGPathAddRect(path, nil, rect);
-      self.textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
+      CTFrameRef textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
+      self.textFrame = textFrame;
+      CFRelease(textFrame);
       CGPathRelease(path);
       CFRelease(framesetter);
     }
