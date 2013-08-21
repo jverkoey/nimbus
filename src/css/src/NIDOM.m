@@ -80,7 +80,7 @@
 - (id)initWithStylesheet:(NIStylesheet *)stylesheet {
   if ((self = [super init])) {
     _stylesheet = stylesheet;
-    _registeredViews = [[NSMutableArray alloc] init];
+    _registeredViews = NICreateNonRetainingMutableArray();
     _viewToSelectorsMap = [[NSMutableDictionary alloc] init];
   }
   return self;
@@ -177,7 +177,7 @@
     }
 
     if (!_idToViewMap) {
-      _idToViewMap = [[NSMutableDictionary alloc] init];
+      _idToViewMap = (__bridge_transfer NSMutableDictionary *)CFDictionaryCreateMutable(nil, 0, &kCFCopyStringDictionaryKeyCallBacks, nil);
     }
     [_idToViewMap setObject:view forKey:viewId.lowercaseString];
     // Run the id selectors last so they take precedence
