@@ -47,6 +47,9 @@
 
   CGFloat xRange = [self.dataSource graphViewXRange:self];
   CGFloat yRange = [self.dataSource graphViewYRange:self];
+  if (xRange == 0 || yRange == 0) {
+    return;
+  }
 
   [self.dataSource resetPointIterator];
 
