@@ -274,7 +274,7 @@
     // also remove it from the id map
     for (int i = selectors.count-1; i >= 0; i--) {
       NSString *s = [selectors objectAtIndex:i];
-      if ([s isEqualToString:selector] && [s hasPrefix:pseudoBase]) {
+      if ([s isEqualToString:selector] && [pseudoBase hasPrefix:s]) {
         [selectors removeObjectAtIndex:i];
       }
     }
