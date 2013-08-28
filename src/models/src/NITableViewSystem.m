@@ -189,6 +189,18 @@
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)tableObjectForIndexPath:(NSIndexPath *)indexPath {
+  if ([self.dataSource.sections count] >= (indexPath.section + 1)) {
+    NITableViewModelSection *section = [self.dataSource.sections objectAtIndex:indexPath.section];
+    if ([section.rows count] >= (indexPath.row + 1)) {
+      return [section.rows objectAtIndex:indexPath.row];
+    }
+  }
+
+  return nil;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)reloadCellForTableItem:(id)object withRowAnimation:(UITableViewRowAnimation)rowAnimation {
   return [self reloadCellsForTableItems:@[object] withRowAnimation:rowAnimation];
 }
