@@ -63,6 +63,13 @@
 - (NSIndexPath *)indexPathForTableItem:(id)object;
 
 /**
+ * Given an indexPath, return the table object if it's a valid indexPath. Otherwise, returns nil.
+ *
+ * @param indexPath The index path.
+ */
+- (id)tableObjectForIndexPath:(NSIndexPath *)indexPath;
+
+/**
  * Given a table item, reload that table cell with the given animation.
  *
  * @returns YES if a NSIndexPath was found and reloadCellsAtIndexPaths: was called on the table,
