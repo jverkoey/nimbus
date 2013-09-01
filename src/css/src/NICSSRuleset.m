@@ -55,6 +55,10 @@ static NSString* const kPaddingKey = @"padding";
 static NSString* const kHPaddingKey = @"-mobile-hpadding";
 static NSString* const kVPaddingKey = @"-mobile-vpadding";
 
+// IF YOU ADD A CSS KEY - go add it to knownKeys in the +initialize method
+// so that we can warn when there are unknown values
+static NSSet* sKnownKeys = nil;
+
 // This color table is generated on-demand and is released when a memory warning is encountered.
 static NSDictionary* sColorTable = nil;
 
@@ -86,6 +90,33 @@ return _##name; \
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NICSSRuleset
 
++(void)initialize {
+    [super initialize];
+    sKnownKeys = [NSSet setWithObjects:
+                  kTextColorKey, kHighlightedTextColorKey,
+                  kTextAlignmentKey, kTextAlignmentKey, kFontKey, kFontSizeKey,
+                  kFontStyleKey, kFontWeightKey, kFontFamilyKey, kTextShadowKey,
+                  kLineBreakModeKey, kNumberOfLinesKey, kMinimumFontSizeKey, kAdjustsFontSizeKey,
+                  kBaselineAdjustmentKey, kOpacityKey, kBackgroundColorKey, kBorderRadiusKey,
+                  kBorderKey, kBorderColorKey, kBorderWidthKey, kTintColorKey,
+                  kActivityIndicatorStyleKey, kAutoresizingKey,
+                  kTableViewCellSeparatorStyleKey, kScrollViewIndicatorStyleKey,
+                  kPaddingKey, kHPaddingKey, kVPaddingKey, kWidthKey,
+                  kHeightKey, kTopKey, kBottomKey, kRightKey,
+                  kLeftKey, kMinWidthKey, kMinHeightKey, kMaxWidthKey,
+                  kMaxHeightKey, kFrameHorizontalAlignKey,
+                  kFrameVerticalAlignKey, kBackgroundStretchInsetsKey,
+                  kBackgroundImageKey, kImageKey, kVisibleKey, kTitleInsetsKey, kContentInsetsKey,
+                  kImageInsetsKey, kRelativeToIdKey, kMarginTopKey, kMarginBottomKey,
+                  kMarginLeftKey, kMarginRightKey, kTextKeyKey, kButtonAdjustKey, kVerticalAlignKey,
+                  kHorizontalAlignKey,
+                  nil
+                  ];
+}
+
++(NSSet *)knownCssProperties {
+    return sKnownKeys;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
@@ -118,6 +149,12 @@ return _##name; \
   NSMutableArray* order = [_ruleset objectForKey:kPropertyOrderKey];
   [_ruleset addEntriesFromDictionary:dictionary];
 
+  NSString *rid;
+  if ((rid = [_ruleset objectForKey:kRelativeToIdKey])) {
+      if ([rid characterAtIndex:0] != '#' && [rid characterAtIndex:0] != '.') {
+          [_ruleset setObject:[@"#" stringByAppendingString:rid] forKey:kRelativeToIdKey];
+      }
+  }
   if (nil != order) {
     [order addObjectsFromArray:[dictionary objectForKey:kPropertyOrderKey]];
     [_ruleset setObject:order forKey:kPropertyOrderKey];

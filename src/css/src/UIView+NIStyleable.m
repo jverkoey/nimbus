@@ -519,7 +519,6 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
         if (relative == self) { relative = nil; }
       }
     } else {
-      // For performance, I'm not going to try and fix up your bad selectors. Start with a # or it will fail.
       relative = [dom viewById:ruleSet.relativeToId];
     }
     if (relative) {

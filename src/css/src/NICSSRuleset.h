@@ -169,6 +169,10 @@ typedef enum {
 }
 
 + (UIColor*) colorFromString: (NSString*) colorValue;
+/**
+ * Returns a set of known CSS property values, such as margin, font, etc.
+ */
++ (NSSet*) knownCssProperties;
 
 - (void)addEntriesFromDictionary:(NSDictionary *)dictionary;
 - (id)cssRuleForKey: (NSString*)key;
