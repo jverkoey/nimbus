@@ -149,10 +149,11 @@ return _##name; \
   NSMutableArray* order = [_ruleset objectForKey:kPropertyOrderKey];
   [_ruleset addEntriesFromDictionary:dictionary];
 
-  NSString *rid;
-  if ((rid = [_ruleset objectForKey:kRelativeToIdKey])) {
-      if ([rid characterAtIndex:0] != '#' && [rid characterAtIndex:0] != '.') {
-          [_ruleset setObject:[@"#" stringByAppendingString:rid] forKey:kRelativeToIdKey];
+  NSMutableArray *rids;
+  if ((rids = [_ruleset objectForKey:kRelativeToIdKey])) {
+      unichar c = [[rids objectAtIndex:0] characterAtIndex:0];
+      if (c != '#' && c != '.') {
+          [rids setObject:[@"#" stringByAppendingString: [rids objectAtIndex:0]] atIndexedSubscript:0];
       }
   }
   if (nil != order) {
