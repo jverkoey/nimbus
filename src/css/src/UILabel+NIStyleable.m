@@ -74,4 +74,36 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
   [self applyLabelStyleWithRuleSet:ruleSet inDOM:dom];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) autoSize: (NICSSRuleset*) ruleSet inDOM: (NIDOM*) dom {
+  CGFloat newWidth = self.frameWidth, newHeight = self.frameHeight;
+  
+  if (ruleSet.hasWidth && ruleSet.width.type == CSS_AUTO_UNIT) {
+    
+    CGSize size = [self.text
+                   sizeWithFont:self.font
+                   constrainedToSize:CGSizeMake(CGFLOAT_MAX, self.frame.size.height)];
+    newWidth = size.width;
+  }
+  
+  if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
+    CGSize sizeForOneLine = [@"." sizeWithFont:self.font constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+    float heightForOneLine = sizeForOneLine.height;
+    
+    CGSize size = [self.text
+                   sizeWithFont:self.font
+                   constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+    float maxHeight = (self.numberOfLines == 0) ? CGFLOAT_MAX : (heightForOneLine * self.numberOfLines);
+    
+    if (size.height > maxHeight) {
+      size.height = maxHeight;
+    }
+    newHeight = size.height;
+  }
+
+  self.frame = CGRectMake(self.frame.origin.x,
+                          self.frame.origin.y,
+                          newWidth,
+                          newHeight);
+}
 @end
