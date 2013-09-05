@@ -17,6 +17,7 @@
 #import "NIDOM.h"
 
 #import "NIStylesheet.h"
+#import "NIStyleable.h"
 #import "NimbusCore.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
@@ -141,8 +142,12 @@
       }
     }
   }
-  
+    
   [_registeredViews addObject:view];
+  if ([view respondsToSelector:@selector(didRegisterInDOM:)]) {
+    [((id<NIStyleable>)view) didRegisterInDOM:self];
+  }
+  
   [self refreshStyleForView:view withSelectorName:selector];
   if (pseudos) {
     for (NSString *ps in pseudos) {
