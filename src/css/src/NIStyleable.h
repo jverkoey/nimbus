@@ -67,4 +67,9 @@
  */
 - (NSString*) descriptionWithRuleSet: (NICSSRuleset*) ruleSet forPseudoClass: (NSString*) pseudo inDOM: (NIDOM*) dom withViewName: (NSString*) name;
 
+/**
+ * sizeToFit is... bad. So if, let's say you ACTUALLY want to adjust size to fit based on width/height "auto", override this method
+ * and then check the ruleSet width and height properties (at least one of them will be auto) and do your thing.
+ */
+- (void) autoSize: (NICSSRuleset*) ruleSet inDOM: (NIDOM*) dom;
 @end

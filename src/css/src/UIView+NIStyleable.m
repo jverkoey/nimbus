@@ -21,6 +21,7 @@
 #import "NimbusCore.h"
 #import "NIUserInterfaceString.h"
 #import "NIInvocationMethods.h"
+#import "NIStyleable.h"
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
@@ -148,8 +149,16 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   if ([ruleSet hasWidth] && [ruleSet hasHeight] &&
       ruleSet.width.type == CSS_AUTO_UNIT && ruleSet.height.type == CSS_AUTO_UNIT) {
     if (apply) {
-      [self sizeToFit];
+      if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
+        [((id<NIStyleable>)self) autoSize: ruleSet inDOM: dom];
+      } else {
+        [self sizeToFit];
+      }
     } else {
+      // We can't actually describe the autoSize bit because the point is to work w/o a ruleset/dom, so just say it...
+      if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
+        [desc appendString:@"// autoSize would have been called instead of sizeToFit\n"];
+      }
       [desc appendFormat:@"[%@ sizeToFit];\n", name];
     }
     if (ruleSet.hasVerticalPadding) {
@@ -202,9 +211,17 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
       switch (u.type) {
         case CSS_AUTO_UNIT:
           if (apply) {
-            [self sizeToFit]; // sizeToFit the width, but retain height. Behavior somewhat undefined...
-            self.frameHeight = startHeight;
+            if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
+              [((id<NIStyleable>)self) autoSize:ruleSet inDOM:dom];
+            } else {
+              [self sizeToFit]; // sizeToFit the width, but retain height. Behavior somewhat undefined...
+              self.frameHeight = startHeight;
+            }
           } else {
+            // We can't actually describe the autoSize bit because the point is to work w/o a ruleset/dom, so just say it...
+            if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
+              [desc appendString:@"// autoSize would have been called instead of sizeToFit\n"];
+            }
             [desc appendFormat:@"[%@ sizeToFit];\n%@.frameHeight = %f;\n", name, name, startHeight];
           }
           break;
@@ -263,9 +280,17 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
       switch (u.type) {
         case CSS_AUTO_UNIT:
           if (apply) {
-            [self sizeToFit];
-            self.frameWidth = startWidth;
+            if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
+              [((id<NIStyleable>)self) autoSize:ruleSet inDOM:dom];
+            } else {
+              [self sizeToFit];
+              self.frameWidth = startWidth;
+            }
           } else {
+            // We can't actually describe the autoSize bit because the point is to work w/o a ruleset/dom, so just say it...
+            if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
+              [desc appendString:@"// autoSize would have been called instead of sizeToFit\n"];
+            }
             [desc appendFormat:@"[%@ sizeToFit];\n%@.frameWidth = %f;\n", name, name, startWidth];
           }
           break;
