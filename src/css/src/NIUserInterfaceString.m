@@ -247,7 +247,7 @@ NIUserInterfaceStringResolver
 -(NSString *)stringForKey:(NSString *)key withDefaultValue:(NSString *)value
 {
   if (self.returnKeys) {
-    return key; // TODO should we maybe return 
+    return key; // TODO should we maybe return something of similar length...
   }
   if (self.overrides) {
     NSString *overridden = [self.overrides objectForKey:key];

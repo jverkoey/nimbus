@@ -61,6 +61,11 @@ extern NSString* const NIStringsDidChangeFilePathKey;
  * elements it has been assigned to and watch for updates via Chameleon
  */
 @interface NIUserInterfaceString : NSObject
+
+/**
+ * If you need to force the value (e.g. after setting it up), call setString. This is useful when doing
+ * stringWithFormat and the like when the source string is still a localized string
+ */
 @property (nonatomic,strong) NSString *string;
 @property (nonatomic,strong) NSString *originalKey;
 
