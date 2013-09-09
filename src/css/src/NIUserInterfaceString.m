@@ -146,7 +146,9 @@ NIUserInterfaceStringResolver
       id existing = [viewMap objectForKey:_originalKey];
       if (!existing) {
         // Simple, no map exists, make one
-        [viewMap setObject:attachment forKey:_originalKey];
+        if (_originalKey) {
+          [viewMap setObject:attachment forKey:_originalKey];
+        }
       } else if ([existing isKindOfClass: [NIUserInterfaceStringAttachment class]]) {
         // An attachment exists, convert it to a list
         NSMutableArray *list = [[NSMutableArray alloc] initWithCapacity:2];
