@@ -300,6 +300,9 @@
     }
   }
   [_viewToSelectorsMap removeObjectForKey:[self keyForView:view]];
+    if ([view respondsToSelector:@selector(didUnregisterInDOM:)]) {
+        [((id<NIStyleable>)view) didUnregisterInDOM:self];
+    }
 }
 
 

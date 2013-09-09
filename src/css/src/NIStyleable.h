@@ -77,4 +77,9 @@
  * Called when your view is added to a DOM
  */
 - (void) didRegisterInDOM: (NIDOM*) dom;
+
+/**
+ * Called when your view is removed from a DOM
+ */
+- (void) didUnregisterInDOM: (NIDOM*) dom;
 @end
