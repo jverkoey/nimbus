@@ -1347,13 +1347,18 @@ RULE_ELEMENT(clipsToBounds, ClipsToBounds, @"-mobile-overflow", BOOL, overflowFr
 + (UITextAlignment)textAlignmentFromCssValues:(NSArray *)cssValues {
   NIDASSERT([cssValues count] == 1);
   if ([cssValues count] < 1) {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
     return UITextAlignmentLeft;
+#else
+    return NSTextAlignmentLeft;
+#endif
   }
 
   NSString* value = [cssValues objectAtIndex:0];
 
   UITextAlignment textAlignment = UITextAlignmentLeft;
   
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
   if ([value isEqualToString:@"center"]) {
     textAlignment = UITextAlignmentCenter;
   } else if ([value isEqualToString:@"right"]) {
@@ -1363,6 +1368,17 @@ RULE_ELEMENT(clipsToBounds, ClipsToBounds, @"-mobile-overflow", BOOL, overflowFr
   } else {
     NIDERROR(@"Unknown horizontal alignment %@", value);
   }
+#else
+  if ([value isEqualToString:@"center"]) {
+    textAlignment = NSTextAlignmentCenter;
+  } else if ([value isEqualToString:@"right"]) {
+    textAlignment = NSTextAlignmentRight;
+  } else if ([value isEqualToString:@"left"]) {
+    textAlignment = NSTextAlignmentLeft;
+  } else {
+    NIDERROR(@"Unknown horizontal alignment %@", value);
+  }
+#endif
 
   return textAlignment;
 }
@@ -1382,6 +1398,7 @@ RULE_ELEMENT(clipsToBounds, ClipsToBounds, @"-mobile-overflow", BOOL, overflowFr
   ENUM_CHECK(@"done",UIReturnKeyDone);
   ENUM_CHECK(@"emergencycall",UIReturnKeyEmergencyCall);
   NIDERROR(@"Unknown return key type %@", value);
+  return UIReturnKeyDefault;
 }
 
 +(UIKeyboardType) keyboardTypeFromCssValues: (NSArray*) cssValues {
@@ -1398,6 +1415,7 @@ RULE_ELEMENT(clipsToBounds, ClipsToBounds, @"-mobile-overflow", BOOL, overflowFr
   ENUM_CHECK(@"twitter",UIKeyboardTypeTwitter);
   ENUM_CHECK(@"search",UIKeyboardTypeWebSearch);
   NIDERROR(@"Unknown keyboard type %@", value);
+  return UIKeyboardTypeDefault;
 }
 
 +(UITextAutocorrectionType) autocorrectionFromCssValues: (NSArray*) cssValues {
@@ -1406,6 +1424,7 @@ RULE_ELEMENT(clipsToBounds, ClipsToBounds, @"-mobile-overflow", BOOL, overflowFr
   ENUM_CHECK(@"no", UITextAutocorrectionTypeNo);
   ENUM_CHECK(@"yes", UITextAutocorrectionTypeYes);
   NIDERROR(@"Unknown autocorrection type %@", value);
+  return UITextAutocorrectionTypeDefault;
 }
 
 +(UITextAutocapitalizationType) autocapitalizationFromCssValues: (NSArray*) cssValues {
@@ -1415,6 +1434,7 @@ RULE_ELEMENT(clipsToBounds, ClipsToBounds, @"-mobile-overflow", BOOL, overflowFr
   ENUM_CHECK(@"sentencnes", UITextAutocapitalizationTypeSentences);
   ENUM_CHECK(@"all", UITextAutocapitalizationTypeAllCharacters);
   NIDERROR(@"Unknown autocapitalization type %@", value);
+  return UITextAutocapitalizationTypeNone;
 }
 
 -(NSString *)description
