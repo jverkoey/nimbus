@@ -28,6 +28,7 @@ extern NSString* const NICSSViewTargetSelectorKey; // selector
 extern NSString* const NICSSViewSubviewsKey; // subviews
 extern NSString* const NICSSViewAccessibilityLabelKey; // label
 extern NSString* const NICSSViewBackgroundColorKey; // bg
+extern NSString* const NICSSViewHiddenKey; // hidden
 
 @interface UIView (NIStyleable)
 

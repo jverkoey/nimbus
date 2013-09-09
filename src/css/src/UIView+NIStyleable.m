@@ -38,6 +38,7 @@ NSString* const NICSSViewTargetSelectorKey = @"selector";
 NSString* const NICSSViewSubviewsKey = @"subviews";
 NSString* const NICSSViewAccessibilityLabelKey = @"label";
 NSString* const NICSSViewBackgroundColorKey = @"bg";
+NSString* const NICSSViewHiddenKey = @"hidden";
 
 /**
  * Private class for storing info during view creation
@@ -95,6 +96,13 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
       CGFloat r,g,b,a;
       [ruleSet.backgroundColor getRed:&r green:&g blue:&b alpha:&a];
       [desc appendFormat:@"%@.backgroundColor = [UIColor colorWithRed: %f green: %f blue: %f alpha: %f];\n", name, r, g, b, a];
+    }
+  }
+  if ([ruleSet hasClipsToBounds]) {
+    if (apply) {
+      self.clipsToBounds = ruleSet.clipsToBounds;
+    } else {
+      [desc appendFormat:@"%@.clipsToBounds = %@;", name, ruleSet.clipsToBounds ? @"YES":@"NO"];
     }
   }
   if ([ruleSet hasOpacity]) {
@@ -168,9 +176,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
           break;
         case CSS_PERCENTAGE_UNIT:
           if (apply) {
-            self.frameHeight += (self.frameHeight * vPadding.value);
+            self.frameHeight += roundf(self.frameHeight * vPadding.value);
           } else {
-            [desc appendFormat:@"%@.frameHeight += (%@.frameHeight * %f);", name, name, vPadding.value];
+            [desc appendFormat:@"%@.frameHeight += roundf(%@.frameHeight * %f);", name, name, vPadding.value];
           }
           break;
         case CSS_PIXEL_UNIT:
@@ -189,9 +197,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
           break;
         case CSS_PERCENTAGE_UNIT:
           if (apply) {
-            self.frameWidth += (self.frameWidth * hPadding.value);
+            self.frameWidth += roundf(self.frameWidth * hPadding.value);
           } else {
-            [desc appendFormat:@"%@.frameWidth += (%@.frameWidth * %f);", name, name, hPadding.value];
+            [desc appendFormat:@"%@.frameWidth += roundf(%@.frameWidth * %f);", name, name, hPadding.value];
           }
           break;
         case CSS_PIXEL_UNIT:
@@ -227,9 +235,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
           break;
         case CSS_PERCENTAGE_UNIT:
           if (apply) {
-            self.frameWidth = self.superview.bounds.size.width * u.value;
+            self.frameWidth = roundf(self.superview.bounds.size.width * u.value);
           } else {
-            [desc appendFormat:@"%@.frameWidth = %f;\n", name, self.superview.bounds.size.width * u.value];
+            [desc appendFormat:@"%@.frameWidth = %f;\n", name, roundf(self.superview.bounds.size.width * u.value)];
           }
           break;
         case CSS_PIXEL_UNIT:
@@ -259,9 +267,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             break;
           case CSS_PERCENTAGE_UNIT:
             if (apply) {
-              self.frameWidth += (self.frameWidth * hPadding.value);
+              self.frameWidth += roundf(self.frameWidth * hPadding.value);
             } else {
-              [desc appendFormat:@"%@.frameWidth += (%@.frameWidth * %f);", name, name, hPadding.value];
+              [desc appendFormat:@"%@.frameWidth += roundf(%@.frameWidth * %f);", name, name, hPadding.value];
             }
             break;
           case CSS_PIXEL_UNIT:
@@ -296,9 +304,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
           break;
         case CSS_PERCENTAGE_UNIT:
           if (apply) {
-            self.frameHeight = self.superview.bounds.size.height * u.value;
+            self.frameHeight = roundf(self.superview.bounds.size.height * u.value);
           } else {
-            [desc appendFormat:@"%@.frameHeight = %f;\n", name, self.superview.bounds.size.height * u.value];
+            [desc appendFormat:@"%@.frameHeight = %f;\n", name, roundf(self.superview.bounds.size.height * u.value)];
           }
           break;
         case CSS_PIXEL_UNIT:
@@ -328,9 +336,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             break;
           case CSS_PERCENTAGE_UNIT:
             if (apply) {
-              self.frameHeight += (self.frameHeight * vPadding.value);
+              self.frameHeight += roundf(self.frameHeight * vPadding.value);
             } else {
-              [desc appendFormat:@"%@.frameHeight += (%@.frameHeight * %f);", name, name, vPadding.value];
+              [desc appendFormat:@"%@.frameHeight += roundf(%@.frameHeight * %f);", name, name, vPadding.value];
             }
             break;
           case CSS_PIXEL_UNIT:
@@ -381,9 +389,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     switch (u.type) {
       case CSS_PERCENTAGE_UNIT:
         if (apply) {
-          self.frameMinY = self.superview.bounds.size.height * u.value;
+          self.frameMinY = roundf(self.superview.bounds.size.height * u.value);
         } else {
-          [desc appendFormat:@"%@.frameMinY = %f;\n", name, self.superview.bounds.size.height * u.value];
+          [desc appendFormat:@"%@.frameMinY = %f;\n", name, roundf(self.superview.bounds.size.height * u.value)];
         }
         break;
       case CSS_PIXEL_UNIT:
@@ -403,9 +411,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     switch (u.type) {
       case CSS_PERCENTAGE_UNIT:
         if (apply) {
-          self.frameMinX = self.superview.bounds.size.width * u.value;
+          self.frameMinX = roundf(self.superview.bounds.size.width * u.value);
         } else {
-          [desc appendFormat:@"%@.frameMinX = %f;\n", name, self.superview.bounds.size.width * u.value];
+          [desc appendFormat:@"%@.frameMinX = %f;\n", name, roundf(self.superview.bounds.size.width * u.value)];
         }
         break;
       case CSS_PIXEL_UNIT:
@@ -427,9 +435,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     switch (u.type) {
       case CSS_PERCENTAGE_UNIT:
         if (apply) {
-          self.frameMaxX = self.superview.bounds.size.width * u.value;
+          self.frameMaxX = roundf(self.superview.bounds.size.width * u.value);
         } else {
-          [desc appendFormat:@"%@.frameMaxX = %f;\n", name, self.superview.bounds.size.width * u.value];
+          [desc appendFormat:@"%@.frameMaxX = %f;\n", name, roundf(self.superview.bounds.size.width * u.value)];
         }
         break;
       case CSS_PIXEL_UNIT:
@@ -449,9 +457,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     switch (u.type) {
       case CSS_PERCENTAGE_UNIT:
         if (apply) {
-          self.frameMaxY = self.superview.bounds.size.height * u.value;
+          self.frameMaxY = roundf(self.superview.bounds.size.height * u.value);
         } else {
-          [desc appendFormat:@"%@.frameMaxY = %f;\n", name, self.superview.bounds.size.height * u.value];
+          [desc appendFormat:@"%@.frameMaxY = %f;\n", name, roundf(self.superview.bounds.size.height * u.value)];
         }
         break;
       case CSS_PIXEL_UNIT:
@@ -807,7 +815,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
 CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
 {
   if (unit.type == CSS_PERCENTAGE_UNIT) {
-    return unit.value * container;
+    return roundf(unit.value * container);
   }
   return unit.value;
 }
@@ -923,7 +931,13 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
         } else if ([directiveValue isKindOfClass:[NSString class]]) {
           directiveValue = [NICSSRuleset colorFromString:directiveValue];
         }
-        self.backgroundColor = directiveValue;
+        active.view.backgroundColor = directiveValue;
+      }
+      directiveValue = [kv objectForKey:NICSSViewHiddenKey];
+      if (directiveValue) {
+        [kv removeObjectForKey:NICSSViewHiddenKey];
+        NSAssert([directiveValue isKindOfClass:[NSNumber class]] || [directiveValue isKindOfClass:[NSString class]], @"The value of NICSSViewHiddenKey must be NSString* or NSNumber*");
+        active.view.hidden = [directiveValue boolValue];
       }
       directiveValue = [kv objectForKey:NICSSViewTagKey];
       if (directiveValue) {
