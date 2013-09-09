@@ -109,7 +109,8 @@ return _##name; \
                   kBackgroundImageKey, kImageKey, kVisibleKey, kTitleInsetsKey, kContentInsetsKey,
                   kImageInsetsKey, kRelativeToIdKey, kMarginTopKey, kMarginBottomKey,
                   kMarginLeftKey, kMarginRightKey, kTextKeyKey, kButtonAdjustKey, kVerticalAlignKey,
-                  kHorizontalAlignKey,
+                  kHorizontalAlignKey, kReturnKeyTypeKey, kKeyboardTypeKey,
+                  kAutocorrectionTypeKey, kAutocapitalizationTypeKey, kClipsToBoundsKey,
                   nil
                   ];
 }
@@ -717,6 +718,11 @@ RULE_ELEMENT(textKey, TextKey, @"-mobile-text-key", NSString*, stringFromCssValu
 RULE_ELEMENT(buttonAdjust, ButtonAdjust, @"-ios-button-adjust", NICSSButtonAdjust, buttonAdjustFromCssValue)
 RULE_ELEMENT(verticalAlign, VerticalAlign, @"-mobile-content-valign", UIControlContentVerticalAlignment, controlVerticalAlignFromCssValues)
 RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UIControlContentHorizontalAlignment, controlHorizontalAlignFromCssValues)
+RULE_ELEMENT(returnKeyType, ReturnKeyType, @"-mobile-return-key", UIReturnKeyType, returnKeyFromCssValues)
+RULE_ELEMENT(keyboardType, KeyboardType, @"-mobile-keyboard", UIKeyboardType, keyboardTypeFromCssValues)
+RULE_ELEMENT(autocorrectionType, AutocorrectionType, @"-mobile-autocorrection", UITextAutocorrectionType, autocorrectionFromCssValues)
+RULE_ELEMENT(autocapitalizationType, AutocapitalizationType, @"-mobile-autocapitalization", UITextAutocapitalizationType, autocapitalizationFromCssValues)
+RULE_ELEMENT(clipsToBounds, ClipsToBounds, @"-mobile-overflow", BOOL, overflowFromCssValues)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTintColor {
@@ -1258,6 +1264,16 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++(BOOL)overflowFromCssValues: (NSArray*) values
+{
+  NSString *v = [values objectAtIndex:0];
+  if ([v caseInsensitiveCompare:@"hidden"] == NSOrderedSame) {
+    return YES;
+  }
+  return NO;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 +(NSString*)imageStringFromCssValues:(NSArray*) cssValues
 {
   NSString *bg = [cssValues objectAtIndex:0];
@@ -1349,6 +1365,56 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   }
 
   return textAlignment;
+}
+
+#define ENUM_CHECK(s,e) if ([value isEqualToString:s]) { return e; }
++(UIReturnKeyType) returnKeyFromCssValues: (NSArray*) cssValues {
+  NSString *value = [cssValues objectAtIndex:0];
+  ENUM_CHECK(@"default",UIReturnKeyDefault);
+  ENUM_CHECK(@"go",UIReturnKeyGo);
+  ENUM_CHECK(@"google",UIReturnKeyGoogle);
+  ENUM_CHECK(@"join",UIReturnKeyJoin);
+  ENUM_CHECK(@"next",UIReturnKeyNext);
+  ENUM_CHECK(@"route",UIReturnKeyRoute);
+  ENUM_CHECK(@"search",UIReturnKeySearch);
+  ENUM_CHECK(@"send",UIReturnKeySend);
+  ENUM_CHECK(@"yahoo",UIReturnKeyYahoo);
+  ENUM_CHECK(@"done",UIReturnKeyDone);
+  ENUM_CHECK(@"emergencycall",UIReturnKeyEmergencyCall);
+  NIDERROR(@"Unknown return key type %@", value);
+}
+
++(UIKeyboardType) keyboardTypeFromCssValues: (NSArray*) cssValues {
+  NSString *value = [cssValues objectAtIndex:0];
+  ENUM_CHECK(@"default",UIKeyboardTypeDefault);
+  ENUM_CHECK(@"ascii",UIKeyboardTypeASCIICapable);
+  ENUM_CHECK(@"numbersandpunctuation",UIKeyboardTypeNumbersAndPunctuation);
+  ENUM_CHECK(@"url",UIKeyboardTypeURL);
+  ENUM_CHECK(@"number",UIKeyboardTypeNumberPad);
+  ENUM_CHECK(@"phone",UIKeyboardTypePhonePad);
+  ENUM_CHECK(@"namephone",UIKeyboardTypeNamePhonePad);
+  ENUM_CHECK(@"email",UIKeyboardTypeEmailAddress);
+  ENUM_CHECK(@"decimal",UIKeyboardTypeDecimalPad);
+  ENUM_CHECK(@"twitter",UIKeyboardTypeTwitter);
+  ENUM_CHECK(@"search",UIKeyboardTypeWebSearch);
+  NIDERROR(@"Unknown keyboard type %@", value);
+}
+
++(UITextAutocorrectionType) autocorrectionFromCssValues: (NSArray*) cssValues {
+  NSString *value = [cssValues objectAtIndex:0];
+  ENUM_CHECK(@"default", UITextAutocorrectionTypeDefault);
+  ENUM_CHECK(@"no", UITextAutocorrectionTypeNo);
+  ENUM_CHECK(@"yes", UITextAutocorrectionTypeYes);
+  NIDERROR(@"Unknown autocorrection type %@", value);
+}
+
++(UITextAutocapitalizationType) autocapitalizationFromCssValues: (NSArray*) cssValues {
+  NSString *value = [cssValues objectAtIndex:0];
+  ENUM_CHECK(@"none", UITextAutocapitalizationTypeNone);
+  ENUM_CHECK(@"words", UITextAutocapitalizationTypeWords);
+  ENUM_CHECK(@"sentencnes", UITextAutocapitalizationTypeSentences);
+  ENUM_CHECK(@"all", UITextAutocapitalizationTypeAllCharacters);
+  NIDERROR(@"Unknown autocapitalization type %@", value);
 }
 
 -(NSString *)description

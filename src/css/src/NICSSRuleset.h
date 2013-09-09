@@ -107,6 +107,12 @@ typedef enum {
   NICSSUnit _maxHeight;
   NICSSUnit _maxWidth;
   
+  UIReturnKeyType _returnKeyType;
+  UIKeyboardType _keyboardType;
+  UITextAutocorrectionType _autocorrectionType;
+  UITextAutocapitalizationType _autocapitalizationType;
+  BOOL _clipsToBounds;
+  
   union {
     struct {
       int TextColor : 1;
@@ -163,6 +169,11 @@ typedef enum {
       int ButtonAdjust: 1;
       int HorizontalPadding: 1;
       int VerticalPadding: 1;
+      int ReturnKeyType: 1;
+      int KeyboardType: 1;
+      int AutocorrectionType: 1;
+      int AutocapitalizationType: 1;
+      int ClipsToBounds: 1;
     } cached;
     int64_t _data;
   } _is;
@@ -329,6 +340,21 @@ typedef enum {
 
 - (BOOL) hasVerticalPadding;
 - (NICSSUnit) verticalPadding; // padding or -mobile-vPadding
+
+- (BOOL) hasReturnKeyType;
+- (UIReturnKeyType) returnKeyType;
+
+- (BOOL) hasKeyboardType;
+- (UIKeyboardType) keyboardType;
+
+- (BOOL) hasAutocorrectionType;
+- (UITextAutocorrectionType) autocorrectionType;
+
+- (BOOL) hasAutocapitalizationType;
+- (UITextAutocapitalizationType) autocapitalizationType;
+
+- (BOOL) hasClipsToBounds;
+- (BOOL) clipsToBounds;
 @end
 
 /**

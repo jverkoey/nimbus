@@ -147,4 +147,38 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
   });
   return buttonPseudos;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) autoSize: (NICSSRuleset*) ruleSet inDOM: (NIDOM*) dom {
+    CGFloat newWidth = self.frameWidth, newHeight = self.frameHeight;
+    
+    if (ruleSet.hasWidth && ruleSet.width.type == CSS_AUTO_UNIT) {
+        
+        CGSize size = [[self titleForState:UIControlStateNormal]
+                       sizeWithFont:self.titleLabel.font
+                       constrainedToSize:CGSizeMake(CGFLOAT_MAX, self.frame.size.height)];
+        newWidth = size.width;
+    }
+    
+    if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
+        CGSize sizeForOneLine = [@"." sizeWithFont:self.titleLabel.font constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+        float heightForOneLine = sizeForOneLine.height;
+        
+        CGSize size = [[self titleForState:UIControlStateNormal]
+                       sizeWithFont: self.titleLabel.font
+                       constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+        float maxHeight = (self.titleLabel.numberOfLines == 0) ? CGFLOAT_MAX : (heightForOneLine * self.titleLabel.numberOfLines);
+        
+        if (size.height > maxHeight) {
+            size.height = maxHeight;
+        }
+        newHeight = size.height;
+    }
+    
+    self.frame = CGRectMake(self.frame.origin.x,
+                            self.frame.origin.y,
+                            newWidth,
+                            newHeight);
+}
+
 @end
