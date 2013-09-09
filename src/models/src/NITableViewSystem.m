@@ -57,30 +57,32 @@
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
--(id)initWithTableView:(UITableView *)tableView andDelegate:(id<NITableViewSystemDelegate>)delegate {
-    self = [self initWithDelegate:delegate];
-    
-    if (self) {
-        self.tableView = tableView;        
-        // No need to set anything else because the table is empty right now anyways
-    }
-    
-    return self;
+- (id)initWithTableView:(UITableView *)tableView andDelegate:(id<NITableViewSystemDelegate>)delegate {
+  self = [self initWithDelegate:delegate];
+
+  if (self) {
+    self.tableView = tableView;
+    // No need to set anything else because the table is empty right now anyways
+  }
+
+  return self;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTableView:(UITableView *)tableView {
-    if (tableView != _tableView) {
-        [_tableView removeObserver:self forKeyPath:@"delegate"];
-        _tableView = tableView;
-        if (_tableView.delegate) {
-            _tableView.delegate = [_actions forwardingTo:_tableView.delegate];
-        } else {
-            _tableView.delegate = _actions;
-        }
-        
-        [_tableView addObserver:self forKeyPath:@"delegate" options:NSKeyValueObservingOptionNew context:nil];
+  if (tableView != _tableView) {
+    [_tableView removeObserver:self forKeyPath:@"delegate"];
+    _tableView = tableView;
+    if (_tableView.delegate) {
+      _tableView.delegate = [_actions forwardingTo:_tableView.delegate];
+    } else if (_delegate) {
+      _tableView.delegate = [_actions forwardingTo:_delegate];
+    }else {
+      _tableView.delegate = _actions;
     }
+
+    [_tableView addObserver:self forKeyPath:@"delegate" options:NSKeyValueObservingOptionNew context:nil];
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
