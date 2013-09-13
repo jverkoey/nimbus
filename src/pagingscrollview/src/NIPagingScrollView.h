@@ -77,6 +77,7 @@ typedef enum {
 - (void)moveToNextAnimated:(BOOL)animated;
 - (void)moveToPreviousAnimated:(BOOL)animated;
 - (BOOL)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated;
+- (BOOL)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated updateVisiblePagesWhileScrolling:(BOOL)updateVisiblePagesWhileScrolling;
 
 #pragma mark Rotating the Scroll View
 
@@ -230,6 +231,17 @@ typedef enum {
  *      @returns NO if a page change animation is already in effect and we couldn't change the page
  *               again.
  *      @fn NIPagingScrollView::moveToPageAtIndex:animated:
+ */
+
+/**
+ * Move to the given page index with optional animation and option to enable page updates while
+ * scrolling.
+ *
+ *      @param updateVisiblePagesWhileScrolling If YES, will query the data source for any pages
+ *                                              that become visible while the animation occurs.
+ *      @returns NO if a page change animation is already in effect and we couldn't change the page
+ *               again.
+ *      @fn NIPagingScrollView::moveToPageAtIndex:animated:updateVisiblePagesWhileScrolling:
  */
 
 
