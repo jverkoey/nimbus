@@ -194,7 +194,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)pathFromPath:(NSString *)path {
-  return [path md5Hash];
+  return [path ni_md5Hash];
 }
 
 

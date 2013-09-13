@@ -39,14 +39,25 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
+ * Deprecated. Use ni_queryContentsUsingEncoding instead.
+ */
+- (CGFloat)heightWithFont:(UIFont*)font
+       constrainedToWidth:(CGFloat)width
+            lineBreakMode:(NSLineBreakMode)lineBreakMode {
+  return [self ni_heightWithFont:font
+              constrainedToWidth:width
+                   lineBreakMode:lineBreakMode];
+}
+
+/**
  * Calculates the height of this text given the font, max width, and line break mode.
  *
  * A convenience wrapper for sizeWithFont:constrainedToSize:lineBreakMode:
  */
 // COV_NF_START
-- (CGFloat)heightWithFont:(UIFont*)font
-       constrainedToWidth:(CGFloat)width
-            lineBreakMode:(NSLineBreakMode)lineBreakMode {
+- (CGFloat)ni_heightWithFont:(UIFont*)font
+          constrainedToWidth:(CGFloat)width
+               lineBreakMode:(NSLineBreakMode)lineBreakMode {
   return [self sizeWithFont:font
           constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
               lineBreakMode:lineBreakMode].height;
@@ -55,6 +66,13 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Deprecated. Use ni_queryContentsUsingEncoding instead.
+ */
+- (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding {
+  return [self ni_queryContentsUsingEncoding:encoding];
+}
+
 /**
  * Parses a URL query string into a dictionary where the values are arrays.
  *
@@ -65,7 +83,7 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
  * in the query. Otherwise each object in the array with be an NSString corresponding to a value
  * in the query for that parameter.
  */
-- (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding {
+- (NSDictionary*)ni_queryContentsUsingEncoding:(NSStringEncoding)encoding {
   NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
   NSMutableDictionary* pairs = [NSMutableDictionary dictionary];
   NSScanner* scanner = [[NSScanner alloc] initWithString:self];
@@ -98,9 +116,16 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * Returns a string that has been escaped for use as a URL parameter.
+ * Deprecated. Use ni_stringByAddingPercentEscapesForURLParameter instead.
  */
 - (NSString *)stringByAddingPercentEscapesForURLParameter {
+  return [self ni_stringByAddingPercentEscapesForURLParameter];
+}
+
+/**
+ * Returns a string that has been escaped for use as a URL parameter.
+ */
+- (NSString *)ni_stringByAddingPercentEscapesForURLParameter {
   
   CFStringRef buffer = 
   CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
@@ -119,12 +144,19 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.
+ * Deprecated. Use ni_stringByAddingQueryDictionary instead.
  */
 - (NSString*)stringByAddingQueryDictionary:(NSDictionary*)query {
+  return [self ni_stringByAddingQueryDictionary:query];
+}
+
+/**
+ * Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.
+ */
+- (NSString*)ni_stringByAddingQueryDictionary:(NSDictionary*)query {
   NSMutableArray* pairs = [NSMutableArray array];
   for (NSString* key in [query keyEnumerator]) {
-    NSString* value = [[query objectForKey:key] stringByAddingPercentEscapesForURLParameter];
+    NSString* value = [[query objectForKey:key] ni_stringByAddingPercentEscapesForURLParameter];
     NSString* pair = [NSString stringWithFormat:@"%@=%@", key, value];
     [pairs addObject:pair];
   }
@@ -140,6 +172,13 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Deprecated. Use ni_versionStringCompare instead.
+ */
+- (NSComparisonResult)versionStringCompare:(NSString *)other {
+  return [self ni_versionStringCompare:other];
+}
+
 /**
  * Compares two strings expressing software versions.
  *
@@ -176,7 +215,7 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
  * </pre>
  * @endhtmlonly
  */
-- (NSComparisonResult)versionStringCompare:(NSString *)other {
+- (NSComparisonResult)ni_versionStringCompare:(NSString *)other {
   NSArray *oneComponents = [self componentsSeparatedByString:@"a"];
   NSArray *twoComponents = [other componentsSeparatedByString:@"a"];
 
@@ -213,22 +252,36 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
+ * Deprecated. Use ni_md5Hash instead.
+ */
+- (NSString*)md5Hash {
+  return [self ni_md5Hash];
+}
+
+/**
  * Calculate the md5 hash using CC_MD5.
  *
  * @returns md5 hash of this string.
  */
-- (NSString*)md5Hash {
+- (NSString*)ni_md5Hash {
   return NIMD5HashFromData([self dataUsingEncoding:NSUTF8StringEncoding]);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
+ * Deprecated. Use ni_sha1Hash instead.
+ */
+- (NSString*)sha1Hash {
+  return [self ni_sha1Hash];
+}
+
+/**
  * Calculate the SHA1 hash using CommonCrypto CC_SHA1.
  *
  * @returns SHA1 hash of this string.
  */
-- (NSString*)sha1Hash {
+- (NSString*)ni_sha1Hash {
   return NISHA1HashFromData([self dataUsingEncoding:NSUTF8StringEncoding]);
 }
 
