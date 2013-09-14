@@ -1411,7 +1411,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
   for (CFIndex lineIndex = 0; lineIndex < numberOfLines; lineIndex++) {
     CGPoint lineOrigin = lineOrigins[lineIndex];
-    CGContextSetTextPosition(ctx, lineOrigin.x, lineOrigin.y);
+    CGContextSetTextPosition(ctx, lineOrigin.x, lineOrigin.y - rect.origin.y);
     CTLineRef line = CFArrayGetValueAtIndex(lines, lineIndex);
 
     BOOL shouldDrawLine = YES;

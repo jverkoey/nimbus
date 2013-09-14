@@ -41,65 +41,65 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNSString_queryContentsUsingEncoding {
+- (void)testNSString_ni_queryContentsUsingEncoding {
 	NSDictionary* query;
 
-	query = [@"" queryContentsUsingEncoding:NSUTF8StringEncoding];
+	query = [@"" ni_queryContentsUsingEncoding:NSUTF8StringEncoding];
 	STAssertTrue([query count] == 0, @"Query: %@", query);
 
-	query = [@"q" queryContentsUsingEncoding:NSUTF8StringEncoding];
+	query = [@"q" ni_queryContentsUsingEncoding:NSUTF8StringEncoding];
 	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:[NSNull null]]],
                @"Query: %@", query);
 
-	query = [@"q=" queryContentsUsingEncoding:NSUTF8StringEncoding];
+	query = [@"q=" ni_queryContentsUsingEncoding:NSUTF8StringEncoding];
 	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@""]],
                @"Query: %@", query);
 
-	query = [@"q=three20" queryContentsUsingEncoding:NSUTF8StringEncoding];
+	query = [@"q=three20" ni_queryContentsUsingEncoding:NSUTF8StringEncoding];
 	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@"three20"]],
                @"Query: %@", query);
 
-	query = [@"q=three20%20github" queryContentsUsingEncoding:NSUTF8StringEncoding];
+	query = [@"q=three20%20github" ni_queryContentsUsingEncoding:NSUTF8StringEncoding];
 	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@"three20 github"]],
                @"Query: %@", query);
 
-	query = [@"q=three20&hl=en" queryContentsUsingEncoding:NSUTF8StringEncoding];
+	query = [@"q=three20&hl=en" ni_queryContentsUsingEncoding:NSUTF8StringEncoding];
 	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@"three20"]],
                @"Query: %@", query);
 	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]],
                @"Query: %@", query);
 
-	query = [@"q=three20&hl=" queryContentsUsingEncoding:NSUTF8StringEncoding];
+	query = [@"q=three20&hl=" ni_queryContentsUsingEncoding:NSUTF8StringEncoding];
 	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@"three20"]],
                @"Query: %@", query);
 	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@""]],
                @"Query: %@", query);
 
-	query = [@"q=&&hl=" queryContentsUsingEncoding:NSUTF8StringEncoding];
+	query = [@"q=&&hl=" ni_queryContentsUsingEncoding:NSUTF8StringEncoding];
 	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@""]],
                @"Query: %@", query);
 	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@""]],
                @"Query: %@", query);
 
-	query = [@"q=three20=repo&hl=en" queryContentsUsingEncoding:NSUTF8StringEncoding];
+	query = [@"q=three20=repo&hl=en" ni_queryContentsUsingEncoding:NSUTF8StringEncoding];
 	STAssertNil([query objectForKey:@"q"], @"Query: %@", query);
 	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]],
                @"Query: %@", query);
 
-	query = [@"&&" queryContentsUsingEncoding:NSUTF8StringEncoding];
+	query = [@"&&" ni_queryContentsUsingEncoding:NSUTF8StringEncoding];
 	STAssertTrue([query count] == 0, @"Query: %@", query);
 
-	query = [@"q=foo&q=three20" queryContentsUsingEncoding:NSUTF8StringEncoding];
+	query = [@"q=foo&q=three20" ni_queryContentsUsingEncoding:NSUTF8StringEncoding];
 	NSArray* qArr = [NSArray arrayWithObjects:@"foo", @"three20", nil];
 	STAssertTrue([[query objectForKey:@"q"] isEqual:qArr], @"Query: %@", query);
 
-	query = [@"q=foo&q=three20&hl=en" queryContentsUsingEncoding:NSUTF8StringEncoding];
+	query = [@"q=foo&q=three20&hl=en" ni_queryContentsUsingEncoding:NSUTF8StringEncoding];
 	qArr = [NSArray arrayWithObjects:@"foo", @"three20", nil];
 	STAssertTrue([[query objectForKey:@"q"] isEqual:qArr], @"Query: %@", query);
 	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]],
                @"Query: %@", query);
 
-	query = [@"q=foo&q=three20&hl=en&g" queryContentsUsingEncoding:NSUTF8StringEncoding];
+	query = [@"q=foo&q=three20&hl=en&g" ni_queryContentsUsingEncoding:NSUTF8StringEncoding];
 	qArr = [NSArray arrayWithObjects:@"foo", @"three20", nil];
 	STAssertTrue([[query objectForKey:@"q"] isEqual:qArr], @"Query: %@", query);
 	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]],
@@ -107,7 +107,7 @@
 	STAssertTrue([[query objectForKey:@"g"] isEqual:[NSArray arrayWithObject:[NSNull null]]],
                @"Query: %@", query);
 
-	query = [@"q&q=three20&hl=en&g" queryContentsUsingEncoding:NSUTF8StringEncoding];
+	query = [@"q&q=three20&hl=en&g" ni_queryContentsUsingEncoding:NSUTF8StringEncoding];
 	qArr = [NSArray arrayWithObjects:[NSNull null], @"three20", nil];
 	STAssertTrue([[query objectForKey:@"q"] isEqual:qArr], @"Query: %@", query);
 	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]],
@@ -116,15 +116,15 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNSString_stringByAddingQueryDictionary {
+- (void)testNSString_ni_stringByAddingQueryDictionary {
   NSString* baseUrl = @"http://google.com/search";
-  STAssertTrue([[baseUrl stringByAddingQueryDictionary:nil] isEqualToString:
+  STAssertTrue([[baseUrl ni_stringByAddingQueryDictionary:nil] isEqualToString:
                 [baseUrl stringByAppendingString:@"?"]], @"Empty dictionary fail.");
 
-  STAssertTrue([[baseUrl stringByAddingQueryDictionary:[NSDictionary dictionary]] isEqualToString:
+  STAssertTrue([[baseUrl ni_stringByAddingQueryDictionary:[NSDictionary dictionary]] isEqualToString:
                 [baseUrl stringByAppendingString:@"?"]], @"Empty dictionary fail.");
 
-  STAssertTrue([[baseUrl stringByAddingQueryDictionary:[NSDictionary
+  STAssertTrue([[baseUrl ni_stringByAddingQueryDictionary:[NSDictionary
                                                         dictionaryWithObject:@"three20"
                                                         forKey:@"q"]] isEqualToString:
                 [baseUrl stringByAppendingString:@"?q=three20"]], @"Single parameter fail.");
@@ -134,41 +134,41 @@
                          @"three20", @"q",
                          @"en",      @"hl",
                          nil];
-  NSString* baseUrlWithQuery = [baseUrl stringByAddingQueryDictionary:query];
+  NSString* baseUrlWithQuery = [baseUrl ni_stringByAddingQueryDictionary:query];
   STAssertTrue([baseUrlWithQuery isEqualToString:[baseUrl
                                                   stringByAppendingString:@"?hl=en&q=three20"]]
                || [baseUrlWithQuery isEqualToString:[baseUrl
                                                      stringByAppendingString:@"?q=three20&hl=en"]],
                @"Additional query parameters not correct. %@",
-               [baseUrl stringByAddingQueryDictionary:query]);
+               [baseUrl ni_stringByAddingQueryDictionary:query]);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNSString_versionStringCompare {
-  STAssertTrue([@"3.0"   versionStringCompare:@"3.0"]    == NSOrderedSame, @"same version");
-  STAssertTrue([@"3.0a2" versionStringCompare:@"3.0a2"]  == NSOrderedSame, @"same version alpha");
-  STAssertTrue([@"3.0"   versionStringCompare:@"2.5"]    == NSOrderedDescending, @"major no alpha");
-  STAssertTrue([@"3.1"   versionStringCompare:@"3.0"]    == NSOrderedDescending, @"minor no alpha");
-  STAssertTrue([@"3.0a1" versionStringCompare:@"3.0"]    == NSOrderedAscending, @"alpha-no alpha");
-  STAssertTrue([@"3.0a1" versionStringCompare:@"3.0a4"]  == NSOrderedAscending, @"alpha diff");
-  STAssertTrue([@"3.0a2" versionStringCompare:@"3.0a19"] == NSOrderedAscending, @"numeric alpha");
-  STAssertTrue([@"3.0a"  versionStringCompare:@"3.0a1"]  == NSOrderedAscending, @"empty alpha");
-  STAssertTrue([@"3.02"  versionStringCompare:@"3.03"]   == NSOrderedAscending, @"point diff");
-  STAssertTrue([@"3.0.2" versionStringCompare:@"3.0.3"]  == NSOrderedAscending, @"point diff");
+- (void)testNSString_ni_versionStringCompare {
+  STAssertTrue([@"3.0"   ni_versionStringCompare:@"3.0"]    == NSOrderedSame, @"same version");
+  STAssertTrue([@"3.0a2" ni_versionStringCompare:@"3.0a2"]  == NSOrderedSame, @"same version alpha");
+  STAssertTrue([@"3.0"   ni_versionStringCompare:@"2.5"]    == NSOrderedDescending, @"major no alpha");
+  STAssertTrue([@"3.1"   ni_versionStringCompare:@"3.0"]    == NSOrderedDescending, @"minor no alpha");
+  STAssertTrue([@"3.0a1" ni_versionStringCompare:@"3.0"]    == NSOrderedAscending, @"alpha-no alpha");
+  STAssertTrue([@"3.0a1" ni_versionStringCompare:@"3.0a4"]  == NSOrderedAscending, @"alpha diff");
+  STAssertTrue([@"3.0a2" ni_versionStringCompare:@"3.0a19"] == NSOrderedAscending, @"numeric alpha");
+  STAssertTrue([@"3.0a"  ni_versionStringCompare:@"3.0a1"]  == NSOrderedAscending, @"empty alpha");
+  STAssertTrue([@"3.02"  ni_versionStringCompare:@"3.03"]   == NSOrderedAscending, @"point diff");
+  STAssertTrue([@"3.0.2" ni_versionStringCompare:@"3.0.3"]  == NSOrderedAscending, @"point diff");
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNSString_md5Hash {
-  STAssertTrue([[@"nimbus" md5Hash] isEqualToString:@"0e78d66f33c484a3c3b36d69bd3114cf"],
+- (void)testNSString_ni_md5Hash {
+  STAssertTrue([[@"nimbus" ni_md5Hash] isEqualToString:@"0e78d66f33c484a3c3b36d69bd3114cf"],
                @"MD5 hashes don't match.");
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNSString_sha1Hash {
-  STAssertTrue([[@"nimbus" sha1Hash] isEqualToString:@"c1b42d95fd18ad8a56d4fd7bbb4105952620d857"],
+- (void)testNSString_ni_sha1Hash {
+  STAssertTrue([[@"nimbus" ni_sha1Hash] isEqualToString:@"c1b42d95fd18ad8a56d4fd7bbb4105952620d857"],
                @"SHA1 hashes don't match.");
 }
 
