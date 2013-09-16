@@ -157,6 +157,16 @@
 
 /** @name Accessing the Toolbar */
 
+
+/**
+ * The initialization of the toolbar.
+ *
+ * Adds the option to overwrite the toolbar initialization called by loadView function
+ * This is needed to add additional buttons
+ *
+ *      @fn NIWebController::initToolbar
+ */
+
 /**
  * The visibility of the toolbar.
  *

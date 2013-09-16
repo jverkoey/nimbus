@@ -204,8 +204,8 @@
   }
 }
 
-
-- (void)initToolBar {
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)initToolbar {
     CGRect bounds = self.view.bounds;
     
     CGFloat toolbarHeight = NIToolbarHeightForOrientation(NIInterfaceOrientation());
@@ -289,7 +289,7 @@
 - (void)loadView {
   [super loadView];
     
-  [self initToolBar];
+  [self initToolbar];
 
 
   self.webView = [[UIWebView alloc] initWithFrame:CGRectZero];
