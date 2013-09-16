@@ -204,88 +204,93 @@
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)initToolbar {
+    CGRect bounds = self.view.bounds;
+    
+    CGFloat toolbarHeight = NIToolbarHeightForOrientation(NIInterfaceOrientation());
+    CGRect toolbarFrame = CGRectMake(0, bounds.size.height - toolbarHeight,
+                                     bounds.size.width, toolbarHeight);
+    
+    self.toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
+    self.toolbar.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin
+                                     | UIViewAutoresizingFlexibleWidth);
+    self.toolbar.tintColor = self.toolbarTintColor;
+    self.toolbar.hidden = self.toolbarHidden;
+    
+    UIActivityIndicatorView* spinner =
+    [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
+     UIActivityIndicatorViewStyleWhite];
+    [spinner startAnimating];
+    self.activityItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
+    
+    UIImage* backIcon = [UIImage imageWithContentsOfFile:
+                         NIPathForBundleResource(nil, @"NimbusWebController.bundle/gfx/backIcon.png")];
+    // We weren't able to find the forward or back icons in your application's resources.
+    // Ensure that you've dragged the NimbusWebController.bundle from src/webcontroller/resources
+    //into your application with the "Create Folder References" option selected. You can verify that
+    // you've done this correctly by expanding the NimbusPhotos.bundle file in your project
+    // and verifying that the 'gfx' directory is blue. Also verify that the bundle is being
+    // copied in the Copy Bundle Resources phase.
+    NIDASSERT(nil != backIcon);
+    
+    self.backButton =
+    [[UIBarButtonItem alloc] initWithImage:backIcon
+                                     style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(didTapBackButton)];
+    self.backButton.tag = 2;
+    self.backButton.enabled = NO;
+    
+    UIImage* forwardIcon = [UIImage imageWithContentsOfFile:
+                            NIPathForBundleResource(nil, @"NimbusWebController.bundle/gfx/forwardIcon.png")];
+    // We weren't able to find the forward or back icons in your application's resources.
+    // Ensure that you've dragged the NimbusWebController.bundle from src/webcontroller/resources
+    // into your application with the "Create Folder References" option selected. You can verify that
+    // you've done this correctly by expanding the NimbusPhotos.bundle file in your project
+    // and verifying that the 'gfx' directory is blue. Also verify that the bundle is being
+    // copied in the Copy Bundle Resources phase.
+    NIDASSERT(nil != forwardIcon);
+    
+    self.forwardButton =
+    [[UIBarButtonItem alloc] initWithImage:forwardIcon
+                                     style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(didTapForwardButton)];
+    self.forwardButton.tag = 1;
+    self.forwardButton.enabled = NO;
+    self.refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
+                          UIBarButtonSystemItemRefresh target:self action:@selector(didTapRefreshButton)];
+    self.refreshButton.tag = 3;
+    self.stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
+                       UIBarButtonSystemItemStop target:self action:@selector(didTapStopButton)];
+    self.stopButton.tag = 3;
+    self.actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
+                         UIBarButtonSystemItemAction target:self action:@selector(didTapShareButton)];
+    
+    UIBarItem* flexibleSpace =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace
+                                                  target: nil
+                                                  action: nil];
+    
+    self.toolbar.items = [NSArray arrayWithObjects:
+                          self.backButton,
+                          flexibleSpace,
+                          self.forwardButton,
+                          flexibleSpace,
+                          self.refreshButton,
+                          flexibleSpace,
+                          self.actionButton,
+                          nil];
+    [self.view addSubview:self.toolbar];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
   [super loadView];
+    
+  [self initToolbar];
 
-  CGRect bounds = self.view.bounds;
-
-  CGFloat toolbarHeight = NIToolbarHeightForOrientation(NIInterfaceOrientation());
-  CGRect toolbarFrame = CGRectMake(0, bounds.size.height - toolbarHeight,
-                                   bounds.size.width, toolbarHeight);
-
-  self.toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
-  self.toolbar.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin
-                               | UIViewAutoresizingFlexibleWidth);
-  self.toolbar.tintColor = self.toolbarTintColor;
-  self.toolbar.hidden = self.toolbarHidden;
-
-  UIActivityIndicatorView* spinner =
-  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-    UIActivityIndicatorViewStyleWhite];
-  [spinner startAnimating];
-  self.activityItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
-
-  UIImage* backIcon = [UIImage imageWithContentsOfFile:
-                      NIPathForBundleResource(nil, @"NimbusWebController.bundle/gfx/backIcon.png")];
-  // We weren't able to find the forward or back icons in your application's resources.
-  // Ensure that you've dragged the NimbusWebController.bundle from src/webcontroller/resources
-  //into your application with the "Create Folder References" option selected. You can verify that
-  // you've done this correctly by expanding the NimbusPhotos.bundle file in your project
-  // and verifying that the 'gfx' directory is blue. Also verify that the bundle is being
-  // copied in the Copy Bundle Resources phase.
-  NIDASSERT(nil != backIcon);
-
-  self.backButton =
-  [[UIBarButtonItem alloc] initWithImage:backIcon
-                                   style:UIBarButtonItemStylePlain
-                                  target:self
-                                  action:@selector(didTapBackButton)];
-  self.backButton.tag = 2;
-  self.backButton.enabled = NO;
-
-  UIImage* forwardIcon = [UIImage imageWithContentsOfFile:
-                  NIPathForBundleResource(nil, @"NimbusWebController.bundle/gfx/forwardIcon.png")];
-  // We weren't able to find the forward or back icons in your application's resources.
-  // Ensure that you've dragged the NimbusWebController.bundle from src/webcontroller/resources
-  // into your application with the "Create Folder References" option selected. You can verify that
-  // you've done this correctly by expanding the NimbusPhotos.bundle file in your project
-  // and verifying that the 'gfx' directory is blue. Also verify that the bundle is being
-  // copied in the Copy Bundle Resources phase.
-  NIDASSERT(nil != forwardIcon);
-
-  self.forwardButton =
-  [[UIBarButtonItem alloc] initWithImage:forwardIcon
-                                   style:UIBarButtonItemStylePlain
-                                  target:self
-                                  action:@selector(didTapForwardButton)];
-  self.forwardButton.tag = 1;
-  self.forwardButton.enabled = NO;
-  self.refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                    UIBarButtonSystemItemRefresh target:self action:@selector(didTapRefreshButton)];
-  self.refreshButton.tag = 3;
-  self.stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                 UIBarButtonSystemItemStop target:self action:@selector(didTapStopButton)];
-  self.stopButton.tag = 3;
-  self.actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                   UIBarButtonSystemItemAction target:self action:@selector(didTapShareButton)];
-
-  UIBarItem* flexibleSpace =
-  [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace
-                                                 target: nil
-                                                 action: nil];
-
-  self.toolbar.items = [NSArray arrayWithObjects:
-                    self.backButton,
-                    flexibleSpace,
-                    self.forwardButton,
-                    flexibleSpace,
-                    self.refreshButton,
-                    flexibleSpace,
-                    self.actionButton,
-                    nil];
-  [self.view addSubview:self.toolbar];
 
   self.webView = [[UIWebView alloc] initWithFrame:CGRectZero];
   [self updateWebViewFrame];
