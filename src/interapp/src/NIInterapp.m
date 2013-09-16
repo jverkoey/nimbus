@@ -188,7 +188,7 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
 
   NSString* urlPath = [NSString stringWithFormat:
                          @"?q=%@@%f,%f",
-                         [title stringByAddingPercentEscapesForURLParameter], location.latitude, location.longitude];
+                         [title ni_stringByAddingPercentEscapesForURLParameter], location.latitude, location.longitude];
   return [NIInterapp openBestGoogleMapUrl:urlPath];
 
 }
@@ -253,7 +253,7 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
 + (BOOL)googleMapWithQuery:(NSString *)query {
   NSString* urlPath = [NSString stringWithFormat:
                        @"?q=%@",
-                       [query stringByAddingPercentEscapesForURLParameter]];
+                       [query ni_stringByAddingPercentEscapesForURLParameter]];
   return [NIInterapp openBestGoogleMapUrl:urlPath ];
 }
 
@@ -323,7 +323,7 @@ static NSString* const sMailScheme = @"mailto:";
   NSString* urlPath = sMailScheme;
 
   if (NIIsStringWithAnyText(invocation.recipient)) {
-    urlPath = [urlPath stringByAppendingString:[invocation.recipient stringByAddingPercentEscapesForURLParameter]];
+    urlPath = [urlPath stringByAppendingString:[invocation.recipient ni_stringByAddingPercentEscapesForURLParameter]];
   }
 
   if (NIIsStringWithAnyText(invocation.cc)) {
@@ -339,7 +339,7 @@ static NSString* const sMailScheme = @"mailto:";
     [parameters setObject:invocation.body forKey:@"body"];
   }
 
-  urlPath = [urlPath stringByAddingQueryDictionary:parameters];
+  urlPath = [urlPath ni_stringByAddingQueryDictionary:parameters];
 
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
@@ -458,7 +458,7 @@ static NSString* const sTwitterScheme = @"twitter:";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)twitterWithMessage:(NSString *)message {
   NSString* urlPath = [sTwitterScheme stringByAppendingFormat:@"//post?message=%@",
-                       [message stringByAddingPercentEscapesForURLParameter]];
+                       [message ni_stringByAddingPercentEscapesForURLParameter]];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
@@ -466,7 +466,7 @@ static NSString* const sTwitterScheme = @"twitter:";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)twitterProfileForUsername:(NSString *)username {
   NSString* urlPath = [sTwitterScheme stringByAppendingFormat:@"//user?screen_name=%@",
-                       [username stringByAddingPercentEscapesForURLParameter]];
+                       [username ni_stringByAddingPercentEscapesForURLParameter]];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
@@ -579,7 +579,7 @@ static NSString* const sInstagramScheme = @"instagram:";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)instagramProfileForUsername:(NSString *)username {
   NSString* urlPath = [sInstagramScheme stringByAppendingFormat:@"//user?username=%@",
-                       [username stringByAddingPercentEscapesForURLParameter]];
+                       [username ni_stringByAddingPercentEscapesForURLParameter]];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
