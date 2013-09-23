@@ -99,6 +99,11 @@ extern "C" {
 #endif
 
 int NIIsInDebugger(void);
+
+#if defined __cplusplus
+}
+#endif
+
 #if TARGET_IPHONE_SIMULATOR
 // We leave the __asm__ in this macro so that when a break occurs, we don't have to step out of
 // a "breakInDebugger" function.
@@ -185,10 +190,6 @@ xx, ##__VA_ARGS__)
  * Only writes to the log if NIMaxLogLevel >= NILOGLEVEL_INFO.
  */
 #define NIDINFO(xx, ...)  NIDCONDITIONLOG((NILOGLEVEL_INFO <= NIMaxLogLevel), xx, ##__VA_ARGS__)
-
-#if defined __cplusplus
-};
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of Debugging Tools //////////////////////////////////////////////////////////////////
