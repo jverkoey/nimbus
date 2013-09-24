@@ -30,6 +30,7 @@
 @property (nonatomic,strong) NSMutableDictionary* viewToSelectorsMap;
 @property (nonatomic,strong) NSMutableDictionary* idToViewMap;
 @property (nonatomic,strong) NIDOM *parent;
+@property (nonatomic,strong) NSMutableSet *refreshedViews;
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -316,18 +317,37 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)refresh {
+  NIDASSERT(self.refreshedViews == nil); // You are already in the midst of a refresh. Don't do this.
+  self.refreshedViews = [[NSMutableSet alloc] initWithCapacity:_registeredViews.count+1];
   for (UIView* view in _registeredViews) {
+    [self.refreshedViews addObject:view];
     for (NSString* selector in [_viewToSelectorsMap objectForKey:[self keyForView:view]]) {
       [self refreshStyleForView:view withSelectorName:selector];
     }
   }
+  self.refreshedViews = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)refreshView:(UIView *)view {
-    for (NSString* selector in [_viewToSelectorsMap objectForKey:[self keyForView:view]]) {
-        [self refreshStyleForView:view withSelectorName:selector];
-    }
+  NIDASSERT(self.refreshedViews == nil); // You are already in the midst of a refresh. Don't do this.
+  self.refreshedViews = [[NSMutableSet alloc] init];
+  [self.refreshedViews addObject:view];
+  for (NSString* selector in [_viewToSelectorsMap objectForKey:[self keyForView:view]]) {
+    [self refreshStyleForView:view withSelectorName:selector];
+  }
+  self.refreshedViews = nil;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)ensureViewHasBeenRefreshed:(UIView *)view {
+  NIDASSERT(self.refreshedViews != nil); // You are calling this outside a refresh. Don't do this.
+  if ([self.refreshedViews containsObject:view]) {
+    return;
+  }
+  for (NSString* selector in [_viewToSelectorsMap objectForKey:[self keyForView:view]]) {
+    [self refreshStyleForView:view withSelectorName:selector];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

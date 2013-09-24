@@ -555,6 +555,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
       relative = [dom viewById:ruleSet.relativeToId];
     }
     if (relative) {
+      [dom ensureViewHasBeenRefreshed:relative];
       CGPoint anchor;
       
       if (ruleSet.hasMarginTop) {

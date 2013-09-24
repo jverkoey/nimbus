@@ -87,8 +87,10 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 
 - (void)unregisterView:(UIView *)view;
 - (void)unregisterAllViews;
+
 - (void)refresh;
 - (void)refreshView: (UIView*) view;
+- (void)ensureViewHasBeenRefreshed: (UIView*) view;
 
 -(UIView*)viewById: (NSString*) viewId;
 
@@ -165,16 +167,46 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 
 /**
  * Reapplies the stylesheet to all views. Since there may be positioning involved,
- * you may need to reapply if layout or sizes change.
+ * you may need to reapply if layout or sizes change. Please note that refresh
+ * and refreshView will track which views have been refreshed so that we can
+ * be as "purposeful" as possible about the order in which styles are applied.
+ * In cases where your style references another component (either when using percentage
+ * units for certain styles or with relative positioning), you should call
+ * ensureViewHasBeenRefreshed on the view your computations are based on. The DOM
+ * will maintain a set of views that have been refreshed during a "refresh" or "refreshView"
+ * run and clear said list when EITHER a new refresh/refreshView is run or refresh ends.
+ * This means you should not call refresh or refreshView in your application of styles
+ * to your view, because you could end up in an infinite loop. Generally you don't need
+ * to worry about this because all the (UIView based)+NIStyleable categories do the right
+ * thing.
  *
  *      @fn NIDOM::refresh
  */
 
 /**
  * Reapplies the stylesheet to a single view. Since there may be positioning involved,
- * you may need to reapply if layout or sizes change.
+ * you may need to reapply if layout or sizes change. Please note that refresh
+ * and refreshView will track which views have been refreshed so that we can
+ * be as "purposeful" as possible about the order in which styles are applied.
+ * In cases where your style references another component (either when using percentage
+ * units for certain styles or with relative positioning), you should call
+ * ensureViewHasBeenRefreshed on the view your computations are based on. The DOM
+ * will maintain a set of views that have been refreshed during a "refresh" or "refreshView"
+ * run and clear said list when EITHER a new refresh/refreshView is run or refresh ends.
+ * This means you should not call refresh or refreshView in your application of styles
+ * to your view, because you could end up in an infinite loop. Generally you don't need
+ * to worry about this because all the (UIView based)+NIStyleable categories do the right
+ * thing.
  *
  *      @fn NIDOM::refreshView:
+ */
+
+/**
+ * Ensure that, in the current refresh/refreshView cycle, a view has had styles applied to it.
+ * If not, refresh the styles on the view without clearing the refresh/refreshView state
+ * management.
+ *
+ *      @fn NIDOM::ensureViewHasBeenRefreshed
  */
 
 /**
