@@ -112,6 +112,7 @@ typedef enum {
   UITextAutocorrectionType _autocorrectionType;
   UITextAutocapitalizationType _autocapitalizationType;
   BOOL _clipsToBounds;
+  UIAccessibilityTraits _accessibilityTraits;
   
   union {
     struct {
@@ -174,6 +175,7 @@ typedef enum {
       int AutocorrectionType: 1;
       int AutocapitalizationType: 1;
       int ClipsToBounds: 1;
+      int AccessibilityTraits: 1;
     } cached;
     int64_t _data;
   } _is;
@@ -355,6 +357,9 @@ typedef enum {
 
 - (BOOL) hasClipsToBounds;
 - (BOOL) clipsToBounds;
+
+- (BOOL) hasAccessibilityTraits;
+- (UIAccessibilityTraits) accessibilityTraits;
 @end
 
 /**

@@ -723,6 +723,7 @@ RULE_ELEMENT(keyboardType, KeyboardType, @"-mobile-keyboard", UIKeyboardType, ke
 RULE_ELEMENT(autocorrectionType, AutocorrectionType, @"-mobile-autocorrection", UITextAutocorrectionType, autocorrectionFromCssValues)
 RULE_ELEMENT(autocapitalizationType, AutocapitalizationType, @"-mobile-autocapitalization", UITextAutocapitalizationType, autocapitalizationFromCssValues)
 RULE_ELEMENT(clipsToBounds, ClipsToBounds, @"-mobile-overflow", BOOL, overflowFromCssValues)
+RULE_ELEMENT(accessibilityTraits, AccessibilityTraits, @"-mobile-accessibility-traits", UIAccessibilityTraits, traitsFromCssValues)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTintColor {
@@ -1219,7 +1220,7 @@ RULE_ELEMENT(clipsToBounds, ClipsToBounds, @"-mobile-overflow", BOOL, overflowFr
       } else {
         uiImage = [UIImage imageNamed:image];
       }
-      color = [UIColor colorWithPatternImage:[UIImage imageNamed:image]];
+      color = [UIColor colorWithPatternImage:uiImage];
   } else if ([cssValues count] >= 1) {
     NSString* cssString = [cssValues objectAtIndex:0];
 
@@ -1435,6 +1436,35 @@ RULE_ELEMENT(clipsToBounds, ClipsToBounds, @"-mobile-overflow", BOOL, overflowFr
   ENUM_CHECK(@"all", UITextAutocapitalizationTypeAllCharacters);
   NIDERROR(@"Unknown autocapitalization type %@", value);
   return UITextAutocapitalizationTypeNone;
+}
+
+#define FLAG_CHECK(s,e) if ([trimmed containsObject:s]) { traits |= e; }
++(UIAccessibilityTraits) traitsFromCssValues: (NSArray*) cssValues {
+  NSArray *values = [[cssValues objectAtIndex:0] componentsSeparatedByString:@","];
+  NSMutableSet *trimmed = [[NSMutableSet alloc] initWithCapacity:values.count];
+  [values enumerateObjectsUsingBlock:^(NSString* value, NSUInteger idx, BOOL *stop) {
+    [trimmed addObject: [value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+  }];
+  
+  UIAccessibilityTraits traits = UIAccessibilityTraitNone;
+  FLAG_CHECK(@"none", UIAccessibilityTraitNone);
+  FLAG_CHECK(@"adjustable", UIAccessibilityTraitAdjustable);
+  FLAG_CHECK(@"allowsdirectinteraction", UIAccessibilityTraitAllowsDirectInteraction);
+  FLAG_CHECK(@"button", UIAccessibilityTraitButton);
+  FLAG_CHECK(@"causespageturn", UIAccessibilityTraitCausesPageTurn);
+  FLAG_CHECK(@"header", UIAccessibilityTraitHeader);
+  FLAG_CHECK(@"image", UIAccessibilityTraitImage);
+  FLAG_CHECK(@"keyboardkey", UIAccessibilityTraitKeyboardKey);
+  FLAG_CHECK(@"link", UIAccessibilityTraitLink);
+  FLAG_CHECK(@"notEnabled", UIAccessibilityTraitNotEnabled);
+  FLAG_CHECK(@"playsSound", UIAccessibilityTraitPlaysSound);
+  FLAG_CHECK(@"searchField", UIAccessibilityTraitSearchField);
+  FLAG_CHECK(@"selected", UIAccessibilityTraitSelected);
+  FLAG_CHECK(@"startsmediasession", UIAccessibilityTraitStartsMediaSession);
+  FLAG_CHECK(@"statictext", UIAccessibilityTraitStaticText);
+  FLAG_CHECK(@"summaryelement", UIAccessibilityTraitSummaryElement);
+  FLAG_CHECK(@"updatesfrequently", UIAccessibilityTraitUpdatesFrequently);
+  return traits;
 }
 
 -(NSString *)description

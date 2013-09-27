@@ -98,6 +98,13 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
       [desc appendFormat:@"%@.backgroundColor = [UIColor colorWithRed: %f green: %f blue: %f alpha: %f];\n", name, r, g, b, a];
     }
   }
+  if ([ruleSet hasAccessibilityTraits]) {
+    if (apply) {
+      self.accessibilityTraits = ruleSet.accessibilityTraits;
+    } else {
+      [desc appendFormat:@"%@.accessibilityTraits = (UIAccessibilityTraits) %@;", name, [NSNumber numberWithLongLong: ruleSet.accessibilityTraits]];
+    }
+  }
   if ([ruleSet hasClipsToBounds]) {
     if (apply) {
       self.clipsToBounds = ruleSet.clipsToBounds;
@@ -478,9 +485,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     switch (ruleSet.frameHorizontalAlign) {
       case UITextAlignmentCenter:
         if (apply) {
-          self.frameMidX = self.superview.bounds.size.width / 2.0;
+          self.frameMidX = roundf(self.superview.bounds.size.width / 2.0);
         } else {
-          [desc appendFormat:@"%@.frameMidX = %f;\n", name, self.superview.bounds.size.width / 2.0];
+          [desc appendFormat:@"%@.frameMidX = %f;\n", name, roundf(self.superview.bounds.size.width / 2.0)];
         }
         break;
       case UITextAlignmentLeft:
@@ -502,9 +509,9 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     switch (ruleSet.frameVerticalAlign) {
       case UIViewContentModeCenter:
         if (apply) {
-          self.frameMidY = self.superview.bounds.size.height / 2.0;
+          self.frameMidY = roundf(self.superview.bounds.size.height / 2.0);
         } else {
-          [desc appendFormat:@"%@.frameMidY = %f;\n", name, self.superview.bounds.size.height / 2.0];
+          [desc appendFormat:@"%@.frameMidY = %f;\n", name, roundf(self.superview.bounds.size.height / 2.0)];
         }
         break;
       case UIViewContentModeTop:
@@ -563,7 +570,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
         switch (top.type) {
           case CSS_AUTO_UNIT:
             // Align y center
-            anchor = CGPointMake(0, relative.frameMidY);
+            anchor = CGPointMake(0, roundf(relative.frameMidY));
             if (self.superview != relative.superview) {
               anchor = [self convertPoint:anchor fromView:relative.superview];
             }
@@ -592,7 +599,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
         switch (bottom.type) {
           case CSS_AUTO_UNIT:
             // Align y center
-            anchor = CGPointMake(0, relative.frameMidY);
+            anchor = CGPointMake(0, roundf(relative.frameMidY));
             if (self.superview != relative.superview) {
               anchor = [self convertPoint:anchor fromView:relative.superview];
             }
@@ -623,7 +630,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
         switch (left.type) {
           case CSS_AUTO_UNIT:
             // Align x center
-            anchor = CGPointMake(relative.frameMidX, 0);
+            anchor = CGPointMake(roundf(relative.frameMidX), 0);
             if (self.superview != relative.superview) {
               anchor = [self convertPoint:anchor fromView:relative.superview];
             }
@@ -652,7 +659,7 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
         switch (right.type) {
           case CSS_AUTO_UNIT:
             // Align x center
-            anchor = CGPointMake(relative.frameMidX, 0);
+            anchor = CGPointMake(roundf(relative.frameMidX), 0);
             if (self.superview != relative.superview) {
               anchor = [self convertPoint:anchor fromView:relative.superview];
             }
