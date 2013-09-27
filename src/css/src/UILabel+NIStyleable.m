@@ -83,7 +83,7 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
     CGSize size = [self.text
                    sizeWithFont:self.font
                    constrainedToSize:CGSizeMake(CGFLOAT_MAX, self.frame.size.height)];
-    newWidth = size.width;
+    newWidth = ceilf(size.width);
   }
   
   if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
@@ -98,7 +98,7 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
     if (size.height > maxHeight) {
       size.height = maxHeight;
     }
-    newHeight = size.height;
+    newHeight = ceilf(size.height);
   }
 
   self.frame = CGRectMake(self.frame.origin.x,
