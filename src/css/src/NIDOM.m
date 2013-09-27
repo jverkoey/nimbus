@@ -149,12 +149,18 @@
     [((id<NIStyleable>)view) didRegisterInDOM:self];
   }
   
+  NIDASSERT(self.refreshedViews == nil); // You are already in the midst of a refresh. Don't do this.
+  self.refreshedViews = [[NSMutableSet alloc] init];
+  [self.refreshedViews addObject:view];
+
   [self refreshStyleForView:view withSelectorName:selector];
   if (pseudos) {
     for (NSString *ps in pseudos) {
       [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
     }
   }
+  
+  self.refreshedViews = nil;
 }
 
 - (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass andId:(NSString *)viewId
@@ -186,6 +192,11 @@
       _idToViewMap = (__bridge_transfer NSMutableDictionary *)CFDictionaryCreateMutable(nil, 0, &kCFCopyStringDictionaryKeyCallBacks, nil);
     }
     [_idToViewMap setObject:view forKey:viewId.lowercaseString];
+    
+    NIDASSERT(self.refreshedViews == nil); // You are already in the midst of a refresh. Don't do this.
+    self.refreshedViews = [[NSMutableSet alloc] init];
+    [self.refreshedViews addObject:view];
+
     // Run the id selectors last so they take precedence
     [self refreshStyleForView:view withSelectorName:viewId];
     if (pseudos) {
@@ -193,6 +204,8 @@
         [self refreshStyleForView:view withSelectorName:[viewId stringByAppendingString:ps]];
       }
     }
+    
+    self.refreshedViews = nil;
   }
 }
 
@@ -261,12 +274,18 @@
     }
   }
   
+  NIDASSERT(self.refreshedViews == nil); // You are already in the midst of a refresh. Don't do this.
+  self.refreshedViews = [[NSMutableSet alloc] init];
+  [self.refreshedViews addObject:view];
+
   [self refreshStyleForView:view withSelectorName:selector];
   if (pseudos) {
     for (NSString *ps in pseudos) {
       [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
     }
   }
+
+  self.refreshedViews = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
