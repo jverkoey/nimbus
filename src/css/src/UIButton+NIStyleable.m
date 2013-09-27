@@ -21,12 +21,17 @@
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
 #import "NIUserInterfaceString.h"
+#import "NIDOM.h"
+#import <objc/runtime.h>
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
 #endif
 
 NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
+
+static char nibutton_stateDictionaryKey = 0;
+static char nibutton_DOMArrayKey = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,6 +108,12 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
   [self applyButtonStyleBeforeViewWithRuleSet:ruleSet inDOM:dom];
   [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
   [self applyButtonStyleWithRuleSet:ruleSet inDOM:dom];
+  NSMutableDictionary *dict = objc_getAssociatedObject(self, &nibutton_stateDictionaryKey);
+  if (dict) {
+    [self applyButtonStyleBeforeViewWithRuleSet:[dict objectForKey:@(self.state)] inDOM:dom];
+    [self applyViewStyleWithRuleSet:[dict objectForKey:@(self.state)] inDOM:dom];
+    [self applyButtonStyleWithRuleSet:[dict objectForKey:@(self.state)] inDOM:dom];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,26 +127,17 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
   } else if ([pseudo caseInsensitiveCompare:@"disabled"] == NSOrderedSame) {
     state = UIControlStateDisabled;
   }
-  if (ruleSet.hasTextKey) {
-      NIUserInterfaceString *nis = [[NIUserInterfaceString alloc] initWithKey:ruleSet.textKey];
-      [nis attach:self withSelector:@selector(setTitle:forState:) forControlState:state];
+  
+  [self addTarget:self action:@selector(controlStateChanged) forControlEvents:UIControlEventAllEvents];
+  
+  NSMutableDictionary *dict = objc_getAssociatedObject(self, &nibutton_stateDictionaryKey);
+  if (!dict) {
+    dict = [NSMutableDictionary dictionary];
+    objc_setAssociatedObject(self, &nibutton_stateDictionaryKey, dict, OBJC_ASSOCIATION_RETAIN);
   }
-  if (ruleSet.hasTextColor) {
-    [self setTitleColor:ruleSet.textColor forState:state];
-  }
-  if (ruleSet.hasTextShadowColor) {
-    [self setTitleShadowColor:ruleSet.textShadowColor forState:state];
-  }
-  if (ruleSet.hasImage) {
-    [self setImage:[UIImage imageNamed:ruleSet.image] forState:state];
-  }
-  if (ruleSet.hasBackgroundImage) {
-    UIImage *backImage = [UIImage imageNamed:ruleSet.backgroundImage];
-    if (ruleSet.hasBackgroundStretchInsets) {
-      backImage = [backImage resizableImageWithCapInsets:ruleSet.backgroundStretchInsets];
-    }
-    [self setBackgroundImage:backImage forState:state];
-  }
+  [dict setObject:ruleSet forKey:@(state)];
+  
+  return;
 }
 
 -(NSArray *)pseudoClasses
@@ -179,6 +181,31 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
                             self.frame.origin.y,
                             newWidth,
                             newHeight);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) didRegisterInDOM: (NIDOM *) dom {
+  NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
+  if (!array) {
+    array = NICreateNonRetainingMutableArray();
+    objc_setAssociatedObject(self, &nibutton_DOMArrayKey, array, OBJC_ASSOCIATION_RETAIN);
+  }
+  [array addObject:dom];
+}
+
+- (void) didUnregisterInDOM: (NIDOM*) dom {
+  NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
+  if (array) {
+    [array removeObject:dom];
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) controlStateChanged {
+  NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
+  for (NIDOM *dom in array) {
+      [dom refreshView:self];
+  }
 }
 
 @end
