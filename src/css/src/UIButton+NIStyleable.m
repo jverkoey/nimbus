@@ -30,6 +30,11 @@
 
 NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 
+// These chars are used as keys for objc_setAssociatedObject and objc_getAssociatedObject.
+// We need to use associated objects to store rulesets and DOMs so that we can apply
+// styles for pseudoclasses when the control state of the button changes. Since we're
+// in a category, we can't add properties or ivars, so the only way to store additional
+// state on the object is with associated objects.
 static char nibutton_stateDictionaryKey = 0;
 static char nibutton_DOMArrayKey = 0;
 
@@ -108,6 +113,8 @@ static char nibutton_DOMArrayKey = 0;
   [self applyButtonStyleBeforeViewWithRuleSet:ruleSet inDOM:dom];
   [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
   [self applyButtonStyleWithRuleSet:ruleSet inDOM:dom];
+  
+  // Apply any applicable pseudoclass styles for the current control state.
   NSMutableDictionary *dict = objc_getAssociatedObject(self, &nibutton_stateDictionaryKey);
   if (dict) {
     [self applyButtonStyleBeforeViewWithRuleSet:[dict objectForKey:@(self.state)] inDOM:dom];
@@ -128,8 +135,12 @@ static char nibutton_DOMArrayKey = 0;
     state = UIControlStateDisabled;
   }
   
+  // This button now has at least one pseudoclass, which means it needs to refresh itself when its
+  // control state changes.
   [self addTarget:self action:@selector(controlStateChanged) forControlEvents:UIControlEventAllEvents];
   
+  // Rather than applying the style normally, we save the ruleset and DOM for later so that we can
+  // actually apply this style if the control state of the button changes to the state found above.
   NSMutableDictionary *dict = objc_getAssociatedObject(self, &nibutton_stateDictionaryKey);
   if (!dict) {
     dict = [NSMutableDictionary dictionary];
@@ -151,40 +162,40 @@ static char nibutton_DOMArrayKey = 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) autoSize: (NICSSRuleset*) ruleSet inDOM: (NIDOM*) dom {
-    CGFloat newWidth = self.frameWidth, newHeight = self.frameHeight;
+- (void)autoSize:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
+  CGFloat newWidth = self.frameWidth, newHeight = self.frameHeight;
+  
+  if (ruleSet.hasWidth && ruleSet.width.type == CSS_AUTO_UNIT) {
     
-    if (ruleSet.hasWidth && ruleSet.width.type == CSS_AUTO_UNIT) {
-        
-        CGSize size = [[self titleForState:UIControlStateNormal]
-                       sizeWithFont:self.titleLabel.font
-                       constrainedToSize:CGSizeMake(CGFLOAT_MAX, self.frame.size.height)];
-        newWidth = ceilf(size.width);
+    CGSize size = [[self titleForState:UIControlStateNormal]
+                   sizeWithFont:self.titleLabel.font
+                   constrainedToSize:CGSizeMake(CGFLOAT_MAX, self.frame.size.height)];
+    newWidth = ceilf(size.width);
+  }
+  
+  if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
+    CGSize sizeForOneLine = [@"." sizeWithFont:self.titleLabel.font constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+    float heightForOneLine = sizeForOneLine.height;
+    
+    CGSize size = [[self titleForState:UIControlStateNormal]
+                   sizeWithFont: self.titleLabel.font
+                   constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+    float maxHeight = (self.titleLabel.numberOfLines == 0) ? CGFLOAT_MAX : (heightForOneLine * self.titleLabel.numberOfLines);
+    
+    if (size.height > maxHeight) {
+      size.height = maxHeight;
     }
-    
-    if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
-        CGSize sizeForOneLine = [@"." sizeWithFont:self.titleLabel.font constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
-        float heightForOneLine = sizeForOneLine.height;
-        
-        CGSize size = [[self titleForState:UIControlStateNormal]
-                       sizeWithFont: self.titleLabel.font
-                       constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
-        float maxHeight = (self.titleLabel.numberOfLines == 0) ? CGFLOAT_MAX : (heightForOneLine * self.titleLabel.numberOfLines);
-        
-        if (size.height > maxHeight) {
-            size.height = maxHeight;
-        }
-        newHeight = ceilf(size.height);
-    }
-    
-    self.frame = CGRectMake(self.frame.origin.x,
-                            self.frame.origin.y,
-                            newWidth,
-                            newHeight);
+    newHeight = ceilf(size.height);
+  }
+  
+  self.frame = CGRectMake(self.frame.origin.x,
+                          self.frame.origin.y,
+                          newWidth,
+                          newHeight);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) didRegisterInDOM: (NIDOM *) dom {
+- (void)didRegisterInDOM:(NIDOM *)dom {
   NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
   if (!array) {
     array = NICreateNonRetainingMutableArray();
@@ -193,7 +204,8 @@ static char nibutton_DOMArrayKey = 0;
   [array addObject:dom];
 }
 
-- (void) didUnregisterInDOM: (NIDOM*) dom {
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didUnregisterInDOM:(NIDOM *)dom {
   NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
   if (array) {
     [array removeObject:dom];
@@ -201,7 +213,7 @@ static char nibutton_DOMArrayKey = 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) controlStateChanged {
+- (void)controlStateChanged {
   NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
   for (NIDOM *dom in array) {
       [dom refreshView:self];
