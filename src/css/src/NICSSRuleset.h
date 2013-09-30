@@ -41,6 +41,12 @@ typedef enum {
   NICSSButtonAdjustDisabled = 2
 } NICSSButtonAdjust;
 
+@interface NICSSRelativeSpec : NSObject
+@property (nonatomic, strong) NSString *viewSpec;
+@property (nonatomic) NICSSUnit margin;
+@end
+
+
 /**
  * A simple translator from raw CSS rulesets to Objective-C values.
  *
@@ -106,6 +112,11 @@ typedef enum {
   NICSSUnit _minWidth;
   NICSSUnit _maxHeight;
   NICSSUnit _maxWidth;
+    
+  NICSSRelativeSpec* _leftOf;
+  NICSSRelativeSpec* _rightOf;
+  NICSSRelativeSpec* _above;
+  NICSSRelativeSpec* _below;
   
   UIReturnKeyType _returnKeyType;
   UIKeyboardType _keyboardType;
@@ -166,6 +177,10 @@ typedef enum {
       int MaxWidth: 1;
       int MaxHeight: 1;
       // 48
+      int LeftOf: 1;
+      int RightOf: 1;
+      int Above: 1;
+      int Below: 1;
       int TextKey: 1;
       int ButtonAdjust: 1;
       int HorizontalPadding: 1;
@@ -276,6 +291,18 @@ typedef enum {
 
 - (BOOL)hasMaxHeight;
 - (NICSSUnit)maxHeight; // max-height
+
+- (BOOL)hasLeftOf;
+- (NICSSRelativeSpec *)leftOf; // left-of
+
+- (BOOL)hasRightOf;
+- (NICSSRelativeSpec *)rightOf; // right-of
+
+- (BOOL)hasAbove;
+- (NICSSRelativeSpec *)above; // above
+
+- (BOOL)hasBelow;
+- (NICSSRelativeSpec *)below; // below
 
 - (BOOL)hasVerticalAlign;
 - (UIControlContentVerticalAlignment)verticalAlign; // -mobile-content-valign

@@ -20,6 +20,9 @@
 #import "NICSSParser.h"
 #import "NimbusCore.h"
 
+@implementation NICSSRelativeSpec
+@end
+
 // TODO selected/highlighted states for buttons
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
@@ -111,6 +114,7 @@ return _##name; \
                   kMarginLeftKey, kMarginRightKey, kTextKeyKey, kButtonAdjustKey, kVerticalAlignKey,
                   kHorizontalAlignKey, kReturnKeyTypeKey, kKeyboardTypeKey,
                   kAutocorrectionTypeKey, kAutocapitalizationTypeKey, kClipsToBoundsKey,
+                  kLeftOfKey, kRightOfKey, kAboveKey, kBelowKey,
                   nil
                   ];
 }
@@ -700,6 +704,10 @@ RULE_ELEMENT(minWidth, MinWidth, @"min-width", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(minHeight, MinHeight, @"min-height", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(maxWidth, MaxWidth, @"max-width", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(maxHeight, MaxHeight, @"max-height", NICSSUnit, unitFromCssValues)
+RULE_ELEMENT(leftOf, LeftOf, @"-mobile-left-of", NICSSRelativeSpec*, relativeSpecFromCssValues)
+RULE_ELEMENT(rightOf, RightOf, @"-mobile-right-of", NICSSRelativeSpec*, relativeSpecFromCssValues)
+RULE_ELEMENT(above, Above, @"-mobile-above", NICSSRelativeSpec*, relativeSpecFromCssValues)
+RULE_ELEMENT(below, Below, @"-mobile-below", NICSSRelativeSpec*, relativeSpecFromCssValues)
 RULE_ELEMENT(frameHorizontalAlign,FrameHorizontalAlign,@"-mobile-halign",UITextAlignment,textAlignmentFromCssValues)
 RULE_ELEMENT(frameVerticalAlign,FrameVerticalAlign,@"-mobile-valign",UIViewContentMode,verticalAlignFromCssValues)
 RULE_ELEMENT(backgroundStretchInsets,BackgroundStretchInsets,@"-mobile-background-stretch",UIEdgeInsets,edgeInsetsFromCssValues)
@@ -1129,6 +1137,21 @@ RULE_ELEMENT(accessibilityTraits, AccessibilityTraits, @"-mobile-accessibility-t
     NIDERROR(@"Unknown unit: %@", unitValue);
   }
   return returnUnits;
+}
+
++(NICSSRelativeSpec *)relativeSpecFromCssValues:(NSArray*)cssValues
+{
+  NICSSUnit margin;
+  if ([cssValues count] == 1) {
+    margin.type = CSS_PIXEL_UNIT;
+    margin.value = 0;
+  } else {
+    margin = [self unitFromCssValues:cssValues offset:1];
+  }
+  NICSSRelativeSpec *spec = [NICSSRelativeSpec new];
+  spec.viewSpec = [cssValues objectAtIndex:0];
+  spec.margin = margin;
+  return spec;
 }
 
 +(UIViewContentMode) verticalAlignFromCssValues:(NSArray*)cssValues

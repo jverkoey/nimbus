@@ -361,73 +361,17 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   }
   
   ///////////////////////////////////////////////////////////////////////////////////////////////////
-  // Min/Max width/height enforcement
+  // Left
   ///////////////////////////////////////////////////////////////////////////////////////////////////
-  if ([ruleSet hasMaxWidth]) {
-    CGFloat max = NICSSUnitToPixels(ruleSet.maxWidth,self.frameWidth);
-    if (self.frameWidth > max) {
-      if (apply) { self.frameWidth = max; } else { [desc appendFormat:@"%@.frameWidth = %f;\n", name, max]; }
-    }
-  }
-  if ([ruleSet hasMaxHeight]) {
-    CGFloat max = NICSSUnitToPixels(ruleSet.maxHeight,self.frameHeight);
-    if (self.frameHeight > max) {
-      if (apply) { self.frameHeight = max; } else { [desc appendFormat:@"%@.frameHeight = %f;\n", name, max]; }
-    }
-  }
-  if ([ruleSet hasMinWidth]) {
-    CGFloat min = NICSSUnitToPixels(ruleSet.minWidth,self.frameWidth);
-    if (self.frameWidth < min) {
-      if (apply) { self.frameWidth = min; } else { [desc appendFormat:@"%@.frameWidth = %f;\n", name, min]; }
-    }
-  }
-  if ([ruleSet hasMinHeight]) {
-    CGFloat min = NICSSUnitToPixels(ruleSet.minHeight,self.frameHeight);
-    if (self.frameHeight < min) {
-      if (apply) { self.frameHeight = min; } else { [desc appendFormat:@"%@.frameHeight = %f;\n", name, min]; }
-    }
-  }
-  
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
-  // "Absolute" position in superview
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
-  if ([ruleSet hasTop]) {
-    NICSSUnit u = ruleSet.top;
-    switch (u.type) {
-      case CSS_PERCENTAGE_UNIT:
-        if (apply) {
-          self.frameMinY = roundf(self.superview.bounds.size.height * u.value);
-        } else {
-          [desc appendFormat:@"%@.frameMinY = %f;\n", name, roundf(self.superview.bounds.size.height * u.value)];
-        }
-        break;
-      case CSS_PIXEL_UNIT:
-        if (apply) {
-          self.frameMinY = u.value;
-        } else {
-          [desc appendFormat:@"%@.frameMinY = %f;\n", name, u.value];
-        }
-        break;
-      default:
-        NIDASSERT(u.type == CSS_PERCENTAGE_UNIT || u.type == CSS_PIXEL_UNIT);
-        break;
-    }
-  }
   if ([ruleSet hasLeft]) {
     NICSSUnit u = ruleSet.left;
     switch (u.type) {
       case CSS_PERCENTAGE_UNIT:
-        if (apply) {
-          self.frameMinX = roundf(self.superview.bounds.size.width * u.value);
-        } else {
-          [desc appendFormat:@"%@.frameMinX = %f;\n", name, roundf(self.superview.bounds.size.width * u.value)];
-        }
-        break;
       case CSS_PIXEL_UNIT:
         if (apply) {
-          self.frameMinX = u.value;
+          self.frameMinX = NICSSUnitToPixels(u, self.superview.frameWidth);
         } else {
-          [desc appendFormat:@"%@.frameMinX = %f;\n", name, u.value];
+          [desc appendFormat:@"%@.frameMinX = %f;\n", name, NICSSUnitToPixels(u, self.superview.frameWidth)];
         }
         break;
       default:
@@ -435,23 +379,67 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
         break;
     }
   }
-  // TODO - should specifying both left/right or top/bottom set the width instead?
-  // TODO - how does left/right/top/bottom interact with relative positioning if at all?
+  if (ruleSet.hasRightOf) {
+    CGPoint anchor;
+    NICSSRelativeSpec *rightOf = ruleSet.rightOf;
+    UIView *relative = [self relativeViewFromViewSpec:rightOf.viewSpec inDom:dom];
+    if (relative) {
+      [dom ensureViewHasBeenRefreshed:relative];
+      switch (rightOf.margin.type) {
+        case CSS_AUTO_UNIT:
+          // Align x center
+          anchor = CGPointMake(roundf(relative.frameMidX), 0);
+          if (self.superview != relative.superview) {
+            anchor = [self convertPoint:anchor fromView:relative.superview];
+          }
+          if (apply) {
+            self.frameMidX = anchor.x;
+          } else {
+            [desc appendFormat:@"%@.frameMidX = %f;\n", name, anchor.x];
+          }
+          break;
+        case CSS_PERCENTAGE_UNIT:
+        case CSS_PIXEL_UNIT:
+          // relative.frameMinX - (relative.frameHeight * unit)
+          anchor = CGPointMake(relative.frameMaxX, 0);
+          if (self.superview != relative.superview) {
+            anchor = [self convertPoint:anchor fromView:relative.superview];
+          }
+          if (apply) {
+            self.frameMinX = anchor.x + NICSSUnitToPixels(rightOf.margin, relative.frameWidth);
+          } else {
+            [desc appendFormat:@"%@.frameMinX = %f;\n", name, anchor.x + NICSSUnitToPixels(rightOf.margin, relative.frameWidth)];
+            
+          }
+          break;
+      }
+    }
+  }
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+  // Right
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
   if ([ruleSet hasRight]) {
     NICSSUnit u = ruleSet.right;
+    CGFloat newMaxX = self.superview.frameWidth - NICSSUnitToPixels(u, self.superview.frameWidth);
     switch (u.type) {
       case CSS_PERCENTAGE_UNIT:
-        if (apply) {
-          self.frameMaxX = roundf(self.superview.bounds.size.width * u.value);
-        } else {
-          [desc appendFormat:@"%@.frameMaxX = %f;\n", name, roundf(self.superview.bounds.size.width * u.value)];
-        }
-        break;
       case CSS_PIXEL_UNIT:
-        if (apply) {
-          self.frameMaxX = self.superview.bounds.size.width - u.value;
+        if (ruleSet.hasLeft || ruleSet.hasRightOf) {
+          // If this ruleset specifies the left position of this view, then we set the right position
+          // while maintaining that left position (by modifying the frame width).
+          if (apply) {
+            self.frameWidth = newMaxX - self.frameMinX;
+          } else {
+            [desc appendFormat:@"%@.frameWidth = %f;\n", name, newMaxX - self.frameMinX];
+          }
         } else {
-          [desc appendFormat:@"%@.frameMaxX = %f;\n", name, self.superview.bounds.size.width - u.value];
+          // Otherwise, just set the right position normally
+          if (apply) {
+            self.frameMaxX = newMaxX;
+          } else {
+            [desc appendFormat:@"%@.frameMaxX = %f;\n", name, newMaxX];
+          }
         }
         break;
       default:
@@ -459,28 +447,55 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
         break;
     }
   }
-  if ([ruleSet hasBottom]) {
-    NICSSUnit u = ruleSet.bottom;
-    switch (u.type) {
-      case CSS_PERCENTAGE_UNIT:
-        if (apply) {
-          self.frameMaxY = roundf(self.superview.bounds.size.height * u.value);
-        } else {
-          [desc appendFormat:@"%@.frameMaxY = %f;\n", name, roundf(self.superview.bounds.size.height * u.value)];
-        }
-        break;
-      case CSS_PIXEL_UNIT:
-        if (apply) {
-          self.frameMaxY = self.superview.bounds.size.height - u.value;
-        } else {
-          [desc appendFormat:@"%@.frameMaxY = %f;\n", name, self.superview.bounds.size.height - u.value];
-        }
-        break;
-      default:
-        NIDASSERT(u.type == CSS_PERCENTAGE_UNIT || u.type == CSS_PIXEL_UNIT);
-        break;
+  if (ruleSet.hasLeftOf) {
+    CGPoint anchor;
+    NICSSRelativeSpec *leftOf = ruleSet.leftOf;
+    UIView *relative = [self relativeViewFromViewSpec:leftOf.viewSpec inDom:dom];
+    if (relative) {
+      [dom ensureViewHasBeenRefreshed:relative];
+      switch (leftOf.margin.type) {
+        case CSS_AUTO_UNIT:
+          // Align x center
+          anchor = CGPointMake(roundf(relative.frameMidX), 0);
+          if (self.superview != relative.superview) {
+            anchor = [self convertPoint:anchor fromView:relative.superview];
+          }
+          if (apply) {
+            self.frameMidX = anchor.x;
+          } else {
+            [desc appendFormat:@"%@.frameMidX = %f;\n", name, anchor.x];
+          }
+          break;
+        case CSS_PERCENTAGE_UNIT:
+        case CSS_PIXEL_UNIT:
+          anchor = CGPointMake(relative.frameMinX, 0);
+          if (self.superview != relative.superview) {
+            anchor = [self convertPoint:anchor fromView:relative.superview];
+          }
+          if (ruleSet.hasLeft || ruleSet.hasRightOf) {
+            // If this ruleset specifies the left position of this view, then we set the right position
+            // while maintaining that left position (by modifying the frame width).
+            if (apply) {
+              self.frameWidth = anchor.x - NICSSUnitToPixels(leftOf.margin, relative.frameWidth) - self.frameMinX;
+            } else {
+              [desc appendFormat:@"%@.frameWidth = %f;\n", name, anchor.x - NICSSUnitToPixels(leftOf.margin, relative.frameWidth) - self.frameMinX];
+            }
+          } else {
+            // Otherwise, just set the right position normally
+            if (apply) {
+              self.frameMaxX = anchor.x - NICSSUnitToPixels(leftOf.margin, relative.frameWidth);
+            } else {
+              [desc appendFormat:@"%@.frameMaxX = %f;\n", name, anchor.x - NICSSUnitToPixels(leftOf.margin, relative.frameWidth)];
+            }
+          }
+          break;
+      }
     }
   }
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+  // Horizontal Align
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
   if ([ruleSet hasFrameHorizontalAlign]) {
     switch (ruleSet.frameHorizontalAlign) {
       case UITextAlignmentCenter:
@@ -505,6 +520,142 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
         break;
     }
   }
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+  // Top
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+  if ([ruleSet hasTop]) {
+    NICSSUnit u = ruleSet.top;
+    switch (u.type) {
+      case CSS_PERCENTAGE_UNIT:
+      case CSS_PIXEL_UNIT:
+        if (apply) {
+          self.frameMinY = NICSSUnitToPixels(u, self.superview.frameHeight);
+        } else {
+          [desc appendFormat:@"%@.frameMinY = %f;\n", name, NICSSUnitToPixels(u, self.superview.frameHeight)];
+        }
+        break;
+      default:
+        NIDASSERT(u.type == CSS_PERCENTAGE_UNIT || u.type == CSS_PIXEL_UNIT);
+        break;
+    }
+  }
+  if (ruleSet.hasBelow) {
+    CGPoint anchor;
+    NICSSRelativeSpec *below = ruleSet.below;
+    UIView *relative = [self relativeViewFromViewSpec:below.viewSpec inDom:dom];
+    if (relative) {
+      [dom ensureViewHasBeenRefreshed:relative];
+      switch (below .margin.type) {
+        case CSS_AUTO_UNIT:
+          // Align y center
+          anchor = CGPointMake(0, roundf(relative.frameMidY));
+          if (self.superview != relative.superview) {
+            anchor = [self convertPoint:anchor fromView:relative.superview];
+          }
+          if (apply) {
+            self.frameMidY = anchor.y;
+          } else {
+            [desc appendFormat:@"%@.frameMidY = %f;\n", name, anchor.y];
+          }
+          break;
+        case CSS_PERCENTAGE_UNIT:
+        case CSS_PIXEL_UNIT:
+          anchor = CGPointMake(0, relative.frameMaxY);
+          if (self.superview != relative.superview) {
+            anchor = [self convertPoint:anchor fromView:relative.superview];
+          }
+          if (apply) {
+            self.frameMinY = anchor.y + NICSSUnitToPixels(below.margin, relative.frameHeight);
+          } else {
+            [desc appendFormat:@"%@.frameMinY = %f;\n", name, anchor.y + NICSSUnitToPixels(below.margin, relative.frameWidth)];
+            
+          }
+          break;
+      }
+    }
+  }
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+  // Bottom
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+  if ([ruleSet hasBottom]) {
+    NICSSUnit u = ruleSet.bottom;
+    CGFloat newBottom = self.superview.frameHeight - NICSSUnitToPixels(u, self.superview.frameHeight);
+    switch (u.type) {
+      case CSS_PERCENTAGE_UNIT:
+      case CSS_PIXEL_UNIT:
+        if (ruleSet.hasTop || ruleSet.hasBelow) {
+          // If this ruleset specifies the top position of this view, then we set the bottom position
+          // while maintaining that top position (by modifying the frame height).
+          if (apply) {
+            self.frameHeight = newBottom - self.frameMinY;
+          } else {
+            [desc appendFormat:@"%@.frameHeight = %f;\n", name, newBottom - self.frameMinY];
+          }
+        } else {
+          // Otherwise, just set the bottom normally
+          if (apply) {
+            self.frameMaxY = newBottom;
+          } else {
+            [desc appendFormat:@"%@.frameMaxY = %f;\n", name, newBottom];
+          }
+          break;
+        }
+      default:
+        NIDASSERT(u.type == CSS_PERCENTAGE_UNIT || u.type == CSS_PIXEL_UNIT);
+        break;
+    }
+  }
+  if (ruleSet.hasAbove) {
+    CGPoint anchor;
+    NICSSRelativeSpec *above = ruleSet.above;
+    UIView *relative = [self relativeViewFromViewSpec:above.viewSpec inDom:dom];
+    if (relative) {
+      [dom ensureViewHasBeenRefreshed:relative];
+      switch (above.margin.type) {
+        case CSS_AUTO_UNIT:
+          // Align x center
+          anchor = CGPointMake(roundf(relative.frameMidX), 0);
+          if (self.superview != relative.superview) {
+            anchor = [self convertPoint:anchor fromView:relative.superview];
+          }
+          if (apply) {
+            self.frameMidX = anchor.x;
+          } else {
+            [desc appendFormat:@"%@.frameMidX = %f;\n", name, anchor.x];
+          }
+          break;
+        case CSS_PERCENTAGE_UNIT:
+        case CSS_PIXEL_UNIT:
+          anchor = CGPointMake(0, relative.frameMinY);
+          if (self.superview != relative.superview) {
+            anchor = [self convertPoint:anchor fromView:relative.superview];
+          }
+          if (ruleSet.hasTop || ruleSet.hasBelow) {
+            // If this ruleset specifies the top position of this view, then we set the bottom position
+            // while maintaining that top position (by modifying the frame height).
+            if (apply) {
+              self.frameHeight = anchor.y - NICSSUnitToPixels(above.margin, relative.frameHeight) - self.frameMinY;
+            } else {
+              [desc appendFormat:@"%@.frameHeight = %f;\n", name, anchor.y - NICSSUnitToPixels(above.margin, relative.frameHeight) - self.frameMinY];
+            }
+          } else {
+            // Otherwise, just set the bottom position normally
+            if (apply) {
+              self.frameMaxY = anchor.y - NICSSUnitToPixels(above.margin, relative.frameHeight);
+            } else {
+              [desc appendFormat:@"%@.frameMaxY = %f;\n", name, anchor.y - NICSSUnitToPixels(above.margin, relative.frameHeight)];
+            }
+          }
+          break;
+      }
+    }
+  }
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+  // Vertical Align
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
   if ([ruleSet hasFrameVerticalAlign]) {
     switch (ruleSet.frameVerticalAlign) {
       case UIViewContentModeCenter:
@@ -535,32 +686,38 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   }
   
   ///////////////////////////////////////////////////////////////////////////////////////////////////
+  // Min/Max width/height enforcement
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+  if ([ruleSet hasMaxWidth]) {
+    CGFloat max = NICSSUnitToPixels(ruleSet.maxWidth,self.frameWidth);
+    if (self.frameWidth > max) {
+      if (apply) { self.frameWidth = max; } else { [desc appendFormat:@"%@.frameWidth = %f;\n", name, max]; }
+    }
+  }
+  if ([ruleSet hasMaxHeight]) {
+    CGFloat max = NICSSUnitToPixels(ruleSet.maxHeight,self.frameHeight);
+    if (self.frameHeight > max) {
+      if (apply) { self.frameHeight = max; } else { [desc appendFormat:@"%@.frameHeight = %f;\n", name, max]; }
+    }
+  }
+  if ([ruleSet hasMinWidth]) {
+    CGFloat min = NICSSUnitToPixels(ruleSet.minWidth,self.frameWidth);
+    if (self.frameWidth < min) {
+      if (apply) { self.frameWidth = min; } else { [desc appendFormat:@"%@.frameWidth = %f;\n", name, min]; }
+    }
+  }
+  if ([ruleSet hasMinHeight]) {
+    CGFloat min = NICSSUnitToPixels(ruleSet.minHeight,self.frameHeight);
+    if (self.frameHeight < min) {
+      if (apply) { self.frameHeight = min; } else { [desc appendFormat:@"%@.frameHeight = %f;\n", name, min]; }
+    }
+  }
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
   // Relative positioning to other identified views
   ///////////////////////////////////////////////////////////////////////////////////////////////////
   if (ruleSet.hasRelativeToId) {
-    NSString *viewSpec = ruleSet.relativeToId;
-    UIView* relative = nil;
-    if ([viewSpec characterAtIndex:0] == '.') {
-      if ([viewSpec caseInsensitiveCompare:@".next"] == NSOrderedSame) {
-        NSInteger ix = [self.superview.subviews indexOfObject:self];
-        if (++ix < self.superview.subviews.count) {
-          relative = [self.superview.subviews objectAtIndex:ix];
-        }
-      } else if ([viewSpec caseInsensitiveCompare:@".prev"] == NSOrderedSame) {
-        NSInteger ix = [self.superview.subviews indexOfObject:self];
-        if (ix > 0) {
-          relative = [self.superview.subviews objectAtIndex:ix-1];
-        }
-      } else if ([viewSpec caseInsensitiveCompare:@".first"] == NSOrderedSame) {
-        relative = [self.superview.subviews objectAtIndex:0];
-        if (relative == self) { relative = nil; }
-      } else if ([viewSpec caseInsensitiveCompare:@".last"] == NSOrderedSame) {
-        relative = [self.superview.subviews lastObject];
-        if (relative == self) { relative = nil; }
-      }
-    } else {
-      relative = [dom viewById:ruleSet.relativeToId];
-    }
+    UIView* relative = [self relativeViewFromViewSpec:ruleSet.relativeToId inDom:dom];
     if (relative) {
       [dom ensureViewHasBeenRefreshed:relative];
       CGPoint anchor;
@@ -688,6 +845,33 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
     }
   }
   return desc;
+}
+
+- (UIView *)relativeViewFromViewSpec:(NSString *)viewSpec inDom:(NIDOM *)dom
+{
+    UIView* relative = nil;
+    if ([viewSpec characterAtIndex:0] == '.') {
+        if ([viewSpec caseInsensitiveCompare:@".next"] == NSOrderedSame) {
+            NSInteger ix = [self.superview.subviews indexOfObject:self];
+            if (++ix < self.superview.subviews.count) {
+                relative = [self.superview.subviews objectAtIndex:ix];
+            }
+        } else if ([viewSpec caseInsensitiveCompare:@".prev"] == NSOrderedSame) {
+            NSInteger ix = [self.superview.subviews indexOfObject:self];
+            if (ix > 0) {
+                relative = [self.superview.subviews objectAtIndex:ix-1];
+            }
+        } else if ([viewSpec caseInsensitiveCompare:@".first"] == NSOrderedSame) {
+            relative = [self.superview.subviews objectAtIndex:0];
+            if (relative == self) { relative = nil; }
+        } else if ([viewSpec caseInsensitiveCompare:@".last"] == NSOrderedSame) {
+            relative = [self.superview.subviews lastObject];
+            if (relative == self) { relative = nil; }
+        }
+    } else {
+        relative = [dom viewById:viewSpec];
+    }
+    return relative;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
