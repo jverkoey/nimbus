@@ -596,7 +596,7 @@ typedef enum {
  * A positive number will move this further right, and a negative number further left. A *percentage* will operate
  * off the width of relativeToId and modify the position relative to left-of: <relativeToId> 0. So -100% means line up the right
  * of this view with the left of relativeToId.
- * A value of auto means we will align the center x of relativeToId with the center x of this view.
+ * A value of auto means we will align the center x of this view with the center x of relativeToId.
  *
  *      @fn NICSSRuleset::left-of
  */
@@ -610,7 +610,7 @@ typedef enum {
  * A positive number will move this further right, and a negative number further left. A *percentage* will operate
  * off the width of relativeToId and modify the position relative to right-of: <relativeToId> 0. So -100% means line up the left
  * of this view with the left of relativeToId.
- * A value of auto means we will align the center x of relativeToId with the center x of this view.
+ * A value of auto means we will align the center x of this view with the center x of relativeToId.
  *
  *      @fn NICSSRuleset::right-of
  */
@@ -624,7 +624,7 @@ typedef enum {
  * A positive number will move this further down, and a negative number further up. A *percentage* will operate
  * off the height of relativeToId and modify the position relative to above: <relativeToId> 0. So -100% means line up the bottom
  * of this view with the top of relativeToId.
- * A value of auto means we will align the center y of relativeToId with the center y of this view.
+ * A value of auto means we will align the center y of this view with the center y of relativeToId.
  *
  *      @fn NICSSRuleset::above
  */
@@ -637,7 +637,7 @@ typedef enum {
  * the view given as the first argument.
  * A positive number will move this further down, and a negative number further up. A *percentage* will operate
  * off the height of relativeToId and modify the position relative to below: <relativeToId> 0. So -100% means "align top".
- * A value of auto means we will align the center y of relativeToId with the center y of this view.
+ * A value of auto means we will align the center y of this view with the center y of relativeToId.
  *
  *      @fn NICSSRuleset::below
  */
