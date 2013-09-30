@@ -153,7 +153,6 @@ return _##name; \
   NSMutableArray* order = [_ruleset objectForKey:kPropertyOrderKey];
   [_ruleset addEntriesFromDictionary:dictionary];
 
-  NSMutableArray *rids;
   if (nil != order) {
     [order addObjectsFromArray:[dictionary objectForKey:kPropertyOrderKey]];
     [_ruleset setObject:order forKey:kPropertyOrderKey];
