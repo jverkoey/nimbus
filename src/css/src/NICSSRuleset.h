@@ -588,6 +588,61 @@ typedef enum {
  */
 
 /**
+ * When left-of is set, a view will be positioned relative to the view represented by left-of's first argument.
+ * For the first argument, you can use id notation, e.g. #MyButton, or a few selectors:
+ * .next, .prev, .first and .last which find the obviously named siblings.
+ * The second argument to left-of is the margin - 0 means the right of this view will be aligned to the right of
+ * the view given as the first argument.
+ * A positive number will move this further right, and a negative number further left. A *percentage* will operate
+ * off the width of relativeToId and modify the position relative to left-of: <relativeToId> 0. So -100% means line up the right
+ * of this view with the left of relativeToId.
+ * A value of auto means we will align the center x of relativeToId with the center x of this view.
+ *
+ *      @fn NICSSRuleset::left-of
+ */
+
+/**
+ * When right-of is set, a view will be positioned relative to the view represented by right-of's first argument.
+ * For the first argument, you can use id notation, e.g. #MyButton, or a few selectors:
+ * .next, .prev, .first and .last which find the obviously named siblings.
+ * The second argument to right-of is the amrgin - 0 means the left of this view will be aligned to the right of
+ * the view given as the first argument.
+ * A positive number will move this further right, and a negative number further left. A *percentage* will operate
+ * off the width of relativeToId and modify the position relative to right-of: <relativeToId> 0. So -100% means line up the left
+ * of this view with the left of relativeToId.
+ * A value of auto means we will align the center x of relativeToId with the center x of this view.
+ *
+ *      @fn NICSSRuleset::right-of
+ */
+
+/**
+ * When above is set, a view will be positioned relative to the view represented by above's first argument.
+ * For the first argument, you can use id notation, e.g. #MyButton, or a few selectors:
+ * .next, .prev, .first and .last which find the obviously named siblings.
+ * The second argument to above is the margin - 0 means the bottom of this view will be aligned to the bottom of
+ * the view given as the first argument.
+ * A positive number will move this further down, and a negative number further up. A *percentage* will operate
+ * off the height of relativeToId and modify the position relative to above: <relativeToId> 0. So -100% means line up the bottom
+ * of this view with the top of relativeToId.
+ * A value of auto means we will align the center y of relativeToId with the center y of this view.
+ *
+ *      @fn NICSSRuleset::above
+ */
+
+/**
+ * When below is set, a view will be positioned relative to the view represented by below's first argument.
+ * For the first argument, you can use id notation, e.g. #MyButton, or a few selectors: 
+ * .next, .prev, .first and .last which find the obviously named siblings.
+ * The second argument to below is the margin - 0 means the top of this view will be aligned to the bottom of 
+ * the view given as the first argument.
+ * A positive number will move this further down, and a negative number further up. A *percentage* will operate
+ * off the height of relativeToId and modify the position relative to below: <relativeToId> 0. So -100% means "align top".
+ * A value of auto means we will align the center y of relativeToId with the center y of this view.
+ *
+ *      @fn NICSSRuleset::below
+ */
+
+/**
  * Return the rule values for a particular key, such as border-color or width. Exposing this allows you, among
  * other things, use the CSS to hold variable information that has an effect on the layout of the views that
  * cannot be expressed as a style - such as padding.

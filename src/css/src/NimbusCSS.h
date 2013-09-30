@@ -163,6 +163,10 @@ UIView {
   right: [x%,xpx]               {view.frameMaxX}
   -mobile-halign: [left|right|center]   {view.frameX}
   -mobile-valign: [top|bottom|middle]   {view.frameY}
+  -mobile-left-of: [#id|.prev|.next|.first|.last] [x%,xpx,auto]  {distance from view.frameMaxX to relative.frameMinX - % is relative to size of relative element, px is absolute, auto aligns the horizontal centers}
+  -mobile-right-of: [#id|.prev|.next|.first|.last] [x%,xpx,auto] {distance from view.frameMinX to relative.frameMaxX - % is relative to size of relative element, px is absolute, auto aligns the horizontal centers}
+  -mobile-above: [#id|.prev|.next|.first|.last] [x%,xpx,auto]    {distance from view.frameMaxY to relative.frameMinY - % is relative to size of relative element, px is absolute, auto aligns the vertical centers}
+  -mobile-below: [#id|.prev|.next|.first|.last] [x%,xpx,auto]    {distance from view.frameMinY to relative.frameMaxY - % is relative to size of relative element, px is absolute, auto aligns the vertical centers}
 }
 
 UILabel {
