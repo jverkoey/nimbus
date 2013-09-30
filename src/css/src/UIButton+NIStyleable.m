@@ -21,12 +21,22 @@
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
 #import "NIUserInterfaceString.h"
+#import "NIDOM.h"
+#import <objc/runtime.h>
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
 #endif
 
 NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
+
+// These chars are used as keys for objc_setAssociatedObject and objc_getAssociatedObject.
+// We need to use associated objects to store rulesets and DOMs so that we can apply
+// styles for pseudoclasses when the control state of the button changes. Since we're
+// in a category, we can't add properties or ivars, so the only way to store additional
+// state on the object is with associated objects.
+static char nibutton_stateDictionaryKey = 0;
+static char nibutton_DOMArrayKey = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,6 +113,14 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
   [self applyButtonStyleBeforeViewWithRuleSet:ruleSet inDOM:dom];
   [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
   [self applyButtonStyleWithRuleSet:ruleSet inDOM:dom];
+  
+  // Apply any applicable pseudoclass styles for the current control state.
+  NSMutableDictionary *dict = objc_getAssociatedObject(self, &nibutton_stateDictionaryKey);
+  if (dict) {
+    [self applyButtonStyleBeforeViewWithRuleSet:[dict objectForKey:@(self.state)] inDOM:dom];
+    [self applyViewStyleWithRuleSet:[dict objectForKey:@(self.state)] inDOM:dom];
+    [self applyButtonStyleWithRuleSet:[dict objectForKey:@(self.state)] inDOM:dom];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,26 +134,21 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
   } else if ([pseudo caseInsensitiveCompare:@"disabled"] == NSOrderedSame) {
     state = UIControlStateDisabled;
   }
-  if (ruleSet.hasTextKey) {
-      NIUserInterfaceString *nis = [[NIUserInterfaceString alloc] initWithKey:ruleSet.textKey];
-      [nis attach:self withSelector:@selector(setTitle:forState:) forControlState:state];
+  
+  // This button now has at least one pseudoclass, which means it needs to refresh itself when its
+  // control state changes.
+  [self addTarget:self action:@selector(controlStateChanged) forControlEvents:UIControlEventAllEvents];
+  
+  // Rather than applying the style normally, we save the ruleset and DOM for later so that we can
+  // actually apply this style if the control state of the button changes to the state found above.
+  NSMutableDictionary *dict = objc_getAssociatedObject(self, &nibutton_stateDictionaryKey);
+  if (!dict) {
+    dict = [NSMutableDictionary dictionary];
+    objc_setAssociatedObject(self, &nibutton_stateDictionaryKey, dict, OBJC_ASSOCIATION_RETAIN);
   }
-  if (ruleSet.hasTextColor) {
-    [self setTitleColor:ruleSet.textColor forState:state];
-  }
-  if (ruleSet.hasTextShadowColor) {
-    [self setTitleShadowColor:ruleSet.textShadowColor forState:state];
-  }
-  if (ruleSet.hasImage) {
-    [self setImage:[UIImage imageNamed:ruleSet.image] forState:state];
-  }
-  if (ruleSet.hasBackgroundImage) {
-    UIImage *backImage = [UIImage imageNamed:ruleSet.backgroundImage];
-    if (ruleSet.hasBackgroundStretchInsets) {
-      backImage = [backImage resizableImageWithCapInsets:ruleSet.backgroundStretchInsets];
-    }
-    [self setBackgroundImage:backImage forState:state];
-  }
+  [dict setObject:ruleSet forKey:@(state)];
+  
+  return;
 }
 
 -(NSArray *)pseudoClasses
@@ -149,36 +162,62 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) autoSize: (NICSSRuleset*) ruleSet inDOM: (NIDOM*) dom {
-    CGFloat newWidth = self.frameWidth, newHeight = self.frameHeight;
+- (void)autoSize:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
+  CGFloat newWidth = self.frameWidth, newHeight = self.frameHeight;
+  
+  if (ruleSet.hasWidth && ruleSet.width.type == CSS_AUTO_UNIT) {
     
-    if (ruleSet.hasWidth && ruleSet.width.type == CSS_AUTO_UNIT) {
-        
-        CGSize size = [[self titleForState:UIControlStateNormal]
-                       sizeWithFont:self.titleLabel.font
-                       constrainedToSize:CGSizeMake(CGFLOAT_MAX, self.frame.size.height)];
-        newWidth = ceilf(size.width);
+    CGSize size = [[self titleForState:UIControlStateNormal]
+                   sizeWithFont:self.titleLabel.font
+                   constrainedToSize:CGSizeMake(CGFLOAT_MAX, self.frame.size.height)];
+    newWidth = ceilf(size.width);
+  }
+  
+  if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
+    CGSize sizeForOneLine = [@"." sizeWithFont:self.titleLabel.font constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+    float heightForOneLine = sizeForOneLine.height;
+    
+    CGSize size = [[self titleForState:UIControlStateNormal]
+                   sizeWithFont: self.titleLabel.font
+                   constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+    float maxHeight = (self.titleLabel.numberOfLines == 0) ? CGFLOAT_MAX : (heightForOneLine * self.titleLabel.numberOfLines);
+    
+    if (size.height > maxHeight) {
+      size.height = maxHeight;
     }
-    
-    if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
-        CGSize sizeForOneLine = [@"." sizeWithFont:self.titleLabel.font constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
-        float heightForOneLine = sizeForOneLine.height;
-        
-        CGSize size = [[self titleForState:UIControlStateNormal]
-                       sizeWithFont: self.titleLabel.font
-                       constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
-        float maxHeight = (self.titleLabel.numberOfLines == 0) ? CGFLOAT_MAX : (heightForOneLine * self.titleLabel.numberOfLines);
-        
-        if (size.height > maxHeight) {
-            size.height = maxHeight;
-        }
-        newHeight = ceilf(size.height);
-    }
-    
-    self.frame = CGRectMake(self.frame.origin.x,
-                            self.frame.origin.y,
-                            newWidth,
-                            newHeight);
+    newHeight = ceilf(size.height);
+  }
+  
+  self.frame = CGRectMake(self.frame.origin.x,
+                          self.frame.origin.y,
+                          newWidth,
+                          newHeight);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didRegisterInDOM:(NIDOM *)dom {
+  NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
+  if (!array) {
+    array = NICreateNonRetainingMutableArray();
+    objc_setAssociatedObject(self, &nibutton_DOMArrayKey, array, OBJC_ASSOCIATION_RETAIN);
+  }
+  [array addObject:dom];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didUnregisterInDOM:(NIDOM *)dom {
+  NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
+  if (array) {
+    [array removeObject:dom];
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)controlStateChanged {
+  NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
+  for (NIDOM *dom in array) {
+      [dom refreshView:self];
+  }
 }
 
 @end
