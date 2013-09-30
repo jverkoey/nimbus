@@ -110,8 +110,7 @@ return _##name; \
                   kMaxHeightKey, kFrameHorizontalAlignKey,
                   kFrameVerticalAlignKey, kBackgroundStretchInsetsKey,
                   kBackgroundImageKey, kImageKey, kVisibleKey, kTitleInsetsKey, kContentInsetsKey,
-                  kImageInsetsKey, kRelativeToIdKey, kMarginTopKey, kMarginBottomKey,
-                  kMarginLeftKey, kMarginRightKey, kTextKeyKey, kButtonAdjustKey, kVerticalAlignKey,
+                  kImageInsetsKey, kTextKeyKey, kButtonAdjustKey, kVerticalAlignKey,
                   kHorizontalAlignKey, kReturnKeyTypeKey, kKeyboardTypeKey,
                   kAutocorrectionTypeKey, kAutocapitalizationTypeKey, kClipsToBoundsKey,
                   kLeftOfKey, kRightOfKey, kAboveKey, kBelowKey,
@@ -155,12 +154,6 @@ return _##name; \
   [_ruleset addEntriesFromDictionary:dictionary];
 
   NSMutableArray *rids;
-  if ((rids = [_ruleset objectForKey:kRelativeToIdKey])) {
-      unichar c = [[rids objectAtIndex:0] characterAtIndex:0];
-      if (c != '#' && c != '.') {
-          [rids setObject:[@"#" stringByAppendingString: [rids objectAtIndex:0]] atIndexedSubscript:0];
-      }
-  }
   if (nil != order) {
     [order addObjectsFromArray:[dictionary objectForKey:kPropertyOrderKey]];
     [_ruleset setObject:order forKey:kPropertyOrderKey];
@@ -717,11 +710,6 @@ RULE_ELEMENT(visible, Visible, @"visibility", BOOL, visibilityFromCssValues)
 RULE_ELEMENT(titleInsets, TitleInsets, @"-mobile-title-insets", UIEdgeInsets, edgeInsetsFromCssValues)
 RULE_ELEMENT(contentInsets, ContentInsets, @"-mobile-content-insets", UIEdgeInsets, edgeInsetsFromCssValues)
 RULE_ELEMENT(imageInsets, ImageInsets, @"-mobile-image-insets", UIEdgeInsets, edgeInsetsFromCssValues)
-RULE_ELEMENT(relativeToId, RelativeToId, @"-mobile-relative", NSString*, stringFromCssValue)
-RULE_ELEMENT(marginTop, MarginTop, @"margin-top", NICSSUnit, unitFromCssValues)
-RULE_ELEMENT(marginBottom, MarginBottom, @"margin-bottom", NICSSUnit, unitFromCssValues)
-RULE_ELEMENT(marginLeft, MarginLeft, @"margin-left", NICSSUnit, unitFromCssValues)
-RULE_ELEMENT(marginRight, MarginRight, @"margin-right", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(textKey, TextKey, @"-mobile-text-key", NSString*, stringFromCssValue)
 RULE_ELEMENT(buttonAdjust, ButtonAdjust, @"-ios-button-adjust", NICSSButtonAdjust, buttonAdjustFromCssValue)
 RULE_ELEMENT(verticalAlign, VerticalAlign, @"-mobile-content-valign", UIControlContentVerticalAlignment, controlVerticalAlignFromCssValues)

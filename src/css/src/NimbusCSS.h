@@ -163,11 +163,6 @@ UIView {
   right: [x%,xpx]               {view.frameMaxX}
   -mobile-halign: [left|right|center]   {view.frameX}
   -mobile-valign: [top|bottom|middle]   {view.frameY}
-  -mobile-relative: [#id|.prev|.next|.first|.last]  {controls the position of the view relative to another view}
-  margin-top: [x%,xpx,auto]     {distance from view.frameMinY to relative.frameMaxY - % is relative to size of relative element, px is absolute, auto aligns the vertical centers}
- margin-bottom: [x%,xpx,auto]     {distance from view.frameMaxY to relative.frameMinY - % is relative to size of relative element, px is absolute, auto aligns the vertical centers}
- margin-left: [x%,xpx,auto]     {distance from view.frameMinX to relative.frameMaxX - % is relative to size of relative element, px is absolute, auto aligns the horizontal centers}
- margin-right: [x%,xpx,auto]     {distance from view.frameMaxX to relative.frameMinX - % is relative to size of relative element, px is absolute, auto aligns the horizontal centers}
 }
 
 UILabel {
