@@ -588,7 +588,7 @@ typedef enum {
  */
 
 /**
- * Return the rule values for a particular key, such as margin-top or width. Exposing this allows you, among
+ * Return the rule values for a particular key, such as border-color or width. Exposing this allows you, among
  * other things, use the CSS to hold variable information that has an effect on the layout of the views that
  * cannot be expressed as a style - such as padding.
  *
