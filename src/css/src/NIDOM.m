@@ -123,6 +123,22 @@
     [_viewToSelectorsMap setObject:selectors forKey:key];
   }
   [selectors addObject:selector];
+#ifdef NI_DEBUG_CSS_SELECTOR_TARGET
+    // Put a description of the selectors for this view in accessibilityHint (for example)
+    // for things like RevealApp to read. Example preprocessor define
+    // NI_DEBUG_CSS_SELECTOR_TARGET=setAccessibilityHint
+    __block NSMutableString *selString = [[NSMutableString alloc] init];
+    NSString *className = NSStringFromClass([view class]);
+    [selectors enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL *stop) {
+        if (![s isEqualToString:className] && [s rangeOfString:@":"].location == NSNotFound) {
+            if (selString.length != 0) {
+                [selString appendString:@", "];
+            }
+            [selString appendString:s];
+        }
+    }];
+    [view NI_DEBUG_CSS_SELECTOR_TARGET: selString];
+#endif
 }
 
 
