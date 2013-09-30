@@ -21,8 +21,7 @@
   -mobile-text-key: "RootViewTitle";
   width: 100%;
   height: auto;
-  -mobile-relative: .prev;
-  margin-top: 100px;
+  -mobile-below: .prev; 100px;
 }
 
 .rightMiddleLabel
@@ -99,41 +98,35 @@ UIButton:highlighted
 
 #box2 {
   background-color: green;
-  -mobile-relative: #box1;
-  margin-top: 0;
-  margin-right: 0;
+  -mobile-below: #box1 0;
+  -mobile-left-of: #box1 0;
 }
 
 #box3 {
   background-color: orange;
-  -mobile-relative: #box1;
-  margin-top: 0;
-  margin-left: 0;
+  -mobile-below: #box1 0;
+  -mobile-right-of: #box1 0;
 }
 
 #box4 {
   background-color: purple;
-  -mobile-relative: #box1;
-  margin-left: auto;
-  margin-top: 20px;
+  -mobile-right-of: #box1 auto;
+  -mobile-below: #box1 20px;
 }
 
 #box5 {
   background-color: black;
-  -mobile-relative: #box4;
-  margin-left: -50%;
-  margin-top: -50%;
+  -mobile-right-of: #box4 -50%;
+  -mobile-below: #box4 -50%;
 }
 
 #box6 {
   background-color: brown;
-  -mobile-relative: #box4;
-  margin-right: -50%;
-  margin-top: -50%;
+  -mobile-left-of: #box4 -50%;
+  -mobile-below: #box4 -50%;
 }
 #box7 {
   background-color: blue;
-  -mobile-relative: #box1;
-  margin-top: 0;
-  margin-left: auto;
+  -mobile-below: #box1 0;
+  -mobile-right-of: #box1 auto;
 }
