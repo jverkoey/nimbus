@@ -31,11 +31,10 @@
 NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 
 // These chars are used as keys for objc_setAssociatedObject and objc_getAssociatedObject.
-// We need to use associated objects to store rulesets and DOMs so that we can apply
-// styles for pseudoclasses when the control state of the button changes. Since we're
-// in a category, we can't add properties or ivars, so the only way to store additional
+// We need to use associated objects to store DOMs so that we can apply
+// styles for pseudoclasses (by refreshing each DOM) when the control state of the button changes.
+// Since we're in a category, we can't add properties or ivars, so the only way to store additional
 // state on the object is with associated objects.
-static char nibutton_stateDictionaryKey = 0;
 static char nibutton_DOMArrayKey = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -113,19 +112,15 @@ static char nibutton_DOMArrayKey = 0;
   [self applyButtonStyleBeforeViewWithRuleSet:ruleSet inDOM:dom];
   [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
   [self applyButtonStyleWithRuleSet:ruleSet inDOM:dom];
-  
-  // Apply any applicable pseudoclass styles for the current control state.
-  NSMutableDictionary *dict = objc_getAssociatedObject(self, &nibutton_stateDictionaryKey);
-  if (dict) {
-    [self applyButtonStyleBeforeViewWithRuleSet:[dict objectForKey:@(self.state)] inDOM:dom];
-    [self applyViewStyleWithRuleSet:[dict objectForKey:@(self.state)] inDOM:dom];
-    [self applyButtonStyleWithRuleSet:[dict objectForKey:@(self.state)] inDOM:dom];
-  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass:(NSString *)pseudo inDOM:(NIDOM *)dom
 {
+  // This button now has at least one pseudoclass, which means it needs to refresh itself when its
+  // control state changes.
+  [self addTarget:self action:@selector(controlStateChanged) forControlEvents:UIControlEventAllEvents];
+  
   UIControlState state = UIControlStateNormal;
   if ([pseudo caseInsensitiveCompare:@"selected"] == NSOrderedSame) {
     state = UIControlStateSelected;
@@ -135,18 +130,9 @@ static char nibutton_DOMArrayKey = 0;
     state = UIControlStateDisabled;
   }
   
-  // This button now has at least one pseudoclass, which means it needs to refresh itself when its
-  // control state changes.
-  [self addTarget:self action:@selector(controlStateChanged) forControlEvents:UIControlEventAllEvents];
-  
-  // Rather than applying the style normally, we save the ruleset and DOM for later so that we can
-  // actually apply this style if the control state of the button changes to the state found above.
-  NSMutableDictionary *dict = objc_getAssociatedObject(self, &nibutton_stateDictionaryKey);
-  if (!dict) {
-    dict = [NSMutableDictionary dictionary];
-    objc_setAssociatedObject(self, &nibutton_stateDictionaryKey, dict, OBJC_ASSOCIATION_RETAIN);
+  if (self.state == state) {
+    [self applyStyleWithRuleSet:ruleSet];
   }
-  [dict setObject:ruleSet forKey:@(state)];
   
   return;
 }
