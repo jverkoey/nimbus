@@ -1411,6 +1411,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
   for (CFIndex lineIndex = 0; lineIndex < numberOfLines; lineIndex++) {
     CGPoint lineOrigin = lineOrigins[lineIndex];
+    lineOrigin.y -= rect.origin.y; // adjust for verticalTextAlignment
     CGContextSetTextPosition(ctx, lineOrigin.x, lineOrigin.y);
     CTLineRef line = CFArrayGetValueAtIndex(lines, lineIndex);
 
