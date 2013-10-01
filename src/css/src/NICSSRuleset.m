@@ -20,6 +20,9 @@
 #import "NICSSParser.h"
 #import "NimbusCore.h"
 
+@implementation NICSSRelativeSpec
+@end
+
 // TODO selected/highlighted states for buttons
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
@@ -107,10 +110,10 @@ return _##name; \
                   kMaxHeightKey, kFrameHorizontalAlignKey,
                   kFrameVerticalAlignKey, kBackgroundStretchInsetsKey,
                   kBackgroundImageKey, kImageKey, kVisibleKey, kTitleInsetsKey, kContentInsetsKey,
-                  kImageInsetsKey, kRelativeToIdKey, kMarginTopKey, kMarginBottomKey,
-                  kMarginLeftKey, kMarginRightKey, kTextKeyKey, kButtonAdjustKey, kVerticalAlignKey,
+                  kImageInsetsKey, kTextKeyKey, kButtonAdjustKey, kVerticalAlignKey,
                   kHorizontalAlignKey, kReturnKeyTypeKey, kKeyboardTypeKey,
                   kAutocorrectionTypeKey, kAutocapitalizationTypeKey, kClipsToBoundsKey,
+                  kLeftOfKey, kRightOfKey, kAboveKey, kBelowKey,
                   nil
                   ];
 }
@@ -150,13 +153,6 @@ return _##name; \
   NSMutableArray* order = [_ruleset objectForKey:kPropertyOrderKey];
   [_ruleset addEntriesFromDictionary:dictionary];
 
-  NSMutableArray *rids;
-  if ((rids = [_ruleset objectForKey:kRelativeToIdKey])) {
-      unichar c = [[rids objectAtIndex:0] characterAtIndex:0];
-      if (c != '#' && c != '.') {
-          [rids setObject:[@"#" stringByAppendingString: [rids objectAtIndex:0]] atIndexedSubscript:0];
-      }
-  }
   if (nil != order) {
     [order addObjectsFromArray:[dictionary objectForKey:kPropertyOrderKey]];
     [_ruleset setObject:order forKey:kPropertyOrderKey];
@@ -700,6 +696,10 @@ RULE_ELEMENT(minWidth, MinWidth, @"min-width", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(minHeight, MinHeight, @"min-height", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(maxWidth, MaxWidth, @"max-width", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(maxHeight, MaxHeight, @"max-height", NICSSUnit, unitFromCssValues)
+RULE_ELEMENT(leftOf, LeftOf, @"-mobile-left-of", NICSSRelativeSpec*, relativeSpecFromCssValues)
+RULE_ELEMENT(rightOf, RightOf, @"-mobile-right-of", NICSSRelativeSpec*, relativeSpecFromCssValues)
+RULE_ELEMENT(above, Above, @"-mobile-above", NICSSRelativeSpec*, relativeSpecFromCssValues)
+RULE_ELEMENT(below, Below, @"-mobile-below", NICSSRelativeSpec*, relativeSpecFromCssValues)
 RULE_ELEMENT(frameHorizontalAlign,FrameHorizontalAlign,@"-mobile-halign",UITextAlignment,textAlignmentFromCssValues)
 RULE_ELEMENT(frameVerticalAlign,FrameVerticalAlign,@"-mobile-valign",UIViewContentMode,verticalAlignFromCssValues)
 RULE_ELEMENT(backgroundStretchInsets,BackgroundStretchInsets,@"-mobile-background-stretch",UIEdgeInsets,edgeInsetsFromCssValues)
@@ -709,11 +709,6 @@ RULE_ELEMENT(visible, Visible, @"visibility", BOOL, visibilityFromCssValues)
 RULE_ELEMENT(titleInsets, TitleInsets, @"-mobile-title-insets", UIEdgeInsets, edgeInsetsFromCssValues)
 RULE_ELEMENT(contentInsets, ContentInsets, @"-mobile-content-insets", UIEdgeInsets, edgeInsetsFromCssValues)
 RULE_ELEMENT(imageInsets, ImageInsets, @"-mobile-image-insets", UIEdgeInsets, edgeInsetsFromCssValues)
-RULE_ELEMENT(relativeToId, RelativeToId, @"-mobile-relative", NSString*, stringFromCssValue)
-RULE_ELEMENT(marginTop, MarginTop, @"margin-top", NICSSUnit, unitFromCssValues)
-RULE_ELEMENT(marginBottom, MarginBottom, @"margin-bottom", NICSSUnit, unitFromCssValues)
-RULE_ELEMENT(marginLeft, MarginLeft, @"margin-left", NICSSUnit, unitFromCssValues)
-RULE_ELEMENT(marginRight, MarginRight, @"margin-right", NICSSUnit, unitFromCssValues)
 RULE_ELEMENT(textKey, TextKey, @"-mobile-text-key", NSString*, stringFromCssValue)
 RULE_ELEMENT(buttonAdjust, ButtonAdjust, @"-ios-button-adjust", NICSSButtonAdjust, buttonAdjustFromCssValue)
 RULE_ELEMENT(verticalAlign, VerticalAlign, @"-mobile-content-valign", UIControlContentVerticalAlignment, controlVerticalAlignFromCssValues)
@@ -1129,6 +1124,21 @@ RULE_ELEMENT(accessibilityTraits, AccessibilityTraits, @"-mobile-accessibility-t
     NIDERROR(@"Unknown unit: %@", unitValue);
   }
   return returnUnits;
+}
+
++(NICSSRelativeSpec *)relativeSpecFromCssValues:(NSArray*)cssValues
+{
+  NICSSUnit margin;
+  if ([cssValues count] == 1) {
+    margin.type = CSS_PIXEL_UNIT;
+    margin.value = 0;
+  } else {
+    margin = [self unitFromCssValues:cssValues offset:1];
+  }
+  NICSSRelativeSpec *spec = [NICSSRelativeSpec new];
+  spec.viewSpec = [cssValues objectAtIndex:0];
+  spec.margin = margin;
+  return spec;
 }
 
 +(UIViewContentMode) verticalAlignFromCssValues:(NSArray*)cssValues
