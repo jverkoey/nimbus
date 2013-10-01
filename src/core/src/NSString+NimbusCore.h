@@ -26,21 +26,34 @@
 
 - (CGFloat)heightWithFont: (UIFont*)font
        constrainedToWidth: (CGFloat)width
-            lineBreakMode: (NSLineBreakMode)lineBreakMode;
+            lineBreakMode: (NSLineBreakMode)lineBreakMode __attribute__((deprecated));
+
+- (CGFloat)ni_heightWithFont: (UIFont*)font
+          constrainedToWidth: (CGFloat)width
+               lineBreakMode: (NSLineBreakMode)lineBreakMode;
 
 #pragma mark URL queries
 
-- (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding;
-- (NSString *)stringByAddingPercentEscapesForURLParameter;
-- (NSString*)stringByAddingQueryDictionary:(NSDictionary*)query;
+- (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding __attribute__((deprecated));
+- (NSString *)stringByAddingPercentEscapesForURLParameter __attribute__((deprecated));
+- (NSString*)stringByAddingQueryDictionary:(NSDictionary*)query __attribute__((deprecated));
+
+- (NSDictionary*)ni_queryContentsUsingEncoding:(NSStringEncoding)encoding;
+- (NSString *)ni_stringByAddingPercentEscapesForURLParameter;
+- (NSString*)ni_stringByAddingQueryDictionary:(NSDictionary*)query;
 
 #pragma mark Versions
 
-- (NSComparisonResult)versionStringCompare:(NSString *)other;
+- (NSComparisonResult)versionStringCompare:(NSString *)other __attribute__((deprecated));;
+
+- (NSComparisonResult)ni_versionStringCompare:(NSString *)other;
 
 #pragma mark Hashing
 
-@property (nonatomic, readonly) NSString* md5Hash;
-@property (nonatomic, readonly) NSString* sha1Hash;
+@property (nonatomic, readonly) NSString* md5Hash __attribute__((deprecated));
+@property (nonatomic, readonly) NSString* sha1Hash __attribute__((deprecated));
+
+@property (nonatomic, readonly) NSString* ni_md5Hash;
+@property (nonatomic, readonly) NSString* ni_sha1Hash;
 
 @end
