@@ -719,21 +719,21 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
 - (UIView *)relativeViewFromViewSpec:(NSString *)viewSpec inDom:(NIDOM *)dom
 {
     UIView* relative = nil;
-    if ([viewSpec characterAtIndex:0] == '.') {
-        if ([viewSpec caseInsensitiveCompare:@".next"] == NSOrderedSame) {
+    if ([viewSpec characterAtIndex:0] == '\\') {
+        if ([viewSpec caseInsensitiveCompare:@"\\next"] == NSOrderedSame) {
             NSInteger ix = [self.superview.subviews indexOfObject:self];
             if (++ix < self.superview.subviews.count) {
                 relative = [self.superview.subviews objectAtIndex:ix];
             }
-        } else if ([viewSpec caseInsensitiveCompare:@".prev"] == NSOrderedSame) {
+        } else if ([viewSpec caseInsensitiveCompare:@"\\prev"] == NSOrderedSame) {
             NSInteger ix = [self.superview.subviews indexOfObject:self];
             if (ix > 0) {
                 relative = [self.superview.subviews objectAtIndex:ix-1];
             }
-        } else if ([viewSpec caseInsensitiveCompare:@".first"] == NSOrderedSame) {
+        } else if ([viewSpec caseInsensitiveCompare:@"\\first"] == NSOrderedSame) {
             relative = [self.superview.subviews objectAtIndex:0];
             if (relative == self) { relative = nil; }
-        } else if ([viewSpec caseInsensitiveCompare:@".last"] == NSOrderedSame) {
+        } else if ([viewSpec caseInsensitiveCompare:@"\\last"] == NSOrderedSame) {
             relative = [self.superview.subviews lastObject];
             if (relative == self) { relative = nil; }
         }
