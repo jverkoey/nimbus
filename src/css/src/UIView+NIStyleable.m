@@ -691,25 +691,41 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
   if ([ruleSet hasMaxWidth]) {
     CGFloat max = NICSSUnitToPixels(ruleSet.maxWidth,self.frameWidth);
     if (self.frameWidth > max) {
-      if (apply) { self.frameWidth = max; } else { [desc appendFormat:@"%@.frameWidth = %f;\n", name, max]; }
+      if (apply) {
+        self.frameWidth = max;
+      } else {
+        [desc appendFormat:@"%@.frameWidth = %f;\n", name, max];
+      }
     }
   }
   if ([ruleSet hasMaxHeight]) {
     CGFloat max = NICSSUnitToPixels(ruleSet.maxHeight,self.frameHeight);
     if (self.frameHeight > max) {
-      if (apply) { self.frameHeight = max; } else { [desc appendFormat:@"%@.frameHeight = %f;\n", name, max]; }
+      if (apply) {
+        self.frameHeight = max;
+      } else {
+        [desc appendFormat:@"%@.frameHeight = %f;\n", name, max];
+      }
     }
   }
   if ([ruleSet hasMinWidth]) {
     CGFloat min = NICSSUnitToPixels(ruleSet.minWidth,self.frameWidth);
     if (self.frameWidth < min) {
-      if (apply) { self.frameWidth = min; } else { [desc appendFormat:@"%@.frameWidth = %f;\n", name, min]; }
+      if (apply) {
+        self.frameWidth = min;
+      } else {
+        [desc appendFormat:@"%@.frameWidth = %f;\n", name, min];
+      }
     }
   }
   if ([ruleSet hasMinHeight]) {
     CGFloat min = NICSSUnitToPixels(ruleSet.minHeight,self.frameHeight);
     if (self.frameHeight < min) {
-      if (apply) { self.frameHeight = min; } else { [desc appendFormat:@"%@.frameHeight = %f;\n", name, min]; }
+      if (apply) {
+        self.frameHeight = min;
+      } else {
+        [desc appendFormat:@"%@.frameHeight = %f;\n", name, min];
+      }
     }
   }
  

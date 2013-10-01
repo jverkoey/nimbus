@@ -21,7 +21,7 @@
   -mobile-text-key: "RootViewTitle";
   width: 100%;
   height: auto;
-  -mobile-below: .prev; 100px;
+  -mobile-below: \prev 100px;
 }
 
 .rightMiddleLabel
