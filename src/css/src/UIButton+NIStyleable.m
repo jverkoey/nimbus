@@ -36,6 +36,8 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 // Since we're in a category, we can't add properties or ivars, so the only way to store additional
 // state on the object is with associated objects.
 static char nibutton_DOMArrayKey = 0;
+static char nibutton_isRefreshingDueToKVOKey = 0;
+static char nibutton_didSetupKVOKey = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,12 +116,18 @@ static char nibutton_DOMArrayKey = 0;
   [self applyButtonStyleWithRuleSet:ruleSet inDOM:dom];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass:(NSString *)pseudo inDOM:(NIDOM *)dom
 {
   // This button now has at least one pseudoclass, which means it needs to refresh itself when its
   // control state changes.
-  [self addTarget:self action:@selector(controlStateChanged) forControlEvents:UIControlEventAllEvents];
+  if (![objc_getAssociatedObject(self, &nibutton_didSetupKVOKey) boolValue]) {
+    [self addObserver:self forKeyPath:@"highlighted" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
+    [self addObserver:self forKeyPath:@"selected" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
+    [self addObserver:self forKeyPath:@"disabled" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
+    objc_setAssociatedObject(self, &nibutton_didSetupKVOKey, @(YES), OBJC_ASSOCIATION_RETAIN);
+  }
   
   UIControlState state = UIControlStateNormal;
   if ([pseudo caseInsensitiveCompare:@"selected"] == NSOrderedSame) {
@@ -199,10 +207,16 @@ static char nibutton_DOMArrayKey = 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)controlStateChanged {
-  NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
-  for (NIDOM *dom in array) {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+  if (![objc_getAssociatedObject(self, &nibutton_isRefreshingDueToKVOKey) boolValue] &&
+      [change objectForKey:NSKeyValueChangeNewKey] != [change objectForKey:NSKeyValueChangeOldKey]) {
+    
+    objc_setAssociatedObject(self, &nibutton_isRefreshingDueToKVOKey, @(YES), OBJC_ASSOCIATION_RETAIN);
+    for (NIDOM *dom in objc_getAssociatedObject(self, &nibutton_DOMArrayKey)) {
       [dom refreshView:self];
+    }
+    objc_setAssociatedObject(self, &nibutton_isRefreshingDueToKVOKey, @(NO), OBJC_ASSOCIATION_RETAIN);
+    
   }
 }
 
