@@ -111,7 +111,7 @@
 #define NIIOS_6_1     60100
 
 /**
- * Release unknown
+ * Released on September 18, 2013
  */
 #define NIIOS_7_0     70000
 
