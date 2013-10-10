@@ -31,6 +31,8 @@
     _label.backgroundColor = [UIColor clearColor];
     
     [self addSubview:_label];
+      
+    self.reuseIdentifier = reuseIdentifier;
   }
   return self;
 }
