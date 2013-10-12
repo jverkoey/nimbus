@@ -62,6 +62,9 @@ typedef enum {
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
 
+// This method is not appropriate for performance critical codepaths.
+- (NSIndexPath *)indexPathForObject:(id)object;
+
 #pragma mark Configuration
 
 // Immediately compiles the section index.

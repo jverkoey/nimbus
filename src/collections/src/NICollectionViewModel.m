@@ -238,6 +238,25 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSIndexPath *)indexPathForObject:(id)object {
+  if (nil == object) {
+    return nil;
+  }
+
+  NSArray *sections = self.sections;
+  for (NSUInteger sectionIndex = 0; sectionIndex < [sections count]; sectionIndex++) {
+    NSArray* rows = [[sections objectAtIndex:sectionIndex] rows];
+    for (NSUInteger rowIndex = 0; rowIndex < [rows count]; rowIndex++) {
+      if ([object isEqual:[rows objectAtIndex:rowIndex]]) {
+        return [NSIndexPath indexPathForRow:rowIndex inSection:sectionIndex];
+      }
+    }
+  }
+
+  return nil;
+}
+
 @end
 
 

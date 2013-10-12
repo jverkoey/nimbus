@@ -55,6 +55,9 @@
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
 
+// This method is not appropriate for performance critical codepaths.
+- (NSIndexPath *)indexPathForObject:(id)object;
+
 #pragma mark Creating Collection View Cells
 
 @property (nonatomic, NI_WEAK) id<NICollectionViewModelDelegate> delegate;
