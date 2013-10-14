@@ -30,6 +30,24 @@
 
 NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Hack: make an object whose only purpose is to recognize when it is deallocated and send a message
+// to its button property. Since we're declaring a category on UIButton that adds itself as a KVO
+// observer of itself, the only way to have the button un-observe itself on dealloc is to make an
+// instance of this class and set it as a strong associated object, so when the button is deallocated,
+// the instance is deallocated and the button gets a callback.
+@interface NIDeallocObserver : NSObject
+@property (nonatomic, strong) UIButton *button;
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NIDeallocObserver
+- (void)dealloc {
+    [self.button performSelector:@selector(deallocObserverWasDeallocated)];
+}
+@end
+
 // These chars are used as keys for objc_setAssociatedObject and objc_getAssociatedObject.
 // We need to use associated objects to store DOMs so that we can apply
 // styles for pseudoclasses (by refreshing each DOM) when the control state of the button changes.
@@ -38,6 +56,7 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 static char nibutton_DOMArrayKey = 0;
 static char nibutton_isRefreshingDueToKVOKey = 0;
 static char nibutton_didSetupKVOKey = 0;
+static char nibutton_deallocObserverKey = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -127,6 +146,10 @@ static char nibutton_didSetupKVOKey = 0;
     [self addObserver:self forKeyPath:@"selected" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
     [self addObserver:self forKeyPath:@"disabled" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
     objc_setAssociatedObject(self, &nibutton_didSetupKVOKey, @(YES), OBJC_ASSOCIATION_RETAIN);
+      
+    NIDeallocObserver* deallocObserver = [NIDeallocObserver new];
+    deallocObserver.button = self;
+    objc_setAssociatedObject(self, &nibutton_deallocObserverKey, deallocObserver, OBJC_ASSOCIATION_RETAIN);
   }
   
   UIControlState state = UIControlStateNormal;
@@ -143,6 +166,13 @@ static char nibutton_didSetupKVOKey = 0;
   }
   
   return;
+}
+
+- (void)deallocObserverWasDeallocated
+{
+  [self removeObserver:self forKeyPath:@"highlighted" context:&nibutton_isRefreshingDueToKVOKey];
+  [self removeObserver:self forKeyPath:@"selected" context:&nibutton_isRefreshingDueToKVOKey];
+  [self removeObserver:self forKeyPath:@"disabled" context:&nibutton_isRefreshingDueToKVOKey];
 }
 
 -(NSArray *)pseudoClasses
@@ -221,3 +251,4 @@ static char nibutton_didSetupKVOKey = 0;
 }
 
 @end
+
