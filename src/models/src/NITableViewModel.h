@@ -197,6 +197,13 @@ typedef enum {
  *      @fn NITableViewModel::objectAtIndexPath:
  */
 
+/**
+ * Returns the index path of the given object within the model.
+ *
+ * If the model does not contain the object then nil will be returned.
+ *
+ *      @fn NITableViewModel::indexPathForObject:
+ */
 
 /** @name Configuration */
 

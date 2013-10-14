@@ -187,6 +187,14 @@
  *      @fn NICollectionViewModel::objectAtIndexPath:
  */
 
+/**
+ * Returns the index path of the given object within the model.
+ *
+ * If the model does not contain the object then nil will be returned.
+ *
+ *      @fn NICollectionViewModel::indexPathForObject:
+ */
+
 
 /** @name Creating Collection View Cells */
 
