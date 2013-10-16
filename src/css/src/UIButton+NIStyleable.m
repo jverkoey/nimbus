@@ -144,7 +144,7 @@ static char nibutton_deallocObserverKey = 0;
   if (![objc_getAssociatedObject(self, &nibutton_didSetupKVOKey) boolValue]) {
     [self addObserver:self forKeyPath:@"highlighted" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
     [self addObserver:self forKeyPath:@"selected" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
-    [self addObserver:self forKeyPath:@"disabled" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
+    [self addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
     objc_setAssociatedObject(self, &nibutton_didSetupKVOKey, @(YES), OBJC_ASSOCIATION_RETAIN);
       
     NIDeallocObserver* deallocObserver = [NIDeallocObserver new];
@@ -161,7 +161,8 @@ static char nibutton_deallocObserverKey = 0;
     state = UIControlStateDisabled;
   }
   
-  if (self.state == state) {
+  if (self.state == state ||
+      (!self.enabled && [pseudo caseInsensitiveCompare:@"disabled"] == NSOrderedSame)) {
     [self applyStyleWithRuleSet:ruleSet];
   }
   
@@ -172,7 +173,7 @@ static char nibutton_deallocObserverKey = 0;
 {
   [self removeObserver:self forKeyPath:@"highlighted" context:&nibutton_isRefreshingDueToKVOKey];
   [self removeObserver:self forKeyPath:@"selected" context:&nibutton_isRefreshingDueToKVOKey];
-  [self removeObserver:self forKeyPath:@"disabled" context:&nibutton_isRefreshingDueToKVOKey];
+  [self removeObserver:self forKeyPath:@"enabled" context:&nibutton_isRefreshingDueToKVOKey];
 }
 
 -(NSArray *)pseudoClasses
