@@ -839,6 +839,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
       foundLink = [self linkAtIndex:idx - offset];;
       if (foundLink) {
+          if (foundLink.resultType == NSTextCheckingTypePhoneNumber) {
+              NSTextCheckingResult *result = [NSTextCheckingResult linkCheckingResultWithRange:NSMakeRange(foundLink.range.location + offset, foundLink.range.length) URL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", [foundLink.phoneNumber stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
+              
+              return result;
+          }
+          
         NSTextCheckingResult *result = [NSTextCheckingResult linkCheckingResultWithRange:NSMakeRange(foundLink.range.location + offset, foundLink.range.length) URL:foundLink.URL];
 
         return result;
@@ -983,9 +989,28 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-  [super touchesBegan:touches withEvent:event];
+-(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+	// never return self. always return the result of [super hitTest..].
+	// this takes userInteraction state, enabled, alpha values etc. into account
+	UIView *hitResult = [super hitTest:point withEvent:event];
+	
+	// don't check for links if the event was handled by one of the subviews
+	if (hitResult != self) {
+		return hitResult;
+	}
+	
+	if (self.explicitLinkLocations || self.detectedlinkLocations) {
+		BOOL didHitLink = ([self linkAtPoint:point] != nil);
+		if (!didHitLink) {
+			// not catch the touch if it didn't hit a link
+			return nil;
+		}
+	}
+	return hitResult;
+}
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   UITouch* touch = [touches anyObject];
   CGPoint point = [touch locationInView:self];
 
@@ -1004,8 +1029,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-  [super touchesMoved:touches withEvent:event];
-
   UITouch* touch = [touches anyObject];
   CGPoint point = [touch locationInView:self];
 
@@ -1047,8 +1070,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-  [super touchesEnded:touches withEvent:event];
-
   [self.longPressTimer invalidate];
   self.longPressTimer = nil;
 
@@ -1071,8 +1092,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-  [super touchesCancelled:touches withEvent:event];
-
   [self.longPressTimer invalidate];
   self.longPressTimer = nil;
 
@@ -1120,6 +1139,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     NIDASSERT(NO);
     [actionSheet addButtonWithTitle:NSLocalizedString(@"Copy", @"")];
   }
+    
+  actionSheet.title = [title stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
   actionSheet.title = title;
 
   if (!NIIsPad()) {
@@ -1169,9 +1190,19 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     // We add a no-op attribute in order to force a run to exist for each link. Otherwise the
     // runCount will be one in this line, causing the entire line to be highlighted rather than
     // just the link when when no special attributes are set.
+    id value = nil;
+    if (result.resultType == NSTextCheckingTypePhoneNumber) {
+        value = result.phoneNumber;
+    } else {
+        value = result.URL;
+    }
+    if (!value) {
+        return;
+    }
+      
     [attributedString removeAttribute:kNILinkAttributeName range:result.range];
     [attributedString addAttribute:kNILinkAttributeName
-                             value:result.URL
+                             value:value
                              range:result.range];
 
     if (self.linksHaveUnderlines) {
