@@ -62,6 +62,9 @@ typedef enum {
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
 
+// This method is not appropriate for performance critical codepaths.
+- (NSIndexPath *)indexPathForObject:(id)object;
+
 #pragma mark Configuration
 
 // Immediately compiles the section index.
@@ -194,6 +197,13 @@ typedef enum {
  *      @fn NITableViewModel::objectAtIndexPath:
  */
 
+/**
+ * Returns the index path of the given object within the model.
+ *
+ * If the model does not contain the object then nil will be returned.
+ *
+ *      @fn NITableViewModel::indexPathForObject:
+ */
 
 /** @name Configuration */
 
