@@ -38,12 +38,6 @@ NI_FIX_CATEGORY_BUG(UITableView_NIStyleable)
   if ([ruleSet hasTableViewCellSeparatorStyle]) { self.separatorStyle = ruleSet.tableViewCellSeparatorStyle; }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  [self applyStyleWithRuleSet:ruleSet inDOM: nil];
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
   [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];

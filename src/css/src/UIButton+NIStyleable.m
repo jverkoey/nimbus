@@ -124,11 +124,6 @@ static char nibutton_deallocObserverKey = 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  [self applyStyleWithRuleSet:ruleSet inDOM:nil];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
   [self applyButtonStyleBeforeViewWithRuleSet:ruleSet inDOM:dom];
   [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
@@ -163,7 +158,7 @@ static char nibutton_deallocObserverKey = 0;
   
   if (self.state == state ||
       (!self.enabled && [pseudo caseInsensitiveCompare:@"disabled"] == NSOrderedSame)) {
-    [self applyStyleWithRuleSet:ruleSet];
+    [self applyStyleWithRuleSet:ruleSet inDOM:dom];
   }
   
   return;

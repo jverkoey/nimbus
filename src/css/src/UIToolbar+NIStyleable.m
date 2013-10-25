@@ -38,11 +38,6 @@ NI_FIX_CATEGORY_BUG(UIToolbar_NIStyleable)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  [self applyStyleWithRuleSet:ruleSet inDOM:nil];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
   [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
   [self applyToolbarStyleWithRuleSet:ruleSet inDOM:dom];
