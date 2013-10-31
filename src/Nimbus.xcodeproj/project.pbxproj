@@ -342,6 +342,8 @@
 		66FE7D6B13FB83620061B987 /* NimbusModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6413FB83620061B987 /* NimbusModels.h */; };
 		66FE7D6C13FB83620061B987 /* NITableViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 66FE7D6513FB83620061B987 /* NITableViewModel.h */; };
 		66FE7D6D13FB83620061B987 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FE7D6613FB83620061B987 /* NITableViewModel.m */; };
+		97130B6A1822DDCD00C2D03D /* UITextView+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 97130B681822DDCD00C2D03D /* UITextView+NIStyleable.h */; };
+		97130B6B1822DDCD00C2D03D /* UITextView+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 97130B691822DDCD00C2D03D /* UITextView+NIStyleable.m */; };
 		9B22BD991725E75E000FDB01 /* NIMutableCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B22BD981725E75E000FDB01 /* NIMutableCollectionViewModel.m */; };
 		C743F6EA16D2652F00A933B7 /* NIUserInterfaceString.h in Headers */ = {isa = PBXBuildFile; fileRef = C743F6E816D2652F00A933B7 /* NIUserInterfaceString.h */; };
 		C743F6EB16D2652F00A933B7 /* NIUserInterfaceString.m in Sources */ = {isa = PBXBuildFile; fileRef = C743F6E916D2652F00A933B7 /* NIUserInterfaceString.m */; };
@@ -999,6 +1001,8 @@
 		66FE7D6513FB83620061B987 /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITableViewModel.h; sourceTree = "<group>"; };
 		66FE7D6613FB83620061B987 /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITableViewModel.m; sourceTree = "<group>"; };
 		66FE7D6813FB83620061B987 /* NimbusModelsTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NimbusModelsTests-Info.plist"; sourceTree = "<group>"; };
+		97130B681822DDCD00C2D03D /* UITextView+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+NIStyleable.h"; path = "css/src/UITextView+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
+		97130B691822DDCD00C2D03D /* UITextView+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+NIStyleable.m"; path = "css/src/UITextView+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		9B22BD971725E75E000FDB01 /* NIMutableCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIMutableCollectionViewModel.h; sourceTree = "<group>"; };
 		9B22BD981725E75E000FDB01 /* NIMutableCollectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIMutableCollectionViewModel.m; sourceTree = "<group>"; };
 		9B22BD9B1725ECB4000FDB01 /* NIMutableCollectionViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIMutableCollectionViewModel+Private.h"; sourceTree = "<group>"; };
@@ -1659,6 +1663,8 @@
 				66832D1214416368003E413C /* UIView+NIStyleable.m */,
 				C7A8792016D7B96200A0C23F /* UITextField+NIStyleable.h */,
 				C7A8792116D7B96200A0C23F /* UITextField+NIStyleable.m */,
+				97130B681822DDCD00C2D03D /* UITextView+NIStyleable.h */,
+				97130B691822DDCD00C2D03D /* UITextView+NIStyleable.m */,
 			);
 			name = "Styleable UIKit Views";
 			sourceTree = "<group>";
@@ -2402,6 +2408,7 @@
 				66D2FDF81594083800B2BEFD /* AFHTTPRequestOperation.h in Headers */,
 				66D2FDFA1594083800B2BEFD /* AFImageRequestOperation.h in Headers */,
 				66D2FDFC1594083800B2BEFD /* AFJSONRequestOperation.h in Headers */,
+				97130B6A1822DDCD00C2D03D /* UITextView+NIStyleable.h in Headers */,
 				66D2FDFE1594083800B2BEFD /* AFJSONUtilities.h in Headers */,
 				66D2FE001594083800B2BEFD /* AFNetworkActivityIndicatorManager.h in Headers */,
 				66D2FE021594083800B2BEFD /* AFNetworking.h in Headers */,
@@ -3784,6 +3791,7 @@
 				66D2FE011594083800B2BEFD /* AFNetworkActivityIndicatorManager.m in Sources */,
 				66D2FE041594083800B2BEFD /* AFPropertyListRequestOperation.m in Sources */,
 				66D2FE061594083800B2BEFD /* AFURLConnectionOperation.m in Sources */,
+				97130B6B1822DDCD00C2D03D /* UITextView+NIStyleable.m in Sources */,
 				66D2FE081594083800B2BEFD /* AFXMLRequestOperation.m in Sources */,
 				66D2FE0A1594083800B2BEFD /* UIImageView+AFNetworking.m in Sources */,
 				C743F6EB16D2652F00A933B7 /* NIUserInterfaceString.m in Sources */,
