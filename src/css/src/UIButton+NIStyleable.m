@@ -38,7 +38,7 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 // instance of this class and set it as a strong associated object, so when the button is deallocated,
 // the instance is deallocated and the button gets a callback.
 @interface NIDeallocObserver : NSObject
-@property (nonatomic, strong) UIButton *button;
+@property (nonatomic, weak) UIButton *button;
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -218,7 +218,7 @@ static char nibutton_deallocObserverKey = 0;
 - (void)didRegisterInDOM:(NIDOM *)dom {
   NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
   if (!array) {
-    array = NICreateNonRetainingMutableArray();
+    array = [NSMutableArray array];
     objc_setAssociatedObject(self, &nibutton_DOMArrayKey, array, OBJC_ASSOCIATION_RETAIN);
   }
   [array addObject:dom];
