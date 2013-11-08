@@ -65,9 +65,9 @@
  * @code
 NSArray* tableContents =
  [NSArray arrayWithObjects:
-  [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"],
-  [NSDictionary dictionaryWithObject:@"Row 2" forKey:@"title"],
-  [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
+  [NITitleCellObject objectWithTitle:@"Row 1"],
+  [NITitleCellObject objectWithTitle:@"Row 2"],
+  [NITitleCellObject objectWithTitle:@"Row 3"],
   nil];
 
 _model = [[NITableViewModel alloc] initWithListArray:tableContents
@@ -79,12 +79,12 @@ _model = [[NITableViewModel alloc] initWithListArray:tableContents
  * @code
 NSArray* tableContents =
  [NSArray arrayWithObjects:
-  @"Section Title"
-  [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"],
-  [NSDictionary dictionaryWithObject:@"Row 2" forKey:@"title"],
+  @"Section Title",
+  [NITitleCellObject objectWithTitle:@"Row 1"],
+  [NITitleCellObject objectWithTitle:@"Row 2"],
 
-  @"Section Title"
-  [NSDictionary dictionaryWithObject:@"Row 3" forKey:@"title"],
+  @"Section Title",
+  [NITitleCellObject objectWithTitle:@"Row 3"],
   nil];
 
 _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
