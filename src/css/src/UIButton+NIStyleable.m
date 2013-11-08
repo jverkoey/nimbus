@@ -30,13 +30,33 @@
 
 NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Hack: make an object whose only purpose is to recognize when it is deallocated and send a message
+// to its button property. Since we're declaring a category on UIButton that adds itself as a KVO
+// observer of itself, the only way to have the button un-observe itself on dealloc is to make an
+// instance of this class and set it as a strong associated object, so when the button is deallocated,
+// the instance is deallocated and the button gets a callback.
+@interface NIDeallocObserver : NSObject
+@property (nonatomic, weak) UIButton *button;
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation NIDeallocObserver
+- (void)dealloc {
+    [self.button performSelector:@selector(deallocObserverWasDeallocated)];
+}
+@end
+
 // These chars are used as keys for objc_setAssociatedObject and objc_getAssociatedObject.
-// We need to use associated objects to store rulesets and DOMs so that we can apply
-// styles for pseudoclasses when the control state of the button changes. Since we're
-// in a category, we can't add properties or ivars, so the only way to store additional
+// We need to use associated objects to store DOMs so that we can apply
+// styles for pseudoclasses (by refreshing each DOM) when the control state of the button changes.
+// Since we're in a category, we can't add properties or ivars, so the only way to store additional
 // state on the object is with associated objects.
-static char nibutton_stateDictionaryKey = 0;
 static char nibutton_DOMArrayKey = 0;
+static char nibutton_isRefreshingDueToKVOKey = 0;
+static char nibutton_didSetupKVOKey = 0;
+static char nibutton_deallocObserverKey = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -104,28 +124,29 @@ static char nibutton_DOMArrayKey = 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  [self applyStyleWithRuleSet:ruleSet inDOM:nil];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
   [self applyButtonStyleBeforeViewWithRuleSet:ruleSet inDOM:dom];
   [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
   [self applyButtonStyleWithRuleSet:ruleSet inDOM:dom];
-  
-  // Apply any applicable pseudoclass styles for the current control state.
-  NSMutableDictionary *dict = objc_getAssociatedObject(self, &nibutton_stateDictionaryKey);
-  if (dict) {
-    [self applyButtonStyleBeforeViewWithRuleSet:[dict objectForKey:@(self.state)] inDOM:dom];
-    [self applyViewStyleWithRuleSet:[dict objectForKey:@(self.state)] inDOM:dom];
-    [self applyButtonStyleWithRuleSet:[dict objectForKey:@(self.state)] inDOM:dom];
-  }
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass:(NSString *)pseudo inDOM:(NIDOM *)dom
 {
+  // This button now has at least one pseudoclass, which means it needs to refresh itself when its
+  // control state changes.
+  if (![objc_getAssociatedObject(self, &nibutton_didSetupKVOKey) boolValue]) {
+    [self addObserver:self forKeyPath:@"highlighted" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
+    [self addObserver:self forKeyPath:@"selected" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
+    [self addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
+    objc_setAssociatedObject(self, &nibutton_didSetupKVOKey, @(YES), OBJC_ASSOCIATION_RETAIN);
+      
+    NIDeallocObserver* deallocObserver = [NIDeallocObserver new];
+    deallocObserver.button = self;
+    objc_setAssociatedObject(self, &nibutton_deallocObserverKey, deallocObserver, OBJC_ASSOCIATION_RETAIN);
+  }
+  
   UIControlState state = UIControlStateNormal;
   if ([pseudo caseInsensitiveCompare:@"selected"] == NSOrderedSame) {
     state = UIControlStateSelected;
@@ -135,20 +156,19 @@ static char nibutton_DOMArrayKey = 0;
     state = UIControlStateDisabled;
   }
   
-  // This button now has at least one pseudoclass, which means it needs to refresh itself when its
-  // control state changes.
-  [self addTarget:self action:@selector(controlStateChanged) forControlEvents:UIControlEventAllEvents];
-  
-  // Rather than applying the style normally, we save the ruleset and DOM for later so that we can
-  // actually apply this style if the control state of the button changes to the state found above.
-  NSMutableDictionary *dict = objc_getAssociatedObject(self, &nibutton_stateDictionaryKey);
-  if (!dict) {
-    dict = [NSMutableDictionary dictionary];
-    objc_setAssociatedObject(self, &nibutton_stateDictionaryKey, dict, OBJC_ASSOCIATION_RETAIN);
+  if (self.state == state ||
+      (!self.enabled && [pseudo caseInsensitiveCompare:@"disabled"] == NSOrderedSame)) {
+    [self applyStyleWithRuleSet:ruleSet inDOM:dom];
   }
-  [dict setObject:ruleSet forKey:@(state)];
   
   return;
+}
+
+- (void)deallocObserverWasDeallocated
+{
+  [self removeObserver:self forKeyPath:@"highlighted" context:&nibutton_isRefreshingDueToKVOKey];
+  [self removeObserver:self forKeyPath:@"selected" context:&nibutton_isRefreshingDueToKVOKey];
+  [self removeObserver:self forKeyPath:@"enabled" context:&nibutton_isRefreshingDueToKVOKey];
 }
 
 -(NSArray *)pseudoClasses
@@ -198,7 +218,7 @@ static char nibutton_DOMArrayKey = 0;
 - (void)didRegisterInDOM:(NIDOM *)dom {
   NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
   if (!array) {
-    array = NICreateNonRetainingMutableArray();
+    array = [NSMutableArray array];
     objc_setAssociatedObject(self, &nibutton_DOMArrayKey, array, OBJC_ASSOCIATION_RETAIN);
   }
   [array addObject:dom];
@@ -213,11 +233,18 @@ static char nibutton_DOMArrayKey = 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)controlStateChanged {
-  NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
-  for (NIDOM *dom in array) {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+  if (![objc_getAssociatedObject(self, &nibutton_isRefreshingDueToKVOKey) boolValue] &&
+      [change objectForKey:NSKeyValueChangeNewKey] != [change objectForKey:NSKeyValueChangeOldKey]) {
+    
+    objc_setAssociatedObject(self, &nibutton_isRefreshingDueToKVOKey, @(YES), OBJC_ASSOCIATION_RETAIN);
+    for (NIDOM *dom in objc_getAssociatedObject(self, &nibutton_DOMArrayKey)) {
       [dom refreshView:self];
+    }
+    objc_setAssociatedObject(self, &nibutton_isRefreshingDueToKVOKey, @(NO), OBJC_ASSOCIATION_RETAIN);
+    
   }
 }
 
 @end
+

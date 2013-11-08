@@ -275,12 +275,6 @@ static id<NICSSResourceResolverDelegate> _resolver;
   if ([view respondsToSelector:@selector(applyStyleWithRuleSet:inDOM:)]) {
     [(id<NIStyleable>)view applyStyleWithRuleSet:ruleSet inDOM:dom];
   }
-  if ([view respondsToSelector:@selector(applyStyleWithRuleSet:)]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [(id<NIStyleable>)view applyStyleWithRuleSet:ruleSet];
-#pragma clang diagnostic pop
-  }
 }
 
 - (void)applyStyleToView:(UIView *)view withClassName:(NSString *)className inDOM:(NIDOM *)dom {

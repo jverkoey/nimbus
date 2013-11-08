@@ -37,12 +37,6 @@ NI_FIX_CATEGORY_BUG(UIScrollView_NIStyleable)
   if ([ruleSet hasScrollViewIndicatorStyle]) { self.indicatorStyle = ruleSet.scrollViewIndicatorStyle; }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-    [self applyStyleWithRuleSet:ruleSet inDOM:nil];
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
   [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];

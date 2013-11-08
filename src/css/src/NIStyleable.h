@@ -29,13 +29,6 @@
  * subclasses to call super implementations. See UILabel+NIStyleable.h/m for an example.
  */
 @protocol NIStyleable <NSObject>
-@required
-
-/**
- * Please implement applyStyleWithRuleSet:inDOM: instead to support relative positioning. The deprecated
- * warning will only catch calls to super rather than implementors, but not sure what else to do.
- */
-- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet DEPRECATED_ATTRIBUTE;
 
 /**
  * The given ruleset should be applied to the view. The ruleset represents a composite of all
