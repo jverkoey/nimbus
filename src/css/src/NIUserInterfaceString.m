@@ -237,7 +237,12 @@ NIUserInterfaceStringResolver
           } else {
             NSArray *attachments = (NSArray*) obj;
             for (NIUserInterfaceStringAttachment *a in attachments) {
-              [a attach:o];
+              @try {
+                [a attach:o];
+              }
+              @catch (NSException *exception) {
+                NIDERROR(@"Failed to update string attached to an element (likely dealloced). String '%@': %@", key, o);
+              }
             }
           }
         }

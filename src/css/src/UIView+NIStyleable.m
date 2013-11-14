@@ -982,7 +982,11 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container)
         NSAssert([directiveValue isKindOfClass:[NSString class]] || [directiveValue isKindOfClass:[NSArray class]], @"The value of NICSSViewCssClassKey must be an NSString* or NSArray*");
         active.cssClasses = active.cssClasses ?: [[NSMutableArray alloc] init];
         if ([directiveValue isKindOfClass:[NSString class]]) {
-          [active.cssClasses addObject:directiveValue];
+          if ([directiveValue rangeOfString:@" "].location != NSNotFound) {
+            [active.cssClasses addObjectsFromArray:[directiveValue componentsSeparatedByString:@" "]];
+          } else {
+            [active.cssClasses addObject:directiveValue];
+          }
         } else {
           [active.cssClasses addObjectsFromArray:directiveValue];
         }
