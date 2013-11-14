@@ -42,6 +42,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   NSInteger _animatingToPageIndex;
   BOOL _isKillingAnimation;
   NSInteger _queuedAnimationPageIndex;
+  BOOL _shouldUpdateVisiblePagesWhileScrolling;
 }
 
 @property (nonatomic, NI_STRONG) UIScrollView* pagingScrollView;
@@ -480,6 +481,10 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
       [self.delegate pagingScrollViewDidScroll:self];
     }
   }
+  if (_shouldUpdateVisiblePagesWhileScrolling
+      && ![scrollView isTracking] && ![scrollView isDragging]) {
+    [self updateVisiblePagesShouldNotifyDelegate:YES];
+  }
 
   if ([self.delegate respondsToSelector:_cmd]) {
     [self.delegate scrollViewDidScroll:scrollView];
@@ -718,6 +723,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didAnimateToPage:(NSInteger)pageIndex {
+  _shouldUpdateVisiblePagesWhileScrolling = NO;
   _animatingToPageIndex = -1;
   if (_queuedAnimationPageIndex >= 0 && _queuedAnimationPageIndex != pageIndex) {
     [self moveToPageAtIndex:_queuedAnimationPageIndex animated:YES];
@@ -737,11 +743,18 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated {
+  return [self moveToPageAtIndex:pageIndex animated:animated updateVisiblePagesWhileScrolling:NO];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated updateVisiblePagesWhileScrolling:(BOOL)updateVisiblePagesWhileScrolling {
   if (_animatingToPageIndex >= 0) {
     // Don't allow re-entry for sliding animations.
     _queuedAnimationPageIndex = pageIndex;
     return NO;
   }
+  _shouldUpdateVisiblePagesWhileScrolling = updateVisiblePagesWhileScrolling;
   _isKillingAnimation = NO;
   _queuedAnimationPageIndex = -1;
 
