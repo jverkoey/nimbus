@@ -191,22 +191,19 @@ NIUserInterfaceStringResolver
 
 -(void)detach:(id)element withSelector:(SEL)selector withControlState: (UIControlState) state hasControlState: (BOOL) hasControlState
 {
-  NSMutableArray *na;
-  na remove
   if ([[NIUserInterfaceString stringResolver] isChangeTrackingEnabled]) {
-    
     NSMutableDictionary *viewMap = self.viewMap;
     @synchronized (viewMap) {
       id existing = [viewMap objectForKey:_originalKey];
-      if (existing && [existing isKindOfClass: [NIUserInterfaceStringAttachment class]] {
+      if (existing && [existing isKindOfClass: [NIUserInterfaceStringAttachment class]]) {
         NIUserInterfaceStringAttachment *attachment = (NIUserInterfaceStringAttachment*) existing;
-        if (existing.element == element) {
+        if (attachment.element == element) {
           [viewMap removeObjectForKey: _originalKey];
         } else {
           // NSMutableArray*
           NSMutableArray *maps = (NSMutableArray*) existing;
-          for (int i = 0, len = maps.length; i < len; i++) {
-            if ([maps objectAtIndex:i].element == element) {
+          for (int i = 0, len = maps.count; i < len; i++) {
+            if ([[maps objectAtIndex:i] element] == element) {
               [maps removeObjectAtIndex:i];
               break;
             }
