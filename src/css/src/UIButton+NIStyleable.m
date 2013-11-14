@@ -121,6 +121,9 @@ static char nibutton_deallocObserverKey = 0;
     self.adjustsImageWhenDisabled = ((ruleSet.buttonAdjust & NICSSButtonAdjustDisabled) != 0);
     self.adjustsImageWhenHighlighted = ((ruleSet.buttonAdjust & NICSSButtonAdjustHighlighted) != 0);
   }
+  if ([ruleSet hasLineBreakMode]) {
+    self.titleLabel.lineBreakMode = ruleSet.lineBreakMode;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
