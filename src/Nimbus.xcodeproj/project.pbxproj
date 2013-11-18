@@ -345,6 +345,8 @@
 		97130B6A1822DDCD00C2D03D /* UITextView+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 97130B681822DDCD00C2D03D /* UITextView+NIStyleable.h */; };
 		97130B6B1822DDCD00C2D03D /* UITextView+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 97130B691822DDCD00C2D03D /* UITextView+NIStyleable.m */; };
 		9B22BD991725E75E000FDB01 /* NIMutableCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B22BD981725E75E000FDB01 /* NIMutableCollectionViewModel.m */; };
+		C7359FDF183A865500855800 /* UIImageView+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = C7359FDD183A865500855800 /* UIImageView+NIStyleable.h */; };
+		C7359FE0183A865500855800 /* UIImageView+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7359FDE183A865500855800 /* UIImageView+NIStyleable.m */; };
 		C743F6EA16D2652F00A933B7 /* NIUserInterfaceString.h in Headers */ = {isa = PBXBuildFile; fileRef = C743F6E816D2652F00A933B7 /* NIUserInterfaceString.h */; };
 		C743F6EB16D2652F00A933B7 /* NIUserInterfaceString.m in Sources */ = {isa = PBXBuildFile; fileRef = C743F6E916D2652F00A933B7 /* NIUserInterfaceString.m */; };
 		C778BED3173E66DA00965988 /* NITableViewSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = C778BED1173E66DA00965988 /* NITableViewSystem.h */; };
@@ -1006,6 +1008,8 @@
 		9B22BD971725E75E000FDB01 /* NIMutableCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIMutableCollectionViewModel.h; sourceTree = "<group>"; };
 		9B22BD981725E75E000FDB01 /* NIMutableCollectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIMutableCollectionViewModel.m; sourceTree = "<group>"; };
 		9B22BD9B1725ECB4000FDB01 /* NIMutableCollectionViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIMutableCollectionViewModel+Private.h"; sourceTree = "<group>"; };
+		C7359FDD183A865500855800 /* UIImageView+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+NIStyleable.h"; path = "css/src/UIImageView+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
+		C7359FDE183A865500855800 /* UIImageView+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+NIStyleable.m"; path = "css/src/UIImageView+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		C743F6E816D2652F00A933B7 /* NIUserInterfaceString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIUserInterfaceString.h; path = css/src/NIUserInterfaceString.h; sourceTree = SOURCE_ROOT; };
 		C743F6E916D2652F00A933B7 /* NIUserInterfaceString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIUserInterfaceString.m; path = css/src/NIUserInterfaceString.m; sourceTree = SOURCE_ROOT; };
 		C778BED1173E66DA00965988 /* NITableViewSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITableViewSystem.h; sourceTree = "<group>"; };
@@ -1643,6 +1647,8 @@
 		66832D0C143E3C1C003E413C /* Styleable UIKit Views */ = {
 			isa = PBXGroup;
 			children = (
+				C7359FDD183A865500855800 /* UIImageView+NIStyleable.h */,
+				C7359FDE183A865500855800 /* UIImageView+NIStyleable.m */,
 				664EFB6015598CDF009826AB /* UIActivityIndicatorView+NIStyleable.h */,
 				664EFB6115598CDF009826AB /* UIActivityIndicatorView+NIStyleable.m */,
 				66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */,
@@ -2416,6 +2422,7 @@
 				66D2FE051594083800B2BEFD /* AFURLConnectionOperation.h in Headers */,
 				66D2FE071594083800B2BEFD /* AFXMLRequestOperation.h in Headers */,
 				66D2FE091594083800B2BEFD /* UIImageView+AFNetworking.h in Headers */,
+				C7359FDF183A865500855800 /* UIImageView+NIStyleable.h in Headers */,
 				C743F6EA16D2652F00A933B7 /* NIUserInterfaceString.h in Headers */,
 				C7A8792216D7B96200A0C23F /* UITextField+NIStyleable.h in Headers */,
 				C7BBC6B916DDC0DB00833DC9 /* NITextField.h in Headers */,
@@ -3776,6 +3783,7 @@
 				66832D10143E3C32003E413C /* UILabel+NIStyleable.m in Sources */,
 				66832D1414416368003E413C /* UIView+NIStyleable.m in Sources */,
 				66832DA314421B4A003E413C /* UINavigationBar+NIStyleable.m in Sources */,
+				C7359FE0183A865500855800 /* UIImageView+NIStyleable.m in Sources */,
 				66832E0714435071003E413C /* NIChameleonObserver.m in Sources */,
 				66B10901144C931F004576D1 /* UIButton+NIStyleable.m in Sources */,
 				668ECDC81455C17200455266 /* NIStylesheetCache.m in Sources */,
