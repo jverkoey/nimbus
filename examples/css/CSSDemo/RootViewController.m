@@ -71,7 +71,11 @@
    [[NITextField alloc] init], @".textField"
    ]
    inDOM:_dom];
-  
+
+    UIView *blueBox = [[UIView alloc] init];
+    [self.view addSubview:blueBox];
+    [_dom registerView:blueBox withCSSClass:@"blueBox"];
+    
   for (int i = 1; i <= 7; i++) {
     UIView *box = [[UIView alloc] init];
     [self.view addSubview:box];

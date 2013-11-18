@@ -191,9 +191,26 @@ NIUserInterfaceStringResolver
 
 -(void)detach:(id)element withSelector:(SEL)selector withControlState: (UIControlState) state hasControlState: (BOOL) hasControlState
 {
-  NSMutableDictionary *viewMap = self.viewMap;
-  @synchronized (viewMap) {
-    
+  if ([[NIUserInterfaceString stringResolver] isChangeTrackingEnabled]) {
+    NSMutableDictionary *viewMap = self.viewMap;
+    @synchronized (viewMap) {
+      id existing = [viewMap objectForKey:_originalKey];
+      if (existing && [existing isKindOfClass: [NIUserInterfaceStringAttachment class]]) {
+        NIUserInterfaceStringAttachment *attachment = (NIUserInterfaceStringAttachment*) existing;
+        if (attachment.element == element) {
+          [viewMap removeObjectForKey: _originalKey];
+        } else {
+          // NSMutableArray*
+          NSMutableArray *maps = (NSMutableArray*) existing;
+          for (int i = 0, len = maps.count; i < len; i++) {
+            if ([[maps objectAtIndex:i] element] == element) {
+              [maps removeObjectAtIndex:i];
+              break;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -237,7 +254,12 @@ NIUserInterfaceStringResolver
           } else {
             NSArray *attachments = (NSArray*) obj;
             for (NIUserInterfaceStringAttachment *a in attachments) {
-              [a attach:o];
+              @try {
+                [a attach:o];
+              }
+              @catch (NSException *exception) {
+                NIDERROR(@"Failed to update string attached to an element (likely dealloced). String '%@': %@", key, o);
+              }
             }
           }
         }

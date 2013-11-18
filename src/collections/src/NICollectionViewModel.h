@@ -55,6 +55,9 @@
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
 
+// This method is not appropriate for performance critical codepaths.
+- (NSIndexPath *)indexPathForObject:(id)object;
+
 #pragma mark Creating Collection View Cells
 
 @property (nonatomic, NI_WEAK) id<NICollectionViewModelDelegate> delegate;
@@ -182,6 +185,14 @@
  * will be returned.
  *
  *      @fn NICollectionViewModel::objectAtIndexPath:
+ */
+
+/**
+ * Returns the index path of the given object within the model.
+ *
+ * If the model does not contain the object then nil will be returned.
+ *
+ *      @fn NICollectionViewModel::indexPathForObject:
  */
 
 

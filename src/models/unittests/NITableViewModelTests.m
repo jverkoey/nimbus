@@ -134,6 +134,30 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testListTableViewModel_indexPathOfObject {
+  id object1 = [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"];
+  id object2 = [NSArray array];
+  id object3 = [NSSet set];
+  NSArray* contents = [NSArray arrayWithObjects:
+                       object1,
+                       object2,
+                       object3,
+                       nil];
+  NITableViewModel* model = [[NITableViewModel alloc] initWithListArray:contents delegate:nil];
+
+  STAssertEqualObjects([model indexPathForObject:object1], [NSIndexPath indexPathForRow:0 inSection:0], @"Object not found at expected index path.");
+  STAssertEqualObjects([model indexPathForObject:object2], [NSIndexPath indexPathForRow:1 inSection:0], @"Object not found at expected index path.");
+  STAssertEqualObjects([model indexPathForObject:object3], [NSIndexPath indexPathForRow:2 inSection:0], @"Object not found at expected index path.");
+
+  STAssertNil([model indexPathForObject:nil], @"Should be nil.");
+
+  NIDebugAssertionsShouldBreak = NO;
+  STAssertNil([model indexPathForObject:@"Random string"], @"Should be nil.");
+  NIDebugAssertionsShouldBreak = YES;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testSectionedTableViewModel {
   NSArray* contents = [NSArray arrayWithObjects:
                        @"Section 1",
