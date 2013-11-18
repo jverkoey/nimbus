@@ -307,7 +307,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)removeCssClass:(NSString *)cssClass fromView:(UIView *)view
 {
-  NSString* selector = [@"." stringByAppendingString:cssClass];
+  NSString* selector = [cssClass hasPrefix:@"."] ? cssClass : [@"." stringByAppendingString:cssClass];
   NSString* pseudoBase = [selector stringByAppendingString:@":"];
   NSMutableArray *selectors = [_viewToSelectorsMap objectForKey:[self keyForView:view]];
   if (selectors) {

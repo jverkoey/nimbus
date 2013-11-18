@@ -294,8 +294,6 @@ static id<NICSSResourceResolverDelegate> _resolver;
 {
   if ([selectors count] > 0) {
     // Gather all of the rule sets for this view into a composite rule set.
-    ruleSet = ruleSet ?: [_ruleSets objectForKey:className];
-    
     if (nil == ruleSet) {
       ruleSet = [[[NIStylesheet rulesetClass] alloc] init];
       
@@ -344,6 +342,19 @@ static id<NICSSResourceResolverDelegate> _resolver;
         [matchingSelectors addObject:sd.fullScope];
       }
     }
+  }
+  // Poor mans importance sorting of selectors
+  if (matchingSelectors.count > 1) {
+    return [self addSelectors: [matchingSelectors sortedArrayUsingComparator:^NSComparisonResult(NSString* sel1, NSString *sel2) {
+      int count1=0, count2=0;
+      for (int i = 0, len = sel1.length; i<len; i++) {
+        if (isspace([sel1 characterAtIndex:i])) { count1++; }
+      }
+      for (int i = 0, len = sel2.length; i<len; i++) {
+        if (isspace([sel2 characterAtIndex:i])) { count2++; }
+      }
+      return count1-count2;
+    }] toRuleset: nil forClassName:className];
   }
   return [self addSelectors:matchingSelectors toRuleset:nil forClassName:className];
 }
