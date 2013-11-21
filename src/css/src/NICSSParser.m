@@ -327,6 +327,17 @@ int cssConsume(char* text, int token) {
           }
           break;
         }
+
+        case '>': {
+          // Direct descendant selector
+          if (!_state.Flags.InsideRuleset) {
+            [_mutatingScope addObject:textAsString];
+
+            // Ensure that we're not modifying a property.
+            _currentPropertyName = nil;
+          }
+          break;
+        }
       }
       break;
     }

@@ -329,12 +329,24 @@ static id<NICSSResourceResolverDelegate> _resolver;
       int ruleIx = sd.orderedList.count - 2;
       while (matchView && ruleIx >= 0) {
         NSString *currentMatch = [sd.orderedList objectAtIndex:ruleIx];
+        BOOL mustMatch = NO;
+        if ([currentMatch isEqualToString:@">"]) {
+          ruleIx--;
+          if (ruleIx < 0) {
+            break; // > at the root. Match I suppose.
+          }
+          currentMatch = [sd.orderedList objectAtIndex:ruleIx];
+          mustMatch = YES;
+        }
         char first = [currentMatch characterAtIndex:0];
         BOOL isId = first == '#', isCssClass = first == '.', isObjCClass = !isId && !isCssClass;
         if ((isId && [dom viewById: currentMatch] == matchView) ||
             (isCssClass && [dom view: matchView hasCssClass: currentMatch]) ||
             (isObjCClass && [NSStringFromClass([matchView class]) isEqualToString:currentMatch])) {
           ruleIx--;
+        } else if (mustMatch) {
+          // Didn't match, bail.
+          break;
         }
         matchView = [matchView superview];
       }
