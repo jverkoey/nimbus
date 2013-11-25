@@ -58,6 +58,33 @@
   STAssertFalse([stylesheet loadFromPath:@"nonexistent_file"], @"Parsing invalid file should fail.");
 }
 
+- (void)testHierarchy {
+  UIView *main = [UIView new];
+  UITextField *f = [UITextField new];
+  UILabel *l = [UILabel new];
+  UIButton *b = [UIButton new];
+  [main addSubview:b];
+  UITextField *textField2 = [UITextField new];
+  [b addSubview:textField2];
+  [main addSubview:f];
+  [main addSubview:l];
+
+  NIStylesheet* stylesheet = [[NIStylesheet alloc] init];
+  NSString* pathToFile = NIPathForBundleResource(_unitTestBundle, @"hierarchical.css");
+
+  STAssertTrue([stylesheet loadFromPath:pathToFile], @"The stylesheet should have been parsed.");
+
+  NIDOM *dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
+  [dom registerView:main];
+  [dom registerView:f];
+  STAssertTrue(f.textColor == [UIColor greenColor], @"Field color should be green.");
+  [dom registerView:l];
+  STAssertTrue(l.textColor == [UIColor blueColor], @"Label color should be blue.");
+
+  [dom registerView:b];
+  [dom registerView:textField2];
+  STAssertFalse(textField2.textColor == [UIColor greenColor], @"Second text field should not be green.");
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)assertColor:(UIColor *)color1 equalsColor:(UIColor *)color2 {

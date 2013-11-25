@@ -1,4 +1,8 @@
-UIViewController UILabel
+UIView UILabel
 {
   color: blue;
+}
+
+UIView>UITextField {
+  color: green;
 }
