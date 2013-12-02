@@ -85,7 +85,7 @@ BOOL sPreferGoogleChrome = NO;
  */
 
 static NSString* const sGoogleChromeHttpScheme = @"googlechrome:";
-static NSString* const sGoogleChromeHttpsScheme = @"googlechomes:";
+static NSString* const sGoogleChromeHttpsScheme = @"googlechromes:";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)googleChromeIsInstalled {
