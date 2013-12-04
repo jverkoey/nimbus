@@ -206,6 +206,33 @@ _model.delegate = (id)[NICellFactory class];
  */
 + (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView;
 
+
+/**
+ * specific nib for Cell.
+ *
+ * load cell from xib
+ * Notice: the cell name and idenfitifer in xib file must be the class identifier
+ * the identifier and the nib name are the cell class name if `shouldAppendObjectClassToReuseIdentifier` is NO
+ * else it should be `CellClassName.ObjectClassName`
+ @code
+ NSString* identifier = NSStringFromClass(cellClass);
+ 
+ if ([cellClass respondsToSelector:@selector(shouldAppendObjectClassToReuseIdentifier)]
+ && [cellClass shouldAppendObjectClassToReuseIdentifier]) {
+ identifier = [identifier stringByAppendingFormat:@".%@", NSStringFromClass([object class])];
+ }
+ @endcode
+ */
++ (BOOL)shouldLoadNib;
+
+
+/**
+ * if -shouldLoadNib is YES
+ * you must implement `-cellFromNib`, you can load it from xib or storyboard
+ * and make sure the identifier meets the condition
+ */
++ (instancetype)cellFromNib;
+
 @end
 
 /**
