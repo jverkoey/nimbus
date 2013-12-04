@@ -29,8 +29,9 @@
 #endif
 
 // Static state.
-static CGFloat  sOverviewHeight   = 60;
-static BOOL     sOverviewIsAwake  = NO;
+static CGFloat  sOverviewHeight                      = 60;
+static BOOL     sOverviewIsAwake                     = NO;
+static BOOL     sOverviewHasOverridenStatusBarHeight = NO;
 
 static NIOverviewView* sOverviewView = nil;
 
@@ -203,14 +204,25 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)applicationDidFinishLaunching {
 #if defined(DEBUG) || defined(NI_DEBUG)
+  [self applicationDidFinishLaunchingWithStatusBarHeightOverride:YES];
+#endif
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)applicationDidFinishLaunchingWithStatusBarHeightOverride:(BOOL)overrideStatusBarHeight {
+#if defined(DEBUG) || defined(NI_DEBUG)
   if (!sOverviewIsAwake) {
     sOverviewIsAwake = YES;
+    sOverviewHasOverridenStatusBarHeight = overrideStatusBarHeight;
 
     // Set up the logger right away so that all calls to NSLog will be captured by the
     // overview.
     _NSSetLogCStringFunction(NIOverviewLogMethod);
 
-    NIOverviewSwizzleMethods();
+    if (overrideStatusBarHeight) {
+      NIOverviewSwizzleMethods();
+    }
 
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(didChangeOrientation)
@@ -233,6 +245,15 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)addOverviewToWindow:(UIWindow *)window {
 #if defined(DEBUG) || defined(NI_DEBUG)
+  [self addOverviewToWindow:window enableDraggingVertically:NO];
+#endif
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)addOverviewToWindow:(UIWindow *)window
+   enableDraggingVertically:(BOOL)enableDraggingVertically {
+#if defined(DEBUG) || defined(NI_DEBUG)
   if (nil != sOverviewView) {
     // Remove the old overview in case this gets called multiple times (not sure why you would
     // though).
@@ -240,6 +261,7 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
   }
 
   sOverviewView = [[NIOverviewView alloc] initWithFrame:[self frame]];
+  [sOverviewView setEnableDraggingVertically:enableDraggingVertically];
 
   [sOverviewView addPageView:[NIInspectionOverviewPageView page]];
   [sOverviewView addPageView:[NIOverviewMemoryPageView page]];
@@ -286,35 +308,34 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
   UIInterfaceOrientation orient = NIInterfaceOrientation();
   CGFloat overviewWidth;
   CGRect frame;
+  CGFloat overviewHeight =
+      sOverviewHasOverridenStatusBarHeight ? NIOverviewStatusBarHeight() : NIStatusBarHeight();
 
   // We can't take advantage of automatic view positioning because the overview exists
   // at the topmost view level (even above the root view controller). As such, we have to
   // calculate the frame depending on the interface orientation.
   if (orient == UIInterfaceOrientationLandscapeLeft) {
     overviewWidth = [UIScreen mainScreen].bounds.size.height;
-    frame = CGRectMake(NIOverviewStatusBarHeight(), 0, sOverviewHeight, overviewWidth);
+    frame = CGRectMake(overviewHeight, 0, sOverviewHeight, overviewWidth);
 
   } else if (orient == UIInterfaceOrientationLandscapeRight) {
     overviewWidth = [UIScreen mainScreen].bounds.size.height;
     frame = CGRectMake([UIScreen mainScreen].bounds.size.width
-                       - (NIOverviewStatusBarHeight() + sOverviewHeight), 0,
-                       sOverviewHeight, overviewWidth);
+                       - (overviewHeight + sOverviewHeight), 0, sOverviewHeight, overviewWidth);
 
   } else if (orient == UIInterfaceOrientationPortraitUpsideDown) {
     overviewWidth = [UIScreen mainScreen].bounds.size.width;
     frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height
-                       - (NIOverviewStatusBarHeight() + sOverviewHeight),
-                       overviewWidth, sOverviewHeight);
+                       - (overviewHeight + sOverviewHeight), overviewWidth, sOverviewHeight);
 
   } else if (orient == UIInterfaceOrientationPortrait) {
     overviewWidth = [UIScreen mainScreen].bounds.size.width;
-    frame = CGRectMake(0, NIOverviewStatusBarHeight(), overviewWidth, sOverviewHeight);
+    frame = CGRectMake(0, overviewHeight, overviewWidth, sOverviewHeight);
 
   } else {
     overviewWidth = [UIScreen mainScreen].bounds.size.width;
-    frame = CGRectMake(0, NIOverviewStatusBarHeight(), overviewWidth, sOverviewHeight);
+    frame = CGRectMake(0, overviewHeight, overviewWidth, sOverviewHeight);
   }
-
   if ([[UIApplication sharedApplication] isStatusBarHidden]) {
     // When the status bar is hidden we want to position the overview offscreen.
     switch (orient) {

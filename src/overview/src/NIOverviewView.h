@@ -35,12 +35,21 @@
 
   // Views
   UIScrollView* _pagingScrollView;
+
+  // Gesture recognizer
+  CGRect _initialFrame;
+  UIPanGestureRecognizer *_panGestureRecognizer;
 }
 
 /**
  * Whether the view has a translucent background or not.
  */
 @property (nonatomic, readwrite, assign) BOOL translucent;
+
+/**
+ * Whether the view can be draggable vertically or not.
+ */
+@property (nonatomic, readwrite, assign) BOOL enableDraggingVertically;
 
 /**
  * Prepends a new page to the Overview.
