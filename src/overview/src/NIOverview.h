@@ -55,19 +55,36 @@
 /**
  * Call this immediately in application:didFinishLaunchingWithOptions:.
  *
- * Swizzles the necessary methods for adding the Overview to the view hierarchy and registers
- * notifications for device state changes.
+ * This method calls applicationDidFinishLaunchingWithStatusBarHeightOverride: with
+ * |overrideStatusBarHeight| set to NO.
  */
 + (void)applicationDidFinishLaunching;
+
+/**
+ * Call this immediately in application:didFinishLaunchingWithOptions:.
+ *
+ * Swizzles the necessary methods for adding the Overview to the view hierarchy and registers
+ * notifications for device state changes if |overrideStatusBarHeight| is true.
+ */
++ (void)applicationDidFinishLaunchingWithStatusBarHeightOverride:(BOOL)overrideStatusBarHeight;
+
+/**
+ * Adds the Overview to the given window.
+ *
+ * This methods calls addOverviewToWindow:enableDraggingVertically: with |enableDraggingVertically|
+ * set to NO.
+ */
++ (void)addOverviewToWindow:(UIWindow *)window;
 
 /**
  * Adds the Overview to the given window.
  *
  * The Overview will always be fixed at the top of the device's screen directly
- * beneath the status bar (if it is visible).
+ * beneath the status bar (if it is visible) if enableDraggingVertically is false. Otherwise,
+ * the overview can be drag vertically.
  */
-+ (void)addOverviewToWindow:(UIWindow *)window;
-
++ (void)addOverviewToWindow:(UIWindow *)window
+   enableDraggingVertically:(BOOL)enableDraggingVertically;
 
 #pragma mark Accessing State Information /** @name Accessing State Information */
 

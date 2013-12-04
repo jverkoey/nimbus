@@ -28,6 +28,8 @@
 #error "Nimbus requires ARC support."
 #endif
 
+static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
+
 @interface NIOverviewView()
 
 - (CGFloat)pageHorizontalMargin;
@@ -40,7 +42,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIOverviewView
 
-@synthesize translucent = _translucent;
+@synthesize enableDraggingVertically = _enableDraggingVertically,
+            translucent = _translucent;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,6 +71,12 @@
                                              selector:@selector(updatePages)
                                                  name:NIOverviewLoggerDidAddDeviceLog
                                                object:nil];
+    _panGestureRecognizer =
+        [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                action:@selector(didPanMapWithGestureRecognizer:)];
+    _panGestureRecognizer.maximumNumberOfTouches = kNumberOfFingersForPanGestureRecognizer;
+    _panGestureRecognizer.minimumNumberOfTouches = kNumberOfFingersForPanGestureRecognizer;
+    [self addGestureRecognizer:_panGestureRecognizer];
   }
   return self;
 }
@@ -239,6 +248,37 @@
   [_pagingScrollView flashScrollIndicators];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Gesture Recognizer
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)didPanMapWithGestureRecognizer:(UIPanGestureRecognizer *)gestureRecognizer {
+  if (!_enableDraggingVertically || _panGestureRecognizer != gestureRecognizer) {
+    return;
+  }
+
+  if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+    _initialFrame = self.frame;
+  } else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
+    CGPoint translation = [gestureRecognizer translationInView:self.superview];
+    UIInterfaceOrientation orientation = NIInterfaceOrientation();
+    CGRect rect = self.frame;
+    CGRect superRect = self.superview.frame;
+    if (UIInterfaceOrientationIsPortrait(orientation)) {
+      CGFloat y = _initialFrame.origin.y + translation.y;
+      rect.origin.y = MIN(MAX(y, 0), superRect.size.height - _initialFrame.size.height);
+    } else if (UIInterfaceOrientationIsLandscape(orientation)) {
+      CGFloat x = _initialFrame.origin.x + translation.x;
+      rect.origin.x = MIN(MAX(x, 0), superRect.size.width - _initialFrame.size.width);
+    }
+    self.frame = rect;
+  }
+}
 
 @end
 
