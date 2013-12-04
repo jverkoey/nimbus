@@ -123,6 +123,18 @@
 		66D2FDD81593F17800B2BEFD /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDCC1593F17800B2BEFD /* AFURLConnectionOperation.m */; };
 		66D2FDD91593F17800B2BEFD /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDCE1593F17800B2BEFD /* AFXMLRequestOperation.m */; };
 		66D2FDDA1593F17800B2BEFD /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDD01593F17800B2BEFD /* UIImageView+AFNetworking.m */; };
+		943FBA8A184F0B7900785933 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 943FBA87184F0B7900785933 /* Default-568h@2x.png */; };
+		943FBA8B184F0B7900785933 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 943FBA88184F0B7900785933 /* Default.png */; };
+		943FBA8C184F0B7900785933 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 943FBA89184F0B7900785933 /* Default@2x.png */; };
+		943FBA90184F142A00785933 /* NibCellTableModelViewConroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 943FBA8E184F142A00785933 /* NibCellTableModelViewConroller.m */; };
+		943FBA94184F146F00785933 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 943FBA93184F146F00785933 /* Question.m */; };
+		943FBA97184F148F00785933 /* NibQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 943FBA96184F148F00785933 /* NibQuestionCell.m */; };
+		943FBA99184F16A700785933 /* NibQuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 943FBA98184F16A700785933 /* NibQuestionCell.xib */; };
+		943FBAA2184F1A9B00785933 /* AppendObjectClassObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 943FBAA1184F1A9B00785933 /* AppendObjectClassObject.m */; };
+		943FBAA5184F1AAB00785933 /* AppendObjectClassObjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 943FBAA4184F1AAB00785933 /* AppendObjectClassObjectCell.m */; };
+		943FBAA7184F1AD500785933 /* AppendObjectClassObjectCell.AppendObjectClassObject.xib in Resources */ = {isa = PBXBuildFile; fileRef = 943FBAA6184F1AD500785933 /* AppendObjectClassObjectCell.AppendObjectClassObject.xib */; };
+		943FBAAA184F1B1700785933 /* AppendObjectClassObjectCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 943FBAA9184F1B1700785933 /* AppendObjectClassObjectCell2.m */; };
+		943FBAAC184F1B2C00785933 /* AppendObjectClassObjectCell2.AppendObjectClassObject.xib in Resources */ = {isa = PBXBuildFile; fileRef = 943FBAAB184F1B2C00785933 /* AppendObjectClassObjectCell2.AppendObjectClassObject.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -367,6 +379,24 @@
 		66D2FDCE1593F17800B2BEFD /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		66D2FDCF1593F17800B2BEFD /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		66D2FDD01593F17800B2BEFD /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		943FBA87184F0B7900785933 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		943FBA88184F0B7900785933 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		943FBA89184F0B7900785933 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		943FBA8D184F142A00785933 /* NibCellTableModelViewConroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NibCellTableModelViewConroller.h; sourceTree = "<group>"; };
+		943FBA8E184F142A00785933 /* NibCellTableModelViewConroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NibCellTableModelViewConroller.m; sourceTree = "<group>"; };
+		943FBA92184F146F00785933 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		943FBA93184F146F00785933 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		943FBA95184F148F00785933 /* NibQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NibQuestionCell.h; sourceTree = "<group>"; };
+		943FBA96184F148F00785933 /* NibQuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NibQuestionCell.m; sourceTree = "<group>"; };
+		943FBA98184F16A700785933 /* NibQuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NibQuestionCell.xib; sourceTree = "<group>"; };
+		943FBAA0184F1A9B00785933 /* AppendObjectClassObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppendObjectClassObject.h; sourceTree = "<group>"; };
+		943FBAA1184F1A9B00785933 /* AppendObjectClassObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppendObjectClassObject.m; sourceTree = "<group>"; };
+		943FBAA3184F1AAB00785933 /* AppendObjectClassObjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppendObjectClassObjectCell.h; sourceTree = "<group>"; };
+		943FBAA4184F1AAB00785933 /* AppendObjectClassObjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppendObjectClassObjectCell.m; sourceTree = "<group>"; };
+		943FBAA6184F1AD500785933 /* AppendObjectClassObjectCell.AppendObjectClassObject.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppendObjectClassObjectCell.AppendObjectClassObject.xib; sourceTree = "<group>"; };
+		943FBAA8184F1B1700785933 /* AppendObjectClassObjectCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppendObjectClassObjectCell2.h; sourceTree = "<group>"; };
+		943FBAA9184F1B1700785933 /* AppendObjectClassObjectCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppendObjectClassObjectCell2.m; sourceTree = "<group>"; };
+		943FBAAB184F1B2C00785933 /* AppendObjectClassObjectCell2.AppendObjectClassObject.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppendObjectClassObjectCell2.AppendObjectClassObject.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -458,6 +488,7 @@
 				6613335D15D3A66B00369333 /* SnapshotRotationTableViewController.m */,
 				66D2E54D15D9616500281511 /* MutableTableModelViewController.h */,
 				66D2E54E15D9616500281511 /* MutableTableModelViewController.m */,
+				943FBAAD184F22DD00785933 /* NibCellTableModelViewConroller */,
 			);
 			name = "Table Models";
 			sourceTree = "<group>";
@@ -534,6 +565,9 @@
 		6693C10C158A63F700950D42 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				943FBA87184F0B7900785933 /* Default-568h@2x.png */,
+				943FBA88184F0B7900785933 /* Default.png */,
+				943FBA89184F0B7900785933 /* Default@2x.png */,
 				2B960E8315AE41FC005714CA /* navigationbar.png */,
 				6677FEE415AC8D1600517ABC /* circle.png */,
 				6677FEE615AC8D1C00517ABC /* star.png */,
@@ -835,6 +869,28 @@
 			path = ../../thirdparty/AFNetworking/AFNetworking;
 			sourceTree = "<group>";
 		};
+		943FBAAD184F22DD00785933 /* NibCellTableModelViewConroller */ = {
+			isa = PBXGroup;
+			children = (
+				943FBA8D184F142A00785933 /* NibCellTableModelViewConroller.h */,
+				943FBA8E184F142A00785933 /* NibCellTableModelViewConroller.m */,
+				943FBA92184F146F00785933 /* Question.h */,
+				943FBA93184F146F00785933 /* Question.m */,
+				943FBA95184F148F00785933 /* NibQuestionCell.h */,
+				943FBA96184F148F00785933 /* NibQuestionCell.m */,
+				943FBA98184F16A700785933 /* NibQuestionCell.xib */,
+				943FBAA0184F1A9B00785933 /* AppendObjectClassObject.h */,
+				943FBAA1184F1A9B00785933 /* AppendObjectClassObject.m */,
+				943FBAA3184F1AAB00785933 /* AppendObjectClassObjectCell.h */,
+				943FBAA4184F1AAB00785933 /* AppendObjectClassObjectCell.m */,
+				943FBAA6184F1AD500785933 /* AppendObjectClassObjectCell.AppendObjectClassObject.xib */,
+				943FBAA8184F1B1700785933 /* AppendObjectClassObjectCell2.h */,
+				943FBAA9184F1B1700785933 /* AppendObjectClassObjectCell2.m */,
+				943FBAAB184F1B2C00785933 /* AppendObjectClassObjectCell2.AppendObjectClassObject.xib */,
+			);
+			name = NibCellTableModelViewConroller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -889,6 +945,7 @@
 				6693C0FA158A63E600950D42 /* InfoPlist.strings in Resources */,
 				6693C299158A8E4000950D42 /* Default.png in Resources */,
 				6693C29A158A8E4000950D42 /* Default@2x.png in Resources */,
+				943FBA99184F16A700785933 /* NibQuestionCell.xib in Resources */,
 				6693C29B158A8E4000950D42 /* Icon-72.png in Resources */,
 				6693C29C158A8E4000950D42 /* Icon-Small-50.png in Resources */,
 				6693C29D158A8E4000950D42 /* Icon-Small.png in Resources */,
@@ -897,9 +954,14 @@
 				6693C2A0158A8E4000950D42 /* Icon@2x.png in Resources */,
 				6633C7F2158F08EA0054D240 /* AttributedLabelMashup.xib in Resources */,
 				661F293315929E2300D11FC3 /* ApplicationBadges.xib in Resources */,
+				943FBA8B184F0B7900785933 /* Default.png in Resources */,
+				943FBA8C184F0B7900785933 /* Default@2x.png in Resources */,
+				943FBA8A184F0B7900785933 /* Default-568h@2x.png in Resources */,
 				66B941561592EB4500AEA1D2 /* dilly.jpg in Resources */,
 				66B9415F159386D300AEA1D2 /* NimbusWebController.bundle in Resources */,
+				943FBAAC184F1B2C00785933 /* AppendObjectClassObjectCell2.AppendObjectClassObject.xib in Resources */,
 				6677FEE515AC8D1600517ABC /* circle.png in Resources */,
+				943FBAA7184F1AD500785933 /* AppendObjectClassObjectCell.AppendObjectClassObject.xib in Resources */,
 				6677FEE715AC8D1C00517ABC /* star.png in Resources */,
 				2B960E8415AE41FC005714CA /* navigationbar.png in Resources */,
 				3616212D16812222002A9078 /* AlignmentAttributedLabelViewController.xib in Resources */,
@@ -923,10 +985,12 @@
 				6693C206158A81D300950D42 /* NIError.m in Sources */,
 				6693C207158A81D300950D42 /* NIFoundationMethods.m in Sources */,
 				6693C208158A81D300950D42 /* NIInMemoryCache.m in Sources */,
+				943FBA97184F148F00785933 /* NibQuestionCell.m in Sources */,
 				6693C209158A81D300950D42 /* NINavigationAppearance.m in Sources */,
 				6693C20A158A81D300950D42 /* NINetworkActivity.m in Sources */,
 				6693C20B158A81D300950D42 /* NINonEmptyCollectionTesting.m in Sources */,
 				6693C20C158A81D300950D42 /* NINonRetainingCollections.m in Sources */,
+				943FBAAA184F1B1700785933 /* AppendObjectClassObjectCell2.m in Sources */,
 				6693C20D158A81D400950D42 /* NIOperations.m in Sources */,
 				6693C20E158A81D400950D42 /* NIPaths.m in Sources */,
 				6693C20F158A81D400950D42 /* NIRuntimeClassModifications.m in Sources */,
@@ -940,6 +1004,7 @@
 				6693C22A158A81DD00950D42 /* NIRadioGroup.m in Sources */,
 				6693C22B158A81DD00950D42 /* NIRadioGroupController.m in Sources */,
 				6693C22C158A81DD00950D42 /* NITableViewActions.m in Sources */,
+				943FBAA2184F1A9B00785933 /* AppendObjectClassObject.m in Sources */,
 				6693C22D158A81DD00950D42 /* NITableViewModel.m in Sources */,
 				6693C2E8158AA21E00950D42 /* NIAttributedLabel.m in Sources */,
 				6693C2E9158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */,
@@ -989,9 +1054,11 @@
 				66B67087159CC32D00FE4AE8 /* VerticalPagingScrollViewController.m in Sources */,
 				66B6708B159CC39E00FE4AE8 /* SamplePageView.m in Sources */,
 				66B6714315AB751E00FE4AE8 /* NICellBackgrounds.m in Sources */,
+				943FBAA5184F1AAB00785933 /* AppendObjectClassObjectCell.m in Sources */,
 				6677FEBD15AB8A0300517ABC /* BasicInstantiationTableModelViewController.m in Sources */,
 				6677FEDC15AB96BF00517ABC /* SectionedTableModelViewController.m in Sources */,
 				6677FEE015ABA9A300517ABC /* IndexedTableModelViewController.m in Sources */,
+				943FBA90184F142A00785933 /* NibCellTableModelViewConroller.m in Sources */,
 				6677FEE315ABACC500517ABC /* FormCellCatalogViewController.m in Sources */,
 				6677FEEA15AC92C800517ABC /* RadioGroupTableModelViewController.m in Sources */,
 				6677FEED15ACA60400517ABC /* NestedRadioGroupTableModelViewController.m in Sources */,
@@ -1005,6 +1072,7 @@
 				6633D21F15DDBD4100A4B07E /* ImagesAttributedLabelViewController.m in Sources */,
 				66D2E54B15D9613800281511 /* NIMutableTableViewModel.m in Sources */,
 				66D2E54F15D9616500281511 /* MutableTableModelViewController.m in Sources */,
+				943FBA94184F146F00785933 /* Question.m in Sources */,
 				3616212C16812222002A9078 /* AlignmentAttributedLabelViewController.m in Sources */,
 				668EA9C417206F640056C8C3 /* NIActions.m in Sources */,
 			);

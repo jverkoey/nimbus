@@ -49,6 +49,7 @@
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     self.title = @"Basic Instantiation";
+
   }
   return self;
 }

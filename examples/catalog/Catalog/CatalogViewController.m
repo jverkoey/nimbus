@@ -66,6 +66,7 @@
 #import "BlockCellsViewController.h"
 #import "SnapshotRotationTableViewController.h"
 #import "MutableTableModelViewController.h"
+#import "NibCellTableModelViewConroller.h"
 
 // Web Controller
 #import "ExtraActionsWebViewController.h"
@@ -361,7 +362,13 @@
                                    subtitle:@"Mutating table view models"]
               navigationBlock:
       NIPushControllerAction([MutableTableModelViewController class])],
+     [_actions attachToObject:
+      [NISubtitleCellObject objectWithTitle:@"Nib Cells Models"
+                                   subtitle:@"load cell from nib file"]
+              navigationBlock:
+      NIPushControllerAction([NibCellTableModelViewConroller class])],
 
+     
      @"Web Controller",
      [_actions attachToObject:
       [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
