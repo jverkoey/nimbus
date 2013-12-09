@@ -65,8 +65,8 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
   [self applyLabelStyleBeforeViewWithRuleSet:ruleSet inDOM:dom];
-  [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
   [self applyLabelStyleWithRuleSet:ruleSet inDOM:dom];
+  [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -82,12 +82,12 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
   }
   
   if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
-    CGSize sizeForOneLine = [@"." sizeWithFont:self.font constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+    CGSize sizeForOneLine = [@"." sizeWithFont:self.font constrainedToSize:CGSizeMake(newWidth, CGFLOAT_MAX)];
     float heightForOneLine = sizeForOneLine.height;
     
     CGSize size = [self.text
                    sizeWithFont:self.font
-                   constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+                   constrainedToSize:CGSizeMake(newWidth, CGFLOAT_MAX)];
     float maxHeight = (self.numberOfLines == 0) ? CGFLOAT_MAX : (heightForOneLine * self.numberOfLines);
     
     if (size.height > maxHeight) {
