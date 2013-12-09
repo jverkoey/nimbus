@@ -443,12 +443,12 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
                 [self sizeToFit];
                 self.frameWidth = startWidth;
               }
+            } else {
+              if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
+                [desc appendString:@"// autoSize would have been called instead of sizeToFit\n"];
+              }
+              [desc appendFormat:@"[%@ sizeToFit];\n%@.frameWidth = %f;\n", name, name, startWidth];
             }
-          } else {
-            if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
-              [desc appendString:@"// autoSize would have been called instead of sizeToFit\n"];
-            }
-            [desc appendFormat:@"[%@ sizeToFit];\n%@.frameWidth = %f;\n", name, name, startWidth];
           }
           
         } else {
@@ -515,12 +515,12 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
                 [self sizeToFit];
                 self.frameWidth = startWidth;
               }
+            } else {
+              if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
+                [desc appendString:@"// autoSize would have been called instead of sizeToFit\n"];
+              }
+              [desc appendFormat:@"[%@ sizeToFit];\n%@.frameWidth = %f;\n", name, name, startWidth];
             }
-          } else {
-            if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
-              [desc appendString:@"// autoSize would have been called instead of sizeToFit\n"];
-            }
-            [desc appendFormat:@"[%@ sizeToFit];\n%@.frameWidth = %f;\n", name, name, startWidth];
           }
           break;
       }
