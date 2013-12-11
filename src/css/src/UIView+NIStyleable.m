@@ -430,27 +430,48 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
           // while maintaining that left position (by modifying the frame width).
           if (apply) {
             self.frameWidth = newMaxX - self.frameMinX;
-          } else {
-            [desc appendFormat:@"%@.frameWidth = %f;\n", name, newMaxX - self.frameMinX];
-          }
-          
-          CGFloat startWidth = self.frameWidth;
-          if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
-            if (apply) {
+            // We just modified the width of the view. The auto-height of the view might depend on its width
+            // (i.e. a multi-line label), so we need to recalculate the height if it was auto.
+            CGFloat startWidth = self.frameWidth;
+            if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
               if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
                 [((id<NIStyleable>)self) autoSize:ruleSet inDOM:dom];
               } else {
                 [self sizeToFit];
                 self.frameWidth = startWidth;
               }
-            } else {
+            }
+            // ...and now we've just modified the height, so we need to re-set the vertical padding
+            if (ruleSet.hasVerticalPadding) {
+              NICSSUnit vPadding = ruleSet.verticalPadding;
+              switch (vPadding.type) {
+                case CSS_AUTO_UNIT:
+                  break;
+                case CSS_PERCENTAGE_UNIT:
+                  if (apply) {
+                    self.frameHeight += roundf(self.frameHeight * vPadding.value);
+                  } else {
+                    [desc appendFormat:@"%@.frameHeight += roundf(%@.frameHeight * %f);", name, name, vPadding.value];
+                  }
+                  break;
+                case CSS_PIXEL_UNIT:
+                  if (apply) {
+                    self.frameHeight += vPadding.value;
+                  } else {
+                    [desc appendFormat:@"%@.frameHeight += %f;", name, vPadding.value];
+                  }
+                  break;
+              }
+            }
+          } else {
+            [desc appendFormat:@"%@.frameWidth = %f;\n", name, newMaxX - self.frameMinX];
+            if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
               if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
                 [desc appendString:@"// autoSize would have been called instead of sizeToFit\n"];
               }
-              [desc appendFormat:@"[%@ sizeToFit];\n%@.frameWidth = %f;\n", name, name, startWidth];
+              [desc appendFormat:@"[%@ sizeToFit];\n%@.frameWidth = %f;\n", name, name, newMaxX - self.frameMinX];
             }
           }
-          
         } else {
           // Otherwise, just set the right position normally
           if (apply) {
@@ -495,8 +516,47 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             // while maintaining that left position (by modifying the frame width).
             if (apply) {
               self.frameWidth = anchor.x - NICSSUnitToPixels(leftOf.margin, relative.frameWidth) - self.frameMinX;
+              // We just modified the width of the view. The auto-height of the view might depend on its width
+              // (i.e. a multi-line label), so we need to recalculate the height if it was auto.
+              CGFloat startWidth = self.frameWidth;
+              if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
+                if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
+                  [((id<NIStyleable>)self) autoSize:ruleSet inDOM:dom];
+                } else {
+                  [self sizeToFit];
+                  self.frameWidth = startWidth;
+                }
+              }
+              // ...and now we've just modified the height, so we need to re-set the vertical padding
+              if (ruleSet.hasVerticalPadding) {
+                NICSSUnit vPadding = ruleSet.verticalPadding;
+                switch (vPadding.type) {
+                  case CSS_AUTO_UNIT:
+                    break;
+                  case CSS_PERCENTAGE_UNIT:
+                    if (apply) {
+                      self.frameHeight += roundf(self.frameHeight * vPadding.value);
+                    } else {
+                      [desc appendFormat:@"%@.frameHeight += roundf(%@.frameHeight * %f);", name, name, vPadding.value];
+                    }
+                    break;
+                  case CSS_PIXEL_UNIT:
+                    if (apply) {
+                      self.frameHeight += vPadding.value;
+                    } else {
+                      [desc appendFormat:@"%@.frameHeight += %f;", name, vPadding.value];
+                    }
+                    break;
+                }
+              }
             } else {
               [desc appendFormat:@"%@.frameWidth = %f;\n", name, anchor.x - NICSSUnitToPixels(leftOf.margin, relative.frameWidth) - self.frameMinX];
+              if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
+                if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
+                  [desc appendString:@"// autoSize would have been called instead of sizeToFit\n"];
+                }
+                [desc appendFormat:@"[%@ sizeToFit];\n%@.frameWidth = %f;\n", name, name, anchor.x - NICSSUnitToPixels(leftOf.margin, relative.frameWidth) - self.frameMinX];
+              }
             }
           } else {
             // Otherwise, just set the right position normally
@@ -504,22 +564,6 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
               self.frameMaxX = anchor.x - NICSSUnitToPixels(leftOf.margin, relative.frameWidth);
             } else {
               [desc appendFormat:@"%@.frameMaxX = %f;\n", name, anchor.x - NICSSUnitToPixels(leftOf.margin, relative.frameWidth)];
-            }
-          }
-          CGFloat startWidth = self.frameWidth;
-          if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
-            if (apply) {
-              if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
-                [((id<NIStyleable>)self) autoSize:ruleSet inDOM:dom];
-              } else {
-                [self sizeToFit];
-                self.frameWidth = startWidth;
-              }
-            } else {
-              if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
-                [desc appendString:@"// autoSize would have been called instead of sizeToFit\n"];
-              }
-              [desc appendFormat:@"[%@ sizeToFit];\n%@.frameWidth = %f;\n", name, name, startWidth];
             }
           }
           break;
@@ -635,23 +679,6 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
             [desc appendFormat:@"%@.frameMaxY = %f;\n", name, newBottom];
           }
         }
-        if (ruleSet.hasWidth && ruleSet.width.type == CSS_AUTO_UNIT) {
-          CGFloat startWidth = self.frameWidth;
-          if (apply) {
-            if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
-              [((id<NIStyleable>)self) autoSize:ruleSet inDOM:dom];
-            } else {
-              [self sizeToFit];
-              self.frameWidth = startWidth;
-            }
-          } else {
-            // We can't actually describe the autoSize bit because the point is to work w/o a ruleset/dom, so just say it...
-            if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
-              [desc appendString:@"// autoSize would have been called instead of sizeToFit\n"];
-            }
-            [desc appendFormat:@"[%@ sizeToFit];\n%@.frameWidth = %f;\n", name, name, startWidth];
-          }
-        }
         break;
       default:
         NIDASSERT(u.type == CSS_PERCENTAGE_UNIT || u.type == CSS_PIXEL_UNIT);
@@ -697,23 +724,6 @@ CGFloat NICSSUnitToPixels(NICSSUnit unit, CGFloat container);
               self.frameMaxY = anchor.y - NICSSUnitToPixels(above.margin, relative.frameHeight);
             } else {
               [desc appendFormat:@"%@.frameMaxY = %f;\n", name, anchor.y - NICSSUnitToPixels(above.margin, relative.frameHeight)];
-            }
-          }
-          if (ruleSet.hasWidth && ruleSet.width.type == CSS_AUTO_UNIT) {
-            CGFloat startWidth = self.frameWidth;
-            if (apply) {
-              if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
-                [((id<NIStyleable>)self) autoSize:ruleSet inDOM:dom];
-              } else {
-                [self sizeToFit];
-                self.frameWidth = startWidth;
-              }
-            } else {
-              // We can't actually describe the autoSize bit because the point is to work w/o a ruleset/dom, so just say it...
-              if ([self respondsToSelector:@selector(autoSize:inDOM:)]) {
-                [desc appendString:@"// autoSize would have been called instead of sizeToFit\n"];
-              }
-              [desc appendFormat:@"[%@ sizeToFit];\n%@.frameWidth = %f;\n", name, name, startWidth];
             }
           }
           break;
