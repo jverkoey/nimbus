@@ -97,6 +97,8 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 -(NSString*) descriptionForView: (UIView*) view withName: (NSString*) viewName;
 -(NSString*) descriptionForAllViews;
 
+-(BOOL)isRefreshing;
+
 @property (nonatomic,unsafe_unretained) id target;
 @end
 

@@ -450,4 +450,9 @@
   }
   return description;
 }
+
+-(BOOL)isRefreshing {
+  return self.refreshedViews != nil;
+}
+
 @end
