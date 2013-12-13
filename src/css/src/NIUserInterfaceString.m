@@ -104,6 +104,7 @@ NIUserInterfaceStringResolver
 ////////////////////////////////////////////////////////////////////////////////
 -(void)attach:(UIView *)view
 {
+  if (!view) { return; }
   if ([view respondsToSelector:@selector(setText:)]) {
     // UILabel
     [self attach: view withSelector:@selector(setText:)];
