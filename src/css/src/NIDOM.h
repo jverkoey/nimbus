@@ -91,13 +91,12 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 - (void)refresh;
 - (void)refreshView: (UIView*) view;
 - (void)ensureViewHasBeenRefreshed: (UIView*) view;
+- (BOOL)isRefreshing;
 
 -(UIView*)viewById: (NSString*) viewId;
 
 -(NSString*) descriptionForView: (UIView*) view withName: (NSString*) viewName;
 -(NSString*) descriptionForAllViews;
-
--(BOOL)isRefreshing;
 
 @property (nonatomic,unsafe_unretained) id target;
 @end
@@ -209,6 +208,12 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  * management.
  *
  *      @fn NIDOM::ensureViewHasBeenRefreshed
+ */
+
+/**
+ * Returns YES if in the middle of a refresh
+ *
+ *      @fn NIDOM::isRefreshing:
  */
 
 /**
