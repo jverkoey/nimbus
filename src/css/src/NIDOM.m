@@ -82,12 +82,16 @@
 - (id)initWithStylesheet:(NIStylesheet *)stylesheet {
   if ((self = [super init])) {
     _stylesheet = stylesheet;
-    _registeredViews = NICreateNonRetainingMutableArray();
+    _registeredViews = [NSMutableArray array];
     _viewToSelectorsMap = [[NSMutableDictionary alloc] init];
   }
   return self;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+    [self unregisterAllViews];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -344,6 +348,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)unregisterAllViews {
+  [_registeredViews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
+    if ([view respondsToSelector:@selector(didUnregisterInDOM:)]) {
+      [((id<NIStyleable>)view) didUnregisterInDOM:self];
+    }
+  }];
   [_registeredViews removeAllObjects];
   [_viewToSelectorsMap removeAllObjects];
   [_idToViewMap removeAllObjects];
