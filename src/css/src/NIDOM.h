@@ -91,6 +91,7 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 - (void)refresh;
 - (void)refreshView: (UIView*) view;
 - (void)ensureViewHasBeenRefreshed: (UIView*) view;
+- (BOOL)isRefreshing;
 
 -(UIView*)viewById: (NSString*) viewId;
 
@@ -207,6 +208,12 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  * management.
  *
  *      @fn NIDOM::ensureViewHasBeenRefreshed
+ */
+
+/**
+ * Returns YES if in the middle of a refresh
+ *
+ *      @fn NIDOM::isRefreshing:
  */
 
 /**
