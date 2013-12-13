@@ -136,6 +136,7 @@ NSString* const NIGenericResourceDidChangeNameKey = @"NIGenericResourceNameKey";
     }
 
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+      NIDWARNING(@"Chameleon Observer Error: %@", error);
   }];
   [_queue addOperation:requestOp];
 }
