@@ -74,6 +74,11 @@
 - (id)initWithRequest:(NSURLRequest *)request {
   if ((self = [super initWithNibName:nil bundle:nil])) {
     self.hidesBottomBarWhenPushed = YES;
+
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+      self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+
     [self openRequest:request];
   }
   return self;
