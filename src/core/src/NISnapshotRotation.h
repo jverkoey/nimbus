@@ -123,6 +123,10 @@
 
 @end
 
+#if defined __cplusplus
+extern "C" {
+#endif
+
 /**
  * Returns an opaque UIImage snapshot of the given view.
  *
@@ -164,6 +168,10 @@ UIImage* NISnapshotOfViewWithTransparency(UIView* view);
  *      @returns A UIImageView with the snapshot of @c view and matching frame.
  */
 UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view);
+
+#if defined __cplusplus
+}
+#endif
 
 /**
  * @}
