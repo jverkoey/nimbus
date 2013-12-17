@@ -589,7 +589,7 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
   CGRect frame = _segmentedControl.frame;
   frame.size.height = self.contentView.frame.size.height - (2 * kSegmentedControlMargin);
   frame.origin.y = floorf((self.contentView.frame.size.height - frame.size.height) / 2);
-  frame.origin.x = self.contentView.frame.size.width - frame.size.width - kSegmentedControlMargin;
+  frame.origin.x = CGRectGetMaxX(contentFrame) - frame.size.width - kSegmentedControlMargin;
   _segmentedControl.frame = frame;
 
   frame = self.textLabel.frame;
