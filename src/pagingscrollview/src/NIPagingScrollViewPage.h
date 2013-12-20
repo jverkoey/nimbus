@@ -47,6 +47,11 @@
 - (void)pageDidDisappear;
 
 /**
+ * Called before the page comes on-screen.
+ */
+- (void)pageWillAppear;
+
+/**
  * Called when the frame of the page is going to change.
  *
  * Use this method to maintain any state that may be affected by the frame changing.
