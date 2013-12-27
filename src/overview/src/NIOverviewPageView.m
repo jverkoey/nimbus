@@ -964,13 +964,13 @@ static NIViewInspectionView *visibleInspectionView = nil;
       offset.y += kAvoidedTopHeight;
     }
 
-    NSString *responder = [NSString stringWithFromat:@"%@ (%p)",
+    NSString *responder = [NSString stringWithFormat:@"%@ (%p)",
                            NSStringFromClass([interactingView_ class]),
                            interactingView_];
     offset.y += [self drawTitle:@"Responder: "
                           value:responder
                         atPoint:offset];
-    NSString *touched = [NSString stringWithFromat:@"%@ (%p)",
+    NSString *touched = [NSString stringWithFormat:@"%@ (%p)",
                          NSStringFromClass([touchedView_ class]),
                          touchedView_];
     offset.y += [self drawTitle:@"Touched: "
