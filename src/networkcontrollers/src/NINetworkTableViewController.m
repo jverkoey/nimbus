@@ -41,6 +41,12 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  _tableView.delegate = nil;
+  _tableView.dataSource = nil;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style activityIndicatorStyle:(UIActivityIndicatorViewStyle)activityIndicatorStyle {
   if ((self = [super initWithNibName:nil bundle:nil])) {
     self.tableViewStyle = style;
