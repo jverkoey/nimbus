@@ -20,6 +20,7 @@
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
 #import "NIUserInterfaceString.h"
+#import "NSString+NIStyleable.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
@@ -76,7 +77,7 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
   if (ruleSet.hasWidth && ruleSet.width.type == CSS_AUTO_UNIT) {
     
     CGSize size = [self.text
-                   sizeWithFont:self.font
+                   niSizeWithFont:self.font
                    constrainedToSize:CGSizeMake(CGFLOAT_MAX, self.frame.size.height)];
     newWidth = ceilf(size.width);
   }
@@ -86,8 +87,9 @@ NI_FIX_CATEGORY_BUG(UILabel_NIStyleable)
     float heightForOneLine = sizeForOneLine.height;
     
     CGSize size = [self.text
-                   sizeWithFont:self.font
+                   niSizeWithFont:self.font
                    constrainedToSize:CGSizeMake(newWidth, CGFLOAT_MAX)];
+
     float maxHeight = (self.numberOfLines == 0) ? CGFLOAT_MAX : (heightForOneLine * self.numberOfLines);
     
     if (size.height > maxHeight) {
