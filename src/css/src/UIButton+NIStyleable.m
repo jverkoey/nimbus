@@ -22,6 +22,7 @@
 #import "NimbusCore.h"
 #import "NIUserInterfaceString.h"
 #import "NIDOM.h"
+#import "NSString+NIStyleable.h"
 #import <objc/runtime.h>
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
@@ -171,17 +172,17 @@ static char nibutton_didSetupKVOKey = 0;
   if (ruleSet.hasWidth && ruleSet.width.type == CSS_AUTO_UNIT) {
     
     CGSize size = [[self titleForState:UIControlStateNormal]
-                   sizeWithFont:self.titleLabel.font
+                   niSizeWithFont:self.titleLabel.font
                    constrainedToSize:CGSizeMake(CGFLOAT_MAX, self.frame.size.height)];
     newWidth = ceilf(size.width);
   }
   
   if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
-    CGSize sizeForOneLine = [@"." sizeWithFont:self.titleLabel.font constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+    CGSize sizeForOneLine = [@"." niSizeWithFont:self.titleLabel.font constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
     float heightForOneLine = sizeForOneLine.height;
     
     CGSize size = [[self titleForState:UIControlStateNormal]
-                   sizeWithFont: self.titleLabel.font
+                   niSizeWithFont: self.titleLabel.font
                    constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
     float maxHeight = (self.titleLabel.numberOfLines == 0) ? CGFLOAT_MAX : (heightForOneLine * self.titleLabel.numberOfLines);
     
