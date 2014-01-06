@@ -628,6 +628,8 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   for (UIView<NIPagingScrollViewPage>* page in _visiblePages) {
     [_viewRecycler recycleView:page];
     [(UIView *)page removeFromSuperview];
+
+    [self didRecyclePage:page];
   }
 
   _visiblePages = nil;
