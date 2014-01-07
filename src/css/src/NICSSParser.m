@@ -130,6 +130,12 @@ int cssConsume(char* text, int token) {
         } else if ([textAsString caseInsensitiveCompare:@"iphone-nonretina"] == NSOrderedSame) {
           if ([UIScreen mainScreen].scale == 1.0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) { droppingCurrentRules = NO; }
           break;
+        } else if ([textAsString caseInsensitiveCompare:@"iphone-3point5inch"] == NSOrderedSame) {
+          if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone && ([[UIScreen mainScreen] bounds].size.height < 568)) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"iphone-4inch"] == NSOrderedSame) {
+            if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone && ([[UIScreen mainScreen] bounds].size.height == 568)) { droppingCurrentRules = NO; }
+            break;
         }
       }
       else if (_state.Flags.InsideRuleset) {
