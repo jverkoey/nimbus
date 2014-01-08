@@ -64,7 +64,13 @@
     if ([object respondsToSelector:@selector(cellStyle)]) {
       style = [object cellStyle];
     }
-    cell = [[cellClass alloc] initWithStyle:style reuseIdentifier:identifier];
+      
+    if ([cellClass respondsToSelector:@selector(shouldLoadNib)]
+         && [cellClass shouldLoadNib]) {
+       cell = [cellClass cellFromNib];
+    } else {
+       cell = [[cellClass alloc] initWithStyle:style reuseIdentifier:identifier];
+    }
   }
 
   // Allow the cell to configure itself with the object's information.
