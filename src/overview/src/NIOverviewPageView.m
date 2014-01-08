@@ -66,7 +66,7 @@ static const CGFloat kGraphRightMargin = 5;
   label.textColor = [UIColor whiteColor];
   label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
   label.shadowOffset = CGSizeMake(0, 1);
-  
+
   return label;
 }
 
@@ -89,7 +89,7 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
   [super layoutSubviews];
-  
+
   [_titleLabel sizeToFit];
   CGRect frame = _titleLabel.frame;
   frame.origin.x = floorf((self.bounds.size.width - frame.size.width) / 2);
@@ -137,7 +137,7 @@ static const CGFloat kGraphRightMargin = 5;
     [self addSubview:_label1];
     _label2 = [self label];
     [self addSubview:_label2];
-    
+
     _graphView = [[NIOverviewGraphView alloc] init];
     _graphView.dataSource = self;
     [self addSubview:_graphView];
@@ -149,32 +149,32 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
   [super layoutSubviews];
-  
+
   CGFloat contentWidth = self.frame.size.width - kPagePadding.left - kPagePadding.right;
   CGFloat contentHeight = self.frame.size.height - kPagePadding.top - kPagePadding.bottom;
-  
+
   [_label1 sizeToFit];
   [_label2 sizeToFit];
-  
+
   CGFloat maxLabelWidth = MAX(_label1.frame.size.width,
                               _label2.frame.size.width);
   CGFloat remainingContentWidth = contentWidth - maxLabelWidth - kGraphRightMargin;
-  
+
   CGRect frame = _label1.frame;
   frame.origin.x = kPagePadding.left + remainingContentWidth + kGraphRightMargin;
   frame.origin.y = kPagePadding.top;
   _label1.frame = frame;
-  
+
   frame = _label2.frame;
   frame.origin.x = kPagePadding.left + remainingContentWidth + kGraphRightMargin;
   frame.origin.y = CGRectGetMaxY(_label1.frame);
   _label2.frame = frame;
-  
+
   frame = self.titleLabel.frame;
   frame.origin.x = kPagePadding.left + remainingContentWidth + kGraphRightMargin;
   frame.origin.y = CGRectGetMaxY(_label2.frame);
   self.titleLabel.frame = frame;
-  
+
   _graphView.frame = CGRectMake(kPagePadding.left, kPagePadding.top,
                                 remainingContentWidth, contentHeight);
 }
@@ -265,7 +265,7 @@ static const CGFloat kGraphRightMargin = 5;
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     self.pageTitle = NSLocalizedString(@"Memory", @"Overview Page Title: Memory");
-    
+
     self.graphView.dataSource = self;
 
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
@@ -285,7 +285,7 @@ static const CGFloat kGraphRightMargin = 5;
 
   self.label1.text = [NSString stringWithFormat:@"%@ free",
                       NIStringFromBytes([NIDeviceInfo bytesOfFreeMemory])];
-  
+
   self.label2.text = [NSString stringWithFormat:@"%@ total",
                       NIStringFromBytes([NIDeviceInfo bytesOfTotalMemory])];
 
@@ -368,7 +368,7 @@ static const CGFloat kGraphRightMargin = 5;
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     self.pageTitle = NSLocalizedString(@"Storage", @"Overview Page Title: Storage");
-    
+
     self.graphView.dataSource = self;
   }
   return self;
@@ -378,15 +378,15 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)update {
   [super update];
-  
+
   [NIDeviceInfo beginCachedDeviceInfo];
-  
+
   self.label1.text = [NSString stringWithFormat:@"%@ free",
                       NIStringFromBytes([NIDeviceInfo bytesOfFreeDiskSpace])];
-  
+
   self.label2.text = [NSString stringWithFormat:@"%@ total",
                       NIStringFromBytes([NIDeviceInfo bytesOfTotalDiskSpace])];
-  
+
   [NIDeviceInfo endCachedDeviceInfo];
 
   [self setNeedsLayout];
@@ -405,7 +405,7 @@ static const CGFloat kGraphRightMargin = 5;
   if ([deviceLogs count] == 0) {
     return 0;
   }
-  
+
   unsigned long long minY = (unsigned long long)-1;
   unsigned long long maxY = 0;
   for (NIOverviewDeviceLogEntry* entry in deviceLogs) {
@@ -464,7 +464,7 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UILabel *)label {
   UILabel* label = [[UILabel alloc] init];
-  
+
   label.font = [UIFont boldSystemFontOfSize:11];
   label.textColor = [UIColor whiteColor];
   label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
@@ -472,7 +472,7 @@ static const CGFloat kGraphRightMargin = 5;
   label.backgroundColor = [UIColor clearColor];
   label.lineBreakMode = NSLineBreakByWordWrapping;
   label.numberOfLines = 0;
-  
+
   return label;
 }
 
@@ -495,7 +495,7 @@ static const CGFloat kGraphRightMargin = 5;
 
     _logLabel = [self label];
     [_logScrollView addSubview:_logLabel];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(didAddLog:)
                                                  name: NIOverviewLoggerDidAddConsoleLog
@@ -512,22 +512,22 @@ static const CGFloat kGraphRightMargin = 5;
       >= _logScrollView.contentSize.height - _logScrollView.bounds.size.height) {
     isBottomNearby = YES;
   }
-  
+
   _logScrollView.frame = CGRectMake(0, 0,
                                     self.bounds.size.width,
                                     self.bounds.size.height);
-  
+
   CGSize labelSize = [_logLabel.text sizeWithFont: _logLabel.font
                                 constrainedToSize: CGSizeMake(_logScrollView.bounds.size.width,
                                                               CGFLOAT_MAX)
                                     lineBreakMode: _logLabel.lineBreakMode];
   _logLabel.frame = CGRectMake(0, 0,
                                labelSize.width, labelSize.height);
-  
+
   _logScrollView.contentSize = CGSizeMake(_logScrollView.bounds.size.width
                                           - kPagePadding.left - kPagePadding.right,
                                           _logLabel.frame.size.height);
-  
+
   if (isBottomNearby) {
     _logScrollView.contentOffset = CGPointMake(-kPagePadding.left,
                                                MAX(_logScrollView.contentSize.height
@@ -542,7 +542,7 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFrame:(CGRect)frame {
   [super setFrame:frame];
-  
+
   [self contentSizeChanged];
 }
 
@@ -580,7 +580,7 @@ static const CGFloat kGraphRightMargin = 5;
   } else {
     _logLabel.text = formattedLog;
   }
-  
+
   [self contentSizeChanged];
 }
 
@@ -597,7 +597,7 @@ static const CGFloat kGraphRightMargin = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UILabel *)label {
   UILabel* label = [[UILabel alloc] init];
-  
+
   label.font = [UIFont boldSystemFontOfSize:11];
   label.textColor = [UIColor whiteColor];
   label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
@@ -605,7 +605,7 @@ static const CGFloat kGraphRightMargin = 5;
   label.backgroundColor = [UIColor clearColor];
   label.lineBreakMode = NSLineBreakByWordWrapping;
   label.numberOfLines = 0;
-  
+
   return label;
 }
 
@@ -1044,7 +1044,7 @@ static NIViewInspectionView *visibleInspectionView = nil;
     autoresizingView_ = [[UIView alloc] init];
     autoresizingView_.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5f];
     autoresizingView_.layer.borderColor =
-        [UIColor colorWithWhite:0 alpha:0.2].CGColor;
+        [UIColor colorWithWhite:0 alpha:0.2f].CGColor;
     autoresizingView_.layer.borderWidth = 1;
     autoresizingView_.autoresizingMask = view.autoresizingMask;
     [self addSubview:containerView_];
