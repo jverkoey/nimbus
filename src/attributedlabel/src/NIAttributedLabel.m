@@ -1140,6 +1140,13 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     UIActionSheet* actionSheet = [self actionSheetForResult:self.actionSheetLink];
 
     BOOL shouldPresent = YES;
+    
+    NSString *scheme=self.touchedLink.URL.scheme;
+    if(!([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"] || [scheme isEqualToString:@"ftp"])) {
+      //URL Scheme is not an Internet address, we must not show actionsheet
+      shouldPresent=NO;
+    }
+    
     if ([self.delegate respondsToSelector:@selector(attributedLabel:shouldPresentActionSheet:withTextCheckingResult:atPoint:)]) {
       // Give the delegate the opportunity to not show the action sheet or to present their own.
       shouldPresent = [self.delegate attributedLabel:self shouldPresentActionSheet:actionSheet withTextCheckingResult:self.touchedLink atPoint:self.touchPoint];
