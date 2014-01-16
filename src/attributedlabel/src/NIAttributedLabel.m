@@ -1246,8 +1246,20 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
       unichar objectReplacementChar = 0xFFFC;
       NSString *objectReplacementString = [NSString stringWithCharacters:&objectReplacementChar length:1];
       NSMutableAttributedString* space = [[NSMutableAttributedString alloc] initWithString:objectReplacementString];
-      CFAttributedStringSetAttribute((__bridge CFMutableAttributedStringRef)space, CFRangeMake(0, 1), kCTRunDelegateAttributeName, delegate);
+
+      CFRange range = CFRangeMake(0, 1);
+      CFMutableAttributedStringRef spaceString =
+          (__bridge_retained CFMutableAttributedStringRef)space;
+      CFAttributedStringSetAttribute(spaceString, range, kCTRunDelegateAttributeName, delegate);
+      // Explicitly set the writing direction of this string to LTR, because in 'drawImages' we draw
+      // for LTR by drawing at offset to offset + width vs to offset - width as you would for RTL.
+      CFAttributedStringSetAttribute(spaceString,
+                                     range,
+                                     kCTWritingDirectionAttributeName,
+                                     (__bridge CFArrayRef)@[@(kCTWritingDirectionLeftToRight)]);
       CFRelease(delegate);
+      CFRelease(spaceString);
+
       [attributedString insertAttributedString:space atIndex:labelImage.index];
     }
   }
