@@ -46,52 +46,47 @@ static char nibutton_didSetupKVOKey = 0;
 @implementation UIButton (NIStyleable)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  [self applyButtonStyleWithRuleSet:ruleSet inDOM:nil];
-}
-
--(void)applyButtonStyleBeforeViewWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom
-{
+-(void)applyButtonStyleBeforeViewWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom forState:(UIControlState)state {
   if (ruleSet.hasFont) {
     self.titleLabel.font = ruleSet.font;
   }
   if (ruleSet.hasTextKey) {
     NIUserInterfaceString *nis = [[NIUserInterfaceString alloc] initWithKey:ruleSet.textKey];
-    [nis attach:self withSelector:@selector(setTitle:forState:) forControlState:UIControlStateNormal];
+    [nis attach:self withSelector:@selector(setTitle:forState:) forControlState:state];
   }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
+- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom forState:(UIControlState)state {
   if ([ruleSet hasTextColor]) {
     // If you want to reset this color, set none as the color
-    [self setTitleColor:ruleSet.textColor forState:UIControlStateNormal];
+    [self setTitleColor:ruleSet.textColor forState:state];
   }
   if ([ruleSet hasTextShadowColor]) {
     // If you want to reset this color, set none as the color
-    [self setTitleShadowColor:ruleSet.textShadowColor forState:UIControlStateNormal];
+    [self setTitleShadowColor:ruleSet.textShadowColor forState:state];
   }
   if (ruleSet.hasImage) {
     UIImage *uiImage;
     if ([NIStylesheet resourceResolver] && [[NIStylesheet resourceResolver] respondsToSelector: @selector(imageNamed:)]) {
-        uiImage = [[NIStylesheet resourceResolver] imageNamed:ruleSet.image];
+      uiImage = [[NIStylesheet resourceResolver] imageNamed:ruleSet.image];
     } else {
-        uiImage = [UIImage imageNamed:ruleSet.image];
+      uiImage = [UIImage imageNamed:ruleSet.image];
     }
-
-    [self setImage:uiImage forState:UIControlStateNormal];
+    
+    [self setImage:uiImage forState:state];
   }
   if (ruleSet.hasBackgroundImage) {
     UIImage *uiImage;
     if ([NIStylesheet resourceResolver] && [[NIStylesheet resourceResolver] respondsToSelector: @selector(imageNamed:)]) {
-        uiImage = [[NIStylesheet resourceResolver] imageNamed:ruleSet.backgroundImage];
+      uiImage = [[NIStylesheet resourceResolver] imageNamed:ruleSet.backgroundImage];
     } else {
-        uiImage = [UIImage imageNamed:ruleSet.backgroundImage];
+      uiImage = [UIImage imageNamed:ruleSet.backgroundImage];
     }
     if (ruleSet.hasBackgroundStretchInsets) {
       uiImage = [uiImage resizableImageWithCapInsets:ruleSet.backgroundStretchInsets];
     }
-    [self setBackgroundImage:uiImage forState:UIControlStateNormal];
+    [self setBackgroundImage:uiImage forState:state];
   }
   if ([ruleSet hasTextShadowOffset]) {
     self.titleLabel.shadowOffset = ruleSet.textShadowOffset;
@@ -110,9 +105,13 @@ static char nibutton_didSetupKVOKey = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
-  [self applyButtonStyleBeforeViewWithRuleSet:ruleSet inDOM:dom];
+  [self applyStyleWithRuleSet:ruleSet inDOM:dom forState:UIControlStateNormal];
+}
+
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom forState:(UIControlState)state {
+  [self applyButtonStyleBeforeViewWithRuleSet:ruleSet inDOM:dom forState:state];
   [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
-  [self applyButtonStyleWithRuleSet:ruleSet inDOM:dom];
+  [self applyButtonStyleWithRuleSet:ruleSet inDOM:dom forState:state];
 }
 
 
@@ -139,7 +138,7 @@ static char nibutton_didSetupKVOKey = 0;
   
   if (self.state == state ||
       (!self.enabled && [pseudo caseInsensitiveCompare:@"disabled"] == NSOrderedSame)) {
-    [self applyStyleWithRuleSet:ruleSet inDOM:dom];
+    [self applyStyleWithRuleSet:ruleSet inDOM:dom forState:state];
   }
   
   return;
