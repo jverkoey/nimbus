@@ -36,7 +36,7 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 // styles for pseudoclasses (by refreshing each DOM) when the control state of the button changes.
 // Since we're in a category, we can't add properties or ivars, so the only way to store additional
 // state on the object is with associated objects.
-static char nibutton_DOMArrayKey = 0;
+static char nibutton_DOMSetKey = 0;
 static char nibutton_isRefreshingDueToKVOKey = 0;
 static char nibutton_didSetupKVOKey = 0;
 
@@ -199,19 +199,19 @@ static char nibutton_didSetupKVOKey = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didRegisterInDOM:(NIDOM *)dom {
-  NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
-  if (!array) {
-    array = NICreateNonRetainingMutableArray();
-    objc_setAssociatedObject(self, &nibutton_DOMArrayKey, array, OBJC_ASSOCIATION_RETAIN);
+  NSMutableSet *set = objc_getAssociatedObject(self, &nibutton_DOMSetKey);
+  if (!set) {
+    set = NICreateNonRetainingMutableSet();
+    objc_setAssociatedObject(self, &nibutton_DOMSetKey, set, OBJC_ASSOCIATION_RETAIN);
   }
-  [array addObject:dom];
+  [set addObject:dom];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didUnregisterInDOM:(NIDOM *)dom {
-  NSMutableArray *array = objc_getAssociatedObject(self, &nibutton_DOMArrayKey);
-  [array removeObject:dom];
-  if (!array.count) {
+  NSMutableSet *set = objc_getAssociatedObject(self, &nibutton_DOMSetKey);
+  [set removeObject:dom];
+  if (!set.count) {
     [self stopKVO];
   }
 }
@@ -222,7 +222,7 @@ static char nibutton_didSetupKVOKey = 0;
       [change objectForKey:NSKeyValueChangeNewKey] != [change objectForKey:NSKeyValueChangeOldKey]) {
     
     objc_setAssociatedObject(self, &nibutton_isRefreshingDueToKVOKey, @(YES), OBJC_ASSOCIATION_RETAIN);
-    for (NIDOM *dom in objc_getAssociatedObject(self, &nibutton_DOMArrayKey)) {
+    for (NIDOM *dom in objc_getAssociatedObject(self, &nibutton_DOMSetKey)) {
       [dom refreshView:self];
     }
     objc_setAssociatedObject(self, &nibutton_isRefreshingDueToKVOKey, @(NO), OBJC_ASSOCIATION_RETAIN);
