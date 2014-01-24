@@ -215,6 +215,11 @@ NIUserInterfaceStringResolver
   }
 }
 
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"%@: %@", [super description], self.string];
+}
+
 @end
 
 ////////////////////////////////////////////////////////////////////////////////
