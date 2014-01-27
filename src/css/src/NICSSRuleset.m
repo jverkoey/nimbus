@@ -154,6 +154,7 @@ return _##name; \
   [_ruleset addEntriesFromDictionary:dictionary];
 
   if (nil != order) {
+    [order removeObjectsInArray:[dictionary objectForKey:kPropertyOrderKey]];
     [order addObjectsFromArray:[dictionary objectForKey:kPropertyOrderKey]];
     [_ruleset setObject:order forKey:kPropertyOrderKey];
   }

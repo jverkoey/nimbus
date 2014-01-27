@@ -19,6 +19,7 @@
 #import "NIStylesheet.h"
 #import "NIStyleable.h"
 #import "NimbusCore.h"
+#import <objc/runtime.h>
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
@@ -27,7 +28,6 @@
 @interface NIDOM ()
 @property (nonatomic,strong) NIStylesheet* stylesheet;
 @property (nonatomic,strong) NSMutableArray* registeredViews;
-@property (nonatomic,strong) NSMutableDictionary* viewToSelectorsMap;
 @property (nonatomic,strong) NSMutableDictionary* idToViewMap;
 @property (nonatomic,strong) NIDOM *parent;
 @property (nonatomic,strong) NSMutableSet *refreshedViews;
@@ -83,7 +83,6 @@
   if ((self = [super init])) {
     _stylesheet = stylesheet;
     _registeredViews = [NSMutableArray array];
-    _viewToSelectorsMap = [[NSMutableDictionary alloc] init];
   }
   return self;
 }
@@ -111,22 +110,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public Methods
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)keyForView:(UIView *)view {
-  return [NSNumber numberWithLong:(long)view];
-}
-
-
+static char niDOM_ViewSelectorsKey = 0;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)registerSelector:(NSString *)selector withView:(UIView *)view {
-  id key = [self keyForView:view];
-  NSMutableArray* selectors = [_viewToSelectorsMap objectForKey:key];
-  if (nil == selectors) {
+  
+  NSMutableArray *selectors = objc_getAssociatedObject(view, &niDOM_ViewSelectorsKey);
+  if (!selectors) {
     selectors = [[NSMutableArray alloc] init];
-    [_viewToSelectorsMap setObject:selectors forKey:key];
+    objc_setAssociatedObject(view, &niDOM_ViewSelectorsKey, selectors, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
   }
   [selectors addObject:selector];
+  
 #ifdef NI_DEBUG_CSS_SELECTOR_TARGET
     // Put a description of the selectors for this view in accessibilityHint (for example)
     // for things like RevealApp to read. Example preprocessor define
@@ -148,6 +142,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)registerView:(UIView *)view {
+  NIDASSERT(self.refreshedViews == nil); // You are already in the midst of a refresh. Don't do this.
+
   if (self.parent) {
     [self.parent registerView:view];
   }
@@ -168,23 +164,12 @@
   if ([view respondsToSelector:@selector(didRegisterInDOM:)]) {
     [((id<NIStyleable>)view) didRegisterInDOM:self];
   }
-  
-  NIDASSERT(self.refreshedViews == nil); // You are already in the midst of a refresh. Don't do this.
-  self.refreshedViews = [[NSMutableSet alloc] init];
-  [self.refreshedViews addObject:view];
-
-  [self refreshStyleForView:view withSelectorName:selector];
-  if (pseudos) {
-    for (NSString *ps in pseudos) {
-      [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
-    }
-  }
-  
-  self.refreshedViews = nil;
 }
 
 - (void)registerView:(UIView *)view withCSSClass:(NSString *)cssClass andId:(NSString *)viewId
 {
+  NIDASSERT(self.refreshedViews == nil); // You are already in the midst of a refresh. Don't do this.
+
   // These are basically the least specific selectors (by our simple rules), so this needs to get registered first
   [self registerView:view withCSSClass:cssClass];
 
@@ -213,19 +198,6 @@
     }
     [_idToViewMap setObject:view forKey:viewId.lowercaseString];
     
-    NIDASSERT(self.refreshedViews == nil); // You are already in the midst of a refresh. Don't do this.
-    self.refreshedViews = [[NSMutableSet alloc] init];
-    [self.refreshedViews addObject:view];
-
-    // Run the id selectors last so they take precedence
-    [self refreshStyleForView:view withSelectorName:viewId];
-    if (pseudos) {
-      for (NSString *ps in pseudos) {
-        [self refreshStyleForView:view withSelectorName:[viewId stringByAppendingString:ps]];
-      }
-    }
-    
-    self.refreshedViews = nil;
   }
 }
 
@@ -252,19 +224,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(BOOL)view:(UIView *)view hasCssClass:(NSString *)cssClass
 {
-  if ([cssClass characterAtIndex:0] != '.') {
-    cssClass = [@"." stringByAppendingString: cssClass];
-  }
-  NSMutableArray *selectors = [_viewToSelectorsMap objectForKey:[self keyForView:view]];
-  if (selectors) {
-    for (NSString *candidate in selectors) {
-      if ([candidate isEqualToString:cssClass]) {
-        return YES;
-      }
-    }
-  }
-  return NO;
+  NSMutableArray *selectors = objc_getAssociatedObject(view, &niDOM_ViewSelectorsKey);
+  return [selectors containsObject:cssClass];
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(BOOL)view:(UIView *)view hasCssId:(NSString *)cssId
+{
+  NSMutableArray *selectors = objc_getAssociatedObject(view, &niDOM_ViewSelectorsKey);
+  return [selectors containsObject:cssId];
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addCssClasses:(NSArray *)cssClasses toView:(UIView *)view {
@@ -293,19 +263,6 @@
       }
     }
   }
-  
-  NIDASSERT(self.refreshedViews == nil); // You are already in the midst of a refresh. Don't do this.
-  self.refreshedViews = [[NSMutableSet alloc] init];
-  [self.refreshedViews addObject:view];
-
-  [self refreshStyleForView:view withSelectorName:selector];
-  if (pseudos) {
-    for (NSString *ps in pseudos) {
-      [self refreshStyleForView:view withSelectorName:[selector stringByAppendingString:ps]];
-    }
-  }
-
-  self.refreshedViews = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -313,7 +270,7 @@
 {
   NSString* selector = [cssClass hasPrefix:@"."] ? cssClass : [@"." stringByAppendingString:cssClass];
   NSString* pseudoBase = [selector stringByAppendingString:@":"];
-  NSMutableArray *selectors = [_viewToSelectorsMap objectForKey:[self keyForView:view]];
+  NSMutableArray *selectors = objc_getAssociatedObject(view, &niDOM_ViewSelectorsKey);
   if (selectors) {
     // Iterate over the selectors finding the id selector (if any) so we can
     // also remove it from the id map
@@ -328,8 +285,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)unregisterView:(UIView *)view {
+  if (!view) return;
   [_registeredViews removeObject:view];
-  NSArray *selectors = [_viewToSelectorsMap objectForKey:[self keyForView:view]];
+  NSArray *selectors = objc_getAssociatedObject(view, &niDOM_ViewSelectorsKey);
   if (selectors) {
     // Iterate over the selectors finding the id selector (if any) so we can
     // also remove it from the id map
@@ -339,7 +297,7 @@
       }
     }
   }
-  [_viewToSelectorsMap removeObjectForKey:[self keyForView:view]];
+    objc_setAssociatedObject(view, &niDOM_ViewSelectorsKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if ([view respondsToSelector:@selector(didUnregisterInDOM:)]) {
         [((id<NIStyleable>)view) didUnregisterInDOM:self];
     }
@@ -349,12 +307,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)unregisterAllViews {
   [_registeredViews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
+      objc_setAssociatedObject(view, &niDOM_ViewSelectorsKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if ([view respondsToSelector:@selector(didUnregisterInDOM:)]) {
       [((id<NIStyleable>)view) didUnregisterInDOM:self];
     }
   }];
   [_registeredViews removeAllObjects];
-  [_viewToSelectorsMap removeAllObjects];
   [_idToViewMap removeAllObjects];
 }
 
@@ -365,7 +323,7 @@
   self.refreshedViews = [[NSMutableSet alloc] initWithCapacity:_registeredViews.count+1];
   for (UIView* view in _registeredViews) {
     [self.refreshedViews addObject:view];
-    for (NSString* selector in [_viewToSelectorsMap objectForKey:[self keyForView:view]]) {
+    for (NSString* selector in objc_getAssociatedObject(view, &niDOM_ViewSelectorsKey)) {
       [self refreshStyleForView:view withSelectorName:selector];
     }
   }
@@ -377,7 +335,7 @@
   NIDASSERT(self.refreshedViews == nil); // You are already in the midst of a refresh. Don't do this.
   self.refreshedViews = [[NSMutableSet alloc] init];
   [self.refreshedViews addObject:view];
-  for (NSString* selector in [_viewToSelectorsMap objectForKey:[self keyForView:view]]) {
+  for (NSString* selector in objc_getAssociatedObject(view, &niDOM_ViewSelectorsKey)) {
     [self refreshStyleForView:view withSelectorName:selector];
   }
   self.refreshedViews = nil;
@@ -389,7 +347,7 @@
   if ([self.refreshedViews containsObject:view]) {
     return;
   }
-  for (NSString* selector in [_viewToSelectorsMap objectForKey:[self keyForView:view]]) {
+  for (NSString* selector in objc_getAssociatedObject(view, &niDOM_ViewSelectorsKey)) {
     [self refreshStyleForView:view withSelectorName:selector];
   }
 }
@@ -407,7 +365,7 @@
   NSMutableString *description = [[NSMutableString alloc] init];
   BOOL appendedStyleInfo = NO;
   
-  for (NSString *selector in [_viewToSelectorsMap objectForKey:[self keyForView:view]]) {
+  for (NSString *selector in objc_getAssociatedObject(view, &niDOM_ViewSelectorsKey)) {
     BOOL appendedSelectorInfo = NO;
     NSString *additional = nil;
     if (self.parent) {
@@ -437,7 +395,7 @@
     viewCount++;
     // This is a little hokey - because we don't get individual view names we have to come up with some.
     __block NSString *vid = nil;
-    [[_viewToSelectorsMap objectForKey:[self keyForView:view]] enumerateObjectsUsingBlock:^(NSString *selector, NSUInteger idx, BOOL *stop) {
+    [objc_getAssociatedObject(view, &niDOM_ViewSelectorsKey) enumerateObjectsUsingBlock:^(NSString *selector, NSUInteger idx, BOOL *stop) {
       if ([selector hasPrefix:@"#"]) {
         vid = [selector substringFromIndex:1];
         *stop = YES;
