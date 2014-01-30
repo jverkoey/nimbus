@@ -99,7 +99,6 @@
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
 @synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
 @synthesize photoScrollViewDelegate = _photoScrollViewDelegate;
-@synthesize doubleTapToZoomIsEnabled = _doubleTapToZoomIsEnabled;
 @synthesize maximumScale = _maximumScale;
 @synthesize loading = _loading;
 @synthesize doubleTapGestureRecognizer = _doubleTapGestureRecognizer;
@@ -359,7 +358,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)isDoubleTapToZoomIsEnabled {
+- (BOOL)isDoubleTapToZoomEnabled {
   // If the gesture recognizer hasn't been created, then _doubleTapGestureRecognizer will be
   // nil and so calling isEnabled will return 0.
   return [_doubleTapGestureRecognizer isEnabled];
