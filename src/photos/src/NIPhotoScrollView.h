@@ -45,7 +45,6 @@
   // Configurable State
   BOOL _zoomingIsEnabled;
   BOOL _zoomingAboveOriginalSizeIsEnabled;
-  BOOL _doubleTapToZoomIsEnabled;
 
   UITapGestureRecognizer* _doubleTapGestureRecognizer;
 
