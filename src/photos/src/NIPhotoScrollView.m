@@ -337,7 +337,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)isDoubleTapToZoomEnabled:(BOOL)enabled {
+- (void)setDoubleTapToZoomIsEnabled:(BOOL)enabled {
   // Only enable double-tap to zoom if the SDK supports it. This feature only works on
   // iOS 3.2 and above.
   if (enabled && nil == _doubleTapGestureRecognizer
@@ -359,7 +359,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)isDoubleTapToZoomIsEnabled {
+- (BOOL)isDoubleTapToZoomEnabled {
   // If the gesture recognizer hasn't been created, then _doubleTapGestureRecognizer will be
   // nil and so calling isEnabled will return 0.
   return [_doubleTapGestureRecognizer isEnabled];
