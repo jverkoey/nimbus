@@ -99,7 +99,6 @@
 @synthesize zoomingIsEnabled = _zoomingIsEnabled;
 @synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
 @synthesize photoScrollViewDelegate = _photoScrollViewDelegate;
-@synthesize doubleTapToZoomIsEnabled = _doubleTapToZoomIsEnabled;
 @synthesize maximumScale = _maximumScale;
 @synthesize loading = _loading;
 @synthesize doubleTapGestureRecognizer = _doubleTapGestureRecognizer;
