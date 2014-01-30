@@ -31,7 +31,6 @@ const NSInteger NILauncherViewGridBasedOnButtonSize = -1;
 
 static const CGFloat kDefaultButtonDimensions = 80;
 static const CGFloat kDefaultPadding = 10;
-static const NSTimeInterval kAnimateToPageDuration = 0.2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
