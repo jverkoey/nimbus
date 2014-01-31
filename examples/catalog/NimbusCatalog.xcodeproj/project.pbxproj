@@ -1082,7 +1082,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Catalog/NimbusCatalog-Prefix.pch";
 				INFOPLIST_FILE = "Catalog/NimbusCatalog-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Nimbus;
 				WRAPPER_EXTENSION = app;
@@ -1095,7 +1095,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Catalog/NimbusCatalog-Prefix.pch";
 				INFOPLIST_FILE = "Catalog/NimbusCatalog-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Nimbus;
 				WRAPPER_EXTENSION = app;
