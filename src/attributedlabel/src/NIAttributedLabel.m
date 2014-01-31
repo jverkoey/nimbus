@@ -752,18 +752,9 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
                                inRange:NSMakeRange(0, attributedString.length)
                                options:0
                             usingBlock:^(id value, NSRange range, BOOL *stop) {
-                                if (value != nil)
-                                {
-                                  if ([value isKindOfClass:[NSURL class]])
-                                  {
-                                    [links addObject:[NSTextCheckingResult linkCheckingResultWithRange:range URL:value]];
-                                  }
-                                  else if ([value isKindOfClass:[NSString class]])
-                                  {
-                                    NSURL *url = [NSURL URLWithString:value];
-                                    [links addObject:[NSTextCheckingResult linkCheckingResultWithRange:range URL:url]];
-                                  }
-                                }
+                              if (value != nil) {
+                                [links addObject:value];
+                              }
                             }];
   self.explicitLinkLocations = links;
 }
@@ -806,8 +797,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
   if (!lines) return nil;
   CFIndex count = CFArrayGetCount(lines);
 
-  NSTextCheckingResult* foundLink = nil;
-
   CGPoint origins[count];
   CTFrameGetLineOrigins(self.textFrame, CFRangeMake(0,0), origins);
 
@@ -834,14 +823,11 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
         if (labelImage.index < idx) {
           offset++;
         }
-
       }
 
-      foundLink = [self linkAtIndex:idx - offset];;
+      NSTextCheckingResult* foundLink = [self linkAtIndex:idx - offset];
       if (foundLink) {
-        NSTextCheckingResult *result = [NSTextCheckingResult linkCheckingResultWithRange:NSMakeRange(foundLink.range.location + offset, foundLink.range.length) URL:foundLink.URL];
-
-        return result;
+        return foundLink;
       }
     }
   }
@@ -1171,7 +1157,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     // just the link when when no special attributes are set.
     [attributedString removeAttribute:kNILinkAttributeName range:result.range];
     [attributedString addAttribute:kNILinkAttributeName
-                             value:result.URL
+                             value:result
                              range:result.range];
 
     if (self.linksHaveUnderlines) {
