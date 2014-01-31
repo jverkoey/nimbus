@@ -55,28 +55,9 @@ BOOL NIIsRetina(void) {
 }
 
 Class NIUIPopoverControllerClass(void) {
-  static Class sClass = nil;
-  static BOOL hasChecked = NO;
-  if (!hasChecked) {
-    hasChecked = YES;
-    sClass = NSClassFromString(@"UIPopoverController");
-  }
-  return sClass;
+  return [UIPopoverController class];
 }
 
 Class NIUITapGestureRecognizerClass(void) {
-  static Class sClass = nil;
-  static BOOL hasChecked = NO;
-  if (!hasChecked) {
-    hasChecked = YES;
-
-    // An interesting gotcha: UITapGestureRecognizer actually *does* exist in iOS 3.0, but does
-    // not conform to all of the same methods that the 3.2 implementation does. This can be
-    // really confusing, so instead of returning the class, we'll always return nil on
-    // pre-iOS 3.2 devices.
-    if (NIDeviceOSVersionIsAtLeast(kCFCoreFoundationVersionNumber_iPhoneOS_3_2)) {
-      sClass = NSClassFromString(@"UITapGestureRecognizer");
-    }
-  }
-  return sClass;
+  return [UITapGestureRecognizer class];
 }

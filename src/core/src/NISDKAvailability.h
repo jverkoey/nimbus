@@ -19,6 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "NIPreprocessorMacros.h"
+
 /**
  * For checking SDK feature availibility.
  *
@@ -213,84 +215,20 @@ CGFloat NIScreenScale(void);
 BOOL NIIsRetina(void);
 
 /**
- * Safely fetch the UIPopoverController class if it is available.
- *
- * The class is cached to avoid repeated lookups.
- *
- * Uses NSClassFromString to fetch the popover controller class.
- *
- * This class was first introduced in iOS 3.2 April 3, 2010.
- *
- *      @attention If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method
- *                 instead of directly referring to UIPopoverController anywhere within your code.
- *                 Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices.
+ * This method is now deprecated. Use [UIPopoverController class] instead.
  */
-Class NIUIPopoverControllerClass(void);
+Class NIUIPopoverControllerClass(void) __NI_DEPRECATED_METHOD;
 
 /**
- * Safely fetch the UITapGestureRecognizer class if it is available.
- *
- * The class is cached to avoid repeated lookups.
- *
- * Uses NSClassFromString to fetch the tap gesture recognizer class.
- *
- * This class was first introduced in iOS 3.2 April 3, 2010.
- *
- *      @attention If you wish to maintain pre-iOS 3.2 support then you <b>must</b> use this method
- *                 instead of directly referring to UIPopoverController anywhere within your code.
- *                 Failure to do so will cause your app to crash on startup on pre-iOS 3.2 devices.
+ * This method is now deprecated. Use [UITapGestureRecognizer class] instead.
  */
-Class NIUITapGestureRecognizerClass(void);
+Class NIUITapGestureRecognizerClass(void) __NI_DEPRECATED_METHOD;
 
 #if __cplusplus
 } // extern "C"
 #endif
 
-
 #pragma mark Building with Old SDKs
-
-// Define classes that were introduced in iOS 3.2.
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < NIIOS_3_2
-
-@class UIPopoverController;
-@class UITapGestureRecognizer;
-
-#endif
-
-
-// Define methods that were introduced in iOS 4.0.
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < NIIOS_4_0
-
-@interface UIImage (Nimbus4SDKAvailability)
-
-+ (UIImage *)imageWithCGImage:(CGImageRef)imageRef scale:(CGFloat)scale orientation:(UIImageOrientation)orientation;
-
-- (CGFloat)scale;
-
-@end
-
-@interface UIScreen (Nimbus4SDKAvailability)
-
-- (CGFloat)scale;
-
-@end
-
-#endif
-
-
-// Define methods that were introduced in iOS 6.0.
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < NIIOS_6_0
-
-@interface UIImage (Nimbus6SDKAvailability)
-
-typedef NSInteger UIImageResizingMode;
-extern const UIImageResizingMode UIImageResizingModeStretch;
-- (UIImage *)resizableImageWithCapInsets:(UIEdgeInsets)capInsets resizingMode:(UIImageResizingMode)resizingMode;
-
-@end
-
-#endif
-
 
 // Define methods that were introduced in iOS 7.0.
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < NIIOS_7_0
