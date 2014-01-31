@@ -142,13 +142,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
 
 @interface NIAttributedLabel(ConversionUtilities)
-// Only use UITextAlignment if deployment target is less than 6.0 and
-// not on iOS 7 SDK.
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < NIIOS_7_0 && __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
-+ (CTTextAlignment)alignmentFromUITextAlignment:(UITextAlignment)alignment;
-#else
 + (CTTextAlignment)alignmentFromUITextAlignment:(NSTextAlignment)alignment;
-#endif
 + (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(NSLineBreakMode)lineBreakMode;
 + (NSMutableAttributedString *)mutableAttributedStringFromLabel:(UILabel *)label;
 @end
@@ -368,26 +362,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Only use UITextAlignment if deployment target is less than 6.0 and
-// not on iOS 7 SDK.
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < NIIOS_7_0 && __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
-- (void)setTextAlignment:(UITextAlignment)textAlignment {
-  // UILabel doesn't implement UITextAlignmentJustify, so we can't call super when this is the case
-  // or the app will crash.
-  if (textAlignment != UITextAlignmentJustify) {
-    // We assume that the UILabel implementation will call setNeedsDisplay. Where we don't call super
-    // we call setNeedsDisplay ourselves.
-    [super setTextAlignment:textAlignment];
-  }
-
-  if (nil != self.mutableAttributedString) {
-    CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:textAlignment];
-    CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
-    [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight];
-  }
-}
-#else
 - (void)setTextAlignment:(NSTextAlignment)textAlignment {
   // We assume that the UILabel implementation will call setNeedsDisplay. Where we don't call super
   // we call setNeedsDisplay ourselves.
@@ -404,7 +378,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight];
   }
 }
-#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1707,19 +1680,6 @@ CGFloat NIImageDelegateGetWidthCallback(void* refCon) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < NIIOS_7_0 && __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
-+ (CTTextAlignment)alignmentFromUITextAlignment:(UITextAlignment)alignment {
-  // UITextAlignmentJustify is not part of the UITextAlignment enumeration, so we cast to NSInteger
-  // to tell Xcode not to coerce us into only using real UITextAlignment valus.
-  switch ((NSInteger)alignment) {
-    case UITextAlignmentLeft: return kCTLeftTextAlignment;
-    case UITextAlignmentCenter: return kCTCenterTextAlignment;
-    case UITextAlignmentRight: return kCTRightTextAlignment;
-    case UITextAlignmentJustify: return kCTJustifiedTextAlignment;
-    default: return kCTNaturalTextAlignment;
-  }
-}
-#else
 + (CTTextAlignment)alignmentFromUITextAlignment:(NSTextAlignment)alignment {
   switch (alignment) {
     case NSTextAlignmentLeft: return kCTLeftTextAlignment;
@@ -1729,7 +1689,6 @@ CGFloat NIImageDelegateGetWidthCallback(void* refCon) {
     default: return kCTNaturalTextAlignment;
   }
 }
-#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
