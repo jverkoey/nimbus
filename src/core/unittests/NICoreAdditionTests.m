@@ -135,16 +135,16 @@
 }
 
 - (void)testNSString_versionStringCompare {
-  STAssertTrue([@"3.0"   versionStringCompare:@"3.0"]    == NSOrderedSame, @"same version");
-  STAssertTrue([@"3.0a2" versionStringCompare:@"3.0a2"]  == NSOrderedSame, @"same version alpha");
-  STAssertTrue([@"3.0"   versionStringCompare:@"2.5"]    == NSOrderedDescending, @"major no alpha");
-  STAssertTrue([@"3.1"   versionStringCompare:@"3.0"]    == NSOrderedDescending, @"minor no alpha");
-  STAssertTrue([@"3.0a1" versionStringCompare:@"3.0"]    == NSOrderedAscending, @"alpha-no alpha");
-  STAssertTrue([@"3.0a1" versionStringCompare:@"3.0a4"]  == NSOrderedAscending, @"alpha diff");
-  STAssertTrue([@"3.0a2" versionStringCompare:@"3.0a19"] == NSOrderedAscending, @"numeric alpha");
-  STAssertTrue([@"3.0a"  versionStringCompare:@"3.0a1"]  == NSOrderedAscending, @"empty alpha");
-  STAssertTrue([@"3.02"  versionStringCompare:@"3.03"]   == NSOrderedAscending, @"point diff");
-  STAssertTrue([@"3.0.2" versionStringCompare:@"3.0.3"]  == NSOrderedAscending, @"point diff");
+  STAssertTrue(NICompareVersionStrings(@"3.0", @"3.0")      == NSOrderedSame, @"same version");
+  STAssertTrue(NICompareVersionStrings(@"3.0a2", @"3.0a2")  == NSOrderedSame, @"same version alpha");
+  STAssertTrue(NICompareVersionStrings(@"3.0", @"2.5")      == NSOrderedDescending, @"major no alpha");
+  STAssertTrue(NICompareVersionStrings(@"3.1", @"3.0")      == NSOrderedDescending, @"minor no alpha");
+  STAssertTrue(NICompareVersionStrings(@"3.0a1", @"3.0")    == NSOrderedAscending, @"alpha-no alpha");
+  STAssertTrue(NICompareVersionStrings(@"3.0a1", @"3.0a4")  == NSOrderedAscending, @"alpha diff");
+  STAssertTrue(NICompareVersionStrings(@"3.0a2", @"3.0a19") == NSOrderedAscending, @"numeric alpha");
+  STAssertTrue(NICompareVersionStrings(@"3.0a", @"3.0a1")   == NSOrderedAscending, @"empty alpha");
+  STAssertTrue(NICompareVersionStrings(@"3.02", @"3.03")    == NSOrderedAscending, @"point diff");
+  STAssertTrue(NICompareVersionStrings(@"3.0.2", @"3.0.3")  == NSOrderedAscending, @"point diff");
 }
 
 - (void)testNSString_md5Hash {

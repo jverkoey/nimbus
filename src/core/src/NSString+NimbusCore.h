@@ -34,10 +34,6 @@
 - (NSString *)stringByAddingPercentEscapesForURLParameter;
 - (NSString*)stringByAddingQueryDictionary:(NSDictionary*)query;
 
-#pragma mark Versions
-
-- (NSComparisonResult)versionStringCompare:(NSString *)other;
-
 #pragma mark Hashing
 
 @property (nonatomic, readonly) NSString* md5Hash;
