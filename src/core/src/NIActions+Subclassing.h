@@ -15,7 +15,6 @@
 //
 
 #import "NIActions.h"
-#import "NimbusCore.h"
 
 @interface NIObjectActions : NSObject
 
@@ -23,15 +22,15 @@
 @property (nonatomic, copy) NIActionBlock detailAction;
 @property (nonatomic, copy) NIActionBlock navigateAction;
 
-@property (nonatomic, assign) SEL tapSelector;
-@property (nonatomic, assign) SEL detailSelector;
-@property (nonatomic, assign) SEL navigateSelector;
+@property (nonatomic) SEL tapSelector;
+@property (nonatomic) SEL detailSelector;
+@property (nonatomic) SEL navigateSelector;
 
 @end
 
 @interface NIActions ()
 
-@property (nonatomic, NI_WEAK) id target;
+@property (nonatomic, weak) id target;
 
 - (NIObjectActions *)actionForObjectOrClassOfObject:(id<NSObject>)object;
 
