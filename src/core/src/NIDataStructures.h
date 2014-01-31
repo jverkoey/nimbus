@@ -16,8 +16,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "NIPreprocessorMacros.h"
+
 /**
  * For classic computer science data structures.
+ *
+ * NILinkedList has been deprecated and will soon be removed altogether. Use NSMutableOrderedSet
+ * instead.
  *
  * iOS provides most of the important data structures such as arrays, dictionaries, and sets.
  * However, it is missing some lesser-used data structures such as linked lists. Nimbus makes
@@ -68,6 +73,7 @@
 
 @class NILinkedListNode;
 
+__NI_DEPRECATED_METHOD // Use NSMutableOrderedSet instead.
 @interface NILinkedListLocation : NSObject
 @end
 
@@ -106,6 +112,7 @@
  * structure we could easily run into an O(N^2) exponential-time operation which is
  * absolutely unacceptable.
  */
+__NI_DEPRECATED_METHOD // Use NSMutableOrderedSet instead.
 @interface NILinkedList : NSObject <NSCopying, NSCoding, NSFastEnumeration>
 
 - (NSUInteger)count;

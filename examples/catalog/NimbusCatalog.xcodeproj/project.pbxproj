@@ -47,7 +47,6 @@
 		6693C100158A63E600950D42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C0FF158A63E600950D42 /* AppDelegate.m */; };
 		6693C1D3158A80A000950D42 /* CatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1D2158A80A000950D42 /* CatalogViewController.m */; };
 		6693C202158A81D300950D42 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1D6158A81D300950D42 /* NICommonMetrics.m */; };
-		6693C203158A81D300950D42 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1D8158A81D300950D42 /* NIDataStructures.m */; };
 		6693C204158A81D300950D42 /* NIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1DA158A81D300950D42 /* NIDebuggingTools.m */; };
 		6693C205158A81D300950D42 /* NIDeviceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1DC158A81D300950D42 /* NIDeviceOrientation.m */; };
 		6693C206158A81D300950D42 /* NIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1DE158A81D300950D42 /* NIError.m */; };
@@ -907,7 +906,6 @@
 				6693C100158A63E600950D42 /* AppDelegate.m in Sources */,
 				6693C1D3158A80A000950D42 /* CatalogViewController.m in Sources */,
 				6693C202158A81D300950D42 /* NICommonMetrics.m in Sources */,
-				6693C203158A81D300950D42 /* NIDataStructures.m in Sources */,
 				6693C204158A81D300950D42 /* NIDebuggingTools.m in Sources */,
 				6693C205158A81D300950D42 /* NIDeviceOrientation.m in Sources */,
 				6693C206158A81D300950D42 /* NIError.m in Sources */,

@@ -459,13 +459,13 @@ int cssConsume(char* text, int token) {
   NSMutableSet* processedFilenames = [[NSMutableSet alloc] init];
 
   // Imported CSS files will be added to the queue.
-  NILinkedList* filenameQueue = [NILinkedList linkedList];
+  NSMutableOrderedSet* filenameQueue = [NSMutableOrderedSet orderedSet];
   [filenameQueue addObject:aPath];
 
   while ([filenameQueue count] > 0) {
     // Om nom nom
     NSString* path = [filenameQueue firstObject];
-    [filenameQueue removeFirstObject];
+    [filenameQueue removeObjectAtIndex:0];
 
     // Skip files that we've already processed in order to avoid infinite loops.
     if ([processedFilenames containsObject:path]) {

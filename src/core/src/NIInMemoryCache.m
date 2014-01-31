@@ -16,7 +16,6 @@
 
 #import "NIInMemoryCache.h"
 
-#import "NIDataStructures.h"
 #import "NIDebuggingTools.h"
 #import "NIPreprocessorMacros.h"
 
@@ -30,7 +29,7 @@
 // Mapping from a name (usually a URL) to an internal object.
 @property (nonatomic, readwrite, NI_STRONG) NSMutableDictionary* cacheMap;
 // A linked list of least recently used cache objects. Most recently used is the tail.
-@property (nonatomic, readwrite, NI_STRONG) NILinkedList* lruCacheObjects;
+@property (nonatomic, readwrite, NI_STRONG) NSMutableOrderedSet* lruCacheObjects;
 @end
 
 
@@ -65,11 +64,6 @@
  * then prune images until we're under the memory limit again.
  */
 @property (nonatomic, readwrite, NI_STRONG) NSDate* lastAccessTime;
-
-/**
- * @brief The location of this object in the least-recently used linked list.
- */
-@property (nonatomic, readwrite, NI_STRONG) NILinkedListLocation* lruLocation;
 
 /**
  * @brief Determine whether this cache entry has past its expiration date.
@@ -108,7 +102,7 @@
 - (id)initWithCapacity:(NSUInteger)capacity {
   if ((self = [super init])) {
     _cacheMap = [[NSMutableDictionary alloc] initWithCapacity:capacity];
-    _lruCacheObjects = [[NILinkedList alloc] init];
+    _lruCacheObjects = [[NSMutableOrderedSet alloc] init];
 
     // Automatically reduce memory usage when we get a memory warning.
     [[NSNotificationCenter defaultCenter] addObserver: self
@@ -147,8 +141,8 @@
   }
   info.lastAccessTime = [NSDate date];
 
-  [self.lruCacheObjects removeObjectAtLocation:info.lruLocation];
-  info.lruLocation = [self.lruCacheObjects addObject:info];
+  [self.lruCacheObjects removeObject:info];
+  [self.lruCacheObjects addObject:info];
 }
 
 
@@ -189,7 +183,7 @@
   NIMemoryCacheInfo* cacheInfo = [self cacheInfoForName:name];
   [self willRemoveObject:cacheInfo.object withName:name];
 
-  [self.lruCacheObjects removeObjectAtLocation:cacheInfo.lruLocation];
+  [self.lruCacheObjects removeObject:cacheInfo];
   [self.cacheMap removeObjectForKey:name];
 }
 
@@ -357,7 +351,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeAllObjects {
   self.cacheMap = [[NSMutableDictionary alloc] init];
-  self.lruCacheObjects = [[NILinkedList alloc] init];
+  self.lruCacheObjects = [[NSMutableOrderedSet alloc] init];
 }
 
 
@@ -396,7 +390,6 @@
 @synthesize object          = _object;
 @synthesize expirationDate  = _expirationDate;
 @synthesize lastAccessTime  = _lastAccessTime;
-@synthesize lruLocation     = _lruLocation;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
