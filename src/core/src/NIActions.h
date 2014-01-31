@@ -34,6 +34,12 @@ typedef BOOL (^NIActionBlock)(id object, id target, NSIndexPath* indexPath);
 /**
  * The NIActions class provides a generic interface for attaching actions to objects.
  *
+ * NIActions are used to implement user interaction in UITableViews and UICollectionViews via the
+ * corresponding classes (NITableViewActions and NICollectionViewActions) in the respective
+ * feature. NIActions separates the necessity
+ *
+ * <h3>Types of Actions</h3>
+ *
  * The three primary types of actions are:
  *
  * - buttons,
