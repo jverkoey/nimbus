@@ -25,9 +25,7 @@
 static NIImageMemoryCache* sNimbusGlobalMemoryCache = nil;
 static NSOperationQueue* sNimbusGlobalOperationQueue = nil;
 
-
 @implementation Nimbus
-
 
 + (void)setImageMemoryCache:(NIImageMemoryCache *)imageMemoryCache {
   if (sNimbusGlobalMemoryCache != imageMemoryCache) {

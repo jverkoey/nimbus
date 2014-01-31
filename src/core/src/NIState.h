@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NIInMemoryCache.h"
+@class NIImageMemoryCache;
 
 /**
  * For modifying Nimbus state information.
@@ -63,7 +63,6 @@
  */
 + (NSOperationQueue *)networkOperationQueue;
 
-
 #pragma mark Modifying Global State /** @name Modifying Global State */
 
 /**
@@ -81,6 +80,5 @@
 + (void)setNetworkOperationQueue:(NSOperationQueue *)queue;
 
 @end
-
 
 /**@}*/// End of State ////////////////////////////////////////////////////////////////////////////
