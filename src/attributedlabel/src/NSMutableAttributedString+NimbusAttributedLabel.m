@@ -88,10 +88,10 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTextColor:(UIColor*)color range:(NSRange)range {
   if (nil != color.CGColor) {
-    [self removeAttribute:(NSString *)kCTForegroundColorAttributeName range:range];
+    [self removeAttribute:NSForegroundColorAttributeName range:range];
 
-    [self addAttribute:(NSString *)kCTForegroundColorAttributeName
-                 value:(id)color.CGColor
+    [self addAttribute:NSForegroundColorAttributeName
+                 value:color
                  range:range];
   }
 }
@@ -127,9 +127,9 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
 - (void)setUnderlineStyle:(CTUnderlineStyle)style
                  modifier:(CTUnderlineStyleModifiers)modifier
                     range:(NSRange)range {
-  [self removeAttribute:(NSString *)kCTUnderlineColorAttributeName range:range]; 
-  [self addAttribute:(NSString *)kCTUnderlineStyleAttributeName 
-               value:[NSNumber numberWithInt:(style|modifier)]
+  [self removeAttribute:NSUnderlineStyleAttributeName range:range];
+  [self addAttribute:NSUnderlineStyleAttributeName
+               value:@((style|modifier))
                range:range];
 }
 
