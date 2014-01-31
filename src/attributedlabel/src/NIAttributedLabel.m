@@ -153,38 +153,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
 @implementation NIAttributedLabel
 
-@synthesize mutableAttributedString = _mutableAttributedString;
-@synthesize textFrame = _textFrame;
-@synthesize detectingLinks = _detectingLinks;
-@synthesize linksHaveBeenDetected = _linksHaveBeenDetected;
-@synthesize detectedlinkLocations = _detectedlinkLocations;
-@synthesize explicitLinkLocations = _explicitLinkLocations;
-@synthesize originalLink = _originalLink;
-@synthesize touchedLink = _touchedLink;
-@synthesize longPressTimer = _longPressTimer;
-@synthesize touchPoint = _touchPoint;
-@synthesize actionSheetLink = _actionSheetLink;
-@synthesize accessibleElements = _accessibleElements;
-@synthesize autoDetectLinks = _autoDetectLinks;
-@synthesize deferLinkDetection = _deferLinkDetection;
-@synthesize dataDetectorTypes = _dataDetectorTypes;
-@synthesize verticalTextAlignment = _verticalTextAlignment;
-@synthesize underlineStyle = _underlineStyle;
-@synthesize underlineStyleModifier = _underlineStyleModifier;
-@synthesize shadowBlur;
-@synthesize strokeWidth = _strokeWidth;
-@synthesize strokeColor = _strokeColor;
-@synthesize textKern = _textKern;
-@synthesize linkColor = _linkColor;
-@synthesize highlightedLinkBackgroundColor = _highlightedLinkBackgroundColor;
-@synthesize linksHaveUnderlines = _linksHaveUnderlines;
-@synthesize attributesForLinks = _attributesForLinks;
-@synthesize attributesForHighlightedLink = _attributesForHighlightedLink;
-@synthesize lineHeight = _lineHeight;
-@synthesize images;
-@synthesize delegate = _delegate;
-
-
 - (void)dealloc {
   [_longPressTimer invalidate];
 
