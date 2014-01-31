@@ -35,8 +35,7 @@ extern "C" {
  * framework's functionality.
  */
 
-#pragma mark -
-#pragma mark CGRect Methods
+#pragma mark - CGRect Methods
 
 /**
  * For manipulating CGRects.
@@ -113,8 +112,7 @@ CGSize NISizeOfStringWithLabelProperties(NSString *string, CGSize constrainedToS
 /**@}*/
 
 
-#pragma mark -
-#pragma mark NSRange Methods
+#pragma mark - NSRange Methods
 
 /**
  * For manipulating NSRange.
@@ -139,8 +137,7 @@ NSRange NIMakeNSRangeFromCFRange(CFRange range);
 /**@}*/
 
 
-#pragma mark -
-#pragma mark NSData Methods
+#pragma mark - NSData Methods
 
 /**
  * For manipulating NSData.
@@ -162,8 +159,7 @@ NSString* NISHA1HashFromData(NSData* data);
 /**@}*/
 
 
-#pragma mark -
-#pragma mark NSString Methods
+#pragma mark - NSString Methods
 
 /**
  * For manipulating NSStrings.
@@ -181,8 +177,7 @@ BOOL NIIsStringWithWhitespaceAndNewlines(NSString* string);
 /**@}*/
 
 
-#pragma mark -
-#pragma mark CGFloat Methods
+#pragma mark - CGFloat Methods
 
 /**
  * For manipulating CGFloat.
@@ -292,8 +287,7 @@ CG_INLINE CGFloat NICGFloatCos(CGFloat x) {
 
 /**@}*/
 
-#pragma mark -
-#pragma mark General Purpose Methods
+#pragma mark - General Purpose Methods
 
 /**
  * For general purpose foundation type manipulation.

@@ -21,8 +21,7 @@
 #import "NIPreprocessorMacros.h"
 #import "NIRuntimeClassModifications.h"
 
-#pragma mark -
-#pragma mark Unit Test Documentation
+#pragma mark - Unit Test Documentation
 
 /**
  * @fn NISwapInstanceMethods(Class, SEL, SEL)
@@ -93,8 +92,7 @@ static NSInteger sClassValue = 0;
   STAssertEquals(sClassValue, (NSInteger)3, @"value should be 3");
 }
 
-#pragma mark -
-#pragma mark Class Methods
+#pragma mark - Class Methods
 
 
 - (void)setValueToOne {

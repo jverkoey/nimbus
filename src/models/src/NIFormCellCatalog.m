@@ -181,8 +181,7 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 @end
 
 
-#pragma mark -
-#pragma mark Form Element Cells
+#pragma mark - Form Element Cells
 
 
 @implementation NIFormElementCell

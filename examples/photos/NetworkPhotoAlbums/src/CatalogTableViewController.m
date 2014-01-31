@@ -101,8 +101,7 @@
   return NIIsSupportedOrientation(toInterfaceOrientation);
 }
 
-#pragma mark -
-#pragma mark NITableViewModelDelegate
+#pragma mark - NITableViewModelDelegate
 
 
 - (UITableViewCell *)tableViewModel: (NITableViewModel *)tableViewModel
@@ -122,8 +121,7 @@
   return cell;
 }
 
-#pragma mark -
-#pragma mark UITableViewDelegate
+#pragma mark - UITableViewDelegate
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

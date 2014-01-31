@@ -96,8 +96,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
     _selectedPhotoIndex = -1;
 }
 
-#pragma mark -
-#pragma mark View Creation
+#pragma mark - View Creation
 
 
 - (UIImageView *)photoView {
@@ -117,8 +116,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   return imageView;
 }
 
-#pragma mark -
-#pragma mark Layout
+#pragma mark - Layout
 
 
 - (CGSize)photoSize {
@@ -322,8 +320,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   }
 }
 
-#pragma mark -
-#pragma mark Changing Selection
+#pragma mark - Changing Selection
 
 
 - (NSInteger)photoIndexAtPoint:(CGPoint)point {
@@ -358,8 +355,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   }
 }
 
-#pragma mark -
-#pragma mark UIResponder
+#pragma mark - UIResponder
 
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -380,8 +376,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   [self updateSelectionWithPoint:touchPoint];
 }
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 
 - (void)didLoadThumbnail: (UIImage *)image

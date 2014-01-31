@@ -365,8 +365,7 @@
   [self setChromeVisibility:(_isChromeHidden || _isAnimatingChrome) animated:YES];
 }
 
-#pragma mark -
-#pragma mark UIGestureRecognizer
+#pragma mark - UIGestureRecognizer
 
 
 - (void)didTap {
@@ -401,8 +400,7 @@
                 self.photoAlbumView.numberOfPages];
 }
 
-#pragma mark -
-#pragma mark NIPhotoAlbumScrollViewDelegate
+#pragma mark - NIPhotoAlbumScrollViewDelegate
 
 
 - (void)pagingScrollViewDidScroll:(NIPagingScrollView *)pagingScrollView {
@@ -430,8 +428,7 @@
   [self refreshChromeState];
 }
 
-#pragma mark -
-#pragma mark NIPhotoScrubberViewDelegate
+#pragma mark - NIPhotoScrubberViewDelegate
 
 
 - (void)photoScrubberViewDidChangeSelection:(NIPhotoScrubberView *)photoScrubberView {
@@ -440,8 +437,7 @@
   [self refreshChromeState];
 }
 
-#pragma mark -
-#pragma mark Actions
+#pragma mark - Actions
 
 
 - (void)didTapNextButton {
@@ -456,8 +452,7 @@
   [self refreshChromeState];
 }
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 
 - (void)settoolbarIsTranslucent:(BOOL)enabled {

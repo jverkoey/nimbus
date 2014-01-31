@@ -37,8 +37,7 @@ static BOOL     sOverviewHasOverridenStatusBarHeight = NO;
 static NIOverviewView* sOverviewView = nil;
 
 
-#pragma mark -
-#pragma mark Logging
+#pragma mark - Logging
 
 
 /**
@@ -98,8 +97,7 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 @implementation NIOverview
 
 
-#pragma mark -
-#pragma mark Device Orientation Changes
+#pragma mark - Device Orientation Changes
 
 #if defined(DEBUG) || defined(NI_DEBUG)
 
@@ -179,8 +177,7 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 #endif
 
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 
 + (void)applicationDidFinishLaunching {

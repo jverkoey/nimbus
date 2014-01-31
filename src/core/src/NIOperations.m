@@ -35,8 +35,7 @@
   _willFinishBlock = nil;
 }
 
-#pragma mark -
-#pragma mark Initiate delegate notification from the NSOperation
+#pragma mark - Initiate delegate notification from the NSOperation
 
 - (void)didStart {
 	[self performSelectorOnMainThread:@selector(onMainThreadOperationDidStart)
@@ -68,8 +67,7 @@
   }
 }
 
-#pragma mark -
-#pragma mark Main Thread
+#pragma mark - Main Thread
 
 - (void)onMainThreadOperationDidStart {
   // This method should only be called on the main thread.

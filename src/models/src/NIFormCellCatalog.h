@@ -208,8 +208,7 @@
 @end
 
 
-#pragma mark -
-#pragma mark Form Element Cells
+#pragma mark - Form Element Cells
 
 /**
  * The base class for form element cells.

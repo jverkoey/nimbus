@@ -59,16 +59,14 @@ BOOL sPreferGoogleChrome = NO;
     }
 }
 
-#pragma mark -
-#pragma mark Safari
+#pragma mark - Safari
 
 
 + (BOOL)safariWithURL:(NSURL *)url {
   return [[UIApplication sharedApplication] openURL:url];
 }
 
-#pragma mark -
-#pragma mark Google Chrome
+#pragma mark - Google Chrome
 
 /**
  * Based on https://developers.google.com/chrome/mobile/docs/ios-links
@@ -111,8 +109,7 @@ static NSString* const sGoogleChromeHttpsScheme = @"googlechromes:";
 }
 
 
-#pragma mark -
-#pragma mark Google Maps
+#pragma mark - Google Maps
 
 /**
  * Source for URL information: http://mapki.com/wiki/Google_Map_Parameters
@@ -225,8 +222,7 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
   return [NIInterapp openBestGoogleMapUrl:urlPath ];
 }
 
-#pragma mark -
-#pragma mark Phone
+#pragma mark - Phone
 
 
 + (BOOL)phone {
@@ -244,8 +240,7 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-#pragma mark -
-#pragma mark Texting
+#pragma mark - Texting
 
 
 + (BOOL)sms {
@@ -263,8 +258,7 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-#pragma mark -
-#pragma mark Mail
+#pragma mark - Mail
 
 static NSString* const sMailScheme = @"mailto:";
 
@@ -296,8 +290,7 @@ static NSString* const sMailScheme = @"mailto:";
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-#pragma mark -
-#pragma mark YouTube
+#pragma mark - YouTube
 
 
 + (BOOL)youTubeWithVideoId:(NSString *)videoId {
@@ -305,8 +298,7 @@ static NSString* const sMailScheme = @"mailto:";
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-#pragma mark -
-#pragma mark iBooks
+#pragma mark - iBooks
 
 static NSString* const sIBooksScheme = @"itms-books:";
 
@@ -329,8 +321,7 @@ static NSString* const sIBooksScheme = @"itms-books:";
   return @"364709193";
 }
 
-#pragma mark -
-#pragma mark Facebook
+#pragma mark - Facebook
 
 static NSString* const sFacebookScheme = @"fb:";
 
@@ -358,8 +349,7 @@ static NSString* const sFacebookScheme = @"fb:";
   return @"284882215";
 }
 
-#pragma mark -
-#pragma mark Twitter
+#pragma mark - Twitter
 
 static NSString* const sTwitterScheme = @"twitter:";
 
@@ -394,8 +384,7 @@ static NSString* const sTwitterScheme = @"twitter:";
   return @"333903271";
 }
 
-#pragma mark -
-#pragma mark Application
+#pragma mark - Application
 
 //static NSString* const sTwitterScheme = @"twitter:";
 
@@ -448,8 +437,7 @@ static NSString* const sTwitterScheme = @"twitter:";
     return didOpen;
 }
 
-#pragma mark -
-#pragma mark Instagram
+#pragma mark - Instagram
 
 static NSString* const sInstagramScheme = @"instagram:";
 
@@ -539,8 +527,7 @@ static NSString* const sInstagramScheme = @"instagram:";
   return @"389801252";
 }
 
-#pragma mark -
-#pragma mark App Store
+#pragma mark - App Store
 
 
 + (BOOL)appStoreWithAppId:(NSString *)appId {

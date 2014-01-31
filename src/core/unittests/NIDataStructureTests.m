@@ -31,8 +31,7 @@
 @implementation NIDataStructureTests
 
 
-#pragma mark -
-#pragma mark Linked List
+#pragma mark - Linked List
 
 
 - (void)testEmptyLinkedList {

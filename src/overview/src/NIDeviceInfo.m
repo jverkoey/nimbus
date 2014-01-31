@@ -91,8 +91,7 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
   return (nil == error);
 }
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 
 + (unsigned long long)bytesOfFreeMemory {
@@ -164,8 +163,7 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
   return [[UIDevice currentDevice] batteryState];
 }
 
-#pragma mark -
-#pragma mark Caching
+#pragma mark - Caching
 
 
 + (BOOL)beginCachedDeviceInfo {

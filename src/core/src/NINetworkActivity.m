@@ -100,8 +100,7 @@ void NINetworkActivityTaskDidFinish(void) {
   pthread_mutex_unlock(&gMutex);
 }
 
-#pragma mark -
-#pragma mark Network Activity Debugging
+#pragma mark - Network Activity Debugging
 
 #if defined(DEBUG) || defined(NI_DEBUG)
 

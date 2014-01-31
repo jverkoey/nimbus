@@ -30,8 +30,7 @@
 @implementation NIFoundationMethodsTests
 
 
-#pragma mark -
-#pragma mark CGRect Methods
+#pragma mark - CGRect Methods
 
 
 - (void)testCGRectMethods {
@@ -56,8 +55,7 @@
 }
 
 
-#pragma mark -
-#pragma mark NSRange Methods
+#pragma mark - NSRange Methods
 
 
 - (void)testNSRangeMethods {
@@ -71,8 +69,7 @@
                  @"The two lengths should be equal.");
 }
 
-#pragma mark -
-#pragma mark NSData Methods
+#pragma mark - NSData Methods
 
 
 - (void)testNSDataHashing {
@@ -85,8 +82,7 @@
                @"SHA1 hashes don't match.");
 }
 
-#pragma mark -
-#pragma mark NSString Methods
+#pragma mark - NSString Methods
 
 
 - (void)testNIIsStringWithWhitespaceAndNewlines {
@@ -111,8 +107,7 @@
   STAssertTrue(!NIIsStringWithWhitespaceAndNewlines(@" \r\n\ta\r\n "), @"Text should not be whitespace.");
 }
 
-#pragma mark -
-#pragma mark General Purpose Methods
+#pragma mark - General Purpose Methods
 
 
 - (void)testboundf {

@@ -24,8 +24,7 @@
 
 
 
-#pragma mark -
-#pragma mark Application lifecycle
+#pragma mark - Application lifecycle
 
 
 - (BOOL)              application:(UIApplication *)application

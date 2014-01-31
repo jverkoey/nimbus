@@ -23,8 +23,7 @@
 #import "NINonEmptyCollectionTesting.h"
 
 
-#pragma mark -
-#pragma mark Unit Test Documentation
+#pragma mark - Unit Test Documentation
 
 /**
  * @fn NIIsArrayWithObjects(id)
@@ -63,8 +62,7 @@
 @implementation NINonEmptyCollectionTestingTests
 
 
-#pragma mark -
-#pragma mark Non-Empty Collection Testing
+#pragma mark - Non-Empty Collection Testing
 
 
 - (void)testIsArrayWithObjects {

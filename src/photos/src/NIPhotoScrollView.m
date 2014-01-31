@@ -37,8 +37,7 @@
 @implementation NICenteringScrollView
 
 
-#pragma mark -
-#pragma mark UIView
+#pragma mark - UIView
 
 
 - (void)layoutSubviews {
@@ -129,16 +128,14 @@
   _scrollView.backgroundColor = backgroundColor;
 }
 
-#pragma mark -
-#pragma mark UIScrollView
+#pragma mark - UIScrollView
 
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
   return _imageView;
 }
 
-#pragma mark -
-#pragma mark Gesture Recognizers
+#pragma mark - Gesture Recognizers
 
 
 - (CGRect)rectAroundPoint:(CGPoint)point atZoomScale:(CGFloat)zoomScale {
@@ -200,8 +197,7 @@
   }
 }
 
-#pragma mark -
-#pragma mark NIPagingScrollViewPage
+#pragma mark - NIPagingScrollViewPage
 
 
 - (void)prepareForReuse {
@@ -215,8 +211,7 @@
   _scrollView.zoomScale = _scrollView.minimumZoomScale;
 }
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 
 - (void)setImage:(UIImage *)image photoSize:(NIPhotoScrollViewPhotoSize)photoSize {

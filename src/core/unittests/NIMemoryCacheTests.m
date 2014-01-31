@@ -32,8 +32,7 @@
 @implementation NIMemoryCacheTests
 
 
-#pragma mark -
-#pragma mark In-Memory Cache
+#pragma mark - In-Memory Cache
 
 
 - (void)testInitialization {
@@ -413,8 +412,7 @@
   [NSDate swizzleMethodsForUnitTesting];
 }
 
-#pragma mark -
-#pragma mark Image In-Memory Cache
+#pragma mark - Image In-Memory Cache
 
 
 // Create an image of a given size. The contents are undefined.

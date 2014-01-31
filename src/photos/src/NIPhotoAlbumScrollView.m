@@ -54,8 +54,7 @@
   }
 }
 
-#pragma mark -
-#pragma mark Visible Page Management
+#pragma mark - Visible Page Management
 
 
 - (void)willDisplayPage:(NIPhotoScrollView *)page {
@@ -110,8 +109,7 @@
   }
 }
 
-#pragma mark -
-#pragma mark NIPhotoScrollViewDelegate
+#pragma mark - NIPhotoScrollViewDelegate
 
 
 - (void)photoScrollViewDidDoubleTapToZoom: (NIPhotoScrollView *)photoScrollView
@@ -121,8 +119,7 @@
   }
 }
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 
 - (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView

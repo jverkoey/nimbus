@@ -159,8 +159,7 @@
   [self.cacheMap removeObjectForKey:name];
 }
 
-#pragma mark -
-#pragma mark Subclassing
+#pragma mark - Subclassing
 
 
 - (BOOL)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {
@@ -176,8 +175,7 @@
   // No-op
 }
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 
 - (void)storeObject:(id)object withName:(NSString *)name {

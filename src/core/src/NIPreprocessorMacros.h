@@ -19,8 +19,7 @@
 #import <Foundation/Foundation.h>
 
 
-#pragma mark -
-#pragma mark Preprocessor Macros
+#pragma mark - Preprocessor Macros
 
 /**
  * Preprocessor macros are added to Nimbus with care. Macros hide functionality and are difficult

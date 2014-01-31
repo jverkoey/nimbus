@@ -156,8 +156,7 @@ static const CGFloat kGraphRightMargin = 5;
   [_graphView setNeedsDisplay];
 }
 
-#pragma mark -
-#pragma mark NIOverviewGraphViewDataSource
+#pragma mark - NIOverviewGraphViewDataSource
 
 
 - (CGFloat)graphViewXRange:(NIOverviewGraphView *)graphView {
@@ -247,8 +246,7 @@ static const CGFloat kGraphRightMargin = 5;
   [NIDeviceInfo simulateLowMemoryWarning];
 }
 
-#pragma mark -
-#pragma mark NIOverviewGraphViewDataSource
+#pragma mark - NIOverviewGraphViewDataSource
 
 
 - (CGFloat)graphViewYRange:(NIOverviewGraphView *)graphView {
@@ -321,8 +319,7 @@ static const CGFloat kGraphRightMargin = 5;
   [self setNeedsLayout];
 }
 
-#pragma mark -
-#pragma mark NIOverviewGraphViewDataSource
+#pragma mark - NIOverviewGraphViewDataSource
 
 
 - (CGFloat)graphViewYRange:(NIOverviewGraphView *)graphView {
@@ -696,8 +693,7 @@ static const CGFloat kGraphRightMargin = 5;
   }
 }
 
-#pragma mark -
-#pragma mark NIOverviewGraphViewDataSource
+#pragma mark - NIOverviewGraphViewDataSource
 
 
 - (CGFloat)graphViewYRange:(NIOverviewGraphView *)graphView {

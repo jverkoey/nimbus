@@ -131,8 +131,7 @@
   [self.queue addOperation:albumRequest];
 }
 
-#pragma mark -
-#pragma mark UIViewController
+#pragma mark - UIViewController
 
 
 - (void)loadView {
@@ -153,8 +152,7 @@
   [super viewDidUnload];
 }
 
-#pragma mark -
-#pragma mark NIPhotoScrubberViewDataSource
+#pragma mark - NIPhotoScrubberViewDataSource
 
 
 - (NSInteger)numberOfPhotosInScrubberView:(NIPhotoScrubberView *)photoScrubberView {
@@ -192,8 +190,7 @@
   [UIView commitAnimations];
 }
 
-#pragma mark -
-#pragma mark NIPhotoAlbumScrollViewDataSource
+#pragma mark - NIPhotoAlbumScrollViewDataSource
 
 
 - (NSInteger)numberOfPagesInPagingScrollView:(NIPhotoAlbumScrollView *)photoScrollView {

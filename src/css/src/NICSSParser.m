@@ -402,8 +402,7 @@ int cssConsume(char* text, int token) {
   return result;
 }
 
-#pragma mark -
-#pragma mark Public
+#pragma mark - Public
 
 
 - (NSDictionary *)dictionaryForPath:(NSString *)path {

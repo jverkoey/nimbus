@@ -79,8 +79,7 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
                                                 object:nil];
 }
 
-#pragma mark -
-#pragma mark Page Layout
+#pragma mark - Page Layout
 
 
 - (CGFloat)pageHorizontalMargin {
@@ -160,8 +159,7 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
   _pagingScrollView.contentOffset = CGPointMake(newOffset, 0);
 }
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 
 - (void)setTranslucent:(BOOL)translucent {
@@ -209,8 +207,7 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
   [_pagingScrollView flashScrollIndicators];
 }
 
-#pragma mark -
-#pragma mark Gesture Recognizer
+#pragma mark - Gesture Recognizer
 
 
 

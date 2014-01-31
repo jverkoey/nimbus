@@ -96,8 +96,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   return self;
 }
 
-#pragma mark -
-#pragma mark Page Layout
+#pragma mark - Page Layout
 
 
 // The following three methods are from Apple's ImageScrollView example application and have
@@ -200,8 +199,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   return 0;
 }
 
-#pragma mark -
-#pragma mark Visible Page Management
+#pragma mark - Visible Page Management
 
 
 - (BOOL)isDisplayingPageForIndex:(NSInteger)pageIndex {
@@ -385,8 +383,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   }
 }
 
-#pragma mark -
-#pragma mark UIView
+#pragma mark - UIView
 
 
 - (void)setFrame:(CGRect)frame {
@@ -399,8 +396,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   [self layoutVisiblePages];
 }
 
-#pragma mark -
-#pragma mark UIScrollViewDelegate
+#pragma mark - UIScrollViewDelegate
 
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -499,8 +495,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   }
 }
 
-#pragma mark -
-#pragma mark Subclassing
+#pragma mark - Subclassing
 
 
 - (void)willDisplayPage:(UIView<NIPagingScrollViewPage> *)pageView {
@@ -523,8 +518,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   _centerPageIndex = centerPageIndex;
 }
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 
 - (void)reloadData {

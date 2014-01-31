@@ -48,8 +48,7 @@
   return self;
 }
 
-#pragma mark -
-#pragma mark Memory Warnings
+#pragma mark - Memory Warnings
 
 
 - (void)reduceMemoryUsage {

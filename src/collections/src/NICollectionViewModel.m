@@ -55,8 +55,7 @@
   return [self initWithDelegate:nil];
 }
 
-#pragma mark -
-#pragma mark Compiling Data
+#pragma mark - Compiling Data
 
 
 - (void)_resetCompiledData {
@@ -136,8 +135,7 @@
   self.sections = sections;
 }
 
-#pragma mark -
-#pragma mark UICollectionViewDataSource
+#pragma mark - UICollectionViewDataSource
 
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -174,8 +172,7 @@
   return nil;
 }
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath {

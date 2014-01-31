@@ -61,8 +61,7 @@
   return [self initWithDelegate:nil];
 }
 
-#pragma mark -
-#pragma mark Compiling Data
+#pragma mark - Compiling Data
 
 
 - (void)_resetCompiledData {
@@ -223,8 +222,7 @@
   self.sectionPrefixToSectionIndex = sectionPrefixToSectionIndex;
 }
 
-#pragma mark -
-#pragma mark UITableViewDataSource
+#pragma mark - UITableViewDataSource
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -309,8 +307,7 @@
   return cell;
 }
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath {

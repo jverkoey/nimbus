@@ -111,8 +111,7 @@
   return cacheKey;
 }
 
-#pragma mark -
-#pragma mark Internal consistent implementation of state changes
+#pragma mark - Internal consistent implementation of state changes
 
 
 - (void)_didStartLoading {
@@ -169,8 +168,7 @@
   [self networkImageViewDidFailWithError:error];
 }
 
-#pragma mark -
-#pragma mark NIOperationDelegate
+#pragma mark - NIOperationDelegate
 
 
 - (void)nimbusOperationDidStart:(NIOperation *)operation {
@@ -190,8 +188,7 @@
   [self _didFailToLoadWithError:error];
 }
 
-#pragma mark -
-#pragma mark Subclassing
+#pragma mark - Subclassing
 
 
 - (void)networkImageViewDidStartLoading {
@@ -206,8 +203,7 @@
   // No-op. Meant to be overridden.
 }
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 
 - (void)setPathToNetworkImage:(NSString *)pathToNetworkImage {
@@ -406,8 +402,7 @@
   [self setImage:self.initialImage];
 }
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 
 - (void)setInitialImage:(UIImage *)initialImage {

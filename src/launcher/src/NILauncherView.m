@@ -199,8 +199,7 @@ static const CGFloat kDefaultPadding = 10;
   page.viewMargins = buttonMargins;
 }
 
-#pragma mark -
-#pragma mark UIPageControl Change Notifications
+#pragma mark - UIPageControl Change Notifications
 
 
 - (void)pagerDidChangePage:(UIPageControl*)pager {
@@ -211,8 +210,7 @@ static const CGFloat kDefaultPadding = 10;
   }
 }
 
-#pragma mark -
-#pragma mark Actions
+#pragma mark - Actions
 
 
 /**
@@ -298,8 +296,7 @@ static const CGFloat kDefaultPadding = 10;
   self.pager.currentPage = pagingScrollView.centerPageIndex;
 }
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 
 - (void)reloadData {

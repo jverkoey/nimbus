@@ -31,8 +31,7 @@
 @implementation NimbusCoreAdditionTests
 
 
-#pragma mark -
-#pragma mark NSString Additions
+#pragma mark - NSString Additions
 
 
 - (void)testNSString_queryContentsUsingEncoding {
