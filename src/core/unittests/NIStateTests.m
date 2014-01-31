@@ -20,6 +20,7 @@
 #import <UIKit/UIKit.h>
 
 #import "NIState.h"
+#import "NIInMemoryCache.h"
 
 @interface NIStateTests : SenTestCase
 @end
