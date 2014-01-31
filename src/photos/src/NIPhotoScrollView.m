@@ -473,7 +473,7 @@
 
 - (void)restoreCenterPoint:(CGPoint)oldCenter scale:(CGFloat)oldScale {
   // Step 1: restore zoom scale, making sure it is within the allowable range.
-  _scrollView.zoomScale = boundf(oldScale,
+  _scrollView.zoomScale = NIBoundf(oldScale,
                                  _scrollView.minimumZoomScale, _scrollView.maximumZoomScale);
 
   // Step 2: restore center point, making sure it is within the allowable range.
@@ -489,8 +489,8 @@
   // 2c: restore offset, adjusted to be within the allowable range
   CGPoint maxOffset = [self maximumContentOffset];
   CGPoint minOffset = [self minimumContentOffset];
-  offset.x = boundf(offset.x, minOffset.x, maxOffset.x);
-  offset.y = boundf(offset.y, minOffset.y, maxOffset.y);
+  offset.x = NIBoundf(offset.x, minOffset.x, maxOffset.x);
+  offset.y = NIBoundf(offset.y, minOffset.y, maxOffset.y);
   _scrollView.contentOffset = offset;
 }
 
