@@ -156,11 +156,19 @@
 #endif
 
 #ifndef kCFCoreFoundationVersionNumber_iOS_5_0
-#define kCFCoreFoundationVersionNumber_iOS_5_0 675
+#define kCFCoreFoundationVersionNumber_iOS_5_0 675.00
 #endif
 
 #ifndef kCFCoreFoundationVersionNumber_iOS_5_1
-#define kCFCoreFoundationVersionNumber_iOS_5_1 690.1
+#define kCFCoreFoundationVersionNumber_iOS_5_1 690.10
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iOS_6_0
+#define kCFCoreFoundationVersionNumber_iOS_6_0 793.00
+#endif
+
+#ifndef kCFCoreFoundationVersionNumber_iOS_6_1
+#define kCFCoreFoundationVersionNumber_iOS_6_1 793.00
 #endif
 
 #if __cplusplus
