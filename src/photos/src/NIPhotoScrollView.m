@@ -211,7 +211,7 @@
   _scrollView.zoomScale = _scrollView.minimumZoomScale;
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (void)setImage:(UIImage *)image photoSize:(NIPhotoScrollViewPhotoSize)photoSize {

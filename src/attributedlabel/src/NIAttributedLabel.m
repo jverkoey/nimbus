@@ -229,7 +229,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return NISizeOfAttributedStringConstrainedToSize([self mutableAttributedStringWithAdditions], size, self.numberOfLines);
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 - (void)setText:(NSString *)text {
   [super setText:text];

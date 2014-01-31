@@ -94,7 +94,7 @@
   return nil;
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (void)setIsLoading:(BOOL)isLoading {

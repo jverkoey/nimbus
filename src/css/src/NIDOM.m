@@ -88,7 +88,7 @@
   [_stylesheet applyStyleToView:view withClassName:selectorName inDOM:self];
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (id)keyForView:(UIView *)view {

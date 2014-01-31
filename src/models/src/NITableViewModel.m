@@ -307,7 +307,7 @@
   return cell;
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath {

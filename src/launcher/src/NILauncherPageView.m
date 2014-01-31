@@ -82,7 +82,7 @@
   [self.mutableRecyclableViews removeAllObjects];
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (void)addRecyclableView:(UIView<NIRecyclableView> *)view {

@@ -373,7 +373,7 @@ static const CGSize kCellImageSize = {44, 44};
   [self.cachedImages removeAllObjects];
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {

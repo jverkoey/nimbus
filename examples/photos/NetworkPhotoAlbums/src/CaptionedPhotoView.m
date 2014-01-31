@@ -75,7 +75,7 @@ static UIEdgeInsets kWellPadding = {0}; // see +initialize
   self.captionLabel.frame = UIEdgeInsetsInsetRect(self.captionWell.bounds, kWellPadding);
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (void)setCaption:(NSString *)caption {

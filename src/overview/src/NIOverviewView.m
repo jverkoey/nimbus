@@ -159,7 +159,7 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
   _pagingScrollView.contentOffset = CGPointMake(newOffset, 0);
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (void)setTranslucent:(BOOL)translucent {

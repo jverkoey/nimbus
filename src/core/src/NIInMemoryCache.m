@@ -175,7 +175,7 @@
   // No-op
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (void)storeObject:(id)object withName:(NSString *)name {

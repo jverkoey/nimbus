@@ -296,7 +296,7 @@ static const CGFloat kDefaultPadding = 10;
   self.pager.currentPage = pagingScrollView.centerPageIndex;
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (void)reloadData {

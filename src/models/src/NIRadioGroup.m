@@ -57,7 +57,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
   return [self initWithController:nil];
 }
 
-#pragma mark - Private Methods
+#pragma mark - Private
 
 
 - (id)keyForIdentifier:(NSInteger)identifier {
@@ -137,7 +137,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
   [self.forwardDelegates removeObject:forwardDelegate];
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (id)mapObject:(id)object toIdentifier:(NSInteger)identifier {

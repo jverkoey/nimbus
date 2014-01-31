@@ -192,7 +192,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
   return [self pathFromPath:path];
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (NIStylesheet *)stylesheetForPath:(NSString *)path {

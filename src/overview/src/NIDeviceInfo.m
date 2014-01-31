@@ -91,7 +91,7 @@ NSString* NIStringFromBytes(unsigned long long bytes) {
   return (nil == error);
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 + (unsigned long long)bytesOfFreeMemory {

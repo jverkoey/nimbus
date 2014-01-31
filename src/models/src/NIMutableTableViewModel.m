@@ -25,7 +25,7 @@
 
 
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (NSArray *)addObject:(id)object {
@@ -94,7 +94,7 @@
   [self _compileSectionIndex];
 }
 
-#pragma mark - Private Methods
+#pragma mark - Private
 
 
 - (NITableViewModelSection *)_appendSection {

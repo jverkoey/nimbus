@@ -115,7 +115,7 @@ static Class _rulesetClass;
   [self reduceMemory];
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (BOOL)loadFromPath:(NSString *)path {

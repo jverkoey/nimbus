@@ -172,7 +172,7 @@
   return nil;
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath {

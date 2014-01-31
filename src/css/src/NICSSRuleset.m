@@ -100,7 +100,7 @@ return _##name; \
   return self;
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (void)addEntriesFromDictionary:(NSDictionary *)dictionary {

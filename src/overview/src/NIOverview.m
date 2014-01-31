@@ -177,7 +177,7 @@ void NIOverviewLogMethod(const char* message, unsigned length, BOOL withSyslogBa
 #endif
 
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 + (void)applicationDidFinishLaunching {

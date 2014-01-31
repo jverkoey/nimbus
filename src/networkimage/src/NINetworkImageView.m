@@ -203,7 +203,7 @@
   // No-op. Meant to be overridden.
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (void)setPathToNetworkImage:(NSString *)pathToNetworkImage {

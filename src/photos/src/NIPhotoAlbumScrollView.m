@@ -119,7 +119,7 @@
   }
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView

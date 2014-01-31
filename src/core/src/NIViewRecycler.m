@@ -51,7 +51,7 @@
   [self removeAllViews];
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 - (UIView<NIRecyclableView> *)dequeueReusableViewWithIdentifier:(NSString *)reuseIdentifier {
   NSMutableArray* views = [_reuseIdentifiersToRecycledViews objectForKey:reuseIdentifier];

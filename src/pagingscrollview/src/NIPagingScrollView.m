@@ -518,7 +518,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   _centerPageIndex = centerPageIndex;
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (void)reloadData {

@@ -376,7 +376,7 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
   [self updateSelectionWithPoint:touchPoint];
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (void)didLoadThumbnail: (UIImage *)image

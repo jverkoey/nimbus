@@ -30,7 +30,7 @@
 @implementation NIMutableCollectionViewModel
 
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (NSArray *)addObject:(id)object {
@@ -95,7 +95,7 @@
   return [NSIndexSet indexSetWithIndex:index];
 }
 
-#pragma mark - Private Methods
+#pragma mark - Private
 
 
 - (NICollectionViewModelSection *)_appendSection {

@@ -452,7 +452,7 @@
   [self refreshChromeState];
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 
 - (void)settoolbarIsTranslucent:(BOOL)enabled {
