@@ -78,7 +78,7 @@
 - (void)shouldUpdateViewWithObject:(BadgedLauncherViewObject *)object {
   [super shouldUpdateViewWithObject:object];
 
-  NSInteger badgeNumber = boundi(object.badgeNumber, 0, 100);
+  NSInteger badgeNumber = NIBoundi(object.badgeNumber, 0, 100);
   if (object.badgeNumber > 0) {
     if (badgeNumber < 100) {
       self.badgeView.text = [NSString stringWithFormat:@"%d", badgeNumber];

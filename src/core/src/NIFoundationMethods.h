@@ -192,13 +192,14 @@ BOOL NIIsStringWithWhitespaceAndNewlines(NSString* string);
  */
 
 /**
- * Bounds a given value within the min and max values.
- *
- * If max < min then value will be min.
- *
- *      @returns min <= result <= max
+ * Deprecated method. Use NIBoundf instead.
  */
-CGFloat boundf(CGFloat value, CGFloat min, CGFloat max);
+CGFloat boundf(CGFloat value, CGFloat min, CGFloat max) __NI_DEPRECATED_METHOD; // Use NIBoundf instead.
+
+/**
+ * Deprecated method. Use NIBoundi instead.
+ */
+NSInteger boundi(NSInteger value, NSInteger min, NSInteger max) __NI_DEPRECATED_METHOD; // Use NIBoundi instead.
 
 /**
  * Bounds a given value within the min and max values.
@@ -207,7 +208,16 @@ CGFloat boundf(CGFloat value, CGFloat min, CGFloat max);
  *
  *      @returns min <= result <= max
  */
-NSInteger boundi(NSInteger value, NSInteger min, NSInteger max);
+CGFloat NIBoundf(CGFloat value, CGFloat min, CGFloat max);
+
+/**
+ * Bounds a given value within the min and max values.
+ *
+ * If max < min then value will be min.
+ *
+ *      @returns min <= result <= max
+ */
+NSInteger NIBoundi(NSInteger value, NSInteger min, NSInteger max);
 
 /**@}*/
 

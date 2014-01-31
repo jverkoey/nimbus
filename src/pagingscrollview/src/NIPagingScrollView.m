@@ -259,12 +259,12 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   if (NIPagingScrollViewHorizontal == self.type) {
     // Whatever image is currently displayed in the center of the screen is the currently
     // visible image.
-    return boundi((NSInteger)(floorf((contentOffset.x + boundsSize.width / 2) / boundsSize.width)
+    return NIBoundi((NSInteger)(floorf((contentOffset.x + boundsSize.width / 2) / boundsSize.width)
                               + 0.5f),
                   0, self.numberOfPages - 1);
     
   } else if (NIPagingScrollViewVertical == self.type) {
-    return boundi((NSInteger)(floorf((contentOffset.y + boundsSize.height / 2) / boundsSize.height)
+    return NIBoundi((NSInteger)(floorf((contentOffset.y + boundsSize.height / 2) / boundsSize.height)
                               + 0.5f),
                   0, self.numberOfPages - 1);
   }
@@ -281,8 +281,8 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
   NSInteger currentVisiblePageIndex = [self currentVisiblePageIndex];
 
-  int firstVisiblePageIndex = boundi(currentVisiblePageIndex - 1, 0, self.numberOfPages - 1);
-  int lastVisiblePageIndex  = boundi(currentVisiblePageIndex + 1, 0, self.numberOfPages - 1);
+  int firstVisiblePageIndex = NIBoundi(currentVisiblePageIndex - 1, 0, self.numberOfPages - 1);
+  int lastVisiblePageIndex  = NIBoundi(currentVisiblePageIndex + 1, 0, self.numberOfPages - 1);
 
   return NSMakeRange(firstVisiblePageIndex, lastVisiblePageIndex - firstVisiblePageIndex + 1);
 }
@@ -656,7 +656,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
   NSInteger oldCenterPageIndex = _centerPageIndex;
   if (oldCenterPageIndex >= 0) {
-    _centerPageIndex = boundi(_centerPageIndex, 0, self.numberOfPages - 1);
+    _centerPageIndex = NIBoundi(_centerPageIndex, 0, self.numberOfPages - 1);
 
     if (![self.pagingScrollView isTracking] && ![self.pagingScrollView isDragging]) {
       // The content size is calculated based on the number of pages and the scroll view frame.
