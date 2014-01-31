@@ -24,21 +24,27 @@
 #error "Nimbus requires ARC support."
 #endif
 
-static const CGFloat kVMargin = 5.0f;
+// The number of seconds to wait before executing a long press action on the tapped link.
 static const NSTimeInterval kLongPressTimeInterval = 0.5;
+
+// The number of pixels the user's finger must move before cancelling the long press timer.
 static const CGFloat kLongPressGutter = 22;
-NSString * const kNILinkAttributeName = @"NIAttributedLabel:Link";
-
-CGFloat ImageDelegateGetAscentCallback(void* refCon);
-CGFloat ImageDelegateGetDescentCallback(void* refCon);
-CGFloat ImageDelegateGetWidthCallback(void* refCon);
-
-// \u2026 is the Unicode horizontal ellipsis character code
-static NSString* const kEllipsesCharacter = @"\u2026";
 
 // The touch gutter is the amount of space around a link that will still register as tapping
 // "within" the link.
 static const CGFloat kTouchGutter = 22;
+
+static const CGFloat kVMargin = 5.0f;
+
+// \u2026 is the Unicode horizontal ellipsis character code
+static NSString* const kEllipsesCharacter = @"\u2026";
+
+NSString* const kNILinkAttributeName = @"NIAttributedLabel:Link";
+
+// For supporting images.
+CGFloat NIImageDelegateGetAscentCallback(void* refCon);
+CGFloat NIImageDelegateGetDescentCallback(void* refCon);
+CGFloat NIImageDelegateGetWidthCallback(void* refCon);
 
 CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedString, CGSize size, NSInteger numberOfLines) {
   if (nil == attributedString) {
@@ -1181,9 +1187,9 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
       CTRunDelegateCallbacks callbacks;
       memset(&callbacks, 0, sizeof(CTRunDelegateCallbacks));
       callbacks.version = kCTRunDelegateVersion1;
-      callbacks.getAscent = ImageDelegateGetAscentCallback;
-      callbacks.getDescent = ImageDelegateGetDescentCallback;
-      callbacks.getWidth = ImageDelegateGetWidthCallback;
+      callbacks.getAscent = NIImageDelegateGetAscentCallback;
+      callbacks.getDescent = NIImageDelegateGetDescentCallback;
+      callbacks.getWidth = NIImageDelegateGetWidthCallback;
 
       NSUInteger index = labelImage.index;
       if (index >= attributedString.length) {
@@ -1606,7 +1612,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CGFloat ImageDelegateGetAscentCallback(void* refCon) {
+CGFloat NIImageDelegateGetAscentCallback(void* refCon) {
   NIAttributedLabelImage *labelImage = (__bridge NIAttributedLabelImage *)refCon;
 
   switch (labelImage.verticalTextAlignment) {
@@ -1628,7 +1634,7 @@ CGFloat ImageDelegateGetAscentCallback(void* refCon) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CGFloat ImageDelegateGetDescentCallback(void* refCon) {
+CGFloat NIImageDelegateGetDescentCallback(void* refCon) {
   NIAttributedLabelImage *labelImage = (__bridge NIAttributedLabelImage *)refCon;
 
   switch (labelImage.verticalTextAlignment) {
@@ -1650,7 +1656,7 @@ CGFloat ImageDelegateGetDescentCallback(void* refCon) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CGFloat ImageDelegateGetWidthCallback(void* refCon) {
+CGFloat NIImageDelegateGetWidthCallback(void* refCon) {
   NIAttributedLabelImage *labelImage = (__bridge NIAttributedLabelImage *)refCon;
   return labelImage.image.size.width + labelImage.margins.left + labelImage.margins.right;
 }
