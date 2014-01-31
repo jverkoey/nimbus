@@ -104,6 +104,7 @@
 		66B941561592EB4500AEA1D2 /* dilly.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66B941551592EB4500AEA1D2 /* dilly.jpg */; };
 		66B9415D1593866900AEA1D2 /* NIWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B9415C1593866900AEA1D2 /* NIWebController.m */; };
 		66B9415F159386D300AEA1D2 /* NimbusWebController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66B9415E159386D300AEA1D2 /* NimbusWebController.bundle */; };
+		66B9C3D5189B750100CCC971 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B9C3D4189B750100CCC971 /* Default-568h@2x.png */; };
 		66BB4F52159527E200020EE8 /* NILauncherPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4F51159527E200020EE8 /* NILauncherPageView.m */; };
 		66BB4F6A15957E4300020EE8 /* NILauncherViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4F6915957E4300020EE8 /* NILauncherViewModel.m */; };
 		66BB4F6D1595801900020EE8 /* NILauncherViewObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BB4F6C1595801900020EE8 /* NILauncherViewObject.m */; };
@@ -324,6 +325,7 @@
 		66B9415B1593866900AEA1D2 /* NIWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIWebController.h; path = ../../src/webcontroller/src/NIWebController.h; sourceTree = "<group>"; };
 		66B9415C1593866900AEA1D2 /* NIWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIWebController.m; path = ../../src/webcontroller/src/NIWebController.m; sourceTree = "<group>"; };
 		66B9415E159386D300AEA1D2 /* NimbusWebController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusWebController.bundle; path = ../../src/webcontroller/resources/NimbusWebController.bundle; sourceTree = "<group>"; };
+		66B9C3D4189B750100CCC971 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../examples/catalog/Default-568h@2x.png"; sourceTree = "<group>"; };
 		66BB4F50159527E200020EE8 /* NILauncherPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NILauncherPageView.h; path = ../../src/launcher/src/NILauncherPageView.h; sourceTree = "<group>"; };
 		66BB4F51159527E200020EE8 /* NILauncherPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NILauncherPageView.m; path = ../../src/launcher/src/NILauncherPageView.m; sourceTree = "<group>"; };
 		66BB4F6815957E4300020EE8 /* NILauncherViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NILauncherViewModel.h; path = ../../src/launcher/src/NILauncherViewModel.h; sourceTree = "<group>"; };
@@ -667,6 +669,7 @@
 			children = (
 				6693C290158A8E4000950D42 /* Default.png */,
 				6693C291158A8E4000950D42 /* Default@2x.png */,
+				66B9C3D4189B750100CCC971 /* Default-568h@2x.png */,
 				6693C292158A8E4000950D42 /* Icon-72.png */,
 				6693C293158A8E4000950D42 /* Icon-Small-50.png */,
 				6693C294158A8E4000950D42 /* Icon-Small.png */,
@@ -897,6 +900,7 @@
 				6693C2A0158A8E4000950D42 /* Icon@2x.png in Resources */,
 				6633C7F2158F08EA0054D240 /* AttributedLabelMashup.xib in Resources */,
 				661F293315929E2300D11FC3 /* ApplicationBadges.xib in Resources */,
+				66B9C3D5189B750100CCC971 /* Default-568h@2x.png in Resources */,
 				66B941561592EB4500AEA1D2 /* dilly.jpg in Resources */,
 				66B9415F159386D300AEA1D2 /* NimbusWebController.bundle in Resources */,
 				6677FEE515AC8D1600517ABC /* circle.png in Resources */,
