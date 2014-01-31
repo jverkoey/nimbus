@@ -324,6 +324,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   [super setTextColor:textColor];
 
   [self.mutableAttributedString setTextColor:textColor];
+
+  [self attributedTextDidChange];
 }
 
 - (void)setTextColor:(UIColor *)textColor range:(NSRange)range {
@@ -336,6 +338,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   [super setFont:font];
 
   [self.mutableAttributedString setFont:font];
+
+  [self attributedTextDidChange];
 }
 
 - (void)setFont:(UIFont *)font range:(NSRange)range {
@@ -428,6 +432,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     CTTextAlignment alignment = [self.class alignmentFromUITextAlignment:self.textAlignment];
     CTLineBreakMode lineBreak = [self.class lineBreakModeFromUILineBreakMode:self.lineBreakMode];
     [self.mutableAttributedString setTextAlignment:alignment lineBreakMode:lineBreak lineHeight:self.lineHeight];
+
+    [self attributedTextDidChange];
   }
 }
 
