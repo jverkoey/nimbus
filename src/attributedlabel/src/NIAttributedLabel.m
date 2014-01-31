@@ -24,6 +24,10 @@
 #error "Nimbus requires ARC support."
 #endif
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
+#error "NIAttributedLabel requires iOS 6 or higher."
+#endif
+
 // The number of seconds to wait before executing a long press action on the tapped link.
 static const NSTimeInterval kLongPressTimeInterval = 0.5;
 
@@ -46,7 +50,7 @@ CGFloat NIImageDelegateGetAscentCallback(void* refCon);
 CGFloat NIImageDelegateGetDescentCallback(void* refCon);
 CGFloat NIImageDelegateGetWidthCallback(void* refCon);
 
-CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedString, CGSize size, NSInteger numberOfLines) {
+CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedString, CGSize size, NSInteger numberOfLines) {
   if (nil == attributedString) {
     return CGSizeZero;
   }
@@ -88,25 +92,23 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 }
 
 @interface NIAttributedLabelImage : NSObject
-@property (nonatomic, assign) NSInteger index;
-@property (nonatomic, NI_STRONG) UIImage* image;
-@property (nonatomic, assign) UIEdgeInsets margins;
-@property (nonatomic, assign, readonly) CGSize boxSize; // imageSize + margins
-@property (nonatomic, assign) NIVerticalTextAlignment verticalTextAlignment;
-@property (nonatomic, assign) CGFloat fontAscent;
-@property (nonatomic, assign) CGFloat fontDescent;
+
+- (CGSize)boxSize; // imageSize + margins
+
+@property (nonatomic)           NSInteger     index;
+@property (nonatomic, strong)   UIImage*      image;
+@property (nonatomic)           UIEdgeInsets  margins;
+
+@property (nonatomic) NIVerticalTextAlignment verticalTextAlignment;
+
+@property (nonatomic) CGFloat fontAscent;
+@property (nonatomic) CGFloat fontDescent;
+
 @end
 
 @implementation NIAttributedLabelImage
-@synthesize index;
-@synthesize image;
-@synthesize margins;
-@synthesize verticalTextAlignment;
-@synthesize fontAscent;
-@synthesize fontDescent;
 
-- (CGSize)boxSize
-{
+- (CGSize)boxSize {
   return CGSizeMake(self.image.size.width + self.margins.left + self.margins.right,
                     self.image.size.height + self.margins.top + self.margins.bottom);
 }
@@ -115,19 +117,27 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
 
 @interface NIAttributedLabel() <UIActionSheetDelegate>
-@property (nonatomic, NI_STRONG) NSMutableAttributedString* mutableAttributedString;
-@property (nonatomic, assign) CTFrameRef textFrame; // CFType, manually managed lifetime, see setter.
-@property (assign) BOOL detectingLinks; // Atomic.
-@property (nonatomic, assign) BOOL linksHaveBeenDetected;
-@property (nonatomic, copy) NSArray* detectedlinkLocations;
-@property (nonatomic, NI_STRONG) NSMutableArray* explicitLinkLocations;
-@property (nonatomic, NI_STRONG) NSTextCheckingResult* originalLink;
-@property (nonatomic, NI_STRONG) NSTextCheckingResult* touchedLink;
-@property (nonatomic, NI_STRONG) NSTimer* longPressTimer;
-@property (nonatomic, assign) CGPoint touchPoint;
-@property (nonatomic, NI_STRONG) NSTextCheckingResult* actionSheetLink;
-@property (nonatomic, NI_STRONG) NSArray *accessibleElements;
-@property (nonatomic, NI_STRONG) NSMutableArray *images;
+@property (nonatomic, strong) NSMutableAttributedString* mutableAttributedString;
+
+@property (nonatomic) CTFrameRef textFrame; // CFType, manually managed lifetime, see setter.
+
+@property (assign)            BOOL detectingLinks; // Atomic.
+@property (nonatomic)         BOOL linksHaveBeenDetected;
+@property (nonatomic, copy)   NSArray*        detectedlinkLocations;
+@property (nonatomic, strong) NSMutableArray* explicitLinkLocations;
+
+@property (nonatomic, strong) NSTextCheckingResult* originalLink;
+@property (nonatomic, strong) NSTextCheckingResult* touchedLink;
+
+@property (nonatomic, strong) NSTimer*  longPressTimer;
+@property (nonatomic)         CGPoint   touchPoint;
+
+@property (nonatomic, strong) NSTextCheckingResult* actionSheetLink;
+
+@property (nonatomic, copy) NSArray* accessibleElements;
+
+@property (nonatomic, strong) NSMutableArray *images;
+
 @end
 
 

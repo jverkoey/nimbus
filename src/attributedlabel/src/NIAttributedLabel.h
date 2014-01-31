@@ -32,7 +32,7 @@ extern "C" {
  * This method is used in NIAttributedLabel to calculate its size after all additional
  * styling attributes have been set.
  */
-CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedString, CGSize size, NSInteger numberOfLines);
+CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedString, CGSize size, NSInteger numberOfLines);
 
 #if defined __cplusplus
 };
