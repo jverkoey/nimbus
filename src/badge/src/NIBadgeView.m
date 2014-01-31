@@ -186,5 +186,4 @@ static const CGFloat kBadgeLineSize = 2.0f;
                 withFont:self.font];
 }
 
-
 @end

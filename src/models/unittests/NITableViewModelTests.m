@@ -28,13 +28,9 @@
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NITableViewModelTests
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testEmptyTableViewModel {
   NITableViewModel* model = [[NITableViewModel alloc] init];
 
@@ -63,8 +59,6 @@
   STAssertEquals([model numberOfSectionsInTableView:nil], 0, @"There should not be any sections.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testInvalidAccess {
   NITableViewModel* model = [[NITableViewModel alloc] init];
 
@@ -78,8 +72,6 @@
   STAssertNil([model tableView:nil titleForFooterInSection:-1], @"There should not be a footer title.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testEditing {
   NITableViewModel* model = [[NITableViewModel alloc] init];
 
@@ -89,8 +81,6 @@
                 @"Should not be able to edit anything.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testListTableViewModel {
   NSArray* contents = [NSArray arrayWithObjects:
                        @"This is a string",
@@ -105,8 +95,6 @@
   STAssertNil([model tableView:nil titleForHeaderInSection:0], @"There should be no section title.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testListTableViewModel_objectAtIndexPath {
   id object1 = [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"];
   id object2 = [NSArray array];
@@ -132,8 +120,6 @@
   NIDebugAssertionsShouldBreak = YES;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testListTableViewModel_indexPathOfObject {
   id object1 = [NSDictionary dictionaryWithObject:@"Row 1" forKey:@"title"];
   id object2 = [NSArray array];
@@ -156,8 +142,6 @@
   NIDebugAssertionsShouldBreak = YES;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testSectionedTableViewModel {
   NSArray* contents = [NSArray arrayWithObjects:
                        @"Section 1",
@@ -179,8 +163,6 @@
   STAssertEquals([model numberOfSectionsInTableView:nil], 5, @"There should be 5 sections.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testSectionedTableViewModelWithFooters {
   NSArray* contents = [NSArray arrayWithObjects:
                        @"Section 1",
@@ -215,8 +197,6 @@
   STAssertNil([model tableView:nil titleForFooterInSection:6], @"There should not be a title.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testDynamicSectionedIndex {
   NSArray* contents = [NSArray arrayWithObjects:
                        @"A",

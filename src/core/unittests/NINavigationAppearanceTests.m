@@ -24,9 +24,6 @@
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NINavigationAppearanceTests
 
 
@@ -35,15 +32,11 @@
   [NINavigationAppearance clear];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testSinglePush {
   [NINavigationAppearance pushAppearanceForNavigationController:nil];
   STAssertEquals([NINavigationAppearance count], 1, @"Stack count should be 1");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testMultiplePushes {
   [NINavigationAppearance pushAppearanceForNavigationController:nil];
   [NINavigationAppearance pushAppearanceForNavigationController:nil];
@@ -51,16 +44,12 @@
   STAssertEquals([NINavigationAppearance count], 3, @"Stack count should be 3");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testSinglePushPop {
   [NINavigationAppearance pushAppearanceForNavigationController:nil];
   [NINavigationAppearance popAppearanceForNavigationController:nil animated:NO];
   STAssertEquals([NINavigationAppearance count], 0, @"Stack count should be 0");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testEmptyPop {
   NIDebugAssertionsShouldBreak = NO;
   [NINavigationAppearance popAppearanceForNavigationController:nil animated:NO];
@@ -68,8 +57,6 @@
   NIDebugAssertionsShouldBreak = YES;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testMultiplePushPops {
   [NINavigationAppearance pushAppearanceForNavigationController:nil];
   [NINavigationAppearance pushAppearanceForNavigationController:nil];
@@ -77,8 +64,6 @@
   STAssertEquals([NINavigationAppearance count], 1, @"Stack count should be 1");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testNavBarStyleRestored {
   UINavigationController *navigationController = [[UINavigationController alloc] init];
   navigationController.navigationBar.barStyle = UIBarStyleDefault;
@@ -88,8 +73,6 @@
   STAssertEquals(navigationController.navigationBar.barStyle, UIBarStyleDefault, @"Nav bar style should be UIBarStyleDefault");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testNavBarTranslucencyRestored {
   UINavigationController *navigationController = [[UINavigationController alloc] init];
   navigationController.navigationBar.translucent = NO;
@@ -99,8 +82,6 @@
   STAssertEquals(navigationController.navigationBar.translucent, NO, @"Nav bar should not be translucent");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testStatusBarStyleRestored {
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
   [NINavigationAppearance pushAppearanceForNavigationController:nil];
@@ -108,7 +89,6 @@
   [NINavigationAppearance popAppearanceForNavigationController:nil animated:NO];
   STAssertEquals([[UIApplication sharedApplication] statusBarStyle], UIStatusBarStyleDefault, @"Status bar style should be UIStatusBarStyleDefault");
 }
-
 
 
 @end

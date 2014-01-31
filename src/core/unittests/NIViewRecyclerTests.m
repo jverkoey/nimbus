@@ -34,13 +34,9 @@
 @interface NIViewRecyclerTests : SenTestCase
 @end
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIViewRecyclerTests
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testNils {
   NIViewRecycler* recycler = [[NIViewRecycler alloc] init];
   STAssertNil([recycler dequeueReusableViewWithIdentifier:nil], @"Should be nil.");
@@ -51,8 +47,6 @@
   STAssertNil([recycler dequeueReusableViewWithIdentifier:nil], @"Should be nil.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testNoReuseIdentifierRecycling {
   NIViewRecycler* recycler = [[NIViewRecycler alloc] init];
   NSString* reuseIdentifier = NSStringFromClass([RecyclableView class]);
@@ -69,8 +63,6 @@
   STAssertNil([recycler dequeueReusableViewWithIdentifier:reuseIdentifier], @"Should be no views left.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testRecycling {
   NIViewRecycler* recycler = [[NIViewRecycler alloc] init];
   NSString* reuseIdentifier = NSStringFromClass([RecyclableView class]);
@@ -88,8 +80,6 @@
   STAssertNil([recycler dequeueReusableViewWithIdentifier:reuseIdentifier], @"Should be no views left.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testComplexRecycling {
   NIViewRecycler* recycler = [[NIViewRecycler alloc] init];
   {
@@ -120,8 +110,6 @@
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testMemoryWarning {
   NIViewRecycler* recycler = [[NIViewRecycler alloc] init];
   NSString* reuseIdentifier = NSStringFromClass([RecyclableView class]);
@@ -136,8 +124,6 @@
   STAssertNil([recycler dequeueReusableViewWithIdentifier:reuseIdentifier], @"Should be no views left.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testRemoveAllViews {
   NIViewRecycler* recycler = [[NIViewRecycler alloc] init];
   NSString* reuseIdentifier = NSStringFromClass([RecyclableView class]);
@@ -150,20 +136,15 @@
   STAssertNil([recycler dequeueReusableViewWithIdentifier:reuseIdentifier], @"Should be no views left.");
 }
 
-
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation RecyclableView
 
 @synthesize reuseIdentifier = _reuseIdentifier;
 @synthesize didReuse = _didReuse;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prepareForReuse {
   _didReuse = YES;
 }

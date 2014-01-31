@@ -114,8 +114,6 @@
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Calculate the destination rect in the destination image where we will draw the cropped source
  * image.
@@ -155,8 +153,6 @@
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (UIImage *)imageFromSource: (UIImage *)src
              withContentMode: (UIViewContentMode)contentMode
                     cropRect: (CGRect)cropRect
@@ -337,6 +333,5 @@
 
   return resultImage;
 }
-
 
 @end

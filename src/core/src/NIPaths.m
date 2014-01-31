@@ -22,14 +22,11 @@
 #error "Nimbus requires ARC support."
 #endif
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* NIPathForBundleResource(NSBundle* bundle, NSString* relativePath) {
   NSString* resourcePath = [(nil == bundle ? [NSBundle mainBundle] : bundle) resourcePath];
   return [resourcePath stringByAppendingPathComponent:relativePath];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* NIPathForDocumentsResource(NSString* relativePath) {
   static NSString* documentsPath = nil;
   if (nil == documentsPath) {
@@ -41,8 +38,6 @@ NSString* NIPathForDocumentsResource(NSString* relativePath) {
   return [documentsPath stringByAppendingPathComponent:relativePath];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* NIPathForLibraryResource(NSString* relativePath) {
     static NSString* libraryPath = nil;
     if (nil == libraryPath) {
@@ -54,8 +49,6 @@ NSString* NIPathForLibraryResource(NSString* relativePath) {
     return [libraryPath stringByAppendingPathComponent:relativePath];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* NIPathForCachesResource(NSString* relativePath) {
   static NSString* cachesPath = nil;
   if (nil == cachesPath) {

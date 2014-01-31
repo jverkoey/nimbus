@@ -28,19 +28,13 @@
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIDataStructureTests
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Linked List
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testEmptyLinkedList {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -55,8 +49,6 @@
   STAssertNil(ll.lastObject, @"Initial linked list should not have a tail object.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListDescription {
   id object1 = [NSArray array];
   id object2 = [NSDictionary dictionary];
@@ -68,8 +60,6 @@
   STAssertTrue([[ll description] isEqualToString:[array description]], @"Should be equal.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListWithArray {
   id object1 = [NSArray array];
   id object2 = [NSDictionary dictionary];
@@ -89,8 +79,6 @@
   STAssertEquals(ll.lastObject, object3, @"Tail object should be object3.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListAddNilItem {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -100,8 +88,6 @@
   STAssertEquals(ll.count, (NSUInteger)0, @"There should be no objects.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListAddSingleItem {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -112,8 +98,6 @@
   STAssertEquals(ll.lastObject, object, @"Tail should be the object.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListAddTwoItems {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -126,8 +110,6 @@
   STAssertEquals(ll.lastObject, object2, @"Tail should be the second object.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListAddThreeItems {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -142,8 +124,6 @@
   STAssertEquals(ll.lastObject, object3, @"Tail should be the third object.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListAddArrayOfItems {
   NILinkedList* ll = [[NILinkedList alloc] init];
   
@@ -156,8 +136,6 @@
   STAssertEquals(ll.lastObject, object3, @"Tail should be the third object.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListCount {
   NILinkedList* ll = [[NILinkedList alloc] init];
   
@@ -173,8 +151,6 @@
   STAssertEquals(ll.count, (NSUInteger)3, @"There should be exactly three objects.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListAllObjects {
   id object1 = [NSArray array];
   id object2 = [NSDictionary dictionary];
@@ -207,8 +183,6 @@
   STAssertEquals([array count], (NSUInteger)0, @"There should be no objects in the array.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListContainsObject {
   id object1 = [NSArray array];
   id object2 = [NSDictionary dictionary];
@@ -223,8 +197,6 @@
   STAssertFalse([ll containsObject:nil], @"Checking for the nil object should never be true.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListObjectAtLocation {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -238,8 +210,6 @@
                  @"The location should point to the second object.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListRemoveFirstObject {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -265,8 +235,6 @@
   STAssertNil(ll.lastObject, @"Tail should be nil.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListRemoveLastObject {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -292,8 +260,6 @@
   STAssertNil(ll.lastObject, @"Tail should be nil.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListRemoveAllObjects {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -310,8 +276,6 @@
   STAssertNil(ll.lastObject, @"Tail should be nil.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListRemoveTooManyObjects {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -342,8 +306,6 @@
   STAssertNil(ll.lastObject, @"Tail should be nil.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListLocationOfObject {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -356,8 +318,6 @@
   STAssertTrue([location isEqual:[ll locationOfObject:object2]], @"The locations should match up");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListRemoveObject {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -388,8 +348,6 @@
   STAssertEquals(ll.lastObject, object1, @"Tail should be the first object.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListRemoveObjectAtLocation {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -406,8 +364,6 @@
   STAssertEquals(ll.lastObject, object3, @"Tail should be the third object.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListIteration {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -433,8 +389,6 @@
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListEnumeration {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -452,8 +406,6 @@
   STAssertNil([enumerator nextObject], @"The final object should be nil.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListCopying {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -470,8 +422,6 @@
   STAssertEquals(ll2.lastObject, object3, @"Tail should be the third object.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testLinkedListCoding {
   NILinkedList* ll = [[NILinkedList alloc] init];
 
@@ -489,6 +439,5 @@
   STAssertEquals(ll2.firstObject, object1, @"Head should be the first object.");
   STAssertEquals(ll2.lastObject, object3, @"Tail should be the third object.");
 }
-
 
 @end

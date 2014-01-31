@@ -22,14 +22,10 @@
 #error "Nimbus requires ARC support."
 #endif
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIInterapp
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSString *)sanitizedPhoneNumberFromString:(NSString *)string {
   if (nil == string) {
     return nil;
@@ -63,20 +59,14 @@ BOOL sPreferGoogleChrome = NO;
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Safari
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)safariWithURL:(NSURL *)url {
   return [[UIApplication sharedApplication] openURL:url];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Google Chrome
 
@@ -87,12 +77,10 @@ BOOL sPreferGoogleChrome = NO;
 static NSString* const sGoogleChromeHttpScheme = @"googlechrome:";
 static NSString* const sGoogleChromeHttpsScheme = @"googlechromes:";
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)googleChromeIsInstalled {
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:sGoogleChromeHttpScheme]];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)googleChromeWithURL:(NSURL *)url {
     NSString *chromeScheme = nil;
     if ([url.scheme isEqualToString:@"http"]) {
@@ -118,15 +106,11 @@ static NSString* const sGoogleChromeHttpsScheme = @"googlechromes:";
     return NO;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSString *)googleChromeAppStoreId {
     return @"535886823";
 }
 
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Google Maps
 
@@ -137,12 +121,10 @@ static NSString* const sGoogleChromeHttpsScheme = @"googlechromes:";
 static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)googleMapsIsInstalled {
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:sGoogleMapsScheme]];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)googleMaps {
     BOOL didOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:sGoogleMapsScheme]];
     
@@ -153,13 +135,10 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
     return didOpen;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSString *)googleMapsAppStoreId {
     return @"585027354";
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)openBestGoogleMapUrl:(NSString*)urlString{
     
     if ([NIInterapp googleMapsIsInstalled]) {
@@ -172,7 +151,6 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)googleMapAtLocation:(CLLocationCoordinate2D)location {
     
     NSString* urlPath = [NSString stringWithFormat:
@@ -182,7 +160,6 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
  
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)googleMapAtLocation: (CLLocationCoordinate2D)location
                       title: (NSString *)title {
 
@@ -193,15 +170,11 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
 
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)googleMapDirectionsFromLocation: (CLLocationCoordinate2D)fromLocation
                              toLocation: (CLLocationCoordinate2D)toLocation {
     return [NIInterapp googleMapDirectionsFromLocation:fromLocation toLocation:toLocation withMode:nil];
  }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)googleMapDirectionsFromLocation: (CLLocationCoordinate2D)fromLocation
                              toLocation: (CLLocationCoordinate2D)toLocation
                                 withMode:(NSString *)directionsMode
@@ -212,7 +185,6 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
     return [NIInterapp googleMapDirectionsFromSourceAddress:saddr toDestAddress:daddr withMode:directionsMode];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)googleMapDirectionsToLocation: (CLLocationCoordinate2D)toLocation
                                withMode:(NSString *)directionsMode
 {
@@ -222,13 +194,10 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
 }
 
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)googleMapDirectionsToDestAddress: (NSString*)destAddr withMode:(NSString *)directionsMode {
     return [NIInterapp googleMapDirectionsFromSourceAddress:nil toDestAddress:destAddr withMode:directionsMode];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)googleMapDirectionsFromSourceAddress: (NSString*)srcAddr toDestAddress: (NSString*)destAddr withMode:(NSString *)directionsMode {
 
     NSString* urlPath;
@@ -249,7 +218,6 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
     return [NIInterapp openBestGoogleMapUrl:urlPath];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)googleMapWithQuery:(NSString *)query {
   NSString* urlPath = [NSString stringWithFormat:
                        @"?q=%@",
@@ -257,20 +225,14 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
   return [NIInterapp openBestGoogleMapUrl:urlPath ];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Phone
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)phone {
   return [self phoneWithNumber:nil];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)phoneWithNumber:(NSString *)phoneNumber {
   phoneNumber = [self sanitizedPhoneNumberFromString:phoneNumber];
 
@@ -282,20 +244,14 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Texting
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)sms {
   return [self smsWithNumber:nil];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)smsWithNumber:(NSString *)phoneNumber {
   phoneNumber = [self sanitizedPhoneNumberFromString:phoneNumber];
 
@@ -307,16 +263,12 @@ static NSString* const sGoogleMapsScheme = @"comgooglemaps:";
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Mail
 
 static NSString* const sMailScheme = @"mailto:";
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)mailWithInvocation:(NIMailAppInvocation *)invocation {
   NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
 
@@ -344,35 +296,25 @@ static NSString* const sMailScheme = @"mailto:";
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark YouTube
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)youTubeWithVideoId:(NSString *)videoId {
   NSString* urlPath = [@"http://www.youtube.com/watch?v=" stringByAppendingString:videoId];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark iBooks
 
 static NSString* const sIBooksScheme = @"itms-books:";
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)iBooksIsInstalled {
   return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:sIBooksScheme]];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)iBooks {
   BOOL didOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:sIBooksScheme]];
 
@@ -383,28 +325,20 @@ static NSString* const sIBooksScheme = @"itms-books:";
   return didOpen;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSString *)iBooksAppStoreId {
   return @"364709193";
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Facebook
 
 static NSString* const sFacebookScheme = @"fb:";
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)facebookIsInstalled {
   return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:sFacebookScheme]];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)facebook {
   BOOL didOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:sFacebookScheme]];
 
@@ -415,35 +349,25 @@ static NSString* const sFacebookScheme = @"fb:";
   return didOpen;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)facebookProfileWithId:(NSString *)profileId {
   NSString* urlPath = [sFacebookScheme stringByAppendingFormat:@"//profile/%@", profileId];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSString *)facebookAppStoreId {
   return @"284882215";
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Twitter
 
 static NSString* const sTwitterScheme = @"twitter:";
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)twitterIsInstalled {
   return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:sTwitterScheme]];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)twitter {
   BOOL didOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:sTwitterScheme]];
 
@@ -454,52 +378,38 @@ static NSString* const sTwitterScheme = @"twitter:";
   return didOpen;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)twitterWithMessage:(NSString *)message {
   NSString* urlPath = [sTwitterScheme stringByAppendingFormat:@"//post?message=%@",
                        [message stringByAddingPercentEscapesForURLParameter]];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)twitterProfileForUsername:(NSString *)username {
   NSString* urlPath = [sTwitterScheme stringByAppendingFormat:@"//user?screen_name=%@",
                        [username stringByAddingPercentEscapesForURLParameter]];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSString *)twitterAppStoreId {
   return @"333903271";
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Application
 
 //static NSString* const sTwitterScheme = @"twitter:";
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)applicationIsInstalledWithScheme:(NSString *)applicationScheme {
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:applicationScheme]];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)applicationWithScheme:(NSString *)applicationScheme {
     return [self applicationWithScheme:applicationScheme
                             appStoreId:nil
                                andPath:nil];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)applicationWithScheme:(NSString *)applicationScheme
                 andAppStoreId:(NSString *)appStoreId {
     return [self applicationWithScheme:applicationScheme
@@ -507,8 +417,6 @@ static NSString* const sTwitterScheme = @"twitter:";
                                andPath:nil];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)applicationWithScheme:(NSString *)applicationScheme
                       andPath:(NSString *)path {
     return [self applicationWithScheme:applicationScheme
@@ -516,8 +424,6 @@ static NSString* const sTwitterScheme = @"twitter:";
                                andPath:path];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)applicationWithScheme:(NSString *)applicationScheme
                    appStoreId:(NSString *)appStoreId
                       andPath:(NSString *)path {
@@ -542,22 +448,16 @@ static NSString* const sTwitterScheme = @"twitter:";
     return didOpen;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Instagram
 
 static NSString* const sInstagramScheme = @"instagram:";
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)instagramIsInstalled {
   return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:sInstagramScheme]];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)instagram {
   BOOL didOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:sInstagramScheme]];
 
@@ -568,23 +468,17 @@ static NSString* const sInstagramScheme = @"instagram:";
   return didOpen;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)instagramCamera {
   NSString* urlPath = [sInstagramScheme stringByAppendingString:@"//camera"];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)instagramProfileForUsername:(NSString *)username {
   NSString* urlPath = [sInstagramScheme stringByAppendingFormat:@"//user?username=%@",
                        [username stringByAddingPercentEscapesForURLParameter]];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSURL *)urlForInstagramImageAtFilePath:(NSString *)filePath error:(NSError **)error {
   if (![self instagramIsInstalled]) {
     return nil;
@@ -641,32 +535,24 @@ static NSString* const sInstagramScheme = @"instagram:";
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSString *)instagramAppStoreId {
   return @"389801252";
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark App Store
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)appStoreWithAppId:(NSString *)appId {
   NSString* urlPath = [@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=" stringByAppendingString:appId];
   return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)appStoreGiftWithAppId:(NSString *)appId {
     NSString* urlPath = [NSString stringWithFormat:@"itms-appss://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/giftSongsWizard?gift=1&salableAdamId=%@&productType=C&pricingParameter=STDQ&mt=8&ign-mscache=1", appId];
     return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)appStoreReviewWithAppId:(NSString *)appId {
     NSString* urlPath = [@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=" stringByAppendingString:appId];
     return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath]];
@@ -675,9 +561,6 @@ static NSString* const sInstagramScheme = @"instagram:";
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIMailAppInvocation
 
 @synthesize recipient = _recipient;
@@ -687,10 +570,8 @@ static NSString* const sInstagramScheme = @"instagram:";
 @synthesize body = _body;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)invocation {
   return [[[self class] alloc] init];
 }
-
 
 @end

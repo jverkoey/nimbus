@@ -19,7 +19,6 @@ NI_FIX_CATEGORY_BUG(UITextField_NIStyleable)
 
 @implementation UITextField (NIStyleable)
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom
 {
     [self applyTextFieldStyleBeforeViewWithRuleSet:ruleSet inDOM:dom];
@@ -27,7 +26,6 @@ NI_FIX_CATEGORY_BUG(UITextField_NIStyleable)
     [self applyTextFieldStyleWithRuleSet:ruleSet inDOM:dom];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)applyStyleWithRuleSet:(NICSSRuleset*)ruleSet forPseudoClass:(NSString *)pseudo inDOM:(NIDOM*)dom
 {
     if (ruleSet.hasTextKey) {
@@ -36,7 +34,6 @@ NI_FIX_CATEGORY_BUG(UITextField_NIStyleable)
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)applyTextFieldStyleBeforeViewWithRuleSet:(NICSSRuleset*)ruleSet inDOM:(NIDOM*)dom
 {
     if (ruleSet.hasTextKey) {
@@ -45,7 +42,6 @@ NI_FIX_CATEGORY_BUG(UITextField_NIStyleable)
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)applyTextFieldStyleWithRuleSet:(NICSSRuleset*)ruleSet inDOM:(NIDOM*)dom
 {
     if ([ruleSet hasTextColor]) { self.textColor = ruleSet.textColor; }
@@ -56,7 +52,6 @@ NI_FIX_CATEGORY_BUG(UITextField_NIStyleable)
     if ([ruleSet hasVerticalAlign]) { self.contentVerticalAlignment = ruleSet.verticalAlign; }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(NSArray *)pseudoClasses
 {
     static dispatch_once_t onceToken;

@@ -26,7 +26,6 @@
 const UIImageResizingMode UIImageResizingModeStretch = -1;
 #endif
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL NIIsPad(void) {
   static NSInteger isPad = -1;
   if (isPad < 0) {
@@ -35,8 +34,6 @@ BOOL NIIsPad(void) {
   return isPad > 0;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL NIIsPhone(void) {
   static NSInteger isPhone = -1;
   if (isPhone < 0) {
@@ -45,14 +42,10 @@ BOOL NIIsPhone(void) {
   return isPhone > 0;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL NIDeviceOSVersionIsAtLeast(double versionNumber) {
   return kCFCoreFoundationVersionNumber >= versionNumber;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat NIScreenScale(void) {
   static int respondsToScale = -1;
   if (respondsToScale == -1) {
@@ -68,14 +61,10 @@ CGFloat NIScreenScale(void) {
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL NIIsRetina(void) {
   return NIScreenScale() == 2.f;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 Class NIUIPopoverControllerClass(void) {
   static Class sClass = nil;
   static BOOL hasChecked = NO;
@@ -86,8 +75,6 @@ Class NIUIPopoverControllerClass(void) {
   return sClass;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 Class NIUITapGestureRecognizerClass(void) {
   static Class sClass = nil;
   static BOOL hasChecked = NO;

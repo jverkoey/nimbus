@@ -105,7 +105,6 @@ typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // NIOperation
 
 /** @name Delegation */

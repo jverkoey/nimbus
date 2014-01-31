@@ -23,31 +23,20 @@
 #error "Nimbus requires ARC support."
 #endif
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark CGRect Methods
+#pragma mark - CGRect Methods
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 CGRect NIRectContract(CGRect rect, CGFloat dx, CGFloat dy) {
   return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - dx, rect.size.height - dy);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 CGRect NIRectExpand(CGRect rect, CGFloat dx, CGFloat dy) {
   return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width + dx, rect.size.height + dy);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 CGRect NIRectShift(CGRect rect, CGFloat dx, CGFloat dy) {
   return CGRectOffset(NIRectContract(rect, dx, dy), dx, dy);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 CGRect NIEdgeInsetsOutsetRect(CGRect rect, UIEdgeInsets outsets) {
   return CGRectMake(rect.origin.x - outsets.left,
                     rect.origin.y - outsets.top,
@@ -55,20 +44,14 @@ CGRect NIEdgeInsetsOutsetRect(CGRect rect, UIEdgeInsets outsets) {
                     rect.size.height + outsets.top + outsets.bottom);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat NICenterX(CGSize containerSize, CGSize size) {
   return NICGFloatFloor((containerSize.width - size.width) / 2.f);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat NICenterY(CGSize containerSize, CGSize size) {
   return NICGFloatFloor((containerSize.height - size.height) / 2.f);
 }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////
 CGRect NIFrameOfCenteredViewWithinView(UIView* viewToCenter, UIView* containerView) {
   CGPoint origin;
   CGSize containerViewSize = containerView.bounds.size;
@@ -78,8 +61,6 @@ CGRect NIFrameOfCenteredViewWithinView(UIView* viewToCenter, UIView* containerVi
   return CGRectMake(origin.x, origin.y, viewSize.width, viewSize.height);
 }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////
 CGSize NISizeOfStringWithLabelProperties(NSString *string, CGSize constrainedToSize, UIFont *font, NSLineBreakMode lineBreakMode, NSInteger numberOfLines) {
   if (string.length == 0) {
     return CGSizeZero;
@@ -101,14 +82,8 @@ CGSize NISizeOfStringWithLabelProperties(NSString *string, CGSize constrainedToS
   return size;
 }
 
+#pragma mark - NSRange Methods
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NSRange Methods
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 NSRange NIMakeNSRangeFromCFRange(CFRange range) {
   // CFRange stores its values in signed longs, but we're about to copy the values into
   // unsigned integers, let's check whether we're about to lose any information.
@@ -117,14 +92,8 @@ NSRange NIMakeNSRangeFromCFRange(CFRange range) {
   return NSMakeRange(range.location, range.length);
 }
 
+#pragma mark - NSData Methods
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NSData Methods
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* NIMD5HashFromData(NSData* data) {
   unsigned char result[CC_MD5_DIGEST_LENGTH];
   bzero(result, sizeof(result));
@@ -149,8 +118,6 @@ NSString* NIMD5HashFromData(NSData* data) {
           ];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* NISHA1HashFromData(NSData* data) {
   unsigned char result[CC_SHA1_DIGEST_LENGTH];
   bzero(result, sizeof(result));
@@ -175,41 +142,25 @@ NSString* NISHA1HashFromData(NSData* data) {
           ];
 }
 
+#pragma mark - NSString Methods
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NSString Methods
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL NIIsStringWithWhitespaceAndNewlines(NSString* string) {
   NSCharacterSet* notWhitespaceAndNewlines = [[NSCharacterSet whitespaceAndNewlineCharacterSet] invertedSet];
   return [string isKindOfClass:[NSString class]] && [string rangeOfCharacterFromSet:notWhitespaceAndNewlines].length == 0;
 }
 
+#pragma mark - General Purpose Methods
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark General Purpose Methods
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Deprecated.
 CGFloat boundf(CGFloat value, CGFloat min, CGFloat max) {
   return NIBoundf(value, min, max);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Deprecated.
 NSInteger boundi(NSInteger value, NSInteger min, NSInteger max) {
   return NIBoundi(value, min, max);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat NIBoundf(CGFloat value, CGFloat min, CGFloat max) {
   if (max < min) {
     max = min;
@@ -224,8 +175,6 @@ CGFloat NIBoundf(CGFloat value, CGFloat min, CGFloat max) {
   return bounded;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 NSInteger NIBoundi(NSInteger value, NSInteger min, NSInteger max) {
   if (max < min) {
     max = min;

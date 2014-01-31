@@ -37,16 +37,12 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
 
 @end
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIOverviewView
 
 @synthesize enableDraggingVertically = _enableDraggingVertically,
             translucent = _translucent;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     _pageViews = [[NSMutableArray alloc] init];
@@ -87,19 +83,14 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
                                                 object:nil];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Page Layout
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)pageHorizontalMargin {
   return 10;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGRect)frameForPagingScrollView {
   CGRect frame = self.bounds;
 
@@ -111,15 +102,11 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
   return frame;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)contentSizeForPagingScrollView {
   CGRect bounds = _pagingScrollView.bounds;
   return CGSizeMake(bounds.size.width * [_pageViews count], bounds.size.height);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGRect)frameForPageAtIndex:(NSInteger)pageIndex {
   // We have to use our paging scroll view's bounds, not frame, to calculate the page
   // placement. When the device is in landscape orientation, the frame will still be in
@@ -137,8 +124,6 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
   return pageFrame;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutPages {
   _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
 
@@ -148,8 +133,6 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)visiblePageIndex {
   CGFloat offset = _pagingScrollView.contentOffset.x;
   CGFloat pageWidth = _pagingScrollView.bounds.size.width;
@@ -157,8 +140,6 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
   return (NSInteger)(offset / pageWidth);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setBounds:(CGRect)bounds {
   NSInteger visiblePageIndex = [self visiblePageIndex];
 
@@ -171,8 +152,6 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
   _pagingScrollView.contentOffset = CGPointMake(newOffset, 0);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFrame:(CGRect)frame {
   NSInteger visiblePageIndex = [self visiblePageIndex];
   
@@ -185,14 +164,10 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
   _pagingScrollView.contentOffset = CGPointMake(newOffset, 0);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Public Methods
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTranslucent:(BOOL)translucent {
   if (_translucent != translucent) {
     _translucent = translucent;
@@ -207,8 +182,6 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prependPageView:(NIOverviewPageView *)page {
   [_pageViews insertObject:page atIndex:0];
   [_pagingScrollView addSubview:page];
@@ -216,8 +189,6 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
   [self layoutPages];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addPageView:(NIOverviewPageView *)page {
   [_pageViews addObject:page];
   [_pagingScrollView addSubview:page];
@@ -225,8 +196,6 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
   [self layoutPages];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removePageView:(NIOverviewPageView *)page {
   [_pageViews removeObject:page];
   [page removeFromSuperview];
@@ -234,28 +203,20 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
   [self layoutPages];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updatePages {
   for (NIOverviewPageView* pageView in _pageViews) {
     [pageView update];
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)flashScrollIndicators {
   [_pagingScrollView flashScrollIndicators];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Gesture Recognizer
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)didPanMapWithGestureRecognizer:(UIPanGestureRecognizer *)gestureRecognizer {
   if (!_enableDraggingVertically || _panGestureRecognizer != gestureRecognizer) {

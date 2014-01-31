@@ -67,7 +67,6 @@
 
 @end
 
-
 /**
  * An in-memory cache for storing images with caps on the total number of pixels.
  *
@@ -93,11 +92,7 @@
 @property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixelsUnderStress;
 @end
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 /**@}*/// End of In-Memory Cache //////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 /** @name Creating an In-Memory Cache */
 
@@ -107,7 +102,6 @@
  *      @returns An in-memory cache initialized with the given capacity.
  *      @fn NIMemoryCache::initWithCapacity:
  */
-
 
 /** @name Storing Objects in the Cache */
 
@@ -135,7 +129,6 @@
  *      @fn NIMemoryCache::storeObject:withName:expiresAfter:
  */
 
-
 /** @name Removing Objects from the Cache */
 
 /**
@@ -161,7 +154,6 @@
  *
  *      @fn NIMemoryCache::removeAllObjects
  */
-
 
 /** @name Accessing Objects in the Cache */
 
@@ -223,7 +215,6 @@
  *      @fn NIMemoryCache::nameOfMostRecentlyUsedObject
  */
 
-
 /** @name Reducing Memory Usage Explicitly */
 
 /**
@@ -238,7 +229,6 @@
  *      @fn NIMemoryCache::reduceMemoryUsage
  */
 
-
 /** @name Querying an In-Memory Cache */
 
 /**
@@ -247,7 +237,6 @@
  *      @returns The number of objects currently in the cache.
  *      @fn NIMemoryCache::count
  */
-
 
 /**
  * @name Subclassing
@@ -283,8 +272,6 @@
  *      @fn NIMemoryCache::willRemoveObject:withName:
  */
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // NIImageMemoryCache
 
 /** @name Querying an In-Memory Image Cache */
@@ -295,7 +282,6 @@
  *      @returns The total number of pixels being stored in the cache.
  *      @fn NIImageMemoryCache::numberOfPixels
  */
-
 
 /** @name Setting the Maximum Number of Pixels */
 

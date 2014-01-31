@@ -90,7 +90,6 @@ static NSMutableArray* sAppearanceStack = nil;
 @implementation NINavigationAppearance
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)pushAppearanceForNavigationController:(UINavigationController *)navigationController {
   if (!sAppearanceStack) {
     sAppearanceStack = [[NSMutableArray alloc] init];
@@ -100,8 +99,6 @@ static NSMutableArray* sAppearanceStack = nil;
   [sAppearanceStack addObject:snapshot];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)popAppearanceForNavigationController:(UINavigationController *)navigationController animated:(BOOL)animated {
   NIDASSERT([sAppearanceStack count] > 0);
   if ([sAppearanceStack count]) {
@@ -115,19 +112,14 @@ static NSMutableArray* sAppearanceStack = nil;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSInteger)count {
   return [sAppearanceStack count];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)clear {
   [sAppearanceStack removeAllObjects];
   sAppearanceStack = nil;
 }
-
 
 @end
 
@@ -141,7 +133,6 @@ static NSMutableArray* sAppearanceStack = nil;
 @synthesize navBarDefaultImage = _navBarDefaultImage;
 @synthesize navBarLandscapePhoneImage = _navBarLandscapePhoneImage;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initForNavigationController:(UINavigationController *)navigationController {
   self = [super init];
   if (self) {
@@ -161,8 +152,6 @@ static NSMutableArray* sAppearanceStack = nil;
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)restoreForNavigationController:(UINavigationController *)navigationController animated:(BOOL)animated {
   [[UIApplication sharedApplication] setStatusBarStyle:self.statusBarStyle animated:animated];
   navigationController.navigationBar.barStyle = self.navBarStyle;
@@ -176,6 +165,5 @@ static NSMutableArray* sAppearanceStack = nil;
                                              forBarMetrics:UIBarMetricsLandscapePhone];
   }
 }
-
 
 @end

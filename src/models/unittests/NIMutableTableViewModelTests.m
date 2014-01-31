@@ -28,13 +28,9 @@
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIMutableTableViewModelTests
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testInitialization {
   NIMutableTableViewModel* model = [[NIMutableTableViewModel alloc] initWithDelegate:nil];
 
@@ -44,8 +40,6 @@
   STAssertEquals(model.sections.count, 0U, @"Should have zero sections.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testAddingObject {
   NIMutableTableViewModel* model = [[NIMutableTableViewModel alloc] initWithDelegate:nil];
   
@@ -62,8 +56,6 @@
   STAssertEquals(model.sections.count, 1U, @"Should have one section.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testAddingObjectToSection {
   NIMutableTableViewModel* model = [[NIMutableTableViewModel alloc] initWithDelegate:nil];
 
@@ -76,8 +68,6 @@
   STAssertEquals(model.sections.count, 2U, @"Should have two sections.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testAddingObjects {
   NIMutableTableViewModel* model = [[NIMutableTableViewModel alloc] initWithDelegate:nil];
 
@@ -100,8 +90,6 @@
   STAssertEquals(model.sections.count, 1U, @"Should have one section.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testRemovingObject {
   NIMutableTableViewModel* model = [[NIMutableTableViewModel alloc] initWithDelegate:nil];
   
@@ -122,8 +110,6 @@
   STAssertEquals(model.sections.count, 1U, @"Should have one section.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testAddingSection {
   NIMutableTableViewModel* model = [[NIMutableTableViewModel alloc] initWithDelegate:nil];
 
@@ -142,8 +128,6 @@
   STAssertEquals(model.sections.count, 2U, @"Should have two sections.");
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testInsertingSection {
   NIMutableTableViewModel* model = [[NIMutableTableViewModel alloc] initWithDelegate:nil];
 

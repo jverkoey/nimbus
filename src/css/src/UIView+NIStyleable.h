@@ -82,9 +82,7 @@ extern NSString* const NICSSViewBackgroundColorKey;
  */
 - (NSArray*) buildSubviews: (NSArray*) viewSpecs inDOM: (NIDOM*) dom;
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// View frame and bounds manipulation helpers
-////////////////////////////////////////////////////////////////////////////////////////////////////
+/// View frame and bounds manipulation helpers
 @property (nonatomic) CGFloat frameWidth;
 @property (nonatomic) CGFloat frameHeight;
 @property (nonatomic) CGFloat frameMinX;

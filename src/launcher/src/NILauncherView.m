@@ -33,7 +33,6 @@ static const CGFloat kDefaultButtonDimensions = 80;
 static const CGFloat kDefaultPadding = 10;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NILauncherView() <NIPagingScrollViewDataSource, NIPagingScrollViewDelegate>
 @property (nonatomic, readwrite, NI_STRONG) NIPagingScrollView* pagingScrollView;
 @property (nonatomic, readwrite, NI_STRONG) UIPageControl* pager;
@@ -43,9 +42,6 @@ static const CGFloat kDefaultPadding = 10;
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NILauncherView
 
 @synthesize pagingScrollView = _pagingScrollView;
@@ -61,7 +57,6 @@ static const CGFloat kDefaultPadding = 10;
 @synthesize dataSource = _dataSource;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_configureDefaults {
   // We handle autoresizing ourselves.
   [self setAutoresizesSubviews:NO];
@@ -107,8 +102,6 @@ static const CGFloat kDefaultPadding = 10;
   [self addSubview:_pager];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     [self _configureDefaults];
@@ -116,8 +109,6 @@ static const CGFloat kDefaultPadding = 10;
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder *)aDecoder {
   if ((self = [super initWithCoder:aDecoder])) {
     [self _configureDefaults];
@@ -125,8 +116,6 @@ static const CGFloat kDefaultPadding = 10;
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
   [super layoutSubviews];
 
@@ -139,8 +128,6 @@ static const CGFloat kDefaultPadding = 10;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
   [super setBackgroundColor:backgroundColor];
 
@@ -148,8 +135,6 @@ static const CGFloat kDefaultPadding = 10;
   self.pager.backgroundColor = backgroundColor;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)calculateLayoutForFrame:(CGRect)frame
                buttonDimensions:(CGSize *)pButtonDimensions
                    numberOfRows:(NSInteger *)pNumberOfRows
@@ -209,8 +194,6 @@ static const CGFloat kDefaultPadding = 10;
   pButtonMargins->height = buttonVerticalSpacing;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateLayoutForPage:(NILauncherPageView *)page {
   CGSize buttonDimensions = CGSizeZero;
   NSInteger numberOfRows = 0;
@@ -227,14 +210,10 @@ static const CGFloat kDefaultPadding = 10;
   page.viewMargins = buttonMargins;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark UIPageControl Change Notifications
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)pagerDidChangePage:(UIPageControl*)pager {
   if ([self.pagingScrollView moveToPageAtIndex:pager.currentPage animated:YES]) {
     // Once we've handled the page change notification, notify the pager that it's ok to update
@@ -243,14 +222,10 @@ static const CGFloat kDefaultPadding = 10;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Actions
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Find a button in the pages and retrieve its page and index.
  *
@@ -281,8 +256,6 @@ static const CGFloat kDefaultPadding = 10;
   return NO;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didTapButton:(UIButton *)tappedButton {
   NSInteger page = -1;
   NSInteger buttonIndex = 0;
@@ -300,19 +273,13 @@ static const CGFloat kDefaultPadding = 10;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NIPagingScrollViewDataSource
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView {
   return self.numberOfPages;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
   NILauncherPageView* page = (NILauncherPageView *)[self.pagingScrollView dequeueReusablePageWithIdentifier:kPageReuseIdentifier];
   if (nil == page) {
@@ -335,23 +302,17 @@ static const CGFloat kDefaultPadding = 10;
   return page;
 }
 
-
 #pragma mark - NIPagingScrollViewDelegate
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)pagingScrollViewDidChangePages:(NIPagingScrollView *)pagingScrollView {
   self.pager.currentPage = pagingScrollView.centerPageIndex;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Public Methods
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reloadData {
   if ([self.dataSource respondsToSelector:@selector(numberOfPagesInLauncherView:)]) {
     _numberOfPages = [self.dataSource numberOfPagesInLauncherView:self];
@@ -365,8 +326,6 @@ static const CGFloat kDefaultPadding = 10;
   [self setNeedsLayout];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView<NILauncherButtonView> *)dequeueReusableViewWithIdentifier:(NSString *)identifier {
   NIDASSERT(nil != identifier);
   if (nil == identifier) {
@@ -376,8 +335,6 @@ static const CGFloat kDefaultPadding = 10;
   return (UIView<NILauncherButtonView> *)[self.viewRecycler dequeueReusableViewWithIdentifier:identifier];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setcontentInsetForPages:(UIEdgeInsets)contentInsetForPages {
   _contentInsetForPages = contentInsetForPages;
 
@@ -386,8 +343,6 @@ static const CGFloat kDefaultPadding = 10;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setButtonSize:(CGSize)buttonSize {
   _buttonSize = buttonSize;
 
@@ -396,14 +351,10 @@ static const CGFloat kDefaultPadding = 10;
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
   [self.pagingScrollView willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
   [self.pagingScrollView willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }

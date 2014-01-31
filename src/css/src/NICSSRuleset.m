@@ -80,19 +80,13 @@ _is.cached.Name = YES; \
 return _##name; \
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NICSSRuleset
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
   if ((self = [super init])) {
     _ruleset = [[NSMutableDictionary alloc] init];
@@ -106,13 +100,9 @@ return _##name; \
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public Methods
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addEntriesFromDictionary:(NSDictionary *)dictionary {
   NSMutableArray* order = [_ruleset objectForKey:kPropertyOrderKey];
   [_ruleset addEntriesFromDictionary:dictionary];
@@ -123,19 +113,15 @@ return _##name; \
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(id)cssRuleForKey:(NSString *)key
 {
     return [_ruleset objectForKey:key];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTextColor {
   return nil != [_ruleset objectForKey:kTextColorKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor *)textColor {
   NIDASSERT([self hasTextColor]);
   if (!_is.cached.TextColor) {
@@ -146,14 +132,10 @@ return _##name; \
   return _textColor;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasHighlightedTextColor {
     return nil != [_ruleset objectForKey:kHighlightedTextColorKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor *)highlightedTextColor {
   NIDASSERT([self hasHighlightedTextColor]);
   if (!_is.cached.HighlightedTextColor) {
@@ -164,14 +146,10 @@ return _##name; \
   return _highlightedTextColor;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTextAlignment {
   return nil != [_ruleset objectForKey:kTextAlignmentKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITextAlignment)textAlignment {
   NIDASSERT([self hasTextAlignment]);
   if (!_is.cached.TextAlignment) {
@@ -181,12 +159,10 @@ return _##name; \
   return _textAlignment;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(BOOL)hasHorizontalPadding {
   return nil != [_ruleset objectForKey:kPaddingKey] || nil != [_ruleset objectForKey:kHPaddingKey];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(NICSSUnit)horizontalPadding {
   NIDASSERT([self hasHorizontalPadding]);
   NSArray *css = [_ruleset objectForKey:kHPaddingKey];
@@ -208,12 +184,10 @@ return _##name; \
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(BOOL)hasVerticalPadding {
   return nil != [_ruleset objectForKey:kPaddingKey] || nil != [_ruleset objectForKey:kVPaddingKey];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(NICSSUnit)verticalPadding {
   NIDASSERT([self hasVerticalPadding]);
   NSArray *css = [_ruleset objectForKey:kVPaddingKey];
@@ -232,7 +206,6 @@ return _##name; \
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasFont {
   return (nil != [_ruleset objectForKey:kFontKey]
           || nil != [_ruleset objectForKey:kFontSizeKey]
@@ -241,8 +214,6 @@ return _##name; \
           || nil != [_ruleset objectForKey:kFontFamilyKey]);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIFont *)font {
   NIDASSERT([self hasFont]);
   
@@ -346,14 +317,10 @@ return _##name; \
   return font;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTextShadowColor {
   return nil != [_ruleset objectForKey:kTextShadowKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor *)textShadowColor {
   NIDASSERT([self hasTextShadowColor]);
   if (!_is.cached.TextShadowColor) {
@@ -364,14 +331,10 @@ return _##name; \
   return _textShadowColor;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTextShadowOffset {
   return nil != [_ruleset objectForKey:kTextShadowKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)textShadowOffset {
   NIDASSERT([self hasTextShadowOffset]);
   if (!_is.cached.TextShadowOffset) {
@@ -391,14 +354,10 @@ return _##name; \
   return _textShadowOffset;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasLineBreakMode {
   return nil != [_ruleset objectForKey:kLineBreakModeKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSLineBreakMode)lineBreakMode {
   NIDASSERT([self hasLineBreakMode]);
   if (!_is.cached.LineBreakMode) {
@@ -425,14 +384,10 @@ return _##name; \
   return _lineBreakMode;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasNumberOfLines {
   return nil != [_ruleset objectForKey:kNumberOfLinesKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)numberOfLines {
   NIDASSERT([self hasNumberOfLines]);
   if (!_is.cached.NumberOfLines) {
@@ -444,14 +399,10 @@ return _##name; \
   return _numberOfLines;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasMinimumFontSize {
   return nil != [_ruleset objectForKey:kMinimumFontSizeKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)minimumFontSize {
   NIDASSERT([self hasMinimumFontSize]);
   if (!_is.cached.MinimumFontSize) {
@@ -463,14 +414,10 @@ return _##name; \
   return _minimumFontSize;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasAdjustsFontSize {
   return nil != [_ruleset objectForKey:kAdjustsFontSizeKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)adjustsFontSize {
   NIDASSERT([self hasAdjustsFontSize]);
   if (!_is.cached.AdjustsFontSize) {
@@ -482,14 +429,10 @@ return _##name; \
   return _adjustsFontSize;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasBaselineAdjustment {
   return nil != [_ruleset objectForKey:kBaselineAdjustmentKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIBaselineAdjustment)baselineAdjustment {
   NIDASSERT([self hasBaselineAdjustment]);
   if (!_is.cached.BaselineAdjustment) {
@@ -508,14 +451,10 @@ return _##name; \
   return _baselineAdjustment;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasOpacity {
   return nil != [_ruleset objectForKey:kOpacityKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)opacity {
   NIDASSERT([self hasOpacity]);
   if (!_is.cached.Opacity) {
@@ -527,14 +466,10 @@ return _##name; \
   return _opacity;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasBackgroundColor {
   return nil != [_ruleset objectForKey:kBackgroundColorKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor *)backgroundColor {
   NIDASSERT([self hasBackgroundColor]);
   if (!_is.cached.BackgroundColor) {
@@ -545,14 +480,10 @@ return _##name; \
   return _backgroundColor;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasBorderRadius {
   return nil != [_ruleset objectForKey:kBorderRadiusKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)borderRadius {
   NIDASSERT([self hasBorderRadius]);
   if (!_is.cached.BorderRadius) {
@@ -564,15 +495,11 @@ return _##name; \
   return _borderRadius;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasBorderColor {
   return (nil != [_ruleset objectForKey:kBorderColorKey]
           || nil != [_ruleset objectForKey:kBorderKey]);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cacheBorderValues {
   _borderWidth = 0;
   _borderColor = nil;
@@ -625,8 +552,6 @@ return _##name; \
   _is.cached.BorderWidth = hasSetBorderWidth;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor *)borderColor {
   NIDASSERT([self hasBorderColor]);
 
@@ -634,15 +559,11 @@ return _##name; \
   return _borderColor;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasBorderWidth {
   return (nil != [_ruleset objectForKey:kBorderWidthKey]
           || nil != [_ruleset objectForKey:kBorderKey]);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)borderWidth {
   NIDASSERT([self hasBorderWidth]);
 
@@ -679,13 +600,10 @@ RULE_ELEMENT(buttonAdjust, ButtonAdjust, @"-ios-button-adjust", NICSSButtonAdjus
 RULE_ELEMENT(verticalAlign, VerticalAlign, @"-mobile-content-valign", UIControlContentVerticalAlignment, controlVerticalAlignFromCssValues)
 RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UIControlContentHorizontalAlignment, controlHorizontalAlignFromCssValues)
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTintColor {
   return nil != [_ruleset objectForKey:kTintColorKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor *)tintColor {
   NIDASSERT([self hasTintColor]);
   if (!_is.cached.TintColor) {
@@ -696,14 +614,10 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   return _tintColor;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasActivityIndicatorStyle {
   return nil != [_ruleset objectForKey:kActivityIndicatorStyleKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIActivityIndicatorViewStyle)activityIndicatorStyle {
   NIDASSERT([self hasActivityIndicatorStyle]);
   if (!_is.cached.ActivityIndicatorStyle) {
@@ -722,14 +636,10 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   return _activityIndicatorStyle;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasAutoresizing {
   return nil != [_ruleset objectForKey:kAutoresizingKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewAutoresizing)autoresizing {
   NIDASSERT([self hasAutoresizing]);
   if (!_is.cached.Autoresizing) {
@@ -762,14 +672,10 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   return _autoresizing;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasTableViewCellSeparatorStyle {
   return nil != [_ruleset objectForKey:kTableViewCellSeparatorStyleKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableViewCellSeparatorStyle)tableViewCellSeparatorStyle {
   NIDASSERT([self hasTableViewCellSeparatorStyle]);
   if (!_is.cached.TableViewCellSeparatorStyle) {
@@ -788,14 +694,10 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   return _tableViewCellSeparatorStyle;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasScrollViewIndicatorStyle {
   return nil != [_ruleset objectForKey:kScrollViewIndicatorStyleKey];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIScrollViewIndicatorStyle)scrollViewIndicatorStyle {
   NIDASSERT([self hasScrollViewIndicatorStyle]);
   if (!_is.cached.ScrollViewIndicatorStyle) {
@@ -814,14 +716,10 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   return _scrollViewIndicatorStyle;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSNotifications
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reduceMemory {
   sColorTable = nil;
 
@@ -835,19 +733,13 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   memset(&_is, 0, sizeof(_is));
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didReceiveMemoryWarning:(void*)object {
   [self reduceMemory];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Color Tables
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSDictionary *)colorTable {
   if (nil == sColorTable) {
     // This color table was generated from http://www.w3.org/TR/css3-color/
@@ -1057,7 +949,6 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   return sColorTable;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NICSSUnit)unitFromCssValues:(NSArray*)cssValues {
   return [self unitFromCssValues:cssValues offset: 0];
 }
@@ -1099,7 +990,6 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 +(UIControlContentVerticalAlignment) controlVerticalAlignFromCssValues:(NSArray*)cssValues
 {
   NSString *unitValue = [cssValues objectAtIndex:0];
@@ -1117,7 +1007,6 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 +(UIControlContentHorizontalAlignment) controlHorizontalAlignFromCssValues:(NSArray*)cssValues
 {
   NSString *unitValue = [cssValues objectAtIndex:0];
@@ -1135,7 +1024,6 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (UIColor *)colorFromCssValues:(NSArray *)cssValues numberOfConsumedTokens:(NSInteger *)pNumberOfConsumedTokens {
   NSInteger bogus = 0;
   if (nil == pNumberOfConsumedTokens) {
@@ -1196,7 +1084,6 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   return color;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 +(BOOL)visibilityFromCssValues: (NSArray*) values
 {
   NSString *v = [values objectAtIndex:0];
@@ -1206,7 +1093,6 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   return YES;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 +(NSString*)imageStringFromCssValues:(NSArray*) cssValues
 {
   NSString *bg = [cssValues objectAtIndex:0];
@@ -1219,7 +1105,6 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   return bg;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 +(NSString*)stringFromCssValue:(NSArray*) cssValues
 {
   NSString *s = [cssValues objectAtIndex:0];
@@ -1229,7 +1114,6 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   return s;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 +(UIEdgeInsets)edgeInsetsFromCssValues: (NSArray*) cssValues
 {
   // top, left, bottom, right
@@ -1256,13 +1140,11 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
                           );
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 +(CGFloat)pixelsFromCssValue: (NSArray*) cssValues
 {
   return [[cssValues objectAtIndex:0] floatValue];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 +(NICSSButtonAdjust)buttonAdjustFromCssValue: (NSArray*) cssValues
 {
   NICSSButtonAdjust a = NICSSButtonAdjustNone;
@@ -1276,7 +1158,6 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
   return a;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (UITextAlignment)textAlignmentFromCssValues:(NSArray *)cssValues {
   NIDASSERT([cssValues count] == 1);
   if ([cssValues count] < 1) {
