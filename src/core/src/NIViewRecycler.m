@@ -26,10 +26,7 @@
 @property (nonatomic, strong) NSMutableDictionary* reuseIdentifiersToRecycledViews;
 @end
 
-
 @implementation NIViewRecycler
-
-
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -40,23 +37,21 @@
     _reuseIdentifiersToRecycledViews = [[NSMutableDictionary alloc] init];
 
     NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver: self
-           selector: @selector(reduceMemoryUsage)
-               name: UIApplicationDidReceiveMemoryWarningNotification
-             object: nil];
+    [nc addObserver:self
+           selector:@selector(reduceMemoryUsage)
+               name:UIApplicationDidReceiveMemoryWarningNotification
+             object:nil];
   }
   return self;
 }
 
 #pragma mark - Memory Warnings
 
-
 - (void)reduceMemoryUsage {
   [self removeAllViews];
 }
 
 #pragma mark - Public Methods
-
 
 - (UIView<NIRecyclableView> *)dequeueReusableViewWithIdentifier:(NSString *)reuseIdentifier {
   NSMutableArray* views = [_reuseIdentifiersToRecycledViews objectForKey:reuseIdentifier];
@@ -100,10 +95,7 @@
 
 @end
 
-
 @implementation NIRecyclableView
-
-
 
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier {
   if ((self = [super initWithFrame:CGRectZero])) {
