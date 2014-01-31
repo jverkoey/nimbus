@@ -24,19 +24,17 @@ extern "C" {
 /**
  * For common system metrics.
  *
- * If you ever need to work with system metrics in any way it can be a pain in the ass to try
- * to figure out what the exact metrics are. Figuring out how long it takes the status bar
- * to animate is not something you should be spending your time on. The metrics in this file
- * are provided as a means of unifying a number of system metrics for use in your applications.
- *
+ * If you work with system metrics in any way it can be a pain in the ass to figure out what the
+ * exact metrics are. Figuring out how long it takes the status bar to animate is not something you
+ * should be spending your time on. The metrics in this file are provided as a means of unifying a
+ * number of system metrics for use in your applications.
  *
  * <h2>What Qualifies as a Common Metric</h2>
  *
- * Common metrics are related to system components, such as the dimensions of a toolbar in
+ * Common metrics are system components, such as the dimensions of a toolbar in
  * a particular orientation or the duration of a standard animation. This is
  * not the place to put feature-specific metrics, such as the height of a photo scrubber
  * view.
- *
  *
  * <h2>Examples</h2>
  *
@@ -47,10 +45,9 @@ extern "C" {
  * is slightly shorter to accomodate the smaller height of the screen.
  *
  * @code
- * - (void)willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation
- *                                          duration: (NSTimeInterval)duration {
- *   [super willAnimateRotationToInterfaceOrientation: toInterfaceOrientation
- *                                           duration: duration];
+ * - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+ *                                          duration:(NSTimeInterval)duration {
+ *   [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
  * 
  *   CGRect toolbarFrame = self.toolbar.frame;
  *   toolbarFrame.size.height = NIToolbarHeightForOrientation(toInterfaceOrientation);
