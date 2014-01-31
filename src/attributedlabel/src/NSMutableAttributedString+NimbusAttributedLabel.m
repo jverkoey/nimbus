@@ -90,9 +90,7 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
   if (nil != color.CGColor) {
     [self removeAttribute:NSForegroundColorAttributeName range:range];
 
-    [self addAttribute:NSForegroundColorAttributeName
-                 value:color
-                 range:range];
+    [self addAttribute:NSForegroundColorAttributeName value:color range:range];
   }
 }
 
@@ -106,13 +104,8 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFont:(UIFont*)font range:(NSRange)range {
   if (nil != font) {
-    [self removeAttribute:(NSString*)kCTFontAttributeName range:range];
-
-    CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, nil);
-    if (nil != fontRef) {
-      [self addAttribute:(__bridge NSString *)kCTFontAttributeName value:(__bridge id)fontRef range:range];
-      CFRelease(fontRef);
-    }
+    [self removeAttribute:NSFontAttributeName range:range];
+    [self addAttribute:NSFontAttributeName value:font range:range];
   }
 }
 
@@ -128,9 +121,7 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
                  modifier:(CTUnderlineStyleModifiers)modifier
                     range:(NSRange)range {
   [self removeAttribute:NSUnderlineStyleAttributeName range:range];
-  [self addAttribute:NSUnderlineStyleAttributeName
-               value:@((style|modifier))
-               range:range];
+  [self addAttribute:NSUnderlineStyleAttributeName value:@((style|modifier)) range:range];
 }
 
 
@@ -145,10 +136,8 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setStrokeWidth:(CGFloat)width range:(NSRange)range {
-  [self removeAttribute:(NSString*)kCTStrokeWidthAttributeName range:range]; 
-  [self addAttribute:(NSString *)kCTStrokeWidthAttributeName 
-               value:[NSNumber numberWithFloat:width] 
-               range:range];
+  [self removeAttribute:NSStrokeWidthAttributeName range:range];
+  [self addAttribute:NSStrokeWidthAttributeName value:@(width) range:range];
 }
 
 
@@ -161,11 +150,8 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setStrokeColor:(UIColor *)color range:(NSRange)range {
   if (nil != color.CGColor) {
-    [self removeAttribute:(NSString *)kCTStrokeColorAttributeName range:range];
-
-    [self addAttribute:(NSString *)kCTStrokeColorAttributeName
-                 value:(id)color.CGColor 
-                 range:range];
+    [self removeAttribute:NSStrokeColorAttributeName range:range];
+    [self addAttribute:NSStrokeColorAttributeName value:color range:range];
   }
 }
 
@@ -178,10 +164,8 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setKern:(CGFloat)kern range:(NSRange)range {
-  [self removeAttribute:(NSString *)kCTKernAttributeName range:range]; 
-  [self addAttribute:(NSString *)kCTKernAttributeName
-               value:[NSNumber numberWithFloat:kern] 
-               range:range];
+  [self removeAttribute:NSKernAttributeName range:range];
+  [self addAttribute:NSKernAttributeName value:@(kern) range:range];
 }
 
 
