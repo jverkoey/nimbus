@@ -46,9 +46,6 @@
 
 @implementation MutableTableModelViewController
 
-@synthesize model = _model;
-@synthesize actions = _actions;
-@synthesize indexPathForDeletion = _indexPathForDeletion;
 
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {

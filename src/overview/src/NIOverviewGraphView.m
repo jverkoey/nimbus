@@ -24,7 +24,6 @@
 
 @implementation NIOverviewGraphView
 
-@synthesize dataSource = _dataSource;
 
 
 - (id)initWithFrame:(CGRect)frame {

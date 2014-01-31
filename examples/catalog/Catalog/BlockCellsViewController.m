@@ -42,7 +42,6 @@
 
 @implementation BlockCellsViewController
 
-@synthesize model = _model;
 
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:UITableViewStylePlain])) {

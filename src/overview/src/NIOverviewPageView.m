@@ -39,8 +39,6 @@ static const CGFloat kGraphRightMargin = 5;
 
 @implementation NIOverviewPageView
 
-@synthesize pageTitle = _pageTitle;
-@synthesize titleLabel = _titleLabel;
 
 
 + (void)initialize {
@@ -103,9 +101,6 @@ static const CGFloat kGraphRightMargin = 5;
 
 @implementation NIOverviewGraphPageView
 
-@synthesize label1 = _label1;
-@synthesize label2 = _label2;
-@synthesize graphView = _graphView;
 
 
 - (id)initWithFrame:(CGRect)frame {
@@ -596,8 +591,6 @@ static const CGFloat kGraphRightMargin = 5;
 @property (nonatomic, assign) NSUInteger numberOfObjects;
 @end
 @implementation NIOverviewMemoryCacheEntry
-@synthesize timestamp;
-@synthesize numberOfObjects;
 @end
 
 
@@ -607,9 +600,6 @@ static const CGFloat kGraphRightMargin = 5;
 @property (nonatomic, assign) NSUInteger maxNumberOfPixelsUnderStress;
 @end
 @implementation NIOverviewImageMemoryCacheEntry
-@synthesize numberOfPixels;
-@synthesize maxNumberOfPixels;
-@synthesize maxNumberOfPixelsUnderStress;
 @end
 
 
@@ -622,10 +612,6 @@ static const CGFloat kGraphRightMargin = 5;
 
 @implementation NIOverviewMemoryCachePageView
 
-@synthesize minValue = _minValue;
-@synthesize enumerator = _enumerator;
-@synthesize history = _history;
-@synthesize cache = _cache;
 
 
 - (id)initWithFrame:(CGRect)frame {

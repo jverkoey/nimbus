@@ -69,10 +69,6 @@
 
 @implementation SnapshotRotationTableViewController
 
-@synthesize tableView = _tableView;
-@synthesize snapshotRotation = _snapshotRotation;
-@synthesize model = _model;
-@synthesize actions = _actions;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nil bundle:nil])) {

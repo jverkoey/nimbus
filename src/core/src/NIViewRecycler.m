@@ -29,7 +29,6 @@
 
 @implementation NIViewRecycler
 
-@synthesize reuseIdentifiersToRecycledViews = _reuseIdentifiersToRecycledViews;
 
 
 - (void)dealloc {
@@ -105,7 +104,6 @@
 
 @implementation NIRecyclableView
 
-@synthesize reuseIdentifier = _reuseIdentifier;
 
 
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier {

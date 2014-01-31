@@ -50,8 +50,6 @@ typedef enum {
 
 @implementation NestedRadioGroupTableModelViewController
 
-@synthesize model = _model;
-@synthesize radioGroup = _radioGroup;
 
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {

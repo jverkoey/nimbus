@@ -26,16 +26,6 @@
 
 @implementation NIToolbarPhotoViewController
 
-@synthesize toolbarIsTranslucent = _toolbarIsTranslucent;
-@synthesize hidesChromeWhenScrolling = _hidesChromeWhenScrolling;
-@synthesize chromeCanBeHidden = _chromeCanBeHidden;
-@synthesize animateMovingToNextAndPreviousPhotos = _animateMovingToNextAndPreviousPhotos;
-@synthesize scrubberIsEnabled = _scrubberIsEnabled;
-@synthesize toolbar = _toolbar;
-@synthesize photoAlbumView = _photoAlbumView;
-@synthesize photoScrubberView = _photoScrubberView;
-@synthesize nextButton = _nextButton;
-@synthesize previousButton = _previousButton;
 
 
 - (void)shutdown_NIToolbarPhotoViewController {

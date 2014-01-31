@@ -38,18 +38,7 @@ static const NSInteger kInvalidSelection = NSIntegerMin;
 
 @implementation NIRadioGroup
 
-@synthesize controller = _controller;
-@synthesize delegate = _delegate;
-@synthesize objectMap = _objectMap;
-@synthesize objectSet = _objectSet;
-@synthesize objectOrder = _objectOrder;
-@synthesize hasSelection = _hasSelection;
 @synthesize selectedIdentifier = _selectedIdentifier;
-@synthesize tableViewCellSelectionStyle = _tableViewCellSelectionStyle;
-@synthesize forwardDelegates = _forwardDelegates;
-@synthesize cellTitle = _cellTitle;
-@synthesize controllerTitle = _controllerTitle;
-
 
 - (id)initWithController:(UIViewController *)controller {
   if ((self = [super init])) {

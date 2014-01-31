@@ -44,10 +44,6 @@
 
 @implementation InterappViewController
 
-@synthesize model = _model;
-@synthesize actions = _actions;
-@synthesize fileUrl = _fileUrl;
-@synthesize docController = _docController;
 
 - (void)cleanupDocController {
   [[NSFileManager defaultManager] removeItemAtURL:self.fileUrl error:nil];

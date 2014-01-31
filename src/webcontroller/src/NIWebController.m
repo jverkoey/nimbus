@@ -44,20 +44,6 @@
 
 @implementation NIWebController
 
-@synthesize webView = _webView;
-@synthesize toolbar = _toolbar;
-@synthesize actionSheet = _actionSheet;
-@synthesize backButton = _backButton;
-@synthesize forwardButton = _forwardButton;
-@synthesize refreshButton = _refreshButton;
-@synthesize stopButton = _stopButton;
-@synthesize actionButton = _actionButton;
-@synthesize activityItem = _activityItem;
-@synthesize actionSheetURL = _actionSheetURL;
-@synthesize loadingURL = _loadingURL;
-@synthesize loadRequest = _loadRequest;
-@synthesize toolbarHidden = _toolbarHidden;
-@synthesize toolbarTintColor = _toolbarTintColor;
 
 
 - (void)dealloc {

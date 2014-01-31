@@ -44,17 +44,6 @@ static const CGFloat kDefaultPadding = 10;
 
 @implementation NILauncherView
 
-@synthesize pagingScrollView = _pagingScrollView;
-@synthesize pager = _pager;
-@synthesize numberOfPages = _numberOfPages;
-@synthesize viewRecycler = _viewRecycler;
-@synthesize maxNumberOfButtonsPerPage = _maxNumberOfButtonsPerPage;
-@synthesize contentInsetForPages = _contentInsetForPages;
-@synthesize buttonSize = _buttonSize;
-@synthesize numberOfRows = _numberOfRows;
-@synthesize numberOfColumns = _numberOfColumns;
-@synthesize delegate = _delegate;
-@synthesize dataSource = _dataSource;
 
 
 - (void)_configureDefaults {

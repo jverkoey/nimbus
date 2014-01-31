@@ -50,7 +50,6 @@ static const CGFloat kImageSpacing = 5;
 
 @implementation ContentModesNetworkImageViewController
 
-@synthesize networkImageViews = _networkImageViews;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {

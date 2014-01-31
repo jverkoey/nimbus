@@ -30,8 +30,6 @@
 
 @implementation NILauncherViewModel
 
-@synthesize pages = _pages;
-@synthesize delegate = _delegate;
 
 
 - (id)initWithArrayOfPages:(NSArray *)pages delegate:(id<NILauncherViewModelDelegate>)delegate {

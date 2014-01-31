@@ -40,8 +40,6 @@
 
 @implementation NIOverviewMemoryCacheController
 
-@synthesize cache = _cache;
-@synthesize model = _model;
 
 
 - (void)dealloc {

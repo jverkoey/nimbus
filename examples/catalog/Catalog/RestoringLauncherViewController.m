@@ -49,7 +49,6 @@
 
 @implementation RestoringLauncherViewController
 
-@synthesize model = _model;
 
 // We provide a consistent way to fetch the path to the launcher data.
 - (NSString *)pathForLauncherData {

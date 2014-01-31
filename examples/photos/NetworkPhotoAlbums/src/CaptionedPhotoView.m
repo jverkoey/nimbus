@@ -25,8 +25,6 @@ static UIEdgeInsets kWellPadding = {0}; // see +initialize
 
 @implementation CaptionedPhotoView
 
-@synthesize captionWell = _captionWell;
-@synthesize captionLabel = _captionLabel;
 
 
 + (void)initialize {

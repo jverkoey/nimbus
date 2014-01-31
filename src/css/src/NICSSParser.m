@@ -46,7 +46,6 @@ int cssConsume(char* text, int token) {
 
 @implementation NICSSParser
 
-@synthesize didFailToParse = _didFailToParse;
 
 
 - (void)shutdown {

@@ -32,7 +32,6 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 @implementation NIFormElement
 
-@synthesize elementID = _elementID;
 
 
 + (id)elementWithID:(NSInteger)elementID {
@@ -52,10 +51,6 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 @implementation NITextInputFormElement
 
-@synthesize placeholderText = _placeholderText;
-@synthesize value = _value;
-@synthesize isPassword = _isPassword;
-@synthesize delegate = _delegate;
 
 
 + (id)textInputElementWithID:(NSInteger)elementID placeholderText:(NSString *)placeholderText value:(NSString *)value delegate:(id<UITextFieldDelegate>)delegate {
@@ -89,10 +84,6 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 @implementation NISwitchFormElement
 
-@synthesize labelText = _labelText;
-@synthesize value = _value;
-@synthesize didChangeTarget = _didChangeTarget;
-@synthesize didChangeSelector = _didChangeSelector;
 
 
 + (id)switchElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(BOOL)value didChangeTarget:(id)target didChangeSelector:(SEL)selector {
@@ -117,12 +108,6 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 @implementation NISliderFormElement
 
-@synthesize labelText = _labelText;
-@synthesize value = _value;
-@synthesize minimumValue = _minimumValue;
-@synthesize maximumValue = _maximumValue;
-@synthesize didChangeTarget = _didChangeTarget;
-@synthesize didChangeSelector = _didChangeSelector;
 
 
 + (id)sliderElementWithID:(NSInteger)elementID labelText:(NSString *)labelText value:(float)value minimumValue:(float)minimumValue maximumValue:(float)maximumValue didChangeTarget:(id)target didChangeSelector:(SEL)selector {
@@ -149,11 +134,6 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 @implementation NISegmentedControlFormElement
 
-@synthesize labelText = _labelText;
-@synthesize selectedIndex = _selectedIndex;
-@synthesize segments = _segments;
-@synthesize didChangeTarget = _didChangeTarget;
-@synthesize didChangeSelector = _didChangeSelector;
 
 
 + (id)segmentedControlElementWithID:(NSInteger)elementID labelText:(NSString *)labelText segments:(NSArray *)segments selectedIndex:(NSInteger)selectedIndex didChangeTarget:(id)target didChangeSelector:(SEL)selector {
@@ -179,11 +159,6 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 @implementation NIDatePickerFormElement
 
-@synthesize labelText = _labelText;
-@synthesize date = _date;
-@synthesize datePickerMode = _datePickerMode;
-@synthesize didChangeTarget = _didChangeTarget;
-@synthesize didChangeSelector = _didChangeSelector;
 
 + (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date datePickerMode:(UIDatePickerMode)datePickerMode didChangeTarget:(id)target didChangeSelector:(SEL)selector {
     NIDatePickerFormElement *element = [super elementWithID:elementID];
@@ -212,7 +187,6 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 @implementation NIFormElementCell
 
-@synthesize element = _element;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -252,7 +226,6 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 @implementation NITextInputFormElementCell
 
-@synthesize textField = _textField;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
@@ -308,7 +281,6 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 @implementation NISwitchFormElementCell
 
-@synthesize switchControl = _switchControl;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
@@ -390,7 +362,6 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 @implementation NISliderFormElementCell
 
-@synthesize sliderControl = _sliderControl;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -467,7 +438,6 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 @implementation NISegmentedControlFormElementCell
 
-@synthesize segmentedControl = _segmentedControl;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -562,9 +532,6 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 @implementation NIDatePickerFormElementCell
 
-@synthesize dumbDateField = _dumbDateField;
-@synthesize dateField = _dateField;
-@synthesize datePicker = _datePicker;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

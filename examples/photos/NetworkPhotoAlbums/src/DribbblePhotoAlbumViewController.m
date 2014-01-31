@@ -20,7 +20,6 @@
 
 @implementation DribbblePhotoAlbumViewController
 
-@synthesize apiPath = _apiPath;
 
 - (id)initWith:(id)object {
   if ((self = [self initWithNibName:nil bundle:nil])) {

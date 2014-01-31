@@ -25,7 +25,6 @@
 
 @implementation NIStylesheetCache
 
-@synthesize pathPrefix = _pathPrefix;
 
 
 - (id)initWithPathPrefix:(NSString *)pathPrefix {

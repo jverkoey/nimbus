@@ -30,11 +30,6 @@
 
 @implementation NINetworkTableViewController
 
-@synthesize activityIndicatorStyle = _activityIndicatorStyle;
-@synthesize tableViewStyle = _tableViewStyle;
-@synthesize activityIndicator = _activityIndicator;
-@synthesize tableView = _tableView;
-@synthesize clearsSelectionOnViewWillAppear = _clearsSelectionOnViewWillAppear;
 
 
 - (void)dealloc {

@@ -29,13 +29,6 @@ static const CGFloat kBadgeLineSize = 2.0f;
 
 @implementation NIBadgeView
 
-@synthesize text = _text;
-@synthesize tintColor = _tintColor;
-@synthesize font = _font;
-@synthesize textColor = _textColor;
-@synthesize shadowColor = _shadowColor;
-@synthesize shadowOffset = _shadowOffset;
-@synthesize shadowBlur = _shadowBlur;
 
 - (void)_configureDefaults {
   self.contentScaleFactor = NIScreenScale();

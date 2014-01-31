@@ -141,8 +141,6 @@
 
 @implementation RecyclableView
 
-@synthesize reuseIdentifier = _reuseIdentifier;
-@synthesize didReuse = _didReuse;
 
 
 - (void)prepareForReuse {

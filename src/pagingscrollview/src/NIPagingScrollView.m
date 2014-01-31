@@ -52,14 +52,6 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 @implementation NIPagingScrollView
 
-@synthesize visiblePages = _visiblePages;
-@synthesize pagingScrollView = _pagingScrollView;
-@synthesize pageMargin = _pageMargin;
-@synthesize dataSource = _dataSource;
-@synthesize delegate = _delegate;
-@synthesize centerPageIndex = _centerPageIndex;
-@synthesize numberOfPages = _numberOfPages;
-@synthesize type = _type;
 
 
 - (void)commonInit {

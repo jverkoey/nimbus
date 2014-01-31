@@ -30,9 +30,6 @@ static const CGFloat kDefaultContentInset = 0;
 
 @implementation NILauncherButtonView
 
-@synthesize label = _label;
-@synthesize button = _button;
-@synthesize contentInset = _contentInset;
 
 
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier {

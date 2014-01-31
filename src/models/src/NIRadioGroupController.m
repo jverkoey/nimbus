@@ -36,9 +36,6 @@
 
 @implementation NIRadioGroupController
 
-@synthesize radioGroup = _radioGroup;
-@synthesize tappedCell = _tappedCell;
-@synthesize model = _model;
 
 
 - (void)dealloc {

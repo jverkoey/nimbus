@@ -31,12 +31,7 @@
 
 @implementation NetworkPhotoAlbumViewController
 
-@synthesize highQualityImageCache = _highQualityImageCache;
-@synthesize thumbnailImageCache = _thumbnailImageCache;
-@synthesize queue = _queue;
 #ifdef DEBUG
-@synthesize highQualityPage = _highQualityPage;
-@synthesize thumbnailPage = _thumbnailPage;
 #endif
 
 

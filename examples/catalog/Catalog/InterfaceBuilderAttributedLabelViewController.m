@@ -48,12 +48,6 @@
 
 @implementation InterfaceBuilderAttributedLabelViewController
 
-@synthesize scrollView;
-@synthesize nimbusTitle;
-@synthesize label1;
-@synthesize label2;
-@synthesize label3;
-@synthesize label4;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:@"AttributedLabelMashup" bundle:nil])) {

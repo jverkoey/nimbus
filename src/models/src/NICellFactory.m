@@ -29,7 +29,6 @@
 
 @implementation NICellFactory
 
-@synthesize objectToCellMap = _objectToCellMap;
 
 
 - (id)init {
@@ -174,8 +173,6 @@
 
 @implementation NICellObject
 
-@synthesize cellClass = _cellClass;
-@synthesize userInfo = _userInfo;
 
 
 - (id)initWithCellClass:(Class)cellClass userInfo:(id)userInfo {

@@ -27,10 +27,6 @@ NSString* const NIOverviewLoggerDidAddEventLog = @"NIOverviewLoggerDidAddEventLo
 
 @implementation NIOverviewLogger
 
-@synthesize oldestLogAge = _oldestLogAge;
-@synthesize deviceLogs = _deviceLogs;
-@synthesize consoleLogs = _consoleLogs;
-@synthesize eventLogs = _eventLogs;
 
 
 + (NIOverviewLogger*)sharedLogger
@@ -126,7 +122,6 @@ NSString* const NIOverviewLoggerDidAddEventLog = @"NIOverviewLoggerDidAddEventLo
 
 @implementation NIOverviewLogEntry
 
-@synthesize timestamp = _timestamp;
 
 
 - (id)initWithTimestamp:(NSDate *)timestamp {
@@ -141,19 +136,12 @@ NSString* const NIOverviewLoggerDidAddEventLog = @"NIOverviewLoggerDidAddEventLo
 
 @implementation NIOverviewDeviceLogEntry
 
-@synthesize bytesOfFreeMemory = _bytesOfFreeMemory;
-@synthesize bytesOfTotalMemory = _bytesOfTotalMemory;
-@synthesize bytesOfTotalDiskSpace = _bytesOfTotalDiskSpace;
-@synthesize bytesOfFreeDiskSpace = _bytesOfFreeDiskSpace;
-@synthesize batteryLevel = _batteryLevel;
-@synthesize batteryState = _batteryState;
 
 @end
 
 
 @implementation NIOverviewConsoleLogEntry
 
-@synthesize log = _log;
 
 
 - (id)initWithLog:(NSString *)logText {
@@ -169,7 +157,6 @@ NSString* const NIOverviewLoggerDidAddEventLog = @"NIOverviewLoggerDidAddEventLo
 
 @implementation NIOverviewEventLogEntry
 
-@synthesize type = _eventType;
 
 
 - (id)initWithType:(NSInteger)type {

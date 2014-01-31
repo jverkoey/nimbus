@@ -22,7 +22,6 @@
 
 @implementation FacebookPhotoAlbumViewController
 
-@synthesize facebookAlbumId = _facebookAlbumId;
 
 - (id)initWith:(id)object {
   if ((self = [self initWithNibName:nil bundle:nil])) {

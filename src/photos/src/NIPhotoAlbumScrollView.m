@@ -26,10 +26,6 @@
 
 @implementation NIPhotoAlbumScrollView
 
-@synthesize loadingImage = _loadingImage;
-@synthesize photoViewBackgroundColor = _photoViewBackgroundColor;
-@synthesize zoomingIsEnabled = _zoomingIsEnabled;
-@synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
 
 
 - (id)initWithFrame:(CGRect)frame {

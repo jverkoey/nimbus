@@ -35,8 +35,6 @@ static Class _rulesetClass;
 
 @implementation NIStylesheet
 
-@synthesize rawRulesets = _rawRulesets;
-@synthesize significantScopeToScopes = _significantScopeToScopes;
 
 
 - (void)dealloc {

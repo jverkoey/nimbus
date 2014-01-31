@@ -18,9 +18,6 @@
 
 @implementation SamplePageView
 
-@synthesize label = _label;
-@synthesize pageIndex = _pageIndex;
-@synthesize reuseIdentifier = _reuseIdentifier;
 
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier {
   if ((self = [super initWithFrame:CGRectZero])) {

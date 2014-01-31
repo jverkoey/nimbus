@@ -52,7 +52,6 @@
 
 @implementation NetworkDrawRectBlockCell
 
-@synthesize networkImageView = _networkImageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
@@ -113,8 +112,6 @@
 
 @implementation NetworkBlockCellsViewController
 
-@synthesize model = _model;
-@synthesize cellFactory = _cellFactory;
 
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:UITableViewStylePlain])) {

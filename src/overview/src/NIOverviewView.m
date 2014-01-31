@@ -39,10 +39,6 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
 
 @implementation NIOverviewView
 
-@synthesize enableDraggingVertically = _enableDraggingVertically,
-            translucent = _translucent;
-
-
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     _pageViews = [[NSMutableArray alloc] init];

@@ -320,10 +320,6 @@
 
 @implementation NIMemoryCacheInfo
 
-@synthesize name            = _name;
-@synthesize object          = _object;
-@synthesize expirationDate  = _expirationDate;
-@synthesize lastAccessTime  = _lastAccessTime;
 
 
 - (BOOL)hasExpired {
@@ -356,9 +352,6 @@
 
 @implementation NIImageMemoryCache
 
-@synthesize numberOfPixels                = _numberOfPixels;
-@synthesize maxNumberOfPixels             = _maxNumberOfPixels;
-@synthesize maxNumberOfPixelsUnderStress  = _maxNumberOfPixelsUnderStress;
 
 
 - (NSUInteger)numberOfPixelsUsedByImage:(UIImage *)image {

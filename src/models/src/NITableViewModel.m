@@ -26,15 +26,7 @@
 
 @implementation NITableViewModel
 
-@synthesize sections = _sections;
-@synthesize sectionIndexTitles = _sectionIndexTitles;
-@synthesize sectionPrefixToSectionIndex = _sectionPrefixToSectionIndex;
-@synthesize sectionIndexType = _sectionIndexType;
-@synthesize sectionIndexShowsSearch = _sectionIndexShowsSearch;
-@synthesize sectionIndexShowsSummary = _sectionIndexShowsSummary;
-@synthesize delegate = _delegate;
 #if NS_BLOCKS_AVAILABLE
-@synthesize createCellBlock = _createCellBlock;
 #endif // #if NS_BLOCKS_AVAILABLE
 
 
@@ -379,7 +371,6 @@
 
 @implementation NITableViewModelFooter
 
-@synthesize title = _title;
 
 
 + (NITableViewModelFooter *)footerWithTitle:(NSString *)title {
@@ -398,9 +389,6 @@
 
 @implementation NITableViewModelSection
 
-@synthesize headerTitle = _headerTitle;
-@synthesize footerTitle = _footerTitle;
-@synthesize rows = _rows;
 
 
 + (id)section {

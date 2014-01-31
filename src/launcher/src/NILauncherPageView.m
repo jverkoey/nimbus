@@ -26,11 +26,6 @@
 
 @implementation NILauncherPageView
 
-@synthesize viewRecycler = _viewRecycler;
-@synthesize mutableRecyclableViews = _mutableRecyclableViews;
-@synthesize contentInset = _contentInset;
-@synthesize viewSize = _viewSize;
-@synthesize viewMargins = _viewMargins;
 
 
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier {

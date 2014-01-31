@@ -29,7 +29,6 @@ static NSString* const kImageCodingKey = @"image";
 @synthesize title = _title;
 @synthesize image = _image;
 
-
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image {
   if ((self = [super init])) {
     _title = title;

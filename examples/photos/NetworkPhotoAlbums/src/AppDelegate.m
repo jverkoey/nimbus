@@ -23,7 +23,6 @@
 
 @implementation AppDelegate
 
-@synthesize window = _window;
 
 #pragma mark -
 #pragma mark Application lifecycle

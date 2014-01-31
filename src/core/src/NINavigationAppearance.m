@@ -126,12 +126,6 @@ static NSMutableArray* sAppearanceStack = nil;
 
 @implementation NINavigationAppearanceSnapshot
 
-@synthesize navBarTranslucent = _navBarTranslucent;
-@synthesize navBarStyle = _navBarStyle;
-@synthesize statusBarStyle = _statusBarStyle;
-@synthesize navBarTintColor = _navBarTintColor;
-@synthesize navBarDefaultImage = _navBarDefaultImage;
-@synthesize navBarLandscapePhoneImage = _navBarLandscapePhoneImage;
 
 - (id)initForNavigationController:(UINavigationController *)navigationController {
   self = [super init];

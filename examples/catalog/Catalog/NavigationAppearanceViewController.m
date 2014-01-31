@@ -34,9 +34,6 @@
 
 @implementation NavigationAppearanceViewController
 
-@synthesize changeBarStyle;
-@synthesize changeTintColor;
-@synthesize changeBackgroundImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

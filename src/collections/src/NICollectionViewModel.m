@@ -26,10 +26,6 @@
 
 @implementation NICollectionViewModel
 
-@synthesize sections = _sections;
-@synthesize sectionIndexTitles = _sectionIndexTitles;
-@synthesize sectionPrefixToSectionIndex = _sectionPrefixToSectionIndex;
-@synthesize delegate = _delegate;
 
 
 - (id)initWithDelegate:(id<NICollectionViewModelDelegate>)delegate {
@@ -228,7 +224,6 @@
 
 @implementation NICollectionViewModelFooter
 
-@synthesize title = _title;
 
 
 + (NICollectionViewModelFooter *)footerWithTitle:(NSString *)title {
@@ -247,9 +242,6 @@
 
 @implementation NICollectionViewModelSection
 
-@synthesize headerTitle = _headerTitle;
-@synthesize footerTitle = _footerTitle;
-@synthesize rows = _rows;
 
 
 + (id)section {

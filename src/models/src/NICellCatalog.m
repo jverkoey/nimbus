@@ -24,8 +24,6 @@
 
 @implementation NIDrawRectBlockCellObject
 
-@synthesize block = _block;
-@synthesize object = _object;
 
 
 - (id)initWithBlock:(NICellDrawRectBlock)block object:(id)object {
@@ -45,8 +43,6 @@
 
 @implementation NITitleCellObject
 
-@synthesize title = _title;
-@synthesize image = _image;
 
 
 - (id)initWithCellClass:(Class)cellClass userInfo:(id)userInfo {
@@ -82,8 +78,6 @@
 
 @implementation NISubtitleCellObject
 
-@synthesize subtitle = _subtitle;
-@synthesize cellStyle = _cellStyle;
 
 
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image {
@@ -156,9 +150,6 @@
 
 @implementation NIDrawRectBlockView
 
-@synthesize block = _block;
-@synthesize object = _object;
-@synthesize cell = _cell;
 
 
 - (id)initWithFrame:(CGRect)frame {
@@ -179,7 +170,6 @@
 
 @implementation NIDrawRectBlockCell
 
-@synthesize blockView = _blockView;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

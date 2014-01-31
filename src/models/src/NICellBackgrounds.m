@@ -32,15 +32,6 @@ static const CGSize kCellImageSize = {44, 44};
 
 @implementation NIGroupedCellBackground
 
-@synthesize innerBackgroundColor = _innerBackgroundColor;
-@synthesize highlightedInnerGradientColors = _highlightedInnerGradientColors;
-@synthesize shadowWidth = _shadowWidth;
-@synthesize shadowColor = _shadowColor;
-@synthesize shadowOffset = _shadowOffset;
-@synthesize borderColor = _borderColor;
-@synthesize dividerColor = _dividerColor;
-@synthesize borderRadius = _borderRadius;
-@synthesize cachedImages = _cachedImages;
 
 
 - (id)init {

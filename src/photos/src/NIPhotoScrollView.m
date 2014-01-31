@@ -80,16 +80,6 @@
 
 @implementation NIPhotoScrollView
 
-@synthesize pageIndex  = _pageIndex;
-@synthesize reuseIdentifier = _reuseIdentifier;
-@synthesize photoSize   = _photoSize;
-@synthesize photoDimensions = _photoDimensions;
-@synthesize zoomingIsEnabled = _zoomingIsEnabled;
-@synthesize zoomingAboveOriginalSizeIsEnabled = _zoomingAboveOriginalSizeIsEnabled;
-@synthesize photoScrollViewDelegate = _photoScrollViewDelegate;
-@synthesize maximumScale = _maximumScale;
-@synthesize loading = _loading;
-@synthesize doubleTapGestureRecognizer = _doubleTapGestureRecognizer;
 
 
 - (id)initWithFrame:(CGRect)frame {

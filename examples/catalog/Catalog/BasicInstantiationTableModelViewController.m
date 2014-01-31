@@ -43,7 +43,6 @@
 
 @implementation BasicInstantiationTableModelViewController
 
-@synthesize model = _model;
 
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {

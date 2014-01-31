@@ -50,8 +50,6 @@
 
 @implementation ActionsTableModelViewController
 
-@synthesize model = _model;
-@synthesize actions = _actions;
 
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {

@@ -30,7 +30,6 @@
 
 @implementation NICollectionViewCellFactory
 
-@synthesize objectToCellMap = _objectToCellMap;
 
 
 - (id)init {
@@ -155,8 +154,6 @@
 
 @implementation NICollectionViewCellObject
 
-@synthesize collectionViewCellClass = _collectionViewCellClass;
-@synthesize userInfo = _userInfo;
 
 
 - (id)initWithCellClass:(Class)collectionViewCellClass userInfo:(id)userInfo {

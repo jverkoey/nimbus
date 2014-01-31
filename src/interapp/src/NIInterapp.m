@@ -563,11 +563,6 @@ static NSString* const sInstagramScheme = @"instagram:";
 
 @implementation NIMailAppInvocation
 
-@synthesize recipient = _recipient;
-@synthesize cc = _cc;
-@synthesize bcc = _bcc;
-@synthesize subject = _subject;
-@synthesize body = _body;
 
 
 + (id)invocation {

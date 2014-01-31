@@ -33,15 +33,6 @@
 
 @implementation NINetworkImageView
 
-@synthesize operation               = _operation;
-@synthesize sizeForDisplay          = _sizeForDisplay;
-@synthesize scaleOptions            = _scaleOptions;
-@synthesize interpolationQuality    = _interpolationQuality;
-@synthesize imageMemoryCache        = _imageMemoryCache;
-@synthesize networkOperationQueue   = _networkOperationQueue;
-@synthesize maxAge                  = _maxAge;
-@synthesize initialImage            = _initialImage;
-@synthesize delegate                = _delegate;
 
 
 - (void)cancelOperation {

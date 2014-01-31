@@ -32,8 +32,6 @@
 
 @implementation NITableViewActions
 
-@synthesize forwardDelegates = _forwardDelegates;
-@synthesize tableViewCellSelectionStyle = _tableViewCellSelectionStyle;
 
 
 - (id)initWithTarget:(id)target {

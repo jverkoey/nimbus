@@ -64,9 +64,6 @@ typedef enum {
 
 @implementation FormCellCatalogViewController
 
-@synthesize model = _model;
-@synthesize radioGroup = _radioGroup;
-@synthesize subRadioGroup = _subRadioGroup;
 
 - (id)initWithStyle:(UITableViewStyle)style {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {

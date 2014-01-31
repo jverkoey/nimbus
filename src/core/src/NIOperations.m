@@ -26,14 +26,7 @@
 
 @implementation NIOperation
 
-@synthesize delegate = _delegate;
-@synthesize tag = _tag;
-@synthesize lastError = _lastError;
 
-@synthesize didStartBlock         = _didStartBlock;
-@synthesize didFinishBlock        = _didFinishBlock;
-@synthesize didFailWithErrorBlock = _didFailWithErrorBlock;
-@synthesize willFinishBlock       = _willFinishBlock;
 
 
 - (void)dealloc {

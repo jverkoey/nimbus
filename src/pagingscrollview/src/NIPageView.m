@@ -23,5 +23,4 @@
 #endif
 
 @implementation NIPageView
-@synthesize pageIndex = _pageIndex;
 @end

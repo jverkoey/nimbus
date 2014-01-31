@@ -83,12 +83,6 @@ UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view) {
 
 @implementation NISnapshotRotation
 
-@synthesize isSupportedOS = _isSupportedOS;
-@synthesize frameBeforeRotation = _frameBeforeRotation;
-@synthesize frameAfterRotation = _frameAfterRotation;
-@synthesize snapshotViewBeforeRotation = _snapshotViewBeforeRotation;
-@synthesize snapshotViewAfterRotation = _snapshotViewAfterRotation;
-@synthesize delegate = _delegate;
 
 
 - (id)initWithDelegate:(id<NISnapshotRotationDelegate>)delegate {
@@ -218,7 +212,6 @@ UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view) {
 
 @implementation NITableViewSnapshotRotation
 
-@synthesize forwardingDelegate = _forwardingDelegate;
 
 
 - (void)setDelegate:(id<NISnapshotRotationDelegate>)delegate {

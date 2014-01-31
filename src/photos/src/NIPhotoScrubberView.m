@@ -61,9 +61,6 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
 
 @implementation NIPhotoScrubberView
 
-@synthesize dataSource = _dataSource;
-@synthesize delegate = _delegate;
-@synthesize selectedPhotoIndex = _selectedPhotoIndex;
 
 
 - (id)initWithFrame:(CGRect)frame {

@@ -22,8 +22,6 @@
 
 @implementation AppDelegate
 
-@synthesize window = _window;
-@synthesize stylesheetCache = _stylesheetCache;
 
 
 #pragma mark -

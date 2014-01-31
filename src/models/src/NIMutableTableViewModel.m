@@ -23,7 +23,6 @@
 
 @implementation NIMutableTableViewModel
 
-@synthesize delegate = _delegate;
 
 
 #pragma mark - Public Methods
