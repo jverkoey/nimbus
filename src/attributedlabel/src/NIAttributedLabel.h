@@ -78,40 +78,40 @@ extern NSString * const kNILinkAttributeName; // Value is an NSTextCheckingResul
 // Please use attributedText instead.
 @property (nonatomic, copy) NSAttributedString* attributedString __NI_DEPRECATED_METHOD;
 
-@property (nonatomic, assign) BOOL autoDetectLinks; // Default: NO
-@property (nonatomic, assign) NSTextCheckingType dataDetectorTypes; // Default: NSTextCheckingTypeLink
-@property (nonatomic, assign) BOOL deferLinkDetection; // Default: NO
+@property (nonatomic) BOOL                autoDetectLinks;    // Default: NO
+@property (nonatomic) NSTextCheckingType  dataDetectorTypes;  // Default: NSTextCheckingTypeLink
+@property (nonatomic) BOOL                deferLinkDetection; // Default: NO
 
 - (void)addLink:(NSURL *)urlLink range:(NSRange)range;
 - (void)removeAllExplicitLinks; // Removes all links that were added by addLink:range:. Does not remove autodetected links.
 
-@property (nonatomic, NI_STRONG) UIColor* linkColor; // Default: [UIColor blueColor]
-@property (nonatomic, NI_STRONG) UIColor* highlightedLinkBackgroundColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
-@property (nonatomic, assign) BOOL linksHaveUnderlines; // Default: NO
-@property (nonatomic, copy) NSDictionary *attributesForLinks; // Default: nil
-@property (nonatomic, copy) NSDictionary *attributesForHighlightedLink; // Default: nil
-@property (nonatomic, assign) CGFloat lineHeight;
+@property (nonatomic, strong) UIColor*      linkColor;                      // Default: [UIColor blueColor]
+@property (nonatomic, strong) UIColor*      highlightedLinkBackgroundColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
+@property (nonatomic)         BOOL          linksHaveUnderlines;            // Default: NO
+@property (nonatomic, copy)   NSDictionary* attributesForLinks;             // Default: nil
+@property (nonatomic, copy)   NSDictionary* attributesForHighlightedLink;   // Default: nil
+@property (nonatomic)         CGFloat       lineHeight;
 
-@property (nonatomic, assign) NIVerticalTextAlignment verticalTextAlignment; // Default: NIVerticalTextAlignmentTop
-@property (nonatomic, assign) CTUnderlineStyle underlineStyle;
-@property (nonatomic, assign) CTUnderlineStyleModifiers underlineStyleModifier;
-@property (nonatomic, assign) CGFloat shadowBlur; // Default: 0
-@property (nonatomic, assign) CGFloat strokeWidth;
-@property (nonatomic, NI_STRONG) UIColor* strokeColor;
-@property (nonatomic, assign) CGFloat textKern;
+@property (nonatomic)         NIVerticalTextAlignment   verticalTextAlignment;  // Default: NIVerticalTextAlignmentTop
+@property (nonatomic)         CTUnderlineStyle          underlineStyle;
+@property (nonatomic)         CTUnderlineStyleModifiers underlineStyleModifier;
+@property (nonatomic)         CGFloat                   shadowBlur;             // Default: 0
+@property (nonatomic)         CGFloat                   strokeWidth;
+@property (nonatomic, strong) UIColor*                  strokeColor;
+@property (nonatomic)         CGFloat                   textKern;
 
+- (void)setFont:(UIFont *)font            range:(NSRange)range;
+- (void)setStrokeColor:(UIColor *)color   range:(NSRange)range;
+- (void)setStrokeWidth:(CGFloat)width     range:(NSRange)range;
 - (void)setTextColor:(UIColor *)textColor range:(NSRange)range;
-- (void)setFont:(UIFont *)font range:(NSRange)range;
+- (void)setTextKern:(CGFloat)kern         range:(NSRange)range;
 - (void)setUnderlineStyle:(CTUnderlineStyle)style modifier:(CTUnderlineStyleModifiers)modifier range:(NSRange)range;
-- (void)setStrokeWidth:(CGFloat)width range:(NSRange)range;
-- (void)setStrokeColor:(UIColor *)color range:(NSRange)range;
-- (void)setTextKern:(CGFloat)kern range:(NSRange)range;
 
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index;
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins;
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins verticalTextAlignment:(NIVerticalTextAlignment)verticalTextAlignment;
 
-@property (nonatomic, NI_WEAK) IBOutlet id<NIAttributedLabelDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<NIAttributedLabelDelegate> delegate;
 @end
 
 /**
