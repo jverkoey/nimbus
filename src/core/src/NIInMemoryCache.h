@@ -27,8 +27,6 @@
  *      @{
  */
 
-@class NILinkedList;
-
 /**
  * An in-memory cache for storing objects with expiration support.
  *
