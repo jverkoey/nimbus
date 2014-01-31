@@ -51,7 +51,7 @@ typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
 @interface NIOperation : NSOperation
 
 @property (weak) id<NIOperationDelegate> delegate;
-@property (readonly,  strong) NSError* lastError;
+@property (readonly, strong) NSError* lastError;
 @property (assign) NSInteger tag;
 
 @property (copy) NIOperationBlock didStartBlock;

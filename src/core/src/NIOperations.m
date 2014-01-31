@@ -26,9 +26,6 @@
 
 @implementation NIOperation
 
-
-
-
 - (void)dealloc {
   // For an unknown reason these block objects are not released when the NIOperation is deallocated
   // with ARC enabled.
@@ -41,25 +38,24 @@
 #pragma mark -
 #pragma mark Initiate delegate notification from the NSOperation
 
-
 - (void)didStart {
-	[self performSelectorOnMainThread: @selector(onMainThreadOperationDidStart)
-                         withObject: nil
-                      waitUntilDone: [NSThread isMainThread]];
+	[self performSelectorOnMainThread:@selector(onMainThreadOperationDidStart)
+                         withObject:nil
+                      waitUntilDone:[NSThread isMainThread]];
 }
 
 - (void)didFinish {
-	[self performSelectorOnMainThread: @selector(onMainThreadOperationDidFinish)
-                         withObject: nil
-                      waitUntilDone: [NSThread isMainThread]];
+	[self performSelectorOnMainThread:@selector(onMainThreadOperationDidFinish)
+                         withObject:nil
+                      waitUntilDone:[NSThread isMainThread]];
 }
 
 - (void)didFailWithError:(NSError *)error {
   self.lastError = error;
 
-	[self performSelectorOnMainThread: @selector(onMainThreadOperationDidFailWithError:)
-                         withObject: error
-                      waitUntilDone: [NSThread isMainThread]];
+	[self performSelectorOnMainThread:@selector(onMainThreadOperationDidFailWithError:)
+                         withObject:error
+                      waitUntilDone:[NSThread isMainThread]];
 }
 
 - (void)willFinish {
@@ -74,7 +70,6 @@
 
 #pragma mark -
 #pragma mark Main Thread
-
 
 - (void)onMainThreadOperationDidStart {
   // This method should only be called on the main thread.
