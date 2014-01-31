@@ -1,5 +1,5 @@
 //
-// Copyright 2011 Jeff Verkoeyen
+// Copyright 2011-2014 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,14 +14,11 @@
 // limitations under the License.
 //
 
-// All category documentation is found in the source files due to limitations of Doxygen.
-// Look for the documentation in the Classes tab of the documentation.
-
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
-#import "NimbusCore.h"
+// Documentation for these additions is found in the .m file.
+@interface UIResponder (NimbusCore)
 
-// Additions
-#import "NSString+NimbusCore.h"
-#import "UIResponder+NimbusCore.h"
++ (instancetype)nimbus_currentFirstResponder;
+
+@end

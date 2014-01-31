@@ -253,6 +253,8 @@
 		66A0B0C214BD1116003FA413 /* NimbusNetworkControllers.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A0B0BF14BD1116003FA413 /* NimbusNetworkControllers.h */; };
 		66A0B0C314BD1116003FA413 /* NINetworkTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A0B0C014BD1116003FA413 /* NINetworkTableViewController.h */; };
 		66A0B0C414BD1116003FA413 /* NINetworkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A0B0C114BD1116003FA413 /* NINetworkTableViewController.m */; };
+		66AF0BCA189C1E2700020FEE /* UIResponder+NimbusCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 66AF0BC8189C1E2700020FEE /* UIResponder+NimbusCore.h */; };
+		66AF0BCB189C1E2700020FEE /* UIResponder+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AF0BC9189C1E2700020FEE /* UIResponder+NimbusCore.m */; };
 		66B10900144C931F004576D1 /* UIButton+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */; };
 		66B10901144C931F004576D1 /* UIButton+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */; };
 		66B6710715AA820700FE4AE8 /* NICellBackgrounds.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B6710515AA820700FE4AE8 /* NICellBackgrounds.h */; };
@@ -897,6 +899,8 @@
 		66A0B0C014BD1116003FA413 /* NINetworkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NINetworkTableViewController.h; path = networkcontrollers/src/NINetworkTableViewController.h; sourceTree = SOURCE_ROOT; };
 		66A0B0C114BD1116003FA413 /* NINetworkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NINetworkTableViewController.m; path = networkcontrollers/src/NINetworkTableViewController.m; sourceTree = SOURCE_ROOT; };
 		66A0B0C814BD1586003FA413 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = networkcontrollers/deps; sourceTree = SOURCE_ROOT; };
+		66AF0BC8189C1E2700020FEE /* UIResponder+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+NimbusCore.h"; sourceTree = "<group>"; };
+		66AF0BC9189C1E2700020FEE /* UIResponder+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+NimbusCore.m"; sourceTree = "<group>"; };
 		66B108FE144C931F004576D1 /* UIButton+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+NIStyleable.h"; path = "css/src/UIButton+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
 		66B108FF144C931F004576D1 /* UIButton+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+NIStyleable.m"; path = "css/src/UIButton+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		66B10906144D4C15004576D1 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = css/deps; sourceTree = SOURCE_ROOT; };
@@ -1808,6 +1812,8 @@
 				6675E4B21455FCC5007D172F /* NIViewRecycler.m */,
 				66A03CB713E6EFAF00B514F3 /* NSString+NimbusCore.h */,
 				66A03C6313E6E8D100B514F3 /* NSString+NimbusCore.m */,
+				66AF0BC8189C1E2700020FEE /* UIResponder+NimbusCore.h */,
+				66AF0BC9189C1E2700020FEE /* UIResponder+NimbusCore.m */,
 				C7B9284116D2F563001BF61C /* NIInvocationMethods.h */,
 				C7B9284216D2F563001BF61C /* NIInvocationMethods.m */,
 			);
@@ -2290,6 +2296,7 @@
 				66A03C8713E6E8D100B514F3 /* NIOperations.h in Headers */,
 				66A03C8913E6E8D100B514F3 /* NIPaths.h in Headers */,
 				66A03C8B13E6E8D100B514F3 /* NIPreprocessorMacros.h in Headers */,
+				66AF0BCA189C1E2700020FEE /* UIResponder+NimbusCore.h in Headers */,
 				66A03C8C13E6E8D100B514F3 /* NIRuntimeClassModifications.h in Headers */,
 				66A03C8E13E6E8D100B514F3 /* NISDKAvailability.h in Headers */,
 				66A03CB913E6EFB000B514F3 /* NSString+NimbusCore.h in Headers */,
@@ -3614,6 +3621,7 @@
 			files = (
 				66A03C7213E6E8D100B514F3 /* NICommonMetrics.m in Sources */,
 				66A03C7613E6E8D100B514F3 /* NIDebuggingTools.m in Sources */,
+				66AF0BCB189C1E2700020FEE /* UIResponder+NimbusCore.m in Sources */,
 				66A03C7813E6E8D100B514F3 /* NIDeviceOrientation.m in Sources */,
 				66A03C7A13E6E8D100B514F3 /* NIError.m in Sources */,
 				66A03C7C13E6E8D100B514F3 /* NIFoundationMethods.m in Sources */,
