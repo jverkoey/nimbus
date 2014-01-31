@@ -38,7 +38,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+  
+  // iOS 7-only.
+  if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+  }
+
     self.topLeft.verticalTextAlignment = NIVerticalTextAlignmentTop;
     self.top.verticalTextAlignment = NIVerticalTextAlignmentTop;
     self.topRight.verticalTextAlignment = NIVerticalTextAlignmentTop;

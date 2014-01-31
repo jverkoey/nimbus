@@ -63,7 +63,9 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
+
+  self.view.backgroundColor = [UIColor whiteColor];
+
   self.label = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
   self.label.numberOfLines = 0;
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0

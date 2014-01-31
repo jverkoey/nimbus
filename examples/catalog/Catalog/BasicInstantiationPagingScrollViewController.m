@@ -67,6 +67,10 @@ static NSString* const kPageReuseIdentifier = @"SamplePageIdentifier";
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  // iOS 7-only.
+  if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+  }
   self.view.backgroundColor = [UIColor blackColor];
 
   // Create a paging scroll view the same way we would any other type of view.

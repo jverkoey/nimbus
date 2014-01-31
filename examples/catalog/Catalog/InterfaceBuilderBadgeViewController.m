@@ -57,6 +57,11 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  // iOS 7-only.
+  if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+  }
+
   self.badgeView.text = @"2";
   self.badgeView2.text = @"4";
   [self.badgeView sizeToFit];

@@ -51,6 +51,10 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  // iOS 7-only.
+  if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+  }
   self.view.backgroundColor = [UIColor underPageBackgroundColor];
 
   // A NINetworkImageView is a subclass of UIImageView. We can provide an image to the initializer

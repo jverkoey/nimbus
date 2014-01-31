@@ -48,6 +48,11 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  // iOS 7-only.
+  if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+  }
+
   // The default view background color is transparent, so let's make sure the badge view has a
   // non-transparent background color when we assign it further down.
   self.view.backgroundColor = [UIColor whiteColor];
