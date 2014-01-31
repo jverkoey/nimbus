@@ -27,7 +27,6 @@
 #error "Nimbus requires ARC support."
 #endif
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation) {
   if (NIIsPad()) {
     return YES;
@@ -44,12 +43,10 @@ BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation) {
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 UIInterfaceOrientation NIInterfaceOrientation(void) {
   UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
 
-  // This code used to use the navigator to find the currently visible view controller and
+  // This code used to use the Three20 navigator to find the currently visible view controller and
   // fall back to checking its orientation if we didn't know the status bar's orientation.
   // It's unclear when this was actually necessary, though, so this assertion is here to try
   // to find that case. If this assertion fails then the repro case needs to be analyzed and
@@ -59,14 +56,10 @@ UIInterfaceOrientation NIInterfaceOrientation(void) {
   return orient;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL NIIsLandscapePhoneOrientation(UIInterfaceOrientation orientation) {
   return NIIsPhone() && UIInterfaceOrientationIsLandscape(orientation);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 CGAffineTransform NIRotateTransformForOrientation(UIInterfaceOrientation orientation) {
   if (orientation == UIInterfaceOrientationLandscapeLeft) {
     return CGAffineTransformMakeRotation((CGFloat)(M_PI * 1.5));
