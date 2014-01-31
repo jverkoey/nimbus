@@ -203,10 +203,7 @@ BOOL NIIsPhone(void);
 BOOL NIDeviceOSVersionIsAtLeast(double versionNumber);
 
 /**
- * Fetch the screen's scale in an SDK-agnostic way. This will work on any pre-iOS 4.0 SDK.
- *
- * Pre-iOS 4.0: will always return 1.
- *     iOS 4.0: returns the device's screen scale.
+ * Fetch the screen's scale.
  */
 CGFloat NIScreenScale(void);
 
