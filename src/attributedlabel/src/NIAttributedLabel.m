@@ -227,12 +227,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 
   [self _configureDefaults];
 
-  NSMutableAttributedString* attributedText = [[self class] mutableAttributedStringFromLabel:self];
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
-  self.attributedString = attributedText;
-#else
-  self.attributedText = attributedText;
-#endif
+  self.attributedText = [[self class] mutableAttributedStringFromLabel:self];
 }
 
 
@@ -282,53 +277,31 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
 - (void)setText:(NSString *)text {
   [super setText:text];
 
-  NSMutableAttributedString* attributedText = [[self class] mutableAttributedStringFromLabel:self];
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
-  self.attributedString = attributedText;
-#else
-  self.attributedText = attributedText;
-#endif
+  self.attributedText = [[self class] mutableAttributedStringFromLabel:self];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Deprecated method.
+// Deprecated.
+- (void)setAttributedString:(NSAttributedString *)attributedString {
+  self.attributedText = attributedString;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Deprecated.
 - (NSAttributedString *)attributedString {
-  return [self.mutableAttributedString copy];
+  return self.attributedText;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= NIIOS_6_0
 - (NSAttributedString *)attributedText {
   return [self.mutableAttributedString copy];
 }
-#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setAttributedString:(NSAttributedString *)attributedText {
-  if (self.mutableAttributedString != attributedText) {
-    self.mutableAttributedString = [attributedText mutableCopy];
-
-    // Clear the link caches.
-    self.detectedlinkLocations = nil;
-    self.linksHaveBeenDetected = NO;
-    [self removeAllExplicitLinks];
-
-    // Remove all images.
-    self.images = nil;
-
-    // Pull any explicit links from the attributed string itself
-    [self _processLinksInAttributedString:self.mutableAttributedString];
-
-    [self attributedTextDidChange];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= NIIOS_6_0
 - (void)setAttributedText:(NSAttributedString *)attributedText {
   if (self.mutableAttributedString != attributedText) {
     self.mutableAttributedString = [attributedText mutableCopy];
@@ -347,7 +320,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedS
     [self attributedTextDidChange];
   }
 }
-#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

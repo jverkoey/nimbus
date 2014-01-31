@@ -16,17 +16,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
-#import "NimbusCore.h"
 
-// In UITextAlignment prior to iOS 6.0 we do not have justify, so we add support for it when
-// building for pre-iOS 6.0.
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
-#ifndef UITextAlignmentJustify
-#define UITextAlignmentJustify ((UITextAlignment)kCTJustifiedTextAlignment)
-#endif
-#else
-// UITextAlignmentJustify is deprecated in iOS 6.0. Please use NSTextAlignmentJustified instead.
-#endif
+#import "NimbusCore.h"
 
 #if defined __cplusplus
 extern "C" {
@@ -54,12 +45,13 @@ typedef enum {
   NIVerticalTextAlignmentBottom,
 } NIVerticalTextAlignment;
 
-extern NSString * const kNILinkAttributeName;
+extern NSString * const kNILinkAttributeName; // Value is an NSTextCheckingResult.
 
 @protocol NIAttributedLabelDelegate;
 
 /**
- * The NIAttributedLabel class provides support for displaying rich text with selectable links.
+ * The NIAttributedLabel class provides support for displaying rich text with selectable links and
+ * embedded images.
  *
  * Differences between UILabel and NIAttributedLabel:
  *
@@ -83,8 +75,8 @@ extern NSString * const kNILinkAttributeName;
  */
 @interface NIAttributedLabel : UILabel
 
-// When building for iOS 6.0 and higher use attributedText.
-@property (nonatomic, copy) NSAttributedString* attributedString;
+// Please use attributedText instead.
+@property (nonatomic, copy) NSAttributedString* attributedString __NI_DEPRECATED_METHOD;
 
 @property (nonatomic, assign) BOOL autoDetectLinks; // Default: NO
 @property (nonatomic, assign) NSTextCheckingType dataDetectorTypes; // Default: NSTextCheckingTypeLink
@@ -166,17 +158,7 @@ extern NSString * const kNILinkAttributeName;
 /** @name Accessing the Text Attributes */
 
 /**
- * The attributed string that will be displayed.
- *
- * @attention
- *      When building for iOS 6.0 and higher this property will not exist. Use attributedText
- *      instead.
- *
- * Setting this property explicitly will ignore the UILabel's existing style.
- *
- * If you would like to adopt the existing UILabel style then use setText: and the attributedString
- * will be created with the UILabel's style. You can then create a mutable copy of the attributed
- * string, modify it and assign the new attributed string back to the label.
+ * This method is now deprecated and will eventually be removed, please use attributedText instead.
  *
  *      @fn NIAttributedLabel::attributedString
  */
