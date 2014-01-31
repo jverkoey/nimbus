@@ -18,12 +18,35 @@
 
 #import "NIDebuggingTools.h"
 #import <CommonCrypto/CommonDigest.h>
+#import <objc/runtime.h>
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
 #endif
 
-#pragma mark - CGRect Methods
+#pragma mark - NSInvocation
+
+NSInvocation* NIInvocationWithInstanceTarget(NSObject *targetObject, SEL selector) {
+  NSMethodSignature* sig = [targetObject methodSignatureForSelector:selector];
+  NSInvocation* inv = [NSInvocation invocationWithMethodSignature:sig];
+  [inv setTarget:targetObject];
+  [inv setSelector:selector];
+  return inv;
+}
+
+NSInvocation* NIInvocationWithClassTarget(Class targetClass, SEL selector) {
+  Method method = class_getInstanceMethod(targetClass, selector);
+  struct objc_method_description* desc = method_getDescription(method);
+  if (desc == NULL || desc->name == NULL)
+    return nil;
+
+  NSMethodSignature* sig = [NSMethodSignature signatureWithObjCTypes:desc->types];
+  NSInvocation* inv = [NSInvocation invocationWithMethodSignature:sig];
+  [inv setSelector:selector];
+  return inv;
+}
+
+#pragma mark - CGRect
 
 CGRect NIRectContract(CGRect rect, CGFloat dx, CGFloat dy) {
   return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - dx, rect.size.height - dy);
@@ -82,7 +105,7 @@ CGSize NISizeOfStringWithLabelProperties(NSString *string, CGSize constrainedToS
   return size;
 }
 
-#pragma mark - NSRange Methods
+#pragma mark - NSRange
 
 NSRange NIMakeNSRangeFromCFRange(CFRange range) {
   // CFRange stores its values in signed longs, but we're about to copy the values into
@@ -92,7 +115,7 @@ NSRange NIMakeNSRangeFromCFRange(CFRange range) {
   return NSMakeRange(range.location, range.length);
 }
 
-#pragma mark - NSData Methods
+#pragma mark - NSData
 
 NSString* NIMD5HashFromData(NSData* data) {
   unsigned char result[CC_MD5_DIGEST_LENGTH];
@@ -142,14 +165,14 @@ NSString* NISHA1HashFromData(NSData* data) {
           ];
 }
 
-#pragma mark - NSString Methods
+#pragma mark - NSString
 
 BOOL NIIsStringWithWhitespaceAndNewlines(NSString* string) {
   NSCharacterSet* notWhitespaceAndNewlines = [[NSCharacterSet whitespaceAndNewlineCharacterSet] invertedSet];
   return [string isKindOfClass:[NSString class]] && [string rangeOfCharacterFromSet:notWhitespaceAndNewlines].length == 0;
 }
 
-#pragma mark - General Purpose Methods
+#pragma mark - General Purpose
 
 // Deprecated.
 CGFloat boundf(CGFloat value, CGFloat min, CGFloat max) {

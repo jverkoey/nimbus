@@ -349,9 +349,6 @@
 		C7A8791F16D7348C00A0C23F /* NITextField+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8791C16D7348700A0C23F /* NITextField+NIStyleable.m */; };
 		C7A8792216D7B96200A0C23F /* UITextField+NIStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = C7A8792016D7B96200A0C23F /* UITextField+NIStyleable.h */; };
 		C7A8792316D7B96200A0C23F /* UITextField+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8792116D7B96200A0C23F /* UITextField+NIStyleable.m */; };
-		C7B9284316D2F563001BF61C /* NIInvocationMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = C7B9284116D2F563001BF61C /* NIInvocationMethods.h */; };
-		C7B9284416D2F563001BF61C /* NIInvocationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B9284216D2F563001BF61C /* NIInvocationMethods.m */; };
-		C7B9284516D2F563001BF61C /* NIInvocationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B9284216D2F563001BF61C /* NIInvocationMethods.m */; };
 		C7BBC6B916DDC0DB00833DC9 /* NITextField.h in Headers */ = {isa = PBXBuildFile; fileRef = C7BBC6B716DDC0DB00833DC9 /* NITextField.h */; };
 		C7BBC6BA16DDC0DB00833DC9 /* NITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BBC6B816DDC0DB00833DC9 /* NITextField.m */; };
 		C7BBC6FE16DDC0E700833DC9 /* NITextField.h in Headers */ = {isa = PBXBuildFile; fileRef = C7BBC6B716DDC0DB00833DC9 /* NITextField.h */; };
@@ -996,8 +993,6 @@
 		C7A8791C16D7348700A0C23F /* NITextField+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NITextField+NIStyleable.m"; path = "css/src/NITextField+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
 		C7A8792016D7B96200A0C23F /* UITextField+NIStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+NIStyleable.h"; path = "css/src/UITextField+NIStyleable.h"; sourceTree = SOURCE_ROOT; };
 		C7A8792116D7B96200A0C23F /* UITextField+NIStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+NIStyleable.m"; path = "css/src/UITextField+NIStyleable.m"; sourceTree = SOURCE_ROOT; };
-		C7B9284116D2F563001BF61C /* NIInvocationMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIInvocationMethods.h; sourceTree = "<group>"; };
-		C7B9284216D2F563001BF61C /* NIInvocationMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIInvocationMethods.m; sourceTree = "<group>"; };
 		C7BBC6B516DDC0DB00833DC9 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = textfield/deps; sourceTree = "<group>"; };
 		C7BBC6B716DDC0DB00833DC9 /* NITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITextField.h; sourceTree = "<group>"; };
 		C7BBC6B816DDC0DB00833DC9 /* NITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITextField.m; sourceTree = "<group>"; };
@@ -1820,8 +1815,6 @@
 				66A03C6313E6E8D100B514F3 /* NSString+NimbusCore.m */,
 				66AF0BC8189C1E2700020FEE /* UIResponder+NimbusCore.h */,
 				66AF0BC9189C1E2700020FEE /* UIResponder+NimbusCore.m */,
-				C7B9284116D2F563001BF61C /* NIInvocationMethods.h */,
-				C7B9284216D2F563001BF61C /* NIInvocationMethods.m */,
 			);
 			name = src;
 			path = core/src;
@@ -2314,7 +2307,6 @@
 				669819DB159B927B00C2D3EF /* NISnapshotRotation.h in Headers */,
 				66C1D83D16B9CE90003E855B /* NIImageUtilities.h in Headers */,
 				66C1D8C116B9ED65003E855B /* NIButtonUtilities.h in Headers */,
-				C7B9284316D2F563001BF61C /* NIInvocationMethods.h in Headers */,
 				C7A8791D16D7348700A0C23F /* NITextField+NIStyleable.h in Headers */,
 				6617FD0A171F6A92006E0DF8 /* NIActions.h in Headers */,
 				668EA9BD17206DF70056C8C3 /* NIActions+Subclassing.h in Headers */,
@@ -3645,7 +3637,6 @@
 				669819DC159B927B00C2D3EF /* NISnapshotRotation.m in Sources */,
 				66C1D83E16B9CE90003E855B /* NIImageUtilities.m in Sources */,
 				66C1D8C216B9ED65003E855B /* NIButtonUtilities.m in Sources */,
-				C7B9284416D2F563001BF61C /* NIInvocationMethods.m in Sources */,
 				6617FD0B171F6A92006E0DF8 /* NIActions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3665,7 +3656,6 @@
 				66E8CED214D089E500600592 /* NICommonMetricsTests.m in Sources */,
 				6607851C14D245BF00FE3283 /* NINetworkActivityTests.m in Sources */,
 				6607852014D33EAA00FE3283 /* NIStateTests.m in Sources */,
-				C7B9284516D2F563001BF61C /* NIInvocationMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

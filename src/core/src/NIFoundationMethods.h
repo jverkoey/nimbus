@@ -35,6 +35,22 @@ extern "C" {
  * framework's functionality.
  */
 
+#pragma mark - NSInvocation Methods
+
+/**
+ * Construct an NSInvocation with an instance of an object and a selector
+ *
+ *  @return an NSInvocation that will call the given selector on the given target
+ */
+NSInvocation* NIInvocationWithInstanceTarget(NSObject* target, SEL selector);
+
+/**
+ * Construct an NSInvocation for a class method given a class object and a selector
+ *
+ *  @return an NSInvocation that will call the given class method/selector.
+ */
+NSInvocation* NIInvocationWithClassTarget(Class targetClass, SEL selector);
+
 #pragma mark - CGRect Methods
 
 /**
