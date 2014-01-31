@@ -85,7 +85,7 @@ extern NSString * const kNILinkAttributeName; // Value is an NSTextCheckingResul
 - (void)addLink:(NSURL *)urlLink range:(NSRange)range;
 - (void)removeAllExplicitLinks; // Removes all links that were added by addLink:range:. Does not remove autodetected links.
 
-@property (nonatomic, strong) UIColor*      linkColor;                      // Default: [UIColor blueColor]
+@property (nonatomic, strong) UIColor*      linkColor;                      // Default: self.tintColor (iOS 7) or [UIColor blueColor] (iOS 6)
 @property (nonatomic, strong) UIColor*      highlightedLinkBackgroundColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
 @property (nonatomic)         BOOL          linksHaveUnderlines;            // Default: NO
 @property (nonatomic, copy)   NSDictionary* attributesForLinks;             // Default: nil
@@ -227,8 +227,9 @@ extern NSString * const kNILinkAttributeName; // Value is an NSTextCheckingResul
 /**
  * The text color of detected links.
  *
- * The default color is [UIColor blueColor]. If linkColor is assigned nil then the link attributes
- * will not be changed.
+ * The default color is [UIColor blueColor] on pre-iOS 7 devices or self.tintColor on iOS 7 devices.
+ * If linkColor is assigned nil then links will not be given any special color. Use
+ * attributesForLinks to specify alternative styling.
  *
  *  @image html NIAttributedLabelLinkAttributes.png "Link attributes"
  *
