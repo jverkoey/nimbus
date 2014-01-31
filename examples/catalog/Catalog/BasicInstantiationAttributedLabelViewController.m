@@ -56,6 +56,12 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  // iOS 7-only.
+  if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+  }
+  self.view.backgroundColor = [UIColor whiteColor];
+
   // We create an NIAttributedLabel the same way we would a UILabel.
   NIAttributedLabel* label = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
 
@@ -71,7 +77,7 @@
   label.text = @"An explorer's tale";
 
   // UIViewAutoresizingFlexibleDimensions is a Nimbus autoresizing mask that causes the view to
-  // grow and shrink with its super view. When we want to a view to fill its super view this is
+  // grow and shrink with its super view. When we want a view to fill its super view this is
   // generally the mask that we'll use.
   label.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
 
@@ -98,6 +104,10 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return NIIsSupportedOrientation(interfaceOrientation);
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+  return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 @end
