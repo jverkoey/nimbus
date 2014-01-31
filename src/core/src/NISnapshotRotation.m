@@ -72,12 +72,12 @@ UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view) {
 }
 
 @interface NISnapshotRotation()
-@property (nonatomic, readwrite, assign) BOOL isSupportedOS;
-@property (nonatomic, readwrite, assign) CGRect frameBeforeRotation;
-@property (nonatomic, readwrite, assign) CGRect frameAfterRotation;
+@property (nonatomic, assign) BOOL isSupportedOS;
+@property (nonatomic, assign) CGRect frameBeforeRotation;
+@property (nonatomic, assign) CGRect frameAfterRotation;
 
-@property (nonatomic, readwrite, NI_STRONG) UIImageView* snapshotViewBeforeRotation;
-@property (nonatomic, readwrite, NI_STRONG) UIImageView* snapshotViewAfterRotation;
+@property (nonatomic, strong) UIImageView* snapshotViewBeforeRotation;
+@property (nonatomic, strong) UIImageView* snapshotViewAfterRotation;
 @end
 
 
@@ -212,7 +212,7 @@ UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view) {
 
 
 @interface NITableViewSnapshotRotation() <NISnapshotRotationDelegate>
-@property (nonatomic, readwrite, NI_WEAK) id<NISnapshotRotationDelegate> forwardingDelegate;
+@property (nonatomic, NI_WEAK) id<NISnapshotRotationDelegate> forwardingDelegate;
 @end
 
 

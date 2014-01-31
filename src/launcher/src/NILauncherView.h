@@ -37,15 +37,15 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
  */
 @interface NILauncherView : UIView
 
-@property (nonatomic, readwrite, assign) NSInteger maxNumberOfButtonsPerPage; // Default: NSIntegerMax
-@property (nonatomic, readwrite, assign) UIEdgeInsets contentInsetForPages; // Default: 10px on all sides
-@property (nonatomic, readwrite, assign) CGSize buttonSize; // Default: 80x80
-@property (nonatomic, readwrite, assign) NSInteger numberOfRows; // Default: NILauncherViewGridBasedOnButtonSize
-@property (nonatomic, readwrite, assign) NSInteger numberOfColumns; // Default: NILauncherViewGridBasedOnButtonSize
+@property (nonatomic, assign) NSInteger maxNumberOfButtonsPerPage; // Default: NSIntegerMax
+@property (nonatomic, assign) UIEdgeInsets contentInsetForPages; // Default: 10px on all sides
+@property (nonatomic, assign) CGSize buttonSize; // Default: 80x80
+@property (nonatomic, assign) NSInteger numberOfRows; // Default: NILauncherViewGridBasedOnButtonSize
+@property (nonatomic, assign) NSInteger numberOfColumns; // Default: NILauncherViewGridBasedOnButtonSize
 
 - (void)reloadData;
-@property (nonatomic, readwrite, NI_WEAK) id<NILauncherDelegate> delegate;
-@property (nonatomic, readwrite, NI_WEAK) id<NILauncherDataSource> dataSource;
+@property (nonatomic, NI_WEAK) id<NILauncherDelegate> delegate;
+@property (nonatomic, NI_WEAK) id<NILauncherDataSource> dataSource;
 
 - (UIView<NILauncherButtonView> *)dequeueReusableViewWithIdentifier:(NSString *)identifier;
 
@@ -160,7 +160,7 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 /**
  * Requires the view to contain a button subview.
  */
-@property (nonatomic, readwrite, NI_STRONG) UIButton* button;
+@property (nonatomic, strong) UIButton* button;
 
 @end
 

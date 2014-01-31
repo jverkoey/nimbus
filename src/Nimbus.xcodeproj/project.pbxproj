@@ -370,9 +370,7 @@
 		DB84BDAC13EFDF5900DACCFE /* NimbusWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB84BDA813EFDF5900DACCFE /* NimbusWebController.h */; };
 		DB84BDAD13EFDF5900DACCFE /* NIWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB84BDA913EFDF5900DACCFE /* NIWebController.h */; };
 		DB84BDAE13EFDF5900DACCFE /* NIWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB84BDAA13EFDF5900DACCFE /* NIWebController.m */; };
-		FD01BED814179AB60023D783 /* NINavigationAppearanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD01BED414179AAC0023D783 /* NINavigationAppearanceTests.m */; };
 		FD01BEDB14179D940023D783 /* NINavigationAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = FD01BED914179D940023D783 /* NINavigationAppearance.h */; };
-		FD01BEDC14179D940023D783 /* NINavigationAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = FD01BEDA14179D940023D783 /* NINavigationAppearance.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1658,6 +1656,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		66995E4E189C32EC0005F93E /* deprecated - to be deleted after Feb 31, 2014 */ = {
+			isa = PBXGroup;
+			children = (
+				66A03C4313E6E8D100B514F3 /* NIDataStructures.h */,
+				66A03C4413E6E8D100B514F3 /* NIDataStructures.m */,
+				FD01BED914179D940023D783 /* NINavigationAppearance.h */,
+				FD01BEDA14179D940023D783 /* NINavigationAppearance.m */,
+			);
+			name = "deprecated - to be deleted after Feb 31, 2014";
+			sourceTree = "<group>";
+		};
 		66A03BFC13E6E84800B514F3 = {
 			isa = PBXGroup;
 			children = (
@@ -1763,6 +1772,7 @@
 		66A03C3F13E6E8D100B514F3 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				66995E4E189C32EC0005F93E /* deprecated - to be deleted after Feb 31, 2014 */,
 				66A03C5013E6E8D100B514F3 /* NimbusCore.h */,
 				66A03C4F13E6E8D100B514F3 /* NimbusCore+Additions.h */,
 				6617FD08171F6A92006E0DF8 /* NIActions.h */,
@@ -1772,8 +1782,6 @@
 				66C1D8C016B9ED65003E855B /* NIButtonUtilities.m */,
 				66A03C4113E6E8D100B514F3 /* NICommonMetrics.h */,
 				66A03C4213E6E8D100B514F3 /* NICommonMetrics.m */,
-				66A03C4313E6E8D100B514F3 /* NIDataStructures.h */,
-				66A03C4413E6E8D100B514F3 /* NIDataStructures.m */,
 				66A03C4513E6E8D100B514F3 /* NIDebuggingTools.h */,
 				66A03C4613E6E8D100B514F3 /* NIDebuggingTools.m */,
 				66A03C4713E6E8D100B514F3 /* NIDeviceOrientation.h */,
@@ -1786,8 +1794,6 @@
 				66C1D83C16B9CE90003E855B /* NIImageUtilities.m */,
 				66A03C4D13E6E8D100B514F3 /* NIInMemoryCache.h */,
 				66A03C4E13E6E8D100B514F3 /* NIInMemoryCache.m */,
-				FD01BED914179D940023D783 /* NINavigationAppearance.h */,
-				FD01BEDA14179D940023D783 /* NINavigationAppearance.m */,
 				66A03C5113E6E8D100B514F3 /* NINetworkActivity.h */,
 				66A03C5213E6E8D100B514F3 /* NINetworkActivity.m */,
 				66A03C5313E6E8D100B514F3 /* NINonEmptyCollectionTesting.h */,
@@ -3635,7 +3641,6 @@
 				66A03C8F13E6E8D100B514F3 /* NISDKAvailability.m in Sources */,
 				66A03C9113E6E8D100B514F3 /* NIState.m in Sources */,
 				66A03C9313E6E8D100B514F3 /* NSString+NimbusCore.m in Sources */,
-				FD01BEDC14179D940023D783 /* NINavigationAppearance.m in Sources */,
 				6675E4B41455FCC5007D172F /* NIViewRecycler.m in Sources */,
 				669819DC159B927B00C2D3EF /* NISnapshotRotation.m in Sources */,
 				66C1D83E16B9CE90003E855B /* NIImageUtilities.m in Sources */,
@@ -3656,7 +3661,6 @@
 				66A03CAF13E6E90500B514F3 /* NINonRetainingCollectionsTests.m in Sources */,
 				66A03CB113E6E90500B514F3 /* NIRuntimeClassModificationsTests.m in Sources */,
 				66A03CB213E6E90500B514F3 /* NSDate+UnitTesting.m in Sources */,
-				FD01BED814179AB60023D783 /* NINavigationAppearanceTests.m in Sources */,
 				6675E4BC145603DA007D172F /* NIViewRecyclerTests.m in Sources */,
 				66E8CED214D089E500600592 /* NICommonMetricsTests.m in Sources */,
 				6607851C14D245BF00FE3283 /* NINetworkActivityTests.m in Sources */,

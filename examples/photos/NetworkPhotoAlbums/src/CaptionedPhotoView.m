@@ -19,7 +19,7 @@
 static UIEdgeInsets kWellPadding = {0}; // see +initialize
 
 @interface CaptionedPhotoView ()
-@property (nonatomic, readwrite, retain) UILabel* captionLabel;
+@property (nonatomic, retain) UILabel* captionLabel;
 @end
 
 

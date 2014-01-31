@@ -51,12 +51,12 @@ typedef enum {
 @protocol NINetworkImageOperation <NSObject>
 @required
 @property (readonly, copy) NSString* cacheIdentifier;
-@property (readwrite, assign) CGRect imageCropRect;
-@property (readwrite, assign) CGSize imageDisplaySize;
-@property (readwrite, assign) NINetworkImageViewScaleOptions scaleOptions;
-@property (readwrite, assign) CGInterpolationQuality interpolationQuality;
-@property (readwrite, assign) UIViewContentMode imageContentMode;
-@property (readwrite, NI_STRONG) UIImage* imageCroppedAndSizedForDisplay;
+@property (assign) CGRect imageCropRect;
+@property (assign) CGSize imageDisplaySize;
+@property (assign) NINetworkImageViewScaleOptions scaleOptions;
+@property (assign) CGInterpolationQuality interpolationQuality;
+@property (assign) UIViewContentMode imageContentMode;
+@property (strong) UIImage* imageCroppedAndSizedForDisplay;
 @end
 
 /**
@@ -75,17 +75,17 @@ typedef enum {
 
 #pragma mark Configurable Presentation Properties
 
-@property (nonatomic, readwrite, NI_STRONG) UIImage* initialImage;     // Default: nil
-@property (nonatomic, readwrite, assign) BOOL sizeForDisplay;       // Default: YES
-@property (nonatomic, readwrite, assign) NINetworkImageViewScaleOptions scaleOptions; // Default: NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess
-@property (nonatomic, readwrite, assign) CGInterpolationQuality interpolationQuality; // Default: kCGInterpolationDefault
+@property (nonatomic, strong) UIImage* initialImage;     // Default: nil
+@property (nonatomic, assign) BOOL sizeForDisplay;       // Default: YES
+@property (nonatomic, assign) NINetworkImageViewScaleOptions scaleOptions; // Default: NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess
+@property (nonatomic, assign) CGInterpolationQuality interpolationQuality; // Default: kCGInterpolationDefault
 
 #pragma mark Configurable Properties
 
-@property (nonatomic, readwrite, NI_STRONG) NIImageMemoryCache* imageMemoryCache;    // Default: [Nimbus imageMemoryCache]
-@property (nonatomic, readwrite, NI_STRONG) NSOperationQueue* networkOperationQueue; // Default: [Nimbus networkOperationQueue]
+@property (nonatomic, strong) NIImageMemoryCache* imageMemoryCache;    // Default: [Nimbus imageMemoryCache]
+@property (nonatomic, strong) NSOperationQueue* networkOperationQueue; // Default: [Nimbus networkOperationQueue]
 
-@property (nonatomic, readwrite, assign) NSTimeInterval maxAge;     // Default: 0
+@property (nonatomic, assign) NSTimeInterval maxAge;     // Default: 0
 
 #pragma mark Requesting a Network Image
 
@@ -108,7 +108,7 @@ typedef enum {
 
 #pragma mark Delegation
 
-@property (nonatomic, readwrite, NI_WEAK) id<NINetworkImageViewDelegate> delegate;
+@property (nonatomic, NI_WEAK) id<NINetworkImageViewDelegate> delegate;
 
 #pragma mark Subclassing
 

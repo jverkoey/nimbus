@@ -25,7 +25,7 @@
 #endif
 
 @interface NILauncherViewModel()
-@property (nonatomic, readwrite, NI_STRONG) NSMutableArray* pages;
+@property (nonatomic, strong) NSMutableArray* pages;
 @end
 
 @implementation NILauncherViewModel

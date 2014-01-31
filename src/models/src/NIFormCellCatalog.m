@@ -556,7 +556,7 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
 
 @interface NIDatePickerFormElementCell()
-@property (nonatomic, readwrite, NI_STRONG) UITextField* dumbDateField;
+@property (nonatomic, strong) UITextField* dumbDateField;
 @end
 
 

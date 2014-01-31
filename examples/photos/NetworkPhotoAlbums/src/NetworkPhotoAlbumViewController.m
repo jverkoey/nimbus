@@ -24,8 +24,8 @@
 
 #ifdef DEBUG
 @interface NetworkPhotoAlbumViewController()
-@property (nonatomic, readwrite, retain) NIOverviewMemoryCachePageView* highQualityPage;
-@property (nonatomic, readwrite, retain) NIOverviewMemoryCachePageView* thumbnailPage;
+@property (nonatomic, retain) NIOverviewMemoryCachePageView* highQualityPage;
+@property (nonatomic, retain) NIOverviewMemoryCachePageView* thumbnailPage;
 @end
 #endif
 

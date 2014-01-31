@@ -40,7 +40,7 @@
 static NSString* const kPageReuseIdentifier = @"SamplePageIdentifier";
 
 @interface VerticalPagingScrollViewController () <NIPagingScrollViewDataSource>
-@property (nonatomic, readwrite, retain) NIPagingScrollView* pagingScrollView;
+@property (nonatomic, retain) NIPagingScrollView* pagingScrollView;
 @end
 
 @implementation VerticalPagingScrollViewController

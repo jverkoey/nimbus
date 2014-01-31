@@ -42,10 +42,10 @@
 //
 
 @interface ActionsTableModelViewController ()
-@property (nonatomic, readwrite, retain) NITableViewModel* model;
+@property (nonatomic, retain) NITableViewModel* model;
 
 // The actions are stored in a separate object from the model.
-@property (nonatomic, readwrite, retain) NITableViewActions* actions;
+@property (nonatomic, retain) NITableViewActions* actions;
 @end
 
 @implementation ActionsTableModelViewController

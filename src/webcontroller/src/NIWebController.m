@@ -26,20 +26,20 @@
 #endif
 
 @interface NIWebController()
-@property (nonatomic, readwrite, NI_STRONG) UIWebView* webView;
-@property (nonatomic, readwrite, NI_STRONG) UIToolbar* toolbar;
-@property (nonatomic, readwrite, NI_STRONG) UIActionSheet* actionSheet;
+@property (nonatomic, strong) UIWebView* webView;
+@property (nonatomic, strong) UIToolbar* toolbar;
+@property (nonatomic, strong) UIActionSheet* actionSheet;
 
-@property (nonatomic, readwrite, NI_STRONG) UIBarButtonItem* backButton;
-@property (nonatomic, readwrite, NI_STRONG) UIBarButtonItem* forwardButton;
-@property (nonatomic, readwrite, NI_STRONG) UIBarButtonItem* refreshButton;
-@property (nonatomic, readwrite, NI_STRONG) UIBarButtonItem* stopButton;
-@property (nonatomic, readwrite, NI_STRONG) UIBarButtonItem* actionButton;
-@property (nonatomic, readwrite, NI_STRONG) UIBarButtonItem* activityItem;
+@property (nonatomic, strong) UIBarButtonItem* backButton;
+@property (nonatomic, strong) UIBarButtonItem* forwardButton;
+@property (nonatomic, strong) UIBarButtonItem* refreshButton;
+@property (nonatomic, strong) UIBarButtonItem* stopButton;
+@property (nonatomic, strong) UIBarButtonItem* actionButton;
+@property (nonatomic, strong) UIBarButtonItem* activityItem;
 
-@property (nonatomic, readwrite, NI_STRONG) NSURL* loadingURL;
+@property (nonatomic, strong) NSURL* loadingURL;
 
-@property (nonatomic, readwrite, NI_STRONG) NSURLRequest* loadRequest;
+@property (nonatomic, strong) NSURLRequest* loadRequest;
 @end
 
 @implementation NIWebController

@@ -53,7 +53,7 @@
 //
 
 @interface BadgedLauncherViewController () <NILauncherViewModelDelegate>
-@property (nonatomic, readwrite, retain) NILauncherViewModel* model;
+@property (nonatomic, retain) NILauncherViewModel* model;
 @end
 
 @implementation BadgedLauncherViewController

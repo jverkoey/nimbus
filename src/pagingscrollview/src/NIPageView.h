@@ -28,7 +28,7 @@
  *      @ingroup NimbusPagingScrollView
  */
 @interface NIPageView : NIRecyclableView <NIPagingScrollViewPage>
-@property (nonatomic, readwrite, assign) NSInteger pageIndex;
+@property (nonatomic, assign) NSInteger pageIndex;
 @end
 
 /**

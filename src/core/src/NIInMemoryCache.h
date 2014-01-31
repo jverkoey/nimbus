@@ -88,8 +88,8 @@
  */
 @interface NIImageMemoryCache : NIMemoryCache
 @property (nonatomic, readonly, assign) NSUInteger numberOfPixels;
-@property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixels;
-@property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixelsUnderStress;
+@property (nonatomic, assign) NSUInteger maxNumberOfPixels;
+@property (nonatomic, assign) NSUInteger maxNumberOfPixelsUnderStress;
 @end
 
 /**@}*/// End of In-Memory Cache //////////////////////////////////////////////////////////////////

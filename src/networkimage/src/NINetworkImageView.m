@@ -27,7 +27,7 @@
 #endif
 
 @interface NINetworkImageView()
-@property (nonatomic, readwrite, NI_STRONG) NSOperation* operation;
+@property (nonatomic, strong) NSOperation* operation;
 @end
 
 

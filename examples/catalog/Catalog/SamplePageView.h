@@ -22,6 +22,6 @@
 // Pages that will be displayed in a NIPagingScrollView must implement the NIPagingScrollViewPage
 // protocol.
 @interface SamplePageView : UIView <NIPagingScrollViewPage>
-@property (nonatomic, readwrite, retain) UILabel* label;
+@property (nonatomic, retain) UILabel* label;
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
 @end

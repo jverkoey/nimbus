@@ -58,6 +58,6 @@
  * - 10150185938728418 Stanford 40th Annual Powwow
  * - 10150160584103418 Spring blossoms at Stanford
  */
-@property (nonatomic, readwrite, copy) NSString* facebookAlbumId;
+@property (nonatomic, copy) NSString* facebookAlbumId;
 
 @end

@@ -38,8 +38,8 @@
 //
 
 @interface PerformanceAttributedLabelViewController()
-@property (nonatomic, readwrite, retain) NIAttributedLabel* label;
-@property (nonatomic, readwrite, retain) UIScrollView* scrollView;
+@property (nonatomic, retain) NIAttributedLabel* label;
+@property (nonatomic, retain) UIScrollView* scrollView;
 @end
 
 @implementation PerformanceAttributedLabelViewController

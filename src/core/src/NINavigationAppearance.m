@@ -62,17 +62,17 @@ static NSMutableArray* sAppearanceStack = nil;
 /**
  * Holds value of UINavigationBar's tintColor property.
  */
-@property (nonatomic, readonly, NI_STRONG) UIColor* navBarTintColor;
+@property (nonatomic, readonly, strong) UIColor* navBarTintColor;
 
 /**
  * Holds value of UINavigationBar's UIBarMetricsDefault backgroundImage property.
  */
-@property (nonatomic, readonly, NI_STRONG) UIImage* navBarDefaultImage;
+@property (nonatomic, readonly, strong) UIImage* navBarDefaultImage;
 
 /**
  * Holds value of UINavigationBar's UIBarMetricsLandscapePhone backgroundImage property.
  */
-@property (nonatomic, readonly, NI_STRONG) UIImage* navBarLandscapePhoneImage;
+@property (nonatomic, readonly, strong) UIImage* navBarLandscapePhoneImage;
 
 /**
  * Create a new snapshot.

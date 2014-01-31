@@ -36,10 +36,10 @@
 //
 
 @interface InterappViewController () <UIDocumentInteractionControllerDelegate>
-@property (nonatomic, readwrite, retain) NITableViewModel* model;
-@property (nonatomic, readwrite, retain) NITableViewActions* actions;
-@property (nonatomic, readwrite, copy) NSURL* fileUrl;
-@property (nonatomic, readwrite, retain) UIDocumentInteractionController* docController;
+@property (nonatomic, retain) NITableViewModel* model;
+@property (nonatomic, retain) NITableViewActions* actions;
+@property (nonatomic, copy) NSURL* fileUrl;
+@property (nonatomic, retain) UIDocumentInteractionController* docController;
 @end
 
 @implementation InterappViewController

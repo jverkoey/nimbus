@@ -52,14 +52,14 @@ typedef enum {
 } SubRadioOptions;
 
 @interface FormCellCatalogViewController () <UITextFieldDelegate, NIRadioGroupDelegate>
-@property (nonatomic, readwrite, retain) NITableViewModel* model;
+@property (nonatomic, retain) NITableViewModel* model;
 
 // A radio group object allows us to easily maintain radio group-style interactions in a table view.
-@property (nonatomic, readwrite, retain) NIRadioGroup* radioGroup;
+@property (nonatomic, retain) NIRadioGroup* radioGroup;
 
 // Each radio group object maintains a specific set of table objects, so in order to have multiple
 // radio groups you need to instantiate multiple radio group objects.
-@property (nonatomic, readwrite, retain) NIRadioGroup* subRadioGroup;
+@property (nonatomic, retain) NIRadioGroup* subRadioGroup;
 @end
 
 @implementation FormCellCatalogViewController

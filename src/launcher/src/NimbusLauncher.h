@@ -50,7 +50,7 @@
  *
 @code
 @implementation CustomLauncherViewController()
-@property (nonatomic, readwrite, retain) NILauncherViewModel* model;
+@property (nonatomic, retain) NILauncherViewModel* model;
 @end
 
 @interface CustomLauncherViewController

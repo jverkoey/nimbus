@@ -15,5 +15,5 @@
 //
 
 @interface NIOperation()
-@property (readwrite, NI_STRONG) NSError* lastError;
+@property (strong) NSError* lastError;
 @end

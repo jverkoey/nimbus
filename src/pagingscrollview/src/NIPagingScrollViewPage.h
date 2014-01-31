@@ -32,7 +32,7 @@
 /**
  * The index of this page view.
  */
-@property (nonatomic, readwrite, assign) NSInteger pageIndex;
+@property (nonatomic, assign) NSInteger pageIndex;
 
 @optional
 

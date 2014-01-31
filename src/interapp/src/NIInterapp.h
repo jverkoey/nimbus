@@ -135,11 +135,11 @@
   NSString* _body;
 }
 
-@property (nonatomic, readwrite, copy) NSString* recipient;
-@property (nonatomic, readwrite, copy) NSString* cc;
-@property (nonatomic, readwrite, copy) NSString* bcc;
-@property (nonatomic, readwrite, copy) NSString* subject;
-@property (nonatomic, readwrite, copy) NSString* body;
+@property (nonatomic, copy) NSString* recipient;
+@property (nonatomic, copy) NSString* cc;
+@property (nonatomic, copy) NSString* bcc;
+@property (nonatomic, copy) NSString* subject;
+@property (nonatomic, copy) NSString* body;
 
 /**
  * Returns an autoreleased invocation object.

@@ -592,8 +592,8 @@ static const CGFloat kGraphRightMargin = 5;
 
 
 @interface NIOverviewMemoryCacheEntry : NSObject
-@property (nonatomic, readwrite, retain) NSDate* timestamp;
-@property (nonatomic, readwrite, assign) NSUInteger numberOfObjects;
+@property (nonatomic, retain) NSDate* timestamp;
+@property (nonatomic, assign) NSUInteger numberOfObjects;
 @end
 @implementation NIOverviewMemoryCacheEntry
 @synthesize timestamp;
@@ -602,9 +602,9 @@ static const CGFloat kGraphRightMargin = 5;
 
 
 @interface NIOverviewImageMemoryCacheEntry : NIOverviewMemoryCacheEntry
-@property (nonatomic, readwrite, assign) NSUInteger numberOfPixels;
-@property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixels;
-@property (nonatomic, readwrite, assign) NSUInteger maxNumberOfPixelsUnderStress;
+@property (nonatomic, assign) NSUInteger numberOfPixels;
+@property (nonatomic, assign) NSUInteger maxNumberOfPixels;
+@property (nonatomic, assign) NSUInteger maxNumberOfPixelsUnderStress;
 @end
 @implementation NIOverviewImageMemoryCacheEntry
 @synthesize numberOfPixels;
@@ -614,9 +614,9 @@ static const CGFloat kGraphRightMargin = 5;
 
 
 @interface NIOverviewMemoryCachePageView()
-@property (nonatomic, readwrite, assign) unsigned long long minValue;
-@property (nonatomic, readwrite, retain) NSEnumerator* enumerator;
-@property (nonatomic, readwrite, retain) NILinkedList* history;
+@property (nonatomic, assign) unsigned long long minValue;
+@property (nonatomic, retain) NSEnumerator* enumerator;
+@property (nonatomic, retain) NILinkedList* history;
 @end
 
 

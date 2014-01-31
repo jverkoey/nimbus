@@ -34,10 +34,10 @@ static const CGFloat kDefaultPadding = 10;
 
 
 @interface NILauncherView() <NIPagingScrollViewDataSource, NIPagingScrollViewDelegate>
-@property (nonatomic, readwrite, NI_STRONG) NIPagingScrollView* pagingScrollView;
-@property (nonatomic, readwrite, NI_STRONG) UIPageControl* pager;
-@property (nonatomic, readwrite, assign) NSInteger numberOfPages;
-@property (nonatomic, readwrite, NI_STRONG) NIViewRecycler* viewRecycler;
+@property (nonatomic, strong) NIPagingScrollView* pagingScrollView;
+@property (nonatomic, strong) UIPageControl* pager;
+@property (nonatomic, assign) NSInteger numberOfPages;
+@property (nonatomic, strong) NIViewRecycler* viewRecycler;
 - (void)updateLayoutForPage:(NILauncherPageView *)page;
 @end
 

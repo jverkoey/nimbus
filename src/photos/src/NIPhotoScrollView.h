@@ -52,11 +52,11 @@
 
 #pragma mark Configuring Functionality
 
-@property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled; // default: yes
-@property (nonatomic, readwrite, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled; // default: yes
-@property (nonatomic, readwrite, assign, getter=isDoubleTapToZoomEnabled) BOOL doubleTapToZoomIsEnabled; // default: yes
-@property (nonatomic, readwrite, assign) CGFloat maximumScale; // default: 0 (autocalculate)
-@property (nonatomic, readwrite, NI_WEAK) id<NIPhotoScrollViewDelegate> photoScrollViewDelegate;
+@property (nonatomic, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled; // default: yes
+@property (nonatomic, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled; // default: yes
+@property (nonatomic, assign, getter=isDoubleTapToZoomEnabled) BOOL doubleTapToZoomIsEnabled; // default: yes
+@property (nonatomic, assign) CGFloat maximumScale; // default: 0 (autocalculate)
+@property (nonatomic, NI_WEAK) id<NIPhotoScrollViewDelegate> photoScrollViewDelegate;
 
 #pragma mark State
 
@@ -65,9 +65,9 @@
 - (void)setImage:(UIImage *)image photoSize:(NIPhotoScrollViewPhotoSize)photoSize;
 @property (nonatomic, assign, getter = isLoading) BOOL loading;
 
-@property (nonatomic, readwrite, assign) NSInteger pageIndex;
-@property (nonatomic, readwrite, assign) CGSize photoDimensions;
-@property (nonatomic, readonly, NI_STRONG) UITapGestureRecognizer* doubleTapGestureRecognizer;
+@property (nonatomic, assign) NSInteger pageIndex;
+@property (nonatomic, assign) CGSize photoDimensions;
+@property (nonatomic, readonly, strong) UITapGestureRecognizer* doubleTapGestureRecognizer;
 
 @end
 

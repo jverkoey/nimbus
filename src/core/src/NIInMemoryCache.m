@@ -27,11 +27,10 @@
 
 @interface NIMemoryCache()
 // Mapping from a name (usually a URL) to an internal object.
-@property (nonatomic, readwrite, NI_STRONG) NSMutableDictionary* cacheMap;
+@property (nonatomic, strong) NSMutableDictionary* cacheMap;
 // A linked list of least recently used cache objects. Most recently used is the tail.
-@property (nonatomic, readwrite, NI_STRONG) NSMutableOrderedSet* lruCacheObjects;
+@property (nonatomic, strong) NSMutableOrderedSet* lruCacheObjects;
 @end
-
 
 /**
  * @brief A single cache item's information.
@@ -43,17 +42,17 @@
 /**
  * @brief The name used to store this object in the cache.
  */
-@property (nonatomic, readwrite, copy) NSString* name;
+@property (nonatomic, copy) NSString* name;
 
 /**
  * @brief The object stored in the cache.
  */
-@property (nonatomic, readwrite, NI_STRONG) id object;
+@property (nonatomic, strong) id object;
 
 /**
  * @brief The date after which the image is no longer valid and should be removed from the cache.
  */
-@property (nonatomic, readwrite, NI_STRONG) NSDate* expirationDate;
+@property (nonatomic, strong) NSDate* expirationDate;
 
 /**
  * @brief The last time this image was accessed.
@@ -63,7 +62,7 @@
  * images. When the memory limit is reached, we sort the cache based on the last access times and
  * then prune images until we're under the memory limit again.
  */
-@property (nonatomic, readwrite, NI_STRONG) NSDate* lastAccessTime;
+@property (nonatomic, strong) NSDate* lastAccessTime;
 
 /**
  * @brief Determine whether this cache entry has past its expiration date.
@@ -76,12 +75,7 @@
 
 @end
 
-
 @implementation NIMemoryCache
-
-@synthesize cacheMap        = _cacheMap;
-@synthesize lruCacheObjects = _lruCacheObjects;
-
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -116,9 +110,7 @@
           self.cacheMap];
 }
 
-#pragma mark -
-#pragma mark Internal Methods
-
+#pragma mark - Internal Methods
 
 - (void)updateAccessTimeForInfo:(NIMemoryCacheInfo *)info {
   NIDASSERT(nil != info);
@@ -358,7 +350,7 @@
 
 
 @interface NIImageMemoryCache()
-@property (nonatomic, readwrite, assign) NSUInteger numberOfPixels;
+@property (nonatomic, assign) NSUInteger numberOfPixels;
 @end
 
 

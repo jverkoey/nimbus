@@ -23,7 +23,7 @@
 #endif
 
 @interface NILauncherViewController()
-@property (nonatomic, readwrite, assign) BOOL shouldReloadData;
+@property (nonatomic, assign) BOOL shouldReloadData;
 @end
 
 

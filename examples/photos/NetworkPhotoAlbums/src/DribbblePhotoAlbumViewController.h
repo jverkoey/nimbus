@@ -43,7 +43,7 @@
  */
 - (id)initWith:(id)object;
 
-@property (nonatomic, readwrite, copy) NSString* apiPath;
+@property (nonatomic, copy) NSString* apiPath;
 
 
 @end

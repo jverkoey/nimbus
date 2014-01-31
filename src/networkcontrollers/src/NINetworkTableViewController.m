@@ -23,8 +23,8 @@
 #endif
 
 @interface NINetworkTableViewController()
-@property (nonatomic, readwrite, assign) UIActivityIndicatorViewStyle activityIndicatorStyle;
-@property (nonatomic, readwrite, assign) UITableViewStyle tableViewStyle;
+@property (nonatomic, assign) UIActivityIndicatorViewStyle activityIndicatorStyle;
+@property (nonatomic, assign) UITableViewStyle tableViewStyle;
 @end
 
 

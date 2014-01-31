@@ -44,12 +44,12 @@
 /**
  * Whether the view has a translucent background or not.
  */
-@property (nonatomic, readwrite, assign) BOOL translucent;
+@property (nonatomic, assign) BOOL translucent;
 
 /**
  * Whether the view can be draggable vertically or not.
  */
-@property (nonatomic, readwrite, assign) BOOL enableDraggingVertically;
+@property (nonatomic, assign) BOOL enableDraggingVertically;
 
 /**
  * Prepends a new page to the Overview.

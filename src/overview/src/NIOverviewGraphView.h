@@ -33,7 +33,7 @@
 /**
  * The data source for this graph view.
  */
-@property (nonatomic, readwrite, NI_WEAK) id<NIOverviewGraphViewDataSource> dataSource;
+@property (nonatomic, NI_WEAK) id<NIOverviewGraphViewDataSource> dataSource;
 
 @end
 

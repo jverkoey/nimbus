@@ -45,7 +45,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   BOOL _shouldUpdateVisiblePagesWhileScrolling;
 }
 
-@property (nonatomic, NI_STRONG) UIScrollView* pagingScrollView;
+@property (nonatomic, strong) UIScrollView* pagingScrollView;
 
 @end
 

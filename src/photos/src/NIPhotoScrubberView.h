@@ -71,7 +71,7 @@
 /**
  * The data source for this scrubber view.
  */
-@property (nonatomic, readwrite, NI_WEAK) id<NIPhotoScrubberViewDataSource> dataSource;
+@property (nonatomic, NI_WEAK) id<NIPhotoScrubberViewDataSource> dataSource;
 
 /**
  * Forces the scrubber view to reload all of its data.
@@ -99,7 +99,7 @@
 /**
  * The delegate for this scrubber view.
  */
-@property (nonatomic, readwrite, assign) id<NIPhotoScrubberViewDelegate> delegate;
+@property (nonatomic, assign) id<NIPhotoScrubberViewDelegate> delegate;
 
 
 #pragma mark Accessing Selection /** @name Accessing Selection */
@@ -107,7 +107,7 @@
 /**
  * The selected photo index.
  */
-@property (nonatomic, readwrite, assign) NSInteger selectedPhotoIndex;
+@property (nonatomic, assign) NSInteger selectedPhotoIndex;
 
 /**
  * Set the selected photo with animation.

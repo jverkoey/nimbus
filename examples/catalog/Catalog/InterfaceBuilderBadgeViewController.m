@@ -38,8 +38,8 @@
 //
 
 @interface InterfaceBuilderBadgeViewController ()
-@property (nonatomic, readwrite, retain) IBOutlet NIBadgeView* badgeView;
-@property (nonatomic, readwrite, retain) IBOutlet NIBadgeView* badgeView2;
+@property (nonatomic, retain) IBOutlet NIBadgeView* badgeView;
+@property (nonatomic, retain) IBOutlet NIBadgeView* badgeView2;
 @end
 
 @implementation InterfaceBuilderBadgeViewController

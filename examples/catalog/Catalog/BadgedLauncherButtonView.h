@@ -24,7 +24,7 @@
  * Adding this type of object to a NILauncherViewModel will create a BadgedLauncherButtonView view.
  */
 @interface BadgedLauncherViewObject : NILauncherViewObject
-@property (nonatomic, readwrite, assign) NSInteger badgeNumber;
+@property (nonatomic, assign) NSInteger badgeNumber;
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image badgeNumber:(NSInteger)badgeNumber;
 + (id)objectWithTitle:(NSString *)title image:(UIImage *)image badgeNumber:(NSInteger)badgeNumber;
 @end
@@ -36,5 +36,5 @@
  * The badge displays 99+ if the number is greater than 99.
  */
 @interface BadgedLauncherButtonView : NILauncherButtonView
-@property (nonatomic, readwrite, retain) NIBadgeView* badgeView;
+@property (nonatomic, retain) NIBadgeView* badgeView;
 @end

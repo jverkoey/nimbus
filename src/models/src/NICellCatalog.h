@@ -28,7 +28,7 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
 - (id)initWithBlock:(NICellDrawRectBlock)block object:(id)object;
 + (id)objectWithBlock:(NICellDrawRectBlock)block object:(id)object;
 @property (nonatomic, copy) NICellDrawRectBlock block;
-@property (nonatomic, NI_STRONG) id object;
+@property (nonatomic, strong) id object;
 @end
 
 /**
@@ -47,7 +47,7 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
 + (id)objectWithTitle:(NSString *)title image:(UIImage *)image;
 + (id)objectWithTitle:(NSString *)title;
 @property (nonatomic, copy) NSString* title;
-@property (nonatomic, NI_STRONG) UIImage* image;
+@property (nonatomic, strong) UIImage* image;
 @end
 
 /**
@@ -86,7 +86,7 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  *      @ingroup TableCellCatalog
  */
 @interface NIDrawRectBlockCell : UITableViewCell <NICell>
-@property (nonatomic, NI_STRONG) UIView* blockView;
+@property (nonatomic, strong) UIView* blockView;
 @end
 
 /**

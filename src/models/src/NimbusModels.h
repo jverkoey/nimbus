@@ -385,7 +385,7 @@ typedef enum {
 } AppSort;
 
 // You will create and retain a radio group object for the lifecycle of your controller.
-@property (nonatomic, readwrite, retain) NIRadioGroup* radioGroup;
+@property (nonatomic, retain) NIRadioGroup* radioGroup;
 
 - (void)refreshModel {
   id manual = [NITitleCellObject cellWithTitle:@"Manually"];
@@ -440,7 +440,7 @@ typedef enum {
  *
 @code
 // You will create and retain an actions object for the lifecycle of your controller.
-@property (nonatomic, readwrite, retain) NITableViewActions* actions;
+@property (nonatomic, retain) NITableViewActions* actions;
 
 - (void)refreshModel {
   id about = [NITitleCellObject cellWithTitle:@"About"];

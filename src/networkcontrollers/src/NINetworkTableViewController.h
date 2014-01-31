@@ -28,9 +28,9 @@
 // Designated initializer.
 - (id)initWithStyle:(UITableViewStyle)style activityIndicatorStyle:(UIActivityIndicatorViewStyle)activityIndicatorStyle;
 
-@property (nonatomic, readwrite, NI_STRONG) UITableView* tableView;
-@property (nonatomic, readwrite, NI_STRONG) UIActivityIndicatorView *activityIndicator;
-@property (nonatomic, readwrite, assign) BOOL clearsSelectionOnViewWillAppear; // Default: YES
+@property (nonatomic, strong) UITableView* tableView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, assign) BOOL clearsSelectionOnViewWillAppear; // Default: YES
 
 - (void)setIsLoading:(BOOL)isLoading;
 

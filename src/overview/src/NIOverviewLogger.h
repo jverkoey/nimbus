@@ -54,7 +54,7 @@ extern NSString* const NIOverviewLoggerDidAddEventLog;
  *
  * By default this is 1 minute.
  */
-@property (nonatomic, readwrite, assign) NSTimeInterval oldestLogAge;
+@property (nonatomic, assign) NSTimeInterval oldestLogAge;
 
 
 + (NIOverviewLogger*)sharedLogger;
@@ -91,21 +91,21 @@ extern NSString* const NIOverviewLoggerDidAddEventLog;
  *
  * Log entries are in increasing chronological order.
  */
-@property (nonatomic, readonly, NI_STRONG) NILinkedList* deviceLogs;
+@property (nonatomic, readonly, strong) NILinkedList* deviceLogs;
 
 /**
  * The linked list of console logs.
  *
  * Log entries are in increasing chronological order.
  */
-@property (nonatomic, readonly, NI_STRONG) NILinkedList* consoleLogs;
+@property (nonatomic, readonly, strong) NILinkedList* consoleLogs;
 
 /**
  * The linked list of events.
  *
  * Log entries are in increasing chronological order.
  */
-@property (nonatomic, readonly, NI_STRONG) NILinkedList* eventLogs;
+@property (nonatomic, readonly, strong) NILinkedList* eventLogs;
 
 @end
 
@@ -135,7 +135,7 @@ extern NSString* const NIOverviewLoggerDidAddEventLog;
 /**
  * The timestamp for this log entry.
  */
-@property (nonatomic, readwrite, retain) NSDate* timestamp;
+@property (nonatomic, retain) NSDate* timestamp;
 
 @end
 
@@ -161,32 +161,32 @@ extern NSString* const NIOverviewLoggerDidAddEventLog;
 /**
  * The number of bytes of free memory.
  */
-@property (nonatomic, readwrite, assign) unsigned long long bytesOfFreeMemory;
+@property (nonatomic, assign) unsigned long long bytesOfFreeMemory;
 
 /**
  * The number of bytes of total memory.
  */
-@property (nonatomic, readwrite, assign) unsigned long long bytesOfTotalMemory;
+@property (nonatomic, assign) unsigned long long bytesOfTotalMemory;
 
 /**
  * The number of bytes of free disk space.
  */
-@property (nonatomic, readwrite, assign) unsigned long long bytesOfFreeDiskSpace;
+@property (nonatomic, assign) unsigned long long bytesOfFreeDiskSpace;
 
 /**
  * The number of bytes of total disk space.
  */
-@property (nonatomic, readwrite, assign) unsigned long long bytesOfTotalDiskSpace;
+@property (nonatomic, assign) unsigned long long bytesOfTotalDiskSpace;
 
 /**
  * The battery level.
  */
-@property (nonatomic, readwrite, assign) CGFloat batteryLevel;
+@property (nonatomic, assign) CGFloat batteryLevel;
 
 /**
  * The state of the battery.
  */
-@property (nonatomic, readwrite, assign) UIDeviceBatteryState batteryState;
+@property (nonatomic, assign) UIDeviceBatteryState batteryState;
 
 @end
 
@@ -214,7 +214,7 @@ extern NSString* const NIOverviewLoggerDidAddEventLog;
 /**
  * The text that was written to the console log.
  */
-@property (nonatomic, readwrite, copy) NSString* log;
+@property (nonatomic, copy) NSString* log;
 
 @end
 
@@ -246,6 +246,6 @@ typedef enum {
 /**
  * The type of event.
  */
-@property (nonatomic, readwrite, assign) NSInteger type;
+@property (nonatomic, assign) NSInteger type;
 
 @end

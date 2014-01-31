@@ -50,7 +50,7 @@ static NSString* const kPageReuseIdentifier = @"SamplePageIdentifier";
 
 @interface BasicInstantiationPagingScrollViewController() <NIPagingScrollViewDataSource>
 // We must retain the paging scroll view in order to autorotate it correctly.
-@property (nonatomic, readwrite, retain) NIPagingScrollView* pagingScrollView;
+@property (nonatomic, retain) NIPagingScrollView* pagingScrollView;
 @end
 
 @implementation BasicInstantiationPagingScrollViewController

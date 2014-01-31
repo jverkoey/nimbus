@@ -18,9 +18,9 @@
 
 @interface NICollectionViewModel()
 
-@property (nonatomic, NI_STRONG) NSArray* sections; // Array of NICollectionViewModelSection
-@property (nonatomic, NI_STRONG) NSArray* sectionIndexTitles;
-@property (nonatomic, NI_STRONG) NSDictionary* sectionPrefixToSectionIndex;
+@property (nonatomic, strong) NSArray* sections; // Array of NICollectionViewModelSection
+@property (nonatomic, strong) NSArray* sectionIndexTitles;
+@property (nonatomic, strong) NSDictionary* sectionPrefixToSectionIndex;
 
 - (void)_resetCompiledData;
 - (void)_compileDataWithListArray:(NSArray *)listArray;
@@ -34,6 +34,6 @@
 
 @property (nonatomic, copy) NSString* headerTitle;
 @property (nonatomic, copy) NSString* footerTitle;
-@property (nonatomic, NI_STRONG) NSArray* rows;
+@property (nonatomic, strong) NSArray* rows;
 
 @end

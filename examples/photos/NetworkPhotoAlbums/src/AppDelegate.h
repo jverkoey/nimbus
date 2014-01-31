@@ -22,7 +22,7 @@
   UIViewController* _rootViewController;
 }
 
-@property (nonatomic, readwrite, retain) UIWindow* window;
+@property (nonatomic, retain) UIWindow* window;
 
 @end
 

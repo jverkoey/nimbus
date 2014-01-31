@@ -51,18 +51,18 @@
 // For use in your pagingScrollView:pageForIndex: data source implementation.
 - (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex;
 
-@property (nonatomic, readwrite, NI_WEAK) id<NIPhotoAlbumScrollViewDataSource> dataSource;
-@property (nonatomic, readwrite, NI_WEAK) id<NIPhotoAlbumScrollViewDelegate> delegate;
+@property (nonatomic, NI_WEAK) id<NIPhotoAlbumScrollViewDataSource> dataSource;
+@property (nonatomic, NI_WEAK) id<NIPhotoAlbumScrollViewDelegate> delegate;
 
 #pragma mark Configuring Functionality
 
-@property (nonatomic, readwrite, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled;
-@property (nonatomic, readwrite, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled;
-@property (nonatomic, readwrite, NI_STRONG) UIColor* photoViewBackgroundColor;
+@property (nonatomic, assign, getter=isZoomingEnabled) BOOL zoomingIsEnabled;
+@property (nonatomic, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled;
+@property (nonatomic, strong) UIColor* photoViewBackgroundColor;
 
 #pragma mark Configuring Presentation
 
-@property (nonatomic, readwrite, NI_STRONG) UIImage* loadingImage;
+@property (nonatomic, strong) UIImage* loadingImage;
 
 #pragma mark Notifying the View of Loaded Photos
 

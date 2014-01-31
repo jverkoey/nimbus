@@ -28,9 +28,9 @@
 #endif
 
 @interface NIRadioGroupController ()
-@property (nonatomic, readonly, NI_STRONG) NIRadioGroup* radioGroup;
-@property (nonatomic, readonly, NI_STRONG) id<NICell> tappedCell;
-@property (nonatomic, readonly, NI_STRONG) NITableViewModel* model;
+@property (nonatomic, readonly, strong) NIRadioGroup* radioGroup;
+@property (nonatomic, readonly, strong) id<NICell> tappedCell;
+@property (nonatomic, readonly, strong) NITableViewModel* model;
 @end
 
 

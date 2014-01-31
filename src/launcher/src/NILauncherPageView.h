@@ -31,14 +31,14 @@
  */
 @interface NILauncherPageView : NIPageView
 
-@property (nonatomic, readwrite, NI_STRONG) NIViewRecycler* viewRecycler;
+@property (nonatomic, strong) NIViewRecycler* viewRecycler;
 
 - (void)addRecyclableView:(UIView<NIRecyclableView> *)view;
-@property (nonatomic, readonly, NI_STRONG) NSArray* recyclableViews;
+@property (nonatomic, readonly, strong) NSArray* recyclableViews;
 
-@property (nonatomic, readwrite, assign) UIEdgeInsets contentInset;
-@property (nonatomic, readwrite, assign) CGSize viewSize;
-@property (nonatomic, readwrite, assign) CGSize viewMargins;
+@property (nonatomic, assign) UIEdgeInsets contentInset;
+@property (nonatomic, assign) CGSize viewSize;
+@property (nonatomic, assign) CGSize viewMargins;
 
 @end
 

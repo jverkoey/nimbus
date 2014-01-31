@@ -38,7 +38,7 @@
 //
 
 @interface BasicInstantiationTableModelViewController ()
-@property (nonatomic, readwrite, retain) NITableViewModel* model;
+@property (nonatomic, retain) NITableViewModel* model;
 @end
 
 @implementation BasicInstantiationTableModelViewController

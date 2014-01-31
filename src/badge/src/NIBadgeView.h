@@ -33,15 +33,15 @@
 @interface NIBadgeView : UIView
 
 // Text attributes
-@property (nonatomic, readwrite, copy) NSString* text;
-@property (nonatomic, readwrite, NI_STRONG) UIFont* font;
-@property (nonatomic, readwrite, NI_STRONG) UIColor* textColor;
+@property (nonatomic, copy) NSString* text;
+@property (nonatomic, strong) UIFont* font;
+@property (nonatomic, strong) UIColor* textColor;
 
 // Badge attributes
-@property (nonatomic, readwrite, NI_STRONG) UIColor* tintColor;
-@property (nonatomic, readwrite, NI_STRONG) UIColor* shadowColor;
-@property (nonatomic, readwrite, assign) CGSize shadowOffset;
-@property (nonatomic, readwrite, assign) CGFloat shadowBlur;
+@property (nonatomic, strong) UIColor* tintColor;
+@property (nonatomic, strong) UIColor* shadowColor;
+@property (nonatomic, assign) CGSize shadowOffset;
+@property (nonatomic, assign) CGFloat shadowBlur;
 
 @end
 

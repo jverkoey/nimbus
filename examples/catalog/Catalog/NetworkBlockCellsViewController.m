@@ -47,7 +47,7 @@
 // We use a network image view to do this, but we never add the network image view to the view
 // hierarchy because we are going to render the image in the cell block.
 @interface NetworkDrawRectBlockCell : NIDrawRectBlockCell <NINetworkImageViewDelegate>
-@property (nonatomic, readwrite, retain) NINetworkImageView* networkImageView;
+@property (nonatomic, retain) NINetworkImageView* networkImageView;
 @end
 
 @implementation NetworkDrawRectBlockCell
@@ -101,14 +101,14 @@
 @end
 
 @interface NetworkBlockCellsViewController ()
-@property (nonatomic, readwrite, retain) NITableViewModel* model;
+@property (nonatomic, retain) NITableViewModel* model;
 
 // We're going to override the default mapping of NIDrawRectBlockCellObject -> NIDrawRectBlockCell
 // so that we can display our subclassed version of NIDrawRectBlockCell with network images.
 // To do this we must create an instance of NICellFactory which we will be able to customize by
 // adding explicit mappings which will be used in preference of the implicit ones denoted by the
 // cell objects.
-@property (nonatomic, readwrite, retain) NICellFactory* cellFactory;
+@property (nonatomic, retain) NICellFactory* cellFactory;
 @end
 
 @implementation NetworkBlockCellsViewController

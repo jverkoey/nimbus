@@ -88,7 +88,7 @@ if (nil == view) {
  *
  * If the reuseIdentifier is nil then the class name will be used.
  */
-@property (nonatomic, readwrite, copy) NSString* reuseIdentifier;
+@property (nonatomic, copy) NSString* reuseIdentifier;
 
 /**
  * Called immediately after the view has been dequeued from the recycled view pool.
@@ -107,7 +107,7 @@ if (nil == view) {
 // Designated initializer.
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
 
-@property (nonatomic, readwrite, copy) NSString* reuseIdentifier;
+@property (nonatomic, copy) NSString* reuseIdentifier;
 
 @end
 

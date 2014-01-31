@@ -231,7 +231,7 @@ _model.delegate = (id)[NICellFactory class];
 + (id)objectWithCellClass:(Class)cellClass userInfo:(id)userInfo;
 + (id)objectWithCellClass:(Class)cellClass;
 
-@property (nonatomic, NI_STRONG) id userInfo;
+@property (nonatomic, strong) id userInfo;
 
 @end
 

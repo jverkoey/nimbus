@@ -25,7 +25,7 @@
 #endif
 
 @interface NIMemoryCache(Private)
-@property (nonatomic, readwrite, NI_STRONG) NILinkedList* lruCacheObjects;
+@property (nonatomic, strong) NILinkedList* lruCacheObjects;
 @end
 
 // Anonymous private category for LRU cache objects.
@@ -34,8 +34,8 @@
 @end
 
 @interface NIOverviewMemoryCacheController()
-@property (nonatomic, readonly, NI_STRONG) NIMemoryCache* cache;
-@property (nonatomic, readwrite, NI_STRONG) NITableViewModel* model;
+@property (nonatomic, readonly, strong) NIMemoryCache* cache;
+@property (nonatomic, strong) NITableViewModel* model;
 @end
 
 @implementation NIOverviewMemoryCacheController

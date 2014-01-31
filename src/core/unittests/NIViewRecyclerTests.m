@@ -27,8 +27,8 @@
   NSString* _reuseIdentifier;
   BOOL _didReuse;
 }
-@property (nonatomic, readwrite, copy) NSString* reuseIdentifier;
-@property (nonatomic, readwrite, assign) BOOL didReuse;
+@property (nonatomic, copy) NSString* reuseIdentifier;
+@property (nonatomic, assign) BOOL didReuse;
 @end
 
 @interface NIViewRecyclerTests : SenTestCase

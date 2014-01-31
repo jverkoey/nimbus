@@ -27,7 +27,7 @@
 #endif
 
 @interface NITableViewActions()
-@property (nonatomic, NI_STRONG) NSMutableSet* forwardDelegates;
+@property (nonatomic, strong) NSMutableSet* forwardDelegates;
 @end
 
 @implementation NITableViewActions

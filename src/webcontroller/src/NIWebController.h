@@ -87,14 +87,14 @@
 - (void)openRequest:(NSURLRequest*)request;
 - (void)openHTMLString:(NSString*)htmlString baseURL:(NSURL*)baseUrl;
 
-@property (nonatomic, readwrite, assign, getter = isToolbarHidden) BOOL toolbarHidden;
-@property (nonatomic, readwrite, NI_WEAK) UIColor* toolbarTintColor;
+@property (nonatomic, assign, getter = isToolbarHidden) BOOL toolbarHidden;
+@property (nonatomic, NI_WEAK) UIColor* toolbarTintColor;
 
-@property (nonatomic, readonly, NI_STRONG) UIWebView* webView;
+@property (nonatomic, readonly, strong) UIWebView* webView;
 
 // Subclassing
 - (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet;
-@property (nonatomic, readwrite, NI_STRONG) NSURL* actionSheetURL;
+@property (nonatomic, strong) NSURL* actionSheetURL;
 
 @end
 

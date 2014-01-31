@@ -175,7 +175,7 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
 + (id)objectWithCellClass:(Class)collectionViewCellClass userInfo:(id)userInfo;
 + (id)objectWithCellClass:(Class)collectionViewCellClass;
 
-@property (nonatomic, readonly, NI_STRONG) id userInfo;
+@property (nonatomic, readonly, strong) id userInfo;
 
 @end
 

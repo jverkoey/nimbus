@@ -45,7 +45,7 @@ static const CGFloat kFramePadding = 10;
 static const CGFloat kImageSpacing = 5;
 
 @interface ContentModesNetworkImageViewController()
-@property (nonatomic, readwrite, copy) NSArray* networkImageViews;
+@property (nonatomic, copy) NSArray* networkImageViews;
 @end
 
 @implementation ContentModesNetworkImageViewController

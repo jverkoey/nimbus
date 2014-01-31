@@ -44,12 +44,12 @@ typedef enum {
 } RadioGroup;
 
 @interface RadioGroupTableModelViewController () <NIRadioGroupDelegate>
-@property (nonatomic, readwrite, retain) NITableViewModel* model;
+@property (nonatomic, retain) NITableViewModel* model;
 
 // In order to implement the radio group we must create a radio group object. This object will
 // maintain the state of the currently selected object. It will also handle all user interactions
 // and updating the visual state of the cell when the selection changes.
-@property (nonatomic, readwrite, retain) NIRadioGroup* radioGroup;
+@property (nonatomic, retain) NIRadioGroup* radioGroup;
 @end
 
 @implementation RadioGroupTableModelViewController

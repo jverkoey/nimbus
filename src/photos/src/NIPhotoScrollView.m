@@ -73,7 +73,7 @@
 
 
 @interface NIPhotoScrollView()
-@property (nonatomic, readwrite, assign) NIPhotoScrollViewPhotoSize photoSize;
+@property (nonatomic, assign) NIPhotoScrollViewPhotoSize photoSize;
 - (void)setMaxMinZoomScalesForCurrentBounds;
 @end
 

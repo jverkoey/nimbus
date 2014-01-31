@@ -149,7 +149,7 @@
 
 @interface NICollectionViewCellObject()
 @property (nonatomic, assign) Class collectionViewCellClass;
-@property (nonatomic, NI_STRONG) id userInfo;
+@property (nonatomic, strong) id userInfo;
 @end
 
 

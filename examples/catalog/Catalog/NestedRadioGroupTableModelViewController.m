@@ -44,8 +44,8 @@ typedef enum {
 } RadioGroup;
 
 @interface NestedRadioGroupTableModelViewController () <NIRadioGroupDelegate>
-@property (nonatomic, readwrite, retain) NITableViewModel* model;
-@property (nonatomic, readwrite, retain) NIRadioGroup* radioGroup;
+@property (nonatomic, retain) NITableViewModel* model;
+@property (nonatomic, retain) NIRadioGroup* radioGroup;
 @end
 
 @implementation NestedRadioGroupTableModelViewController

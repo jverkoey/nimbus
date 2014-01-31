@@ -24,7 +24,7 @@
  */
 @interface CaptionedPhotoView : NIPhotoScrollView
 
-@property (nonatomic, readwrite, copy) NSString* caption;
-@property (nonatomic, readwrite, retain) UIView* captionWell;
+@property (nonatomic, copy) NSString* caption;
+@property (nonatomic, retain) UIView* captionWell;
 
 @end

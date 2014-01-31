@@ -23,7 +23,7 @@
   NIStylesheetCache* _stylesheetCache;
 }
 
-@property (nonatomic, readwrite, retain) UIWindow* window;
+@property (nonatomic, retain) UIWindow* window;
 @property (nonatomic, readonly, retain) NIStylesheetCache* stylesheetCache;
 
 @end
