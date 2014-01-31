@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NIPreprocessorMacros.h" /* for NI_WEAK */
+#import "NIPreprocessorMacros.h" /* for weak */
 
 @protocol NIPhotoScrubberViewDataSource;
 @protocol NIPhotoScrubberViewDelegate;
@@ -71,7 +71,7 @@
 /**
  * The data source for this scrubber view.
  */
-@property (nonatomic, NI_WEAK) id<NIPhotoScrubberViewDataSource> dataSource;
+@property (nonatomic, weak) id<NIPhotoScrubberViewDataSource> dataSource;
 
 /**
  * Forces the scrubber view to reload all of its data.

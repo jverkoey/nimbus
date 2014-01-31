@@ -108,7 +108,7 @@ typedef enum {
 
 #pragma mark Delegation
 
-@property (nonatomic, NI_WEAK) id<NINetworkImageViewDelegate> delegate;
+@property (nonatomic, weak) id<NINetworkImageViewDelegate> delegate;
 
 #pragma mark Subclassing
 

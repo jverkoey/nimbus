@@ -28,7 +28,7 @@
 static const NSInteger kInvalidSelection = NSIntegerMin;
 
 @interface NIRadioGroup()
-@property (nonatomic, readonly, NI_WEAK) UIViewController* controller;
+@property (nonatomic, readonly, weak) UIViewController* controller;
 @property (nonatomic, readonly, strong) NSMutableDictionary* objectMap;
 @property (nonatomic, readonly, strong) NSMutableSet* objectSet;
 @property (nonatomic, readonly, strong) NSMutableArray* objectOrder;

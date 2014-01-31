@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NIPreprocessorMacros.h" /* for NI_WEAK */
+#import "NIPreprocessorMacros.h" /* for weak */
 
 #if NS_BLOCKS_AVAILABLE
 typedef UITableViewCell* (^NITableViewModelCellForIndexPathBlock)(UITableView* tableView, NSIndexPath* indexPath, id object);
@@ -76,7 +76,7 @@ typedef enum {
 
 #pragma mark Creating Table View Cells
 
-@property (nonatomic, NI_WEAK) id<NITableViewModelDelegate> delegate;
+@property (nonatomic, weak) id<NITableViewModelDelegate> delegate;
 
 #if NS_BLOCKS_AVAILABLE
 // If both the delegate and this block are provided, cells returned by this block will be used

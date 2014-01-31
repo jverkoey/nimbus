@@ -20,7 +20,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NIPreprocessorMacros.h" /* for NI_WEAK */
+#import "NIPreprocessorMacros.h" /* for weak */
 
 /**
  * A simple web view controller implementation with a toolbar.
@@ -88,7 +88,7 @@
 - (void)openHTMLString:(NSString*)htmlString baseURL:(NSURL*)baseUrl;
 
 @property (nonatomic, assign, getter = isToolbarHidden) BOOL toolbarHidden;
-@property (nonatomic, NI_WEAK) UIColor* toolbarTintColor;
+@property (nonatomic, weak) UIColor* toolbarTintColor;
 
 @property (nonatomic, readonly, strong) UIWebView* webView;
 

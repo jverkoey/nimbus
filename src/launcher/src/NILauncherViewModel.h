@@ -38,7 +38,7 @@
 
 - (id<NILauncherViewObject>)objectAtIndex:(NSInteger)index pageIndex:(NSInteger)pageIndex;
 
-@property (nonatomic, NI_WEAK) id<NILauncherViewModelDelegate> delegate;
+@property (nonatomic, weak) id<NILauncherViewModelDelegate> delegate;
 
 @end
 

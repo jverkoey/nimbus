@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "NIPreprocessorMacros.h" /* for NI_WEAK */
+#import "NIPreprocessorMacros.h" /* for weak */
 /**
  * A table view controller that has a loading state.
  *

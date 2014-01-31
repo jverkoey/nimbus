@@ -18,7 +18,7 @@
 #import "NIDebuggingTools.h"
 #import "NISDKAvailability.h"
 
-#import "NIPreprocessorMacros.h" /* for NI_WEAK */
+#import "NIPreprocessorMacros.h" /* for weak */
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."

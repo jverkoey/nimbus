@@ -206,7 +206,7 @@ UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view) {
 
 
 @interface NITableViewSnapshotRotation() <NISnapshotRotationDelegate>
-@property (nonatomic, NI_WEAK) id<NISnapshotRotationDelegate> forwardingDelegate;
+@property (nonatomic, weak) id<NISnapshotRotationDelegate> forwardingDelegate;
 @end
 
 

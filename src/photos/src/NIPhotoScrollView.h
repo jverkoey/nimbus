@@ -56,7 +56,7 @@
 @property (nonatomic, assign, getter=isZoomingAboveOriginalSizeEnabled) BOOL zoomingAboveOriginalSizeIsEnabled; // default: yes
 @property (nonatomic, assign, getter=isDoubleTapToZoomEnabled) BOOL doubleTapToZoomIsEnabled; // default: yes
 @property (nonatomic, assign) CGFloat maximumScale; // default: 0 (autocalculate)
-@property (nonatomic, NI_WEAK) id<NIPhotoScrollViewDelegate> photoScrollViewDelegate;
+@property (nonatomic, weak) id<NIPhotoScrollViewDelegate> photoScrollViewDelegate;
 
 #pragma mark State
 

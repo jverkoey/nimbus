@@ -108,7 +108,7 @@
 @property (nonatomic, assign) float value;
 @property (nonatomic, assign) float minimumValue;
 @property (nonatomic, assign) float maximumValue;
-@property (nonatomic, NI_WEAK) id didChangeTarget;
+@property (nonatomic, weak) id didChangeTarget;
 @property (nonatomic, assign) SEL didChangeSelector;
 
 @end
@@ -156,7 +156,7 @@
 @property (nonatomic, copy) NSString *labelText;
 @property (nonatomic, assign) NSInteger selectedIndex;
 @property (nonatomic, strong) NSArray *segments;
-@property (nonatomic, NI_WEAK) id didChangeTarget;
+@property (nonatomic, weak) id didChangeTarget;
 @property (nonatomic, assign) SEL didChangeSelector;
 
 @end
@@ -202,7 +202,7 @@
 @property (nonatomic, copy) NSString *labelText;
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, assign) UIDatePickerMode datePickerMode;
-@property (nonatomic, NI_WEAK) id didChangeTarget;
+@property (nonatomic, weak) id didChangeTarget;
 @property (nonatomic, assign) SEL didChangeSelector;
 
 @end

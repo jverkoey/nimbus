@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NIPreprocessorMacros.h" /* for NI_WEAK */
+#import "NIPreprocessorMacros.h" /* for weak */
 
 /**
  * An object designed to easily implement snapshot rotation.
@@ -50,7 +50,7 @@
 // Designated initializer.
 - (id)initWithDelegate:(id<NISnapshotRotationDelegate>)delegate;
 
-@property (nonatomic, NI_WEAK) id<NISnapshotRotationDelegate> delegate;
+@property (nonatomic, weak) id<NISnapshotRotationDelegate> delegate;
 
 @property (nonatomic, readonly, assign) CGRect frameBeforeRotation;
 @property (nonatomic, readonly, assign) CGRect frameAfterRotation;

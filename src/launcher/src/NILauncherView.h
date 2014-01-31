@@ -44,8 +44,8 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 @property (nonatomic, assign) NSInteger numberOfColumns; // Default: NILauncherViewGridBasedOnButtonSize
 
 - (void)reloadData;
-@property (nonatomic, NI_WEAK) id<NILauncherDelegate> delegate;
-@property (nonatomic, NI_WEAK) id<NILauncherDataSource> dataSource;
+@property (nonatomic, weak) id<NILauncherDelegate> delegate;
+@property (nonatomic, weak) id<NILauncherDataSource> dataSource;
 
 - (UIView<NILauncherButtonView> *)dequeueReusableViewWithIdentifier:(NSString *)identifier;
 

@@ -51,8 +51,8 @@
 // For use in your pagingScrollView:pageForIndex: data source implementation.
 - (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex;
 
-@property (nonatomic, NI_WEAK) id<NIPhotoAlbumScrollViewDataSource> dataSource;
-@property (nonatomic, NI_WEAK) id<NIPhotoAlbumScrollViewDelegate> delegate;
+@property (nonatomic, weak) id<NIPhotoAlbumScrollViewDataSource> dataSource;
+@property (nonatomic, weak) id<NIPhotoAlbumScrollViewDelegate> delegate;
 
 #pragma mark Configuring Functionality
 

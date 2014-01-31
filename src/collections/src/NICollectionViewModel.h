@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NIPreprocessorMacros.h" /* for NI_WEAK */
+#import "NIPreprocessorMacros.h" /* for weak */
 
 @protocol NICollectionViewModelDelegate;
 
@@ -60,7 +60,7 @@
 
 #pragma mark Creating Collection View Cells
 
-@property (nonatomic, NI_WEAK) id<NICollectionViewModelDelegate> delegate;
+@property (nonatomic, weak) id<NICollectionViewModelDelegate> delegate;
 
 @end
 
