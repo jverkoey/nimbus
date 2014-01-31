@@ -17,8 +17,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "NIPreprocessorMacros.h" /* for weak */
-
 /**
  * An object designed to easily implement snapshot rotation.
  *

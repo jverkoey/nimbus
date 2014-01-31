@@ -80,10 +80,7 @@ UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view) {
 @property (nonatomic, strong) UIImageView* snapshotViewAfterRotation;
 @end
 
-
 @implementation NISnapshotRotation
-
-
 
 - (id)initWithDelegate:(id<NISnapshotRotationDelegate>)delegate {
   if ((self = [super init])) {
@@ -204,15 +201,11 @@ UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view) {
 
 @end
 
-
 @interface NITableViewSnapshotRotation() <NISnapshotRotationDelegate>
 @property (nonatomic, weak) id<NISnapshotRotationDelegate> forwardingDelegate;
 @end
 
-
 @implementation NITableViewSnapshotRotation
-
-
 
 - (void)setDelegate:(id<NISnapshotRotationDelegate>)delegate {
   if (delegate == self) {
@@ -231,7 +224,6 @@ UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view) {
 }
 
 #pragma mark - Forward Invocations
-
 
 - (BOOL)shouldForwardSelectorToDelegate:(SEL)selector {
   struct objc_method_description description;
@@ -261,7 +253,6 @@ UIImageView* NISnapshotViewOfViewWithTransparency(UIView* view) {
 }
 
 #pragma mark - NISnapshotRotation
-
 
 - (UIView *)containerViewForSnapshotRotation:(NISnapshotRotation *)snapshotRotation {
   return [self.forwardingDelegate containerViewForSnapshotRotation:snapshotRotation];
