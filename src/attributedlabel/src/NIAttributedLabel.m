@@ -117,6 +117,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
 
 @interface NIAttributedLabel() <UIActionSheetDelegate>
+
 @property (nonatomic, strong) NSMutableAttributedString* mutableAttributedString;
 
 @property (nonatomic) CTFrameRef textFrame; // CFType, manually managed lifetime, see setter.
@@ -141,16 +142,15 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 @end
 
 
-@interface NIAttributedLabel(ConversionUtilities)
+@interface NIAttributedLabel (ConversionUtilities)
+
 + (CTTextAlignment)alignmentFromUITextAlignment:(NSTextAlignment)alignment;
 + (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(NSLineBreakMode)lineBreakMode;
 + (NSMutableAttributedString *)mutableAttributedStringFromLabel:(UILabel *)label;
+
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIAttributedLabel
 
 @synthesize mutableAttributedString = _mutableAttributedString;
@@ -185,7 +185,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 @synthesize delegate = _delegate;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [_longPressTimer invalidate];
 
@@ -196,8 +195,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTextFrame:(CTFrameRef)textFrame {
   // The property is marked 'assign', but retain count for this CFType is managed via this setter
   // and -dealloc.
@@ -212,8 +209,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_configureDefaults {
   self.verticalTextAlignment = NIVerticalTextAlignmentTop;
   self.linkColor = [UIColor blueColor];
@@ -221,8 +216,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   self.highlightedLinkBackgroundColor = [UIColor colorWithWhite:0.5f alpha:0.5f];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     [self _configureDefaults];
@@ -230,8 +223,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)awakeFromNib {
   [super awakeFromNib];
 
@@ -240,23 +231,17 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   self.attributedText = [[self class] mutableAttributedStringFromLabel:self];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resetTextFrame {
   self.textFrame = NULL;
   self.accessibleElements = nil;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)attributedTextDidChange {
   [self resetTextFrame];
 
   [self setNeedsDisplay];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFrame:(CGRect)frame {
   BOOL frameDidChange = !CGRectEqualToRect(self.frame, frame);
 
@@ -267,8 +252,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)sizeThatFits:(CGSize)size {
   if (nil == self.mutableAttributedString) {
     return CGSizeZero;
@@ -277,41 +260,28 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return NISizeOfAttributedStringConstrainedToSize([self mutableAttributedStringWithAdditions], size, self.numberOfLines);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public Methods
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setText:(NSString *)text {
   [super setText:text];
 
   self.attributedText = [[self class] mutableAttributedStringFromLabel:self];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Deprecated.
 - (void)setAttributedString:(NSAttributedString *)attributedString {
   self.attributedText = attributedString;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Deprecated.
 - (NSAttributedString *)attributedString {
   return self.attributedText;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSAttributedString *)attributedText {
   return [self.mutableAttributedString copy];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setAttributedText:(NSAttributedString *)attributedText {
   if (self.mutableAttributedString != attributedText) {
     self.mutableAttributedString = [attributedText mutableCopy];
@@ -331,16 +301,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setAutoDetectLinks:(BOOL)autoDetectLinks {
   _autoDetectLinks = autoDetectLinks;
 
   [self attributedTextDidChange];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addLink:(NSURL *)urlLink range:(NSRange)range {
   if (nil == self.explicitLinkLocations) {
     self.explicitLinkLocations = [[NSMutableArray alloc] init];
@@ -352,16 +318,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   [self attributedTextDidChange];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeAllExplicitLinks {
   self.explicitLinkLocations = nil;
 
   [self attributedTextDidChange];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTextAlignment:(NSTextAlignment)textAlignment {
   // We assume that the UILabel implementation will call setNeedsDisplay. Where we don't call super
   // we call setNeedsDisplay ourselves.
@@ -379,8 +341,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode {
   [super setLineBreakMode:lineBreakMode];
 
@@ -391,40 +351,30 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTextColor:(UIColor *)textColor {
   [super setTextColor:textColor];
 
   [self.mutableAttributedString setTextColor:textColor];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTextColor:(UIColor *)textColor range:(NSRange)range {
   [self.mutableAttributedString setTextColor:textColor range:range];
 
   [self attributedTextDidChange];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFont:(UIFont *)font {
   [super setFont:font];
 
   [self.mutableAttributedString setFont:font];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFont:(UIFont *)font range:(NSRange)range {
   [self.mutableAttributedString setFont:font range:range];
 
   [self attributedTextDidChange];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setUnderlineStyle:(CTUnderlineStyle)style {
   if (style != _underlineStyle) {
     _underlineStyle = style;
@@ -434,7 +384,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setUnderlineStyleModifier:(CTUnderlineStyleModifiers)modifier {
   if (modifier != _underlineStyleModifier) {
     _underlineStyleModifier = modifier;
@@ -444,16 +393,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setUnderlineStyle:(CTUnderlineStyle)style modifier:(CTUnderlineStyleModifiers)modifier range:(NSRange)range {
   [self.mutableAttributedString setUnderlineStyle:style modifier:modifier range:range];
 
   [self attributedTextDidChange];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setStrokeWidth:(CGFloat)strokeWidth {
   if (_strokeWidth != strokeWidth) {
     _strokeWidth = strokeWidth;
@@ -463,16 +408,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setStrokeWidth:(CGFloat)width range:(NSRange)range {
   [self.mutableAttributedString setStrokeWidth:width range:range];
 
   [self attributedTextDidChange];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setStrokeColor:(UIColor *)strokeColor {
   if (_strokeColor != strokeColor) {
     _strokeColor = strokeColor;
@@ -482,16 +423,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setStrokeColor:(UIColor*)color range:(NSRange)range {
   [self.mutableAttributedString setStrokeColor:color range:range];
 
   [self attributedTextDidChange];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTextKern:(CGFloat)textKern {
   if (_textKern != textKern) {
     _textKern = textKern;
@@ -501,16 +438,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTextKern:(CGFloat)kern range:(NSRange)range {
   [self.mutableAttributedString setKern:kern range:range];
 
   [self attributedTextDidChange];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setLinkColor:(UIColor *)linkColor {
   if (_linkColor != linkColor) {
     _linkColor = linkColor;
@@ -519,7 +452,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setLineHeight:(CGFloat)lineHeight {
   _lineHeight = lineHeight;
 
@@ -530,8 +462,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setHighlightedLinkBackgroundColor:(UIColor *)highlightedLinkBackgroundColor {
   if (_highlightedLinkBackgroundColor != highlightedLinkBackgroundColor) {
     _highlightedLinkBackgroundColor = highlightedLinkBackgroundColor;
@@ -540,8 +470,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setLinksHaveUnderlines:(BOOL)linksHaveUnderlines {
   if (_linksHaveUnderlines != linksHaveUnderlines) {
     _linksHaveUnderlines = linksHaveUnderlines;
@@ -550,8 +478,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setAttributesForLinks:(NSDictionary *)attributesForLinks {
   if (_attributesForLinks != attributesForLinks) {
     _attributesForLinks = attributesForLinks;
@@ -560,8 +486,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setAttributesForHighlightedLink:(NSDictionary *)attributesForHighlightedLink {
   if (_attributesForHighlightedLink != attributesForHighlightedLink) {
     _attributesForHighlightedLink = attributesForHighlightedLink;
@@ -570,8 +494,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setExplicitLinkLocations:(NSMutableArray *)explicitLinkLocations {
   if (_explicitLinkLocations != explicitLinkLocations) {
     _explicitLinkLocations = explicitLinkLocations;
@@ -579,8 +501,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setDetectedlinkLocations:(NSArray *)detectedlinkLocations{
   if (_detectedlinkLocations != detectedlinkLocations) {
     _detectedlinkLocations = detectedlinkLocations;
@@ -588,8 +508,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setHighlighted:(BOOL)highlighted {
   BOOL didChange = self.highlighted != highlighted;
   [super setHighlighted:highlighted];
@@ -599,8 +517,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setHighlightedTextColor:(UIColor *)highlightedTextColor {
   BOOL didChange = self.highlightedTextColor != highlightedTextColor;
   [super setHighlightedTextColor:highlightedTextColor];
@@ -610,8 +526,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)_matchesFromAttributedString:(NSString *)string {
   NSError* error = nil;
   NSDataDetector* linkDetector = [NSDataDetector dataDetectorWithTypes:(NSTextCheckingTypes)self.dataDetectorTypes
@@ -621,8 +535,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return [linkDetector matchesInString:string options:0 range:range];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_deferLinkDetection {
   if (!self.detectingLinks) {
     self.detectingLinks = YES;
@@ -642,8 +554,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Use an NSDataDetector to find any implicit links in the text. The results are cached until
 // the text changes.
 - (void)detectLinks {
@@ -662,8 +572,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGRect)getLineBounds:(CTLineRef)line point:(CGPoint) point {
   CGFloat ascent = 0.0f;
   CGFloat descent = 0.0f;
@@ -674,8 +582,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return CGRectMake(point.x, point.y - descent, width, height);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSTextCheckingResult *)linkAtIndex:(CFIndex)i {
   NSTextCheckingResult* foundResult = nil;
 
@@ -702,8 +608,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return foundResult;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_processLinksInAttributedString:(NSAttributedString *)attributedString {
   // Pull any attributes matching the link attribute from the attributed string and store them as
   // the current set of explicit links. This properly handles the value of the attribute being
@@ -720,8 +624,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   self.explicitLinkLocations = links;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)_verticalOffsetForBounds:(CGRect)bounds {
   CGFloat verticalOffset = 0;
   if (NIVerticalTextAlignmentTop != self.verticalTextAlignment) {
@@ -740,15 +642,11 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return verticalOffset;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGAffineTransform)_transformForCoreText {
   // CoreText context coordinates are the opposite to UIKit so we flip the bounds
   return CGAffineTransformScale(CGAffineTransformMakeTranslation(0, self.bounds.size.height), 1.f, -1.f);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSTextCheckingResult *)linkAtPoint:(CGPoint)point {
   if (!CGRectContainsPoint(CGRectInset(self.bounds, 0, -kVMargin), point)) {
     return nil;
@@ -795,8 +693,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return nil;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGRect)_rectForRange:(NSRange)range inLine:(CTLineRef)line lineOrigin:(CGPoint)lineOrigin {
   CGRect rectForRange = CGRectZero;
   CFArrayRef runs = CTLineGetGlyphRuns(line);
@@ -848,8 +744,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return rectForRange;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)isPoint:(CGPoint)point nearLink:(NSTextCheckingResult *)link {
   CFArrayRef lines = CTFrameGetLines(self.textFrame);
   if (nil == lines) {
@@ -884,8 +778,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return isNearLink;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)_rectsForLink:(NSTextCheckingResult *)link {
   CFArrayRef lines = CTFrameGetLines(self.textFrame);
   if (nil == lines) {
@@ -916,8 +808,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return [rects copy];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTouchedLink:(NSTextCheckingResult *)touchedLink {
   if (_touchedLink != touchedLink) {
     _touchedLink = touchedLink;
@@ -928,8 +818,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesBegan:touches withEvent:event];
 
@@ -948,8 +836,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   [self setNeedsDisplay];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesMoved:touches withEvent:event];
 
@@ -991,8 +877,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesEnded:touches withEvent:event];
 
@@ -1015,8 +899,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   [self setNeedsDisplay];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesCancelled:touches withEvent:event];
 
@@ -1029,8 +911,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   [self setNeedsDisplay];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIActionSheet *)actionSheetForResult:(NSTextCheckingResult *)result {
   UIActionSheet* actionSheet =
   [[UIActionSheet alloc] initWithTitle:nil
@@ -1076,8 +956,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return actionSheet;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_longPressTimerDidFire:(NSTimer *)timer {
   self.longPressTimer = nil;
 
@@ -1105,8 +983,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)_applyLinkStyleWithResults:(NSArray *)results toAttributedString:(NSMutableAttributedString *)attributedString {
   for (NSTextCheckingResult* result in results) {
     if (self.linkColor) {
@@ -1136,8 +1012,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // We apply the additional styles immediately before we render the attributed string. This
 // composites the styles with the existing styles without losing any information. This
 // makes it possible to turn off links or remove them altogether without losing the existing
@@ -1218,15 +1092,11 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return attributedString;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)numberOfDisplayedLines {
   CFArrayRef lines = CTFrameGetLines(self.textFrame);
   return self.numberOfLines > 0 ? MIN(self.numberOfLines, CFArrayGetCount(lines)) : CFArrayGetCount(lines);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawImages {
   if (0 == self.images.count) {
     return;
@@ -1299,8 +1169,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawHighlightWithRect:(CGRect)rect {
   if ((nil == self.touchedLink && nil == self.actionSheetLink) || nil == self.highlightedLinkBackgroundColor) {
     return;
@@ -1353,8 +1221,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawAttributedString:(NSAttributedString *)attributedString rect:(CGRect)rect {
   CGContextRef ctx = UIGraphicsGetCurrentContext();
 
@@ -1421,8 +1287,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawTextInRect:(CGRect)rect {
   if (NIVerticalTextAlignmentTop != self.verticalTextAlignment) {
     rect.origin.y = [self _verticalOffsetForBounds:rect];
@@ -1475,13 +1339,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Accessibility
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)accessibleElements {
   if (nil != _accessibleElements) {
     return _accessibleElements;
@@ -1512,37 +1371,24 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   return _accessibleElements;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)isAccessibilityElement {
   return NO;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)accessibilityElementCount  {
   return self.accessibleElements.count;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)accessibilityElementAtIndex:(NSInteger)index {
   return [self.accessibleElements objectAtIndex:index];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)indexOfAccessibilityElement:(id)element {
   return [self.accessibleElements indexOfObject:element];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIActionSheetDelegate
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
   if (NSTextCheckingTypeLink == self.actionSheetLink.resultType) {
     if (buttonIndex == 0) {
@@ -1586,15 +1432,11 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   [self setNeedsDisplay];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet {
   self.actionSheetLink = nil;
   [self setNeedsDisplay];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat NIImageDelegateGetAscentCallback(void* refCon) {
   NIAttributedLabelImage *labelImage = (__bridge NIAttributedLabelImage *)refCon;
 
@@ -1615,8 +1457,6 @@ CGFloat NIImageDelegateGetAscentCallback(void* refCon) {
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat NIImageDelegateGetDescentCallback(void* refCon) {
   NIAttributedLabelImage *labelImage = (__bridge NIAttributedLabelImage *)refCon;
 
@@ -1637,27 +1477,19 @@ CGFloat NIImageDelegateGetDescentCallback(void* refCon) {
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat NIImageDelegateGetWidthCallback(void* refCon) {
   NIAttributedLabelImage *labelImage = (__bridge NIAttributedLabelImage *)refCon;
   return labelImage.image.size.width + labelImage.margins.left + labelImage.margins.right;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index {
   [self insertImage:image atIndex:index margins:UIEdgeInsetsZero verticalTextAlignment:NIVerticalTextAlignmentBottom];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins {
   [self insertImage:image atIndex:index margins:margins verticalTextAlignment:NIVerticalTextAlignmentBottom];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins verticalTextAlignment:(NIVerticalTextAlignment)verticalTextAlignment {
   NIAttributedLabelImage* labelImage = [[NIAttributedLabelImage alloc] init];
   labelImage.index = index;
@@ -1673,13 +1505,8 @@ CGFloat NIImageDelegateGetWidthCallback(void* refCon) {
 @end
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NIAttributedLabel (ConversionUtilities)
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CTTextAlignment)alignmentFromUITextAlignment:(NSTextAlignment)alignment {
   switch (alignment) {
     case NSTextAlignmentLeft: return kCTLeftTextAlignment;
@@ -1690,8 +1517,6 @@ CGFloat NIImageDelegateGetWidthCallback(void* refCon) {
   }
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CTLineBreakMode)lineBreakModeFromUILineBreakMode:(NSLineBreakMode)lineBreakMode {
   switch (lineBreakMode) {
     case NSLineBreakByWordWrapping: return kCTLineBreakByWordWrapping;
@@ -1704,7 +1529,6 @@ CGFloat NIImageDelegateGetWidthCallback(void* refCon) {
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSMutableAttributedString *)mutableAttributedStringFromLabel:(UILabel *)label {
   NSMutableAttributedString* attributedString = nil;
 
