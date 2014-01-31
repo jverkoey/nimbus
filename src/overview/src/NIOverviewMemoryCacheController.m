@@ -25,7 +25,7 @@
 #endif
 
 @interface NIMemoryCache(Private)
-@property (nonatomic, strong) NILinkedList* lruCacheObjects;
+@property (nonatomic, strong) NSMutableOrderedSet* lruCacheObjects;
 @end
 
 // Anonymous private category for LRU cache objects.

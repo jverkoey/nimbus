@@ -23,6 +23,7 @@
 #import "NIDeviceInfo.h"
 #import "NIOverviewGraphView.h"
 #import "NIOverviewLogger.h"
+#import "NimbusCore.h"
 #import <QuartzCore/QuartzCore.h>
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
@@ -160,7 +161,7 @@ static const CGFloat kGraphRightMargin = 5;
 
 
 - (CGFloat)graphViewXRange:(NIOverviewGraphView *)graphView {
-  NILinkedList* deviceLogs = [[NIOverview logger] deviceLogs];
+  NSMutableOrderedSet* deviceLogs = [[NIOverview logger] deviceLogs];
   NIOverviewLogEntry* firstEntry = [deviceLogs firstObject];
   NIOverviewLogEntry* lastEntry = [deviceLogs lastObject];
   NSTimeInterval interval = [lastEntry.timestamp timeIntervalSinceDate:firstEntry.timestamp];
@@ -251,7 +252,7 @@ static const CGFloat kGraphRightMargin = 5;
 
 
 - (CGFloat)graphViewYRange:(NIOverviewGraphView *)graphView {
-  NILinkedList* deviceLogs = [[NIOverview logger] deviceLogs];
+  NSMutableOrderedSet* deviceLogs = [[NIOverview logger] deviceLogs];
   if ([deviceLogs count] == 0) {
     return 0;
   }
@@ -272,7 +273,7 @@ static const CGFloat kGraphRightMargin = 5;
 }
 
 - (NSDate *)initialTimestamp {
-  NILinkedList* deviceLogs = [[NIOverview logger] deviceLogs];
+  NSMutableOrderedSet* deviceLogs = [[NIOverview logger] deviceLogs];
   NIOverviewLogEntry* firstEntry = [deviceLogs firstObject];
   return firstEntry.timestamp;
 }
@@ -325,7 +326,7 @@ static const CGFloat kGraphRightMargin = 5;
 
 
 - (CGFloat)graphViewYRange:(NIOverviewGraphView *)graphView {
-  NILinkedList* deviceLogs = [[NIOverview logger] deviceLogs];
+  NSMutableOrderedSet* deviceLogs = [[NIOverview logger] deviceLogs];
   if ([deviceLogs count] == 0) {
     return 0;
   }
@@ -346,7 +347,7 @@ static const CGFloat kGraphRightMargin = 5;
 }
 
 - (NSDate *)initialTimestamp {
-  NILinkedList* deviceLogs = [[NIOverview logger] deviceLogs];
+  NSMutableOrderedSet* deviceLogs = [[NIOverview logger] deviceLogs];
   NIOverviewLogEntry* firstEntry = [deviceLogs firstObject];
   return firstEntry.timestamp;
 }
@@ -604,9 +605,9 @@ static const CGFloat kGraphRightMargin = 5;
 
 
 @interface NIOverviewMemoryCachePageView()
-@property (nonatomic, assign) unsigned long long minValue;
-@property (nonatomic, retain) NSEnumerator* enumerator;
-@property (nonatomic, retain) NILinkedList* history;
+@property (nonatomic) unsigned long long minValue;
+@property (nonatomic, strong) NSEnumerator* enumerator;
+@property (nonatomic, strong) NSMutableOrderedSet* history;
 @end
 
 
@@ -619,7 +620,7 @@ static const CGFloat kGraphRightMargin = 5;
     self.pageTitle = NSLocalizedString(@"Memory Cache", @"Overview Page Title: Memory Cache");
     self.cache = [Nimbus imageMemoryCache];
 
-    self.history = [NILinkedList linkedList];
+    self.history = [[NSMutableOrderedSet alloc] init];
     self.graphView.dataSource = self;
 
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
@@ -669,7 +670,7 @@ static const CGFloat kGraphRightMargin = 5;
 
   NSDate* cutoffDate = [NSDate dateWithTimeIntervalSinceNow:-[NIOverview logger].oldestLogAge];
   while ([[(NIOverviewMemoryCacheEntry *)self.history.firstObject timestamp] compare:cutoffDate] == NSOrderedAscending) {
-    [self.history removeFirstObject];
+    [self.history removeObjectAtIndex:0];
   }
 
   [self setNeedsLayout];

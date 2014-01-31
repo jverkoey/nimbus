@@ -23,6 +23,7 @@
 #import "NIOverviewPageView.h"
 #import "NIOverviewSwizzling.h"
 #import "NIOverviewLogger.h"
+#import "NimbusCore.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."

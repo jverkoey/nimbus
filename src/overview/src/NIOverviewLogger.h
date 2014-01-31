@@ -16,8 +16,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NimbusCore.h"
-
 extern NSString* const NIOverviewLoggerDidAddDeviceLog;
 extern NSString* const NIOverviewLoggerDidAddConsoleLog;
 extern NSString* const NIOverviewLoggerDidAddEventLog;
@@ -38,9 +36,9 @@ extern NSString* const NIOverviewLoggerDidAddEventLog;
  */
 @interface NIOverviewLogger : NSObject {
 @private
-  NILinkedList* _deviceLogs;
-  NILinkedList* _consoleLogs;
-  NILinkedList* _eventLogs;
+  NSMutableOrderedSet* _deviceLogs;
+  NSMutableOrderedSet* _consoleLogs;
+  NSMutableOrderedSet* _eventLogs;
   NSTimeInterval _oldestLogAge;
   NSTimer* _heartbeatTimer;
 }
@@ -91,21 +89,21 @@ extern NSString* const NIOverviewLoggerDidAddEventLog;
  *
  * Log entries are in increasing chronological order.
  */
-@property (nonatomic, readonly, strong) NILinkedList* deviceLogs;
+@property (nonatomic, readonly, strong) NSMutableOrderedSet* deviceLogs;
 
 /**
  * The linked list of console logs.
  *
  * Log entries are in increasing chronological order.
  */
-@property (nonatomic, readonly, strong) NILinkedList* consoleLogs;
+@property (nonatomic, readonly, strong) NSMutableOrderedSet* consoleLogs;
 
 /**
  * The linked list of events.
  *
  * Log entries are in increasing chronological order.
  */
-@property (nonatomic, readonly, strong) NILinkedList* eventLogs;
+@property (nonatomic, readonly, strong) NSMutableOrderedSet* eventLogs;
 
 @end
 

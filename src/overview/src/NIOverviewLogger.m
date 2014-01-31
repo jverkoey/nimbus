@@ -27,8 +27,6 @@ NSString* const NIOverviewLoggerDidAddEventLog = @"NIOverviewLoggerDidAddEventLo
 
 @implementation NIOverviewLogger
 
-
-
 + (NIOverviewLogger*)sharedLogger
 {
   static dispatch_once_t pred = 0;
@@ -43,9 +41,9 @@ NSString* const NIOverviewLoggerDidAddEventLog = @"NIOverviewLoggerDidAddEventLo
 
 - (id)init {
   if ((self = [super init])) {
-    _deviceLogs = [[NILinkedList alloc] init];
-    _consoleLogs = [[NILinkedList alloc] init];
-    _eventLogs = [[NILinkedList alloc] init];
+    _deviceLogs = [[NSMutableOrderedSet alloc] init];
+    _consoleLogs = [[NSMutableOrderedSet alloc] init];
+    _eventLogs = [[NSMutableOrderedSet alloc] init];
     
     _oldestLogAge = 60;
     
@@ -78,11 +76,11 @@ NSString* const NIOverviewLoggerDidAddEventLog = @"NIOverviewLoggerDidAddEventLo
   [self addDeviceLog:logEntry];
 }
 
-- (void)pruneEntriesFromLinkedList:(NILinkedList *)ll {
+- (void)pruneEntriesFromLinkedList:(NSMutableOrderedSet *)ll {
   NSDate* cutoffDate = [NSDate dateWithTimeIntervalSinceNow:-_oldestLogAge];
   while ([[((NIOverviewLogEntry *)[ll firstObject])
            timestamp] compare:cutoffDate] == NSOrderedAscending) {
-    [ll removeFirstObject];
+    [ll removeObjectAtIndex:0];
   }
 }
 
