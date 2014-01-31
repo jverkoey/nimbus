@@ -16,17 +16,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
-#import "NimbusCore.h"
 
-// In UITextAlignment prior to iOS 6.0 we do not have justify, so we add support for it when
-// building for pre-iOS 6.0.
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
-#ifndef UITextAlignmentJustify
-#define UITextAlignmentJustify ((UITextAlignment)kCTJustifiedTextAlignment)
-#endif
-#else
-// UITextAlignmentJustify is deprecated in iOS 6.0. Please use NSTextAlignmentJustified instead.
-#endif
+#import "NimbusCore.h"
 
 #if defined __cplusplus
 extern "C" {
@@ -41,7 +32,7 @@ extern "C" {
  * This method is used in NIAttributedLabel to calculate its size after all additional
  * styling attributes have been set.
  */
-CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString *attributedString, CGSize size, NSInteger numberOfLines);
+CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedString, CGSize size, NSInteger numberOfLines);
 
 #if defined __cplusplus
 };
@@ -54,12 +45,13 @@ typedef enum {
   NIVerticalTextAlignmentBottom,
 } NIVerticalTextAlignment;
 
-extern NSString * const kNILinkAttributeName;
+extern NSString * const kNILinkAttributeName; // Value is an NSTextCheckingResult.
 
 @protocol NIAttributedLabelDelegate;
 
 /**
- * The NIAttributedLabel class provides support for displaying rich text with selectable links.
+ * The NIAttributedLabel class provides support for displaying rich text with selectable links and
+ * embedded images.
  *
  * Differences between UILabel and NIAttributedLabel:
  *
@@ -83,43 +75,43 @@ extern NSString * const kNILinkAttributeName;
  */
 @interface NIAttributedLabel : UILabel
 
-// When building for iOS 6.0 and higher use attributedText.
-@property (nonatomic, copy) NSAttributedString* attributedString;
+// Please use attributedText instead.
+@property (nonatomic, copy) NSAttributedString* attributedString __NI_DEPRECATED_METHOD;
 
-@property (nonatomic, assign) BOOL autoDetectLinks; // Default: NO
-@property (nonatomic, assign) NSTextCheckingType dataDetectorTypes; // Default: NSTextCheckingTypeLink
-@property (nonatomic, assign) BOOL deferLinkDetection; // Default: NO
+@property (nonatomic) BOOL                autoDetectLinks;    // Default: NO
+@property (nonatomic) NSTextCheckingType  dataDetectorTypes;  // Default: NSTextCheckingTypeLink
+@property (nonatomic) BOOL                deferLinkDetection; // Default: NO
 
 - (void)addLink:(NSURL *)urlLink range:(NSRange)range;
 - (void)removeAllExplicitLinks; // Removes all links that were added by addLink:range:. Does not remove autodetected links.
 
-@property (nonatomic, NI_STRONG) UIColor* linkColor; // Default: [UIColor blueColor]
-@property (nonatomic, NI_STRONG) UIColor* highlightedLinkBackgroundColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
-@property (nonatomic, assign) BOOL linksHaveUnderlines; // Default: NO
-@property (nonatomic, copy) NSDictionary *attributesForLinks; // Default: nil
-@property (nonatomic, copy) NSDictionary *attributesForHighlightedLink; // Default: nil
-@property (nonatomic, assign) CGFloat lineHeight;
+@property (nonatomic, strong) UIColor*      linkColor;                      // Default: self.tintColor (iOS 7) or [UIColor blueColor] (iOS 6)
+@property (nonatomic, strong) UIColor*      highlightedLinkBackgroundColor; // Default: [UIColor colorWithWhite:0.5 alpha:0.5
+@property (nonatomic)         BOOL          linksHaveUnderlines;            // Default: NO
+@property (nonatomic, copy)   NSDictionary* attributesForLinks;             // Default: nil
+@property (nonatomic, copy)   NSDictionary* attributesForHighlightedLink;   // Default: nil
+@property (nonatomic)         CGFloat       lineHeight;
 
-@property (nonatomic, assign) NIVerticalTextAlignment verticalTextAlignment; // Default: NIVerticalTextAlignmentTop
-@property (nonatomic, assign) CTUnderlineStyle underlineStyle;
-@property (nonatomic, assign) CTUnderlineStyleModifiers underlineStyleModifier;
-@property (nonatomic, assign) CGFloat shadowBlur; // Default: 0
-@property (nonatomic, assign) CGFloat strokeWidth;
-@property (nonatomic, NI_STRONG) UIColor* strokeColor;
-@property (nonatomic, assign) CGFloat textKern;
+@property (nonatomic)         NIVerticalTextAlignment   verticalTextAlignment;  // Default: NIVerticalTextAlignmentTop
+@property (nonatomic)         CTUnderlineStyle          underlineStyle;
+@property (nonatomic)         CTUnderlineStyleModifiers underlineStyleModifier;
+@property (nonatomic)         CGFloat                   shadowBlur;             // Default: 0
+@property (nonatomic)         CGFloat                   strokeWidth;
+@property (nonatomic, strong) UIColor*                  strokeColor;
+@property (nonatomic)         CGFloat                   textKern;
 
+- (void)setFont:(UIFont *)font            range:(NSRange)range;
+- (void)setStrokeColor:(UIColor *)color   range:(NSRange)range;
+- (void)setStrokeWidth:(CGFloat)width     range:(NSRange)range;
 - (void)setTextColor:(UIColor *)textColor range:(NSRange)range;
-- (void)setFont:(UIFont *)font range:(NSRange)range;
+- (void)setTextKern:(CGFloat)kern         range:(NSRange)range;
 - (void)setUnderlineStyle:(CTUnderlineStyle)style modifier:(CTUnderlineStyleModifiers)modifier range:(NSRange)range;
-- (void)setStrokeWidth:(CGFloat)width range:(NSRange)range;
-- (void)setStrokeColor:(UIColor *)color range:(NSRange)range;
-- (void)setTextKern:(CGFloat)kern range:(NSRange)range;
 
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index;
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins;
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins verticalTextAlignment:(NIVerticalTextAlignment)verticalTextAlignment;
 
-@property (nonatomic, NI_WEAK) IBOutlet id<NIAttributedLabelDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<NIAttributedLabelDelegate> delegate;
 @end
 
 /**
@@ -166,17 +158,7 @@ extern NSString * const kNILinkAttributeName;
 /** @name Accessing the Text Attributes */
 
 /**
- * The attributed string that will be displayed.
- *
- * @attention
- *      When building for iOS 6.0 and higher this property will not exist. Use attributedText
- *      instead.
- *
- * Setting this property explicitly will ignore the UILabel's existing style.
- *
- * If you would like to adopt the existing UILabel style then use setText: and the attributedString
- * will be created with the UILabel's style. You can then create a mutable copy of the attributed
- * string, modify it and assign the new attributed string back to the label.
+ * This method is now deprecated and will eventually be removed, please use attributedText instead.
  *
  *      @fn NIAttributedLabel::attributedString
  */
@@ -245,8 +227,9 @@ extern NSString * const kNILinkAttributeName;
 /**
  * The text color of detected links.
  *
- * The default color is [UIColor blueColor]. If linkColor is assigned nil then the link attributes
- * will not be changed.
+ * The default color is [UIColor blueColor] on pre-iOS 7 devices or self.tintColor on iOS 7 devices.
+ * If linkColor is assigned nil then links will not be given any special color. Use
+ * attributesForLinks to specify alternative styling.
  *
  *  @image html NIAttributedLabelLinkAttributes.png "Link attributes"
  *

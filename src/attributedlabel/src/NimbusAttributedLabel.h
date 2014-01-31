@@ -34,7 +34,7 @@
  * - CoreText.framework
  * - QuartzCore.framework
  *
- * Minimum Operating System: <b>iOS 4.0</b>
+ * Minimum Operating System: <b>iOS 6.0</b>
  *
  * Source located in <code>src/attributedlabel/src</code>
  *
@@ -47,11 +47,7 @@
  * NIAttributedLabel is a subclass of UILabel. The attributed label maintains an <a href="http://developer.apple.com/library/ios/#documentation/Cocoa/Reference/Foundation/Classes/NSAttributedString_Class/Reference/Reference.html">NSAttributedString</a>
  * object internally which is used in conjunction with CoreText to draw rich-text labels. A number
  * of helper methods for modifying the text style are provided. If you need to directly modify the
- * internal NSAttributedString you may do so by accessing the @c attributedString property on iOS 4
- * through 5.*.
- *
- *      @attention iOS 6 Beta note: when building for iOS 6 and higher you must use the
- *                 @c attributedText property now provided via UILabel.
+ * internal NSAttributedString you may do so by accessing the @c attributedText property.
  *
 @code
 NIAttributedLabel* label = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
