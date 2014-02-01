@@ -127,7 +127,19 @@ NSRange NIMakeNSRangeFromCFRange(CFRange range) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* NIMD5HashFromData(NSData* data) {
   unsigned char result[CC_MD5_DIGEST_LENGTH];
-  CC_MD5(data.bytes, data.length, result);
+  bzero(result, sizeof(result));
+  CC_MD5_CTX md5Context;
+  CC_MD5_Init(&md5Context);
+  size_t bytesHashed = 0;
+  while (bytesHashed < [data length]) {
+    CC_LONG updateSize = 1024 * 1024;
+    if (([data length] - bytesHashed) < (size_t)updateSize) {
+      updateSize = (CC_LONG)([data length] - bytesHashed);
+    }
+    CC_MD5_Update(&md5Context, (char *)[data bytes] + bytesHashed, updateSize);
+    bytesHashed += updateSize;
+  }
+  CC_MD5_Final(result, &md5Context);
 
   return [NSString stringWithFormat:
           @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
@@ -141,7 +153,19 @@ NSString* NIMD5HashFromData(NSData* data) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* NISHA1HashFromData(NSData* data) {
   unsigned char result[CC_SHA1_DIGEST_LENGTH];
-  CC_SHA1(data.bytes, data.length, result);
+  bzero(result, sizeof(result));
+  CC_SHA1_CTX sha1Context;
+  CC_SHA1_Init(&sha1Context);
+  size_t bytesHashed = 0;
+  while (bytesHashed < [data length]) {
+    CC_LONG updateSize = 1024 * 1024;
+    if (([data length] - bytesHashed) < (size_t)updateSize) {
+      updateSize = (CC_LONG)([data length] - bytesHashed);
+    }
+    CC_SHA1_Update(&sha1Context, (char *)[data bytes] + bytesHashed, updateSize);
+    bytesHashed += updateSize;
+  }
+  CC_SHA1_Final(result, &sha1Context);
 
   return [NSString stringWithFormat:
           @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
