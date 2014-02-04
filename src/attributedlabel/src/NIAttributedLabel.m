@@ -703,10 +703,10 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
     CGRect linkRect = CGRectMake(lineOrigin.x + xOffset - leading, lineOrigin.y - descent, width + leading, height);
 
-    linkRect.origin.y = roundf(linkRect.origin.y);
-    linkRect.origin.x = roundf(linkRect.origin.x);
-    linkRect.size.width = roundf(linkRect.size.width);
-    linkRect.size.height = roundf(linkRect.size.height);
+    linkRect.origin.y = NICGFloatRound(linkRect.origin.y);
+    linkRect.origin.x = NICGFloatRound(linkRect.origin.x);
+    linkRect.size.width = NICGFloatRound(linkRect.size.width);
+    linkRect.size.height = NICGFloatRound(linkRect.size.height);
 
     if (CGRectIsEmpty(rectForRange)) {
       rectForRange = linkRect;

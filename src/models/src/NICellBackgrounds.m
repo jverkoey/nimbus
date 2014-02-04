@@ -386,8 +386,8 @@ static const CGSize kCellImageSize = {44, 44};
   UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
 
-  CGFloat capWidth = floorf(image.size.width / 2);
-  CGFloat capHeight = floorf(image.size.height / 2);
+  CGFloat capWidth = NICGFloatFloor(image.size.width / 2);
+  CGFloat capHeight = NICGFloatFloor(image.size.height / 2);
   return [image resizableImageWithCapInsets:UIEdgeInsetsMake(capHeight, capWidth, capHeight, capWidth)];
 }
 

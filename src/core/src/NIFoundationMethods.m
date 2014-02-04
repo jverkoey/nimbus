@@ -58,13 +58,13 @@ CGRect NIEdgeInsetsOutsetRect(CGRect rect, UIEdgeInsets outsets) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat NICenterX(CGSize containerSize, CGSize size) {
-  return floorf((containerSize.width - size.width) / 2.f);
+  return NICGFloatFloor((containerSize.width - size.width) / 2.f);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat NICenterY(CGSize containerSize, CGSize size) {
-  return floorf((containerSize.height - size.height) / 2.f);
+  return NICGFloatFloor((containerSize.height - size.height) / 2.f);
 }
 
 
