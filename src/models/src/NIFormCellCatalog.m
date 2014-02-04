@@ -403,7 +403,7 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
 
   [_switchControl sizeToFit];
   CGRect frame = _switchControl.frame;
-  frame.origin.y = floorf((self.contentView.frame.size.height - frame.size.height) / 2);
+  frame.origin.y = NICGFloatFloor((self.contentView.frame.size.height - frame.size.height) / 2);
   frame.origin.x = self.contentView.frame.size.width - frame.size.width - frame.origin.y;
   _switchControl.frame = frame;
 
@@ -504,7 +504,7 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
   static const CGFloat kSliderLeftMargin = 8;
   [_sliderControl sizeToFit];
   frame = _sliderControl.frame;
-  frame.origin.y = floorf((self.contentView.frame.size.height - frame.size.height) / 2);
+  frame.origin.y = NICGFloatFloor((self.contentView.frame.size.height - frame.size.height) / 2);
   frame.origin.x = self.textLabel.frame.origin.x + self.textLabel.frame.size.width + kSliderLeftMargin;
   frame.size.width = contentFrame.size.width - frame.origin.x;
   _sliderControl.frame = frame;
@@ -588,7 +588,7 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
   [_segmentedControl sizeToFit];
   CGRect frame = _segmentedControl.frame;
   frame.size.height = self.contentView.frame.size.height - (2 * kSegmentedControlMargin);
-  frame.origin.y = floorf((self.contentView.frame.size.height - frame.size.height) / 2);
+  frame.origin.y = NICGFloatFloor((self.contentView.frame.size.height - frame.size.height) / 2);
   frame.origin.x = CGRectGetMaxX(contentFrame) - frame.size.width - kSegmentedControlMargin;
   _segmentedControl.frame = frame;
 
@@ -715,7 +715,7 @@ static const CGFloat kDatePickerTextFieldRightMargin = 5;
   
   [_dateField sizeToFit];
   CGRect frame = _dateField.frame;
-  frame.origin.y = floorf((self.contentView.frame.size.height - frame.size.height) / 2);
+  frame.origin.y = NICGFloatFloor((self.contentView.frame.size.height - frame.size.height) / 2);
   frame.origin.x = self.contentView.frame.size.width - frame.size.width - kDatePickerTextFieldRightMargin;
   _dateField.frame = frame;
   self.dumbDateField.frame = _dateField.frame;
