@@ -24,6 +24,8 @@
     if (!NIIsStringWithAnyText(self)) {
       retSize.height = 0;
     }
+    retSize.height = ceilf(retSize.height);
+    retSize.width = ceilf(retSize.width);
     return retSize;
   } else {
     return [self sizeWithFont:font constrainedToSize:size];
