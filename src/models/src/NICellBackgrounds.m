@@ -398,7 +398,7 @@ static const CGSize kCellImageSize = {44, 44};
                      | (last ? 0x02 : 0)
                      | (highlighted ? 0x04 : 0)
                      | (drawDivider ? 0x08 : 0));
-  return [NSNumber numberWithInt:flags];
+  return [NSNumber numberWithInteger:flags];
 }
 
 
