@@ -37,13 +37,14 @@ NI_FIX_CATEGORY_BUG(UISearchBar_NIStyleable)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)applyViewStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
-    [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
-    [self applySearchBarStyleWithRuleSet:ruleSet inDOM:dom];
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+    [self applyStyleWithRuleSet:ruleSet inDOM:nil];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
+-(void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
+    [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
+    [self applySearchBarStyleWithRuleSet:ruleSet inDOM:dom];
 }
 
 

@@ -73,6 +73,12 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSArray *)insertObject:(id)object atIndexPath:(NSIndexPath *)indexPath {
+  return [self insertObject:object atRow:indexPath.row inSection:indexPath.section];
+}
+    
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray *)removeObjectAtIndexPath:(NSIndexPath *)indexPath {
   NIDASSERT(indexPath.section < (NSInteger)self.sections.count);
   if (indexPath.section >= (NSInteger)self.sections.count) {
@@ -181,6 +187,19 @@
         animation = [self.delegate tableViewModel:self deleteRowAnimationForObject:object atIndexPath:indexPath inTableView:tableView];
       }
       [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+    }
+  } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    id newObject = nil;
+    if ([self.delegate respondsToSelector:@selector(tableViewModel:shouldInsertAtIndexPath:object:inTableView:)]) {
+      newObject = [self.delegate tableViewModel:self shouldInsertAtIndexPath:indexPath object:object inTableView:tableView];
+    }
+    if (newObject) {
+      NSArray *indexPaths = [self insertObject:newObject atIndexPath:indexPath];
+      UITableViewRowAnimation animation = UITableViewRowAnimationAutomatic;
+      if ([self.delegate respondsToSelector:@selector(tableViewModel:insertRowAnimationForObject:atIndexPath:inTableView:)]) {
+        animation = [self.delegate tableViewModel:self insertRowAnimationForObject:newObject atIndexPath:indexPath inTableView:tableView];
+      }
+      [tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
     }
   }
 }
