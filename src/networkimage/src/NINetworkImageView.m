@@ -31,6 +31,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NINetworkImageView()
 @property (nonatomic, readwrite, NI_STRONG) NSOperation* operation;
+@property (atomic, readwrite, copy) NSString* mostRecentRequestedPathToNetworkImage;
 @end
 
 
@@ -316,6 +317,11 @@
 - (void)setPathToNetworkImage:(NSString *)pathToNetworkImage forDisplaySize:(CGSize)displaySize contentMode:(UIViewContentMode)contentMode cropRect:(CGRect)cropRect {
   [self cancelOperation];
 
+  // Store the requested network path here in order to be able to later
+  // cancel the image processing block if a different URL has been requested
+  // in the meantime.
+  self.mostRecentRequestedPathToNetworkImage = pathToNetworkImage;
+  
   if (NIIsStringWithAnyText(pathToNetworkImage)) {
     NSURL* url = nil;
 
@@ -376,12 +382,18 @@
       AFImageRequestOperation *operation =
       [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:
        ^UIImage *(UIImage *downloadedImage) {
-         return [NIImageProcessing imageFromSource:downloadedImage
-                                   withContentMode:contentMode
-                                          cropRect:cropRect
-                                       displaySize:displaySize
-                                      scaleOptions:self.scaleOptions
-                              interpolationQuality:self.interpolationQuality];
+         UIImage *processedImage = [NIImageProcessing imageFromSource:downloadedImage
+                                                      withContentMode:contentMode
+                                                             cropRect:cropRect
+                                                          displaySize:displaySize
+                                                         scaleOptions:self.scaleOptions
+                                                 interpolationQuality:self.interpolationQuality];
+         if ((self.mostRecentRequestedPathToNetworkImage == nil && pathToNetworkImage == nil) ||
+             [self.mostRecentRequestedPathToNetworkImage isEqualToString:pathToNetworkImage]) {
+           return processedImage;
+         } else {
+           return nil;
+         }
 
        } success:^(NSURLRequest *successfulRequest, NSHTTPURLResponse *response, UIImage *processedImage) {
          [self _didFinishLoadingWithImage:processedImage
