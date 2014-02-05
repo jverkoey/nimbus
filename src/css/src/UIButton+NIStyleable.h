@@ -22,32 +22,6 @@
 @interface UIButton (NIStyleable)
 
 /**
- * Applies the given rule set to this button. Call applyButtonStyleWithRuleSet:inDOM:
- *
- * This method is exposed primarily for subclasses to use when implementing the
- * applyStyleWithRuleSet: method from NIStyleable.
- */
-- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet DEPRECATED_ATTRIBUTE;
-
-/**
- * Applies the given rule set to this button.
- *
- * This method is exposed primarily for subclasses to use when implementing the
- * applyStyleWithRuleSet: method from NIStyleable.
- */
-- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
-
-/**
- * Applies the given rule set to this label.
- *
- * This method is exposed primarily for subclasses to use when implementing the
- * applyStyleWithRuleSet: method from NIStyleable. Since some of the view
- * styles (e.g. positioning) may rely on some label elements (like text), this is called
- * before the view styling is done.
- */
-- (void)applyButtonStyleBeforeViewWithRuleSet:(NICSSRuleset *)ruleSet inDOM: (NIDOM*) dom;
-
-/**
  * Tells the CSS engine a set of pseudo classes that apply to views of this class.
  * In the case of UIButton, this includes :selected, :highlighted, and :disabled.
  * In CSS, you specify these with selectors like UIButton:active. If you implement this you need to respond

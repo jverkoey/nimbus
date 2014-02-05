@@ -116,7 +116,7 @@
 
       if (action.navigateAction) {
         // Tap actions can deselect the cell if they return YES.
-        action.navigateAction(object, self.target, indexPath);
+        shouldDeselect = action.navigateAction(object, self.target, indexPath);
       }
       if (action.navigateSelector && [self.target respondsToSelector:action.navigateSelector]) {
 #pragma clang diagnostic push

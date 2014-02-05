@@ -122,11 +122,25 @@ extern "C" {
  * Allocates an instance of the controller class and calls the init selector.
  *
  * The target property of the NIActions instance must be an instance of UIViewController
- * with an attached navigationController.
+ * with an attached navigationController. This action returns NO so deselection does not occur.
+ * Use NIPushDeselectingControllerAction to change this behavior.
  *
  *      @param controllerClass The class of controller to instantiate.
  */
 NIActionBlock NIPushControllerAction(Class controllerClass);
+
+/**
+ * Returns a block that pushes an instance of the controllerClass onto the navigation stack.
+ *
+ * Allocates an instance of the controller class and calls the init selector.
+ *
+ * The target property of the NIActions instance must be an instance of UIViewController
+ * with an attached navigationController. This action returns YES so deselection occurs.
+ * Use NIPushControllerAction to change this behavior.
+ *
+ *      @param controllerClass The class of controller to instantiate.
+ */
+NIActionBlock NIPushDeselectingControllerAction(Class controllerClass);
 
 #if defined __cplusplus
 };

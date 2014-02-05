@@ -16,10 +16,14 @@
 
 #import "UIButton+NIStyleable.h"
 
+#import "NIStylesheet.h"
 #import "UIView+NIStyleable.h"
 #import "NICSSRuleset.h"
 #import "NimbusCore.h"
 #import "NIUserInterfaceString.h"
+#import "NIDOM.h"
+#import "NSString+NIStyleable.h"
+#import <objc/runtime.h>
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
@@ -27,46 +31,62 @@
 
 NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
 
+// These chars are used as keys for objc_setAssociatedObject and objc_getAssociatedObject.
+// We need to use associated objects to store DOMs so that we can apply
+// styles for pseudoclasses (by refreshing each DOM) when the control state of the button changes.
+// Since we're in a category, we can't add properties or ivars, so the only way to store additional
+// state on the object is with associated objects.
+static char nibutton_DOMSetKey = 0;
+static char nibutton_isRefreshingDueToKVOKey = 0;
+static char nibutton_didSetupKVOKey = 0;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation UIButton (NIStyleable)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  [self applyButtonStyleWithRuleSet:ruleSet inDOM:nil];
-}
-
--(void)applyButtonStyleBeforeViewWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom
-{
+-(void)applyButtonStyleBeforeViewWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom forState:(UIControlState)state {
   if (ruleSet.hasFont) {
     self.titleLabel.font = ruleSet.font;
   }
   if (ruleSet.hasTextKey) {
     NIUserInterfaceString *nis = [[NIUserInterfaceString alloc] initWithKey:ruleSet.textKey];
-    [nis attach:self withSelector:@selector(setTitle:forState:) forControlState:UIControlStateNormal];
+    [nis attach:self withSelector:@selector(setTitle:forState:) forControlState:state];
   }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
+- (void)applyButtonStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom forState:(UIControlState)state {
   if ([ruleSet hasTextColor]) {
     // If you want to reset this color, set none as the color
-    [self setTitleColor:ruleSet.textColor forState:UIControlStateNormal];
+    [self setTitleColor:ruleSet.textColor forState:state];
   }
   if ([ruleSet hasTextShadowColor]) {
     // If you want to reset this color, set none as the color
-    [self setTitleShadowColor:ruleSet.textShadowColor forState:UIControlStateNormal];
+    [self setTitleShadowColor:ruleSet.textShadowColor forState:state];
   }
   if (ruleSet.hasImage) {
-    [self setImage:[UIImage imageNamed:ruleSet.image] forState:UIControlStateNormal];
+    UIImage *uiImage;
+    if ([NIStylesheet resourceResolver] && [[NIStylesheet resourceResolver] respondsToSelector: @selector(imageNamed:)]) {
+      uiImage = [[NIStylesheet resourceResolver] imageNamed:ruleSet.image];
+    } else {
+      uiImage = [UIImage imageNamed:ruleSet.image];
+    }
+    
+    [self setImage:uiImage forState:state];
   }
   if (ruleSet.hasBackgroundImage) {
-    UIImage *backImage = [UIImage imageNamed:ruleSet.backgroundImage];
-    if (ruleSet.hasBackgroundStretchInsets) {
-      backImage = [backImage resizableImageWithCapInsets:ruleSet.backgroundStretchInsets];
+    UIImage *uiImage;
+    if ([NIStylesheet resourceResolver] && [[NIStylesheet resourceResolver] respondsToSelector: @selector(imageNamed:)]) {
+      uiImage = [[NIStylesheet resourceResolver] imageNamed:ruleSet.backgroundImage];
+    } else {
+      uiImage = [UIImage imageNamed:ruleSet.backgroundImage];
     }
-    [self setBackgroundImage:backImage forState:UIControlStateNormal];
+    if (ruleSet.hasBackgroundStretchInsets) {
+      uiImage = [uiImage resizableImageWithCapInsets:ruleSet.backgroundStretchInsets];
+    }
+    [self setBackgroundImage:uiImage forState:state];
   }
   if ([ruleSet hasTextShadowOffset]) {
     self.titleLabel.shadowOffset = ruleSet.textShadowOffset;
@@ -78,23 +98,35 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
     self.adjustsImageWhenDisabled = ((ruleSet.buttonAdjust & NICSSButtonAdjustDisabled) != 0);
     self.adjustsImageWhenHighlighted = ((ruleSet.buttonAdjust & NICSSButtonAdjustHighlighted) != 0);
   }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet {
-  [self applyStyleWithRuleSet:ruleSet inDOM:nil];
+  if ([ruleSet hasLineBreakMode]) {
+    self.titleLabel.lineBreakMode = ruleSet.lineBreakMode;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
-  [self applyButtonStyleBeforeViewWithRuleSet:ruleSet inDOM:dom];
-  [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
-  [self applyButtonStyleWithRuleSet:ruleSet inDOM:dom];
+  [self applyStyleWithRuleSet:ruleSet inDOM:dom forState:UIControlStateNormal];
 }
+
+- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom forState:(UIControlState)state {
+  [self applyButtonStyleBeforeViewWithRuleSet:ruleSet inDOM:dom forState:state];
+  [self applyViewStyleWithRuleSet:ruleSet inDOM:dom];
+  [self applyButtonStyleWithRuleSet:ruleSet inDOM:dom forState:state];
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet forPseudoClass:(NSString *)pseudo inDOM:(NIDOM *)dom
 {
+  // This button now has at least one pseudoclass, which means it needs to refresh itself when its
+  // control state changes.
+  if (![objc_getAssociatedObject(self, &nibutton_didSetupKVOKey) boolValue]) {
+    [self addObserver:self forKeyPath:@"highlighted" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
+    [self addObserver:self forKeyPath:@"selected" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
+    [self addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:&nibutton_isRefreshingDueToKVOKey];
+    objc_setAssociatedObject(self, &nibutton_didSetupKVOKey, @(YES), OBJC_ASSOCIATION_RETAIN);
+  }
+  
   UIControlState state = UIControlStateNormal;
   if ([pseudo caseInsensitiveCompare:@"selected"] == NSOrderedSame) {
     state = UIControlStateSelected;
@@ -103,25 +135,22 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
   } else if ([pseudo caseInsensitiveCompare:@"disabled"] == NSOrderedSame) {
     state = UIControlStateDisabled;
   }
-  if (ruleSet.hasTextKey) {
-      NIUserInterfaceString *nis = [[NIUserInterfaceString alloc] initWithKey:ruleSet.textKey];
-      [nis attach:self withSelector:@selector(setTitle:forState:) forControlState:state];
+  
+  if (self.state == state ||
+      (!self.enabled && [pseudo caseInsensitiveCompare:@"disabled"] == NSOrderedSame)) {
+    [self applyStyleWithRuleSet:ruleSet inDOM:dom forState:state];
   }
-  if (ruleSet.hasTextColor) {
-    [self setTitleColor:ruleSet.textColor forState:state];
-  }
-  if (ruleSet.hasTextShadowColor) {
-    [self setTitleShadowColor:ruleSet.textShadowColor forState:state];
-  }
-  if (ruleSet.hasImage) {
-    [self setImage:[UIImage imageNamed:ruleSet.image] forState:state];
-  }
-  if (ruleSet.hasBackgroundImage) {
-    UIImage *backImage = [UIImage imageNamed:ruleSet.backgroundImage];
-    if (ruleSet.hasBackgroundStretchInsets) {
-      backImage = [backImage resizableImageWithCapInsets:ruleSet.backgroundStretchInsets];
-    }
-    [self setBackgroundImage:backImage forState:state];
+  
+  return;
+}
+
+- (void)stopKVO
+{
+  if ([objc_getAssociatedObject(self, &nibutton_didSetupKVOKey) boolValue]) {
+    [self removeObserver:self forKeyPath:@"highlighted" context:&nibutton_isRefreshingDueToKVOKey];
+    [self removeObserver:self forKeyPath:@"selected" context:&nibutton_isRefreshingDueToKVOKey];
+    [self removeObserver:self forKeyPath:@"enabled" context:&nibutton_isRefreshingDueToKVOKey];
+    objc_setAssociatedObject(self, &nibutton_didSetupKVOKey, @(NO), OBJC_ASSOCIATION_RETAIN);
   }
 }
 
@@ -134,4 +163,72 @@ NI_FIX_CATEGORY_BUG(UIButton_NIStyleable)
   });
   return buttonPseudos;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)autoSize:(NICSSRuleset *)ruleSet inDOM:(NIDOM *)dom {
+  CGFloat newWidth = self.frameWidth, newHeight = self.frameHeight;
+  
+  if (ruleSet.hasWidth && ruleSet.width.type == CSS_AUTO_UNIT) {
+    
+    CGSize size = [[self titleForState:UIControlStateNormal]
+                   niSizeWithFont:self.titleLabel.font
+                   constrainedToSize:CGSizeMake(CGFLOAT_MAX, self.frame.size.height)];
+    newWidth = ceilf(size.width);
+  }
+  
+  if (ruleSet.hasHeight && ruleSet.height.type == CSS_AUTO_UNIT) {
+    CGSize sizeForOneLine = [@"." niSizeWithFont:self.titleLabel.font constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+    float heightForOneLine = sizeForOneLine.height;
+    
+    CGSize size = [[self titleForState:UIControlStateNormal]
+                   niSizeWithFont: self.titleLabel.font
+                   constrainedToSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+    float maxHeight = (self.titleLabel.numberOfLines == 0) ? CGFLOAT_MAX : (heightForOneLine * self.titleLabel.numberOfLines);
+    
+    if (size.height > maxHeight) {
+      size.height = maxHeight;
+    }
+    newHeight = ceilf(size.height);
+  }
+  
+  self.frame = CGRectMake(self.frame.origin.x,
+                          self.frame.origin.y,
+                          newWidth,
+                          newHeight);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didRegisterInDOM:(NIDOM *)dom {
+  NSMutableSet *set = objc_getAssociatedObject(self, &nibutton_DOMSetKey);
+  if (!set) {
+    set = NICreateNonRetainingMutableSet();
+    objc_setAssociatedObject(self, &nibutton_DOMSetKey, set, OBJC_ASSOCIATION_RETAIN);
+  }
+  [set addObject:dom];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didUnregisterInDOM:(NIDOM *)dom {
+  NSMutableSet *set = objc_getAssociatedObject(self, &nibutton_DOMSetKey);
+  [set removeObject:dom];
+  if (!set.count) {
+    [self stopKVO];
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+  if (![objc_getAssociatedObject(self, &nibutton_isRefreshingDueToKVOKey) boolValue] &&
+      [change objectForKey:NSKeyValueChangeNewKey] != [change objectForKey:NSKeyValueChangeOldKey]) {
+    
+    objc_setAssociatedObject(self, &nibutton_isRefreshingDueToKVOKey, @(YES), OBJC_ASSOCIATION_RETAIN);
+    for (NIDOM *dom in objc_getAssociatedObject(self, &nibutton_DOMSetKey)) {
+      [dom refreshView:self];
+    }
+    objc_setAssociatedObject(self, &nibutton_isRefreshingDueToKVOKey, @(NO), OBJC_ASSOCIATION_RETAIN);
+    
+  }
+}
+
 @end
+

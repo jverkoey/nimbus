@@ -31,9 +31,9 @@ static const NSTimeInterval kTimeoutInterval = 1000;
 static const NSTimeInterval kRetryInterval = 10000;
 static const NSInteger kMaxNumberOfRetries = 3;
 
-NSString* const NIJSONDidChangeNotification = @"NIJSONDidChangeNotification";
-NSString* const NIJSONDidChangeFilePathKey = @"NIJSONPathKey";
-NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
+NSString* const NIGenericResourceDidChangeNotification = @"NIGenericResourceDidChangeNotification";
+NSString* const NIGenericResourceDidChangeFilePathKey = @"NIGenericResourcePathKey";
+NSString* const NIGenericResourceDidChangeNameKey = @"NIGenericResourceNameKey";
 
 @interface NIChameleonObserver() <
     NSNetServiceBrowserDelegate,
@@ -136,6 +136,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
     }
 
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+      NIDWARNING(@"Chameleon Observer Error: %@", error);
   }];
   [_queue addOperation:requestOp];
 }
@@ -166,7 +167,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)downloadJSONWithFilename:(NSString *)path {
+- (void)downloadGenericResourceWithFilename:(NSString *)path {
     NSURL* url = [NSURL URLWithString:[_host stringByAppendingString:path]];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     
@@ -182,9 +183,9 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
         [responseObject writeToFile:diskPath atomically:YES];
         
         NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName:NIJSONDidChangeNotification object:nil userInfo:@{
-            NIJSONDidChangeFilePathKey: diskPath,
-            NIJSONDidChangeNameKey: path
+        [nc postNotificationName:NIGenericResourceDidChangeNotification object:nil userInfo:@{
+            NIGenericResourceDidChangeFilePathKey: diskPath,
+            NIGenericResourceDidChangeNameKey: path
          }];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     }];
@@ -235,10 +236,10 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
     for (NSString* filename in files) {
       if ([[filename lowercaseString] hasSuffix:@".strings"]) {
         [self downloadStringsWithFilename: filename];
-      } else if ([[filename lowercaseString] hasSuffix:@".json"]) {
-        [self downloadJSONWithFilename:filename];
-      } else {
+      } else if ([[filename lowercaseString] hasSuffix:@".css"]) {
         [self downloadStylesheetWithFilename:filename];
+      } else {
+        [self downloadGenericResourceWithFilename:filename];
       }
     }
 

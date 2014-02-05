@@ -130,6 +130,12 @@ int cssConsume(char* text, int token) {
         } else if ([textAsString caseInsensitiveCompare:@"iphone-nonretina"] == NSOrderedSame) {
           if ([UIScreen mainScreen].scale == 1.0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) { droppingCurrentRules = NO; }
           break;
+        } else if ([textAsString caseInsensitiveCompare:@"iphone-3point5inch"] == NSOrderedSame) {
+          if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone && ([[UIScreen mainScreen] bounds].size.height < 568)) { droppingCurrentRules = NO; }
+          break;
+        } else if ([textAsString caseInsensitiveCompare:@"iphone-4inch"] == NSOrderedSame) {
+            if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone && ([[UIScreen mainScreen] bounds].size.height == 568)) { droppingCurrentRules = NO; }
+            break;
         }
       }
       else if (_state.Flags.InsideRuleset) {
@@ -144,6 +150,7 @@ int cssConsume(char* text, int token) {
           _currentPropertyName = lowercaseTextAsString;
           
           NSMutableArray* ruleSetOrder = [_mutatingRuleset objectForKey:kPropertyOrderKey];
+          [ruleSetOrder removeObject:_currentPropertyName];
           [ruleSetOrder addObject:_currentPropertyName];
 
           // Clear any existing values for the given property.
@@ -280,6 +287,7 @@ int cssConsume(char* text, int token) {
                   // Merge the orders.
                   {
                     NSMutableArray* order = [existingProperties objectForKey:kPropertyOrderKey];
+                    [order removeObjectsInArray:[_mutatingRuleset objectForKey:kPropertyOrderKey]];
                     [order addObjectsFromArray:[_mutatingRuleset objectForKey:kPropertyOrderKey]];
                     [_mutatingRuleset setObject:order forKey:kPropertyOrderKey];
                   }
@@ -324,6 +332,17 @@ int cssConsume(char* text, int token) {
           // Committing a property value.
           if (_state.Flags.InsideRuleset) {
             _state.Flags.InsideProperty = NO;
+          }
+          break;
+        }
+
+        case '>': {
+          // Direct descendant selector
+          if (!_state.Flags.InsideRuleset) {
+            [_mutatingScope addObject:textAsString];
+
+            // Ensure that we're not modifying a property.
+            _currentPropertyName = nil;
           }
           break;
         }
@@ -404,6 +423,7 @@ int cssConsume(char* text, int token) {
             } else {
               // Append the property order.
               NSMutableArray *order = [mergedScopeProperties objectForKey:kPropertyOrderKey];
+              [order removeObjectsInArray:[properties objectForKey:kPropertyOrderKey]];
               [order addObjectsFromArray:[properties objectForKey:kPropertyOrderKey]];
             }
           }

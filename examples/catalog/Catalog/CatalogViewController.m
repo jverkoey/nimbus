@@ -66,6 +66,7 @@
 #import "BlockCellsViewController.h"
 #import "SnapshotRotationTableViewController.h"
 #import "MutableTableModelViewController.h"
+#import "TableViewSystemViewController.h"
 
 // Web Controller
 #import "ExtraActionsWebViewController.h"
@@ -307,6 +308,11 @@
                                    subtitle:@"How to create a table view model"]
               navigationBlock:NIPushControllerAction([BasicInstantiationTableModelViewController class])],
 
+     [_actions attachToObject:
+      [NISubtitleCellObject objectWithTitle:@"Table View System"
+       subtitle:@"How to use the table view system"]
+              navigationBlock:
+      NIPushControllerAction([TableViewSystemViewController class])],
      [_actions attachToObject:
       [NISubtitleCellObject objectWithTitle:@"Sectioned Model"
                                    subtitle:@"Sectioned table view models"]

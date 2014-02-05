@@ -26,3 +26,7 @@ UILabel {
   width: 20px;
   height: 20px;
 }
+
+UIViewController .blueBox {
+    width: 25px;
+}

@@ -123,6 +123,9 @@
 		66D2FDD81593F17800B2BEFD /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDCC1593F17800B2BEFD /* AFURLConnectionOperation.m */; };
 		66D2FDD91593F17800B2BEFD /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDCE1593F17800B2BEFD /* AFXMLRequestOperation.m */; };
 		66D2FDDA1593F17800B2BEFD /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D2FDD01593F17800B2BEFD /* UIImageView+AFNetworking.m */; };
+		C791469017820D0300504004 /* TableViewSystemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C791468F17820D0300504004 /* TableViewSystemViewController.m */; };
+		C791469B17820FBF00504004 /* NITableViewSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = C791469817820FBF00504004 /* NITableViewSystem.m */; };
+		C791469C17820FBF00504004 /* NITableViewSystemActions.m in Sources */ = {isa = PBXBuildFile; fileRef = C791469A17820FBF00504004 /* NITableViewSystemActions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -361,6 +364,12 @@
 		66D2FDCE1593F17800B2BEFD /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		66D2FDCF1593F17800B2BEFD /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		66D2FDD01593F17800B2BEFD /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		C791468E17820D0300504004 /* TableViewSystemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewSystemViewController.h; sourceTree = "<group>"; };
+		C791468F17820D0300504004 /* TableViewSystemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewSystemViewController.m; sourceTree = "<group>"; };
+		C791469717820FBF00504004 /* NITableViewSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITableViewSystem.h; path = ../../src/models/src/NITableViewSystem.h; sourceTree = "<group>"; };
+		C791469817820FBF00504004 /* NITableViewSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITableViewSystem.m; path = ../../src/models/src/NITableViewSystem.m; sourceTree = "<group>"; };
+		C791469917820FBF00504004 /* NITableViewSystemActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITableViewSystemActions.h; path = ../../src/models/src/NITableViewSystemActions.h; sourceTree = "<group>"; };
+		C791469A17820FBF00504004 /* NITableViewSystemActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITableViewSystemActions.m; path = ../../src/models/src/NITableViewSystemActions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -452,6 +461,8 @@
 				6613335D15D3A66B00369333 /* SnapshotRotationTableViewController.m */,
 				66D2E54D15D9616500281511 /* MutableTableModelViewController.h */,
 				66D2E54E15D9616500281511 /* MutableTableModelViewController.m */,
+				C791468E17820D0300504004 /* TableViewSystemViewController.h */,
+				C791468F17820D0300504004 /* TableViewSystemViewController.m */,
 			);
 			name = "Table Models";
 			sourceTree = "<group>";
@@ -610,6 +621,10 @@
 		6693C1AD158A64CE00950D42 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C791469717820FBF00504004 /* NITableViewSystem.h */,
+				C791469817820FBF00504004 /* NITableViewSystem.m */,
+				C791469917820FBF00504004 /* NITableViewSystemActions.h */,
+				C791469A17820FBF00504004 /* NITableViewSystemActions.m */,
 				66B6714115AB751E00FE4AE8 /* NICellBackgrounds.h */,
 				66B6714215AB751E00FE4AE8 /* NICellBackgrounds.m */,
 				6693C216158A81DD00950D42 /* NICellCatalog.h */,
@@ -995,6 +1010,9 @@
 				66D2E54F15D9616500281511 /* MutableTableModelViewController.m in Sources */,
 				3616212C16812222002A9078 /* AlignmentAttributedLabelViewController.m in Sources */,
 				668EA9C417206F640056C8C3 /* NIActions.m in Sources */,
+				C791469017820D0300504004 /* TableViewSystemViewController.m in Sources */,
+				C791469B17820FBF00504004 /* NITableViewSystem.m in Sources */,
+				C791469C17820FBF00504004 /* NITableViewSystemActions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

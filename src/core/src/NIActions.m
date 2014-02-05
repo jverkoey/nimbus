@@ -232,3 +232,26 @@ NIActionBlock NIPushControllerAction(Class controllerClass) {
     return NO;
   } copy];
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NIActionBlock NIPushDeselectingControllerAction(Class controllerClass) {
+  return [^(id object, id target, NSIndexPath* indexPath) {
+    // You must initialize the actions object with initWithTarget: and pass a valid
+    // controller.
+    NIDASSERT(nil != target);
+    NIDASSERT([target isKindOfClass:[UIViewController class]]);
+    UIViewController *controller = target;
+    
+    if (nil != controller && [controller isKindOfClass:[UIViewController class]]) {
+      // No navigation controller to push this new controller; this controller
+      // is going to be lost.
+      NIDASSERT(nil != controller.navigationController);
+      
+      UIViewController* controllerToPush = [[controllerClass alloc] init];
+      [controller.navigationController pushViewController:controllerToPush
+                                                 animated:YES];
+    }
+    
+    return YES;
+  } copy];
+}

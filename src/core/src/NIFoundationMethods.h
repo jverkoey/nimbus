@@ -179,8 +179,7 @@ NSString* NISHA1HashFromData(NSData* data);
 BOOL NIIsStringWithWhitespaceAndNewlines(NSString* string);
 
 /**@}*/
-
-
+  
 #pragma mark -
 #pragma mark CGFloat Methods
 
@@ -329,6 +328,12 @@ CGFloat NIBoundf(CGFloat value, CGFloat min, CGFloat max);
  *      @returns min <= result <= max
  */
 NSInteger NIBoundi(NSInteger value, NSInteger min, NSInteger max);
+
+/**
+ * Resilient and data-tolerant version of setValuesForKeysWithDictionary
+ * as described at http://www.cimgf.com/2012/01/11/handling-incoming-json-redux/
+ */
+void NISetValuesForKeys(NSObject *target, NSDictionary* keyedValues, NSDateFormatter *dateFormatter);
 
 /**@}*/
 

@@ -29,13 +29,6 @@
  * subclasses to call super implementations. See UILabel+NIStyleable.h/m for an example.
  */
 @protocol NIStyleable <NSObject>
-@required
-
-/**
- * Please implement applyStyleWithRuleSet:inDOM: instead to support relative positioning. The deprecated
- * warning will only catch calls to super rather than implementors, but not sure what else to do.
- */
-- (void)applyStyleWithRuleSet:(NICSSRuleset *)ruleSet DEPRECATED_ATTRIBUTE;
 
 /**
  * The given ruleset should be applied to the view. The ruleset represents a composite of all
@@ -67,4 +60,19 @@
  */
 - (NSString*) descriptionWithRuleSet: (NICSSRuleset*) ruleSet forPseudoClass: (NSString*) pseudo inDOM: (NIDOM*) dom withViewName: (NSString*) name;
 
+/**
+ * sizeToFit is... bad. So if, let's say you ACTUALLY want to adjust size to fit based on width/height "auto", override this method
+ * and then check the ruleSet width and height properties (at least one of them will be auto) and do your thing.
+ */
+- (void) autoSize: (NICSSRuleset*) ruleSet inDOM: (NIDOM*) dom;
+
+/**
+ * Called when your view is added to a DOM
+ */
+- (void) didRegisterInDOM: (NIDOM*) dom;
+
+/**
+ * Called when your view is removed from a DOM
+ */
+- (void) didUnregisterInDOM: (NIDOM*) dom;
 @end

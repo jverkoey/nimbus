@@ -19,15 +19,16 @@
 @class NICSSRuleset;
 @class NIDOM;
 
-extern NSString* const NICSSViewKey;
-extern NSString* const NICSSViewIdKey;
-extern NSString* const NICSSViewCssClassKey;
-extern NSString* const NICSSViewTextKey;
-extern NSString* const NICSSViewTagKey;
-extern NSString* const NICSSViewTargetSelectorKey;
-extern NSString* const NICSSViewSubviewsKey;
-extern NSString* const NICSSViewAccessibilityLabelKey;
-extern NSString* const NICSSViewBackgroundColorKey;
+extern NSString* const NICSSViewKey; // view
+extern NSString* const NICSSViewIdKey; // id
+extern NSString* const NICSSViewCssClassKey; // cssClass
+extern NSString* const NICSSViewTextKey; // text
+extern NSString* const NICSSViewTagKey; // tag
+extern NSString* const NICSSViewTargetSelectorKey; // selector
+extern NSString* const NICSSViewSubviewsKey; // subviews
+extern NSString* const NICSSViewAccessibilityLabelKey; // label
+extern NSString* const NICSSViewBackgroundColorKey; // bg
+extern NSString* const NICSSViewHiddenKey; // hidden
 
 @interface UIView (NIStyleable)
 
