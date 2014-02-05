@@ -121,6 +121,10 @@
 @property (nonatomic, readonly, NI_STRONG) UIBarButtonItem* nextButton;
 @property (nonatomic, readonly, NI_STRONG) UIBarButtonItem* previousButton;
 
+#pragma mark Gestures
+
+@property (nonatomic, readonly, NI_STRONG) UITapGestureRecognizer* tapGestureRecognizer;
+
 #pragma mark Subclassing
 
 - (void)setChromeVisibility:(BOOL)isVisible animated:(BOOL)animated;
@@ -229,4 +233,15 @@
  * The 'previous' button.
  *
  *      @fn NIToolbarPhotoViewController::previousButton
+ */
+
+
+/** @name Gestures */
+
+/**
+ * The gesture recognizer for single tap hides navigation bar/toolbar.
+ *
+ * This is used mainly for setting up dependencies between gesture recognizers.
+ *
+ *      @fn NIToolbarPhotoViewController::tapGestureRecognizer
  */

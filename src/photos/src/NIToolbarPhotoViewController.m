@@ -39,6 +39,7 @@
 @synthesize photoScrubberView = _photoScrubberView;
 @synthesize nextButton = _nextButton;
 @synthesize previousButton = _previousButton;
+@synthesize tapGestureRecognizer = _tapGesture;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
