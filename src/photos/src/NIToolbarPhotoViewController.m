@@ -57,19 +57,14 @@
 }
 
 - (void)addTapGestureToView {
-  if ([self isViewLoaded]
-      && nil != NIUITapGestureRecognizerClass()
-      && [self.photoAlbumView respondsToSelector:@selector(addGestureRecognizer:)]) {
+  if ([self isViewLoaded]) {
     if (nil == _tapGesture) {
-      _tapGesture =
-      [[NIUITapGestureRecognizerClass() alloc] initWithTarget: self
-                                                       action: @selector(didTap)];
-
+      _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap)];
       [self.photoAlbumView addGestureRecognizer:_tapGesture];
     }
   }
 
-  [_tapGesture setEnabled:YES];
+  _tapGesture.enabled = YES;
 }
 
 - (void)updateToolbarItems {
@@ -473,11 +468,6 @@
 }
 
 - (void)setChromeCanBeHidden:(BOOL)canBeHidden {
-  if (nil == NIUITapGestureRecognizerClass()) {
-    // Don't allow the chrome to be hidden if we can't tap to make it visible again.
-    canBeHidden = NO;
-  }
-
   _chromeCanBeHidden = canBeHidden;
 
   if (!canBeHidden) {
