@@ -42,6 +42,7 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  */
 @interface NITitleCellObject : NICellObject
 // Designated initializer.
+- (id)initWithTitle:(NSString *)title image:(UIImage *)image cellClass:(Class)cellClass userInfo:(id)userInfo;
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image;
 - (id)initWithTitle:(NSString *)title;
 + (id)objectWithTitle:(NSString *)title image:(UIImage *)image;
@@ -61,6 +62,7 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  */
 @interface NISubtitleCellObject : NITitleCellObject
 // Designated initializer.
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image cellClass:(Class)cellClass userInfo:(id)userInfo;
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
 + (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle;
@@ -90,13 +92,23 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
 @end
 
 /**
- * Initializes the NICellObject with NITextCell as the cell class and the given title text and image.
+ * Initializes the NITitleCellObject with the given title, image, cellClass, and userInfo.
+ *
+ * This is the designated initializer. Use of this initializer allows for customization of the
+ * associated cell class for this object.
+ *
+ *      @fn NITitleCellObject::initWithTitle:image:cellClass:userInfo:
+ */
+
+/**
+ * Initializes the NITitleCellObject with NITextCell as the cell class and the given title text and
+ * image.
  *
  *      @fn NITitleCellObject::initWithTitle:image:
  */
 
 /**
- * Initializes the NICellObject with NITextCell as the cell class and the given title text.
+ * Initializes the NITitleCellObject with NITextCell as the cell class and the given title text.
  *
  *      @fn NITitleCellObject::initWithTitle:
  */
@@ -119,6 +131,16 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  * The text to be displayed in the cell.
  *
  *      @fn NITitleCellObject::title
+ */
+
+/**
+ * Initializes the NISubtitleCellObject with the given title, subtitle, image, cellClass, and
+ * userInfo.
+ *
+ * This is the designated initializer. Use of this initializer allows for customization of the
+ * associated cell class for this object.
+ *
+ *      @fn NISubtitleCellObject::initWithTitle:subtitle:image:cellClass:userInfo:
  */
 
 /**
