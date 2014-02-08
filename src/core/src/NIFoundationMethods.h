@@ -244,8 +244,7 @@ NSComparisonResult NICompareVersionStrings(NSString* string1, NSString* string2)
  * many projects/targets). We'll use CG_INLINE because this really should be completely inline.
  */
 
-
-#ifdef CGFLOAT_IS_DOUBLE
+#if CGFLOAT_IS_DOUBLE
   #define NI_CGFLOAT_EPSILON DBL_EPSILON
 #else
   #define NI_CGFLOAT_EPSILON FLT_EPSILON
@@ -255,7 +254,7 @@ NSComparisonResult NICompareVersionStrings(NSString* string1, NSString* string2)
  * fabs()/fabsf() sized for CGFloat
  */
 CG_INLINE CGFloat NICGFloatAbs(CGFloat x) {
-#ifdef CGFLOAT_IS_DOUBLE
+#if CGFLOAT_IS_DOUBLE
   return (CGFloat)fabs(x);
 #else
   return (CGFloat)fabsf(x);
@@ -266,7 +265,7 @@ CG_INLINE CGFloat NICGFloatAbs(CGFloat x) {
  * floor()/floorf() sized for CGFloat
  */
 CG_INLINE CGFloat NICGFloatFloor(CGFloat x) {
-#ifdef CGFLOAT_IS_DOUBLE
+#if CGFLOAT_IS_DOUBLE
   return (CGFloat)floor(x);
 #else
   return (CGFloat)floorf(x);
@@ -277,7 +276,7 @@ CG_INLINE CGFloat NICGFloatFloor(CGFloat x) {
  * ceil()/ceilf() sized for CGFloat
  */
 CG_INLINE CGFloat NICGFloatCeil(CGFloat x) {
-#ifdef CGFLOAT_IS_DOUBLE
+#if CGFLOAT_IS_DOUBLE
   return (CGFloat)ceil(x);
 #else
   return (CGFloat)ceilf(x);
@@ -288,7 +287,7 @@ CG_INLINE CGFloat NICGFloatCeil(CGFloat x) {
  * round()/roundf() sized for CGFloat
  */
 CG_INLINE CGFloat NICGFloatRound(CGFloat x) {
-#ifdef CGFLOAT_IS_DOUBLE
+#if CGFLOAT_IS_DOUBLE
   return (CGFloat)round(x);
 #else
   return (CGFloat)roundf(x);
@@ -299,7 +298,7 @@ CG_INLINE CGFloat NICGFloatRound(CGFloat x) {
  * sqrt()/sqrtf() sized for CGFloat
  */
 CG_INLINE CGFloat NICGFloatSqRt(CGFloat x) {
-#ifdef CGFLOAT_IS_DOUBLE
+#if CGFLOAT_IS_DOUBLE
   return (CGFloat)sqrt(x);
 #else
   return (CGFloat)sqrtf(x);
@@ -310,7 +309,7 @@ CG_INLINE CGFloat NICGFloatSqRt(CGFloat x) {
  * copysign()/copysignf() sized for CGFloat
  */
 CG_INLINE CGFloat NICGFloatCopySign(CGFloat x, CGFloat y) {
-#ifdef CGFLOAT_IS_DOUBLE
+#if CGFLOAT_IS_DOUBLE
   return (CGFloat)copysign(x, y);
 #else
   return (CGFloat)copysignf(x, y);
@@ -321,7 +320,7 @@ CG_INLINE CGFloat NICGFloatCopySign(CGFloat x, CGFloat y) {
  * pow()/powf() sized for CGFloat
  */
 CG_INLINE CGFloat NICGFloatPow(CGFloat x, CGFloat y) {
-#ifdef CGFLOAT_IS_DOUBLE
+#if CGFLOAT_IS_DOUBLE
   return (CGFloat)pow(x, y);
 #else
   return (CGFloat)powf(x, y);
@@ -332,7 +331,7 @@ CG_INLINE CGFloat NICGFloatPow(CGFloat x, CGFloat y) {
  * cos()/cosf() sized for CGFloat
  */
 CG_INLINE CGFloat NICGFloatCos(CGFloat x) {
-#ifdef CGFLOAT_IS_DOUBLE
+#if CGFLOAT_IS_DOUBLE
   return (CGFloat)cos(x);
 #else
   return (CGFloat)cosf(x);
