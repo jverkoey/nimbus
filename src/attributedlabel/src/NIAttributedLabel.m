@@ -1353,6 +1353,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     }
   }
 
+  UIAccessibilityElement* element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
+  element.accessibilityLabel = self.attributedText.string;
+  element.accessibilityFrame = [self convertRect:self.bounds toView:self.window];
+  element.accessibilityTraits = UIAccessibilityTraitNone;
+  [accessibleElements addObject:element];
+
   _accessibleElements = [accessibleElements copy];
   return _accessibleElements;
 }
