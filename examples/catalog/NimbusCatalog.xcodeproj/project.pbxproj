@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B960E8015AE3A3B005714CA /* NavigationAppearanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B960E7F15AE3A3B005714CA /* NavigationAppearanceViewController.m */; };
 		2B960E8415AE41FC005714CA /* navigationbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B960E8315AE41FC005714CA /* navigationbar.png */; };
 		3616212C16812222002A9078 /* AlignmentAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3616212A16812222002A9078 /* AlignmentAttributedLabelViewController.m */; };
 		3616212D16812222002A9078 /* AlignmentAttributedLabelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3616212B16812222002A9078 /* AlignmentAttributedLabelViewController.xib */; };
@@ -126,8 +125,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2B960E7E15AE3A3B005714CA /* NavigationAppearanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationAppearanceViewController.h; sourceTree = "<group>"; };
-		2B960E7F15AE3A3B005714CA /* NavigationAppearanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationAppearanceViewController.m; sourceTree = "<group>"; };
 		2B960E8315AE41FC005714CA /* navigationbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navigationbar.png; path = Catalog/navigationbar.png; sourceTree = "<group>"; };
 		3616212916812222002A9078 /* AlignmentAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlignmentAttributedLabelViewController.h; sourceTree = "<group>"; };
 		3616212A16812222002A9078 /* AlignmentAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlignmentAttributedLabelViewController.m; sourceTree = "<group>"; };
@@ -379,15 +376,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B960E7D15AE39DC005714CA /* Navigation Appearance */ = {
-			isa = PBXGroup;
-			children = (
-				2B960E7E15AE3A3B005714CA /* NavigationAppearanceViewController.h */,
-				2B960E7F15AE3A3B005714CA /* NavigationAppearanceViewController.m */,
-			);
-			name = "Navigation Appearance";
-			sourceTree = "<group>";
-		};
 		44707C73159B068400B83149 /* Paging Scroll View */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,7 +632,6 @@
 				661F28EA1592929E00D11FC3 /* Badge */,
 				66B9414C1592E33900AEA1D2 /* Interapp */,
 				66A29F80159507D700F6EA64 /* Launcher */,
-				2B960E7D15AE39DC005714CA /* Navigation Appearance */,
 				668B7670159393B400EA86F6 /* Network Image */,
 				44707C73159B068400B83149 /* Paging Scroll View */,
 				6677FEB915AB886B00517ABC /* Table Models */,
@@ -984,7 +971,6 @@
 				6677FEEA15AC92C800517ABC /* RadioGroupTableModelViewController.m in Sources */,
 				6677FEED15ACA60400517ABC /* NestedRadioGroupTableModelViewController.m in Sources */,
 				66CB01A415ACA85E0048E189 /* BlockCellsViewController.m in Sources */,
-				2B960E8015AE3A3B005714CA /* NavigationAppearanceViewController.m in Sources */,
 				661B9AB615AFF9DC00B743F1 /* NetworkBlockCellsViewController.m in Sources */,
 				66559AFA15C8BE6800ED9047 /* ActionsTableModelViewController.m in Sources */,
 				66559AFE15CC3F9B00ED9047 /* ModalRadioGroupTableModelViewController.m in Sources */,

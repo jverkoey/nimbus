@@ -42,9 +42,6 @@
 #import "RestoringLauncherViewController.h"
 #import "BadgedLauncherViewController.h"
 
-// Navigation Appearance
-#import "NavigationAppearanceViewController.h"
-
 // Network Image
 #import "BasicInstantiationNetworkImageViewController.h"
 #import "ContentModesNetworkImageViewController.h"
@@ -240,41 +237,6 @@
       [NISubtitleCellObject objectWithTitle:@"Badges"
                                    subtitle:@"Adding badges to launcher items"]
               navigationBlock:NIPushControllerAction([BadgedLauncherViewController class])],
-
-     @"Navigation Apperance",
-
-     [_actions attachToObject:
-      [NISubtitleCellObject objectWithTitle:@"Bar Style"
-                                   subtitle:@"Modify navigation bar style"]
-              navigationBlock:
-      ^(id object, UIViewController* controller, NSIndexPath* indexPath) {
-        NavigationAppearanceViewController *appearanceController = [[NavigationAppearanceViewController alloc] init];
-        appearanceController.changeBarStyle = YES;
-        [controller.navigationController pushViewController:appearanceController animated:YES];
-        return NO;
-      }],
-
-     [_actions attachToObject:
-      [NISubtitleCellObject objectWithTitle:@"Tint Color"
-                                   subtitle:@"Modify navigation bar tint color"]
-              navigationBlock:
-      ^(id object, UIViewController* controller, NSIndexPath* indexPath) {
-        NavigationAppearanceViewController *appearanceController = [[NavigationAppearanceViewController alloc] init];
-        appearanceController.changeTintColor = YES;
-        [controller.navigationController pushViewController:appearanceController animated:YES];
-        return NO;
-      }],
-
-     [_actions attachToObject:
-      [NISubtitleCellObject objectWithTitle:@"Background Image"
-                                   subtitle:@"Modify navigation bar background image"]
-              navigationBlock:
-      ^(id object, UIViewController* controller, NSIndexPath* indexPath) {
-        NavigationAppearanceViewController *appearanceController = [[NavigationAppearanceViewController alloc] init];
-        appearanceController.changeBackgroundImage = YES;
-        [controller.navigationController pushViewController:appearanceController animated:YES];
-        return NO;
-      }],
 
      @"Network Image",
 
