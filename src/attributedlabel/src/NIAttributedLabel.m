@@ -794,8 +794,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-  [super touchesBegan:touches withEvent:event];
-
   UITouch* touch = [touches anyObject];
   CGPoint point = [touch locationInView:self];
 
@@ -803,75 +801,84 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   self.touchPoint = point;
   self.originalLink = self.touchedLink;
 
-  [self.longPressTimer invalidate];
-  if (nil != self.touchedLink) {
-    self.longPressTimer = [NSTimer scheduledTimerWithTimeInterval:kLongPressTimeInterval target:self selector:@selector(_longPressTimerDidFire:) userInfo:nil repeats:NO];
+  if (self.originalLink) {
+    [self.longPressTimer invalidate];
+    if (nil != self.touchedLink) {
+      self.longPressTimer = [NSTimer scheduledTimerWithTimeInterval:kLongPressTimeInterval target:self selector:@selector(_longPressTimerDidFire:) userInfo:nil repeats:NO];
+    }
+
+  } else {
+    [super touchesBegan:touches withEvent:event];
   }
 
   [self setNeedsDisplay];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-  [super touchesMoved:touches withEvent:event];
-
   UITouch* touch = [touches anyObject];
   CGPoint point = [touch locationInView:self];
 
-  // If the user moves their finger away from the original link, deselect it.
-  // If the user moves their finger back to the original link, reselect it.
-  // Don't allow other links to be selected other than the original link.
+  if (self.originalLink) {
+    // If the user moves their finger away from the original link, deselect it.
+    // If the user moves their finger back to the original link, reselect it.
+    // Don't allow other links to be selected other than the original link.
 
-  if (nil != self.originalLink) {
-    NSTextCheckingResult* oldTouchedLink = self.touchedLink;
+    if (nil != self.originalLink) {
+      NSTextCheckingResult* oldTouchedLink = self.touchedLink;
 
-    if ([self isPoint:point nearLink:self.originalLink]) {
-      self.touchedLink = self.originalLink;
+      if ([self isPoint:point nearLink:self.originalLink]) {
+        self.touchedLink = self.originalLink;
 
-    } else {
-      self.touchedLink = nil;
+      } else {
+        self.touchedLink = nil;
+      }
+
+      if (oldTouchedLink != self.touchedLink) {
+        [self.longPressTimer invalidate];
+        self.longPressTimer = nil;
+        [self setNeedsDisplay];
+      }
     }
 
-    if (oldTouchedLink != self.touchedLink) {
+    // If the user moves their finger within the link beyond a certain gutter amount, reset the
+    // hold timer. The user must hold their finger still for the long press interval in order for
+    // the long press action to fire.
+    if (fabsf(self.touchPoint.x - point.x) >= kLongPressGutter
+        || fabsf(self.touchPoint.y - point.y) >= kLongPressGutter) {
       [self.longPressTimer invalidate];
       self.longPressTimer = nil;
-      [self setNeedsDisplay];
+      if (nil != self.touchedLink) {
+        self.longPressTimer = [NSTimer scheduledTimerWithTimeInterval:kLongPressTimeInterval target:self selector:@selector(_longPressTimerDidFire:) userInfo:nil repeats:NO];
+        self.touchPoint = point;
+      }
     }
-  }
-
-  // If the user moves their finger within the link beyond a certain gutter amount, reset the
-  // hold timer. The user must hold their finger still for the long press interval in order for
-  // the long press action to fire.
-  if (fabsf(self.touchPoint.x - point.x) >= kLongPressGutter
-      || fabsf(self.touchPoint.y - point.y) >= kLongPressGutter) {
-    [self.longPressTimer invalidate];
-    self.longPressTimer = nil;
-    if (nil != self.touchedLink) {
-      self.longPressTimer = [NSTimer scheduledTimerWithTimeInterval:kLongPressTimeInterval target:self selector:@selector(_longPressTimerDidFire:) userInfo:nil repeats:NO];
-      self.touchPoint = point;
-    }
+  } else {
+    [super touchesMoved:touches withEvent:event];
   }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-  [super touchesEnded:touches withEvent:event];
+  if (self.originalLink) {
+    [self.longPressTimer invalidate];
+    self.longPressTimer = nil;
 
-  [self.longPressTimer invalidate];
-  self.longPressTimer = nil;
+    UITouch* touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self];
 
-  UITouch* touch = [touches anyObject];
-  CGPoint point = [touch locationInView:self];
-
-  if (nil != self.originalLink) {
-    if ([self isPoint:point nearLink:self.originalLink]
-        && [self.delegate respondsToSelector:@selector(attributedLabel:didSelectTextCheckingResult:atPoint:)]) {
-      [self.delegate attributedLabel:self didSelectTextCheckingResult:self.originalLink atPoint:point];
+    if (nil != self.originalLink) {
+      if ([self isPoint:point nearLink:self.originalLink]
+          && [self.delegate respondsToSelector:@selector(attributedLabel:didSelectTextCheckingResult:atPoint:)]) {
+        [self.delegate attributedLabel:self didSelectTextCheckingResult:self.originalLink atPoint:point];
+      }
     }
+
+    self.touchedLink = nil;
+    self.originalLink = nil;
+    [self setNeedsDisplay];
+
+  } else {
+    [super touchesEnded:touches withEvent:event];
   }
-
-  self.touchedLink = nil;
-  self.originalLink = nil;
-
-  [self setNeedsDisplay];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
