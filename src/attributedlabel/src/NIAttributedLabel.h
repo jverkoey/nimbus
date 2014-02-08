@@ -111,6 +111,8 @@ extern NSString * const kNILinkAttributeName; // Value is an NSTextCheckingResul
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins;
 - (void)insertImage:(UIImage *)image atIndex:(NSInteger)index margins:(UIEdgeInsets)margins verticalTextAlignment:(NIVerticalTextAlignment)verticalTextAlignment;
 
+- (void)invalidateAccessibleElements;
+
 @property (nonatomic, weak) IBOutlet id<NIAttributedLabelDelegate> delegate;
 @end
 
@@ -442,6 +444,19 @@ extern NSString * const kNILinkAttributeName; // Value is an NSTextCheckingResul
  *      @param margins The space around the image on all sides in points.
  *      @param verticalTextAlignment The position of the text relative to the image.
  *      @fn NIAttributedLabel::insertImage:atIndex:margins:verticalTextAlignment:
+ */
+
+/** @name Accessibility */
+
+/**
+ * Invalidates this label's accessible elements.
+ *
+ * When a label is contained within another view and that parent view moves, the label will not be
+ * informed of this change and any existing accessibility elements will still point to the old
+ * screen location. If this happens you must call -invalidateAccessibleElements in order to force
+ * the label to refresh its accessibile elements.
+ *
+ *      @fn NIAttributedLabel::invalidateAccessibleElements
  */
 
 /** @name Accessing the Delegate */

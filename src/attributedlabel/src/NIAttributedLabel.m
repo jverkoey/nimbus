@@ -1323,6 +1323,10 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
 #pragma mark - Accessibility
 
+- (void)invalidateAccessibleElements {
+  self.accessibleElements = nil;
+}
+
 - (NSArray *)accessibleElements {
   if (nil != _accessibleElements) {
     return _accessibleElements;
