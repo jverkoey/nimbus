@@ -34,6 +34,8 @@
 
 // Collections
 #import "BasicInstantiationCollectionModelViewController.h"
+#import "NibCollectionModelViewController.h"
+#import "CustomNibCollectionModelViewController.h"
 
 // Interapp
 #import "InterappViewController.h"
@@ -213,6 +215,16 @@
       [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
                                    subtitle:@"How to create a collection view model"]
               navigationBlock:NIPushControllerAction([BasicInstantiationCollectionModelViewController class])],
+
+     [_actions attachToObject:
+      [NISubtitleCellObject objectWithTitle:@"Nibs"
+                                   subtitle:@"How to use nibs with collection view models"]
+              navigationBlock:NIPushControllerAction([NibCollectionModelViewController class])],
+
+     [_actions attachToObject:
+      [NISubtitleCellObject objectWithTitle:@"Custom Nibs"
+                                   subtitle:@"How to customize nibs"]
+              navigationBlock:NIPushControllerAction([CustomNibCollectionModelViewController class])],
 
      @"Interapp",
 
