@@ -48,11 +48,19 @@ CGFloat NIOverviewStatusBarHeight(void) {
 
 @implementation UIViewController (NIDebugging)
 
+/**
+ * Swizzled implementation of private API - (float)_statusBarHeightAdjustmentForCurrentOrientation
+ *
+ * This method is used by view controllers to adjust the size of their views on iOS 7 devices.
+ */
+- (float)__statusBarHeightAdjustmentForCurrentOrientation {
+  return NIOverviewStatusBarHeight() + [NIOverview height];
+}
 
 /**
  * Swizzled implementation of private API - (float)_statusBarHeightForCurrentInterfaceOrientation
  *
- * This method is used by view controllers to adjust the size of their views.
+ * This method is used by view controllers to adjust the size of their views on pre-iOS 7 devices.
  */
 - (float)__statusBarHeightForCurrentInterfaceOrientation {
   return NIOverviewStatusBarHeight() + [NIOverview height];
@@ -157,6 +165,9 @@ void NIOverviewSwizzleMethods(void) {
   NISwapInstanceMethods([UIViewController class],
                         @selector(_statusBarHeightForCurrentInterfaceOrientation),
                         @selector(__statusBarHeightForCurrentInterfaceOrientation));
+  NISwapInstanceMethods([UIViewController class],
+                        @selector(_statusBarHeightAdjustmentForCurrentOrientation),
+                        @selector(__statusBarHeightAdjustmentForCurrentOrientation));
   NISwapInstanceMethods([UIApplication class],
                         @selector(statusBarFrame),
                         @selector(_statusBarFrame));
