@@ -16,8 +16,6 @@
 
 #import "NICellFactory.h"
 
-#import "NIPreprocessorMacros.h" // For __NI_DEPRECATED_METHOD
-
 #pragma mark Form Elements
 
 /**
