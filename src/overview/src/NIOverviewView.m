@@ -45,7 +45,7 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
 
     _backgroundImage = [UIImage imageWithContentsOfFile:
                         NIPathForBundleResource(nil, @"NimbusOverviewer.bundle/gfx/blueprint.gif")];
-    self.backgroundColor = [UIColor colorWithPatternImage:_backgroundImage];
+    self.backgroundColor = NIIsTintColorGloballySupported() ? self.tintColor : [UIColor colorWithPatternImage:_backgroundImage];
 
     _pagingScrollView = [[UIScrollView alloc] initWithFrame:[self frameForPagingScrollView]];
     _pagingScrollView.pagingEnabled = YES;
@@ -172,7 +172,9 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
 
     self.backgroundColor = (_translucent
                             ? [UIColor colorWithWhite:0 alpha:0.5f]
-                            : [UIColor colorWithPatternImage:_backgroundImage]);
+                            : (self.tintColor
+                               ? self.tintColor
+                               : [UIColor colorWithPatternImage:_backgroundImage]));
   }
 }
 

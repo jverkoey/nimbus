@@ -55,8 +55,10 @@ static const CGFloat kGraphRightMargin = 5;
   label.backgroundColor = [UIColor clearColor];
   label.font = [UIFont boldSystemFontOfSize:12];
   label.textColor = [UIColor whiteColor];
-  label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
-  label.shadowOffset = CGSizeMake(0, 1);
+  if (!NIIsTintColorGloballySupported()) {
+    label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
+    label.shadowOffset = CGSizeMake(0, 1);
+  }
 
   return label;
 }
@@ -376,8 +378,10 @@ static const CGFloat kGraphRightMargin = 5;
 
   label.font = [UIFont boldSystemFontOfSize:11];
   label.textColor = [UIColor whiteColor];
-  label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
-  label.shadowOffset = CGSizeMake(0, 1);
+  if (!NIIsTintColorGloballySupported()) {
+    label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
+    label.shadowOffset = CGSizeMake(0, 1);
+  }
   label.backgroundColor = [UIColor clearColor];
   label.lineBreakMode = NSLineBreakByWordWrapping;
   label.numberOfLines = 0;
@@ -494,8 +498,10 @@ static const CGFloat kGraphRightMargin = 5;
 
   label.font = [UIFont boldSystemFontOfSize:11];
   label.textColor = [UIColor whiteColor];
-  label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
-  label.shadowOffset = CGSizeMake(0, 1);
+  if (!NIIsTintColorGloballySupported()) {
+    label.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
+    label.shadowOffset = CGSizeMake(0, 1);
+  }
   label.backgroundColor = [UIColor clearColor];
   label.lineBreakMode = NSLineBreakByWordWrapping;
   label.numberOfLines = 0;
