@@ -22,6 +22,10 @@
 #error "Nimbus requires ARC support."
 #endif
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
+#error "NIBadgeView requires iOS 6 or higher."
+#endif
+
 static BOOL sUsesSolidTint = NO;
 
 static const CGFloat kMinimumWidth = 30.f;

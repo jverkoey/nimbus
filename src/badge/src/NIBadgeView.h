@@ -16,8 +16,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "NIPreprocessorMacros.h" /* for weak */
-
 /**
  * A view that mimics the iOS notification badge style.
  *
@@ -64,7 +62,10 @@
 /**
  * The font of the text within the badge.
  *
- * The default font is [UIFont boldSystemFontOfSize:17].
+ * The default font is:
+ *
+ *   iOS 6: [UIFont boldSystemFontOfSize:17]
+ *   iOS 7: [UIFont systemFontOfSize:16]
  *
  *      @sa text
  *      @fn NIBadgeView::font
@@ -85,7 +86,13 @@
  *
  * This is the color drawn within the badge's borders.
  *
- * The default color is [UIColor redColor].
+ * The default color is
+ *
+ *   iOS 6: [UIColor redColor].
+ *   iOS 7: self.tintColor
+ *
+ * On devices that support global tintColor (iOS 7) the global tint color is used unless a tint
+ * color has been explicitly assigned to this badge view, in which case the assigned tint color will be used.
  *
  *      @fn NIBadgeView::tintColor
  */
@@ -95,7 +102,13 @@
  *
  * This is the shadow drawn beneath the badge's outline.
  *
- * The default color is [UIColor colorWithWhite:0 alpha:0.5].
+ * The default color is
+ *
+ *   iOS 6: [UIColor colorWithWhite:0 alpha:0.5].
+ *   iOS 7: nil
+ *
+ * On devices that support global tintColor (iOS 7) it is possible, though not encouraged, to use
+ * a shadow on badges.
  *
  *      @sa shadowOffset
  *      @sa shadowBlur
