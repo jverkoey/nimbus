@@ -74,27 +74,28 @@ static const CGFloat kBadgeLineSize = 2.0f;
                     stringSize.height + kVerticalMargins);
 }
 
-- (CGSize)intrinsicContentSize
-{
-    return [self sizeThatFits:self.bounds.size];
+- (CGSize)intrinsicContentSize {
+  return [self sizeThatFits:self.bounds.size];
 }
 
 - (void)setText:(NSString *)text {
   _text = text;
 
   [self setNeedsDisplay];
-    
-  if ([self respondsToSelector:@selector(invalidateIntrinsicContentSize)])
+
+  if ([self respondsToSelector:@selector(invalidateIntrinsicContentSize)]) {
     [self invalidateIntrinsicContentSize];
+  }
 }
 
 - (void)setFont:(UIFont *)font {
   _font = font;
 
   [self setNeedsDisplay];
-    
-  if ([self respondsToSelector:@selector(invalidateIntrinsicContentSize)])
+
+  if ([self respondsToSelector:@selector(invalidateIntrinsicContentSize)]) {
     [self invalidateIntrinsicContentSize];
+  }
 }
 
 - (void)setTintColor:(UIColor *)tintColor {
