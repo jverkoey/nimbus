@@ -133,6 +133,10 @@ static const CGFloat kBadgeLineSize = 2.0f;
   }
 }
 
+- (void)tintColorDidChange {
+  [self setNeedsDisplay];
+}
+
 - (void)setTextColor:(UIColor *)textColor {
   _textColor = textColor;
 
@@ -215,7 +219,6 @@ static const CGFloat kBadgeLineSize = 2.0f;
     // Draw the border
     CGContextBeginPath(context);
     CGContextSetLineWidth(context, kBadgeLineSize);
-    // Should this be customizable?
     CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
     CGContextAddArc(context, maxX-kRadius, minY+kRadius, kRadius, pi+(pi/2), 0, 0);
     CGContextAddArc(context, maxX-kRadius, maxY-kRadius, kRadius, 0, pi/2, 0);
