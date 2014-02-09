@@ -27,17 +27,17 @@
  * If non-nil, this color will be used to draw the placeholder text.
  * If nil, we will use the system default.
  */
-@property (nonatomic,strong) UIColor *placeholderTextColor;
+@property (nonatomic, strong) UIColor* placeholderTextColor;
 
 /**
  * If non-nil, this font will be used to draw the placeholder text.
  * else the text field font will be used.
  */
-@property (nonatomic,strong) UIFont *placeholderFont;
+@property (nonatomic, strong) UIFont* placeholderFont;
 
 /**
  * The amount to inset the text by, or zero to use default behavior
  */
-@property (nonatomic,assign) UIEdgeInsets textInsets;
+@property (nonatomic, assign) UIEdgeInsets textInsets;
 
 @end
