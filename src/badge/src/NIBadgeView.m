@@ -34,8 +34,7 @@ static const CGFloat kBadgeLineSize = 2.0f;
 @synthesize tintColor = _tintColor;
 
 + (void)initialize {
-  UIView* view = [[UIView alloc] init];
-  sUsesSolidTint = [view respondsToSelector:@selector(tintColor)];
+  sUsesSolidTint = NIIsTintColorGloballySupported();
 }
 
 - (void)_configureDefaults {
@@ -54,7 +53,9 @@ static const CGFloat kBadgeLineSize = 2.0f;
     self.textColor = [UIColor whiteColor];
   }
   if (nil == self.shadowColor) {
-    self.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
+    if (!sUsesSolidTint) {
+      self.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
+    }
   }
   if (CGSizeEqualToSize(self.shadowOffset, CGSizeZero)) {
     self.shadowOffset = CGSizeMake(0, 3);
@@ -166,7 +167,7 @@ static const CGFloat kBadgeLineSize = 2.0f;
   CGContextAddArc(context, maxX-kRadius, maxY-kRadius, kRadius, 0, pi/2, 0);
   CGContextAddArc(context, minX+kRadius, maxY-kRadius, kRadius, pi/2, pi, 0);
   CGContextAddArc(context, minX+kRadius, minY+kRadius, kRadius, pi, pi+pi/2, 0);
-  if (!sUsesSolidTint) {
+  if (self.shadowColor) {
     CGContextSetShadowWithColor(context, self.shadowOffset, self.shadowBlur, self.shadowColor.CGColor);
   }
   CGContextFillPath(context);

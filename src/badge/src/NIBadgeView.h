@@ -26,7 +26,12 @@
  * views to represent notification badges, so you should do your best not to attach additional
  * meaning to the red badge.
  *
+ * On devices running operating systems that support the tintColor property on UIViews, these
+ * badges will use the tintColor by default. This behavior may be overwritten by assigning a tint
+ * color explicitly.
+ *
  *  @image html badge.png "A default NIBadgeView"
+ *  @image html badgetinted.png "A NIBadgeView on tintColor-supporting devices"
  *
  *      @ingroup NimbusBadge
  */
