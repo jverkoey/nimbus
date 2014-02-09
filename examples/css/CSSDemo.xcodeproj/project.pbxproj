@@ -22,7 +22,6 @@
 		66832D3514421450003E413C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832D3414421450003E413C /* AppDelegate.m */; };
 		66832D9914421530003E413C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832D9814421530003E413C /* RootViewController.m */; };
 		66832DD514434FB2003E413C /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832DAF14434FB2003E413C /* NICommonMetrics.m */; };
-		66832DD614434FB2003E413C /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832DB114434FB2003E413C /* NIDataStructures.m */; };
 		66832DD714434FB2003E413C /* NIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832DB314434FB2003E413C /* NIDebuggingTools.m */; };
 		66832DD814434FB2003E413C /* NIDeviceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832DB514434FB2003E413C /* NIDeviceOrientation.m */; };
 		66832DD914434FB2003E413C /* NIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 66832DB714434FB2003E413C /* NIError.m */; };
@@ -72,7 +71,6 @@
 		C7A8793716D7C8EC00A0C23F /* UITextField+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8793016D7C8EC00A0C23F /* UITextField+NIStyleable.m */; };
 		C7A8793816D7C8EC00A0C23F /* UIToolbar+NIStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A8793216D7C8EC00A0C23F /* UIToolbar+NIStyleable.m */; };
 		C7B9283F16D2B45A001BF61C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7B9283D16D2B45A001BF61C /* Localizable.strings */; };
-		C7B9284B16D2F736001BF61C /* NIInvocationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B9284A16D2F736001BF61C /* NIInvocationMethods.m */; };
 		C7BBC70816DDC2A600833DC9 /* NITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BBC70716DDC2A600833DC9 /* NITextField.m */; };
 /* End PBXBuildFile section */
 
@@ -528,7 +526,6 @@
 				66832D3514421450003E413C /* AppDelegate.m in Sources */,
 				66832D9914421530003E413C /* RootViewController.m in Sources */,
 				66832DD514434FB2003E413C /* NICommonMetrics.m in Sources */,
-				66832DD614434FB2003E413C /* NIDataStructures.m in Sources */,
 				66832DD714434FB2003E413C /* NIDebuggingTools.m in Sources */,
 				66832DD814434FB2003E413C /* NIDeviceOrientation.m in Sources */,
 				66832DD914434FB2003E413C /* NIError.m in Sources */,
@@ -567,7 +564,6 @@
 				66D2FE2915941EEB00B2BEFD /* AFXMLRequestOperation.m in Sources */,
 				66D2FE2A15941EEB00B2BEFD /* UIImageView+AFNetworking.m in Sources */,
 				C743F6F416D29F2500A933B7 /* NIUserInterfaceString.m in Sources */,
-				C7B9284B16D2F736001BF61C /* NIInvocationMethods.m in Sources */,
 				C7A8793316D7C8EC00A0C23F /* NITextField+NIStyleable.m in Sources */,
 				C7A8793416D7C8EC00A0C23F /* UIScrollView+NIStyleable.m in Sources */,
 				C7A8793516D7C8EC00A0C23F /* UISearchBar+NIStyleable.m in Sources */,
