@@ -42,6 +42,15 @@ BOOL NIIsPhone(void) {
   return isPhone > 0;
 }
 
+BOOL NIIsTintColorGloballySupported(void) {
+  static NSInteger isTintColorGloballySupported = -1;
+  if (isTintColorGloballySupported < 0) {
+    UIView* view = [[UIView alloc] init];
+    isTintColorGloballySupported = [view respondsToSelector:@selector(tintColor)];
+  }
+  return isTintColorGloballySupported > 0;
+}
+
 BOOL NIDeviceOSVersionIsAtLeast(double versionNumber) {
   return kCFCoreFoundationVersionNumber >= versionNumber;
 }

@@ -193,6 +193,13 @@ BOOL NIIsPad(void);
 BOOL NIIsPhone(void);
 
 /**
+ * Checks whether the device supports tint colors on all UIViews.
+ *
+ *      @returns YES if all UIView instances on the device respond to tintColor.
+ */
+BOOL NIIsTintColorGloballySupported(void);
+
+/**
  * Checks whether the device's OS version is at least the given version number.
  *
  * Useful for runtime checks of the device's version number.
