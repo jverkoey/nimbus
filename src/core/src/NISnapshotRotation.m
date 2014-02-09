@@ -24,6 +24,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
+#error "Nimbus Snapshot Rotation requires iOS 6 or higher."
+#endif
+
 UIImage* NISnapshotOfViewWithTransparencyOption(UIView* view, BOOL transparency);
 
 UIImage* NISnapshotOfViewWithTransparencyOption(UIView* view, BOOL transparency) {
