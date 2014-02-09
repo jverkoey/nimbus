@@ -65,22 +65,46 @@
   return cell;
 }
 
++ (UICollectionViewCell *)cellWithNib:(UINib *)collectionViewCellNib
+                       collectionView:(UICollectionView *)collectionView
+                            indexPath:(NSIndexPath *)indexPath
+                               object:(id)object {
+  UICollectionViewCell* cell = nil;
+
+  NSString* identifier = NSStringFromClass([object class]);
+  [collectionView registerNib:collectionViewCellNib forCellWithReuseIdentifier:identifier];
+
+  cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+
+  // Allow the cell to configure itself with the object's information.
+  if ([cell respondsToSelector:@selector(shouldUpdateCellWithObject:)]) {
+    [(id<NICollectionViewCell>)cell shouldUpdateCellWithObject:object];
+  }
+
+  return cell;
+}
+
 + (UICollectionViewCell *)collectionViewModel:(NICollectionViewModel *)collectionViewModel
                         cellForCollectionView:(UICollectionView *)collectionView
                                   atIndexPath:(NSIndexPath *)indexPath
                                    withObject:(id)object {
   UICollectionViewCell* cell = nil;
 
-  // If this assertion fires then your app is about to crash. You need to either add an explicit
-  // binding in a NICollectionViewCellFactory object or implement the NICollectionViewCellObject protocol on this object and
-  // return a cell class.
-  NIDASSERT([object respondsToSelector:@selector(collectionViewCellClass)]);
-
   // Only NICollectionViewCellObject-conformant objects may pass.
   if ([object respondsToSelector:@selector(collectionViewCellClass)]) {
     Class collectionViewCellClass = [object collectionViewCellClass];
     cell = [self cellWithClass:collectionViewCellClass collectionView:collectionView indexPath:indexPath object:object];
+
+  } else if ([object respondsToSelector:@selector(collectionViewCellNib)]) {
+    UINib* nib = [object collectionViewCellNib];
+    cell = [self cellWithNib:nib collectionView:collectionView indexPath:indexPath object:object];
   }
+
+  // If this assertion fires then your app is about to crash. You need to either add an explicit
+  // binding in a NICollectionViewCellFactory object or implement either
+  // NICollectionViewCellObject or NICollectionViewNibCellObject on this object and return a cell
+  // class.
+  NIDASSERT(nil != cell);
 
   return cell;
 }
@@ -113,15 +137,19 @@
 
   Class collectionViewCellClass = [self collectionViewCellClassFromObject:object];
 
-  // If this assertion fires then your app is about to crash. You need to either add an explicit
-  // binding in a NICollectionViewCellFactory object or implement the NICollectionViewCellObject protocol on this object and
-  // return a cell class.
-  NIDASSERT(nil != collectionViewCellClass);
-
   if (nil != collectionViewCellClass) {
     cell = [[self class] cellWithClass:collectionViewCellClass collectionView:collectionView indexPath:indexPath object:object];
+
+  } else if ([object respondsToSelector:@selector(collectionViewCellNib)]) {
+    UINib* nib = [object collectionViewCellNib];
+    cell = [[self class] cellWithNib:nib collectionView:collectionView indexPath:indexPath object:object];
   }
-  
+
+  // If this assertion fires then your app is about to crash. You need to either add an explicit
+  // binding in a NICollectionViewCellFactory object or implement the NICollectionViewCellObject
+  // protocol on this object and return a cell class.
+  NIDASSERT(nil != cell);
+
   return cell;
 }
 

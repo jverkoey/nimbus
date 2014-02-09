@@ -121,6 +121,20 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
 @end
 
 /**
+ * The protocol for an object that can be used in the NICollectionViewCellFactory with Interface
+ * Builder nibs.
+ *
+ *      @ingroup CollectionViewCellFactory
+ */
+@protocol NICollectionViewNibCellObject <NSObject>
+@required
+
+/** A nib that contains a collection view cell to display this object's contents. */
+- (UINib *)collectionViewCellNib;
+
+@end
+
+/**
  * The protocol for a cell created in the NICollectionViewCellFactory.
  *
  * Cells that implement this protocol are given the object that implemented the
