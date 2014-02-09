@@ -23,113 +23,53 @@
  *
  * Most of these methods are called directly from NIAttributedLabel. Normally you should
  * not have to call these methods directly. Have a look at NIAttributedLabel first, it's most
- * likely what you are after. 
+ * likely what you're after.
  */
 @interface NSMutableAttributedString (NimbusAttributedLabel)
 
 /**
- * Sets the text alignment and the line break mode for a given range.
- *
- * TextAlignment Values:
- * - kCTLeftTextAlignment
- * - kCTCenterTextAlignment
- * - kCTRightTextAlignment
- * - kCTJustifiedTextAlignment
- * - kCTNaturalTextAlignment
- *
- * LineBreakMode Values
- * - kCTLineBreakByWordWrapping
- * - kCTLineBreakByCharWrapping
- * - kCTLineBreakByClipping
- * - kCTLineBreakByTruncatingHead
- * - kCTLineBreakByTruncatingTail
- * _ kCTLineBreakByTruncatingMiddle
+ * Sets the text alignment and line break mode for a given range.
  */
 - (void)setTextAlignment:(CTTextAlignment)textAlignment 
            lineBreakMode:(CTLineBreakMode)lineBreakMode
-              lineHeight:(CGFloat) lineHeight
+              lineHeight:(CGFloat)lineHeight
                    range:(NSRange)range;
 
-
 /**
- * Sets the text alignment and the line break mode for the whole string.
- *
- * TextAlignment Values:
- * - kCTLeftTextAlignment
- * - kCTCenterTextAlignment
- * - kCTRightTextAlignment
- * - kCTJustifiedTextAlignment
- * - kCTNaturalTextAlignment
- *
- * LineBreakMode Values
- * - kCTLineBreakByWordWrapping
- * - kCTLineBreakByCharWrapping
- * - kCTLineBreakByClipping
- * - kCTLineBreakByTruncatingHead
- * - kCTLineBreakByTruncatingTail
- * _ kCTLineBreakByTruncatingMiddle
-
+ * Sets the text alignment and the line break mode for the entire string.
  */
 - (void)setTextAlignment:(CTTextAlignment)textAlignment 
            lineBreakMode:(CTLineBreakMode)lineBreakMode
-              lineHeight:(CGFloat) lineHeight;
-
+              lineHeight:(CGFloat)lineHeight;
 
 /**
  * Sets the text color for a given range.
  */
-- (void)setTextColor:(UIColor*)color range:(NSRange)range;
+- (void)setTextColor:(UIColor *)color range:(NSRange)range;
 
 /**
- * Sets the text color for the whole string.
+ * Sets the text color for the entire string.
  */
-- (void)setTextColor:(UIColor*)color;
+- (void)setTextColor:(UIColor *)color;
 
 /**
  * Sets the font for a given range.
  */
-- (void)setFont:(UIFont*)font range:(NSRange)range;
+- (void)setFont:(UIFont *)font range:(NSRange)range;
 
 /**
- * Sets the font for the whole string.
+ * Sets the font for the entire string.
  */
-- (void)setFont:(UIFont*)font;
+- (void)setFont:(UIFont *)font;
 
 /**
  * Sets the underline style and modifier for a given range.
- *
- * Style Values:
- * - kCTUnderlineStyleNone
- * - kCTUnderlineStyleSingle
- * - kCTUnderlineStyleThick
- * - kCTUnderlineStyleDouble
- *
- * Modifier Values:
- * - kCTUnderlinePatternSolid
- * - kCTUnderlinePatternDot
- * - kCTUnderlinePatternDash
- * - kCTUnderlinePatternDashDot
- * - kCTUnderlinePatternDashDotDot
  */
 - (void)setUnderlineStyle:(CTUnderlineStyle)style
                  modifier:(CTUnderlineStyleModifiers)modifier
                     range:(NSRange)range;
-
 /**
- * Sets the underline style and modifier for the whole string.
- *
- * Style Values:
- * - kCTUnderlineStyleNone
- * - kCTUnderlineStyleSingle
- * - kCTUnderlineStyleThick
- * - kCTUnderlineStyleDouble
- *
- * Modifier Values:
- * - kCTUnderlinePatternSolid
- * - kCTUnderlinePatternDot
- * - kCTUnderlinePatternDash
- * - kCTUnderlinePatternDashDot
- * - kCTUnderlinePatternDashDotDot
+ * Sets the underline style and modifier for the entire string.
  */
 - (void)setUnderlineStyle:(CTUnderlineStyle)style
                  modifier:(CTUnderlineStyleModifiers)modifier;
@@ -140,19 +80,19 @@
 - (void)setStrokeWidth:(CGFloat)width range:(NSRange)range;
 
 /**
- * Sets the stroke width for the whole string.
+ * Sets the stroke width for the entire string.
  */
 - (void)setStrokeWidth:(CGFloat)width;
 
 /**
  * Sets the stroke color for a given range.
  */
-- (void)setStrokeColor:(UIColor*)color range:(NSRange)range;
+- (void)setStrokeColor:(UIColor *)color range:(NSRange)range;
 
 /**
- * Sets the stroke color for the whole string.
+ * Sets the stroke color for the entire string.
  */
-- (void)setStrokeColor:(UIColor*)color;
+- (void)setStrokeColor:(UIColor *)color;
 
 /**
  * Sets the text kern for a given range.
@@ -160,7 +100,7 @@
 - (void)setKern:(CGFloat)kern range:(NSRange)range;
 
 /**
- * Sets the text kern for the whole string.
+ * Sets the text kern for the entire string.
  */
 - (void)setKern:(CGFloat)kern;
 
