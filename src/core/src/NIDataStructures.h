@@ -73,7 +73,7 @@
 
 @class NILinkedListNode;
 
-__NI_DEPRECATED_METHOD // Use NSMutableOrderedSet instead.
+__NI_DEPRECATED_METHOD // Use NSMutableOrderedSet instead. MAINTENANCE: Remove by Feb 28, 2014.
 @interface NILinkedListLocation : NSObject
 @end
 
@@ -112,7 +112,7 @@ __NI_DEPRECATED_METHOD // Use NSMutableOrderedSet instead.
  * structure we could easily run into an O(N^2) exponential-time operation which is
  * absolutely unacceptable.
  */
-__NI_DEPRECATED_METHOD // Use NSMutableOrderedSet instead.
+__NI_DEPRECATED_METHOD // Use NSMutableOrderedSet instead. MAINTENANCE: Remove by Feb 28, 2014.
 @interface NILinkedList : NSObject <NSCopying, NSCoding, NSFastEnumeration>
 
 - (NSUInteger)count;
