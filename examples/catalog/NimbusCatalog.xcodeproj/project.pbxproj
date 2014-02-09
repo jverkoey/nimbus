@@ -81,6 +81,12 @@
 		6693C2E9158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C2E7158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m */; };
 		6693C2EB158AA2BF00950D42 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6693C2EA158AA2BE00950D42 /* CoreText.framework */; };
 		6693C2EE158AB5B600950D42 /* CustomTextAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C2ED158AB5B600950D42 /* CustomTextAttributedLabelViewController.m */; };
+		6693EFED18A7293700A600A0 /* BasicInstantiationCollectionModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693EFEC18A7293700A600A0 /* BasicInstantiationCollectionModelViewController.m */; };
+		6693EFFA18A7A34A00A600A0 /* NICollectionViewActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693EFF018A7A34A00A600A0 /* NICollectionViewActions.m */; };
+		6693EFFB18A7A34A00A600A0 /* NICollectionViewCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693EFF218A7A34A00A600A0 /* NICollectionViewCellFactory.m */; };
+		6693EFFC18A7A34A00A600A0 /* NICollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693EFF418A7A34A00A600A0 /* NICollectionViewModel.m */; };
+		6693EFFD18A7A34A00A600A0 /* NIMutableCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693EFF818A7A34A00A600A0 /* NIMutableCollectionViewModel.m */; };
+		6693F00118A7A40A00A600A0 /* ColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693F00018A7A40A00A600A0 /* ColorCell.m */; };
 		669819DF159B953A00C2D3EF /* NISnapshotRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 669819DE159B953A00C2D3EF /* NISnapshotRotation.m */; };
 		669A15CD158D318B00A0990A /* LinksAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15CC158D318B00A0990A /* LinksAttributedLabelViewController.m */; };
 		669A15D0158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669A15CF158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m */; };
@@ -269,6 +275,21 @@
 		6693C2EA158AA2BE00950D42 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		6693C2EC158AB5B600950D42 /* CustomTextAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextAttributedLabelViewController.h; sourceTree = "<group>"; };
 		6693C2ED158AB5B600950D42 /* CustomTextAttributedLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextAttributedLabelViewController.m; sourceTree = "<group>"; };
+		6693EFEB18A7293700A600A0 /* BasicInstantiationCollectionModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInstantiationCollectionModelViewController.h; sourceTree = "<group>"; };
+		6693EFEC18A7293700A600A0 /* BasicInstantiationCollectionModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicInstantiationCollectionModelViewController.m; sourceTree = "<group>"; };
+		6693EFEF18A7A34A00A600A0 /* NICollectionViewActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICollectionViewActions.h; sourceTree = "<group>"; };
+		6693EFF018A7A34A00A600A0 /* NICollectionViewActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICollectionViewActions.m; sourceTree = "<group>"; };
+		6693EFF118A7A34A00A600A0 /* NICollectionViewCellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICollectionViewCellFactory.h; sourceTree = "<group>"; };
+		6693EFF218A7A34A00A600A0 /* NICollectionViewCellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICollectionViewCellFactory.m; sourceTree = "<group>"; };
+		6693EFF318A7A34A00A600A0 /* NICollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICollectionViewModel.h; sourceTree = "<group>"; };
+		6693EFF418A7A34A00A600A0 /* NICollectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICollectionViewModel.m; sourceTree = "<group>"; };
+		6693EFF518A7A34A00A600A0 /* NICollectionViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NICollectionViewModel+Private.h"; sourceTree = "<group>"; };
+		6693EFF618A7A34A00A600A0 /* NimbusCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusCollections.h; sourceTree = "<group>"; };
+		6693EFF718A7A34A00A600A0 /* NIMutableCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIMutableCollectionViewModel.h; sourceTree = "<group>"; };
+		6693EFF818A7A34A00A600A0 /* NIMutableCollectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIMutableCollectionViewModel.m; sourceTree = "<group>"; };
+		6693EFF918A7A34A00A600A0 /* NIMutableCollectionViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NIMutableCollectionViewModel+Private.h"; sourceTree = "<group>"; };
+		6693EFFF18A7A40A00A600A0 /* ColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorCell.h; sourceTree = "<group>"; };
+		6693F00018A7A40A00A600A0 /* ColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorCell.m; sourceTree = "<group>"; };
 		669819DD159B953A00C2D3EF /* NISnapshotRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NISnapshotRotation.h; path = ../../src/core/src/NISnapshotRotation.h; sourceTree = "<group>"; };
 		669819DE159B953A00C2D3EF /* NISnapshotRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISnapshotRotation.m; path = ../../src/core/src/NISnapshotRotation.m; sourceTree = "<group>"; };
 		669A15CB158D318B00A0990A /* LinksAttributedLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinksAttributedLabelViewController.h; sourceTree = "<group>"; };
@@ -532,6 +553,7 @@
 				6693C298158A8E4000950D42 /* Resources */,
 				6693C2E1158AA13900950D42 /* Attributed Label */,
 				661F28EF159292D900D11FC3 /* Badge */,
+				6693EFEE18A7A33400A600A0 /* Collections */,
 				6693C150158A64C100950D42 /* Core */,
 				66B941461592E2E200AEA1D2 /* Interapp */,
 				66A29F82159507DF00F6EA64 /* Launcher */,
@@ -630,6 +652,7 @@
 				6693C1D2158A80A000950D42 /* CatalogViewController.m */,
 				6693C2DC158A9A0E00950D42 /* Attributed Label */,
 				661F28EA1592929E00D11FC3 /* Badge */,
+				6693EFEA18A7290800A600A0 /* Collection Models */,
 				66B9414C1592E33900AEA1D2 /* Interapp */,
 				66A29F80159507D700F6EA64 /* Launcher */,
 				668B7670159393B400EA86F6 /* Network Image */,
@@ -695,6 +718,44 @@
 				6693C2E7158AA21E00950D42 /* NSMutableAttributedString+NimbusAttributedLabel.m */,
 			);
 			name = "Attributed Label";
+			sourceTree = "<group>";
+		};
+		6693EFEA18A7290800A600A0 /* Collection Models */ = {
+			isa = PBXGroup;
+			children = (
+				6693EFFE18A7A3E700A600A0 /* Collection Cells */,
+				6693EFEB18A7293700A600A0 /* BasicInstantiationCollectionModelViewController.h */,
+				6693EFEC18A7293700A600A0 /* BasicInstantiationCollectionModelViewController.m */,
+			);
+			name = "Collection Models";
+			sourceTree = "<group>";
+		};
+		6693EFEE18A7A33400A600A0 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				6693EFEF18A7A34A00A600A0 /* NICollectionViewActions.h */,
+				6693EFF018A7A34A00A600A0 /* NICollectionViewActions.m */,
+				6693EFF118A7A34A00A600A0 /* NICollectionViewCellFactory.h */,
+				6693EFF218A7A34A00A600A0 /* NICollectionViewCellFactory.m */,
+				6693EFF318A7A34A00A600A0 /* NICollectionViewModel.h */,
+				6693EFF418A7A34A00A600A0 /* NICollectionViewModel.m */,
+				6693EFF518A7A34A00A600A0 /* NICollectionViewModel+Private.h */,
+				6693EFF618A7A34A00A600A0 /* NimbusCollections.h */,
+				6693EFF718A7A34A00A600A0 /* NIMutableCollectionViewModel.h */,
+				6693EFF818A7A34A00A600A0 /* NIMutableCollectionViewModel.m */,
+				6693EFF918A7A34A00A600A0 /* NIMutableCollectionViewModel+Private.h */,
+			);
+			name = Collections;
+			path = ../../src/collections/src;
+			sourceTree = "<group>";
+		};
+		6693EFFE18A7A3E700A600A0 /* Collection Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6693EFFF18A7A40A00A600A0 /* ColorCell.h */,
+				6693F00018A7A40A00A600A0 /* ColorCell.m */,
+			);
+			name = "Collection Cells";
 			sourceTree = "<group>";
 		};
 		66A29F80159507D700F6EA64 /* Launcher */ = {
@@ -911,6 +972,7 @@
 				6693C214158A81D400950D42 /* NSString+NimbusCore.m in Sources */,
 				6693C227158A81DD00950D42 /* NICellCatalog.m in Sources */,
 				6693C228158A81DD00950D42 /* NICellFactory.m in Sources */,
+				6693EFFB18A7A34A00A600A0 /* NICollectionViewCellFactory.m in Sources */,
 				6693C229158A81DD00950D42 /* NIFormCellCatalog.m in Sources */,
 				6693C22A158A81DD00950D42 /* NIRadioGroup.m in Sources */,
 				6693C22B158A81DD00950D42 /* NIRadioGroupController.m in Sources */,
@@ -921,6 +983,7 @@
 				6693C2EE158AB5B600950D42 /* CustomTextAttributedLabelViewController.m in Sources */,
 				669A15CD158D318B00A0990A /* LinksAttributedLabelViewController.m in Sources */,
 				669A15D0158D38E700A0990A /* BasicInstantiationAttributedLabelViewController.m in Sources */,
+				6693EFFC18A7A34A00A600A0 /* NICollectionViewModel.m in Sources */,
 				669A15D3158E6C7C00A0990A /* DataTypesAttributedLabelViewController.m in Sources */,
 				669A15D6158E81D200A0990A /* PerformanceAttributedLabelViewController.m in Sources */,
 				6633C7EF158F08A40054D240 /* InterfaceBuilderAttributedLabelViewController.m in Sources */,
@@ -933,6 +996,7 @@
 				66B9415D1593866900AEA1D2 /* NIWebController.m in Sources */,
 				668B766F15938C8400EA86F6 /* ExtraActionsWebViewController.m in Sources */,
 				668B7673159394A200EA86F6 /* BasicInstantiationNetworkImageViewController.m in Sources */,
+				6693F00118A7A40A00A600A0 /* ColorCell.m in Sources */,
 				668B767B159394EF00EA86F6 /* NIImageProcessing.m in Sources */,
 				668B767C159394EF00EA86F6 /* NINetworkImageView.m in Sources */,
 				66D2FDB81593D5D000B2BEFD /* ContentModesNetworkImageViewController.m in Sources */,
@@ -952,6 +1016,7 @@
 				66A29F9E15951C0000F6EA64 /* NIPageView.m in Sources */,
 				66A29F9F15951C0000F6EA64 /* NIPagingScrollView.m in Sources */,
 				66BB4F52159527E200020EE8 /* NILauncherPageView.m in Sources */,
+				6693EFFD18A7A34A00A600A0 /* NIMutableCollectionViewModel.m in Sources */,
 				66BB4F6A15957E4300020EE8 /* NILauncherViewModel.m in Sources */,
 				66BB4F6D1595801900020EE8 /* NILauncherViewObject.m in Sources */,
 				66BB4FA815958A6F00020EE8 /* ModelLauncherViewController.m in Sources */,
@@ -962,6 +1027,7 @@
 				44707C77159B06A700B83149 /* BasicInstantiationPagingScrollViewController.m in Sources */,
 				66B6692F159BD22500FE4AE8 /* LongTapAttributedLabelViewController.m in Sources */,
 				66B67087159CC32D00FE4AE8 /* VerticalPagingScrollViewController.m in Sources */,
+				6693EFFA18A7A34A00A600A0 /* NICollectionViewActions.m in Sources */,
 				66B6708B159CC39E00FE4AE8 /* SamplePageView.m in Sources */,
 				66B6714315AB751E00FE4AE8 /* NICellBackgrounds.m in Sources */,
 				6677FEBD15AB8A0300517ABC /* BasicInstantiationTableModelViewController.m in Sources */,
@@ -978,6 +1044,7 @@
 				6613335E15D3A66B00369333 /* SnapshotRotationTableViewController.m in Sources */,
 				6633D21F15DDBD4100A4B07E /* ImagesAttributedLabelViewController.m in Sources */,
 				66D2E54B15D9613800281511 /* NIMutableTableViewModel.m in Sources */,
+				6693EFED18A7293700A600A0 /* BasicInstantiationCollectionModelViewController.m in Sources */,
 				66D2E54F15D9616500281511 /* MutableTableModelViewController.m in Sources */,
 				3616212C16812222002A9078 /* AlignmentAttributedLabelViewController.m in Sources */,
 				668EA9C417206F640056C8C3 /* NIActions.m in Sources */,

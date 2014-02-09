@@ -32,6 +32,9 @@
 #import "CustomizingBadgesViewController.h"
 #import "InterfaceBuilderBadgeViewController.h"
 
+// Collections
+#import "BasicInstantiationCollectionModelViewController.h"
+
 // Interapp
 #import "InterappViewController.h"
 
@@ -203,6 +206,13 @@
       [NISubtitleCellObject objectWithTitle:@"Interface Builder"
                                    subtitle:@"Using badges in IB"]
               navigationBlock:NIPushControllerAction([InterfaceBuilderBadgeViewController class])],
+
+     @"Collections",
+
+     [_actions attachToObject:
+      [NISubtitleCellObject objectWithTitle:@"Basic Instantiation"
+                                   subtitle:@"How to create a collection view model"]
+              navigationBlock:NIPushControllerAction([BasicInstantiationCollectionModelViewController class])],
 
      @"Interapp",
 
