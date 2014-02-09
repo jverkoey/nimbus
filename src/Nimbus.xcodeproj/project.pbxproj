@@ -1639,7 +1639,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		66995E4E189C32EC0005F93E /* deprecated - to be deleted after Feb 31, 2014 */ = {
+		66995E4E189C32EC0005F93E /* deprecated - to be deleted after Feb 28, 2014 */ = {
 			isa = PBXGroup;
 			children = (
 				66A03C4313E6E8D100B514F3 /* NIDataStructures.h */,
@@ -1647,7 +1647,7 @@
 				FD01BED914179D940023D783 /* NINavigationAppearance.h */,
 				FD01BEDA14179D940023D783 /* NINavigationAppearance.m */,
 			);
-			name = "deprecated - to be deleted after Feb 31, 2014";
+			name = "deprecated - to be deleted after Feb 28, 2014";
 			sourceTree = "<group>";
 		};
 		66A03BFC13E6E84800B514F3 = {
@@ -1755,7 +1755,7 @@
 		66A03C3F13E6E8D100B514F3 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				66995E4E189C32EC0005F93E /* deprecated - to be deleted after Feb 31, 2014 */,
+				66995E4E189C32EC0005F93E /* deprecated - to be deleted after Feb 28, 2014 */,
 				66A03C5013E6E8D100B514F3 /* NimbusCore.h */,
 				66A03C4F13E6E8D100B514F3 /* NimbusCore+Additions.h */,
 				6617FD08171F6A92006E0DF8 /* NIActions.h */,
