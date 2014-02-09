@@ -25,9 +25,9 @@
  * @{
  *
  * View recycling is an important aspect of iOS memory management and performance when building
- * scroll view. When you use UITableView you use view recycling via the table cell dequeue
- * mechanism. NIViewRecycler implements this recycling functionality, allowing you to implement
- * recycling mechanisms in your own views and controllers.
+ * scroll views. UITableView uses view recycling via the table cell dequeue mechanism.
+ * NIViewRecycler implements this recycling functionality, allowing you to implement recycling
+ * mechanisms in your own views and controllers.
  *
  *
  * <h2>Example Use</h2>
@@ -66,7 +66,7 @@ if (nil == view) {
 /**
  * An object for efficiently reusing views by recycling and dequeuing them from a pool of views.
  *
- * This sort of object is what UITableView and NIPagingScrollView use to recycle their views.
+ * This sort of object is likely what UITableView and NIPagingScrollView use to recycle their views.
  */
 @interface NIViewRecycler : NSObject
 
@@ -79,7 +79,8 @@ if (nil == view) {
 @end
 
 /**
- * The protocol for a recyclable view.
+ * The NIRecyclableView protocol defines a set of optional methods that a view may implement to
+ * handle being added to a NIViewRecycler.
  */
 @protocol NIRecyclableView <NSObject>
 
@@ -102,9 +103,15 @@ if (nil == view) {
 @end
 
 /**
- * A simple view implementation of the NIRecyclableView protocol.
+ * A simple implementation of the NIRecyclableView protocol as a UIView.
  *
- * This view class can easily be used with a NIViewRecycler.
+ * This class can be used as a base class for building recyclable views if specific reuse
+ * identifiers are necessary, e.g. when the same class might have different implementations
+ * depending on the reuse identifier.
+ *
+ * Assuming functionality is consistent for a given class it is simpler not to have a
+ * reuseIdentifier, making the view recycler use the class name as the reuseIdentifier. In this case
+ * subclassing this class is overkill.
  */
 @interface NIRecyclableView : UIView <NIRecyclableView>
 
