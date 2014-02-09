@@ -16,7 +16,6 @@
 
 #import "NIAttributedLabel.h"
 
-#import "NimbusCore.h"
 #import "NSMutableAttributedString+NimbusAttributedLabel.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -115,7 +114,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
 @end
 
-
 @interface NIAttributedLabel() <UIActionSheetDelegate>
 
 @property (nonatomic, strong) NSMutableAttributedString* mutableAttributedString;
@@ -141,7 +139,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
 @end
 
-
 @interface NIAttributedLabel (ConversionUtilities)
 
 + (CTTextAlignment)alignmentFromUITextAlignment:(NSTextAlignment)alignment;
@@ -149,7 +146,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 + (NSMutableAttributedString *)mutableAttributedStringFromLabel:(UILabel *)label;
 
 @end
-
 
 @implementation NIAttributedLabel
 
@@ -1334,6 +1330,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
   NSMutableArray* accessibleElements = [NSMutableArray array];
 
+  // NSArray arrayWithArray:self.detectedlinkLocations ensures that we're not working with a nil
+  // array.
   NSArray* allLinks = [[NSArray arrayWithArray:self.detectedlinkLocations]
                        arrayByAddingObjectsFromArray:self.explicitLinkLocations];
 
@@ -1353,6 +1351,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     }
   }
 
+  // Add this label's text as the "bottom-most" accessibility element, i.e. the last element in the
+  // array. This gives link priorities.
   UIAccessibilityElement* element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
   element.accessibilityLabel = self.attributedText.string;
   element.accessibilityFrame = [self convertRect:self.bounds toView:self.window];
@@ -1364,7 +1364,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 }
 
 - (BOOL)isAccessibilityElement {
-  return NO;
+  return NO; // We handle accessibility for this element in -accessibleElements.
 }
 
 - (NSInteger)accessibilityElementCount  {
@@ -1428,6 +1428,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   self.actionSheetLink = nil;
   [self setNeedsDisplay];
 }
+
+#pragma mark - Inline Image Support
 
 CGFloat NIImageDelegateGetAscentCallback(void* refCon) {
   NIAttributedLabelImage *labelImage = (__bridge NIAttributedLabelImage *)refCon;
@@ -1496,7 +1498,6 @@ CGFloat NIImageDelegateGetWidthCallback(void* refCon) {
 
 @end
 
-
 @implementation NIAttributedLabel (ConversionUtilities)
 
 + (CTTextAlignment)alignmentFromUITextAlignment:(NSTextAlignment)alignment {
@@ -1524,7 +1525,7 @@ CGFloat NIImageDelegateGetWidthCallback(void* refCon) {
 + (NSMutableAttributedString *)mutableAttributedStringFromLabel:(UILabel *)label {
   NSMutableAttributedString* attributedString = nil;
 
-  if (NIIsStringWithAnyText(label.text)) {
+  if (label.text.length > 0) {
     attributedString = [[NSMutableAttributedString alloc] initWithString:label.text];
 
     [attributedString setFont:label.font];

@@ -17,7 +17,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
 
-#import "NimbusCore.h"
+#import "NimbusCore.h" // For __NI_DEPRECATED_METHOD
 
 #if defined __cplusplus
 extern "C" {
@@ -75,7 +75,7 @@ extern NSString * const kNILinkAttributeName; // Value is an NSTextCheckingResul
  */
 @interface NIAttributedLabel : UILabel
 
-// Please use attributedText instead.
+// Please use attributedText instead. MAINTENANCE: Remove by Feb 28, 2014.
 @property (nonatomic, copy) NSAttributedString* attributedString __NI_DEPRECATED_METHOD;
 
 @property (nonatomic) BOOL                autoDetectLinks;    // Default: NO
