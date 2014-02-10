@@ -175,8 +175,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
 - (void)_configureDefaults {
   self.verticalTextAlignment = NIVerticalTextAlignmentTop;
-  // iOS 7 support for tint color.
-  self.linkColor = [self respondsToSelector:@selector(tintColor)] ? self.tintColor : [UIColor blueColor];
+  self.linkColor = NIIsTintColorGloballySupported() ? self.tintColor : [UIColor blueColor];
   self.dataDetectorTypes = NSTextCheckingTypeLink;
   self.highlightedLinkBackgroundColor = [UIColor colorWithWhite:0.5f alpha:0.5f];
 }
