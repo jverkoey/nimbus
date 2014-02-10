@@ -1141,6 +1141,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
       flippedMargins.bottom = top;
 
       CGRect imageRect = UIEdgeInsetsInsetRect(rect, flippedMargins);
+      imageRect = CGRectOffset(imageRect, 0, -[self _verticalOffsetForBounds:self.bounds]);
       CGContextDrawImage(ctx, imageRect, labelImage.image.CGImage);
     }
   }
