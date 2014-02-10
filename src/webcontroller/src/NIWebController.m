@@ -120,7 +120,7 @@
                        otherButtonTitles:nil];
 
     // Let -shouldPresentActionSheet: setup the action sheet
-    if (![self shouldPresentActionSheet:self.actionSheet]) {
+    if (![self shouldPresentActionSheet:self.actionSheet] || self.actionSheet.numberOfButtons == 0) {
       // A subclass decided to handle the action in another way
       self.actionSheet = nil;
       self.actionSheetURL = nil;
@@ -434,7 +434,7 @@
 }
 
 - (BOOL)shouldPresentActionSheet:(UIActionSheet *)actionSheet {
-  if (actionSheet == self.actionSheet) {
+  if (actionSheet == self.actionSheet && nil != self.actionSheetURL) {
     [self.actionSheet addButtonWithTitle:NSLocalizedString(@"Open in Safari", @"")];
     [self.actionSheet addButtonWithTitle:NSLocalizedString(@"Copy URL", @"")];
   }
