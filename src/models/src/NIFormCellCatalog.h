@@ -90,7 +90,7 @@
  * A slider form element.
  *
  * This element is a slider that can be embedded in a form. It shows a label with a switch
- * align to the right edge of the row. Label may contain %f format symbol.
+ * align to the right edge of the row.
  *
  * Bound to NISliderFormElementCell when using the @link TableCellFactory Nimbus cell factory@endlink.
  *
