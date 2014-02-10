@@ -254,7 +254,7 @@
 
     } else {
       // Otherwise we assume it's a regular URL.
-      url = [NSURL URLWithString:pathToNetworkImage];
+      url = [NSURL URLWithString:[pathToNetworkImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
 
     // If the URL failed to be created, there's not much we can do here.
