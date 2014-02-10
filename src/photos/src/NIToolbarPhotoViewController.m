@@ -44,6 +44,9 @@
     self.hidesChromeWhenScrolling = YES;
     self.chromeCanBeHidden = YES;
     self.animateMovingToNextAndPreviousPhotos = NO;
+    if ([self respondsToSelector:@selector(setAutomaticallyAdjustsScrollViewInsets:)]) {
+      self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     
     // The scrubber is better use of the extra real estate on the iPad.
     // If you ask me, though, the scrubber works pretty well on the iPhone too. It's up
@@ -178,7 +181,6 @@
 
   [self.view addSubview:_photoAlbumView];
   [self.view addSubview:_toolbar];
-
 
   if (self.hidesChromeWhenScrolling) {
     [self addTapGestureToView];
