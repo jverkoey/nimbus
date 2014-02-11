@@ -142,6 +142,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   } else if (NIPagingScrollViewVertical == self.type) {
     return CGSizeMake(bounds.size.width, bounds.size.height * self.numberOfPages);
   }
+
   return CGSizeZero;
 }
 
@@ -152,17 +153,18 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   } else if (NIPagingScrollViewVertical == self.type) {
     offset.y -= self.pageMargin;
   }
+
   return offset;
 }
 
 - (CGFloat)pageScrollableDimension {
   if (NIPagingScrollViewHorizontal == self.type) {
     return _scrollView.bounds.size.width;
-    
+
   } else if (NIPagingScrollViewVertical == self.type) {
     return _scrollView.bounds.size.height;
   }
-  
+
   return 0;
 }
 
@@ -173,7 +175,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   } else if (NIPagingScrollViewVertical == self.type) {
     return CGPointMake(0, offset);
   }
-  
+
   return CGPointMake(0, 0);
 }
 
@@ -184,19 +186,18 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   } else if (NIPagingScrollViewVertical == self.type) {
     return _scrollView.contentOffset.y;
   }
-  
+
   return 0;
 }
 
 #pragma mark - Visible Page Management
-
 
 - (BOOL)isDisplayingPageForIndex:(NSInteger)pageIndex {
   BOOL foundPage = NO;
 
   // There will never be more than 3 visible pages in this array, so this lookup is
   // effectively O(C) constant time.
-  for (id<NIPagingScrollViewPage> page in _visiblePages) {
+  for (UIView <NIPagingScrollViewPage>* page in _visiblePages) {
     if (page.pageIndex == pageIndex) {
       foundPage = YES;
       break;
@@ -209,40 +210,40 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 - (NSInteger)currentVisiblePageIndex {
   CGPoint contentOffset = _scrollView.contentOffset;
   CGSize boundsSize = _scrollView.bounds.size;
-  
+
   if (NIPagingScrollViewHorizontal == self.type) {
     // Whatever image is currently displayed in the center of the screen is the currently
     // visible image.
     return NIBoundi((NSInteger)(floorf((contentOffset.x + boundsSize.width / 2) / boundsSize.width)
                               + 0.5f),
                   0, self.numberOfPages - 1);
-    
+
   } else if (NIPagingScrollViewVertical == self.type) {
     return NIBoundi((NSInteger)(floorf((contentOffset.y + boundsSize.height / 2) / boundsSize.height)
                               + 0.5f),
                   0, self.numberOfPages - 1);
   }
-  
+
   return 0;
 }
 
-- (NSRange)visiblePageRange {
+- (NSRange)rangeOfVisiblePages {
   if (0 >= self.numberOfPages) {
     return NSMakeRange(0, 0);
   }
 
   NSInteger currentVisiblePageIndex = [self currentVisiblePageIndex];
 
-  int firstVisiblePageIndex = NIBoundi(currentVisiblePageIndex - 1, 0, self.numberOfPages - 1);
-  int lastVisiblePageIndex  = NIBoundi(currentVisiblePageIndex + 1, 0, self.numberOfPages - 1);
+  NSInteger firstVisiblePageIndex = NIBoundi(currentVisiblePageIndex - 1, 0, self.numberOfPages - 1);
+  NSInteger lastVisiblePageIndex  = NIBoundi(currentVisiblePageIndex + 1, 0, self.numberOfPages - 1);
 
   return NSMakeRange(firstVisiblePageIndex, lastVisiblePageIndex - firstVisiblePageIndex + 1);
 }
 
 - (void)willDisplayPage:(UIView<NIPagingScrollViewPage> *)pageView atIndex:(NSInteger)pageIndex {
   pageView.pageIndex = pageIndex;
-  [pageView setFrame:[self frameForPageAtIndex:pageIndex]];
-  
+  pageView.frame = [self frameForPageAtIndex:pageIndex];
+
   [self willDisplayPage:pageView];
 }
 
@@ -270,10 +271,11 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 }
 
 - (UIView<NIPagingScrollViewPage> *)loadPageAtIndex:(NSInteger)pageIndex {
-  UIView<NIPagingScrollViewPage>* page = [self.dataSource pagingScrollView:self
-                                                          pageViewForIndex:pageIndex];
+  UIView<NIPagingScrollViewPage>* page = [self.dataSource pagingScrollView:self pageViewForIndex:pageIndex];
+
   NIDASSERT([page isKindOfClass:[UIView class]]);
   NIDASSERT([page conformsToProtocol:@protocol(NIPagingScrollViewPage)]);
+
   if (nil == page || ![page isKindOfClass:[UIView class]]
       || ![page conformsToProtocol:@protocol(NIPagingScrollViewPage)]) {
     // Bail out! This page is malformed.
@@ -289,10 +291,10 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     return;
   }
 
-  // This will only be called once before the page is shown.
+  // This will only be called once, before the page is shown.
   [self willDisplayPage:page atIndex:pageIndex];
 
-  [_scrollView addSubview:(UIView *)page];
+  [_scrollView addSubview:page];
   [_visiblePages addObject:page];
 }
 
@@ -317,11 +319,11 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     [self.delegate pagingScrollViewWillChangePages:self];
   }
 
-  NSRange visiblePageRange = [self visiblePageRange];
+  NSRange rangeOfVisiblePages = [self rangeOfVisiblePages];
   // Recycle no-longer-visible pages. We copy _visiblePages because we may modify it while we're
   // iterating over it.
   for (UIView<NIPagingScrollViewPage>* page in [_visiblePages copy]) {
-    if (!NSLocationInRange(page.pageIndex, visiblePageRange)) {
+    if (!NSLocationInRange(page.pageIndex, rangeOfVisiblePages)) {
       [_viewRecycler recycleView:page];
       [page removeFromSuperview];
 
@@ -344,8 +346,8 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     }
 
     // Add missing pages.
-    for (int pageIndex = visiblePageRange.location;
-         pageIndex < (NSInteger)NSMaxRange(visiblePageRange); ++pageIndex) {
+    for (int pageIndex = rangeOfVisiblePages.location;
+         pageIndex < (NSInteger)NSMaxRange(rangeOfVisiblePages); ++pageIndex) {
       if (![self isDisplayingPageForIndex:pageIndex]) {
         [self displayPageAtIndex:pageIndex];
       }
@@ -365,7 +367,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     CGRect pageFrame = [self frameForPageAtIndex:page.pageIndex];
     if ([page respondsToSelector:@selector(setFrameAndMaintainState:)]) {
       [page setFrameAndMaintainState:pageFrame];
-      
+
     } else {
       [page setFrame:pageFrame];
     }
@@ -434,7 +436,7 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
   [self updateVisiblePagesShouldNotifyDelegate:YES];
   [self resetSurroundingPages];
-  
+
   if ([self.delegate respondsToSelector:_cmd]) {
     [self.delegate scrollViewDidEndDecelerating:scrollView];
   }
