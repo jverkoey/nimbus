@@ -16,6 +16,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "NIPreprocessorMacros.h"
+
 /**
  * For storing and accessing objects in memory.
  *
@@ -59,9 +61,12 @@
 
 // Subclassing
 
-- (BOOL)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject;
+- (BOOL)shouldSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject;
 - (void)didSetObject:(id)object withName:(NSString *)name;
 - (void)willRemoveObject:(id)object withName:(NSString *)name;
+
+// Deprecated method. Use shouldSetObject:withName:previousObject: instead.
+- (BOOL)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject __NI_DEPRECATED_METHOD;
 
 @end
 
@@ -251,6 +256,12 @@
  *      @param previousObject  The object previously stored in the cache. This may be the
  *                             same as object.
  *      @returns YES If object is allowed to be stored in the cache.
+ *      @fn NIMemoryCache::shouldSetObject:withName:previousObject:
+ */
+
+/**
+ * This method is deprecated. Please use shouldSetObject:withName:previousObject: instead.
+ *
  *      @fn NIMemoryCache::willSetObject:withName:previousObject:
  */
 

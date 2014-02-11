@@ -113,56 +113,70 @@
 #pragma mark - Internal Methods
 
 - (void)updateAccessTimeForInfo:(NIMemoryCacheInfo *)info {
-  NIDASSERT(nil != info);
-  if (nil == info) {
-    return; // COV_NF_LINE
-  }
-  info.lastAccessTime = [NSDate date];
+  @synchronized(self) {
+    NIDASSERT(nil != info);
+    if (nil == info) {
+      return; // COV_NF_LINE
+    }
+    info.lastAccessTime = [NSDate date];
 
-  [self.lruCacheObjects removeObject:info];
-  [self.lruCacheObjects addObject:info];
+    [self.lruCacheObjects removeObject:info];
+    [self.lruCacheObjects addObject:info];
+  }
 }
 
 - (NIMemoryCacheInfo *)cacheInfoForName:(NSString *)name {
-  return [self.cacheMap objectForKey:name];
+  NIMemoryCacheInfo* info;
+  @synchronized(self) {
+    info = [self.cacheMap objectForKey:name];
+  }
+  return info;
 }
 
 - (void)setCacheInfo:(NIMemoryCacheInfo *)info forName:(NSString *)name {
-  NIDASSERT(nil != name);
-  if (nil == name) {
-    return;
-  }
+  @synchronized(self) {
+    NIDASSERT(nil != name);
+    if (nil == name) {
+      return;
+    }
 
-  // Storing in the cache counts as an access of the object, so we update the access time.
-  [self updateAccessTimeForInfo:info];
+    // Storing in the cache counts as an access of the object, so we update the access time.
+    [self updateAccessTimeForInfo:info];
 
-  if ([self willSetObject:info.object
-                 withName:name
-           previousObject:[self cacheInfoForName:name].object]) {
-    [self.cacheMap setObject:info forKey:name];
+    if ([self shouldSetObject:info.object
+                     withName:name
+               previousObject:[self cacheInfoForName:name].object]) {
+      [self.cacheMap setObject:info forKey:name];
 
-    [self didSetObject:info.object
-              withName:name];
+      [self didSetObject:info.object
+                withName:name];
+    }
   }
 }
 
 - (void)removeCacheInfoForName:(NSString *)name {
-  NIDASSERT(nil != name);
-  if (nil == name) {
-    return;
+  @synchronized(self) {
+    NIDASSERT(nil != name);
+    if (nil == name) {
+      return;
+    }
+
+    NIMemoryCacheInfo* cacheInfo = [self cacheInfoForName:name];
+    [self willRemoveObject:cacheInfo.object withName:name];
+
+    [self.lruCacheObjects removeObject:cacheInfo];
+    [self.cacheMap removeObjectForKey:name];
   }
-
-  NIMemoryCacheInfo* cacheInfo = [self cacheInfoForName:name];
-  [self willRemoveObject:cacheInfo.object withName:name];
-
-  [self.lruCacheObjects removeObject:cacheInfo];
-  [self.cacheMap removeObjectForKey:name];
 }
 
 #pragma mark - Subclassing
 
-
+// Deprecated method.
 - (BOOL)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {
+  return [self shouldSetObject:object withName:name previousObject:previousObject];
+}
+
+- (BOOL)shouldSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {
   // Allow anything to be stored.
   return YES;
 }
@@ -179,54 +193,60 @@
 
 
 - (void)storeObject:(id)object withName:(NSString *)name {
-  [self storeObject:object withName:name expiresAfter:nil];
+  @synchronized(self) {
+    [self storeObject:object withName:name expiresAfter:nil];
+  }
 }
 
 - (void)storeObject:(id)object withName:(NSString *)name expiresAfter:(NSDate *)expirationDate {
-  // Don't store nil objects in the cache.
-  if (nil == object) {
-    return;
+  @synchronized(self) {
+    // Don't store nil objects in the cache.
+    if (nil == object) {
+      return;
+    }
+
+    if (nil != expirationDate && [[NSDate date] timeIntervalSinceDate:expirationDate] >= 0) {
+      // The object being stored is already expired so remove the object from the cache altogether.
+      [self removeObjectWithName:name];
+
+      // We're done here.
+      return;
+    }
+    NIMemoryCacheInfo* info = [self cacheInfoForName:name];
+
+    // Create a new cache entry.
+    if (nil == info) {
+      info = [[NIMemoryCacheInfo alloc] init];
+      info.name = name;
+    }
+
+    // Store the object in the cache item.
+    info.object = object;
+
+    // Override any existing expiration date.
+    info.expirationDate = expirationDate;
+
+    // Commit the changes to the cache.
+    [self setCacheInfo:info forName:name];
   }
-
-  if (nil != expirationDate && [[NSDate date] timeIntervalSinceDate:expirationDate] >= 0) {
-    // The object being stored is already expired so remove the object from the cache altogether.
-    [self removeObjectWithName:name];
-
-    // We're done here.
-    return;
-  }
-  NIMemoryCacheInfo* info = [self cacheInfoForName:name];
-
-  // Create a new cache entry.
-  if (nil == info) {
-    info = [[NIMemoryCacheInfo alloc] init];
-    info.name = name;
-  }
-
-  // Store the object in the cache item.
-  info.object = object;
-
-  // Override any existing expiration date.
-  info.expirationDate = expirationDate;
-
-  // Commit the changes to the cache.
-  [self setCacheInfo:info forName:name];
 }
 
 - (id)objectWithName:(NSString *)name {
-  NIMemoryCacheInfo* info = [self cacheInfoForName:name];
-
   id object = nil;
 
-  if (nil != info) {
-    if ([info hasExpired]) {
-      [self removeObjectWithName:name];
+  @synchronized(self) {
+    NIMemoryCacheInfo* info = [self cacheInfoForName:name];
 
-    } else {
-      // Update the access time whenever we fetch an object from the cache.
-      [self updateAccessTimeForInfo:info];
+    if (nil != info) {
+      if ([info hasExpired]) {
+        [self removeObjectWithName:name];
 
-      object = info.object;
+      } else {
+        // Update the access time whenever we fetch an object from the cache.
+        [self updateAccessTimeForInfo:info];
+
+        object = info.object;
+      }
     }
   }
 
@@ -234,91 +254,107 @@
 }
 
 - (BOOL)containsObjectWithName:(NSString *)name {
-  NIMemoryCacheInfo* info = [self cacheInfoForName:name];
+  @synchronized(self) {
+    NIMemoryCacheInfo* info = [self cacheInfoForName:name];
 
-  if ([info hasExpired]) {
-    [self removeObjectWithName:name];
-    return NO;
+    if ([info hasExpired]) {
+      [self removeObjectWithName:name];
+      return NO;
+    }
+
+    return (nil != info);
   }
-
-  return (nil != info);
 }
 
 - (NSDate *)dateOfLastAccessWithName:(NSString *)name {
-  NIMemoryCacheInfo* info = [self cacheInfoForName:name];
+  @synchronized(self) {
+    NIMemoryCacheInfo* info = [self cacheInfoForName:name];
 
-  if ([info hasExpired]) {
-    [self removeObjectWithName:name];
-    return nil;
+    if ([info hasExpired]) {
+      [self removeObjectWithName:name];
+      return nil;
+    }
+
+    return [info lastAccessTime];
   }
-
-  return [info lastAccessTime];
 }
 
 - (NSString *)nameOfLeastRecentlyUsedObject {
-  NIMemoryCacheInfo* info = [self.lruCacheObjects firstObject];
+  @synchronized(self) {
+    NIMemoryCacheInfo* info = [self.lruCacheObjects firstObject];
 
-  if ([info hasExpired]) {
-    [self removeObjectWithName:info.name];
-    return nil;
+    if ([info hasExpired]) {
+      [self removeObjectWithName:info.name];
+      return nil;
+    }
+
+    return info.name;
   }
-
-  return info.name;
 }
 
 - (NSString *)nameOfMostRecentlyUsedObject {
-  NIMemoryCacheInfo* info = [self.lruCacheObjects lastObject];
+  @synchronized(self) {
+    NIMemoryCacheInfo* info = [self.lruCacheObjects lastObject];
 
-  if ([info hasExpired]) {
-    [self removeObjectWithName:info.name];
-    return nil;
+    if ([info hasExpired]) {
+      [self removeObjectWithName:info.name];
+      return nil;
+    }
+
+    return info.name;
   }
-
-  return info.name;
 }
 
 - (void)removeObjectWithName:(NSString *)name {
-  [self removeCacheInfoForName:name];
+  @synchronized(self) {
+    [self removeCacheInfoForName:name];
+  }
 }
 
 - (void)removeAllObjectsWithPrefix:(NSString *)prefix {
-  for (NSString* key in [self.cacheMap copy]) {
-    if ([key hasPrefix:prefix]) {
-      [self removeObjectWithName:key];
+  @synchronized(self) {
+    for (NSString* key in [self.cacheMap copy]) {
+      if ([key hasPrefix:prefix]) {
+        [self removeObjectWithName:key];
+      }
     }
   }
 }
 
 - (void)removeAllObjects {
-  self.cacheMap = [[NSMutableDictionary alloc] init];
-  self.lruCacheObjects = [[NSMutableOrderedSet alloc] init];
+  @synchronized(self) {
+    self.cacheMap = [[NSMutableDictionary alloc] init];
+    self.lruCacheObjects = [[NSMutableOrderedSet alloc] init];
+  }
 }
 
 - (void)reduceMemoryUsage {
-  // Copy the cache map because it's likely that we're going to modify it.
-  NSDictionary* cacheMap = [self.cacheMap copy];
+  @synchronized(self) {
+    // Copy the cache map because it's likely that we're going to modify it.
+    NSDictionary* cacheMap = [self.cacheMap copy];
 
-  // Iterate over the copied cache map (which will not be modified).
-  for (id name in cacheMap) {
-    NIMemoryCacheInfo* info = [self cacheInfoForName:name];
+    // Iterate over the copied cache map (which will not be modified).
+    for (id name in cacheMap) {
+      NIMemoryCacheInfo* info = [self cacheInfoForName:name];
 
-    if ([info hasExpired]) {
-      [self removeCacheInfoForName:name];
+      if ([info hasExpired]) {
+        [self removeCacheInfoForName:name];
+      }
     }
+    cacheMap = nil;
   }
-  cacheMap = nil;
 }
 
 - (NSUInteger)count {
-  return [self.cacheMap count];
+  @synchronized(self) {
+    return [self.cacheMap count];
+  }
 }
 
 @end
 
 
 @implementation NIMemoryCacheInfo
-
-
 
 - (BOOL)hasExpired {
   return (nil != _expirationDate
@@ -342,81 +378,89 @@
 
 @end
 
-
 @interface NIImageMemoryCache()
 @property (nonatomic, assign) NSUInteger numberOfPixels;
 @end
 
-
 @implementation NIImageMemoryCache
 
-
-
 - (NSUInteger)numberOfPixelsUsedByImage:(UIImage *)image {
-  if (nil == image) {
-    return 0;
-  }
+  @synchronized(self) {
+    if (nil == image) {
+      return 0;
+    }
 
-  NSUInteger numberOfPixels = (NSUInteger)(image.size.width * image.size.height);
-  if ([image respondsToSelector:@selector(scale)]) {
-    numberOfPixels *= [image scale];
+    NSUInteger numberOfPixels = (NSUInteger)(image.size.width * image.size.height);
+    if ([image respondsToSelector:@selector(scale)]) {
+      numberOfPixels *= [image scale];
+    }
+    return numberOfPixels;
   }
-  return numberOfPixels;
 }
 
 - (void)removeAllObjects {
-  [super removeAllObjects];
+  @synchronized(self) {
+    [super removeAllObjects];
 
-  self.numberOfPixels = 0;
+    self.numberOfPixels = 0;
+  }
 }
 
 - (void)reduceMemoryUsage {
-  // Remove all expired images first.
-  [super reduceMemoryUsage];
+  @synchronized(self) {
+    // Remove all expired images first.
+    [super reduceMemoryUsage];
 
-  if (self.maxNumberOfPixelsUnderStress > 0) {
-    // Remove the least recently used images by iterating over the linked list.
-    while (self.numberOfPixels > self.maxNumberOfPixelsUnderStress) {
-      NIMemoryCacheInfo* info = [self.lruCacheObjects firstObject];
-      [self removeCacheInfoForName:info.name];
+    if (self.maxNumberOfPixelsUnderStress > 0) {
+      // Remove the least recently used images by iterating over the linked list.
+      while (self.numberOfPixels > self.maxNumberOfPixelsUnderStress) {
+        NIMemoryCacheInfo* info = [self.lruCacheObjects firstObject];
+        [self removeCacheInfoForName:info.name];
+      }
     }
   }
 }
 
-- (BOOL)willSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {
-  NIDASSERT(nil == object || [object isKindOfClass:[UIImage class]]);
-  if (![object isKindOfClass:[UIImage class]]) {
-    return NO;
+- (BOOL)shouldSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject {
+  @synchronized(self) {
+    NIDASSERT(nil == object || [object isKindOfClass:[UIImage class]]);
+    if (![object isKindOfClass:[UIImage class]]) {
+      return NO;
+    }
+
+    self.numberOfPixels -= [self numberOfPixelsUsedByImage:previousObject];
+    self.numberOfPixels += [self numberOfPixelsUsedByImage:object];
+
+    return YES;
   }
-
-  self.numberOfPixels -= [self numberOfPixelsUsedByImage:previousObject];
-  self.numberOfPixels += [self numberOfPixelsUsedByImage:object];
-
-  return YES;
 }
 
 - (void)didSetObject:(id)object withName:(NSString *)name {
-  // Reduce the cache size after the object has been set in case the cache size is smaller
-  // than the object that's being added and we need to remove this object right away. If we
-  // try to reduce the cache size before the object's been set, we won't have anything to remove
-  // and we'll get stuck in an infinite loop.
-  if (self.maxNumberOfPixels > 0) {
-    // Remove least recently used images until we satisfy our memory constraints.
-    while (self.numberOfPixels > self.maxNumberOfPixels
-           && [self.lruCacheObjects count] > 0) {
-      NIMemoryCacheInfo* info = [self.lruCacheObjects firstObject];
-      [self removeCacheInfoForName:info.name];
+  @synchronized(self) {
+    // Reduce the cache size after the object has been set in case the cache size is smaller
+    // than the object that's being added and we need to remove this object right away. If we
+    // try to reduce the cache size before the object's been set, we won't have anything to remove
+    // and we'll get stuck in an infinite loop.
+    if (self.maxNumberOfPixels > 0) {
+      // Remove least recently used images until we satisfy our memory constraints.
+      while (self.numberOfPixels > self.maxNumberOfPixels
+             && [self.lruCacheObjects count] > 0) {
+        NIMemoryCacheInfo* info = [self.lruCacheObjects firstObject];
+        [self removeCacheInfoForName:info.name];
+      }
     }
   }
 }
 
 - (void)willRemoveObject:(id)object withName:(NSString *)name {
-  NIDASSERT(nil == object || [object isKindOfClass:[UIImage class]]);
-  if (nil == object || ![object isKindOfClass:[UIImage class]]) {
-    return; // COV_NF_LINE
-  }
+  @synchronized(self) {
+    NIDASSERT(nil == object || [object isKindOfClass:[UIImage class]]);
+    if (nil == object || ![object isKindOfClass:[UIImage class]]) {
+      return; // COV_NF_LINE
+    }
 
-  self.numberOfPixels -= [self numberOfPixelsUsedByImage:object];
+    self.numberOfPixels -= [self numberOfPixelsUsedByImage:object];
+  }
 }
 
 @end
