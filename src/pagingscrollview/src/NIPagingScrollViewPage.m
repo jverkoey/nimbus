@@ -14,13 +14,16 @@
 // limitations under the License.
 //
 
-#import "NIPageView.h"
+#import "NIPagingScrollViewPage.h"
 
 #import "NimbusCore.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
 #endif
+
+@implementation NIPagingScrollViewPage
+@end
 
 @implementation NIPageView
 @end

@@ -14,46 +14,34 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-#import "NimbusCore.h"
+#import "NIPagingScrollView.h"
 
 /**
- * The protocol that a paging scroll view page should implement.
+ * A skeleton implementation of a page view.
  *
- * By providing a protocol instead of a UIView base class we allow more flexibility when
- * building pages.
+ * This view simply implements the required properties of NIPagingScrollViewPage.
  *
  *      @ingroup NimbusPagingScrollView
  */
-@protocol NIPagingScrollViewPage <NIRecyclableView>
-@required
-
-/**
- * The index of this page view.
- */
-@property (nonatomic, assign) NSInteger pageIndex;
-
-@optional
-
-/**
- * Called after the page has gone off-screen.
- *
- * This method should be used to reset any state information after a page goes off-screen.
- * For example, in the Nimbus photo viewer we reset the zoom scale so that if the photo
- * was zoomed in it will fit on the screen again when the user flips back and forth between
- * two pages.
- */
-- (void)pageDidDisappear;
-
-/**
- * Called when the frame of the page is going to change.
- *
- * Use this method to maintain any state that may be affected by the frame changing.
- * The Nimbus photo viewer uses this method to save and restore the zoom and center
- * point. This makes the photo always appear to rotate around the center point of the screen
- * rather than the center of the photo.
- */
-- (void)setFrameAndMaintainState:(CGRect)frame;
-
+@interface NIPagingScrollViewPage : NIRecyclableView <NIPagingScrollViewPage>
+@property (nonatomic) NSInteger pageIndex;
 @end
+
+/**
+ * Use NIPagingScrollViewPage instead.
+ *
+ * This class will be deleted after February 28, 2014.
+ *
+ *      @ingroup NimbusPagingScrollView
+ */
+__NI_DEPRECATED_METHOD
+@interface NIPageView : NIPagingScrollViewPage
+@end
+
+/**
+ * The page index.
+ *
+ *      @fn NIPageView::pageIndex
+ */

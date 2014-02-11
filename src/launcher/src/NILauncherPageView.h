@@ -29,7 +29,7 @@
  *
  *      @ingroup NimbusLauncher
  */
-@interface NILauncherPageView : NIPageView
+@interface NILauncherPageView : NIPagingScrollViewPage
 
 @property (nonatomic, strong) NIViewRecycler* viewRecycler;
 

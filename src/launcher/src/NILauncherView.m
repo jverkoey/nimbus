@@ -20,6 +20,7 @@
 
 #import "NILauncherPageView.h"
 #import "NimbusPagingScrollView.h"
+#import "NIPagingScrollView+Subclassing.h"
 #import "NimbusCore.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)

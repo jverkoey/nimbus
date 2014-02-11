@@ -18,9 +18,6 @@
 #import "NIPagingScrollView.h"
 #import "NIPagingScrollView+Subclassing.h"
 
-#import "NIPagingScrollViewPage.h"
-#import "NIPagingScrollViewDataSource.h"
-#import "NIPagingScrollViewDelegate.h"
 #import "NimbusCore.h"
 
 #import <objc/runtime.h>
@@ -35,8 +32,10 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 @interface NIPagingScrollView()  {
 @private
   NIViewRecycler* _viewRecycler;
+  UIScrollView* _pagingScrollView;
 
   // State Information
+  NSMutableSet* _visiblePages;
   NSInteger _firstVisiblePageIndexBeforeRotation;
   CGFloat _percentScrolledIntoFirstVisiblePage;
   NSInteger _animatingToPageIndex;
@@ -51,8 +50,6 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
 
 
 @implementation NIPagingScrollView
-
-
 
 - (void)commonInit {
   // Default state.
@@ -697,6 +694,14 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
     _type = type;
     self.pagingScrollView.scrollsToTop = (type == NIPagingScrollViewVertical);
   }
+}
+
+- (UIScrollView *)pagingScrollView {
+  return _pagingScrollView;
+}
+
+- (NSMutableSet *)visiblePages {
+  return _visiblePages;
 }
 
 @end

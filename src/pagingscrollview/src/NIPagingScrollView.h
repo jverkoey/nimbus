@@ -43,7 +43,8 @@ typedef enum {
 @class NIViewRecycler;
 
 /**
- * A paged scroll view that shows a series of pages.
+ * The NIPagingScrollView class provides a UITableView-like interface for loading pages via a data
+ * source.
  *
  *      @ingroup NimbusPagingScrollView
  */
@@ -61,33 +62,132 @@ typedef enum {
 #pragma mark State
 
 - (UIView<NIPagingScrollViewPage> *)centerPageView;
-@property (nonatomic, assign) NSInteger centerPageIndex; // Use moveToPageAtIndex:animated: to animate to a given page.
+@property (nonatomic) NSInteger centerPageIndex; // Use moveToPageAtIndex:animated: to animate to a given page.
 
-@property (nonatomic, readonly, assign) NSInteger numberOfPages;
+@property (nonatomic, readonly) NSInteger numberOfPages;
 
 #pragma mark Configuring Presentation
 
-@property (nonatomic, assign) CGFloat pageMargin;
-@property (nonatomic, assign) NIPagingScrollViewType type; // Default: NIPagingScrollViewHorizontal
+@property (nonatomic) CGFloat pageMargin;
+@property (nonatomic) NIPagingScrollViewType type; // Default: NIPagingScrollViewHorizontal
 
-#pragma mark Changing the Visible Page
+#pragma mark Visible Pages
 
 - (BOOL)hasNext;
 - (BOOL)hasPrevious;
 - (void)moveToNextAnimated:(BOOL)animated;
 - (void)moveToPreviousAnimated:(BOOL)animated;
-- (BOOL)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated;
 - (BOOL)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated updateVisiblePagesWhileScrolling:(BOOL)updateVisiblePagesWhileScrolling;
+
+// Short form for moveToPageAtIndex:pageIndex animated:animated updateVisiblePagesWhileScrolling:NO
+- (BOOL)moveToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated;
 
 #pragma mark Rotating the Scroll View
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 
-#pragma mark Subclassing
+@end
 
-@property (nonatomic, readonly, strong) UIScrollView* pagingScrollView;
-@property (nonatomic, readonly, copy) NSMutableSet* visiblePages; // Set of UIView<NIPagingScrollViewPage>*
+/**
+ * The delegate for NIPagingScrollView.
+ *
+ *      @ingroup NimbusPagingScrollView
+ */
+@protocol NIPagingScrollViewDelegate <UIScrollViewDelegate>
+@optional
+
+#pragma mark Scrolling and Zooming /** @name [NIPhotoAlbumScrollViewDelegate] Scrolling and Zooming */
+
+/**
+ * The user is scrolling between two photos.
+ */
+- (void)pagingScrollViewDidScroll:(NIPagingScrollView *)pagingScrollView;
+
+#pragma mark Changing Pages /** @name [NIPagingScrollViewDelegate] Changing Pages */
+
+/**
+ * The current page will change.
+ *
+ * pagingScrollView.centerPageIndex will reflect the old page index, not the new
+ * page index.
+ */
+- (void)pagingScrollViewWillChangePages:(NIPagingScrollView *)pagingScrollView;
+
+/**
+ * The current page has changed.
+ *
+ * pagingScrollView.centerPageIndex will reflect the changed page index.
+ */
+- (void)pagingScrollViewDidChangePages:(NIPagingScrollView *)pagingScrollView;
+
+@end
+
+/**
+ * The data source for NIPagingScrollView.
+ *
+ *      @ingroup NimbusPagingScrollView
+ */
+@protocol NIPagingScrollViewDataSource <NSObject>
+@required
+
+#pragma mark Fetching Required Album Information /** @name [NIPagingScrollViewDataSource] Fetching Required Album Information */
+
+/**
+ * Fetches the total number of pages in the scroll view.
+ *
+ * The value returned in this method will be cached by the scroll view until reloadData
+ * is called again.
+ */
+- (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView;
+
+/**
+ * Fetches a page that will be displayed at the given page index.
+ *
+ * You should always try to reuse pages by calling dequeueReusablePageWithIdentifier: on the
+ * paging scroll view before allocating a new page.
+ */
+- (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex;
+
+@end
+
+/**
+ * The protocol that a paging scroll view page should implement.
+ *
+ * By providing a protocol instead of a UIView base class we allow more flexibility when
+ * building pages.
+ *
+ *      @ingroup NimbusPagingScrollView
+ */
+@protocol NIPagingScrollViewPage <NIRecyclableView>
+@required
+
+/**
+ * The index of this page view.
+ */
+@property (nonatomic, assign) NSInteger pageIndex;
+
+@optional
+
+/**
+ * Called after the page has gone off-screen.
+ *
+ * This method should be used to reset any state information after a page goes off-screen.
+ * For example, in the Nimbus photo viewer we reset the zoom scale so that if the photo
+ * was zoomed in it will fit on the screen again when the user flips back and forth between
+ * two pages.
+ */
+- (void)pageDidDisappear;
+
+/**
+ * Called when the frame of the page is going to change.
+ *
+ * Use this method to maintain any state that may be affected by the frame changing.
+ * The Nimbus photo viewer uses this method to save and restore the zoom and center
+ * point. This makes the photo always appear to rotate around the center point of the screen
+ * rather than the center of the photo.
+ */
+- (void)setFrameAndMaintainState:(CGRect)frame;
 
 @end
 
@@ -132,7 +232,6 @@ typedef enum {
  *      @fn NIPagingScrollView::delegate
  */
 
-
 /** @name Configuring Presentation */
 
 /**
@@ -155,7 +254,6 @@ typedef enum {
  *
  *      @fn NIPagingScrollView::type
  */
-
 
 /** @name State */
 
@@ -198,7 +296,6 @@ typedef enum {
  *      @fn NIPagingScrollView::numberOfPages
  */
 
-
 /** @name Changing the Visible Page */
 
 /**
@@ -237,13 +334,16 @@ typedef enum {
  * Move to the given page index with optional animation and option to enable page updates while
  * scrolling.
  *
+ * NOTE: Passing YES for moveToPageAtIndex:animated:updateVisiblePagesWhileScrolling will cause
+ * every page from the present page to the destination page to be loaded. This has the potential to
+ * cause choppy animations.
+ *
  *      @param updateVisiblePagesWhileScrolling If YES, will query the data source for any pages
  *                                              that become visible while the animation occurs.
  *      @returns NO if a page change animation is already in effect and we couldn't change the page
  *               again.
  *      @fn NIPagingScrollView::moveToPageAtIndex:animated:updateVisiblePagesWhileScrolling:
  */
-
 
 /** @name Rotating the Scroll View */
 
@@ -261,7 +361,6 @@ typedef enum {
  *
  *      @fn NIPagingScrollView::willAnimateRotationToInterfaceOrientation:duration:
  */
-
 
 /** @name Subclassing */
 

@@ -28,6 +28,11 @@
 // Meant to be subclassed.
 - (UIView<NIPagingScrollViewPage> *)loadPageAtIndex:(NSInteger)pageIndex;
 
+#pragma mark Accessing Child Views
+
+- (UIScrollView *)pagingScrollView;
+- (NSMutableSet *)visiblePages; // Set of UIView<NIPagingScrollViewPage>*
+
 @end
 
 // Methods that are not meant to be subclassed.
