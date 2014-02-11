@@ -30,7 +30,7 @@
 
 #pragma mark Accessing Child Views
 
-- (UIScrollView *)pagingScrollView;
+- (UIScrollView *)scrollView;
 - (NSMutableSet *)visiblePages; // Set of UIView<NIPagingScrollViewPage>*
 
 @end
