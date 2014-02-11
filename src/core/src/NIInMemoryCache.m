@@ -88,13 +88,13 @@
 - (id)initWithCapacity:(NSUInteger)capacity {
   if ((self = [super init])) {
     _cacheMap = [[NSMutableDictionary alloc] initWithCapacity:capacity];
-    _lruCacheObjects = [[NSMutableOrderedSet alloc] init];
+    _lruCacheObjects = [NSMutableOrderedSet orderedSet];
 
     // Automatically reduce memory usage when we get a memory warning.
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(reduceMemoryUsage)
-                                                 name: UIApplicationDidReceiveMemoryWarningNotification
-                                               object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reduceMemoryUsage)
+                                                 name:UIApplicationDidReceiveMemoryWarningNotification
+                                               object:nil];
   }
   return self;
 }
@@ -110,7 +110,7 @@
           self.cacheMap];
 }
 
-#pragma mark - Internal Methods
+#pragma mark - Internal
 
 - (void)updateAccessTimeForInfo:(NIMemoryCacheInfo *)info {
   @synchronized(self) {
@@ -128,7 +128,7 @@
 - (NIMemoryCacheInfo *)cacheInfoForName:(NSString *)name {
   NIMemoryCacheInfo* info;
   @synchronized(self) {
-    info = [self.cacheMap objectForKey:name];
+    info = self.cacheMap[name];
   }
   return info;
 }
@@ -143,13 +143,10 @@
     // Storing in the cache counts as an access of the object, so we update the access time.
     [self updateAccessTimeForInfo:info];
 
-    if ([self shouldSetObject:info.object
-                     withName:name
-               previousObject:[self cacheInfoForName:name].object]) {
-      [self.cacheMap setObject:info forKey:name];
-
-      [self didSetObject:info.object
-                withName:name];
+    id previousObject = [self cacheInfoForName:name].object;
+    if ([self shouldSetObject:info.object withName:name previousObject:previousObject]) {
+      self.cacheMap[name] = info;
+      [self didSetObject:info.object withName:name];
     }
   }
 }
@@ -191,7 +188,6 @@
 
 #pragma mark - Public
 
-
 - (void)storeObject:(id)object withName:(NSString *)name {
   @synchronized(self) {
     [self storeObject:object withName:name expiresAfter:nil];
@@ -212,6 +208,7 @@
       // We're done here.
       return;
     }
+
     NIMemoryCacheInfo* info = [self cacheInfoForName:name];
 
     // Create a new cache entry.
@@ -232,10 +229,10 @@
 }
 
 - (id)objectWithName:(NSString *)name {
-  id object = nil;
-
   @synchronized(self) {
     NIMemoryCacheInfo* info = [self cacheInfoForName:name];
+
+    id object = nil;
 
     if (nil != info) {
       if ([info hasExpired]) {
@@ -248,9 +245,9 @@
         object = info.object;
       }
     }
-  }
 
-  return object;
+    return object;
+  }
 }
 
 - (BOOL)containsObjectWithName:(NSString *)name {
@@ -313,9 +310,10 @@
 
 - (void)removeAllObjectsWithPrefix:(NSString *)prefix {
   @synchronized(self) {
-    for (NSString* key in [self.cacheMap copy]) {
-      if ([key hasPrefix:prefix]) {
-        [self removeObjectWithName:key];
+    // Assertions fire if you try to modify the object you're iterating over, so we make a copy.
+    for (NSString* name in [self.cacheMap copy]) {
+      if ([name hasPrefix:prefix]) {
+        [self removeObjectWithName:name];
       }
     }
   }
@@ -323,36 +321,31 @@
 
 - (void)removeAllObjects {
   @synchronized(self) {
-    self.cacheMap = [[NSMutableDictionary alloc] init];
-    self.lruCacheObjects = [[NSMutableOrderedSet alloc] init];
+    [self.cacheMap removeAllObjects];
+    [self.lruCacheObjects removeAllObjects];
   }
 }
 
 - (void)reduceMemoryUsage {
   @synchronized(self) {
-    // Copy the cache map because it's likely that we're going to modify it.
-    NSDictionary* cacheMap = [self.cacheMap copy];
-
-    // Iterate over the copied cache map (which will not be modified).
-    for (id name in cacheMap) {
+    // Assertions fire if you try to modify the object you're iterating over, so we make a copy.
+    for (id name in [self.cacheMap copy]) {
       NIMemoryCacheInfo* info = [self cacheInfoForName:name];
 
       if ([info hasExpired]) {
         [self removeCacheInfoForName:name];
       }
     }
-    cacheMap = nil;
   }
 }
 
 - (NSUInteger)count {
   @synchronized(self) {
-    return [self.cacheMap count];
+    return self.cacheMap.count;
   }
 }
 
 @end
-
 
 @implementation NIMemoryCacheInfo
 
@@ -379,22 +372,18 @@
 @end
 
 @interface NIImageMemoryCache()
-@property (nonatomic, assign) NSUInteger numberOfPixels;
+@property (nonatomic, assign) unsigned long long numberOfPixels;
 @end
 
 @implementation NIImageMemoryCache
 
-- (NSUInteger)numberOfPixelsUsedByImage:(UIImage *)image {
+- (unsigned long long)numberOfPixelsUsedByImage:(UIImage *)image {
   @synchronized(self) {
     if (nil == image) {
       return 0;
     }
 
-    NSUInteger numberOfPixels = (NSUInteger)(image.size.width * image.size.height);
-    if ([image respondsToSelector:@selector(scale)]) {
-      numberOfPixels *= [image scale];
-    }
-    return numberOfPixels;
+    return (unsigned long long)(image.size.width * image.size.height * [image scale] * [image scale]);
   }
 }
 
@@ -428,8 +417,8 @@
       return NO;
     }
 
-    self.numberOfPixels -= [self numberOfPixelsUsedByImage:previousObject];
-    self.numberOfPixels += [self numberOfPixelsUsedByImage:object];
+    _numberOfPixels -= [self numberOfPixelsUsedByImage:previousObject];
+    _numberOfPixels += [self numberOfPixelsUsedByImage:object];
 
     return YES;
   }
@@ -438,13 +427,10 @@
 - (void)didSetObject:(id)object withName:(NSString *)name {
   @synchronized(self) {
     // Reduce the cache size after the object has been set in case the cache size is smaller
-    // than the object that's being added and we need to remove this object right away. If we
-    // try to reduce the cache size before the object's been set, we won't have anything to remove
-    // and we'll get stuck in an infinite loop.
+    // than the object that's being added and we need to remove this object right away.
     if (self.maxNumberOfPixels > 0) {
       // Remove least recently used images until we satisfy our memory constraints.
-      while (self.numberOfPixels > self.maxNumberOfPixels
-             && [self.lruCacheObjects count] > 0) {
+      while (self.numberOfPixels > self.maxNumberOfPixels) {
         NIMemoryCacheInfo* info = [self.lruCacheObjects firstObject];
         [self removeCacheInfoForName:info.name];
       }
@@ -456,7 +442,7 @@
   @synchronized(self) {
     NIDASSERT(nil == object || [object isKindOfClass:[UIImage class]]);
     if (nil == object || ![object isKindOfClass:[UIImage class]]) {
-      return; // COV_NF_LINE
+      return;
     }
 
     self.numberOfPixels -= [self numberOfPixelsUsedByImage:object];

@@ -58,7 +58,6 @@
 
 - (void)reduceMemoryUsage;
 
-
 // Subclassing
 
 - (BOOL)shouldSetObject:(id)object withName:(NSString *)name previousObject:(id)previousObject;
@@ -90,9 +89,12 @@
  *      @see Nimbus::setImageMemoryCache:
  */
 @interface NIImageMemoryCache : NIMemoryCache
-@property (nonatomic, readonly, assign) NSUInteger numberOfPixels;
-@property (nonatomic, assign) NSUInteger maxNumberOfPixels;
-@property (nonatomic, assign) NSUInteger maxNumberOfPixelsUnderStress;
+
+@property (nonatomic, readonly) unsigned long long numberOfPixels;
+
+@property (nonatomic)           unsigned long long maxNumberOfPixels;             // Default: 0 (unlimited)
+@property (nonatomic)           unsigned long long maxNumberOfPixelsUnderStress;  // Default: 0 (unlimited)
+
 @end
 
 /**@}*/// End of In-Memory Cache //////////////////////////////////////////////////////////////////
