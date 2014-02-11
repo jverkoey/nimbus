@@ -143,6 +143,9 @@
 - (void)didLoadPhoto: (UIImage *)image
              atIndex: (NSInteger)pageIndex
            photoSize: (NIPhotoScrollViewPhotoSize)photoSize {
+  // This modifies the UI and therefor MUST be executed on the main thread.
+  NIDASSERT([NSThread isMainThread]);
+
   for (NIPhotoScrollView* page in self.visiblePages) {
     if (page.pageIndex == pageIndex) {
 
