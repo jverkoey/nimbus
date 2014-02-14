@@ -172,7 +172,7 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
 
     self.backgroundColor = (_translucent
                             ? [UIColor colorWithWhite:0 alpha:0.5f]
-                            : (self.tintColor
+                            : ((NIIsTintColorGloballySupported() && self.tintColor)
                                ? self.tintColor
                                : [UIColor colorWithPatternImage:_backgroundImage]));
   }
