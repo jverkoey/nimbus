@@ -29,8 +29,6 @@
 
 @implementation NILauncherViewController
 
-
-
 - (void)loadView {
   [super loadView];
 
@@ -42,12 +40,6 @@
   self.view = self.launcherView;
 
   self.shouldReloadData = YES;
-}
-
-- (void)viewDidUnload {
-  self.launcherView = nil;
-
-  [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

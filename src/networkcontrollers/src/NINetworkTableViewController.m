@@ -67,13 +67,6 @@
   [self.view addSubview:self.activityIndicator];
 }
 
-- (void)viewDidUnload {
-  self.tableView = nil;
-  self.activityIndicator = nil;
-
-  [super viewDidUnload];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 

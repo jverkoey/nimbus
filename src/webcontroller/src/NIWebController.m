@@ -266,23 +266,6 @@
   }
 }
 
-- (void)viewDidUnload {
-  [super viewDidUnload];
-
-  self.actionSheet.delegate = nil;
-  self.webView.delegate = nil;
-
-  self.actionSheet = nil;
-  self.webView = nil;
-  self.toolbar = nil;
-  self.backButton = nil;
-  self.forwardButton = nil;
-  self.refreshButton = nil;
-  self.stopButton = nil;
-  self.actionButton = nil;
-  self.activityItem = nil;
-}
-
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
