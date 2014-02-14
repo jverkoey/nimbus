@@ -243,6 +243,18 @@ BOOL NIIsStringWithWhitespaceAndNewlines(NSString* string);
 NSComparisonResult NICompareVersionStrings(NSString* string1, NSString* string2);
 
 /**
+ * Parses a URL query string into a dictionary where the values are arrays.
+ *
+ * A query string is one that looks like &param1=value1&param2=value2...
+ *
+ * The resulting NSDictionary will contain keys for each parameter name present in the query.
+ * The value for each key will be an NSArray which may be empty if the key is simply present
+ * in the query. Otherwise each object in the array with be an NSString corresponding to a value
+ * in the query for that parameter.
+ */
+NSDictionary* NIQueryDictionaryFromStringUsingEncoding(NSString* string, NSStringEncoding encoding);
+
+/**
  * Returns a string that has been escaped for use as a URL parameter.
  */
 NSString* NIStringByAddingPercentEscapesForURLParameterString(NSString* parameter);

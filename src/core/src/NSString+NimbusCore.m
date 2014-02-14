@@ -49,45 +49,4 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
 }
 // COV_NF_END
 
-
-/**
- * Parses a URL query string into a dictionary where the values are arrays.
- *
- * A query string is one that looks like &param1=value1&param2=value2...
- *
- * The resulting NSDictionary will contain keys for each parameter name present in the query.
- * The value for each key will be an NSArray which may be empty if the key is simply present
- * in the query. Otherwise each object in the array with be an NSString corresponding to a value
- * in the query for that parameter.
- */
-- (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding {
-  NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
-  NSMutableDictionary* pairs = [NSMutableDictionary dictionary];
-  NSScanner* scanner = [[NSScanner alloc] initWithString:self];
-  while (![scanner isAtEnd]) {
-    NSString* pairString = nil;
-    [scanner scanUpToCharactersFromSet:delimiterSet intoString:&pairString];
-    [scanner scanCharactersFromSet:delimiterSet intoString:NULL];
-    NSArray* kvPair = [pairString componentsSeparatedByString:@"="];
-    if (kvPair.count == 1 || kvPair.count == 2) {
-      NSString* key = [[kvPair objectAtIndex:0]
-                       stringByReplacingPercentEscapesUsingEncoding:encoding];
-      NSMutableArray* values = [pairs objectForKey:key];
-      if (nil == values) {
-        values = [NSMutableArray array];
-        [pairs setObject:values forKey:key];
-      }
-      if (kvPair.count == 1) {
-        [values addObject:[NSNull null]];
-
-      } else if (kvPair.count == 2) {
-        NSString* value = [[kvPair objectAtIndex:1]
-                           stringByReplacingPercentEscapesUsingEncoding:encoding];
-        [values addObject:value];
-      }
-    }
-  }
-  return [NSDictionary dictionaryWithDictionary:pairs];
-}
-
 @end

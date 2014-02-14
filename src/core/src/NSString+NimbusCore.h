@@ -28,8 +28,4 @@
        constrainedToWidth: (CGFloat)width
             lineBreakMode: (NSLineBreakMode)lineBreakMode;
 
-#pragma mark URL queries
-
-- (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding;
-
 @end
