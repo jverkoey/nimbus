@@ -90,43 +90,4 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
   return [NSDictionary dictionaryWithDictionary:pairs];
 }
 
-/**
- * Returns a string that has been escaped for use as a URL parameter.
- */
-- (NSString *)stringByAddingPercentEscapesForURLParameter {
-  
-  CFStringRef buffer = 
-  CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                          (__bridge CFStringRef)self,
-                                          NULL,
-                                          (__bridge CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                          kCFStringEncodingUTF8);
-  
-  NSString *result = [NSString stringWithString:(__bridge NSString *)buffer];
-  
-  CFRelease(buffer);
-  
-  return result;
-}
-
-/**
- * Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.
- */
-- (NSString*)stringByAddingQueryDictionary:(NSDictionary*)query {
-  NSMutableArray* pairs = [NSMutableArray array];
-  for (NSString* key in [query keyEnumerator]) {
-    NSString* value = [[query objectForKey:key] stringByAddingPercentEscapesForURLParameter];
-    NSString* pair = [NSString stringWithFormat:@"%@=%@", key, value];
-    [pairs addObject:pair];
-  }
-
-  NSString* params = [pairs componentsJoinedByString:@"&"];
-  if ([self rangeOfString:@"?"].location == NSNotFound) {
-    return [self stringByAppendingFormat:@"?%@", params];
-
-  } else {
-    return [self stringByAppendingFormat:@"&%@", params];
-  }
-}
-
 @end

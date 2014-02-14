@@ -214,6 +214,35 @@ NSComparisonResult NICompareVersionStrings(NSString* string1, NSString* string2)
   return [oneAlpha compare:twoAlpha];
 }
 
+NSString* NIStringByAddingPercentEscapesForURLParameterString(NSString* parameter) {
+  CFStringRef buffer = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                               (__bridge CFStringRef)parameter,
+                                                               NULL,
+                                                               (__bridge CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                               kCFStringEncodingUTF8);
+
+  NSString* result = [NSString stringWithString:(__bridge NSString *)buffer];
+  CFRelease(buffer);
+  return result;
+}
+
+NSString* NIStringByAddingQueryDictionaryToString(NSString* string, NSDictionary* query) {
+  NSMutableArray* pairs = [NSMutableArray array];
+  for (NSString* key in [query keyEnumerator]) {
+    NSString* value = NIStringByAddingPercentEscapesForURLParameterString([query objectForKey:key]);
+    NSString* pair = [NSString stringWithFormat:@"%@=%@", key, value];
+    [pairs addObject:pair];
+  }
+
+  NSString* params = [pairs componentsJoinedByString:@"&"];
+  if ([string rangeOfString:@"?"].location == NSNotFound) {
+    return [string stringByAppendingFormat:@"?%@", params];
+
+  } else {
+    return [string stringByAppendingFormat:@"&%@", params];
+  }
+}
+
 #pragma mark - General Purpose
 
 // Deprecated.

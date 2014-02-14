@@ -31,7 +31,5 @@
 #pragma mark URL queries
 
 - (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding;
-- (NSString *)stringByAddingPercentEscapesForURLParameter;
-- (NSString*)stringByAddingQueryDictionary:(NSDictionary*)query;
 
 @end

@@ -109,29 +109,24 @@
 
 - (void)testNSString_stringByAddingQueryDictionary {
   NSString* baseUrl = @"http://google.com/search";
-  STAssertTrue([[baseUrl stringByAddingQueryDictionary:nil] isEqualToString:
+  STAssertTrue([NIStringByAddingQueryDictionaryToString(baseUrl, nil) isEqualToString:
                 [baseUrl stringByAppendingString:@"?"]], @"Empty dictionary fail.");
 
-  STAssertTrue([[baseUrl stringByAddingQueryDictionary:[NSDictionary dictionary]] isEqualToString:
+  STAssertTrue([NIStringByAddingQueryDictionaryToString(baseUrl, @{}) isEqualToString:
                 [baseUrl stringByAppendingString:@"?"]], @"Empty dictionary fail.");
 
-  STAssertTrue([[baseUrl stringByAddingQueryDictionary:[NSDictionary
-                                                        dictionaryWithObject:@"three20"
-                                                        forKey:@"q"]] isEqualToString:
+  STAssertTrue([NIStringByAddingQueryDictionaryToString(baseUrl, @{@"q":@"three20"}) isEqualToString:
                 [baseUrl stringByAppendingString:@"?q=three20"]], @"Single parameter fail.");
 
-  NSDictionary* query = [NSDictionary
-                         dictionaryWithObjectsAndKeys:
-                         @"three20", @"q",
-                         @"en",      @"hl",
-                         nil];
-  NSString* baseUrlWithQuery = [baseUrl stringByAddingQueryDictionary:query];
+  NSDictionary* query = @{@"q": @"three20",
+                          @"hl": @"en"};
+  NSString* baseUrlWithQuery = NIStringByAddingQueryDictionaryToString(baseUrl, query);
   STAssertTrue([baseUrlWithQuery isEqualToString:[baseUrl
                                                   stringByAppendingString:@"?hl=en&q=three20"]]
                || [baseUrlWithQuery isEqualToString:[baseUrl
                                                      stringByAppendingString:@"?q=three20&hl=en"]],
                @"Additional query parameters not correct. %@",
-               [baseUrl stringByAddingQueryDictionary:query]);
+               NIStringByAddingQueryDictionaryToString(baseUrl, query));
 }
 
 - (void)testNSString_versionStringCompare {

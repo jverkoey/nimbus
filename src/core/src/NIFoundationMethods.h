@@ -242,6 +242,16 @@ BOOL NIIsStringWithWhitespaceAndNewlines(NSString* string);
  */
 NSComparisonResult NICompareVersionStrings(NSString* string1, NSString* string2);
 
+/**
+ * Returns a string that has been escaped for use as a URL parameter.
+ */
+NSString* NIStringByAddingPercentEscapesForURLParameterString(NSString* parameter);
+
+/**
+ * Appends a dictionary of query parameters to a string, adding the ? character if necessary.
+ */
+NSString* NIStringByAddingQueryDictionaryToString(NSString* string, NSDictionary* query);
+
 /**@}*/
 
 
