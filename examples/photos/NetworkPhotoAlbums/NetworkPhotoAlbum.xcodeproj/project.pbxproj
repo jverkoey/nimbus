@@ -45,7 +45,6 @@
 		665E0BC113CE815D008A1D21 /* NIRuntimeClassModifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BB013CE815D008A1D21 /* NIRuntimeClassModifications.m */; };
 		665E0BC213CE815D008A1D21 /* NISDKAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BB213CE815D008A1D21 /* NISDKAvailability.m */; };
 		665E0BC313CE815D008A1D21 /* NIState.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BB413CE815D008A1D21 /* NIState.m */; };
-		665E0BC513CE815D008A1D21 /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BB613CE815D008A1D21 /* NSString+NimbusCore.m */; };
 		665E0BCF13CE816E008A1D21 /* NIPhotoAlbumScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BCA13CE816E008A1D21 /* NIPhotoAlbumScrollView.m */; };
 		665E0BD013CE816E008A1D21 /* NIPhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BCC13CE816E008A1D21 /* NIPhotoScrollView.m */; };
 		665E0BD113CE816E008A1D21 /* NIToolbarPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E0BCE13CE816E008A1D21 /* NIToolbarPhotoViewController.m */; };
@@ -155,7 +154,6 @@
 		665E0BB213CE815D008A1D21 /* NISDKAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NISDKAvailability.m; path = ../../../src/core/src/NISDKAvailability.m; sourceTree = SOURCE_ROOT; };
 		665E0BB313CE815D008A1D21 /* NIState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIState.h; path = ../../../src/core/src/NIState.h; sourceTree = SOURCE_ROOT; };
 		665E0BB413CE815D008A1D21 /* NIState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIState.m; path = ../../../src/core/src/NIState.m; sourceTree = SOURCE_ROOT; };
-		665E0BB613CE815D008A1D21 /* NSString+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NimbusCore.m"; path = "../../../src/core/src/NSString+NimbusCore.m"; sourceTree = SOURCE_ROOT; };
 		665E0BC813CE816E008A1D21 /* NimbusPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusPhotos.h; path = ../../../src/photos/src/NimbusPhotos.h; sourceTree = SOURCE_ROOT; };
 		665E0BC913CE816E008A1D21 /* NIPhotoAlbumScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPhotoAlbumScrollView.h; path = ../../../src/photos/src/NIPhotoAlbumScrollView.h; sourceTree = SOURCE_ROOT; };
 		665E0BCA13CE816E008A1D21 /* NIPhotoAlbumScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPhotoAlbumScrollView.m; path = ../../../src/photos/src/NIPhotoAlbumScrollView.m; sourceTree = SOURCE_ROOT; };
@@ -391,7 +389,6 @@
 				665E0BB413CE815D008A1D21 /* NIState.m */,
 				66F27D5B145B7DF500AFCA08 /* NIViewRecycler.h */,
 				66F27D5C145B7DF500AFCA08 /* NIViewRecycler.m */,
-				665E0BB613CE815D008A1D21 /* NSString+NimbusCore.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -612,7 +609,6 @@
 				665E0BC113CE815D008A1D21 /* NIRuntimeClassModifications.m in Sources */,
 				665E0BC213CE815D008A1D21 /* NISDKAvailability.m in Sources */,
 				665E0BC313CE815D008A1D21 /* NIState.m in Sources */,
-				665E0BC513CE815D008A1D21 /* NSString+NimbusCore.m in Sources */,
 				665E0BCF13CE816E008A1D21 /* NIPhotoAlbumScrollView.m in Sources */,
 				665E0BD013CE816E008A1D21 /* NIPhotoScrollView.m in Sources */,
 				665E0BD113CE816E008A1D21 /* NIToolbarPhotoViewController.m in Sources */,

@@ -85,7 +85,6 @@
 		6693C210158A81D400950D42 /* NISDKAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1F7158A81D300950D42 /* NISDKAvailability.m */; };
 		6693C211158A81D400950D42 /* NIState.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1F9158A81D300950D42 /* NIState.m */; };
 		6693C212158A81D400950D42 /* NIViewRecycler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1FB158A81D300950D42 /* NIViewRecycler.m */; };
-		6693C214158A81D400950D42 /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C1FF158A81D300950D42 /* NSString+NimbusCore.m */; };
 		6693C227158A81DD00950D42 /* NICellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C217158A81DD00950D42 /* NICellCatalog.m */; };
 		6693C228158A81DD00950D42 /* NICellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C219158A81DD00950D42 /* NICellFactory.m */; };
 		6693C229158A81DD00950D42 /* NIFormCellCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6693C21B158A81DD00950D42 /* NIFormCellCatalog.m */; };
@@ -303,8 +302,6 @@
 		6693C1F9158A81D300950D42 /* NIState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIState.m; path = ../../src/core/src/NIState.m; sourceTree = "<group>"; };
 		6693C1FA158A81D300950D42 /* NIViewRecycler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIViewRecycler.h; path = ../../src/core/src/NIViewRecycler.h; sourceTree = "<group>"; };
 		6693C1FB158A81D300950D42 /* NIViewRecycler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIViewRecycler.m; path = ../../src/core/src/NIViewRecycler.m; sourceTree = "<group>"; };
-		6693C1FE158A81D300950D42 /* NSString+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+NimbusCore.h"; path = "../../src/core/src/NSString+NimbusCore.h"; sourceTree = "<group>"; };
-		6693C1FF158A81D300950D42 /* NSString+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NimbusCore.m"; path = "../../src/core/src/NSString+NimbusCore.m"; sourceTree = "<group>"; };
 		6693C216158A81DD00950D42 /* NICellCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICellCatalog.h; path = ../../src/models/src/NICellCatalog.h; sourceTree = "<group>"; };
 		6693C217158A81DD00950D42 /* NICellCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICellCatalog.m; path = ../../src/models/src/NICellCatalog.m; sourceTree = "<group>"; };
 		6693C218158A81DD00950D42 /* NICellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICellFactory.h; path = ../../src/models/src/NICellFactory.h; sourceTree = "<group>"; };
@@ -709,8 +706,6 @@
 				6693C1F9158A81D300950D42 /* NIState.m */,
 				6693C1FA158A81D300950D42 /* NIViewRecycler.h */,
 				6693C1FB158A81D300950D42 /* NIViewRecycler.m */,
-				6693C1FE158A81D300950D42 /* NSString+NimbusCore.h */,
-				6693C1FF158A81D300950D42 /* NSString+NimbusCore.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -1054,7 +1049,6 @@
 				6693C210158A81D400950D42 /* NISDKAvailability.m in Sources */,
 				6693C211158A81D400950D42 /* NIState.m in Sources */,
 				6693C212158A81D400950D42 /* NIViewRecycler.m in Sources */,
-				6693C214158A81D400950D42 /* NSString+NimbusCore.m in Sources */,
 				6693C227158A81DD00950D42 /* NICellCatalog.m in Sources */,
 				6693C228158A81DD00950D42 /* NICellFactory.m in Sources */,
 				6693EFFB18A7A34A00A600A0 /* NICollectionViewCellFactory.m in Sources */,
