@@ -180,7 +180,7 @@
   [self.view addSubview:_photoAlbumView];
   [self.view addSubview:_toolbar];
 
-  if (self.hidesChromeWhenScrolling) {
+  if (self.hidesChromeWhenScrolling || self.chromeCanBeHidden) {
     [self addTapGestureToView];
   }
 }
@@ -473,24 +473,22 @@
     [self addTapGestureToView];
 
   } else {
-    [_tapGesture setEnabled:NO];
+    [_tapGesture setEnabled:_chromeCanBeHidden];
   }
 }
 
 - (void)setChromeCanBeHidden:(BOOL)canBeHidden {
   _chromeCanBeHidden = canBeHidden;
 
-  if (!canBeHidden) {
+  if (canBeHidden) {
+    [self addTapGestureToView];
+
+  } else {
     self.hidesChromeWhenScrolling = NO;
 
     if ([self isViewLoaded]) {
-      // Ensure that the toolbar is visible.
-      self.toolbar.hidden = NO;
-
-      CGRect toolbarFrame = self.toolbar.frame;
-      CGRect bounds = self.view.bounds;
-      toolbarFrame.origin.y = bounds.size.height - toolbarFrame.size.height;
-      self.toolbar.frame = toolbarFrame;
+      // Ensure that the chrome is visible.
+      [self setChromeVisibility:YES animated:NO];
     }
   }
 }
