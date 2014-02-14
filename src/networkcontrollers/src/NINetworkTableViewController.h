@@ -16,12 +16,18 @@
 
 #import <UIKit/UIKit.h>
 
-#import "NIPreprocessorMacros.h" /* for weak */
 /**
- * A table view controller that has a loading state.
+ * The NINetworkTableViewController class provides a similar implementation to UITableViewController
+ * but with a more structured view hierarchy.
  *
- * This table controller mimics UITableViewController in its implementation and can be used as a
- * drop-in replacement where necessary.
+ * UITableViewController's self.view \em is its self.tableView. This can be problematic if you want
+ * to introduce any sibling views that have a higher or lower z-index. This class provides an
+ * implementation that, to the best of its abilities, mimics the functionality of
+ * UITableViewController in every way but one: self.tableView is a subview of self.view. This simple
+ * difference allows us to add new views above the tableView in the z-index.
+ *
+ * In this particular implementation we include an activity indicator component which may be used
+ * to show that data is currently being loaded.
  */
 @interface NINetworkTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
