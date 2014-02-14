@@ -81,38 +81,35 @@
   
   NSString* photoIndexKey = [self cacheKeyForPhotoIndex:photoIndex];
 
-  AFImageRequestOperation* readOp =
-  [AFImageRequestOperation imageRequestOperationWithRequest:request
-                                       imageProcessingBlock:nil success:
-   ^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-     // Store the image in the correct image cache.
-     if (isThumbnail) {
-       [_thumbnailImageCache storeObject: image
-                                withName: photoIndexKey];
-       
-     } else {
-       [_highQualityImageCache storeObject: image
-                                  withName: photoIndexKey];
-     }
-     
-     // If you decide to move this code around then ensure that this method is called from
-     // the main thread. Calling it from any other thread will have undefined results.
-     [self.photoAlbumView didLoadPhoto: image
-                               atIndex: photoIndex
-                             photoSize: photoSize];
-     
-     if (isThumbnail) {
-       [self.photoScrubberView didLoadThumbnail:image atIndex:photoIndex];
-     }
-     
-     [_activeRequests removeObject:identifierKey];
-     
-   } failure:
-   ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-     
-   }];
+  AFHTTPRequestOperation* readOp = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+  AFImageResponseSerializer* responseSerializer = [AFImageResponseSerializer serializer];
+  responseSerializer.imageScale = 1;
+  readOp.responseSerializer = responseSerializer;
 
-  readOp.imageScale = 1;
+  [readOp setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, UIImage* image) {
+    // Store the image in the correct image cache.
+    if (isThumbnail) {
+      [_thumbnailImageCache storeObject: image
+                               withName: photoIndexKey];
+
+    } else {
+      [_highQualityImageCache storeObject: image
+                                 withName: photoIndexKey];
+    }
+
+    // If you decide to move this code around then ensure that this method is called from
+    // the main thread. Calling it from any other thread will have undefined results.
+    [self.photoAlbumView didLoadPhoto: image
+                              atIndex: photoIndex
+                            photoSize: photoSize];
+
+    if (isThumbnail) {
+      [self.photoScrubberView didLoadThumbnail:image atIndex:photoIndex];
+    }
+
+    [_activeRequests removeObject:identifierKey];
+
+  } failure:nil];
 
   // Set the operation priority level.
 

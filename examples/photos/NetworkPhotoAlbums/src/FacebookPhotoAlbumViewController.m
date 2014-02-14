@@ -17,6 +17,7 @@
 #import "FacebookPhotoAlbumViewController.h"
 
 #import "CaptionedPhotoView.h"
+#import "NIPagingScrollView+Subclassing.h"
 #import "AFNetworking.h"
 
 
@@ -46,8 +47,8 @@
   }
 }
 
-- (void (^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))blockForAlbumProcessing {
-  return ^(NSURLRequest *request, NSHTTPURLResponse *response, id object) {
+- (void (^)(AFHTTPRequestOperation *operation, id JSON))blockForAlbumProcessing {
+  return ^(AFHTTPRequestOperation *operation, id object) {
     NSArray* data = [object objectForKey:@"data"];
     
     NSMutableArray* photoInformation = [NSMutableArray arrayWithCapacity:[data count]];
@@ -120,14 +121,9 @@
   // frustrating is that you can't ask *not* to receive the comments from the graph API.
   request.timeoutInterval = 200;
 
-  AFJSONRequestOperation* albumRequest =
-  [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-                                                  success:[self blockForAlbumProcessing]
-                                                  failure:
-   ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-     
-   }];
-
+  AFHTTPRequestOperation* albumRequest = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+  albumRequest.responseSerializer = [AFJSONResponseSerializer serializer];
+  [albumRequest setCompletionBlockWithSuccess:[self blockForAlbumProcessing] failure:nil];
   [self.queue addOperation:albumRequest];
 }
 

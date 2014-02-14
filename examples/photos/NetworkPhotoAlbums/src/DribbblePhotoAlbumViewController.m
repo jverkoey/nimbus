@@ -44,8 +44,8 @@
   }
 }
 
-- (void (^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))blockForAlbumProcessing {
-  return ^(NSURLRequest *request, NSHTTPURLResponse *response, id object) {
+- (void (^)(AFHTTPRequestOperation *operation, id JSON))blockForAlbumProcessing {
+  return ^(AFHTTPRequestOperation *operation, id object) {
     NSArray* data = [object objectForKey:@"shots"];
     
     NSMutableArray* photoInformation = [NSMutableArray arrayWithCapacity:[data count]];
@@ -88,16 +88,10 @@
   // operations and pruning on the results.
   NSURL* url = [NSURL URLWithString:albumURLPath];
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-  
-  AFJSONRequestOperation* albumRequest =
-  [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-                                                  success:[self blockForAlbumProcessing]
-                                                  failure:
-   ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-     
-   }];
 
-
+  AFHTTPRequestOperation* albumRequest = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+  albumRequest.responseSerializer = [AFJSONResponseSerializer serializer];
+  [albumRequest setCompletionBlockWithSuccess:[self blockForAlbumProcessing] failure:nil];
   [self.queue addOperation:albumRequest];
 }
 
