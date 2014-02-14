@@ -44,7 +44,7 @@ typedef enum {
 /**
  * A simple translator from raw CSS rulesets to Objective-C values.
  *
- *      @ingroup NimbusCSS
+ * @ingroup NimbusCSS
  *
  * Objective-C values are created on-demand and cached. These ruleset objects are cached
  * by NIStylesheet for a given CSS scope. When a memory warning is received, all ruleset objects
@@ -328,31 +328,31 @@ typedef enum {
 /**
  * Adds a raw CSS ruleset to this ruleset object.
  *
- *      @fn NICSSRuleset::addEntriesFromDictionary:
+ * @fn NICSSRuleset::addEntriesFromDictionary:
  */
 
 /**
  * Returns YES if the ruleset has a 'color' property.
  *
- *      @fn NICSSRuleset::hasTextColor
+ * @fn NICSSRuleset::hasTextColor
  */
 
 /**
  * Returns the text color.
  *
- *      @fn NICSSRuleset::textColor
+ * @fn NICSSRuleset::textColor
  */
 
 /**
  * Returns YES if the ruleset has a 'text-align' property.
  *
- *      @fn NICSSRuleset::hasTextAlignment
+ * @fn NICSSRuleset::hasTextAlignment
  */
 
 /**
  * Returns the text alignment.
  *
- *      @fn NICSSRuleset::textAlignment
+ * @fn NICSSRuleset::textAlignment
  */
 
 /**
@@ -364,181 +364,181 @@ typedef enum {
  * either of these things you must specify the font-family that corresponds to the bold or italic
  * version of your font.
  *
- *      @fn NICSSRuleset::hasFont
+ * @fn NICSSRuleset::hasFont
  */
 
 /**
  * Returns the font.
  *
- *      @fn NICSSRuleset::font
+ * @fn NICSSRuleset::font
  */
 
 /**
  * Returns YES if the ruleset has a 'text-shadow' property.
  *
- *      @fn NICSSRuleset::hasTextShadowColor
+ * @fn NICSSRuleset::hasTextShadowColor
  */
 
 /**
  * Returns the text shadow color.
  *
- *      @fn NICSSRuleset::textShadowColor
+ * @fn NICSSRuleset::textShadowColor
  */
 
 /**
  * Returns YES if the ruleset has a 'text-shadow' property.
  *
- *      @fn NICSSRuleset::hasTextShadowOffset
+ * @fn NICSSRuleset::hasTextShadowOffset
  */
 
 /**
  * Returns the text shadow offset.
  *
- *      @fn NICSSRuleset::textShadowOffset
+ * @fn NICSSRuleset::textShadowOffset
  */
 
 /**
  * Returns YES if the ruleset has an '-ios-line-break-mode' property.
  *
- *      @fn NICSSRuleset::hasLineBreakMode
+ * @fn NICSSRuleset::hasLineBreakMode
  */
 
 /**
  * Returns the line break mode.
  *
- *      @fn NICSSRuleset::lineBreakMode
+ * @fn NICSSRuleset::lineBreakMode
  */
 
 /**
  * Returns YES if the ruleset has an '-ios-number-of-lines' property.
  *
- *      @fn NICSSRuleset::hasNumberOfLines
+ * @fn NICSSRuleset::hasNumberOfLines
  */
 
 /**
  * Returns the number of lines.
  *
- *      @fn NICSSRuleset::numberOfLines
+ * @fn NICSSRuleset::numberOfLines
  */
 
 /**
  * Returns YES if the ruleset has an '-ios-minimum-font-size' property.
  *
- *      @fn NICSSRuleset::hasMinimumFontSize
+ * @fn NICSSRuleset::hasMinimumFontSize
  */
 
 /**
  * Returns the minimum font size.
  *
- *      @fn NICSSRuleset::minimumFontSize
+ * @fn NICSSRuleset::minimumFontSize
  */
 
 /**
  * Returns YES if the ruleset has an '-ios-adjusts-font-size' property.
  *
- *      @fn NICSSRuleset::hasAdjustsFontSize
+ * @fn NICSSRuleset::hasAdjustsFontSize
  */
 
 /**
  * Returns the adjustsFontSize value.
  *
- *      @fn NICSSRuleset::adjustsFontSize
+ * @fn NICSSRuleset::adjustsFontSize
  */
 
 /**
  * Returns YES if the ruleset has an '-ios-baseline-adjustment' property.
  *
- *      @fn NICSSRuleset::hasBaselineAdjustment
+ * @fn NICSSRuleset::hasBaselineAdjustment
  */
 
 /**
  * Returns the baseline adjustment.
  *
- *      @fn NICSSRuleset::baselineAdjustment
+ * @fn NICSSRuleset::baselineAdjustment
  */
 
 /**
  * Returns YES if the ruleset has an 'opacity' property.
  *
- *      @fn NICSSRuleset::hasOpacity
+ * @fn NICSSRuleset::hasOpacity
  */
 
 /**
  * Returns the opacity.
  *
- *      @fn NICSSRuleset::opacity
+ * @fn NICSSRuleset::opacity
  */
 
 /**
  * Returns YES if the ruleset has a 'background-color' property.
  *
- *      @fn NICSSRuleset::hasBackgroundColor
+ * @fn NICSSRuleset::hasBackgroundColor
  */
 
 /**
  * Returns the background color.
  *
- *      @fn NICSSRuleset::backgroundColor
+ * @fn NICSSRuleset::backgroundColor
  */
 
 /**
  * Returns YES if the ruleset has a 'border-radius' property.
  *
- *      @fn NICSSRuleset::hasBorderRadius
+ * @fn NICSSRuleset::hasBorderRadius
  */
 
 /**
  * Returns the border radius.
  *
- *      @fn NICSSRuleset::borderRadius
+ * @fn NICSSRuleset::borderRadius
  */
 
 /**
  * Returns YES if the ruleset has a 'border' or 'border-color' property.
  *
- *      @fn NICSSRuleset::hasBorderColor
+ * @fn NICSSRuleset::hasBorderColor
  */
 
 /**
  * Returns the border color.
  *
- *      @fn NICSSRuleset::borderColor
+ * @fn NICSSRuleset::borderColor
  */
 
 /**
  * Returns YES if the ruleset has a 'border' or 'border-width' property.
  *
- *      @fn NICSSRuleset::hasBorderWidth
+ * @fn NICSSRuleset::hasBorderWidth
  */
 
 /**
  * Returns the border width.
  *
- *      @fn NICSSRuleset::borderWidth
+ * @fn NICSSRuleset::borderWidth
  */
 
 /**
  * Returns YES if the ruleset has an '-ios-tint-color' property.
  *
- *      @fn NICSSRuleset::hasTintColor
+ * @fn NICSSRuleset::hasTintColor
  */
 
 /**
  * Returns the tint color.
  *
- *      @fn NICSSRuleset::tintColor
+ * @fn NICSSRuleset::tintColor
  */
 
 /**
  * Returns YES if the ruleset has a 'width' property.
  *
- *      @fn NICSSRuleset::hasWidth
+ * @fn NICSSRuleset::hasWidth
  */
 
 /**
  * Returns the width.
  *
- *      @fn NICSSRuleset::width
+ * @fn NICSSRuleset::width
  */
 
 /**
@@ -552,7 +552,7 @@ typedef enum {
  * in the engine (for now), since we will evaluate the rules immediately. TODO add some simple dependency
  * management to make sure we've run the right views first.
  *
- *      @fn NICSSRuleset::relativeToId
+ * @fn NICSSRuleset::relativeToId
  */
 
 /**
@@ -562,7 +562,7 @@ typedef enum {
  * off the height of relativeToId and modify the position relative to margin-top:0. So -100% means "align top".
  * A value of auto means we will align the center y of relativeToId with the center y of this view.
  *
- *      @fn NICSSRuleset::margin-top
+ * @fn NICSSRuleset::margin-top
  */
 
 /**
@@ -573,7 +573,7 @@ typedef enum {
  * of this view with the top of relativeToId.
  * A value of auto means we will align the center y of relativeToId with the center y of this view.
  *
- *      @fn NICSSRuleset::margin-bottom
+ * @fn NICSSRuleset::margin-bottom
  */
 
 /**
@@ -584,7 +584,7 @@ typedef enum {
  * of this view with the left of relativeToId.
  * A value of auto means we will align the center x of relativeToId with the center x of this view.
  *
- *      @fn NICSSRuleset::margin-left
+ * @fn NICSSRuleset::margin-left
  */
 
 /**
@@ -595,7 +595,7 @@ typedef enum {
  * of this view with the left of relativeToId.
  * A value of auto means we will align the center x of relativeToId with the center x of this view.
  *
- *      @fn NICSSRuleset::margin-right
+ * @fn NICSSRuleset::margin-right
  */
 
 /**
@@ -603,17 +603,17 @@ typedef enum {
  * other things, use the CSS to hold variable information that has an effect on the layout of the views that
  * cannot be expressed as a style - such as padding.
  *
- *      @fn NICSSRuleset::cssRuleForKey
+ * @fn NICSSRuleset::cssRuleForKey
  */
 
 /**
  * For views that support sizeToFit, padding will add a value to the computed size
  *
- *      @fn NICSSRuleset::horizontalPadding
+ * @fn NICSSRuleset::horizontalPadding
  */
 
 /**
  * For views that support sizeToFit, padding will add a value to the computed size
  *
- *      @fn NICSSRuleset::verticalPadding
+ * @fn NICSSRuleset::verticalPadding
  */

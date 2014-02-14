@@ -56,9 +56,9 @@ extern "C" {
  * }
  * @endcode
  *
- *      @ingroup NimbusCore
- *      @defgroup Common-Metrics Common Metrics
- *      @{
+ * @ingroup NimbusCore
+ * @defgroup Common-Metrics Common Metrics
+ * @{
  */
 
 #ifndef UIViewAutoresizingFlexibleMargins
@@ -152,7 +152,7 @@ CGFloat NIStatusBarHeight(void);
  * Value: 0.4 seconds if the device is being rotated 90 degrees.
  *        0.8 seconds if the device is being rotated 180 degrees.
  *
- *      @param isFlippingUpsideDown YES if the device is being flipped upside down.
+ * @param isFlippingUpsideDown YES if the device is being flipped upside down.
  */
 NSTimeInterval NIDeviceRotationDuration(BOOL isFlippingUpsideDown);
 

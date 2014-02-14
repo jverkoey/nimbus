@@ -33,7 +33,7 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 /**
  * A launcher view that simulates iOS' home screen launcher functionality.
  *
- *      @ingroup NimbusLauncher
+ * @ingroup NimbusLauncher
  */
 @interface NILauncherView : UIView
 
@@ -67,9 +67,9 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 /**
  * Tells the receiver to return the number of rows in a given section of a table view (required).
  *
- *      @param launcherView The launcher-view object requesting this information.
- *      @param page The index locating a page in @c launcherView.
- *      @returns The number of buttons in @c page.
+ * @param launcherView The launcher-view object requesting this information.
+ * @param page The index locating a page in @c launcherView.
+ * @returns The number of buttons in @c page.
  */
 - (NSInteger)launcherView:(NILauncherView *)launcherView numberOfButtonsInPage:(NSInteger)page;
 
@@ -77,10 +77,10 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
  * Tells the receiver to return a button view for inserting into a particular location of a given
  * page in the launcher view (required).
  *
- *      @param launcherView The launcher-view object requesting this information.
- *      @param page The index locating a page in @c launcherView.
- *      @param index The index locating a button in a page.
- *      @returns A UIView that conforms to NILauncherButtonView that the launcher will display on
+ * @param launcherView The launcher-view object requesting this information.
+ * @param page The index locating a page in @c launcherView.
+ * @param index The index locating a button in a page.
+ * @returns A UIView that conforms to NILauncherButtonView that the launcher will display on
                 the given page. An assertion is raised if you return nil.
  */
 - (UIView<NILauncherButtonView> *)launcherView:(NILauncherView *)launcherView buttonViewForPage:(NSInteger)page atIndex:(NSInteger)index;
@@ -92,9 +92,9 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
  *
  * It is assumed that the launcher view has one page if this method is not implemented.
  *
- *      @param launcherView The launcher-view object requesting this information.
- *      @returns The number of pages in @c launcherView. The default value is 1.
- *      @sa NILauncherDataSource::launcherView:numberOfButtonsInPage:
+ * @param launcherView The launcher-view object requesting this information.
+ * @returns The number of pages in @c launcherView. The default value is 1.
+ * @sa NILauncherDataSource::launcherView:numberOfButtonsInPage:
  */
 - (NSInteger)numberOfPagesInLauncherView:(NILauncherView *)launcherView;
 
@@ -105,9 +105,9 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
  * This method will be called each time the frame of the launcher view changes. Notably, this will
  * be called when the launcher view has been rotated as a result of a device rotation.
  *
- *      @param launcherView The launcher-view object requesting this information.
- *      @returns The number of rows of buttons each page can display.
- *      @sa NILauncherDataSource::numberOfColumnsPerPageInLauncherView:
+ * @param launcherView The launcher-view object requesting this information.
+ * @returns The number of rows of buttons each page can display.
+ * @sa NILauncherDataSource::numberOfColumnsPerPageInLauncherView:
  */
 - (NSInteger)numberOfRowsPerPageInLauncherView:(NILauncherView *)launcherView;
 
@@ -118,9 +118,9 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
  * This method will be called each time the frame of the launcher view changes. Notably, this will
  * be called when the launcher view has been rotated as a result of a device rotation.
  *
- *      @param launcherView The launcher-view object requesting this information.
- *      @returns The number of columns of buttons each page can display.
- *      @sa NILauncherDataSource::numberOfRowsPerPageInLauncherView:
+ * @param launcherView The launcher-view object requesting this information.
+ * @returns The number of columns of buttons each page can display.
+ * @sa NILauncherDataSource::numberOfRowsPerPageInLauncherView:
  */
 - (NSInteger)numberOfColumnsPerPageInLauncherView:(NILauncherView *)launcherView;
 
@@ -140,10 +140,10 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
 /**
  * Informs the receiver that the specified item on the specified page has been selected.
  *
- *      @param launcherView A launcher-view object informing the delegate about the new item
+ * @param launcherView A launcher-view object informing the delegate about the new item
  *                          selection.
- *      @param page A page index locating the selected item in @c launcher.
- *      @param index An index locating the selected item in the given page.
+ * @param page A page index locating the selected item in @c launcher.
+ * @param index An index locating the selected item in the given page.
  */
 - (void)launcherView:(NILauncherView *)launcherView didSelectItemOnPage:(NSInteger)page atIndex:(NSInteger)index;
 
@@ -171,7 +171,7 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
  *
  * By default this value is NSIntegerMax.
  *
- *      @fn NILauncherView::maxNumberOfButtonsPerPage
+ * @fn NILauncherView::maxNumberOfButtonsPerPage
  */
 
 /**
@@ -180,37 +180,37 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
  * Use this property to add to the area around the content of each page. The unit of size is points.
  * The default value is 10 points on all sides.
  *
- *      @fn NILauncherView::contentInsetForPages
+ * @fn NILauncherView::contentInsetForPages
  */
 
 /**
  * The size of each launcher button.
  *
- *      @fn NILauncherView::buttonSize
+ * @fn NILauncherView::buttonSize
  */
 
 /**
  * The number of rows to display on each page.
  *
- *      @fn NILauncherView::numberOfRows
+ * @fn NILauncherView::numberOfRows
  */
 
 /**
  * The number of columns to display on each page.
  *
- *      @fn NILauncherView::numberOfColumns
+ * @fn NILauncherView::numberOfColumns
  */
 
 /**
  * Returns a reusable launcher button view object located by its identifier.
  *
- *      @param identifier A string identifying the launcher button view object to be reused. By
+ * @param identifier A string identifying the launcher button view object to be reused. By
  *                        default, a reusable view's identifier is its class name, but you can
  *                        change it to any arbitrary value.
- *      @returns A UIView object with the associated identifier that conforms to the
+ * @returns A UIView object with the associated identifier that conforms to the
  *               NILauncherButtonView protocol, or nil if no such object exists in the reusable-cell
  *               queue.
- *      @fn NILauncherView::dequeueReusableViewWithIdentifier:
+ * @fn NILauncherView::dequeueReusableViewWithIdentifier:
  */
 
 /** @name Managing the Delegate and the Data Source */
@@ -220,7 +220,7 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
  *
  * The delegate must adopt the NILauncherDelegate protocol. The delegate is not retained.
  *
- *      @fn NILauncherView::delegate
+ * @fn NILauncherView::delegate
  */
 
 /**
@@ -228,7 +228,7 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
  *
  * The data source must adopt the NILauncherDataSource protocol. The data source is not retained.
  *
- *      @fn NILauncherView::dataSource
+ * @fn NILauncherView::dataSource
  */
 
 /** @name Reloading the Table View */
@@ -240,7 +240,7 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
  * and buttons. For efficiency, the launcher redisplays only those pages that are visible or nearly
  * visible.
  *
- *      @fn NILauncherView::reloadData
+ * @fn NILauncherView::reloadData
  */
 
 /** @name Rotating the Launcher View */
@@ -251,11 +251,11 @@ extern const NSInteger NILauncherViewGridBasedOnButtonSize;
  * This must be called in conjunction with willAnimateRotationToInterfaceOrientation:duration:
  * in the methods by the same name from the view controller containing this view.
  *
- *      @fn NILauncherView::willRotateToInterfaceOrientation:duration:
+ * @fn NILauncherView::willRotateToInterfaceOrientation:duration:
  */
 
 /**
  * Updates the frame of the launcher view while maintaining the current visible page's state.
  *
- *      @fn NILauncherView::willAnimateRotationToInterfaceOrientation:duration:
+ * @fn NILauncherView::willAnimateRotationToInterfaceOrientation:duration:
  */

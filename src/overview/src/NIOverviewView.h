@@ -23,7 +23,7 @@
 /**
  * The root scrolling page view of the Overview.
  *
- *      @ingroup Overview
+ * @ingroup Overview
  */
 @interface NIOverviewView : UIView {
 @private

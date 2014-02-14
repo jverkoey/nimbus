@@ -27,7 +27,7 @@
  *
  * Views will be laid out from left to right and then from top to bottom.
  *
- *      @ingroup NimbusLauncher
+ * @ingroup NimbusLauncher
  */
 @interface NILauncherPageView : NIPagingScrollViewPage
 
@@ -50,21 +50,21 @@
  * When this page view is preparing for reuse it will add each of its button views to the recycler.
  * This recycler should be the same recycler used by all pages in the launcher view.
  *
- *      @fn NILauncherPageView::viewRecycler
+ * @fn NILauncherPageView::viewRecycler
  */
 
 /**
  * Add a recyclable view to this page.
  *
- *      @param view A recyclable view.
- *      @fn NILauncherPageView::addRecyclableView:
+ * @param view A recyclable view.
+ * @fn NILauncherPageView::addRecyclableView:
  */
 
 /**
  * All of the recyclable views that have been added to this page.
  *
- *      @returns An array of recyclable views in the same order in which they were added.
- *      @fn NILauncherPageView::recyclableViews
+ * @returns An array of recyclable views in the same order in which they were added.
+ * @fn NILauncherPageView::recyclableViews
  */
 
 /** @name Configuring Display Attributes */
@@ -75,7 +75,7 @@
  * Use this property to add to the area around the content. The unit of size is points.
  * The default value is UIEdgeInsetsZero.
  *
- *      @fn NILauncherPageView::contentInset
+ * @fn NILauncherPageView::contentInset
  */
 
 /**
@@ -83,7 +83,7 @@
  *
  * The unit of size is points. The default value is CGSizeZero.
  *
- *      @fn NILauncherPageView::viewSize
+ * @fn NILauncherPageView::viewSize
  */
 
 /**
@@ -95,5 +95,5 @@
  * Width is the horizontal distance between each view. Height is the vertical distance between each
  * view. The unit of size is points. The default value is CGSizeZero.
  *
- *      @fn NILauncherPageView::viewMargins
+ * @fn NILauncherPageView::viewMargins
  */

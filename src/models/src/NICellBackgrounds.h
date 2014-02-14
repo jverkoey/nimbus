@@ -22,7 +22,7 @@
 /**
  * The NIGroupedCellAppearance protocol provides support for each cell to adjust their appearance.
  *
- *      @ingroup TableCellBackgrounds
+ * @ingroup TableCellBackgrounds
  */
 @protocol NIGroupedCellAppearance <NSObject>
 
@@ -50,7 +50,7 @@ typedef enum {
  * The NIGroupedCellBackground class provides support for generating grouped UITableView cell
  * backgrounds.
  *
- *      @ingroup TableCellBackgrounds
+ * @ingroup TableCellBackgrounds
  */
 @interface NIGroupedCellBackground : NSObject
 
@@ -76,9 +76,9 @@ typedef enum {
  * The returned image is cached internally after the first request. Changing any of the display
  * properties will invalidate the cached images.
  *
- *      @param first YES will round the top corners.
- *      @param last  YES will round the bottom corners.
- *      @param highlighed YES will fill the contents with the highlightedInnerGradientColors.
- *      @returns A UIImage representing the given configuration.
- *      @fn NIGroupedCellBackground::imageForFirst:last:highlighted:
+ * @param first YES will round the top corners.
+ * @param last  YES will round the bottom corners.
+ * @param highlighed YES will fill the contents with the highlightedInnerGradientColors.
+ * @returns A UIImage representing the given configuration.
+ * @fn NIGroupedCellBackground::imageForFirst:last:highlighted:
  */

@@ -46,7 +46,7 @@ typedef enum {
  * The NIPagingScrollView class provides a UITableView-like interface for loading pages via a data
  * source.
  *
- *      @ingroup NimbusPagingScrollView
+ * @ingroup NimbusPagingScrollView
  */
 @interface NIPagingScrollView : UIView <UIScrollViewDelegate>
 
@@ -92,7 +92,7 @@ typedef enum {
 /**
  * The delegate for NIPagingScrollView.
  *
- *      @ingroup NimbusPagingScrollView
+ * @ingroup NimbusPagingScrollView
  */
 @protocol NIPagingScrollViewDelegate <UIScrollViewDelegate>
 @optional
@@ -126,7 +126,7 @@ typedef enum {
 /**
  * The data source for NIPagingScrollView.
  *
- *      @ingroup NimbusPagingScrollView
+ * @ingroup NimbusPagingScrollView
  */
 @protocol NIPagingScrollViewDataSource <NSObject>
 @required
@@ -157,7 +157,7 @@ typedef enum {
  * By providing a protocol instead of a UIView base class we allow more flexibility when
  * building pages.
  *
- *      @ingroup NimbusPagingScrollView
+ * @ingroup NimbusPagingScrollView
  */
 @protocol NIPagingScrollViewPage <NIRecyclableView>
 @required
@@ -199,7 +199,7 @@ typedef enum {
  * This is the only means by which this paging view acquires any information about the
  * album to be displayed.
  *
- *      @fn NIPagingScrollView::dataSource
+ * @fn NIPagingScrollView::dataSource
  */
 
 /**
@@ -212,7 +212,7 @@ typedef enum {
  * pages. If the number of pages shrinks then the current center page index will be decreased
  * accordingly.
  *
- *      @fn NIPagingScrollView::reloadData
+ * @fn NIPagingScrollView::reloadData
  */
 
 /**
@@ -221,7 +221,7 @@ typedef enum {
  * If no pages have been recycled for the given identifier then this will return nil.
  * In this case it is your responsibility to create a new page.
  *
- *      @fn NIPagingScrollView::dequeueReusablePageWithIdentifier:
+ * @fn NIPagingScrollView::dequeueReusablePageWithIdentifier:
  */
 
 /**
@@ -229,7 +229,7 @@ typedef enum {
  *
  * Any user interactions or state changes are sent to the delegate through this property.
  *
- *      @fn NIPagingScrollView::delegate
+ * @fn NIPagingScrollView::delegate
  */
 
 /** @name Configuring Presentation */
@@ -241,7 +241,7 @@ typedef enum {
  *
  * By default this is NIPagingScrollViewDefaultPageMargin.
  *
- *      @fn NIPagingScrollView::pageMargin
+ * @fn NIPagingScrollView::pageMargin
  */
 
 /**
@@ -252,7 +252,7 @@ typedef enum {
  *
  * By default this is NIPagingScrollViewHorizontal.
  *
- *      @fn NIPagingScrollView::type
+ * @fn NIPagingScrollView::type
  */
 
 /** @name State */
@@ -262,7 +262,7 @@ typedef enum {
  *
  * If no pages exist then this will return nil.
  *
- *      @fn NIPagingScrollView::centerPageView
+ * @fn NIPagingScrollView::centerPageView
  */
 
 /**
@@ -273,7 +273,7 @@ typedef enum {
  *
  * Setting this value directly will center the new page without any animation.
  *
- *      @fn NIPagingScrollView::centerPageIndex
+ * @fn NIPagingScrollView::centerPageIndex
  */
 
 /**
@@ -282,7 +282,7 @@ typedef enum {
  * This method is deprecated in favor of
  * @link NIPagingScrollView::moveToPageAtIndex:animated: moveToPageAtIndex:animated:@endlink
  *
- *      @fn NIPagingScrollView::setCenterPageIndex:animated:
+ * @fn NIPagingScrollView::setCenterPageIndex:animated:
  */
 
 /**
@@ -293,7 +293,7 @@ typedef enum {
  * Until reloadData is called the first time, numberOfPages will be
  * NIPagingScrollViewUnknownNumberOfPages.
  *
- *      @fn NIPagingScrollView::numberOfPages
+ * @fn NIPagingScrollView::numberOfPages
  */
 
 /** @name Changing the Visible Page */
@@ -301,33 +301,33 @@ typedef enum {
 /**
  * Returns YES if there is a next page.
  *
- *      @fn NIPagingScrollView::hasNext
+ * @fn NIPagingScrollView::hasNext
  */
 
 /**
  * Returns YES if there is a previous page.
  *
- *      @fn NIPagingScrollView::hasPrevious
+ * @fn NIPagingScrollView::hasPrevious
  */
 
 /**
  * Move to the next page if there is one.
  *
- *      @fn NIPagingScrollView::moveToNextAnimated:
+ * @fn NIPagingScrollView::moveToNextAnimated:
  */
 
 /**
  * Move to the previous page if there is one.
  *
- *      @fn NIPagingScrollView::moveToPreviousAnimated:
+ * @fn NIPagingScrollView::moveToPreviousAnimated:
  */
 
 /**
  * Move to the given page index with optional animation.
  *
- *      @returns NO if a page change animation is already in effect and we couldn't change the page
+ * @returns NO if a page change animation is already in effect and we couldn't change the page
  *               again.
- *      @fn NIPagingScrollView::moveToPageAtIndex:animated:
+ * @fn NIPagingScrollView::moveToPageAtIndex:animated:
  */
 
 /**
@@ -338,11 +338,11 @@ typedef enum {
  * every page from the present page to the destination page to be loaded. This has the potential to
  * cause choppy animations.
  *
- *      @param updateVisiblePagesWhileScrolling If YES, will query the data source for any pages
+ * @param updateVisiblePagesWhileScrolling If YES, will query the data source for any pages
  *                                              that become visible while the animation occurs.
- *      @returns NO if a page change animation is already in effect and we couldn't change the page
+ * @returns NO if a page change animation is already in effect and we couldn't change the page
  *               again.
- *      @fn NIPagingScrollView::moveToPageAtIndex:animated:updateVisiblePagesWhileScrolling:
+ * @fn NIPagingScrollView::moveToPageAtIndex:animated:updateVisiblePagesWhileScrolling:
  */
 
 /** @name Rotating the Scroll View */
@@ -353,13 +353,13 @@ typedef enum {
  * This must be called in conjunction with willAnimateRotationToInterfaceOrientation:duration:
  * in the methods by the same name from the view controller containing this view.
  *
- *      @fn NIPagingScrollView::willRotateToInterfaceOrientation:duration:
+ * @fn NIPagingScrollView::willRotateToInterfaceOrientation:duration:
  */
 
 /**
  * Updates the frame of the scroll view while maintaining the current visible page's state.
  *
- *      @fn NIPagingScrollView::willAnimateRotationToInterfaceOrientation:duration:
+ * @fn NIPagingScrollView::willAnimateRotationToInterfaceOrientation:duration:
  */
 
 /** @name Subclassing */
@@ -369,7 +369,7 @@ typedef enum {
  *
  * Meant to be used by subclasses only.
  *
- *      @fn NIPagingScrollView::pagingScrollView
+ * @fn NIPagingScrollView::pagingScrollView
  */
 
 /**
@@ -377,5 +377,5 @@ typedef enum {
  *
  * Meant to be used by subclasses only.
  *
- *      @fn NIPagingScrollView::visiblePages
+ * @fn NIPagingScrollView::visiblePages
  */

@@ -22,7 +22,7 @@
 /**
  * An interface for interacting with other apps installed on the device.
  *
- *      @ingroup NimbusInterapp
+ * @ingroup NimbusInterapp
  */
 @interface NIInterapp : NSObject
 
@@ -153,7 +153,7 @@
 /**
  * Opens the given URL in Safari.
  *
- *      @fn NIInterapp::safariWithURL:
+ * @fn NIInterapp::safariWithURL:
  */
 
 
@@ -162,19 +162,19 @@
 /**
  * Returns YES if the Google Chrome application is installed.
  *
- *      @fn NIInterapp::googleChromeIsInstalled
+ * @fn NIInterapp::googleChromeIsInstalled
  */
 
 /**
  * Opens the given URL in Google Chrome if installed on the device.
  *
- *      @fn NIINterapp::googleChromeWithURL:
+ * @fn NIINterapp::googleChromeWithURL:
  */
 
 /**
  * The Google Chrome App Store ID.
  *
- *      @fn NIInterapp::googleChromeAppStoreId
+ * @fn NIInterapp::googleChromeAppStoreId
  */
 
 
@@ -183,25 +183,25 @@
 /**
  * Opens Google Maps at the given location.
  *
- *      @fn NIInterapp::googleMapAtLocation:
+ * @fn NIInterapp::googleMapAtLocation:
  */
 
 /**
  * Opens Google Maps at the given location with a title.
  *
- *      @fn NIInterapp::googleMapAtLocation:title:
+ * @fn NIInterapp::googleMapAtLocation:title:
  */
 
 /**
  * Opens Google Maps with directions from one location to another.
  *
- *      @fn NIInterapp::googleMapDirectionsFromLocation:toLocation:
+ * @fn NIInterapp::googleMapDirectionsFromLocation:toLocation:
  */
 
 /**
  * Opens Google Maps with a generic query.
  *
- *      @fn NIInterapp::googleMapWithQuery:
+ * @fn NIInterapp::googleMapWithQuery:
  */
 
 
@@ -210,13 +210,13 @@
 /**
  * Opens the phone app.
  *
- *      @fn NIInterapp::phone
+ * @fn NIInterapp::phone
  */
 
 /**
  * Make a phone call with the given number.
  *
- *      @fn NIInterapp::phoneWithNumber:
+ * @fn NIInterapp::phoneWithNumber:
  */
 
 
@@ -225,13 +225,13 @@
 /**
  * Opens the phone app.
  *
- *      @fn NIInterapp::sms
+ * @fn NIInterapp::sms
  */
 
 /**
  * Start texting the given number.
  *
- *      @fn NIInterapp::smsWithNumber:
+ * @fn NIInterapp::smsWithNumber:
  */
 
 
@@ -240,7 +240,7 @@
 /**
  * Opens mail with the given invocation properties.
  *
- *      @fn NIInterapp::mailWithInvocation:
+ * @fn NIInterapp::mailWithInvocation:
  */
 
 
@@ -249,7 +249,7 @@
 /**
  * Opens the YouTube video with the given video id.
  *
- *      @fn NIInterapp::youTubeWithVideoId:
+ * @fn NIInterapp::youTubeWithVideoId:
  */
 
 
@@ -258,20 +258,20 @@
 /**
  * Returns YES if the iBooks application is installed.
  *
- *      @fn NIInterapp::iBooksIsInstalled
+ * @fn NIInterapp::iBooksIsInstalled
  */
 
 /**
  * Opens the iBooks application. If the iBooks application is not installed, will open the
  * App Store to the iBooks download page.
  *
- *      @fn NIInterapp::iBooks
+ * @fn NIInterapp::iBooks
  */
 
 /**
  * The iBooks App Store ID.
  *
- *      @fn NIInterapp::iBooksAppStoreId
+ * @fn NIInterapp::iBooksAppStoreId
  */
 
 
@@ -280,26 +280,26 @@
 /**
  * Returns YES if the Facebook application is installed.
  *
- *      @fn NIInterapp::facebookIsInstalled
+ * @fn NIInterapp::facebookIsInstalled
  */
 
 /**
  * Opens the Facebook application. If the Facebook application is not installed, will open the
  * App Store to the Facebook download page.
  *
- *      @fn NIInterapp::facebook
+ * @fn NIInterapp::facebook
  */
 
 /**
  * Opens the Facebook profile with the given id.
  *
- *      @fn NIInterapp::facebookProfileWithId:
+ * @fn NIInterapp::facebookProfileWithId:
  */
 
 /**
  * The Facebook App Store ID.
  *
- *      @fn NIInterapp::facebookAppStoreId
+ * @fn NIInterapp::facebookAppStoreId
  */
 
 
@@ -308,32 +308,32 @@
 /**
  * Returns YES if the Twitter application is installed.
  *
- *      @fn NIInterapp::twitterIsInstalled
+ * @fn NIInterapp::twitterIsInstalled
  */
 
 /**
  * Opens the Twitter application. If the Twitter application is not installed, will open the
  * App Store to the Twitter download page.
  *
- *      @fn NIInterapp::twitter
+ * @fn NIInterapp::twitter
  */
 
 /**
  * Begins composing a message.
  *
- *      @fn NIInterapp::twitterWithMessage:
+ * @fn NIInterapp::twitterWithMessage:
  */
 
 /**
  * Opens the profile for the given username.
  *
- *      @fn NIInterapp::twitterProfileForUsername:
+ * @fn NIInterapp::twitterProfileForUsername:
  */
 
 /**
  * The Twitter App Store ID.
  *
- *      @fn NIInterapp::twitterAppStoreId
+ * @fn NIInterapp::twitterAppStoreId
  */
 
 
@@ -342,39 +342,39 @@
 /**
  * Returns YES if the supplied application is installed.
  *
- *      @fn NIInterapp::applicationIsInstalledWithScheme:
+ * @fn NIInterapp::applicationIsInstalledWithScheme:
  */
 
 /**
  * Opens the supplied application.
  *
- *      @fn NIInterapp::applicationWithScheme
+ * @fn NIInterapp::applicationWithScheme
  */
 
 /**
  * Opens the supplied application. If the supplied application is not installed, will open the
  * App Store to the specified ID download page.
  *
- *      @fn NIInterapp::applicationWithScheme:andAppStoreId:
+ * @fn NIInterapp::applicationWithScheme:andAppStoreId:
  */
 
 /**
  * Opens the supplied application.
  *
- *      @fn NIInterapp::applicationWithScheme:andPath:
+ * @fn NIInterapp::applicationWithScheme:andPath:
  */
 
 /**
  * Opens the supplied application, to the specified path. If the supplied application is not installed, will open the
  * App Store to the download page for the specified AppStoreId.
  *
- *      @fn NIInterapp::applicationWithScheme:appStoreId:andPath:
+ * @fn NIInterapp::applicationWithScheme:appStoreId:andPath:
  */
 
 /**
  * Opens the application with the supplied custom URL.
  *
- *      @fn NIInterapp::applicationWithUrl:
+ * @fn NIInterapp::applicationWithUrl:
  */
 
 
@@ -384,26 +384,26 @@
 /**
  * Returns YES if the Instagram application is installed.
  *
- *      @fn NIInterapp::instagramIsInstalled
+ * @fn NIInterapp::instagramIsInstalled
  */
 
 /**
  * Opens the Instagram application. If the Instagram application is not installed, will open the
  * App Store to the Instagram download page.
  *
- *      @fn NIInterapp::instagram
+ * @fn NIInterapp::instagram
  */
 
 /**
  * Opens the Instagram camera.
  *
- *      @fn NIInterapp::instagramCamera
+ * @fn NIInterapp::instagramCamera
  */
 
 /**
  * Opens the profile for the given username.
  *
- *      @fn NIInterapp::instagramProfileForUsername:
+ * @fn NIInterapp::instagramProfileForUsername:
  */
 
 /**
@@ -413,13 +413,13 @@
  * The image at filePath must be at least 612x612 and preferably square. If the image
  * is smaller than 612x612 then this method will fail.
  *
- *      @fn NIInterapp::urlForInstagramImageAtFilePath:error:
+ * @fn NIInterapp::urlForInstagramImageAtFilePath:error:
  */
 
 /**
  * The Instagram App Store ID.
  *
- *      @fn NIInterapp::instagramAppStoreId
+ * @fn NIInterapp::instagramAppStoreId
  */
 
 
@@ -428,17 +428,17 @@
 /**
  * Opens the App Store page for the app with the given ID.
  *
- *      @fn NIInterapp::appStoreWithAppId:
+ * @fn NIInterapp::appStoreWithAppId:
  */
 
 /**
  * Opens the "Gift this app" App Store page for the app with the given ID.
  *
- *      @fn NIInterapp::appStoreGiftWithAppId:
+ * @fn NIInterapp::appStoreGiftWithAppId:
  */
 
 /**
  * Opens the "Write a review" App Store page for the app with the given ID.
  *
- *      @fn NIInterapp::appStoreReviewWithAppId:
+ * @fn NIInterapp::appStoreReviewWithAppId:
  */

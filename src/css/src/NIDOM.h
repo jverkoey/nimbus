@@ -22,7 +22,7 @@
 /**
  * A leight-weight DOM-like object to which you attach views and stylesheets.
  *
- *      @ingroup NimbusCSS
+ * @ingroup NimbusCSS
  *
  * To be clear: this is not an HTML DOM, but its intent is the same. NIDOM is designed
  * to simplify the view <=> stylesheet relationship. Add a view to the DOM and it will
@@ -100,19 +100,19 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
 /**
  * Initializes a newly allocated DOM with the given stylesheet.
  *
- *      @fn NIDOM::initWithStylesheet:
+ * @fn NIDOM::initWithStylesheet:
  */
 
 /**
  * Returns an autoreleased DOM initialized with the given stylesheet.
  *
- *      @fn NIDOM::domWithStylesheet:
+ * @fn NIDOM::domWithStylesheet:
  */
 
 /**
  * Returns an autoreleased DOM initialized with a nil-terminated list of file paths.
  *
- *      @fn NIDOM::domWithStylesheetWithPathPrefix:paths:
+ * @fn NIDOM::domWithStylesheetWithPathPrefix:paths:
  */
 
 /**
@@ -121,7 +121,7 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  * performance in the common case where you have a set of global styles and a bunch of view
  * or view controller specific style sheets.
  *
- *      @fn NIDOM::domWithStylesheet:andParentStyles:
+ * @fn NIDOM::domWithStylesheet:andParentStyles:
  */
 
 /** @name Registering Views */
@@ -131,7 +131,7 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  *
  * The view's class will be used as the CSS selector when applying styles from the stylesheet.
  *
- *      @fn NIDOM::registerView:
+ * @fn NIDOM::registerView:
  */
 
 /**
@@ -140,7 +140,7 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  * The view's class as well as the given CSS class string will be used as the CSS selectors
  * when applying styles from the stylesheet.
  *
- *      @fn NIDOM::registerView:withCSSClass:
+ * @fn NIDOM::registerView:withCSSClass:
  */
 
 /**
@@ -148,13 +148,13 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  *
  * Once a view has been removed from the DOM it will not be restyled when the DOM is refreshed.
  *
- *      @fn NIDOM::unregisterView:
+ * @fn NIDOM::unregisterView:
  */
 
 /**
  * Removes all views from from the DOM.
  *
- *      @fn NIDOM::unregisterAllViews
+ * @fn NIDOM::unregisterAllViews
  */
 
 
@@ -164,14 +164,14 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  * Reapplies the stylesheet to all views. Since there may be positioning involved,
  * you may need to reapply if layout or sizes change.
  *
- *      @fn NIDOM::refresh
+ * @fn NIDOM::refresh
  */
 
 /**
  * Reapplies the stylesheet to a single view. Since there may be positioning involved,
  * you may need to reapply if layout or sizes change.
  *
- *      @fn NIDOM::refreshView:
+ * @fn NIDOM::refreshView:
  */
 
 /**
@@ -179,14 +179,14 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  * "undo" the styles that the CSS class generated, it just stops applying them
  * in the future.
  *
- *      @fn NIDOM::removeCssClass:fromView:
+ * @fn NIDOM::removeCssClass:fromView:
  */
 
 /**
  * Create an association of a view with a CSS class and apply relevant styles
  * immediately.
  *
- *      @fn NIDOM::addCssClass:toView:
+ * @fn NIDOM::addCssClass:toView:
  */
 
 /** @name Dynamic View Construction */
@@ -200,7 +200,7 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  * during buildSubviews, so in theory you could set and reset it across multiple
  * build calls if you wanted to.
  *
- *      @fn NIDOM::target
+ * @fn NIDOM::target
  */
 
 /** @name Debugging */
@@ -212,11 +212,11 @@ _dom = [[NIDOM alloc] initWithStylesheet:stylesheet];
  * theoretically replace the CSS infrastructure with generated code, if you choose to. More importantly,
  * it allows you to debug what's happening with view styling.
  *
- *      @fn NIDOM::descriptionForView:withName:
+ * @fn NIDOM::descriptionForView:withName:
  */
 
 /**
  * Call descriptionForView for all registered views, in the order they would be applied during refresh
  *
- *      @fn NIDOM::descriptionForAllViews
+ * @fn NIDOM::descriptionForAllViews
  */

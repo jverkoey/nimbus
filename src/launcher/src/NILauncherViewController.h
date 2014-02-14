@@ -31,7 +31,7 @@
  *
  * @image html NILauncherViewControllerExample1.png "Example of an NILauncherViewController."
  *
- *      @ingroup NimbusLauncher
+ * @ingroup NimbusLauncher
  */
 @interface NILauncherViewController : UIViewController <NILauncherDelegate, NILauncherDataSource>
 
@@ -44,5 +44,5 @@
 /**
  * Returns the launcher view managed by the controller object.
  *
- *      @fn NILauncherViewController::launcherView
+ * @fn NILauncherViewController::launcherView
  */

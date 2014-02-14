@@ -38,7 +38,7 @@
  * protocol on an object outweighs the benefit of using the factory, i.e. when you want to map
  * simple types such as NSString to cells.
  *
- *      @ingroup CollectionViewCellFactory
+ * @ingroup CollectionViewCellFactory
  */
 @interface NICollectionViewCellFactory : NSObject <NICollectionViewModelDelegate>
 
@@ -110,7 +110,7 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
 /**
  * The protocol for an object that can be used in the NICollectionViewCellFactory.
  *
- *      @ingroup CollectionViewCellFactory
+ * @ingroup CollectionViewCellFactory
  */
 @protocol NICollectionViewCellObject <NSObject>
 @required
@@ -124,7 +124,7 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
  * The protocol for an object that can be used in the NICollectionViewCellFactory with Interface
  * Builder nibs.
  *
- *      @ingroup CollectionViewCellFactory
+ * @ingroup CollectionViewCellFactory
  */
 @protocol NICollectionViewNibCellObject <NSObject>
 @required
@@ -141,7 +141,7 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
  * NICollectionViewCellObject protocol and returned this cell's class name in
  * @link NICollectionViewCellObject::collectionViewCellClass collectionViewCellClass@endlink.
  *
- *      @ingroup CollectionViewCellFactory
+ * @ingroup CollectionViewCellFactory
  */
 @protocol NICollectionViewCell <NSObject>
 @required
@@ -196,5 +196,5 @@ _model.delegate = (id)[NICollectionViewCellFactory class];
 /**
  * An object that can be used to populate information in the cell.
  *
- *      @fn NICollectionViewCellObject::userInfo
+ * @fn NICollectionViewCellObject::userInfo
  */

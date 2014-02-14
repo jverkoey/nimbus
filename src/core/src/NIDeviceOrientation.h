@@ -36,9 +36,9 @@ extern "C" {
  *  }
  * @endcode
  *
- *      @ingroup NimbusCore
- *      @defgroup Device-Orientation Device Orientation
- *      @{
+ * @ingroup NimbusCore
+ * @defgroup Device-Orientation Device Orientation
+ * @{
  */
 
 /**
@@ -60,7 +60,7 @@ BOOL NIIsSupportedOrientation(UIInterfaceOrientation orientation);
  *
  * This is simply a convenience method for [UIApplication sharedApplication].statusBarOrientation.
  *
- *      @returns The current interface orientation.
+ * @returns The current interface orientation.
  */
 UIInterfaceOrientation NIInterfaceOrientation(void);
 
@@ -70,7 +70,7 @@ UIInterfaceOrientation NIInterfaceOrientation(void);
  * This is a useful check for phone landscape mode which often requires
  * additional logic to handle the smaller vertical real estate.
  *
- *      @returns YES if the device is a phone and orientation is landscape.
+ * @returns YES if the device is a phone and orientation is landscape.
  */
 BOOL NIIsLandscapePhoneOrientation(UIInterfaceOrientation orientation);
 

@@ -23,7 +23,7 @@
  *
  * This view simply implements the required properties of NIPagingScrollViewPage.
  *
- *      @ingroup NimbusPagingScrollView
+ * @ingroup NimbusPagingScrollView
  */
 @interface NIPagingScrollViewPage : NIRecyclableView <NIPagingScrollViewPage>
 @property (nonatomic) NSInteger pageIndex;
@@ -34,7 +34,7 @@
  *
  * This class will be deleted after February 28, 2014.
  *
- *      @ingroup NimbusPagingScrollView
+ * @ingroup NimbusPagingScrollView
  */
 __NI_DEPRECATED_METHOD
 @interface NIPageView : NIPagingScrollViewPage
@@ -43,5 +43,5 @@ __NI_DEPRECATED_METHOD
 /**
  * The page index.
  *
- *      @fn NIPageView::pageIndex
+ * @fn NIPageView::pageIndex
  */

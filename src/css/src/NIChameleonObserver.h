@@ -29,7 +29,7 @@ extern NSString* const NIJSONDidChangeNameKey;
 /**
  * An observer for the Chameleon server.
  *
- *      @ingroup NimbusCSS
+ * @ingroup NimbusCSS
  *
  * This observer connects to a Chameleon server and waits for changes in stylesheets. Once
  * a stylesheet change has been detected, the new stylesheet is retrieved from the server
@@ -63,13 +63,13 @@ extern NSString* const NIJSONDidChangeNameKey;
 /**
  * Initializes a newly allocated Chameleon observer with a given stylesheet cache and host.
  *
- *      @fn NIChameleonObserver::initWithStylesheetCache:host:
+ * @fn NIChameleonObserver::initWithStylesheetCache:host:
  */
 
 /**
  * Returns a loaded stylesheet from the given path.
  *
- *      @fn NIChameleonObserver::stylesheetForPath:
+ * @fn NIChameleonObserver::stylesheetForPath:
  */
 
 /**
@@ -78,12 +78,12 @@ extern NSString* const NIJSONDidChangeNameKey;
  * When changes are detected the Chameleon observer downloads the new CSS files, reloads them,
  * and then fires the appropriate notifications.
  *
- *      @fn NIChameleonObserver::watchSkinChanges
+ * @fn NIChameleonObserver::watchSkinChanges
  */
 
 /**
  * Browses Bonjour for services with the given name (e.g. your username) and sets the host
  * automatically.
  *
- *      @fn NIChameleonObserver::enableBonjourDiscovery:
+ * @fn NIChameleonObserver::enableBonjourDiscovery:
  */

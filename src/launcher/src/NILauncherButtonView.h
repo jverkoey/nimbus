@@ -26,7 +26,7 @@
  *
  * @image html NILauncherButtonExample1.png "Example of an NILauncherButton"
  *
- *      @ingroup NimbusLauncher
+ * @ingroup NimbusLauncher
  */
 @interface NILauncherButtonView : NIRecyclableView <NILauncherButtonView, NILauncherViewObjectView>
 
@@ -42,13 +42,13 @@
 /**
  * The button view that should be used to display the launcher icon.
  *
- *      @fn NILauncherButtonView::button
+ * @fn NILauncherButtonView::button
  */
 
 /**
  * The label view that should show the title of the launcher item.
  *
- *      @fn NILauncherButtonView::label
+ * @fn NILauncherButtonView::label
  */
 
 /** @name Configuring Display Attributes */
@@ -58,5 +58,5 @@
  *
  * The unit of size is points. The default value is 5 points on all sides.
  *
- *      @fn NILauncherButtonView::contentInset
+ * @fn NILauncherButtonView::contentInset
  */

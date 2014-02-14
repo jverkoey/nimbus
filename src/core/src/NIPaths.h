@@ -33,32 +33,32 @@ extern "C" {
 /**
  * Create a path with the given bundle and the relative path appended.
  *
- *      @param bundle        The bundle to append relativePath to. If nil, [NSBundle mainBundle]
+ * @param bundle        The bundle to append relativePath to. If nil, [NSBundle mainBundle]
  *                           will be used.
- *      @param relativePath  The relative path to append to the bundle's path.
+ * @param relativePath  The relative path to append to the bundle's path.
  *
- *      @returns The bundle path concatenated with the given relative path.
+ * @returns The bundle path concatenated with the given relative path.
  */
 NSString* NIPathForBundleResource(NSBundle* bundle, NSString* relativePath);
 
 /**
  * Create a path with the documents directory and the relative path appended.
  *
- *      @returns The documents path concatenated with the given relative path.
+ * @returns The documents path concatenated with the given relative path.
  */
 NSString* NIPathForDocumentsResource(NSString* relativePath);
 
 /**
  * Create a path with the Library directory and the relative path appended.
  *
- *      @returns The Library path concatenated with the given relative path.
+ * @returns The Library path concatenated with the given relative path.
  */
 NSString* NIPathForLibraryResource(NSString* relativePath);
 
 /**
  * Create a path with the caches directory and the relative path appended.
  *
- *      @returns The caches path concatenated with the given relative path.
+ * @returns The caches path concatenated with the given relative path.
  */
 NSString* NIPathForCachesResource(NSString* relativePath);
 

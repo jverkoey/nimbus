@@ -59,7 +59,7 @@
  * which pops the last snapshot of the stack and applies it, restoring the original
  * navigation appearance state.
  *
- *      @ingroup NimbusCore
+ * @ingroup NimbusCore
  */
 __NI_DEPRECATED_METHOD
 @interface NINavigationAppearance : NSObject

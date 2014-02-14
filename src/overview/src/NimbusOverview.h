@@ -115,25 +115,25 @@
 /**
  * The sensors used to power the Overview.
  *
- *      @defgroup Overview-Sensors Sensors
+ * @defgroup Overview-Sensors Sensors
  */
 
 /**
  * The primary classes you'll use when dealing with the Overview.
  *
- *      @defgroup Overview Overview
+ * @defgroup Overview Overview
  */
 
 /**
  * The Overview logger.
  *
- *      @defgroup Overview-Logger Logger
+ * @defgroup Overview-Logger Logger
  */
 
 /**
  * The pages that are shown in the Overview.
  *
- *      @defgroup Overview-Pages Pages
+ * @defgroup Overview-Pages Pages
  */
 
 /**@}*/

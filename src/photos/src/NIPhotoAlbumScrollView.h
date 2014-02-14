@@ -26,7 +26,7 @@
 /**
  * A paged scroll view that shows a collection of photos.
  *
- *      @ingroup NimbusPhotos
+ * @ingroup NimbusPhotos
  *
  * This view provides a light-weight implementation of a photo viewer, complete with
  * pinch-to-zoom and swiping to change photos. It is designed to perform well with
@@ -36,7 +36,7 @@
  * It is intended for this view to be used in conjunction with a view controller that
  * implements the data source protocol and presents any required chrome.
  *
- *      @see NIToolbarPhotoViewController
+ * @see NIToolbarPhotoViewController
  */
 @interface NIPhotoAlbumScrollView : NIPagingScrollView <NIPhotoScrollViewDelegate> {
 @private
@@ -81,7 +81,7 @@
  * This is the only means by which this photo album view acquires any information about the
  * album to be displayed.
  *
- *      @fn NIPhotoAlbumScrollView::dataSource
+ * @fn NIPhotoAlbumScrollView::dataSource
  */
 
 /**
@@ -99,7 +99,7 @@
  * Automatically uses the paging scroll view's page recycling methods and creates
  * NIPhotoScrollViews as needed.
  *
- *      @fn NIPhotoAlbumScrollView::pagingScrollView:pageForIndex:
+ * @fn NIPhotoAlbumScrollView::pagingScrollView:pageForIndex:
  */
 
 /**
@@ -107,7 +107,7 @@
  *
  * Any user interactions or state changes are sent to the delegate through this property.
  *
- *      @fn NIPhotoAlbumScrollView::delegate
+ * @fn NIPhotoAlbumScrollView::delegate
  */
 
 
@@ -122,17 +122,17 @@
  *
  * By default this is YES.
  *
- *      @fn NIPhotoAlbumScrollView::zoomingIsEnabled
+ * @fn NIPhotoAlbumScrollView::zoomingIsEnabled
  */
 
 /**
  * Whether small photos can be zoomed at least until they fit the screen.
  *
- *      @see NIPhotoScrollView::zoomingAboveOriginalSizeIsEnabled
+ * @see NIPhotoScrollView::zoomingAboveOriginalSizeIsEnabled
  *
  * By default this is YES.
  *
- *      @fn NIPhotoAlbumScrollView::zoomingAboveOriginalSizeIsEnabled
+ * @fn NIPhotoAlbumScrollView::zoomingAboveOriginalSizeIsEnabled
  */
 
 /**
@@ -140,7 +140,7 @@
  *
  * By default this is [UIColor blackColor].
  *
- *      @fn NIPhotoAlbumScrollView::photoViewBackgroundColor
+ * @fn NIPhotoAlbumScrollView::photoViewBackgroundColor
  */
 
 
@@ -156,7 +156,7 @@
  *
  * By default this is nil.
  *
- *      @fn NIPhotoAlbumScrollView::loadingImage
+ * @fn NIPhotoAlbumScrollView::loadingImage
  */
 
 
@@ -172,5 +172,5 @@
  * The photo at the given index will only be replaced with the given image if photoSize
  * is of a higher quality than the currently-displayed photo's size.
  *
- *      @fn NIPhotoAlbumScrollView::didLoadPhoto:atIndex:photoSize:
+ * @fn NIPhotoAlbumScrollView::didLoadPhoto:atIndex:photoSize:
  */

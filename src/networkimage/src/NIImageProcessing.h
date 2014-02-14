@@ -31,17 +31,17 @@
  * On devices with retina displays, the resulting image will be returned at the correct
  * resolution for the device.
  *
- *      @param src                  The source image.
- *      @param contentMode          The content mode to use when cropping and resizing the image.
- *      @param cropRect             An initial crop rect to apply to the src image.
- *      @param displaySize          The requested display size for the image. The resulting image
+ * @param src                  The source image.
+ * @param contentMode          The content mode to use when cropping and resizing the image.
+ * @param cropRect             An initial crop rect to apply to the src image.
+ * @param displaySize          The requested display size for the image. The resulting image
  *                                  may or may not match these dimensions depending on the scale
  *                                  options being used.
- *      @param scaleOptions         See the NINetworkImageViewScaleOptions documentation for more
+ * @param scaleOptions         See the NINetworkImageViewScaleOptions documentation for more
  *                                  details.
- *      @param interpolationQuality The interpolation quality to use when resizing the image.
+ * @param interpolationQuality The interpolation quality to use when resizing the image.
  *
- *      @returns The resized and cropped image.
+ * @returns The resized and cropped image.
  */
 + (UIImage *)imageFromSource:(UIImage *)src
              withContentMode:(UIViewContentMode)contentMode

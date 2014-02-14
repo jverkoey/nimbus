@@ -25,7 +25,7 @@
  * differentiate the form elements when change notifications are received. Each element cell
  * will assign the element ID to the tag property of its views.
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NIFormElement : NSObject <NICellObject>
 
@@ -45,7 +45,7 @@
  *
  * Bound to NITextInputFormElementCell when using the @link TableCellFactory Nimbus cell factory@endlink.
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NITextInputFormElement : NIFormElement
 
@@ -71,7 +71,7 @@
  *
  * Bound to NISwitchFormElementCell when using the @link TableCellFactory Nimbus cell factory@endlink.
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NISwitchFormElement : NIFormElement
 
@@ -94,7 +94,7 @@
  *
  * Bound to NISliderFormElementCell when using the @link TableCellFactory Nimbus cell factory@endlink.
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NISliderFormElement : NIFormElement
 
@@ -121,33 +121,33 @@
  * A delegate method (didChangeSelector) will be called on the didChangeTarget once a different 
  * segment is selected. The segmented control will be passed as an argument to this method.
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NISegmentedControlFormElement : NIFormElement
 
 /**
  * Initializes a segmented control form cell with callback method for value change events.
  *
- *      @param elementID An ID for this element.
- *      @param labelText Text to show on the left side of the form cell.
- *      @param segments An array containing NSString or UIImage objects that will be used as 
+ * @param elementID An ID for this element.
+ * @param labelText Text to show on the left side of the form cell.
+ * @param segments An array containing NSString or UIImage objects that will be used as 
  *                      segments of the control. The order in the array is used as order of the 
  *                      segments.
- *      @param selectedIndex Index of the selected segment. -1 if no segment is selected.
- *      @param target Receiver for didChangeSelector calls.
- *      @param selector Method that is called when a segment is selected.
+ * @param selectedIndex Index of the selected segment. -1 if no segment is selected.
+ * @param target Receiver for didChangeSelector calls.
+ * @param selector Method that is called when a segment is selected.
  */
 + (id)segmentedControlElementWithID:(NSInteger)elementID labelText:(NSString *)labelText segments:(NSArray *)segments selectedIndex:(NSInteger)selectedIndex didChangeTarget:(id)target didChangeSelector:(SEL)selector ;
 
 /**
  * Initializes a segmented control form cell.
  *
- *      @param elementID An ID for this element.
- *      @param labelText Text to show on the left side of the form cell.
- *      @param segments An array containing NSString or UIImage objects that will be used as 
+ * @param elementID An ID for this element.
+ * @param labelText Text to show on the left side of the form cell.
+ * @param segments An array containing NSString or UIImage objects that will be used as 
  *                      segments of the control. The order in the array is used as order of the
  *                      segments.
- *      @param selectedIndex Index of the selected segment. -1 if no segment is selected.
+ * @param selectedIndex Index of the selected segment. -1 if no segment is selected.
  */
 + (id)segmentedControlElementWithID:(NSInteger)elementID labelText:(NSString *)labelText segments:(NSArray *)segments selectedIndex:(NSInteger)selectedIndex;
 
@@ -171,29 +171,29 @@
  * To change the date picker format you can access the datePicker property of the 
  * NIDatePickerFormElementCell sibling object.
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NIDatePickerFormElement : NIFormElement
 
 /**
  * Initializes a date picker form element with callback method for value changed events.
  *
- *      @param elementID An ID for this element.
- *      @param labelText Text to show on the left side of the form cell.
- *      @param date Initial date to show in the picker
- *      @param datePickerMode UIDatePickerMode to user for the date picker
- *      @param target Receiver for didChangeSelector calls.
- *      @param selector Method that is called when a segment is selected.
+ * @param elementID An ID for this element.
+ * @param labelText Text to show on the left side of the form cell.
+ * @param date Initial date to show in the picker
+ * @param datePickerMode UIDatePickerMode to user for the date picker
+ * @param target Receiver for didChangeSelector calls.
+ * @param selector Method that is called when a segment is selected.
  */
 + (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date datePickerMode:(UIDatePickerMode)datePickerMode didChangeTarget:(id)target didChangeSelector:(SEL)selector;
 
 /**
  * Initializes a date picker form element with callback method for value changed events.
  *
- *      @param elementID An ID for this element.
- *      @param labelText Text to show on the left side of the form cell.
- *      @param date Initial date to show in the picker
- *      @param datePickerMode UIDatePickerMode to user for the date picker
+ * @param elementID An ID for this element.
+ * @param labelText Text to show on the left side of the form cell.
+ * @param date Initial date to show in the picker
+ * @param datePickerMode UIDatePickerMode to user for the date picker
  */
 + (id)datePickerElementWithID:(NSInteger)elementID labelText:(NSString *)labelText date:(NSDate *)date datePickerMode:(UIDatePickerMode)datePickerMode;
 
@@ -213,7 +213,7 @@
  *
  * Doesn't do anything particularly interesting other than retaining the element.
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NIFormElementCell : UITableViewCell <NICell>
 @property (nonatomic, readonly, strong) NIFormElement* element;
@@ -226,7 +226,7 @@
  *
  * @image html NITextInputCellExample1.png "Example of a NITextInputFormElementCell."
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NITextInputFormElementCell : NIFormElementCell <UITextFieldDelegate>
 @property (nonatomic, readonly, strong) UITextField* textField;
@@ -239,7 +239,7 @@
  *
  * @image html NISwitchFormElementCellExample1.png "Example of a NISwitchFormElementCell."
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NISwitchFormElementCell : NIFormElementCell <UITextFieldDelegate>
 @property (nonatomic, readonly, strong) UISwitch* switchControl;
@@ -252,7 +252,7 @@
  *
  * @image html NISliderFormElementCellExample1.png "Example of a NISliderFormElementCell."
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NISliderFormElementCell : NIFormElementCell <UITextFieldDelegate>
 @property (nonatomic, readonly, strong) UISlider* sliderControl;
@@ -270,7 +270,7 @@
  *
  * Displays a left-aligned label and a right-aligned segmented control.
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NISegmentedControlFormElementCell : NIFormElementCell
 @property (nonatomic, readonly, strong) UISegmentedControl *segmentedControl;
@@ -281,7 +281,7 @@
  *
  * Displays a left-aligned label and a right-aligned date.
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NIDatePickerFormElementCell : NIFormElementCell <UITextFieldDelegate>
 @property (nonatomic, readonly, strong) UITextField *dateField;

@@ -31,7 +31,7 @@
  *  @image html badge.png "A default NIBadgeView"
  *  @image html badgetinted.png "A NIBadgeView on tintColor-supporting devices"
  *
- *      @ingroup NimbusBadge
+ * @ingroup NimbusBadge
  */
 @interface NIBadgeView : UIView
 
@@ -56,7 +56,7 @@
  * As with a UILabel you should call sizeToFit after setting the badgeView properties so that it
  * will update its frame to fit the contents.
  *
- *      @fn NIBadgeView::text
+ * @fn NIBadgeView::text
  */
 
 /**
@@ -67,8 +67,8 @@
  *   iOS 6: [UIFont boldSystemFontOfSize:17]
  *   iOS 7: [UIFont systemFontOfSize:16]
  *
- *      @sa text
- *      @fn NIBadgeView::font
+ * @sa text
+ * @fn NIBadgeView::font
  */
 
 /**
@@ -76,7 +76,7 @@
  *
  * The default color is [UIColor whiteColor].
  *
- *      @fn NIBadgeView::textColor
+ * @fn NIBadgeView::textColor
  */
 
 /** @name Accessing the Badge Attributes */
@@ -94,7 +94,7 @@
  * On devices that support global tintColor (iOS 7) the global tint color is used unless a tint
  * color has been explicitly assigned to this badge view, in which case the assigned tint color will be used.
  *
- *      @fn NIBadgeView::tintColor
+ * @fn NIBadgeView::tintColor
  */
 
 /**
@@ -110,9 +110,9 @@
  * On devices that support global tintColor (iOS 7) it is possible, though not encouraged, to use
  * a shadow on badges.
  *
- *      @sa shadowOffset
- *      @sa shadowBlur
- *      @fn NIBadgeView::shadowColor
+ * @sa shadowOffset
+ * @sa shadowBlur
+ * @fn NIBadgeView::shadowColor
  */
 
 /**
@@ -122,9 +122,9 @@
  *
  * The default value is CGSizeMake(0, 3.f).
  *
- *      @sa shadowColor
- *      @sa shadowBlur
- *      @fn NIBadgeView::shadowOffset
+ * @sa shadowColor
+ * @sa shadowBlur
+ * @fn NIBadgeView::shadowOffset
  */
 
 /**
@@ -134,7 +134,7 @@
  *
  * The default value is 3.
  *
- *      @sa shadowOffset
- *      @sa shadowColor
- *      @fn NIBadgeView::shadowBlur
+ * @sa shadowOffset
+ * @sa shadowColor
+ * @fn NIBadgeView::shadowBlur
  */

@@ -180,7 +180,7 @@ extern "C" {
 /**
  * Checks whether the device the app is currently running on is an iPad or not.
  *
- *      @returns YES if the device is an iPad.
+ * @returns YES if the device is an iPad.
  */
 BOOL NIIsPad(void);
 
@@ -188,14 +188,14 @@ BOOL NIIsPad(void);
  * Checks whether the device the app is currently running on is an
  * iPhone/iPod touch or not.
  *
- *      @returns YES if the device is an iPhone or iPod touch.
+ * @returns YES if the device is an iPhone or iPod touch.
  */
 BOOL NIIsPhone(void);
 
 /**
  * Checks whether the device supports tint colors on all UIViews.
  *
- *      @returns YES if all UIView instances on the device respond to tintColor.
+ * @returns YES if all UIView instances on the device respond to tintColor.
  */
 BOOL NIIsTintColorGloballySupported(void);
 
@@ -204,9 +204,9 @@ BOOL NIIsTintColorGloballySupported(void);
  *
  * Useful for runtime checks of the device's version number.
  *
- *      @param versionNumber  Any value of kCFCoreFoundationVersionNumber.
+ * @param versionNumber  Any value of kCFCoreFoundationVersionNumber.
  *
- *      @attention Apple recommends using respondsToSelector where possible to check for
+ * @attention Apple recommends using respondsToSelector where possible to check for
  *                 feature support. Use this method as a last resort.
  */
 BOOL NIDeviceOSVersionIsAtLeast(double versionNumber);

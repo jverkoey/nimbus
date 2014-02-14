@@ -39,7 +39,7 @@
  * select. The radio group delegate is notified immediately when a selection is made and the
  * tapped cell is also updated to reflect the new selection.
  *
- *      @ingroup ModelTools
+ * @ingroup ModelTools
  */
 @interface NIRadioGroup : NSObject <NICellObject, UITableViewDelegate>
 
@@ -81,7 +81,7 @@
 /**
  * The delegate for NIRadioGroup.
  *
- *      @ingroup ModelTools
+ * @ingroup ModelTools
  */
 @protocol NIRadioGroupDelegate <NSObject>
 @required
@@ -89,8 +89,8 @@
 /**
  * Called when the user changes the radio group selection.
  *
- *      @param radioGroup The radio group object.
- *      @param identifier The newly selected identifier.
+ * @param radioGroup The radio group object.
+ * @param identifier The newly selected identifier.
  */
 - (void)radioGroup:(NIRadioGroup *)radioGroup didSelectIdentifier:(NSInteger)identifier;
 
@@ -108,7 +108,7 @@
  *
  * This method provides a customization point for the radio group view controller.
  *
- *      @return YES if controller should be pushed onto the current navigation stack.
+ * @return YES if controller should be pushed onto the current navigation stack.
  *              NO if you are going to present the controller yourself.
  */
 - (BOOL)radioGroup:(NIRadioGroup *)radioGroup radioGroupController:(NIRadioGroupController *)radioGroupController willAppear:(BOOL)animated;
@@ -140,9 +140,9 @@
  *
  * The given controller is stored as a weak reference internally.
  *
- *      @param controller The controller that will be used when this object is used as a sub radio
+ * @param controller The controller that will be used when this object is used as a sub radio
  *                        group.
- *      @fn NIRadioGroup::initWithController:
+ * @fn NIRadioGroup::initWithController:
  */
 
 /** @name Mapping Objects */
@@ -157,10 +157,10 @@
  * You can NOT map the same object to multiple identifiers. Attempts to do so fill fire a debug
  * assertion and will not map the new object in the radio group.
  *
- *      @param object The object to map to the identifier.
- *      @param identifier The identifier that will represent the object.
- *      @returns The object that was mapped.
- *      @fn NIRadioGroup::mapObject:toIdentifier:
+ * @param object The object to map to the identifier.
+ * @param identifier The identifier that will represent the object.
+ * @returns The object that was mapped.
+ * @fn NIRadioGroup::mapObject:toIdentifier:
  */
 
 /** @name Selection */
@@ -168,19 +168,19 @@
 /**
  * Whether or not a selection has been made.
  *
- *      @fn NIRadioGroup::hasSelection
+ * @fn NIRadioGroup::hasSelection
  */
 
 /**
  * The currently selected identifier if one is selected, otherwise returns NSIntegerMin.
  *
- *      @fn NIRadioGroup::selectedIdentifier
+ * @fn NIRadioGroup::selectedIdentifier
  */
 
 /**
  * Removes the selection from this cell group.
  *
- *      @fn NIRadioGroup::clearSelection
+ * @fn NIRadioGroup::clearSelection
  */
 
 /** @name Object State */
@@ -188,7 +188,7 @@
 /**
  * Returns YES if the given object is in this radio group.
  *
- *      @fn NIRadioGroup::isObjectInRadioGroup:
+ * @fn NIRadioGroup::isObjectInRadioGroup:
  */
 
 /**
@@ -197,7 +197,7 @@
  * This method should only be called after verifying that the object is contained within the radio
  * group with isObjectInRadioGroup:.
  *
- *      @fn NIRadioGroup::isObjectSelected:
+ * @fn NIRadioGroup::isObjectSelected:
  */
 
 /**
@@ -206,7 +206,7 @@
  * This method should only be called after verifying that the object is contained within the radio
  * group with isObjectInRadioGroup:.
  *
- *      @fn NIRadioGroup::identifierForObject:
+ * @fn NIRadioGroup::identifierForObject:
  */
 
 /** @name Forwarding */
@@ -217,7 +217,7 @@
  *
  * By default this is UITableViewCellSelectionStyleBlue.
  *
- *      @fn NIRadioGroup::tableViewCellSelectionStyle
+ * @fn NIRadioGroup::tableViewCellSelectionStyle
  */
 
 /**
@@ -234,9 +234,9 @@
 self.tableView.delegate = [self.radioGroup forwardingTo:self.tableView.delegate];
 @endcode
  *
- *      @param forwardDelegate The delegate to forward invocations to.
- *      @returns self so that this method can be chained.
- *      @fn NIRadioGroup::forwardingTo:
+ * @param forwardDelegate The delegate to forward invocations to.
+ * @returns self so that this method can be chained.
+ * @fn NIRadioGroup::forwardingTo:
  */
 
 /**
@@ -245,20 +245,20 @@ self.tableView.delegate = [self.radioGroup forwardingTo:self.tableView.delegate]
  * If a forwared delegate is about to be released but this object may live on, you must remove the
  * forwarding in order to avoid invalid access errors at runtime.
  *
- *      @param forwardDelegate The delegate to stop forwarding invocations to.
- *      @fn NIRadioGroup::removeForwarding:
+ * @param forwardDelegate The delegate to stop forwarding invocations to.
+ * @fn NIRadioGroup::removeForwarding:
  */
 
 /**
  * The title of the cell that is displayed for a radio group in a UITableView.
  *
- *      @fn NIRadioGroup::cellTitle
+ * @fn NIRadioGroup::cellTitle
  */
 
 /**
  * The title of the controller that shows the sub radio group selection.
  *
- *      @fn NIRadioGroup::controllerTitle
+ * @fn NIRadioGroup::controllerTitle
  */
 
 /**
@@ -266,5 +266,5 @@ self.tableView.delegate = [self.radioGroup forwardingTo:self.tableView.delegate]
  *
  * This is used primarily by NIRadioGroupController to display the radio group options.
  *
- *      @fn NIRadioGroup::allObjects
+ * @fn NIRadioGroup::allObjects
  */

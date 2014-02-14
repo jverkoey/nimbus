@@ -79,9 +79,9 @@
  *  NIMaxLogLevel = NILOGLEVEL_INFO;
  * @endcode
  *
- *      @ingroup NimbusCore
- *      @defgroup Debugging-Tools Debugging Tools
- *      @{
+ * @ingroup NimbusCore
+ * @defgroup Debugging-Tools Debugging Tools
+ * @{
  */
 
 #if defined(DEBUG) || defined(NI_DEBUG)

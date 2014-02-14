@@ -23,7 +23,7 @@
 /**
  * A graph view.
  *
- *      @ingroup Overview-Pages
+ * @ingroup Overview-Pages
  */
 @interface NIOverviewGraphView : UIView {
 @private
@@ -40,7 +40,7 @@
 /**
  * The data source for NIOverviewGraphView.
  *
- *      @ingroup Overview-Pages
+ * @ingroup Overview-Pages
  */
 @protocol NIOverviewGraphViewDataSource <NSObject>
 

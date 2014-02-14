@@ -24,7 +24,7 @@ extern NSString* const kDependenciesSelectorKey;
 /**
  * An Objective-C wrapper for the flex CSS parser.
  *
- *      @ingroup NimbusCSS
+ * @ingroup NimbusCSS
  *
  * Generates a dictionary of raw CSS rules from a given CSS file.
  *
@@ -105,26 +105,26 @@ extern NSString* const kDependenciesSelectorKey;
  * statement "@import url('user/profile.css')", the loaded file will be
  * "/bundle/css/user/profile.css".
  *
- *      @fn NICSSParser::dictionaryForPath:pathPrefix:delegate:
- *      @param path         The path of the file to be read.
- *      @param pathPrefix   [optional] A prefix path that will be prepended to the given path
+ * @fn NICSSParser::dictionaryForPath:pathPrefix:delegate:
+ * @param path         The path of the file to be read.
+ * @param pathPrefix   [optional] A prefix path that will be prepended to the given path
  *                          as well as any imported files.
- *      @param delegate     [optional] A delegate that can reprocess paths.
- *      @returns A dictionary mapping CSS scopes to dictionaries of property names to values.
+ * @param delegate     [optional] A delegate that can reprocess paths.
+ * @returns A dictionary mapping CSS scopes to dictionaries of property names to values.
  */
 
 /**
- *      @fn NICSSParser::dictionaryForPath:pathPrefix:
- *      @sa NICSSParser::dictionaryForPath:pathPrefix:delegate:
+ * @fn NICSSParser::dictionaryForPath:pathPrefix:
+ * @sa NICSSParser::dictionaryForPath:pathPrefix:delegate:
  */
 
 /**
- *      @fn NICSSParser::dictionaryForPath:
- *      @sa NICSSParser::dictionaryForPath:pathPrefix:delegate:
+ * @fn NICSSParser::dictionaryForPath:
+ * @sa NICSSParser::dictionaryForPath:pathPrefix:delegate:
  */
 
 /**
  * Will be YES after retrieving a dictionary if the parser failed to parse the file in any way.
  *
- *      @fn NICSSParser::didFailToParse
+ * @fn NICSSParser::didFailToParse
  */

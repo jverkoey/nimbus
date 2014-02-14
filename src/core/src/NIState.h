@@ -45,7 +45,7 @@
  * If a cache hasn't been assigned via Nimbus::setGlobalImageMemoryCache: then one will be created
  * automatically.
  *
- *      @remarks The default image cache has no upper limit on its memory consumption. It is
+ * @remarks The default image cache has no upper limit on its memory consumption. It is
  *               up to you to specify an upper limit in your application.
  */
 + (NIImageMemoryCache *)imageMemoryCache;

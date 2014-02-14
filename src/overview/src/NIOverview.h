@@ -23,7 +23,7 @@
 /**
  * The Overview state management class.
  *
- *      @ingroup Overview
+ * @ingroup Overview
  *
  * <h2>What is the Overview?</h2>
  *

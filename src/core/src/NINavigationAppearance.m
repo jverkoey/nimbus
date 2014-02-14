@@ -32,7 +32,7 @@ static NSMutableArray* sAppearanceStack = nil;
  *
  * Used in conjunction with NINavigationAppearance.
  *
- *      @ingroup NimbusCore
+ * @ingroup NimbusCore
  */
 @interface NINavigationAppearanceSnapshot : NSObject {
 @private

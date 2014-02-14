@@ -44,7 +44,7 @@ tableView.delegate = [self.actions forwardingTo:self];
  *
  * The dataSource property of the table view must be an instance of NITableViewModel.
  *
- *      @ingroup ModelTools
+ * @ingroup ModelTools
  */
 @interface NITableViewActions : NIActions <UITableViewDelegate>
 
@@ -80,9 +80,9 @@ tableView.delegate = [self.actions forwardingTo:self];
 self.tableView.delegate = [self.actions forwardingTo:self.tableView.delegate];
 @endcode
  *
- *      @param forwardDelegate The delegate to forward invocations to.
- *      @returns self so that this method can be chained.
- *      @fn NITableViewActions::forwardingTo:
+ * @param forwardDelegate The delegate to forward invocations to.
+ * @returns self so that this method can be chained.
+ * @fn NITableViewActions::forwardingTo:
  */
 
 /**
@@ -91,8 +91,8 @@ self.tableView.delegate = [self.actions forwardingTo:self.tableView.delegate];
  * If a forwared delegate is about to be released but this object may live on, you must remove the
  * forwarding in order to avoid invalid access errors at runtime.
  *
- *      @param forwardDelegate The delegate to stop forwarding invocations to.
- *      @fn NITableViewActions::removeForwarding:
+ * @param forwardDelegate The delegate to stop forwarding invocations to.
+ * @fn NITableViewActions::removeForwarding:
  */
 
 /** @name Object State */
@@ -101,18 +101,18 @@ self.tableView.delegate = [self.actions forwardingTo:self.tableView.delegate];
  * Returns the accessory type this actions object will apply to a cell for the
  * given object when it is displayed.
  *
- *      @param object The object to determine the accessory type for.
- *      @returns the accessory type this object's cell will have.
- *      @fn NITableViewActions::accessoryTypeForObject:
+ * @param object The object to determine the accessory type for.
+ * @returns the accessory type this object's cell will have.
+ * @fn NITableViewActions::accessoryTypeForObject:
  */
 
 /**
  * Returns the cell selection style this actions object will apply to a cell
  * for the given object when it is displayed.
  *
- *      @param object The object to determine the selection style for.
- *      @returns the selection style this object's cell will have.
- *      @fn NITableViewActions::selectionStyleForObject:
+ * @param object The object to determine the selection style for.
+ * @returns the selection style this object's cell will have.
+ * @fn NITableViewActions::selectionStyleForObject:
  */
 
 /** @name Configurable Properties */
@@ -123,5 +123,5 @@ self.tableView.delegate = [self.actions forwardingTo:self.tableView.delegate];
  *
  * By default this is UITableViewCellSelectionStyleBlue.
  *
- *      @fn NITableViewActions::tableViewCellSelectionStyle
+ * @fn NITableViewActions::tableViewCellSelectionStyle
  */

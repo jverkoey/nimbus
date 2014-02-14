@@ -25,7 +25,7 @@
 /**
  * A simple photo album view controller implementation with a toolbar.
  *
- *      @ingroup NimbusPhotos
+ * @ingroup NimbusPhotos
  *
  * This controller does not implement the photo album data source, it simply implements
  * some of the most common UI elements that are associated with a photo viewer.
@@ -144,7 +144,7 @@
  *
  * By default this is YES.
  *
- *      @fn NIToolbarPhotoViewController::toolbarIsTranslucent
+ * @fn NIToolbarPhotoViewController::toolbarIsTranslucent
  */
 
 /**
@@ -157,9 +157,9 @@
  *
  * By default this is YES.
  *
- *      @attention This will be set to NO if toolbarCanBeHidden is set to NO.
+ * @attention This will be set to NO if toolbarCanBeHidden is set to NO.
  *
- *      @fn NIToolbarPhotoViewController::hidesChromeWhenScrolling
+ * @fn NIToolbarPhotoViewController::hidesChromeWhenScrolling
  */
 
 /**
@@ -174,9 +174,9 @@
  *
  * By default this is YES.
  *
- *      @attention Setting this to NO will also disable hidesToolbarWhenScrolling.
+ * @attention Setting this to NO will also disable hidesToolbarWhenScrolling.
  *
- *      @fn NIToolbarPhotoViewController::chromeCanBeHidden
+ * @fn NIToolbarPhotoViewController::chromeCanBeHidden
  */
 
 /**
@@ -184,7 +184,7 @@
  *
  * By default this is NO.
  *
- *      @fn NIToolbarPhotoViewController::animateMovingToNextAndPreviousPhotos
+ * @fn NIToolbarPhotoViewController::animateMovingToNextAndPreviousPhotos
  */
 
 /**
@@ -192,7 +192,7 @@
  *
  * By default this is YES on the iPad and NO on the iPhone.
  *
- *      @fn NIToolbarPhotoViewController::scrubberIsEnabled
+ * @fn NIToolbarPhotoViewController::scrubberIsEnabled
  */
 
 
@@ -201,19 +201,19 @@
 /**
  * The toolbar view.
  *
- *      @fn NIToolbarPhotoViewController::toolbar
+ * @fn NIToolbarPhotoViewController::toolbar
  */
 
 /**
  * The photo album view.
  *
- *      @fn NIToolbarPhotoViewController::photoAlbumView
+ * @fn NIToolbarPhotoViewController::photoAlbumView
  */
 
 /**
  * The photo scrubber view.
  *
- *      @fn NIToolbarPhotoViewController::photoScrubberView
+ * @fn NIToolbarPhotoViewController::photoScrubberView
  */
 
 
@@ -222,11 +222,11 @@
 /**
  * The 'next' button.
  *
- *      @fn NIToolbarPhotoViewController::nextButton
+ * @fn NIToolbarPhotoViewController::nextButton
  */
 
 /**
  * The 'previous' button.
  *
- *      @fn NIToolbarPhotoViewController::previousButton
+ * @fn NIToolbarPhotoViewController::previousButton
  */

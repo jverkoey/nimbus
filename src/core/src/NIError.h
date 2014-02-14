@@ -50,5 +50,5 @@ typedef enum {
  *                                                               forKey: NIImageErrorKey]];
  * @endcode
  *
- *      @enum NINimbusErrorDomainCode
+ * @enum NINimbusErrorDomainCode
  */

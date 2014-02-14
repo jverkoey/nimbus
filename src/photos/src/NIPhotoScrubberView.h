@@ -25,7 +25,7 @@
 /**
  * A control built for quickly skimming through a collection of images.
  *
- *      @ingroup NimbusPhotos
+ * @ingroup NimbusPhotos
  *
  * The user interacts with the scrubber by "scrubbing" their finger along the control,
  * or more simply, touching the control and moving their finger along a single axis.
@@ -43,8 +43,8 @@
  *
  * @image html scrubber1.png "Screenshot of NIPhotoScrubberView on the iPad."
  *
- *      @see NIPhotoScrubberViewDataSource
- *      @see NIPhotoScrubberViewDelegate
+ * @see NIPhotoScrubberViewDataSource
+ * @see NIPhotoScrubberViewDelegate
  */
 @interface NIPhotoScrubberView : UIView {
 @private
@@ -119,7 +119,7 @@
 /**
  * The data source for the photo scrubber.
  *
- *      @ingroup NimbusPhotos
+ * @ingroup NimbusPhotos
  *
  * <h2>Performance Considerations</h2>
  *
@@ -137,7 +137,7 @@
  * If you don't have access to thumbnails from whatever API you're using then you should consider
  * not using a scrubber.
  *
- *      @see NIPhotoScrubberView
+ * @see NIPhotoScrubberView
  */
 @protocol NIPhotoScrubberViewDataSource <NSObject>
 
@@ -166,11 +166,11 @@
 /**
  * The delegate for the photo scrubber.
  *
- *      @ingroup NimbusPhotos
+ * @ingroup NimbusPhotos
  *
  * Sends notifications of state changes.
  *
- *      @see NIPhotoScrubberView
+ * @see NIPhotoScrubberView
  */
 @protocol NIPhotoScrubberViewDelegate <NSObject>
 

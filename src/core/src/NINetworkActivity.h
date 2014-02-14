@@ -62,7 +62,7 @@ void NINetworkActivityTaskDidFinish(void);
 /**
  * Enable network activity debugging.
  *
- *      @attention This won't do anything unless the DEBUG preprocessor macro is defined.
+ * @attention This won't do anything unless the DEBUG preprocessor macro is defined.
  *
  * The Nimbus network activity methods will only work correctly if they are the only methods to
  * touch networkActivityIndicatorVisible. If you are using another library that touches
@@ -81,7 +81,7 @@ void NIEnableNetworkActivityDebugging(void);
 /**
  * Disable network activity debugging.
  *
- *      @attention This won't do anything unless the DEBUG preprocessor macro is defined.
+ * @attention This won't do anything unless the DEBUG preprocessor macro is defined.
  *
  * When disabled, the networkActivityIndicatorVisible will be restored if this was previously
  * enabled, otherwise this method does nothing.

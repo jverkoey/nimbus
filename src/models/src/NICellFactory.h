@@ -38,7 +38,7 @@
  * an object outweighs the benefit of using the factory, i.e. when you want to map
  * simple types such as NSString to cells.
  *
- *      @ingroup TableCellFactory
+ * @ingroup TableCellFactory
  */
 @interface NICellFactory : NSObject <NITableViewModelDelegate>
 
@@ -103,10 +103,10 @@ _model.delegate = (id)[NICellFactory class];
 }
 @endcode
  *
- *      @param tableView The table view within which the cell exists.
- *      @param indexPath The location of the cell in the table view.
- *      @param model The backing model being used by the table view.
- *      @returns The height of the cell mapped to the object at indexPath, if it implements
+ * @param tableView The table view within which the cell exists.
+ * @param indexPath The location of the cell in the table view.
+ * @param model The backing model being used by the table view.
+ * @returns The height of the cell mapped to the object at indexPath, if it implements
  *               heightForObject:atIndexPath:tableView:; otherwise, returns tableView.rowHeight.
  */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath model:(NITableViewModel *)model;
@@ -129,10 +129,10 @@ _model.delegate = (id)[NICellFactory class];
 }
 @endcode
  *
- *      @param tableView The table view within which the cell exists.
- *      @param indexPath The location of the cell in the table view.
- *      @param model The backing model being used by the table view.
- *      @returns The height of the cell mapped to the object at indexPath, if it implements
+ * @param tableView The table view within which the cell exists.
+ * @param indexPath The location of the cell in the table view.
+ * @param model The backing model being used by the table view.
+ * @returns The height of the cell mapped to the object at indexPath, if it implements
  *               heightForObject:atIndexPath:tableView:; otherwise, returns tableView.rowHeight.
  */
 + (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath model:(NITableViewModel *)model;
@@ -142,7 +142,7 @@ _model.delegate = (id)[NICellFactory class];
 /**
  * The protocol for an object that can be used in the NICellFactory.
  *
- *      @ingroup TableCellFactory
+ * @ingroup TableCellFactory
  */
 @protocol NICellObject <NSObject>
 @required
@@ -160,7 +160,7 @@ _model.delegate = (id)[NICellFactory class];
  * Cells that implement this protocol are given the object that implemented the NICellObject
  * protocol and returned this cell's class name in @link NICellObject::cellClass cellClass@endlink.
  *
- *      @ingroup TableCellFactory
+ * @ingroup TableCellFactory
  */
 @protocol NICell <NSObject>
 @required
@@ -238,5 +238,5 @@ _model.delegate = (id)[NICellFactory class];
 /**
  * An object that can be used to populate information in the cell.
  *
- *      @fn NICellObject::userInfo
+ * @fn NICellObject::userInfo
  */

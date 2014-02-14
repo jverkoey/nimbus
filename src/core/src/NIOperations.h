@@ -46,7 +46,7 @@ typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
  * of changes in the operation's state. Calling these methods will notify the delegate and the
  * blocks if provided.
  *
- *      @ingroup Operations
+ * @ingroup Operations
  */
 @interface NIOperation : NSOperation
 
@@ -69,7 +69,7 @@ typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
 /**
  * The delegate protocol for an NIOperation.
  *
- *      @ingroup Operations
+ * @ingroup Operations
  */
 @protocol NIOperationDelegate <NSObject>
 @optional
@@ -114,7 +114,7 @@ typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
  *
  * All delegate methods are performed on the main thread.
  *
- *      @fn NIOperation::delegate
+ * @fn NIOperation::delegate
  */
 
 
@@ -123,7 +123,7 @@ typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
 /**
  * The error last passed to the didFailWithError notification.
  *
- *      @fn NIOperation::lastError
+ * @fn NIOperation::lastError
  */
 
 
@@ -132,7 +132,7 @@ typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
 /**
  * A simple tagging mechanism for identifying operations.
  *
- *      @fn NIOperation::tag
+ * @fn NIOperation::tag
  */
 
 
@@ -143,7 +143,7 @@ typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
  *
  * Performed on the main thread.
  *
- *      @fn NIOperation::didStartBlock
+ * @fn NIOperation::didStartBlock
  */
 
 /**
@@ -153,7 +153,7 @@ typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
  *
  * Performed on the main thread.
  *
- *      @fn NIOperation::didFinishBlock
+ * @fn NIOperation::didFinishBlock
  */
 
 /**
@@ -163,7 +163,7 @@ typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
  *
  * Performed on the main thread.
  *
- *      @fn NIOperation::didFailWithErrorBlock
+ * @fn NIOperation::didFailWithErrorBlock
  */
 
 /**
@@ -173,7 +173,7 @@ typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
  *
  * Performed in the operation's thread.
  *
- *      @fn NIOperation::willFinishBlock
+ * @fn NIOperation::willFinishBlock
  */
 
 
@@ -187,23 +187,23 @@ typedef void (^NIOperationDidFailBlock)(NIOperation* operation, NSError* error);
 /**
  * On the main thread, notify the delegate that the operation has begun.
  *
- *      @fn NIOperation::didStart
+ * @fn NIOperation::didStart
  */
 
 /**
  * On the main thread, notify the delegate that the operation has finished.
  *
- *      @fn NIOperation::didFinish
+ * @fn NIOperation::didFinish
  */
 
 /**
  * On the main thread, notify the delegate that the operation has failed.
  *
- *      @fn NIOperation::didFailWithError:
+ * @fn NIOperation::didFailWithError:
  */
 
 /**
  * In the operation's thread, notify the delegate that the operation will finish successfully.
  *
- *      @fn NIOperation::willFinish
+ * @fn NIOperation::willFinish
  */

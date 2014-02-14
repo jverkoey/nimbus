@@ -22,7 +22,7 @@
 /**
  * The protocol used by the NIStylesheet to apply NICSSRuleSets to views.
  *
- *      @ingroup NimbusCSS
+ * @ingroup NimbusCSS
  *
  * If you implement this protocol in a category it is recommended that you implement the
  * logic as a separate method and call that method from applyStyleWithRuleSet: so as to allow

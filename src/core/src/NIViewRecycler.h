@@ -127,22 +127,22 @@ if (nil == view) {
 /**
  * Dequeues a reusable view from the recycled views pool if one exists, otherwise returns nil.
  *
- *      @fn NIViewRecycler::dequeueReusableViewWithIdentifier:
- *      @param reuseIdentifier  Often the name of the class of view you wish to fetch.
+ * @fn NIViewRecycler::dequeueReusableViewWithIdentifier:
+ * @param reuseIdentifier  Often the name of the class of view you wish to fetch.
  */
 
 /**
  * Adds a given view to the recycled views pool.
  *
- *      @fn NIViewRecycler::recycleView:
- *      @param view   The view to recycle. The reuse identifier will be retrieved from the view
+ * @fn NIViewRecycler::recycleView:
+ * @param view   The view to recycle. The reuse identifier will be retrieved from the view
  *                    via the NIRecyclableView protocol.
  */
 
 /**
  * Removes all of the views from the recycled views pool.
  *
- *      @fn NIViewRecycler::removeAllViews
+ * @fn NIViewRecycler::removeAllViews
  */
 
 /**
@@ -150,8 +150,8 @@ if (nil == view) {
  *
  * This is the designated initializer.
  *
- *      @fn NIRecyclableView::initWithReuseIdentifier:
- *      @param reuseIdentifier  The identifier that will be used to group this view in the view
+ * @fn NIRecyclableView::initWithReuseIdentifier:
+ * @param reuseIdentifier  The identifier that will be used to group this view in the view
  *                              recycler.
  */
 
@@ -160,5 +160,5 @@ if (nil == view) {
  *
  * Used by NIViewRecycler to pool this view into a group of similar recycled views.
  *
- *      @fn NIRecyclableView::reuseIdentifier
+ * @fn NIRecyclableView::reuseIdentifier
  */

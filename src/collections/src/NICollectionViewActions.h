@@ -39,7 +39,7 @@
  * If you use the delegate forwarders your collection view's data source must be an instance of
  * NICollectionViewModel.
  *
- *      @ingroup CollectionViewTools
+ * @ingroup CollectionViewTools
  */
 @interface NICollectionViewActions : NIActions
 

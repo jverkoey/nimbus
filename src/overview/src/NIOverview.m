@@ -49,7 +49,7 @@ static NIOverviewView* sOverviewView = nil;
  *
  *   void logger(const char *message, unsigned length, BOOL withSyslogBanner)
  *
- *      @attention This method is undocumented, unsupported, and unlikely to be around
+ * @attention This method is undocumented, unsupported, and unlikely to be around
  *                 forever. Don't go using it in production code.
  *
  * Source: http://support.apple.com/kb/TA45403?viewlocale=en_US

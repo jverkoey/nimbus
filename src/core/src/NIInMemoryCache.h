@@ -24,9 +24,9 @@
  * The base class, NIMemoryCache, is a generic object store that may be used for anything that
  * requires support for expiration.
  *
- *      @ingroup NimbusCore
- *      @defgroup In-Memory-Caches In-Memory Caches
- *      @{
+ * @ingroup NimbusCore
+ * @defgroup In-Memory-Caches In-Memory Caches
+ * @{
  */
 
 /**
@@ -82,11 +82,11 @@
  * By default the image memory cache has no limit to its pixel count. You must explicitly
  * set this value in your application.
  *
- *      @attention If the cache is too small to fit the newly added image, then all images
+ * @attention If the cache is too small to fit the newly added image, then all images
  *                 will end up being removed including the one being added.
  *
- *      @see Nimbus::imageMemoryCache
- *      @see Nimbus::setImageMemoryCache:
+ * @see Nimbus::imageMemoryCache
+ * @see Nimbus::setImageMemoryCache:
  */
 @interface NIImageMemoryCache : NIMemoryCache
 
@@ -104,8 +104,8 @@
 /**
  * Initializes a newly allocated cache with the given capacity.
  *
- *      @returns An in-memory cache initialized with the given capacity.
- *      @fn NIMemoryCache::initWithCapacity:
+ * @returns An in-memory cache initialized with the given capacity.
+ * @fn NIMemoryCache::initWithCapacity:
  */
 
 /** @name Storing Objects in the Cache */
@@ -116,9 +116,9 @@
  * The object will be stored without an expiration date. The object will stay in the cache until
  * it's bumped out due to the cache's memory limit.
  *
- *      @param object  The object being stored in the cache.
- *      @param name    The name used as a key to store this object.
- *      @fn NIMemoryCache::storeObject:withName:
+ * @param object  The object being stored in the cache.
+ * @param name    The name used as a key to store this object.
+ * @fn NIMemoryCache::storeObject:withName:
  */
 
 /**
@@ -128,10 +128,10 @@
  * not be stored in the cache and any existing object will be removed. The rationale behind this
  * is that the object would be removed from the cache the next time it was accessed anyway.
  *
- *      @param object          The object being stored in the cache.
- *      @param name            The name used as a key to store this object.
- *      @param expirationDate  A date after which this object is no longer valid in the cache.
- *      @fn NIMemoryCache::storeObject:withName:expiresAfter:
+ * @param object          The object being stored in the cache.
+ * @param name            The name used as a key to store this object.
+ * @param expirationDate  A date after which this object is no longer valid in the cache.
+ * @fn NIMemoryCache::storeObject:withName:expiresAfter:
  */
 
 /** @name Removing Objects from the Cache */
@@ -139,8 +139,8 @@
 /**
  * Removes an object from the cache with the given name.
  *
- *      @param name The name used as a key to store this object.
- *      @fn NIMemoryCache::removeObjectWithName:
+ * @param name The name used as a key to store this object.
+ * @fn NIMemoryCache::removeObjectWithName:
  */
 
 /**
@@ -148,8 +148,8 @@
  *
  * This method requires a scan of the cache entries.
  *
- *      @param prefix Any object name that has this prefix will be removed from the cache.
- *      @fn NIMemoryCache::removeAllObjectsWithPrefix:
+ * @param prefix Any object name that has this prefix will be removed from the cache.
+ * @fn NIMemoryCache::removeAllObjectsWithPrefix:
  */
 
 /**
@@ -157,7 +157,7 @@
  *
  * This will completely clear out the cache and all objects in the cache will be released.
  *
- *      @fn NIMemoryCache::removeAllObjects
+ * @fn NIMemoryCache::removeAllObjects
  */
 
 /** @name Accessing Objects in the Cache */
@@ -168,9 +168,9 @@
  * If the object has expired then the object will be removed from the cache and nil will be
  * returned.
  *
- *      @returns The object stored in the cache. The object is retained and autoreleased to
+ * @returns The object stored in the cache. The object is retained and autoreleased to
  *               ensure that it survives this run loop if you then remove it from the cache.
- *      @fn NIMemoryCache::objectWithName:
+ * @fn NIMemoryCache::objectWithName:
  */
 
 /**
@@ -182,9 +182,9 @@
  * If the object has expired then the object will be removed from the cache and NO will be
  * returned.
  *
- *      @returns YES if an object with the given name is present in the cache and has not expired,
+ * @returns YES if an object with the given name is present in the cache and has not expired,
  *               otherwise NO.
- *      @fn NIMemoryCache::containsObjectWithName:
+ * @fn NIMemoryCache::containsObjectWithName:
  */
 
 /**
@@ -195,9 +195,9 @@
  * If the object has expired then the object will be removed from the cache and nil will be
  * returned.
  *
- *      @returns The last access date of the object if it exists and has not expired, nil
+ * @returns The last access date of the object if it exists and has not expired, nil
  *               otherwise.
- *      @fn NIMemoryCache::dateOfLastAccessWithName:
+ * @fn NIMemoryCache::dateOfLastAccessWithName:
  */
 
 /**
@@ -207,7 +207,7 @@
  *
  * If the cache is empty, returns nil.
  *
- *      @fn NIMemoryCache::nameOfLeastRecentlyUsedObject
+ * @fn NIMemoryCache::nameOfLeastRecentlyUsedObject
  */
 
 /**
@@ -217,7 +217,7 @@
  *
  * If the cache is empty, returns nil.
  *
- *      @fn NIMemoryCache::nameOfMostRecentlyUsedObject
+ * @fn NIMemoryCache::nameOfMostRecentlyUsedObject
  */
 
 /** @name Reducing Memory Usage Explicitly */
@@ -231,7 +231,7 @@
  * This will be called when <code>UIApplicationDidReceiveMemoryWarningNotification</code>
  * is posted.
  *
- *      @fn NIMemoryCache::reduceMemoryUsage
+ * @fn NIMemoryCache::reduceMemoryUsage
  */
 
 /** @name Querying an In-Memory Cache */
@@ -239,8 +239,8 @@
 /**
  * Returns the number of objects currently in the cache.
  *
- *      @returns The number of objects currently in the cache.
- *      @fn NIMemoryCache::count
+ * @returns The number of objects currently in the cache.
+ * @fn NIMemoryCache::count
  */
 
 /**
@@ -253,34 +253,34 @@
 /**
  * An object is about to be stored in the cache.
  *
- *      @param object          The object that is about to be stored in the cache.
- *      @param name            The cache name for the object.
- *      @param previousObject  The object previously stored in the cache. This may be the
+ * @param object          The object that is about to be stored in the cache.
+ * @param name            The cache name for the object.
+ * @param previousObject  The object previously stored in the cache. This may be the
  *                             same as object.
- *      @returns YES If object is allowed to be stored in the cache.
- *      @fn NIMemoryCache::shouldSetObject:withName:previousObject:
+ * @returns YES If object is allowed to be stored in the cache.
+ * @fn NIMemoryCache::shouldSetObject:withName:previousObject:
  */
 
 /**
  * This method is deprecated. Please use shouldSetObject:withName:previousObject: instead.
  *
- *      @fn NIMemoryCache::willSetObject:withName:previousObject:
+ * @fn NIMemoryCache::willSetObject:withName:previousObject:
  */
 
 /**
  * An object has been stored in the cache.
  *
- *      @param object          The object that was stored in the cache.
- *      @param name            The cache name for the object.
- *      @fn NIMemoryCache::didSetObject:withName:
+ * @param object          The object that was stored in the cache.
+ * @param name            The cache name for the object.
+ * @fn NIMemoryCache::didSetObject:withName:
  */
 
 /**
  * An object is about to be removed from the cache.
  *
- *      @param object  The object about to removed from the cache.
- *      @param name    The cache name for the object about to be removed.
- *      @fn NIMemoryCache::willRemoveObject:withName:
+ * @param object  The object about to removed from the cache.
+ * @param name    The cache name for the object about to be removed.
+ * @fn NIMemoryCache::willRemoveObject:withName:
  */
 
 // NIImageMemoryCache
@@ -290,8 +290,8 @@
 /**
  * Returns the total number of pixels being stored in the cache.
  *
- *      @returns The total number of pixels being stored in the cache.
- *      @fn NIImageMemoryCache::numberOfPixels
+ * @returns The total number of pixels being stored in the cache.
+ * @fn NIImageMemoryCache::numberOfPixels
  */
 
 /** @name Setting the Maximum Number of Pixels */
@@ -301,8 +301,8 @@
  *
  * Defaults to 0, which is special cased to represent an unlimited number of pixels.
  *
- *      @returns The maximum number of pixels this cache may ever store.
- *      @fn NIImageMemoryCache::maxNumberOfPixels
+ * @returns The maximum number of pixels this cache may ever store.
+ * @fn NIImageMemoryCache::maxNumberOfPixels
  */
 
 /**
@@ -310,7 +310,7 @@
  *
  * Defaults to 0, which is special cased to represent an unlimited number of pixels.
  *
- *      @returns The maximum number of pixels this cache may store after a call
+ * @returns The maximum number of pixels this cache may store after a call
  *               to reduceMemoryUsage.
- *      @fn NIImageMemoryCache::maxNumberOfPixelsUnderStress
+ * @fn NIImageMemoryCache::maxNumberOfPixelsUnderStress
  */

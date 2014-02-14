@@ -28,7 +28,7 @@
  * When the cache is a NIImageMemoryCache, the pixel information will also be displayed in the
  * summary and each of the images will be displayed.
  *
- *      @ingroup Overview
+ * @ingroup Overview
  */
 @interface NIOverviewMemoryCacheController : UITableViewController
 
@@ -40,5 +40,5 @@
 /**
  * Initializes a newly allocated cache controller with the given cache object.
  *
- *      @fn NIOverviewImageCacheController::initWithMemoryCache:
+ * @fn NIOverviewImageCacheController::initWithMemoryCache:
  */

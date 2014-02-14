@@ -73,7 +73,7 @@
  *  [webController setToolbarTintColor:[UIColor blackColor]];
  * @endcode
  *
- *      @ingroup NimbusWebController
+ * @ingroup NimbusWebController
  */
 @interface NIWebController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate>
 
@@ -107,7 +107,7 @@
  *
  * This is the designated initializer.
  *
- *      @fn NIWebController::initWithRequest:
+ * @fn NIWebController::initWithRequest:
  */
 
 /**
@@ -115,7 +115,7 @@
  *
  * Once the controller is presented it will begin loading the given URL.
  *
- *      @fn NIWebController::initWithURL:
+ * @fn NIWebController::initWithURL:
  */
 
 /** @name Accessing the Request Attributes */
@@ -126,7 +126,7 @@
  * If the web view is currently loading a URL then the loading URL is returned.
  * Otherwise this will be the last URL that was loaded.
  *
- *      @fn NIWebController::URL:
+ * @fn NIWebController::URL:
  */
 
 /** @name Loading a Request */
@@ -134,24 +134,24 @@
 /**
  * Loads a request with the given URL in the web view.
  *
- *      @fn NIWebController::openURL:
+ * @fn NIWebController::openURL:
  */
 
 /**
  * Load the given request using UIWebView's loadRequest:.
  *
- *      @param request  A URL request identifying the location of the content to load.
+ * @param request  A URL request identifying the location of the content to load.
  *
- *      @fn NIWebController::openRequest:
+ * @fn NIWebController::openRequest:
  */
 
 /**
  * Load the given request using UIWebView's loadHTMLString:baseURL:.
  *
- *      @param htmlString  The content for the main page.
- *      @param baseUrl  The base URL for the content.
+ * @param htmlString  The content for the main page.
+ * @param baseUrl  The base URL for the content.
  *
- *      @fn NIWebController::openHTMLString:baseURL:
+ * @fn NIWebController::openHTMLString:baseURL:
  */
 
 /** @name Accessing the Toolbar */
@@ -161,13 +161,13 @@
  *
  * If the toolbar is hidden then the web view will take up the controller's entire view.
  *
- *      @fn NIWebController::toolbarHidden
+ * @fn NIWebController::toolbarHidden
  */
 
 /**
  * The tint color of the toolbar.
  *
- *      @fn NIWebController::toolbarTintColor
+ * @fn NIWebController::toolbarTintColor
  */
 
 /** @name Accessing the Web View */
@@ -175,7 +175,7 @@
 /**
  * The internal web view.
  *
- *      @fn NIWebController::webView
+ * @fn NIWebController::webView
  */
 
 /** @name Subclassing the Web Controller */
@@ -187,7 +187,7 @@
  * that is shown to the user or even cancel the presentation of the @c actionSheet by
  * returning NO from your implementation.
  *
- *      @param actionSheet The UIActionSheet that will be presented to the user.
- *      @return YES to present the actionSheet, NO if you want to perform a custom action.
- *      @fn NIWebController::shouldPresentActionSheet:
+ * @param actionSheet The UIActionSheet that will be presented to the user.
+ * @return YES to present the actionSheet, NO if you want to perform a custom action.
+ * @fn NIWebController::shouldPresentActionSheet:
  */

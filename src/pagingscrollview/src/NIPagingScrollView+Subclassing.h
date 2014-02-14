@@ -51,7 +51,7 @@
  *
  * Meant to be subclassed. By default this method does nothing.
  *
- *      @fn NIPagingScrollView::willDisplayPage:
+ * @fn NIPagingScrollView::willDisplayPage:
  */
 
 /**
@@ -59,7 +59,7 @@
  *
  * Meant to be subclassed. By default this method does nothing.
  *
- *      @fn NIPagingScrollView::didRecyclePage:
+ * @fn NIPagingScrollView::didRecyclePage:
  */
 
 /**
@@ -68,7 +68,7 @@
  *
  * Meant to be subclassed. By default this method does nothing.
  *
- *      @fn NIPagingScrollView::didReloadNumberOfPages
+ * @fn NIPagingScrollView::didReloadNumberOfPages
  */
 
 /**
@@ -76,7 +76,7 @@
  *
  * Meant to be subclassed. By default this method does nothing.
  *
- *      @fn NIPagingScrollView::didChangeCenterPageIndexFrom:to:
+ * @fn NIPagingScrollView::didChangeCenterPageIndexFrom:to:
  */
 
 /**
@@ -86,25 +86,25 @@
  * A subclass may chose to modify the page index using a transformation method
  * before calling super.
  *
- *      @fn NIPagingScrollView::loadPageAtIndex:
+ * @fn NIPagingScrollView::loadPageAtIndex:
  */
 
 /**
  * Sets the centerPageIndex ivar without side effects.
  *
- *      @fn NIPagingScrollView::setCenterPageIndexIvar:
+ * @fn NIPagingScrollView::setCenterPageIndexIvar:
  */
 
 /**
  * Recycles the page at the given index.
  *
- *      @fn NIPagingScrollView::recyclePageAtIndex:
+ * @fn NIPagingScrollView::recyclePageAtIndex:
  */
 
 /**
  * Displays the page at the given index.
  *
- *      @fn NIPagingScrollView::displayPageAtIndex:
+ * @fn NIPagingScrollView::displayPageAtIndex:
  */
 
 /**
@@ -113,11 +113,11 @@
  * This is the width of the paging scroll view for horizontal scroll views, or
  * the height of the paging scroll view for vertical scroll views.
  *
- *      @fn NIPagingScrollView::pageScrollableDimension
+ * @fn NIPagingScrollView::pageScrollableDimension
  */
 
 /**
  * Updates the frames of all visible pages based on their page indices.
  *
- *      @fn NIPagingScrollView::layoutVisiblePages
+ * @fn NIPagingScrollView::layoutVisiblePages
  */

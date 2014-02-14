@@ -28,7 +28,7 @@ NSString* NIStringFromBytes(unsigned long long bytes);
 /**
  * An interface for accessing device information.
  *
- *      @ingroup Overview-Sensors
+ * @ingroup Overview-Sensors
  *
  * This class is not meant to be instantiated. All methods are class implementations.
  *
@@ -36,7 +36,7 @@ NSString* NIStringFromBytes(unsigned long long bytes);
  * mach APIs provide a host of valuable information but it's often in formats that aren't
  * particularly ready for presentation.
  *
- *      @attention When using this class on the simulator, the values returned will reflect
+ * @attention When using this class on the simulator, the values returned will reflect
  *                 those of the computer within which you're running the simulator, not the
  *                 simulated device. This is because the simulator is a first-class citizen
  *                 on the computer and has full access to your RAM and disk space.

@@ -21,7 +21,7 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
 /**
  * An object that will draw the contents of the cell using a provided block.
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NIDrawRectBlockCellObject : NICellObject
 // Designated initializer.
@@ -38,7 +38,7 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  * UITableViewCellStyleDefault cell. You can customize the cell class using the
  * NICellObject methods.
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NITitleCellObject : NICellObject
 // Designated initializer.
@@ -58,7 +58,7 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  * UITableViewCellStyleSubtitle cell. You can customize the cell class using the
  * NICellObject methods.
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NISubtitleCellObject : NITitleCellObject
 // Designated initializer.
@@ -77,7 +77,7 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  * When given a NITitleCellObject, will set the textLabel's text with the title.
  * When given a NISubtitleCellObject, will also set the detailTextLabel's text with the subtitle.
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NITextCell : UITableViewCell <NICell>
 @end
@@ -85,7 +85,7 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
 /**
  * A cell that renders its contents using a block.
  *
- *      @ingroup TableCellCatalog
+ * @ingroup TableCellCatalog
  */
 @interface NIDrawRectBlockCell : UITableViewCell <NICell>
 @property (nonatomic, strong) UIView* blockView;
@@ -97,40 +97,40 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  * This is the designated initializer. Use of this initializer allows for customization of the
  * associated cell class for this object.
  *
- *      @fn NITitleCellObject::initWithTitle:image:cellClass:userInfo:
+ * @fn NITitleCellObject::initWithTitle:image:cellClass:userInfo:
  */
 
 /**
  * Initializes the NITitleCellObject with NITextCell as the cell class and the given title text and
  * image.
  *
- *      @fn NITitleCellObject::initWithTitle:image:
+ * @fn NITitleCellObject::initWithTitle:image:
  */
 
 /**
  * Initializes the NITitleCellObject with NITextCell as the cell class and the given title text.
  *
- *      @fn NITitleCellObject::initWithTitle:
+ * @fn NITitleCellObject::initWithTitle:
  */
 
 /**
  * Convenience method for initWithTitle:image:.
  *
- *      @fn NITitleCellObject::objectWithTitle:image:
- *      @returns Autoreleased instance of NITitleCellObject.
+ * @fn NITitleCellObject::objectWithTitle:image:
+ * @returns Autoreleased instance of NITitleCellObject.
  */
 
 /**
  * Convenience method for initWithTitle:.
  *
- *      @fn NITitleCellObject::objectWithTitle:
- *      @returns Autoreleased instance of NITitleCellObject.
+ * @fn NITitleCellObject::objectWithTitle:
+ * @returns Autoreleased instance of NITitleCellObject.
  */
 
 /**
  * The text to be displayed in the cell.
  *
- *      @fn NITitleCellObject::title
+ * @fn NITitleCellObject::title
  */
 
 /**
@@ -140,27 +140,27 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  * This is the designated initializer. Use of this initializer allows for customization of the
  * associated cell class for this object.
  *
- *      @fn NISubtitleCellObject::initWithTitle:subtitle:image:cellClass:userInfo:
+ * @fn NISubtitleCellObject::initWithTitle:subtitle:image:cellClass:userInfo:
  */
 
 /**
  * Initializes the NICellObject with NITextCell as the cell class and the given title and subtitle
  * text.
  *
- *      @fn NISubtitleCellObject::initWithTitle:subtitle:
+ * @fn NISubtitleCellObject::initWithTitle:subtitle:
  */
 
 /**
  * Convenience method for initWithTitle:subtitle:.
  *
- *      @fn NISubtitleCellObject::objectWithTitle:subtitle:
- *      @returns Autoreleased instance of NISubtitleCellObject.
+ * @fn NISubtitleCellObject::objectWithTitle:subtitle:
+ * @returns Autoreleased instance of NISubtitleCellObject.
  */
 
 /**
  * The text to be displayed in the subtitle portion of the cell.
  *
- *      @fn NISubtitleCellObject::subtitle
+ * @fn NISubtitleCellObject::subtitle
  */
 
 /**
@@ -168,5 +168,5 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  *
  * By default this is UITableViewCellStyleSubtitle.
  *
- *      @fn NISubtitleCellObject::cellStyle
+ * @fn NISubtitleCellObject::cellStyle
  */

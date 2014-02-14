@@ -89,7 +89,7 @@ label.text = @"Nimbus";
  * @link NIAttributedLabel::dataDetectorTypes dataDetectorTypes@endlink property. By default only
  * urls will be detected.
  *
- *      @attention NIAttributedLabel is not designed to detect html anchor tags (i.e. &lt;a>). If
+ * @attention NIAttributedLabel is not designed to detect html anchor tags (i.e. &lt;a>). If
  *                 you want to attach a URL to a given range of text you must use
  *                 @link NIAttributedLabel::addLink:range: addLink:range:@endlink.
  *                 You can add links to the attributed string using the attribute kNILinkAttributeName.

@@ -23,8 +23,8 @@
 /**
  * The photo album scroll view delegate.
  *
- *      @ingroup Photos-Protocols
- *      @see NIPhotoAlbumScrollView
+ * @ingroup Photos-Protocols
+ * @see NIPhotoAlbumScrollView
  */
 @protocol NIPhotoAlbumScrollViewDelegate <NIPagingScrollViewDelegate>
 
