@@ -185,6 +185,20 @@ NSString* NISHA1HashFromData(NSData* data);
  */
 
 /**
+ * Calculates an md5 hash of the string using CC_MD5.
+ *
+ * Treats the string as UTF8.
+ */
+NSString* NIMD5HashFromString(NSString* string);
+
+/**
+ * Calculates a sha1 hash of the string using CC_SHA1.
+ *
+ * Treats the string as UTF8.
+ */
+NSString* NISHA1HashFromString(NSString* string);
+
+/**
  * Returns a Boolean value indicating whether the string is a NSString object that contains only
  * whitespace and newlines.
  */

@@ -167,6 +167,14 @@ NSString* NISHA1HashFromData(NSData* data) {
 
 #pragma mark - NSString
 
+NSString* NIMD5HashFromString(NSString* string) {
+  return NIMD5HashFromData([string dataUsingEncoding:NSUTF8StringEncoding]);
+}
+
+NSString* NISHA1HashFromString(NSString* string) {
+  return NISHA1HashFromData([string dataUsingEncoding:NSUTF8StringEncoding]);
+}
+
 BOOL NIIsStringWithWhitespaceAndNewlines(NSString* string) {
   NSCharacterSet* notWhitespaceAndNewlines = [[NSCharacterSet whitespaceAndNewlineCharacterSet] invertedSet];
   return [string isKindOfClass:[NSString class]] && [string rangeOfCharacterFromSet:notWhitespaceAndNewlines].length == 0;

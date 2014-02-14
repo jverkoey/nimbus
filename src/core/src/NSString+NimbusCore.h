@@ -34,9 +34,4 @@
 - (NSString *)stringByAddingPercentEscapesForURLParameter;
 - (NSString*)stringByAddingQueryDictionary:(NSDictionary*)query;
 
-#pragma mark Hashing
-
-@property (nonatomic, readonly) NSString* md5Hash;
-@property (nonatomic, readonly) NSString* sha1Hash;
-
 @end

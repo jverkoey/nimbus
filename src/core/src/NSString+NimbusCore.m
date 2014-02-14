@@ -129,22 +129,4 @@ NI_FIX_CATEGORY_BUG(NSStringNimbusCore)
   }
 }
 
-/**
- * Calculate the md5 hash using CC_MD5.
- *
- * @returns md5 hash of this string.
- */
-- (NSString*)md5Hash {
-  return NIMD5HashFromData([self dataUsingEncoding:NSUTF8StringEncoding]);
-}
-
-/**
- * Calculate the SHA1 hash using CommonCrypto CC_SHA1.
- *
- * @returns SHA1 hash of this string.
- */
-- (NSString*)sha1Hash {
-  return NISHA1HashFromData([self dataUsingEncoding:NSUTF8StringEncoding]);
-}
-
 @end
