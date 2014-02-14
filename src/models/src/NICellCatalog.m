@@ -161,10 +161,10 @@
 
 
 - (id)initWithFrame:(CGRect)frame {
-    if ((self = [super initWithFrame:frame])) {
-        self.backgroundColor = [UIColor clearColor];
-    }
-    return self;
+  if ((self = [super initWithFrame:frame])) {
+    self.backgroundColor = [UIColor clearColor];
+  }
+  return self;
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -178,11 +178,9 @@
 
 @implementation NIDrawRectBlockCell
 
-
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier])) {
-    self.selectionStyle = UITableViewCellSelectionStyleBlue;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 
     _blockView = [[NIDrawRectBlockView alloc] initWithFrame:self.contentView.bounds];
     _blockView.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
