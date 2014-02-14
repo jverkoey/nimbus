@@ -458,7 +458,7 @@
   STAssertEquals(cache.count, (NSUInteger)2, @"Cache should have two objects in it.");
   [cache removeAllObjects];
   STAssertEquals(cache.count, (NSUInteger)0, @"Cache should now be empty.");
-  STAssertEquals(cache.numberOfPixels, (NSUInteger)0, @"Cache should have zero pixels.");
+  STAssertEquals(cache.numberOfPixels, (unsigned long long)0, @"Cache should have zero pixels.");
 }
 
 - (void)testImageCacheNils {

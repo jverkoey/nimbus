@@ -148,12 +148,12 @@
 }
 
 - (void)testNSString_md5Hash {
-  STAssertTrue([[@"nimbus" md5Hash] isEqualToString:@"0e78d66f33c484a3c3b36d69bd3114cf"],
+  STAssertTrue([NIMD5HashFromString(@"nimbus") isEqualToString:@"0e78d66f33c484a3c3b36d69bd3114cf"],
                @"MD5 hashes don't match.");
 }
 
 - (void)testNSString_sha1Hash {
-  STAssertTrue([[@"nimbus" sha1Hash] isEqualToString:@"c1b42d95fd18ad8a56d4fd7bbb4105952620d857"],
+  STAssertTrue([NISHA1HashFromString(@"nimbus") isEqualToString:@"c1b42d95fd18ad8a56d4fd7bbb4105952620d857"],
                @"SHA1 hashes don't match.");
 }
 
