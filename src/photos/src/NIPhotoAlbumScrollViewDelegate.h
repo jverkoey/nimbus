@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NIPagingScrollViewDelegate.h"
+#import "NimbusPagingScrollView.h"
 
 @class NIPhotoAlbumScrollView;
 

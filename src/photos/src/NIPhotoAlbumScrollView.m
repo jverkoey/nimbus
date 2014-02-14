@@ -16,6 +16,7 @@
 
 #import "NIPhotoAlbumScrollView.h"
 
+#import "NIPagingScrollView+Subclassing.h"
 #import "NIPhotoScrollView.h"
 #import "NIPhotoAlbumScrollViewDataSource.h"
 #import "NimbusCore.h"
@@ -40,7 +41,7 @@
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
   [super setBackgroundColor:backgroundColor];
 
-  self.pagingScrollView.backgroundColor = backgroundColor;
+  self.scrollView.backgroundColor = backgroundColor;
 }
 
 - (void)notifyDelegatePhotoDidLoadAtIndex:(NSInteger)photoIndex {
