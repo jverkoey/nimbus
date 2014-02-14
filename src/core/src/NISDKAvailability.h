@@ -247,6 +247,7 @@ Class NIUITapGestureRecognizerClass(void) __NI_DEPRECATED_METHOD;
 @interface UIViewController (Nimbus7SDKAvailability)
 
 @property (nonatomic, assign) UIRectEdge edgesForExtendedLayout;
+- (void)setNeedsStatusBarAppearanceUpdate;
 
 @end
 
