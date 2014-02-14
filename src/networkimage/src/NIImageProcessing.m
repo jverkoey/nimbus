@@ -108,8 +108,7 @@
 
   } else {
     // Not implemented
-    NIDERROR(@"This content mode has not been implemented in the threaded network image view: %d",
-             contentMode);
+    NIDERROR(@"The following content mode has not been implemented: %d", contentMode);
     return CGRectMake(0, 0, imageSize.width, imageSize.height);
   }
 }
@@ -147,18 +146,17 @@
 
   } else {
     // Not implemented
-    NIDERROR(@"This content mode has not been implemented in the threaded network image view: %d",
-             contentMode);
+    NIDERROR(@"The following content mode has not been implemented: %d", contentMode);
     return CGRectMake(0, 0, displaySize.width, displaySize.height);
   }
 }
 
-+ (UIImage *)imageFromSource: (UIImage *)src
-             withContentMode: (UIViewContentMode)contentMode
-                    cropRect: (CGRect)cropRect
-                 displaySize: (CGSize)displaySize
-                scaleOptions: (NINetworkImageViewScaleOptions)scaleOptions
-        interpolationQuality: (CGInterpolationQuality)interpolationQuality {
++ (UIImage *)imageFromSource:(UIImage *)src
+             withContentMode:(UIViewContentMode)contentMode
+                    cropRect:(CGRect)cropRect
+                 displaySize:(CGSize)displaySize
+                scaleOptions:(NINetworkImageViewScaleOptions)scaleOptions
+        interpolationQuality:(CGInterpolationQuality)interpolationQuality {
 
   UIImage* resultImage = src;
 
@@ -182,9 +180,7 @@
 
     // This new image will likely have a different width and height, so we have to update
     // the source rect as a result.
-    srcRect = CGRectMake(0, 0,
-                         CGRectGetWidth(innerRect),
-                         CGRectGetHeight(innerRect));
+    srcRect = CGRectMake(0, 0, CGRectGetWidth(innerRect), CGRectGetHeight(innerRect));
   }
 
   // Display
@@ -303,14 +299,9 @@
       CGImageRef resultImageRef = CGBitmapContextCreateImage(dstBmp);
 
       if (nil != resultImageRef) {
-        if ([[UIImage class] respondsToSelector:@selector(imageWithCGImage:scale:orientation:)]) {
-          resultImage = [UIImage imageWithCGImage: resultImageRef
-                                            scale: screenScale
-                                      orientation: src.imageOrientation];
-
-        } else {
-          resultImage = [UIImage imageWithCGImage: resultImageRef];
-        }
+        resultImage = [UIImage imageWithCGImage:resultImageRef
+                                          scale:screenScale
+                                    orientation:src.imageOrientation];
         CGImageRelease(resultImageRef);
       }
 
