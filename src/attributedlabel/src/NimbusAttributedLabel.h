@@ -96,14 +96,14 @@ label.text = @"Nimbus";
  *                 The kNILinkAttributeName value should be the URL destination of the link. This can
  *                 be either an NSURL or an NSString.
  *
- *  @image html NIAttributedLabel_autoDetectLinksOff.png "Before enabling autoDetectLinks"
+ * @image html NIAttributedLabel_autoDetectLinksOff.png "Before enabling autoDetectLinks"
  *
 @code
 // Enable link detection on the label.
 myLabel.autoDetectLinks = YES;
 @endcode
  *
- *  @image html NIAttributedLabel_autoDetectLinksOn.png "After enabling autoDetectLinks"
+ * @image html NIAttributedLabel_autoDetectLinksOn.png "After enabling autoDetectLinks"
  *
  * Enabling automatic link detection will automatically enable user interation with the label view
  * so that the user can tap the detected links.
