@@ -46,25 +46,7 @@
  * @see NIPhotoScrubberViewDataSource
  * @see NIPhotoScrubberViewDelegate
  */
-@interface NIPhotoScrubberView : UIView {
-@private
-  NSMutableArray* _visiblePhotoViews;
-  NSMutableSet* _recycledPhotoViews;
-  
-  UIView* _containerView;
-  UIImageView* _selectionView;
-  
-  // State
-  NSInteger _selectedPhotoIndex;
-
-  // Cached data source values
-  NSInteger _numberOfPhotos;
-
-  // Cached display values
-  NSInteger _numberOfVisiblePhotos;
-  
-  __unsafe_unretained id<NIPhotoScrubberViewDelegate> _delegate;
-}
+@interface NIPhotoScrubberView : UIView
 
 #pragma mark Data Source /** @name Data Source */
 
@@ -93,14 +75,12 @@
 - (void)didLoadThumbnail: (UIImage *)image
                  atIndex: (NSInteger)photoIndex;
 
-
 #pragma mark Delegate /** @name Delegate */
 
 /**
  * The delegate for this scrubber view.
  */
-@property (nonatomic, assign) id<NIPhotoScrubberViewDelegate> delegate;
-
+@property (nonatomic, weak) id<NIPhotoScrubberViewDelegate> delegate;
 
 #pragma mark Accessing Selection /** @name Accessing Selection */
 

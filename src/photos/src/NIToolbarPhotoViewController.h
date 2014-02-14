@@ -69,36 +69,7 @@
  *  photoAlbumView.zoomingIsEnabled = NO;
  * @endcode
  */
-@interface NIToolbarPhotoViewController : UIViewController <
-  NIPhotoAlbumScrollViewDelegate,
-  NIPhotoScrubberViewDelegate > {
-@private
-  // Views
-  UIToolbar*              _toolbar;
-  NIPhotoAlbumScrollView* _photoAlbumView;
-
-  // Scrubber View
-  NIPhotoScrubberView* _photoScrubberView;
-
-  // Toolbar Buttons
-  UIBarButtonItem* _nextButton;
-  UIBarButtonItem* _previousButton;
-
-  // Gestures
-  UITapGestureRecognizer* _tapGesture;
-
-  // State
-  BOOL _isAnimatingChrome;
-  BOOL _isChromeHidden;
-  BOOL _prefersStatusBarHidden;
-
-  // Configuration
-  BOOL _toolbarIsTranslucent;
-  BOOL _hidesChromeWhenScrolling;
-  BOOL _chromeCanBeHidden;
-  BOOL _animateMovingToNextAndPreviousPhotos;
-  BOOL _scrubberIsEnabled;
-}
+@interface NIToolbarPhotoViewController : UIViewController <NIPhotoAlbumScrollViewDelegate, NIPhotoScrubberViewDelegate>
 
 #pragma mark Configuring Functionality
 
@@ -108,14 +79,12 @@
 @property (nonatomic, assign) BOOL animateMovingToNextAndPreviousPhotos; // default: no
 @property (nonatomic, assign, getter=isScrubberEnabled) BOOL scrubberIsEnabled; // default: ipad yes - iphone no
 
-
 #pragma mark Views
 
 @property (nonatomic, readonly, strong) UIToolbar* toolbar;
 @property (nonatomic, readonly, strong) NIPhotoAlbumScrollView* photoAlbumView;
 @property (nonatomic, readonly, strong) NIPhotoScrubberView* photoScrubberView;
 - (void)refreshChromeState;
-
 
 #pragma mark Toolbar Buttons
 
@@ -126,7 +95,6 @@
 
 - (void)setChromeVisibility:(BOOL)isVisible animated:(BOOL)animated;
 - (void)setChromeTitle;
-
 
 @end
 

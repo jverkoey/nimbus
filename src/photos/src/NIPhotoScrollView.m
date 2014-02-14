@@ -70,14 +70,28 @@
 
 @end
 
-
-@interface NIPhotoScrollView()
+@interface NIPhotoScrollView ()
 @property (nonatomic, assign) NIPhotoScrollViewPhotoSize photoSize;
 - (void)setMaxMinZoomScalesForCurrentBounds;
 @end
 
+@implementation NIPhotoScrollView {
+  // The photo view to be zoomed.
+  UIImageView* _imageView;
+  // The scroll view.
+  NICenteringScrollView* _scrollView;
+  UIActivityIndicatorView* _loadingView;
 
-@implementation NIPhotoScrollView
+  // Photo Information
+  NIPhotoScrollViewPhotoSize _photoSize;
+  CGSize _photoDimensions;
+
+  // Configurable State
+  BOOL _zoomingIsEnabled;
+  BOOL _zoomingAboveOriginalSizeIsEnabled;
+
+  UITapGestureRecognizer* _doubleTapGestureRecognizer;
+}
 
 @synthesize reuseIdentifier;
 

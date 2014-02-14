@@ -59,9 +59,22 @@ static const NSInteger NIPhotoScrubberViewUnknownTag = -1;
 @end
 
 
-@implementation NIPhotoScrubberView
+@implementation NIPhotoScrubberView {
+  NSMutableArray* _visiblePhotoViews;
+  NSMutableSet* _recycledPhotoViews;
 
+  UIView* _containerView;
+  UIImageView* _selectionView;
 
+  // State
+  NSInteger _selectedPhotoIndex;
+
+  // Cached data source values
+  NSInteger _numberOfPhotos;
+
+  // Cached display values
+  NSInteger _numberOfVisiblePhotos;
+}
 
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {

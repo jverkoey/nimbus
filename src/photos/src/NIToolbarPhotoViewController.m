@@ -24,7 +24,34 @@
 #error "Nimbus requires ARC support."
 #endif
 
-@implementation NIToolbarPhotoViewController
+@implementation NIToolbarPhotoViewController {
+  // Views
+  UIToolbar*              _toolbar;
+  NIPhotoAlbumScrollView* _photoAlbumView;
+
+  // Scrubber View
+  NIPhotoScrubberView* _photoScrubberView;
+
+  // Toolbar Buttons
+  UIBarButtonItem* _nextButton;
+  UIBarButtonItem* _previousButton;
+
+  // Gestures
+  UITapGestureRecognizer* _tapGesture;
+
+  // State
+  BOOL _isAnimatingChrome;
+  BOOL _isChromeHidden;
+  BOOL _prefersStatusBarHidden;
+
+  // Configuration
+  BOOL _toolbarIsTranslucent;
+  BOOL _hidesChromeWhenScrolling;
+  BOOL _chromeCanBeHidden;
+  BOOL _animateMovingToNextAndPreviousPhotos;
+  BOOL _scrubberIsEnabled;
+}
+
 
 - (void)shutdown_NIToolbarPhotoViewController {
   _toolbar = nil;

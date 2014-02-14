@@ -38,13 +38,7 @@
  *
  * @see NIToolbarPhotoViewController
  */
-@interface NIPhotoAlbumScrollView : NIPagingScrollView <NIPhotoScrollViewDelegate> {
-@private
-  // Configurable Properties
-  UIImage* _loadingImage;
-  BOOL _zoomingIsEnabled;
-  BOOL _zoomingAboveOriginalSizeIsEnabled;
-}
+@interface NIPhotoAlbumScrollView : NIPagingScrollView <NIPhotoScrollViewDelegate>
 
 #pragma mark Data Source
 

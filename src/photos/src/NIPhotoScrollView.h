@@ -28,27 +28,7 @@
  *
  * @ingroup NimbusPhotos
  */
-@interface NIPhotoScrollView : UIView <
-  UIScrollViewDelegate,
-  NIPagingScrollViewPage> {
-@private
-  // The photo view to be zoomed.
-  UIImageView* _imageView;
-  // The scroll view.
-  NICenteringScrollView* _scrollView;
-  UIActivityIndicatorView* _loadingView;
-
-  // Photo Information
-  NIPhotoScrollViewPhotoSize _photoSize;
-  CGSize _photoDimensions;
-
-  // Configurable State
-  BOOL _zoomingIsEnabled;
-  BOOL _zoomingAboveOriginalSizeIsEnabled;
-
-  UITapGestureRecognizer* _doubleTapGestureRecognizer;
-
-}
+@interface NIPhotoScrollView : UIView <UIScrollViewDelegate, NIPagingScrollViewPage>
 
 #pragma mark Configuring Functionality
 

@@ -25,9 +25,12 @@
 #error "Nimbus requires ARC support."
 #endif
 
-@implementation NIPhotoAlbumScrollView
-
-
+@implementation NIPhotoAlbumScrollView {
+  // Configurable Properties
+  UIImage* _loadingImage;
+  BOOL _zoomingIsEnabled;
+  BOOL _zoomingAboveOriginalSizeIsEnabled;
+}
 
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
