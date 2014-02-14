@@ -23,5 +23,4 @@
 #import "NimbusCore.h"
 
 // Additions
-#import "NSString+NimbusCore.h"
 #import "UIResponder+NimbusCore.h"
