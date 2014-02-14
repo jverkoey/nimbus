@@ -34,14 +34,7 @@ extern NSString* const NIOverviewLoggerDidAddEventLog;
  *
  * The primary log should be accessed by calling [NIOverview @link NIOverview::logger logger@endlink].
  */
-@interface NIOverviewLogger : NSObject {
-@private
-  NSMutableOrderedSet* _deviceLogs;
-  NSMutableOrderedSet* _consoleLogs;
-  NSMutableOrderedSet* _eventLogs;
-  NSTimeInterval _oldestLogAge;
-  NSTimer* _heartbeatTimer;
-}
+@interface NIOverviewLogger : NSObject
 
 #pragma mark Configuration Settings /** @name Configuration Settings */
 
@@ -115,10 +108,7 @@ extern NSString* const NIOverviewLoggerDidAddEventLog;
  *
  * A basic log entry need only define a timestamp in order to be particularly useful.
  */
-@interface NIOverviewLogEntry : NSObject {
-@private
-  NSDate* _timestamp;
-}
+@interface NIOverviewLogEntry : NSObject
 
 #pragma mark Creating an Entry /** @name Creating an Entry */
 
@@ -143,16 +133,7 @@ extern NSString* const NIOverviewLoggerDidAddEventLog;
  *
  * @ingroup Overview-Logger-Entries
  */
-@interface NIOverviewDeviceLogEntry : NIOverviewLogEntry {
-@private
-  unsigned long long _bytesOfFreeMemory;
-  unsigned long long _bytesOfTotalMemory;
-  unsigned long long _bytesOfTotalDiskSpace;
-  unsigned long long _bytesOfFreeDiskSpace;
-
-  CGFloat _batteryLevel;
-  UIDeviceBatteryState _batteryState;
-}
+@interface NIOverviewDeviceLogEntry : NIOverviewLogEntry
 
 #pragma mark Entry Information /** @name Entry Information */
 
@@ -194,10 +175,7 @@ extern NSString* const NIOverviewLoggerDidAddEventLog;
  *
  * @ingroup Overview-Logger-Entries
  */
-@interface NIOverviewConsoleLogEntry : NIOverviewLogEntry {
-@private
-  NSString* _log;
-}
+@interface NIOverviewConsoleLogEntry : NIOverviewLogEntry
 
 #pragma mark Creating an Entry /** @name Creating an Entry */
 
@@ -226,10 +204,7 @@ typedef enum {
  *
  * @ingroup Overview-Logger-Entries
  */
-@interface NIOverviewEventLogEntry : NIOverviewLogEntry {
-@private
-  NSInteger _eventType;
-}
+@interface NIOverviewEventLogEntry : NIOverviewLogEntry
 
 #pragma mark Creating an Entry /** @name Creating an Entry */
 

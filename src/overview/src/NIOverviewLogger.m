@@ -25,7 +25,13 @@ NSString* const NIOverviewLoggerDidAddDeviceLog = @"NIOverviewLoggerDidAddDevice
 NSString* const NIOverviewLoggerDidAddConsoleLog = @"NIOverviewLoggerDidAddConsoleLog";
 NSString* const NIOverviewLoggerDidAddEventLog = @"NIOverviewLoggerDidAddEventLog";
 
-@implementation NIOverviewLogger
+@implementation NIOverviewLogger {
+  NSMutableOrderedSet* _deviceLogs;
+  NSMutableOrderedSet* _consoleLogs;
+  NSMutableOrderedSet* _eventLogs;
+  NSTimeInterval _oldestLogAge;
+  NSTimer* _heartbeatTimer;
+}
 
 + (NIOverviewLogger*)sharedLogger
 {
@@ -89,19 +95,17 @@ NSString* const NIOverviewLoggerDidAddEventLog = @"NIOverviewLoggerDidAddEventLo
 
   [_deviceLogs addObject:logEntry];
   
-  [[NSNotificationCenter defaultCenter] postNotificationName: NIOverviewLoggerDidAddDeviceLog
-                                                      object: nil
-                                                    userInfo:
-   [NSDictionary dictionaryWithObject:logEntry forKey:@"entry"]];
+  [[NSNotificationCenter defaultCenter] postNotificationName:NIOverviewLoggerDidAddDeviceLog
+                                                      object:nil
+                                                    userInfo:@{@"entry":logEntry}];
 }
 
 - (void)addConsoleLog:(NIOverviewConsoleLogEntry *)logEntry {
   [_consoleLogs addObject:logEntry];
   
-  [[NSNotificationCenter defaultCenter] postNotificationName: NIOverviewLoggerDidAddConsoleLog
-                                                      object: nil
-                                                    userInfo:
-   [NSDictionary dictionaryWithObject:logEntry forKey:@"entry"]];
+  [[NSNotificationCenter defaultCenter] postNotificationName:NIOverviewLoggerDidAddConsoleLog
+                                                      object:nil
+                                                    userInfo:@{@"entry":logEntry}];
 }
 
 - (void)addEventLog:(NIOverviewEventLogEntry *)logEntry {
@@ -109,18 +113,15 @@ NSString* const NIOverviewLoggerDidAddEventLog = @"NIOverviewLoggerDidAddEventLo
 
   [_eventLogs addObject:logEntry];
   
-  [[NSNotificationCenter defaultCenter] postNotificationName: NIOverviewLoggerDidAddEventLog
-                                                      object: nil
-                                                    userInfo:
-   [NSDictionary dictionaryWithObject:logEntry forKey:@"entry"]];
+  [[NSNotificationCenter defaultCenter] postNotificationName:NIOverviewLoggerDidAddEventLog
+                                                      object:nil
+                                                    userInfo:@{@"entry":logEntry}];
 }
 
 @end
 
 
 @implementation NIOverviewLogEntry
-
-
 
 - (id)initWithTimestamp:(NSDate *)timestamp {
   if ((self = [super init])) {
@@ -133,14 +134,10 @@ NSString* const NIOverviewLoggerDidAddEventLog = @"NIOverviewLoggerDidAddEventLo
 
 
 @implementation NIOverviewDeviceLogEntry
-
-
 @end
 
 
 @implementation NIOverviewConsoleLogEntry
-
-
 
 - (id)initWithLog:(NSString *)logText {
   if ((self = [super initWithTimestamp:[NSDate date]])) {
@@ -155,11 +152,9 @@ NSString* const NIOverviewLoggerDidAddEventLog = @"NIOverviewLoggerDidAddEventLo
 
 @implementation NIOverviewEventLogEntry
 
-
-
 - (id)initWithType:(NSInteger)type {
   if ((self = [super initWithTimestamp:[NSDate date]])) {
-    _eventType = type;
+    _type = type;
   }
   
   return self;

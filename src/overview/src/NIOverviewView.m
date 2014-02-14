@@ -37,7 +37,21 @@ static const NSUInteger kNumberOfFingersForPanGestureRecognizer = 1;
 
 @end
 
-@implementation NIOverviewView
+@implementation NIOverviewView {
+  UIImage*  _backgroundImage;
+
+  // State
+  BOOL            _translucent;
+  NSMutableArray* _pageViews;
+
+  // Views
+  UIScrollView* _pagingScrollView;
+
+  // Gesture recognizer
+  CGRect _initialFrame;
+  UIPanGestureRecognizer *_panGestureRecognizer;
+}
+
 
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {

@@ -21,6 +21,8 @@
 /**
  * A view controller that displays the contents of an in-memory cache.
  *
+ * Requires the [models] feature.
+ *
  * This controller provides useful debugging insights into the contents of an in-memory cache.
  * It presents a simple summary of the contents of the cache, followed by a listing of each
  * object in the cache.

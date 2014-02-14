@@ -25,21 +25,7 @@
  *
  * @ingroup Overview
  */
-@interface NIOverviewView : UIView {
-@private
-  UIImage*  _backgroundImage;
-  
-  // State
-  BOOL            _translucent;
-  NSMutableArray* _pageViews;
-
-  // Views
-  UIScrollView* _pagingScrollView;
-
-  // Gesture recognizer
-  CGRect _initialFrame;
-  UIPanGestureRecognizer *_panGestureRecognizer;
-}
+@interface NIOverviewView : UIView
 
 /**
  * Whether the view has a translucent background or not.

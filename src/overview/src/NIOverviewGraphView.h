@@ -25,10 +25,7 @@
  *
  * @ingroup Overview-Pages
  */
-@interface NIOverviewGraphView : UIView {
-@private
-  __weak id<NIOverviewGraphViewDataSource> _dataSource;
-}
+@interface NIOverviewGraphView : UIView
 
 /**
  * The data source for this graph view.

@@ -27,11 +27,7 @@
  *
  * @ingroup Overview-Pages
  */
-@interface NIOverviewPageView : UIView {
-@private
-  NSString* _pageTitle;
-  UILabel*  _titleLabel;
-}
+@interface NIOverviewPageView : UIView
 
 #pragma mark Creating a Page /** @name Creating a Page */
 
