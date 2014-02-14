@@ -90,6 +90,7 @@
   // State
   BOOL _isAnimatingChrome;
   BOOL _isChromeHidden;
+  BOOL _prefersStatusBarHidden;
 
   // Configuration
   BOOL _toolbarIsTranslucent;

@@ -26,8 +26,6 @@
 
 @implementation NIToolbarPhotoViewController
 
-
-
 - (void)shutdown_NIToolbarPhotoViewController {
   _toolbar = nil;
   _photoAlbumView = nil;
@@ -247,6 +245,7 @@
     self.toolbar.hidden = YES;
   }
 
+  [self.navigationController setNavigationBarHidden:YES animated:NO];
   _isChromeHidden = YES;
 }
 
@@ -254,6 +253,14 @@
   _isAnimatingChrome = NO;
 
   _isChromeHidden = NO;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+  return UIStatusBarAnimationSlide;
+}
+
+- (BOOL)prefersStatusBarHidden {
+  return _prefersStatusBarHidden;
 }
 
 - (void)setChromeVisibility:(BOOL)isVisible animated:(BOOL)animated {
@@ -283,20 +290,12 @@
   }
 
   // Show/hide the system chrome.
-  if ([[UIApplication sharedApplication] respondsToSelector:
-       @selector(setStatusBarHidden:withAnimation:)]) {
-    // On 3.2 and higher we can slide the status bar out.
-    [[UIApplication sharedApplication] setStatusBarHidden: !isVisible
-                                            withAnimation: (animated
-                                                            ? UIStatusBarAnimationSlide
-                                                            : UIStatusBarAnimationNone)];
-
-  } else {
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_3_2
-    // On 3.0 devices we use the boring fade animation.
-    [[UIApplication sharedApplication] setStatusBarHidden: !isVisible
-                                                 animated: animated];
-#endif
+  BOOL isStatusBarAppearanceSupported = [self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+  if (!isStatusBarAppearanceSupported) {
+    [[UIApplication sharedApplication] setStatusBarHidden:!isVisible
+                                            withAnimation:(animated
+                                                           ? UIStatusBarAnimationSlide
+                                                           : UIStatusBarAnimationNone)];
   }
 
   if (self.toolbarIsTranslucent) {
@@ -312,19 +311,7 @@
   }
 
   // If there is a navigation bar, place it at its final location.
-  CGRect navigationBarFrame = CGRectZero;
-  if (nil != self.navigationController.navigationBar) {
-    navigationBarFrame = self.navigationController.navigationBar.frame;
-    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-    CGFloat statusBarHeight = MIN(statusBarFrame.size.width, statusBarFrame.size.height);
-
-    if (isVisible) {
-      navigationBarFrame.origin.y = statusBarHeight;
-
-    } else {
-      navigationBarFrame.origin.y = 0;
-    }
-  }
+  CGRect navigationBarFrame = self.navigationController.navigationBar.frame;
 
   if (animated) {
     [UIView beginAnimations:nil context:nil];
@@ -336,6 +323,27 @@
     // Ensure that the animation matches the status bar's.
     [UIView setAnimationDuration:NIStatusBarAnimationDuration()];
     [UIView setAnimationCurve:NIStatusBarAnimationCurve()];
+  }
+
+  if (isStatusBarAppearanceSupported) {
+    _prefersStatusBarHidden = !isVisible;
+    [self setNeedsStatusBarAppearanceUpdate];
+  }
+
+  if (nil != self.navigationController.navigationBar) {
+    if (isVisible) {
+      [UIView setAnimationsEnabled:NO];
+      [self.navigationController setNavigationBarHidden:NO animated:NO];
+      navigationBarFrame.origin.y = 0;
+      self.navigationController.navigationBar.frame = navigationBarFrame;
+      self.navigationController.navigationBar.alpha = 0;
+      [UIView setAnimationsEnabled:YES];
+
+      navigationBarFrame.origin.y = NIStatusBarHeight();
+
+    } else {
+      navigationBarFrame.origin.y = 0;
+    }
   }
 
   if (self.toolbarIsTranslucent) {
