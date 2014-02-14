@@ -28,6 +28,8 @@
  *
  * In this particular implementation we include an activity indicator component which may be used
  * to show that data is currently being loaded.
+ *
+ * @ingroup NimbusNetworkControllers
  */
 @interface NINetworkTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
