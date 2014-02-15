@@ -30,12 +30,22 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
 
 @implementation NSMutableAttributedString (NimbusAttributedLabel)
 
++ (NSTextAlignment)alignmentFromCTTextAlignment:(CTTextAlignment)alignment {
+  switch (alignment) {
+    case kCTLeftTextAlignment: return NSTextAlignmentLeft;
+    case kCTCenterTextAlignment: return NSTextAlignmentCenter;
+    case kCTRightTextAlignment: return NSTextAlignmentRight;
+    case kCTJustifiedTextAlignment: return NSTextAlignmentJustified;
+    default: return NSTextAlignmentNatural;
+  }
+}
+
 - (void)setTextAlignment:(CTTextAlignment)textAlignment
            lineBreakMode:(CTLineBreakMode)lineBreakMode
               lineHeight:(CGFloat)lineHeight
                    range:(NSRange)range {
   NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-  paragraphStyle.alignment = textAlignment;
+  paragraphStyle.alignment = [[self class] alignmentFromCTTextAlignment:textAlignment];
   paragraphStyle.lineBreakMode = lineBreakMode;
   paragraphStyle.minimumLineHeight = lineHeight;
   paragraphStyle.maximumLineHeight = lineHeight;
