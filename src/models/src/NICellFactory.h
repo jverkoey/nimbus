@@ -157,7 +157,7 @@ _model.delegate = (id)[NICellFactory class];
 /**
  * The protocol for an object that can be used in the NICellFactory with Interface Builder nibs.
  *
- * @ingroup CollectionViewCellFactory
+ * @ingroup TableCellFactory
  */
 @protocol NINibCellObject <NSObject>
 @required
