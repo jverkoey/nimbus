@@ -1,6 +1,8 @@
 core
+textfield
 
 [Frameworks]
+AFNetworking
 Foundation.framework
 UIKit.framework
 QuartzCore.framework
