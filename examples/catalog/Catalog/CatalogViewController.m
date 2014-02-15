@@ -362,6 +362,11 @@
         [controller.navigationController pushViewController:webController
                                                    animated:YES];
 
+        // NimbusKit uses the return value from this block to determine whether to deselect the cell
+        // after it has been selected. This, however, only applies to tap actions. For navigation
+        // actions we never want to deselect the cell immediately after tapping it because we're
+        // supposed to keep it selected until the controller we pushed gets popped, at which point
+        // the selected cell will be deselected during the pop animation.
         return NO;
       }],
 
