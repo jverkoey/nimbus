@@ -49,7 +49,7 @@ CGFloat NIImageDelegateGetAscentCallback(void* refCon);
 CGFloat NIImageDelegateGetDescentCallback(void* refCon);
 CGFloat NIImageDelegateGetWidthCallback(void* refCon);
 
-CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedString, CGSize size, NSInteger numberOfLines) {
+CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedString, CGSize constraintSize, NSInteger numberOfLines) {
   if (nil == attributedString) {
     return CGSizeZero;
   }
@@ -61,9 +61,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   // This logic adapted from @mattt's TTTAttributedLabel
   // https://github.com/mattt/TTTAttributedLabel
 
-  if (numberOfLines > 0 && nil != framesetter) {
+  if (numberOfLines == 1) {
+    constraintSize = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
+
+  } else if (numberOfLines > 0 && nil != framesetter) {
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddRect(path, NULL, CGRectMake(0, 0, size.width, size.height));
+    CGPathAddRect(path, NULL, CGRectMake(0, 0, constraintSize.width, constraintSize.height));
     CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
     CFArrayRef lines = CTFrameGetLines(frame);
 
@@ -79,15 +82,14 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     CFRelease(path);
   }
 
-  CFRange fitCFRange = CFRangeMake(0, 0);
-  CGSize newSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, range, NULL, size, &fitCFRange);
+  CGSize newSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, range, NULL, constraintSize, NULL);
 
   if (nil != framesetter) {
     CFRelease(framesetter);
     framesetter = nil;
   }
 
-  return CGSizeMake(ceilf(newSize.width), ceilf(newSize.height));
+  return CGSizeMake(NICGFloatCeil(newSize.width), NICGFloatCeil(newSize.height));
 }
 
 @interface NIAttributedLabelImage : NSObject
