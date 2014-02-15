@@ -34,6 +34,7 @@
 
 @interface UIViewController (Private)
 - (CGFloat)_statusBarHeightForCurrentInterfaceOrientation;
+- (CGFloat)_statusBarHeightAdjustmentForCurrentOrientation;
 @end
 
 CGFloat NIOverviewStatusBarHeight(void);
