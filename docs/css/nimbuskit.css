@@ -1,0 +1,141 @@
+/** NimbusKit */
+
+#projectname,
+#projectbrief {
+  font-family: HelveticaNeue,Helvetica,Arial,sans-serif;
+}
+
+#projectname {
+  font-size: 300%;
+  margin: 0px;
+  padding: 2px 0px;
+}
+
+#projectbrief {
+  font-size: 120%;
+  padding-bottom: 10px;
+}
+
+#doc-content {
+  margin-left: 250px;
+}
+
+#side-nav {
+  width: 250px;
+}
+
+.clearfix {
+  clear: both;
+}
+
+table.modificationtable {
+  border: 1px #888 solid;
+  padding: 2px;
+  border-spacing: 0px;
+  border-collapse: collapse;
+  margin-left: 40px;
+  margin-top: 7px;
+}
+
+table.modificationtable th {
+  font-size: 10px;
+  text-align: center;
+  background-color: #EEE;
+  border: 1px #888 solid;
+  padding: 3px 6px;
+  font-weight: bold;
+}
+
+table.modificationtable td {
+  font-size: 90%;
+  border: 1px #888 solid;
+  padding: 3px 6px;
+  text-align: left;
+  font-family: courier, monospace;
+}
+
+.apiDiffAdded {
+  font-style: italic;
+  font-size: 80%;
+  color: blue;
+}
+
+.apiDiffModified {
+  font-style: italic;
+  font-size: 80%;
+  color: #080;
+}
+
+.apiDiffRemoved {
+  font-style: italic;
+  font-size: 80%;
+  color: red;
+}
+
+.apiDiffFeature {
+  font-style: italic;
+  font-size: 80%;
+  color: orange;
+}
+
+.apiDiffBugfix {
+  font-style: italic;
+  font-size: 80%;
+  color: black;
+}
+
+.contributor_profile {
+  padding: 5px;
+  margin: 0 5px;
+  margin-bottom: 20px;
+  border: 1px solid #DDD;
+  background-color: #FFF;
+  float: left;
+}
+
+.contributor_profile .retired {
+  opacity: 0.5;
+}
+
+.contributor_profile .name {
+  margin-top: 0.2em;
+  text-align: center;
+  width: 135px;
+}
+
+.contributor_profile .role {
+  text-align: center;
+  color: #888;
+  margin-bottom: 0.3em;
+}
+
+.contributor_profile .twitter,
+.contributor_profile .github {
+  text-align: center;
+}
+
+#github {
+  float: right;
+  margin-top: 20px;
+}
+
+#github .issues {
+  color: #AAA;
+  padding: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border: 1px solid #EEE;
+  font-size: 2em;
+}
+
+#github .issues.no-issues {
+  background-color: #C9FFD4;
+}
+
+#github .issues.few-issues {
+  background-color: #FFFFC9;
+}
+
+#github .issues.many-issues {
+  background-color: #FFC9C9;
+}

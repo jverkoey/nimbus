@@ -1,0 +1,201 @@
+/** Doxygen-Specific Overrides for Apple Docs Style */
+
+body, table, div, p, dl {
+  font: normal normal normal 100%/normal 'Lucida Grande',Geneva,Helvetica,Arial,sans-serif;
+  font-size: 13px;
+}
+
+a {
+  color: #36C;
+  font-weight: normal;
+}
+
+a.el {
+  font-weight: normal;
+}
+
+h2,
+h2.groupheader {
+  font-size: 187%;
+  color: #3C4C6C;
+  font-weight: normal;
+  border-bottom: 1px solid #8391A8;
+}
+
+p {
+  margin-top: 0;
+}
+
+#titlearea {
+  border-bottom: 1px solid #ACACAC;
+}
+
+/** Nav-Tree */
+
+#nav-tree {
+  background: none;
+  background-color: ghostwhite;
+  border-right: 1px solid #ACACAC;
+}
+
+#nav-tree-contents a {
+  color: #000;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+#nav-tree .label {
+  font: normal normal normal 100%/normal 'Lucida Grande',Geneva,Helvetica,Arial,sans-serif;
+  font-size: 13px;
+}
+
+#nav-tree .label a,
+#nav-tree .selected a {
+  padding: 0;
+}
+
+#nav-tree .selected {
+  background: none;
+  text-shadow: none;
+}
+
+#nav-tree .selected a {
+  color: gray;
+}
+
+/** Individual Pages */
+
+div.header {
+  padding-left: 2em;
+  padding-right: 2em;
+  background: none;
+  border: none;
+}
+
+div.summary {
+  display: none;
+}
+
+div.headertitle {
+  padding: 0;
+  padding-top: 5px;
+}
+
+.headertitle .title {
+  font: 215% HelveticaNeue,Helvetica,Arial,sans-serif;
+}
+
+.title {
+  margin-left: 0;
+}
+
+table.memberdecls {
+  width: 100%;
+}
+
+div.contents {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+tr.heading h2 {
+  margin: 0.83em 0;
+  padding: 0;
+}
+
+.mdescLeft, .mdescRight, .memItemLeft, .memItemRight, .memTemplItemLeft, .memTemplItemRight, .memTemplParams {
+  background: none
+}
+
+.memSeparator {
+  border-bottom: none;
+  line-height: 0px;
+}
+
+.contents a:visited {
+  color: #4665A2;
+}
+
+h2.groupheader {
+  margin: 0.83em 0;
+  padding: 0;
+}
+
+div.groupHeader {
+  margin: 0;
+  font-size: 145%;
+  font-weight: normal;
+  margin-bottom: .25em;
+  margin-top: 0.6em;
+}
+
+.suffix {
+  font-style: italic;
+  color: #996;
+  font-size: 91.67%;
+}
+
+.memitem {
+  display: block !important;
+}
+
+.memdoc, dl.reflist dd {
+  border: none;
+  background: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+.memname {
+  margin-top: 1.5em;
+  margin-bottom: .25em;
+  margin-left: 0;
+  margin-right: 0;
+  font-size: 145%;
+  font-weight: normal;
+  color: black;
+}
+
+p.abstract {
+  margin-top: 1.083em;
+  margin-bottom: .833em;
+}
+
+h3 {
+  font-size: 100%;
+}
+
+h5 {
+  margin: .692em 0 .154em 0;
+  padding: 0;
+  font-size: 100%;
+  color: black;
+}
+
+.memItemLeft, .mdescLeft {
+  display: none;
+}
+
+.memItemRight {
+  padding-left: 20px;
+}
+
+.mdescRight {
+  padding-left: 40px;
+}
+
+.declaration {
+  font: 104% Courier,Consolas,monospace;
+  margin: 1em 0;
+}
+
+div.fragment {
+  background-color: ghostwhite;
+  padding: 1em;
+  overflow: auto;
+  word-wrap: break-word;
+  font-size: 9pt;
+  line-height: 125%;
+  margin: 2em;
+  border: none;
+}
