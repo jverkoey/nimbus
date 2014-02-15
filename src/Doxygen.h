@@ -67,6 +67,175 @@
  */
 
 /**
+ * @defgroup Version-1-1-0 Version 1.1.0 Release
+ * @ingroup Version-1-0-0
+ *
+ * Version 1.1.0 of Nimbus was released on February 14, 2014. This minor release brings Nimbus
+ * up-to-date with iOS 7 and drops support for iOS 5 and below. The code has been modernized with
+ * new Objective-C syntax and a number of bugs on various components have been resolved.
+ *
+ * git log 1.0.0...1.1.0
+ *
+ * from the command line.
+ *
+ * <h2>Misc Notes</h2>
+ *
+ * - 400 commits went into this release.
+ * - Commits grouped by feature: git log 1.0.0...master --pretty=oneline | cut -d' ' -f 2- | sort
+ * - iOS 7 support throughout all of the features.
+ * - Dropped iOS 5 support.
+ * - Massive stylistic changes throughout the codebase.
+ *
+ * <h2>Attributed Label</h2>
+ *
+ * - Exposed the internal NIAttributedLabelLinkAttributeName value for NIAttributedLabel's links
+ *   that are attached to its NSAttributedString.
+ * - Deprecated self.attributedString in favor of self.attributedText.
+ * - Added -invalidateAccessibleElements for resetting the attributed label's accessibility elements
+ *   when the position of any of the label's parent views changes.3
+ *
+ * <h2>Badge</h2>
+ *
+ * - Supported iOS 7 styling and the new tintColor property.
+ *
+ * <h2>Collections (New!)</h2>
+ *
+ * - Similar to [models], this feature allows you to store collection view data source objects in a
+ *   model and map those objects to collection view cell classes.
+ *
+ * <h2>Core</h2>
+ *
+ * - Pulled NIActions out of [models] into the core for reuse in the [collections] feature.
+ * - Added new button utility methods (NIButtonUtilities.h).
+ * - Deprecated NILinkedList in favor of NSMutableOrderedSet.
+ * - Added NIIsLandscapePhoneOrientation method.
+ * - Added NIInvocation* methods for creation NSInvocation objects.
+ * - Added NIEdgeInsetsOutsetRect, NICenterX, and NICenterY.
+ * - Replaced NSString+Nimbus category methods with C-style methods.
+ * - Added CGFloat methods for dealing with 64 bit architectures.
+ * - Deprecated boundf/boundi in favor of NIBoundf/NIBoundi.
+ * - Added NIStretchableImageFromImage.
+ * - [NIMemoryCache] Deprecated willSetObject:withName:previousObject: in favor of
+ *   shouldSetObject:withName:previousObject:.
+ * - [NIImageMemoryCache] Uses unsigned long longs instead of NSUInteger for storing pixel counts.
+ * - [NINavigationAppearance] Deprecated. Please wind down any use of this class.
+ * - Added NIIsPhone and NIIsTintColorGloballySupported methods.
+ * - Deprecated NIUIPopoverControllerClass and NIUITapGestureRecognizerClass.
+ * - Added new iOS 7 compatibility API definitions.
+ * - Added nimbus_currentFirstResponder category method to UIResponder for quickly fetching the
+ *   current responder.
+ *
+ * <h2>CSS</h2>
+ *
+ * - Massive updates to the CSS framework by Max Metral.
+ *
+ * <h2>Interapp</h2>
+ *
+ * - Support Chrome vs Safari.
+ * - Added Google Maps URLs.
+ *
+ * <h2>Models</h2>
+ *
+ * - Improved support for custom cell backgrounds.
+ *
+ * <h2>Network Image</h2>
+ *
+ * - Updated to support AFNetworking 2.
+ *
+ * <h2>Overview</h2>
+ *
+ * - Updated to work on iOS 7.
+ * - Added live inspector tool.
+ *
+ * <h2>Paging Scroll View</h2>
+ *
+ * - Consolidated the code.
+ * - This feature is deprecated by collection views and will be replaced by a simpler solution in
+ *   a future NimbusKit version.
+ *
+ * <h2>Photos</h2>
+ *
+ * - Fixed layout issues caused by new features on iOS 7 that were making photos slide in every
+ *   direction.
+ *
+ * <h2>Text Field (New!)</h2>
+ *
+ * - New feature providing support for customizing the look and feel of UITextField.
+ *
+ * <h2>Web Controller</h2>
+ *
+ * - Fixed layout issues caused by new features on iOS 7.
+ *
+ * <h2>Github Issues Closed</h2>
+ *
+ * <a href="https://github.com/jverkoey/nimbus/pull/313">313</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/316">316</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/317">317</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/320">320</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/323">323</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/324">324</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/335">335</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/337">337</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/340">340</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/341">341</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/342">342</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/345">345</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/348">348</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/352">352</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/353">353</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/356">356</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/358">358</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/374">374</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/376">376</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/377">377</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/379">379</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/383">383</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/388">388</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/391">391</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/393">393</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/396">396</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/397">397</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/405">405</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/406">406</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/407">407</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/410">410</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/413">413</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/416">416</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/417">417</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/421">421</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/423">423</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/426">426</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/427">427</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/429">429</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/431">431</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/440">440</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/445">445</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/446">446</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/449">449</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/451">451</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/464">464</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/469">469</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/475">475</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/477">477</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/480">480</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/481">481</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/482">482</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/484">484</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/485">485</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/486">486</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/489">489</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/492">492</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/494">494</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/499">499</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/500">500</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/501">501</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/505">505</a>,
+ <a href="https://github.com/jverkoey/nimbus/pull/506">506</a>, and
+ <a href="https://github.com/jverkoey/nimbus/pull/507">507</a>.
+ *
+ */
+
+/**
  * @defgroup Version-1-0-0 Version 1.0.0 Release
  * @ingroup Version-History
  *
