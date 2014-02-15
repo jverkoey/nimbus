@@ -203,6 +203,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 - (void)attributedTextDidChange {
   [self resetTextFrame];
 
+  [self invalidateIntrinsicContentSize];
   [self setNeedsDisplay];
 }
 
@@ -222,6 +223,10 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   }
 
   return NISizeOfAttributedStringConstrainedToSize([self mutableAttributedStringWithAdditions], size, self.numberOfLines);
+}
+
+- (CGSize)intrinsicContentSize {
+  return [self sizeThatFits:[super intrinsicContentSize]];
 }
 
 #pragma mark - Public
