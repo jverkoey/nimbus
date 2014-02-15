@@ -679,7 +679,7 @@ RULE_ELEMENT(horizontalAlign, HorizontalAlign, @"-mobile-content-halign", UICont
 - (UITableViewCellSeparatorStyle)tableViewCellSeparatorStyle {
   NIDASSERT([self hasTableViewCellSeparatorStyle]);
   if (!_is.cached.TableViewCellSeparatorStyle) {
-    NSArray* values = [_ruleset objectForKey:kActivityIndicatorStyleKey];
+    NSArray* values = [_ruleset objectForKey:kTableViewCellSeparatorStyleKey];
     NIDASSERT([values count] == 1);
     NSString* value = [values objectAtIndex:0];
     UITableViewCellSeparatorStyle style = UITableViewCellSeparatorStyleSingleLine;
