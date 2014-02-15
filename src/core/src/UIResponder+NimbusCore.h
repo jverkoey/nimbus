@@ -1,5 +1,5 @@
 //
-// Copyright 2011-2014 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // +currentFirstResponder originally written by Jakob Egger, adapted by Jeff Verkoeyen.
 //

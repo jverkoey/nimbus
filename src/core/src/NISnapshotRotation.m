@@ -1,5 +1,5 @@
 //
-// Copyright 2011-2012 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // This code was originally found in Apple's WWDC Session 240 on
 // "Polishing Your Interface Rotations" and has been repurposed into a reusable class.

@@ -1,6 +1,5 @@
 //
-// Copyright 2011 Roger Chapman
-// Copyright 2011 Benedikt Meurer
+// Copyright 2011-2014 NimbusKit
 //
 // Forked from Three20 July 29, 2011 - Copyright 2009-2011 Facebook
 //

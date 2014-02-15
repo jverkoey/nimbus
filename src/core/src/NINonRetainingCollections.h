@@ -1,5 +1,5 @@
 //
-// Copyright 2011-2014 Jeff Verkoeyen
+// Copyright 2011-2014 NimbusKit
 //
 // Forked from Three20 June 10, 2011 - Copyright 2009-2011 Facebook
 //
