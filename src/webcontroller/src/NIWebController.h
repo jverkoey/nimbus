@@ -86,6 +86,7 @@
 - (void)openRequest:(NSURLRequest*)request;
 - (void)openHTMLString:(NSString*)htmlString baseURL:(NSURL*)baseUrl;
 
+@property (nonatomic, readonly, strong) UIToolbar* toolbar;
 @property (nonatomic, assign, getter = isToolbarHidden) BOOL toolbarHidden;
 @property (nonatomic, weak) UIColor* toolbarTintColor;
 
