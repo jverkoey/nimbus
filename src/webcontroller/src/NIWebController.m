@@ -245,7 +245,6 @@
                     flexibleSpace,
                     self.actionButton,
                     nil];
-  [self.view addSubview:self.toolbar];
 
   self.webView = [[UIWebView alloc] initWithFrame:CGRectZero];
   [self updateWebViewFrame];
@@ -259,6 +258,7 @@
   }
 
   [self.view addSubview:self.webView];
+  [self.view addSubview:self.toolbar];
 
   if (nil != self.loadRequest) {
     [self.webView loadRequest:self.loadRequest];
