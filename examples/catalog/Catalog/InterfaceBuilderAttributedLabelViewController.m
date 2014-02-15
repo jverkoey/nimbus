@@ -48,7 +48,6 @@
 
 @implementation InterfaceBuilderAttributedLabelViewController
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:@"AttributedLabelMashup" bundle:nil])) {
     self.title = @"Interface Builder";
@@ -65,11 +64,7 @@
   // Kerning modifies the spacing between letters.
   _nimbusTitle.textKern = 15.0;
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
-  label1.textAlignment = UITextAlignmentJustify;
-#else
   _label1.textAlignment = NSTextAlignmentJustified;
-#endif
 
   _label2.underlineStyle = kCTUnderlineStyleDouble;
   _label2.underlineStyleModifier = kCTUnderlinePatternDot;
@@ -78,12 +73,8 @@
   _label3.linkColor = [UIColor purpleColor];
   _label3.highlightedLinkBackgroundColor = [UIColor orangeColor];
   _label3.linksHaveUnderlines = YES;
-  
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
-  _label4.textAlignment = UITextAlignmentJustify;
-#else
+
   _label4.textAlignment = NSTextAlignmentJustified;
-#endif
   [_label4 setTextColor:[UIColor orangeColor]  range:[_label4.text rangeOfString:@"Nimbus"]];
   [_label4 setTextColor:[UIColor redColor]  range:[_label4.text rangeOfString:@"accelerates"]];
   [_label4 setFont:[UIFont boldSystemFontOfSize:22] range:[_label4.text rangeOfString:@"iOS"]];

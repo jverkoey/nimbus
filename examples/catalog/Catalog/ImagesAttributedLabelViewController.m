@@ -36,9 +36,6 @@
 // QuartzCore.framework
 //
 
-@interface ImagesAttributedLabelViewController ()
-@end
-
 @implementation ImagesAttributedLabelViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

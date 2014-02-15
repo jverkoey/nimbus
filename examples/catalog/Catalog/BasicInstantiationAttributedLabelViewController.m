@@ -102,8 +102,4 @@
   [self.view addSubview:label];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
-  return UIInterfaceOrientationMaskAllButUpsideDown;
-}
-
 @end
