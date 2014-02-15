@@ -42,7 +42,7 @@ static const CGFloat kVMargin = 5.0f;
 // \u2026 is the Unicode horizontal ellipsis character code
 static NSString* const kEllipsesCharacter = @"\u2026";
 
-NSString* const kNILinkAttributeName = @"NIAttributedLabel:Link";
+NSString* const NIAttributedLabelLinkAttributeName = @"NIAttributedLabel:Link";
 
 // For supporting images.
 CGFloat NIImageDelegateGetAscentCallback(void* refCon);
@@ -583,7 +583,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   // the current set of explicit links. This properly handles the value of the attribute being
   // either an NSURL or an NSString.
   __block NSMutableArray *links = [NSMutableArray array];
-  [attributedString enumerateAttribute:kNILinkAttributeName
+  [attributedString enumerateAttribute:NIAttributedLabelLinkAttributeName
                                inRange:NSMakeRange(0, attributedString.length)
                                options:0
                             usingBlock:^(id value, NSRange range, BOOL *stop) {
@@ -969,8 +969,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     // We add a no-op attribute in order to force a run to exist for each link. Otherwise the
     // runCount will be one in this line, causing the entire line to be highlighted rather than
     // just the link when when no special attributes are set.
-    [attributedString removeAttribute:kNILinkAttributeName range:result.range];
-    [attributedString addAttribute:kNILinkAttributeName
+    [attributedString removeAttribute:NIAttributedLabelLinkAttributeName range:result.range];
+    [attributedString addAttribute:NIAttributedLabelLinkAttributeName
                              value:result
                              range:result.range];
 

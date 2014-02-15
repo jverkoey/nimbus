@@ -45,7 +45,7 @@ typedef enum {
   NIVerticalTextAlignmentBottom,
 } NIVerticalTextAlignment;
 
-extern NSString * const kNILinkAttributeName; // Value is an NSTextCheckingResult.
+extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSTextCheckingResult.
 
 @protocol NIAttributedLabelDelegate;
 
