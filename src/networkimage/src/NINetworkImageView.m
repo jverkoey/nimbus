@@ -180,6 +180,9 @@
 }
 
 - (void)nimbusOperationDidFinish:(NIOperation<NINetworkImageOperation> *)operation {
+  if (operation.isCancelled || operation != self.operation) {
+    return;
+  }
   [self _didFinishLoadingWithImage:operation.imageCroppedAndSizedForDisplay
                    cacheIdentifier:operation.cacheIdentifier
                        displaySize:operation.imageDisplaySize
@@ -321,14 +324,30 @@
       serializer.interpolationQuality = self.interpolationQuality;
       requestOperation.responseSerializer = serializer;
 
+      NSString* originalCacheKey = [self cacheKeyForCacheIdentifier:pathToNetworkImage
+                                                          imageSize:displaySize
+                                                           cropRect:cropRect
+                                                        contentMode:contentMode
+                                                       scaleOptions:self.scaleOptions];
+      requestOperation.userInfo = @{@"cacheKey":originalCacheKey};
+
       [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self _didFinishLoadingWithImage:responseObject
-                         cacheIdentifier:pathToNetworkImage
-                             displaySize:displaySize
-                                cropRect:cropRect
-                             contentMode:contentMode
-                            scaleOptions:self.scaleOptions
-                          expirationDate:nil];
+        NSString* cacheKey = [self cacheKeyForCacheIdentifier:pathToNetworkImage
+                                                    imageSize:displaySize
+                                                     cropRect:cropRect
+                                                  contentMode:contentMode
+                                                 scaleOptions:self.scaleOptions];
+
+        // Only keep this result if it's for the most recent request.
+        if ([cacheKey isEqualToString:operation.userInfo[@"cacheKey"]]) {
+          [self _didFinishLoadingWithImage:responseObject
+                           cacheIdentifier:pathToNetworkImage
+                               displaySize:displaySize
+                                  cropRect:cropRect
+                               contentMode:contentMode
+                              scaleOptions:self.scaleOptions
+                            expirationDate:nil];
+        }
 
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
          [self _didFailToLoadWithError:error];
