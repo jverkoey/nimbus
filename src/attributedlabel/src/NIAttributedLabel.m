@@ -257,6 +257,12 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   [super setText:text];
 
   self.attributedText = [[self class] mutableAttributedStringFromLabel:self];
+
+  // Apply NIAttributedLabel-specific styles.
+  [self.mutableAttributedString setUnderlineStyle:_underlineStyle modifier:_underlineStyleModifier];
+  [self.mutableAttributedString setStrokeWidth:_strokeWidth];
+  [self.mutableAttributedString setStrokeColor:_strokeColor];
+  [self.mutableAttributedString setKern:_textKern];
 }
 
 // Deprecated.
@@ -392,6 +398,14 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   [self.mutableAttributedString setUnderlineStyle:style modifier:modifier range:range];
 
   [self attributedTextDidChange];
+}
+
+- (void)setShadowBlur:(CGFloat)shadowBlur {
+  if (_shadowBlur != shadowBlur) {
+    _shadowBlur = shadowBlur;
+
+    [self attributedTextDidChange];
+  }
 }
 
 - (void)setStrokeWidth:(CGFloat)strokeWidth {
