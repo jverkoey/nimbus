@@ -92,6 +92,7 @@
 
 - (NSString *)cacheKeyForCacheIdentifier:(NSString *)cacheIdentifier
                                imageSize:(CGSize)imageSize
+                                cropRect:(CGRect)cropRect
                              contentMode:(UIViewContentMode)contentMode
                             scaleOptions:(NINetworkImageViewScaleOptions)scaleOptions {
   NIDASSERT(NIIsStringWithAnyText(cacheIdentifier));
@@ -102,8 +103,8 @@
   // If the display size ever changes, we want to ensure that we're fetching the correct image
   // from the cache.
   if (self.sizeForDisplay) {
-    cacheKey = [cacheKey stringByAppendingFormat:@"%@{%d,%d}",
-                NSStringFromCGSize(imageSize), contentMode, scaleOptions];
+    cacheKey = [cacheKey stringByAppendingFormat:@"%@%@{%d,%d}",
+                NSStringFromCGSize(imageSize), NSStringFromCGRect(cropRect), contentMode, scaleOptions];
   }
 
   // The resulting cache key will look like:
@@ -123,16 +124,18 @@
   [self networkImageViewDidStartLoading];
 }
 
-- (void)_didFinishLoadingWithImage: (UIImage *)image
-                   cacheIdentifier: (NSString *)cacheIdentifier
-                       displaySize: (CGSize)displaySize
-                       contentMode: (UIViewContentMode)contentMode
-                      scaleOptions: (NINetworkImageViewScaleOptions)scaleOptions
-                    expirationDate: (NSDate *)expirationDate {
+- (void)_didFinishLoadingWithImage:(UIImage *)image
+                   cacheIdentifier:(NSString *)cacheIdentifier
+                       displaySize:(CGSize)displaySize
+                          cropRect:(CGRect)cropRect
+                       contentMode:(UIViewContentMode)contentMode
+                      scaleOptions:(NINetworkImageViewScaleOptions)scaleOptions
+                    expirationDate:(NSDate *)expirationDate {
   // Store the result image in the memory cache.
   if (nil != self.imageMemoryCache && nil != image) {
     NSString* cacheKey = [self cacheKeyForCacheIdentifier:cacheIdentifier
                                                 imageSize:displaySize
+                                                 cropRect:cropRect
                                               contentMode:contentMode
                                              scaleOptions:scaleOptions];
 
@@ -180,6 +183,7 @@
   [self _didFinishLoadingWithImage:operation.imageCroppedAndSizedForDisplay
                    cacheIdentifier:operation.cacheIdentifier
                        displaySize:operation.imageDisplaySize
+                          cropRect:operation.imageCropRect
                        contentMode:operation.imageContentMode
                       scaleOptions:operation.scaleOptions
                     expirationDate:nil];
@@ -280,6 +284,7 @@
     if (nil != self.imageMemoryCache) {
       cacheKey = [self cacheKeyForCacheIdentifier:pathToNetworkImage
                                         imageSize:displaySize
+                                         cropRect:cropRect
                                       contentMode:contentMode
                                      scaleOptions:self.scaleOptions];
       image = [self.imageMemoryCache objectWithName:cacheKey];
@@ -320,6 +325,7 @@
         [self _didFinishLoadingWithImage:responseObject
                          cacheIdentifier:pathToNetworkImage
                              displaySize:displaySize
+                                cropRect:cropRect
                              contentMode:contentMode
                             scaleOptions:self.scaleOptions
                           expirationDate:nil];
@@ -363,6 +369,7 @@
     if (nil != self.imageMemoryCache) {
       NSString* cacheKey = [self cacheKeyForCacheIdentifier:operation.cacheIdentifier
                                                   imageSize:displaySize
+                                                   cropRect:cropRect
                                                 contentMode:contentMode
                                                scaleOptions:self.scaleOptions];
       image = [self.imageMemoryCache objectWithName:cacheKey];
