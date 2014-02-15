@@ -456,6 +456,14 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   [self attributedTextDidChange];
 }
 
+- (void)setTailTruncationString:(NSString *)tailTruncationString {
+  if (![_tailTruncationString isEqualToString:tailTruncationString]) {
+    _tailTruncationString = [tailTruncationString copy];
+
+    [self attributedTextDidChange];
+  }
+}
+
 - (void)setLinkColor:(UIColor *)linkColor {
   if (_linkColor != linkColor) {
     _linkColor = linkColor;
@@ -1271,11 +1279,17 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
         CTLineTruncationType truncationType = kCTLineTruncationEnd;
         NSUInteger truncationAttributePosition = lastLineRange.location + lastLineRange.length - 1;
 
-        NSDictionary *tokenAttributes = [attributedString attributesAtIndex:truncationAttributePosition
-                                                             effectiveRange:NULL];
-        NSAttributedString *tokenString = [[NSAttributedString alloc] initWithString:kEllipsesCharacter
-                                                                          attributes:tokenAttributes];
-        CTLineRef truncationToken = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)tokenString);
+        NSAttributedString* tokenAttributedString;
+        {
+          NSDictionary *tokenAttributes = [attributedString attributesAtIndex:truncationAttributePosition
+                                                               effectiveRange:NULL];
+          NSString* tokenString = ((nil == self.tailTruncationString)
+                                   ? kEllipsesCharacter
+                                   : self.tailTruncationString);
+          tokenAttributedString = [[NSAttributedString alloc] initWithString:tokenString attributes:tokenAttributes];
+        }
+
+        CTLineRef truncationToken = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)tokenAttributedString);
 
         NSMutableAttributedString *truncationString = [[attributedString attributedSubstringFromRange:NSMakeRange(lastLineRange.location, lastLineRange.length)] mutableCopy];
         if (lastLineRange.length > 0) {
@@ -1285,7 +1299,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
             [truncationString deleteCharactersInRange:NSMakeRange(lastLineRange.length - 1, 1)];
           }
         }
-        [truncationString appendAttributedString:tokenString];
+        [truncationString appendAttributedString:tokenAttributedString];
 
         CTLineRef truncationLine = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)truncationString);
         CTLineRef truncatedLine = CTLineCreateTruncatedLine(truncationLine, rect.size.width, truncationType, truncationToken);

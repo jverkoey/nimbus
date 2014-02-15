@@ -101,6 +101,8 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
 @property (nonatomic, strong) UIColor*                  strokeColor;
 @property (nonatomic)         CGFloat                   textKern;
 
+@property (nonatomic, copy) NSString* tailTruncationString;
+
 - (void)setFont:(UIFont *)font            range:(NSRange)range;
 - (void)setStrokeColor:(UIColor *)color   range:(NSRange)range;
 - (void)setStrokeWidth:(CGFloat)width     range:(NSRange)range;
@@ -359,6 +361,16 @@ extern NSString* const NIAttributedLabelLinkAttributeName; // Value is an NSText
  * A positive kern indicates a shift farther away. A negative kern indicates a shift closer.
  *
  * @fn NIAttributedLabel::textKern
+ */
+
+/** @name Modifying Tail Truncation Properties */
+
+/**
+ * The string to display for tail truncation.
+ *
+ * By default this is nil and the default ellipses character, \u2026, is used.
+ *
+ * @fn NIAttributedLabel::tailTruncationString
  */
 
 /** @name Modifying Rich Text Styles in Ranges */
