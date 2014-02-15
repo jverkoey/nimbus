@@ -62,10 +62,6 @@ static NSString* const kButtonReuseIdentifier = @"button";
   self.view.backgroundColor = [UIColor underPageBackgroundColor];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  return NIIsSupportedOrientation(interfaceOrientation);
-}
-
 // Similar to UITableViewController, NILauncherViewController automatically sets the dataSource and
 // delegate properties of self.launcherView to self. We simply have to implement the methods and
 // the launcher view will do the rest.

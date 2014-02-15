@@ -74,8 +74,4 @@
   [self.view addSubview:badgeView];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  return NIIsSupportedOrientation(interfaceOrientation);
-}
-
 @end

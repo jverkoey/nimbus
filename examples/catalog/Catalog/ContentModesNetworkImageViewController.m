@@ -170,8 +170,4 @@ static const CGFloat kImageSpacing = 5;
   [self layoutImageViews];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  return NIIsSupportedOrientation(interfaceOrientation);
-}
-
 @end

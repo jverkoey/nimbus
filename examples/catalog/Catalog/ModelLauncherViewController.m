@@ -109,10 +109,6 @@
   self.launcherView.dataSource = self.model;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  return NIIsSupportedOrientation(interfaceOrientation);
-}
-
 #pragma mark - NILauncherViewModelDelegate
 
 - (void)launcherViewModel:(NILauncherViewModel *)launcherViewModel
