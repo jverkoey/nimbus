@@ -149,6 +149,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
 @implementation NIAttributedLabel
 
+@synthesize textFrame = _textFrame;
+
 - (void)dealloc {
   [_longPressTimer invalidate];
 
@@ -157,6 +159,26 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
   if (NULL != _textFrame) {
     CFRelease(_textFrame);
   }
+}
+
+- (CTFrameRef)textFrame {
+  if (NULL == _textFrame) {
+    NSMutableAttributedString* attributedStringWithLinks = [self mutableAttributedStringWithAdditions];
+    CFAttributedStringRef attributedString = (__bridge CFAttributedStringRef)attributedStringWithLinks;
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attributedString);
+
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, NULL, self.bounds);
+    CTFrameRef textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
+    self.textFrame = textFrame;
+    if (textFrame) {
+      CFRelease(textFrame);
+    }
+    CGPathRelease(path);
+    CFRelease(framesetter);
+  }
+
+  return _textFrame;
 }
 
 - (void)setTextFrame:(CTFrameRef)textFrame {
@@ -1290,21 +1312,6 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
 
     CGAffineTransform transform = [self _transformForCoreText];
     CGContextConcatCTM(ctx, transform);
-
-    if (NULL == self.textFrame) {
-      CFAttributedStringRef attributedString = (__bridge CFAttributedStringRef)attributedStringWithLinks;
-      CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attributedString);
-
-      CGMutablePathRef path = CGPathCreateMutable();
-      CGPathAddRect(path, NULL, rect);
-      CTFrameRef textFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
-      self.textFrame = textFrame;
-      if (textFrame) {
-        CFRelease(textFrame);
-      }
-      CGPathRelease(path);
-      CFRelease(framesetter);
-    }
 
     [self drawImages];
     [self drawHighlightWithRect:rect];
