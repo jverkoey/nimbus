@@ -80,12 +80,9 @@
 //
 // This is the root view controller of the Nimbus iPhone Catalog application. It is a table view
 // controller that uses Nimbus' table view models features to populate the data source and handle
-// user actions. From this controller the user can navigate into any of the Nimbus samples.
+// user actions. From this controller the user can navigate to any of the Nimbus samples.
 //
 // You will find the following Nimbus features used:
-//
-// [core]
-// NIIsSupportedOrientation()
 //
 // [models]
 // NITableViewModel
@@ -98,14 +95,12 @@
 // UIKit.framework
 //
 
-@interface CatalogViewController ()
-// We declare these properties here in the source file so that we don't have to expose private
-// interfaces publicly in the header.
-@property (nonatomic, strong) NITableViewModel* model;
-@property (nonatomic, strong) NITableViewActions* actions;
-@end
-
-@implementation CatalogViewController
+@implementation CatalogViewController {
+  // The UITableView refers to the model and actions objects throughout its lifetime but does not
+  // retain them. We must store the instances in this class.
+  NITableViewModel* _model;
+  NITableViewActions* _actions;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style {
   // We explicitly set the table view style in this controller's implementation because we want this
@@ -113,20 +108,30 @@
   self = [super initWithStyle:UITableViewStyleGrouped];
 
   if (self) {
-    // We set the title in the init method because it will never change. You generally don't need to
-    // set the title in loadView or viewDidLoad because those methods may be called repeatedly.
+    // We set the title in the init method because it will never change.
     self.title = @"Nimbus Catalog";
 
     // When we instantiate the actions object we must provide it with a reference to the target to
-    // whom actions will be sent. This value is passed to the action blocks so that we can easily
-    // navigate to new controllers without introducing retain cycles by otherwise having to access
-    // self in the block.
+    // whom actions will be sent.
+    //
+    // For block actions:
+    // This value is passed to the block as an argument so that we can navigate to new
+    // controllers without introducing retain cycles by otherwise having to access
+    // self.navigationController in the block.
+    //
+    // For selector actions:
+    // The selector will be executed on the target. For a demo of selector actions, see
+    // ActionsTableModelViewController.m.
     _actions = [[NITableViewActions alloc] initWithTarget:self];
 
     // This controller uses the Nimbus table view model. In loose terms, Nimbus models implement
-    // data source protocols. They encapsulate standard delegate functionality and will make your
-    // life a lot easier. In this particular case we're using NITableViewModel with a sectioned
-    // array of objects.
+    // data source protocols. They avoid code duplication and abstract the storage of the backing
+    // data for views. There is a model for UITableView, NITableViewModel, and a model for
+    // UICollectionView, NICollectionViewModel.
+    //
+    // We're going to use NITableViewModel with a sectioned array of objects. A sectioned array of
+    // objects is an NSArray where any instance of an NSString delimits the beginning of a new
+    // section.
     NSArray* sectionedObjects =
     @[
      // An NSString in a sectioned array denotes the start of a new section. It's also the label of
@@ -416,7 +421,7 @@
   // Once the tableView has loaded we attach the model to the data source. As mentioned above,
   // NITableViewModel implements UITableViewDataSource so that you don't have to implement any
   // of the data source methods directly in your controller.
-  self.tableView.dataSource = self.model;
+  self.tableView.dataSource = _model;
 
   // What we're doing here is known as "delegate chaining". It uses the message forwarding
   // functionality of Objective-C to insert the actions object between the table view
@@ -427,18 +432,7 @@
   // the cells in the table view and that they no longer show the disclosure accessory types.
   // Cool, eh? That this functionality is all provided to you in one line should make you
   // heel-click.
-  self.tableView.delegate = [self.actions forwardingTo:self];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-  // This is a core Nimbus method that simplifies the logic required to display a controller on
-  // both the iPad (where all orientations are supported) and the iPhone (where anything but
-  // upside-down is supported). This method will be deprecated in iOS 6.0.
-  return NIIsSupportedOrientation(toInterfaceOrientation);
-}
-
-- (NSUInteger)supportedInterfaceOrientations {
-  return UIInterfaceOrientationMaskAllButUpsideDown;
+  self.tableView.delegate = [_actions forwardingTo:self];
 }
 
 @end
