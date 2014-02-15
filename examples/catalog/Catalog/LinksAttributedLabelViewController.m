@@ -62,11 +62,7 @@
 
   NIAttributedLabel* label = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
   label.numberOfLines = 0;
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < NIIOS_6_0
   label.lineBreakMode = NSLineBreakByWordWrapping;
-#else
-  label.lineBreakMode = NSLineBreakByWordWrapping;
-#endif
   label.autoresizingMask = UIViewAutoresizingFlexibleDimensions;
   label.frame = CGRectInset(self.view.bounds, 20, 20);
   label.font = [UIFont fontWithName:@"AmericanTypewriter" size:15];
