@@ -182,7 +182,7 @@ NSString* const NIJSONDidChangeNameKey = @"NIJSONNameKey";
 }
 
 - (NSString *)pathFromPath:(NSString *)path {
-  return [path md5Hash];
+  return NIMD5HashFromString(path);
 }
 
 #pragma mark - NICSSParserDelegate
