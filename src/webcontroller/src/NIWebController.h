@@ -157,6 +157,12 @@
 /** @name Accessing the Toolbar */
 
 /**
+ * The toolbar.
+ *
+ * @fn NIWebController::toolbar
+ */
+
+/**
  * The visibility of the toolbar.
  *
  * If the toolbar is hidden then the web view will take up the controller's entire view.
