@@ -30,17 +30,6 @@
 @end
 
 /**
- * Use NIPagingScrollViewPage instead.
- *
- * This class will be deleted after February 28, 2014.
- *
- * @ingroup NimbusPagingScrollView
- */
-__NI_DEPRECATED_METHOD
-@interface NIPageView : NIPagingScrollViewPage
-@end
-
-/**
  * The page index.
  *
  * @fn NIPageView::pageIndex
