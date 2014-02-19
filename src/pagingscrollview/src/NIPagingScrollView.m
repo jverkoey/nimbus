@@ -702,4 +702,13 @@ const CGFloat NIPagingScrollViewDefaultPageMargin = 10;
   return _visiblePages;
 }
 
+#pragma mark - Deprecated Methods
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
+- (UIScrollView *)pagingScrollView {
+  return [self scrollView];
+}
+#pragma clang diagnostic pop
+
 @end
