@@ -31,13 +31,14 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
 
 @implementation NSMutableAttributedString (NimbusAttributedLabel)
 
-+ (NSTextAlignment)alignmentFromCTTextAlignment:(CTTextAlignment)alignment {
-  switch (alignment) {
-    case kCTLeftTextAlignment: return NSTextAlignmentLeft;
-    case kCTCenterTextAlignment: return NSTextAlignmentCenter;
-    case kCTRightTextAlignment: return NSTextAlignmentRight;
-    case kCTJustifiedTextAlignment: return NSTextAlignmentJustified;
-    default: return NSTextAlignmentNatural;
++ (NSLineBreakMode)lineBreakModeFromCTLineBreakMode:(CTLineBreakMode)mode {
+  switch (mode) {
+    case kCTLineBreakByWordWrapping: return NSLineBreakByWordWrapping;
+    case kCTLineBreakByCharWrapping: return NSLineBreakByCharWrapping;
+    case kCTLineBreakByClipping: return NSLineBreakByClipping;
+    case kCTLineBreakByTruncatingHead: return NSLineBreakByTruncatingHead;
+    case kCTLineBreakByTruncatingTail: return NSLineBreakByTruncatingTail;
+    case kCTLineBreakByTruncatingMiddle: return NSLineBreakByTruncatingMiddle;
   }
 }
 
@@ -46,8 +47,8 @@ NI_FIX_CATEGORY_BUG(NSMutableAttributedStringNimbusAttributedLabel)
               lineHeight:(CGFloat)lineHeight
                    range:(NSRange)range {
   NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-  paragraphStyle.alignment = [[self class] alignmentFromCTTextAlignment:textAlignment];
-  paragraphStyle.lineBreakMode = lineBreakMode;
+  paragraphStyle.alignment = NSTextAlignmentFromCTTextAlignment(textAlignment);
+  paragraphStyle.lineBreakMode = [[self class] lineBreakModeFromCTLineBreakMode:lineBreakMode];
   paragraphStyle.minimumLineHeight = lineHeight;
   paragraphStyle.maximumLineHeight = lineHeight;
   [self addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
