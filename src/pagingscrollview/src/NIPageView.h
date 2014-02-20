@@ -14,13 +14,17 @@
 // limitations under the License.
 //
 
+#import <UIKit/UIKit.h>
+
 #import "NIPagingScrollViewPage.h"
 
-#import "NimbusCore.h"
-
-#if !defined(__has_feature) || !__has_feature(objc_arc)
-#error "Nimbus requires ARC support."
-#endif
-
-@implementation NIPagingScrollViewPage
+/**
+ * Use NIPagingScrollViewPage instead.
+ *
+ * This class will be deleted after February 28, 2014.
+ *
+ * @ingroup NimbusPagingScrollView
+ */
+__NI_DEPRECATED_METHOD
+@interface NIPageView : NIPagingScrollViewPage
 @end

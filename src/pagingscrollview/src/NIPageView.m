@@ -14,13 +14,14 @@
 // limitations under the License.
 //
 
-#import "NIPagingScrollViewPage.h"
-
-#import "NimbusCore.h"
+#import "NIPageView.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "Nimbus requires ARC support."
 #endif
 
-@implementation NIPagingScrollViewPage
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
+@implementation NIPageView
 @end
+#pragma clang diagnostic pop
