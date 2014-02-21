@@ -42,9 +42,9 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  */
 @interface NITitleCellObject : NICellObject
 // Designated initializer.
-- (id)initWithTitle:(NSString *)title image:(UIImage *)image cellClass:(Class)cellClass userInfo:(id)userInfo;
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image;
 - (id)initWithTitle:(NSString *)title;
+- (id)initWithTitle:(NSString *)title image:(UIImage *)image cellClass:(Class)cellClass userInfo:(id)userInfo;
 + (id)objectWithTitle:(NSString *)title image:(UIImage *)image;
 + (id)objectWithTitle:(NSString *)title;
 @property (nonatomic, copy) NSString* title;
@@ -62,10 +62,10 @@ typedef CGFloat (^NICellDrawRectBlock)(CGRect rect, id object, UITableViewCell* 
  */
 @interface NISubtitleCellObject : NITitleCellObject
 // Designated initializer.
-- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image cellClass:(Class)cellClass userInfo:(id)userInfo;
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
-+ (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle;
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image cellClass:(Class)cellClass userInfo:(id)userInfo;
++ (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image;
 + (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle;
 @property (nonatomic, copy) NSString* subtitle;
 @property (nonatomic, assign) UITableViewCellStyle cellStyle;
