@@ -655,7 +655,7 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     CGSize textSize = [self sizeThatFits:CGSizeMake(bounds.size.width, CGFLOAT_MAX)];
 
     if (NIVerticalTextAlignmentMiddle == self.verticalTextAlignment) {
-      verticalOffset = floorf((bounds.size.height - textSize.height) / 2.f);
+      verticalOffset = NICGFloatFloor((bounds.size.height - textSize.height) / 2.f);
 
     } else if (NIVerticalTextAlignmentBottom == self.verticalTextAlignment) {
       verticalOffset = bounds.size.height - textSize.height;
@@ -890,8 +890,8 @@ CGSize NISizeOfAttributedStringConstrainedToSize(NSAttributedString* attributedS
     // If the user moves their finger within the link beyond a certain gutter amount, reset the
     // hold timer. The user must hold their finger still for the long press interval in order for
     // the long press action to fire.
-    if (fabsf(self.touchPoint.x - point.x) >= kLongPressGutter
-        || fabsf(self.touchPoint.y - point.y) >= kLongPressGutter) {
+    if (NICGFloatAbs(self.touchPoint.x - point.x) >= kLongPressGutter
+        || NICGFloatAbs(self.touchPoint.y - point.y) >= kLongPressGutter) {
       [self.longPressTimer invalidate];
       self.longPressTimer = nil;
       if (nil != self.touchedLink) {
