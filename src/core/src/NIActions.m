@@ -17,6 +17,8 @@
 #import "NIActions.h"
 #import "NIActions+Subclassing.h"
 
+#import <UIKit/UIKit.h>
+
 #import "NIDebuggingTools.h"
 
 #if !defined(__has_feature) || !__has_feature(objc_arc)
