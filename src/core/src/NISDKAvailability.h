@@ -173,7 +173,7 @@
 #define kCFCoreFoundationVersionNumber_iOS_6_1 793.00
 #endif
 
-#if __cplusplus
+#if defined(__cplusplus)
 extern "C" {
 #endif
 
@@ -235,7 +235,7 @@ Class NIUIPopoverControllerClass(void) __NI_DEPRECATED_METHOD;
  */
 Class NIUITapGestureRecognizerClass(void) __NI_DEPRECATED_METHOD;
 
-#if __cplusplus
+#if defined(__cplusplus)
 } // extern "C"
 #endif
 

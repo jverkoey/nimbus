@@ -18,6 +18,7 @@
 
 #import "NICellFactory.h"
 #import "NIRadioGroup.h"
+#import "NISDKAvailability.h"
 #import "NITableViewModel.h"
 
 #import "NIDebuggingTools.h"
