@@ -15,6 +15,7 @@
 //
 
 #import "NICellCatalog.h"
+#import "NICellFactory+Private.h"
 
 #import "NimbusCore.h"
 
@@ -44,9 +45,9 @@
 @implementation NITitleCellObject
 
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image cellClass:(Class)cellClass userInfo:(id)userInfo {
-  if ((self = [super initWithCellClass:cellClass userInfo:userInfo])) {
-    _title = [title copy];
-    _image = image;
+  if ((self = [self initWithTitle:title image:image])) {
+    self.cellClass = cellClass;
+    self.userInfo = userInfo;
   }
   return self;
 }
@@ -56,15 +57,19 @@
 }
 
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image {
-  return [self initWithTitle:title image:image cellClass:[NITextCell class] userInfo:nil];
+  if ((self = [super initWithCellClass:[NITextCell class] userInfo:nil])) {
+    _title = [title copy];
+    _image = image;
+  }
+  return self;
 }
 
 - (id)initWithTitle:(NSString *)title {
-  return [self initWithTitle:title image:nil cellClass:[NITextCell class] userInfo:nil];
+  return [self initWithTitle:title image:nil];
 }
 
 - (id)init {
-  return [self initWithTitle:nil image:nil cellClass:[NITextCell class] userInfo:nil];
+  return [self initWithTitle:nil image:nil];
 }
 
 + (id)objectWithTitle:(NSString *)title image:(UIImage *)image {
@@ -81,27 +86,31 @@
 @implementation NISubtitleCellObject
 
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image cellClass:(Class)cellClass userInfo:(id)userInfo {
-  if ((self = [super initWithTitle:title image:image cellClass:cellClass userInfo:userInfo])) {
+  if ((self = [self initWithTitle:title subtitle:subtitle image:image])) {
+    self.cellClass = cellClass;
+    self.userInfo = userInfo;
+  }
+  return self;
+}
+
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image {
+  if ((self = [super initWithTitle:title image:image])) {
     _subtitle = [subtitle copy];
     _cellStyle = UITableViewCellStyleSubtitle;
   }
   return self;
 }
 
-- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image {
-  return [self initWithTitle:title subtitle:subtitle image:image cellClass:[NITextCell class] userInfo:nil];
-}
-
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
-  return [self initWithTitle:title subtitle:subtitle image:nil cellClass:[NITextCell class] userInfo:nil];
+  return [self initWithTitle:title subtitle:subtitle image:nil];
 }
 
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image {
-  return [self initWithTitle:title subtitle:nil image:image cellClass:[NITextCell class] userInfo:nil];
+  return [self initWithTitle:title subtitle:nil image:image];
 }
 
 - (id)init {
-  return [self initWithTitle:nil subtitle:nil image:nil cellClass:[NITextCell class] userInfo:nil];
+  return [self initWithTitle:nil subtitle:nil image:nil];
 }
 
 + (id)objectWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image {

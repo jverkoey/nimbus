@@ -216,6 +216,7 @@
 		66EAC7DB13D2A77D00BDFF34 /* NimbusPhotos.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusPhotos.bundle; path = ../../../src/photos/resources/NimbusPhotos.bundle; sourceTree = SOURCE_ROOT; };
 		66F27D5B145B7DF500AFCA08 /* NIViewRecycler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIViewRecycler.h; path = ../../../src/core/src/NIViewRecycler.h; sourceTree = "<group>"; };
 		66F27D5C145B7DF500AFCA08 /* NIViewRecycler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIViewRecycler.m; path = ../../../src/core/src/NIViewRecycler.m; sourceTree = "<group>"; };
+		D526CF2818B6CC7E00991F7A /* NICellFactory+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NICellFactory+Private.h"; path = "../../../src/models/src/NICellFactory+Private.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,6 +408,7 @@
 				669F0D0D158002DD0069B972 /* NIFormCellCatalog.h */,
 				669F0D0E158002DD0069B972 /* NIFormCellCatalog.m */,
 				669F0D0F158002DD0069B972 /* NICellFactory.h */,
+				D526CF2818B6CC7E00991F7A /* NICellFactory+Private.h */,
 				669F0D10158002DD0069B972 /* NICellFactory.m */,
 				669F0D11158002DD0069B972 /* NIRadioGroup.h */,
 				669F0D12158002DD0069B972 /* NIRadioGroup.m */,
