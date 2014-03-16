@@ -23,5 +23,8 @@
 // protocol.
 @interface SamplePageView : UIView <NIPagingScrollViewPage>
 @property (nonatomic, retain) UILabel* label;
+
+@property (nonatomic, copy) NSString* reuseIdentifier;
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
+
 @end
